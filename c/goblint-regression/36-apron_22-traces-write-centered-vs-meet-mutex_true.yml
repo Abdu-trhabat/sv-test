@@ -5,7 +5,7 @@ input_files: '36-apron_22-traces-write-centered-vs-meet-mutex_true.i'
 
 properties:
   - property_file: ../properties/no-overflow.prp
-    expected_verdict: true
+    expected_verdict: false
 
 options:
   language: C
