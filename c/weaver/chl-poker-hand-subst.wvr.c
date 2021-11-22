@@ -49,7 +49,7 @@ int minus(int a, int b);
 void* thread1() {
   if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-    assume_abort_if_not( ( ( index_of_0[4] != -1 ) || ( index_of_4[4] != -1 ) ) && ( index_of_0[4] == index_of_4[4] ) );
+    assume_abort_if_not( ( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_4[4] != ( 0 - 1 ) ) ) && ( index_of_0[4] == index_of_4[4] ) );
     i1_13 = 0;
     break_14 = 0;
     __VERIFIER_atomic_end();
@@ -57,7 +57,7 @@ void* thread1() {
     while ( __VERIFIER_nondet_bool() ) {
       __VERIFIER_atomic_begin();
       assume_abort_if_not( !break_14 && ( i1_13 <= 12 ) );
-      result_12 = ( ( ( char_at_1[i1_13] != 0 ) && ( ( char_at_1[i1_13] != 4 ) && ( ( char_at_5[i1_13] != 0 ) && ( char_at_5[i1_13] != 4 ) ) ) ) ? 0 : ( ( ( char_at_1[i1_13] != 0 ) && ( char_at_1[i1_13] != 4 ) ) ? -1 : ( ( ( char_at_5[i1_13] != 0 ) && ( char_at_5[i1_13] != 4 ) ) ? 1 : result_12 ) ) );
+      result_12 = ( ( ( char_at_1[i1_13] != 0 ) && ( ( char_at_1[i1_13] != 4 ) && ( ( char_at_5[i1_13] != 0 ) && ( char_at_5[i1_13] != 4 ) ) ) ) ? 0 : ( ( ( char_at_1[i1_13] != 0 ) && ( char_at_1[i1_13] != 4 ) ) ? ( 0 - 1 ) : ( ( ( char_at_5[i1_13] != 0 ) && ( char_at_5[i1_13] != 4 ) ) ? 1 : result_12 ) ) );
       break_14 = ( ( ( ( char_at_1[i1_13] != 0 ) && ( char_at_1[i1_13] != 4 ) ) || ( ( char_at_5[i1_13] != 0 ) && ( char_at_5[i1_13] != 4 ) ) ) ? 1 : break_14 );
       i1_13 = ( i1_13 + 1 );
       __VERIFIER_atomic_end();
@@ -70,15 +70,15 @@ void* thread1() {
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( ( ( index_of_0[4] != -1 ) || ( index_of_4[4] != -1 ) ) && !( index_of_0[4] == index_of_4[4] ) );
+      assume_abort_if_not( ( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_4[4] != ( 0 - 1 ) ) ) && !( index_of_0[4] == index_of_4[4] ) );
       result_12 = minus(index_of_0[4], index_of_4[4]);
     __VERIFIER_atomic_end();
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_0[4] != -1 ) || ( index_of_4[4] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != -1 ) ) );
+      assume_abort_if_not( !( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_4[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) );
       assume_abort_if_not( last_index_of_3[3] == last_index_of_7[3] );
       i2_15 = 0;
       break_16 = 0;
@@ -86,7 +86,7 @@ void* thread1() {
     while ( __VERIFIER_nondet_bool() ) {
       __VERIFIER_atomic_begin();
         assume_abort_if_not( !break_16 && ( i2_15 <= 12 ) );
-        result_12 = ( ( ( i2_15 != last_index_of_3[3] ) && ( ( ( char_at_1[i2_15] == 2 ) || ( char_at_1[i2_15] == 3 ) ) && ( ( char_at_5[i2_15] == 2 ) || ( char_at_5[i2_15] == 3 ) ) ) ) ? 0 : ( ( ( i2_15 != last_index_of_3[3] ) && ( ( char_at_1[i2_15] == 2 ) || ( char_at_1[i2_15] == 3 ) ) ) ? -1 : ( ( ( i2_15 != last_index_of_3[3] ) && ( ( char_at_5[i2_15] == 2 ) || ( char_at_5[i2_15] == 3 ) ) ) ? 1 : result_12 ) ) );
+        result_12 = ( ( ( i2_15 != last_index_of_3[3] ) && ( ( ( char_at_1[i2_15] == 2 ) || ( char_at_1[i2_15] == 3 ) ) && ( ( char_at_5[i2_15] == 2 ) || ( char_at_5[i2_15] == 3 ) ) ) ) ? 0 : ( ( ( i2_15 != last_index_of_3[3] ) && ( ( char_at_1[i2_15] == 2 ) || ( char_at_1[i2_15] == 3 ) ) ) ? ( 0 - 1 ) : ( ( ( i2_15 != last_index_of_3[3] ) && ( ( char_at_5[i2_15] == 2 ) || ( char_at_5[i2_15] == 3 ) ) ) ? 1 : result_12 ) ) );
         break_16 = ( ( ( i2_15 != last_index_of_3[3] ) && ( ( char_at_1[i2_15] == 2 ) || ( ( char_at_1[i2_15] == 3 ) || ( ( char_at_5[i2_15] == 2 ) || ( char_at_5[i2_15] == 3 ) ) ) ) ) ? 1 : break_16 );
       __VERIFIER_atomic_end();
     }
@@ -97,34 +97,34 @@ void* thread1() {
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_0[4] != -1 ) || ( index_of_4[4] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != -1 ) ) );
+      assume_abort_if_not( !( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_4[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) );
       assume_abort_if_not( !( last_index_of_3[3] == last_index_of_7[3] ) );
       result_12 = minus(last_index_of_3[3], last_index_of_7[3]);
     __VERIFIER_atomic_end();
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_0[4] != -1 ) || ( index_of_4[4] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != -1 ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != -1 ) ) ) );
+      assume_abort_if_not( !( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_4[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) ) );
       result_12 = 1;
     __VERIFIER_atomic_end();
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_0[4] != -1 ) || ( index_of_4[4] != -1 ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != -1 ) ) ) );
-      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != -1 ) ) );
-      result_12 = -1;
+      assume_abort_if_not( !( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_4[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) );
+      result_12 = ( 0 - 1 );
     __VERIFIER_atomic_end();
   }
   else {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_0[4] != -1 ) || ( index_of_4[4] != -1 ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != -1 ) ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != -1 ) ) ) );
+      assume_abort_if_not( !( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_4[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) ) );
       result_12 = 0;
     __VERIFIER_atomic_end();
   }
@@ -135,14 +135,14 @@ void* thread1() {
 void* thread2() {
   if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( ( ( index_of_0[4] != -1 ) || ( index_of_8[4] != -1 ) ) && ( index_of_0[4] == index_of_8[4] ) );
+      assume_abort_if_not( ( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) && ( index_of_0[4] == index_of_8[4] ) );
       i1_18 = 0;
       break_19 = 0;
     __VERIFIER_atomic_end();
     while ( __VERIFIER_nondet_bool() ) {
       __VERIFIER_atomic_begin();
         assume_abort_if_not( !break_19 && ( i1_18 <= 12 ) );
-        result_17 = ( ( ( char_at_1[i1_18] != 0 ) && ( ( char_at_1[i1_18] != 4 ) && ( ( char_at_9[i1_18] != 0 ) && ( char_at_9[i1_18] != 4 ) ) ) ) ? 0 : ( ( ( char_at_1[i1_18] != 0 ) && ( char_at_1[i1_18] != 4 ) ) ? -1 : ( ( ( char_at_9[i1_18] != 0 ) && ( char_at_9[i1_18] != 4 ) ) ? 1 : result_17 ) ) );
+        result_17 = ( ( ( char_at_1[i1_18] != 0 ) && ( ( char_at_1[i1_18] != 4 ) && ( ( char_at_9[i1_18] != 0 ) && ( char_at_9[i1_18] != 4 ) ) ) ) ? 0 : ( ( ( char_at_1[i1_18] != 0 ) && ( char_at_1[i1_18] != 4 ) ) ? ( 0 - 1 ) : ( ( ( char_at_9[i1_18] != 0 ) && ( char_at_9[i1_18] != 4 ) ) ? 1 : result_17 ) ) );
         break_19 = ( ( ( ( char_at_1[i1_18] != 0 ) && ( char_at_1[i1_18] != 4 ) ) || ( ( char_at_9[i1_18] != 0 ) && ( char_at_9[i1_18] != 4 ) ) ) ? 1 : break_19 );
         i1_18 = ( i1_18 + 1 );
     __VERIFIER_atomic_end();
@@ -154,15 +154,15 @@ void* thread2() {
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( ( ( index_of_0[4] != -1 ) || ( index_of_8[4] != -1 ) ) && !( index_of_0[4] == index_of_8[4] ) );
+      assume_abort_if_not( ( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) && !( index_of_0[4] == index_of_8[4] ) );
       result_17 = minus(index_of_0[4], index_of_8[4]);
     __VERIFIER_atomic_end();
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_0[4] != -1 ) || ( index_of_8[4] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != -1 ) ) );
+      assume_abort_if_not( !( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != ( 0 - 1 ) ) ) );
       assume_abort_if_not( last_index_of_3[3] == last_index_of_11[3] );
       i2_20 = 0;
       break_21 = 0;
@@ -170,7 +170,7 @@ void* thread2() {
     while ( __VERIFIER_nondet_bool() ) {
       __VERIFIER_atomic_begin();
         assume_abort_if_not( !break_21 && ( i2_20 <= 12 ) );
-        result_17 = ( ( ( i2_20 != last_index_of_3[3] ) && ( ( ( char_at_1[i2_20] == 2 ) || ( char_at_1[i2_20] == 3 ) ) && ( ( char_at_9[i2_20] == 2 ) || ( char_at_9[i2_20] == 3 ) ) ) ) ? 0 : ( ( ( i2_20 != last_index_of_3[3] ) && ( ( char_at_1[i2_20] == 2 ) || ( char_at_1[i2_20] == 3 ) ) ) ? -1 : ( ( ( i2_20 != last_index_of_3[3] ) && ( ( char_at_9[i2_20] == 2 ) || ( char_at_9[i2_20] == 3 ) ) ) ? 1 : result_17 ) ) );
+        result_17 = ( ( ( i2_20 != last_index_of_3[3] ) && ( ( ( char_at_1[i2_20] == 2 ) || ( char_at_1[i2_20] == 3 ) ) && ( ( char_at_9[i2_20] == 2 ) || ( char_at_9[i2_20] == 3 ) ) ) ) ? 0 : ( ( ( i2_20 != last_index_of_3[3] ) && ( ( char_at_1[i2_20] == 2 ) || ( char_at_1[i2_20] == 3 ) ) ) ? ( 0 - 1 ) : ( ( ( i2_20 != last_index_of_3[3] ) && ( ( char_at_9[i2_20] == 2 ) || ( char_at_9[i2_20] == 3 ) ) ) ? 1 : result_17 ) ) );
         break_21 = ( ( ( i2_20 != last_index_of_3[3] ) && ( ( char_at_1[i2_20] == 2 ) || ( ( char_at_1[i2_20] == 3 ) || ( ( char_at_9[i2_20] == 2 ) || ( char_at_9[i2_20] == 3 ) ) ) ) ) ? 1 : break_21 );
     __VERIFIER_atomic_end();
     }
@@ -181,34 +181,34 @@ void* thread2() {
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_0[4] != -1 ) || ( index_of_8[4] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != -1 ) ) );
+      assume_abort_if_not( !( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != ( 0 - 1 ) ) ) );
       assume_abort_if_not( !( last_index_of_3[3] == last_index_of_11[3] ) );
       result_17 = minus(last_index_of_3[3], last_index_of_11[3]);
     __VERIFIER_atomic_end();
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_0[4] != -1 ) || ( index_of_8[4] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != -1 ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != -1 ) ) ) );
+      assume_abort_if_not( !( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != ( 0 - 1 ) ) ) ) );
       result_17 = 1;
     __VERIFIER_atomic_end();
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_0[4] != -1 ) || ( index_of_8[4] != -1 ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != -1 ) ) ) );
-      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != -1 ) ) );
-      result_17 = -1;
+      assume_abort_if_not( !( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != ( 0 - 1 ) ) ) );
+      result_17 = ( 0 - 1 );
     __VERIFIER_atomic_end();
   }
   else {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_0[4] != -1 ) || ( index_of_8[4] != -1 ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != -1 ) ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != -1 ) ) ) );
+      assume_abort_if_not( !( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != ( 0 - 1 ) ) ) ) );
       result_17 = 0;
     __VERIFIER_atomic_end();
   }
@@ -219,14 +219,14 @@ void* thread2() {
 void *thread3() {
   if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( ( ( index_of_4[4] != -1 ) || ( index_of_8[4] != -1 ) ) && ( index_of_4[4] == index_of_8[4] ) );
+      assume_abort_if_not( ( ( index_of_4[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) && ( index_of_4[4] == index_of_8[4] ) );
       i1_23 = 0;
       break_24 = 0;
     __VERIFIER_atomic_end();
     while ( __VERIFIER_nondet_bool() ) {
       __VERIFIER_atomic_begin();
         assume_abort_if_not( !break_24 && ( i1_23 <= 12 ) );
-        result_22 = ( ( ( char_at_5[i1_23] != 0 ) && ( ( char_at_5[i1_23] != 4 ) && ( ( char_at_9[i1_23] != 0 ) && ( char_at_9[i1_23] != 4 ) ) ) ) ? 0 : ( ( ( char_at_5[i1_23] != 0 ) && ( char_at_5[i1_23] != 4 ) ) ? -1 : ( ( ( char_at_9[i1_23] != 0 ) && ( char_at_9[i1_23] != 4 ) ) ? 1 : result_22 ) ) );
+        result_22 = ( ( ( char_at_5[i1_23] != 0 ) && ( ( char_at_5[i1_23] != 4 ) && ( ( char_at_9[i1_23] != 0 ) && ( char_at_9[i1_23] != 4 ) ) ) ) ? 0 : ( ( ( char_at_5[i1_23] != 0 ) && ( char_at_5[i1_23] != 4 ) ) ? ( 0 - 1 ) : ( ( ( char_at_9[i1_23] != 0 ) && ( char_at_9[i1_23] != 4 ) ) ? 1 : result_22 ) ) );
         break_24 = ( ( ( ( char_at_5[i1_23] != 0 ) && ( char_at_5[i1_23] != 4 ) ) || ( ( char_at_9[i1_23] != 0 ) && ( char_at_9[i1_23] != 4 ) ) ) ? 1 : break_24 );
         i1_23 = ( i1_23 + 1 );
     __VERIFIER_atomic_end();
@@ -238,15 +238,15 @@ void *thread3() {
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( ( ( index_of_4[4] != -1 ) || ( index_of_8[4] != -1 ) ) && !( index_of_4[4] == index_of_8[4] ) );
+      assume_abort_if_not( ( ( index_of_4[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) && !( index_of_4[4] == index_of_8[4] ) );
       result_22 = minus(index_of_4[4], index_of_8[4]);
     __VERIFIER_atomic_end();
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_4[4] != -1 ) || ( index_of_8[4] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != -1 ) ) );
+      assume_abort_if_not( !( ( index_of_4[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != ( 0 - 1 ) ) ) );
       assume_abort_if_not( last_index_of_7[3] == last_index_of_11[3] );
       i2_25 = 0;
       break_26 = 0;
@@ -254,7 +254,7 @@ void *thread3() {
     while ( __VERIFIER_nondet_bool() ) {
       __VERIFIER_atomic_begin();
         assume_abort_if_not( !break_26 && ( i2_25 <= 12 ) );
-        result_22 = ( ( ( i2_25 != last_index_of_7[3] ) && ( ( ( char_at_5[i2_25] == 2 ) || ( char_at_5[i2_25] == 3 ) ) && ( ( char_at_9[i2_25] == 2 ) || ( char_at_9[i2_25] == 3 ) ) ) ) ? 0 : ( ( ( i2_25 != last_index_of_7[3] ) && ( ( char_at_5[i2_25] == 2 ) || ( char_at_5[i2_25] == 3 ) ) ) ? -1 : ( ( ( i2_25 != last_index_of_7[3] ) && ( ( char_at_9[i2_25] == 2 ) || ( char_at_9[i2_25] == 3 ) ) ) ? 1 : result_22 ) ) );
+        result_22 = ( ( ( i2_25 != last_index_of_7[3] ) && ( ( ( char_at_5[i2_25] == 2 ) || ( char_at_5[i2_25] == 3 ) ) && ( ( char_at_9[i2_25] == 2 ) || ( char_at_9[i2_25] == 3 ) ) ) ) ? 0 : ( ( ( i2_25 != last_index_of_7[3] ) && ( ( char_at_5[i2_25] == 2 ) || ( char_at_5[i2_25] == 3 ) ) ) ? ( 0 - 1 ) : ( ( ( i2_25 != last_index_of_7[3] ) && ( ( char_at_9[i2_25] == 2 ) || ( char_at_9[i2_25] == 3 ) ) ) ? 1 : result_22 ) ) );
         break_26 = ( ( ( i2_25 != last_index_of_7[3] ) && ( ( char_at_5[i2_25] == 2 ) || ( ( char_at_5[i2_25] == 3 ) || ( ( char_at_9[i2_25] == 2 ) || ( char_at_9[i2_25] == 3 ) ) ) ) ) ? 1 : break_26 );
     __VERIFIER_atomic_end();
     }
@@ -265,34 +265,34 @@ void *thread3() {
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_4[4] != -1 ) || ( index_of_8[4] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != -1 ) ) );
+      assume_abort_if_not( !( ( index_of_4[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != ( 0 - 1 ) ) ) );
       assume_abort_if_not( !( last_index_of_7[3] == last_index_of_11[3] ) );
       result_22 = minus(last_index_of_7[3], last_index_of_11[3]);
     __VERIFIER_atomic_end();
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_4[4] != -1 ) || ( index_of_8[4] != -1 ) ) );
-      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != -1 ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != -1 ) ) ) );
+      assume_abort_if_not( !( ( index_of_4[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != ( 0 - 1 ) ) ) ) );
       result_22 = 1;
     __VERIFIER_atomic_end();
   }
   else if ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_4[4] != -1 ) || ( index_of_8[4] != -1 ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != -1 ) ) ) );
-      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != -1 ) ) );
-      result_22 = -1;
+      assume_abort_if_not( !( ( index_of_4[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) ) );
+      assume_abort_if_not( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != ( 0 - 1 ) ) ) );
+      result_22 = ( 0 - 1 );
     __VERIFIER_atomic_end();
   }
   else {
     __VERIFIER_atomic_begin();
-      assume_abort_if_not( !( ( index_of_4[4] != -1 ) || ( index_of_8[4] != -1 ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != -1 ) ) ) );
-      assume_abort_if_not( !( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != -1 ) ) ) );
+      assume_abort_if_not( !( ( index_of_4[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) ) );
+      assume_abort_if_not( !( ( count_occurrences_of_10[3] > 1 ) || ( ( count_occurrences_of_10[3] == 1 ) && ( index_of_8[2] != ( 0 - 1 ) ) ) ) );
       result_22 = 0;
     __VERIFIER_atomic_end();
   }
