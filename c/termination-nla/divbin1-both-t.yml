@@ -3,6 +3,7 @@ input_files: 'divbin1-both-t.i'
 properties:
   - property_file: ../properties/termination.prp
     expected_verdict: true
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C
