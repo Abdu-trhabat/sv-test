@@ -43,6 +43,7 @@ int result_8, i1_9, i2_11, result_13, i1_14, i2_16;
 _Bool break_10, break_12, break_15, break_17;
 
 int *create_fresh_int_array(int size);
+int minus(int a, int b);
 
 void* thread1() {
   if (__VERIFIER_nondet_bool()) {
@@ -61,13 +62,13 @@ void* thread1() {
     }
     __VERIFIER_atomic_begin();
     assume_abort_if_not(!( !break_10 && ( i1_9 <= 12 ) ));
-    result_8 = ( !break_10 ? ( index_of_0[4] - index_of_4[4] ) : result_8 );
+    result_8 = ( !break_10 ? minus(index_of_0[4], index_of_4[4]) : result_8 );
     __VERIFIER_atomic_end();
   }
   else if (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not ( ( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_4[4] != ( 0 - 1 ) ) ) && !( index_of_0[4] == index_of_4[4] ) );
-    result_8 = ( index_of_0[4] - index_of_4[4] );
+    result_8 = minus(index_of_0[4], index_of_4[4]);
     __VERIFIER_atomic_end();
   }
   else if (__VERIFIER_nondet_bool()) {
@@ -88,7 +89,7 @@ void* thread1() {
     }
     __VERIFIER_atomic_begin();
     assume_abort_if_not(!( !break_12 && ( i2_11 <= 12 ) ));
-    result_8 = ( !break_12 ? ( last_index_of_3[3] - last_index_of_7[3] ) : result_8 );
+    result_8 = ( !break_12 ? minus(last_index_of_3[3], last_index_of_7[3]) : result_8 );
     __VERIFIER_atomic_end();
   }
   else if (__VERIFIER_nondet_bool()) {
@@ -97,7 +98,7 @@ void* thread1() {
     assume_abort_if_not ( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) );
     assume_abort_if_not ( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) );
     assume_abort_if_not(!( last_index_of_3[3] == last_index_of_7[3] ));
-    result_8 = ( last_index_of_3[3] - last_index_of_7[3] );
+    result_8 = minus(last_index_of_3[3], last_index_of_7[3]);
     __VERIFIER_atomic_end();
   }
   else if (__VERIFIER_nondet_bool()) {
@@ -145,13 +146,13 @@ void* thread2() {
     }
     __VERIFIER_atomic_begin();
     assume_abort_if_not(!( !break_15 && ( i1_14 <= 12 ) ));
-    result_13 = ( !break_15 ? ( index_of_4[4] - index_of_0[4] ) : result_13 );
+    result_13 = ( !break_15 ? minus(index_of_4[4], index_of_0[4]) : result_13 );
     __VERIFIER_atomic_end();
   }
   else if (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not ( ( ( index_of_4[4] != ( 0 - 1 ) ) || ( index_of_0[4] != ( 0 - 1 ) ) ) && !( index_of_4[4] == index_of_0[4] ) );
-    result_13 = ( index_of_4[4] - index_of_0[4] );
+    result_13 = minus(index_of_4[4], index_of_0[4]);
     __VERIFIER_atomic_end();
   }
   else if (__VERIFIER_nondet_bool()) {
@@ -172,7 +173,7 @@ void* thread2() {
     }
     __VERIFIER_atomic_begin();
     assume_abort_if_not(!( !break_17 && ( i2_16 <= 12 ) ));
-    result_13 = ( !break_17 ? ( last_index_of_7[3] - last_index_of_3[3] ) : result_13 );
+    result_13 = ( !break_17 ? minus(last_index_of_7[3], last_index_of_3[3]) : result_13 );
     __VERIFIER_atomic_end();
   }
   else if (__VERIFIER_nondet_bool()) {
@@ -181,7 +182,7 @@ void* thread2() {
     assume_abort_if_not ( ( count_occurrences_of_6[3] > 1 ) || ( ( count_occurrences_of_6[3] == 1 ) && ( index_of_4[2] != ( 0 - 1 ) ) ) );
     assume_abort_if_not ( ( count_occurrences_of_2[3] > 1 ) || ( ( count_occurrences_of_2[3] == 1 ) && ( index_of_0[2] != ( 0 - 1 ) ) ) );
     assume_abort_if_not(!( last_index_of_7[3] == last_index_of_3[3] ));
-    result_13 = ( last_index_of_7[3] - last_index_of_3[3] );
+    result_13 = minus(last_index_of_7[3], last_index_of_3[3]);
     __VERIFIER_atomic_end();
   }
   else if (__VERIFIER_nondet_bool()) {
@@ -230,7 +231,7 @@ int main() {
   pthread_join(t1, 0);
   pthread_join(t2, 0);
   
-  assume_abort_if_not(!( ( ( result_8 < 0 ) ? -1 : ( ( result_8 > 0 ) ? 1 : 0 ) ) == ( 0 - ( ( result_13 < 0 ) ? -1 : ( ( result_13 > 0 ) ? 1 : 0 ) ) ) ));
+  assume_abort_if_not(!( ( ( result_8 < 0 ) ? ( 0 - 1 ) : ( ( result_8 > 0 ) ? 1 : 0 ) ) == ( 0 - ( ( result_13 < 0 ) ? ( 0 - 1 ) : ( ( result_13 > 0 ) ? 1 : 0 ) ) ) ));
   reach_error();
 
   return 0;
@@ -245,4 +246,10 @@ int *create_fresh_int_array(int size) {
     arr[i] = __VERIFIER_nondet_int();
   }
   return arr;
+}
+
+int minus(int a, int b) {
+  assume_abort_if_not(b <= 0 || a >= b - 2147483648);
+  assume_abort_if_not(b >= 0 || a <= b + 2147483647);
+  return a - b;
 }
