@@ -5,6 +5,7 @@ input_files: 'pc_sfifo_1.cil-2+token_ring.15.cil.c'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: False
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

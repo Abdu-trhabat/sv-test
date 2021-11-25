@@ -5,6 +5,7 @@ input_files: 'square_6+soft_float_1-2a.c.cil.c'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: True
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

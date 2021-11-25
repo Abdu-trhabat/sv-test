@@ -5,6 +5,7 @@ input_files: 'gcd_4+newton_1_4.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: False
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

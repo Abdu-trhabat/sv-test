@@ -5,6 +5,7 @@ input_files: 'Problem05_label41+token_ring.13.cil-2.c'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: False
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C
