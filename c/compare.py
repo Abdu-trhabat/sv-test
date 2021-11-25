@@ -22,8 +22,11 @@ import shutil
 import subprocess
 import tempfile
 
-# files where preprocessed files are different
-TASKS_TO_IGNORE = ["floats-esbmc-regression/trunc_nondet_2.i", "*pthread*/*"]
+# tasks to ignore, with reason why
+TASKS_TO_IGNORE = {
+  "floats-esbmc-regression/trunc_nondet_2.i": "(platform-dependent types)",
+  "*pthread*/*": "(platform-dependent types)",
+}
 
 # categories to be excluded ... (with reason and debug information)
 CATEGORIES_TO_IGNORE = {
@@ -97,8 +100,9 @@ def execute_goto_cc(args, bits, orig, taskfile):
     if len(stdout) > 0:
       if args.SHOW_DIFF:
         subprocess.call(["goto-diff", "-u", origout, taskout])
-      if any(fnmatch.fnmatch(taskfile, pattern) for pattern in TASKS_TO_IGNORE):
-        print("WARNING: Difference on", taskfile, "detected (ignored)")
+      reason_to_ignore = get_reason_if_ignored(taskfile)
+      if reason_to_ignore:
+        print("WARNING: Difference on", taskfile, "detected (ignored)", reason_to_ignore)
       else:
         print("ERROR: Difference on", taskfile, "detected")
         if args.KEEP_GOING:
@@ -150,6 +154,13 @@ def get_orig_filename(taskfile):
       return orig
   else:
     fail("No original source of", taskfile, "found at", orig)
+
+
+def get_reason_if_ignored(taskfile):
+  for pattern, reason in TASKS_TO_IGNORE.items():
+    if fnmatch.fnmatch(taskfile, pattern):
+      return reason
+  return None
 
 
 # parse comand line options and set default values
