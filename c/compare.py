@@ -23,10 +23,10 @@ import subprocess
 import tempfile
 
 # files where preprocessed files are different
-BLACKLIST = ["floats-esbmc-regression/trunc_nondet_2.i", "*pthread*/*"]
+TASKS_TO_IGNORE = ["floats-esbmc-regression/trunc_nondet_2.i", "*pthread*/*"]
 
 # categories to be excluded ... (with reason and debug information)
-CATEGORY_BLACKLIST = {
+CATEGORIES_TO_IGNORE = {
   "ConcurrencySafety-Main": "(platform-dependent types)",
   "NoDataRace-Main": "(platform-dependent types)",
   "SoftwareSystems-OpenBSD-MemSafety": "(only custom includes, no system headers, complicated build process)",
@@ -34,7 +34,7 @@ CATEGORY_BLACKLIST = {
 }
 
 # categories to be excluded, if option "skip-large" is used ... (with reason and debug information)
-LARGE_CATEGORY_BLACKLIST = {
+LARGE_CATEGORIES = {
   "SoftwareSystems-DeviceDriversLinux64-ReachSafety": "(only custom includes, no system headers, checking takes too much time)",
   "SoftwareSystems-DeviceDriversLinux64Large-ReachSafety": "(only custom includes, no system headers, checking takes too much time)",
 }
@@ -97,8 +97,8 @@ def execute_goto_cc(args, bits, orig, taskfile):
     if len(stdout) > 0:
       if args.SHOW_DIFF:
         subprocess.call(["goto-diff", "-u", origout, taskout])
-      if any(fnmatch.fnmatch(taskfile, pattern) for pattern in BLACKLIST):
-        print("WARNING: Difference on", taskfile, "detected (blacklisted)")
+      if any(fnmatch.fnmatch(taskfile, pattern) for pattern in TASKS_TO_IGNORE):
+        print("WARNING: Difference on", taskfile, "detected (ignored)")
       else:
         print("ERROR: Difference on", taskfile, "detected")
         if args.KEEP_GOING:
@@ -159,7 +159,7 @@ parser.add_argument("-k", "--keep-going", dest="KEEP_GOING", action="store_true"
 parser.add_argument("-v", "--diff", dest="SHOW_DIFF", action="store_true",
                     help="show the changes for the preprocessed files")
 parser.add_argument("--skip-large", dest="SKIP_LARGE", action="store_true",
-                    help="ignore large benchmark sets (see internal blacklist)")
+                    help="ignore large benchmark sets (see internal list of large categories)")
 parser.add_argument(dest="setfiles", type=str, nargs='*', default=["*.set"],
                     help='set files to be analysed')
 parser.add_argument("-d", "--directory", dest="directories", type=str, action='append', default=None,
@@ -180,11 +180,11 @@ for setfile in get_setfiles(args):
   setname = os.path.basename(setfile)[:-4] # remove ending ".set"
 
   # skip some sets, like LDV (too big) or Concurrency (pthread headers are very platform dependent)
-  if setname in CATEGORY_BLACKLIST:
-    print("Skipping category", setname, CATEGORY_BLACKLIST[setname])
+  if setname in CATEGORIES_TO_IGNORE:
+    print("Skipping category", setname, CATEGORIES_TO_IGNORE[setname])
     continue
-  if args.SKIP_LARGE and setname in LARGE_CATEGORY_BLACKLIST:
-    print("Skipping category", setname, LARGE_CATEGORY_BLACKLIST[setname])
+  if args.SKIP_LARGE and setname in LARGE_CATEGORIES:
+    print("Skipping category", setname, LARGE_CATEGORIES[setname])
     continue
 
   print("Processing category", setname)
