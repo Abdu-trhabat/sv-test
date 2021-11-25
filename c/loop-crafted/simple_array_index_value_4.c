@@ -26,6 +26,10 @@ int main()
   unsigned int index2;
   unsigned int loop_entered = 0;
 
+  for (unsigned i = 0; i < SIZE; ++i) {
+    array[i] = __VERIFIER_nondet_uint();
+  }
+
   index1 =  __VERIFIER_nondet_uint();
   assume_abort_if_not(index1 < SIZE);
   index2 =  __VERIFIER_nondet_uint();

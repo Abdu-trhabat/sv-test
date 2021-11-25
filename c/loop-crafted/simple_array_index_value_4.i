@@ -37,6 +37,10 @@ int main()
   unsigned int index2;
   unsigned int loop_entered = 0;
 
+  for (unsigned i = 0; i < 100000; ++i) {
+    array[i] = __VERIFIER_nondet_uint();
+  }
+
   index1 = __VERIFIER_nondet_uint();
   assume_abort_if_not(index1 < 100000);
   index2 = __VERIFIER_nondet_uint();

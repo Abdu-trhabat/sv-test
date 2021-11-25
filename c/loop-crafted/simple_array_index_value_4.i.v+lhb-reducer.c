@@ -17,6 +17,10 @@ int __return_136;
  unsigned int main__index1;
  unsigned int main__index2;
  unsigned int main__loop_entered = 0;
+ for (unsigned i = 0; i < 100000; ++i)
+ {
+ main__array[i] = __VERIFIER_nondet_uint();
+ }
  main__index1 = __VERIFIER_nondet_uint();
  if (main__index1 < 100000)
  {
