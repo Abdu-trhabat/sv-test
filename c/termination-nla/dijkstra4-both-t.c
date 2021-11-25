@@ -22,6 +22,8 @@ int main() {
     int n, p, q, r, h;
 
     n = __VERIFIER_nondet_int();
+    if (n >= 1073741824)
+        return 1;
 
     p = 0;
     q = 1;
