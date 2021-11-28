@@ -26,6 +26,7 @@ import tempfile
 TASKS_TO_IGNORE = {
   "floats-esbmc-regression/trunc_nondet_2.i": "(platform-dependent types)",
   "*pthread*/*": "(platform-dependent types)",
+  "goblint-regression/*": "(platform-dependent types)",
 }
 
 # categories to be excluded ... (with reason and debug information)
