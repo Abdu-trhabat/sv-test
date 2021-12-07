@@ -38,10 +38,14 @@ void assume_abort_if_not(int cond) {
 _Bool b, c;
 
 void* thread1() {
+    
   __VERIFIER_atomic_begin();
-  assume_abort_if_not(!b);
-  c = 0;
+  _Bool assumption = !b;
+  if(assumption) {
+    c = 0;
+  }
   __VERIFIER_atomic_end();
+  assume_abort_if_not(assumption)
 
   return 0;
 }
