@@ -45,7 +45,7 @@ void* thread1() {
     c = 0;
   }
   __VERIFIER_atomic_end();
-  assume_abort_if_not(assumption)
+  assume_abort_if_not(assumption);
 
   return 0;
 }
