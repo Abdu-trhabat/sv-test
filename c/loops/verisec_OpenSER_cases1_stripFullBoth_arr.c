@@ -2,6 +2,8 @@ extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
 
+extern char __VERIFIER_nondet_char(void);
+
 void __VERIFIER_assert(int cond) {
   if (!(cond)) {
     ERROR: {reach_error();abort();}
@@ -187,6 +189,9 @@ static int parse_expression_list(char *str)
 int main ()
 {
   char A [LINE_LENGTH+1];
+  for (int i = 0; i<LINE_LENGTH-1; i++) {
+    A[i] = __VERIFIER_nondet_char();
+  }
   A[LINE_LENGTH] = EOS;
 
   parse_expression_list (A);
