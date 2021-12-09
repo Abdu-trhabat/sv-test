@@ -23,6 +23,8 @@ int main() {
     int A, B;
     int r, d, p, q;
     A = __VERIFIER_nondet_int();
+    if (A >= 1073741824)
+        return 0;
     B = 1;
 
     r = A;
