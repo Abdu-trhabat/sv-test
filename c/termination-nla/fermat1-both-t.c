@@ -39,7 +39,8 @@ int main() {
       //__VERIFIER_assert(4*(A+r) == u*u - v*v - 2*u + 2*v);
       //if (!(r != 0)) break;
 
-      int c = 0, k = __VERIFIER_nondet_int();
+        int c = 0, k = __VERIFIER_nondet_int();
+        if (k < 0) return 0;
         while (u*u - v*v - 2*u + 2*v - 4*(A+r) + c <= k) {
           //__VERIFIER_assert(4*(A+r) == u*u - v*v - 2*u + 2*v);
           //if (!(r > 0)) break;
