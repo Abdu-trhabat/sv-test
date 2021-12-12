@@ -19,8 +19,8 @@ extern double __VERIFIER_nondet_double(void);
 extern int __VERIFIER_nondet_int(void);
 
 int main() {
-    int A, R;
-    int u, v, r;
+    unsigned int A, R;
+    unsigned int u, v, r;
     A = __VERIFIER_nondet_int();
     R = __VERIFIER_nondet_int();
     // if (! ((R - 1) * (R - 1) < A) ) { abort(); }
@@ -34,12 +34,12 @@ int main() {
     r = R * R - A;
 
 
-    int cc = 0, kk = __VERIFIER_nondet_int();
+    unsigned int cc = 0, kk = __VERIFIER_nondet_int();
     while (u*u - v*v - 2*u + 2*v - 4*(A+r) + cc < kk) {
       //__VERIFIER_assert(4*(A+r) == u*u - v*v - 2*u + 2*v);
       //if (!(r != 0)) break;
 
-      int c = 0, k = __VERIFIER_nondet_int();
+      unsigned int c = 0, k = __VERIFIER_nondet_int();
         while (4*(A+r) == u*u - v*v - 2*u + 2*v) {
           //__VERIFIER_assert(4*(A+r) == u*u - v*v - 2*u + 2*v);
           //if (!(r > 0)) break;
