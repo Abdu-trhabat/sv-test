@@ -516,6 +516,8 @@ class PropertiesChecks(Checks):
 
         if fulfills("unreach-call") and has_prop("coverage-error-call") :
             self.error("has unreachable error location but claims that coverage-error-call is possible")
+        if violates("termination") and has_prop("coverage-branches"):
+            self.error("does not terminate but claims to have coverage-branches")
 
     def check_no_invalid_verdicts(self):
         for prop, verdict in self.prop_and_verdict:
