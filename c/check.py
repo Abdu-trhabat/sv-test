@@ -514,8 +514,8 @@ class PropertiesChecks(Checks):
             # We think this is probable (though not guaranteed), so we issue a warning.
             self.error("has reachable error location but claims to have no memory leaks (this is not necessarily wrong but should be checked)")
 
-        if fulfills("unreach-call") and has_prop("coverage-error-call") :
-            self.error("has unreachable error location but claims that coverage-error-call is possible")
+        if has_prop("coverage-error-call") and not violates("unreach-call"):
+            self.error("claims that coverage-error-call is possible but has no reachable error location")
         if violates("termination") and has_prop("coverage-branches"):
             self.error("does not terminate but claims to have coverage-branches")
 
