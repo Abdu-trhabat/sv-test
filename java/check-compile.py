@@ -36,8 +36,8 @@ for task_file in glob.iglob(os.path.join(base_dir, "**/*.yml"), recursive=True):
     java_files = [
         java_file
         for input_path in task_def["input_files"]
-        for java_file in glob.glob(
-            os.path.join(task_dir, glob.escape(input_path), "**/*.java"), recursive=True
+        for java_file in glob.glob(os.path.abspath(
+            os.path.join(task_dir, glob.escape(input_path), "**/*.java")), recursive=True
         )
     ]
 
