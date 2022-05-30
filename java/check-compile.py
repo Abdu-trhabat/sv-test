@@ -13,7 +13,7 @@ import subprocess
 import sys
 import yaml
 
-CMDLINE = ["javac", "-source", "1.8", "-Werror"]
+CMDLINE = ["javac", "--release", "8", "-Werror"]
 
 if len(sys.argv) > 2:
     sys.exit("Unexpected command-line arguments! Only optional directory expected.")
@@ -28,7 +28,6 @@ else:
 ERRORS = 0
 
 for task_file in glob.iglob(os.path.join(base_dir, "**/*.yml"), recursive=True):
-
     with open(task_file) as f:
         task_def = yaml.safe_load(f)
 
