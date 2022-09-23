@@ -80,3 +80,7 @@ parallel_add_svcomp_header ${bv_path} "*.c" "$year" "$copyright"
 parallel_add_svcomp_header ${bv_path} "*.yml" "$year" "$copyright"
 parallel_add_svcomp_header ${array_path} "*.c" "$year" "$copyright"
 parallel_add_svcomp_header ${array_path} "*.yml" "$year" "$copyright"
+
+# Downloading used licenses
+echo "[INFO] Downloading missing licenses ..."
+reuse download --all
