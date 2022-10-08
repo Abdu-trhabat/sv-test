@@ -56,21 +56,28 @@ bv_folders=("bv/c/beem"
             "bv/c/goel-opensource"
             "bv/c/mann-2019"
             "bv/c/mann-data-integrity"
-            "from-sv/c/v2smv")
+            "bv/c-z/beem"
+            "bv/c-z/btor2tools-examples"
+            "bv/c-z/goel-crafted"
+            "bv/c-z/goel-industry"
+            "bv/c-z/goel-opensource"
+            "bv/c-z/mann-2019"
+	    "bv/c-z/mann-data-integrity")
+ 
 for folder in ${bv_folders[@]}; do
   copy_c_yml_files "${word_level_path}" "${folder}" "${bv_path}"
 done
 
 # Copying array tasks
-array_folders=("array/c/mann-2019")
+array_folders=("array/c/mann-2019" "array/c-z/mann-2019")
 for folder in ${array_folders[@]}; do
   copy_c_yml_files "${word_level_path}" "${folder}" "${array_path}"
 done
 
 # Editing path to property files
-echo "[INFO] Editing paths to property files in YAML files ..."
-find ${bv_path} -name '*.yml' -exec sed -i 's/\.\./\.\.\/properties/g' {} \;
-find ${array_path} -name '*.yml' -exec sed -i 's/\.\./\.\.\/properties/g' {} \;
+# echo "[INFO] Editing paths to property files in YAML files ..."
+# find ${bv_path} -name '*.yml' -exec sed -i 's/\.\./\.\.\/properties/g' {} \;
+# find ${array_path} -name '*.yml' -exec sed -i 's/\.\./\.\.\/properties/g' {} \;
 
 # Adding SV-COMP header
 echo "[INFO] Adding SV-COMP header ..."
