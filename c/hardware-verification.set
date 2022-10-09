@@ -1,0 +1,8 @@
+# Contain tasks converted by Btor2C from word-level hardware model checking benchmarks
+## Tasks converted by default Btor2C configuration
+hardware-verification-array/btor2c.*.yml
+hardware-verification-bv/btor2c.*.yml
+## Tasks converted by Btor2C with "-z" option
+hardware-verification-array/btor2c-z.*.yml
+hardware-verification-bv/btor2c-z.*.yml
+
