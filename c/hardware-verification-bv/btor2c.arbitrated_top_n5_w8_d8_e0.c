@@ -6,7 +6,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-// This C program is converted from Btor2 by Btor2C version 05bb531
+// This C program is converted from Btor2 by Btor2C version a6a806a
 //   with arguments: { architecture=64, lazy_modulo=false, use_memmove=false, unroll_inner_loops=false, shortest_type=true, diff_type=false, decimal_constant=true, zero_init=false, sra_extend_sign=true }
 // Comments from the original Btor2 file:
 // ; source: https://github.com/makaimann/btor-benchmarks/tree/d9a2792dcee39f17607c889500ac76ad3df35a50
