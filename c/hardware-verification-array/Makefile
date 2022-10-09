@@ -9,6 +9,8 @@
 LEVEL := ../
 
 CC.Arch := 64
-CLANG_WARNINGS := -Wno-error=unused-but-set-variable
+CLANG_WARNINGS := \
+       -Wno-error=uninitialized \
+       -Wno-error=unused-but-set-variable
 
 include $(LEVEL)/Makefile.config
