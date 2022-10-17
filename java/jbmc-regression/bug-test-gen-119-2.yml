@@ -3,7 +3,7 @@ input_files:
   - ../common/
   - bug-test-gen-119-2/
 properties:
-  - property_file: ../properties/assert.prp
+  - property_file: ../properties/assert_java.prp
     expected_verdict: true
 
 options:
