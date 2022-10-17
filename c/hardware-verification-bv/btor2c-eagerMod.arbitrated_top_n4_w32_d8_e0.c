@@ -6,7 +6,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-// This C program is converted from Btor2 by Btor2C version 6a6bc95
+// This C program is converted from Btor2 by Btor2C version bfcfb8b
 //   with arguments: { architecture=64, lazy_modulo=false, use_memmove=false, unroll_inner_loops=false, shortest_type=true, diff_type=true, decimal_constant=true, zero_init=false, sra_extend_sign=true }
 // Comments from the original Btor2 file:
 // ; source: https://github.com/makaimann/btor-benchmarks/tree/d9a2792dcee39f17607c889500ac76ad3df35a50
@@ -17,7 +17,7 @@ extern unsigned char __VERIFIER_nondet_uchar();
 extern unsigned short __VERIFIER_nondet_ushort();
 extern unsigned int __VERIFIER_nondet_uint();
 extern unsigned long __VERIFIER_nondet_ulong();
-unsigned __int128 __nondet_uint128() { unsigned __int128 val; return val; }
+extern unsigned __int128 __VERIFIER_nondet_uint128();
 void __VERIFIER_assert(int cond) { if (!(cond)) { ERROR: { reach_error(); abort(); } } }
 void assume_abort_if_not(int cond) { if (!cond) { abort(); } }
 int main() {
@@ -218,7 +218,7 @@ int main() {
     input_2 = input_2 & mask_SORT_1;
     input_3 = __VERIFIER_nondet_uchar();
     input_3 = input_3 & mask_SORT_1;
-    input_5 = __nondet_uint128();
+    input_5 = __VERIFIER_nondet_uint128();
     input_5 = input_5 & mask_SORT_4;
     input_7 = __VERIFIER_nondet_uchar();
     input_7 = input_7 & mask_SORT_6;

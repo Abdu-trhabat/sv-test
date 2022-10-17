@@ -6,7 +6,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-// This C program is converted from Btor2 by Btor2C version 6a6bc95
+// This C program is converted from Btor2 by Btor2C version bfcfb8b
 //   with arguments: { architecture=64, lazy_modulo=false, use_memmove=false, unroll_inner_loops=false, shortest_type=true, diff_type=true, decimal_constant=true, zero_init=false, sra_extend_sign=true }
 // Comments from the original Btor2 file:
 // ; source: https://github.com/aman-goel/avr/tree/92362931700b66684418a991d018c9fbdbebc06f/tests
@@ -17,7 +17,7 @@ extern unsigned char __VERIFIER_nondet_uchar();
 extern unsigned short __VERIFIER_nondet_ushort();
 extern unsigned int __VERIFIER_nondet_uint();
 extern unsigned long __VERIFIER_nondet_ulong();
-unsigned __int128 __nondet_uint128() { unsigned __int128 val; return val; }
+extern unsigned __int128 __VERIFIER_nondet_uint128();
 void __VERIFIER_assert(int cond) { if (!(cond)) { ERROR: { reach_error(); abort(); } } }
 void assume_abort_if_not(int cond) { if (!cond) { abort(); } }
 int main() {
@@ -1290,7 +1290,7 @@ int main() {
   SORT_1 state_2852 = __VERIFIER_nondet_uchar() & mask_SORT_1;
   SORT_157 state_2861 = __VERIFIER_nondet_ushort() & mask_SORT_157;
   SORT_1 state_2866 = __VERIFIER_nondet_uchar() & mask_SORT_1;
-  SORT_71 state_2889 = __nondet_uint128() & mask_SORT_71;
+  SORT_71 state_2889 = __VERIFIER_nondet_uint128() & mask_SORT_71;
   SORT_90 state_4342 = __VERIFIER_nondet_uchar() & mask_SORT_90;
   SORT_26 state_4345 = __VERIFIER_nondet_uint() & mask_SORT_26;
   SORT_90 state_4350 = __VERIFIER_nondet_uchar() & mask_SORT_90;
@@ -1529,7 +1529,7 @@ int main() {
   SORT_1 state_12753 = __VERIFIER_nondet_uchar() & mask_SORT_1;
   SORT_157 state_12762 = __VERIFIER_nondet_ushort() & mask_SORT_157;
   SORT_1 state_12767 = __VERIFIER_nondet_uchar() & mask_SORT_1;
-  SORT_71 state_12789 = __nondet_uint128() & mask_SORT_71;
+  SORT_71 state_12789 = __VERIFIER_nondet_uint128() & mask_SORT_71;
   SORT_90 state_14180 = __VERIFIER_nondet_uchar() & mask_SORT_90;
   SORT_26 state_14183 = __VERIFIER_nondet_uint() & mask_SORT_26;
   SORT_90 state_14188 = __VERIFIER_nondet_uchar() & mask_SORT_90;
@@ -2838,7 +2838,7 @@ int main() {
     input_69 = input_69 & mask_SORT_68;
     input_70 = __VERIFIER_nondet_uchar();
     input_70 = input_70 & mask_SORT_1;
-    input_72 = __nondet_uint128();
+    input_72 = __VERIFIER_nondet_uint128();
     input_72 = input_72 & mask_SORT_71;
     input_73 = __VERIFIER_nondet_ulong();
     input_73 = input_73 & mask_SORT_68;
@@ -3538,9 +3538,9 @@ int main() {
     input_428 = input_428 & mask_SORT_26;
     input_429 = __VERIFIER_nondet_uint();
     input_429 = input_429 & mask_SORT_26;
-    input_430 = __nondet_uint128();
+    input_430 = __VERIFIER_nondet_uint128();
     input_430 = input_430 & mask_SORT_71;
-    input_431 = __nondet_uint128();
+    input_431 = __VERIFIER_nondet_uint128();
     input_431 = input_431 & mask_SORT_71;
     input_432 = __VERIFIER_nondet_ulong();
     input_432 = input_432 & mask_SORT_68;

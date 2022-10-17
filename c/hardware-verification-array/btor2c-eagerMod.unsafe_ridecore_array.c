@@ -6,7 +6,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-// This C program is converted from Btor2 by Btor2C version 6a6bc95
+// This C program is converted from Btor2 by Btor2C version bfcfb8b
 //   with arguments: { architecture=64, lazy_modulo=false, use_memmove=false, unroll_inner_loops=false, shortest_type=true, diff_type=true, decimal_constant=true, zero_init=false, sra_extend_sign=true }
 // Comments from the original Btor2 file:
 // ; source: https://github.com/makaimann/btor-benchmarks/tree/d9a2792dcee39f17607c889500ac76ad3df35a50
@@ -17,7 +17,7 @@ extern unsigned char __VERIFIER_nondet_uchar();
 extern unsigned short __VERIFIER_nondet_ushort();
 extern unsigned int __VERIFIER_nondet_uint();
 extern unsigned long __VERIFIER_nondet_ulong();
-unsigned __int128 __nondet_uint128() { unsigned __int128 val; return val; }
+extern unsigned __int128 __VERIFIER_nondet_uint128();
 void __VERIFIER_assert(int cond) { if (!(cond)) { ERROR: { reach_error(); abort(); } } }
 void assume_abort_if_not(int cond) { if (!cond) { abort(); } }
 int main() {
@@ -1284,7 +1284,7 @@ int main() {
   SORT_1 state_10276 = __VERIFIER_nondet_uchar() & mask_SORT_1;
   SORT_14 state_10281 = __VERIFIER_nondet_uchar() & mask_SORT_14;
   SORT_3 state_10327 = __VERIFIER_nondet_uint() & mask_SORT_3;
-  SORT_10328 state_10330 = __nondet_uint128() & mask_SORT_10328;
+  SORT_10328 state_10330 = __VERIFIER_nondet_uint128() & mask_SORT_10328;
   SORT_3 state_10347 = __VERIFIER_nondet_uint() & mask_SORT_3;
   SORT_1 state_10384 = __VERIFIER_nondet_uchar() & mask_SORT_1;
   SORT_1 state_10385 = __VERIFIER_nondet_uchar() & mask_SORT_1;
@@ -1503,7 +1503,7 @@ int main() {
   SORT_16576 state_17018;
   for (unsigned short i = 0; i < (1 << 10); ++i) state_17018[i] = __VERIFIER_nondet_uchar() & mask_SORT_18;
   SORT_43455 state_43456;
-  for (unsigned short i = 0; i < (1 << 9); ++i) state_43456[i] = __nondet_uint128() & mask_SORT_10328;
+  for (unsigned short i = 0; i < (1 << 9); ++i) state_43456[i] = __VERIFIER_nondet_uint128() & mask_SORT_10328;
   // Initializing states ...
   SORT_1 init_8_arg_1 = var_6;
   state_7 = init_8_arg_1;

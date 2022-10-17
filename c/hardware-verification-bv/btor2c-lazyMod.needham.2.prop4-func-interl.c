@@ -6,7 +6,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-// This C program is converted from Btor2 by Btor2C version 6a6bc95
+// This C program is converted from Btor2 by Btor2C version bfcfb8b
 //   with arguments: { architecture=64, lazy_modulo=true, use_memmove=false, unroll_inner_loops=false, shortest_type=true, diff_type=true, decimal_constant=true, zero_init=false, sra_extend_sign=true }
 // Comments from the original Btor2 file:
 // ; source: http://fmv.jku.at/hwmcc19/beem_btor.tar.xz

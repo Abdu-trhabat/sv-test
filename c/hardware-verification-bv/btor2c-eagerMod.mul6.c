@@ -6,7 +6,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-// This C program is converted from Btor2 by Btor2C version 6a6bc95
+// This C program is converted from Btor2 by Btor2C version bfcfb8b
 //   with arguments: { architecture=64, lazy_modulo=false, use_memmove=false, unroll_inner_loops=false, shortest_type=true, diff_type=true, decimal_constant=true, zero_init=false, sra_extend_sign=true }
 // Comments from the original Btor2 file:
 // ; source: https://github.com/aman-goel/avr/tree/92362931700b66684418a991d018c9fbdbebc06f/tests
@@ -17,7 +17,7 @@ extern unsigned char __VERIFIER_nondet_uchar();
 extern unsigned short __VERIFIER_nondet_ushort();
 extern unsigned int __VERIFIER_nondet_uint();
 extern unsigned long __VERIFIER_nondet_ulong();
-unsigned __int128 __nondet_uint128() { unsigned __int128 val; return val; }
+extern unsigned __int128 __VERIFIER_nondet_uint128();
 void __VERIFIER_assert(int cond) { if (!(cond)) { ERROR: { reach_error(); abort(); } } }
 void assume_abort_if_not(int cond) { if (!cond) { abort(); } }
 int main() {
@@ -56,8 +56,8 @@ int main() {
   SORT_8 input_9;
   // Collecting state declarations ...
   SORT_1 state_11 = __VERIFIER_nondet_uchar() & mask_SORT_1;
-  SORT_14 state_16 = __nondet_uint128() & mask_SORT_14;
-  SORT_14 state_18 = __nondet_uint128() & mask_SORT_14;
+  SORT_14 state_16 = __VERIFIER_nondet_uint128() & mask_SORT_14;
+  SORT_14 state_18 = __VERIFIER_nondet_uint128() & mask_SORT_14;
   SORT_5 state_29 = __VERIFIER_nondet_ulong() & mask_SORT_5;
   SORT_5 state_31 = __VERIFIER_nondet_ulong() & mask_SORT_5;
   SORT_8 state_36 = __VERIFIER_nondet_ushort() & mask_SORT_8;

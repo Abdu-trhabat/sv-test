@@ -6,7 +6,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-// This C program is converted from Btor2 by Btor2C version 6a6bc95
+// This C program is converted from Btor2 by Btor2C version bfcfb8b
 //   with arguments: { architecture=64, lazy_modulo=true, use_memmove=false, unroll_inner_loops=false, shortest_type=true, diff_type=true, decimal_constant=true, zero_init=false, sra_extend_sign=true }
 // Comments from the original Btor2 file:
 // ; source: https://github.com/makaimann/btor-benchmarks/tree/d9a2792dcee39f17607c889500ac76ad3df35a50
@@ -17,7 +17,7 @@ extern unsigned char __VERIFIER_nondet_uchar();
 extern unsigned short __VERIFIER_nondet_ushort();
 extern unsigned int __VERIFIER_nondet_uint();
 extern unsigned long __VERIFIER_nondet_ulong();
-unsigned __int128 __nondet_uint128() { unsigned __int128 val; return val; }
+extern unsigned __int128 __VERIFIER_nondet_uint128();
 void __VERIFIER_assert(int cond) { if (!(cond)) { ERROR: { reach_error(); abort(); } } }
 void assume_abort_if_not(int cond) { if (!cond) { abort(); } }
 int main() {
@@ -295,84 +295,84 @@ int main() {
   SORT_1 input_9;
   SORT_1 input_74;
   // Collecting state declarations ...
-  SORT_3 state_10 = __nondet_uint128() & mask_SORT_3;
+  SORT_3 state_10 = __VERIFIER_nondet_uint128() & mask_SORT_3;
   SORT_12 state_13 = __VERIFIER_nondet_uchar() & mask_SORT_12;
   SORT_1 state_20 = __VERIFIER_nondet_uchar() & mask_SORT_1;
   SORT_1 state_21 = __VERIFIER_nondet_uchar() & mask_SORT_1;
   SORT_12 state_24 = __VERIFIER_nondet_uchar() & mask_SORT_12;
-  SORT_3 state_39 = __nondet_uint128() & mask_SORT_3;
+  SORT_3 state_39 = __VERIFIER_nondet_uint128() & mask_SORT_3;
   SORT_1 state_56 = __VERIFIER_nondet_uchar() & mask_SORT_1;
-  SORT_3 state_87 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_89 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_91 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_93 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_95 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_97 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_99 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_101 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_103 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_105 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_107 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_109 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_111 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_113 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_115 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_117 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_119 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_121 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_123 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_125 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_127 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_129 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_131 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_133 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_135 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_137 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_139 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_141 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_143 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_145 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_147 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_149 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_151 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_153 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_155 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_157 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_159 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_161 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_163 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_165 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_167 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_169 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_171 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_173 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_175 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_177 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_179 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_181 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_183 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_185 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_187 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_189 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_191 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_193 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_195 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_197 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_199 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_201 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_203 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_205 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_207 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_209 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_211 = __nondet_uint128() & mask_SORT_3;
+  SORT_3 state_87 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_89 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_91 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_93 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_95 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_97 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_99 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_101 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_103 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_105 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_107 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_109 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_111 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_113 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_115 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_117 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_119 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_121 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_123 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_125 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_127 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_129 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_131 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_133 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_135 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_137 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_139 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_141 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_143 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_145 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_147 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_149 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_151 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_153 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_155 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_157 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_159 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_161 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_163 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_165 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_167 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_169 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_171 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_173 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_175 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_177 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_179 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_181 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_183 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_185 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_187 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_189 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_191 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_193 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_195 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_197 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_199 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_201 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_203 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_205 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_207 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_209 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_211 = __VERIFIER_nondet_uint128() & mask_SORT_3;
   // Initializing states ...
   SORT_1 init_57_arg_1 = var_46;
   state_56 = init_57_arg_1;
   for (;;) {
     // Getting external input values ...
     input_2 = __VERIFIER_nondet_uchar();
-    input_4 = __nondet_uint128();
-    input_5 = __nondet_uint128();
+    input_4 = __VERIFIER_nondet_uint128();
+    input_5 = __VERIFIER_nondet_uint128();
     input_6 = __VERIFIER_nondet_uchar();
     input_6 = input_6 & mask_SORT_1;
     input_7 = __VERIFIER_nondet_uchar();

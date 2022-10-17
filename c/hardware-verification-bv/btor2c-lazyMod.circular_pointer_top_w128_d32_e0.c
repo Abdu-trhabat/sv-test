@@ -6,7 +6,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-// This C program is converted from Btor2 by Btor2C version 6a6bc95
+// This C program is converted from Btor2 by Btor2C version bfcfb8b
 //   with arguments: { architecture=64, lazy_modulo=true, use_memmove=false, unroll_inner_loops=false, shortest_type=true, diff_type=true, decimal_constant=true, zero_init=false, sra_extend_sign=true }
 // Comments from the original Btor2 file:
 // ; source: https://github.com/makaimann/btor-benchmarks/tree/d9a2792dcee39f17607c889500ac76ad3df35a50
@@ -17,7 +17,7 @@ extern unsigned char __VERIFIER_nondet_uchar();
 extern unsigned short __VERIFIER_nondet_ushort();
 extern unsigned int __VERIFIER_nondet_uint();
 extern unsigned long __VERIFIER_nondet_ulong();
-unsigned __int128 __nondet_uint128() { unsigned __int128 val; return val; }
+extern unsigned __int128 __VERIFIER_nondet_uint128();
 void __VERIFIER_assert(int cond) { if (!(cond)) { ERROR: { reach_error(); abort(); } } }
 void assume_abort_if_not(int cond) { if (!cond) { abort(); } }
 int main() {
@@ -93,45 +93,45 @@ int main() {
   SORT_3 input_9;
   SORT_1 input_231;
   // Collecting state declarations ...
-  SORT_3 state_10 = __nondet_uint128() & mask_SORT_3;
+  SORT_3 state_10 = __VERIFIER_nondet_uint128() & mask_SORT_3;
   SORT_11 state_12 = __VERIFIER_nondet_uchar() & mask_SORT_11;
-  SORT_3 state_18 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_24 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_29 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_34 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_39 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_44 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_49 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_54 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_59 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_64 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_69 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_74 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_79 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_84 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_89 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_94 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_99 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_105 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_110 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_115 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_120 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_125 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_130 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_135 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_140 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_146 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_151 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_156 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_161 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_167 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_172 = __nondet_uint128() & mask_SORT_3;
-  SORT_3 state_177 = __nondet_uint128() & mask_SORT_3;
+  SORT_3 state_18 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_24 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_29 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_34 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_39 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_44 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_49 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_54 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_59 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_64 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_69 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_74 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_79 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_84 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_89 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_94 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_99 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_105 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_110 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_115 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_120 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_125 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_130 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_135 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_140 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_146 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_151 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_156 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_161 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_167 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_172 = __VERIFIER_nondet_uint128() & mask_SORT_3;
+  SORT_3 state_177 = __VERIFIER_nondet_uint128() & mask_SORT_3;
   SORT_11 state_182 = __VERIFIER_nondet_uchar() & mask_SORT_11;
   SORT_1 state_190 = __VERIFIER_nondet_uchar() & mask_SORT_1;
   SORT_1 state_191 = __VERIFIER_nondet_uchar() & mask_SORT_1;
   SORT_11 state_194 = __VERIFIER_nondet_uchar() & mask_SORT_11;
-  SORT_3 state_209 = __nondet_uint128() & mask_SORT_3;
+  SORT_3 state_209 = __VERIFIER_nondet_uint128() & mask_SORT_3;
   SORT_1 state_213 = __VERIFIER_nondet_uchar() & mask_SORT_1;
   SORT_11 state_282 = __VERIFIER_nondet_uchar() & mask_SORT_11;
   // Initializing states ...
@@ -140,13 +140,13 @@ int main() {
   for (;;) {
     // Getting external input values ...
     input_2 = __VERIFIER_nondet_uchar();
-    input_4 = __nondet_uint128();
+    input_4 = __VERIFIER_nondet_uint128();
     input_5 = __VERIFIER_nondet_uchar();
     input_6 = __VERIFIER_nondet_uchar();
     input_7 = __VERIFIER_nondet_uchar();
     input_7 = input_7 & mask_SORT_1;
     input_8 = __VERIFIER_nondet_uchar();
-    input_9 = __nondet_uint128();
+    input_9 = __VERIFIER_nondet_uint128();
     input_231 = __VERIFIER_nondet_uchar();
     // Assuming invariants ...
     SORT_1 var_215_arg_0 = input_7;
