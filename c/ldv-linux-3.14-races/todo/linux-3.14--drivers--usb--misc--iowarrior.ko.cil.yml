@@ -5,7 +5,7 @@ input_files: 'linux-3.14--drivers--usb--misc--iowarrior.ko.cil.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp
-    expected_verdict: false
+    expected_verdict: false # uses uninitialized memory from usb_find_interface
 
 options:
   language: C
