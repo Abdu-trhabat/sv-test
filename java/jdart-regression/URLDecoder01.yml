@@ -5,6 +5,7 @@ input_files:
 properties:
   - property_file: ../properties/assert_java.prp
     expected_verdict: true
-
+  - property_file: ../properties/runtime-exception.prp
+    expected_verdict: false
 options:
   language: Java
