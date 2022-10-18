@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: nested3_false-unreach-call.c
-input_files: 'nested3-2.c'
+input_files: 'nested3-2_abstracted.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp
