@@ -4,7 +4,7 @@
 ### hardware-verification-array/btor2c-eagerMod.*.yml
 ### hardware-verification-bv/btor2c-eagerMod.*.yml
 
-## Tasks converted by Btor2C with lazy-modulo (default setting)
+## Tasks converted by Btor2C with lazy-modulo
 hardware-verification-array/btor2c-lazyMod.*.yml
 hardware-verification-bv/btor2c-lazyMod.*.yml
 
