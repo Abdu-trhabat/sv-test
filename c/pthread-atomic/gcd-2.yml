@@ -6,6 +6,8 @@ input_files: 'gcd-2.i'
 properties:
   - property_file: ../properties/termination.prp
     expected_verdict: true
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
   - property_file: ../properties/coverage-branches.prp
