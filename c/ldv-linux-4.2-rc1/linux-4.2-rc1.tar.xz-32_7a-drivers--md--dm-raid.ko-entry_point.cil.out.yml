@@ -5,7 +5,7 @@ input_files: 'linux-4.2-rc1.tar.xz-32_7a-drivers--md--dm-raid.ko-entry_point.cil
 
 properties:
   - property_file: ../properties/unreach-call.prp
-    expected_verdict: false
+    expected_verdict: true
 
 options:
   language: C
