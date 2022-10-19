@@ -1,14 +1,4 @@
 extern void abort(void);
-extern int __VERIFIER_nondet_int();
-extern _Bool __VERIFIER_nondet_bool();
-extern char __VERIFIER_nondet_char();
-extern double __VERIFIER_nondet_double();
-extern float __VERIFIER_nondet_float();
-extern unsigned long __VERIFIER_nondet_ulong();
-extern unsigned long long __VERIFIER_nondet_ulonglong();
-extern unsigned int __VERIFIER_nondet_uint();
-extern int __VERIFIER_nondet_int();
-extern void abort(void);
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -19,7 +9,7 @@ extern void __assert_perror_fail (int __errnum, const char *__file,
 extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "terminator_03-2.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "terminator_03-2_abstracted.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
@@ -37,12 +27,10 @@ int main() {
     int y=__VERIFIER_nondet_int();
     if (!(y <= 1000000)) return 0;
     if (y>0) {
-        // START HAVOCABSTRACTION
         if (x < (100)) {
         x = __VERIFIER_nondet_int();
         }
         if (x < (100)) abort();
-        // END HAVOCABSTRACTION
     }
     __VERIFIER_assert(y<=0 || (y>0 && x>=100));
     return 0;
