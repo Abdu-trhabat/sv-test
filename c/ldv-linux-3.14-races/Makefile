@@ -10,6 +10,6 @@ LEVEL := ../
 
 CC.Arch := 32
 
-IGNORE_DIRS := ./model/
+IGNORE_DIRS := ./model/ ./todo/
 
 include $(LEVEL)/Makefile.config
