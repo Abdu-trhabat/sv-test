@@ -7793,7 +7793,7 @@ static void array_insert(void *base , size_t elt_size , unsigned int nr_elts , u
   return;
 }
 }
-static int bsearch(struct btree_node *n , uint64_t key , int want_hi )
+static int binary_search(struct btree_node *n , uint64_t key , int want_hi )
 {
   int lo ;
   int hi ;
@@ -7827,7 +7827,7 @@ int lower_bound(struct btree_node *n , uint64_t key )
 {
   int tmp ;
   {
-  tmp = bsearch(n, key, 0);
+  tmp = binary_search(n, key, 0);
   return (tmp);
 }
 }

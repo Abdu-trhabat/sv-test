@@ -6,6 +6,8 @@ input_files: 'mix014.opt.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
   - property_file: ../properties/no-data-race.prp
     expected_verdict: true
 
