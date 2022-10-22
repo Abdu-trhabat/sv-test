@@ -45,10 +45,16 @@ LARGE_CATEGORIES = {
 }
 
 # no original source available, there are only preprocessed files.
-# for LDV: there is a related .cil.c file, but it doesn't necessarily match at all
-# for loops/s3.i: this single file is special
-# for Juliet there are c files, but each was preprocessed into two tasks, one valid and one invalid
-TASKS_ONLY_PREPROCESSED = ['ddv-machzwd/', 'aws-c-common/', 'ldv-linux-3.0/', 'ldv-regression/', 'loops/s3.i', 'Juliet_Test/', 'combinations/']
+TASKS_ONLY_PREPROCESSED = [
+  'ddv-machzwd/',
+  'aws-c-common/',
+  # for LDV: there is a related .cil.c file, but it doesn't necessarily match at all
+  'ldv-linux-3.0/',
+  'ldv-regression/',
+  'loops/s3.i', # this single file is special
+  'Juliet_Test/', # for Juliet there are c files, but each was preprocessed into two tasks, one valid and one invalid
+  'combinations/'
+]
 
 CBMC_GIT_PATH = "../cbmc.git/"
 
