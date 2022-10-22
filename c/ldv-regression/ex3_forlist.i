@@ -45,7 +45,7 @@ void g(void *pointer) {
 }
 
 int counter = 1;
-void *malloc(int size) {
+void *fake_malloc(int size) {
  return counter++;
 
 }
@@ -54,8 +54,8 @@ int main() {
  int *a;
  int *b;
  init();
- a = malloc(sizeof(int));
- b = malloc(sizeof(int));
+ a = fake_malloc(sizeof(int));
+ b = fake_malloc(sizeof(int));
  if(a==0 || b==0)
   return -1;
 

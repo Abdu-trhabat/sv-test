@@ -6,6 +6,8 @@ input_files: 'race-4_1-thread_local_vars.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
   - property_file: ../properties/coverage-branches.prp
   - property_file: ../properties/no-data-race.prp
     expected_verdict: true
