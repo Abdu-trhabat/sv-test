@@ -937,9 +937,6 @@ int main() {
   int i = __VERIFIER_nondet_int();
   pthread_t id;
   pthread_create(&id, ((void *)0), t_fun, ((void *)0));
-  if (i == 2147483647) {
-    return 0;
-  }
   printf("Do the work? ");
   if (i)
     pthread_mutex_lock(&m);

@@ -10,7 +10,6 @@ extern int __VERIFIER_nondet_int();
 #include<stdio.h>
 #include<pthread.h>
 #include<assert.h>
-#include<limits.h>
 
 int glob;
 pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
@@ -26,10 +25,6 @@ int main() {
   int i = __VERIFIER_nondet_int();
   pthread_t id;
   pthread_create(&id, NULL, t_fun, NULL);
-
-  if (i == INT_MAX) {
-    return 0;
-  }
 
   printf("Do the work? ");
   if (i)
