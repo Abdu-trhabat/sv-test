@@ -928,9 +928,7 @@ void *t_fun(void *arg) {
 int main(void) {
   pthread_t id;
   int i = __VERIFIER_nondet_int();
-  if (i >= 2147483646) {
-    return 0;
-  }
+
   pthread_create(&id, ((void *)0), t_fun, (void *) &i);
   pthread_mutex_lock(&mutex1);
   i++;

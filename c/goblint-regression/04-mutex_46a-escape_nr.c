@@ -9,7 +9,6 @@ extern int __VERIFIER_nondet_int();
 
 #include <pthread.h>
 #include <stdio.h>
-#include<limits.h>
 
 pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex2 = PTHREAD_MUTEX_INITIALIZER;
@@ -25,9 +24,6 @@ void *t_fun(void *arg) {
 int main(void) {
   pthread_t id;
   int i = __VERIFIER_nondet_int();
-  if (i >= INT_MAX - 1) {
-    return 0;
-  }
 
   pthread_create(&id, NULL, t_fun, (void *) &i);
   pthread_mutex_lock(&mutex1);
