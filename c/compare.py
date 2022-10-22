@@ -51,6 +51,7 @@ TASKS_ONLY_PREPROCESSED = [
   # for LDV: there is a related .cil.c file, but it doesn't necessarily match at all
   'ldv-linux-3.0/',
   'ldv-regression/',
+  'ldv-linux-3.14-races/linux-3.14--drivers--media--platform--marvell-ccic--cafe_ccic.ko.cil-1.i',
   'loops/s3.i', # this single file is special
   'Juliet_Test/', # for Juliet there are c files, but each was preprocessed into two tasks, one valid and one invalid
   'combinations/'
