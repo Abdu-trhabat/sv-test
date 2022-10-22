@@ -6,6 +6,8 @@ input_files: '06-symbeq_23-idxsense_nr.i'
 properties:
   - property_file: ../properties/no-data-race.prp
     expected_verdict: true
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
 
 options:
   language: C
