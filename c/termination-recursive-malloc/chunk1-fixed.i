@@ -6,10 +6,9 @@ void __attribute__((__cdecl__)) free (void *) ;
 extern int __VERIFIER_nondet_int(void);
 
 void chunk(int *data) {
-	if(data[0] >= data[3]) {
-    free(data); 
+	if(data[0] >= data[3]) 
 		return;
-	}
+	
 	data[0]++;
 	
 	
@@ -20,13 +19,14 @@ void chunk(int *data) {
 int main() {
 	int *data  = malloc(4*sizeof(int));
 	
-	data[0] = __VERIFIER_nondet_int();
-	data[3] = __VERIFIER_nondet_int();
+	int i = __VERIFIER_nondet_int();
+	int upper = __VERIFIER_nondet_int();
 	
-	if(data[0] >= data[3]) {
-    free(data);  
+	if(i >= upper)
 		return 0;
-	}
+	
+	data[0] = i;
+	data[3] = upper;
 	chunk(data);
 	
 	
