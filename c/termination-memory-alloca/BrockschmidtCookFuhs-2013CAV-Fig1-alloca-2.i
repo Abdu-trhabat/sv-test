@@ -543,6 +543,7 @@ extern int getsubopt (char **__restrict __optionp,
 extern int getloadavg (double __loadavg[], int __nelem)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
+extern int __VERIFIER_nondet_int(void);
 int main() {
     int* i = __builtin_alloca (sizeof(int));
     int* j = __builtin_alloca (sizeof(int));

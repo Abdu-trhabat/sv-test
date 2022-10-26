@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <alloca.h>
 
+extern int __VERIFIER_nondet_int(void);
+
 int main() {
     int* i = alloca(sizeof(int));
     int* j = alloca(sizeof(int));
