@@ -4,7 +4,7 @@ format_version: '2.0'
 input_files: 'linux-stable-d47b389-1-32_7a-drivers--media--video--cx88--cx88-blackbird.ko-entry_point.cil.out.i'
 
 properties:
-  - property_file: ../properties/unreach-call.prp
+  - property_file: ../properties/valid-memsafety.prp
     expected_verdict: false
 
 options:

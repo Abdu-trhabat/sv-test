@@ -4,7 +4,7 @@ format_version: '2.0'
 input_files: 'linux-4.0-rc1---drivers--block--virtio_blk.ko.cil.i'
 
 properties:
-  - property_file: ../properties/unreach-call.prp
+  - property_file: ../properties/valid-memsafety.prp
     expected_verdict: false
 
 options:

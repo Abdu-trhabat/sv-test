@@ -7049,7 +7049,7 @@ __inline static bool ether_addr_equal(u8 const *addr1 , u8 const *addr2 )
 {
   u32 fold ;
   {
-  fold = ((unsigned int )*((u32 const *)addr1) ^ (unsigned int )*((u32 const *)addr2)) | (unsigned int )((int )((unsigned short )*((u16 const *)addr1 + 4U)) ^ (int )((unsigned short )*((u16 const *)addr2 + 4U)));
+    fold = ((unsigned int )*((u32 const *)addr1) ^ (unsigned int )*((u32 const *)addr2)) | (unsigned int )((int )((unsigned short )*((u16 const *)(addr1 + 4U))) ^ (int )((unsigned short )*((u16 const *)(addr2 + 4U))));
   return (fold == 0U);
 }
 }
