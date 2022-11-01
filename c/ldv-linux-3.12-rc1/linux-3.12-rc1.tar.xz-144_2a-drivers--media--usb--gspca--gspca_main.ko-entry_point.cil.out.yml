@@ -5,6 +5,7 @@ input_files: 'linux-3.12-rc1.tar.xz-144_2a-drivers--media--usb--gspca--gspca_mai
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
+    subproperty: valid-deref
     expected_verdict: false
 
 options:

@@ -5,6 +5,7 @@ input_files: 'linux-stable-d47b389-1-32_7a-drivers--media--video--cx88--cx88-bla
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
+    subproperty: valid-deref
     expected_verdict: false
 
 options:

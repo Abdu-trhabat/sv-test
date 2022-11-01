@@ -5,6 +5,7 @@ input_files: 'linux-4.0-rc1---drivers--nfc--port100.ko.cil.i'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
+    subproperty: valid-deref
     expected_verdict: false
 
 options:

@@ -5,6 +5,7 @@ input_files: 'linux-stable-4a349aa-1-32_7a-drivers--media--video--tlg2300--posei
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
+    subproperty: valid-deref
     expected_verdict: false
 
 options:

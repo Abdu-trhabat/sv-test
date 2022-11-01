@@ -5,6 +5,7 @@ input_files: '205_9a_array_unsafes_linux-3.16-rc1.tar.xz-205_9a-drivers--net--ar
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
+    subproperty: valid-deref
     expected_verdict: false
 
 options:
