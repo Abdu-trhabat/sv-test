@@ -65,13 +65,10 @@ int main () {
   list_add(p, slot[j]);
   list_add(p, slot[k]);
 
-  // If it happens that i = k /= j, then it is a real race: the element in p
-  // will be accessed with locks mutex[i] and mutex[j].
-
   pthread_create(&t1, NULL, t_fun, NULL);
 
   pthread_mutex_lock(&mutex[j]);
-  p = slot[j]->next; // RACE!
+  p = slot[j]->next;
   printf("%d\n", p->datum);
   pthread_mutex_unlock(&mutex[j]);
   return 0;
