@@ -69,6 +69,9 @@ int main(int argc, char **argv) {
   pthread_create(&id2, NULL, t2, NULL);
   int correct = fib();
 
-  assert(i < correct && j < correct);
+  __VERIFIER_atomic_begin();
+  _Bool assert_cond = i <= correct && j <= correct; 
+  __VERIFIER_atomic_end();
+  assert(assert_cond);
   return 0;
 }
