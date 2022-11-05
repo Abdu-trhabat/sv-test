@@ -722,7 +722,10 @@ int main(int argc, char **argv) {
   pthread_create(&id2, ((void *)0), t2, ((void *)0));
   int correct = fib();
   
-  if(i <= correct && j <= correct) ;
+  __VERIFIER_atomic_begin();
+  _Bool assert_cond = i <= correct && j <= correct; 
+  __VERIFIER_atomic_end();
+  if(assert_cond) ;
   else ERROR: {reach_error();abort();}
   
   return 0;
