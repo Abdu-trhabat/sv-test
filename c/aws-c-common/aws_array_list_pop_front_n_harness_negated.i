@@ -7992,7 +7992,7 @@ void aws_array_list_pop_front_n_harness() {
         __VERIFIER_assert(!(list.alloc == old.alloc));
         __VERIFIER_assert(!(list.current_size == old.current_size));
         __VERIFIER_assert(!(list.item_size == old.item_size));
-        (n >= old.length) ? __VERIFIER_assert(!(list.length == 0) : __VERIFIER_assert(list.length == old.length - n));
+        (n >= old.length) ? __VERIFIER_assert(!(list.length == 0)) : __VERIFIER_assert(!(list.length == old.length - n));
     }
 }
 int main() { aws_array_list_pop_front_n_harness(); return 0; }
