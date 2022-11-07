@@ -6,7 +6,6 @@
 // SPDX-FileCopyrightText: The ESBMC project
 //
 // SPDX-License-Identifier: Apache-2.0 AND GPL-3.0-or-later
-
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
@@ -677,6 +676,8 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "fib_unsafe.h", 13, __extension__ __PRETTY_FUNCTION__); })); }
+void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
 int i, j;
 extern void __VERIFIER_atomic_begin(void);
 extern void __VERIFIER_atomic_end(void);
@@ -721,6 +722,6 @@ int main(int argc, char **argv) {
   __VERIFIER_atomic_begin();
   _Bool assert_cond = i <= correct && j <= correct;
   __VERIFIER_atomic_end();
-  ((void) sizeof ((assert_cond) ? 1 : 0), __extension__ ({ if (assert_cond) ; else __assert_fail ("assert_cond", "fib_unsafe.h", 75, __extension__ __PRETTY_FUNCTION__); }));
+  __VERIFIER_assert(assert_cond);
   return 0;
 }
