@@ -1836,7 +1836,7 @@ int main (int argc, char *argv[]) {
   int status;
   pthread_t counter_thread_id;
   pthread_t monitor_thread_id;
-  time_t current_time = time (NULL);
+  time_t current_time = time (((void *)0));
   if (current_time > 2147483647 - 60) {
     return 0;
   }
