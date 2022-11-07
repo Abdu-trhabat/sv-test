@@ -1018,9 +1018,6 @@ int main () {
   pthread_mutex_init(&A.mutex, ((void *)0));
   pthread_mutex_init(&B.mutex, ((void *)0));
   int x = __VERIFIER_nondet_int();
-  if (x == 2147483647) {
-    return 0;
-  }
   struct s *s;
   int *d;
   pthread_mutex_t *m;
