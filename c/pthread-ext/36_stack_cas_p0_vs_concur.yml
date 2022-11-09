@@ -6,6 +6,8 @@ input_files: '36_stack_cas_p0_vs_concur.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
+  - property_file: ../properties/valid-memsafety.prp
+    expected_verdict: true
   - property_file: ../properties/no-overflow.prp
     expected_verdict: true
   - property_file: ../properties/no-data-race.prp

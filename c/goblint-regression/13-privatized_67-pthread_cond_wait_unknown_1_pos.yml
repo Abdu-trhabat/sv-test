@@ -5,6 +5,8 @@ input_files: '13-privatized_67-pthread_cond_wait_unknown_1_pos.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
+  - property_file: ../properties/valid-memsafety.prp
+    expected_verdict: true
   - property_file: ../properties/no-overflow.prp
     expected_verdict: true
   - property_file: ../properties/no-data-race.prp
