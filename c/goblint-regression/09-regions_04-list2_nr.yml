@@ -6,6 +6,8 @@ input_files: '09-regions_04-list2_nr.i'
 properties:
   - property_file: ../properties/no-data-race.prp
     expected_verdict: true
+  - property_file: ../properties/valid-memsafety.prp
+    expected_verdict: true
   - property_file: ../properties/no-overflow.prp
     expected_verdict: true
 
