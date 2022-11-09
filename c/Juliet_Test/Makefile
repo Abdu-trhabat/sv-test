@@ -9,4 +9,6 @@
 LEVEL := ../
 CC.Arch := 64
 IGNORE_DIRS := ./Juliet_Test_Suite_v1.3_for_C_Cpp/
+GCC_WARNINGS := -Wno-misleading-indentation
+SET_FILES := $(LEVEL)/MemSafety-Juliet.set $(LEVEL)/NoOverflows-Juliet.set
 include $(LEVEL)/Makefile.config

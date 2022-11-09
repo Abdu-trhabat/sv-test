@@ -6,6 +6,8 @@ input_files: '13-privatized_31-traces-mine-vs-mutex_true.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
+  - property_file: ../properties/valid-memsafety.prp
+    expected_verdict: true
   - property_file: ../properties/no-overflow.prp
     expected_verdict: true
   - property_file: ../properties/no-data-race.prp
