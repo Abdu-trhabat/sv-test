@@ -1,3 +1,5 @@
+// uses uninitialized memory from usb_altnum_to_altsetting
+
 extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }

@@ -5,7 +5,7 @@ input_files: 'linux-3.12-rc1.tar.xz-144_2a-drivers--net--usb--ipheth.ko-entry_po
 
 properties:
   - property_file: ../properties/unreach-call.prp
-    expected_verdict: false
+    expected_verdict: false # uses uninitialized memory from usb_altnum_to_altsetting
 
 options:
   language: C
