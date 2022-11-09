@@ -12,7 +12,7 @@ unsigned int __VERIFIER_nondet_uint();
 extern int __VERIFIER_nondet_int();
 int main() {
    unsigned int SIZE=__VERIFIER_nondet_uint();
-   if (SIZE >= 4294967296 / sizeof(int)) {
+   if (SIZE >= 4000000000 / sizeof(int)) {
      return 0;
    }
    int i, j, k, key;
