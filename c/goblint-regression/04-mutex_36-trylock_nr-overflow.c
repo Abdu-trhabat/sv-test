@@ -71,12 +71,7 @@ int main (int argc, char *argv[]) {
   pthread_t counter_thread_id;
   pthread_t monitor_thread_id;
 
-  time_t current_time = time (NULL);
-  if (current_time > INT_MAX - 60) {
-    return 0;
-  }
-  end_time = current_time + 60;
-
+  end_time = time (NULL) + 60;
   status = pthread_create (&counter_thread_id, NULL, counter_thread, NULL);
   if (status != 0)
     err_abort (status, "Create counter thread");

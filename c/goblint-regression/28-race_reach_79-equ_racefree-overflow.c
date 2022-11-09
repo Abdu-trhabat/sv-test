@@ -7,7 +7,6 @@
 
 #include<pthread.h>
 #include<stdlib.h>
-#include<limits.h>
 #include "racemacros.h"
 
 struct q { int x; int y; };
@@ -19,7 +18,7 @@ struct s {
 
 void *t_fun(void *arg) {
   pthread_mutex_lock(&A.mutex);
-  access_or_assert_racefree(B.datum); // UNKNOWN
+  access_or_assert_racefree(A.datum); // TODO
   pthread_mutex_unlock(&A.mutex);
   return NULL;
 }
@@ -29,9 +28,6 @@ int main () {
   pthread_mutex_init(&B.mutex, NULL);
 
   int x = __VERIFIER_nondet_int();
-  if (x == INT_MAX) {
-    return 0;
-  }
 
   // struct s *s = malloc(sizeof(struct s));
   struct s *s;
@@ -55,7 +51,7 @@ int main () {
   create_threads(t);
 
   pthread_mutex_lock(m);
-  access_or_assert_racefree(*d); // UNKNOWN
+  access_or_assert_racefree(*d); // TODO
   pthread_mutex_unlock(m);
 
   join_threads(t);
