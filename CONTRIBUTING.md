@@ -28,10 +28,10 @@ For new verification tasks, please read the remainder of this document.
 ## How to Submit Verification Tasks to this Repository
 
 In order to contribute verification tasks, please use the following steps:
-- fork the repository,
-- commit your additions or changes to this repository,
-- file a pull request, and
-- discuss with community members until your contribution is approved and merged into the repository.
+- clone the repository,
+- commit your additions or changes to this repository (ask the maintainer (Dirk) for developer access),
+- file a merge request, and
+- discuss with community members until your contribution is approved (twice) and merged into the repository.
 
 
 ### Directory Structure and Names

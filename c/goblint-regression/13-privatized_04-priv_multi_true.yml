@@ -5,6 +5,10 @@ input_files: '13-privatized_04-priv_multi_true.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
+  - property_file: ../properties/no-data-race.prp
+    expected_verdict: true
 
 options:
   language: C

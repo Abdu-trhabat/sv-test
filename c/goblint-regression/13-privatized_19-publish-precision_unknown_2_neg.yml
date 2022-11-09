@@ -6,6 +6,10 @@ input_files: '13-privatized_19-publish-precision_unknown_2_neg.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
+  - property_file: ../properties/no-data-race.prp
+    expected_verdict: true
 
 options:
   language: C

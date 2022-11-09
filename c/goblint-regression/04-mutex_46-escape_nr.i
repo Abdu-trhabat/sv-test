@@ -5,6 +5,8 @@
 //
 // SPDX-License-Identifier: MIT
 
+extern int __VERIFIER_nondet_int();
+
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
@@ -925,7 +927,10 @@ void *t_fun(void *arg) {
 }
 int main(void) {
   pthread_t id;
-  int i;
+  int i = __VERIFIER_nondet_int();
+  if (i >= 2147483646) {
+    return 0;
+  }
   pthread_create(&id, ((void *)0), t_fun, (void *) &i);
   pthread_mutex_lock(&mutex1);
   i++;

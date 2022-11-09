@@ -5,6 +5,10 @@ input_files: '28-race_reach_05-lockfuns_racefree.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
+  - property_file: ../properties/no-data-race.prp
+    expected_verdict: true
 
 options:
   language: C

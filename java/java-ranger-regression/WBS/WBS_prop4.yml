@@ -4,7 +4,7 @@ input_files:
   - impl/
   - prop4/
 properties:
-  - property_file: ../../properties/assert.prp
+  - property_file: ../../properties/assert_java.prp
     expected_verdict: false
 
 options:

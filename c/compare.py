@@ -32,6 +32,7 @@ TASKS_TO_IGNORE = {
 # categories to be excluded ... (with reason and debug information)
 CATEGORIES_TO_IGNORE = {
   "ConcurrencySafety-Main": "(platform-dependent types)",
+  "ConcurrencySafety-NoOverflows": "(platform-dependent types)",
   "NoDataRace-Main": "(platform-dependent types)",
   "SoftwareSystems-OpenBSD-MemSafety": "(only custom includes, no system headers, complicated build process)",
   "SoftwareSystems-SQLite-MemSafety": "(complicated build process, requires patched version of cilly)",
@@ -40,14 +41,22 @@ CATEGORIES_TO_IGNORE = {
 # categories to be excluded, if option "skip-large" is used ... (with reason and debug information)
 LARGE_CATEGORIES = {
   "SoftwareSystems-DeviceDriversLinux64-ReachSafety": "(only custom includes, no system headers, checking takes too much time)",
+  "SoftwareSystems-DeviceDriversLinux64-MemSafety": "(only custom includes, no system headers, checking takes too much time)",
   "SoftwareSystems-DeviceDriversLinux64Large-ReachSafety": "(only custom includes, no system headers, checking takes too much time)",
 }
 
 # no original source available, there are only preprocessed files.
-# for LDV: there is a related .cil.c file, but it doesn't necessarily match at all
-# for loops/s3.i: this single file is special
-# for Juliet there are c files, but each was preprocessed into two tasks, one valid and one invalid
-TASKS_ONLY_PREPROCESSED = ['ddv-machzwd/', 'aws-c-common/', 'ldv-linux-3.0/', 'ldv-regression/', 'loops/s3.i', 'Juliet_Test/', 'combinations/']
+TASKS_ONLY_PREPROCESSED = [
+  'ddv-machzwd/',
+  'aws-c-common/',
+  # for LDV: there is a related .cil.c file, but it doesn't necessarily match at all
+  'ldv-linux-3.0/',
+  'ldv-regression/',
+  'ldv-linux-3.14-races/linux-3.14--drivers--media--platform--marvell-ccic--cafe_ccic.ko.cil-1.i',
+  'loops/s3.i', # this single file is special
+  'Juliet_Test/', # for Juliet there are c files, but each was preprocessed into two tasks, one valid and one invalid
+  'combinations/'
+]
 
 CBMC_GIT_PATH = "../cbmc.git/"
 

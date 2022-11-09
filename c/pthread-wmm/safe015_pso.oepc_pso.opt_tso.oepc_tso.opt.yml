@@ -6,6 +6,10 @@ input_files: 'safe015_pso.oepc_pso.opt_tso.oepc_tso.opt.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
+  - property_file: ../properties/no-data-race.prp
+    expected_verdict: true
 
 options:
   language: C

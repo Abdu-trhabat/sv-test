@@ -6,6 +6,10 @@ input_files: 'mix029_power.oepc_pso.oepc_rmo.oepc_tso.oepc_tso.opt.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
+  - property_file: ../properties/no-data-race.prp
+    expected_verdict: true
 
 options:
   language: C
