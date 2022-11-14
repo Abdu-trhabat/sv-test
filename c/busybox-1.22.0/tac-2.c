@@ -903,7 +903,7 @@ signed int __main(signed int argc, char **argv)
   struct lstring *line = (struct lstring *)NULL;
   struct llist_t *list = (struct llist_t *)NULL;
   signed int retval = 0;
-  getopt32(argv, "");
+  getopt32(argv, ":brs");
   argv = argv + (signed long int)optind;
 
   if(*argv == ((char *)NULL))
