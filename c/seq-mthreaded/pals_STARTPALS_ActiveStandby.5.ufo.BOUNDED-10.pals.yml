@@ -4,6 +4,8 @@ format_version: '2.0'
 input_files: 'pals_STARTPALS_ActiveStandby.5.ufo.BOUNDED-10.pals.c'
 
 properties:
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
   - property_file: ../properties/coverage-error-call.prp
