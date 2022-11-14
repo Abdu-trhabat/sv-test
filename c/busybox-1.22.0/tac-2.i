@@ -2839,7 +2839,7 @@ signed int __main(signed int argc, char **argv)
   struct lstring *line = (struct lstring *)((void *)0);
   struct llist_t *list = (struct llist_t *)((void *)0);
   signed int retval = 0;
-  getopt32(argv, "");
+  getopt32(argv, ":brs");
   argv = argv + (signed long int)optind;
   if(*argv == ((char *)((void *)0)))
   {
