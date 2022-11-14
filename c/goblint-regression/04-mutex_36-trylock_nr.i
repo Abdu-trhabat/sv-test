@@ -1836,7 +1836,11 @@ int main (int argc, char *argv[]) {
   int status;
   pthread_t counter_thread_id;
   pthread_t monitor_thread_id;
-  end_time = time (((void *)0)) + 60;
+  time_t current_time = time (((void *)0));
+  if (current_time > 2147483647 - 60) {
+    return 0;
+  }
+  end_time = current_time + 60;
   status = pthread_create (&counter_thread_id, ((void *)0), counter_thread, ((void *)0));
   if (status != 0)
     do { fprintf (stderr, "%s at \"%s\":%d: %s\n", "Create counter thread", "04-mutex_36-trylock_nr.c", 70, strerror (status)); abort (); } while (0);

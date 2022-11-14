@@ -5,7 +5,9 @@ input_files: '06-symbeq_14-list_entry_rc.i'
 
 properties:
   - property_file: ../properties/no-data-race.prp
-    expected_verdict: false
+    expected_verdict: true
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
 
 options:
   language: C
