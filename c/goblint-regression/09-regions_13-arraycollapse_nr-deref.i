@@ -1251,18 +1251,20 @@ void *t_fun(void *arg) {
   return ((void *)0);
 }
 int main () {
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 10; i++)
     pthread_mutex_init(&mutex[i], ((void *)0));
-    slot[i] = new(1);
-    list_add(new(2), slot[i]);
-  }
   int j = __VERIFIER_nondet_int(), k = __VERIFIER_nondet_int();
   assume_abort_if_not(0 <= j && j < 10);
   assume_abort_if_not(0 <= k && k < 10);
   struct s *p;
   pthread_t t1;
+  slot[j] = new(1);
+  list_add(new(2), slot[j]);
+  slot[k] = new(1);
+  list_add(new(2), slot[k]);
   p = new(3);
   list_add(p, slot[j]);
+  p = new(3);
   list_add(p, slot[k]);
   pthread_create(&t1, ((void *)0), t_fun, ((void *)0));
   pthread_mutex_lock(&mutex[j]);

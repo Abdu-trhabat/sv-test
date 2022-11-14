@@ -46,8 +46,11 @@ void *t_fun(void *arg) {
 }
 
 int main () {
-  for (int i = 0; i < 10; i++)
+  for (int i = 0; i < 10; i++) {
     pthread_mutex_init(&mutex[i], NULL);
+    slot[i] = new(1);
+    list_add(new(2), slot[i]);
+  }
 
   int j = __VERIFIER_nondet_int(), k = __VERIFIER_nondet_int();
   assume_abort_if_not(0 <= j && j < 10);
@@ -55,23 +58,14 @@ int main () {
   struct s *p;
   pthread_t t1;
 
-  slot[j] = new(1);
-  list_add(new(2), slot[j]);
-
-  slot[k] = new(1);
-  list_add(new(2), slot[k]);
-
   p = new(3);
   list_add(p, slot[j]);
   list_add(p, slot[k]);
 
-  // If it happens that i = k /= j, then it is a real race: the element in p
-  // will be accessed with locks mutex[i] and mutex[j].
-
   pthread_create(&t1, NULL, t_fun, NULL);
 
   pthread_mutex_lock(&mutex[j]);
-  p = slot[j]->next; // RACE!
+  p = slot[j]->next;
   printf("%d\n", p->datum);
   pthread_mutex_unlock(&mutex[j]);
   return 0;
