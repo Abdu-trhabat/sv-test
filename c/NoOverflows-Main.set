@@ -4,6 +4,10 @@ recursive-simple/*.yml
 bitvector/*.yml
 psyco/*.yml
 loop-zilu/*.yml
+signedintegeroverflow-regression/*.yml
+termination-crafted/*.yml
+termination-crafted-lit/*.yml
+termination-numeric/*.yml
 array-cav19/*.yml
 array-crafted/*.yml
 array-examples/*.yml
