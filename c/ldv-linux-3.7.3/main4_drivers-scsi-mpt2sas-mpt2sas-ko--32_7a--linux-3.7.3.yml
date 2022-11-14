@@ -4,7 +4,8 @@ format_version: '2.0'
 input_files: 'main4_drivers-scsi-mpt2sas-mpt2sas-ko--32_7a--linux-3.7.3.i'
 
 properties:
-  - property_file: ../properties/unreach-call.prp
+  - property_file: ../properties/valid-memsafety.prp
+    subproperty: valid-deref
     expected_verdict: false
 
 options:
