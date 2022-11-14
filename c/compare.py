@@ -33,6 +33,7 @@ TASKS_TO_IGNORE = {
 CATEGORIES_TO_IGNORE = {
   "ConcurrencySafety-Main": "(platform-dependent types)",
   "ConcurrencySafety-NoOverflows": "(platform-dependent types)",
+  "ConcurrencySafety-MemSafety": "(platform-dependent types)",
   "NoDataRace-Main": "(platform-dependent types)",
   "SoftwareSystems-OpenBSD-MemSafety": "(only custom includes, no system headers, complicated build process)",
   "SoftwareSystems-SQLite-MemSafety": "(complicated build process, requires patched version of cilly)",
