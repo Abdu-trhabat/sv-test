@@ -10,6 +10,10 @@
 #include <assert.h>
 #include <pthread.h>
 
+extern void abort(void);
+void reach_error() { assert(0); }
+void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
+
 int i, j;
 
 extern void __VERIFIER_atomic_begin(void);
@@ -69,6 +73,9 @@ int main(int argc, char **argv) {
   pthread_create(&id2, NULL, t2, NULL);
   int correct = fib();
 
-  assert(i < correct && j < correct);
+  __VERIFIER_atomic_begin();
+  _Bool assert_cond = i <= correct && j <= correct; 
+  __VERIFIER_atomic_end();
+  __VERIFIER_assert(assert_cond);
   return 0;
 }
