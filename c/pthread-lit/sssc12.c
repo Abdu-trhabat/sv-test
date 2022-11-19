@@ -49,7 +49,7 @@ int main() {
     next = 0;
     lock = 0;
     len = __VERIFIER_nondet_int();
-    assume_abort_if_not(len > 0);
+    assume_abort_if_not(len > 0 && len < 4294967296 / sizeof(int));
     data = malloc(sizeof(int) * len);
     while(1) {
 	pthread_create(&t, 0, thr, 0);
