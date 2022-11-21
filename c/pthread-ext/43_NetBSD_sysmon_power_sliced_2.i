@@ -760,7 +760,7 @@ inline void sysmonread_power(){
     break;}
    if (__VERIFIER_nondet_int()) {
     break;}
-   { COND = 0; __VERIFIER_atomic_release(); __VERIFIER_atomic_acquire(); assume_abort_if_not(COND); };
+   { COND = 0; __VERIFIER_atomic_release(); assume_abort_if_not(COND); __VERIFIER_atomic_acquire(); };
       { if(!(COND)) { goto ERROR; } }; }
   __VERIFIER_atomic_release(); }
   { if(!(1)) { ERROR: {reach_error();abort();}(void)0; } };
