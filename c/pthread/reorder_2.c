@@ -15,6 +15,7 @@ void reach_error() { assert(0); }
 #include <pthread.h>
 
 #define USAGE "./reorder <param1> <param2>\n"
+#define LIMIT 100000
 
 static int iSet = 2;
 static int iCheck = 2;
@@ -38,6 +39,10 @@ int main(int argc, char *argv[]) {
             sscanf(argv[1], "%d", &iSet);
             sscanf(argv[2], "%d", &iCheck);
         }
+    }
+    
+    if (iSet > LIMIT || iCheck > LIMIT) {
+      exit(-1);
     }
 
     //printf("iSet = %d\niCheck = %d\n", iSet, iCheck);

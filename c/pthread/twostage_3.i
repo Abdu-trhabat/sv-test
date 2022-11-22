@@ -1281,6 +1281,9 @@ int main(int argc, char *argv[]) {
             sscanf(argv[2], "%d", &iRThreads);
         }
     }
+    if (iTThreads > 100000 || iRThreads > 100000) {
+      exit(-1);
+    }
     data1Lock = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t));
     data2Lock = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t));
     if (0 != (err = pthread_mutex_init(data1Lock, ((void *)0)))) {
