@@ -5634,6 +5634,7 @@ extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
+bool ldv_is_err(const void *);
 void *ldv_malloc(size_t size )
 {
   void *p ;
