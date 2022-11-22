@@ -5026,10 +5026,32 @@ void *ldv_malloc(size_t size)
 		return ((void *)0);
 	}
 }
-void *__kmalloc(size_t size, gfp_t t)
-{
-	return ldv_malloc(size);
+void ldv_assume(int expression) {
+  {
+    if (expression == 0) {
+    ldv_assume_label:;
+      goto ldv_assume_label;
+    } else {
+    }
+    return;
+  }
 }
+void *ldv_xmalloc(size_t size) {
+  void *res;
+  void *tmp;
+  long tmp___0;
+  {
+    {
+      tmp = malloc(size);
+      res = tmp;
+      ldv_assume((unsigned long)res != (unsigned long)((void *)0));
+      tmp___0 = ldv_is_err((void const *)res);
+      ldv_assume(tmp___0 == 0L);
+    }
+    return (res);
+  }
+}
+void *__kmalloc(size_t size, gfp_t t) { return ldv_malloc(size); }
 void *ldv_malloc(size_t size ) ;
 __inline static void *kmalloc(size_t size , gfp_t flags ) 
 { 
