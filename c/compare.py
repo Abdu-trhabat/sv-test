@@ -116,6 +116,7 @@ def execute_goto_cc(args, bits, orig, taskfile):
         print("WARNING: Difference on", taskfile, "detected (ignored)", reason_to_ignore)
       else:
         print("ERROR: Difference on", taskfile, "detected")
+        subprocess.call(["goto-diff", "-u", origout, taskout])
         if args.KEEP_GOING:
           global EC
           EC = 1
