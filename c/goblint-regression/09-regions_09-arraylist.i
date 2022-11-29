@@ -1255,8 +1255,10 @@ int main () {
   assume_abort_if_not(0 <= j && j < 10);
   pthread_t t1;
   struct s *p;
-  slot[j] = new(1);
-  list_add(new(2), slot[j]);
+  for (int k = 0; k < 10; k++) {
+    slot[k] = new(1);
+    list_add(new(2), slot[k]);
+  }
   pthread_create(&t1, ((void *)0), t_fun, ((void *)0));
   pthread_mutex_lock(&mutex);
   p = slot[j]->next;

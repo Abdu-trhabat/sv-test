@@ -33,37 +33,32 @@ void list_add(struct s *node, struct s *list) {
   node->next = temp;
 }
 
-pthread_mutex_t mutex[10];
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 struct s *slot[10];
 
 void *t_fun(void *arg) {
   int i = __VERIFIER_nondet_int();
-  assume_abort_if_not(0 <= i && i < 9);
-  pthread_mutex_lock(&mutex[i+1]);
+  assume_abort_if_not(0 <= i && i < 10);
+  pthread_mutex_lock(&mutex);
   list_add(new(3), slot[i]);
-  pthread_mutex_unlock(&mutex[i+1]);
+  pthread_mutex_unlock(&mutex);
   return NULL;
 }
 
 int main () {
-  for (int i = 0; i < 10; i++)
-    pthread_mutex_init(&mutex[i], NULL);
-
   int j = __VERIFIER_nondet_int();
   assume_abort_if_not(0 <= j && j < 10);
-  struct s *p;
   pthread_t t1;
+  struct s *p;
 
-  for (int k = 0; k < 10; k++) {
-    slot[k] = new(1);
-    list_add(new(2), slot[k]);
-  }
+  slot[j] = new(1);
+  list_add(new(2), slot[j]);
 
   pthread_create(&t1, NULL, t_fun, NULL);
 
-  pthread_mutex_lock(&mutex[j]);
-  p = slot[j]->next; // RACE!
+  pthread_mutex_lock(&mutex);
+  p = slot[j]->next; // NORACE
   printf("%d\n", p->datum);
-  pthread_mutex_unlock(&mutex[j]);
+  pthread_mutex_unlock(&mutex);
   return 0;
 }

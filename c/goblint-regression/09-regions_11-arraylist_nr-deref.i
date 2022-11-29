@@ -1244,10 +1244,10 @@ pthread_mutex_t mutex[10];
 struct s *slot[10];
 void *t_fun(void *arg) {
   int i = __VERIFIER_nondet_int();
-  assume_abort_if_not(0 <= i && i < 9);
-  pthread_mutex_lock(&mutex[i+1]);
+  assume_abort_if_not(0 <= i && i < 10);
+  pthread_mutex_lock(&mutex[i]);
   list_add(new(3), slot[i]);
-  pthread_mutex_unlock(&mutex[i+1]);
+  pthread_mutex_unlock(&mutex[i]);
   return ((void *)0);
 }
 int main () {
@@ -1257,10 +1257,8 @@ int main () {
   assume_abort_if_not(0 <= j && j < 10);
   struct s *p;
   pthread_t t1;
-  for (int k = 0; k < 10; k++) {
-    slot[k] = new(1);
-    list_add(new(2), slot[k]);
-  }
+  slot[j] = new(1);
+  list_add(new(2), slot[j]);
   pthread_create(&t1, ((void *)0), t_fun, ((void *)0));
   pthread_mutex_lock(&mutex[j]);
   p = slot[j]->next;

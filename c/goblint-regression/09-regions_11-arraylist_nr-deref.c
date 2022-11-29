@@ -38,10 +38,10 @@ struct s *slot[10];
 
 void *t_fun(void *arg) {
   int i = __VERIFIER_nondet_int();
-  assume_abort_if_not(0 <= i && i < 9);
-  pthread_mutex_lock(&mutex[i+1]);
+  assume_abort_if_not(0 <= i && i < 10);
+  pthread_mutex_lock(&mutex[i]);
   list_add(new(3), slot[i]);
-  pthread_mutex_unlock(&mutex[i+1]);
+  pthread_mutex_unlock(&mutex[i]);
   return NULL;
 }
 
@@ -54,15 +54,13 @@ int main () {
   struct s *p;
   pthread_t t1;
 
-  for (int k = 0; k < 10; k++) {
-    slot[k] = new(1);
-    list_add(new(2), slot[k]);
-  }
+  slot[j] = new(1);
+  list_add(new(2), slot[j]);
 
   pthread_create(&t1, NULL, t_fun, NULL);
 
   pthread_mutex_lock(&mutex[j]);
-  p = slot[j]->next; // RACE!
+  p = slot[j]->next; // NORACE
   printf("%d\n", p->datum);
   pthread_mutex_unlock(&mutex[j]);
   return 0;
