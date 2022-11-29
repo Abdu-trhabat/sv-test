@@ -74,7 +74,7 @@ int main(int argc, char **argv) {
   int correct = fib();
 
   __VERIFIER_atomic_begin();
-  _Bool assert_cond = i <= correct && j <= correct; 
+  _Bool assert_cond = i < correct && j < correct; 
   __VERIFIER_atomic_end();
   __VERIFIER_assert(assert_cond);
   return 0;

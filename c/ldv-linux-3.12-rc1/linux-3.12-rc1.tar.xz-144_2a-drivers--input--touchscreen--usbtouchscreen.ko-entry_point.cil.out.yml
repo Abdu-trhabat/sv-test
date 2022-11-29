@@ -5,8 +5,8 @@ input_files: 'linux-3.12-rc1.tar.xz-144_2a-drivers--input--touchscreen--usbtouch
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
-    subproperty: valid-deref
     expected_verdict: false
+    subproperty: valid-deref
 
 options:
   language: C

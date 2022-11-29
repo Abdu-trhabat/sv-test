@@ -31,7 +31,7 @@ int main(void) {
     __VERIFIER_LA_iterations0 = (1024 - y__VERIFIER_LA_tmp0) / 1L;
     unsigned int x__VERIFIER_LA_old_tmp0;
     x__VERIFIER_LA_old_tmp0 = x;
-    x = (__VERIFIER_LA_iterations0 * 0L) + x__VERIFIER_LA_old_tmp0;
+    x = (__VERIFIER_LA_iterations0 * 0L) + (x__VERIFIER_LA_old_tmp0 * 0) + 0;
     unsigned int y__VERIFIER_LA_old_tmp0;
     y__VERIFIER_LA_old_tmp0 = y;
     y = (__VERIFIER_LA_iterations0 * 1L) + y__VERIFIER_LA_old_tmp0;
