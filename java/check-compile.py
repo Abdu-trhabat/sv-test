@@ -13,7 +13,7 @@ import subprocess
 import sys
 import yaml
 
-CMDLINE = ["javac", "-source", "1.8", "-Werror"]
+CMDLINE = ["javac", "--release", "8", "-Werror"]
 
 if len(sys.argv) > 2:
     sys.exit("Unexpected command-line arguments! Only optional directory expected.")
@@ -28,7 +28,6 @@ else:
 ERRORS = 0
 
 for task_file in glob.iglob(os.path.join(base_dir, "**/*.yml"), recursive=True):
-
     with open(task_file) as f:
         task_def = yaml.safe_load(f)
 
@@ -36,8 +35,8 @@ for task_file in glob.iglob(os.path.join(base_dir, "**/*.yml"), recursive=True):
     java_files = [
         java_file
         for input_path in task_def["input_files"]
-        for java_file in glob.glob(
-            os.path.join(task_dir, glob.escape(input_path), "**/*.java"), recursive=True
+        for java_file in glob.glob(os.path.abspath(
+            os.path.join(task_dir, glob.escape(input_path), "**/*.java")), recursive=True
         )
     ]
 
