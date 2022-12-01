@@ -5,8 +5,9 @@ input_files: '32_1_cilled_ok_nondet_linux-3.4-32_1-drivers--media--dvb--dvb-usb-
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
-    expected_verdict: false
-    subproperty: valid-deref
+    expected_verdict: true
+  - property_file: ../properties/unreach-call.prp
+    expected_verdict: true
 
 options:
   language: C
