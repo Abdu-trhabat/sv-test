@@ -30,3 +30,13 @@ Based on commit `816ec134472c4d0d5ad0d949bae3417617f1e63d` from
 - Finally, create all the files with:
 
     $SV/c/aws-c-common/makeall $AWS $SV
+
+
+### Mutation-Based Sanity Check
+
+To gain more understanding about these programs,
+mutants are created by negating the conditions
+of the __VERIFIER_assert() calls for 170 true tasks.
+The verdicts of the mutated tasks are set to false.
+(The mutation operations were performed by script `negated_assertion.sh`.)
+
