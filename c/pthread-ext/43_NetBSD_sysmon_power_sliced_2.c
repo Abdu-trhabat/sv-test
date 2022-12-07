@@ -21,8 +21,8 @@ to correctly model the cv_broadcast(COND) statement "b1_COND := 1;" must be manu
 #define cv_wait(c,m){ \
   c = 0; \
   __VERIFIER_atomic_release(); \
-  __VERIFIER_atomic_acquire(); \
-  assume(c); }
+  assume(c); \
+  __VERIFIER_atomic_acquire(); }
 
 #define cv_broadcast(c) c = 1 //overapproximates semantics (for threader)
 
