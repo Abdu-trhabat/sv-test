@@ -29,6 +29,7 @@ void* thr(void* arg) {
     int c, end;
     c = 0;
     end = 0;
+    
     acquire();
     if (next + 10 <= len) {
 	c = next;
@@ -36,20 +37,19 @@ void* thr(void* arg) {
     }
     release();
     while (c < end) {
+	__VERIFIER_assert(0 <= c && c < len);
 	data[c] = 0;
-	data[c] = 1;
-	__VERIFIER_assert(data[c] == 1);
 	c = c + 1;
     }
     return 0;
 }
 
-int main(int argc, char* argv[]) {
+int main() {
     pthread_t t;
-    lock=0;
     next = 0;
+    lock = 0;
     len = __VERIFIER_nondet_int();
-    assume_abort_if_not(len > 0 && len < 4294967296 / sizeof(int));
+    assume_abort_if_not(len > 0);
     data = malloc(sizeof(int) * len);
     while(1) {
 	pthread_create(&t, 0, thr, 0);

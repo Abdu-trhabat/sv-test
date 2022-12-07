@@ -1041,7 +1041,7 @@ int main(int argc, char* argv[]) {
     lock=0;
     next = 0;
     len = __VERIFIER_nondet_int();
-    assume_abort_if_not(len > 0 && len < 4294967296 / sizeof(int));
+    assume_abort_if_not(len > 0);
     data = malloc(sizeof(int) * len);
     while(1) {
  pthread_create(&t, 0, thr, 0);

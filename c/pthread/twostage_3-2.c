@@ -16,7 +16,6 @@ void reach_error() { assert(0); }
 //#include <assert.h>
 
 #define USAGE "./twostage <param1> <param2>\n"
-#define LIMIT 100000
 
 static int iTThreads = 2;
 static int iRThreads = 1;
@@ -76,10 +75,6 @@ int main(int argc, char *argv[]) {
             sscanf(argv[1], "%d", &iTThreads);
             sscanf(argv[2], "%d", &iRThreads);
         }
-    }
-    
-    if (iTThreads > LIMIT || iRThreads > LIMIT) {
-      exit(-1);
     }
 
     data1Lock = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t));

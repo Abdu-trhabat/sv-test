@@ -17,7 +17,7 @@ extern void __assert_perror_fail (int __errnum, const char *__file,
 extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "reorder_2.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "twostage_3.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
 
 typedef unsigned int size_t;
 typedef unsigned char __u_char;
@@ -1233,66 +1233,103 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
-static int iSet = 2;
-static int iCheck = 2;
-static int a = 0;
-static int b = 0;
-void *setThread(void *param);
-void *checkThread(void *param);
-void set();
-int check();
+static int iTThreads = 2;
+static int iRThreads = 1;
+static int data1Value = 0;
+static int data2Value = 0;
+pthread_mutex_t *data1Lock;
+pthread_mutex_t *data2Lock;
+void lock(pthread_mutex_t *);
+void unlock(pthread_mutex_t *);
+void *funcA(void *param) {
+    pthread_mutex_lock(data1Lock);
+    data1Value = 1;
+    pthread_mutex_unlock(data1Lock);
+    pthread_mutex_lock(data2Lock);
+    data2Value = data1Value + 1;
+    pthread_mutex_unlock(data2Lock);
+    return ((void *)0);
+}
+void *funcB(void *param) {
+    int t1 = -1;
+    int t2 = -1;
+    pthread_mutex_lock(data1Lock);
+    if (data1Value == 0) {
+        pthread_mutex_unlock(data1Lock);
+        return ((void *)0);
+    }
+    t1 = data1Value;
+    pthread_mutex_unlock(data1Lock);
+    pthread_mutex_lock(data2Lock);
+    t2 = data2Value;
+    pthread_mutex_unlock(data2Lock);
+    if (t2 != (t1 + 1)) {
+        fprintf(stderr, "Bug found!\n");
+ ERROR: {reach_error();abort();}
+          ;
+    }
+    return ((void *)0);
+}
 int main(int argc, char *argv[]) {
-    int i, err;
+    int i,err;
     if (argc != 1) {
         if (argc != 3) {
-            fprintf(stderr, "./reorder <param1> <param2>\n");
+            fprintf(stderr, "./twostage <param1> <param2>\n");
             exit(-1);
         } else {
-            sscanf(argv[1], "%d", &iSet);
-            sscanf(argv[2], "%d", &iCheck);
+            sscanf(argv[1], "%d", &iTThreads);
+            sscanf(argv[2], "%d", &iRThreads);
         }
     }
-    if (iSet > 100000 || iCheck > 100000) {
-      exit(-1);
+    data1Lock = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t));
+    data2Lock = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t));
+    if (0 != (err = pthread_mutex_init(data1Lock, ((void *)0)))) {
+        fprintf(stderr, "pthread_mutex_init error: %d\n", err);
+        exit(-1);
     }
-    pthread_t setPool[iSet];
-    pthread_t checkPool[iCheck];
-    for (i = 0; i < iSet; i++) {
-        if (0 != (err = pthread_create(&setPool[i], ((void *)0), &setThread, ((void *)0)))) {
-            fprintf(stderr, "Error [%d] found creating set thread.\n", err);
+    if (0 != (err = pthread_mutex_init(data2Lock, ((void *)0)))) {
+        fprintf(stderr, "pthread_mutex_init error: %d\n", err);
+        exit(-1);
+    }
+    pthread_t tPool[iTThreads];
+    pthread_t rPool[iRThreads];
+    for (i = 0; i < iTThreads; i++) {
+        if (0 != (err = pthread_create(&tPool[i], ((void *)0), &funcA, ((void *)0)))) {
+            fprintf(stderr, "Error [%d] found creating 2stage thread.\n", err);
             exit(-1);
         }
     }
-    for (i = 0; i < iCheck; i++) {
-        if (0 != (err = pthread_create(&checkPool[i], ((void *)0), &checkThread,
-                                       ((void *)0)))) {
-            fprintf(stderr, "Error [%d] found creating check thread.\n", err);
+    for (i = 0; i < iRThreads; i++) {
+        if (0 != (err = pthread_create(&rPool[i], ((void *)0), &funcB, ((void *)0)))) {
+            fprintf(stderr, "Error [%d] found creating read thread.\n", err);
             exit(-1);
         }
     }
-    for (i = 0; i < iSet; i++) {
-        if (0 != (err = pthread_join(setPool[i], ((void *)0)))) {
+    for (i = 0; i < iTThreads; i++) {
+        if (0 != (err = pthread_join(tPool[i], ((void *)0)))) {
             fprintf(stderr, "pthread join error: %d\n", err);
             exit(-1);
         }
     }
-    for (i = 0; i < iCheck; i++) {
-        if (0 != (err = pthread_join(checkPool[i], ((void *)0)))) {
+    for (i = 0; i < iRThreads; i++) {
+        if (0 != (err = pthread_join(rPool[i], ((void *)0)))) {
             fprintf(stderr, "pthread join error: %d\n", err);
             exit(-1);
         }
     }
     return 0;
 }
-void *setThread(void *param) {
-    a = 1;
-    b = -1;
-    return ((void *)0);
-}
-void *checkThread(void *param) {
-    if (! ((a == 0 && b == 0) || (a == 1 && b == -1))) {
-        fprintf(stderr, "Bug found!\n");
-     ERROR: {reach_error();abort();}
+void lock(pthread_mutex_t *lock) {
+    int err;
+    if (0 != (err = pthread_mutex_lock(lock))) {
+        fprintf(stderr, "Got error %d from pthread_mutex_lock.\n", err);
+        exit(-1);
     }
-    return ((void *)0);
+}
+void unlock(pthread_mutex_t *lock) {
+    int err;
+    if (0 != (err = pthread_mutex_unlock(lock))) {
+        fprintf(stderr, "Got error %d from pthread_mutex_unlock.\n", err);
+        exit(-1);
+    }
 }
