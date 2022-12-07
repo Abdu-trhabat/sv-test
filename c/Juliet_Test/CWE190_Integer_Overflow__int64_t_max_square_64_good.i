@@ -1871,7 +1871,7 @@ void CWE190_Integer_Overflow__int64_t_max_square_64b_goodB2GSink(void * dataVoid
 {
     int64_t * dataPtr = (int64_t *)dataVoidPtr;
     int64_t data = (*dataPtr);
-    if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+    if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
     {
         int64_t result = data * data;
         printLongLongLine(result);

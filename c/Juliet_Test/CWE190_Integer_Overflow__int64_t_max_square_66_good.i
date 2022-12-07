@@ -1873,7 +1873,7 @@ void CWE190_Integer_Overflow__int64_t_max_square_66b_goodG2BSink(int64_t dataArr
 void CWE190_Integer_Overflow__int64_t_max_square_66b_goodB2GSink(int64_t dataArray[])
 {
     int64_t data = dataArray[2];
-    if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+    if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
     {
         int64_t result = data * data;
         printLongLongLine(result);

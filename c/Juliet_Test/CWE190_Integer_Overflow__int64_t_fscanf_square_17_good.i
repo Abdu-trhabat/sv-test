@@ -1840,7 +1840,7 @@ static void goodB2G()
     }
     for(k = 0; k < 1; k++)
     {
-        if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+        if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
         {
             int64_t result = data * data;
             printLongLongLine(result);
