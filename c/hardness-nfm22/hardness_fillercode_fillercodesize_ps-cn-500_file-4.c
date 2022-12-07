@@ -1,0 +1,961 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2022 Jana (Philipp) Berger
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+// Prototype declarations of the functions used to communicate with the model checkers
+extern unsigned long __VERIFIER_nondet_ulong();
+extern long __VERIFIER_nondet_long();
+extern unsigned char __VERIFIER_nondet_uchar();
+extern char __VERIFIER_nondet_char();
+extern unsigned short __VERIFIER_nondet_ushort();
+extern short __VERIFIER_nondet_short();
+extern float __VERIFIER_nondet_float();
+extern double __VERIFIER_nondet_double();
+
+extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error() { __assert_fail("0", "Req1_Prop1_Batch4PS_CN_500.c", 13, "reach_error"); }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } return; }
+void assume_abort_if_not(int cond) { if(!cond) { abort(); } }
+
+
+
+#define max(a,b) (((a) > (b)) ? (a) : (b))
+#define min(a,b) (((a) < (b)) ? (a) : (b))
+#define abs(a) (((a) < 0 ) ? -(a) : (a))
+
+
+
+
+
+// Function prototypes
+
+
+// Internal control logic variables
+unsigned char isInitial = 0;
+
+// Signal variables
+unsigned char var_1_1 = 0;
+unsigned char var_1_4 = 0;
+unsigned char var_1_5 = 0;
+unsigned short int var_1_6 = 4;
+unsigned short int var_1_9 = 4;
+unsigned short int var_1_10 = 10;
+double var_1_11 = 15.6;
+double var_1_12 = 256.4;
+double var_1_13 = 49.15;
+unsigned long int var_1_14 = 500;
+unsigned long int var_1_15 = 2173307753;
+unsigned long int var_1_16 = 3362224480;
+signed short int var_1_17 = 16;
+signed short int var_1_19 = 16;
+signed short int var_1_20 = 4;
+signed short int var_1_21 = 0;
+signed short int var_1_22 = -25;
+signed char var_1_23 = 1;
+double var_1_24 = 64.5;
+double var_1_25 = 255.25;
+double var_1_26 = 128.4;
+double var_1_27 = 255.5;
+double var_1_28 = 999999999.5;
+signed char var_1_29 = 16;
+signed char var_1_30 = -25;
+unsigned char var_1_31 = 32;
+unsigned long int var_1_32 = 128;
+unsigned char var_1_33 = 0;
+unsigned long int var_1_34 = 2954266474;
+double var_1_35 = 5.8;
+double var_1_36 = 10000000.5;
+double var_1_37 = 7.3;
+unsigned char var_1_38 = 0;
+unsigned char var_1_39 = 1;
+unsigned char var_1_40 = 0;
+double var_1_41 = 127.8;
+signed long int var_1_42 = -64;
+signed char var_1_43 = 64;
+unsigned short int var_1_44 = 8;
+unsigned short int var_1_45 = 33596;
+unsigned short int var_1_46 = 24777;
+double var_1_47 = 63.5;
+signed long int var_1_48 = 32;
+unsigned long int var_1_49 = 200;
+signed char var_1_50 = 1;
+signed char var_1_51 = 2;
+signed char var_1_52 = 8;
+signed char var_1_53 = -10;
+signed long int var_1_54 = -1;
+signed short int var_1_55 = 0;
+signed short int var_1_56 = 8;
+signed short int var_1_57 = 2;
+signed long int var_1_58 = 64;
+signed long int var_1_59 = 8;
+signed short int var_1_60 = -25;
+signed short int var_1_61 = 4;
+signed char var_1_62 = -5;
+signed char var_1_63 = 64;
+signed char var_1_64 = -2;
+unsigned short int var_1_65 = 10;
+unsigned short int var_1_66 = 0;
+unsigned short int var_1_67 = 1;
+unsigned short int var_1_68 = 16;
+float var_1_69 = 63.75;
+unsigned char var_1_70 = 4;
+unsigned short int var_1_71 = 256;
+double var_1_72 = 0.6;
+float var_1_73 = 1.6;
+float var_1_74 = 64.1;
+float var_1_75 = 31.5;
+float var_1_76 = 127.125;
+signed char var_1_77 = 25;
+signed char var_1_78 = 100;
+unsigned short int var_1_79 = 1000;
+unsigned char var_1_80 = 10;
+double var_1_81 = 0.975;
+unsigned short int var_1_82 = 256;
+unsigned char var_1_83 = 0;
+unsigned char var_1_84 = 1;
+unsigned char var_1_85 = 1;
+unsigned char var_1_86 = 0;
+unsigned long int var_1_87 = 1;
+unsigned char var_1_88 = 128;
+unsigned char var_1_89 = 128;
+unsigned char var_1_90 = 1;
+unsigned char var_1_91 = 0;
+unsigned long int var_1_92 = 50;
+signed char var_1_93 = -128;
+signed long int var_1_94 = -100;
+signed long int var_1_95 = 5;
+signed short int var_1_96 = 0;
+unsigned long int var_1_97 = 128;
+float var_1_98 = 8.4;
+signed long int var_1_99 = 8;
+unsigned char var_1_100 = 0;
+signed short int var_1_101 = -50;
+unsigned char var_1_102 = 1;
+unsigned long int var_1_103 = 16;
+double var_1_104 = 63.4;
+unsigned short int var_1_105 = 5;
+double var_1_106 = 256.4;
+unsigned long int var_1_107 = 10;
+unsigned short int var_1_108 = 16;
+signed long int var_1_109 = -100;
+unsigned char var_1_110 = 1;
+unsigned short int var_1_111 = 32;
+signed short int var_1_112 = 8;
+signed long int var_1_113 = 8;
+unsigned char var_1_114 = 0;
+unsigned long int var_1_115 = 32;
+unsigned char var_1_116 = 0;
+unsigned char var_1_117 = 1;
+signed short int var_1_118 = -1;
+float var_1_119 = -0.4;
+signed short int var_1_120 = -100;
+unsigned long int var_1_121 = 5;
+signed short int var_1_122 = -8;
+signed short int var_1_123 = 4;
+unsigned short int var_1_124 = 8;
+signed char var_1_125 = 64;
+unsigned long int var_1_126 = 1000;
+
+// Calibration values
+
+// Last'ed variables
+unsigned short int last_1_var_1_6 = 4;
+unsigned short int last_1_var_1_9 = 4;
+unsigned long int last_1_var_1_14 = 500;
+signed short int last_1_var_1_17 = 16;
+
+// Additional functions
+
+
+void initially(void) {
+}
+
+
+
+void step(void) {
+	// From: CodeObject1
+	if ((var_1_24 / var_1_25) < (max ((var_1_26 / var_1_27) , var_1_28))) {
+		if (var_1_26 > var_1_27) {
+			if (var_1_27 >= var_1_28) {
+				var_1_23 = (abs (abs (var_1_29 - 5)));
+			}
+		} else {
+			var_1_23 = (-32 + var_1_30);
+		}
+	}
+
+
+	// From: CodeObject2
+	var_1_31 = (abs (abs (var_1_29 + 10)));
+
+
+	// From: CodeObject3
+	if (((abs (var_1_28)) < var_1_24) && var_1_33) {
+		var_1_32 = (abs (abs (var_1_34 - var_1_31)));
+	}
+
+
+	// From: CodeObject4
+	if (var_1_33) {
+		if (-8 <= (abs (var_1_30))) {
+			if (var_1_25 <= (max (var_1_27 , 64.8))) {
+				var_1_35 = (var_1_36 + (abs (var_1_37)));
+			} else {
+				var_1_35 = (16.6 + var_1_37);
+			}
+		} else {
+			if (var_1_26 > var_1_36) {
+				var_1_35 = ((abs (var_1_36)) + (abs (var_1_37)));
+			} else {
+				var_1_35 = var_1_36;
+			}
+		}
+	}
+
+
+	// From: CodeObject5
+	if (var_1_33) {
+		if (var_1_26 <= (min ((min (var_1_36 , var_1_35)) , var_1_27))) {
+			if ((128u % var_1_34) <= var_1_29) {
+				var_1_38 = var_1_39;
+			}
+		} else {
+			var_1_38 = var_1_40;
+		}
+	} else {
+		var_1_38 = var_1_40;
+	}
+
+
+	// From: CodeObject6
+	if (var_1_40 || var_1_33) {
+		var_1_41 = var_1_36;
+	} else {
+		if (var_1_23 != var_1_34) {
+			var_1_41 = (abs (1.85));
+		}
+	}
+
+
+	// From: CodeObject7
+	if (var_1_39 || (var_1_30 < (var_1_31 / var_1_43))) {
+		if (var_1_23 > (var_1_29 - (abs (4)))) {
+			var_1_42 = (var_1_43 + ((min (var_1_30 , var_1_23)) + (var_1_31 - var_1_29)));
+		} else {
+			var_1_42 = var_1_23;
+		}
+	} else {
+		var_1_42 = (var_1_31 + (min ((var_1_23 + var_1_30) , (abs (var_1_43)))));
+	}
+
+
+	// From: CodeObject8
+	if (((2431877790u - var_1_31) > var_1_32) && (var_1_26 <= var_1_41)) {
+		var_1_44 = (var_1_45 - (var_1_46 - var_1_29));
+	} else {
+		if ((min (var_1_47 , var_1_41)) >= var_1_27) {
+			var_1_44 = (abs (47461 - var_1_31));
+		} else {
+			var_1_44 = (var_1_45 - var_1_31);
+		}
+	}
+
+
+	// From: CodeObject9
+	if (var_1_25 <= ((- var_1_24) / var_1_27)) {
+		var_1_48 = (abs (min ((max (var_1_43 , var_1_44)) , (var_1_45 - var_1_46))));
+	} else {
+		var_1_48 = var_1_23;
+	}
+
+
+	// From: CodeObject10
+	if (var_1_31 <= (var_1_34 >> var_1_42)) {
+		var_1_49 = (abs (abs (var_1_31 + var_1_46)));
+	}
+
+
+	// From: CodeObject11
+	if ((min (var_1_47 , var_1_25)) == var_1_28) {
+		var_1_50 = (abs (var_1_30));
+	} else {
+		var_1_50 = (abs (abs (var_1_30)));
+	}
+
+
+	// From: CodeObject12
+	if (var_1_39) {
+		if (var_1_35 < var_1_47) {
+			var_1_51 = (var_1_29 - (abs (var_1_30)));
+		} else {
+			var_1_51 = (abs (var_1_30));
+		}
+	} else {
+		var_1_51 = (abs (max (var_1_52 , var_1_30)));
+	}
+
+
+	// From: CodeObject13
+	if (! var_1_39) {
+		var_1_53 = (var_1_29 - 2);
+	}
+
+
+	// From: CodeObject14
+	if ((~ var_1_46) >= (var_1_44 / var_1_43)) {
+		var_1_54 = (min (var_1_46 , var_1_50));
+	}
+
+
+	// From: CodeObject15
+	if ((var_1_32 & var_1_44) == (- var_1_46)) {
+		var_1_55 = (min (var_1_51 , (abs (min (var_1_29 , var_1_50)))));
+	} else {
+		if (var_1_37 < (var_1_28 * var_1_24)) {
+			var_1_55 = (abs (var_1_30));
+		} else {
+			var_1_55 = ((min ((min (var_1_23 , var_1_52)) , (var_1_29 + var_1_53))) + (var_1_31 - (var_1_56 + var_1_57)));
+		}
+	}
+
+
+	// From: CodeObject16
+	if (var_1_54 < var_1_56) {
+		if ((var_1_23 <= var_1_54) && var_1_40) {
+			var_1_58 = (min (var_1_45 , var_1_57));
+		}
+	} else {
+		if (var_1_39) {
+			var_1_58 = (max (var_1_45 , var_1_44));
+		} else {
+			var_1_58 = (min (var_1_29 , (min (var_1_50 , var_1_59))));
+		}
+	}
+
+
+	// From: CodeObject17
+	if ((~ (~ var_1_56)) != var_1_30) {
+		if (var_1_35 >= 8.5) {
+			var_1_60 = (abs (abs (var_1_57 - var_1_31)));
+		}
+	}
+
+
+	// From: CodeObject18
+	if (0.875f == var_1_47) {
+		var_1_61 = (min ((abs (var_1_53 + var_1_51)) , var_1_23));
+	}
+
+
+	// From: CodeObject19
+	if (var_1_58 < ((var_1_44 | var_1_57) >> 4)) {
+		if ((0.4 - 10.3) >= var_1_37) {
+			var_1_62 = (abs (var_1_29 - (var_1_63 - 5)));
+		} else {
+			var_1_62 = (max ((var_1_30 + var_1_64) , (var_1_29 - var_1_63)));
+		}
+	}
+
+
+	// From: CodeObject20
+	if ((abs (var_1_64)) > (var_1_46 << var_1_60)) {
+		var_1_65 = (min (var_1_63 , (max (256 , var_1_29))));
+	}
+
+
+	// From: CodeObject21
+	if ((var_1_31 - var_1_29) >= var_1_60) {
+		var_1_66 = (max (var_1_45 , var_1_57));
+	} else {
+		var_1_66 = ((var_1_46 - var_1_31) + var_1_57);
+	}
+
+
+	// From: CodeObject22
+	if (var_1_39) {
+		if ((min ((var_1_36 + var_1_47) , var_1_27)) >= 4.5) {
+			var_1_67 = (var_1_45 - var_1_46);
+		} else {
+			var_1_67 = var_1_29;
+		}
+	} else {
+		var_1_67 = (var_1_45 - var_1_31);
+	}
+
+
+	// From: CodeObject23
+	if (var_1_63 < var_1_44) {
+		if (var_1_55 > (-256 | var_1_23)) {
+			var_1_68 = var_1_57;
+		}
+	}
+
+
+	// From: CodeObject24
+	if (var_1_49 != var_1_34) {
+		var_1_69 = (abs (var_1_36));
+	}
+
+
+	// From: CodeObject25
+	if ((- var_1_44) < -32) {
+		var_1_70 = (abs (var_1_29));
+	}
+
+
+	// From: CodeObject26
+	if (var_1_39 && var_1_38) {
+		if ((abs (abs (var_1_70))) > var_1_31) {
+			var_1_71 = var_1_46;
+		} else {
+			var_1_71 = (abs (abs (var_1_63)));
+		}
+	} else {
+		if (var_1_37 >= var_1_72) {
+			var_1_71 = (var_1_63 + var_1_29);
+		}
+	}
+
+
+	// From: CodeObject27
+	if ((var_1_65 <= var_1_60) || var_1_33) {
+		var_1_73 = (min (((var_1_74 + var_1_75) - var_1_76) , (abs (min (var_1_37 , var_1_36)))));
+	} else {
+		var_1_73 = (var_1_74 - var_1_75);
+	}
+
+
+	// From: CodeObject28
+	if ((abs (var_1_74 - var_1_76)) < var_1_27) {
+		var_1_77 = (abs (var_1_29 - (abs (var_1_63))));
+	}
+
+
+	// From: CodeObject29
+	if (256 <= (var_1_60 % var_1_45)) {
+		var_1_78 = var_1_29;
+	}
+
+
+	// From: CodeObject30
+	if (var_1_37 <= var_1_69) {
+		var_1_79 = (42829 - var_1_31);
+	}
+
+
+	// From: CodeObject31
+	var_1_80 = (abs (var_1_29));
+
+
+	// From: CodeObject32
+	if (var_1_66 > var_1_80) {
+		var_1_81 = (min (var_1_37 , (abs (var_1_74))));
+	}
+
+
+	// From: CodeObject33
+	if (var_1_23 > (max (var_1_78 , var_1_45))) {
+		if (var_1_40) {
+			var_1_82 = (abs (abs (var_1_63)));
+		}
+	}
+
+
+	// From: CodeObject34
+	if ((var_1_50 >> var_1_65) > var_1_66) {
+		var_1_83 = ((var_1_39 && var_1_84) && var_1_85);
+	}
+
+
+	// From: CodeObject35
+	if (var_1_78 <= var_1_55) {
+		var_1_86 = ((! (var_1_85 && var_1_84)) || var_1_40);
+	} else {
+		var_1_86 = (var_1_83 || var_1_84);
+	}
+
+
+	// From: CodeObject36
+	if ((4 | var_1_46) > var_1_68) {
+		var_1_87 = (abs (var_1_57));
+	} else {
+		var_1_87 = (min ((abs (var_1_45)) , (min (var_1_68 , (max (var_1_67 , var_1_44))))));
+	}
+
+
+	// From: CodeObject37
+	if (var_1_86) {
+		if (var_1_33) {
+			var_1_88 = (min ((abs (var_1_63)) , ((abs (var_1_89)) - var_1_29)));
+		} else {
+			var_1_88 = (abs (var_1_63));
+		}
+	} else {
+		var_1_88 = var_1_29;
+	}
+
+
+	// From: CodeObject38
+	if (var_1_81 > (abs (var_1_73))) {
+		if (var_1_50 > (abs (var_1_52))) {
+			var_1_90 = var_1_85;
+		} else {
+			if (4 <= var_1_31) {
+				var_1_90 = (var_1_40 || var_1_91);
+			}
+		}
+	} else {
+		var_1_90 = (! var_1_40);
+	}
+
+
+	// From: CodeObject39
+	if (var_1_65 <= (~ var_1_82)) {
+		var_1_92 = (abs (var_1_68));
+	}
+
+
+	// From: CodeObject40
+	if (var_1_31 >= var_1_45) {
+		if (var_1_51 > var_1_62) {
+			if ((abs (8u)) != ((var_1_88 + var_1_57) ^ var_1_45)) {
+				var_1_93 = (max (var_1_52 , var_1_63));
+			} else {
+				var_1_93 = (abs (var_1_30));
+			}
+		}
+	} else {
+		if ((var_1_88 / var_1_45) < (max (var_1_65 , -8))) {
+			if ((32 * var_1_57) >= var_1_82) {
+				var_1_93 = var_1_30;
+			} else {
+				var_1_93 = (abs (var_1_63));
+			}
+		}
+	}
+
+
+	// From: CodeObject41
+	if ((16u % var_1_46) >= var_1_42) {
+		if ((max (var_1_67 , var_1_88)) >= var_1_45) {
+			var_1_94 = (abs (var_1_70));
+		}
+	} else {
+		var_1_94 = (var_1_93 + var_1_95);
+	}
+
+
+	// From: CodeObject42
+	if ((var_1_75 - var_1_76) >= var_1_27) {
+		if ((var_1_87 % var_1_89) < ((var_1_42 * var_1_97) & var_1_49)) {
+			if ((abs (- var_1_73)) > var_1_24) {
+				var_1_96 = (abs ((max (var_1_80 , var_1_70)) + var_1_77));
+			}
+		} else {
+			var_1_96 = (max ((abs (abs (var_1_50))) , var_1_88));
+		}
+	}
+
+
+	// From: CodeObject43
+	if ((8u >> var_1_53) > var_1_66) {
+		var_1_98 = var_1_75;
+	}
+
+
+	// From: CodeObject44
+	if (var_1_70 <= (var_1_57 >> var_1_64)) {
+		var_1_99 = (max (var_1_78 , var_1_61));
+	}
+
+
+	// From: CodeObject45
+	if (var_1_53 >= (min (var_1_66 , var_1_45))) {
+		var_1_100 = var_1_40;
+	} else {
+		var_1_100 = var_1_91;
+	}
+
+
+	// From: CodeObject46
+	if (var_1_39) {
+		if (var_1_85) {
+			if ((~ var_1_88) <= (var_1_79 + var_1_49)) {
+				if (var_1_102 >= (max (var_1_46 , var_1_89))) {
+					var_1_101 = var_1_93;
+				} else {
+					var_1_101 = (32 - 200);
+				}
+			}
+		}
+	}
+
+
+	// From: CodeObject47
+	if ((var_1_46 * (max (var_1_87 , var_1_65))) <= var_1_68) {
+		var_1_103 = (min (var_1_46 , var_1_66));
+	} else {
+		if ((var_1_54 % (max (var_1_46 , var_1_63))) >= var_1_71) {
+			var_1_103 = (var_1_44 + var_1_45);
+		} else {
+			var_1_103 = (abs (var_1_34 - (abs (var_1_82))));
+		}
+	}
+
+
+	// From: CodeObject48
+	var_1_104 = var_1_75;
+
+
+	// From: CodeObject49
+	if (! var_1_86) {
+		if (var_1_49 >= var_1_54) {
+			var_1_105 = var_1_31;
+		}
+	} else {
+		var_1_105 = var_1_57;
+	}
+
+
+	// From: CodeObject50
+	if (var_1_83) {
+		var_1_106 = var_1_75;
+	}
+
+
+	// From: CodeObject51
+	if (var_1_39) {
+		var_1_107 = var_1_63;
+	} else {
+		var_1_107 = var_1_56;
+	}
+
+
+	// From: CodeObject52
+	if (var_1_40) {
+		var_1_108 = var_1_80;
+	}
+
+
+	// From: CodeObject53
+	var_1_109 = var_1_56;
+
+
+	// From: CodeObject54
+	if (var_1_39) {
+		var_1_110 = var_1_40;
+	} else {
+		var_1_110 = var_1_40;
+	}
+
+
+	// From: CodeObject55
+	if (var_1_90) {
+		var_1_111 = var_1_29;
+	}
+
+
+	// From: CodeObject56
+	if (var_1_90) {
+		var_1_112 = var_1_43;
+	}
+
+
+	// From: CodeObject57
+	if (var_1_100) {
+		var_1_113 = -1;
+	}
+
+
+	// From: CodeObject58
+	var_1_114 = 0;
+
+
+	// From: CodeObject59
+	if (var_1_84) {
+		var_1_115 = var_1_82;
+	} else {
+		var_1_115 = var_1_105;
+	}
+
+
+	// From: CodeObject60
+	var_1_116 = var_1_40;
+
+
+	// From: CodeObject61
+	if (var_1_90) {
+		var_1_117 = var_1_40;
+	} else {
+		var_1_117 = var_1_91;
+	}
+
+
+	// From: CodeObject62
+	var_1_118 = var_1_88;
+
+
+	// From: CodeObject63
+	if (var_1_100) {
+		var_1_119 = var_1_37;
+	}
+
+
+	// From: CodeObject64
+	var_1_120 = var_1_80;
+
+
+	// From: CodeObject65
+	var_1_121 = var_1_70;
+
+
+	// From: CodeObject66
+	if (var_1_114) {
+		var_1_122 = var_1_123;
+	} else {
+		var_1_122 = var_1_77;
+	}
+
+
+	// From: CodeObject67
+	var_1_124 = (var_1_88 + var_1_29);
+
+
+	// From: CodeObject68
+	if (var_1_50 < var_1_67) {
+		var_1_125 = (abs (var_1_63 - var_1_29));
+	} else {
+		var_1_125 = var_1_30;
+	}
+
+
+	// From: CodeObject69
+	var_1_126 = 100u;
+
+
+	// From: Req2Batch4PS_CN_500
+	signed long int stepLocal_0 = last_1_var_1_9;
+	if (var_1_5) {
+		if ((last_1_var_1_14 * (last_1_var_1_6 + last_1_var_1_17)) > stepLocal_0) {
+			var_1_6 = 256;
+		}
+	}
+
+
+	// From: Req5Batch4PS_CN_500
+	signed long int stepLocal_3 = last_1_var_1_9;
+	if (last_1_var_1_14 >= stepLocal_3) {
+		var_1_14 = ((max (var_1_15 , (var_1_16 - var_1_10))) - last_1_var_1_17);
+	}
+
+
+	// From: Req1Batch4PS_CN_500
+	if (var_1_6 <= var_1_14) {
+		if ((- var_1_14) > var_1_6) {
+			var_1_1 = 0;
+		}
+	} else {
+		var_1_1 = (var_1_4 || var_1_5);
+	}
+
+
+	// From: Req3Batch4PS_CN_500
+	unsigned char stepLocal_2 = var_1_4;
+	unsigned long int stepLocal_1 = var_1_14;
+	if (stepLocal_2 || var_1_1) {
+		var_1_9 = (min (32 , var_1_10));
+	} else {
+		if (stepLocal_1 >= var_1_6) {
+			var_1_9 = var_1_10;
+		} else {
+			var_1_9 = var_1_10;
+		}
+	}
+
+
+	// From: Req6Batch4PS_CN_500
+	unsigned char stepLocal_5 = var_1_1;
+	unsigned char stepLocal_4 = var_1_1;
+	if (stepLocal_4 && (var_1_5 && (var_1_12 < var_1_13))) {
+		if (stepLocal_5 || (last_1_var_1_17 >= (max (var_1_14 , var_1_6)))) {
+			var_1_17 = (min (((max (var_1_19 , 256)) + (var_1_20 - var_1_21)) , (var_1_22 + 64)));
+		} else {
+			var_1_17 = var_1_19;
+		}
+	}
+
+
+	// From: Req4Batch4PS_CN_500
+	if (var_1_14 <= var_1_14) {
+		if (! var_1_1) {
+			var_1_11 = (var_1_12 - var_1_13);
+		}
+	} else {
+		var_1_11 = var_1_12;
+	}
+}
+
+
+
+void updateVariables() {
+	var_1_4 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_4 >= 0);
+	assume_abort_if_not(var_1_4 <= 0);
+	var_1_5 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_5 >= 0);
+	assume_abort_if_not(var_1_5 <= 0);
+	var_1_10 = __VERIFIER_nondet_ushort();
+	assume_abort_if_not(var_1_10 >= 0);
+	assume_abort_if_not(var_1_10 <= 65534);
+	var_1_12 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_12 >= 0.0F && var_1_12 <= -1.0e-20F) || (var_1_12 <= 9223372.036854765600e+12F && var_1_12 >= 1.0e-20F ));
+	var_1_13 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_13 >= 0.0F && var_1_13 <= -1.0e-20F) || (var_1_13 <= 9223372.036854765600e+12F && var_1_13 >= 1.0e-20F ));
+	var_1_15 = __VERIFIER_nondet_ulong();
+	assume_abort_if_not(var_1_15 >= 2147483647);
+	assume_abort_if_not(var_1_15 <= 4294967294);
+	var_1_16 = __VERIFIER_nondet_ulong();
+	assume_abort_if_not(var_1_16 >= 3221225470);
+	assume_abort_if_not(var_1_16 <= 4294967294);
+	var_1_19 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_19 >= -16383);
+	assume_abort_if_not(var_1_19 <= 16383);
+	var_1_20 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_20 >= 0);
+	assume_abort_if_not(var_1_20 <= 16383);
+	var_1_21 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_21 >= 0);
+	assume_abort_if_not(var_1_21 <= 16383);
+	var_1_22 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_22 >= -16383);
+	assume_abort_if_not(var_1_22 <= 16383);
+	var_1_24 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_24 >= -922337.2036854776000e+13F && var_1_24 <= -1.0e-20F) || (var_1_24 <= 9223372.036854776000e+12F && var_1_24 >= 1.0e-20F ));
+	var_1_25 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_25 >= -922337.2036854776000e+13F && var_1_25 <= -1.0e-20F) || (var_1_25 <= 9223372.036854776000e+12F && var_1_25 >= 1.0e-20F ));
+	assume_abort_if_not(var_1_25 != 0.0F);
+	var_1_26 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_26 >= -922337.2036854776000e+13F && var_1_26 <= -1.0e-20F) || (var_1_26 <= 9223372.036854776000e+12F && var_1_26 >= 1.0e-20F ));
+	var_1_27 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_27 >= -922337.2036854776000e+13F && var_1_27 <= -1.0e-20F) || (var_1_27 <= 9223372.036854776000e+12F && var_1_27 >= 1.0e-20F ));
+	assume_abort_if_not(var_1_27 != 0.0F);
+	var_1_28 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_28 >= -922337.2036854776000e+13F && var_1_28 <= -1.0e-20F) || (var_1_28 <= 9223372.036854776000e+12F && var_1_28 >= 1.0e-20F ));
+	var_1_29 = __VERIFIER_nondet_char();
+	assume_abort_if_not(var_1_29 >= 0);
+	assume_abort_if_not(var_1_29 <= 126);
+	var_1_30 = __VERIFIER_nondet_char();
+	assume_abort_if_not(var_1_30 >= -63);
+	assume_abort_if_not(var_1_30 <= 63);
+	var_1_33 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_33 >= 0);
+	assume_abort_if_not(var_1_33 <= 1);
+	var_1_34 = __VERIFIER_nondet_ulong();
+	assume_abort_if_not(var_1_34 >= 2147483647);
+	assume_abort_if_not(var_1_34 <= 4294967294);
+	var_1_36 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_36 >= -461168.6018427382800e+13F && var_1_36 <= -1.0e-20F) || (var_1_36 <= 4611686.018427382800e+12F && var_1_36 >= 1.0e-20F ));
+	var_1_37 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_37 >= -461168.6018427382800e+13F && var_1_37 <= -1.0e-20F) || (var_1_37 <= 4611686.018427382800e+12F && var_1_37 >= 1.0e-20F ));
+	var_1_39 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_39 >= 1);
+	assume_abort_if_not(var_1_39 <= 1);
+	var_1_40 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_40 >= 0);
+	assume_abort_if_not(var_1_40 <= 0);
+	var_1_43 = __VERIFIER_nondet_char();
+	assume_abort_if_not(var_1_43 >= -128);
+	assume_abort_if_not(var_1_43 <= 127);
+	assume_abort_if_not(var_1_43 != 0);
+	var_1_45 = __VERIFIER_nondet_ushort();
+	assume_abort_if_not(var_1_45 >= 32767);
+	assume_abort_if_not(var_1_45 <= 65534);
+	var_1_46 = __VERIFIER_nondet_ushort();
+	assume_abort_if_not(var_1_46 >= 16383);
+	assume_abort_if_not(var_1_46 <= 32767);
+	var_1_47 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_47 >= -922337.2036854776000e+13F && var_1_47 <= -1.0e-20F) || (var_1_47 <= 9223372.036854776000e+12F && var_1_47 >= 1.0e-20F ));
+	var_1_52 = __VERIFIER_nondet_char();
+	assume_abort_if_not(var_1_52 >= -126);
+	assume_abort_if_not(var_1_52 <= 126);
+	var_1_56 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_56 >= 0);
+	assume_abort_if_not(var_1_56 <= 8192);
+	var_1_57 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_57 >= 0);
+	assume_abort_if_not(var_1_57 <= 8191);
+	var_1_59 = __VERIFIER_nondet_long();
+	assume_abort_if_not(var_1_59 >= -2147483647);
+	assume_abort_if_not(var_1_59 <= 2147483646);
+	var_1_63 = __VERIFIER_nondet_char();
+	assume_abort_if_not(var_1_63 >= 63);
+	assume_abort_if_not(var_1_63 <= 126);
+	var_1_64 = __VERIFIER_nondet_char();
+	assume_abort_if_not(var_1_64 >= -63);
+	assume_abort_if_not(var_1_64 <= 63);
+	var_1_72 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_72 >= -922337.2036854776000e+13F && var_1_72 <= -1.0e-20F) || (var_1_72 <= 9223372.036854776000e+12F && var_1_72 >= 1.0e-20F ));
+	var_1_74 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_74 >= 0.0F && var_1_74 <= -1.0e-20F) || (var_1_74 <= 4611686.018427382800e+12F && var_1_74 >= 1.0e-20F ));
+	var_1_75 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_75 >= 0.0F && var_1_75 <= -1.0e-20F) || (var_1_75 <= 4611686.018427382800e+12F && var_1_75 >= 1.0e-20F ));
+	var_1_76 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_76 >= 0.0F && var_1_76 <= -1.0e-20F) || (var_1_76 <= 9223372.036854765600e+12F && var_1_76 >= 1.0e-20F ));
+	var_1_84 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_84 >= 1);
+	assume_abort_if_not(var_1_84 <= 1);
+	var_1_85 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_85 >= 1);
+	assume_abort_if_not(var_1_85 <= 1);
+	var_1_89 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_89 >= 127);
+	assume_abort_if_not(var_1_89 <= 254);
+	var_1_91 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_91 >= 0);
+	assume_abort_if_not(var_1_91 <= 0);
+	var_1_95 = __VERIFIER_nondet_long();
+	assume_abort_if_not(var_1_95 >= -1073741823);
+	assume_abort_if_not(var_1_95 <= 1073741823);
+	var_1_97 = __VERIFIER_nondet_ulong();
+	assume_abort_if_not(var_1_97 >= 0);
+	assume_abort_if_not(var_1_97 <= 4294967295);
+	var_1_102 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_102 >= 0);
+	assume_abort_if_not(var_1_102 <= 255);
+	var_1_123 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_123 >= -32767);
+	assume_abort_if_not(var_1_123 <= 32766);
+}
+
+
+
+void updateLastVariables() {
+	last_1_var_1_6 = var_1_6;
+	last_1_var_1_9 = var_1_9;
+	last_1_var_1_14 = var_1_14;
+	last_1_var_1_17 = var_1_17;
+}
+
+int property() {
+	return ((((((var_1_6 <= var_1_14) ? (((- var_1_14) > var_1_6) ? (var_1_1 == ((unsigned char) 0)) : 1) : (var_1_1 == ((unsigned char) (var_1_4 || var_1_5)))) && (var_1_5 ? (((last_1_var_1_14 * (last_1_var_1_6 + last_1_var_1_17)) > last_1_var_1_9) ? (var_1_6 == ((unsigned short int) 256)) : 1) : 1)) && ((var_1_4 || var_1_1) ? (var_1_9 == ((unsigned short int) (min (32 , var_1_10)))) : ((var_1_14 >= var_1_6) ? (var_1_9 == ((unsigned short int) var_1_10)) : (var_1_9 == ((unsigned short int) var_1_10))))) && ((var_1_14 <= var_1_14) ? ((! var_1_1) ? (var_1_11 == ((double) (var_1_12 - var_1_13))) : 1) : (var_1_11 == ((double) var_1_12)))) && ((last_1_var_1_14 >= last_1_var_1_9) ? (var_1_14 == ((unsigned long int) ((max (var_1_15 , (var_1_16 - var_1_10))) - last_1_var_1_17))) : 1)) && ((var_1_1 && (var_1_5 && (var_1_12 < var_1_13))) ? ((var_1_1 || (last_1_var_1_17 >= (max (var_1_14 , var_1_6)))) ? (var_1_17 == ((signed short int) (min (((max (var_1_19 , 256)) + (var_1_20 - var_1_21)) , (var_1_22 + 64))))) : (var_1_17 == ((signed short int) var_1_19))) : 1)
+;
+}
+int main(void) {
+	isInitial = 1;
+	initially();
+
+	while (1) {
+		updateLastVariables();
+
+		updateVariables();
+		step();
+		__VERIFIER_assert(property());
+		isInitial = 0;
+	}
+
+	return 0;
+}
