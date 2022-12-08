@@ -1251,7 +1251,7 @@ void *funcA(void *param) {
     pthread_mutex_unlock(data1Lock);
     pthread_mutex_lock(data2Lock);
     data2Value = t + 1;
-    pthread_mutex_unlock(data2Lock)
+    pthread_mutex_unlock(data2Lock);
     return ((void *)0);
 }
 void *funcB(void *param) {
