@@ -23,7 +23,7 @@ static int iCheck = 2;
 static int a = 0;
 static int b = 0;
 
-pthread_mutex_t lock;
+pthread_mutex_t *lock;
 
 void *setThread(void *param);
 void *checkThread(void *param);
@@ -91,21 +91,21 @@ int main(int argc, char *argv[]) {
 }
         
 void *setThread(void *param) {
-    pthread_mutex_lock(&lock);
+    pthread_mutex_lock(lock);
     a = 1;
     b = -1;
-    pthread_mutex_unlock(&lock);
+    pthread_mutex_unlock(lock);
 
     return NULL;
 }
 
 void *checkThread(void *param) {
-    pthread_mutex_lock(&lock);
+    pthread_mutex_lock(lock);
     if (! ((a == 0 && b == 0) || (a == 1 && b == -1))) {
         fprintf(stderr, "Bug found!\n");
     	ERROR: {reach_error();abort();}
     }
-    pthread_mutex_unlock(&lock);
+    pthread_mutex_unlock(lock);
 
     return NULL;
 }
