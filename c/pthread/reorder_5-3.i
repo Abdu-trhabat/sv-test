@@ -8,7 +8,7 @@
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "reorder_5.c", 3, "reach_error"); }
+void reach_error() { __assert_fail("0", "reorder_5-3.c", 3, "reach_error"); }
 typedef unsigned int size_t;
 typedef long int wchar_t;
 
@@ -1228,7 +1228,6 @@ static int iSet = 4;
 static int iCheck = 1;
 static int a = 0;
 static int b = 0;
-pthread_mutex_t lock;
 void __ESBMC_yield();
 void *setThread(void *param);
 void *checkThread(void *param);
@@ -1247,11 +1246,6 @@ int main(int argc, char *argv[]) {
     }
     if (iSet > 100000 || iCheck > 100000) {
       exit(-1);
-    }
-    lock = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t));
-    if (0 != (err = pthread_mutex_init(lock, NULL))) {
-        fprintf(stderr, "pthread_mutex_init error: %d\n", err);
-        exit(-1);
     }
     pthread_t setPool[iSet];
     pthread_t checkPool[iCheck];
@@ -1283,18 +1277,14 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 void *setThread(void *param) {
-    pthread_mutex_lock(&lock);
     a = 1;
     b = -1;
-    pthread_mutex_unlock(&lock);
     return ((void *)0);
 }
 void *checkThread(void *param) {
-    pthread_mutex_lock(&lock);
     if (! ((a == 0 && b == 0) || (a == 1 && b == -1))) {
         fprintf(stderr, "Bug found!\n");
         ERROR: {reach_error();abort();}
     }
-    pthread_mutex_unlock(&lock);
     return ((void *)0);
 }
