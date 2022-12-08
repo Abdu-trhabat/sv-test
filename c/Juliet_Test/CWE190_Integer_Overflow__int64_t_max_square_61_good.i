@@ -1846,7 +1846,7 @@ static void goodB2G()
     int64_t data;
     data = 0LL;
     data = CWE190_Integer_Overflow__int64_t_max_square_61b_goodB2GSource(data);
-    if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+    if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
     {
         int64_t result = data * data;
         printLongLongLine(result);

@@ -1252,6 +1252,9 @@ int main(int argc, char *argv[]) {
             sscanf(argv[2], "%d", &iCheck);
         }
     }
+    if (iSet > 100000 || iCheck > 100000) {
+      exit(-1);
+    }
     pthread_t setPool[iSet];
     pthread_t checkPool[iCheck];
     for (i = 0; i < iSet; i++) {

@@ -3,7 +3,6 @@ input_files: 'dijkstra1-both-nt-2.c'
 properties:
   - property_file: ../properties/termination.prp
     expected_verdict: false
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

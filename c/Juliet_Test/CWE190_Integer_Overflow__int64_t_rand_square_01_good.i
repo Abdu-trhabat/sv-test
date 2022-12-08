@@ -1844,7 +1844,7 @@ static void goodB2G()
     int64_t data;
     data = 0LL;
     data = (int64_t)((int64_t)(rand() & 1 ? (((uint64_t)rand()<<60) ^ ((uint64_t)rand()<<45) ^ ((uint64_t)rand()<<30) ^ ((uint64_t)rand()<<15) ^ rand()) : -(((uint64_t)rand()<<60) ^ ((uint64_t)rand()<<45) ^ ((uint64_t)rand()<<30) ^ ((uint64_t)rand()<<15) ^ rand()) - 1));
-    if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+    if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
     {
         int64_t result = data * data;
         printLongLongLine(result);

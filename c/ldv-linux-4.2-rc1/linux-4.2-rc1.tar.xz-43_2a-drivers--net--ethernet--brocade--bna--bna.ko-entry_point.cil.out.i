@@ -8735,7 +8735,7 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 __inline static bool IS_ERR(void const *ptr ) ;
-
+bool ldv_is_err(const void *);
 void *ldv_malloc(size_t size )
 {
   void *p ;
@@ -8751,6 +8751,30 @@ void *ldv_malloc(size_t size )
     assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
     assume_abort_if_not(IS_ERR(p) == 0);
     return (p);
+  }
+}
+}
+void *ldv_calloc(size_t nmemb , size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  int tmp___1 ;
+  {
+  {
+  tmp___1 = ldv_undef_int();
+  }
+  if (tmp___1 != 0) {
+    {
+    tmp = calloc(nmemb, size);
+    res = tmp;
+    ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+    tmp___0 = ldv_is_err((void const *)res);
+    ldv_assume(tmp___0 == 0L);
+    }
+    return (res);
+  } else {
+    return ((void *)0);
   }
 }
 }

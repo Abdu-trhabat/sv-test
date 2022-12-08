@@ -138,6 +138,7 @@ KNOWN_DIRECTORY_PROBLEMS = [
     ("aws-c-common", "unexpected file makeall"),
     ("aws-c-common", "unexpected file Makefile.sv-benchmarks"),
     ("aws-c-common", "unexpected file yml.sh"),
+    ("aws-c-common", "unexpected file negate_assertion.sh"),
     ("xcsp", "unexpected file create_from_xmls.py"),
     ("xcsp", "unexpected file xcsp3_cpp_parser"),
     ("xcsp", "unexpected file xcsp3_cpp_parser.license"),
@@ -484,6 +485,9 @@ class PropertiesChecks(Checks):
         # Properties may also have no verdict (None), i.e., (not violates) != fulfills. Thus we need both methods
         prop_to_verdict = dict(self.prop_and_verdict)
 
+        def has_prop(prop):
+            return prop in prop_to_verdict
+
         def violates(prop):
             return prop in prop_to_verdict and prop_to_verdict[prop] is False
 
@@ -509,6 +513,11 @@ class PropertiesChecks(Checks):
             # allocated memory this would violate memcleanup.
             # We think this is probable (though not guaranteed), so we issue a warning.
             self.error("has reachable error location but claims to have no memory leaks (this is not necessarily wrong but should be checked)")
+
+        if has_prop("coverage-error-call") and not violates("unreach-call"):
+            self.error("claims that coverage-error-call is possible but has no reachable error location")
+        if violates("termination") and has_prop("coverage-branches"):
+            self.error("does not terminate but claims to have coverage-branches")
 
     def check_no_invalid_verdicts(self):
         for prop, verdict in self.prop_and_verdict:

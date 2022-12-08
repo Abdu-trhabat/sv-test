@@ -14,6 +14,8 @@ void reach_error() { __assert_fail("0", "reorder_5.c", 3, "reach_error"); }
 #include <stdio.h>
 #include <pthread.h>
 
+#define LIMIT 100000
+
 static int iSet = 4;
 static int iCheck = 1;
 
@@ -38,6 +40,10 @@ int main(int argc, char *argv[]) {
             sscanf(argv[1], "%d", &iSet);
             sscanf(argv[2], "%d", &iCheck);
         }
+    }
+    
+    if (iSet > LIMIT || iCheck > LIMIT) {
+      exit(-1);
     }
 
     pthread_t setPool[iSet];

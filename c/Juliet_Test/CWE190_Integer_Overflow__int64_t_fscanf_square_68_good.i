@@ -1877,7 +1877,7 @@ void CWE190_Integer_Overflow__int64_t_fscanf_square_68b_goodG2BSink()
 void CWE190_Integer_Overflow__int64_t_fscanf_square_68b_goodB2GSink()
 {
     int64_t data = CWE190_Integer_Overflow__int64_t_fscanf_square_68_goodB2GData;
-    if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+    if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
     {
         int64_t result = data * data;
         printLongLongLine(result);

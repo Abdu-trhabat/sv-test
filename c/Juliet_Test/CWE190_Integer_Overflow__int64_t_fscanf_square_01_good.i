@@ -1844,7 +1844,7 @@ static void goodB2G()
     int64_t data;
     data = 0LL;
     fscanf (stdin, "%" "l" "d", &data);
-    if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+    if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
     {
         int64_t result = data * data;
         printLongLongLine(result);

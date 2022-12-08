@@ -677,7 +677,7 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
 extern void abort(void);
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "fib_unsafe.h", 13, __extension__ __PRETTY_FUNCTION__); })); }
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "fib_unsafe.h", 14, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
 int i, j;
 extern void __VERIFIER_atomic_begin(void);
@@ -721,7 +721,7 @@ int main(int argc, char **argv) {
   pthread_create(&id2, ((void *)0), t2, ((void *)0));
   int correct = fib();
   __VERIFIER_atomic_begin();
-  _Bool assert_cond = i <= correct && j <= correct;
+  _Bool assert_cond = i < correct && j < correct;
   __VERIFIER_atomic_end();
   __VERIFIER_assert(assert_cond);
   return 0;

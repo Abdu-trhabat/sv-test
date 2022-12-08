@@ -18,11 +18,11 @@ void init()
 {
   d1.a = __VERIFIER_nondet_int();
   d1.b = __VERIFIER_nondet_int();
-  assume_abort_if_not(d1.a >= 2147483638);
+  assume_abort_if_not(d1.a >= -2147483638);
 
   d2.a = __VERIFIER_nondet_int();
   d2.b = __VERIFIER_nondet_int();
-  assume_abort_if_not(d2.a >= 2147483638);
+  assume_abort_if_not(d2.a >= -2147483638);
 }
 
 struct dummy *get_dummy()
