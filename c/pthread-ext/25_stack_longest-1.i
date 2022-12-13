@@ -716,9 +716,7 @@ inline int index_malloc(){
  return curr_alloc_idx;
 }
 inline void EBStack_init(){
- __VERIFIER_atomic_begin();
  top = 0;
- __VERIFIER_atomic_end();
 }
 inline int isEmpty() {
  if(top == 0)

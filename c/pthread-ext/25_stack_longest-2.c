@@ -55,9 +55,7 @@ inline int index_malloc(){
 }
 
 inline void EBStack_init(){
-	__VERIFIER_atomic_begin();
 	top = 0;
-	__VERIFIER_atomic_end();
 }
 
 inline int isEmpty() {
