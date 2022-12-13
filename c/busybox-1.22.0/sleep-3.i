@@ -2571,7 +2571,7 @@ signed int __main(signed int argc, char **argv)
     argv = argv + 1l;
   }
   while(!(*argv == ((char *)((void *)0))));
-  ts.tv_sec = (signed long int)((signed long int)-1 > (signed long int)0 ? (signed long int)-1 : (signed long int)~((signed long int)1 << sizeof(signed long int) * (unsigned long int)8 - (unsigned long int)1));
+  ts.tv_sec = (signed long int)((signed long int)-1 > (signed long int)0 ? (signed long int)-1 : (signed long int)~((signed long int)(1UL << (sizeof(signed long int) * (unsigned long int)8 - (unsigned long int)1))));
   ts.tv_nsec = (signed long int)0;
   if(duration >= 0.000000)
   {
