@@ -1843,7 +1843,7 @@ static void goodB2G()
     }
     if(globalReturnsTrueOrFalse())
     {
-        if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+        if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
         {
             int64_t result = data * data;
             printLongLongLine(result);
@@ -1855,7 +1855,7 @@ static void goodB2G()
     }
     else
     {
-        if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+        if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
         {
             int64_t result = data * data;
             printLongLongLine(result);

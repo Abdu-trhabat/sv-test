@@ -1851,7 +1851,7 @@ static void goodG2B()
 static void goodB2GSink()
 {
     int64_t data = CWE190_Integer_Overflow__int64_t_max_square_45_goodB2GData;
-    if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+    if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
     {
         int64_t result = data * data;
         printLongLongLine(result);
