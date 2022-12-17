@@ -6,8 +6,6 @@ void assume_abort_if_not(int cond) {
 extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 //http://www.ibm.com/developerworks/java/library/j-jtp11234/
 //Listing 5. Implementing a thread-safe PRNG with synchronization and atomic variables
@@ -84,10 +82,7 @@ inline void PseudoRandomUsingAtomic_monitor()
 {
 	while(1)
 	{
-		__VERIFIER_atomic_begin();
-		int cond = seed != 0;
-		__VERIFIER_atomic_end();
-		assert(cond);
+		assert(seed != 0);
 	}
 }
 

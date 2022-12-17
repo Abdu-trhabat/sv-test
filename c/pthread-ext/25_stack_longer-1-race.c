@@ -6,8 +6,6 @@ void assume_abort_if_not(int cond) {
 extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 //original file: EBStack.java
 //amino-cbbs\trunk\amino\java\src\main\java\org\amino\ds\lockfree
 //push only
@@ -77,9 +75,7 @@ inline int push(int d) {
 		__VERIFIER_atomic_acquire(&m);
 		oldTop = top;
 		INDIR(newTop,1) = oldTop;
-		__VERIFIER_atomic_begin();
 		top = newTop; 
-		__VERIFIER_atomic_end();
 		__VERIFIER_atomic_release(&m);
 		return 1;
 	}
