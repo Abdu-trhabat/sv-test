@@ -1851,7 +1851,7 @@ static void goodB2G()
     {
         int64_t dataCopy = data;
         int64_t data = dataCopy;
-        if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+        if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
         {
             int64_t result = data * data;
             printLongLongLine(result);

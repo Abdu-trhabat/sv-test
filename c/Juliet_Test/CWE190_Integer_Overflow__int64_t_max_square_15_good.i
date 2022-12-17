@@ -1848,7 +1848,7 @@ static void goodB2G1()
         printLine("Benign, fixed string");
         break;
     default:
-        if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+        if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
         {
             int64_t result = data * data;
             printLongLongLine(result);
@@ -1876,7 +1876,7 @@ static void goodB2G2()
     switch(7)
     {
     case 7:
-        if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+        if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
         {
             int64_t result = data * data;
             printLongLongLine(result);

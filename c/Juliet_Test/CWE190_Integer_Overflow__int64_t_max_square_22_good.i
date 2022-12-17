@@ -1884,7 +1884,7 @@ void CWE190_Integer_Overflow__int64_t_max_square_22_goodB2G1Sink(int64_t data)
     }
     else
     {
-        if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+        if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
         {
             int64_t result = data * data;
             printLongLongLine(result);
@@ -1899,7 +1899,7 @@ void CWE190_Integer_Overflow__int64_t_max_square_22_goodB2G2Sink(int64_t data)
 {
     if(CWE190_Integer_Overflow__int64_t_max_square_22_goodB2G2Global)
     {
-        if (data > (-0x7fffffffffffffff - 1) && imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
+        if (imaxabs((intmax_t)data) <= sqrtl(0x7fffffffffffffffLL))
         {
             int64_t result = data * data;
             printLongLongLine(result);
