@@ -56,10 +56,8 @@ int main () {
   struct s *p;
   pthread_t t1;
 
-  for (int k = 0; k < 10; k++) {
-    c.slots[k] = new(1);
-    list_add(new(2), c.slots[k]);
-  }
+  c.slots[j] = new(1);
+  list_add(new(2), c.slots[j]);
 
   pthread_create(&t1, NULL, t_fun, NULL);
 
