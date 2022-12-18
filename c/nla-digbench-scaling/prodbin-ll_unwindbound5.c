@@ -1,9 +1,17 @@
 /* shift_add algorithm for computing the 
    product of two natural numbers
+   
+   This task is incorrect, here is an explanation why:
+   - The first assertion z + x * y == (long long) a * b is a loop invariant, so it can never be violated.
+   - Therefore a possible counterexample has to violate the assertion __VERIFIER_assert(z == (long long) a * b); after the loop.
+   - However we need to execute the loop completely, because the condition !(y != 0) together with the loop invariant implies the second assertion.
+   - Therefore y must always be greater than zero.
+   - y is divided by 2 in every iteration, therefore b >= 2^4 (since b is the initial value of y).
+   - Therefore we can find a counterexample.
 */
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "prodbin-ll.c", 6, "reach_error"); }
+void reach_error() { __assert_fail("0", "prodbin-ll.c", 14, "reach_error"); }
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 void assume_abort_if_not(int cond) {
