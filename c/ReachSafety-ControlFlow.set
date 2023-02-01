@@ -4,3 +4,5 @@ openssl-simplified/*.yml
 locks/*.yml
 ntdrivers/*.yml
 openssl/*.yml
+unspecified-compile/*.yml
+unspecified-runtime/*.yml
