@@ -1,6 +1,6 @@
 format_version: '2.0'
 
-input_files: 'function_parameter_nested_unsafe1-1.c'
+input_files: 'function_parameter_nested_unsafe1-1.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp
