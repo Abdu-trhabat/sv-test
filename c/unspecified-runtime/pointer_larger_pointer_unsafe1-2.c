@@ -2,7 +2,7 @@
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "pointer_larger_pointer_unsafe-2", 3, "reach_error"); }
+void reach_error() { __assert_fail("0", "pointer_larger_pointer_unsafe1-2", 3, "reach_error"); }
 
 int main() {
   int* ptr0,ptr1,ptr2;
