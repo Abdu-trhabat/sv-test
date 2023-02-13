@@ -5,6 +5,7 @@ input_files: 'pointer_larger_pointer_unsafe1-1.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
+  - property_file: ../properties/coverage-error-call.prp
 
 options:
   language: C

@@ -7,6 +7,7 @@ properties:
     expected_verdict: false
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: false
+  - property_file: ../properties/coverage-error-call.prp
 
 options:
   language: C

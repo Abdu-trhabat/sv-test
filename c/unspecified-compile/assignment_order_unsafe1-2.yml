@@ -5,6 +5,7 @@ input_files: 'assignment_order_unsafe1-2.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
+  - property_file: ../properties/coverage-error-call.prp
 
 options:
   language: C
