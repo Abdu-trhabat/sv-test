@@ -22,6 +22,8 @@ int main() {
   // C11 ISO/IEC 9899:201x Annex J.1 Unspecified behaviour states that the order in which subexpressions are evaluated is not specified (with some exceptions, + not being one)
   int c = h() + h();
   // g may have any value between 3 and 6 (but 3 or 6 are more likely than 4 or 5), depending on evaluation order
-  if (g == 4) {reach_error();abort();}
+  // Expecting left to right ordering we get g == 3
+  // Expecting right to left ordering consistently we get g == 6
+  if (g == 6) {reach_error();abort();}
   return 0;
 } 

@@ -11,10 +11,10 @@ int f2() {
   return 7;
 }
 int h() {
-  return f2() + f1();
+  return f1() + f2();
 }
 int main() {
   int c = h() + h();
-  if (g == 4) {reach_error();abort();}
+  if (g == 3) {reach_error();abort();}
   return 0;
 }

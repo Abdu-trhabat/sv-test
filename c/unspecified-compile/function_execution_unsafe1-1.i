@@ -15,6 +15,6 @@ int h() {
 }
 int main() {
   int c = h() + h();
-  if (g == 4) {reach_error();abort();}
+  if (g == 6) {reach_error();abort();}
   return 0;
 }
