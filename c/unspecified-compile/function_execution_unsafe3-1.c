@@ -11,16 +11,12 @@ int f1() {
 
 int f2() {
   g = 5;
-  return 7;
-}
-
-int foo(int a, int b) {
-  return 1;
+  return 5;
 }
 
 int main() {
-  // C11 ISO/IEC 9899:201x Annex J.1 Unspecified behaviour states that the order in which subexpressions are evaluated is not specified (with some exceptions, + not being one)
-  int c = f1() + f2();
+  // C11 ISO/IEC 9899:201x Annex J.1 Unspecified behaviour states that the order in which subexpressions are evaluated is not specified (with some exceptions, + - * / not being among them)
+  f1() + f2() - f1() * f2();
   // Depending on the evaluation ordering of f2 and f1, g can be 3 or 5
   if (g == 3) {reach_error();abort();}
   return 0;

@@ -11,7 +11,7 @@ int f2() {
   return 7;
 }
 int main() {
-  int c = f2() + f1();
-  if (g == 3) {reach_error();abort();}
+  int c = f1() + f2();
+  if (g == 5) {reach_error();abort();}
   return 0;
 }

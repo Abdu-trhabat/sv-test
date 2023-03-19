@@ -10,11 +10,8 @@ int f2() {
   g = 5;
   return 7;
 }
-int foo(int a, int b) {
-  return 1;
-}
 int main() {
-  int c = f2() + f1();
-  if (g == 3) {reach_error();abort();}
+  f1() + f2() - f1() * f2();
+  if (g == 5) {reach_error();abort();}
   return 0;
 }
