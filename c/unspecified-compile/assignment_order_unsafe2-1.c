@@ -17,6 +17,7 @@ int f2(int * g) {
 
 int main() {
   int * g = malloc(sizeof(int));
+  *g = 0;
   // C11 ISO/IEC 9899:201x Annex J.1 Unspecified behaviour and 6.5.16 state that the order in which the operands of an assignment operator are evaluated is not specified 
   *f1(g) = f2(g);
   // g is either 3 or 5, depending on which function is evaluated last

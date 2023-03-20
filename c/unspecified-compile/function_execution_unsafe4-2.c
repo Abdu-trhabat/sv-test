@@ -20,6 +20,7 @@ int main() {
   if (intStorage == 0) {
     return 0;
   }
+  *intStorage = 0;
   int c;
   c = f1(intStorage) + f2(intStorage);
   if (*intStorage == 5) {reach_error();abort();}

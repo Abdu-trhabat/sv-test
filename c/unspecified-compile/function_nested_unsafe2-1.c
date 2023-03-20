@@ -19,6 +19,7 @@ int main() {
   if (intStorage == 0) {
     return 0;
   }
+  *intStorage = 0;
   // C11 ISO/IEC 9899:201x 3.4.4 and Annex J.1 Unspecified behaviour state that the order in which function arguments (and their subexpressions) are evaluated is not specified
   int c = f1(f2(intStorage), intStorage) + f2(intStorage);
   // *intStorage is either 3 or 4, (3 is more likely) depending on the order of execution

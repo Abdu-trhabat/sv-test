@@ -113,6 +113,7 @@ int main() {
   if (intStorage == 0) {
     return 0;
   }
+  *intStorage = 0;
   int c = f1(f2(intStorage), intStorage) + f2(intStorage);
   if (*intStorage == 4) {reach_error();abort();}
   return 0;

@@ -116,6 +116,7 @@ int main() {
   if (intStorage == 0) {
     return 0;
   }
+  *intStorage = 0;
   int c = foo(f1(intStorage), f2(intStorage));
   if (*intStorage == 1) {reach_error();abort();}
   return 0;

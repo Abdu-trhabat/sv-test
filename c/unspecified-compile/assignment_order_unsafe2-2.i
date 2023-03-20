@@ -110,6 +110,7 @@ int f2(int * g) {
 }
 int main() {
   int * g = malloc(sizeof(int));
+  *g = 0;
   *f1(g) = f2(g);
   if (*g == 5) {reach_error();abort();}
   return 0;
