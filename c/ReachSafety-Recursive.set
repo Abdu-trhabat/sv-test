@@ -9,3 +9,7 @@ verifythis/tree_max.yml
 verifythis/tree_max_incorrect.yml
 verifythis/elimination_max_rec.yml
 verifythis/elimination_max_rec_onepoint.yml
+recursified_loop-crafted/*.yml
+recursified_loop-invariants/*.yml
+recursified_loop-simple/*.yml
+recursified_nla-digbench/*.yml
