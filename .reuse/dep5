@@ -120,6 +120,10 @@ Files:
  c/pthread-memsafety/
  c/pthread-nondet/
  c/pthread-wmm/
+ c/recursified_loop-crafted/
+ c/recursified_loop-invariants/
+ c/recursified_loop-simple/
+ c/recursified_nla-digbench/
  c/recursive/
  c/recursive-simple/
  c/recursive-with-pointer/
