@@ -1,13 +1,14 @@
+/* shift_add algorithm for computing the 
+   product of two natural numbers
+*/
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'prodbin.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0
-//
-// SPDX-FileCopyrightText: 2023 copyright holder of 'prodbin.c' in the SV-Benchmarks collection
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]prodbin.c -o . --pretty_names --trace to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +46,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_30_to_40_0(int *z, int *y, int *a, int *b, int *x)
+void func_to_recursive_line_30_to_40_0(int *a, int *b, int *z, int *x, int *y)
 {
   if (1)
   {
@@ -69,7 +70,7 @@ void func_to_recursive_line_30_to_40_0(int *z, int *y, int *a, int *b, int *x)
       *x = 2 * (*x);
       *y = (*y) / 2;
     }
-    func_to_recursive_line_30_to_40_0(z, y, a, b, x);
+    func_to_recursive_line_30_to_40_0(a, b, z, x, y);
   }
   else
   {
@@ -89,7 +90,7 @@ int main()
   x = a;
   y = b;
   z = 0;
-  func_to_recursive_line_30_to_40_0(&z, &y, &a, &b, &x);
+  func_to_recursive_line_30_to_40_0(&a, &b, &z, &x, &y);
   __VERIFIER_assert(z == (a * b));
   return 0;
 }

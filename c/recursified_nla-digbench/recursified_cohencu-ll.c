@@ -1,13 +1,16 @@
+/*
+Printing consecutive cubes, by Cohen
+http://www.cs.upc.edu/~erodri/webpage/polynomial_invariants/cohencu.htm
+*/
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'cohencu-ll.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0
-//
-// SPDX-FileCopyrightText: Cohen
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]cohencu-ll.c -o . --pretty_names --trace to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +48,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_29_to_41_0(long long *n, short *a, long long *x, long long *y, long long *z)
+void func_to_recursive_line_29_to_41_0(short *a, long long *y, long long *n, long long *z, long long *x)
 {
   if (1)
   {
@@ -67,7 +70,7 @@ void func_to_recursive_line_29_to_41_0(long long *n, short *a, long long *x, lon
       *y = (*y) + (*z);
       *z = (*z) + 6;
     }
-    func_to_recursive_line_29_to_41_0(n, a, x, y, z);
+    func_to_recursive_line_29_to_41_0(a, y, n, z, x);
   }
   else
   {
@@ -86,7 +89,7 @@ int main()
   x = 0;
   y = 1;
   z = 6;
-  func_to_recursive_line_29_to_41_0(&n, &a, &x, &y, &z);
+  func_to_recursive_line_29_to_41_0(&a, &y, &n, &z, &x);
   __VERIFIER_assert(z == ((6 * n) + 6));
   __VERIFIER_assert(((((6 * a) * x) - (x * z)) + (12 * x)) == 0);
   __VERIFIER_assert((((((a * z) - (6 * a)) - (2 * y)) + (2 * z)) - 10) == 0);

@@ -1,13 +1,12 @@
+/* extended Euclid's algorithm */
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'egcd-ll.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0
-//
-// SPDX-FileCopyrightText: 2023 copyright holder of 'egcd-ll.c' in the SV-Benchmarks collection
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]egcd-ll.c -o . --pretty_names --trace to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +44,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_33_to_48_0(long long *b, long long *p, int *y, long long *s, long long *r, long long *q, long long *a, int *x)
+void func_to_recursive_line_33_to_48_0(long long *r, long long *q, long long *a, long long *s, long long *b, int *y, int *x, long long *p)
 {
   if (1)
   {
@@ -73,7 +72,7 @@ void func_to_recursive_line_33_to_48_0(long long *b, long long *p, int *y, long 
         *s = (*s) - (*r);
       }
     }
-    func_to_recursive_line_33_to_48_0(b, p, y, s, r, q, a, x);
+    func_to_recursive_line_33_to_48_0(r, q, a, s, b, y, x, p);
   }
   else
   {
@@ -100,7 +99,7 @@ int main()
   q = 0;
   r = 0;
   s = 1;
-  func_to_recursive_line_33_to_48_0(&b, &p, &y, &s, &r, &q, &a, &x);
+  func_to_recursive_line_33_to_48_0(&r, &q, &a, &s, &b, &y, &x, &p);
   __VERIFIER_assert((a - b) == 0);
   __VERIFIER_assert((((p * x) + (r * y)) - b) == 0);
   __VERIFIER_assert((((q * r) - (p * s)) + 1) == 0);

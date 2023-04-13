@@ -1,13 +1,16 @@
+/* 
+Geometric Series
+computes x = sum(z^k)[k=0..k-1], y = z^(k-1)
+*/
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'geo3-ll.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0
-//
-// SPDX-FileCopyrightText: 2023 copyright holder of 'geo3-ll.c' in the SV-Benchmarks collection
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]geo3-ll.c -o . --pretty_names --trace to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +48,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_30_to_38_0(int *a, long long *x, long long *y, int *z, long long *c, int *k, long long *az)
+void func_to_recursive_line_30_to_38_0(long long *x, int *z, long long *c, int *k, long long *y, int *a, long long *az)
 {
   if (1)
   {
@@ -62,7 +65,7 @@ void func_to_recursive_line_30_to_38_0(int *a, long long *x, long long *y, int *
       *x = ((*x) * (*z)) + (*a);
       *y = (*y) * (*z);
     }
-    func_to_recursive_line_30_to_38_0(a, x, y, z, c, k, az);
+    func_to_recursive_line_30_to_38_0(x, z, c, k, y, a, az);
   }
   else
   {
@@ -85,7 +88,7 @@ int main()
   y = 1;
   c = 1;
   az = ((long long) a) * z;
-  func_to_recursive_line_30_to_38_0(&a, &x, &y, &z, &c, &k, &az);
+  func_to_recursive_line_30_to_38_0(&x, &z, &c, &k, &y, &a, &az);
   __VERIFIER_assert(((((z * x) - x) + a) - (az * y)) == 0);
   return x;
 }

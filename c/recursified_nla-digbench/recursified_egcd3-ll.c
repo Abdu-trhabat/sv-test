@@ -1,13 +1,12 @@
+/* extended Euclid's algorithm */
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'egcd3-ll.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0;to_recursive: 1;to_recursive: 0
-//
-// SPDX-FileCopyrightText: 2023 copyright holder of 'egcd3-ll.c' in the SV-Benchmarks collection
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]egcd3-ll.c -o . --pretty_names --trace to_recursive:0 to_recursive:0 to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +44,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_47_to_56_0(long long *s, long long *v, long long *q, long long *c, long long *k, long long *a, int *x, long long *p, long long *b, long long *d, long long *r, int *y)
+void func_to_recursive_line_47_to_56_0(long long *c, long long *s, long long *v, long long *d, long long *q, int *y, int *x, long long *r, long long *b, long long *k, long long *p, long long *a)
 {
   if (1)
   {
@@ -64,14 +63,14 @@ void func_to_recursive_line_47_to_56_0(long long *s, long long *v, long long *q,
       *d = 2 * (*d);
       *v = 2 * (*v);
     }
-    func_to_recursive_line_47_to_56_0(s, v, q, c, k, a, x, p, b, d, r, y);
+    func_to_recursive_line_47_to_56_0(c, s, v, d, q, y, x, r, b, k, p, a);
   }
   else
   {
   }
 }
 
-void func_to_recursive_line_40_to_59_0(long long *s, long long *q, long long *c, long long *k, long long *a, int *x, long long *p, long long *b, long long *r, int *y)
+void func_to_recursive_line_40_to_59_0(long long *c, long long *s, long long *q, int *y, int *x, long long *r, long long *b, long long *k, long long *p, long long *a)
 {
   if (1)
   {
@@ -87,18 +86,18 @@ void func_to_recursive_line_40_to_59_0(long long *s, long long *q, long long *c,
       long long v;
       d = 1;
       v = *b;
-      func_to_recursive_line_47_to_56_0(&(*s), &v, &(*q), &(*c), &(*k), &(*a), &(*x), &(*p), &(*b), &d, &(*r), &(*y));
+      func_to_recursive_line_47_to_56_0(&(*c), &(*s), &v, &d, &(*q), &(*y), &(*x), &(*r), &(*b), &(*k), &(*p), &(*a));
       *c = (*c) - v;
       *k = (*k) + d;
     }
-    func_to_recursive_line_40_to_59_0(s, q, c, k, a, x, p, b, r, y);
+    func_to_recursive_line_40_to_59_0(c, s, q, y, x, r, b, k, p, a);
   }
   else
   {
   }
 }
 
-void func_to_recursive_line_33_to_70_0(long long *s, long long *q, int *x, long long *a, long long *p, long long *b, long long *r, int *y)
+void func_to_recursive_line_33_to_70_0(long long *s, long long *q, int *y, int *x, long long *r, long long *b, long long *p, long long *a)
 {
   if (1)
   {
@@ -114,7 +113,7 @@ void func_to_recursive_line_33_to_70_0(long long *s, long long *q, int *x, long 
       long long k;
       c = *a;
       k = 0;
-      func_to_recursive_line_40_to_59_0(&(*s), &(*q), &c, &k, &(*a), &(*x), &(*p), &(*b), &(*r), &(*y));
+      func_to_recursive_line_40_to_59_0(&c, &(*s), &(*q), &(*y), &(*x), &(*r), &(*b), &k, &(*p), &(*a));
       *a = *b;
       *b = c;
       long long temp;
@@ -125,7 +124,7 @@ void func_to_recursive_line_33_to_70_0(long long *s, long long *q, int *x, long 
       *r = *s;
       *s = temp - ((*s) * k);
     }
-    func_to_recursive_line_33_to_70_0(s, q, x, a, p, b, r, y);
+    func_to_recursive_line_33_to_70_0(s, q, y, x, r, b, p, a);
   }
   else
   {
@@ -152,7 +151,7 @@ int main()
   q = 0;
   r = 0;
   s = 1;
-  func_to_recursive_line_33_to_70_0(&s, &q, &x, &a, &p, &b, &r, &y);
+  func_to_recursive_line_33_to_70_0(&s, &q, &y, &x, &r, &b, &p, &a);
   __VERIFIER_assert(((((p * x) - (q * x)) + (r * y)) - (s * y)) == a);
   return 0;
 }

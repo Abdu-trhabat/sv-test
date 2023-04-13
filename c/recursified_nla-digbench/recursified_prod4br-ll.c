@@ -1,13 +1,13 @@
+/* algorithm for computing the product of two natural numbers */
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'prod4br-ll.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0
-//
-// SPDX-FileCopyrightText: 2023 copyright holder of 'prod4br-ll.c' in the SV-Benchmarks collection
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]prod4br-ll.c -o . --pretty_names --trace to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +45,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_0_to_51_0(long long *q, long long *p, long long *a, int *x, int *y, long long *b)
+void func_to_recursive_line_0_to_51_0(int *x, long long *p, int *y, long long *q, long long *a, long long *b)
 {
   if (1)
   {
@@ -87,7 +87,7 @@ void func_to_recursive_line_0_to_51_0(long long *q, long long *p, long long *a, 
         }
       }
     }
-    func_to_recursive_line_0_to_51_0(q, p, a, x, y, b);
+    func_to_recursive_line_0_to_51_0(x, p, y, q, a, b);
   }
   else
   {
@@ -109,7 +109,7 @@ int main()
   b = y;
   p = 1;
   q = 0;
-  func_to_recursive_line_0_to_51_0(&q, &p, &a, &x, &y, &b);
+  func_to_recursive_line_0_to_51_0(&x, &p, &y, &q, &a, &b);
   __VERIFIER_assert(q == (((long long) x) * y));
   __VERIFIER_assert((a * b) == 0);
   return 0;

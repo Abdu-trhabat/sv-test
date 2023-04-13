@@ -1,13 +1,18 @@
+/* Algorithm for finding the closest integer to square root,
+ * more details, see : http://www.pedrofreire.com/sqrt/sqrt1.en.html 
+
+Note: for some reason using cpa was able to disprove these
+cpa.sh -kInduction -setprop solver.solver=z3 freire1.c
+*/
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'freire1.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0
-//
-// SPDX-FileCopyrightText: 2023 copyright holder of 'freire1.c' in the SV-Benchmarks collection
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]freire1.c -o . --pretty_names --trace to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +50,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_0_to_32_0(int *r, double *x, double *a)
+void func_to_recursive_line_0_to_32_0(double *a, double *x, int *r)
 {
   if (1)
   {
@@ -61,7 +66,7 @@ void func_to_recursive_line_0_to_32_0(int *r, double *x, double *a)
       *x = (*x) - (*r);
       *r = (*r) + 1;
     }
-    func_to_recursive_line_0_to_32_0(r, x, a);
+    func_to_recursive_line_0_to_32_0(a, x, r);
   }
   else
   {
@@ -76,7 +81,7 @@ int main()
   a = __VERIFIER_nondet_double();
   x = a / 2.0;
   r = 0;
-  func_to_recursive_line_0_to_32_0(&r, &x, &a);
+  func_to_recursive_line_0_to_32_0(&a, &x, &r);
   __VERIFIER_assert(((int) ((((r * r) - a) - r) + (2 * x))) == 0);
   return 0;
 }

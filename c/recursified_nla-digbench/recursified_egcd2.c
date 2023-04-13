@@ -1,13 +1,12 @@
+/* extended Euclid's algorithm */
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'egcd2.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0;to_recursive: 0
-//
-// SPDX-FileCopyrightText: 2023 copyright holder of 'egcd2.c' in the SV-Benchmarks collection
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]egcd2.c -o . --pretty_names --trace to_recursive:0 to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +44,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_40_to_48_0(int *r, int *k, int *x, int *a, int *b, int *y, int *q, int *s, int *p, int *c)
+void func_to_recursive_line_40_to_48_0(int *s, int *x, int *c, int *k, int *b, int *r, int *q, int *y, int *a, int *p)
 {
   if (1)
   {
@@ -64,14 +63,14 @@ void func_to_recursive_line_40_to_48_0(int *r, int *k, int *x, int *a, int *b, i
       *c = (*c) - (*b);
       *k = (*k) + 1;
     }
-    func_to_recursive_line_40_to_48_0(r, k, x, a, b, y, q, s, p, c);
+    func_to_recursive_line_40_to_48_0(s, x, c, k, b, r, q, y, a, p);
   }
   else
   {
   }
 }
 
-void func_to_recursive_line_34_to_60_0(int *r, int *k, int *x, int *a, int *b, int *y, int *q, int *s, int *p, int *c)
+void func_to_recursive_line_34_to_60_0(int *s, int *x, int *c, int *b, int *k, int *r, int *q, int *y, int *a, int *p)
 {
   if (1)
   {
@@ -85,7 +84,7 @@ void func_to_recursive_line_34_to_60_0(int *r, int *k, int *x, int *a, int *b, i
       }
       *c = *a;
       *k = 0;
-      func_to_recursive_line_40_to_48_0(&(*r), &(*k), &(*x), &(*a), &(*b), &(*y), &(*q), &(*s), &(*p), &(*c));
+      func_to_recursive_line_40_to_48_0(&(*s), &(*x), &(*c), &(*k), &(*b), &(*r), &(*q), &(*y), &(*a), &(*p));
       *a = *b;
       *b = *c;
       int temp;
@@ -96,7 +95,7 @@ void func_to_recursive_line_34_to_60_0(int *r, int *k, int *x, int *a, int *b, i
       *r = *s;
       *s = temp - ((*s) * (*k));
     }
-    func_to_recursive_line_34_to_60_0(r, k, x, a, b, y, q, s, p, c);
+    func_to_recursive_line_34_to_60_0(s, x, c, b, k, r, q, y, a, p);
   }
   else
   {
@@ -127,7 +126,7 @@ int main()
   s = 1;
   c = 0;
   k = 0;
-  func_to_recursive_line_34_to_60_0(&r, &k, &x, &a, &b, &y, &q, &s, &p, &c);
+  func_to_recursive_line_34_to_60_0(&s, &x, &c, &b, &k, &r, &q, &y, &a, &p);
   __VERIFIER_assert(((q * x) + (s * y)) == 0);
   __VERIFIER_assert(((p * x) + (r * y)) == a);
   return a;

@@ -1,13 +1,12 @@
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'simple_array_index_value_4.i.v+lhb-reducer.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// for2while: 0;to_recursive: 0
-//
-// SPDX-FileCopyrightText: 2017 Chimdyalwar, Bharti, et al.
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]simple_array_index_value_4.i.v+lhb-reducer.c -o . --pretty_names --trace for2while:0 to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 int __return_main;
 int __tmp_155_0;

@@ -1,13 +1,16 @@
+/*
+  hardware integer division program, by Manna
+  returns q==A//B
+  */
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'hard-u.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0;to_recursive: 0
-//
-// SPDX-FileCopyrightText: Manna
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]hard-u.c -o . --pretty_names --trace to_recursive:0 to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +48,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_41_to_51_0(unsigned int *A, unsigned int *d, unsigned int *r, unsigned int *q, unsigned int *B, unsigned int *p)
+void func_to_recursive_line_41_to_51_0(unsigned int *p, unsigned int *d, unsigned int *q, unsigned int *B, unsigned int *r, unsigned int *A)
 {
   if (1)
   {
@@ -70,14 +73,14 @@ void func_to_recursive_line_41_to_51_0(unsigned int *A, unsigned int *d, unsigne
       {
       }
     }
-    func_to_recursive_line_41_to_51_0(A, d, r, q, B, p);
+    func_to_recursive_line_41_to_51_0(p, d, q, B, r, A);
   }
   else
   {
   }
 }
 
-void func_to_recursive_line_31_to_38_0(unsigned int *A, unsigned int *d, unsigned int *r, unsigned int *q, unsigned int *B, unsigned int *p)
+void func_to_recursive_line_31_to_38_0(unsigned int *p, unsigned int *d, unsigned int *q, unsigned int *B, unsigned int *r, unsigned int *A)
 {
   if (1)
   {
@@ -95,7 +98,7 @@ void func_to_recursive_line_31_to_38_0(unsigned int *A, unsigned int *d, unsigne
       *d = 2 * (*d);
       *p = 2 * (*p);
     }
-    func_to_recursive_line_31_to_38_0(A, d, r, q, B, p);
+    func_to_recursive_line_31_to_38_0(p, d, q, B, r, A);
   }
   else
   {
@@ -117,8 +120,8 @@ int main()
   d = B;
   p = 1;
   q = 0;
-  func_to_recursive_line_31_to_38_0(&A, &d, &r, &q, &B, &p);
-  func_to_recursive_line_41_to_51_0(&A, &d, &r, &q, &B, &p);
+  func_to_recursive_line_31_to_38_0(&p, &d, &q, &B, &r, &A);
+  func_to_recursive_line_41_to_51_0(&p, &d, &q, &B, &r, &A);
   __VERIFIER_assert(A == ((d * q) + r));
   __VERIFIER_assert(B == d);
   return 0;

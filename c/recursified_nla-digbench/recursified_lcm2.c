@@ -1,13 +1,13 @@
+/* Algorithm for computing simultaneously the GCD and the LCM, by Dijkstra */
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'lcm2.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0
-//
-// SPDX-FileCopyrightText: Dijkstra
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]lcm2.c -o . --pretty_names --trace to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +45,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_35_to_46_0(unsigned *a, unsigned *x, unsigned *u, unsigned *b, unsigned *y, unsigned *v)
+void func_to_recursive_line_35_to_46_0(unsigned *b, unsigned *y, unsigned *u, unsigned *v, unsigned *x, unsigned *a)
 {
   if (1)
   {
@@ -69,7 +69,7 @@ void func_to_recursive_line_35_to_46_0(unsigned *a, unsigned *x, unsigned *u, un
         *u = (*u) + (*v);
       }
     }
-    func_to_recursive_line_35_to_46_0(a, x, u, b, y, v);
+    func_to_recursive_line_35_to_46_0(b, y, u, v, x, a);
   }
   else
   {
@@ -94,7 +94,7 @@ int main()
   y = b;
   u = b;
   v = a;
-  func_to_recursive_line_35_to_46_0(&a, &x, &u, &b, &y, &v);
+  func_to_recursive_line_35_to_46_0(&b, &y, &u, &v, &x, &a);
   __VERIFIER_assert(((x * u) + (y * v)) == ((2 * a) * b));
   return 0;
 }

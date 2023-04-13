@@ -1,13 +1,16 @@
+/*
+  Cohen's integer division
+  returns x % y
+  http://www.cs.upc.edu/~erodri/webpage/polynomial_invariants/cohendiv.htm
+*/
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'cohendiv-ll.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0;to_recursive: 0
-//
-// SPDX-FileCopyrightText: Cohen
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]cohendiv-ll.c -o . --pretty_names --trace to_recursive:0 to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +48,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_41_to_52_0(long long *r, int *x, long long *a, long long *b, int *y, long long *q)
+void func_to_recursive_line_41_to_52_0(int *x, long long *r, int *y, long long *q, long long *a, long long *b)
 {
   if (1)
   {
@@ -64,14 +67,14 @@ void func_to_recursive_line_41_to_52_0(long long *r, int *x, long long *a, long 
       *a = 2 * (*a);
       *b = 2 * (*b);
     }
-    func_to_recursive_line_41_to_52_0(r, x, a, b, y, q);
+    func_to_recursive_line_41_to_52_0(x, r, y, q, a, b);
   }
   else
   {
   }
 }
 
-void func_to_recursive_line_32_to_55_0(long long *r, int *x, long long *a, long long *b, int *y, long long *q)
+void func_to_recursive_line_32_to_55_0(int *x, long long *r, int *y, long long *q, long long *a, long long *b)
 {
   if (1)
   {
@@ -87,11 +90,11 @@ void func_to_recursive_line_32_to_55_0(long long *r, int *x, long long *a, long 
       }
       *a = 1;
       *b = *y;
-      func_to_recursive_line_41_to_52_0(&(*r), &(*x), &(*a), &(*b), &(*y), &(*q));
+      func_to_recursive_line_41_to_52_0(&(*x), &(*r), &(*y), &(*q), &(*a), &(*b));
       *r = (*r) - (*b);
       *q = (*q) + (*a);
     }
-    func_to_recursive_line_32_to_55_0(r, x, a, b, y, q);
+    func_to_recursive_line_32_to_55_0(x, r, y, q, a, b);
   }
   else
   {
@@ -113,7 +116,7 @@ int main()
   r = x;
   a = 0;
   b = 0;
-  func_to_recursive_line_32_to_55_0(&r, &x, &a, &b, &y, &q);
+  func_to_recursive_line_32_to_55_0(&x, &r, &y, &q, &a, &b);
   __VERIFIER_assert(x == ((q * y) + r));
   return 0;
 }

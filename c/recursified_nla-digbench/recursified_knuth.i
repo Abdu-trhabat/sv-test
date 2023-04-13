@@ -1,13 +1,13 @@
+/* algorithm searching for a divisor for factorization, by Knuth */
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'knuth.i' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0
-//
-// SPDX-FileCopyrightText: Knuth
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]knuth.i -o . --pretty_names --trace to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *__assertion, const char *__file, unsigned int __line, const char *__function) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -58,7 +58,7 @@ void __VERIFIER_assert(int cond)
 }
 
 extern double sqrt(double);
-void func_to_recursive_line_39_to_67_0(unsigned *d, unsigned *s, unsigned *n, unsigned *t, unsigned *k, unsigned *a, unsigned *r, unsigned *q)
+void func_to_recursive_line_39_to_67_0(unsigned *a, unsigned *q, unsigned *k, unsigned *s, unsigned *r, unsigned *d, unsigned *t, unsigned *n)
 {
   if (1)
   {
@@ -112,7 +112,7 @@ void func_to_recursive_line_39_to_67_0(unsigned *d, unsigned *s, unsigned *n, un
         }
       }
     }
-    func_to_recursive_line_39_to_67_0(d, s, n, t, k, a, r, q);
+    func_to_recursive_line_39_to_67_0(a, q, k, s, r, d, t, n);
   }
   else
   {
@@ -139,7 +139,7 @@ int main()
   k = n % (d - 2);
   q = 4 * ((n / (d - 2)) - (n / d));
   s = sqrt(n);
-  func_to_recursive_line_39_to_67_0(&d, &s, &n, &t, &k, &a, &r, &q);
+  func_to_recursive_line_39_to_67_0(&a, &q, &k, &s, &r, &d, &t, &n);
   return 0;
 }
 

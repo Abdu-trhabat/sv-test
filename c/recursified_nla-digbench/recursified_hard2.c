@@ -1,13 +1,16 @@
+/*
+  hardware integer division program, by Manna
+  returns q==A//B
+  */
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'hard2.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0;to_recursive: 0
-//
-// SPDX-FileCopyrightText: Manna
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]hard2.c -o . --pretty_names --trace to_recursive:0 to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +48,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_40_to_50_0(int *d, int *p, int *r, int *B, int *q, int *A)
+void func_to_recursive_line_40_to_50_0(int *p, int *q, int *A, int *d, int *B, int *r)
 {
   if (1)
   {
@@ -70,14 +73,14 @@ void func_to_recursive_line_40_to_50_0(int *d, int *p, int *r, int *B, int *q, i
       {
       }
     }
-    func_to_recursive_line_40_to_50_0(d, p, r, B, q, A);
+    func_to_recursive_line_40_to_50_0(p, q, A, d, B, r);
   }
   else
   {
   }
 }
 
-void func_to_recursive_line_30_to_37_0(int *d, int *p, int *r, int *B, int *q, int *A)
+void func_to_recursive_line_30_to_37_0(int *p, int *q, int *A, int *d, int *B, int *r)
 {
   if (1)
   {
@@ -95,7 +98,7 @@ void func_to_recursive_line_30_to_37_0(int *d, int *p, int *r, int *B, int *q, i
       *d = 2 * (*d);
       *p = 2 * (*p);
     }
-    func_to_recursive_line_30_to_37_0(d, p, r, B, q, A);
+    func_to_recursive_line_30_to_37_0(p, q, A, d, B, r);
   }
   else
   {
@@ -116,8 +119,8 @@ int main()
   d = B;
   p = 1;
   q = 0;
-  func_to_recursive_line_30_to_37_0(&d, &p, &r, &B, &q, &A);
-  func_to_recursive_line_40_to_50_0(&d, &p, &r, &B, &q, &A);
+  func_to_recursive_line_30_to_37_0(&p, &q, &A, &d, &B, &r);
+  func_to_recursive_line_40_to_50_0(&p, &q, &A, &d, &B, &r);
   __VERIFIER_assert(A == ((d * q) + r));
   __VERIFIER_assert(B == d);
   return 0;

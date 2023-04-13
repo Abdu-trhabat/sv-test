@@ -1,13 +1,12 @@
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'ps3-ll.c' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0
-//
-// SPDX-FileCopyrightText: 2023 copyright holder of 'ps3-ll.c' in the SV-Benchmarks collection
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]ps3-ll.c -o . --pretty_names --trace to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -45,7 +44,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_26_to_34_0(long long *y, long long *c, short *k, long long *x)
+void func_to_recursive_line_26_to_34_0(long long *y, short *k, long long *c, long long *x)
 {
   if (1)
   {
@@ -62,7 +61,7 @@ void func_to_recursive_line_26_to_34_0(long long *y, long long *c, short *k, lon
       *y = (*y) + 1;
       *x = ((*y) * (*y)) + (*x);
     }
-    func_to_recursive_line_26_to_34_0(y, c, k, x);
+    func_to_recursive_line_26_to_34_0(y, k, c, x);
   }
   else
   {
@@ -79,7 +78,7 @@ int main()
   y = 0;
   x = 0;
   c = 0;
-  func_to_recursive_line_26_to_34_0(&y, &c, &k, &x);
+  func_to_recursive_line_26_to_34_0(&y, &k, &c, &x);
   __VERIFIER_assert(((((6 * x) - (((2 * y) * y) * y)) - ((3 * y) * y)) - y) == 0);
   return 0;
 }

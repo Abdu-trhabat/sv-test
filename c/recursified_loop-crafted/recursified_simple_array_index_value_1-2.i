@@ -1,13 +1,14 @@
+/* Benchmark used to verify Chimdyalwar, Bharti, et al. "VeriAbs: Verification by abstraction (competition contribution)." 
+International Conference on Tools and Algorithms for the Construction and Analysis of Systems. Springer, Berlin, Heidelberg, 2017.*/
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'simple_array_index_value_1-2.i' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0
-//
-// SPDX-FileCopyrightText: 2017 Chimdyalwar, Bharti, et al.
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]simple_array_index_value_1-2.i -o . --pretty_names --trace to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *__assertion, const char *__file, unsigned int __line, const char *__function) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -58,7 +59,7 @@ void __VERIFIER_assert(int cond)
 }
 
 unsigned int __VERIFIER_nondet_uint();
-void func_to_recursive_line_39_to_45_0(unsigned int *tmp, unsigned int *index, unsigned int (*array)[10000])
+void func_to_recursive_line_39_to_45_0(unsigned int (*array)[10000], unsigned int *index, unsigned int *tmp)
 {
   if (1)
   {
@@ -74,7 +75,7 @@ void func_to_recursive_line_39_to_45_0(unsigned int *tmp, unsigned int *index, u
       (*array)[*index] = *index;
       *tmp = *index;
     }
-    func_to_recursive_line_39_to_45_0(tmp, index, array);
+    func_to_recursive_line_39_to_45_0(array, index, tmp);
   }
   else
   {
@@ -86,7 +87,7 @@ int main()
   unsigned int array[10000];
   unsigned int index = 0;
   unsigned int tmp = 0;
-  func_to_recursive_line_39_to_45_0(&tmp, &index, &array);
+  func_to_recursive_line_39_to_45_0(&array, &index, &tmp);
   __VERIFIER_assert((tmp < 10000) && (array[tmp] == tmp));
 }
 

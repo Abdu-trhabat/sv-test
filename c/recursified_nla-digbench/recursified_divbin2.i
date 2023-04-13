@@ -1,13 +1,16 @@
+/*
+  A division algorithm, by Kaldewaij
+  returns A//B
+*/
+
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // It was automatically generated from 'divbin2.i' with https://github.com/FlorianDyck/semtransforms
-// To reproduce it you can use the following trace:
-// to_recursive: 0;to_recursive: 0
-//
-// SPDX-FileCopyrightText: Kaldewaij
-//
-// SPDX-License-Identifier: Apache-2.0
+// To reproduce it you can use the following command:
+// python run_transformations.py [insert path here]divbin2.i -o . --pretty_names --trace to_recursive:0 to_recursive:0
+// in case the newest version cannot recreate this file, the commit hash of the used version is 869b5a9
 
 extern void abort(void);
 extern void __assert_fail(const char *__assertion, const char *__file, unsigned int __line, const char *__function) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
@@ -57,7 +60,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_37_to_44_0(unsigned *r, unsigned *q, unsigned *A, unsigned *B, unsigned *b)
+void func_to_recursive_line_37_to_44_0(unsigned *A, unsigned *b, unsigned *B, unsigned *r, unsigned *q)
 {
   if (1)
   {
@@ -81,7 +84,7 @@ void func_to_recursive_line_37_to_44_0(unsigned *r, unsigned *q, unsigned *A, un
       {
       }
     }
-    func_to_recursive_line_37_to_44_0(r, q, A, B, b);
+    func_to_recursive_line_37_to_44_0(A, b, B, r, q);
   }
   else
   {
@@ -122,7 +125,7 @@ int main()
   r = A;
   b = B;
   func_to_recursive_line_33_to_35_0(&r, &b);
-  func_to_recursive_line_37_to_44_0(&r, &q, &A, &B, &b);
+  func_to_recursive_line_37_to_44_0(&A, &b, &B, &r, &q);
   __VERIFIER_assert(A == ((q * b) + r));
   return 0;
 }
