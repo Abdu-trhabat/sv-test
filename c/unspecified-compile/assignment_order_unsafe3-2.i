@@ -99,9 +99,19 @@ extern size_t wcstombs (char *__restrict __s,
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "pointer_zero_interpretation_unsafe1-1.c", 3, "reach_error"); }
+void reach_error() { __assert_fail("0", "assignment_order_unsafe3-2.c", 3, "reach_error"); }
+int* f1(int g[]) {
+  g[0] = 3;
+  return malloc(sizeof(int));
+}
+int f2(int g[]) {
+  g[0] = 5;
+  return 7;
+}
 int main() {
-  int* ptr = (int*) malloc(0);
-  if (ptr != 0) {reach_error();abort();}
+  int g[1];
+  g[0] = 0;
+  *f1(g) = f2(g);
+  if (g[0] == 5) {reach_error();abort();}
   return 0;
 }
