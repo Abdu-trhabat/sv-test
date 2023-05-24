@@ -1,8 +1,14 @@
-
-
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
+// This file was part of CPAchecker,
+// a tool for configurable software verification:
+// https://cpachecker.sosy-lab.org
+//
+// SPDX-FileCopyrightText: 2007-2020 Dirk Beyer <https://www.sosy-lab.org>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // It was automatically generated from 'deep-nested.c' with https://github.com/FlorianDyck/semtransforms
 // To reproduce it you can use the following command:
 // python run_transformations.py [insert path here]deep-nested.c -o . --pretty_names --trace for2while:1 for2while:1 for2while:1 for2while:1 to_recursive:3 to_recursive:0 to_recursive:1 to_recursive:0 for2while:0 to_recursive:0

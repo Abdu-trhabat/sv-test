@@ -1,8 +1,10 @@
-
-
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
+// SPDX-FileCopyrightText: 2019 Dirk Beyer and Matthias Dangl
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // It was automatically generated from 'linear-inequality-inv-b.c' with https://github.com/FlorianDyck/semtransforms
 // To reproduce it you can use the following command:
 // python run_transformations.py [insert path here]linear-inequality-inv-b.c -o . --pretty_names --trace to_recursive:0

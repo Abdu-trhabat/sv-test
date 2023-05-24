@@ -1,5 +1,5 @@
 // This file is part of the SV-Benchmarks collection of verification tasks:
-// https://github.com/sosy-lab/sv-benchmarks
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // This file was part of CPAchecker,
 // a tool for configurable software verification:
@@ -9,10 +9,6 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-
-// This file is part of the SV-Benchmarks collection of verification tasks:
-// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
-//
 // It was automatically generated from 'nested_6.c' with https://github.com/FlorianDyck/semtransforms
 // To reproduce it you can use the following command:
 // python run_transformations.py [insert path here]nested_6.c -o . --pretty_names --trace for2while:1 for2while:4 for2while:3 for2while:2 for2while:1 for2while:0 to_recursive:4 to_recursive:0 to_recursive:2 to_recursive:2
