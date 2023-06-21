@@ -117,7 +117,7 @@ int f2() {
   return 0;
 }
 int main() {
-  f1() || f2;
+  f1() || f2();
   if (g != 2) {reach_error();abort();}
   return 0;
 }
