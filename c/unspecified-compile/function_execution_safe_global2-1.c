@@ -25,7 +25,7 @@ int f2() {
 
 int main() {
   // Evaluation of ||, && and some others is ordered from left to right (dependency ordered, so if the left operand is false, the right is evaluated). (C11 §5.1.2.4)
-  f1() || f2;
+  f1() || f2();
   // g is always 2, as f2() is evaluated last
   if (g != 2) {reach_error();abort();}
   return 0;
