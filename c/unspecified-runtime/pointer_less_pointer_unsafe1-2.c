@@ -1,0 +1,27 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2007-2023 Dirk Beyer <https://www.sosy-lab.org>
+//
+// SPDX-License-Identifier: Apache-2.0
+
+#include <stdlib.h>
+
+extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error() { __assert_fail("0", "pointer_less_pointer_unsafe1-2.c", 3, "reach_error"); }
+
+int main() {
+  int* ptr0;
+  int* ptr1;
+  int* ptr2;
+
+  // C11 ISO/IEC 9899:201x 7.22.3 states that: the order and contiguity of storage allocated by successive calls to the ..., malloc, ... functions is unspecified.
+  ptr0 = malloc(4096);
+  ptr1 = malloc(10);
+  free(ptr0);
+  ptr2 = malloc(4096);
+  // Int cast is fine for 32bit
+  if ((int) ptr1 < (int) ptr2) {reach_error();abort();}
+  return 0;
+}
