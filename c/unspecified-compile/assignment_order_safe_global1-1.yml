@@ -12,7 +12,6 @@ input_files: 'assignment_order_safe_global1-1.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-error-call.prp
 
 options:
   language: C
