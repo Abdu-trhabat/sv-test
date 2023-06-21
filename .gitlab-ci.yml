@@ -199,7 +199,7 @@ build-docker:link-checks:latest:
 reuse:
   stage: checks
   image:
-    name: fsfe/reuse:latest
+    name: fsfe/reuse:1
     entrypoint: [""]
   script:
     - reuse lint
