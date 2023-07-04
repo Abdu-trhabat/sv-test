@@ -4,14 +4,14 @@
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 0 "<command-line>" 2
 # 1 "4SB.c"
-# 29 "4SB.c"
+# 33 "4SB.c"
 void reach_error() {};
 
 
 
 
 extern void abort(void);
-# 44 "4SB.c"
+# 48 "4SB.c"
 typedef enum {
   STEP_CPU0_INPUT,
   STEP_CPU1_INPUT,
@@ -60,7 +60,7 @@ typedef struct {
   int cpu3Writes_total;
   int cpu3Reads_total;
 } inputT;
-# 101 "4SB.c"
+# 105 "4SB.c"
 typedef struct {
 
   headerT pending[2];
@@ -474,7 +474,7 @@ void initWriteBuffer(WrBuffer *wrBuffer) {
   wrBuffer->num_pending_operations = 0;
   wrBuffer->head = 0;
 }
-# 522 "4SB.c"
+# 526 "4SB.c"
 void tso_core_write( headerT user_action,
                      headerT* g_history,
                      unsigned char* global_time,
