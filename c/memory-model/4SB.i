@@ -1,17 +1,5 @@
-# 0 "4SB.c"
-# 0 "<built-in>"
-# 0 "<command-line>"
-# 1 "/usr/include/stdc-predef.h" 1 3 4
-# 0 "<command-line>" 2
-# 1 "4SB.c"
-# 33 "4SB.c"
 void reach_error() {};
-
-
-
-
 extern void abort(void);
-# 48 "4SB.c"
 typedef enum {
   STEP_CPU0_INPUT,
   STEP_CPU1_INPUT,
@@ -22,17 +10,12 @@ typedef enum {
   STEP_WRITE_BUFFER_2,
   STEP_WRITE_BUFFER_3,
 } step;
-
-
-
 typedef enum {
   Nop,
   CpuWrite,
   CpuFence,
   CpuRead,
 } operations;
-
-
 typedef struct headerS {
   operations type;
   unsigned char thread;
@@ -40,8 +23,6 @@ typedef struct headerS {
   unsigned char data;
   unsigned char mdata;
 } headerT;
-
-
 typedef struct {
   headerT cpu0_input[(15 -1)];
   int cpu0_time;
@@ -60,28 +41,19 @@ typedef struct {
   int cpu3Writes_total;
   int cpu3Reads_total;
 } inputT;
-# 105 "4SB.c"
 typedef struct {
-
   headerT pending[2];
-
   unsigned char num_pending_operations;
-
-
   unsigned char head;
 } WrBuffer;
-
 extern int __VERIFIER_nondet_int();
 extern unsigned char __VERIFIER_nondet_uchar();
-
 step __VERIFIER_nondet_step() {
   return (step) (__VERIFIER_nondet_uchar() % 8);
 }
-
 operations __VERIFIER_nondet_operations() {
   return (operations) (__VERIFIER_nondet_uchar() % 4);
 }
-
 struct headerS __VERIFIER_nondet_headerT() {
   headerT result;
   result.type = __VERIFIER_nondet_operations();
@@ -89,84 +61,45 @@ struct headerS __VERIFIER_nondet_headerT() {
   result.address = __VERIFIER_nondet_uchar();
   result.data = __VERIFIER_nondet_uchar();
   result.mdata = __VERIFIER_nondet_uchar();
-
   return result;
 }
-
 void randomise_input(inputT* litmus_input);
 void set_and_randomise_input(inputT* litmus_input);
 void test_assertions(headerT* g_history, unsigned char* sharedMemory);
-
-
 void initHistory(headerT* history);
 void initWriteBuffer(WrBuffer *wrBuffer);
-
-
-
-
-
-
 void tso_core_write( headerT user_action,
                      headerT* g_history,
                      unsigned char* global_time,
                      WrBuffer *wrBuffer);
-
 void tso_core_fence( headerT user_action,
                      headerT* g_history,
                      unsigned char* global_time);
 void stepWriteBuffer(WrBuffer *wrBuffer,
                     unsigned char *sharedMemory);
-
 void tso_core_read( headerT user_action,
                     headerT* g_history,
                     unsigned char* global_time,
                     WrBuffer *wrbuffer,
                     unsigned char *sharedmemory);
-
-
-
-
 int store_buffering_4_conditions(inputT* litmus_input);
 int store_buffering_4_assertions(headerT* g_history);
-
-
-
 int main() {
-
   unsigned char sharedMemory[10] = {0};
-
-
-
-
-
-
   WrBuffer wrBuffer0;
   WrBuffer wrBuffer1;
   WrBuffer wrBuffer2;
   WrBuffer wrBuffer3;
-
   headerT g_history[(15 -1)];
   unsigned char global_time = 0;
-
-
-
-
-
   initHistory(g_history);
   initWriteBuffer(&wrBuffer0);
   initWriteBuffer(&wrBuffer1);
   initWriteBuffer(&wrBuffer2);
   initWriteBuffer(&wrBuffer3);
-
   inputT litmus_input;
-
-
   set_and_randomise_input(&litmus_input);
-
-
-
   headerT input_action;
-
   int cpu0Writes_issued = 0;
   int cpu0Reads_issued = 0;
   int cpu1Writes_issued = 0;
@@ -175,29 +108,19 @@ int main() {
   int cpu2Reads_issued = 0;
   int cpu3Writes_issued = 0;
   int cpu3Reads_issued = 0;
-
   unsigned char ch_index;
-
-
   for (; __VERIFIER_nondet_int();) {
-
     switch (__VERIFIER_nondet_step()) {
-
-
       case STEP_CPU0_INPUT:
-
-
         input_action = litmus_input.cpu0_input[litmus_input.cpu0_time];
         if (input_action.thread == 0) {
           if (input_action.type == CpuWrite) {
-
             ({ if (!(cpu0Writes_issued < litmus_input.cpu0Writes_total)) { abort(); } });
             ({ if (!(wrBuffer0.num_pending_operations < 2)) { abort(); } });
             tso_core_write(input_action, g_history, &global_time, &wrBuffer0);
             litmus_input.cpu0_time++;
             cpu0Writes_issued++;
           } else if (input_action.type == CpuFence) {
-
             ({ if (!(cpu0Writes_issued < litmus_input.cpu0Writes_total)) { abort(); } });
             ({ if (!(wrBuffer0.num_pending_operations == 0)) { abort(); } });
             tso_core_fence(input_action, g_history, &global_time);
@@ -209,7 +132,6 @@ int main() {
             litmus_input.cpu0_time++;
             cpu0Reads_issued++;
           } else {
-
             ({ if (!(0)) { abort(); } });
           }
         } else {
@@ -217,26 +139,19 @@ int main() {
         }
         break;
       case STEP_WRITE_BUFFER_0:
-
         ({ if (!(wrBuffer0.num_pending_operations > 0)) { abort(); } });
         stepWriteBuffer(&wrBuffer0, sharedMemory);
         break;
-
-
       case STEP_CPU1_INPUT:
-
-
         input_action = litmus_input.cpu1_input[litmus_input.cpu1_time];
         if (input_action.thread == 1) {
           if (input_action.type == CpuWrite) {
-
             ({ if (!(cpu1Writes_issued < litmus_input.cpu1Writes_total)) { abort(); } });
             ({ if (!(wrBuffer1.num_pending_operations < 2)) { abort(); } });
             tso_core_write(input_action, g_history, &global_time, &wrBuffer1);
             litmus_input.cpu1_time++;
             cpu1Writes_issued++;
           } else if (input_action.type == CpuFence) {
-
             ({ if (!(cpu1Writes_issued < litmus_input.cpu1Writes_total)) { abort(); } });
             ({ if (!(wrBuffer1.num_pending_operations == 0)) { abort(); } });
             tso_core_fence(input_action, g_history, &global_time);
@@ -248,7 +163,6 @@ int main() {
             litmus_input.cpu1_time++;
             cpu1Reads_issued++;
           } else {
-
             ({ if (!(0)) { abort(); } });
           }
         } else {
@@ -256,26 +170,19 @@ int main() {
         }
         break;
       case STEP_WRITE_BUFFER_1:
-
         ({ if (!(wrBuffer1.num_pending_operations > 0)) { abort(); } });
         stepWriteBuffer(&wrBuffer1, sharedMemory);
         break;
-
-
       case STEP_CPU2_INPUT:
-
-
         input_action = litmus_input.cpu2_input[litmus_input.cpu2_time];
         if (input_action.thread == 2) {
           if (input_action.type == CpuWrite) {
-
             ({ if (!(cpu2Writes_issued < litmus_input.cpu2Writes_total)) { abort(); } });
             ({ if (!(wrBuffer2.num_pending_operations < 2)) { abort(); } });
             tso_core_write(input_action, g_history, &global_time, &wrBuffer2);
             litmus_input.cpu2_time++;
             cpu2Writes_issued++;
           } else if (input_action.type == CpuFence) {
-
             ({ if (!(cpu2Writes_issued < litmus_input.cpu2Writes_total)) { abort(); } });
             ({ if (!(wrBuffer2.num_pending_operations == 0)) { abort(); } });
             tso_core_fence(input_action, g_history, &global_time);
@@ -287,7 +194,6 @@ int main() {
             litmus_input.cpu2_time++;
             cpu2Reads_issued++;
           } else {
-
             ({ if (!(0)) { abort(); } });
           }
         } else {
@@ -295,26 +201,19 @@ int main() {
         }
         break;
       case STEP_WRITE_BUFFER_2:
-
         ({ if (!(wrBuffer2.num_pending_operations > 0)) { abort(); } });
         stepWriteBuffer(&wrBuffer2, sharedMemory);
         break;
-
-
       case STEP_CPU3_INPUT:
-
-
         input_action = litmus_input.cpu3_input[litmus_input.cpu3_time];
         if (input_action.thread == 3) {
           if (input_action.type == CpuWrite) {
-
             ({ if (!(cpu3Writes_issued < litmus_input.cpu3Writes_total)) { abort(); } });
             ({ if (!(wrBuffer3.num_pending_operations < 2)) { abort(); } });
             tso_core_write(input_action, g_history, &global_time, &wrBuffer3);
             litmus_input.cpu3_time++;
             cpu3Writes_issued++;
           } else if (input_action.type == CpuFence) {
-
             ({ if (!(cpu3Writes_issued < litmus_input.cpu3Writes_total)) { abort(); } });
             ({ if (!(wrBuffer3.num_pending_operations == 0)) { abort(); } });
             tso_core_fence(input_action, g_history, &global_time);
@@ -326,7 +225,6 @@ int main() {
             litmus_input.cpu3_time++;
             cpu3Reads_issued++;
           } else {
-
             ({ if (!(0)) { abort(); } });
           }
         } else {
@@ -334,54 +232,34 @@ int main() {
         }
         break;
       case STEP_WRITE_BUFFER_3:
-
         ({ if (!(wrBuffer3.num_pending_operations > 0)) { abort(); } });
         stepWriteBuffer(&wrBuffer3, sharedMemory);
         break;
-
       default:
-
         ({ if (!(0)) { abort(); } });
         break;
       }
     }
-
-
     if (cpu0Writes_issued != litmus_input.cpu0Writes_total) return 0;
     if (cpu0Reads_issued != litmus_input.cpu0Reads_total) return 0;
-
-
     if (cpu1Writes_issued != litmus_input.cpu1Writes_total) return 0;
     if (cpu1Reads_issued != litmus_input.cpu1Reads_total) return 0;
-
-
     if (cpu2Writes_issued != litmus_input.cpu2Writes_total) return 0;
     if (cpu2Reads_issued != litmus_input.cpu2Reads_total) return 0;
-
-
     if (cpu3Writes_issued != litmus_input.cpu3Writes_total) return 0;
     if (cpu3Reads_issued != litmus_input.cpu3Reads_total) return 0;
-
     if (wrBuffer0.num_pending_operations != 0) return 0;
     if (wrBuffer1.num_pending_operations != 0) return 0;
     if (wrBuffer2.num_pending_operations != 0) return 0;
     if (wrBuffer3.num_pending_operations != 0) return 0;
     test_assertions(g_history, sharedMemory);
     return 0;
-
-
-
 }
-
-
 void randomise_input(inputT* litmus_input) {
-
   int cpu0_operations = litmus_input->cpu0Writes_total + litmus_input->cpu0Reads_total;
   int cpu1_operations = litmus_input->cpu1Writes_total + litmus_input->cpu1Reads_total;
   int cpu2_operations = litmus_input->cpu2Writes_total + litmus_input->cpu2Reads_total;
   int cpu3_operations = litmus_input->cpu3Writes_total + litmus_input->cpu3Reads_total;
-
-
   for (int i = 0; i < (15 -1); i++)
     if (i < cpu0_operations) {
       headerT header = __VERIFIER_nondet_headerT();
@@ -390,7 +268,6 @@ void randomise_input(inputT* litmus_input) {
       header.mdata = 0;
       litmus_input->cpu0_input[i] = header;
     };
-
   for (int i = 0; i < (15 -1) ; i++)
     if (i < cpu1_operations) {
       headerT header = __VERIFIER_nondet_headerT();
@@ -399,7 +276,6 @@ void randomise_input(inputT* litmus_input) {
       header.mdata = 0;
       litmus_input->cpu1_input[i] = header;
   };
-
   for (int i = 0; i < (15 -1); i++)
     if (i < cpu2_operations) {
       headerT header = __VERIFIER_nondet_headerT();
@@ -408,7 +284,6 @@ void randomise_input(inputT* litmus_input) {
       header.mdata = 0;
       litmus_input->cpu2_input[i] = header;
     };
-
   for (int i = 0; i < (15 -1) ; i++)
     if (i < cpu3_operations) {
       headerT header = __VERIFIER_nondet_headerT();
@@ -417,40 +292,16 @@ void randomise_input(inputT* litmus_input) {
       header.mdata = 0;
       litmus_input->cpu3_input[i] = header;
   };
-
 }
-
 void set_and_randomise_input(inputT* litmus_input) {
-
-
   store_buffering_4_conditions(litmus_input);
-
-
-
   randomise_input(litmus_input);
-
-
   store_buffering_4_conditions(litmus_input);
-
-
 }
-
 void test_assertions(headerT* g_history, unsigned char* sharedMemory) {
-
   (void) sharedMemory;
-
-
   store_buffering_4_assertions(g_history);
-
-
 }
-
-
-
-
-
-
-
 void initHistory(headerT* history) {
   for(int i = 0; i < (15 -1); i++) {
     history[i].type = 0;
@@ -460,10 +311,7 @@ void initHistory(headerT* history) {
     history[i].mdata = 0;
   }
 }
-
-
 void initWriteBuffer(WrBuffer *wrBuffer) {
-
   for(int i = 0; i < 2; i++) {
     wrBuffer->pending[i].type = 0;
     wrBuffer->pending[i].thread = 0;
@@ -474,60 +322,40 @@ void initWriteBuffer(WrBuffer *wrBuffer) {
   wrBuffer->num_pending_operations = 0;
   wrBuffer->head = 0;
 }
-# 526 "4SB.c"
 void tso_core_write( headerT user_action,
                      headerT* g_history,
                      unsigned char* global_time,
                      WrBuffer *wrBuffer) {
-
-
   int tail = (wrBuffer->head + wrBuffer->num_pending_operations) % 2;
   wrBuffer->pending[tail] = user_action;
   wrBuffer->num_pending_operations += 1;
-
   g_history[*global_time] = user_action;
   *global_time += 1;
 }
-
-
 void tso_core_fence( headerT user_action,
                      headerT* g_history,
                      unsigned char* global_time) {
-
   g_history[*global_time] = user_action;
   *global_time += 1;
-
 }
-
-
 void stepWriteBuffer(WrBuffer *wrBuffer,
                     unsigned char *sharedMemory) {
-
   unsigned char head = wrBuffer->head;
   unsigned char data = wrBuffer->pending[head].data;
   unsigned char address = wrBuffer->pending[head].address;
-
   sharedMemory[address] = data;
-
   wrBuffer->head = (wrBuffer->head + 1) % 2;
   wrBuffer->num_pending_operations--;
 }
-
-
 int check_buffer( WrBuffer *wrBuffer,
                   unsigned char address,
                   unsigned char *data) {
-
   int checked = wrBuffer->num_pending_operations;
-
   if(wrBuffer->num_pending_operations == 0) {
     return -1;
   }
-
   unsigned char ch_head = wrBuffer->head;
   unsigned char ch_tail = (ch_head + wrBuffer->num_pending_operations - 1) % 2;
-
-
   for(int i=0; i < 2; i++) {
     if (wrBuffer->pending[ch_tail].address == address) {
       *data = wrBuffer->pending[ch_tail].data;
@@ -541,90 +369,64 @@ int check_buffer( WrBuffer *wrBuffer,
     checked--;
     if (checked == 0) break;
   }
-
-
   return -1;
 }
-
-
-
 void tso_core_read( headerT user_action,
                     headerT* g_history,
                     unsigned char* global_time,
                     WrBuffer *wrbuffer,
                     unsigned char *sharedmemory) {
-
-
   unsigned char rd_address = user_action.address;
   unsigned char data;
-
   if (check_buffer(wrbuffer, rd_address, &data) == -1 )
     data = sharedmemory[rd_address];
-
-
   headerT response = user_action;
   response.type = CpuRead;
   response.data = data;
-
   g_history[*global_time] = response;
   *global_time += 1;
 }
-
-
-
-
-
 int store_buffering_4_conditions(inputT* litmus_input){
-
       litmus_input->cpu0_input[0].type = CpuWrite;
       litmus_input->cpu0_input[0].address = 0;
       litmus_input->cpu0_input[0].mdata = 0;
       litmus_input->cpu0_input[0].data = 1;
       litmus_input->cpu0_input[0].thread = 0;
-
       litmus_input->cpu0_input[1].type = CpuRead;
       litmus_input->cpu0_input[1].address = 1;
       litmus_input->cpu0_input[1].mdata = 1;
       litmus_input->cpu0_input[1].thread = 0;
-
       litmus_input->cpu1_input[0].type = CpuWrite;
       litmus_input->cpu1_input[0].address = 1;
       litmus_input->cpu1_input[0].mdata = 2;
       litmus_input->cpu1_input[0].data = 1;
       litmus_input->cpu1_input[0].thread = 1;
-
       litmus_input->cpu1_input[1].type = CpuRead;
       litmus_input->cpu1_input[1].address = 2;
       litmus_input->cpu1_input[1].mdata = 3;
       litmus_input->cpu1_input[1].thread = 1;
-
       litmus_input->cpu2_input[0].type = CpuWrite;
       litmus_input->cpu2_input[0].address = 2;
       litmus_input->cpu2_input[0].mdata = 4;
       litmus_input->cpu2_input[0].data = 1;
       litmus_input->cpu2_input[0].thread = 2;
-
       litmus_input->cpu2_input[1].type = CpuRead;
       litmus_input->cpu2_input[1].address = 3;
       litmus_input->cpu2_input[1].mdata = 5;
       litmus_input->cpu2_input[1].thread = 2;
-
       litmus_input->cpu3_input[0].type = CpuWrite;
       litmus_input->cpu3_input[0].address = 3;
       litmus_input->cpu3_input[0].mdata = 6;
       litmus_input->cpu3_input[0].data = 1;
       litmus_input->cpu3_input[0].thread = 3;
-
       litmus_input->cpu3_input[1].type = CpuRead;
       litmus_input->cpu3_input[1].address = 0;
       litmus_input->cpu3_input[1].mdata = 7;
       litmus_input->cpu3_input[1].thread = 3;
-
       litmus_input->cpu0_time = 0;
       litmus_input->cpu1_time = 0;
       litmus_input->cpu2_time = 0;
       litmus_input->cpu3_time = 0;
-
       litmus_input->cpu0Writes_total = 1;
       litmus_input->cpu0Reads_total = 1;
       litmus_input->cpu1Writes_total = 1;
@@ -633,7 +435,6 @@ int store_buffering_4_conditions(inputT* litmus_input){
       litmus_input->cpu2Reads_total = 1;
       litmus_input->cpu3Writes_total = 1;
       litmus_input->cpu3Reads_total = 1;
-
       int operations_total = litmus_input->cpu0Writes_total +
                              litmus_input->cpu0Reads_total +
                              litmus_input->cpu1Writes_total +
@@ -642,12 +443,9 @@ int store_buffering_4_conditions(inputT* litmus_input){
                              litmus_input->cpu2Reads_total +
                              litmus_input->cpu3Writes_total +
                              litmus_input->cpu3Reads_total;
-
       return operations_total;
 }
-
 int store_buffering_4_assertions(headerT* g_history){
-
   int event_i0 = -1;
   int event_i1 = -1;
   int event_i2 = -1;
@@ -656,7 +454,6 @@ int store_buffering_4_assertions(headerT* g_history){
   int event_i5 = -1;
   int event_i6 = -1;
   int event_i7 = -1;
-
   for (int i = 0; i < (15 -1); i++) {
       if (
               (g_history[i].type == CpuWrite) &&
@@ -735,7 +532,6 @@ int store_buffering_4_assertions(headerT* g_history){
                   continue;
           }
   }
-
   if (
               (event_i0 < event_i1) &&
               (event_i2 < event_i3) &&
@@ -750,11 +546,6 @@ int store_buffering_4_assertions(headerT* g_history){
               (event_i6 != -1) &&
               (event_i7 != -1) &&
               1)
-      ({ if (!!( (g_history[event_i1].data == 0) && (g_history[event_i3].data == 0) && (g_history[event_i5].data == 0) && (g_history[event_i7].data == 0) )) {reach_error();}})
-
-
-
-
-                    ;
+      ({ if (!!( (g_history[event_i1].data == 0) && (g_history[event_i3].data == 0) && (g_history[event_i5].data == 0) && (g_history[event_i7].data == 0) )) {reach_error();}});
   return 0;
 }
