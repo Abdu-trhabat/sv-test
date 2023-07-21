@@ -4,3 +4,4 @@ openssl-simplified/*.yml
 locks/*.yml
 ntdrivers/*.yml
 openssl/*.yml
+memory-model/*.yml
