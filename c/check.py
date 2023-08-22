@@ -97,6 +97,7 @@ PREPROCESSOR_DIRECTIVE = re.compile('^ *#(define|include)')
 
 KNOWN_DIRECTORY_PROBLEMS = [
     # TODO Please fix
+    ("coreutils-v8.31", "unexpected file generate_files.sh"),
     ("ldv-linux-4.2-rc1", "missing readme"),
     ("ldv-memsafety", "missing readme"),
     ("ldv-races", "missing readme"),
