@@ -5,6 +5,10 @@ input_files: 'hh2012-ex2b.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
+  - property_file: ../properties/termination.prp
+    expected_verdict: false
 
 options:
   language: C
