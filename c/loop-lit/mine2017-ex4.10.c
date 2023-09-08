@@ -1,3 +1,6 @@
+// Source: Antoine Miné: "Tutorial on static inference of numeric invariants by abstract interpretation", FTPL 2017.
+// Example 4.10.
+
 #include <assert.h>
 extern void abort(void);
 void reach_error() { assert(0); }

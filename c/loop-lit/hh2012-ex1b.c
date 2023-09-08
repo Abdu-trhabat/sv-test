@@ -1,3 +1,6 @@
+// Source: Nicolas Halbwachs, Julien Henry: "When the Decreasing Sequence Fails", SAS 2012.
+// Example 1.b.
+
 #include <assert.h>
 extern void abort(void);
 void reach_error() { assert(0); }

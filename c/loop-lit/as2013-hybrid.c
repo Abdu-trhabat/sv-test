@@ -1,3 +1,6 @@
+// Source: Gianluca Amato, Francesca Scozzari: "Localizing Widening and Narrowing", SAS 2013.
+// Example hybrid.
+
 #include <assert.h>
 extern void abort(void);
 void reach_error() { assert(0); }

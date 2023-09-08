@@ -1,3 +1,6 @@
+// Source: Rémy Boutonnet, Nicolas Halbwachs: "Improving the results of program analysis by abstract interpretation beyond the decreasing sequence", FMSD 2017.
+// Example 1 (polyhedra).
+
 #include <assert.h>
 extern void abort(void);
 void reach_error() { assert(0); }
