@@ -6,13 +6,13 @@
 # 
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-This directory contains a set of 10 coreutils, that have been instrumented by the work of Frank Busse, Pritam Gharat, Cristian Cadar, Alastair Donaldson in their ISSTA'22 paper "Combining Static Analysis Error Traces with Dynamic Symbolic Execution (Experience Paper)".
+This directory contains a set of 10 coreutils, that have been instrumented by the work of [Frank Busse, Pritam Gharat, Cristian Cadar, Alastair Donaldson in their ISSTA'22 paper "Combining Static Analysis Error Traces with Dynamic Symbolic Execution (Experience Paper)"](https://srg.doc.ic.ac.uk/projects/klee-sa/).
 
 These are based on coreutils v8.31. 
 
-We used Mopsa to perform the single-file preprocessing necessary to incorporate the files within SV-Comp, using the script `generate_files.sh` provided in this directory.
+We used [Mopsa](https://gitlab.com/mopsa/mopsa-analyzer/) to perform the single-file preprocessing necessary to incorporate the files within SV-Comp, using the script `generate_files.sh` provided in this directory.
 
-In their work, Busse et al instrumented the coreutils to create memory errors (initially, to check soundness of Clang and Infer). 
+In their work, Busse et al instrumented the coreutils to create memory errors (initially, to check soundness of Clang and Infer).
 
 We also incorporated the original files, where the task consists in verifying memory safety and absence of integer overflows. More assertions or properties could be added in the future.
 

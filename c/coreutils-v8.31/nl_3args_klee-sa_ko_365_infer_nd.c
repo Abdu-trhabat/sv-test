@@ -27941,7 +27941,7 @@ struct max_align_t_342746;
 struct max_align_t_344183;
 struct max_align_t_345953;
 struct max_align_t_346896;
-struct max_align_t_350871;
+struct max_align_t_350878;
 struct max_align_t_35359;
 struct max_align_t_37322;
 struct max_align_t_38216;
@@ -29796,7 +29796,6 @@ typedef __u64 __be64;
 typedef long __blkcnt64_t;
 typedef long __blkcnt_t;
 typedef long __blksize_t;
-typedef char *__builtin_ms_va_list;
 typedef char *__caddr_t;
 typedef long __clock_t;
 typedef int __clockid_t;
@@ -39566,7 +39565,7 @@ struct max_align_t_346896 { /* sizeof: 32, alignof: 16 */
     long long __clang_max_align_nonce1;
     long double __clang_max_align_nonce2;
 };
-struct max_align_t_350871 { /* sizeof: 32, alignof: 16 */
+struct max_align_t_350878 { /* sizeof: 32, alignof: 16 */
     long long __clang_max_align_nonce1;
     long double __clang_max_align_nonce2;
 };
@@ -48445,6 +48444,7 @@ long __lroundf32x(floatx __x);
 long __lroundf64(double __x);
 long __lroundf64x(long double __x);
 long __lroundl(long double __x);
+int __main(int argc, char **argv);
 size_t __mbrlen(const char *__s, size_t __n, mbstate_t *__ps);
 int __memcmpeq(const void *__s1, const void *__s2, size_t __n);
 void *__mempcpy(void *__dest, const void *__src, size_t __n);
@@ -50104,7 +50104,7 @@ int lstatat(int fd, const char *name, struct stat *st);
 int lutimens(const char *file, const struct timespec *timespec);
 int lutimensat(int dir, const char *file, const struct timespec *times);
 int lutimes(const char *__file, const struct timeval *__tvp);
-int main(int argc, char **argv);
+int main();
 _Bool make_dir_parents(char *dir, struct savewd_168031 *wd, int (*make_ancestor)(const char*, const char*, void*), void *options, mode_t mode, void (*announce)(const char*, void*), mode_t mode_bits, uid_t owner, gid_t group, _Bool preserve_existing);
 static struct mode_change_175107 *make_node_op_equals_175989(mode_t new_mode, mode_t mentioned);
 struct timespec make_timespec(time_t s, long ns);
@@ -51623,6 +51623,149 @@ int __gl_setmode(int fd, int mode)
 int __gl_setmode_check(int fd)
 {
     return 0;
+}
+int __main(int argc, char **argv)
+{
+    int c;
+    size_t len;
+    _Bool ok = 1;
+    set_program_name(argv[0]);
+    setlocale(6, "");
+    atexit(close_stdout);
+    have_read_stdin_350665 = 0;
+    while (({         c = getopt_long(argc, argv, "h:b:f:v:i:pl:s:w:n:d:", longopts_350667, (void*)0);
+        c != - 1;
+ })) {
+        switch (c) {
+        case 'h':;
+        if (! build_type_arg_350670(&header_type_350611, &header_regex_350619, header_fastmap_350625)) {
+            error(0, 0, (const char*)"invalid header numbering style: %s", quote(optarg));
+            ok = 0;
+        }
+        break;
+        case 'b':;
+        if (! build_type_arg_350670(&body_type_350609, &body_regex_350617, body_fastmap_350623)) {
+            error(0, 0, (const char*)"invalid body numbering style: %s", quote(optarg));
+            ok = 0;
+        }
+        break;
+        case 'f':;
+        if (! build_type_arg_350670(&footer_type_350613, &footer_regex_350621, footer_fastmap_350627)) {
+            error(0, 0, (const char*)"invalid footer numbering style: %s", quote(optarg));
+            ok = 0;
+        }
+        break;
+        case 'v':;
+        starting_line_number_350651 = xdectoimax(optarg, - 9223372036854775807L - 1, 9223372036854775807L, "", (const char*)"invalid starting line number", 0);
+        break;
+        case 'i':;
+        page_incr_350653 = xdectoimax(optarg, 1, 9223372036854775807L, "", (const char*)"invalid line number increment", 0);
+        break;
+        case 'p':;
+        reset_numbers_350655 = 0;
+        break;
+        case 'l':;
+        blank_join_350657 = xdectoimax(optarg, 1, 9223372036854775807L, "", (const char*)"invalid line number of blank lines", 0);
+        break;
+        case 's':;
+        separator_str_350631 = optarg;
+        break;
+        case 'w':;
+        lineno_width_350659 = xdectoimax(optarg, 1, 2147483647, "", (const char*)"invalid line number field width", 0);
+        break;
+        case 'n':;
+        if (strcmp(optarg, "ln") == 0) {
+            lineno_format_350661 = FORMAT_LEFT_350600;
+        }
+        else {
+            if (strcmp(optarg, "rn") == 0) {
+                lineno_format_350661 = FORMAT_RIGHT_NOLZ_350596;
+            }
+            else {
+                if (strcmp(optarg, "rz") == 0) {
+                    lineno_format_350661 = FORMAT_RIGHT_LZ_350598;
+                }
+                else {
+                    error(0, 0, (const char*)"invalid line numbering format: %s", quote(optarg));
+                    ok = 0;
+                }
+            }
+        }
+        break;
+        case 'd':;
+        section_del_350633 = optarg;
+        break;
+        case -130:;
+        usage(0);
+        break;
+        case -131:;
+        version_etc(stdout, "nl", "GNU coreutils", Version, "Scott Bartram", "David MacKenzie", (char*)(void*)0);
+        exit(0);
+        break;
+        default:;
+        ok = 0;
+        break;
+        }
+    }
+    if (! ok) {
+        usage(1);
+    }
+    len = strlen(section_del_350633);
+    header_del_len_350637 = len * 3;
+    header_del_350635 = xmalloc(header_del_len_350637 + 1);
+    stpcpy(stpcpy(stpcpy(header_del_350635, section_del_350633), section_del_350633), section_del_350633);
+    body_del_len_350641 = len * 2;
+    body_del_350639 = xmalloc(body_del_len_350641 + 1);
+    stpcpy(stpcpy(body_del_350639, section_del_350633), section_del_350633);
+    footer_del_len_350645 = len;
+    footer_del_350643 = xmalloc(footer_del_len_350645 + 1);
+    stpcpy(footer_del_350643, section_del_350633);
+    initbuffer(&line_buf_350647);
+    len = strlen(separator_str_350631);
+    print_no_line_fmt_350649 = xmalloc(lineno_width_350659 + len + 1);
+    memset(print_no_line_fmt_350649, ' ', lineno_width_350659 + len);
+    print_no_line_fmt_350649[lineno_width_350659 + len] = 0;
+    line_no_350663 = starting_line_number_350651;
+    current_type_350615 = body_type_350609;
+    current_regex_350629 = &body_regex_350617;
+    if (optind == argc) {
+        ok = nl_file_350706("-");
+    }
+    else {
+        for (; optind < argc; optind = optind + 1) {
+            ok = (ok) & (nl_file_350706(argv[optind]));
+        }
+    }
+    if ((have_read_stdin_350665) && (rpl_fclose(stdin) == - 1)) {
+        if (! ! 4UL) {
+            error(1, *__errno_location(), "-");
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+        else {
+            error(1, *__errno_location(), "-");
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+    }
+    {
+        int __SAST_tmp_18177;
+        if (ok) {
+            __SAST_tmp_18177 = 0;
+        }
+        else {
+            __SAST_tmp_18177 = 1;
+        }
+        return __SAST_tmp_18177;
+    }
 }
 static size_t __strftime_internal_185715(char *s, size_t maxsize, const char *format, const struct tm *tp, _Bool upcase, int yr_spec, int width, _Bool *tzset_called, timezone_t tz, int ns)
 {
@@ -95974,148 +96117,25 @@ int lutimensat(int dir, const char *file, const struct timespec *times)
 {
     return utimensat(dir, file, times, 256);
 }
-int main(int argc, char **argv)
+int main()
 {
-    int c;
-    size_t len;
-    _Bool ok = 1;
-    set_program_name(argv[0]);
-    setlocale(6, "");
-    atexit(close_stdout);
-    have_read_stdin_350665 = 0;
-    while (({         c = getopt_long(argc, argv, "h:b:f:v:i:pl:s:w:n:d:", longopts_350667, (void*)0);
-        c != - 1;
- })) {
-        switch (c) {
-        case 'h':;
-        if (! build_type_arg_350670(&header_type_350611, &header_regex_350619, header_fastmap_350625)) {
-            error(0, 0, (const char*)"invalid header numbering style: %s", quote(optarg));
-            ok = 0;
-        }
-        break;
-        case 'b':;
-        if (! build_type_arg_350670(&body_type_350609, &body_regex_350617, body_fastmap_350623)) {
-            error(0, 0, (const char*)"invalid body numbering style: %s", quote(optarg));
-            ok = 0;
-        }
-        break;
-        case 'f':;
-        if (! build_type_arg_350670(&footer_type_350613, &footer_regex_350621, footer_fastmap_350627)) {
-            error(0, 0, (const char*)"invalid footer numbering style: %s", quote(optarg));
-            ok = 0;
-        }
-        break;
-        case 'v':;
-        starting_line_number_350651 = xdectoimax(optarg, - 9223372036854775807L - 1, 9223372036854775807L, "", (const char*)"invalid starting line number", 0);
-        break;
-        case 'i':;
-        page_incr_350653 = xdectoimax(optarg, 1, 9223372036854775807L, "", (const char*)"invalid line number increment", 0);
-        break;
-        case 'p':;
-        reset_numbers_350655 = 0;
-        break;
-        case 'l':;
-        blank_join_350657 = xdectoimax(optarg, 1, 9223372036854775807L, "", (const char*)"invalid line number of blank lines", 0);
-        break;
-        case 's':;
-        separator_str_350631 = optarg;
-        break;
-        case 'w':;
-        lineno_width_350659 = xdectoimax(optarg, 1, 2147483647, "", (const char*)"invalid line number field width", 0);
-        break;
-        case 'n':;
-        if (strcmp(optarg, "ln") == 0) {
-            lineno_format_350661 = FORMAT_LEFT_350600;
-        }
-        else {
-            if (strcmp(optarg, "rn") == 0) {
-                lineno_format_350661 = FORMAT_RIGHT_NOLZ_350596;
-            }
-            else {
-                if (strcmp(optarg, "rz") == 0) {
-                    lineno_format_350661 = FORMAT_RIGHT_LZ_350598;
-                }
-                else {
-                    error(0, 0, (const char*)"invalid line numbering format: %s", quote(optarg));
-                    ok = 0;
-                }
-            }
-        }
-        break;
-        case 'd':;
-        section_del_350633 = optarg;
-        break;
-        case -130:;
-        usage(0);
-        break;
-        case -131:;
-        version_etc(stdout, "nl", "GNU coreutils", Version, "Scott Bartram", "David MacKenzie", (char*)(void*)0);
-        exit(0);
-        break;
-        default:;
-        ok = 0;
-        break;
+    int argc = 4;
+    optind = 1;
+    char **argv = malloc((argc + 1) * 8UL);
+    argv[argc] = 0;
+    for (int i = 0; i < argc; i = i + 1) {
+        argv[i] = malloc(11 * 1UL);
+        argv[i][10] = 0;
+        for (int j = 0; j < 10; j = j + 1) {
+            argv[i][j] = __VERIFIER_nondet_char();
         }
     }
-    if (! ok) {
-        usage(1);
+    int res = __main(argc, argv);
+    for (int i = 0; i < argc; i = i + 1) {
+        free(argv[i]);
     }
-    len = strlen(section_del_350633);
-    header_del_len_350637 = len * 3;
-    header_del_350635 = xmalloc(header_del_len_350637 + 1);
-    stpcpy(stpcpy(stpcpy(header_del_350635, section_del_350633), section_del_350633), section_del_350633);
-    body_del_len_350641 = len * 2;
-    body_del_350639 = xmalloc(body_del_len_350641 + 1);
-    stpcpy(stpcpy(body_del_350639, section_del_350633), section_del_350633);
-    footer_del_len_350645 = len;
-    footer_del_350643 = xmalloc(footer_del_len_350645 + 1);
-    stpcpy(footer_del_350643, section_del_350633);
-    initbuffer(&line_buf_350647);
-    len = strlen(separator_str_350631);
-    print_no_line_fmt_350649 = xmalloc(lineno_width_350659 + len + 1);
-    memset(print_no_line_fmt_350649, ' ', lineno_width_350659 + len);
-    print_no_line_fmt_350649[lineno_width_350659 + len] = 0;
-    line_no_350663 = starting_line_number_350651;
-    current_type_350615 = body_type_350609;
-    current_regex_350629 = &body_regex_350617;
-    if (optind == argc) {
-        ok = nl_file_350706("-");
-    }
-    else {
-        for (; optind < argc; optind = optind + 1) {
-            ok = (ok) & (nl_file_350706(argv[optind]));
-        }
-    }
-    if ((have_read_stdin_350665) && (rpl_fclose(stdin) == - 1)) {
-        if (! ! 4UL) {
-            error(1, *__errno_location(), "-");
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-        else {
-            error(1, *__errno_location(), "-");
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-    }
-    {
-        int __SAST_tmp_18177;
-        if (ok) {
-            __SAST_tmp_18177 = 0;
-        }
-        else {
-            __SAST_tmp_18177 = 1;
-        }
-        return __SAST_tmp_18177;
-    }
+    free(argv);
+    return res;
 }
 _Bool make_dir_parents(char *dir, struct savewd_168031 *wd, int (*make_ancestor)(const char*, const char*, void*), void *options, mode_t mode, void (*announce)(const char*, void*), mode_t mode_bits, uid_t owner, gid_t group, _Bool preserve_existing)
 {
@@ -153700,7 +153720,7 @@ size_t quotearg_buffer(char *buffer, size_t buffersize, const char *arg, size_t 
 }
 static size_t quotearg_buffer_restyled_226500(char *buffer, size_t buffersize, const char *arg, size_t argsize, enum quoting_style quoting_style, int flags, const unsigned int *quote_these_too, const char *left_quote, const char *right_quote)
 {
-    for (size_t i = 0; i < buffersize; i = i + 1) {
+    for (int i = 0; i < buffersize; i = i + 1) {
         buffer[i] = __VERIFIER_nondet_char();
     }
     buffer[buffersize - 1] = 0;

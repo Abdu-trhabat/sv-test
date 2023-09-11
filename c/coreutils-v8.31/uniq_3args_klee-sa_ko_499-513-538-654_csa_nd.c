@@ -27942,7 +27942,7 @@ struct max_align_t_342746;
 struct max_align_t_344183;
 struct max_align_t_345953;
 struct max_align_t_346992;
-struct max_align_t_350814;
+struct max_align_t_350821;
 struct max_align_t_35359;
 struct max_align_t_37322;
 struct max_align_t_38216;
@@ -29796,7 +29796,6 @@ typedef __u64 __be64;
 typedef long __blkcnt64_t;
 typedef long __blkcnt_t;
 typedef long __blksize_t;
-typedef char *__builtin_ms_va_list;
 typedef char *__caddr_t;
 typedef long __clock_t;
 typedef int __clockid_t;
@@ -39575,7 +39574,7 @@ struct max_align_t_346992 { /* sizeof: 32, alignof: 16 */
     long long __clang_max_align_nonce1;
     long double __clang_max_align_nonce2;
 };
-struct max_align_t_350814 { /* sizeof: 32, alignof: 16 */
+struct max_align_t_350821 { /* sizeof: 32, alignof: 16 */
     long long __clang_max_align_nonce1;
     long double __clang_max_align_nonce2;
 };
@@ -48434,6 +48433,7 @@ long __lroundf32x(floatx __x);
 long __lroundf64(double __x);
 long __lroundf64x(long double __x);
 long __lroundl(long double __x);
+int __main(int argc, char **argv);
 size_t __mbrlen(const char *__s, size_t __n, mbstate_t *__ps);
 int __memcmpeq(const void *__s1, const void *__s2, size_t __n);
 void *__mempcpy(void *__dest, const void *__src, size_t __n);
@@ -50094,7 +50094,7 @@ int lstatat(int fd, const char *name, struct stat *st);
 int lutimens(const char *file, const struct timespec *timespec);
 int lutimensat(int dir, const char *file, const struct timespec *times);
 int lutimes(const char *__file, const struct timeval *__tvp);
-int main(int argc, char **argv);
+int main();
 _Bool make_dir_parents(char *dir, struct savewd_168031 *wd, int (*make_ancestor)(const char*, const char*, void*), void *options, mode_t mode, void (*announce)(const char*, void*), mode_t mode_bits, uid_t owner, gid_t group, _Bool preserve_existing);
 static struct mode_change_175107 *make_node_op_equals_175989(mode_t new_mode, mode_t mentioned);
 struct timespec make_timespec(time_t s, long ns);
@@ -51592,6 +51592,190 @@ int __gl_setmode(int fd, int mode)
 }
 int __gl_setmode_check(int fd)
 {
+    return 0;
+}
+int __main(int argc, char **argv)
+{
+    int optc = 0;
+    _Bool posixly_correct = getenv("POSIXLY_CORRECT") != (void*)0;
+    enum Skip_field_option_type skip_field_option_type = 0;
+    unsigned int nfiles = 0;
+    const char *file[2];
+    char delimiter = 10;
+    _Bool output_option_used = 0;
+    fprintf(stdout, "1");
+    fflush_unlocked(stdout);
+    ztmp = (void*)0;
+    file[1] = "-";
+    file[0] = file[1];
+    set_program_name(argv[0]);
+    setlocale(6, "");
+    hard_LC_COLLATE_350524 = hard_locale(3);
+    atexit(close_stdout);
+    skip_chars_350528 = 0;
+    skip_fields_350526 = 0;
+    check_chars_350530 = 18446744073709551615UL;
+    output_first_repeated_350539 = 1;
+    output_unique_350537 = output_first_repeated_350539;
+    fprintf(stdout, "2");
+    fflush_unlocked(stdout);
+    ytmp = ztmp;
+    output_later_repeated_350541 = 0;
+    countmode_350535 = 1;
+    delimit_groups_350553 = 0;
+    while (1) {
+        {
+            _Bool __SAST_tmp_18180;
+            __SAST_tmp_18180 = (optc == - 1) || ((posixly_correct) && (nfiles != 0));
+            if (__SAST_tmp_18180) ;
+            else {
+                optc = getopt_long(argc, argv, "-0123456789Dcdf:is:uw:z", longopts_350570, (void*)0);
+                __SAST_tmp_18180 = optc == - 1;
+            }
+            if (__SAST_tmp_18180) {
+                if (argc <= optind) {
+                    break;
+                }
+                if (nfiles == 2) {
+                    error(0, 0, (const char*)"extra operand %s", quote(argv[optind]));
+                    usage(1);
+                }
+                file[nfiles] = argv[optind];
+                optind = optind + 1;
+                nfiles = nfiles + 1U;
+            }
+            else {
+                fprintf(stdout, "3");
+            }
+        }
+        fflush_unlocked(stdout);
+        xtmp = ytmp;
+        switch (optc) {
+        case 1:;
+        {
+            unsigned long size;
+            if ((((optarg[0] == '+') && (! strict_posix2_350576())) && (xstrtoul(optarg, (void*)0, 10, &size, "") == 0)) && (size <= 18446744073709551615UL)) {
+                skip_chars_350528 = size;
+            }
+            else {
+                if (nfiles == 2) {
+                    error(0, 0, (const char*)"extra operand %s", quote(optarg));
+                    usage(1);
+                }
+                else {
+                    file[nfiles] = optarg;
+                    nfiles = nfiles + 1U;
+                }
+            }
+        }
+        break;
+        case '0':;
+        case '1':;
+        case '2':;
+        case '3':;
+        case '4':;
+        case '5':;
+        case '6':;
+        case '7':;
+        case '8':;
+        case '9':;
+        {
+            if (skip_field_option_type == 2) {
+                skip_fields_350526 = 0;
+            }
+            {
+                (void)(&skip_fields_350526 == (size_t*)(void*)0);
+                (void)! ! 4UL;
+                (void)! ! 4UL;
+                int __SAST_tmp_18181;
+                if (((size_t)- 1 / 10 < skip_fields_350526) || ((size_t)(skip_fields_350526 * 10 + (optc - '0')) < skip_fields_350526)) {
+                    __SAST_tmp_18181 = 0;
+                }
+                else {
+                    skip_fields_350526 = skip_fields_350526 * 10 + (optc - '0');
+                    __SAST_tmp_18181 = 1;
+                }
+                if (! __SAST_tmp_18181) {
+                    skip_fields_350526 = 18446744073709551615UL;
+                }
+            }
+            skip_field_option_type = 1;
+        }
+        break;
+        case 'c':;
+        countmode_350535 = 0;
+        output_option_used = 1;
+        break;
+        case 'd':;
+        output_unique_350537 = 0;
+        output_option_used = 1;
+        break;
+        case 'D':;
+        output_unique_350537 = 0;
+        output_later_repeated_350541 = 1;
+        if (optarg == (void*)0) {
+            delimit_groups_350553 = 0;
+        }
+        else {
+            delimit_groups_350553 = delimit_method_map_350551[__xargmatch_internal("--all-repeated", optarg, delimit_method_string_350549, (const char*)delimit_method_map_350551, 4UL, argmatch_die)];
+        }
+        output_option_used = 1;
+        break;
+        case 128:;
+        if (optarg == (void*)0) {
+            grouping_350565 = 3;
+        }
+        else {
+            grouping_350565 = grouping_method_map_350563[__xargmatch_internal("--group", optarg, grouping_method_string_350561, (const char*)grouping_method_map_350563, 4UL, argmatch_die)];
+        }
+        break;
+        case 'f':;
+        skip_field_option_type = 2;
+        skip_fields_350526 = size_opt_350579(optarg, "invalid number of fields to skip");
+        break;
+        case 'i':;
+        ignore_case_350543 = 1;
+        break;
+        case 's':;
+        skip_chars_350528 = size_opt_350579(optarg, "invalid number of bytes to skip");
+        break;
+        case 'u':;
+        output_first_repeated_350539 = 0;
+        output_option_used = 1;
+        break;
+        case 'w':;
+        check_chars_350530 = size_opt_350579(optarg, "invalid number of bytes to compare");
+        break;
+        case 'z':;
+        delimiter = 0;
+        break;
+        case -130:;
+        usage(0);
+        break;
+        case -131:;
+        version_etc(stdout, "uniq", "GNU coreutils", Version, "Richard M. Stallman", "David MacKenzie", (char*)(void*)0);
+        exit(0);
+        break;
+        default:;
+        usage(1);
+        }
+    }
+    if ((grouping_350565 != 0) && (output_option_used)) {
+        fprintf(stdout, "4");
+        fflush_unlocked(stdout);
+        printf("%d", *xtmp);
+        error(0, 0, (const char*)"--group is mutually exclusive with -c/-d/-D/-u");
+        usage(1);
+    }
+    if ((grouping_350565 != 0) && (countmode_350535 != 1)) {
+        error(0, 0, (const char*)"grouping and printing repeat counts is meaningless");
+        usage(1);
+    }
+    if ((countmode_350535 == 0) && (output_later_repeated_350541)) {
+        error(0, 0, (const char*)"printing all duplicated lines and repeat counts is meaningless");
+        usage(1);
+    }
+    check_file_350605(file[0], file[1], delimiter);
     return 0;
 }
 static size_t __strftime_internal_185715(char *s, size_t maxsize, const char *format, const struct tm *tp, _Bool upcase, int yr_spec, int width, _Bool *tzset_called, timezone_t tz, int ns)
@@ -96116,189 +96300,25 @@ int lutimensat(int dir, const char *file, const struct timespec *times)
 {
     return utimensat(dir, file, times, 256);
 }
-int main(int argc, char **argv)
+int main()
 {
-    int optc = 0;
-    _Bool posixly_correct = getenv("POSIXLY_CORRECT") != (void*)0;
-    enum Skip_field_option_type skip_field_option_type = 0;
-    unsigned int nfiles = 0;
-    const char *file[2];
-    char delimiter = 10;
-    _Bool output_option_used = 0;
-    fprintf(stdout, "1");
-    fflush_unlocked(stdout);
-    ztmp = (void*)0;
-    file[1] = "-";
-    file[0] = file[1];
-    set_program_name(argv[0]);
-    setlocale(6, "");
-    hard_LC_COLLATE_350524 = hard_locale(3);
-    atexit(close_stdout);
-    skip_chars_350528 = 0;
-    skip_fields_350526 = 0;
-    check_chars_350530 = 18446744073709551615UL;
-    output_first_repeated_350539 = 1;
-    output_unique_350537 = output_first_repeated_350539;
-    fprintf(stdout, "2");
-    fflush_unlocked(stdout);
-    ytmp = ztmp;
-    output_later_repeated_350541 = 0;
-    countmode_350535 = 1;
-    delimit_groups_350553 = 0;
-    while (1) {
-        {
-            _Bool __SAST_tmp_18180;
-            __SAST_tmp_18180 = (optc == - 1) || ((posixly_correct) && (nfiles != 0));
-            if (__SAST_tmp_18180) ;
-            else {
-                optc = getopt_long(argc, argv, "-0123456789Dcdf:is:uw:z", longopts_350570, (void*)0);
-                __SAST_tmp_18180 = optc == - 1;
-            }
-            if (__SAST_tmp_18180) {
-                if (argc <= optind) {
-                    break;
-                }
-                if (nfiles == 2) {
-                    error(0, 0, (const char*)"extra operand %s", quote(argv[optind]));
-                    usage(1);
-                }
-                file[nfiles] = argv[optind];
-                optind = optind + 1;
-                nfiles = nfiles + 1U;
-            }
-            else {
-                fprintf(stdout, "3");
-            }
-        }
-        fflush_unlocked(stdout);
-        xtmp = ytmp;
-        switch (optc) {
-        case 1:;
-        {
-            unsigned long size;
-            if ((((optarg[0] == '+') && (! strict_posix2_350576())) && (xstrtoul(optarg, (void*)0, 10, &size, "") == 0)) && (size <= 18446744073709551615UL)) {
-                skip_chars_350528 = size;
-            }
-            else {
-                if (nfiles == 2) {
-                    error(0, 0, (const char*)"extra operand %s", quote(optarg));
-                    usage(1);
-                }
-                else {
-                    file[nfiles] = optarg;
-                    nfiles = nfiles + 1U;
-                }
-            }
-        }
-        break;
-        case '0':;
-        case '1':;
-        case '2':;
-        case '3':;
-        case '4':;
-        case '5':;
-        case '6':;
-        case '7':;
-        case '8':;
-        case '9':;
-        {
-            if (skip_field_option_type == 2) {
-                skip_fields_350526 = 0;
-            }
-            {
-                (void)(&skip_fields_350526 == (size_t*)(void*)0);
-                (void)! ! 4UL;
-                (void)! ! 4UL;
-                int __SAST_tmp_18181;
-                if (((size_t)- 1 / 10 < skip_fields_350526) || ((size_t)(skip_fields_350526 * 10 + (optc - '0')) < skip_fields_350526)) {
-                    __SAST_tmp_18181 = 0;
-                }
-                else {
-                    skip_fields_350526 = skip_fields_350526 * 10 + (optc - '0');
-                    __SAST_tmp_18181 = 1;
-                }
-                if (! __SAST_tmp_18181) {
-                    skip_fields_350526 = 18446744073709551615UL;
-                }
-            }
-            skip_field_option_type = 1;
-        }
-        break;
-        case 'c':;
-        countmode_350535 = 0;
-        output_option_used = 1;
-        break;
-        case 'd':;
-        output_unique_350537 = 0;
-        output_option_used = 1;
-        break;
-        case 'D':;
-        output_unique_350537 = 0;
-        output_later_repeated_350541 = 1;
-        if (optarg == (void*)0) {
-            delimit_groups_350553 = 0;
-        }
-        else {
-            delimit_groups_350553 = delimit_method_map_350551[__xargmatch_internal("--all-repeated", optarg, delimit_method_string_350549, (const char*)delimit_method_map_350551, 4UL, argmatch_die)];
-        }
-        output_option_used = 1;
-        break;
-        case 128:;
-        if (optarg == (void*)0) {
-            grouping_350565 = 3;
-        }
-        else {
-            grouping_350565 = grouping_method_map_350563[__xargmatch_internal("--group", optarg, grouping_method_string_350561, (const char*)grouping_method_map_350563, 4UL, argmatch_die)];
-        }
-        break;
-        case 'f':;
-        skip_field_option_type = 2;
-        skip_fields_350526 = size_opt_350579(optarg, "invalid number of fields to skip");
-        break;
-        case 'i':;
-        ignore_case_350543 = 1;
-        break;
-        case 's':;
-        skip_chars_350528 = size_opt_350579(optarg, "invalid number of bytes to skip");
-        break;
-        case 'u':;
-        output_first_repeated_350539 = 0;
-        output_option_used = 1;
-        break;
-        case 'w':;
-        check_chars_350530 = size_opt_350579(optarg, "invalid number of bytes to compare");
-        break;
-        case 'z':;
-        delimiter = 0;
-        break;
-        case -130:;
-        usage(0);
-        break;
-        case -131:;
-        version_etc(stdout, "uniq", "GNU coreutils", Version, "Richard M. Stallman", "David MacKenzie", (char*)(void*)0);
-        exit(0);
-        break;
-        default:;
-        usage(1);
+    int argc = 4;
+    optind = 1;
+    char **argv = malloc((argc + 1) * 8UL);
+    argv[argc] = 0;
+    for (int i = 0; i < argc; i = i + 1) {
+        argv[i] = malloc(11 * 1UL);
+        argv[i][10] = 0;
+        for (int j = 0; j < 10; j = j + 1) {
+            argv[i][j] = __VERIFIER_nondet_char();
         }
     }
-    if ((grouping_350565 != 0) && (output_option_used)) {
-        fprintf(stdout, "4");
-        fflush_unlocked(stdout);
-        printf("%d", *xtmp);
-        error(0, 0, (const char*)"--group is mutually exclusive with -c/-d/-D/-u");
-        usage(1);
+    int res = __main(argc, argv);
+    for (int i = 0; i < argc; i = i + 1) {
+        free(argv[i]);
     }
-    if ((grouping_350565 != 0) && (countmode_350535 != 1)) {
-        error(0, 0, (const char*)"grouping and printing repeat counts is meaningless");
-        usage(1);
-    }
-    if ((countmode_350535 == 0) && (output_later_repeated_350541)) {
-        error(0, 0, (const char*)"printing all duplicated lines and repeat counts is meaningless");
-        usage(1);
-    }
-    check_file_350605(file[0], file[1], delimiter);
-    return 0;
+    free(argv);
+    return res;
 }
 _Bool make_dir_parents(char *dir, struct savewd_168031 *wd, int (*make_ancestor)(const char*, const char*, void*), void *options, mode_t mode, void (*announce)(const char*, void*), mode_t mode_bits, uid_t owner, gid_t group, _Bool preserve_existing)
 {
@@ -153704,7 +153724,7 @@ size_t quotearg_buffer(char *buffer, size_t buffersize, const char *arg, size_t 
 }
 static size_t quotearg_buffer_restyled_226500(char *buffer, size_t buffersize, const char *arg, size_t argsize, enum quoting_style quoting_style, int flags, const unsigned int *quote_these_too, const char *left_quote, const char *right_quote)
 {
-    for (size_t i = 0; i < buffersize; i = i + 1) {
+    for (int i = 0; i < buffersize; i = i + 1) {
         buffer[i] = __VERIFIER_nondet_char();
     }
     buffer[buffersize - 1] = 0;

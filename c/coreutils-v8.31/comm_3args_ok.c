@@ -27922,7 +27922,7 @@ struct max_align_t_342746;
 struct max_align_t_344183;
 struct max_align_t_345953;
 struct max_align_t_346992;
-struct max_align_t_350692;
+struct max_align_t_350699;
 struct max_align_t_35359;
 struct max_align_t_37322;
 struct max_align_t_38216;
@@ -29776,7 +29776,6 @@ typedef __u64 __be64;
 typedef long __blkcnt64_t;
 typedef long __blkcnt_t;
 typedef long __blksize_t;
-typedef char *__builtin_ms_va_list;
 typedef char *__caddr_t;
 typedef long __clock_t;
 typedef int __clockid_t;
@@ -39552,7 +39551,7 @@ struct max_align_t_346992 { /* sizeof: 32, alignof: 16 */
     long long __clang_max_align_nonce1;
     long double __clang_max_align_nonce2;
 };
-struct max_align_t_350692 { /* sizeof: 32, alignof: 16 */
+struct max_align_t_350699 { /* sizeof: 32, alignof: 16 */
     long long __clang_max_align_nonce1;
     long double __clang_max_align_nonce2;
 };
@@ -48404,6 +48403,7 @@ long __lroundf32x(floatx __x);
 long __lroundf64(double __x);
 long __lroundf64x(long double __x);
 long __lroundl(long double __x);
+int __main(int argc, char **argv);
 size_t __mbrlen(const char *__s, size_t __n, mbstate_t *__ps);
 int __memcmpeq(const void *__s1, const void *__s2, size_t __n);
 void *__mempcpy(void *__dest, const void *__src, size_t __n);
@@ -50061,7 +50061,7 @@ int lstatat(int fd, const char *name, struct stat *st);
 int lutimens(const char *file, const struct timespec *timespec);
 int lutimensat(int dir, const char *file, const struct timespec *times);
 int lutimes(const char *__file, const struct timeval *__tvp);
-int main(int argc, char **argv);
+int main();
 _Bool make_dir_parents(char *dir, struct savewd_168031 *wd, int (*make_ancestor)(const char*, const char*, void*), void *options, mode_t mode, void (*announce)(const char*, void*), mode_t mode_bits, uid_t owner, gid_t group, _Bool preserve_existing);
 static struct mode_change_175107 *make_node_op_equals_175989(mode_t new_mode, mode_t mentioned);
 struct timespec make_timespec(time_t s, long ns);
@@ -51556,6 +51556,131 @@ int __gl_setmode(int fd, int mode)
 int __gl_setmode_check(int fd)
 {
     return 0;
+}
+int __main(int argc, char **argv)
+{
+    int c;
+    set_program_name(argv[0]);
+    setlocale(6, "");
+    hard_LC_COLLATE_350454 = hard_locale(3);
+    atexit(close_stdout);
+    only_file_1_350456 = 1;
+    only_file_2_350458 = 1;
+    both_350460 = 1;
+    seen_unpairable_350462 = 0;
+    issued_disorder_warning_350464[1] = 0;
+    issued_disorder_warning_350464[0] = issued_disorder_warning_350464[1];
+    check_input_order_350475 = 0;
+    total_option_350468 = 0;
+    while (({         c = getopt_long(argc, argv, "123z", long_options_350487, (void*)0);
+        c != - 1;
+ })) {
+        switch (c) {
+        case '1':;
+        only_file_1_350456 = 0;
+        break;
+        case '2':;
+        only_file_2_350458 = 0;
+        break;
+        case '3':;
+        both_350460 = 0;
+        break;
+        case 'z':;
+        delim_350466 = 0;
+        break;
+        case 129:;
+        check_input_order_350475 = 2;
+        break;
+        case 128:;
+        check_input_order_350475 = 1;
+        break;
+        case 130:;
+        if ((col_sep_len_350479) && (! (strcmp(col_sep_350477, optarg) == 0))) {
+            if (! ! 4UL) {
+                error(1, 0, (const char*)"multiple output delimiters specified");
+                if (0) {
+                    (void)0;
+                }
+                else {
+                    __builtin_unreachable();
+                }
+            }
+            else {
+                error(1, 0, (const char*)"multiple output delimiters specified");
+                if (0) {
+                    (void)0;
+                }
+                else {
+                    __builtin_unreachable();
+                }
+            }
+        }
+        col_sep_350477 = optarg;
+        {
+            unsigned long __SAST_tmp_18180;
+            if (*optarg) {
+                __SAST_tmp_18180 = strlen(optarg);
+            }
+            else {
+                __SAST_tmp_18180 = 1;
+            }
+            col_sep_len_350479 = __SAST_tmp_18180;
+        }
+        break;
+        case 131:;
+        total_option_350468 = 1;
+        break;
+        case -130:;
+        usage(0);
+        break;
+        case -131:;
+        version_etc(stdout, "comm", "GNU coreutils", Version, "Richard M. Stallman", "David MacKenzie", (char*)(void*)0);
+        exit(0);
+        break;
+        default:;
+        usage(1);
+        }
+    }
+    if (! col_sep_len_350479) {
+        col_sep_len_350479 = 1;
+    }
+    if (argc - optind < 2) {
+        if (argc <= optind) {
+            error(0, 0, (const char*)"missing operand");
+        }
+        else {
+            error(0, 0, (const char*)"missing operand after %s", quote(argv[argc - 1]));
+        }
+        usage(1);
+    }
+    if (2 < argc - optind) {
+        error(0, 0, (const char*)"extra operand %s", quote(argv[optind + 2]));
+        usage(1);
+    }
+    compare_files_350501(argv + optind);
+    if ((issued_disorder_warning_350464[0]) || (issued_disorder_warning_350464[1])) {
+        if (! ! 4UL) {
+            error(1, 0, (const char*)"input is not in sorted order");
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+        else {
+            error(1, 0, (const char*)"input is not in sorted order");
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+    }
+    else {
+        return 0;
+    }
 }
 static size_t __strftime_internal_185715(char *s, size_t maxsize, const char *format, const struct tm *tp, _Bool upcase, int yr_spec, int width, _Bool *tzset_called, timezone_t tz, int ns)
 {
@@ -96061,130 +96186,25 @@ int lutimensat(int dir, const char *file, const struct timespec *times)
 {
     return utimensat(dir, file, times, 256);
 }
-int main(int argc, char **argv)
+int main()
 {
-    int c;
-    set_program_name(argv[0]);
-    setlocale(6, "");
-    hard_LC_COLLATE_350454 = hard_locale(3);
-    atexit(close_stdout);
-    only_file_1_350456 = 1;
-    only_file_2_350458 = 1;
-    both_350460 = 1;
-    seen_unpairable_350462 = 0;
-    issued_disorder_warning_350464[1] = 0;
-    issued_disorder_warning_350464[0] = issued_disorder_warning_350464[1];
-    check_input_order_350475 = 0;
-    total_option_350468 = 0;
-    while (({         c = getopt_long(argc, argv, "123z", long_options_350487, (void*)0);
-        c != - 1;
- })) {
-        switch (c) {
-        case '1':;
-        only_file_1_350456 = 0;
-        break;
-        case '2':;
-        only_file_2_350458 = 0;
-        break;
-        case '3':;
-        both_350460 = 0;
-        break;
-        case 'z':;
-        delim_350466 = 0;
-        break;
-        case 129:;
-        check_input_order_350475 = 2;
-        break;
-        case 128:;
-        check_input_order_350475 = 1;
-        break;
-        case 130:;
-        if ((col_sep_len_350479) && (! (strcmp(col_sep_350477, optarg) == 0))) {
-            if (! ! 4UL) {
-                error(1, 0, (const char*)"multiple output delimiters specified");
-                if (0) {
-                    (void)0;
-                }
-                else {
-                    __builtin_unreachable();
-                }
-            }
-            else {
-                error(1, 0, (const char*)"multiple output delimiters specified");
-                if (0) {
-                    (void)0;
-                }
-                else {
-                    __builtin_unreachable();
-                }
-            }
-        }
-        col_sep_350477 = optarg;
-        {
-            unsigned long __SAST_tmp_18180;
-            if (*optarg) {
-                __SAST_tmp_18180 = strlen(optarg);
-            }
-            else {
-                __SAST_tmp_18180 = 1;
-            }
-            col_sep_len_350479 = __SAST_tmp_18180;
-        }
-        break;
-        case 131:;
-        total_option_350468 = 1;
-        break;
-        case -130:;
-        usage(0);
-        break;
-        case -131:;
-        version_etc(stdout, "comm", "GNU coreutils", Version, "Richard M. Stallman", "David MacKenzie", (char*)(void*)0);
-        exit(0);
-        break;
-        default:;
-        usage(1);
+    int argc = 4;
+    optind = 1;
+    char **argv = malloc((argc + 1) * 8UL);
+    argv[argc] = 0;
+    for (int i = 0; i < argc; i = i + 1) {
+        argv[i] = malloc(11 * 1UL);
+        argv[i][10] = 0;
+        for (int j = 0; j < 10; j = j + 1) {
+            argv[i][j] = __VERIFIER_nondet_char();
         }
     }
-    if (! col_sep_len_350479) {
-        col_sep_len_350479 = 1;
+    int res = __main(argc, argv);
+    for (int i = 0; i < argc; i = i + 1) {
+        free(argv[i]);
     }
-    if (argc - optind < 2) {
-        if (argc <= optind) {
-            error(0, 0, (const char*)"missing operand");
-        }
-        else {
-            error(0, 0, (const char*)"missing operand after %s", quote(argv[argc - 1]));
-        }
-        usage(1);
-    }
-    if (2 < argc - optind) {
-        error(0, 0, (const char*)"extra operand %s", quote(argv[optind + 2]));
-        usage(1);
-    }
-    compare_files_350501(argv + optind);
-    if ((issued_disorder_warning_350464[0]) || (issued_disorder_warning_350464[1])) {
-        if (! ! 4UL) {
-            error(1, 0, (const char*)"input is not in sorted order");
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-        else {
-            error(1, 0, (const char*)"input is not in sorted order");
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-    }
-    else {
-        return 0;
-    }
+    free(argv);
+    return res;
 }
 _Bool make_dir_parents(char *dir, struct savewd_168031 *wd, int (*make_ancestor)(const char*, const char*, void*), void *options, mode_t mode, void (*announce)(const char*, void*), mode_t mode_bits, uid_t owner, gid_t group, _Bool preserve_existing)
 {
@@ -153590,7 +153610,7 @@ size_t quotearg_buffer(char *buffer, size_t buffersize, const char *arg, size_t 
 }
 static size_t quotearg_buffer_restyled_226500(char *buffer, size_t buffersize, const char *arg, size_t argsize, enum quoting_style quoting_style, int flags, const unsigned int *quote_these_too, const char *left_quote, const char *right_quote)
 {
-    for (size_t i = 0; i < buffersize; i = i + 1) {
+    for (int i = 0; i < buffersize; i = i + 1) {
         buffer[i] = __VERIFIER_nondet_char();
     }
     buffer[buffersize - 1] = 0;

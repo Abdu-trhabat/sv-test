@@ -12,7 +12,7 @@
 # It requires Mopsa, here used with commit f472fc86f932231c252db3a3c88e66d5b93c3360
 
 get_coreutils() {
-    git clone https://github.com/coreutils/coreutils.git -b v8.31
+    git clone https://github.com/coreutils/coreutils.git -b v8.31 --depth 1
 }
 
 get_kleesa() {
@@ -83,6 +83,8 @@ options:
 inject_argv() {
     # injects arginit.c client at the beginning of main
     file=$1
+    sed -i -e "s/main (int argc, char \*\*argv)/__main (int argc, char \*\*argv)/g" src/$file
+    cat ../arginit.c >> src/$file
     sed -z 's/main (int argc, char \*\*argv)\n{/main (int argc, char **argv) {/' -i src/$file
     sed -e '/^main (int argc, char \*\*argv) {/ {' -e 'r ../arginit.c' -e 'd' -e '}' -i src/$file
 }
@@ -91,7 +93,7 @@ preprocess_file() {
     cd coreutils 
     file=$1
     generated_name=$2
-    # inject_argv $file
+    inject_argv $file
     # calls mopsa in interactive mode and EOF, just to make it parse and preprocess the C file
     cat /dev/null | mopsa-c mopsa.db -engine=interactive -without-libc -c-save-preprocessed-file=${generated_name} -make-target=$(basename $file .c)
     sed -i  -e "/typedef long double _Float64x/d" -e "/typedef float _Float32;/d" -e "/typedef double _Float64;/d" $generated_name 
@@ -112,8 +114,10 @@ main() {
        get_kleesa
     fi
 
-    echo "Fetching instrumented coreutils files from kleesa"
-    import_kleesa_files
+    if [[ "$(ls -1 klee-sa-faults/*.c | wc -l)" != "110" ]]; then
+        echo "Fetching instrumented coreutils files from kleesa"
+        import_kleesa_files
+    fi
 
     if [ ! -f "coreutils/configure" ]; then 
         echo "Building mopsa.db from coreutils"

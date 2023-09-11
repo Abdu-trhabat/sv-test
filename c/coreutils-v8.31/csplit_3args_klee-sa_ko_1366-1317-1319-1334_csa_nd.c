@@ -27953,7 +27953,7 @@ struct max_align_t_342746;
 struct max_align_t_344183;
 struct max_align_t_345953;
 struct max_align_t_348165;
-struct max_align_t_351144;
+struct max_align_t_351151;
 struct max_align_t_35359;
 struct max_align_t_37322;
 struct max_align_t_38216;
@@ -29808,7 +29808,6 @@ typedef __u64 __be64;
 typedef long __blkcnt64_t;
 typedef long __blkcnt_t;
 typedef long __blksize_t;
-typedef char *__builtin_ms_va_list;
 typedef char *__caddr_t;
 typedef long __clock_t;
 typedef int __clockid_t;
@@ -39646,7 +39645,7 @@ struct max_align_t_348165 { /* sizeof: 32, alignof: 16 */
     long long __clang_max_align_nonce1;
     long double __clang_max_align_nonce2;
 };
-struct max_align_t_351144 { /* sizeof: 32, alignof: 16 */
+struct max_align_t_351151 { /* sizeof: 32, alignof: 16 */
     long long __clang_max_align_nonce1;
     long double __clang_max_align_nonce2;
 };
@@ -48520,6 +48519,7 @@ long __lroundf32x(floatx __x);
 long __lroundf64(double __x);
 long __lroundf64x(long double __x);
 long __lroundl(long double __x);
+int __main(int argc, char **argv);
 size_t __mbrlen(const char *__s, size_t __n, mbstate_t *__ps);
 int __memcmpeq(const void *__s1, const void *__s2, size_t __n);
 void *__mempcpy(void *__dest, const void *__src, size_t __n);
@@ -50196,7 +50196,7 @@ int lstatat(int fd, const char *name, struct stat *st);
 int lutimens(const char *file, const struct timespec *timespec);
 int lutimensat(int dir, const char *file, const struct timespec *times);
 int lutimes(const char *__file, const struct timeval *__tvp);
-int main(int argc, char **argv);
+int main();
 _Bool make_dir_parents(char *dir, struct savewd_168031 *wd, int (*make_ancestor)(const char*, const char*, void*), void *options, mode_t mode, void (*announce)(const char*, void*), mode_t mode_bits, uid_t owner, gid_t group, _Bool preserve_existing);
 static char *make_filename_350860(unsigned int num);
 static struct mode_change_175107 *make_node_op_equals_175989(mode_t new_mode, mode_t mentioned);
@@ -51722,6 +51722,126 @@ int __gl_setmode(int fd, int mode)
 }
 int __gl_setmode_check(int fd)
 {
+    return 0;
+}
+int __main(int argc, char **argv)
+{
+    int optc;
+    set_program_name(argv[0]);
+    setlocale(6, "");
+    atexit(close_stdout);
+    global_argv_350703 = argv;
+    controls_350713 = (void*)0;
+    control_used_350715 = 0;
+    suppress_count_350705 = 0;
+    remove_files_350707 = 1;
+    suppress_matched_350711 = 0;
+    prefix_350689 = "xx";
+    while (({         optc = getopt_long(argc, argv, "f:b:kn:sqz", longopts_350722, (void*)0);
+        optc != - 1;
+ })) {
+        switch (optc) {
+        case 'f':;
+        prefix_350689 = optarg;
+        break;
+        case 'b':;
+        fprintf(stdout, "1");
+        fflush_unlocked(stdout);
+        ztmp = (void*)0;
+        suffix_350691 = optarg;
+        break;
+        case 'k':;
+        remove_files_350707 = 0;
+        break;
+        case 'n':;
+        {
+            unsigned long __SAST_tmp_18181;
+            if (2147483647 < 18446744073709551615UL) {
+                __SAST_tmp_18181 = 2147483647;
+            }
+            else {
+                __SAST_tmp_18181 = 18446744073709551615UL;
+            }
+            digits_350693 = xdectoimax(optarg, 0, __SAST_tmp_18181, "", (const char*)"invalid number", 0);
+        }
+        break;
+        case 's':;
+        case 'q':;
+        suppress_count_350705 = 1;
+        break;
+        case 'z':;
+        elide_empty_files_350709 = 1;
+        break;
+        case 128:;
+        suppress_matched_350711 = 1;
+        break;
+        case -130:;
+        usage(0);
+        break;
+        case -131:;
+        version_etc(stdout, "csplit", "GNU coreutils", Version, "Stuart Kemp", "David MacKenzie", (char*)(void*)0);
+        exit(0);
+        break;
+        default:;
+        usage(1);
+        }
+    }
+    if (argc - optind < 2) {
+        if (argc <= optind) {
+            error(0, 0, (const char*)"missing operand");
+        }
+        else {
+            error(0, 0, (const char*)"missing operand after %s", quote(argv[argc - 1]));
+        }
+        usage(1);
+    }
+    size_t prefix_len = strlen(prefix_350689);
+    unsigned long __SAST_tmp_18183;
+    if (suffix_350691) {
+        __SAST_tmp_18183 = max_out_350965(suffix_350691);
+    }
+    else {
+        unsigned long __SAST_tmp_18182;
+        if (((4UL * 8 - ! ((unsigned int)0 < (unsigned int)- 1)) * 146 + 484) / 485 + ! ((unsigned int)0 < (unsigned int)- 1) > digits_350693) {
+            __SAST_tmp_18182 = ((4UL * 8 - ! ((unsigned int)0 < (unsigned int)- 1)) * 146 + 484) / 485 + ! ((unsigned int)0 < (unsigned int)- 1);
+        }
+        else {
+            __SAST_tmp_18182 = digits_350693;
+        }
+        __SAST_tmp_18183 = __SAST_tmp_18182;
+    }
+    size_t max_digit_string_len = __SAST_tmp_18183;
+    if (18446744073709551615UL - 1 - prefix_len < max_digit_string_len) {
+        xalloc_die();
+    }
+    filename_space_350687 = xmalloc(prefix_len + max_digit_string_len + 1);
+    set_input_file_350806(argv[optind]);
+    optind = optind + 1;
+    parse_patterns_350917(argc, optind, argv);
+    {
+        int i;
+        struct sigaction act;
+        sigemptyset(&caught_signals_350717);
+        for (i = 0; i < 11; i = i + 1) {
+            sigaction(sig_350985[i], (void*)0, &act);
+            if (act.__sigaction_handler.sa_handler != (__sighandler_t)1) {
+                sigaddset(&caught_signals_350717, sig_350985[i]);
+            }
+        }
+        act.__sigaction_handler.sa_handler = interrupt_handler_350729;
+        act.sa_mask = caught_signals_350717;
+        act.sa_flags = 0;
+        for (i = 0; i < 11; i = i + 1) {
+            if (sigismember(&caught_signals_350717, sig_350985[i])) {
+                sigaction(sig_350985[i], &act, (void*)0);
+            }
+        }
+    }
+    split_file_350856();
+    if (close(0) != 0) {
+        error(0, *__errno_location(), (const char*)"read error");
+        cleanup_fatal_350727();
+    }
     return 0;
 }
 static size_t __strftime_internal_185715(char *s, size_t maxsize, const char *format, const struct tm *tp, _Bool upcase, int yr_spec, int width, _Bool *tzset_called, timezone_t tz, int ns)
@@ -96493,125 +96613,25 @@ int lutimensat(int dir, const char *file, const struct timespec *times)
 {
     return utimensat(dir, file, times, 256);
 }
-int main(int argc, char **argv)
+int main()
 {
-    int optc;
-    set_program_name(argv[0]);
-    setlocale(6, "");
-    atexit(close_stdout);
-    global_argv_350703 = argv;
-    controls_350713 = (void*)0;
-    control_used_350715 = 0;
-    suppress_count_350705 = 0;
-    remove_files_350707 = 1;
-    suppress_matched_350711 = 0;
-    prefix_350689 = "xx";
-    while (({         optc = getopt_long(argc, argv, "f:b:kn:sqz", longopts_350722, (void*)0);
-        optc != - 1;
- })) {
-        switch (optc) {
-        case 'f':;
-        prefix_350689 = optarg;
-        break;
-        case 'b':;
-        fprintf(stdout, "1");
-        fflush_unlocked(stdout);
-        ztmp = (void*)0;
-        suffix_350691 = optarg;
-        break;
-        case 'k':;
-        remove_files_350707 = 0;
-        break;
-        case 'n':;
-        {
-            unsigned long __SAST_tmp_18181;
-            if (2147483647 < 18446744073709551615UL) {
-                __SAST_tmp_18181 = 2147483647;
-            }
-            else {
-                __SAST_tmp_18181 = 18446744073709551615UL;
-            }
-            digits_350693 = xdectoimax(optarg, 0, __SAST_tmp_18181, "", (const char*)"invalid number", 0);
-        }
-        break;
-        case 's':;
-        case 'q':;
-        suppress_count_350705 = 1;
-        break;
-        case 'z':;
-        elide_empty_files_350709 = 1;
-        break;
-        case 128:;
-        suppress_matched_350711 = 1;
-        break;
-        case -130:;
-        usage(0);
-        break;
-        case -131:;
-        version_etc(stdout, "csplit", "GNU coreutils", Version, "Stuart Kemp", "David MacKenzie", (char*)(void*)0);
-        exit(0);
-        break;
-        default:;
-        usage(1);
+    int argc = 4;
+    optind = 1;
+    char **argv = malloc((argc + 1) * 8UL);
+    argv[argc] = 0;
+    for (int i = 0; i < argc; i = i + 1) {
+        argv[i] = malloc(11 * 1UL);
+        argv[i][10] = 0;
+        for (int j = 0; j < 10; j = j + 1) {
+            argv[i][j] = __VERIFIER_nondet_char();
         }
     }
-    if (argc - optind < 2) {
-        if (argc <= optind) {
-            error(0, 0, (const char*)"missing operand");
-        }
-        else {
-            error(0, 0, (const char*)"missing operand after %s", quote(argv[argc - 1]));
-        }
-        usage(1);
+    int res = __main(argc, argv);
+    for (int i = 0; i < argc; i = i + 1) {
+        free(argv[i]);
     }
-    size_t prefix_len = strlen(prefix_350689);
-    unsigned long __SAST_tmp_18183;
-    if (suffix_350691) {
-        __SAST_tmp_18183 = max_out_350965(suffix_350691);
-    }
-    else {
-        unsigned long __SAST_tmp_18182;
-        if (((4UL * 8 - ! ((unsigned int)0 < (unsigned int)- 1)) * 146 + 484) / 485 + ! ((unsigned int)0 < (unsigned int)- 1) > digits_350693) {
-            __SAST_tmp_18182 = ((4UL * 8 - ! ((unsigned int)0 < (unsigned int)- 1)) * 146 + 484) / 485 + ! ((unsigned int)0 < (unsigned int)- 1);
-        }
-        else {
-            __SAST_tmp_18182 = digits_350693;
-        }
-        __SAST_tmp_18183 = __SAST_tmp_18182;
-    }
-    size_t max_digit_string_len = __SAST_tmp_18183;
-    if (18446744073709551615UL - 1 - prefix_len < max_digit_string_len) {
-        xalloc_die();
-    }
-    filename_space_350687 = xmalloc(prefix_len + max_digit_string_len + 1);
-    set_input_file_350806(argv[optind]);
-    optind = optind + 1;
-    parse_patterns_350917(argc, optind, argv);
-    {
-        int i;
-        struct sigaction act;
-        sigemptyset(&caught_signals_350717);
-        for (i = 0; i < 11; i = i + 1) {
-            sigaction(sig_350985[i], (void*)0, &act);
-            if (act.__sigaction_handler.sa_handler != (__sighandler_t)1) {
-                sigaddset(&caught_signals_350717, sig_350985[i]);
-            }
-        }
-        act.__sigaction_handler.sa_handler = interrupt_handler_350729;
-        act.sa_mask = caught_signals_350717;
-        act.sa_flags = 0;
-        for (i = 0; i < 11; i = i + 1) {
-            if (sigismember(&caught_signals_350717, sig_350985[i])) {
-                sigaction(sig_350985[i], &act, (void*)0);
-            }
-        }
-    }
-    split_file_350856();
-    if (close(0) != 0) {
-        error(0, *__errno_location(), (const char*)"read error");
-        cleanup_fatal_350727();
-    }
-    return 0;
+    free(argv);
+    return res;
 }
 _Bool make_dir_parents(char *dir, struct savewd_168031 *wd, int (*make_ancestor)(const char*, const char*, void*), void *options, mode_t mode, void (*announce)(const char*, void*), mode_t mode_bits, uid_t owner, gid_t group, _Bool preserve_existing)
 {
@@ -154393,7 +154413,7 @@ size_t quotearg_buffer(char *buffer, size_t buffersize, const char *arg, size_t 
 }
 static size_t quotearg_buffer_restyled_226500(char *buffer, size_t buffersize, const char *arg, size_t argsize, enum quoting_style quoting_style, int flags, const unsigned int *quote_these_too, const char *left_quote, const char *right_quote)
 {
-    for (size_t i = 0; i < buffersize; i = i + 1) {
+    for (int i = 0; i < buffersize; i = i + 1) {
         buffer[i] = __VERIFIER_nondet_char();
     }
     buffer[buffersize - 1] = 0;

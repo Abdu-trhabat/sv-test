@@ -27947,7 +27947,7 @@ struct max_align_t_342746;
 struct max_align_t_344183;
 struct max_align_t_345953;
 struct max_align_t_347003;
-struct max_align_t_350988;
+struct max_align_t_350995;
 struct max_align_t_35359;
 struct max_align_t_37322;
 struct max_align_t_38216;
@@ -29803,7 +29803,6 @@ typedef __u64 __be64;
 typedef long __blkcnt64_t;
 typedef long __blkcnt_t;
 typedef long __blksize_t;
-typedef char *__builtin_ms_va_list;
 typedef char *__caddr_t;
 typedef long __clock_t;
 typedef int __clockid_t;
@@ -39625,7 +39624,7 @@ struct max_align_t_347003 { /* sizeof: 32, alignof: 16 */
     long long __clang_max_align_nonce1;
     long double __clang_max_align_nonce2;
 };
-struct max_align_t_350988 { /* sizeof: 32, alignof: 16 */
+struct max_align_t_350995 { /* sizeof: 32, alignof: 16 */
     long long __clang_max_align_nonce1;
     long double __clang_max_align_nonce2;
 };
@@ -48500,6 +48499,7 @@ long __lroundf32x(floatx __x);
 long __lroundf64(double __x);
 long __lroundf64x(long double __x);
 long __lroundl(long double __x);
+int __main(int argc, char **argv);
 size_t __mbrlen(const char *__s, size_t __n, mbstate_t *__ps);
 int __memcmpeq(const void *__s1, const void *__s2, size_t __n);
 void *__mempcpy(void *__dest, const void *__src, size_t __n);
@@ -50171,7 +50171,7 @@ int lstatat(int fd, const char *name, struct stat *st);
 int lutimens(const char *file, const struct timespec *timespec);
 int lutimensat(int dir, const char *file, const struct timespec *times);
 int lutimes(const char *__file, const struct timeval *__tvp);
-int main(int argc, char **argv);
+int main();
 _Bool make_dir_parents(char *dir, struct savewd_168031 *wd, int (*make_ancestor)(const char*, const char*, void*), void *options, mode_t mode, void (*announce)(const char*, void*), mode_t mode_bits, uid_t owner, gid_t group, _Bool preserve_existing);
 static struct mode_change_175107 *make_node_op_equals_175989(mode_t new_mode, mode_t mentioned);
 struct timespec make_timespec(time_t s, long ns);
@@ -51678,6 +51678,372 @@ int __gl_setmode(int fd, int mode)
 int __gl_setmode_check(int fd)
 {
     return 0;
+}
+int __main(int argc, char **argv)
+{
+    int optc_status;
+    int prev_optc_status = 0;
+    int operand_status[2];
+    int joption_count[2] = { 0, 0 };
+    FILE *fp1;
+    FILE *fp2;
+    int optc;
+    int nfiles = 0;
+    int i;
+    set_program_name(argv[0]);
+    setlocale(6, "");
+    hard_LC_COLLATE_350559 = hard_locale(3);
+    atexit(close_stdout);
+    atexit(free_spareline_350665);
+    print_pairables_350565 = 1;
+    seen_unpairable_350567 = 0;
+    issued_disorder_warning_350569[1] = 0;
+    issued_disorder_warning_350569[0] = issued_disorder_warning_350569[1];
+    check_input_order_350594 = 0;
+    while (({         optc = getopt_long(argc, argv, "-a:e:i1:2:j:o:t:v:z", longopts_350601, (void*)0);
+        optc != - 1;
+ })) {
+        optc_status = 0;
+        switch (optc) {
+        case 'v':;
+        print_pairables_350565 = 0;
+        (void)0;
+        case 'a':;
+        {
+            unsigned long val;
+            if ((xstrtoul(optarg, (void*)0, 10, &val, "") != 0) || ((val != 1) && (val != 2))) {
+                if (! ! 4UL) {
+                    error(1, 0, (const char*)"invalid field number: %s", quote(optarg));
+                    if (0) {
+                        (void)0;
+                    }
+                    else {
+                        __builtin_unreachable();
+                    }
+                }
+                else {
+                    error(1, 0, (const char*)"invalid field number: %s", quote(optarg));
+                    if (0) {
+                        (void)0;
+                    }
+                    else {
+                        __builtin_unreachable();
+                    }
+                }
+            }
+            if (val == 1) {
+                print_unpairables_1_350561 = 1;
+            }
+            else {
+                print_unpairables_2_350563 = 1;
+            }
+        }
+        break;
+        case 'e':;
+        if ((empty_filler_350571) && (! (strcmp(empty_filler_350571, optarg) == 0))) {
+            if (! ! 4UL) {
+                error(1, 0, (const char*)"conflicting empty-field replacement strings");
+                if (0) {
+                    (void)0;
+                }
+                else {
+                    __builtin_unreachable();
+                }
+            }
+            else {
+                error(1, 0, (const char*)"conflicting empty-field replacement strings");
+                if (0) {
+                    (void)0;
+                }
+                else {
+                    __builtin_unreachable();
+                }
+            }
+        }
+        empty_filler_350571 = optarg;
+        break;
+        case 'i':;
+        ignore_case_350605 = 1;
+        break;
+        case '1':;
+        set_join_field_350765(&join_field_1_350579, string_to_join_field_350735(optarg));
+        break;
+        case '2':;
+        set_join_field_350765(&join_field_2_350581, string_to_join_field_350735(optarg));
+        break;
+        case 'j':;
+        if ((((optarg[0] == '1') || (optarg[0] == '2')) && (! optarg[1])) && (optarg == argv[optind - 1] + 2)) {
+            _Bool is_j2 = optarg[0] == '2';
+            joption_count[is_j2] = joption_count[is_j2] + 1;
+            optc_status = 1 + is_j2;
+        }
+        else {
+            set_join_field_350765(&join_field_1_350579, string_to_join_field_350735(optarg));
+            set_join_field_350765(&join_field_2_350581, join_field_1_350579);
+        }
+        break;
+        case 'o':;
+        if (strcmp(optarg, "auto") == 0) {
+            autoformat_350573 = 1;
+        }
+        else {
+            add_field_list_350758(optarg);
+            optc_status = 3;
+        }
+        break;
+        case 't':;
+        {
+            unsigned char newtab = optarg[0];
+            if (! newtab) {
+                newtab = 10;
+            }
+            else {
+                if (optarg[1]) {
+                    if (strcmp(optarg, "\\0") == 0) {
+                        newtab = 0;
+                    }
+                    else {
+                        if (! ! 4UL) {
+                            error(1, 0, (const char*)"multi-character tab %s", quote(optarg));
+                            if (0) {
+                                (void)0;
+                            }
+                            else {
+                                __builtin_unreachable();
+                            }
+                        }
+                        else {
+                            error(1, 0, (const char*)"multi-character tab %s", quote(optarg));
+                            if (0) {
+                                (void)0;
+                            }
+                            else {
+                                __builtin_unreachable();
+                            }
+                        }
+                    }
+                }
+            }
+            if ((0 <= tab_350587) && (tab_350587 != newtab)) {
+                if (! ! 4UL) {
+                    error(1, 0, (const char*)"incompatible tabs");
+                    if (0) {
+                        (void)0;
+                    }
+                    else {
+                        __builtin_unreachable();
+                    }
+                }
+                else {
+                    error(1, 0, (const char*)"incompatible tabs");
+                    if (0) {
+                        (void)0;
+                    }
+                    else {
+                        __builtin_unreachable();
+                    }
+                }
+            }
+            tab_350587 = newtab;
+        }
+        break;
+        case 'z':;
+        eolchar_350609 = 0;
+        break;
+        case 129:;
+        check_input_order_350594 = 2;
+        break;
+        case 128:;
+        check_input_order_350594 = 1;
+        break;
+        case 1:;
+        add_file_name_350779(optarg, g_names_350555, operand_status, joption_count, &nfiles, &prev_optc_status, &optc_status);
+        break;
+        case 130:;
+        join_header_lines_350607 = 1;
+        break;
+        case -130:;
+        usage(0);
+        break;
+        case -131:;
+        version_etc(stdout, "join", "GNU coreutils", Version, "Mike Haertel", (char*)(void*)0);
+        exit(0);
+        break;
+        default:;
+        usage(1);
+        }
+        prev_optc_status = optc_status;
+    }
+    prev_optc_status = 0;
+    while (optind < argc) {
+        add_file_name_350779(argv[optind], g_names_350555, operand_status, joption_count, &nfiles, &prev_optc_status, &optc_status);
+        optind = optind + 1;
+    }
+    if (nfiles != 2) {
+        if (nfiles == 0) {
+            error(0, 0, (const char*)"missing operand");
+        }
+        else {
+            error(0, 0, (const char*)"missing operand after %s", quote(argv[argc - 1]));
+        }
+        usage(1);
+    }
+    for (i = 0; i < 2; i = i + 1) {
+        if (joption_count[i] != 0) {
+            set_join_field_350765(&join_field_1_350579, i);
+            set_join_field_350765(&join_field_2_350581, i);
+        }
+    }
+    if (join_field_1_350579 == 18446744073709551615UL) {
+        join_field_1_350579 = 0;
+    }
+    if (join_field_2_350581 == 18446744073709551615UL) {
+        join_field_2_350581 = 0;
+    }
+    {
+        FILE *__SAST_tmp_18191;
+        if (strcmp(g_names_350555[0], "-") == 0) {
+            __SAST_tmp_18191 = stdin;
+        }
+        else {
+            __SAST_tmp_18191 = fopen_safer(g_names_350555[0], "r");
+        }
+        fp1 = __SAST_tmp_18191;
+    }
+    if (! fp1) {
+        if (! ! 4UL) {
+            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[0]));
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+        else {
+            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[0]));
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+    }
+    {
+        FILE *__SAST_tmp_18192;
+        if (strcmp(g_names_350555[1], "-") == 0) {
+            __SAST_tmp_18192 = stdin;
+        }
+        else {
+            __SAST_tmp_18192 = fopen_safer(g_names_350555[1], "r");
+        }
+        fp2 = __SAST_tmp_18192;
+    }
+    if (! fp2) {
+        if (! ! 4UL) {
+            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[1]));
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+        else {
+            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[1]));
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+    }
+    if (fp1 == fp2) {
+        if (! ! 4UL) {
+            error(1, *__errno_location(), (const char*)"both files cannot be standard input");
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+        else {
+            error(1, *__errno_location(), (const char*)"both files cannot be standard input");
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+    }
+    system_join_350712(fp1, fp2);
+    if (rpl_fclose(fp1) != 0) {
+        if (! ! 4UL) {
+            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[0]));
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+        else {
+            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[0]));
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+    }
+    if (rpl_fclose(fp2) != 0) {
+        if (! ! 4UL) {
+            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[1]));
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+        else {
+            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[1]));
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+    }
+    if ((issued_disorder_warning_350569[0]) || (issued_disorder_warning_350569[1])) {
+        if (! ! 4UL) {
+            error(1, 0, (const char*)"input is not in sorted order");
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+        else {
+            error(1, 0, (const char*)"input is not in sorted order");
+            if (0) {
+                (void)0;
+            }
+            else {
+                __builtin_unreachable();
+            }
+        }
+    }
+    else {
+        return 0;
+    }
 }
 static size_t __strftime_internal_185715(char *s, size_t maxsize, const char *format, const struct tm *tp, _Bool upcase, int yr_spec, int width, _Bool *tzset_called, timezone_t tz, int ns)
 {
@@ -96351,371 +96717,25 @@ int lutimensat(int dir, const char *file, const struct timespec *times)
 {
     return utimensat(dir, file, times, 256);
 }
-int main(int argc, char **argv)
+int main()
 {
-    int optc_status;
-    int prev_optc_status = 0;
-    int operand_status[2];
-    int joption_count[2] = { 0, 0 };
-    FILE *fp1;
-    FILE *fp2;
-    int optc;
-    int nfiles = 0;
-    int i;
-    set_program_name(argv[0]);
-    setlocale(6, "");
-    hard_LC_COLLATE_350559 = hard_locale(3);
-    atexit(close_stdout);
-    atexit(free_spareline_350665);
-    print_pairables_350565 = 1;
-    seen_unpairable_350567 = 0;
-    issued_disorder_warning_350569[1] = 0;
-    issued_disorder_warning_350569[0] = issued_disorder_warning_350569[1];
-    check_input_order_350594 = 0;
-    while (({         optc = getopt_long(argc, argv, "-a:e:i1:2:j:o:t:v:z", longopts_350601, (void*)0);
-        optc != - 1;
- })) {
-        optc_status = 0;
-        switch (optc) {
-        case 'v':;
-        print_pairables_350565 = 0;
-        (void)0;
-        case 'a':;
-        {
-            unsigned long val;
-            if ((xstrtoul(optarg, (void*)0, 10, &val, "") != 0) || ((val != 1) && (val != 2))) {
-                if (! ! 4UL) {
-                    error(1, 0, (const char*)"invalid field number: %s", quote(optarg));
-                    if (0) {
-                        (void)0;
-                    }
-                    else {
-                        __builtin_unreachable();
-                    }
-                }
-                else {
-                    error(1, 0, (const char*)"invalid field number: %s", quote(optarg));
-                    if (0) {
-                        (void)0;
-                    }
-                    else {
-                        __builtin_unreachable();
-                    }
-                }
-            }
-            if (val == 1) {
-                print_unpairables_1_350561 = 1;
-            }
-            else {
-                print_unpairables_2_350563 = 1;
-            }
-        }
-        break;
-        case 'e':;
-        if ((empty_filler_350571) && (! (strcmp(empty_filler_350571, optarg) == 0))) {
-            if (! ! 4UL) {
-                error(1, 0, (const char*)"conflicting empty-field replacement strings");
-                if (0) {
-                    (void)0;
-                }
-                else {
-                    __builtin_unreachable();
-                }
-            }
-            else {
-                error(1, 0, (const char*)"conflicting empty-field replacement strings");
-                if (0) {
-                    (void)0;
-                }
-                else {
-                    __builtin_unreachable();
-                }
-            }
-        }
-        empty_filler_350571 = optarg;
-        break;
-        case 'i':;
-        ignore_case_350605 = 1;
-        break;
-        case '1':;
-        set_join_field_350765(&join_field_1_350579, string_to_join_field_350735(optarg));
-        break;
-        case '2':;
-        set_join_field_350765(&join_field_2_350581, string_to_join_field_350735(optarg));
-        break;
-        case 'j':;
-        if ((((optarg[0] == '1') || (optarg[0] == '2')) && (! optarg[1])) && (optarg == argv[optind - 1] + 2)) {
-            _Bool is_j2 = optarg[0] == '2';
-            joption_count[is_j2] = joption_count[is_j2] + 1;
-            optc_status = 1 + is_j2;
-        }
-        else {
-            set_join_field_350765(&join_field_1_350579, string_to_join_field_350735(optarg));
-            set_join_field_350765(&join_field_2_350581, join_field_1_350579);
-        }
-        break;
-        case 'o':;
-        if (strcmp(optarg, "auto") == 0) {
-            autoformat_350573 = 1;
-        }
-        else {
-            add_field_list_350758(optarg);
-            optc_status = 3;
-        }
-        break;
-        case 't':;
-        {
-            unsigned char newtab = optarg[0];
-            if (! newtab) {
-                newtab = 10;
-            }
-            else {
-                if (optarg[1]) {
-                    if (strcmp(optarg, "\\0") == 0) {
-                        newtab = 0;
-                    }
-                    else {
-                        if (! ! 4UL) {
-                            error(1, 0, (const char*)"multi-character tab %s", quote(optarg));
-                            if (0) {
-                                (void)0;
-                            }
-                            else {
-                                __builtin_unreachable();
-                            }
-                        }
-                        else {
-                            error(1, 0, (const char*)"multi-character tab %s", quote(optarg));
-                            if (0) {
-                                (void)0;
-                            }
-                            else {
-                                __builtin_unreachable();
-                            }
-                        }
-                    }
-                }
-            }
-            if ((0 <= tab_350587) && (tab_350587 != newtab)) {
-                if (! ! 4UL) {
-                    error(1, 0, (const char*)"incompatible tabs");
-                    if (0) {
-                        (void)0;
-                    }
-                    else {
-                        __builtin_unreachable();
-                    }
-                }
-                else {
-                    error(1, 0, (const char*)"incompatible tabs");
-                    if (0) {
-                        (void)0;
-                    }
-                    else {
-                        __builtin_unreachable();
-                    }
-                }
-            }
-            tab_350587 = newtab;
-        }
-        break;
-        case 'z':;
-        eolchar_350609 = 0;
-        break;
-        case 129:;
-        check_input_order_350594 = 2;
-        break;
-        case 128:;
-        check_input_order_350594 = 1;
-        break;
-        case 1:;
-        add_file_name_350779(optarg, g_names_350555, operand_status, joption_count, &nfiles, &prev_optc_status, &optc_status);
-        break;
-        case 130:;
-        join_header_lines_350607 = 1;
-        break;
-        case -130:;
-        usage(0);
-        break;
-        case -131:;
-        version_etc(stdout, "join", "GNU coreutils", Version, "Mike Haertel", (char*)(void*)0);
-        exit(0);
-        break;
-        default:;
-        usage(1);
-        }
-        prev_optc_status = optc_status;
-    }
-    prev_optc_status = 0;
-    while (optind < argc) {
-        add_file_name_350779(argv[optind], g_names_350555, operand_status, joption_count, &nfiles, &prev_optc_status, &optc_status);
-        optind = optind + 1;
-    }
-    if (nfiles != 2) {
-        if (nfiles == 0) {
-            error(0, 0, (const char*)"missing operand");
-        }
-        else {
-            error(0, 0, (const char*)"missing operand after %s", quote(argv[argc - 1]));
-        }
-        usage(1);
-    }
-    for (i = 0; i < 2; i = i + 1) {
-        if (joption_count[i] != 0) {
-            set_join_field_350765(&join_field_1_350579, i);
-            set_join_field_350765(&join_field_2_350581, i);
+    int argc = 4;
+    optind = 1;
+    char **argv = malloc((argc + 1) * 8UL);
+    argv[argc] = 0;
+    for (int i = 0; i < argc; i = i + 1) {
+        argv[i] = malloc(11 * 1UL);
+        argv[i][10] = 0;
+        for (int j = 0; j < 10; j = j + 1) {
+            argv[i][j] = __VERIFIER_nondet_char();
         }
     }
-    if (join_field_1_350579 == 18446744073709551615UL) {
-        join_field_1_350579 = 0;
+    int res = __main(argc, argv);
+    for (int i = 0; i < argc; i = i + 1) {
+        free(argv[i]);
     }
-    if (join_field_2_350581 == 18446744073709551615UL) {
-        join_field_2_350581 = 0;
-    }
-    {
-        FILE *__SAST_tmp_18191;
-        if (strcmp(g_names_350555[0], "-") == 0) {
-            __SAST_tmp_18191 = stdin;
-        }
-        else {
-            __SAST_tmp_18191 = fopen_safer(g_names_350555[0], "r");
-        }
-        fp1 = __SAST_tmp_18191;
-    }
-    if (! fp1) {
-        if (! ! 4UL) {
-            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[0]));
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-        else {
-            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[0]));
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-    }
-    {
-        FILE *__SAST_tmp_18192;
-        if (strcmp(g_names_350555[1], "-") == 0) {
-            __SAST_tmp_18192 = stdin;
-        }
-        else {
-            __SAST_tmp_18192 = fopen_safer(g_names_350555[1], "r");
-        }
-        fp2 = __SAST_tmp_18192;
-    }
-    if (! fp2) {
-        if (! ! 4UL) {
-            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[1]));
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-        else {
-            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[1]));
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-    }
-    if (fp1 == fp2) {
-        if (! ! 4UL) {
-            error(1, *__errno_location(), (const char*)"both files cannot be standard input");
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-        else {
-            error(1, *__errno_location(), (const char*)"both files cannot be standard input");
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-    }
-    system_join_350712(fp1, fp2);
-    if (rpl_fclose(fp1) != 0) {
-        if (! ! 4UL) {
-            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[0]));
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-        else {
-            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[0]));
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-    }
-    if (rpl_fclose(fp2) != 0) {
-        if (! ! 4UL) {
-            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[1]));
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-        else {
-            error(1, *__errno_location(), "%s", quotearg_n_style_colon(0, 3, g_names_350555[1]));
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-    }
-    if ((issued_disorder_warning_350569[0]) || (issued_disorder_warning_350569[1])) {
-        if (! ! 4UL) {
-            error(1, 0, (const char*)"input is not in sorted order");
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-        else {
-            error(1, 0, (const char*)"input is not in sorted order");
-            if (0) {
-                (void)0;
-            }
-            else {
-                __builtin_unreachable();
-            }
-        }
-    }
-    else {
-        return 0;
-    }
+    free(argv);
+    return res;
 }
 _Bool make_dir_parents(char *dir, struct savewd_168031 *wd, int (*make_ancestor)(const char*, const char*, void*), void *options, mode_t mode, void (*announce)(const char*, void*), mode_t mode_bits, uid_t owner, gid_t group, _Bool preserve_existing)
 {
@@ -154234,7 +154254,7 @@ size_t quotearg_buffer(char *buffer, size_t buffersize, const char *arg, size_t 
 }
 static size_t quotearg_buffer_restyled_226500(char *buffer, size_t buffersize, const char *arg, size_t argsize, enum quoting_style quoting_style, int flags, const unsigned int *quote_these_too, const char *left_quote, const char *right_quote)
 {
-    for (size_t i = 0; i < buffersize; i = i + 1) {
+    for (int i = 0; i < buffersize; i = i + 1) {
         buffer[i] = __VERIFIER_nondet_char();
     }
     buffer[buffersize - 1] = 0;
