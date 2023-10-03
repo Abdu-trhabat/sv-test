@@ -7,22 +7,21 @@
 // SPDX-License-Identifier: Apache-2.0
 
 extern void abort(void);
-extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "reorder_5.c", 3, "reach_error"); }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
+#include <assert.h>
+void reach_error() { assert(0); }
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <pthread.h>
 
-static int iSet = 4;
-static int iCheck = 1;
+#define USAGE "./reorder <param1> <param2>\n"
+#define LIMIT 100000
+
+static int iSet = 2;
+static int iCheck = 2;
 
 static int a = 0;
 static int b = 0;
-
-void __ESBMC_yield();
 
 void *setThread(void *param);
 void *checkThread(void *param);
@@ -34,41 +33,47 @@ int main(int argc, char *argv[]) {
 
     if (argc != 1) {
         if (argc != 3) {
-            fprintf(stderr, "./reorder <param1> <param2>\n");
+            fprintf(stderr, USAGE);
             exit(-1);
         } else {
             sscanf(argv[1], "%d", &iSet);
             sscanf(argv[2], "%d", &iCheck);
         }
     }
+    
+    if (iSet > LIMIT || iCheck > LIMIT) {
+      exit(-1);
+    }
+
+    //printf("iSet = %d\niCheck = %d\n", iSet, iCheck);
 
     pthread_t setPool[iSet];
     pthread_t checkPool[iCheck];
 
     for (i = 0; i < iSet; i++) {
-        if (0 != (err = pthread_create(&setPool[i], ((void *)0), &setThread, ((void *)0)))) {
+        if (0 != (err = pthread_create(&setPool[i], NULL, &setThread, NULL))) {
             fprintf(stderr, "Error [%d] found creating set thread.\n", err);
             exit(-1);
         }
     }
 
     for (i = 0; i < iCheck; i++) {
-        if (0 != (err = pthread_create(&checkPool[i], ((void *)0), &checkThread,
-                                       ((void *)0)))) {
+        if (0 != (err = pthread_create(&checkPool[i], NULL, &checkThread,
+                                       NULL))) {
             fprintf(stderr, "Error [%d] found creating check thread.\n", err);
             exit(-1);
         }
     }
 
     for (i = 0; i < iSet; i++) {
-        if (0 != (err = pthread_join(setPool[i], ((void *)0)))) {
+        if (0 != (err = pthread_join(setPool[i], NULL))) {
             fprintf(stderr, "pthread join error: %d\n", err);
             exit(-1);
         }
     }
 
     for (i = 0; i < iCheck; i++) {
-        if (0 != (err = pthread_join(checkPool[i], ((void *)0)))) {
+        if (0 != (err = pthread_join(checkPool[i], NULL))) {
             fprintf(stderr, "pthread join error: %d\n", err);
             exit(-1);
         }
@@ -76,29 +81,20 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
+        
 void *setThread(void *param) {
-    __VERIFIER_atomic_begin();
     a = 1;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
     b = -1;
-    __VERIFIER_atomic_end();
 
-    return ((void *)0);
+    return NULL;
 }
 
 void *checkThread(void *param) {
-    __VERIFIER_atomic_begin();
-    int la = a;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    int lb = b;
-    __VERIFIER_atomic_end();
-    if (! ((la == 0 && lb == 0) || (la == 1 && lb == -1))) {
+    if (! ((a == 0 && b == 0) || (a == 1 && b == -1))) {
         fprintf(stderr, "Bug found!\n");
-        ERROR: {reach_error();abort();}
+    	ERROR: {reach_error();abort();}
     }
 
-    return ((void *)0);
+    return NULL;
 }
+

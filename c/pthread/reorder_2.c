@@ -9,6 +9,8 @@
 extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
+extern void __VERIFIER_atomic_begin(void);
+extern void __VERIFIER_atomic_end(void);
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -83,14 +85,24 @@ int main(int argc, char *argv[]) {
 }
         
 void *setThread(void *param) {
+    __VERIFIER_atomic_begin();
     a = 1;
+    __VERIFIER_atomic_end();
+    __VERIFIER_atomic_begin();
     b = -1;
+    __VERIFIER_atomic_end();
 
     return NULL;
 }
 
 void *checkThread(void *param) {
-    if (! ((a == 0 && b == 0) || (a == 1 && b == -1))) {
+    __VERIFIER_atomic_begin();
+    int la = a;
+    __VERIFIER_atomic_end();
+    __VERIFIER_atomic_begin();
+    int lb = b;
+    __VERIFIER_atomic_end();
+    if (! ((la == 0 && lb == 0) || (la == 1 && lb == -1))) {
         fprintf(stderr, "Bug found!\n");
     	ERROR: {reach_error();abort();}
     }
