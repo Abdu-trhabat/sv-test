@@ -1,13 +1,12 @@
-extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
+extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
+
 //original file: EBStack.java
 //amino-cbbs\trunk\amino\java\src\main\java\org\amino\ds\lockfree
 //push only
@@ -16,7 +15,7 @@ extern void __VERIFIER_atomic_end(void);
 
 #define assume(e) assume_abort_if_not(e)
 #undef assert
-#define assert(e) { if(!(e)) { ERROR: {reach_error();abort();} (void)0; } }
+#define assert(e) { if(!(e)) { ERROR: {reach_error();abort();}(void)0; } }
 
 void __VERIFIER_atomic_acquire(int * m)
 {
@@ -46,7 +45,7 @@ void __VERIFIER_atomic_CAS(
 	}
 }
 
-#define MEMSIZE (2*320+1) //0 for "NULL"
+#define MEMSIZE (2*32+1) //0 for "NULL"
 int memory[MEMSIZE];
 #define INDIR(cell,idx) memory[cell+idx]
 
@@ -90,9 +89,7 @@ inline int push(int d) {
 	}else{
 		INDIR(newTop,0) = d;
 		while (1) {
-			__VERIFIER_atomic_begin();
 			oldTop = top;
-			__VERIFIER_atomic_end();
 			INDIR(newTop,1) = oldTop;
 			__VERIFIER_atomic_CAS(&top,oldTop,newTop,&casret);
 			if(casret==1){

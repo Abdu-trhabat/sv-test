@@ -1,8 +1,8 @@
-extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
+extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 
 extern void __assert_fail (const char *__assertion, const char *__file,
@@ -14,9 +14,7 @@ extern void __assert_perror_fail (int __errnum, const char *__file,
 extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "26_stack_cas_longest-2.c", 8, __extension__ __PRETTY_FUNCTION__); })); }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "26_stack_cas.c", 8, __extension__ __PRETTY_FUNCTION__); })); }
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
@@ -713,14 +711,14 @@ void __VERIFIER_atomic_CAS(
   *r = 0;
  }
 }
-int memory[(2*960+1)];
+int memory[(2*32+1)];
 int next_alloc_idx = 1;
 int m = 0;
 int top;
 inline int index_malloc(){
  int curr_alloc_idx = -1;
  __VERIFIER_atomic_acquire(&m);
- if(next_alloc_idx+2-1 > (2*960+1)){
+ if(next_alloc_idx+2-1 > (2*32+1)){
   __VERIFIER_atomic_release(&m);
   curr_alloc_idx = 0;
  }else{
@@ -747,9 +745,7 @@ inline int push(int d) {
  }else{
   memory[newTop+0] = d;
   while (1) {
-   __VERIFIER_atomic_begin();
    oldTop = top;
-   __VERIFIER_atomic_end();
    memory[newTop+1] = oldTop;
    __VERIFIER_atomic_CAS(&top,oldTop,newTop,&casret);
    if(casret==1){
@@ -760,7 +756,7 @@ inline int push(int d) {
 }
 void __VERIFIER_atomic_assert(int r)
 {
-  { if(!(!r || !isEmpty())) { ERROR: {reach_error();abort();} (void)0; } };
+  { if(!(!r || !isEmpty())) { ERROR: {reach_error();abort();}(void)0; } };
 }
 inline void push_loop(){
  int r = -1;
