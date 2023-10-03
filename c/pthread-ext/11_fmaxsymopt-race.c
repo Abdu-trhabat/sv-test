@@ -59,9 +59,7 @@ inline void findMax(int offset){
 	}
 	__VERIFIER_atomic_release();
 
-	__VERIFIER_atomic_acquire();
 	assert(my_max <= max);
-	__VERIFIER_atomic_release();
 }
 
 void* thr1(void* arg) {
