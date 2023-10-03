@@ -64,7 +64,9 @@ inline int PseudoRandomUsingAtomic_nextInt(int n)
 	int read, nexts, casret, nextInt_return;
 
 	while(1) {
+		__VERIFIER_atomic_begin();
 		read = seed;
+		__VERIFIER_atomic_end();
 		nexts = calculateNext(read);
 		assert(nexts != read); 
 		__VERIFIER_atomic_CAS(&seed,read,nexts,&casret);
