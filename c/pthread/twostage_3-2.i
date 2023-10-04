@@ -1242,11 +1242,15 @@ pthread_mutex_t *data2Lock;
 void lock(pthread_mutex_t *);
 void unlock(pthread_mutex_t *);
 void *funcA(void *param) {
+    int t1 = -1;
     pthread_mutex_lock(data1Lock);
     data1Value = 1;
     pthread_mutex_unlock(data1Lock);
+    pthread_mutex_lock(data1Lock);
+    t1 = data1Value;
+    pthread_mutex_unlock(data1Lock);
     pthread_mutex_lock(data2Lock);
-    data2Value = data1Value + 1;
+    data2Value = t1 + 1;
     pthread_mutex_unlock(data2Lock);
     return ((void *)0);
 }
