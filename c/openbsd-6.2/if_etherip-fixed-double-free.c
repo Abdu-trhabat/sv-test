@@ -581,7 +581,7 @@ void ip6_init(void) {
   struct protosw *pr;
   int i;
 
-  struct cpumem *ip6counters = malloc(ip6s_ncounters * sizeof(uint64_t), 0, 0);
+  *ip6counters = malloc(ip6s_ncounters * sizeof(uint64_t), 0, 0);
   explicit_bzero(ip6counters, ip6s_ncounters * sizeof(uint64_t));
 
   pr = pffindproto(PF_INET6, IPPROTO_RAW, SOCK_RAW);

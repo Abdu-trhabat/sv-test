@@ -4948,7 +4948,7 @@ struct cpumem *ip6counters;
 void ip6_init(void) {
   struct protosw *pr;
   int i;
-  struct cpumem *ip6counters =
+  ip6counters =
       openbsd_kernel_malloc(ip6s_ncounters * sizeof(uint64_t), 0, 0);
   explicit_bzero(ip6counters, ip6s_ncounters * sizeof(uint64_t));
   pr = pffindproto(24, 255, 3);
