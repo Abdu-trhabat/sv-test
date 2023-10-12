@@ -1,7 +1,9 @@
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
-// SPDX-FileCopyrightText: 2023 Free Software Foundation, Inc.
+// SPDX-FileCopyrightText: 1985-2019 Free Software Foundation, Inc.
+// SPDX-FileCopyrightText: 2019-2022 Frank Busse, Pritam Gharat, Cristian Cadar, Alastair Donaldson, Imperial College London
+// SPDX-FileCopyrightText: 2023 Raphaël Monat, Inria
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 

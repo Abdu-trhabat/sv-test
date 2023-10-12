@@ -137,8 +137,11 @@ main() {
 
     if [ ! -f "license.c" ]; then
         touch license.c
-        reuse addheader --template header.jinja2 --year "2023" --copyright "Free Software Foundation, Inc." --license GPL-3.0-or-later license.c
+        reuse addheader --template header.jinja2 --year "1985-2019" --copyright "Free Software Foundation, Inc." --license GPL-3.0-or-later license.c
         cp license.c license_kleesa_files.c
+        reuse addheader --template header.jinja2 --year "2019-2022" --copyright "Frank Busse, Pritam Gharat, Cristian Cadar, Alastair Donaldson, Imperial College London" --license GPL-3.0-or-later license_kleesa_files.c
+        reuse addheader --template header.jinja2 --year "2023" --copyright "Raphaël Monat, Inria" --license GPL-3.0-or-later license_kleesa_files.c
+        reuse addheader --template header.jinja2 --year "2023" --copyright "Raphaël Monat, Inria" --license GPL-3.0-or-later license.c
         echo "
 // Coreutils instrumentation performed by:
 // Frank Busse, Pritam Gharat, Cristian Cadar, Alastair Donaldson, from their work
@@ -156,6 +159,8 @@ main() {
     for t in comm csplit cut env join ln nl od split uniq; do
         preprocess_ok_file "${t}.c"
     done
+
+    sed -e '/typedef char \*__builtin_ms_va_list;/d' -i *ok.c *ko*.c
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
