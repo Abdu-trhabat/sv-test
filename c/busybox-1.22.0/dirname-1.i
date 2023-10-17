@@ -1297,6 +1297,9 @@ int vasprintf(char **ptr, const char *fmt, va_list ap)
 {
   (void)*fmt;
   (void)ap;
+  int no_format = 1;
+  for(size_t s = 0; s < strlen(fmt); s++) if(fmt[s] == '%') { no_format = 0; break; }
+  if(no_format) { *ptr = malloc(strlen(fmt)); strcpy(*ptr, fmt); return strlen(fmt); }
   int result_buffer_size = __VERIFIER_nondet_int();
   if(result_buffer_size <= 0)
     return -1;
