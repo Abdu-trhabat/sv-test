@@ -4999,6 +4999,7 @@ int ip_deliver(struct mbuf **mp, int *offp, int nxt, int af) {
     nxt = (*psw->pr_input)(mp, offp, nxt, af);
     af = naf;
   }
+  m_freemp(mp);
   return nxt;
 bad:
   m_freemp(mp);
