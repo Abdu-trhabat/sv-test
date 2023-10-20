@@ -424,6 +424,11 @@ void *openbsd_kernel_malloc(size_t size, int type, int flags) {
 }
 extern void free(void *);
 void openbsd_kernel_free(void *addr, int type, size_t size) { free(addr); }
+extern int clock_gettime(clockid_t, struct timespec *);
+int openbsd_clock_gettime(struct proc *p, clockid_t clk_id,
+                          struct timespec *tp) {
+  return clock_gettime(clk_id, tp);
+}
 struct m_tag {
   struct {
     struct m_tag *sle_next;
@@ -826,7 +831,7 @@ void microuptime(struct timeval *);
 void getnanouptime(struct timespec *);
 void getmicrouptime(struct timeval *);
 struct proc;
-int clock_gettime(struct proc *, clockid_t, struct timespec *);
+int openbsd_clock_gettime(struct proc *, clockid_t, struct timespec *);
 int timespecfix(struct timespec *);
 int itimerfix(struct timeval *);
 int itimerdecr(struct itimerval *itp, int usec);

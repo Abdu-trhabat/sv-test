@@ -40,3 +40,11 @@ void openbsd_kernel_free(void *addr, int type, size_t size)
 }
 #define free(a, b, c)	   openbsd_kernel_free(a, b, c)
 #endif
+
+#ifndef clock_gettime
+extern int clock_gettime(clockid_t, struct timespec *);
+int openbsd_clock_gettime(struct proc * p, clockid_t clk_id, struct timespec * tp) {
+  return clock_gettime(clk_id, tp);
+}
+#define clock_gettime(p, clk_id, tp)  openbsd_clock_gettime(p, clk_id, tp)
+#endif
