@@ -1,5 +1,14 @@
 #include "sys/types.h"
 
+#ifndef __assert
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void openbsd_assert(const char * type, const char * file, int line, const char * cond)
+{
+  __assert_fail(cond, file, line, "openbsd_assert");
+}
+#define __assert(type, file, line, cond)  openbsd_assert(type, file, line, cond)
+#endif
+
 void abort(void); 
 #include "sys/systm.h"
 void reach_error() { assert(0); }

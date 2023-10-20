@@ -143,6 +143,13 @@ struct file;
 struct buf;
 struct tty;
 struct uio;
+extern void __assert_fail(const char *, const char *, unsigned int,
+                          const char *) __attribute__((__nothrow__, __leaf__))
+__attribute__((__noreturn__));
+void openbsd_assert(const char *type, const char *file, int line,
+                    const char *cond) {
+  __assert_fail(cond, file, line, "openbsd_assert");
+}
 void abort(void);
 typedef __builtin_va_list __gnuc_va_list;
 typedef __gnuc_va_list va_list;
@@ -196,7 +203,7 @@ void *hashinit(int, int, int, u_long *);
 void hashfree(void *, int, int);
 int sys_nosys(struct proc *, void *, register_t *);
 void panic(const char *, ...) __attribute__((__format__(__printf__, 1, 2)));
-void __assert(const char *, const char *, int, const char *)
+void openbsd_assert(const char *, const char *, int, const char *)
     __attribute__((__noreturn__));
 int printf(const char *, ...) __attribute__((__format__(__printf__, 1, 2)));
 void uprintf(const char *, ...) __attribute__((__format__(__printf__, 1, 2)));
@@ -368,7 +375,7 @@ static __inline u_int min(u_int a, u_int b) { return (a < b ? a : b); }
 static __inline u_long ulmax(u_long a, u_long b) { return (a > b ? a : b); }
 static __inline u_long ulmin(u_long a, u_long b) { return (a < b ? a : b); }
 static __inline int abs(int j) { return (j < 0 ? -j : j); }
-void __assert(const char *, const char *, int, const char *)
+void openbsd_assert(const char *, const char *, int, const char *)
     __attribute__((__noreturn__));
 int bcmp(const void *, const void *, size_t);
 void bzero(void *, size_t);
@@ -399,7 +406,7 @@ char *strrchr(const char *, int);
 int timingsafe_bcmp(const void *, const void *, size_t);
 void user_config(void);
 void reach_error() {
-  ((0) ? (void)0 : __assert("", "sources/sys/sv_comp.h", 5, "0"));
+  ((0) ? (void)0 : openbsd_assert("", "sources/sys/sv_comp.h", 14, "0"));
 }
 void abort(void);
 void assume_abort_if_not(int cond) {
@@ -1903,8 +1910,9 @@ struct mbuf *m_pullup(struct mbuf *n, int len) {
   }
   ((m_trailingspace(m) >= len)
        ? (void)0
-       : __assert("diagnostic ", "if_etherip-fixed-double-free.c", 305,
-                  "M_TRAILINGSPACE(m) >= len"));
+       : openbsd_assert("diagnostic ",
+                        "if_etherip-fixed-double-free-invalid-deref2.c", 305,
+                        "M_TRAILINGSPACE(m) >= len"));
   do {
     if (n == ((void *)0)) {
       (void)m_free(m);
