@@ -700,10 +700,11 @@ static inline struct sockaddr *sstosa(struct sockaddr_storage *ss) {
 }
 struct mbuf *m_gethdr(int, int);
 void ip_init(void);
-int ip_deliver(struct mbuf **, int *, int, int);
+int ip_deliver(int *, int, int);
 int etherip_allow;
+struct mbuf **mp;
+struct mbuf *m;
 int main(void) {
-  struct mbuf *m;
   int len, off;
   etherip_allow = __VERIFIER_nondet_int();
   ip_init();
@@ -716,7 +717,8 @@ int main(void) {
   assume_abort_if_not(off > 0);
   assume_abort_if_not(off <= len);
   m->m_hdr.mh_len = m->M_dat.MH.MH_pkthdr.len = len;
-  ip_deliver(&m, &off, 0, 24);
+  mp = &m;
+  ip_deliver(&off, 0, 24);
   return 0;
 }
 void panic(const char *fmt, ...);
@@ -3180,7 +3182,7 @@ int ip_sysctl(int *, u_int, void *, size_t *, void *, size_t);
 void ip_savecontrol(struct inpcb *, struct mbuf **, struct ip *, struct mbuf *);
 void ipintr(void);
 int ip_input_if(struct mbuf **, int *, int, int, struct ifnet *);
-int ip_deliver(struct mbuf **, int *, int, int);
+int ip_deliver(int *, int, int);
 void ip_forward(struct mbuf *, struct ifnet *, struct rtentry *, int);
 int rip_ctloutput(int, struct socket *, int, int, struct mbuf *);
 void rip_init(void);
@@ -4962,7 +4964,7 @@ void ip6_init(void) {
         pr->pr_protocol != 255 && pr->pr_protocol < 256)
       ip6_protox[pr->pr_protocol] = pr - inet6sw;
 }
-int ip_deliver(struct mbuf **mp, int *offp, int nxt, int af) {
+int ip_deliver(int *offp, int nxt, int af) {
   struct protosw *psw;
   int naf = af;
   int nest = 0;
@@ -4999,7 +5001,6 @@ int ip_deliver(struct mbuf **mp, int *offp, int nxt, int af) {
     nxt = (*psw->pr_input)(mp, offp, nxt, af);
     af = naf;
   }
-  m_freemp(mp);
   return nxt;
 bad:
   m_freemp(mp);
