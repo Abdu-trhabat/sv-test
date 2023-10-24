@@ -7,7 +7,9 @@
 
 LEVEL := ../
 
-IGNORE_DIRS := ./model
+IGNORE_DIRS := ./model/
+CC.Flags := -I./model
+CLANG_WARNINGS := -Wno-unused-but-set-variable
 
 
 include $(LEVEL)/Makefile.config

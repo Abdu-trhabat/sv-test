@@ -440,9 +440,9 @@ extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__))
      __attribute__ ((__alloc_size__ (2, 3)))
-    __attribute__ ((__malloc__ (__builtin_free, 1)));
+     ;
 extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__ (reallocarray, 1)));
+     ;
 
 extern void *alloca (size_t __size) __attribute__ ((__nothrow__ , __leaf__));
 
@@ -809,19 +809,13 @@ extern long double fmaxl (long double __x, long double __y) __attribute__ ((__no
 extern long double fminl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern long double __fminl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
 extern long double fmal (long double __x, long double __y, long double __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double __fmal (long double __x, long double __y, long double __z) __attribute__ ((__nothrow__ , __leaf__));
 extern long double scalbl (long double __x, long double __n) __attribute__ ((__nothrow__ , __leaf__)); extern long double __scalbl (long double __x, long double __n) __attribute__ ((__nothrow__ , __leaf__));
-extern int __fpclassifyf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-     __attribute__ ((__const__));
-extern int __signbitf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-     __attribute__ ((__const__));
-extern int __isinff128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-  __attribute__ ((__const__));
-extern int __finitef128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-  __attribute__ ((__const__));
-extern int __isnanf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-  __attribute__ ((__const__));
-extern int __iseqsigf128 (_Float128 __x, _Float128 __y) __attribute__ ((__nothrow__ , __leaf__));
-extern int __issignalingf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-     __attribute__ ((__const__));
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 extern int signgam;
 enum
   {

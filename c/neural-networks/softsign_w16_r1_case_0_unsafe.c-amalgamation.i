@@ -440,9 +440,9 @@ extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__))
      __attribute__ ((__alloc_size__ (2, 3)))
-    __attribute__ ((__malloc__ (__builtin_free, 1)));
+     ;
 extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__ (reallocarray, 1)));
+     ;
 
 extern void *alloca (size_t __size) __attribute__ ((__nothrow__ , __leaf__));
 
@@ -809,19 +809,13 @@ extern long double fmaxl (long double __x, long double __y) __attribute__ ((__no
 extern long double fminl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)); extern long double __fminl (long double __x, long double __y) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
 extern long double fmal (long double __x, long double __y, long double __z) __attribute__ ((__nothrow__ , __leaf__)); extern long double __fmal (long double __x, long double __y, long double __z) __attribute__ ((__nothrow__ , __leaf__));
 extern long double scalbl (long double __x, long double __n) __attribute__ ((__nothrow__ , __leaf__)); extern long double __scalbl (long double __x, long double __n) __attribute__ ((__nothrow__ , __leaf__));
-extern int __fpclassifyf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-     __attribute__ ((__const__));
-extern int __signbitf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-     __attribute__ ((__const__));
-extern int __isinff128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-  __attribute__ ((__const__));
-extern int __finitef128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-  __attribute__ ((__const__));
-extern int __isnanf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-  __attribute__ ((__const__));
-extern int __iseqsigf128 (_Float128 __x, _Float128 __y) __attribute__ ((__nothrow__ , __leaf__));
-extern int __issignalingf128 (_Float128 __value) __attribute__ ((__nothrow__ , __leaf__))
-     __attribute__ ((__const__));
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 extern int signgam;
 enum
   {
@@ -1683,25 +1677,25 @@ extern int renameat (int __oldfd, const char *__old, int __newfd,
        const char *__new) __attribute__ ((__nothrow__ , __leaf__));
 extern int fclose (FILE *__stream);
 extern FILE *tmpfile (void)
-  __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (fclose, 1))) ;
+  __attribute__ ((__malloc__))   ;
 extern char *tmpnam (char[20]) __attribute__ ((__nothrow__ , __leaf__)) ;
 extern char *tmpnam_r (char __s[20]) __attribute__ ((__nothrow__ , __leaf__)) ;
 extern char *tempnam (const char *__dir, const char *__pfx)
-   __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (__builtin_free, 1)));
+   __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__))  ;
 extern int fflush (FILE *__stream);
 extern int fflush_unlocked (FILE *__stream);
 extern FILE *fopen (const char *__restrict __filename,
       const char *__restrict __modes)
-  __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (fclose, 1))) ;
+  __attribute__ ((__malloc__))   ;
 extern FILE *freopen (const char *__restrict __filename,
         const char *__restrict __modes,
         FILE *__restrict __stream) ;
 extern FILE *fdopen (int __fd, const char *__modes) __attribute__ ((__nothrow__ , __leaf__))
-  __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (fclose, 1))) ;
+  __attribute__ ((__malloc__))   ;
 extern FILE *fmemopen (void *__s, size_t __len, const char *__modes)
-  __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (fclose, 1))) ;
+  __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__))   ;
 extern FILE *open_memstream (char **__bufloc, size_t *__sizeloc) __attribute__ ((__nothrow__ , __leaf__))
-  __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (fclose, 1))) ;
+  __attribute__ ((__malloc__))   ;
 extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) __attribute__ ((__nothrow__ , __leaf__));
 extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
       int __modes, size_t __n) __attribute__ ((__nothrow__ , __leaf__));
@@ -1805,7 +1799,7 @@ extern int fileno (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) ;
 extern int fileno_unlocked (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) ;
 extern int pclose (FILE *__stream);
 extern FILE *popen (const char *__command, const char *__modes)
-  __attribute__ ((__malloc__)) __attribute__ ((__malloc__ (pclose, 1))) ;
+   ;
 extern char *ctermid (char *__s) __attribute__ ((__nothrow__ , __leaf__))
   __attribute__ ((__access__ (__write_only__, 1)));
 extern void flockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
