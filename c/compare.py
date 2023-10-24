@@ -56,6 +56,7 @@ TASKS_ONLY_PREPROCESSED = [
   'ldv-linux-3.14-races/linux-3.14--drivers--media--platform--marvell-ccic--cafe_ccic.ko.cil-1.i',
   'loops/s3.i', # this single file is special
   'Juliet_Test/', # for Juliet there are c files, but each was preprocessed into two tasks, one valid and one invalid
+  'neural-networks/', # relies on custom include folder
   'combinations/'
 ]
 
