@@ -10,18 +10,16 @@ extern void __VERIFIER_atomic_end(void);
 #define assert(e) { if(!(e)) { ERROR: {reach_error();abort();}(void)0; } }
 
 int x, y;
-static pthread_rwlock_t rwlock = PTHREAD_RWLOCK_INITIALIZER;
+pthread_rwlock_t rwlock = PTHREAD_RWLOCK_INITIALIZER;
 
-void *thr1(void *arg) { //writer
+void* thr1(void* arg) { //writer
   pthread_rwlock_wrlock(&rwlock);
   x = 3;
-  __VERIFIER_atomic_begin();
   pthread_rwlock_unlock(&rwlock);
-  __VERIFIER_atomic_end();
   return 0;
 }
 
-void *thr2(void *arg) { //reader
+void* thr2(void* arg) { //reader
   pthread_rwlock_rdlock(&rwlock);
   __VERIFIER_atomic_begin();
   int l = x;
@@ -40,7 +38,8 @@ void *thr2(void *arg) { //reader
   return 0;
 }
 
-int main() {
+int main()
+{
   pthread_t t;
 
   pthread_create(&t, 0, thr1, 0);

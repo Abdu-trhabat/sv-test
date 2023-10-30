@@ -13,19 +13,16 @@ extern void __VERIFIER_atomic_end(void);
 */
 
 #include <pthread.h>
-
 #undef assert
 #define assert(e) if (!(e)) ERROR: reach_error()
 
 int x, y;
-static pthread_rwlock_t rwlock = PTHREAD_RWLOCK_INITIALIZER;
+pthread_rwlock_t rwlock = PTHREAD_RWLOCK_INITIALIZER;
 
 void *writer(void *arg) { //writer
   pthread_rwlock_wrlock(&rwlock);
   x = 3;
-  __VERIFIER_atomic_begin();
   pthread_rwlock_unlock(&rwlock);
-  __VERIFIER_atomic_end();
   return 0;
 }
 

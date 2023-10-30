@@ -1,7 +1,3 @@
-extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
@@ -11,7 +7,6 @@ void reach_error() { assert(0); }
 
 int count = 0;
 
-#define assume(e) assume_abort_if_not(e)
 #define assert_nl(e) { if(!(e)) { goto ERROR; } }
 #undef assert
 #define assert(e) { if(!(e)) { ERROR: {reach_error();abort();}(void)0; } }

@@ -12,8 +12,8 @@ void reach_error() { assert(0); }
 
 pthread_mutex_t s = PTHREAD_MUTEX_INITIALIZER;
 unsigned c = 0;
-
-void* thr1(void* arg) {
+void* thr1(void* arg)
+{
   pthread_mutex_lock(&s);
   c = 1; assert(c == 1); c = 0;
   pthread_mutex_unlock(&s);
@@ -21,7 +21,8 @@ void* thr1(void* arg) {
   return 0;
 }
 
-int main() {
+int main()
+{
   pthread_t t;
 
   while(__VERIFIER_nondet_int()) pthread_create(&t, 0, thr1, 0);

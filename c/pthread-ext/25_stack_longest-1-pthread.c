@@ -21,14 +21,14 @@ int next_alloc_idx = 1;
 pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 int top;
 
-inline int index_malloc() {
+inline int index_malloc(){
 	int curr_alloc_idx = -1;
 
 	pthread_mutex_lock(&m);
-	if(next_alloc_idx+2-1 > MEMSIZE) {
+	if(next_alloc_idx+2-1 > MEMSIZE){
 		pthread_mutex_unlock(&m);
 		curr_alloc_idx = 0;
-	} else {
+	}else{
 		curr_alloc_idx = next_alloc_idx;
 		next_alloc_idx += 2;
 		pthread_mutex_unlock(&m);
@@ -37,7 +37,7 @@ inline int index_malloc() {
 	return curr_alloc_idx;
 }
 
-inline void EBStack_init() {
+inline void EBStack_init(){
 	top = 0;
 }
 
@@ -52,9 +52,9 @@ inline int push(int d) {
 	int oldTop = -1, newTop = -1;
 
 	newTop = index_malloc();
-	if(newTop == 0) {
+	if(newTop == 0){
 		return 0;
-	} else {
+	}else{
 		INDIR(newTop,0) = d;
 
 		pthread_mutex_lock(&m);
@@ -68,28 +68,31 @@ inline int push(int d) {
 	}
 }
 
-inline void init() {
+inline void init(){
 	EBStack_init();
 }
 
-void __VERIFIER_atomic_assert(int r) {
-	assert(!r || !isEmpty());
+void __VERIFIER_atomic_assert(int r)
+{
+		assert(!r || !isEmpty());
 }
 
-inline void push_loop() {
+inline void push_loop(){
 	int r = -1;
 	int arg = __VERIFIER_nondet_int();
-	while(1) {
+	while(1){
 		r = push(arg);
-    	__VERIFIER_atomic_assert(r);
+    __VERIFIER_atomic_assert(r);
 	}
 }
 
 pthread_mutex_t m2 = PTHREAD_MUTEX_INITIALIZER;
 int state = 0;
-void* thr1(void* arg) {
+void* thr1(void* arg)
+{
 	pthread_mutex_lock(&m2);
-	switch(state) {
+	switch(state)
+	{
 	case 0: 
 		EBStack_init();
 		state = 1;
@@ -104,8 +107,10 @@ void* thr1(void* arg) {
   return 0;
 }
 
-int main() {
-  	pthread_t t;
+int main()
+{
+  pthread_t t;
+
 	while(1) { pthread_create(&t, 0, thr1, 0); }
 }
 

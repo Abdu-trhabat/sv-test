@@ -24,7 +24,8 @@ int next_alloc_idx = 1;
 pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 int top = 0;
 
-void __VERIFIER_atomic_index_malloc(int *curr_alloc_idx) {
+void __VERIFIER_atomic_index_malloc(int *curr_alloc_idx)
+{
 	if(next_alloc_idx+2-1 > MEMSIZE) *curr_alloc_idx = 0;
 	else *curr_alloc_idx = next_alloc_idx, next_alloc_idx += 2;
 }
@@ -49,14 +50,16 @@ inline void push(int d) {
 	}
 }
 
-void* thr1(void* arg) {
+void* thr1(void* arg){
   while(1){push(10); assert(top != 0);}
 
   return 0;
 }
 
-int main() {
-  	pthread_t t;
+int main()
+{
+  pthread_t t;
+
 	while(1) { pthread_create(&t, 0, thr1, 0); }
 }
 

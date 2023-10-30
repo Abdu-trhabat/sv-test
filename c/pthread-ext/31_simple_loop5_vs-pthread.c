@@ -12,26 +12,29 @@ int b = 2;
 int c = 3;
 int temp;
 
-pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
-void* thr2(void* arg) {
+void* thr2(void* arg)
+{
   for(;;){
-    pthread_mutex_lock(&m);
+    pthread_mutex_lock(&mutex);
     temp = a;
     a = b;
     b = c;
     c = temp;
-    pthread_mutex_unlock(&m);
+    pthread_mutex_unlock(&mutex);
   }
 
   return 0;
 }
 
-void* thr1(void* arg) {
-  while(1) {
-    pthread_mutex_lock(&m);
+void* thr1(void* arg)
+{
+  while(1)
+  {
+    pthread_mutex_lock(&mutex);
     assert(a != b);
-    pthread_mutex_unlock(&m);
+    pthread_mutex_unlock(&mutex);
   }
 
   return 0;
@@ -41,7 +44,8 @@ int main() {
   pthread_t t;
 
   pthread_create(&t, 0, thr1, 0);
-  while(1) {
+  while(1)
+  {
     pthread_create(&t, 0, thr2, 0);
   }
 }

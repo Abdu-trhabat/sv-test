@@ -3,6 +3,7 @@ extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
+extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -19,128 +20,130 @@ to correctly model the cv_broadcast(COND) statement "b1_COND := 1;" must be manu
 
 #define cv_wait(c,m){ \
   c = 0; \
-  pthread_mutex_unlock(&mtx);; \
-  pthread_mutex_lock(&mtx);; \
+  pthread_mutex_unlock(&m); \
+  pthread_mutex_lock(&m); \
   assume(c); }
 
 #define cv_broadcast(c) c = 1 //overapproximates semantics (for threader)
 
 #define LOCKED 1
 
-#define mutex_enter(m) pthread_mutex_lock(&mtx); //acquire lock and ensure no other thread unlocked it
-#define mutex_exit(m) pthread_mutex_unlock(&mtx);
+#define mutex_enter(m) pthread_mutex_lock(&m); //acquire lock and ensure no other thread unlocked it
+#define mutex_exit(m) pthread_mutex_unlock(&m);
 
-pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t MTX = PTHREAD_MUTEX_INITIALIZER;
 _Bool COND = 0;
 
 #define PSWITCH_EVENT_RELEASED 1
 #define PENVSYS_EVENT_NORMAL 2
 #define POWER_EVENT_RECVDICT 3
 
-inline int sysmon_queue_power_event() {
-  	assert(1);
+#define KASSERT(e) assert_nl(e)
+#define is_locked(m) (m==LOCKED)
+
+inline int sysmon_queue_power_event(){
+  assert(1);
 	if (__VERIFIER_nondet_int())
 		return 0;
 	return 1; }
 
-inline int sysmon_get_power_event() {
-  	assert(1);
+inline int sysmon_get_power_event(){
+  assert(1);
 	if (__VERIFIER_nondet_int())	
 		return 0;
 	return 1; }
 
-inline int sysmon_power_daemon_task() {
+inline int sysmon_power_daemon_task(){
 	if (__VERIFIER_nondet_int()) return __VERIFIER_nondet_int();
-	mutex_enter(mtx);
+	mutex_enter(MTX);
 	switch (__VERIFIER_nondet_int()) {
 	case PSWITCH_EVENT_RELEASED:
 		if (__VERIFIER_nondet_int()) {
-			mutex_exit(mtx);
+			mutex_exit(MTX);
 			goto out;}
 		break;
 	case PENVSYS_EVENT_NORMAL:
 		if (__VERIFIER_nondet_int()) {
-			mutex_exit(mtx);
+			mutex_exit(MTX);
 			goto out;}
 		break;
 	default:
-		mutex_exit(mtx);
+		mutex_exit(MTX);
 		goto out;}
 	sysmon_queue_power_event();
 	if (__VERIFIER_nondet_int()) {
-		mutex_exit(mtx);
+		mutex_exit(MTX);
 		goto out;} 
 	else {
 		cv_broadcast(COND);
-		mutex_exit(mtx);}
+		mutex_exit(MTX);}
 	out:
-  	assert(1);
+  assert(1);
 	return __VERIFIER_nondet_int(); }
 
 inline void sysmonopen_power(){
-	mutex_enter(mtx);
-	if (__VERIFIER_nondet_int())
-	mutex_exit(mtx);
-  	assert(1);
+	mutex_enter(MTX);
+	mutex_exit(MTX);
+  assert(1);
 }
 
 inline void sysmonclose_power(){
-	mutex_enter(mtx);
-	mutex_exit(mtx);
-  	assert(1);
+	mutex_enter(MTX);
+	mutex_exit(MTX);
+  assert(1);
 }
 
 inline void sysmonread_power(){
 	if (__VERIFIER_nondet_int()){
-		mutex_enter(mtx);
+		mutex_enter(MTX);
 		for (;;) {
 			if (sysmon_get_power_event()) {
 				break;}
 			if (__VERIFIER_nondet_int()) {
 				break;}
-			cv_wait(COND,mtx);
-      	assert_nl(COND); }
-		mutex_exit(mtx); }
-  	assert(1);
+			cv_wait(COND,MTX);
+      assert_nl(COND); }
+		mutex_exit(MTX); }
+  assert(1);
 }
 
 inline void sysmonpoll_power(){
 	if(__VERIFIER_nondet_int()){
-		mutex_enter(mtx);
-		mutex_exit(mtx); }
-  	assert(1);
+		mutex_enter(MTX);
+		mutex_exit(MTX); }
+  assert(1);
 }
 
 inline void filt_sysmon_power_rdetach(){
-	mutex_enter(mtx);
-	mutex_exit(mtx);
-  	assert(1);
+	mutex_enter(MTX);
+	mutex_exit(MTX);
+  assert(1);
 }
 
 inline void filt_sysmon_power_read(){
-	mutex_enter(mtx);
-	mutex_exit(mtx);
-  	assert(1);
+	mutex_enter(MTX);
+	mutex_exit(MTX);
+  assert(1);
 }
 
 inline void sysmonkqfilter_power(){
-	mutex_enter(mtx);
-	mutex_exit(mtx);
-  	assert(1);
+	mutex_enter(MTX);
+	mutex_exit(MTX);
+  assert(1);
 }
 
 inline void sysmonioctl_power(){
 	switch (__VERIFIER_nondet_int()) {
 	case POWER_EVENT_RECVDICT:
-		mutex_enter(mtx);
+		mutex_enter(MTX);
 		if (__VERIFIER_nondet_int()) {
-			mutex_exit(mtx);
+			mutex_exit(MTX);
 			break;}
-		mutex_exit(mtx);
-		mutex_enter(mtx);
-		mutex_exit(mtx);
+		mutex_exit(MTX);
+		mutex_enter(MTX);
+		mutex_exit(MTX);
 		break; }
-	assert(1);
+  assert(1);
 }
 
 void* thr1(void* arg){

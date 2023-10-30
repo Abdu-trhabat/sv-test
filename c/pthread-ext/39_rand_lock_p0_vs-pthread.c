@@ -22,7 +22,7 @@ pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 
 #define min(x,y) ((y>=x)?(x):(y))
 
-inline int calculateNext(int s2) { 
+inline int calculateNext(int s2){ 
 	int cnex;
 	do cnex = __VERIFIER_nondet_int();
 	while(cnex == s2 || cnex == 0);
@@ -51,14 +51,16 @@ inline int PseudoRandomUsingAtomic_nextInt() {
 	return nextInt_return;
 }
 
-void* thr1(void* arg) {
+void* thr1(void* arg){
   PseudoRandomUsingAtomic_nextInt();
 
   return 0;
 }
 
-int main() {
-  	pthread_t t;
+int main()
+{
+  pthread_t t;
+
 	while(1) { pthread_create(&t, 0, thr1, 0); }
 }
 

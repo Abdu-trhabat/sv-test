@@ -9,23 +9,23 @@
 int *data;
 volatile int len;
 volatile int next;
-pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
 void* thr(void* arg) {
     int c, end;
     c = 0;
     end = 0;
-    pthread_mutex_lock(&m);
+    pthread_mutex_lock(&lock);
     if (next + 10 <= len) {
-        c = next;
-        next = end = next + 10;
+	c = next;
+	next = end = next + 10;
     }
-    pthread_mutex_unlock(&m);
+    pthread_mutex_unlock(&lock);
     while (c < end) {
-        data[c] = 0;
-        data[c] = 1;
-        __VERIFIER_assert(data[c] == 1);
-        c = c + 1;
+	data[c] = 0;
+	data[c] = 1;
+	__VERIFIER_assert(data[c] == 1);
+	c = c + 1;
     }
     return 0;
 }
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
     assume_abort_if_not(len > 0 && len < 4294967296 / sizeof(int));
     data = malloc(sizeof(int) * len);
     while(1) {
-	    pthread_create(&t, 0, thr, 0);
+	pthread_create(&t, 0, thr, 0);
     }
     return 0;
 }
