@@ -1,3 +1,10 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 University of Tartu
+//
+// SPDX-License-Identifier: MIT
+
 // Race-free due to GCC atomic operation.
 // Extracted from concrat/klib.
 #include <stdlib.h>

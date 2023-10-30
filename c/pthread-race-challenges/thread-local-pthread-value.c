@@ -1,3 +1,10 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 University of Tartu
+//
+// SPDX-License-Identifier: MIT
+
 // Thread-local pthread variable flow-sensitive value analysis.
 // Extracted from concrat/pigz.
 #include <stdlib.h>

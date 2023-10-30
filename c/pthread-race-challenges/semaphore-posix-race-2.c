@@ -1,3 +1,10 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 University of Tartu
+//
+// SPDX-License-Identifier: MIT
+
 // POSIX semaphore used as a mutex.
 // Extracted from concrat/ProcDump-for-Linux.
 #include <stdlib.h>

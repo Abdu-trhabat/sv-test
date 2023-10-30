@@ -1,3 +1,10 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 University of Tartu
+//
+// SPDX-License-Identifier: MIT
+
 // PARAM: --set ana.activated[+] symb_locks
 // Per-thread array index passed via argument.
 // Thread pool joining via threads alive counter decremented based on thread array values.

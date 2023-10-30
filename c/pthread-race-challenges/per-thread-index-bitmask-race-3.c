@@ -1,3 +1,10 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 University of Tartu
+//
+// SPDX-License-Identifier: MIT
+
 // Per-thread array index using bitmask passed via argument.
 // Extracted from concrat/nnn.
 #include <stdlib.h>
