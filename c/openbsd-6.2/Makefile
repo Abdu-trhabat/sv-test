@@ -41,7 +41,7 @@ include $(LEVEL)/Makefile.config
 
 ## Rules for creating the single files (modules)
 
-TASKS := if_etherip-double-free if_etherip-fixed-double-free if_etherip-fixed-double-free-invalid-deref1 if_etherip-fixed-double-free-invalid-deref2
+TASKS := if_etherip-unreach-call if_etherip-fixed-unreach-call if_etherip-fixed-unreach-call-invalid-deref1 if_etherip-fixed-unreach-call-invalid-deref2
 
 modules: ${TASKS}
 
@@ -64,7 +64,7 @@ ${TASKS}: reset
 	patch -b -R -N -i ${CURDIR}/sources/in6.patch \
 	    ${CURDIR}/sources/sys/netinet6/in6.h \
 	    || echo "Patch failed with code $$?"; \
-	if [ "$@" = "if_etherip-double-free" ]; then \
+	if [ "$@" = "if_etherip-unreach-call" ]; then \
 	    patch -b -R -i ${CURDIR}/sources/007_etherip.patch.sig \
 		-d ${CURDIR}/sources/sys || echo "Patch failed with code $$?"; \
 	fi

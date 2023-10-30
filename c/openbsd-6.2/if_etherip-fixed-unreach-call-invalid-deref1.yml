@@ -1,6 +1,6 @@
 format_version: '2.0'
 
-input_files: 'if_etherip-fixed-double-free-invalid-deref1.i'
+input_files: 'if_etherip-fixed-unreach-call-invalid-deref1.i'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp

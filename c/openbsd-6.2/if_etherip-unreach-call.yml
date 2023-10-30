@@ -1,6 +1,6 @@
 format_version: '2.0'
 
-input_files: 'if_etherip-double-free.i'
+input_files: 'if_etherip-unreach-call.i'
 
 properties:
   # ip6_etherip_input can mistakingly return IPPROTO_NONE (59) instead of
