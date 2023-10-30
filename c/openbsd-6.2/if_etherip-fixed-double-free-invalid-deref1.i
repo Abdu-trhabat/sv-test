@@ -714,8 +714,8 @@ struct mbuf *m_gethdr(int, int);
 void ip_init(void);
 int ip_deliver(struct mbuf **, int *, int, int);
 int etherip_allow;
+struct mbuf *m = ((void *)0);
 int main(void) {
-  struct mbuf *m;
   int len, off;
   etherip_allow = __VERIFIER_nondet_int();
   ip_init();
@@ -1916,7 +1916,7 @@ struct mbuf *m_pullup(struct mbuf *n, int len) {
   ((m_trailingspace(m) >= len)
        ? (void)0
        : openbsd_assert("diagnostic ",
-                        "if_etherip-fixed-double-free-invalid-deref1.c", 305,
+                        "if_etherip-fixed-double-free-invalid-deref1.c", 313,
                         "M_TRAILINGSPACE(m) >= len"));
   do {
     if (n == ((void *)0)) {

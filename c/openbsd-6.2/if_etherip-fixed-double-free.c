@@ -21,8 +21,16 @@ void ip_init(void);
 int ip_deliver(struct mbuf **, int *, int, int);
 int etherip_allow;
 
+// Because the code under analysis is taken from a larger system, we don't know
+// how the memory that contains the mbuf is managed outside of the code under
+// analysis. The code under analysis contains some code that frees the allocated
+// memory, but it is not easy to reason manually that the memory is always freed
+// correctlly, and neither does it have to be. In consequence, we make mbuf *m a
+// global variable to make sure that verifiers don't worry about it being
+// cleaned up correctly.
+struct mbuf *m = NULL;
+
 int main(void) {
-  struct mbuf *m;
   int len, off;
   etherip_allow = __VERIFIER_nondet_int();
 
