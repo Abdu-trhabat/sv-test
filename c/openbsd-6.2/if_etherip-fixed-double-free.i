@@ -429,6 +429,152 @@ int openbsd_clock_gettime(struct proc *p, clockid_t clk_id,
                           struct timespec *tp) {
   return clock_gettime(clk_id, tp);
 }
+typedef __sa_family_t sa_family_t;
+typedef __in_addr_t in_addr_t;
+typedef __in_port_t in_port_t;
+struct in_addr {
+  in_addr_t s_addr;
+};
+struct sockaddr_in {
+  u_int8_t sin_len;
+  sa_family_t sin_family;
+  in_port_t sin_port;
+  struct in_addr sin_addr;
+  int8_t sin_zero[8];
+};
+struct ip_opts {
+  struct in_addr ip_dst;
+  int8_t ip_opts[40];
+};
+struct ip_mreq {
+  struct in_addr imr_multiaddr;
+  struct in_addr imr_interface;
+};
+struct in6_addr {
+  union {
+    u_int8_t __u6_addr8[16];
+    u_int16_t __u6_addr16[8];
+    u_int32_t __u6_addr32[4];
+  } __u6_addr;
+};
+struct sockaddr_in6 {
+  u_int8_t sin6_len;
+  sa_family_t sin6_family;
+  in_port_t sin6_port;
+  u_int32_t sin6_flowinfo;
+  struct in6_addr sin6_addr;
+  u_int32_t sin6_scope_id;
+};
+extern const struct sockaddr_in6 sa6_any;
+extern const struct in6_addr in6mask0;
+extern const struct in6_addr in6mask32;
+extern const struct in6_addr in6mask64;
+extern const struct in6_addr in6mask96;
+extern const struct in6_addr in6mask128;
+extern const struct in6_addr in6addr_any;
+extern const struct in6_addr in6addr_loopback;
+extern const struct in6_addr in6addr_intfacelocal_allnodes;
+extern const struct in6_addr in6addr_linklocal_allnodes;
+extern const struct in6_addr in6addr_linklocal_allrouters;
+struct route_in6 {
+  struct rtentry *ro_rt;
+  u_long ro_tableid;
+  struct sockaddr_in6 ro_dst;
+};
+struct ipv6_mreq {
+  struct in6_addr ipv6mr_multiaddr;
+  unsigned int ipv6mr_interface;
+};
+struct in6_pktinfo {
+  struct in6_addr ipi6_addr;
+  unsigned int ipi6_ifindex;
+};
+struct ip6_mtuinfo {
+  struct sockaddr_in6 ip6m_addr;
+  u_int32_t ip6m_mtu;
+};
+typedef __socklen_t socklen_t;
+extern u_char inet6ctlerrmap[];
+extern struct in6_addr zeroin6_addr;
+struct mbuf;
+struct ifnet;
+struct cmsghdr;
+void ipv6_input(struct ifnet *, struct mbuf *);
+int in6_cksum(struct mbuf *, u_int8_t, u_int32_t, u_int32_t);
+void in6_proto_cksum_out(struct mbuf *, struct ifnet *);
+int in6_localaddr(struct in6_addr *);
+int in6_addrscope(struct in6_addr *);
+struct in6_ifaddr *in6_ifawithscope(struct ifnet *, struct in6_addr *, u_int);
+int in6_mask2len(struct in6_addr *, u_char *);
+int in6_nam2sin6(const struct mbuf *, struct sockaddr_in6 **);
+struct inpcb;
+int in6_embedscope(struct in6_addr *, const struct sockaddr_in6 *,
+                   struct inpcb *);
+void in6_recoverscope(struct sockaddr_in6 *, const struct in6_addr *);
+void in6_clearscope(struct in6_addr *);
+struct sockaddr;
+struct sockaddr_in6;
+struct ifaddr;
+struct in6_ifaddr;
+static inline struct sockaddr_in6 *satosin6(struct sockaddr *sa) {
+  return ((struct sockaddr_in6 *)(sa));
+}
+static inline struct sockaddr *sin6tosa(struct sockaddr_in6 *sin6) {
+  return ((struct sockaddr *)(sin6));
+}
+static inline struct in6_ifaddr *ifatoia6(struct ifaddr *ifa) {
+  return ((struct in6_ifaddr *)(ifa));
+}
+
+struct cmsghdr;
+extern int inet6_opt_init(void *, socklen_t);
+extern int inet6_opt_append(void *, socklen_t, int, u_int8_t, socklen_t,
+                            u_int8_t, void **);
+extern int inet6_opt_finish(void *, socklen_t, int);
+extern int inet6_opt_set_val(void *, int, void *, socklen_t);
+extern int inet6_opt_next(void *, socklen_t, int, u_int8_t *, socklen_t *,
+                          void **);
+extern int inet6_opt_find(void *, socklen_t, int, u_int8_t, socklen_t *,
+                          void **);
+extern int inet6_opt_get_val(void *, int, void *, socklen_t);
+extern socklen_t inet6_rth_space(int, int);
+extern void *inet6_rth_init(void *, socklen_t, int, int);
+extern int inet6_rth_add(void *, const struct in6_addr *);
+extern int inet6_rth_reverse(const void *, void *);
+extern int inet6_rth_segments(const void *);
+extern struct in6_addr *inet6_rth_getaddr(const void *, int);
+
+extern int inetctlerrmap[];
+extern struct in_addr zeroin_addr;
+struct mbuf;
+struct sockaddr;
+struct sockaddr_in;
+struct ifaddr;
+struct in_ifaddr;
+void ipv4_input(struct ifnet *, struct mbuf *);
+int in_broadcast(struct in_addr, u_int);
+int in_canforward(struct in_addr);
+int in_cksum(struct mbuf *, int);
+int in4_cksum(struct mbuf *, u_int8_t, int, int);
+void in_proto_cksum_out(struct mbuf *, struct ifnet *);
+void in_ifdetach(struct ifnet *);
+int in_mask2len(struct in_addr *);
+void in_len2mask(struct in_addr *, int);
+int in_nam2sin(const struct mbuf *, struct sockaddr_in **);
+char *inet_ntoa(struct in_addr);
+int inet_nat64(int, const void *, void *, const void *, u_int8_t);
+int inet_nat46(int, const void *, void *, const void *, u_int8_t);
+const char *inet_ntop(int, const void *, char *, socklen_t);
+const char *sockaddr_ntop(struct sockaddr *, char *, size_t);
+static inline struct sockaddr_in *satosin(struct sockaddr *sa) {
+  return ((struct sockaddr_in *)(sa));
+}
+static inline struct sockaddr *sintosa(struct sockaddr_in *sin) {
+  return ((struct sockaddr *)(sin));
+}
+static inline struct in_ifaddr *ifatoia(struct ifaddr *ifa) {
+  return ((struct in_ifaddr *)(ifa));
+}
 struct m_tag {
   struct {
     struct m_tag *sle_next;
@@ -656,8 +802,6 @@ int dofilereadv(struct proc *, int, struct file *, const struct iovec *, int,
                 int, off_t *, register_t *);
 int dofilewritev(struct proc *, int, struct file *, const struct iovec *, int,
                  int, off_t *, register_t *);
-typedef __socklen_t socklen_t;
-typedef __sa_family_t sa_family_t;
 struct linger {
   int l_onoff;
   int l_linger;
@@ -711,6 +855,7 @@ static inline struct sockaddr *sstosa(struct sockaddr_storage *ss) {
   return ((struct sockaddr *)(ss));
 }
 struct mbuf *m_gethdr(int, int);
+void ip6_init(void);
 void ip_init(void);
 int ip_deliver(struct mbuf **, int *, int, int);
 int etherip_allow;
@@ -718,7 +863,7 @@ struct mbuf *m = ((void *)0);
 int main(void) {
   int len, off;
   etherip_allow = __VERIFIER_nondet_int();
-  ip_init();
+  ip6_init();
   m = m_gethdr((0x0001), (0x0002));
   len = __VERIFIER_nondet_int();
   assume_abort_if_not(len > 0);
@@ -728,7 +873,7 @@ int main(void) {
   assume_abort_if_not(off > 0);
   assume_abort_if_not(off <= len);
   m->m_hdr.mh_len = m->M_dat.MH.MH_pkthdr.len = len;
-  ip_deliver(&m, &off, 0, 24);
+  ip_deliver(&m, &off, 97, 24);
   return 0;
 }
 void panic(const char *fmt, ...);
@@ -1915,7 +2060,7 @@ struct mbuf *m_pullup(struct mbuf *n, int len) {
   }
   ((m_trailingspace(m) >= len)
        ? (void)0
-       : openbsd_assert("diagnostic ", "if_etherip-fixed-double-free.c", 313,
+       : openbsd_assert("diagnostic ", "if_etherip-fixed-double-free.c", 318,
                         "M_TRAILINGSPACE(m) >= len"));
   do {
     if (n == ((void *)0)) {
@@ -2893,150 +3038,6 @@ int rtrequest_delete(struct rt_addrinfo *, u_int8_t, struct ifnet *,
 void rt_if_track(struct ifnet *);
 int rt_if_linkstate_change(struct rtentry *, void *, u_int);
 int rtdeletemsg(struct rtentry *, struct ifnet *, u_int);
-typedef __in_addr_t in_addr_t;
-typedef __in_port_t in_port_t;
-struct in_addr {
-  in_addr_t s_addr;
-};
-struct sockaddr_in {
-  u_int8_t sin_len;
-  sa_family_t sin_family;
-  in_port_t sin_port;
-  struct in_addr sin_addr;
-  int8_t sin_zero[8];
-};
-struct ip_opts {
-  struct in_addr ip_dst;
-  int8_t ip_opts[40];
-};
-struct ip_mreq {
-  struct in_addr imr_multiaddr;
-  struct in_addr imr_interface;
-};
-struct in6_addr {
-  union {
-    u_int8_t __u6_addr8[16];
-    u_int16_t __u6_addr16[8];
-    u_int32_t __u6_addr32[4];
-  } __u6_addr;
-};
-struct sockaddr_in6 {
-  u_int8_t sin6_len;
-  sa_family_t sin6_family;
-  in_port_t sin6_port;
-  u_int32_t sin6_flowinfo;
-  struct in6_addr sin6_addr;
-  u_int32_t sin6_scope_id;
-};
-extern const struct sockaddr_in6 sa6_any;
-extern const struct in6_addr in6mask0;
-extern const struct in6_addr in6mask32;
-extern const struct in6_addr in6mask64;
-extern const struct in6_addr in6mask96;
-extern const struct in6_addr in6mask128;
-extern const struct in6_addr in6addr_any;
-extern const struct in6_addr in6addr_loopback;
-extern const struct in6_addr in6addr_intfacelocal_allnodes;
-extern const struct in6_addr in6addr_linklocal_allnodes;
-extern const struct in6_addr in6addr_linklocal_allrouters;
-struct route_in6 {
-  struct rtentry *ro_rt;
-  u_long ro_tableid;
-  struct sockaddr_in6 ro_dst;
-};
-struct ipv6_mreq {
-  struct in6_addr ipv6mr_multiaddr;
-  unsigned int ipv6mr_interface;
-};
-struct in6_pktinfo {
-  struct in6_addr ipi6_addr;
-  unsigned int ipi6_ifindex;
-};
-struct ip6_mtuinfo {
-  struct sockaddr_in6 ip6m_addr;
-  u_int32_t ip6m_mtu;
-};
-extern u_char inet6ctlerrmap[];
-extern struct in6_addr zeroin6_addr;
-struct mbuf;
-struct ifnet;
-struct cmsghdr;
-void ipv6_input(struct ifnet *, struct mbuf *);
-int in6_cksum(struct mbuf *, u_int8_t, u_int32_t, u_int32_t);
-void in6_proto_cksum_out(struct mbuf *, struct ifnet *);
-int in6_localaddr(struct in6_addr *);
-int in6_addrscope(struct in6_addr *);
-struct in6_ifaddr *in6_ifawithscope(struct ifnet *, struct in6_addr *, u_int);
-int in6_mask2len(struct in6_addr *, u_char *);
-int in6_nam2sin6(const struct mbuf *, struct sockaddr_in6 **);
-struct inpcb;
-int in6_embedscope(struct in6_addr *, const struct sockaddr_in6 *,
-                   struct inpcb *);
-void in6_recoverscope(struct sockaddr_in6 *, const struct in6_addr *);
-void in6_clearscope(struct in6_addr *);
-struct sockaddr;
-struct sockaddr_in6;
-struct ifaddr;
-struct in6_ifaddr;
-static inline struct sockaddr_in6 *satosin6(struct sockaddr *sa) {
-  return ((struct sockaddr_in6 *)(sa));
-}
-static inline struct sockaddr *sin6tosa(struct sockaddr_in6 *sin6) {
-  return ((struct sockaddr *)(sin6));
-}
-static inline struct in6_ifaddr *ifatoia6(struct ifaddr *ifa) {
-  return ((struct in6_ifaddr *)(ifa));
-}
-
-struct cmsghdr;
-extern int inet6_opt_init(void *, socklen_t);
-extern int inet6_opt_append(void *, socklen_t, int, u_int8_t, socklen_t,
-                            u_int8_t, void **);
-extern int inet6_opt_finish(void *, socklen_t, int);
-extern int inet6_opt_set_val(void *, int, void *, socklen_t);
-extern int inet6_opt_next(void *, socklen_t, int, u_int8_t *, socklen_t *,
-                          void **);
-extern int inet6_opt_find(void *, socklen_t, int, u_int8_t, socklen_t *,
-                          void **);
-extern int inet6_opt_get_val(void *, int, void *, socklen_t);
-extern socklen_t inet6_rth_space(int, int);
-extern void *inet6_rth_init(void *, socklen_t, int, int);
-extern int inet6_rth_add(void *, const struct in6_addr *);
-extern int inet6_rth_reverse(const void *, void *);
-extern int inet6_rth_segments(const void *);
-extern struct in6_addr *inet6_rth_getaddr(const void *, int);
-
-extern int inetctlerrmap[];
-extern struct in_addr zeroin_addr;
-struct mbuf;
-struct sockaddr;
-struct sockaddr_in;
-struct ifaddr;
-struct in_ifaddr;
-void ipv4_input(struct ifnet *, struct mbuf *);
-int in_broadcast(struct in_addr, u_int);
-int in_canforward(struct in_addr);
-int in_cksum(struct mbuf *, int);
-int in4_cksum(struct mbuf *, u_int8_t, int, int);
-void in_proto_cksum_out(struct mbuf *, struct ifnet *);
-void in_ifdetach(struct ifnet *);
-int in_mask2len(struct in_addr *);
-void in_len2mask(struct in_addr *, int);
-int in_nam2sin(const struct mbuf *, struct sockaddr_in **);
-char *inet_ntoa(struct in_addr);
-int inet_nat64(int, const void *, void *, const void *, u_int8_t);
-int inet_nat46(int, const void *, void *, const void *, u_int8_t);
-const char *inet_ntop(int, const void *, char *, socklen_t);
-const char *sockaddr_ntop(struct sockaddr *, char *, size_t);
-static inline struct sockaddr_in *satosin(struct sockaddr *sa) {
-  return ((struct sockaddr_in *)(sa));
-}
-static inline struct sockaddr *sintosa(struct sockaddr_in *sin) {
-  return ((struct sockaddr *)(sin));
-}
-static inline struct in_ifaddr *ifatoia(struct ifaddr *ifa) {
-  return ((struct in_ifaddr *)(ifa));
-}
 struct ipovly {
   u_int8_t ih_x1[9];
   u_int8_t ih_pr;

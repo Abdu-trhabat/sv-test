@@ -3,6 +3,10 @@
 #include "sources/sys/sv_comp.h"
 #endif
 
+#ifndef __stub_netinet_in
+#define __stub_netinet_in 1
+#include "sources/sys/netinet/in.h"
+#endif
 #ifndef __stub_sys_types
 #define __stub_sys_types 1
 #include "sources/sys/sys/types.h"
@@ -17,6 +21,7 @@
 #endif
 
 struct mbuf *m_gethdr(int, int);
+void ip6_init(void);
 void ip_init(void);
 int ip_deliver(struct mbuf **, int *, int, int);
 int etherip_allow;
@@ -34,6 +39,9 @@ int main(void) {
   int len, off;
   etherip_allow = __VERIFIER_nondet_int();
 
+  // Do not call ip6_init but ip_init, so that ip6_protox is initialized with all 0
+  // and the first element of inet6sw is used, which is missing pr_input.
+  // This then triggers a null-pointer dereference.
   ip_init();
   MGETHDR(m, M_WAIT, M_PKTHDR);
 
@@ -46,7 +54,7 @@ int main(void) {
   assume_abort_if_not(off <= len);
   m->m_len = m->m_pkthdr.len = len;
 
-  ip_deliver(&m, &off, 0, AF_INET6);
+  ip_deliver(&m, &off, IPPROTO_ETHERIP, AF_INET6);
 
   return 0;
 }

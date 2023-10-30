@@ -1,11 +1,13 @@
 #include "sv_comp.h"
 
+#include "netinet/in.h"
 #include "sys/types.h"
 #include "sys/mbuf.h"
 #include "sys/socket.h"
 
 
 struct  mbuf *m_gethdr(int, int);
+void ip6_init(void);
 void ip_init(void);
 int ip_deliver(struct mbuf **, int *, int, int);
 int etherip_allow;
@@ -25,7 +27,7 @@ main(void)
     int len, off;
     etherip_allow = __VERIFIER_nondet_int();
 
-    ip_init();
+    ip6_init();
     MGETHDR(m, M_WAIT, M_PKTHDR);
 
     len = __VERIFIER_nondet_int();
@@ -37,7 +39,7 @@ main(void)
     assume_abort_if_not(off <= len);
     m->m_len = m->m_pkthdr.len = len;
 
-    ip_deliver(&m, &off, 0, AF_INET6);
+    ip_deliver(&m, &off, IPPROTO_ETHERIP, AF_INET6);
 
     return 0;
 }
