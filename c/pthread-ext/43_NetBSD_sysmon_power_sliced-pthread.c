@@ -84,7 +84,7 @@ inline void sysmonread_power(){
 			if (__VERIFIER_nondet_int()) {
 				break;}
 			pthread_cond_wait(&COND, &MTX);
-      assert_nl(COND); }
+		}
 		mutex_exit(MTX); }
   assert(1);
 }

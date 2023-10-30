@@ -741,7 +741,7 @@ inline void sysmonread_power(){
    if (__VERIFIER_nondet_int()) {
     break;}
    pthread_cond_wait(&COND, &MTX);
-      { if(!(COND)) { goto ERROR; } }; }
+  }
   pthread_mutex_unlock(&MTX);; }
   { if(!(1)) { ERROR: {reach_error();abort();}(void)0; } };
 }
