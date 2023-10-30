@@ -1,8 +1,4 @@
 extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
-extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
 extern void __VERIFIER_atomic_begin(void);
@@ -10,39 +6,21 @@ extern void __VERIFIER_atomic_end(void);
 
 #include <pthread.h>
 
-#define assume(e) assume_abort_if_not(e)
 #undef assert
 #define assert(e) { if(!(e)) { ERROR: {reach_error();abort();}(void)0; } }
 
 volatile unsigned int count = 0; //shared
 pthread_mutex_t MTX = PTHREAD_MUTEX_INITIALIZER; //shared mutex
-_Bool COND = 0; //condition variables become flag indicating whether the thread was signaled
-
-
-#define cnd_wait(c,m){ \
-  pthread_mutex_unlock(&MTX); \
-__VERIFIER_atomic_begin(); \
-  assume(c); \
-  __VERIFIER_atomic_end(); \
-  __VERIFIER_atomic_begin(); \
-  c = 0; \
-  __VERIFIER_atomic_end(); \
-  pthread_mutex_lock(&MTX); }
-
-#define cnd_broadcast(c){ \
-  __VERIFIER_atomic_begin(); \
-  (c = 1); \
-  __VERIFIER_atomic_end(); \
-  } //BP must be post-processed manually by changing "b*_COND := 1" to "b*_COND$ := 1"
+pthread_cond_t COND = PTHREAD_COND_INITIALIZER; //condition variables become flag indicating whether the thread was signaled
 
 void Barrier2() {  
   pthread_mutex_lock(&MTX);
   count++;
   if (count == 3) {
-    cnd_broadcast(COND); //pthread_cond_broadcast(&cond);
+    pthread_cond_broadcast(&COND);
     count = 0; }
   else
-    cnd_wait(COND,MTX); //pthread_cond_wait(&cond, &m);
+    pthread_cond_wait(&COND, &MTX);
   pthread_mutex_unlock(&MTX); }
   
 void* thr1(void* arg){

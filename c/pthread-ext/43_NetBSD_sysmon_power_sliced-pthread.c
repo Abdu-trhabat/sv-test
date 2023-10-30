@@ -1,9 +1,5 @@
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
-extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -13,33 +9,19 @@ void reach_error() { assert(0); }
 to correctly model the cv_broadcast(COND) statement "b1_COND := 1;" must be manually changed to "b1_COND$ := 1;" in the abstract BP
 */
 
-#define assume(e) assume_abort_if_not(e)
 #define assert_nl(e) { if(!(e)) { goto ERROR; } }
 #undef assert
 #define assert(e) { if(!(e)) { ERROR: {reach_error();abort();}(void)0; } }
-
-#define cv_wait(c,m){ \
-  c = 0; \
-  pthread_mutex_unlock(&m); \
-  pthread_mutex_lock(&m); \
-  assume(c); }
-
-#define cv_broadcast(c) c = 1 //overapproximates semantics (for threader)
-
-#define LOCKED 1
 
 #define mutex_enter(m) pthread_mutex_lock(&m); //acquire lock and ensure no other thread unlocked it
 #define mutex_exit(m) pthread_mutex_unlock(&m);
 
 pthread_mutex_t MTX = PTHREAD_MUTEX_INITIALIZER;
-_Bool COND = 0;
+pthread_cond_t COND = PTHREAD_COND_INITIALIZER;
 
 #define PSWITCH_EVENT_RELEASED 1
 #define PENVSYS_EVENT_NORMAL 2
 #define POWER_EVENT_RECVDICT 3
-
-#define KASSERT(e) assert_nl(e)
-#define is_locked(m) (m==LOCKED)
 
 inline int sysmon_queue_power_event(){
   assert(1);
@@ -75,7 +57,7 @@ inline int sysmon_power_daemon_task(){
 		mutex_exit(MTX);
 		goto out;} 
 	else {
-		cv_broadcast(COND);
+		pthread_cond_broadcast(&COND);
 		mutex_exit(MTX);}
 	out:
   assert(1);
@@ -101,7 +83,7 @@ inline void sysmonread_power(){
 				break;}
 			if (__VERIFIER_nondet_int()) {
 				break;}
-			cv_wait(COND,MTX);
+			pthread_cond_wait(&COND, &MTX);
       assert_nl(COND); }
 		mutex_exit(MTX); }
   assert(1);
