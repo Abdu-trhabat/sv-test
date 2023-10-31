@@ -29,7 +29,6 @@ int main()
     }
 
     for(user=users; user != NULL; user=(example_user_t*)(user->hh.next)) {
-        printf("user %d, cookie %d\n", user->id, user->cookie);
         sum -= user->cookie;
     }
     __VERIFIER_assert(sum == 0);

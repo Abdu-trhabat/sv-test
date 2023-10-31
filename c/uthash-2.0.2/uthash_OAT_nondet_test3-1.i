@@ -751,7 +751,7 @@ int main()
             do { struct UT_hash_handle *_hd_hh_del = (&(tmp)->hh); if ((_hd_hh_del->prev == ((void *)0)) && (_hd_hh_del->next == ((void *)0))) { ; free((users)->hh.tbl->buckets); free((users)->hh.tbl); (users) = ((void *)0); } else { unsigned _hd_bkt; if (_hd_hh_del == (users)->hh.tbl->tail) { (users)->hh.tbl->tail = ((UT_hash_handle *)(((char*)(_hd_hh_del->prev)) + (((users)->hh.tbl)->hho))); } if (_hd_hh_del->prev != ((void *)0)) { ((UT_hash_handle *)(((char*)(_hd_hh_del->prev)) + (((users)->hh.tbl)->hho)))->next = _hd_hh_del->next; } else { do { (users) = (__typeof(users))(_hd_hh_del->next); } while (0); } if (_hd_hh_del->next != ((void *)0)) { ((UT_hash_handle *)(((char*)(_hd_hh_del->next)) + (((users)->hh.tbl)->hho)))->prev = _hd_hh_del->prev; } do { _hd_bkt = ((_hd_hh_del->hashv) & (((users)->hh.tbl->num_buckets) - 1U)); } while (0); do { UT_hash_bucket *_hd_head = &((users)->hh.tbl->buckets[_hd_bkt]); _hd_head->count--; if (_hd_head->hh_head == (_hd_hh_del)) { _hd_head->hh_head = (_hd_hh_del)->hh_next; } if ((_hd_hh_del)->hh_prev) { (_hd_hh_del)->hh_prev->hh_next = (_hd_hh_del)->hh_next; } if ((_hd_hh_del)->hh_next) { (_hd_hh_del)->hh_next->hh_prev = (_hd_hh_del)->hh_prev; } } while (0); (users)->hh.tbl->num_items--; } ; } while (0);
             free(tmp);
         } else {
-            printf("user id %d not found\n", i);
+            __VERIFIER_assert(0);
         }
     }
     for(user=users; user != ((void *)0); user=(example_user_t*)(user->hh.next)) {

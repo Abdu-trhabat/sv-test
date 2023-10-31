@@ -32,11 +32,6 @@ int main()
     /* find each even ID */
     for(i=0; i<bound; i+=2) {
         HASH_FIND_INT(users,&i,tmp);
-        if (tmp != NULL) {
-            printf("user id %d found, cookie %d\n", tmp->id, tmp->cookie);
-        } else {
-            printf("user id %d not found\n", i);
-        }
         __VERIFIER_assert(tmp != NULL);
     }
     example_user_t* temp;

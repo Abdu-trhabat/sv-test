@@ -31,7 +31,6 @@ int main()
     }
 
     for(user=altusers; user != NULL; user=(example_user_t*)(user->alth.next)) {
-        printf("cookie %d, user %d\n", user->cookie, user->id);
         __VERIFIER_assert(user->id <= BOUND && user->id >= 0);
     }
     return 0;

@@ -34,7 +34,7 @@ int main()
             HASH_DEL(users,tmp);
             free(tmp);
         } else {
-            printf("user id %d not found\n", i);
+            __VERIFIER_assert(0);
         }
     }
 
