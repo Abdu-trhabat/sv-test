@@ -6,7 +6,7 @@ which is implemented as a preprocessor macro.
 As such they are currently purely deterministic, but I think they will still pose a challenge
 to verifiers because of their complexity and extensive heap memory handling.
 
-Currently I only took the first 10 test cases with 6 of the 7 possible hash function.
+I took the first 10 test cases with 6 of the 7 possible hash function.
 The last hash function murmur hash exploits no-strict-aliasing,
 which is undefined behavior and was therefore excluded.
 The tests as they were did not cleanup memory properly.
@@ -30,3 +30,8 @@ I just copied the LICENSE file from the uthash repository over.
 I put the instrumentation code I added to create these tasks
 under the same license for convenience.
 The version of uthash in these benchmarks is (the tag) 2.0.2
+
+For the nondeterministic verification tasks I simply added some nondeterminism
+to the basic version of test{1,2,3,4,5}.c,
+these are also put under the 1-clause BSD license for convenience.
+This results in 54 additional tasks that should be a bit harder to solve.
