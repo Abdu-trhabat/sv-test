@@ -4,11 +4,10 @@
 // SPDX-FileCopyrightText: 2022-2023 University of Tartu & Technische Universität München
 //
 // SPDX-License-Identifier: MIT
-
 #include <assert.h>
 extern void abort(void);
 void reach_error() { assert(0); }
-void g(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 
 #include <setjmp.h>
 #include <stdlib.h>

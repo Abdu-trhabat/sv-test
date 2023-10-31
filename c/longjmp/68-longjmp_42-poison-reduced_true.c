@@ -4,13 +4,14 @@
 // SPDX-FileCopyrightText: 2022-2023 University of Tartu & Technische Universität München
 //
 // SPDX-License-Identifier: MIT
-
 #include <assert.h>
 extern void abort(void);
 void reach_error() { assert(0); }
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 
 #include<setjmp.h>
+#include<stdlib.h>
+
 jmp_buf env_buffer;
 struct c {
   char *g;
@@ -30,7 +31,7 @@ void set_g_to_keyword(struct c* t) {
   t->g = keyword;
 }
 
-main() {
+int main() {
   struct c* ab = malloc(sizeof(struct c));
   int x;
 

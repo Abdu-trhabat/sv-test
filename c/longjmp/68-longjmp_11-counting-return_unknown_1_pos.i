@@ -43,7 +43,7 @@ void foo(int count)
 int main(void)
 {
     int count = _setjmp (my_jump_buffer);
-    __VgERIFIER_assert(count == 0);
+    __VERIFIER_assert(count == 0);
     if (count < 5) {
         foo(count);
     }

@@ -5,9 +5,9 @@
 #
 # SPDX-License-Identifier: MIT
 
-Goblint regression tests
+Subset of Goblint regression tests for setjmp/longjmp
 
 Goblint website: https://goblint.in.tum.de/
 Goblint repository: https://github.com/goblint/analyzer
 
-The regression test suite from `tests/regression` directory in the repository has been converted using `scripts/regression2sv-benchmarks.py`.
+The set of regression tests for setjmp/longmp from the `tests/regression/` directory in the repository has been converted using `scripts/regression2sv-benchmarks.py`.

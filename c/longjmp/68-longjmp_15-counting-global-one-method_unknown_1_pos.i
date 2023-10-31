@@ -40,7 +40,7 @@ int count = 0;
 int main(void)
 {
     _setjmp (my_jump_buffer);
-    __VgERIFIER_assert(count == 0);
+    __VERIFIER_assert(count == 0);
     if (count < 5) {
         count++;
         longjmp(my_jump_buffer, 1);
