@@ -2,6 +2,7 @@
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
 // Copyright 2020 Rory Conlin
+// SPDX-FileCopyrightText: 2020 Rory Conlin
 // SPDX-FileCopyrightText: 2023 Edoardo Manino
 //
 // SPDX-License-Identifier: MIT
