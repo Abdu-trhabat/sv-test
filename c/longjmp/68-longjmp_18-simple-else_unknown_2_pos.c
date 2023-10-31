@@ -1,3 +1,10 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2022-2023 University of Tartu & Technische Universität München
+//
+// SPDX-License-Identifier: MIT
+
 #include <assert.h>
 extern void abort(void);
 void reach_error() { assert(0); }
@@ -24,7 +31,7 @@ int main () {
    /* save calling environment for longjmp */
    val = setjmp( env_buffer );
 
-   __VgERIFIER_assert(global == 2);
+   __VERIFIER_assert(global == 2);
 
    if( val != 0 ) {
       printf("Returned from a longjmp() with value = %i\n", val);
