@@ -754,8 +754,7 @@ int main()
         }
     }
     for(user=users; user != ((void *)0); user=(example_user_t*)(user->hh.next)) {
-        printf("user %d, cookie %d\n", user->id, user->cookie);
-        __VERIFIER_assert(id % 2 != 0);
+        __VERIFIER_assert(user->id % 2 != 0);
     }
     return 0;
 }

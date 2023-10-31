@@ -40,8 +40,7 @@ int main()
 
     /* show the hash */
     for(user=users; user != NULL; user=(example_user_t*)(user->hh.next)) {
-        printf("user %d, cookie %d\n", user->id, user->cookie);
-        __VERIFIER_assert(id % 2 != 0);
+        __VERIFIER_assert(user->id % 2 != 0);
     }
     example_user_t* temp;
     HASH_ITER(hh, users, user, temp) {
