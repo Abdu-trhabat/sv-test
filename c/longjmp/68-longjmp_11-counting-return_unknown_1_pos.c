@@ -1,0 +1,22 @@
+#include <assert.h>
+extern void abort(void);
+void reach_error() { assert(0); }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
+
+#include <setjmp.h>
+
+jmp_buf my_jump_buffer;
+
+void foo(int count)
+{
+    longjmp(my_jump_buffer, count + 1);
+}
+
+int main(void)
+{
+    int count = setjmp(my_jump_buffer);
+    __VgERIFIER_assert(count == 0);
+    if (count < 5) {
+        foo(count);
+    }
+}
