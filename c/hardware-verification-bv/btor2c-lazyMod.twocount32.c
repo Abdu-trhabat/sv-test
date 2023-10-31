@@ -8,16 +8,17 @@
 //
 // SPDX-License-Identifier: MIT
 
-// This C program is converted from Btor2 by Btor2C version bfcfb8b
+// This C program is converted from Btor2 by Btor2C version sha1:a0fa249
 //   with arguments: { architecture=64, lazy_modulo=true, use_memmove=false, unroll_inner_loops=false, shortest_type=true, diff_type=true, decimal_constant=true, zero_init=false, sra_extend_sign=true }
 // Comments from the original Btor2 file:
 // ; source: https://github.com/Boolector/btor2tools/tree/b8456dda4780789e882f5791eb486f295ade4da4/examples/btorsim
-extern void abort(void);
-void reach_error() {}
 extern unsigned char __VERIFIER_nondet_uchar();
 extern unsigned short __VERIFIER_nondet_ushort();
 extern unsigned int __VERIFIER_nondet_uint();
 extern unsigned long __VERIFIER_nondet_ulong();
+extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *);
+void reach_error() { __assert_fail("0", "twocount32.c", 0, "reach_error"); }
 void __VERIFIER_assert(int cond) { if (!(cond)) { ERROR: { reach_error(); abort(); } } }
 void assume_abort_if_not(int cond) { if (!cond) { abort(); } }
 int main() {
