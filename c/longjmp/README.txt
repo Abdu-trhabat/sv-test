@@ -5,6 +5,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+Contributed by:  The Goblint developers
+
 Subset of Goblint regression tests for setjmp/longjmp
 
 Goblint website: https://goblint.in.tum.de/
