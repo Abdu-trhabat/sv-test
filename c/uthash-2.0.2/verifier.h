@@ -1,3 +1,4 @@
+#include <assert.h>
 #define BOUND 10000
 extern int __VERIFIER_nondet_uint(void);
 extern short __VERIFIER_nondet_short(void);
