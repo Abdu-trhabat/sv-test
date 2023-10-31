@@ -5,3 +5,4 @@ locks/*.yml
 ntdrivers/*.yml
 openssl/*.yml
 memory-model/*.yml
+longjmp/*.yml
