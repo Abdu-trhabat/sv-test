@@ -1,0 +1,12 @@
+format_version: '2.0'
+
+# source_files: 'dll-fst-shared.c'
+input_files: 'dll-fst-shared.i'
+
+properties:
+  - property_file: ../properties/valid-memsafety.prp
+    expected_verdict: true
+
+options:
+  language: C
+  data_model: LP64

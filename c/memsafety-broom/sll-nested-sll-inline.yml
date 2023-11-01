@@ -1,0 +1,12 @@
+format_version: '2.0'
+
+# source_files: 'sll-nested-sll-inline.c'
+input_files: 'sll-nested-sll-inline.i'
+
+properties:
+  - property_file: ../properties/valid-memsafety.prp
+    expected_verdict: true
+
+options:
+  language: C
+  data_model: LP64
