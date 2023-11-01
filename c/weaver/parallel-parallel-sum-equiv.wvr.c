@@ -44,7 +44,7 @@ int n_1, s_2, i_3, t_4, t_5, s_6, i_7, t_8;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not( i_3 < n_1 );
@@ -62,7 +62,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not( i_3 < n_1 );
@@ -80,7 +80,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread1() {
+void* thread1(void* _argptr) {
   pthread_t t2, t3;
 
   __VERIFIER_atomic_begin();  
@@ -96,7 +96,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   __VERIFIER_atomic_begin();
   i_7 = 0;
   s_6 = 0;

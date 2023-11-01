@@ -38,7 +38,7 @@ void assume_abort_if_not(int cond) {
 unsigned int x_0, x_1;
 
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     x_0 = __VERIFIER_nondet_uint();
@@ -57,7 +57,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     x_0 = x_0 * 10;
@@ -73,7 +73,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     x_1 = __VERIFIER_nondet_uint();
@@ -92,7 +92,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     x_1 = x_1 * 10;

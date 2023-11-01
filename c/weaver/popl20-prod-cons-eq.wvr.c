@@ -47,7 +47,7 @@ _Bool finished1, finished2;
 int *create_fresh_int_array(int size);
 _Bool *create_fresh_bool_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (!finished1) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(front1+size1 >= 0 && front1+size1 < n_queue);
@@ -65,7 +65,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = !finished1 || size1 > 0;
   __VERIFIER_atomic_end();
@@ -87,7 +87,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   while (!finished2) {
     assume_abort_if_not(state22 >= 0 && state22 < n1);
     assume_abort_if_not(state21 >= 0 && state21 < n_produce);

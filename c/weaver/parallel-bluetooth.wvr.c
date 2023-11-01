@@ -38,7 +38,7 @@ void assume_abort_if_not(int cond) {
 int count, pos;
 _Bool sFlag, sEvent, stopped, v_assert;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   count = sFlag ? count : (count + 1);
   v_assert = ( sFlag || !stopped );
@@ -59,7 +59,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   sFlag = 1;
   __VERIFIER_atomic_end();

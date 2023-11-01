@@ -44,7 +44,7 @@ int name_1, name_2, name_3, result_4, i_5, current_6, break_7, result_8, i_9, cu
 int *create_fresh_int_array(int size);
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   i_5 = 0;
   break_7 = 0;
   result_4 = ( name_1 == name_2 ) ? 0 : result_4;
@@ -65,7 +65,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   i_9 = 0;
   break_11 = 0;
   result_8 = ( name_1 == name_3 ) ? 0 : result_8;
@@ -87,7 +87,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   i_13 = 0;
   break_15 = 0;
   result_12 = ( name_2 == name_3 ) ? 0 : result_12;

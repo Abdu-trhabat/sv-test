@@ -45,7 +45,7 @@ _Bool isNull_1, isNull_3, isNull_5;
 int *create_fresh_int_array(int size);
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   assume_abort_if_not(!isNull_1);
   _Bool stop = isNull_3;
   result_7 = 1;
@@ -59,7 +59,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   assume_abort_if_not(!isNull_1);
   _Bool stop = isNull_5;
   result_10 = 1;
@@ -73,7 +73,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   assume_abort_if_not(!isNull_3);
   _Bool stop = isNull_5;
   result_13 = 1;

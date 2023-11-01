@@ -46,7 +46,7 @@ int *create_fresh_int_array(int size);
 _Bool *create_fresh_bool_array(int size);
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   order1_10 = get_2[id_0];
   order2_11 = get_5[id_3];
   result_9 = ( ( contains_key_1[id_0] && contains_key_4[id_3] ) ? ( ( order1_10 < order2_11 ) ? -1 : ( ( order1_10 > order2_11 ) ? 1 : 0 ) ) : minus(get_2[id_0], get_5[id_3]) );
@@ -54,7 +54,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   order1_13 = get_5[id_3];
   order2_14 = get_8[id_6];
   result_12 = ( ( contains_key_4[id_3] && contains_key_7[id_6] ) ? ( ( order1_13 < order2_14 ) ? -1 : ( ( order1_13 > order2_14 ) ? 1 : 0 ) ) : minus(get_5[id_3], get_8[id_6]) );
@@ -62,7 +62,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   order1_16 = get_2[id_0];
   order2_17 = get_8[id_6];
   result_15 = ( ( contains_key_1[id_0] && contains_key_7[id_6] ) ? ( ( order1_16 < order2_17 ) ? -1 : ( ( order1_16 > order2_17 ) ? 1 : 0 ) ) : minus(get_2[id_0], get_8[id_6]) );

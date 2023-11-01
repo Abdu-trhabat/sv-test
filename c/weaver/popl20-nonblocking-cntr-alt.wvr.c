@@ -37,7 +37,7 @@ void assume_abort_if_not(int cond) {
 
 int M1, M2, counter;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<M1; i++) {
     __VERIFIER_atomic_begin();
     counter++;
@@ -47,7 +47,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   int i = 0;
   while (i < M2) {
     __VERIFIER_atomic_begin();

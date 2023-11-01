@@ -43,7 +43,7 @@ _Bool f1_8, f2_9;
 int temp_10, temp_11;
 int y_7;
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   temp_4 = x_0;
   __VERIFIER_atomic_end();
@@ -68,7 +68,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   temp_5 = y_1;
   __VERIFIER_atomic_end();
@@ -93,7 +93,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread1() {
+void* thread1(void* _argptr) {
   pthread_t t2, t3;
 
   assume_abort_if_not( x_0 == y_1 && !f1_2 && !f2_3 );
@@ -106,7 +106,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread5() {
+void* thread5(void* _argptr) {
   __VERIFIER_atomic_begin();
   temp_10 = x_6;
   __VERIFIER_atomic_end();
@@ -131,7 +131,7 @@ void* thread5() {
   return 0;
 }
 
-void* thread6() {
+void* thread6(void* _argptr) {
   __VERIFIER_atomic_begin();
   temp_11 = y_7;
   __VERIFIER_atomic_end();
@@ -156,7 +156,7 @@ void* thread6() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   pthread_t t5, t6;
 
   assume_abort_if_not( x_6 == y_7 && !f1_8 && !f2_9 );

@@ -37,7 +37,7 @@ void assume_abort_if_not(int cond) {
 
 int x, y;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   x++;
   __VERIFIER_atomic_end();
@@ -45,7 +45,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   assume_abort_if_not(x >= 0);
   x--;

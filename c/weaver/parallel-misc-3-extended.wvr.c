@@ -38,7 +38,7 @@ void assume_abort_if_not(int cond) {
 int pos;
 _Bool d1, d2, d3, g1, g2, g3;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (g1) {
     if (d1) {
       __VERIFIER_atomic_begin();
@@ -60,7 +60,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (g2) {
     if (d2) {
       __VERIFIER_atomic_begin();
@@ -82,7 +82,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   while (g3) {
     if (d3) {
       __VERIFIER_atomic_begin();

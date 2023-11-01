@@ -43,7 +43,7 @@ int res1, res2, M, N;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
     __VERIFIER_atomic_begin();
     int tmp = plus(res1, A[i]);
@@ -56,7 +56,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (int i=0; i<M; i++) {
     __VERIFIER_atomic_begin();
     int tmp = plus(res2, A[i]);
@@ -69,7 +69,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   for (int i=M; i<N; i++) {
     __VERIFIER_atomic_begin();
     int tmp = plus(res2, A[i]);

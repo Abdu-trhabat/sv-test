@@ -46,7 +46,7 @@ int asum, bsum, csum, N;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
     asum = plus(asum, A[i]);
   }
@@ -54,7 +54,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (int i=0; i<N; i++) {
     bsum = plus(bsum, B[i]);
   }
@@ -62,7 +62,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   for (int i=0; i<N; i++) {
     C[i] = plus(A[i], B[i]);
     csum = plus(csum, C[i]);

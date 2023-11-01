@@ -37,7 +37,7 @@ void assume_abort_if_not(int cond) {
 
 unsigned int s, t, m, c, T, S, u, U;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = s > 0 || t > 0 || u > 0;
   __VERIFIER_atomic_end();
@@ -56,7 +56,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = t > 0 || u > 0;
   __VERIFIER_atomic_end();
@@ -75,7 +75,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = u > 0;
   __VERIFIER_atomic_end();

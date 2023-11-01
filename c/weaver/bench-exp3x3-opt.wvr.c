@@ -37,7 +37,7 @@ void assume_abort_if_not(int cond) {
 
 unsigned int x1, x2, x3, x4, x5, x6, n;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (x1 < n) {
     x1 = x1 + x1;
   }
@@ -45,7 +45,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (x2 < n) {
     x2 = x2 + x2;
   }
@@ -53,7 +53,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   while (x3 < n) {
     x3 = x3 + x3;
   }
@@ -61,7 +61,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   while (x4 < n) {
     x4 = x4 + x4;
   }
@@ -69,7 +69,7 @@ void* thread4() {
   return 0;
 }
 
-void* thread5() {
+void* thread5(void* _argptr) {
   while (x5 < n) {
     x5 = x5 + x5;
   }
@@ -77,7 +77,7 @@ void* thread5() {
   return 0;
 }
 
-void* thread6() {
+void* thread6(void* _argptr) {
   while (x6 < n) {
     x6 = x6 + x6;
   }
