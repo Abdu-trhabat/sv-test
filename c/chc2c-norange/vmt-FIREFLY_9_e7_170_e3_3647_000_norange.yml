@@ -1,0 +1,17 @@
+
+format_version: '2.0'
+
+input_files: 'vmt-FIREFLY_9_e7_170_e3_3647_000_norange.c'
+
+properties:
+  - property_file: ../properties/unreach-call.prp
+    expected_verdict: true
+
+options:
+  language: C
+  data_model: ILP32
+
+        
+#Verdict confirmed by the CHC solver eldarica
+#Verdict confirmed by the CHC solver golem
+#Verdict confirmed by the CHC solver spacer
