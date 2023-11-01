@@ -13,6 +13,7 @@ input_files: 'btor2c-lazyMod.firewire_tree.3.prop2-back-serstep.c'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

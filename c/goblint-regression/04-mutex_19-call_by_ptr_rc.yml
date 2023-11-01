@@ -5,6 +5,7 @@ input_files: '04-mutex_19-call_by_ptr_rc.i'
 properties:
   - property_file: ../properties/no-data-race.prp
     expected_verdict: false
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C
