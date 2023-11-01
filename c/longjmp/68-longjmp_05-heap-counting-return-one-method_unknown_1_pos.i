@@ -454,7 +454,7 @@ extern void arc4random_buf (void *__buf, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern __uint32_t arc4random_uniform (__uint32_t __upper_bound)
      __attribute__ ((__nothrow__ , __leaf__)) ;
-extern void *malloc(unsigned int) ;
+extern void *malloc(size_t) ;
 
 
 extern void *alloca (size_t __size) __attribute__ ((__nothrow__ , __leaf__));
