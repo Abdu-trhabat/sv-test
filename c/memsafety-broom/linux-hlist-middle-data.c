@@ -6,6 +6,7 @@
 #define PREDATOR
 #include <stdlib.h>
 #include <stddef.h> // offsetof
+#define typeof __typeof__
 
 extern int __VERIFIER_nondet_int(void);
 

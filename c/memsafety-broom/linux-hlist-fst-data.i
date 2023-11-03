@@ -587,7 +587,7 @@ struct hlist_head *create()
 void loop(struct hlist_head *head)
 {
     struct my_item *now;
-    for (now = ({ typeof((head)->first) ____ptr = ((head)->first); ____ptr ? ({ void *__mptr = (void *)(____ptr); ((typeof(*(now)) *)(__mptr - __builtin_offsetof (typeof(*(now)), link))); }) : ((void *)0); }); now; now = ({ typeof((now)->link.next) ____ptr = ((now)->link.next); ____ptr ? ({ void *__mptr = (void *)(____ptr); ((typeof(*(now)) *)(__mptr - __builtin_offsetof (typeof(*(now)), link))); }) : ((void *)0); })) {
+    for (now = ({ __typeof__((head)->first) ____ptr = ((head)->first); ____ptr ? ({ void *__mptr = (void *)(____ptr); ((__typeof__(*(now)) *)(__mptr - __builtin_offsetof (__typeof__(*(now)), link))); }) : ((void *)0); }); now; now = ({ __typeof__((now)->link.next) ____ptr = ((now)->link.next); ____ptr ? ({ void *__mptr = (void *)(____ptr); ((__typeof__(*(now)) *)(__mptr - __builtin_offsetof (__typeof__(*(now)), link))); }) : ((void *)0); })) {
         do_data(&(now->data));
     }
 }
@@ -595,7 +595,7 @@ void destroy(struct hlist_head *head)
 {
     struct my_item *now;
     struct hlist_node *tmp;
-    for (now = ({ typeof((head)->first) ____ptr = ((head)->first); ____ptr ? ({ void *__mptr = (void *)(____ptr); ((typeof(*now) *)(__mptr - __builtin_offsetof (typeof(*now), link))); }) : ((void *)0); }); now && ({ tmp = now->link.next; 1; }); now = ({ typeof(tmp) ____ptr = (tmp); ____ptr ? ({ void *__mptr = (void *)(____ptr); ((typeof(*now) *)(__mptr - __builtin_offsetof (typeof(*now), link))); }) : ((void *)0); })) {
+    for (now = ({ __typeof__((head)->first) ____ptr = ((head)->first); ____ptr ? ({ void *__mptr = (void *)(____ptr); ((__typeof__(*now) *)(__mptr - __builtin_offsetof (__typeof__(*now), link))); }) : ((void *)0); }); now && ({ tmp = now->link.next; 1; }); now = ({ __typeof__(tmp) ____ptr = (tmp); ____ptr ? ({ void *__mptr = (void *)(____ptr); ((__typeof__(*now) *)(__mptr - __builtin_offsetof (__typeof__(*now), link))); }) : ((void *)0); })) {
         hlist_del(&now->link);
         free(now);
     }

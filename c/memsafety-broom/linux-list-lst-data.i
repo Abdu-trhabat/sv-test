@@ -574,7 +574,7 @@ struct list_head *create()
 void loop(struct list_head *head)
 {
     struct my_item *now;
-    for (now = ((typeof(*now) *)((char *)((head)->next)-(unsigned long)(&((typeof(*now) *)0)->link))); &now->link != (head); now = ((typeof(*now) *)((char *)(now->link.next)-(unsigned long)(&((typeof(*now) *)0)->link)))) {
+    for (now = ((__typeof__(*now) *)((char *)((head)->next)-(unsigned long)(&((__typeof__(*now) *)0)->link))); &now->link != (head); now = ((__typeof__(*now) *)((char *)(now->link.next)-(unsigned long)(&((__typeof__(*now) *)0)->link)))) {
         do_data(&(now->data));
     }
 }
@@ -582,7 +582,7 @@ void destroy(struct list_head *head)
 {
     struct my_item *now;
     struct my_item *tmp;
-    for (now = ((typeof(*now) *)((char *)((head)->next)-(unsigned long)(&((typeof(*now) *)0)->link))), tmp = ((typeof(*now) *)((char *)(now->link.next)-(unsigned long)(&((typeof(*now) *)0)->link))); &now->link != (head); now = tmp, tmp = ((typeof(*tmp) *)((char *)(tmp->link.next)-(unsigned long)(&((typeof(*tmp) *)0)->link)))) {
+    for (now = ((__typeof__(*now) *)((char *)((head)->next)-(unsigned long)(&((__typeof__(*now) *)0)->link))), tmp = ((__typeof__(*now) *)((char *)(now->link.next)-(unsigned long)(&((__typeof__(*now) *)0)->link))); &now->link != (head); now = tmp, tmp = ((__typeof__(*tmp) *)((char *)(tmp->link.next)-(unsigned long)(&((__typeof__(*tmp) *)0)->link)))) {
         list_del(&now->link);
         free(now);
     }
