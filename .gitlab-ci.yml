@@ -41,7 +41,7 @@ sanity-checks:
 .branch-compile-check: &branch-compile-check
   stage: checks
   rules:
-    - !reference [.branch-rules, rules]
+    !reference [.branch-rules, rules]
   script:
     - "${CC} -v --version"
     - "cd c"
@@ -68,7 +68,7 @@ branch-compile-gcc:5:
 .main-compile-check: &main-compile-check
   stage: checks
   rules:
-    - !reference [.main-rules, rules]
+    !reference [.main-rules, rules]
   script:
     - "${CC} -v --version"
     - "cd c"
@@ -77,7 +77,7 @@ branch-compile-gcc:5:
 .main-compile-check-juliet: &main-compile-check-juliet
   stage: checks
   rules:
-    - !reference [.main-rules, rules]
+    !reference [.main-rules, rules]
   script:
     - "${CC} -v --version"
     - "cd c/Juliet_Test"
@@ -102,7 +102,7 @@ main-compile-gcc:5-juliet:
 branch-preprocessing-consistency:
   stage: checks
   rules:
-    - !reference [.branch-rules, rules]
+    !reference [.branch-rules, rules]
   image: registry.gitlab.com/sosy-lab/benchmarking/sv-benchmarks/ci/preprocessing-consistency:latest
   script:
     - "cd c"
@@ -111,7 +111,7 @@ branch-preprocessing-consistency:
 main-preprocessing-consistency:
   stage: checks
   rules:
-    - !reference [.main-rules, rules]
+    !reference [.main-rules, rules]
   image: registry.gitlab.com/sosy-lab/benchmarking/sv-benchmarks/ci/preprocessing-consistency:latest
   script:
     - "goto-diff --version"
