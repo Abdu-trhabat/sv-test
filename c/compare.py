@@ -36,6 +36,7 @@ CATEGORIES_TO_IGNORE = {
   "ConcurrencySafety-MemSafety": "(platform-dependent types)",
   "NoDataRace-Main": "(platform-dependent types)",
   "SoftwareSystems-OpenBSD-MemSafety": "(only custom includes, no system headers, complicated build process)",
+  "SoftwareSystems-OpenBSD-ReachSafety": "(only custom includes, no system headers, complicated build process)",
   "SoftwareSystems-SQLite-MemSafety": "(complicated build process, requires patched version of cilly)",
 }
 
