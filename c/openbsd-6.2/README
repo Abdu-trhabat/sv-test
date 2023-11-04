@@ -3,7 +3,7 @@ Contributed by: Moritz Buhl
 Taken from the OpenBSD 6.2 src checkout https://www.openbsd.org/
 Copyright and license are mentioned in each file of the source directory.
 
-In the original `if_etherip-double-free` task,
+In the original `if_etherip-unreach-call` task,
 IPv6 packets are not
 discarded properly because the return value of `ip6_etherip_input` is
 a wrong value at one location.
