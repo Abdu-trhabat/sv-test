@@ -14,7 +14,7 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void *t_fun(void *arg) {
   pthread_mutex_lock(&mutex);
-  if (x == 0) {
+  if (x == 0) { // RACE!
     pthread_mutex_unlock(&mutex);
   } else {
     pthread_mutex_unlock(&mutex);
@@ -25,7 +25,7 @@ void *t_fun(void *arg) {
 
 int main(void) {
   create_threads(t);
-  access(x);
+  access(x); // RACE!
   pthread_mutex_lock(&mutex);
   assert_racefree(x); // UNKNOWN
   pthread_mutex_unlock(&mutex);
