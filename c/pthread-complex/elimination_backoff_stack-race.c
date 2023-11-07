@@ -213,9 +213,7 @@ void Init() {
 
 void Push(int x) {
     ThreadInfo *ti = malloc_ThreadInfo();
-    __VERIFIER_atomic_begin();
-    ti->id = ++unique_id;
-    __VERIFIER_atomic_end();
+    ti->id = ++unique_id; // RACE!
     ti->op = 1;
     ti->cell.pdata = x;
     if (TryPerformStackOp(ti) == 0) {
@@ -225,9 +223,7 @@ void Push(int x) {
 
 int Pop() {
     ThreadInfo *ti = malloc_ThreadInfo();
-    __VERIFIER_atomic_begin();
-    ti->id = ++unique_id;
-    __VERIFIER_atomic_end();
+    ti->id = ++unique_id; // RACE!
     ti->op = 0;
     if (TryPerformStackOp(ti) == 0) {
         LesOP(ti);
