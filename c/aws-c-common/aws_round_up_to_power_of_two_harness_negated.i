@@ -2699,9 +2699,7 @@ void aws_round_up_to_power_of_two_harness() {
         __VERIFIER_assert(!(test_val >= result >> 1));
     } else {
 
-        __VERIFIER_assert(test_val > ((
-       (18446744073709551615UL) 
-       >> 1) + 1));
+        __VERIFIER_assert(!(test_val > (((18446744073709551615UL) >> 1) + 1)));
     }
 }
 int main() { aws_round_up_to_power_of_two_harness(); return 0; }

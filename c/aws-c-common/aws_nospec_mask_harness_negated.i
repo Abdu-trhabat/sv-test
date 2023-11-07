@@ -4886,11 +4886,7 @@ static inline void aws_linked_list_remove(struct aws_linked_list_node *node) {
     node->prev->next = node->next;
     node->next->prev = node->prev;
     aws_linked_list_node_reset(node);
-    __VERIFIER_assert((node->next == 
-   ((void *)0) 
-   && node->prev == 
-   ((void *)0)
-   ));
+    __VERIFIER_assert(!((node->next == ((void *)0) && node->prev == ((void *)0))));
 }
 
 
@@ -4927,11 +4923,7 @@ static inline struct aws_linked_list_node *aws_linked_list_pop_back(struct aws_l
     assume_abort_if_not((aws_linked_list_is_valid(list)));
     struct aws_linked_list_node *back = aws_linked_list_back(list);
     aws_linked_list_remove(back);
-    __VERIFIER_assert((back->next == 
-   ((void *)0) 
-   && back->prev == 
-   ((void *)0)
-   ));
+    __VERIFIER_assert(!((back->next == ((void *)0) && back->prev == ((void *)0))));
     __VERIFIER_assert(!((aws_linked_list_is_valid(list))));
     return back;
 }
@@ -4970,11 +4962,7 @@ static inline struct aws_linked_list_node *aws_linked_list_pop_front(struct aws_
     assume_abort_if_not((aws_linked_list_is_valid(list)));
     struct aws_linked_list_node *front = aws_linked_list_front(list);
     aws_linked_list_remove(front);
-    __VERIFIER_assert((front->next == 
-   ((void *)0) 
-   && front->prev == 
-   ((void *)0)
-   ));
+    __VERIFIER_assert(!((front->next == ((void *)0) && front->prev == ((void *)0))));
     __VERIFIER_assert(!((aws_linked_list_is_valid(list))));
     return front;
 }
@@ -8748,20 +8736,10 @@ void aws_nospec_mask_harness() {
 
 
     if (rval == 0) {
-        __VERIFIER_assert((index >= bound) || (bound > (
-       (18446744073709551615UL) 
-       / 2)) || (index > (
-       (18446744073709551615UL) 
-       / 2)));
+        __VERIFIER_assert(!((index >= bound) || (bound > ((18446744073709551615UL) / 2)) || (index > ((18446744073709551615UL) / 2))));
     } else {
-        __VERIFIER_assert(rval == 
-       (18446744073709551615UL)
-       );
-        __VERIFIER_assert(!((index >= bound) || (bound > (
-       (18446744073709551615UL) 
-       / 2)) || (index > (
-       (18446744073709551615UL) 
-       / 2))));
+        __VERIFIER_assert(!(rval == (18446744073709551615UL)));
+        __VERIFIER_assert(!(!((index >= bound) || (bound > ((18446744073709551615UL) / 2)) || (index > ((18446744073709551615UL) / 2)))));
     }
 }
 int main() { aws_nospec_mask_harness(); return 0; }
