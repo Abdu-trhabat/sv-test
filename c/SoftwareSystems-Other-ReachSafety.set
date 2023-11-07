@@ -1,2 +1,5 @@
 # Contains problems from the software system BusyBox.
 busybox-1.22.0/*.yml
+
+# Contains problems from the GNU coreutils
+goblint-coreutils/*.yml
