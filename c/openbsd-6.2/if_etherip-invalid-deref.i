@@ -2060,8 +2060,7 @@ struct mbuf *m_pullup(struct mbuf *n, int len) {
   }
   ((m_trailingspace(m) >= len)
        ? (void)0
-       : openbsd_assert("diagnostic ",
-                        "if_etherip-fixed-double-free-invalid-deref2.c", 318,
+       : openbsd_assert("diagnostic ", "if_etherip-invalid-deref.c", 318,
                         "M_TRAILINGSPACE(m) >= len"));
   do {
     if (n == ((void *)0)) {
@@ -4962,8 +4961,7 @@ struct cpumem *ip6counters;
 void ip6_init(void) {
   struct protosw *pr;
   int i;
-  ip6counters =
-      openbsd_kernel_malloc(ip6s_ncounters * sizeof(uint64_t), 0, 0);
+  ip6counters = openbsd_kernel_malloc(ip6s_ncounters * sizeof(uint64_t), 0, 0);
   explicit_bzero(ip6counters, ip6s_ncounters * sizeof(uint64_t));
   pr = pffindproto(24, 255, 3);
   if (pr == ((void *)0))
@@ -5007,8 +5005,6 @@ int ip_deliver(struct mbuf **mp, int *offp, int nxt, int af) {
       psw = &inet6sw[ip6_protox[nxt]];
       break;
     }
-    if (!psw->pr_input)
-      goto bad;
     nxt = (*psw->pr_input)(mp, offp, nxt, af);
     af = naf;
   }
@@ -7203,7 +7199,7 @@ struct pfioc_trans {
     int type;
     char anchor[1024];
     u_int32_t ticket;
-  } * array;
+  } *array;
 };
 struct pfioc_queue {
   u_int32_t ticket;

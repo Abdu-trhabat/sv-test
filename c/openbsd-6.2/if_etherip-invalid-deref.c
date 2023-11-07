@@ -330,9 +330,7 @@ int m_trailingspace(struct mbuf *m) {
               : &m->m_dat[MLEN] - (m->m_data + m->m_len));
 }
 
-struct mbuf *m_clget(struct mbuf *m, int how, u_int pktlen) {
-  return NULL;
-}
+struct mbuf *m_clget(struct mbuf *m, int how, u_int pktlen) { return NULL; }
 #ifndef __stub_stub
 #define __stub_stub 1
 #include "sources/sys/stub.h"
@@ -584,8 +582,7 @@ u_char ip_protox[IPPROTO_MAX];
 u_char ip6_protox[IPPROTO_MAX];
 
 /* from sys/netinet/ip_input.c */
-struct cpumem ipcounters_array[ips_ncounters + 1];
-struct cpumem *ipcounters = ipcounters_array;
+struct cpumem *ipcounters;
 
 /* from sys/netinet6/ip6_input.c */
 struct cpumem *ip6counters;
@@ -621,8 +618,7 @@ int ip_deliver(struct mbuf **mp, int *offp, int nxt, int af) {
       goto bad;
     }
 
-    // Guard against null-pointer dereference after ip6_etherip_input was called
-    if (nxt != IPPROTO_NONE && (*mp)->m_pkthdr.len < *offp) {
+    if ((*mp)->m_pkthdr.len < *offp) {
       IPSTAT_INC(tooshort);
       goto bad;
     }
@@ -645,8 +641,6 @@ int ip_deliver(struct mbuf **mp, int *offp, int nxt, int af) {
       psw = &inet6sw[ip6_protox[nxt]];
       break;
     }
-    if (!psw->pr_input)
-      goto bad;
     nxt = (*psw->pr_input)(mp, offp, nxt, af);
     af = naf;
   }
@@ -1839,7 +1833,7 @@ int ip6_etherip_input(struct mbuf **mp, int *offp, int proto, int af) {
   if (!etherip_allow && (m->m_flags & (M_AUTH | M_CONF)) == 0) {
     m_freem(m);
     etheripstat.etherips_pdrops++;
-    return IPPROTO_NONE;
+    return IPPROTO_DONE;
   }
 
   ip6 = mtod(m, const struct ip6_hdr *);

@@ -41,7 +41,7 @@ include $(LEVEL)/Makefile.config
 
 ## Rules for creating the single files (modules)
 
-TASKS := if_etherip-unreach-call if_etherip-fixed-unreach-call if_etherip-fixed-unreach-call-invalid-deref1 if_etherip-fixed-unreach-call-invalid-deref2
+TASKS :=  if_etherip-invalid-deref if_etherip-unreach-call if_etherip-fixed if_etherip-fixed-invalid-deref1 if_etherip-fixed-invalid-deref2
 
 modules: ${TASKS}
 

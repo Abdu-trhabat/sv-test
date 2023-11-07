@@ -863,7 +863,8 @@ struct mbuf *m = ((void *)0);
 int main(void) {
   int len, off;
   etherip_allow = __VERIFIER_nondet_int();
-  ip6_init();
+
+  ip_init();
   m = m_gethdr((0x0001), (0x0002));
   len = __VERIFIER_nondet_int();
   assume_abort_if_not(len > 0);
@@ -2060,7 +2061,7 @@ struct mbuf *m_pullup(struct mbuf *n, int len) {
   }
   ((m_trailingspace(m) >= len)
        ? (void)0
-       : openbsd_assert("diagnostic ", "if_etherip-fixed-double-free.c", 318,
+       : openbsd_assert("diagnostic ", "if_etherip-fixed-invalid-deref1.c", 318,
                         "M_TRAILINGSPACE(m) >= len"));
   do {
     if (n == ((void *)0)) {
@@ -5007,8 +5008,6 @@ int ip_deliver(struct mbuf **mp, int *offp, int nxt, int af) {
       psw = &inet6sw[ip6_protox[nxt]];
       break;
     }
-    if (!psw->pr_input)
-      goto bad;
     nxt = (*psw->pr_input)(mp, offp, nxt, af);
     af = naf;
   }

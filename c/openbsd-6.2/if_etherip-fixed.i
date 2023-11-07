@@ -2060,7 +2060,7 @@ struct mbuf *m_pullup(struct mbuf *n, int len) {
   }
   ((m_trailingspace(m) >= len)
        ? (void)0
-       : openbsd_assert("diagnostic ", "if_etherip-unreach-call.c", 318,
+       : openbsd_assert("diagnostic ", "if_etherip-fixed.c", 318,
                         "M_TRAILINGSPACE(m) >= len"));
   do {
     if (n == ((void *)0)) {
@@ -4985,8 +4985,7 @@ int ip_deliver(struct mbuf **mp, int *offp, int nxt, int af) {
       ip6stat_inc(ip6s_toomanyhdr);
       goto bad;
     }
-    // Guard against null-pointer dereference after ip6_etherip_input was called
-    if (nxt != 59 && (*mp)->M_dat.MH.MH_pkthdr.len < *offp) {
+    if ((*mp)->M_dat.MH.MH_pkthdr.len < *offp) {
       ipstat_inc(ips_tooshort);
       goto bad;
     }
@@ -5009,7 +5008,7 @@ int ip_deliver(struct mbuf **mp, int *offp, int nxt, int af) {
       break;
     }
     if (!psw->pr_input)
-        goto bad;
+      goto bad;
     nxt = (*psw->pr_input)(mp, offp, nxt, af);
     af = naf;
   }
@@ -7972,7 +7971,7 @@ int ip6_etherip_input(struct mbuf **mp, int *offp, int proto, int af) {
   if (!etherip_allow && (m->m_hdr.mh_flags & (0x0800 | 0x0400)) == 0) {
     m_freem(m);
     etheripstat.etherips_pdrops++;
-    return 59;
+    return 257;
   }
   ip6 = ((const struct ip6_hdr *)((m)->m_hdr.mh_data));
   in6_recoverscope(&ipsrc, &ip6->ip6_src);
