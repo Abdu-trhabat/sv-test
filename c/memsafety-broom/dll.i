@@ -1,6 +1,12 @@
 typedef long unsigned int size_t;
 typedef int wchar_t;
 
+typedef enum
+{
+  P_ALL,
+  P_PID,
+  P_PGID
+} idtype_t;
 typedef struct
   {
     int quot;
@@ -101,7 +107,6 @@ typedef unsigned int __id_t;
 typedef long int __time_t;
 typedef unsigned int __useconds_t;
 typedef long int __suseconds_t;
-typedef long int __suseconds64_t;
 typedef int __daddr_t;
 typedef int __key_t;
 typedef int __clockid_t;
@@ -226,15 +231,6 @@ typedef __blksize_t blksize_t;
 typedef __blkcnt_t blkcnt_t;
 typedef __fsblkcnt_t fsblkcnt_t;
 typedef __fsfilcnt_t fsfilcnt_t;
-typedef union
-{
-  __extension__ unsigned long long int __value64;
-  struct
-  {
-    unsigned int __low;
-    unsigned int __high;
-  } __value32;
-} __atomic_wide_counter;
 typedef struct __pthread_internal_list
 {
   struct __pthread_internal_list *__prev;
@@ -272,20 +268,30 @@ struct __pthread_rwlock_arch_t
 };
 struct __pthread_cond_s
 {
-  __atomic_wide_counter __wseq;
-  __atomic_wide_counter __g1_start;
+  __extension__ union
+  {
+    __extension__ unsigned long long int __wseq;
+    struct
+    {
+      unsigned int __low;
+      unsigned int __high;
+    } __wseq32;
+  };
+  __extension__ union
+  {
+    __extension__ unsigned long long int __g1_start;
+    struct
+    {
+      unsigned int __low;
+      unsigned int __high;
+    } __g1_start32;
+  };
   unsigned int __g_refs[2] ;
   unsigned int __g_size[2];
   unsigned int __g1_orig_size;
   unsigned int __wrefs;
   unsigned int __g_signals[2];
 };
-typedef unsigned int __tss_t;
-typedef unsigned long int __thrd_t;
-typedef struct
-{
-  int __data ;
-} __once_flag;
 typedef unsigned long int pthread_t;
 typedef union
 {
@@ -421,13 +427,10 @@ extern void *calloc (size_t __nmemb, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (1, 2))) ;
 extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
-extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__))
-     __attribute__ ((__alloc_size__ (2, 3)))
-    __attribute__ ((__malloc__ (__builtin_free, 1)));
-extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__ (reallocarray, 1)));
+     __attribute__ ((__alloc_size__ (2, 3)));
+extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 
 extern void *alloca (size_t __size) __attribute__ ((__nothrow__ , __leaf__));
 
@@ -436,8 +439,7 @@ extern void *valloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __a
 extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
 extern void *aligned_alloc (size_t __alignment, size_t __size)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_align__ (1)))
-     __attribute__ ((__alloc_size__ (2))) ;
+     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
@@ -509,13 +511,10 @@ extern int mbtowc (wchar_t *__restrict __pwc,
      const char *__restrict __s, size_t __n) __attribute__ ((__nothrow__ , __leaf__));
 extern int wctomb (char *__s, wchar_t __wchar) __attribute__ ((__nothrow__ , __leaf__));
 extern size_t mbstowcs (wchar_t *__restrict __pwcs,
-   const char *__restrict __s, size_t __n) __attribute__ ((__nothrow__ , __leaf__))
-    __attribute__ ((__access__ (__read_only__, 2)));
+   const char *__restrict __s, size_t __n) __attribute__ ((__nothrow__ , __leaf__));
 extern size_t wcstombs (char *__restrict __s,
    const wchar_t *__restrict __pwcs, size_t __n)
-     __attribute__ ((__nothrow__ , __leaf__))
-  __attribute__ ((__access__ (__write_only__, 1, 3)))
-  __attribute__ ((__access__ (__read_only__, 2)));
+     __attribute__ ((__nothrow__ , __leaf__));
 extern int rpmatch (const char *__response) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
 extern int getsubopt (char **__restrict __optionp,
         char *const *__restrict __tokens,
