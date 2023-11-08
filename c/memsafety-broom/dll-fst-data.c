@@ -3,14 +3,12 @@
  * Functions which create, traverse, and destroy list forwards
  * based on predator-regre/test-0059.c
  */
-#define PREDATOR
+
 extern int __VERIFIER_nondet_int(void);
 
 #include <stdlib.h>
 
-#ifdef PREDATOR
 #define random() __VERIFIER_nondet_int()
-#endif
 
 struct dll {
     struct dll *next;

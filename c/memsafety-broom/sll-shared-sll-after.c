@@ -3,13 +3,11 @@
  * Functions which create list and then set shared list, traverse, destroy
  * main list, and shared list
  */
-#define PREDATOR
+
 #include <stdlib.h>
 
-#ifdef PREDATOR
 extern int __VERIFIER_nondet_int(void);
 #define random() __VERIFIER_nondet_int()
-#endif
 
 struct internal_node {
     struct internal_node *next;

@@ -2,13 +2,11 @@
  * Singly-Linked Nested List
  * Functions which create, traverse, and destroy list with inlined nested loops
  */
-#define PREDATOR
+
 #include <stdlib.h>
 
-#ifdef PREDATOR
 extern int __VERIFIER_nondet_int(void);
 #define random() __VERIFIER_nondet_int()
-#endif
 
 struct node {
     struct node *next;

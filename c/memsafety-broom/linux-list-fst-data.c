@@ -3,16 +3,13 @@
  * Functions which create, traverse, and destroy list forwards
  * based on file from Linux Kernel (include/linux/list.h) 
  */
-#define PREDATOR
+
 #include <stdlib.h>
 #define typeof __typeof__
 
 extern int __VERIFIER_nondet_int(void);
-
-#ifdef PREDATOR
 // void __VERIFIER_plot(const char *name, ...);
 #define random() __VERIFIER_nondet_int()
-#endif
 
 struct list_head {
     struct list_head *next, *prev;
@@ -163,9 +160,7 @@ void destroy(struct list_head *head)
 int main()
 {
     struct list_head *l = create();
-#ifdef PREDATOR
     // __VERIFIER_plot("create");
-#endif
     loop(l);
     destroy(l);
     return 0;

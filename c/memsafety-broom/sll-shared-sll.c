@@ -3,13 +3,11 @@
  * Functions which create, traverse, and destroy list
  * Contracts for loop/destroy whitout learning it is shared
  */
-#define PREDATOR
+
 #include <stdlib.h>
 
-#ifdef PREDATOR
 extern int __VERIFIER_nondet_int(void);
 #define random() __VERIFIER_nondet_int()
-#endif
 
 struct internal_node {
     struct internal_node *next;

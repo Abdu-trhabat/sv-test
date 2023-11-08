@@ -4,16 +4,13 @@
  * based on file from Linux Kernel (include/linux/list.h) and Predator file
  * tests/predator-regre/test-0097.c
  */
-#define PREDATOR
+
 #include <stdlib.h>
 #define typeof __typeof__
 
 extern int __VERIFIER_nondet_int(void);
-
-#ifdef PREDATOR
 // extern void __VERIFIER_plot(const char *name, ...);
 #define random() __VERIFIER_nondet_int()
-#endif
 
 #ifdef VALGRIND
 int __VERIFIER_nondet_int(void) {return 1;}
@@ -219,9 +216,7 @@ void destroy(struct master_item *l)
 int main()
 {
     struct master_item *l = create();
-#ifdef PREDATOR
     // __VERIFIER_plot("create");
-#endif
     loop(l);
     destroy(l);
     return 0;

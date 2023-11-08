@@ -2,15 +2,12 @@
  * Singly-Linked Nested List as a last field with data node
  * Functions which create, traverse, and destroy list
  */
-#define PREDATOR
+
 #include <stdlib.h>
 
 extern int __VERIFIER_nondet_int(void);
-
-#ifdef PREDATOR
 // void __VERIFIER_plot(const char *name, ...);
 #define random() __VERIFIER_nondet_int()
-#endif
 
 struct node {
     struct node *next;
@@ -111,9 +108,7 @@ void destroy(struct node *l)
 int main()
 {
     struct node *l = create();
-#ifdef PREDATOR
     // __VERIFIER_plot("create");
-#endif
     loop(l);
     destroy(l);
     return 0;

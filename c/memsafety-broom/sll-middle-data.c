@@ -2,14 +2,12 @@
  * Single-Linked List in the middle field with data nodes
  * Functions which create, traverse, and destroy list
  */
-#define PREDATOR
+
 extern int __VERIFIER_nondet_int(void);
 
 #include <stdlib.h>
 
-#ifdef PREDATOR
 #define random() __VERIFIER_nondet_int()
-#endif
 
 struct sll {
     int data1;

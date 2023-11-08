@@ -2,13 +2,11 @@
  * Basic Single-Linked List
  * Functions which create, traverse, and destroy list
  */
-#define PREDATOR
+
 #include <stdlib.h>
 
-#ifdef PREDATOR
 extern int __VERIFIER_nondet_int(void);
 #define random() __VERIFIER_nondet_int()
-#endif
 
 struct sll {
     struct sll *next;
