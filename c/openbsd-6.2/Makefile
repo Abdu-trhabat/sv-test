@@ -41,7 +41,9 @@ include $(LEVEL)/Makefile.config
 
 ## Rules for creating the single files (modules)
 
-modules: if_etherip-double-free if_etherip-fixed-double-free
+TASKS :=  if_etherip-invalid-deref if_etherip-unreach-call if_etherip-fixed if_etherip-fixed-invalid-deref1 if_etherip-fixed-invalid-deref2
+
+modules: ${TASKS}
 
 # adjust original source code for compilation and CI:
 # apply patches if necessary
@@ -50,7 +52,7 @@ modules: if_etherip-double-free if_etherip-fixed-double-free
 # wrap all #include-directives with #ifndef-blocks
 # replace kprintf format functon type with printf
 # remove type punning
-if_etherip-double-free if_etherip-fixed-double-free: reset
+${TASKS}: reset
 	if [ -f ${CURDIR}/sources/sys/if_etherip.c.orig ]; then \
 	    mv  ${CURDIR}/sources/sys/if_etherip.c.orig \
 		${CURDIR}/sources/sys/if_etherip.c; \
@@ -62,7 +64,7 @@ if_etherip-double-free if_etherip-fixed-double-free: reset
 	patch -b -R -N -i ${CURDIR}/sources/in6.patch \
 	    ${CURDIR}/sources/sys/netinet6/in6.h \
 	    || echo "Patch failed with code $$?"; \
-	if [ "$@" = "if_etherip-double-free" ]; then \
+	if [ "$@" = "if_etherip-unreach-call" ]; then \
 	    patch -b -R -i ${CURDIR}/sources/007_etherip.patch.sig \
 		-d ${CURDIR}/sources/sys || echo "Patch failed with code $$?"; \
 	fi
@@ -90,5 +92,4 @@ reset:
 	rm -f ${CURDIR}/sources/sys/if_etherip.c.rej
 	rm -f ${CURDIR}/sources/sys/netinet6/in6.h.rej
 	rm -f ${CURDIR}/sources/sys/stub.h ${CURDIR}/sources/sys/sv_comp.h
-	rm -f ${CURDIR}/if_etherip-fixed-double-free.{i,c}
-	rm -f ${CURDIR}/if_etherip-double-free.{i,c}
+	rm -f $(foreach task,$(TASKS),${CURDIR}/${task}.i ${CURDIR}/${task}.c)
