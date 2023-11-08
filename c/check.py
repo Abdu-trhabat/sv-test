@@ -139,6 +139,8 @@ KNOWN_DIRECTORY_PROBLEMS = [
     ("aws-c-common", "unexpected file Makefile.sv-benchmarks"),
     ("aws-c-common", "unexpected file yml.sh"),
     ("aws-c-common", "unexpected file negate_assertion.sh"),
+    ("aws-c-common", "unexpected file negate_assertion_in_one_file.sh"),
+    ("aws-c-common", "unexpected file negate_assertion_semantic_patch.txt"),
     ("xcsp", "unexpected file create_from_xmls.py"),
     ("xcsp", "unexpected file xcsp3_cpp_parser"),
     ("xcsp", "unexpected file xcsp3_cpp_parser.license"),
