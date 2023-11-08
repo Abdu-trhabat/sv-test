@@ -452,21 +452,20 @@ int main(void)
 	whoop_loff_t = (loff_t *) malloc(sizeof(loff_t));
 	whoop_int = __VERIFIER_nondet_int();
 	assume_abort_if_not(whoop_int >= 0);
-	assume_abort_if_not((whoop_int >> (31 - (whoop_int & 7))) == 0);
 
 	// Call module_init function
 	int _whoop_init_result = _whoop_init();
 
 	// Declare pthread_t's
 	pthread_t pthread_t_pc8736x_gpio_set;
-	pthread_t pthread_t_pc8736x_gpio_change;
+	pthread_t pthread_t_pc8736x_gpio_open;
 
 	// Create pthread threads
 	pthread_create(&pthread_t_pc8736x_gpio_set, NULL, whoop_wrapper_pc8736x_gpio_set, NULL);
-	pthread_create(&pthread_t_pc8736x_gpio_change, NULL, whoop_wrapper_pc8736x_gpio_change, NULL);
+	pthread_create(&pthread_t_pc8736x_gpio_open, NULL, whoop_wrapper_pc8736x_gpio_open, NULL);
 
 	// Wait for threads to finish
 	pthread_join(pthread_t_pc8736x_gpio_set, NULL);
-	pthread_join(pthread_t_pc8736x_gpio_change, NULL);
+	pthread_join(pthread_t_pc8736x_gpio_open, NULL);
 
 }

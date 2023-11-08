@@ -7062,12 +7062,11 @@ int main(void)
  whoop_loff_t = (loff_t *) malloc(sizeof(loff_t));
  whoop_int = __VERIFIER_nondet_int();
  assume_abort_if_not(whoop_int >= 0);
- assume_abort_if_not((whoop_int >> (31 - (whoop_int & 7))) == 0);
  int _whoop_init_result = _whoop_init();
  pthread_t pthread_t_pc8736x_gpio_set;
- pthread_t pthread_t_pc8736x_gpio_open;
+ pthread_t pthread_t_pc8736x_gpio_current;
  pthread_create(&pthread_t_pc8736x_gpio_set, ((void *)0), whoop_wrapper_pc8736x_gpio_set, ((void *)0));
- pthread_create(&pthread_t_pc8736x_gpio_open, ((void *)0), whoop_wrapper_pc8736x_gpio_open, ((void *)0));
+ pthread_create(&pthread_t_pc8736x_gpio_current, ((void *)0), whoop_wrapper_pc8736x_gpio_current, ((void *)0));
  pthread_join(pthread_t_pc8736x_gpio_set, ((void *)0));
- pthread_join(pthread_t_pc8736x_gpio_open, ((void *)0));
+ pthread_join(pthread_t_pc8736x_gpio_current, ((void *)0));
 }
