@@ -3,3 +3,6 @@ busybox-1.22.0/*.yml
 
 # Contains problems from the GNU coreutils
 goblint-coreutils/*.yml
+
+# Contains problems that require reachability analysis on OpenBSD system code
+openbsd-6.2/*.yml
