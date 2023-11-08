@@ -17,7 +17,8 @@ to correctly model the cv_broadcast(COND) statement "b1_COND := 1;" must be manu
 #define mutex_exit(m) pthread_mutex_unlock(&m);
 
 pthread_mutex_t MTX = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t COND = PTHREAD_COND_INITIALIZER;
+_Bool COND = 0;
+pthread_cond_t CONDVAR = PTHREAD_COND_INITIALIZER;
 
 #define PSWITCH_EVENT_RELEASED 1
 #define PENVSYS_EVENT_NORMAL 2
@@ -57,7 +58,8 @@ inline int sysmon_power_daemon_task(){
 		mutex_exit(MTX);
 		goto out;} 
 	else {
-		pthread_cond_broadcast(&COND);
+		COND = 1;
+		pthread_cond_broadcast(&CONDVAR);
 		mutex_exit(MTX);}
 	out:
   assert(1);
@@ -83,7 +85,8 @@ inline void sysmonread_power(){
 				break;}
 			if (__VERIFIER_nondet_int()) {
 				break;}
-			pthread_cond_wait(&COND, &MTX);
+			while (!COND) // avoid spurious wakeup
+				pthread_cond_wait(&CONDVAR, &MTX);
 		}
 		mutex_exit(MTX); }
   assert(1);

@@ -11,16 +11,19 @@ extern void __VERIFIER_atomic_end(void);
 
 volatile unsigned int count = 0; //shared
 pthread_mutex_t MTX = PTHREAD_MUTEX_INITIALIZER; //shared mutex
-pthread_cond_t COND = PTHREAD_COND_INITIALIZER; //condition variables become flag indicating whether the thread was signaled
+_Bool COND = 0; //condition variables become flag indicating whether the thread was signaled
+pthread_cond_t CONDVAR = PTHREAD_COND_INITIALIZER;
 
 void Barrier2() {  
   pthread_mutex_lock(&MTX);
   count++;
   if (count == 3) {
-    pthread_cond_broadcast(&COND);
+    COND = 1;
+    pthread_cond_broadcast(&CONDVAR);
     count = 0; }
-  else
-    pthread_cond_wait(&COND, &MTX);
+  else {
+    while (!COND) // avoid spurious wakeup
+      pthread_cond_wait(&CONDVAR, &MTX); }
   pthread_mutex_unlock(&MTX); }
   
 void* thr1(void* arg){

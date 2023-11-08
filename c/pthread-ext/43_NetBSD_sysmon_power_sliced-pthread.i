@@ -684,7 +684,8 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
 pthread_mutex_t MTX = { { 0, 0, 0, PTHREAD_MUTEX_TIMED_NP, 0, { { 0, 0 } } } };
-pthread_cond_t COND = { { {0}, {0}, {0, 0}, {0, 0}, 0, 0, {0, 0} } };
+_Bool COND = 0;
+pthread_cond_t CONDVAR = { { {0}, {0}, {0, 0}, {0, 0}, 0, 0, {0, 0} } };
 inline int sysmon_queue_power_event(){
   { if(!(1)) { ERROR: {reach_error();abort();}(void)0; } };
  if (__VERIFIER_nondet_int())
@@ -717,7 +718,8 @@ inline int sysmon_power_daemon_task(){
   pthread_mutex_unlock(&MTX);;
   goto out;}
  else {
-  pthread_cond_broadcast(&COND);
+  COND = 1;
+  pthread_cond_broadcast(&CONDVAR);
   pthread_mutex_unlock(&MTX);;}
  out:
   { if(!(1)) { ERROR: {reach_error();abort();}(void)0; } };
@@ -740,7 +742,8 @@ inline void sysmonread_power(){
     break;}
    if (__VERIFIER_nondet_int()) {
     break;}
-   pthread_cond_wait(&COND, &MTX);
+   while (!COND)
+    pthread_cond_wait(&CONDVAR, &MTX);
   }
   pthread_mutex_unlock(&MTX);; }
   { if(!(1)) { ERROR: {reach_error();abort();}(void)0; } };

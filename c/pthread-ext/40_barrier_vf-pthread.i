@@ -686,15 +686,18 @@ extern int pthread_atfork (void (*__prepare) (void),
 
 volatile unsigned int count = 0;
 pthread_mutex_t MTX = { { 0, 0, 0, PTHREAD_MUTEX_TIMED_NP, 0, { { 0, 0 } } } };
-pthread_cond_t COND = { { {0}, {0}, {0, 0}, {0, 0}, 0, 0, {0, 0} } };
+_Bool COND = 0;
+pthread_cond_t CONDVAR = { { {0}, {0}, {0, 0}, {0, 0}, 0, 0, {0, 0} } };
 void Barrier2() {
   pthread_mutex_lock(&MTX);
   count++;
   if (count == 3) {
-    pthread_cond_broadcast(&COND);
+    COND = 1;
+    pthread_cond_broadcast(&CONDVAR);
     count = 0; }
-  else
-    pthread_cond_wait(&COND, &MTX);
+  else {
+    while (!COND)
+      pthread_cond_wait(&CONDVAR, &MTX); }
   pthread_mutex_unlock(&MTX); }
 void* thr1(void* arg){
   Barrier2();
