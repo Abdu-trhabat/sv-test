@@ -1,6 +1,7 @@
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 //
+// SPDX-FileCopyrightText: 2020 Rory Conlin
 // SPDX-FileCopyrightText: 2023 Edoardo Manino
 //
 // SPDX-License-Identifier: MIT
@@ -523,7 +524,7 @@ void k2c_ReLU(float * x, const size_t size, const float max_value,
 }
 /**
 k2c_core_layers.c
-This file is part of keras2c
+2c
 Copyright 2020 Rory Conlin
 Licensed under MIT License
 https://github.com/f0uriest/keras2c
@@ -670,7 +671,7 @@ void k2c_repeat_vector(k2c_tensor* output, const k2c_tensor* input, const size_t
 }
 /**
 k2c_helper_functions.c
-This file is part of keras2c
+2c
 Copyright 2020 Rory Conlin
 Licensed under MIT License
 https://github.com/f0uriest/keras2c
