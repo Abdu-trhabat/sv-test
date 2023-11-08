@@ -35,8 +35,16 @@ Based on commit `816ec134472c4d0d5ad0d949bae3417617f1e63d` from
 ### Mutation-Based Sanity Check
 
 To gain more understanding about these programs,
-mutants are created by negating the conditions
-of the __VERIFIER_assert() calls for 170 true tasks.
-The verdicts of the mutated tasks are set to false.
-(The mutation operations were performed by script `negated_assertion.sh`.)
+mutants are created by negating the arguments in
+the calls to __VERIFIER_assert() for the 167 true tasks.
+The verdicts of 157 mutated tasks are set to false because they have a reachable error.
+The rest 10 still have verdicts true because the assertions are dead code.
 
+The negation of assertions was performed by `spatch`,
+a script from the project [Coccinelle](https://coccinelle.gitlabpages.inria.fr/website/)
+to transform C programs.
+
+Technically, the script `negate_assertion.sh` calls the script `negate_assertion_in_one_file.sh`
+on all tasks whose expected verdict is true,
+and the latter script invokes `spatch` with the semantic patch
+defined in `negate_assertion_semantic_patch.txt`.
