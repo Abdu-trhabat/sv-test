@@ -838,7 +838,7 @@ float logistic(float x)
 int main()
 {
  float x = __VERIFIER_nondet_float();
- if(!(__builtin_isgreaterequal(x, 0))) abort();
+ if(!(__builtin_isgreaterequal(x, 0.0f))) abort();
  float y = logistic(x);
  float z = 1.0f - logistic(-x);
  if(!(y == z)) reach_error();

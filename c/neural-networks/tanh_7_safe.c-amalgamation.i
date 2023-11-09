@@ -834,7 +834,7 @@ enum
 int main()
 {
  float x = __VERIFIER_nondet_float();
- if(!(__builtin_isgreaterequal(x, 0))) abort();
+ if(!(__builtin_isgreaterequal(x, 0.0f))) abort();
  float y = tanhf(x);
  float z = -tanhf(-x);
  if(!(y == z)) reach_error();

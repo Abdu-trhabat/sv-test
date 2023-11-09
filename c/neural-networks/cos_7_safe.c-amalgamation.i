@@ -834,7 +834,7 @@ enum
 int main()
 {
  float x = __VERIFIER_nondet_float();
- if(!(__builtin_isgreaterequal(x, 0) && !__builtin_isinf_sign (x))) abort();
+ if(!(__builtin_isgreaterequal(x, 0.0f) && !__builtin_isinf_sign (x))) abort();
  float y = cosf(x);
  float z = cosf(-x);
  if(!(y == z)) reach_error();
