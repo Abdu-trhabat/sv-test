@@ -44,7 +44,7 @@ int maxa, maxb, maxc, N, p;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=1; i<N; i++) {
     if (maxa <= A[i]) {
       maxa = A[i];
@@ -57,7 +57,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (int i=1; i<N; i++) {
     __VERIFIER_atomic_begin();
     C[i] = plus(A[i], B[i]);
@@ -68,7 +68,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   int i = 1;
   while (i < N) {
     __VERIFIER_atomic_begin();

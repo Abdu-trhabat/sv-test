@@ -39,7 +39,7 @@ int score_0, seq_1_start_1, seq_2_start_2, score_3, seq_1_start_4, seq_2_start_5
 
 int plus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   int s1 = plus(seq_1_start_1, seq_2_start_2);
   int s2 = plus(seq_1_start_4, seq_2_start_5);
   result_9 = score_0 > score_3 ? -1 : (score_0 < score_3 ? 1 : (s1 < s2 ? -1 : (s1 > s2 ? 1 : 0)));
@@ -47,7 +47,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   int s1 = plus(seq_1_start_1, seq_2_start_2);
   int s2 = plus(seq_1_start_7, seq_2_start_8);
   result_10 = score_0 > score_6 ? -1 : (score_0 < score_6 ? 1 : (s1 < s2 ? -1 : (s1 > s2 ? 1 : 0)));
@@ -55,7 +55,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   int s1 = plus(seq_1_start_4, seq_2_start_5);
   int s2 = plus(seq_1_start_7, seq_2_start_8);
   result_11 = score_3 > score_6 ? -1 : (score_3 < score_6 ? 1 : (s1 < s2 ? -1 : (s1 > s2 ? 1 : 0)));

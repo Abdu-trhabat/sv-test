@@ -38,19 +38,19 @@ void assume_abort_if_not(int cond) {
 int result_3, result_4, result_5;
 _Bool sponsored_0, sponsored_1, sponsored_2;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   result_3 = !!sponsored_0 == !!sponsored_1 ? 0 : (sponsored_1 ? -1 : 1);
 
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   result_4 = !!sponsored_1 == !!sponsored_2 ? 0 : (sponsored_2 ? -1 : 1);
 
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   result_5 = !!sponsored_0 == !!sponsored_2 ? 0 : (sponsored_2 ? -1 : 1);
 
   return 0;

@@ -43,7 +43,7 @@ int res1, res2, isNullA, isNullB;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   int i = 0;
   int comp;
   assume_abort_if_not(isNullA != 0);
@@ -59,7 +59,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   int i = 0;
   int comp;
   assume_abort_if_not(isNullB != 0);

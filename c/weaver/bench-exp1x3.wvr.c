@@ -34,7 +34,7 @@ void assume_abort_if_not(int cond) {
 
 unsigned int x1, x2, n;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (x1 < n) {
     x1 = x1 + x1;
   }
@@ -42,7 +42,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (x2 < n) {
     x2 = x2 + x2;
   }

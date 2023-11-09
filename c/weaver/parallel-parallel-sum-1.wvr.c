@@ -44,7 +44,7 @@ int i1, i2, t11, t21, t12, t22, s1, s2, n;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not( i1 < n );
@@ -59,7 +59,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not( i1 < n );
@@ -74,7 +74,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not( i2 < n );
@@ -89,7 +89,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not( i2 < n );

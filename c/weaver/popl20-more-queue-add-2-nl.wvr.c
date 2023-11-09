@@ -45,7 +45,7 @@ unsigned int x, y, C;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(q_back >= 0 && q_back < n);
@@ -64,7 +64,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   int j;
   s = 0;
   while(1) {

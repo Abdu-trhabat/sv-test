@@ -37,21 +37,21 @@ void assume_abort_if_not(int cond) {
 
 unsigned int x_0, x_1, temp_2;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   x_0++;
   __VERIFIER_atomic_end();
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   x_0++;
   __VERIFIER_atomic_end();
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   temp_2 = x_1;
   x_1 = ( temp_2 + 1 );
   temp_2 = x_1;

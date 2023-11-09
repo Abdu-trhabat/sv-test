@@ -44,7 +44,7 @@ int M, N;
 
 unsigned int *create_fresh_uint_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
     sum1 = sum1 + A[i];
   }
@@ -52,7 +52,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (int i=0; i<M; i++) {
     sum2 = sum2 + A[i];
   }
@@ -60,7 +60,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   for (int i=M; i<N; i++) {
     sum3 = sum3 + A[i];
   }

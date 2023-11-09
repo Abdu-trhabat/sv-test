@@ -38,7 +38,7 @@ void assume_abort_if_not(int cond) {
 unsigned int x_1, x_2, x_3, a, b, c;
 
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (unsigned int i=0; i<c; i++) {
     x_1 = x_1 + a;
   }
@@ -46,7 +46,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (unsigned int i=0; i<c; i++) {
     x_2 = x_2 + b;
   }
@@ -54,7 +54,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   for (unsigned int i=0; i<c; i++) {
     x_3 = x_3 + (a + b);
   }

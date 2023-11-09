@@ -39,7 +39,7 @@ _Bool e1, e2;
 int n1, n2, tmp1, tmp2, i, i1, i2;
 
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   e1 = 1;
   __VERIFIER_atomic_end();
@@ -71,7 +71,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   e2 = 1;
   __VERIFIER_atomic_end();

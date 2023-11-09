@@ -44,7 +44,7 @@ _Bool ok;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (i < N) {
     if (A[i] >= last) {
       __VERIFIER_atomic_begin();
@@ -62,7 +62,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = i < N || start < end;
   __VERIFIER_atomic_end();

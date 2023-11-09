@@ -44,7 +44,7 @@ int res1, res2, n1, n2;
 int *create_fresh_int_array(int size);
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   int i = 0;
   res1 = n1 - n2;
   while (i < n1 && i < n2) {
@@ -58,7 +58,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   int i = 0;
   res2 = n2 - n1;
   while (i < n1 && i < n2) {

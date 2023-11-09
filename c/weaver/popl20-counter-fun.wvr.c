@@ -43,7 +43,7 @@ int counter, N, n, n_inv;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(counter >= 0 && counter < n);
@@ -56,7 +56,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (int i=0; i<N; i++) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(counter >= 0 && counter < n_inv);

@@ -44,7 +44,7 @@ int i1, i2, t11, t21, t12, t22, s11, s21, s12, s22, x1, x2, n;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not( i1 < n );
@@ -59,7 +59,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not( i1 < n );
@@ -74,7 +74,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread1() {
+void* thread1(void* _argptr) {
   pthread_t t2, t3;
 
   pthread_create(&t2, 0, thread2, 0);
@@ -90,7 +90,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread5() {
+void* thread5(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not( i2 < n );
@@ -105,7 +105,7 @@ void* thread5() {
   return 0;
 }
 
-void* thread6() {
+void* thread6(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not( i2 < n );
@@ -120,7 +120,7 @@ void* thread6() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   pthread_t t5, t6;
 
   pthread_create(&t5, 0, thread5, 0);

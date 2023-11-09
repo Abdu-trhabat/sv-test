@@ -39,7 +39,7 @@ void assume_abort_if_not(int cond) {
 unsigned int p1, p2, m;
 int n1, n2;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = n1 > 0;
   __VERIFIER_atomic_end();
@@ -58,7 +58,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = n1 > 0;
   __VERIFIER_atomic_end();
@@ -77,7 +77,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = n2 > 0;
   __VERIFIER_atomic_end();
@@ -96,7 +96,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = n2 > 0;
   __VERIFIER_atomic_end();

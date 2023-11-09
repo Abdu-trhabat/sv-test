@@ -43,7 +43,7 @@ int mts1, mts2, mts3, sum, M, N;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
     mts1 = plus(mts1, A[i]) < 0 ? 0 : mts1 + A[i];
   }
@@ -51,7 +51,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (int i=0; i<M; i++) {
     mts2 = plus(mts2, A[i]) < 0 ? 0 : mts2 + A[i];
   }
@@ -59,7 +59,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   for (int i=M; i<N; i++) {
     __VERIFIER_atomic_begin();
     mts3 = plus(mts3, A[i]) < 0 ? 0 : mts3 + A[i];

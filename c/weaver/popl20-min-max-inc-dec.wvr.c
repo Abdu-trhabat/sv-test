@@ -45,7 +45,7 @@ _Bool v_assert, b1, b2;
 int *create_fresh_int_array(int size);
 
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   min = A[0];
   __VERIFIER_atomic_end();
@@ -63,7 +63,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   max = A[0];
   __VERIFIER_atomic_end();
@@ -81,7 +81,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   for (int i=0; i<N; i++) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(A[i] < 2147483647);
@@ -92,7 +92,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   for (int i=0; i<N; i++) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(A[i] > -2147483648);
@@ -103,7 +103,7 @@ void* thread4() {
   return 0;
 }
 
-void* thread5() {
+void* thread5(void* _argptr) {
   __VERIFIER_atomic_begin();
   v_assert = !b1 || !b2 || max >= 2147483647 || min <= max + 1;
   __VERIFIER_atomic_end();

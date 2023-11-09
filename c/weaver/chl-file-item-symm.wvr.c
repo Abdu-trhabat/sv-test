@@ -40,13 +40,13 @@ _Bool isNull_0, isNull_3, filename_2, filename_5;
 
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   result_6 = isNull_0 ? (isNull_3 ? 0 : 1) : (isNull_3 ? -1 : (filename_2 ? (filename_5 ? 0 : 1) : (filename_5 ? -1 : minus(filename_1, filename_4))));
 
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   result_7 = isNull_3 ? (isNull_0 ? 0 : 1) : (isNull_0 ? -1 : (filename_5 ? (filename_2 ? 0 : 1) : (filename_2 ? -1 : minus(filename_4, filename_1))));
 
   return 0;
