@@ -6829,6 +6829,7 @@ u32 pc8736x_gpio_configure(unsigned index, u32 mask, u32 bits)
 int pc8736x_gpio_get(unsigned minor)
 {
  int port, bit, val;
+ minor &= 0x1f;
  port = minor >> 3;
  bit = minor & 7;
  val = inb_p(pc8736x_gpio_base + port_offset[port] + 1);
