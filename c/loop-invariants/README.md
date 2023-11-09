@@ -1,3 +1,12 @@
+<!--
+This file is part of the SV-Benchmarks collection of verification tasks:
+https://github.com/sosy-lab/sv-benchmarks
+
+SPDX-FileCopyrightText: 2019-2022 Dirk Beyer, Matthias Dangl, Daniel Dietsch, Matthias Heizmann, Thomas Lemberger, and Michael Tautschnig
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 These tasks are contributed by the CPAchecker team.
 
 The following hand-crafted examples are taken from the PDR study by Dirk Beyer and Matthias Dangl [1]:

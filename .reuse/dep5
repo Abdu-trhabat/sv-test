@@ -84,11 +84,9 @@ Files:
  c/loop-crafted
  c/loop-floats-scientific-comp
  c/loop-industry-pattern
- c/loop-invariants
  c/loop-invgen
  c/loop-lit
  c/loop-new
- c/loop-simple
  c/loop-zilu
  c/loops-crafted-1
  c/memory-alloca
