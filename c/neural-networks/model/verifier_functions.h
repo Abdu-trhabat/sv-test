@@ -11,9 +11,11 @@
 // Functions for verification (harness).
 // Mainly consists of assume, reach_error, and nondets
 // See: https://sv-comp.sosy-lab.org/2023/rules.php
-
+#include <assert.h>
 float __VERIFIER_nondet_float();
-void reach_error();
+void reach_error() {
+    assert(0);
+}
 
 #include <stdlib.h>
 
