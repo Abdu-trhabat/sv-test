@@ -1,3 +1,9 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 Broom team
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
 /**
  * Double-Linked List in the middle fields with data nodes
  * Functions which create, traverse, and destroy list forwards
