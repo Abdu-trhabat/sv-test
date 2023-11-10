@@ -43,14 +43,12 @@ pthread_mutex_t mutexes[256];
 void *t1_fun(void *arg) {
   struct s *p = malloc(sizeof(struct s)); init(p);
   int i = __VERIFIER_nondet_int() % 256;
-  assume_abort_if_not(i >= 0);
   insert(p, buckets[i]);
   return NULL;
 }
 
 void *t2_fun(void *arg) {
   int i = __VERIFIER_nondet_int() % 256;
-  assume_abort_if_not(i >= 0);
   struct s *p = take(buckets[i]);
   pthread_mutex_lock(&mutexes[i]);
   access_or_assert_racefree(p->datum); // TODO
