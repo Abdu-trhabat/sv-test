@@ -34,13 +34,24 @@ find_parent_with_Makefile() {
   exit 1
 }
 
-# fetching the main branch.
-git fetch origin main
+# Compute changes made in this branch.
+if [ ! -z "${CI_MERGE_REQUEST_DIFF_BASE_SHA:-}" ]; then
+  # GitLab CI pipeline for MR
+  # GitLab tells us exactly what we need to compare against, just make sure it is present locally.
+  git fetch origin $CI_MERGE_REQUEST_DIFF_BASE_SHA
+  DIFF_BASE=$CI_MERGE_REQUEST_DIFF_BASE_SHA
+else
+  # GitLab CI pipeline for branch or local execution
+  # We just compare against main branch after making sure it is present locally.
+  git fetch origin "${CI_DEFAULT_BRANCH:-main}"
+  DIFF_BASE="origin/${CI_DEFAULT_BRANCH:-main}..."
+fi
 
+echo "Comparing against '$DIFF_BASE'."
 #following variable contains the names of the files in the diff with main:
 # i) which are either c, header or preprocesses files in the c folder, and
 # ii) deleted files are not considered
-relevant_diff=`git diff --name-only --diff-filter=d origin/main... -- './*.i' './*.c' './*.h'`
+relevant_diff=`git diff --name-only --diff-filter=d "$DIFF_BASE" -- './*.i' './*.c' './*.h'`
 [ -z "$relevant_diff" ] && echo "Found nothing to build!!" && exit
 # dirs is the list of directories from the changed files
 dirs=`echo $relevant_diff | xargs dirname | cut -d/ -f2- -s | sort | uniq`
