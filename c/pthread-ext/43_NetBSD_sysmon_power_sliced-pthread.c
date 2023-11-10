@@ -87,6 +87,7 @@ inline void sysmonread_power(){
 				break;}
 			while (!COND) // avoid spurious wakeup
 				pthread_cond_wait(&CONDVAR, &MTX);
+			assert_nl(COND);
 		}
 		mutex_exit(MTX); }
   assert(1);

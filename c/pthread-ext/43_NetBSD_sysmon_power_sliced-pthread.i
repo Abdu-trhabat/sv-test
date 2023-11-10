@@ -744,6 +744,7 @@ inline void sysmonread_power(){
     break;}
    while (!COND)
     pthread_cond_wait(&CONDVAR, &MTX);
+   { if(!(COND)) { goto ERROR; } };
   }
   pthread_mutex_unlock(&MTX);; }
   { if(!(1)) { ERROR: {reach_error();abort();}(void)0; } };
