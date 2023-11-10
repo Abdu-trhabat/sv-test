@@ -66,24 +66,13 @@ ssize_t read_nvram(struct file *file, char __user *buf,
 
 	if (!access_ok(VERIFY_WRITE, buf, count))
 		return -EFAULT;
-	__VERIFIER_atomic_begin();
-	ssize_t lppos = *ppos;
-	__VERIFIER_atomic_end();
-	if (lppos >= nvram_len)
+	if (*ppos >= nvram_len)
 		return 0;
-	__VERIFIER_atomic_begin();
-	lppos = *ppos;
-	__VERIFIER_atomic_end();
-	for (i = lppos; count > 0 && i < nvram_len; ++i, ++p, --count)
+	for (i = *ppos; count > 0 && i < nvram_len; ++i, ++p, --count)
 		if (__put_user(nvram_read_byte(i), p))
 			return -EFAULT;
-	__VERIFIER_atomic_begin();
 	*ppos = i;
-	__VERIFIER_atomic_end();
-	__VERIFIER_atomic_begin();
-	lppos = *ppos;
-	__VERIFIER_atomic_end();
-	__VERIFIER_assert(lppos == i);
+	__VERIFIER_assert(*ppos == i);
 
 	return p - buf;
 }
@@ -97,26 +86,15 @@ ssize_t write_nvram(struct file *file, const char __user *buf,
 
 	if (!access_ok(VERIFY_READ, buf, count))
 		return -EFAULT;
-	__VERIFIER_atomic_begin();
-	ssize_t lppos = *ppos;
-	__VERIFIER_atomic_end();
-	if (lppos >= nvram_len)
+	if (*ppos >= nvram_len)
 		return 0;
-	__VERIFIER_atomic_begin();
-	lppos = *ppos;
-	__VERIFIER_atomic_end();
-	for (i = lppos; count > 0 && i < nvram_len; ++i, ++p, --count) {
+	for (i = *ppos; count > 0 && i < nvram_len; ++i, ++p, --count) {
 		if (__get_user(c, p))
 			return -EFAULT;
 		nvram_write_byte(c, i);
 	}
-	__VERIFIER_atomic_begin();
 	*ppos = i;
-	__VERIFIER_atomic_end();
-	__VERIFIER_atomic_begin();
-	lppos = *ppos;
-	__VERIFIER_atomic_end();
-	__VERIFIER_assert(lppos == i);
+	__VERIFIER_assert(*ppos == i);
 
 	return p - buf;
 }
