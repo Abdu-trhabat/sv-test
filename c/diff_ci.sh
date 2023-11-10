@@ -15,7 +15,7 @@ set -euo pipefail
 # have been changed on the branch.
 # Note that command is expected to be provided in double quotes.
 
-if [ ! -z "$1" ]; then 
+if [ ! -z "${1:-}" ]; then
   cmdToExecute="$1"
 else
   echo "ERROR: no command provided to execute!! Exiting the script."
