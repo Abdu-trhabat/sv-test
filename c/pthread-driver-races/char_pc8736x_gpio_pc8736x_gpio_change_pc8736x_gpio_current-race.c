@@ -188,12 +188,8 @@ void pc8736x_gpio_set(unsigned minor, int val)
 	val = inb_p(pc8736x_gpio_base + port_offset[port] + PORT_IN);
 
 	dev_dbg(&pdev->dev, "wrote %x, read: %x\n", curval, val);
-	__VERIFIER_atomic_begin();
 	pc8736x_gpio_shadow[port] = val;
-	__VERIFIER_atomic_end();
-	__VERIFIER_atomic_begin();
 	__VERIFIER_assert(pc8736x_gpio_shadow[port] == val);
-	__VERIFIER_atomic_end();
 }
 
 int pc8736x_gpio_current(unsigned minor)
@@ -202,12 +198,8 @@ int pc8736x_gpio_current(unsigned minor)
 	minor &= 0x1f;
 	port = minor >> 3;
 	bit = minor & 7;
-        __VERIFIER_atomic_begin();
         u8 tmp = pc8736x_gpio_shadow[port];
-        __VERIFIER_atomic_end();
-        __VERIFIER_atomic_begin();
         __VERIFIER_assert(tmp == pc8736x_gpio_shadow[port]);
-        __VERIFIER_atomic_end();
 	return ((tmp >> bit) & 0x01);
 }
 
@@ -465,15 +457,15 @@ int main(void)
 	int _whoop_init_result = _whoop_init();
 
 	// Declare pthread_t's
-	pthread_t pthread_t_pc8736x_gpio_set;
+	pthread_t pthread_t_pc8736x_gpio_current;
 	pthread_t pthread_t_pc8736x_gpio_change;
 
 	// Create pthread threads
-	pthread_create(&pthread_t_pc8736x_gpio_set, NULL, whoop_wrapper_pc8736x_gpio_set, NULL);
+	pthread_create(&pthread_t_pc8736x_gpio_current, NULL, whoop_wrapper_pc8736x_gpio_current, NULL);
 	pthread_create(&pthread_t_pc8736x_gpio_change, NULL, whoop_wrapper_pc8736x_gpio_change, NULL);
 
 	// Wait for threads to finish
-	pthread_join(pthread_t_pc8736x_gpio_set, NULL);
+	pthread_join(pthread_t_pc8736x_gpio_current, NULL);
 	pthread_join(pthread_t_pc8736x_gpio_change, NULL);
 
 }
