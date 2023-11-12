@@ -677,7 +677,7 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
-void foo(int (*callback)()) {
+void foo(int (*callback)(void)) {
   for (int i = 0; i < 10; i++) {
     if (__VERIFIER_nondet_int())
       callback();

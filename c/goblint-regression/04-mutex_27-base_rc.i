@@ -924,10 +924,10 @@ void good() {
   global++;
   pthread_mutex_unlock(&gm);
 }
-void (*f)() = good;
+void (*f)(void) = good;
 pthread_mutex_t fm = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 void *t_fun(void *arg) {
-  void (*g)();
+  void (*g)(void);
   pthread_mutex_lock(&fm);
   g = f;
   pthread_mutex_unlock(&fm);
