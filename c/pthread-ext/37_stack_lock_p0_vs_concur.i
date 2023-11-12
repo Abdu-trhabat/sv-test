@@ -14,6 +14,8 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "37_stack_lock_p0_vs_concur.c", 7, __extension__ __PRETTY_FUNCTION__); })); }
+extern void __VERIFIER_atomic_begin(void);
+extern void __VERIFIER_atomic_end(void);
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
@@ -714,12 +716,19 @@ inline void push(int d) {
   __VERIFIER_atomic_acquire();
   oldTop = top;
   memory[newTop+1] = oldTop;
+  __VERIFIER_atomic_begin();
   top = newTop;
+  __VERIFIER_atomic_end();
   __VERIFIER_atomic_release();
  }
 }
 void* thr1(void* arg){
-  while(1){push(10); { if(!(top != 0)) { ERROR: {reach_error();abort();}(void)0; } };}
+  while(1) {
+    push(10);
+    __VERIFIER_atomic_begin();
+    { if(!(top != 0)) { ERROR: {reach_error();abort();}(void)0; } };
+    __VERIFIER_atomic_end();
+  }
   return 0;
 }
 int main()

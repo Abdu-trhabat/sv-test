@@ -2,6 +2,8 @@ extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
+extern void __VERIFIER_atomic_begin(void);
+extern void __VERIFIER_atomic_end(void);
 
 //http://www.ibm.com/developerworks/java/library/j-jtp04186/index.html
 //Listing 2. A nonblocking counter using CAS
@@ -43,7 +45,9 @@ inline unsigned inc() {
 	unsigned inc__v, inc__vn, inc__casret;
 
 	do {
+		__VERIFIER_atomic_begin();
 		inc__v = value;
+		__VERIFIER_atomic_end();
 
 		if(inc__v == 0u-1) {
 			return 0; /*increment failed, return min*/
@@ -69,7 +73,9 @@ inline unsigned dec() {
 	unsigned dec__v, dec__vn, dec__casret;
 
 	do {
+		__VERIFIER_atomic_begin();
 		dec__v = value;
+		__VERIFIER_atomic_end();
 
 		if(dec__v == 0) {
 			return 0u-1; /*decrement failed, return max*/
