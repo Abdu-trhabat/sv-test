@@ -36,7 +36,7 @@ void assume_abort_if_not(int cond) {
 
 unsigned int pos, i1, i2, N;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (( i1 < ( 2 * N ) )) {
     __VERIFIER_atomic_begin();
     pos++;
@@ -51,7 +51,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (( i2 < ( 2 * N ) )) {
     __VERIFIER_atomic_begin();
     pos = ( pos + 2 );

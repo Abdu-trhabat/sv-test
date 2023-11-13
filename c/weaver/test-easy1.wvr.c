@@ -37,7 +37,7 @@ void assume_abort_if_not(int cond) {
 
 int x1, x2;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (x1 < 10000) {
     x1++;
   }
@@ -45,7 +45,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (x2 < 10000) {
     x2++;
   }

@@ -45,7 +45,7 @@ int res1, res2, N, M, size;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
     assume_abort_if_not(A[i] < size);
     for (int j=0; j<A[i]; j++) {
@@ -58,7 +58,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (int i=0; i<M; i++) {
     assume_abort_if_not(A[i] < size);
     for (int j=0; j<A[i]; j++) {
@@ -71,7 +71,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   for (int i=M; i<N; i++) {
     assume_abort_if_not(A[i] < size);
     for (int j=0; j<A[i]; j++) {

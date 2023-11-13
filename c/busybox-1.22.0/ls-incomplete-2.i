@@ -5466,7 +5466,7 @@ ssize_t read(int fildes, void *buf, size_t nbyte)
 {
   long ret=__VERIFIER_nondet_long();
   unsigned long offset=__VERIFIER_nondet_ulong();
-  assume_abort_if_not(ret>=-1 && ret<=nbyte);
+  assume_abort_if_not(ret==-1 || (ret >= 0 && ret<=nbyte));
   assume_abort_if_not(offset<nbyte);
   *((char*)buf+offset)=__VERIFIER_nondet_char();
   return ret;
@@ -5475,6 +5475,9 @@ int vasprintf(char **ptr, const char *fmt, va_list ap)
 {
   (void)*fmt;
   (void)ap;
+  int no_format = 1;
+  for(size_t s = 0; s < strlen(fmt); s++) if(fmt[s] == '%') { no_format = 0; break; }
+  if(no_format) { *ptr = malloc(strlen(fmt)); strcpy(*ptr, fmt); return strlen(fmt); }
   int result_buffer_size = __VERIFIER_nondet_int();
   if(result_buffer_size <= 0)
     return -1;
@@ -5493,7 +5496,7 @@ int vasprintf(char **ptr, const char *fmt, va_list ap)
 ssize_t write(int fildes, const void *buf, size_t nbyte)
 {
   long ret=__VERIFIER_nondet_long();
-  assume_abort_if_not(ret>=-1 && ret<=nbyte);
+  assume_abort_if_not(ret==-1 || (ret >= 0 && ret<=nbyte));
   return ret;
 }
 int main()

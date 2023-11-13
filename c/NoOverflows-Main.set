@@ -5,6 +5,7 @@ bitvector/*.yml
 psyco/*.yml
 loop-zilu/*.yml
 signedintegeroverflow-regression/*.yml
+unsignedintegeroverflow-sas23/*.yml
 termination-crafted/*.yml
 termination-crafted-lit/*.yml
 termination-numeric/*.yml

@@ -45,7 +45,7 @@ _Bool break_14, break_16, break_19, break_21, break_24, break_26;
 int *create_fresh_int_array(int size);
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   if (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not ( ( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_4[4] != ( 0 - 1 ) ) ) && ( index_of_0[4] == index_of_4[4] ) );
@@ -129,7 +129,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   if (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not ( ( ( index_of_4[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) && ( index_of_4[4] == index_of_8[4] ) );
@@ -213,7 +213,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   if (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not ( ( ( index_of_0[4] != ( 0 - 1 ) ) || ( index_of_8[4] != ( 0 - 1 ) ) ) && ( index_of_0[4] == index_of_8[4] ) );

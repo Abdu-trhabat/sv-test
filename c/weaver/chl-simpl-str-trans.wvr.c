@@ -39,19 +39,19 @@ int length_0, to_int_1, length_2, to_int_3, length_4, to_int_5, result_6, result
 
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   result_6 = length_0 == 0 ? (length_2 == 0 ? 0 : 1) : (length_2 == 0 ? -1 : minus(to_int_1, to_int_3));
 
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   result_7 = length_2 == 0 ? (length_4 == 0 ? 0 : 1) : (length_4 == 0 ? -1 : minus(to_int_3, to_int_5));
 
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   result_8 = length_0 == 0 ? (length_4 == 0 ? 0 : 1) : (length_4 == 0 ? -1 : minus(to_int_1, to_int_5));
 
   return 0;

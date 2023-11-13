@@ -57,7 +57,7 @@ public class Node {
    */
   public Node(int _key, Object dat) {
     this(_key);
-    Object data = dat;
+    data = dat;
   }
 
   /**

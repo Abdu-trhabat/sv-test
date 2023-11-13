@@ -38,7 +38,7 @@ void assume_abort_if_not(int cond) {
 int pos, c1, c2;
 _Bool v_assert;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = v_assert;
   __VERIFIER_atomic_end();
@@ -64,7 +64,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = v_assert;
   __VERIFIER_atomic_end();
@@ -90,7 +90,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   v_assert = (pos >= 0);
   __VERIFIER_atomic_end();

@@ -44,7 +44,7 @@ int q1_front, q1_back, q2_front, q2_back, i, j, n1, n2, N, total;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = i < N;
   __VERIFIER_atomic_end();
@@ -64,7 +64,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = j < N;
   __VERIFIER_atomic_end();
@@ -85,7 +85,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = i < N || q1_front < q1_back;
   __VERIFIER_atomic_end();
@@ -103,7 +103,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = j < N || q2_front < q2_back;
   __VERIFIER_atomic_end();

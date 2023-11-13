@@ -44,7 +44,7 @@ int x, front, size, n;
 int *create_fresh_int_array(int size);
 
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(front + size >= 0 && front + size < n);
@@ -55,7 +55,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(size > 0);

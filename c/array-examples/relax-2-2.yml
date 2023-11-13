@@ -5,7 +5,8 @@ input_files: 'relax-2-2.i'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
-    expected_verdict: true
+    expected_verdict: false
+    subproperty: valid-memtrack
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
   - property_file: ../properties/coverage-branches.prp

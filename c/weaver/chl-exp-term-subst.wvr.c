@@ -40,19 +40,19 @@ _Bool sort_label_is_null_1, sort_label_is_null_3, sort_label_is_null_5;
 
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   result_6 = !!sort_label_is_null_1 == !!sort_label_is_null_3 && (sort_label_is_null_1 || sort_label_is_null_3 || sort_label_0 == sort_label_2) ? 0 : (sort_label_is_null_1 ? -1 : (sort_label_is_null_3 ? 1 : minus(sort_label_0, sort_label_2)));
 
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   result_7 = !!sort_label_is_null_1 == !!sort_label_is_null_5 && (sort_label_is_null_1 || sort_label_is_null_5 || sort_label_0 == sort_label_4) ? 0 : (sort_label_is_null_1 ? -1 : (sort_label_is_null_5 ? 1 : minus(sort_label_0, sort_label_4)));
 
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   result_8 = !!sort_label_is_null_3 == !!sort_label_is_null_5 && (sort_label_is_null_3 || sort_label_is_null_5 || sort_label_2 == sort_label_4) ? 0 : (sort_label_is_null_3 ? -1 : (sort_label_is_null_5 ? 1 : minus(sort_label_2, sort_label_4)));
 
   return 0;

@@ -12,9 +12,9 @@ void *reader_two( void *arg ) {
     long val = 0, i = 0;
     int read[ CNT ] = { 0 };
     while ( i < 2 * CNT ) {
-        if ( ring_empty( r ) )
+        if ( ring_empty( r ) ) // RACE! r->writer with ring_enqueue in writer_fn
             continue;
-        val = ring_dequeue( r );
+        val = ring_dequeue( r ); // RACE! r->reader with ring_enqueue in writer_fn
         assert( val > 0 );
         assert( val <= CNT );
         ++read[ val - 1 ];

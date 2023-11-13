@@ -44,7 +44,7 @@ int L, N, M, a, b;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<L; i++) {
     A[i] = F[i];
   }
@@ -52,7 +52,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (int i=0; i<N; i++) {
     for (int j=0; j<M; j++) {
       B[i][j] = F[i*M+j];

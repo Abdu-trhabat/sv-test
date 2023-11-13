@@ -36,7 +36,7 @@ void assume_abort_if_not(int cond) {
 int n, m, i1, i2, j1;
 unsigned int k1, k2;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (i1 < n) {
     for (j1 = 0; j1 < m; j1++) {
       k1++;
@@ -47,7 +47,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (i2 < n) {
     k2 = k2 + m;
     i2++;

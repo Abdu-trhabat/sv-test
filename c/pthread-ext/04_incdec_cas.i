@@ -11,6 +11,8 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "04_incdec_cas.c", 4, __extension__ __PRETTY_FUNCTION__); })); }
+extern void __VERIFIER_atomic_begin(void);
+extern void __VERIFIER_atomic_end(void);
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
@@ -708,7 +710,9 @@ void __VERIFIER_atomic_assert1(unsigned inc__v)
 inline unsigned inc() {
  unsigned inc__v, inc__vn, inc__casret;
  do {
+  __VERIFIER_atomic_begin();
   inc__v = value;
+  __VERIFIER_atomic_end();
   if(inc__v == 0u-1) {
    return 0;
   }
@@ -726,7 +730,9 @@ void __VERIFIER_atomic_assert2(unsigned dec__v)
 inline unsigned dec() {
  unsigned dec__v, dec__vn, dec__casret;
  do {
+  __VERIFIER_atomic_begin();
   dec__v = value;
+  __VERIFIER_atomic_end();
   if(dec__v == 0) {
    return 0u-1;
   }
