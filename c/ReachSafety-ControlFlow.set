@@ -6,3 +6,4 @@ ntdrivers/*.yml
 openssl/*.yml
 memory-model/*.yml
 unsignedintegeroverflow-sas23/*.yml
+longjmp/*.yml
