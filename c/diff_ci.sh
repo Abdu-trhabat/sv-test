@@ -15,7 +15,7 @@ set -euo pipefail
 # have been changed on the branch.
 # Note that command is expected to be provided in double quotes.
 
-if [ ! -z "${1:-}" ]; then
+if [ -n "${1:-}" ]; then
   cmdToExecute="$1"
 else
   echo "ERROR: no command provided to execute!! Exiting the script."
@@ -35,7 +35,7 @@ find_parent_with_Makefile() {
 }
 
 # Compute changes made in this branch.
-if [ ! -z "${CI_MERGE_REQUEST_DIFF_BASE_SHA:-}" ]; then
+if [ -n "${CI_MERGE_REQUEST_DIFF_BASE_SHA:-}" ]; then
   # GitLab CI pipeline for MR
   # GitLab tells us exactly what we need to compare against, just make sure it is present locally.
   git fetch origin $CI_MERGE_REQUEST_DIFF_BASE_SHA
