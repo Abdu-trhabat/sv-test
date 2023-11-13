@@ -6,4 +6,8 @@
 # SPDX-License-Identifier: Apache-2.0
 LEVEL := ../
 
+COMMON_WARNINGS := -Wno-error=switch-bool
+GCC_WARNINGS := -Wno-error=switch-bool
+CLANG_WARNINGS := -Wno-error=switch-bool
+
 include $(LEVEL)/Makefile.config
