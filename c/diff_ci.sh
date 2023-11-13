@@ -38,8 +38,10 @@ find_parent_with_Makefile() {
 if [ -n "${CI_MERGE_REQUEST_DIFF_BASE_SHA:-}" ]; then
   # GitLab CI pipeline for MR
   # GitLab tells us exactly what we need to compare against, just make sure it is present locally.
-  git fetch origin $CI_MERGE_REQUEST_DIFF_BASE_SHA
-  DIFF_BASE=$CI_MERGE_REQUEST_DIFF_BASE_SHA
+  # For "merged results" pipelines, we compare against the tip of the MR explicitly,
+  # for non-"merged results" pipelines (where $CI_MERGE_REQUEST_SOURCE_BRANCH_SHA) this is just HEAD.
+  git fetch origin "${CI_MERGE_REQUEST_DIFF_BASE_SHA}" "${CI_MERGE_REQUEST_SOURCE_BRANCH_SHA:-}"
+  DIFF_BASE=${CI_MERGE_REQUEST_DIFF_BASE_SHA}..${CI_MERGE_REQUEST_SOURCE_BRANCH_SHA:-}
 else
   # GitLab CI pipeline for branch or local execution
   # We just compare against main branch after making sure it is present locally.
