@@ -40,7 +40,7 @@ _Bool f1_2, f2_3, f1_10, f2_11;
 unsigned int temp_4, temp_5, temp_6, temp_7, temp_12, temp_13, temp_14, temp_15;
 
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     temp_4 = x_0;
@@ -74,7 +74,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     temp_6 = y_1;
@@ -108,7 +108,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread1() {
+void* thread1(void* _argptr) {
   pthread_t t2, t3;
 
   __VERIFIER_atomic_begin();
@@ -124,7 +124,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread5() {
+void* thread5(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     temp_12 = x_8;
@@ -158,7 +158,7 @@ void* thread5() {
   return 0;
 }
 
-void* thread6() {
+void* thread6(void* _argptr) {
   while ( __VERIFIER_nondet_bool() ) {
     __VERIFIER_atomic_begin();
     temp_14 = y_9;
@@ -192,7 +192,7 @@ void* thread6() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   pthread_t t5, t6;
 
   __VERIFIER_atomic_begin();

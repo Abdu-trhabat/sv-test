@@ -1,5 +1,14 @@
 #include "sys/types.h"
 
+#ifndef __assert
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void openbsd_assert(const char * type, const char * file, int line, const char * cond)
+{
+  __assert_fail(cond, file, line, "openbsd_assert");
+}
+#define __assert(type, file, line, cond)  openbsd_assert(type, file, line, cond)
+#endif
+
 void abort(void); 
 #include "sys/systm.h"
 void reach_error() { assert(0); }
@@ -30,4 +39,12 @@ void openbsd_kernel_free(void *addr, int type, size_t size)
   free(addr);
 }
 #define free(a, b, c)	   openbsd_kernel_free(a, b, c)
+#endif
+
+#ifndef clock_gettime
+extern int clock_gettime(clockid_t, struct timespec *);
+int openbsd_clock_gettime(struct proc * p, clockid_t clk_id, struct timespec * tp) {
+  return clock_gettime(clk_id, tp);
+}
+#define clock_gettime(p, clk_id, tp)  openbsd_clock_gettime(p, clk_id, tp)
 #endif

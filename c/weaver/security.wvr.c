@@ -38,7 +38,7 @@ void assume_abort_if_not(int cond) {
 unsigned int y, x1, z1, l1, x2, z2, l2;
 
 
-void* thread1() {
+void* thread1(void* _argptr) {
   z1 = 1;
   if (__VERIFIER_nondet_bool()) {
     x1 = 1;
@@ -50,7 +50,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   z2 = 1;
   if (__VERIFIER_nondet_bool()) {
     x2 = 1;

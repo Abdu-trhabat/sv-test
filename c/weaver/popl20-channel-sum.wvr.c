@@ -43,7 +43,7 @@ int front, back, element, sum, n;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   _Bool cond = back > front;
   __VERIFIER_atomic_end();
@@ -60,7 +60,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   _Bool flag = 1;
   while (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();

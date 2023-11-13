@@ -44,7 +44,7 @@ _Bool v_assert;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int w=W; w>0; w--) {
     __VERIFIER_atomic_begin();
     _Bool cond = v_assert;
@@ -62,7 +62,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   int temp;
   __VERIFIER_atomic_begin();
   _Bool cond = v_assert;
@@ -84,7 +84,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   v_assert = (d <= W);
   __VERIFIER_atomic_end();

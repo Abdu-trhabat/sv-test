@@ -716,7 +716,9 @@ inline void findMax(int offset){
   }
  }
  __VERIFIER_atomic_release();
+ __VERIFIER_atomic_acquire();
  { if(!(my_max <= max)) { ERROR: {reach_error();abort();}(void)0; } };
+ __VERIFIER_atomic_release();
 }
 void* thr1(void* arg) {
  int offset=__VERIFIER_nondet_int();

@@ -188,8 +188,12 @@ void pc8736x_gpio_set(unsigned minor, int val)
 	val = inb_p(pc8736x_gpio_base + port_offset[port] + PORT_IN);
 
 	dev_dbg(&pdev->dev, "wrote %x, read: %x\n", curval, val);
+	__VERIFIER_atomic_begin();
 	pc8736x_gpio_shadow[port] = val;
+	__VERIFIER_atomic_end();
+	__VERIFIER_atomic_begin();
 	__VERIFIER_assert(pc8736x_gpio_shadow[port] == val);
+	__VERIFIER_atomic_end();
 }
 
 int pc8736x_gpio_current(unsigned minor)
@@ -198,8 +202,12 @@ int pc8736x_gpio_current(unsigned minor)
 	minor &= 0x1f;
 	port = minor >> 3;
 	bit = minor & 7;
+        __VERIFIER_atomic_begin();
         u8 tmp = pc8736x_gpio_shadow[port];
+        __VERIFIER_atomic_end();
+        __VERIFIER_atomic_begin();
         __VERIFIER_assert(tmp == pc8736x_gpio_shadow[port]);
+        __VERIFIER_atomic_end();
 	return ((tmp >> bit) & 0x01);
 }
 

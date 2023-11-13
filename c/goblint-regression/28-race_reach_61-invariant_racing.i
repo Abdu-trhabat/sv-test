@@ -698,9 +698,12 @@ int x = 0;
 pthread_mutex_t mutex = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 void *t_fun(void *arg) {
   pthread_mutex_lock(&mutex);
+  pthread_mutex_lock(&__global_lock);
   if (x == 0) {
+    pthread_mutex_unlock(&__global_lock);
     pthread_mutex_unlock(&mutex);
   } else {
+    pthread_mutex_unlock(&__global_lock);
     pthread_mutex_unlock(&mutex);
     do { do { pthread_mutex_lock(&__global_lock); (x)++; pthread_mutex_unlock(&__global_lock); } while (0); do { pthread_mutex_lock(&__global_lock); (x)--; pthread_mutex_unlock(&__global_lock); } while (0); } while (0);
   }

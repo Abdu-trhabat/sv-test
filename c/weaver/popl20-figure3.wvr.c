@@ -37,7 +37,7 @@ void assume_abort_if_not(int cond) {
 
 unsigned int N, counter, c;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (unsigned int i=0; i<N; i++) {
     __VERIFIER_atomic_begin();
     counter = counter + c;
@@ -47,7 +47,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (unsigned int i=0; i<N; i++) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(counter > 0);

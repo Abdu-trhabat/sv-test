@@ -46,7 +46,7 @@ int M, N, maxA, maxB, res1, res2;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
     assume_abort_if_not(0 <= A[i] && A[i] < maxA && 0 <= B[i] && B[i] < maxB);
     __VERIFIER_atomic_begin();
@@ -57,7 +57,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (int i=0; i<M; i++) {
     assume_abort_if_not(0 <= A[i] && A[i] < maxA && 0 <= B[i] && B[i] < maxB);
     __VERIFIER_atomic_begin();
@@ -68,7 +68,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   for (int i=M; i<N; i++) {
     assume_abort_if_not(0 <= A[i] && A[i] < maxA && 0 <= B[i] && B[i] < maxB);
     __VERIFIER_atomic_begin();

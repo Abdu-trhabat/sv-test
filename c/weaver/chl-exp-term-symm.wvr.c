@@ -40,13 +40,13 @@ _Bool sort_label_is_null_1, sort_label_is_null_3;
 
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   result_4 = !!sort_label_is_null_1 == !!sort_label_is_null_3 && (sort_label_is_null_1 || sort_label_is_null_3 || sort_label_0 == sort_label_2) ? 0 : (sort_label_is_null_1 ? -1 : (sort_label_is_null_3 ? 1 : minus(sort_label_0, sort_label_2)));
 
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   result_5 = !!sort_label_is_null_3 == !!sort_label_is_null_1 && (sort_label_is_null_3 || sort_label_is_null_1 || sort_label_2 == sort_label_0) ? 0 : (sort_label_is_null_3 ? -1 : (sort_label_is_null_1 ? 1 : minus(sort_label_2, sort_label_0)));
 
   return 0;

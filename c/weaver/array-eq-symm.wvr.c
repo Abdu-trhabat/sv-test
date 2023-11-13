@@ -42,7 +42,7 @@ int i_AB, i_BA, An, Bn;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (i_AB < An && i_AB < Bn) {
     if (A[i_AB] == B[i_AB]) {
       i_AB++;
@@ -54,7 +54,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (i_BA < Bn && i_BA < An) {
     if (B[i_BA] == A[i_BA]) {
       i_BA++;
