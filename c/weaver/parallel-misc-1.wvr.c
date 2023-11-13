@@ -42,7 +42,7 @@ int bag1, bag2, cap1, cap2, sum1, sum2, i, j, N;
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (( i < N )) {
     if (plus(bag1, A[i]) < cap1) {
       bag1 = plus(bag1, A[i]);
@@ -59,7 +59,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (( j < N )) {
     if (plus(bag2, A[j]) < cap2) {
       bag2 = plus(bag2, A[j]);

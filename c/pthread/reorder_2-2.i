@@ -18,6 +18,8 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "reorder_2.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
+extern void __VERIFIER_atomic_begin(void);
+extern void __VERIFIER_atomic_end(void);
 
 typedef unsigned int size_t;
 typedef unsigned char __u_char;
@@ -1282,12 +1284,22 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 void *setThread(void *param) {
+    __VERIFIER_atomic_begin();
     a = 1;
+    __VERIFIER_atomic_end();
+    __VERIFIER_atomic_begin();
     b = -1;
+    __VERIFIER_atomic_end();
     return ((void *)0);
 }
 void *checkThread(void *param) {
-    if (! ((a == 0 && b == 0) || (a == 1 && b == -1))) {
+    __VERIFIER_atomic_begin();
+    int la = a;
+    __VERIFIER_atomic_end();
+    __VERIFIER_atomic_begin();
+    int lb = b;
+    __VERIFIER_atomic_end();
+    if (! ((la == 0 && lb == 0) || (la == 1 && lb == -1))) {
         fprintf(stderr, "Bug found!\n");
      ERROR: {reach_error();abort();}
     }

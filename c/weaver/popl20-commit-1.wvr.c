@@ -47,7 +47,7 @@ _Bool safe;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(manager_back > manager_front && manager_front >= 0 && manager_front < manager_size);
@@ -77,7 +77,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(node_back > node_front && node_front >= 0 && node_front < node_size);
@@ -95,7 +95,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(manager_back >= 0 && manager_back < manager_size);

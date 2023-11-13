@@ -39,7 +39,7 @@ int cardSet_0, cardRarity_1, cardId_2, cardType_3, cardSet_4, cardRarity_5, card
 
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   result_12 = minus(cardSet_0, cardSet_4);
   result_12 = result_12 == 0 ? minus(cardRarity_1, cardRarity_5) : result_12;
@@ -50,7 +50,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   result_13 = minus(cardSet_0, cardSet_8);
   result_13 = result_13 == 0 ? minus(cardRarity_1, cardRarity_9) : result_13;
@@ -61,7 +61,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   result_14 = minus(cardSet_4, cardSet_8);
   result_14 = result_14 == 0 ? minus(cardRarity_5, cardRarity_9) : result_14;

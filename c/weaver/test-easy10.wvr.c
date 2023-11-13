@@ -38,7 +38,7 @@ void assume_abort_if_not(int cond) {
 unsigned int x1, x2, y1, y2;
 _Bool t11, t12, t21, t22, f11, f12, f21, f22;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   t11 = x1 + 1;
   __VERIFIER_atomic_end();
@@ -61,7 +61,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   t21 = y1 + 1;
   __VERIFIER_atomic_end();
@@ -84,7 +84,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   t12 = x2 + 1;
   __VERIFIER_atomic_end();
@@ -107,7 +107,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   __VERIFIER_atomic_begin();
   t22 = y2 + 1;
   __VERIFIER_atomic_end();

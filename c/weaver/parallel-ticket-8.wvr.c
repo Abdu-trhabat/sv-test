@@ -38,7 +38,7 @@ void assume_abort_if_not(int cond) {
 int m1, m2, m3, m4, m5, m6, m7, m8, s, t, x;
 _Bool b;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   m1 = t;
   t++;
@@ -60,7 +60,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   m2 = t;
   t++;
@@ -79,7 +79,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   m3 = t;
   t++;
@@ -98,7 +98,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   __VERIFIER_atomic_begin();
   m4 = t;
   t++;
@@ -117,7 +117,7 @@ void* thread4() {
   return 0;
 }
 
-void* thread5() {
+void* thread5(void* _argptr) {
   __VERIFIER_atomic_begin();
   m5 = t;
   t++;
@@ -136,7 +136,7 @@ void* thread5() {
   return 0;
 }
 
-void* thread6() {
+void* thread6(void* _argptr) {
   __VERIFIER_atomic_begin();
   m6 = t;
   t++;
@@ -155,7 +155,7 @@ void* thread6() {
   return 0;
 }
 
-void* thread7() {
+void* thread7(void* _argptr) {
   __VERIFIER_atomic_begin();
   m7 = t;
   t++;
@@ -174,7 +174,7 @@ void* thread7() {
   return 0;
 }
 
-void* thread8() {
+void* thread8(void* _argptr) {
   __VERIFIER_atomic_begin();
   m8 = t;
   t++;

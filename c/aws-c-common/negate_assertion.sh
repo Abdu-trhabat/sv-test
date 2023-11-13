@@ -1,15 +1,10 @@
-true_tasks=$(grep -l 'expected_verdict: true' *.yml)
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://github.com/sosy-lab/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2011-2020 The SV-Benchmarks Community
+#
+# SPDX-License-Identifier: Apache-2.0
 
-for file in ${true_tasks}
-do
-  filename="${file%.*}"
-  new_name="${filename}_negated.i"
-  new_yaml="${filename}_negated.yml"
-  # Negate all assertions non-greedily
-  perl -p -e 's/__VERIFIER_assert(\(.*?\));/__VERIFIER_assert(!\1);/g' \
-    "${filename}.i" > "${new_name}"
-  # Create a new YAML file
-  cp "${file}" "${new_yaml}"
-  sed -i "s/${filename}.i/${new_name}/" "${new_yaml}"
-  sed -i 's/true/false/' "${new_yaml}"
-done
+rm -f *_negated.i
+rm -f *_negated.yml
+grep -l 'expected_verdict: true' *.yml | xargs -n 1 -P 128 negate_assertion_in_one_file.sh

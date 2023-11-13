@@ -245,6 +245,13 @@ void printLongLine(long longNumber)
   return;
 }
 
+void printLongLongLine(int64_t l) {
+  printf("%ld\n",l);
+
+  return;
+}
+
+
 
 
 
@@ -1653,13 +1660,3 @@ void *ldv_reference_xzalloc(size_t size)
   
   return res;
 }
-
-
-
-
-
-
-
-
-
-

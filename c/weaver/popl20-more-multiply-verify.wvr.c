@@ -46,7 +46,7 @@ _Bool ok;
 
 unsigned int *create_fresh_uint_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   unsigned int x = 0;
   for (unsigned int i=0; i<A; i++) {
     __VERIFIER_atomic_begin();
@@ -62,7 +62,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   unsigned int x = 0;
   for (unsigned int i=0; i<A; i++) {
     __VERIFIER_atomic_begin();
@@ -78,7 +78,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   assume_abort_if_not(start >= 0 && start < n-1);
   assume_abort_if_not(end == start + 2);

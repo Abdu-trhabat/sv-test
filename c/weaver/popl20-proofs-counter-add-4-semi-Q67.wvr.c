@@ -36,7 +36,7 @@ void assume_abort_if_not(int cond) {
 
 int i1, i2, N1, N2, counter, j1, j2, M1, M2;
 
-void* thread1() {
+void* thread1(void* _argptr) {
   while (i1 < N1) {
     __VERIFIER_atomic_begin();
     counter++;
@@ -47,7 +47,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   while (i2 < N2) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(0 < counter);
@@ -59,7 +59,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   while (j1 < M1) {
     __VERIFIER_atomic_begin();
     counter++;
@@ -70,7 +70,7 @@ void* thread3() {
   return 0;
 }
 
-void* thread4() {
+void* thread4(void* _argptr) {
   while (j2 < M2) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(0 < counter);

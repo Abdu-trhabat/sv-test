@@ -43,7 +43,7 @@ int q1_front, q1_back, q2_front, q2_back, n1, n2, s, t, N;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
     __VERIFIER_atomic_begin();
     assume_abort_if_not(q1_back >= 0 && q1_back < n1);
@@ -60,7 +60,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   int j;
   while (1) {
     __VERIFIER_atomic_begin();
@@ -82,7 +82,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   int k;
   while (1) {
     __VERIFIER_atomic_begin();

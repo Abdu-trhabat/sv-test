@@ -27,6 +27,7 @@ TASKS_TO_IGNORE = {
   "floats-esbmc-regression/trunc_nondet_2.i": "(platform-dependent types)",
   "*pthread*/*": "(platform-dependent types)",
   "goblint-regression/*": "(platform-dependent types)",
+  "openbsd-6.2/*": "(only custom includes, no system headers, complicated build process)",
 }
 
 # categories to be excluded ... (with reason and debug information)
@@ -35,8 +36,6 @@ CATEGORIES_TO_IGNORE = {
   "ConcurrencySafety-NoOverflows": "(platform-dependent types)",
   "ConcurrencySafety-MemSafety": "(platform-dependent types)",
   "NoDataRace-Main": "(platform-dependent types)",
-  "SoftwareSystems-OpenBSD-MemSafety": "(only custom includes, no system headers, complicated build process)",
-  "SoftwareSystems-OpenBSD-ReachSafety": "(only custom includes, no system headers, complicated build process)",
   "SoftwareSystems-SQLite-MemSafety": "(complicated build process, requires patched version of cilly)",
 }
 
@@ -99,29 +98,53 @@ def build_goto_cc():
 
 def execute_goto_cc(args, bits, orig, taskfile):
   """ convert both preprocessed and non-preprocessed files into goto-cc intermediate language and compare them """
+  is_error = False
   with tempfile.NamedTemporaryFile(prefix="compare_orig_", suffix=".out") as origoutfile, \
        tempfile.NamedTemporaryFile(prefix="compare_task_", suffix=".out") as taskoutfile:
-    origout = origoutfile.name
-    taskout = taskoutfile.name
-    subprocess.check_call(["goto-cc", "-m" + bits, orig, "-o", origout])
-    subprocess.check_call(["goto-cc", "-m" + bits, taskfile, "-o", taskout])
-    stdout, stderr = subprocess.Popen(["goto-diff", "--verbosity", "2", "-u", origout, taskout],
+    try:
+      origout = origoutfile.name
+      taskout = taskoutfile.name
+      subprocess.check_call(["goto-cc", "-m" + bits, orig, "-o", origout])
+      subprocess.check_call(["goto-cc", "-m" + bits, taskfile, "-o", taskout])
+      stdout, stderr = subprocess.Popen(["goto-diff", "--verbosity", "2", "-u", origout, taskout],
                                     stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-    if len(stderr) > 0:
-      print(stderr.decode('utf-8').strip())
-    if len(stdout) > 0:
-      if args.SHOW_DIFF:
-        subprocess.call(["goto-diff", "-u", origout, taskout])
-      reason_to_ignore = get_reason_if_ignored(taskfile)
-      if reason_to_ignore:
-        print("WARNING: Difference on", taskfile, "detected (ignored)", reason_to_ignore)
+      if len(stderr) > 0:
+        print(stderr.decode('utf-8').strip())
+      if len(stdout) > 0:
+        if args.SHOW_DIFF:
+          subprocess.call(["goto-diff", "-u", origout, taskout])
+        is_error = print_error_or_warning("Difference on " + taskfile + " detected", taskfile)
+    except Exception as e:
+        is_error = print_error_or_warning("Exception during check: " + str(e), taskfile)
+
+    if is_error:
+      if args.KEEP_GOING:
+        global EC
+        EC = 1
       else:
-        print("ERROR: Difference on", taskfile, "detected")
-        if args.KEEP_GOING:
-          global EC
-          EC = 1
-        else:
-          exit(1)
+        exit(1)
+
+
+def print_error_or_warning(message, taskfile):
+  """Print message as error or warning for the given taskfile.
+
+  The message is printed as a warning if the task is included
+  in the allowlists TASKS_TO_IGNORE or CATEGORIES_TO_IGNORE.
+  If the task is not included in one of the allowlists, the message
+  is printed as an error.
+
+  Returns True if the message is an error, returns False if the message
+  is a warning.
+  """
+  reason_to_ignore = get_reason_if_ignored(taskfile)
+  if reason_to_ignore:
+    print("WARNING:", message, "(ignored)", reason_to_ignore)
+    return False
+  else:
+    print("ERROR:", message)
+    return True
+
+
 
 
 def get_setfiles(args):

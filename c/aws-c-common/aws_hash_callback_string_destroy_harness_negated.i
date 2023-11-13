@@ -4936,11 +4936,7 @@ static inline void aws_linked_list_remove(struct aws_linked_list_node *node) {
     node->prev->next = node->next;
     node->next->prev = node->prev;
     aws_linked_list_node_reset(node);
-    __VERIFIER_assert((node->next == 
-   ((void *)0) 
-   && node->prev == 
-   ((void *)0)
-   ));
+    __VERIFIER_assert(!((node->next == ((void *)0) && node->prev == ((void *)0))));
 }
 
 
@@ -4977,11 +4973,7 @@ static inline struct aws_linked_list_node *aws_linked_list_pop_back(struct aws_l
     assume_abort_if_not((aws_linked_list_is_valid(list)));
     struct aws_linked_list_node *back = aws_linked_list_back(list);
     aws_linked_list_remove(back);
-    __VERIFIER_assert((back->next == 
-   ((void *)0) 
-   && back->prev == 
-   ((void *)0)
-   ));
+    __VERIFIER_assert(!((back->next == ((void *)0) && back->prev == ((void *)0))));
     __VERIFIER_assert(!((aws_linked_list_is_valid(list))));
     return back;
 }
@@ -5020,11 +5012,7 @@ static inline struct aws_linked_list_node *aws_linked_list_pop_front(struct aws_
     assume_abort_if_not((aws_linked_list_is_valid(list)));
     struct aws_linked_list_node *front = aws_linked_list_front(list);
     aws_linked_list_remove(front);
-    __VERIFIER_assert((front->next == 
-   ((void *)0) 
-   && front->prev == 
-   ((void *)0)
-   ));
+    __VERIFIER_assert(!((front->next == ((void *)0) && front->prev == ((void *)0))));
     __VERIFIER_assert(!((aws_linked_list_is_valid(list))));
     return front;
 }
@@ -7279,23 +7267,15 @@ void check_hash_table_unchanged(const struct aws_hash_table *map, const struct s
 }
 
 int nondet_compare(const void *const a, const void *const b) {
-    __VERIFIER_assert(a != 
-   ((void *)0)
-   );
-    __VERIFIER_assert(b != 
-   ((void *)0)
-   );
+    __VERIFIER_assert(!(a != ((void *)0)));
+    __VERIFIER_assert(!(b != ((void *)0)));
     return nondet_int();
 }
 
 int __CPROVER_uninterpreted_compare(const void *const a, const void *const b);
 int uninterpreted_compare(const void *const a, const void *const b) {
-    __VERIFIER_assert(a != 
-   ((void *)0)
-   );
-    __VERIFIER_assert(b != 
-   ((void *)0)
-   );
+    __VERIFIER_assert(!(a != ((void *)0)));
+    __VERIFIER_assert(!(b != ((void *)0)));
     int rval = __CPROVER_uninterpreted_compare(a, b);
 
     assume_abort_if_not((!(a == b) || (rval == 0)));
@@ -7311,12 +7291,8 @@ int uninterpreted_compare(const void *const a, const void *const b) {
 
 _Bool 
     nondet_equals(const void *const a, const void *const b) {
-    __VERIFIER_assert(a != 
-   ((void *)0)
-   );
-    __VERIFIER_assert(b != 
-   ((void *)0)
-   );
+    __VERIFIER_assert(!(a != ((void *)0)));
+    __VERIFIER_assert(!(b != ((void *)0)));
     return nondet_bool();
 }
 
@@ -7348,19 +7324,13 @@ _Bool
 
 _Bool 
     uninterpreted_equals_assert_inputs_nonnull(const void *const a, const void *const b) {
-    __VERIFIER_assert(a != 
-   ((void *)0)
-   );
-    __VERIFIER_assert(b != 
-   ((void *)0)
-   );
+    __VERIFIER_assert(!(a != ((void *)0)));
+    __VERIFIER_assert(!(b != ((void *)0)));
     return uninterpreted_equals(a, b);
 }
 
 uint64_t nondet_hasher(const void *a) {
-    __VERIFIER_assert(a != 
-   ((void *)0)
-   );
+    __VERIFIER_assert(!(a != ((void *)0)));
     return nondet_uint64_t();
 }
 
@@ -7368,9 +7338,7 @@ uint64_t nondet_hasher(const void *a) {
 
 
 uint64_t uninterpreted_hasher(const void *a) {
-    __VERIFIER_assert(a != 
-   ((void *)0)
-   );
+    __VERIFIER_assert(!(a != ((void *)0)));
     return __CPROVER_uninterpreted_hasher(a);
 }
 
@@ -9250,9 +9218,7 @@ void aws_hash_table_clean_up(struct aws_hash_table *map) {
     map->p_impl = 
                  ((void *)0)
                      ;
-    __VERIFIER_assert((map->p_impl == 
-   ((void *)0)
-   ));
+    __VERIFIER_assert(!((map->p_impl == ((void *)0))));
 }
 
 void aws_hash_table_swap(struct aws_hash_table *restrict a, struct aws_hash_table *restrict b) {
@@ -9830,10 +9796,10 @@ _Bool
     
    _Bool 
         rval = (iter->slot == iter->limit);
-    __VERIFIER_assert((iter->status == AWS_HASH_ITER_STATUS_DONE || iter->status == AWS_HASH_ITER_STATUS_READY_FOR_USE))
+    __VERIFIER_assert(!((iter->status == AWS_HASH_ITER_STATUS_DONE || iter->status == AWS_HASH_ITER_STATUS_READY_FOR_USE)))
 
                                                                                           ;
-    __VERIFIER_assert((rval == (iter->status == AWS_HASH_ITER_STATUS_DONE)))
+    __VERIFIER_assert(!((rval == (iter->status == AWS_HASH_ITER_STATUS_DONE))))
 
                                                                                        ;
     __VERIFIER_assert(!((aws_hash_iter_is_valid(iter))));
@@ -9847,7 +9813,7 @@ void aws_hash_iter_next(struct aws_hash_iter *iter) {
     s_get_next_element(iter, iter->slot + 1);
 
 
-    __VERIFIER_assert((iter->status == AWS_HASH_ITER_STATUS_DONE || iter->status == AWS_HASH_ITER_STATUS_READY_FOR_USE))
+    __VERIFIER_assert(!((iter->status == AWS_HASH_ITER_STATUS_DONE || iter->status == AWS_HASH_ITER_STATUS_READY_FOR_USE)))
 
                                                                                           ;
     __VERIFIER_assert(!((aws_hash_iter_is_valid(iter))));
@@ -9882,7 +9848,7 @@ void aws_hash_iter_delete(struct aws_hash_iter *iter,
 
 
     iter->status = AWS_HASH_ITER_STATUS_DELETE_CALLED;
-    __VERIFIER_assert((iter->status == AWS_HASH_ITER_STATUS_DELETE_CALLED))
+    __VERIFIER_assert(!((iter->status == AWS_HASH_ITER_STATUS_DELETE_CALLED)))
 
                                                                            ;
     __VERIFIER_assert(!((aws_hash_iter_is_valid(iter))));

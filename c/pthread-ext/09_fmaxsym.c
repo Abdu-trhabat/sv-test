@@ -46,7 +46,9 @@ inline void findMax(int offset)
 			}
 		}
 		__VERIFIER_atomic_release();
+		__VERIFIER_atomic_acquire();
 		assert(e <= max);
+		__VERIFIER_atomic_release();
 	}
 }
 

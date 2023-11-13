@@ -43,7 +43,7 @@ int count1, count2, count3, n1, n2, n3, res1, res2, res3;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   _Bool stop = 0;
   if (count1 == count2) {
     for (int i=0; i<n1 && i<n2; i++) {
@@ -63,7 +63,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   _Bool stop = 0;
   if (count2 == count3) {
     for (int i=0; i<n2 && i<n3; i++) {
@@ -83,7 +83,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   _Bool stop = 0;
   if (count1 == count3) {
     for (int i=0; i<n1 && i<n3; i++) {

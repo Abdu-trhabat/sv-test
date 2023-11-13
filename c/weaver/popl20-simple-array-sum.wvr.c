@@ -46,7 +46,7 @@ int p, N;
 
 unsigned int *create_fresh_uint_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
     asum = asum + A[i];
   }
@@ -54,7 +54,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   for (int i=0; i<N; i++) {
     __VERIFIER_atomic_begin();
     C[i] = A[i] + 1;
@@ -67,7 +67,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   int i = 0;
   while (i < N) {
     __VERIFIER_atomic_begin();

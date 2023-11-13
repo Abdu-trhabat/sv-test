@@ -44,7 +44,7 @@ unsigned int n;
 
 int *create_fresh_int_array(int size);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   unsigned int i = 0;
   while (i < 4 * n) {
     assume_abort_if_not(x1 >= 0 && x1 < size);
@@ -54,7 +54,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   unsigned int i = 0;
   while (i < 4 * n) {
     assume_abort_if_not(x2 >= 0 && x2 < size);

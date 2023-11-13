@@ -40,7 +40,7 @@ int volume_totale_1, volume_totale_3, volume_totale_5;
 int cmp_6, cmp_7, cmp_8;
 int minus(int a, int b);
 
-void* thread1() {
+void* thread1(void* _argptr) {
   __VERIFIER_atomic_begin();
   cmp_6 = minus(ora_0, ora_2);
   cmp_6 = ( ( cmp_6 == 0 ) ? minus(volume_totale_1, volume_totale_3) : cmp_6 );
@@ -49,7 +49,7 @@ void* thread1() {
   return 0;
 }
 
-void* thread2() {
+void* thread2(void* _argptr) {
   __VERIFIER_atomic_begin();
   cmp_7 = minus(ora_2, ora_4);
   cmp_7 = ( ( cmp_7 == 0 ) ? minus(volume_totale_3, volume_totale_5) : cmp_7 );
@@ -58,7 +58,7 @@ void* thread2() {
   return 0;
 }
 
-void* thread3() {
+void* thread3(void* _argptr) {
   __VERIFIER_atomic_begin();
   cmp_8 = minus(ora_0, ora_4);
   cmp_8 = ( ( cmp_8 == 0 ) ? minus(volume_totale_1, volume_totale_5) : cmp_8 );
