@@ -41,19 +41,19 @@ if [ -n "${CI_MERGE_REQUEST_DIFF_BASE_SHA:-}" ]; then
   # For "merged results" pipelines, we compare against the tip of the MR explicitly,
   # for non-"merged results" pipelines (where $CI_MERGE_REQUEST_SOURCE_BRANCH_SHA) this is just HEAD.
   git fetch origin "${CI_MERGE_REQUEST_DIFF_BASE_SHA}" "${CI_MERGE_REQUEST_SOURCE_BRANCH_SHA:-}"
-  DIFF_BASE=${CI_MERGE_REQUEST_DIFF_BASE_SHA}..${CI_MERGE_REQUEST_SOURCE_BRANCH_SHA:-}
+  DIFF_ARG=${CI_MERGE_REQUEST_DIFF_BASE_SHA}..${CI_MERGE_REQUEST_SOURCE_BRANCH_SHA:-}
 else
   # GitLab CI pipeline for branch or local execution
   # We just compare against main branch after making sure it is present locally.
   git fetch origin "${CI_DEFAULT_BRANCH:-main}"
-  DIFF_BASE="origin/${CI_DEFAULT_BRANCH:-main}..."
+  DIFF_ARG="origin/${CI_DEFAULT_BRANCH:-main}..."
 fi
 
-echo "Comparing against '$DIFF_BASE'."
+echo "Comparing '$DIFF_ARG'."
 #following variable contains the names of the files in the diff with main:
 # i) which are either c, header or preprocesses files in the c folder, and
 # ii) deleted files are not considered
-relevant_diff=`git diff --name-only --diff-filter=d "$DIFF_BASE" -- './*.i' './*.c' './*.h'`
+relevant_diff=`git diff --name-only --diff-filter=d "$DIFF_ARG" -- './*.i' './*.c' './*.h'`
 [ -z "$relevant_diff" ] && echo "Found nothing to build!!" && exit
 # dirs is the list of directories from the changed files
 dirs=`echo $relevant_diff | xargs dirname | cut -d/ -f2- -s | sort | uniq`
