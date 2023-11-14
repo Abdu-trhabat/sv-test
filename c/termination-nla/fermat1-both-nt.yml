@@ -3,6 +3,7 @@ input_files: 'fermat1-both-nt.c'
 properties:
   - property_file: ../properties/no-overflow.prp
     expected_verdict: true
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

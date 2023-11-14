@@ -508,6 +508,10 @@ class PropertiesChecks(Checks):
                 any(fulfills(p) for p in prop_to_verdict)
                 or len([p for p in prop_to_verdict if violates(p)]) > 1
             ):
+                # this check excludes coverage-error-call because it has no expected verdict.
+                # but we check below that coverage-error-call only exists when
+                # unreach-call is violated, so checks for coverage-error-call are subsumed
+                # by checks for 'unreach-call: false'.
                 self.error(
                         "has expected undefined behavior but also a verdict for some other property")
 
