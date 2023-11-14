@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "22.c_002_range.c", 13, "reach_error"); 
 
 
 
-void main ();
+int main ();
 
 void
 main ()

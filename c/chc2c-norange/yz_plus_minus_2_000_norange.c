@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "yz_plus_minus_2_000_norange.c", 13, "re
 
 
 
-void main ();
+int main ();
 
 void
 main ()

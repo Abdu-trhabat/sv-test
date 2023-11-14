@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-FIREFLY_rt_e3_1770_e2_637_000_noran
 
 
 
-void main ();
+int main ();
 
 void
 main ()

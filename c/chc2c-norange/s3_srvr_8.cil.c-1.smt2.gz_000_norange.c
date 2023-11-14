@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "s3_srvr_8.cil.c-1.smt2.gz_000_norange.c
 
 
 
-void main ();
+int main ();
 
 void
 main ()

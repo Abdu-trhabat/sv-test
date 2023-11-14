@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "speed_e8_136_000_norange.c", 13, "reach
 
 
 
-void main ();
+int main ();
 
 void
 main ()

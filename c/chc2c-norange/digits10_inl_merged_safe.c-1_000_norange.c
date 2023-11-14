@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "digits10_inl_merged_safe.c-1_000_norang
 
 
 
-void main ();
+int main ();
 
 void
 main ()

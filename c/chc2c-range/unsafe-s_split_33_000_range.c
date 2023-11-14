@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "unsafe-s_split_33_000_range.c", 13, "re
 
 
 
-void main ();
+int main ();
 
 void
 main ()

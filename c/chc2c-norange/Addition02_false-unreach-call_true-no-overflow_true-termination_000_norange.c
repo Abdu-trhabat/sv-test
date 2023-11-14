@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "Addition02_false-unreach-call_true-no-o
 
 
 
-void main ();
+int main ();
 
 void
 main ()

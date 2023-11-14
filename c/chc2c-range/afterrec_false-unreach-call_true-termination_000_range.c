@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "afterrec_false-unreach-call_true-termin
 
 
 
-void main ();
+int main ();
 
 void
 main ()

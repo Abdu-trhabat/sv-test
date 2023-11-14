@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "fibo_2calls_2_false-unreach-call_true-t
 
 
 
-void main ();
+int main ();
 
 void
 main ()

@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "ILLINOIS_all_e3_2354_e6_993_000_range.c
 
 
 
-void main ();
+int main ();
 
 void
 main ()

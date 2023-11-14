@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-MOESI_2_e3_929_e7_619_000_range.c",
 
 
 
-void main ();
+int main ();
 
 void
 main ()

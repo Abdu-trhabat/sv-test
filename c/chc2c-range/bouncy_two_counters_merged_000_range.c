@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "bouncy_two_counters_merged_000_range.c"
 
 
 
-void main ();
+int main ();
 
 void
 main ()

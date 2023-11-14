@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-ILLINOIS_3_e3_2581_e2_2545_000_rang
 
 
 
-void main ();
+int main ();
 
 void
 main ()

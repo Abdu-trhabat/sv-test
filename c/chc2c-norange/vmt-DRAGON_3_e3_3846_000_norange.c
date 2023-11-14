@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-DRAGON_3_e3_3846_000_norange.c", 13
 
 
 
-void main ();
+int main ();
 
 void
 main ()

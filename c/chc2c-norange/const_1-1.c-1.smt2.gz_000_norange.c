@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "const_1-1.c-1.smt2.gz_000_norange.c", 1
 
 
 
-void main ();
+int main ();
 
 void
 main ()

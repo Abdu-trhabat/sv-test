@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "durationThm_1_e3_389_e6_167_000_range.c
 
 
 
-void main ();
+int main ();
 
 void
 main ()

@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-PRODUCER_CONSUMER_vt_e2_1352_000_no
 
 
 
-void main ();
+int main ();
 
 void
 main ()

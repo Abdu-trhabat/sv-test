@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "nested-while_merged_safe.c-1_003_norang
 
 
 
-void main ();
+int main ();
 
 void
 main ()

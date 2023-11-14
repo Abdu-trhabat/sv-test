@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "MESI_i1_e3_2145_e3_977_000_range.c", 13
 
 
 
-void main ();
+int main ();
 
 void
 main ()

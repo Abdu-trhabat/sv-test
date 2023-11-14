@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "string_concat-noarr.c_000_norange.c", 1
 
 
 
-void main ();
+int main ();
 
 void
 main ()

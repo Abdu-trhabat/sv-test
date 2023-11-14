@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "array_fill1_even_odd_abstracted_001_ran
 
 
 
-void main ();
+int main ();
 
 void
 main ()

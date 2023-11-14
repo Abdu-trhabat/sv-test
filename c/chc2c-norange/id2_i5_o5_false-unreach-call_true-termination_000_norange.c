@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "id2_i5_o5_false-unreach-call_true-termi
 
 
 
-void main ();
+int main ();
 
 void
 main ()

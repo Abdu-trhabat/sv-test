@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "while_after_while_if_merged_safe.c-1_00
 
 
 
-void main ();
+int main ();
 
 void
 main ()

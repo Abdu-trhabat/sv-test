@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "EvenOdd03WithOverflowBug_false-no-overf
 
 
 
-void main ();
+int main ();
 
 void
 main ()

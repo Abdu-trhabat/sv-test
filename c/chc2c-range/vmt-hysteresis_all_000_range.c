@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-hysteresis_all_000_range.c", 13, "r
 
 
 
-void main ();
+int main ();
 
 void
 main ()

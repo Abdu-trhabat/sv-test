@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "FIREFLY_2_e7_1776_e2_3202_000_norange.c
 
 
 
-void main ();
+int main ();
 
 void
 main ()

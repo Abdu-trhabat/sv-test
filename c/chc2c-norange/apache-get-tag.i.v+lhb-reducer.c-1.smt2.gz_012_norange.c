@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "apache-get-tag.i.v+lhb-reducer.c-1.smt2
 
 
 
-void main ();
+int main ();
 
 void
 main ()

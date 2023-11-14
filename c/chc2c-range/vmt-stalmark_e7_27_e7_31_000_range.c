@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-stalmark_e7_27_e7_31_000_range.c", 
 
 
 
-void main ();
+int main ();
 
 void
 main ()

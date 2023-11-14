@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "loop__nested-while_003_norange.c", 13, 
 
 
 
-void main ();
+int main ();
 
 void
 main ()

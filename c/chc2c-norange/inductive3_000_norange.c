@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "inductive3_000_norange.c", 13, "reach_e
 
 
 
-void main ();
+int main ();
 
 void
 main ()

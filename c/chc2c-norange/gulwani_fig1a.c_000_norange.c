@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "gulwani_fig1a.c_000_norange.c", 13, "re
 
 
 
-void main ();
+int main ();
 
 void
 main ()

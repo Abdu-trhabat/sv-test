@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "libc__sbrk_1_007_range.c", 13, "reach_e
 
 
 
-void main ();
+int main ();
 
 void
 main ()

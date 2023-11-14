@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-SYNAPSE_4_000_range.c", 13, "reach_
 
 
 
-void main ();
+int main ();
 
 void
 main ()

@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "Ackermann00_000_norange.c", 13, "reach_
 
 
 
-void main ();
+int main ();
 
 void
 main ()

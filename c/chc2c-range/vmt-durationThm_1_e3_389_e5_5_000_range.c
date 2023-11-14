@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-durationThm_1_e3_389_e5_5_000_range
 
 
 
-void main ();
+int main ();
 
 void
 main ()

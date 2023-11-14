@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "car_all_e2_108_000_norange.c", 13, "rea
 
 
 
-void main ();
+int main ();
 
 void
 main ()

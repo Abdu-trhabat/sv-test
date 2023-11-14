@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "ex3_e8_120_000_range.c", 13, "reach_err
 
 
 
-void main ();
+int main ();
 
 void
 main ()

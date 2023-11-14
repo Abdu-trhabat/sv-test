@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "ILLINOIS_2_e2_2367_000_range.c", 13, "r
 
 
 
-void main ();
+int main ();
 
 void
 main ()

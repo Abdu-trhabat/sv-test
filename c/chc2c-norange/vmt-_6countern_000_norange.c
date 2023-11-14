@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-_6countern_000_norange.c", 13, "rea
 
 
 
-void main ();
+int main ();
 
 void
 main ()

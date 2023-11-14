@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "SYNAPSE_2_e8_1118_000_range.c", 13, "re
 
 
 
-void main ();
+int main ();
 
 void
 main ()

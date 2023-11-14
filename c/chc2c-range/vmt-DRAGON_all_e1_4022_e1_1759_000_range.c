@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-DRAGON_all_e1_4022_e1_1759_000_rang
 
 
 
-void main ();
+int main ();
 
 void
 main ()

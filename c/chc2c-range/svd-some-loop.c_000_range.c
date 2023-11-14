@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "svd-some-loop.c_000_range.c", 13, "reac
 
 
 
-void main ();
+int main ();
 
 void
 main ()

@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "Addition02WithOverflowBug_false-no-over
 
 
 
-void main ();
+int main ();
 
 void
 main ()

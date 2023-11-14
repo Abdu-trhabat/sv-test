@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "loop_merged_safe.c-1_002_norange.c", 13
 
 
 
-void main ();
+int main ();
 
 void
 main ()

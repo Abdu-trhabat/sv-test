@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-ILLINOIS_a1_000_norange.c", 13, "re
 
 
 
-void main ();
+int main ();
 
 void
 main ()

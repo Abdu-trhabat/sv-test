@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "NetBSD_glob3_iny.c_000_norange.c", 13, 
 
 
 
-void main ();
+int main ();
 
 void
 main ()

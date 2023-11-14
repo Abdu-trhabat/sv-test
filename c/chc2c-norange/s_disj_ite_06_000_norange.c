@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "s_disj_ite_06_000_norange.c", 13, "reac
 
 
 
-void main ();
+int main ();
 
 void
 main ()

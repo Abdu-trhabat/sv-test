@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-speed_e8_649_e7_709_000_norange.c",
 
 
 
-void main ();
+int main ();
 
 void
 main ()

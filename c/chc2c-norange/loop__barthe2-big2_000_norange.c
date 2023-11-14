@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "loop__barthe2-big2_000_norange.c", 13, 
 
 
 
-void main ();
+int main ();
 
 void
 main ()

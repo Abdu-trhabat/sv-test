@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "underapprox_1-2.c-1.smt2.gz_000_range.c
 
 
 
-void main ();
+int main ();
 
 void
 main ()

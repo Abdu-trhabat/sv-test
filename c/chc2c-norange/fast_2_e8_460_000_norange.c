@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "fast_2_e8_460_000_norange.c", 13, "reac
 
 
 
-void main ();
+int main ();
 
 void
 main ()

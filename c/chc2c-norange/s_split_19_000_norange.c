@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "s_split_19_000_norange.c", 13, "reach_e
 
 
 
-void main ();
+int main ();
 
 void
 main ()

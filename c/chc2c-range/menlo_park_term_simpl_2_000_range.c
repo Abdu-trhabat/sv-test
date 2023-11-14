@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "menlo_park_term_simpl_2_000_range.c", 1
 
 
 
-void main ();
+int main ();
 
 void
 main ()

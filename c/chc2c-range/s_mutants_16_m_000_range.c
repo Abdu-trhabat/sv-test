@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "s_mutants_16_m_000_range.c", 13, "reach
 
 
 
-void main ();
+int main ();
 
 void
 main ()

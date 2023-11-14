@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "s3_clnt_4.cil-1.c-1.smt2.gz_000_range.c
 
 
 
-void main ();
+int main ();
 
 void
 main ()

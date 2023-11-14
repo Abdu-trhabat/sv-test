@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-production_cell_e7_207_e7_41_000_no
 
 
 
-void main ();
+int main ();
 
 void
 main ()

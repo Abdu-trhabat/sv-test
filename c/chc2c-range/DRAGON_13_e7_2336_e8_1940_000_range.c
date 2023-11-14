@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "DRAGON_13_e7_2336_e8_1940_000_range.c",
 
 
 
-void main ();
+int main ();
 
 void
 main ()

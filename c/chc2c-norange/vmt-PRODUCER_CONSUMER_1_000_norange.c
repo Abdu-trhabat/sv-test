@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-PRODUCER_CONSUMER_1_000_norange.c",
 
 
 
-void main ();
+int main ();
 
 void
 main ()

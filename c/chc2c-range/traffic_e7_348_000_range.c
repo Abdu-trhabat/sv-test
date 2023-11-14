@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "traffic_e7_348_000_range.c", 13, "reach
 
 
 
-void main ();
+int main ();
 
 void
 main ()

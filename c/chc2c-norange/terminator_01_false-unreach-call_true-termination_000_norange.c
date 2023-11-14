@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "terminator_01_false-unreach-call_true-t
 
 
 
-void main ();
+int main ();
 
 void
 main ()

@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "sendmail-mime7to8_arr_three_chars_no_te
 
 
 
-void main ();
+int main ();
 
 void
 main ()

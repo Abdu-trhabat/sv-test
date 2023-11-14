@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "half_true_modif_m_000_norange.c", 13, "
 
 
 
-void main ();
+int main ();
 
 void
 main ()

@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-PRODUCER_CONSUMMER_luke_2_e7_1068_e
 
 
 
-void main ();
+int main ();
 
 void
 main ()

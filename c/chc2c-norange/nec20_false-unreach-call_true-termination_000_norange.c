@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "nec20_false-unreach-call_true-terminati
 
 
 
-void main ();
+int main ();
 
 void
 main ()

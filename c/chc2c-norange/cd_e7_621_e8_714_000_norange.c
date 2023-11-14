@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "cd_e7_621_e8_714_000_norange.c", 13, "r
 
 
 
-void main ();
+int main ();
 
 void
 main ()

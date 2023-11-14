@@ -14,7 +14,7 @@ void reach_error() { __assert_fail("0", "vmt-ex3_e8_381_e7_224_000_norange.c", 1
 
 
 
-void main ();
+int main ();
 
 void
 main ()
