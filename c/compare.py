@@ -57,7 +57,11 @@ TASKS_ONLY_PREPROCESSED = [
   'loops/s3.i', # this single file is special
   'Juliet_Test/', # for Juliet there are c files, but each was preprocessed into two tasks, one valid and one invalid
   'neural-networks/', # relies on custom include folder
-  'combinations/'
+  'combinations/',
+  'recursified_loop-crafted',
+  'recursified_loop-invariants',
+  'recursified_loop-simple',
+  'recursified_nla-digbench'
 ]
 
 CBMC_GIT_PATH = "../cbmc.git/"
