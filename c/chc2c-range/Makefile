@@ -7,7 +7,6 @@
 LEVEL := ../
 
 COMMON_WARNINGS := -Wno-switch-bool
-GCC_WARNINGS := -Wno-switch-bool
-CLANG_WARNINGS := -Wno-switch-bool
+CLANG_WARNINGS := -Wno-uninitialized  -Wno-unused
 
 include $(LEVEL)/Makefile.config
