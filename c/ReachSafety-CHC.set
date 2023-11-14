@@ -577,7 +577,6 @@ chc2c-range/apache-get-tag.i.v+nlh-reducer.c-1.smt2.gz_014_range.yml
 chc2c-range/apache-get-tag.i.v+nlh-reducer.c-1.smt2.gz_015_range.yml
 chc2c-range/apache-get-tag.i.v+nlh-reducer.c-1.smt2.gz_016_range.yml
 chc2c-range/const_1-1.c-1.smt2.gz_000_range.yml
-chc2c-range/deep-nested.c-1.smt2.gz_000_range.yml
 chc2c-range/diamond_1-1.c-1.smt2.gz_000_range.yml
 chc2c-range/diamond_2-2.c-1.smt2.gz_000_range.yml
 chc2c-range/functions_1-1.c-1.smt2.gz_000_range.yml
@@ -1958,7 +1957,6 @@ chc2c-norange/apache-get-tag.i.v+nlh-reducer.c-1.smt2.gz_014_norange.yml
 chc2c-norange/apache-get-tag.i.v+nlh-reducer.c-1.smt2.gz_015_norange.yml
 chc2c-norange/apache-get-tag.i.v+nlh-reducer.c-1.smt2.gz_016_norange.yml
 chc2c-norange/const_1-1.c-1.smt2.gz_000_norange.yml
-chc2c-norange/deep-nested.c-1.smt2.gz_000_norange.yml
 chc2c-norange/diamond_1-1.c-1.smt2.gz_000_norange.yml
 chc2c-norange/diamond_2-2.c-1.smt2.gz_000_norange.yml
 chc2c-norange/functions_1-1.c-1.smt2.gz_000_norange.yml
