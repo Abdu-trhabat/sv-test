@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "SpamAssassin-loop.i.v+cfa-reducer.c-1.s
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

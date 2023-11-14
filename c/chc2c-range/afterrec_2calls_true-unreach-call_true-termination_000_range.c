@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "afterrec_2calls_true-unreach-call_true-
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

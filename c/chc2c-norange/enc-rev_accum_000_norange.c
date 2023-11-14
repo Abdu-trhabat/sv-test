@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "enc-rev_accum_000_norange.c", 13, "reac
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

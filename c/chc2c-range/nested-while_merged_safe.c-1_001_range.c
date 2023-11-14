@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "nested-while_merged_safe.c-1_001_range.
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "while_infinite_loop_2_true-unreach-call
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

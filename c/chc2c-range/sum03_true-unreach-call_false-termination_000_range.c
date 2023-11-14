@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "sum03_true-unreach-call_false-terminati
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

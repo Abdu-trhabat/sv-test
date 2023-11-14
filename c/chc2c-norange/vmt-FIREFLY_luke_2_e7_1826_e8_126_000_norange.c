@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-FIREFLY_luke_2_e7_1826_e8_126_000_n
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

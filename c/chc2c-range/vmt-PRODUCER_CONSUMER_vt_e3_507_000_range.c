@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-PRODUCER_CONSUMER_vt_e3_507_000_ran
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

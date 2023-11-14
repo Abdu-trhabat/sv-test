@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "bouncy_two_counters_merged_000_norange.
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

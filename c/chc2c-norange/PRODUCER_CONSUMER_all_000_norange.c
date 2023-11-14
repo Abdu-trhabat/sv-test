@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "PRODUCER_CONSUMER_all_000_norange.c", 1
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

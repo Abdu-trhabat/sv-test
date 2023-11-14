@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "bind_expands_vars2.c_000_norange.c", 13
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

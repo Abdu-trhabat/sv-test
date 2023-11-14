@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-ILLINOIS_2_e1_834_e7_3738_000_noran
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

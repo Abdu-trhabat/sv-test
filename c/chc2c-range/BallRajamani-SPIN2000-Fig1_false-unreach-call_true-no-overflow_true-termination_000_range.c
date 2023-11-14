@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "BallRajamani-SPIN2000-Fig1_false-unreac
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

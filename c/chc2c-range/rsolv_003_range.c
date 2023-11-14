@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "rsolv_003_range.c", 13, "reach_error");
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

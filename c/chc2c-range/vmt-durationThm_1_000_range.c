@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-durationThm_1_000_range.c", 13, "re
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

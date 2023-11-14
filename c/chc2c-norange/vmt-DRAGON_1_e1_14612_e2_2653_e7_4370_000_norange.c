@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-DRAGON_1_e1_14612_e2_2653_e7_4370_0
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

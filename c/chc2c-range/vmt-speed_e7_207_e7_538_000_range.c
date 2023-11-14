@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-speed_e7_207_e7_538_000_range.c", 1
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

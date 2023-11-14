@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "sum01_bug02_false-unreach-call_true-ter
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "CE-0CFA02_000_norange.c", 13, "reach_er
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

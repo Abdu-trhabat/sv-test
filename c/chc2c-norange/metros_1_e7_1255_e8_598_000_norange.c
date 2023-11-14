@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "metros_1_e7_1255_e8_598_000_norange.c",
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

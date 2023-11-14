@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "production_cell_e7_207_000_range.c", 13
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

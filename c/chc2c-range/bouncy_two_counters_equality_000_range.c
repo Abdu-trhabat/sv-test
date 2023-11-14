@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "bouncy_two_counters_equality_000_range.
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

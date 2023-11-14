@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-traffic_e7_46_e7_171_000_norange.c"
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "loop__digits10_inl_000_norange.c", 13, 
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

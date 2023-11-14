@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "s3_clnt_4.cil-2.c-1.smt2.gz_000_norange
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

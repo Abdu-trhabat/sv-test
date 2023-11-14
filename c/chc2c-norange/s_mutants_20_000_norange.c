@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "s_mutants_20_000_norange.c", 13, "reach
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

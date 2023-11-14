@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "count_up_down_false-unreach-call_true-t
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "traffic_e7_46_e8_16_000_norange.c", 13,
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "EvenOdd03_false-unreach-call_true-no-ov
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

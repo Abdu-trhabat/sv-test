@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "loop_unswitching_merged_safe.c-1_003_ra
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

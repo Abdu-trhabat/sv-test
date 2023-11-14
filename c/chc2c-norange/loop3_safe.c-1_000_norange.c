@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "loop3_safe.c-1_000_norange.c", 13, "rea
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-fast_2_e8_460_e8_1920_000_norange.c
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

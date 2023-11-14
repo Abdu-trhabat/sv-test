@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-fast_2_e7_2526_e7_2736_000_range.c"
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

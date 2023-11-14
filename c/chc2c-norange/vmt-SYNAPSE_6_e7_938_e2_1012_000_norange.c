@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-SYNAPSE_6_e7_938_e2_1012_000_norang
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

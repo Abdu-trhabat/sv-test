@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "loop__barthe_000_norange.c", 13, "reach
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

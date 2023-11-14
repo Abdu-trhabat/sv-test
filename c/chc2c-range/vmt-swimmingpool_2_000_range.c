@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-swimmingpool_2_000_range.c", 13, "r
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

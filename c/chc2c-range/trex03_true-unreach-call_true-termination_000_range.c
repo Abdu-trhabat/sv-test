@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "trex03_true-unreach-call_true-terminati
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "DRAGON_all_e2_1514_000_norange.c", 13, 
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-ums_e7_1700_000_norange.c", 13, "re
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

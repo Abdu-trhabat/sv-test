@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-MESI_4_e7_1140_e7_433_000_range.c",
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

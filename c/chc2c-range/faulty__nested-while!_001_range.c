@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "faulty__nested-while!_001_range.c", 13,
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

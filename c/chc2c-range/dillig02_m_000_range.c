@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "dillig02_m_000_range.c", 13, "reach_err
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

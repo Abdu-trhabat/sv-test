@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-rtp_1_000_range.c", 13, "reach_erro
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

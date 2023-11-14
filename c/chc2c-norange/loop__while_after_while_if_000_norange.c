@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "loop__while_after_while_if_000_norange.
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

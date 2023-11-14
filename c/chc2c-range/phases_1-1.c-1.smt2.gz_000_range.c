@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "phases_1-1.c-1.smt2.gz_000_range.c", 13
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

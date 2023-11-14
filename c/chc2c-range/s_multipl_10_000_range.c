@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "s_multipl_10_000_range.c", 13, "reach_e
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

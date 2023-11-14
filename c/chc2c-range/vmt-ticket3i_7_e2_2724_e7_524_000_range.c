@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-ticket3i_7_e2_2724_e7_524_000_range
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

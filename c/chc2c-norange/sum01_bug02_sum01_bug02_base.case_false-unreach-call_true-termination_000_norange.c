@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "sum01_bug02_sum01_bug02_base.case_false
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

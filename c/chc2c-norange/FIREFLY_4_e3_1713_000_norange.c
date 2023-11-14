@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "FIREFLY_4_e3_1713_000_norange.c", 13, "
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

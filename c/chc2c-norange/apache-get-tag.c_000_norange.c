@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "apache-get-tag.c_000_norange.c", 13, "r
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "break_single_merged_safe.c-1_000_norang
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

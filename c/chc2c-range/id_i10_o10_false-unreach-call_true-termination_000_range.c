@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "id_i10_o10_false-unreach-call_true-term
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-metros_1_e8_725_e3_556_000_range.c"
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

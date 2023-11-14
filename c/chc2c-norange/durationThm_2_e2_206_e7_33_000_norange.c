@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "durationThm_2_e2_206_e7_33_000_norange.
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

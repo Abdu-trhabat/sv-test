@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "simple_if.c_000_range.c", 13, "reach_er
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

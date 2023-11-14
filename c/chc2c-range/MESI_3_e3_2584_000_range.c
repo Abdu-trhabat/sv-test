@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "MESI_3_e3_2584_000_range.c", 13, "reach
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

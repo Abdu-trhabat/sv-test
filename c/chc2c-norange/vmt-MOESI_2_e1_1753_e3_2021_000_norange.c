@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-MOESI_2_e1_1753_e3_2021_000_norange
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

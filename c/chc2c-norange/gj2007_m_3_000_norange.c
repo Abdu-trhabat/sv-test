@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "gj2007_m_3_000_norange.c", 13, "reach_e
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

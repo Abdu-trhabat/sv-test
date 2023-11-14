@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "sum_non_eq_false-unreach-call_000_noran
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

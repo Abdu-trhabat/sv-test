@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "id_build.i.p+nlh-reducer.c-1.smt2.gz_00
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

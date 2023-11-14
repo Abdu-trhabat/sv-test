@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-car_4_e3_57_e5_999_000_norange.c", 
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

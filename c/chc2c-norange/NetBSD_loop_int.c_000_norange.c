@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "NetBSD_loop_int.c_000_norange.c", 13, "
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

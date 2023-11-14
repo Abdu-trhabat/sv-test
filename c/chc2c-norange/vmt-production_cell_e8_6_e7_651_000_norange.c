@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-production_cell_e8_6_e7_651_000_nor
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

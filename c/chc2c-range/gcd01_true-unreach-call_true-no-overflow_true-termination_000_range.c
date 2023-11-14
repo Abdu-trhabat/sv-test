@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "gcd01_true-unreach-call_true-no-overflo
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

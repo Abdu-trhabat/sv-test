@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-FIREFLY_3_000_norange.c", 13, "reac
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

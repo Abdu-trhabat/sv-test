@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "nest-if6.c_000_norange.c", 13, "reach_e
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

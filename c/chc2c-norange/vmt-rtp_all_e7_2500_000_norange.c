@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "vmt-rtp_all_e7_2500_000_norange.c", 13,
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

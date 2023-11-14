@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "test_locks_15-2.c-1.smt2.gz_000_range.c
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

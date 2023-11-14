@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "FIREFLY_all_e3_1600_e6_1569_000_norange
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

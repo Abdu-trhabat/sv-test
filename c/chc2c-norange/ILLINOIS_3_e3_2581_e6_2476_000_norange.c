@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "ILLINOIS_3_e3_2581_e6_2476_000_norange.
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

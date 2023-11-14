@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "array_fill1_abstracted_000_range.c", 13
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

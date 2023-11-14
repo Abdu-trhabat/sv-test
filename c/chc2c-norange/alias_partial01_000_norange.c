@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "alias_partial01_000_norange.c", 13, "re
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

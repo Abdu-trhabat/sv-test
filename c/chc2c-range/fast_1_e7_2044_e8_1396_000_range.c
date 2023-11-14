@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "fast_1_e7_2044_e8_1396_000_range.c", 13
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

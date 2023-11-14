@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "apache-escape-absolute.i.v+cfa-reducer.
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

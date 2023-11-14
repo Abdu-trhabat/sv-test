@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "EvenOdd03WithOverflowBug_false-no-overf
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter

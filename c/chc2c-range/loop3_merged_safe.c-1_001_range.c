@@ -16,7 +16,7 @@ void reach_error() { __assert_fail("0", "loop3_merged_safe.c-1_001_range.c", 13,
 
 int main ();
 
-void
+int
 main ()
 {
     // return parameter
