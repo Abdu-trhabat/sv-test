@@ -1029,16 +1029,12 @@ pthread_mutex_t mutexes[256];
 void *t1_fun(void *arg) {
   struct s *p = malloc(sizeof(struct s)); init(p);
   int i = __VERIFIER_nondet_int() % 256;
-  assume_abort_if_not(i >= 0);
   insert(p, buckets[i]);
   return ((void *)0);
 }
 void *t2_fun(void *arg) {
   int i = __VERIFIER_nondet_int() % 256;
-  int j = __VERIFIER_nondet_int() % 256;
-  assume_abort_if_not(i >= 0);
-  assume_abort_if_not(j >= 0);
-  struct s *p = take(buckets[j]);
+  struct s *p = take(buckets[i]);
   pthread_mutex_lock(&mutexes[i]);
   do { if (__VERIFIER_nondet_int()) do { do { pthread_mutex_lock(&__global_lock); (p->datum)++; pthread_mutex_unlock(&__global_lock); } while (0); do { pthread_mutex_lock(&__global_lock); (p->datum)--; pthread_mutex_unlock(&__global_lock); } while (0); } while (0); else do { pthread_mutex_lock(&__global_lock); __VERIFIER_assert((p->datum) == 0); pthread_mutex_unlock(&__global_lock); } while (0); } while (0);
   pthread_mutex_unlock(&mutexes[i]);
