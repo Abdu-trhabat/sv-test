@@ -27,7 +27,6 @@ TASKS_TO_IGNORE = {
   "floats-esbmc-regression/trunc_nondet_2.i": "(platform-dependent types)",
   "*pthread*/*": "(platform-dependent types)",
   "goblint-regression/*": "(platform-dependent types)",
-  "openbsd-6.2/*": "(only custom includes, no system headers, complicated build process)",
 }
 
 # categories to be excluded ... (with reason and debug information)
@@ -36,6 +35,8 @@ CATEGORIES_TO_IGNORE = {
   "ConcurrencySafety-NoOverflows": "(platform-dependent types)",
   "ConcurrencySafety-MemSafety": "(platform-dependent types)",
   "NoDataRace-Main": "(platform-dependent types)",
+  "SoftwareSystems-OpenBSD-MemSafety": "(only custom includes, no system headers, complicated build process)",
+  "SoftwareSystems-OpenBSD-ReachSafety": "(only custom includes, no system headers, complicated build process)",
   "SoftwareSystems-SQLite-MemSafety": "(complicated build process, requires patched version of cilly)",
 }
 
