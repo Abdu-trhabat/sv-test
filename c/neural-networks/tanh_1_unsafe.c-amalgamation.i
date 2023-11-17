@@ -847,6 +847,6 @@ int main()
  float x = __VERIFIER_nondet_float();
  if(!(!__builtin_isnan (x))) abort();
  float y = tanhf(x);
- if(!(__builtin_islessequal(y, 1.0f))) reach_error();
+ if(!(__builtin_isgreaterequal(y, 1.0f))) reach_error();
     return 0;
 }
