@@ -11,7 +11,6 @@
 
 #include <stdbool.h>
 #define CHAR_BIT 8;
-extern unsigned int __VERIFIER_nondet_int() __attribute__ ((__noreturn__));
 
 unsigned int v;     // 32-bit word input to count zero bits on right
 unsigned int c;     // c will be the number of zero bits on the right,
