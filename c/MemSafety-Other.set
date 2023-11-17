@@ -2,7 +2,6 @@
 loops/*.yml
 loop-acceleration/*.yml
 loops-crafted-1/*.yml
-loop-invariants/*.yml
 ntdrivers/*.yml
 ntdrivers-simplified/*.yml
 locks/*.yml
@@ -13,5 +12,4 @@ termination-crafted/4BitCounterPointer.yml
 termination-crafted/SyntaxSupportPointer*.yml
 ldv-regression/*.yml
 loop-industry-pattern/aiob_4*.yml
-recursified_loop-invariants/*.yml
 recursive-with-pointer/*.yml

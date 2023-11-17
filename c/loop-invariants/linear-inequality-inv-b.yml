@@ -9,8 +9,11 @@ properties:
     expected_verdict: true
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
-  - property_file: ../properties/valid-memsafety.prp
-    expected_verdict: true
+# This is a trivial property for this task:
+# The task only uses integer variables within the main method,
+# no pointers and no memory operations occur.
+#  - property_file: ../properties/valid-memsafety.prp
+#    expected_verdict: true
   - property_file: ../properties/coverage-error-call.prp
   - property_file: ../properties/coverage-branches.prp
 
