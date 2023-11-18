@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 #ifndef offsetof
-#define offsetof(TYPE, MEMBER) ((unsigned long) &((TYPE *)0)->MEMBER)
+#define offsetof __builtin_offsetof 
 #endif
 
 #ifndef container_of
