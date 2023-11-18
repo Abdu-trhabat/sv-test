@@ -15,7 +15,7 @@ set -euo pipefail
 # have been changed on the branch.
 # Note that command is expected to be provided in double quotes.
 
-if [ ! -z "$1" ]; then 
+if [ -n "${1:-}" ]; then
   cmdToExecute="$1"
 else
   echo "ERROR: no command provided to execute!! Exiting the script."
@@ -34,13 +34,26 @@ find_parent_with_Makefile() {
   exit 1
 }
 
-# fetching the main branch.
-git fetch origin main
+# Compute changes made in this branch.
+if [ -n "${CI_MERGE_REQUEST_DIFF_BASE_SHA:-}" ]; then
+  # GitLab CI pipeline for MR
+  # GitLab tells us exactly what we need to compare against, just make sure it is present locally.
+  # For "merged results" pipelines, we compare against the tip of the MR explicitly,
+  # for non-"merged results" pipelines (where $CI_MERGE_REQUEST_SOURCE_BRANCH_SHA) this is just HEAD.
+  git fetch origin "${CI_MERGE_REQUEST_DIFF_BASE_SHA}" "${CI_MERGE_REQUEST_SOURCE_BRANCH_SHA:-}"
+  DIFF_ARG=${CI_MERGE_REQUEST_DIFF_BASE_SHA}..${CI_MERGE_REQUEST_SOURCE_BRANCH_SHA:-}
+else
+  # GitLab CI pipeline for branch or local execution
+  # We just compare against main branch after making sure it is present locally.
+  git fetch origin "${CI_DEFAULT_BRANCH:-main}"
+  DIFF_ARG="origin/${CI_DEFAULT_BRANCH:-main}..."
+fi
 
+echo "Comparing '$DIFF_ARG'."
 #following variable contains the names of the files in the diff with main:
 # i) which are either c, header or preprocesses files in the c folder, and
 # ii) deleted files are not considered
-relevant_diff=`git diff --name-only --diff-filter=d origin/main... -- './*.i' './*.c' './*.h'`
+relevant_diff=`git diff --name-only --diff-filter=d "$DIFF_ARG" -- './*.i' './*.c' './*.h'`
 [ -z "$relevant_diff" ] && echo "Found nothing to build!!" && exit
 # dirs is the list of directories from the changed files
 dirs=`echo $relevant_diff | xargs dirname | cut -d/ -f2- -s | sort | uniq`
