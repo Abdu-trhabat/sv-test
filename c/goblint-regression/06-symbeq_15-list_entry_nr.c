@@ -10,7 +10,7 @@
 #include<stdio.h>
 
 #define list_entry(ptr, type, member) \
-  ((type *)((char *)(ptr)-(unsigned long)(&((type *)0)->member)))
+  ((type *)((char *)(ptr)-(unsigned long)__builtin_offsetof(type, member)))
 
 struct s {
   int datum;
