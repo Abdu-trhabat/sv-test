@@ -8,10 +8,10 @@
 #include<pthread.h>
 #include<stdlib.h>
 #include<stdio.h>
+#include <stddef.h>
 
 #define list_entry(ptr, type, member) \
-  ((type *)((char *)(ptr)-(unsigned long)(&((type *)0)->member)))
-
+  ((type *)((char *)(ptr)-(unsigned long)offsetof(type, member)))
 struct s {
   int datum;
   pthread_mutex_t mutex;
