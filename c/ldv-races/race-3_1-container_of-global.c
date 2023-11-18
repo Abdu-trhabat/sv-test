@@ -2,10 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-#ifndef offsetof
-#define offsetof(TYPE, MEMBER) ((unsigned long) &((TYPE *)0)->MEMBER)
-#endif
+#include <stddef.h>
 
 #ifndef container_of
 #define container_of(ptr, type, member) ({                      \
