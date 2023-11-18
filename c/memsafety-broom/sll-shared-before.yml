@@ -1,0 +1,12 @@
+format_version: '2.0'
+
+# source_files: 'sll-shared-before.c'
+input_files: 'sll-shared-before.i'
+
+properties:
+  - property_file: ../properties/valid-memsafety.prp
+    expected_verdict: true
+
+options:
+  language: C
+  data_model: LP64

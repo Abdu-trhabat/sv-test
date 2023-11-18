@@ -1,4 +1,5 @@
 # Contains tasks for checking memory safety of programs.
+memsafety-broom/*.yml
 heap-manipulation/*.yml
 forester-heap/*.yml
 list-properties/*.yml
