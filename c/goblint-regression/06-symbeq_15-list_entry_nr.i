@@ -1,523 +1,15 @@
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* This header is separate from features.h so that the compiler can
-   include it implicitly at the start of every compilation.  It must
-   not itself include <features.h> or any other header that includes
-   <features.h> because the implicit include comes before any feature
-   test macros that may be defined in a source file before it first
-   explicitly includes a system header.  GCC knows the name of this
-   header in order to preinclude it.  */
-/* glibc's intent is to support the IEC 559 math functionality, real
-   and complex.  If the GCC (4.9 and later) predefined macros
-   specifying compiler intent are available, use them to determine
-   whether the overall intent is to support these features; otherwise,
-   presume an older compiler has intent to support these features and
-   define these macros by default.  */
-/* wchar_t uses Unicode 10.0.0.  Version 10.0 of the Unicode Standard is
-   synchronized with ISO/IEC 10646:2017, fifth edition, plus
-   the following additions from Amendment 1 to the fifth edition:
-   - 56 emoji characters
-   - 285 hentaigana
-   - 3 additional Zanabazar Square characters */
-// This file is part of the SV-Benchmarks collection of verification tasks:
-// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
-//
-// SPDX-FileCopyrightText: 2005-2021 University of Tartu & Technische Universität München
-//
-// SPDX-License-Identifier: MIT
-/* Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* These are defined by the user (or the compiler)
-   to specify the desired environment:
-
-   __STRICT_ANSI__	ISO Standard C.
-   _ISOC99_SOURCE	Extensions to ISO C89 from ISO C99.
-   _ISOC11_SOURCE	Extensions to ISO C99 from ISO C11.
-   _ISOC2X_SOURCE	Extensions to ISO C99 from ISO C2X.
-   __STDC_WANT_LIB_EXT2__
-			Extensions to ISO C99 from TR 27431-2:2010.
-   __STDC_WANT_IEC_60559_BFP_EXT__
-			Extensions to ISO C11 from TS 18661-1:2014.
-   __STDC_WANT_IEC_60559_FUNCS_EXT__
-			Extensions to ISO C11 from TS 18661-4:2015.
-   __STDC_WANT_IEC_60559_TYPES_EXT__
-			Extensions to ISO C11 from TS 18661-3:2015.
-
-   _POSIX_SOURCE	IEEE Std 1003.1.
-   _POSIX_C_SOURCE	If ==1, like _POSIX_SOURCE; if >=2 add IEEE Std 1003.2;
-			if >=199309L, add IEEE Std 1003.1b-1993;
-			if >=199506L, add IEEE Std 1003.1c-1995;
-			if >=200112L, all of IEEE 1003.1-2004
-			if >=200809L, all of IEEE 1003.1-2008
-   _XOPEN_SOURCE	Includes POSIX and XPG things.  Set to 500 if
-			Single Unix conformance is wanted, to 600 for the
-			sixth revision, to 700 for the seventh revision.
-   _XOPEN_SOURCE_EXTENDED XPG things and X/Open Unix extensions.
-   _LARGEFILE_SOURCE	Some more functions for correct standard I/O.
-   _LARGEFILE64_SOURCE	Additional functionality from LFS for large files.
-   _FILE_OFFSET_BITS=N	Select default filesystem interface.
-   _ATFILE_SOURCE	Additional *at interfaces.
-   _GNU_SOURCE		All of the above, plus GNU extensions.
-   _DEFAULT_SOURCE	The default set of features (taking precedence over
-			__STRICT_ANSI__).
-
-   _FORTIFY_SOURCE	Add security hardening to many library functions.
-			Set to 1 or 2; 2 performs stricter checks than 1.
-
-   _REENTRANT, _THREAD_SAFE
-			Obsolete; equivalent to _POSIX_C_SOURCE=199506L.
-
-   The `-ansi' switch to the GNU C compiler, and standards conformance
-   options such as `-std=c99', define __STRICT_ANSI__.  If none of
-   these are defined, or if _DEFAULT_SOURCE is defined, the default is
-   to have _POSIX_SOURCE set to one and _POSIX_C_SOURCE set to
-   200809L, as well as enabling miscellaneous functions from BSD and
-   SVID.  If more than one of these are defined, they accumulate.  For
-   example __STRICT_ANSI__, _POSIX_SOURCE and _POSIX_C_SOURCE together
-   give you ISO C, 1003.1, and 1003.2, but nothing else.
-
-   These are defined by this file and are used by the
-   header files to decide what to declare or define:
-
-   __GLIBC_USE (F)	Define things from feature set F.  This is defined
-			to 1 or 0; the subsequent macros are either defined
-			or undefined, and those tests should be moved to
-			__GLIBC_USE.
-   __USE_ISOC11		Define ISO C11 things.
-   __USE_ISOC99		Define ISO C99 things.
-   __USE_ISOC95		Define ISO C90 AMD1 (C95) things.
-   __USE_ISOCXX11	Define ISO C++11 things.
-   __USE_POSIX		Define IEEE Std 1003.1 things.
-   __USE_POSIX2		Define IEEE Std 1003.2 things.
-   __USE_POSIX199309	Define IEEE Std 1003.1, and .1b things.
-   __USE_POSIX199506	Define IEEE Std 1003.1, .1b, .1c and .1i things.
-   __USE_XOPEN		Define XPG things.
-   __USE_XOPEN_EXTENDED	Define X/Open Unix things.
-   __USE_UNIX98		Define Single Unix V2 things.
-   __USE_XOPEN2K        Define XPG6 things.
-   __USE_XOPEN2KXSI     Define XPG6 XSI things.
-   __USE_XOPEN2K8       Define XPG7 things.
-   __USE_XOPEN2K8XSI    Define XPG7 XSI things.
-   __USE_LARGEFILE	Define correct standard I/O things.
-   __USE_LARGEFILE64	Define LFS things with separate names.
-   __USE_FILE_OFFSET64	Define 64bit interface as default.
-   __USE_MISC		Define things from 4.3BSD or System V Unix.
-   __USE_ATFILE		Define *at interfaces and AT_* constants for them.
-   __USE_GNU		Define GNU extensions.
-   __USE_FORTIFY_LEVEL	Additional security measures used, according to level.
-
-   The macros `__GNU_LIBRARY__', `__GLIBC__', and `__GLIBC_MINOR__' are
-   defined by this file unconditionally.  `__GNU_LIBRARY__' is provided
-   only for compatibility.  All new code should use the other symbols
-   to test for features.
-
-   All macros listed above as possibly being defined by this file are
-   explicitly undefined if they are not explicitly defined.
-   Feature-test macros that are not defined by the user or compiler
-   but are implied by the other feature-test macros defined (or by the
-   lack of any definitions) are defined by the file.
-
-   ISO C feature test macros depend on the definition of the macro
-   when an affected header is included, not when the first system
-   header is included, and so they are handled in
-   <bits/libc-header-start.h>, which does not have a multiple include
-   guard.  Feature test macros that can be handled from the first
-   system header included are handled here.  */
-/* Undefine everything, so we get a clean slate.  */
-/* Suppress kernel-name space pollution unless user expressedly asks
-   for it.  */
-/* Convenience macro to test the version of gcc.
-   Use like this:
-   #if __GNUC_PREREQ (2,8)
-   ... code requiring gcc 2.8 or later ...
-   #endif
-   Note: only works for GCC 2.0 and later, because __GNUC_MINOR__ was
-   added in 2.0.  */
-/* Similarly for clang.  Features added to GCC after version 4.2 may
-   or may not also be available in clang, and clang's definitions of
-   __GNUC(_MINOR)__ are fixed at 4 and 2 respectively.  Not all such
-   features can be queried via __has_extension/__has_feature.  */
-/* Whether to use feature set F.  */
-/* _BSD_SOURCE and _SVID_SOURCE are deprecated aliases for
-   _DEFAULT_SOURCE.  If _DEFAULT_SOURCE is present we do not
-   issue a warning; the expectation is that the source is being
-   transitioned to use the new macro.  */
-/* If _GNU_SOURCE was defined by the user, turn on all the other features.  */
-/* If nothing (other than _GNU_SOURCE and _DEFAULT_SOURCE) is defined,
-   define _DEFAULT_SOURCE.  */
-/* This is to enable the ISO C2X extension.  */
-/* This is to enable the ISO C11 extension.  */
-/* This is to enable the ISO C99 extension.  */
-/* This is to enable the ISO C90 Amendment 1:1995 extension.  */
-/* If none of the ANSI/POSIX macros are defined, or if _DEFAULT_SOURCE
-   is defined, use POSIX.1-2008 (or another version depending on
-   _XOPEN_SOURCE).  */
-/* Some C libraries once required _REENTRANT and/or _THREAD_SAFE to be
-   defined in all multithreaded code.  GNU libc has not required this
-   for many years.  We now treat them as compatibility synonyms for
-   _POSIX_C_SOURCE=199506L, which is the earliest level of POSIX with
-   comprehensive support for multithreaded code.  Using them never
-   lowers the selected level of POSIX conformance, only raises it.  */
-/* The function 'gets' existed in C89, but is impossible to use
-   safely.  It has been removed from ISO C11 and ISO C++14.  Note: for
-   compatibility with various implementations of <cstdio>, this test
-   must consider only the value of __cplusplus when compiling C++.  */
-/* GNU formerly extended the scanf functions with modified format
-   specifiers %as, %aS, and %a[...] that allocate a buffer for the
-   input using malloc.  This extension conflicts with ISO C99, which
-   defines %a as a standalone format specifier that reads a floating-
-   point number; moreover, POSIX.1-2008 provides the same feature
-   using the modifier letter 'm' instead (%ms, %mS, %m[...]).
-
-   We now follow C99 unless GNU extensions are active and the compiler
-   is specifically in C89 or C++98 mode (strict or not).  For
-   instance, with GCC, -std=gnu11 will have C99-compliant scanf with
-   or without -D_GNU_SOURCE, but -std=c89 -D_GNU_SOURCE will have the
-   old extension.  */
-/* Get definitions of __STDC_* predefined macros, if the compiler has
-   not preincluded this header automatically.  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* This macro indicates that the installed library is the GNU C Library.
-   For historic reasons the value now is 6 and this will stay from now
-   on.  The use of this variable is deprecated.  Use __GLIBC__ and
-   __GLIBC_MINOR__ now (see below) when you want to test for a specific
-   GNU C library version and use the values in <gnu/lib-names.h> to get
-   the sonames of the shared libraries.  */
-/* Major and minor version number of the GNU C library package.  Use
-   these macros to test for features in specific releases.  */
-/* This is here only because every header file already includes this one.  */
-/* Copyright (C) 1992-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* We are almost always included from features.h. */
-/* The GNU libc does not support any K&R compilers or the traditional mode
-   of ISO C compilers anymore.  Check for some of the combinations not
-   anymore supported.  */
-/* Some user header file might have defined this before.  */
-/* All functions, except those with callbacks or those that
-   synchronize memory, are leaf functions.  */
-/* GCC can always grok prototypes.  For C++ programs we add throw()
-   to help it optimize the function calls.  But this works only with
-   gcc 2.8.x and egcs.  For gcc 3.2 and up we even mark C functions
-   as non-throwing using a function attribute since programs can use
-   the -fexceptions options for C code as well.  */
-/* Compilers that are not clang may object to
-       #if defined __clang__ && __has_extension(...)
-   even though they do not need to evaluate the right-hand side of the &&.  */
-/* These two macros are not used in glibc anymore.  They are kept here
-   only because some other projects expect the macros to be defined.  */
-/* For these things, GCC behaves the ANSI way normally,
-   and the non-ANSI way under -traditional.  */
-/* This is not a typedef so `const __ptr_t' does the right thing.  */
-/* C++ needs to know that types and declarations are C, not C++.  */
-/* Fortify support.  */
-/* Support for flexible arrays.
-   Headers that should use flexible arrays only if they're "real"
-   (e.g. only if they won't affect sizeof()) should test
-   #if __glibc_c99_flexarr_available.  */
-/* __asm__ ("xyz") is used throughout the headers to rename functions
-   at the assembly language level.  This is wrapped by the __REDIRECT
-   macro, in order to support compilers that can do this some other
-   way.  When compilers don't support asm-names at all, we have to do
-   preprocessor tricks instead (which don't have exactly the right
-   semantics, but it's the best we can do).
-
-   Example:
-   int __REDIRECT(setpgrp, (__pid_t pid, __pid_t pgrp), setpgid); */
-/*
-#elif __SOME_OTHER_COMPILER__
-
-# define __REDIRECT(name, proto, alias) name proto; 	_Pragma("let " #name " = " #alias)
-)
-*/
-/* GCC has various useful declarations that can be made with the
-   `__attribute__' syntax.  All of the ways we use this do fine if
-   they are omitted for compilers that don't understand it. */
-/* At some point during the gcc 2.96 development the `malloc' attribute
-   for functions was introduced.  We don't want to use it unconditionally
-   (although this would be possible) since it generates warnings.  */
-/* Tell the compiler which arguments to an allocation function
-   indicate the size of the allocation.  */
-/* At some point during the gcc 2.96 development the `pure' attribute
-   for functions was introduced.  We don't want to use it unconditionally
-   (although this would be possible) since it generates warnings.  */
-/* This declaration tells the compiler that the value is constant.  */
-/* At some point during the gcc 3.1 development the `used' attribute
-   for functions was introduced.  We don't want to use it unconditionally
-   (although this would be possible) since it generates warnings.  */
-/* Since version 3.2, gcc allows marking deprecated functions.  */
-/* Since version 4.5, gcc also allows one to specify the message printed
-   when a deprecated function is used.  clang claims to be gcc 4.2, but
-   may also support this feature.  */
-/* At some point during the gcc 2.8 development the `format_arg' attribute
-   for functions was introduced.  We don't want to use it unconditionally
-   (although this would be possible) since it generates warnings.
-   If several `format_arg' attributes are given for the same function, in
-   gcc-3.0 and older, all but the last one are ignored.  In newer gccs,
-   all designated arguments are considered.  */
-/* At some point during the gcc 2.97 development the `strfmon' format
-   attribute for functions was introduced.  We don't want to use it
-   unconditionally (although this would be possible) since it
-   generates warnings.  */
-/* The nonull function attribute allows to mark pointer parameters which
-   must not be NULL.  */
-/* If fortification mode, we warn about unused results of certain
-   function calls which can lead to problems.  */
-/* Forces a function to be always inlined.  */
-/* The Linux kernel defines __always_inline in stddef.h (283d7573), and
-   it conflicts with this definition.  Therefore undefine it first to
-   allow either header to be included first.  */
-/* Associate error messages with the source location of the call site rather
-   than with the source location inside the function.  */
-/* GCC 4.3 and above with -std=c99 or -std=gnu99 implements ISO C99
-   inline semantics, unless -fgnu89-inline is used.  Using __GNUC_STDC_INLINE__
-   or __GNUC_GNU_INLINE is not a good enough check for gcc because gcc versions
-   older than 4.3 may define these macros and still not guarantee GNU inlining
-   semantics.
-
-   clang++ identifies itself as gcc-4.2, but has support for GNU inlining
-   semantics, that can be checked for by using the __GNUC_STDC_INLINE_ and
-   __GNUC_GNU_INLINE__ macro definitions.  */
-/* GCC 4.3 and above allow passing all anonymous arguments of an
-   __extern_always_inline function to some other vararg function.  */
-/* It is possible to compile containing GCC extensions even if GCC is
-   run in pedantic mode if the uses are carefully marked using the
-   `__extension__' keyword.  But this is not generally available before
-   version 2.8.  */
-/* __restrict is known in EGCS 1.2 and above. */
-/* ISO C99 also allows to declare arrays as non-overlapping.  The syntax is
-     array_name[restrict]
-   GCC 3.1 supports this.  */
-/* Describes a char array whose address can safely be passed as the first
-   argument to strncpy and strncat, as the char array is not necessarily
-   a NUL-terminated string.  */
-/* Undefine (also defined in libc-symbols.h).  */
-/* Copies attributes from the declaration or type referenced by
-   the argument.  */
-/* Determine the wordsize from the preprocessor defines.  */
-/* Both x86-64 and x32 use the 64-bit system call interface.  */
-/* Properties of long double type.  ldbl-96 version.
-   Copyright (C) 2016-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License  published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* long double is distinct from double, so there is nothing to
-   define here.  */
-/* __glibc_macro_warning (MESSAGE) issues warning MESSAGE.  This is
-   intended for use in preprocessor macros.
-
-   Note: MESSAGE must be a _single_ string; concatenation of string
-   literals is not supported.  */
-/* Generic selection (ISO C11) is a C-only feature, available in GCC
-   since version 4.9.  Previous versions do not provide generic
-   selection, even though they might set __STDC_VERSION__ to 201112L,
-   when in -std=c11 mode.  Thus, we must check for !defined __GNUC__
-   when testing __STDC_VERSION__ for generic selection support.
-   On the other hand, Clang also defines __GNUC__, so a clang-specific
-   check is required to enable the use of generic selection.  */
-/* If we don't have __REDIRECT, prototypes will be missing if
-   __USE_FILE_OFFSET64 but not __USE_LARGEFILE[64]. */
-/* Decide whether we can define 'extern inline' functions in headers.  */
-/* This is here only because every header file already includes this one.
-   Get the definitions of all the appropriate `__stub_FUNCTION' symbols.
-   <gnu/stubs.h> contains `#define __stub_FUNCTION' when FUNCTION is a stub
-   that will always return failure (and set errno to ENOSYS).  */
-/* This file is automatically generated.
-   This file selects the right generated file of `__stub_FUNCTION' macros
-   based on the architecture being compiled for.  */
-/* This file is automatically generated.
-   It defines a symbol `__stub_FUNCTION' for each function
-   in the C library which is a stub, meaning it will fail
-   every time called, usually setting errno to ENOSYS.  */
-/* Definitions for POSIX 1003.1b-1993 (aka POSIX.4) scheduling interface.
-   Copyright (C) 1996-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Get type definitions.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Determine the wordsize from the preprocessor defines.  */
-/* Both x86-64 and x32 use the 64-bit system call interface.  */
-/* Bit size of the time_t type at glibc build time, x86-64 and x32 case.
-   Copyright (C) 2018-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* For others, time size is word size.  */
-/* Convenience types.  */
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
 typedef unsigned long int __u_long;
-/* Fixed-size types, underlying types depend on word size and compiler.  */
 typedef signed char __int8_t;
 typedef unsigned char __uint8_t;
 typedef signed short int __int16_t;
 typedef unsigned short int __uint16_t;
 typedef signed int __int32_t;
 typedef unsigned int __uint32_t;
-typedef signed long int __int64_t;
-typedef unsigned long int __uint64_t;
-/* Smallest types with at least a given width.  */
+__extension__ typedef signed long long int __int64_t;
+__extension__ typedef unsigned long long int __uint64_t;
 typedef __int8_t __int_least8_t;
 typedef __uint8_t __uint_least8_t;
 typedef __int16_t __int_least16_t;
@@ -526,920 +18,120 @@ typedef __int32_t __int_least32_t;
 typedef __uint32_t __uint_least32_t;
 typedef __int64_t __int_least64_t;
 typedef __uint64_t __uint_least64_t;
-/* quad_t is also 64 bits.  */
-typedef long int __quad_t;
-typedef unsigned long int __u_quad_t;
-/* Largest integral types.  */
-typedef long int __intmax_t;
-typedef unsigned long int __uintmax_t;
-/* The machine-dependent file <bits/typesizes.h> defines __*_T_TYPE
-   macros for each of the OS types we define below.  The definitions
-   of those macros must use the following macros for underlying types.
-   We define __S<SIZE>_TYPE and __U<SIZE>_TYPE for the signed and unsigned
-   variants of each of the following integer types on this machine.
-
-	16		-- "natural" 16-bit type (always short)
-	32		-- "natural" 32-bit type (always int)
-	64		-- "natural" 64-bit type (long or long long)
-	LONG32		-- 32-bit type, traditionally long
-	QUAD		-- 64-bit type, traditionally long long
-	WORD		-- natural type of __WORDSIZE bits (int or long)
-	LONGWORD	-- type of __WORDSIZE bits, traditionally long
-
-   We distinguish WORD/LONGWORD, 32/LONG32, and 64/QUAD so that the
-   conventional uses of `long' or `long long' type modifiers match the
-   types we define, even when a less-adorned type would be the same size.
-   This matters for (somewhat) portably writing printf/scanf formats for
-   these types, where using the appropriate l or ll format modifiers can
-   make the typedefs and the formats match up across all GNU platforms.  If
-   we used `long' when it's 64 bits where `long long' is expected, then the
-   compiler would warn about the formats not matching the argument types,
-   and the programmer changing them to shut up the compiler would break the
-   program's portability.
-
-   Here we assume what is presently the case in all the GCC configurations
-   we support: long long is always 64 bits, long is always word/address size,
-   and int is always 32 bits.  */
-/* No need to mark the typedef with __extension__.   */
-/* bits/typesizes.h -- underlying types for *_t.  Linux/x86-64 version.
-   Copyright (C) 2012-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* See <bits/types.h> for the meaning of these macros.  This file exists so
-   that <bits/types.h> need not vary across different GNU platforms.  */
-/* X32 kernel interface is 64-bit.  */
-/* Tell the libc code that off_t and off64_t are actually the same type
-   for all ABI purposes, even if possibly expressed as different base types
-   for C type-checking purposes.  */
-/* Same for ino_t and ino64_t.  */
-/* And for __rlim_t and __rlim64_t.  */
-/* And for fsblkcnt_t, fsblkcnt64_t, fsfilcnt_t and fsfilcnt64_t.  */
-/* Number of descriptors that can fit in an `fd_set'.  */
-/* bits/time64.h -- underlying types for __time64_t.  Generic version.
-   Copyright (C) 2018-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Define __TIME64_T_TYPE so that it is always a 64-bit type.  */
-/* If we already have 64-bit time type then use it.  */
-typedef unsigned long int __dev_t; /* Type of device numbers.  */
-typedef unsigned int __uid_t; /* Type of user identifications.  */
-typedef unsigned int __gid_t; /* Type of group identifications.  */
-typedef unsigned long int __ino_t; /* Type of file serial numbers.  */
-typedef unsigned long int __ino64_t; /* Type of file serial numbers (LFS).*/
-typedef unsigned int __mode_t; /* Type of file attribute bitmasks.  */
-typedef unsigned long int __nlink_t; /* Type of file link counts.  */
-typedef long int __off_t; /* Type of file sizes and offsets.  */
-typedef long int __off64_t; /* Type of file sizes and offsets (LFS).  */
-typedef int __pid_t; /* Type of process identifications.  */
-typedef struct { int __val[2]; } __fsid_t; /* Type of file system IDs.  */
-typedef long int __clock_t; /* Type of CPU usage counts.  */
-typedef unsigned long int __rlim_t; /* Type for resource measurement.  */
-typedef unsigned long int __rlim64_t; /* Type for resource measurement (LFS).  */
-typedef unsigned int __id_t; /* General type for IDs.  */
-typedef long int __time_t; /* Seconds since the Epoch.  */
-typedef unsigned int __useconds_t; /* Count of microseconds.  */
-typedef long int __suseconds_t; /* Signed count of microseconds.  */
-typedef int __daddr_t; /* The type of a disk address.  */
-typedef int __key_t; /* Type of an IPC key.  */
-/* Clock ID used in clock and timer functions.  */
-typedef int __clockid_t;
-/* Timer ID returned by `timer_create'.  */
-typedef void * __timer_t;
-/* Type to represent block size.  */
-typedef long int __blksize_t;
-/* Types from the Large File Support interface.  */
-/* Type to count number of disk blocks.  */
-typedef long int __blkcnt_t;
-typedef long int __blkcnt64_t;
-/* Type to count file system blocks.  */
-typedef unsigned long int __fsblkcnt_t;
-typedef unsigned long int __fsblkcnt64_t;
-/* Type to count file system nodes.  */
-typedef unsigned long int __fsfilcnt_t;
-typedef unsigned long int __fsfilcnt64_t;
-/* Type of miscellaneous file system fields.  */
-typedef long int __fsword_t;
-typedef long int __ssize_t; /* Type of a byte count, or error.  */
-/* Signed long type used in system calls.  */
-typedef long int __syscall_slong_t;
-/* Unsigned long type used in system calls.  */
-typedef unsigned long int __syscall_ulong_t;
-/* These few don't really vary by system, they always correspond
-   to one of the other defined types.  */
-typedef __off64_t __loff_t; /* Type of file sizes and offsets (LFS).  */
+__extension__ typedef long long int __quad_t;
+__extension__ typedef unsigned long long int __u_quad_t;
+__extension__ typedef long long int __intmax_t;
+__extension__ typedef unsigned long long int __uintmax_t;
+__extension__ typedef __uint64_t __dev_t;
+__extension__ typedef unsigned int __uid_t;
+__extension__ typedef unsigned int __gid_t;
+__extension__ typedef unsigned long int __ino_t;
+__extension__ typedef __uint64_t __ino64_t;
+__extension__ typedef unsigned int __mode_t;
+__extension__ typedef unsigned int __nlink_t;
+__extension__ typedef long int __off_t;
+__extension__ typedef __int64_t __off64_t;
+__extension__ typedef int __pid_t;
+__extension__ typedef struct { int __val[2]; } __fsid_t;
+__extension__ typedef long int __clock_t;
+__extension__ typedef unsigned long int __rlim_t;
+__extension__ typedef __uint64_t __rlim64_t;
+__extension__ typedef unsigned int __id_t;
+__extension__ typedef long int __time_t;
+__extension__ typedef unsigned int __useconds_t;
+__extension__ typedef long int __suseconds_t;
+__extension__ typedef int __daddr_t;
+__extension__ typedef int __key_t;
+__extension__ typedef int __clockid_t;
+__extension__ typedef void * __timer_t;
+__extension__ typedef long int __blksize_t;
+__extension__ typedef long int __blkcnt_t;
+__extension__ typedef __int64_t __blkcnt64_t;
+__extension__ typedef unsigned long int __fsblkcnt_t;
+__extension__ typedef __uint64_t __fsblkcnt64_t;
+__extension__ typedef unsigned long int __fsfilcnt_t;
+__extension__ typedef __uint64_t __fsfilcnt64_t;
+__extension__ typedef int __fsword_t;
+__extension__ typedef int __ssize_t;
+__extension__ typedef long int __syscall_slong_t;
+__extension__ typedef unsigned long int __syscall_ulong_t;
+typedef __off64_t __loff_t;
 typedef char *__caddr_t;
-/* Duplicates info from stdint.h but this is used in unistd.h.  */
-typedef long int __intptr_t;
-/* Duplicate info from sys/socket.h.  */
-typedef unsigned int __socklen_t;
-/* C99: An integer type that can be accessed as an atomic entity,
-   even in the presence of asynchronous interrupts.
-   It is not currently necessary for this to be machine-specific.  */
+__extension__ typedef int __intptr_t;
+__extension__ typedef unsigned int __socklen_t;
 typedef int __sig_atomic_t;
-/* Seconds since the Epoch, visible to user code when time_t is too
-   narrow only for consistency with the old way of widening too-narrow
-   types.  User code should never use __time64_t.  */
-/* Copyright (C) 1989-2019 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-/*
- * ISO C Standard:  7.17  Common definitions  <stddef.h>
- */
-/* Any one of these symbols __need_* means that GNU libc
-   wants us just to define one data type.  So don't define
-   the symbols that indicate this file's entire job has been done.  */
-/* This avoids lossage on SunOS but only if stdtypes.h comes first.
-   There's no way to win with the other order!  Sun lossage.  */
-/* Sequent's header files use _PTRDIFF_T_ in some conflicting way.
-   Just ignore it.  */
-/* On VxWorks, <type/vxTypesBase.h> may have defined macros like
-   _TYPE_size_t which will typedef size_t.  fixincludes patched the
-   vxTypesBase.h so that this macro is only defined if _GCC_SIZE_T is
-   not defined, and so that defining this macro defines _GCC_SIZE_T.
-   If we find that the macros are still defined at this point, we must
-   invoke them so that the type is defined as expected.  */
-/* In case nobody has defined these types, but we aren't running under
-   GCC 2.00, make sure that __PTRDIFF_TYPE__, __SIZE_TYPE__, and
-   __WCHAR_TYPE__ have reasonable values.  This can happen if the
-   parts of GCC is compiled by an older compiler, that actually
-   include gstddef.h, such as collect2.  */
-/* Signed type of difference of two pointers.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Unsigned type of `sizeof' something.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-typedef long unsigned int size_t;
-/* Wide character type.
-   Locale-writers should change this as necessary to
-   be big enough to hold unique values not between 0 and 127,
-   and not (wchar_t) -1, for each defined multibyte character.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* A null pointer constant.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* Returned by `time'.  */
+__extension__ typedef __int64_t __time64_t;
+typedef unsigned int size_t;
 typedef __time_t time_t;
-/* NB: Include guard matches what <linux/time.h> uses.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* Endian macros for string.h functions
-   Copyright (C) 1992-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
-/* Definitions for byte order, according to significance of bytes,
-   from low addresses to high addresses.  The value is what you get by
-   putting '4' in the most significant byte, '3' in the second most
-   significant byte, '2' in the second least significant byte, and '1'
-   in the least significant byte, and then writing down one digit for
-   each byte, starting with the byte at the lowest address at the left,
-   and proceeding to the byte with the highest address at the right.  */
-/* This file defines `__BYTE_ORDER' for the particular machine.  */
-/* i386/x86_64 are little-endian.  */
-/* Some machines may need to use a different endianness for floating point
-   values.  */
-/* POSIX.1b structure for a time value.  This is like a `struct timeval' but
-   has nanoseconds instead of microseconds.  */
 struct timespec
 {
-  __time_t tv_sec; /* Seconds.  */
-  __syscall_slong_t tv_nsec; /* Nanoseconds.  */
+  __time_t tv_sec;
+  __syscall_slong_t tv_nsec;
 };
+typedef __clock_t clock_t;
+struct tm
+{
+  int tm_sec;
+  int tm_min;
+  int tm_hour;
+  int tm_mday;
+  int tm_mon;
+  int tm_year;
+  int tm_wday;
+  int tm_yday;
+  int tm_isdst;
+  long int __tm_gmtoff;
+  const char *__tm_zone;
+};
+
+extern clock_t clock (void) __attribute__ ((__nothrow__ , __leaf__));
+extern time_t time (time_t *__timer) __attribute__ ((__nothrow__ , __leaf__));
+extern double difftime (time_t __time1, time_t __time0)
+     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
+extern time_t mktime (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
+extern size_t strftime (char *__restrict __s, size_t __maxsize,
+   const char *__restrict __format,
+   const struct tm *__restrict __tp) __attribute__ ((__nothrow__ , __leaf__));
+extern struct tm *gmtime (const time_t *__timer) __attribute__ ((__nothrow__ , __leaf__));
+extern struct tm *localtime (const time_t *__timer) __attribute__ ((__nothrow__ , __leaf__));
+extern char *asctime (const struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
+extern char *ctime (const time_t *__timer) __attribute__ ((__nothrow__ , __leaf__));
+extern char *__tzname[2];
+extern int __daylight;
+extern long int __timezone;
+extern int timespec_get (struct timespec *__ts, int __base)
+     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
+
 typedef __pid_t pid_t;
-/* Get system specific constant and data structure definitions.  */
-/* Definitions of constants and data structure for POSIX 1003.1b-1993
-   scheduling interface.
-   Copyright (C) 1996-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Scheduling algorithms.  */
-/* Sched parameter structure.  Generic version.
-   Copyright (C) 1996-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library;  if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Data structure to describe a process' schedulability.  */
 struct sched_param
 {
   int sched_priority;
 };
 
 
-/* Definition of the cpu_set_t structure used by the POSIX 1003.1b-1993
-   scheduling interface.
-   Copyright (C) 1996-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Size definition for CPU sets.  */
-/* Type for array elements in 'cpu_set_t'.  */
 typedef unsigned long int __cpu_mask;
-/* Basic access functions.  */
-/* Data structure to describe CPU mask.  */
 typedef struct
 {
   __cpu_mask __bits[1024 / (8 * sizeof (__cpu_mask))];
 } cpu_set_t;
-/* Access functions for CPU masks.  */
 
 extern int __sched_cpucount (size_t __setsize, const cpu_set_t *__setp)
      __attribute__ ((__nothrow__ , __leaf__));
 extern cpu_set_t *__sched_cpualloc (size_t __count) __attribute__ ((__nothrow__ , __leaf__)) ;
 extern void __sched_cpufree (cpu_set_t *__set) __attribute__ ((__nothrow__ , __leaf__));
 
-/* Backward compatibility.  */
 
-/* Set scheduling parameters for a process.  */
 extern int sched_setparam (__pid_t __pid, const struct sched_param *__param)
      __attribute__ ((__nothrow__ , __leaf__));
-/* Retrieve scheduling parameters for a particular process.  */
 extern int sched_getparam (__pid_t __pid, struct sched_param *__param) __attribute__ ((__nothrow__ , __leaf__));
-/* Set scheduling algorithm and/or parameters for a process.  */
 extern int sched_setscheduler (__pid_t __pid, int __policy,
           const struct sched_param *__param) __attribute__ ((__nothrow__ , __leaf__));
-/* Retrieve scheduling algorithm for a particular purpose.  */
 extern int sched_getscheduler (__pid_t __pid) __attribute__ ((__nothrow__ , __leaf__));
-/* Yield the processor.  */
 extern int sched_yield (void) __attribute__ ((__nothrow__ , __leaf__));
-/* Get maximum priority value for a scheduler.  */
 extern int sched_get_priority_max (int __algorithm) __attribute__ ((__nothrow__ , __leaf__));
-/* Get minimum priority value for a scheduler.  */
 extern int sched_get_priority_min (int __algorithm) __attribute__ ((__nothrow__ , __leaf__));
-/* Get the SCHED_RR interval for the named process.  */
 extern int sched_rr_get_interval (__pid_t __pid, struct timespec *__t) __attribute__ ((__nothrow__ , __leaf__));
 
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- *	ISO C99 Standard: 7.23 Date and time	<time.h>
- */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Copyright (C) 1989-2019 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-/*
- * ISO C Standard:  7.17  Common definitions  <stddef.h>
- */
-/* Any one of these symbols __need_* means that GNU libc
-   wants us just to define one data type.  So don't define
-   the symbols that indicate this file's entire job has been done.  */
-/* This avoids lossage on SunOS but only if stdtypes.h comes first.
-   There's no way to win with the other order!  Sun lossage.  */
-/* Sequent's header files use _PTRDIFF_T_ in some conflicting way.
-   Just ignore it.  */
-/* On VxWorks, <type/vxTypesBase.h> may have defined macros like
-   _TYPE_size_t which will typedef size_t.  fixincludes patched the
-   vxTypesBase.h so that this macro is only defined if _GCC_SIZE_T is
-   not defined, and so that defining this macro defines _GCC_SIZE_T.
-   If we find that the macros are still defined at this point, we must
-   invoke them so that the type is defined as expected.  */
-/* In case nobody has defined these types, but we aren't running under
-   GCC 2.00, make sure that __PTRDIFF_TYPE__, __SIZE_TYPE__, and
-   __WCHAR_TYPE__ have reasonable values.  This can happen if the
-   parts of GCC is compiled by an older compiler, that actually
-   include gstddef.h, such as collect2.  */
-/* Signed type of difference of two pointers.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Unsigned type of `sizeof' something.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Wide character type.
-   Locale-writers should change this as necessary to
-   be big enough to hold unique values not between 0 and 127,
-   and not (wchar_t) -1, for each defined multibyte character.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* A null pointer constant.  */
-/* This defines CLOCKS_PER_SEC, which is the number of processor clock
-   ticks per second, and possibly a number of other constants.   */
-/* System-dependent timing definitions.  Linux version.
-   Copyright (C) 1996-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <time.h> instead.
- */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* ISO/IEC 9899:1999 7.23.1: Components of time
-   The macro `CLOCKS_PER_SEC' is an expression with type `clock_t' that is
-   the number per second of the value returned by the `clock' function.  */
-/* CAE XSH, Issue 4, Version 2: <time.h>
-   The value of CLOCKS_PER_SEC is required to be 1 million on all
-   XSI-conformant systems. */
-/* Identifier for system-wide realtime clock.  */
-/* Monotonic system-wide clock.  */
-/* High-resolution timer from the CPU.  */
-/* Thread-specific CPU-time clock.  */
-/* Monotonic system-wide clock, not adjusted for frequency scaling.  */
-/* Identifier for system-wide realtime clock, updated only on ticks.  */
-/* Monotonic system-wide clock, updated only on ticks.  */
-/* Monotonic system-wide clock that includes time spent in suspension.  */
-/* Like CLOCK_REALTIME but also wakes suspended system.  */
-/* Like CLOCK_BOOTTIME but also wakes suspended system.  */
-/* Like CLOCK_REALTIME but in International Atomic Time.  */
-/* Flag to indicate time is absolute.  */
-/* Many of the typedefs and structs whose official home is this header
-   may also need to be defined by other headers.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* Returned by `clock'.  */
-typedef __clock_t clock_t;
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* ISO C `broken-down time' structure.  */
-struct tm
-{
-  int tm_sec; /* Seconds.	[0-60] (1 leap second) */
-  int tm_min; /* Minutes.	[0-59] */
-  int tm_hour; /* Hours.	[0-23] */
-  int tm_mday; /* Day.		[1-31] */
-  int tm_mon; /* Month.	[0-11] */
-  int tm_year; /* Year	- 1900.  */
-  int tm_wday; /* Day of week.	[0-6] */
-  int tm_yday; /* Days in year.[0-365]	*/
-  int tm_isdst; /* DST.		[-1/0/1]*/
-  long int tm_gmtoff; /* Seconds east of UTC.  */
-  const char *tm_zone; /* Timezone abbreviation.  */
-};
-/* NB: Include guard matches what <linux/time.h> uses.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* Clock ID used in clock and timer functions.  */
-typedef __clockid_t clockid_t;
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* Timer ID returned by `timer_create'.  */
-typedef __timer_t timer_t;
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* NB: Include guard matches what <linux/time.h> uses.  */
-/* POSIX.1b structure for timer start values and intervals.  */
-struct itimerspec
-  {
-    struct timespec it_interval;
-    struct timespec it_value;
-  };
-struct sigevent;
-/* Definition of locale_t.
-   Copyright (C) 2017-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Definition of struct __locale_struct and __locale_t.
-   Copyright (C) 1997-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-   Contributed by Ulrich Drepper <drepper@cygnus.com>, 1997.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* POSIX.1-2008: the locale_t type, representing a locale context
-   (implementation-namespace version).  This type should be treated
-   as opaque by applications; some details are exposed for the sake of
-   efficiency in e.g. ctype functions.  */
-struct __locale_struct
-{
-  /* Note: LC_ALL is not a valid index into this array.  */
-  struct __locale_data *__locales[13]; /* 13 = __LC_LAST. */
-  /* To increase the speed of this solution we add some special members.  */
-  const unsigned short int *__ctype_b;
-  const int *__ctype_tolower;
-  const int *__ctype_toupper;
-  /* Note: LC_ALL is not a valid index into this array.  */
-  const char *__names[13];
-};
-typedef struct __locale_struct *__locale_t;
-typedef __locale_t locale_t;
-/* Time base values for timespec_get.  */
-
-/* Time used by the program so far (user time + system time).
-   The result / CLOCKS_PER_SEC is program time in seconds.  */
-extern clock_t clock (void) __attribute__ ((__nothrow__ , __leaf__));
-/* Return the current time and put it in *TIMER if TIMER is not NULL.  */
-extern time_t time (time_t *__timer) __attribute__ ((__nothrow__ , __leaf__));
-/* Return the difference between TIME1 and TIME0.  */
-extern double difftime (time_t __time1, time_t __time0)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
-/* Return the `time_t' representation of TP and normalize TP.  */
-extern time_t mktime (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
-/* Format TP into S according to FORMAT.
-   Write no more than MAXSIZE characters and return the number
-   of characters written, or 0 if it would exceed MAXSIZE.  */
-extern size_t strftime (char *__restrict __s, size_t __maxsize,
-   const char *__restrict __format,
-   const struct tm *__restrict __tp) __attribute__ ((__nothrow__ , __leaf__));
-/* Similar to the two functions above but take the information from
-   the provided locale and not the global locale.  */
-extern size_t strftime_l (char *__restrict __s, size_t __maxsize,
-     const char *__restrict __format,
-     const struct tm *__restrict __tp,
-     locale_t __loc) __attribute__ ((__nothrow__ , __leaf__));
-/* Return the `struct tm' representation of *TIMER
-   in Universal Coordinated Time (aka Greenwich Mean Time).  */
-extern struct tm *gmtime (const time_t *__timer) __attribute__ ((__nothrow__ , __leaf__));
-/* Return the `struct tm' representation
-   of *TIMER in the local timezone.  */
-extern struct tm *localtime (const time_t *__timer) __attribute__ ((__nothrow__ , __leaf__));
-/* Return the `struct tm' representation of *TIMER in UTC,
-   using *TP to store the result.  */
-extern struct tm *gmtime_r (const time_t *__restrict __timer,
-       struct tm *__restrict __tp) __attribute__ ((__nothrow__ , __leaf__));
-/* Return the `struct tm' representation of *TIMER in local time,
-   using *TP to store the result.  */
-extern struct tm *localtime_r (const time_t *__restrict __timer,
-          struct tm *__restrict __tp) __attribute__ ((__nothrow__ , __leaf__));
-/* Return a string of the form "Day Mon dd hh:mm:ss yyyy\n"
-   that is the representation of TP in this format.  */
-extern char *asctime (const struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
-/* Equivalent to `asctime (localtime (timer))'.  */
-extern char *ctime (const time_t *__timer) __attribute__ ((__nothrow__ , __leaf__));
-/* Reentrant versions of the above functions.  */
-/* Return in BUF a string of the form "Day Mon dd hh:mm:ss yyyy\n"
-   that is the representation of TP in this format.  */
-extern char *asctime_r (const struct tm *__restrict __tp,
-   char *__restrict __buf) __attribute__ ((__nothrow__ , __leaf__));
-/* Equivalent to `asctime_r (localtime_r (timer, *TMP*), buf)'.  */
-extern char *ctime_r (const time_t *__restrict __timer,
-        char *__restrict __buf) __attribute__ ((__nothrow__ , __leaf__));
-/* Defined in localtime.c.  */
-extern char *__tzname[2]; /* Current timezone names.  */
-extern int __daylight; /* If daylight-saving time is ever in use.  */
-extern long int __timezone; /* Seconds west of UTC.  */
-/* Same as above.  */
-extern char *tzname[2];
-/* Set time conversion information from the TZ environment variable.
-   If TZ is not defined, a locale-dependent default is used.  */
-extern void tzset (void) __attribute__ ((__nothrow__ , __leaf__));
-extern int daylight;
-extern long int timezone;
-/* Nonzero if YEAR is a leap year (every 4 years,
-   except every 100th isn't, and every 400th is).  */
-/* Miscellaneous functions many Unices inherited from the public domain
-   localtime package.  These are included only for compatibility.  */
-/* Like `mktime', but for TP represents Universal Time, not local time.  */
-extern time_t timegm (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
-/* Another name for `mktime'.  */
-extern time_t timelocal (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
-/* Return the number of days in YEAR.  */
-extern int dysize (int __year) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
-/* Pause execution for a number of nanoseconds.
-
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern int nanosleep (const struct timespec *__requested_time,
-        struct timespec *__remaining);
-/* Get resolution of clock CLOCK_ID.  */
-extern int clock_getres (clockid_t __clock_id, struct timespec *__res) __attribute__ ((__nothrow__ , __leaf__));
-/* Get current value of clock CLOCK_ID and store it in TP.  */
-extern int clock_gettime (clockid_t __clock_id, struct timespec *__tp) __attribute__ ((__nothrow__ , __leaf__));
-/* Set clock CLOCK_ID to value TP.  */
-extern int clock_settime (clockid_t __clock_id, const struct timespec *__tp)
-     __attribute__ ((__nothrow__ , __leaf__));
-/* High-resolution sleep with the specified clock.
-
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern int clock_nanosleep (clockid_t __clock_id, int __flags,
-       const struct timespec *__req,
-       struct timespec *__rem);
-/* Return clock ID for CPU-time clock.  */
-extern int clock_getcpuclockid (pid_t __pid, clockid_t *__clock_id) __attribute__ ((__nothrow__ , __leaf__));
-/* Create new per-process timer using CLOCK_ID.  */
-extern int timer_create (clockid_t __clock_id,
-    struct sigevent *__restrict __evp,
-    timer_t *__restrict __timerid) __attribute__ ((__nothrow__ , __leaf__));
-/* Delete timer TIMERID.  */
-extern int timer_delete (timer_t __timerid) __attribute__ ((__nothrow__ , __leaf__));
-/* Set timer TIMERID to VALUE, returning old value in OVALUE.  */
-extern int timer_settime (timer_t __timerid, int __flags,
-     const struct itimerspec *__restrict __value,
-     struct itimerspec *__restrict __ovalue) __attribute__ ((__nothrow__ , __leaf__));
-/* Get current value of timer TIMERID and store it in VALUE.  */
-extern int timer_gettime (timer_t __timerid, struct itimerspec *__value)
-     __attribute__ ((__nothrow__ , __leaf__));
-/* Get expiration overrun for timer TIMERID.  */
-extern int timer_getoverrun (timer_t __timerid) __attribute__ ((__nothrow__ , __leaf__));
-/* Set TS to calendar time based in time base BASE.  */
-extern int timespec_get (struct timespec *__ts, int __base)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-
-/* Endian macros for string.h functions
-   Copyright (C) 1992-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
-/* Declaration of common pthread types for all architectures.
-   Copyright (C) 2017-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* For internal mutex and condition variable definitions.  */
-/* Common threading primitives definitions for both POSIX and C11.
-   Copyright (C) 2017-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Arch-specific definitions.  Each architecture must define the following
-   macros to define the expected sizes of pthread data types:
-
-   __SIZEOF_PTHREAD_ATTR_T        - size of pthread_attr_t.
-   __SIZEOF_PTHREAD_MUTEX_T       - size of pthread_mutex_t.
-   __SIZEOF_PTHREAD_MUTEXATTR_T   - size of pthread_mutexattr_t.
-   __SIZEOF_PTHREAD_COND_T        - size of pthread_cond_t.
-   __SIZEOF_PTHREAD_CONDATTR_T    - size of pthread_condattr_t.
-   __SIZEOF_PTHREAD_RWLOCK_T      - size of pthread_rwlock_t.
-   __SIZEOF_PTHREAD_RWLOCKATTR_T  - size of pthread_rwlockattr_t.
-   __SIZEOF_PTHREAD_BARRIER_T     - size of pthread_barrier_t.
-   __SIZEOF_PTHREAD_BARRIERATTR_T - size of pthread_barrierattr_t.
-
-   The additional macro defines any constraint for the lock alignment
-   inside the thread structures:
-
-   __LOCK_ALIGNMENT - for internal lock/futex usage.
-
-   Same idea but for the once locking primitive:
-
-   __ONCE_ALIGNMENT - for pthread_once_t/once_flag definition.  */
-/* Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Determine the wordsize from the preprocessor defines.  */
-/* Both x86-64 and x32 use the 64-bit system call interface.  */
-/* Common definition of pthread_mutex_t. */
 typedef struct __pthread_internal_list
 {
   struct __pthread_internal_list *__prev;
@@ -1449,77 +141,23 @@ typedef struct __pthread_internal_slist
 {
   struct __pthread_internal_slist *__next;
 } __pthread_slist_t;
-/* Arch-specific mutex definitions.  A generic implementation is provided
-   by sysdeps/nptl/bits/struct_mutex.h.  If required, an architecture
-   can override it by defining:
-
-   1. struct __pthread_mutex_s (used on both pthread_mutex_t and mtx_t
-      definition).  It should contains at least the internal members
-      defined in the generic version.
-
-   2. __LOCK_ALIGNMENT for any extra attribute for internal lock used with
-      atomic operations.
-
-   3. The macro __PTHREAD_MUTEX_INITIALIZER used for static initialization.
-      It should initialize the mutex internal flag.  */
-/* x86 internal mutex struct definitions.
-   Copyright (C) 2019-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
 struct __pthread_mutex_s
 {
   int __lock;
   unsigned int __count;
   int __owner;
-  unsigned int __nusers;
-  /* KIND must stay at this position in the structure to maintain
-     binary compatibility with static initializers.  */
   int __kind;
-  short __spins;
-  short __elision;
-  __pthread_list_t __list;
+  unsigned int __nusers;
+  __extension__ union
+  {
+    struct
+    {
+      short __espins;
+      short __eelision;
+    } __elision_data;
+    __pthread_slist_t __list;
+  };
 };
-/* Arch-sepecific read-write lock definitions.  A generic implementation is
-   provided by struct_rwlock.h.  If required, an architecture can override it
-   by defining:
-
-   1. struct __pthread_rwlock_arch_t (used on pthread_rwlock_t definition).
-      It should contain at least the internal members defined in the
-      generic version.
-
-   2. The macro __PTHREAD_RWLOCK_INITIALIZER used for static initialization.
-      It should initialize the rwlock internal type.  */
-/* x86 internal rwlock struct definitions.
-   Copyright (C) 2019-2020 Free Software Foundation, Inc.
-
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
 struct __pthread_rwlock_arch_t
 {
   unsigned int __readers;
@@ -1528,16 +166,12 @@ struct __pthread_rwlock_arch_t
   unsigned int __writers_futex;
   unsigned int __pad3;
   unsigned int __pad4;
-  int __cur_writer;
-  int __shared;
+  unsigned char __flags;
+  unsigned char __shared;
   signed char __rwelision;
-  unsigned char __pad1[7];
-  unsigned long int __pad2;
-  /* FLAGS must stay at this position in the structure to maintain
-     binary compatibility.  */
-  unsigned int __flags;
+  unsigned char __pad2;
+  int __cur_writer;
 };
-/* Common definition of pthread_cond_t. */
 struct __pthread_cond_s
 {
   __extension__ union
@@ -1564,37 +198,29 @@ struct __pthread_cond_s
   unsigned int __wrefs;
   unsigned int __g_signals[2];
 };
-/* Thread identifiers.  The structure of the attribute type is not
-   exposed on purpose.  */
 typedef unsigned long int pthread_t;
-/* Data structures for mutex handling.  The structure of the attribute
-   type is not exposed on purpose.  */
 typedef union
 {
   char __size[4];
   int __align;
 } pthread_mutexattr_t;
-/* Data structure for condition variable handling.  The structure of
-   the attribute type is not exposed on purpose.  */
 typedef union
 {
   char __size[4];
   int __align;
 } pthread_condattr_t;
-/* Keys for thread-specific data */
 typedef unsigned int pthread_key_t;
-/* Once-only execution */
 typedef int pthread_once_t;
 union pthread_attr_t
 {
-  char __size[56];
+  char __size[36];
   long int __align;
 };
 typedef union pthread_attr_t pthread_attr_t;
 typedef union
 {
   struct __pthread_mutex_s __data;
-  char __size[40];
+  char __size[24];
   long int __align;
 } pthread_mutex_t;
 typedef union
@@ -1603,127 +229,41 @@ typedef union
   char __size[48];
   __extension__ long long int __align;
 } pthread_cond_t;
-/* Data structure for reader-writer lock variable handling.  The
-   structure of the attribute type is deliberately not exposed.  */
-typedef union
-{
-  struct __pthread_rwlock_arch_t __data;
-  char __size[56];
-  long int __align;
-} pthread_rwlock_t;
-typedef union
-{
-  char __size[8];
-  long int __align;
-} pthread_rwlockattr_t;
-/* POSIX spinlock data type.  */
-typedef volatile int pthread_spinlock_t;
-/* POSIX barriers data type.  The structure of the type is
-   deliberately not exposed.  */
-typedef union
-{
-  char __size[32];
-  long int __align;
-} pthread_barrier_t;
-typedef union
-{
-  char __size[4];
-  int __align;
-} pthread_barrierattr_t;
-/* Copyright (C) 2001-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Define the machine-dependent type `jmp_buf'.  x86-64 version.  */
-/* Determine the wordsize from the preprocessor defines.  */
-/* Both x86-64 and x32 use the 64-bit system call interface.  */
-typedef long int __jmp_buf[8];
-/* Determine the wordsize from the preprocessor defines.  */
-/* Both x86-64 and x32 use the 64-bit system call interface.  */
-/* NB: Include guard matches what <linux/time.h> uses.  */
-/* Detach state.  */
+typedef int __jmp_buf[6];
 enum
 {
   PTHREAD_CREATE_JOINABLE,
   PTHREAD_CREATE_DETACHED
 };
-/* Mutex types.  */
 enum
 {
   PTHREAD_MUTEX_TIMED_NP,
   PTHREAD_MUTEX_RECURSIVE_NP,
   PTHREAD_MUTEX_ERRORCHECK_NP,
   PTHREAD_MUTEX_ADAPTIVE_NP
-  ,
-  PTHREAD_MUTEX_NORMAL = PTHREAD_MUTEX_TIMED_NP,
-  PTHREAD_MUTEX_RECURSIVE = PTHREAD_MUTEX_RECURSIVE_NP,
-  PTHREAD_MUTEX_ERRORCHECK = PTHREAD_MUTEX_ERRORCHECK_NP,
-  PTHREAD_MUTEX_DEFAULT = PTHREAD_MUTEX_NORMAL
 };
-/* Robust mutex or not flags.  */
-enum
-{
-  PTHREAD_MUTEX_STALLED,
-  PTHREAD_MUTEX_STALLED_NP = PTHREAD_MUTEX_STALLED,
-  PTHREAD_MUTEX_ROBUST,
-  PTHREAD_MUTEX_ROBUST_NP = PTHREAD_MUTEX_ROBUST
-};
-/* Mutex protocols.  */
-enum
-{
-  PTHREAD_PRIO_NONE,
-  PTHREAD_PRIO_INHERIT,
-  PTHREAD_PRIO_PROTECT
-};
-/* Read-write lock types.  */
-enum
-{
-  PTHREAD_RWLOCK_PREFER_READER_NP,
-  PTHREAD_RWLOCK_PREFER_WRITER_NP,
-  PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP,
-  PTHREAD_RWLOCK_DEFAULT_NP = PTHREAD_RWLOCK_PREFER_READER_NP
-};
-/* Read-write lock initializers.  */
-/* Scheduler inheritance.  */
 enum
 {
   PTHREAD_INHERIT_SCHED,
   PTHREAD_EXPLICIT_SCHED
 };
-/* Scope handling.  */
 enum
 {
   PTHREAD_SCOPE_SYSTEM,
   PTHREAD_SCOPE_PROCESS
 };
-/* Process shared or private flag.  */
 enum
 {
   PTHREAD_PROCESS_PRIVATE,
   PTHREAD_PROCESS_SHARED
 };
-/* Conditional variable handling.  */
-/* Cleanup buffers */
 struct _pthread_cleanup_buffer
 {
-  void (*__routine) (void *); /* Function to call.  */
-  void *__arg; /* Its argument.  */
-  int __canceltype; /* Saved cancellation type. */
-  struct _pthread_cleanup_buffer *__prev; /* Chaining of cleanup functions.  */
+  void (*__routine) (void *);
+  void *__arg;
+  int __canceltype;
+  struct _pthread_cleanup_buffer *__prev;
 };
-/* Cancellation */
 enum
 {
   PTHREAD_CANCEL_ENABLE,
@@ -1734,167 +274,81 @@ enum
   PTHREAD_CANCEL_DEFERRED,
   PTHREAD_CANCEL_ASYNCHRONOUS
 };
-/* Single execution handling.  */
-/* Value returned by 'pthread_barrier_wait' for one of the threads after
-   the required number of threads have called this function.
-   -1 is distinct from 0 and all errno constants */
 
-/* Create a new thread, starting with execution of START-ROUTINE
-   getting passed ARG.  Creation attributed come from ATTR.  The new
-   handle is stored in *NEWTHREAD.  */
 extern int pthread_create (pthread_t *__restrict __newthread,
       const pthread_attr_t *__restrict __attr,
       void *(*__start_routine) (void *),
       void *__restrict __arg) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 3)));
-/* Terminate calling thread.
-
-   The registered cleanup handlers are called via exception handling
-   so we cannot mark this function with __THROW.*/
 extern void pthread_exit (void *__retval) __attribute__ ((__noreturn__));
-/* Make calling thread wait for termination of the thread TH.  The
-   exit status of the thread is stored in *THREAD_RETURN, if THREAD_RETURN
-   is not NULL.
-
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
 extern int pthread_join (pthread_t __th, void **__thread_return);
-/* Indicate that the thread TH is never to be joined with PTHREAD_JOIN.
-   The resources of TH will therefore be freed immediately when it
-   terminates, instead of waiting for another thread to perform PTHREAD_JOIN
-   on it.  */
 extern int pthread_detach (pthread_t __th) __attribute__ ((__nothrow__ , __leaf__));
-/* Obtain the identifier of the current thread.  */
 extern pthread_t pthread_self (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
-/* Compare two thread identifiers.  */
 extern int pthread_equal (pthread_t __thread1, pthread_t __thread2)
   __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
-/* Thread attribute handling.  */
-/* Initialize thread attribute *ATTR with default attributes
-   (detachstate is PTHREAD_JOINABLE, scheduling policy is SCHED_OTHER,
-    no user-provided stack).  */
 extern int pthread_attr_init (pthread_attr_t *__attr) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy thread attribute *ATTR.  */
 extern int pthread_attr_destroy (pthread_attr_t *__attr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Get detach state attribute.  */
 extern int pthread_attr_getdetachstate (const pthread_attr_t *__attr,
      int *__detachstate)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set detach state attribute.  */
 extern int pthread_attr_setdetachstate (pthread_attr_t *__attr,
      int __detachstate)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Get the size of the guard area created for stack overflow protection.  */
 extern int pthread_attr_getguardsize (const pthread_attr_t *__attr,
           size_t *__guardsize)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set the size of the guard area created for stack overflow protection.  */
 extern int pthread_attr_setguardsize (pthread_attr_t *__attr,
           size_t __guardsize)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return in *PARAM the scheduling parameters of *ATTR.  */
 extern int pthread_attr_getschedparam (const pthread_attr_t *__restrict __attr,
            struct sched_param *__restrict __param)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set scheduling parameters (priority, etc) in *ATTR according to PARAM.  */
 extern int pthread_attr_setschedparam (pthread_attr_t *__restrict __attr,
            const struct sched_param *__restrict
            __param) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Return in *POLICY the scheduling policy of *ATTR.  */
 extern int pthread_attr_getschedpolicy (const pthread_attr_t *__restrict
      __attr, int *__restrict __policy)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set scheduling policy in *ATTR according to POLICY.  */
 extern int pthread_attr_setschedpolicy (pthread_attr_t *__attr, int __policy)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return in *INHERIT the scheduling inheritance mode of *ATTR.  */
 extern int pthread_attr_getinheritsched (const pthread_attr_t *__restrict
       __attr, int *__restrict __inherit)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set scheduling inheritance mode in *ATTR according to INHERIT.  */
 extern int pthread_attr_setinheritsched (pthread_attr_t *__attr,
       int __inherit)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return in *SCOPE the scheduling contention scope of *ATTR.  */
 extern int pthread_attr_getscope (const pthread_attr_t *__restrict __attr,
       int *__restrict __scope)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set scheduling contention scope in *ATTR according to SCOPE.  */
 extern int pthread_attr_setscope (pthread_attr_t *__attr, int __scope)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return the previously set address for the stack.  */
 extern int pthread_attr_getstackaddr (const pthread_attr_t *__restrict
           __attr, void **__restrict __stackaddr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2))) __attribute__ ((__deprecated__));
-/* Set the starting address of the stack of the thread to be created.
-   Depending on whether the stack grows up or down the value must either
-   be higher or lower than all the address in the memory block.  The
-   minimal size of the block must be PTHREAD_STACK_MIN.  */
 extern int pthread_attr_setstackaddr (pthread_attr_t *__attr,
           void *__stackaddr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) __attribute__ ((__deprecated__));
-/* Return the currently used minimal stack size.  */
 extern int pthread_attr_getstacksize (const pthread_attr_t *__restrict
           __attr, size_t *__restrict __stacksize)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Add information about the minimum stack size needed for the thread
-   to be started.  This size must never be less than PTHREAD_STACK_MIN
-   and must also not exceed the system limits.  */
 extern int pthread_attr_setstacksize (pthread_attr_t *__attr,
           size_t __stacksize)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return the previously set address for the stack.  */
-extern int pthread_attr_getstack (const pthread_attr_t *__restrict __attr,
-      void **__restrict __stackaddr,
-      size_t *__restrict __stacksize)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2, 3)));
-/* The following two interfaces are intended to replace the last two.  They
-   require setting the address as well as the size since only setting the
-   address will make the implementation on some architectures impossible.  */
-extern int pthread_attr_setstack (pthread_attr_t *__attr, void *__stackaddr,
-      size_t __stacksize) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Functions for scheduling control.  */
-/* Set the scheduling parameters for TARGET_THREAD according to POLICY
-   and *PARAM.  */
 extern int pthread_setschedparam (pthread_t __target_thread, int __policy,
       const struct sched_param *__param)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3)));
-/* Return in *POLICY and *PARAM the scheduling parameters for TARGET_THREAD. */
 extern int pthread_getschedparam (pthread_t __target_thread,
       int *__restrict __policy,
       struct sched_param *__restrict __param)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2, 3)));
-/* Set the scheduling priority for TARGET_THREAD.  */
 extern int pthread_setschedprio (pthread_t __target_thread, int __prio)
      __attribute__ ((__nothrow__ , __leaf__));
-/* Functions for handling initialization.  */
-/* Guarantee that the initialization function INIT_ROUTINE will be called
-   only once, even if pthread_once is executed several times with the
-   same ONCE_CONTROL argument. ONCE_CONTROL must point to a static or
-   extern variable initialized to PTHREAD_ONCE_INIT.
-
-   The initialization functions might throw exception which is why
-   this function is not marked with __THROW.  */
 extern int pthread_once (pthread_once_t *__once_control,
     void (*__init_routine) (void)) __attribute__ ((__nonnull__ (1, 2)));
-/* Functions for handling cancellation.
-
-   Note that these functions are explicitly not marked to not throw an
-   exception in C++ code.  If cancellation is implemented by unwinding
-   this is necessary to have the compiler generate the unwind information.  */
-/* Set cancelability state of current thread to STATE, returning old
-   state in *OLDSTATE if OLDSTATE is not NULL.  */
 extern int pthread_setcancelstate (int __state, int *__oldstate);
-/* Set cancellation state of current thread to TYPE, returning the old
-   type in *OLDTYPE if OLDTYPE is not NULL.  */
 extern int pthread_setcanceltype (int __type, int *__oldtype);
-/* Cancel THREAD immediately or at the next possibility.  */
 extern int pthread_cancel (pthread_t __th);
-/* Test for pending cancellation for the current thread and terminate
-   the thread as per pthread_exit(PTHREAD_CANCELED) if it has been
-   cancelled.  */
 extern void pthread_testcancel (void);
-/* Cancellation handling with integration into exception handling.  */
 typedef struct
 {
   struct
@@ -1904,8 +358,6 @@ typedef struct
   } __cancel_jmp_buf[1];
   void *__pad[4];
 } __pthread_unwind_buf_t __attribute__ ((__aligned__));
-/* No special attributes by default.  */
-/* Structure to hold the cleanup handler information.  */
 struct __pthread_cleanup_frame
 {
   void (*__cancel_routine) (void *);
@@ -1913,1614 +365,174 @@ struct __pthread_cleanup_frame
   int __do_it;
   int __cancel_type;
 };
-/* Install a cleanup handler: ROUTINE will be called with arguments ARG
-   when the thread is canceled or calls pthread_exit.  ROUTINE will also
-   be called with arguments ARG when the matching pthread_cleanup_pop
-   is executed with non-zero EXECUTE argument.
-
-   pthread_cleanup_push and pthread_cleanup_pop are macros and must always
-   be used in matching pairs at the same nesting level of braces.  */
 extern void __pthread_register_cancel (__pthread_unwind_buf_t *__buf)
-     ;
-/* Remove a cleanup handler installed by the matching pthread_cleanup_push.
-   If EXECUTE is non-zero, the handler function is called. */
+     __attribute__ ((__regparm__ (1)));
 extern void __pthread_unregister_cancel (__pthread_unwind_buf_t *__buf)
-  ;
-/* Internal interface to initiate cleanup.  */
+  __attribute__ ((__regparm__ (1)));
 extern void __pthread_unwind_next (__pthread_unwind_buf_t *__buf)
-     __attribute__ ((__noreturn__))
+     __attribute__ ((__regparm__ (1))) __attribute__ ((__noreturn__))
      __attribute__ ((__weak__))
      ;
-/* Function used in the macros.  */
 struct __jmp_buf_tag;
 extern int __sigsetjmp (struct __jmp_buf_tag *__env, int __savemask) __attribute__ ((__nothrow__));
-/* Mutex handling.  */
-/* Initialize a mutex.  */
 extern int pthread_mutex_init (pthread_mutex_t *__mutex,
           const pthread_mutexattr_t *__mutexattr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy a mutex.  */
 extern int pthread_mutex_destroy (pthread_mutex_t *__mutex)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Try locking a mutex.  */
 extern int pthread_mutex_trylock (pthread_mutex_t *__mutex)
      __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Lock a mutex.  */
 extern int pthread_mutex_lock (pthread_mutex_t *__mutex)
      __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Wait until lock becomes available, or specified time passes. */
-extern int pthread_mutex_timedlock (pthread_mutex_t *__restrict __mutex,
-        const struct timespec *__restrict
-        __abstime) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Unlock a mutex.  */
 extern int pthread_mutex_unlock (pthread_mutex_t *__mutex)
      __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Get the priority ceiling of MUTEX.  */
 extern int pthread_mutex_getprioceiling (const pthread_mutex_t *
       __restrict __mutex,
       int *__restrict __prioceiling)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set the priority ceiling of MUTEX to PRIOCEILING, return old
-   priority ceiling value in *OLD_CEILING.  */
 extern int pthread_mutex_setprioceiling (pthread_mutex_t *__restrict __mutex,
       int __prioceiling,
       int *__restrict __old_ceiling)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 3)));
-/* Declare the state protected by MUTEX as consistent.  */
-extern int pthread_mutex_consistent (pthread_mutex_t *__mutex)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Functions for handling mutex attributes.  */
-/* Initialize mutex attribute object ATTR with default attributes
-   (kind is PTHREAD_MUTEX_TIMED_NP).  */
 extern int pthread_mutexattr_init (pthread_mutexattr_t *__attr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy mutex attribute object ATTR.  */
 extern int pthread_mutexattr_destroy (pthread_mutexattr_t *__attr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Get the process-shared flag of the mutex attribute ATTR.  */
 extern int pthread_mutexattr_getpshared (const pthread_mutexattr_t *
       __restrict __attr,
       int *__restrict __pshared)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set the process-shared flag of the mutex attribute ATTR.  */
 extern int pthread_mutexattr_setpshared (pthread_mutexattr_t *__attr,
       int __pshared)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return in *KIND the mutex kind attribute in *ATTR.  */
-extern int pthread_mutexattr_gettype (const pthread_mutexattr_t *__restrict
-          __attr, int *__restrict __kind)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set the mutex kind attribute in *ATTR to KIND (either PTHREAD_MUTEX_NORMAL,
-   PTHREAD_MUTEX_RECURSIVE, PTHREAD_MUTEX_ERRORCHECK, or
-   PTHREAD_MUTEX_DEFAULT).  */
-extern int pthread_mutexattr_settype (pthread_mutexattr_t *__attr, int __kind)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return in *PROTOCOL the mutex protocol attribute in *ATTR.  */
 extern int pthread_mutexattr_getprotocol (const pthread_mutexattr_t *
        __restrict __attr,
        int *__restrict __protocol)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set the mutex protocol attribute in *ATTR to PROTOCOL (either
-   PTHREAD_PRIO_NONE, PTHREAD_PRIO_INHERIT, or PTHREAD_PRIO_PROTECT).  */
 extern int pthread_mutexattr_setprotocol (pthread_mutexattr_t *__attr,
        int __protocol)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return in *PRIOCEILING the mutex prioceiling attribute in *ATTR.  */
 extern int pthread_mutexattr_getprioceiling (const pthread_mutexattr_t *
           __restrict __attr,
           int *__restrict __prioceiling)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set the mutex prioceiling attribute in *ATTR to PRIOCEILING.  */
 extern int pthread_mutexattr_setprioceiling (pthread_mutexattr_t *__attr,
           int __prioceiling)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Get the robustness flag of the mutex attribute ATTR.  */
-extern int pthread_mutexattr_getrobust (const pthread_mutexattr_t *__attr,
-     int *__robustness)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set the robustness flag of the mutex attribute ATTR.  */
-extern int pthread_mutexattr_setrobust (pthread_mutexattr_t *__attr,
-     int __robustness)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Functions for handling read-write locks.  */
-/* Initialize read-write lock RWLOCK using attributes ATTR, or use
-   the default values if later is NULL.  */
-extern int pthread_rwlock_init (pthread_rwlock_t *__restrict __rwlock,
-    const pthread_rwlockattr_t *__restrict
-    __attr) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy read-write lock RWLOCK.  */
-extern int pthread_rwlock_destroy (pthread_rwlock_t *__rwlock)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Acquire read lock for RWLOCK.  */
-extern int pthread_rwlock_rdlock (pthread_rwlock_t *__rwlock)
-     __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Try to acquire read lock for RWLOCK.  */
-extern int pthread_rwlock_tryrdlock (pthread_rwlock_t *__rwlock)
-  __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Try to acquire read lock for RWLOCK or return after specfied time.  */
-extern int pthread_rwlock_timedrdlock (pthread_rwlock_t *__restrict __rwlock,
-           const struct timespec *__restrict
-           __abstime) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Acquire write lock for RWLOCK.  */
-extern int pthread_rwlock_wrlock (pthread_rwlock_t *__rwlock)
-     __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Try to acquire write lock for RWLOCK.  */
-extern int pthread_rwlock_trywrlock (pthread_rwlock_t *__rwlock)
-     __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Try to acquire write lock for RWLOCK or return after specfied time.  */
-extern int pthread_rwlock_timedwrlock (pthread_rwlock_t *__restrict __rwlock,
-           const struct timespec *__restrict
-           __abstime) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Unlock RWLOCK.  */
-extern int pthread_rwlock_unlock (pthread_rwlock_t *__rwlock)
-     __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Functions for handling read-write lock attributes.  */
-/* Initialize attribute object ATTR with default values.  */
-extern int pthread_rwlockattr_init (pthread_rwlockattr_t *__attr)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy attribute object ATTR.  */
-extern int pthread_rwlockattr_destroy (pthread_rwlockattr_t *__attr)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return current setting of process-shared attribute of ATTR in PSHARED.  */
-extern int pthread_rwlockattr_getpshared (const pthread_rwlockattr_t *
-       __restrict __attr,
-       int *__restrict __pshared)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set process-shared attribute of ATTR to PSHARED.  */
-extern int pthread_rwlockattr_setpshared (pthread_rwlockattr_t *__attr,
-       int __pshared)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return current setting of reader/writer preference.  */
-extern int pthread_rwlockattr_getkind_np (const pthread_rwlockattr_t *
-       __restrict __attr,
-       int *__restrict __pref)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set reader/write preference.  */
-extern int pthread_rwlockattr_setkind_np (pthread_rwlockattr_t *__attr,
-       int __pref) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Functions for handling conditional variables.  */
-/* Initialize condition variable COND using attributes ATTR, or use
-   the default values if later is NULL.  */
 extern int pthread_cond_init (pthread_cond_t *__restrict __cond,
          const pthread_condattr_t *__restrict __cond_attr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy condition variable COND.  */
 extern int pthread_cond_destroy (pthread_cond_t *__cond)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Wake up one thread waiting for condition variable COND.  */
 extern int pthread_cond_signal (pthread_cond_t *__cond)
      __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Wake up all threads waiting for condition variables COND.  */
 extern int pthread_cond_broadcast (pthread_cond_t *__cond)
      __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Wait for condition variable COND to be signaled or broadcast.
-   MUTEX is assumed to be locked before.
-
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
 extern int pthread_cond_wait (pthread_cond_t *__restrict __cond,
          pthread_mutex_t *__restrict __mutex)
      __attribute__ ((__nonnull__ (1, 2)));
-/* Wait for condition variable COND to be signaled or broadcast until
-   ABSTIME.  MUTEX is assumed to be locked before.  ABSTIME is an
-   absolute time specification; zero is the beginning of the epoch
-   (00:00:00 GMT, January 1, 1970).
-
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
 extern int pthread_cond_timedwait (pthread_cond_t *__restrict __cond,
        pthread_mutex_t *__restrict __mutex,
        const struct timespec *__restrict __abstime)
      __attribute__ ((__nonnull__ (1, 2, 3)));
-/* Functions for handling condition variable attributes.  */
-/* Initialize condition variable attribute ATTR.  */
 extern int pthread_condattr_init (pthread_condattr_t *__attr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy condition variable attribute ATTR.  */
 extern int pthread_condattr_destroy (pthread_condattr_t *__attr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Get the process-shared flag of the condition variable attribute ATTR.  */
 extern int pthread_condattr_getpshared (const pthread_condattr_t *
      __restrict __attr,
      int *__restrict __pshared)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set the process-shared flag of the condition variable attribute ATTR.  */
 extern int pthread_condattr_setpshared (pthread_condattr_t *__attr,
      int __pshared) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Get the clock selected for the condition variable attribute ATTR.  */
-extern int pthread_condattr_getclock (const pthread_condattr_t *
-          __restrict __attr,
-          __clockid_t *__restrict __clock_id)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set the clock selected for the condition variable attribute ATTR.  */
-extern int pthread_condattr_setclock (pthread_condattr_t *__attr,
-          __clockid_t __clock_id)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Functions to handle spinlocks.  */
-/* Initialize the spinlock LOCK.  If PSHARED is nonzero the spinlock can
-   be shared between different processes.  */
-extern int pthread_spin_init (pthread_spinlock_t *__lock, int __pshared)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy the spinlock LOCK.  */
-extern int pthread_spin_destroy (pthread_spinlock_t *__lock)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Wait until spinlock LOCK is retrieved.  */
-extern int pthread_spin_lock (pthread_spinlock_t *__lock)
-     __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Try to lock spinlock LOCK.  */
-extern int pthread_spin_trylock (pthread_spinlock_t *__lock)
-     __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Release spinlock LOCK.  */
-extern int pthread_spin_unlock (pthread_spinlock_t *__lock)
-     __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Functions to handle barriers.  */
-/* Initialize BARRIER with the attributes in ATTR.  The barrier is
-   opened when COUNT waiters arrived.  */
-extern int pthread_barrier_init (pthread_barrier_t *__restrict __barrier,
-     const pthread_barrierattr_t *__restrict
-     __attr, unsigned int __count)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy a previously dynamically initialized barrier BARRIER.  */
-extern int pthread_barrier_destroy (pthread_barrier_t *__barrier)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Wait on barrier BARRIER.  */
-extern int pthread_barrier_wait (pthread_barrier_t *__barrier)
-     __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
-/* Initialize barrier attribute ATTR.  */
-extern int pthread_barrierattr_init (pthread_barrierattr_t *__attr)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy previously dynamically initialized barrier attribute ATTR.  */
-extern int pthread_barrierattr_destroy (pthread_barrierattr_t *__attr)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Get the process-shared flag of the barrier attribute ATTR.  */
-extern int pthread_barrierattr_getpshared (const pthread_barrierattr_t *
-        __restrict __attr,
-        int *__restrict __pshared)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Set the process-shared flag of the barrier attribute ATTR.  */
-extern int pthread_barrierattr_setpshared (pthread_barrierattr_t *__attr,
-        int __pshared)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Functions for handling thread-specific data.  */
-/* Create a key value identifying a location in the thread-specific
-   data area.  Each thread maintains a distinct thread-specific data
-   area.  DESTR_FUNCTION, if non-NULL, is called with the value
-   associated to that key when the key is destroyed.
-   DESTR_FUNCTION is not called if the value associated is NULL when
-   the key is destroyed.  */
 extern int pthread_key_create (pthread_key_t *__key,
           void (*__destr_function) (void *))
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Destroy KEY.  */
 extern int pthread_key_delete (pthread_key_t __key) __attribute__ ((__nothrow__ , __leaf__));
-/* Return current value of the thread-specific data slot identified by KEY.  */
 extern void *pthread_getspecific (pthread_key_t __key) __attribute__ ((__nothrow__ , __leaf__));
-/* Store POINTER in the thread-specific data slot identified by KEY. */
 extern int pthread_setspecific (pthread_key_t __key,
     const void *__pointer) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Get ID of CPU-time clock for thread THREAD_ID.  */
-extern int pthread_getcpuclockid (pthread_t __thread_id,
-      __clockid_t *__clock_id)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
-/* Install handlers to be called when a new process is created with FORK.
-   The PREPARE handler is called in the parent process just before performing
-   FORK. The PARENT handler is called in the parent process just after FORK.
-   The CHILD handler is called in the child process.  Each of the three
-   handlers can be NULL, meaning that no handler needs to be called at that
-   point.
-   PTHREAD_ATFORK can be called several times, in which case the PREPARE
-   handlers are called in LIFO order (last added with PTHREAD_ATFORK,
-   first called before FORK), and the PARENT and CHILD handlers are called
-   in FIFO (first added, first called).  */
 extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
+typedef long int wchar_t;
 
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- *	ISO C99 Standard: 7.20 General utilities	<stdlib.h>
- */
-/* Handle feature test macros at the start of a header.
-   Copyright (C) 2016-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* This header is internal to glibc and should not be included outside
-   of glibc headers.  Headers including it must define
-   __GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION first.  This header
-   cannot have multiple include guards because ISO C feature test
-   macros depend on the definition of the macro when an affected
-   header is included, not when the first system header is
-   included.  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* ISO/IEC TR 24731-2:2010 defines the __STDC_WANT_LIB_EXT2__
-   macro.  */
-/* ISO/IEC TS 18661-1:2014 defines the __STDC_WANT_IEC_60559_BFP_EXT__
-   macro.  Most but not all symbols enabled by that macro in TS
-   18661-1 are enabled unconditionally in C2X; the symbols in Annex F
-   still require that macro in C2X.  */
-/* ISO/IEC TS 18661-4:2015 defines the
-   __STDC_WANT_IEC_60559_FUNCS_EXT__ macro.  Other than the reduction
-   functions, the symbols from this TS are enabled unconditionally in
-   C2X.  */
-/* ISO/IEC TS 18661-3:2015 defines the
-   __STDC_WANT_IEC_60559_TYPES_EXT__ macro.  */
-/* Get size_t, wchar_t and NULL from <stddef.h>.  */
-/* Copyright (C) 1989-2019 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-/*
- * ISO C Standard:  7.17  Common definitions  <stddef.h>
- */
-/* Any one of these symbols __need_* means that GNU libc
-   wants us just to define one data type.  So don't define
-   the symbols that indicate this file's entire job has been done.  */
-/* This avoids lossage on SunOS but only if stdtypes.h comes first.
-   There's no way to win with the other order!  Sun lossage.  */
-/* Sequent's header files use _PTRDIFF_T_ in some conflicting way.
-   Just ignore it.  */
-/* On VxWorks, <type/vxTypesBase.h> may have defined macros like
-   _TYPE_size_t which will typedef size_t.  fixincludes patched the
-   vxTypesBase.h so that this macro is only defined if _GCC_SIZE_T is
-   not defined, and so that defining this macro defines _GCC_SIZE_T.
-   If we find that the macros are still defined at this point, we must
-   invoke them so that the type is defined as expected.  */
-/* In case nobody has defined these types, but we aren't running under
-   GCC 2.00, make sure that __PTRDIFF_TYPE__, __SIZE_TYPE__, and
-   __WCHAR_TYPE__ have reasonable values.  This can happen if the
-   parts of GCC is compiled by an older compiler, that actually
-   include gstddef.h, such as collect2.  */
-/* Signed type of difference of two pointers.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Unsigned type of `sizeof' something.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Wide character type.
-   Locale-writers should change this as necessary to
-   be big enough to hold unique values not between 0 and 127,
-   and not (wchar_t) -1, for each defined multibyte character.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* On BSD/386 1.1, at least, machine/ansi.h defines _BSD_WCHAR_T_
-   instead of _WCHAR_T_, and _BSD_RUNE_T_ (which, unlike the other
-   symbols in the _FOO_T_ family, stays defined even after its
-   corresponding type is defined).  If we define wchar_t, then we
-   must undef _WCHAR_T_; for BSD/386 1.1 (and perhaps others), if
-   we undef _WCHAR_T_, then we must also define rune_t, since 
-   headers like runetype.h assume that if machine/ansi.h is included,
-   and _BSD_WCHAR_T_ is not defined, then rune_t is available.
-   machine/ansi.h says, "Note that _WCHAR_T_ and _RUNE_T_ must be of
-   the same type." */
-/* FreeBSD 5 can't be handled well using "traditional" logic above
-   since it no longer defines _BSD_RUNE_T_ yet still desires to export
-   rune_t in some cases... */
-typedef int wchar_t;
-/* A null pointer constant.  */
-
-/* XPG requires a few symbols from <sys/wait.h> being defined.  */
-/* Definitions of flag bits for `waitpid' et al.
-   Copyright (C) 1992-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Bits in the third argument to `waitpid'.  */
-/* Bits in the fourth argument to `waitid'.  */
-/* The following values are used by the `waitid' function.  */
-/* The Linux kernel defines these bare, rather than an enum,
-   which causes a conflict if the include order is reversed. */
-typedef enum
-{
-  P_ALL, /* Wait for any child.  */
-  P_PID, /* Wait for specified process.  */
-  P_PGID /* Wait for members of process group.  */
-} idtype_t;
-/* Definitions of status bits for `wait' et al.
-   Copyright (C) 1992-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Everything extant so far uses these same bits.  */
-/* If WIFEXITED(STATUS), the low-order 8 bits of the status.  */
-/* If WIFSIGNALED(STATUS), the terminating signal.  */
-/* If WIFSTOPPED(STATUS), the signal that stopped the child.  */
-/* Nonzero if STATUS indicates normal termination.  */
-/* Nonzero if STATUS indicates termination by a signal.  */
-/* Nonzero if STATUS indicates the child is stopped.  */
-/* Nonzero if STATUS indicates the child continued after a stop.  We only
-   define this if <bits/waitflags.h> provides the WCONTINUED flag bit.  */
-/* Nonzero if STATUS indicates the child dumped core.  */
-/* Macros for constructing status values.  */
-/* Define the macros <sys/wait.h> also would define this way.  */
-/* _FloatN API tests for enablement.  */
-/* Macros to control TS 18661-3 glibc features on x86.
-   Copyright (C) 2017-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Defined to 1 if the current compiler invocation provides a
-   floating-point type with the IEEE 754 binary128 format, and this
-   glibc includes corresponding *f128 interfaces for it.  The required
-   libgcc support was added some time after the basic compiler
-   support, for x86_64 and x86.  */
-/* Defined to 1 if __HAVE_FLOAT128 is 1 and the type is ABI-distinct
-   from the default float, double and long double types in this glibc.  */
-/* Defined to 1 if the current compiler invocation provides a
-   floating-point type with the right format for _Float64x, and this
-   glibc includes corresponding *f64x interfaces for it.  */
-/* Defined to 1 if __HAVE_FLOAT64X is 1 and _Float64x has the format
-   of long double.  Otherwise, if __HAVE_FLOAT64X is 1, _Float64x has
-   the format of _Float128, which must be different from that of long
-   double.  */
-/* Defined to concatenate the literal suffix to be used with _Float128
-   types, if __HAVE_FLOAT128 is 1. */
-/* Defined to a complex binary128 type if __HAVE_FLOAT128 is 1.  */
-/* The remaining of this file provides support for older compilers.  */
-/* The type _Float128 exists only since GCC 7.0.  */
-/* __builtin_huge_valf128 doesn't exist before GCC 7.0.  */
-/* Older GCC has only a subset of built-in functions for _Float128 on
-   x86, and __builtin_infq is not usable in static initializers.
-   Converting a narrower sNaN to _Float128 produces a quiet NaN, so
-   attempts to use _Float128 sNaNs will not work properly with older
-   compilers.  */
-/* In math/math.h, __MATH_TG will expand signbit to __builtin_signbit*,
-   e.g.: __builtin_signbitf128, before GCC 6.  However, there has never
-   been a __builtin_signbitf128 in GCC and the type-generic builtin is
-   only available since GCC 6.  */
-/* Macros to control TS 18661-3 glibc features where the same
-   definitions are appropriate for all platforms.
-   Copyright (C) 2017-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Properties of long double type.  ldbl-96 version.
-   Copyright (C) 2016-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License  published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* long double is distinct from double, so there is nothing to
-   define here.  */
-/* This header should be included at the bottom of each bits/floatn.h.
-   It defines the following macros for each _FloatN and _FloatNx type,
-   where the same definitions, or definitions based only on the macros
-   in bits/floatn.h, are appropriate for all glibc configurations.  */
-/* Defined to 1 if the current compiler invocation provides a
-   floating-point type with the right format for this type, and this
-   glibc includes corresponding *fN or *fNx interfaces for it.  */
-/* Defined to 1 if the corresponding __HAVE_<type> macro is 1 and the
-   type is the first with its format in the sequence of (the default
-   choices for) float, double, long double, _Float16, _Float32,
-   _Float64, _Float128, _Float32x, _Float64x, _Float128x for this
-   glibc; that is, if functions present once per floating-point format
-   rather than once per type are present for this type.
-
-   All configurations supported by glibc have _Float32 the same format
-   as float, _Float64 and _Float32x the same format as double, the
-   _Float64x the same format as either long double or _Float128.  No
-   configurations support _Float128x or, as of GCC 7, have compiler
-   support for a type meeting the requirements for _Float128x.  */
-/* Defined to 1 if the corresponding _FloatN type is not binary compatible
-   with the corresponding ISO C type in the current compilation unit as
-   opposed to __HAVE_DISTINCT_FLOATN, which indicates the default types built
-   in glibc.  */
-/* Defined to 1 if any _FloatN or _FloatNx types that are not
-   ABI-distinct are however distinct types at the C language level (so
-   for the purposes of __builtin_types_compatible_p and _Generic).  */
-/* Defined to concatenate the literal suffix to be used with _FloatN
-   or _FloatNx types, if __HAVE_<type> is 1.  The corresponding
-   literal suffixes exist since GCC 7, for C only.  */
-/* Defined to a complex type if __HAVE_<type> is 1.  */
-/* The remaining of this file provides support for older compilers.  */
-/* If double, long double and _Float64 all have the same set of
-   values, TS 18661-3 requires the usual arithmetic conversions on
-   long double and _Float64 to produce _Float64.  For this to be the
-   case when building with a compiler without a distinct _Float64
-   type, _Float64 must be a typedef for long double, not for
-   double.  */
-/* Returned by `div'.  */
 typedef struct
   {
-    int quot; /* Quotient.  */
-    int rem; /* Remainder.  */
+    int quot;
+    int rem;
   } div_t;
-/* Returned by `ldiv'.  */
 typedef struct
   {
-    long int quot; /* Quotient.  */
-    long int rem; /* Remainder.  */
+    long int quot;
+    long int rem;
   } ldiv_t;
-/* Returned by `lldiv'.  */
 __extension__ typedef struct
   {
-    long long int quot; /* Quotient.  */
-    long long int rem; /* Remainder.  */
+    long long int quot;
+    long long int rem;
   } lldiv_t;
-/* The largest number rand will return (same as INT_MAX).  */
-/* We define these the same for all machines.
-   Changes from this to the outside world should be done in `_exit'.  */
-/* Maximum length of a multibyte character in the current locale.  */
 extern size_t __ctype_get_mb_cur_max (void) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Convert a string to a floating-point number.  */
 extern double atof (const char *__nptr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
-/* Convert a string to an integer.  */
 extern int atoi (const char *__nptr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
-/* Convert a string to a long integer.  */
 extern long int atol (const char *__nptr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
-/* Convert a string to a long long integer.  */
 __extension__ extern long long int atoll (const char *__nptr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
-/* Convert a string to a floating-point number.  */
 extern double strtod (const char *__restrict __nptr,
         char **__restrict __endptr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Likewise for `float' and `long double' sizes of floating-point numbers.  */
 extern float strtof (const char *__restrict __nptr,
        char **__restrict __endptr) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern long double strtold (const char *__restrict __nptr,
        char **__restrict __endptr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Likewise for '_FloatN' and '_FloatNx'.  */
-/* Convert a string to a long integer.  */
 extern long int strtol (const char *__restrict __nptr,
    char **__restrict __endptr, int __base)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Convert a string to an unsigned long integer.  */
 extern unsigned long int strtoul (const char *__restrict __nptr,
       char **__restrict __endptr, int __base)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Convert a string to a quadword integer.  */
-__extension__
-extern long long int strtoq (const char *__restrict __nptr,
-        char **__restrict __endptr, int __base)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Convert a string to an unsigned quadword integer.  */
-__extension__
-extern unsigned long long int strtouq (const char *__restrict __nptr,
-           char **__restrict __endptr, int __base)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Convert a string to a quadword integer.  */
 __extension__
 extern long long int strtoll (const char *__restrict __nptr,
          char **__restrict __endptr, int __base)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Convert a string to an unsigned quadword integer.  */
 __extension__
 extern unsigned long long int strtoull (const char *__restrict __nptr,
      char **__restrict __endptr, int __base)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Convert a floating-point number to a string.  */
-/* Convert N to base 64 using the digits "./0-9A-Za-z", least-significant
-   digit first.  Returns a pointer to static storage overwritten by the
-   next call.  */
-extern char *l64a (long int __n) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Read a number from a string S in base 64 as above.  */
-extern long int a64l (const char *__s)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1))) ;
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- *	POSIX Standard: 2.6 Primitive System Data Types	<sys/types.h>
- */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-typedef __u_char u_char;
-typedef __u_short u_short;
-typedef __u_int u_int;
-typedef __u_long u_long;
-typedef __quad_t quad_t;
-typedef __u_quad_t u_quad_t;
-typedef __fsid_t fsid_t;
-typedef __loff_t loff_t;
-typedef __ino_t ino_t;
-typedef __dev_t dev_t;
-typedef __gid_t gid_t;
-typedef __mode_t mode_t;
-typedef __nlink_t nlink_t;
-typedef __uid_t uid_t;
-typedef __off_t off_t;
-typedef __id_t id_t;
-typedef __ssize_t ssize_t;
-typedef __daddr_t daddr_t;
-typedef __caddr_t caddr_t;
-typedef __key_t key_t;
-/* Copyright (C) 1989-2019 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-/*
- * ISO C Standard:  7.17  Common definitions  <stddef.h>
- */
-/* Any one of these symbols __need_* means that GNU libc
-   wants us just to define one data type.  So don't define
-   the symbols that indicate this file's entire job has been done.  */
-/* This avoids lossage on SunOS but only if stdtypes.h comes first.
-   There's no way to win with the other order!  Sun lossage.  */
-/* Sequent's header files use _PTRDIFF_T_ in some conflicting way.
-   Just ignore it.  */
-/* On VxWorks, <type/vxTypesBase.h> may have defined macros like
-   _TYPE_size_t which will typedef size_t.  fixincludes patched the
-   vxTypesBase.h so that this macro is only defined if _GCC_SIZE_T is
-   not defined, and so that defining this macro defines _GCC_SIZE_T.
-   If we find that the macros are still defined at this point, we must
-   invoke them so that the type is defined as expected.  */
-/* In case nobody has defined these types, but we aren't running under
-   GCC 2.00, make sure that __PTRDIFF_TYPE__, __SIZE_TYPE__, and
-   __WCHAR_TYPE__ have reasonable values.  This can happen if the
-   parts of GCC is compiled by an older compiler, that actually
-   include gstddef.h, such as collect2.  */
-/* Signed type of difference of two pointers.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Unsigned type of `sizeof' something.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Wide character type.
-   Locale-writers should change this as necessary to
-   be big enough to hold unique values not between 0 and 127,
-   and not (wchar_t) -1, for each defined multibyte character.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* A null pointer constant.  */
-/* Old compatibility names for C types.  */
-typedef unsigned long int ulong;
-typedef unsigned short int ushort;
-typedef unsigned int uint;
-/* These size-specific names are used by some of the inet code.  */
-/* Define intN_t types.
-   Copyright (C) 2017-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-typedef __int8_t int8_t;
-typedef __int16_t int16_t;
-typedef __int32_t int32_t;
-typedef __int64_t int64_t;
-/* These were defined by ISO C without the first `_'.  */
-typedef __uint8_t u_int8_t;
-typedef __uint16_t u_int16_t;
-typedef __uint32_t u_int32_t;
-typedef __uint64_t u_int64_t;
-typedef int register_t __attribute__ ((__mode__ (__word__)));
-/* Some code from BIND tests this macro to see if the types above are
-   defined.  */
-/* In BSD <sys/types.h> is expected to define BYTE_ORDER.  */
-/* Copyright (C) 1992-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Get the definitions of __*_ENDIAN, __BYTE_ORDER, and __FLOAT_WORD_ORDER.  */
-/* Endian macros for string.h functions
-   Copyright (C) 1992-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
-/* Conversion interfaces.  */
-/* Macros and inline functions to swap the order of bytes in integer values.
-   Copyright (C) 1997-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* Swap bytes in 16-bit value.  */
-static __inline __uint16_t
-__bswap_16 (__uint16_t __bsx)
-{
-  return __builtin_bswap16 (__bsx);
-}
-/* Swap bytes in 32-bit value.  */
-static __inline __uint32_t
-__bswap_32 (__uint32_t __bsx)
-{
-  return __builtin_bswap32 (__bsx);
-}
-/* Swap bytes in 64-bit value.  */
-__extension__ static __inline __uint64_t
-__bswap_64 (__uint64_t __bsx)
-{
-  return __builtin_bswap64 (__bsx);
-}
-/* Inline functions to return unsigned integer values unchanged.
-   Copyright (C) 2017-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* These inline functions are to ensure the appropriate type
-   conversions and associated diagnostics from macros that convert to
-   a given endianness.  */
-static __inline __uint16_t
-__uint16_identity (__uint16_t __x)
-{
-  return __x;
-}
-static __inline __uint32_t
-__uint32_identity (__uint32_t __x)
-{
-  return __x;
-}
-static __inline __uint64_t
-__uint64_identity (__uint64_t __x)
-{
-  return __x;
-}
-/* It also defines `fd_set' and the FD_* macros for `select'.  */
-/* `fd_set' type and related macros, and `select'/`pselect' declarations.
-   Copyright (C) 1996-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*	POSIX 1003.1g: 6.2 Select from File Descriptor Sets <sys/select.h>  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Get definition of needed basic types.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* Get __FD_* definitions.  */
-/* Copyright (C) 1997-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Determine the wordsize from the preprocessor defines.  */
-/* Both x86-64 and x32 use the 64-bit system call interface.  */
-/* Get sigset_t.  */
-typedef struct
-{
-  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
-} __sigset_t;
-/* A set of signals to be blocked, unblocked, or waited for.  */
-typedef __sigset_t sigset_t;
-/* Get definition of timer specification structures.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* A time value that is accurate to the nearest
-   microsecond but also has a range of years.  */
-struct timeval
-{
-  __time_t tv_sec; /* Seconds.  */
-  __suseconds_t tv_usec; /* Microseconds.  */
-};
-/* NB: Include guard matches what <linux/time.h> uses.  */
-typedef __suseconds_t suseconds_t;
-/* The fd_set member is required to be an array of longs.  */
-typedef long int __fd_mask;
-/* Some versions of <linux/posix_types.h> define this macros.  */
-/* It's easier to assume 8-bit bytes than to get CHAR_BIT.  */
-/* fd_set for select and pselect.  */
-typedef struct
-  {
-    /* XPG4.2 requires this member name.  Otherwise avoid the name
-       from the global namespace.  */
-    __fd_mask __fds_bits[1024 / (8 * (int) sizeof (__fd_mask))];
-  } fd_set;
-/* Maximum number of file descriptors in `fd_set'.  */
-/* Sometimes the fd_set member is assumed to have this type.  */
-typedef __fd_mask fd_mask;
-/* Number of bits per word of `fd_set' (some code assumes this is 32).  */
-/* Access macros for `fd_set'.  */
-
-/* Check the first NFDS descriptors each in READFDS (if not NULL) for read
-   readiness, in WRITEFDS (if not NULL) for write readiness, and in EXCEPTFDS
-   (if not NULL) for exceptional conditions.  If TIMEOUT is not NULL, time out
-   after waiting the interval specified therein.  Returns the number of ready
-   descriptors, or -1 for errors.
-
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern int select (int __nfds, fd_set *__restrict __readfds,
-     fd_set *__restrict __writefds,
-     fd_set *__restrict __exceptfds,
-     struct timeval *__restrict __timeout);
-/* Same as above only that the TIMEOUT value is given with higher
-   resolution and a sigmask which is been set temporarily.  This version
-   should be used.
-
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern int pselect (int __nfds, fd_set *__restrict __readfds,
-      fd_set *__restrict __writefds,
-      fd_set *__restrict __exceptfds,
-      const struct timespec *__restrict __timeout,
-      const __sigset_t *__restrict __sigmask);
-/* Define some inlines helping to catch common problems.  */
-
-typedef __blksize_t blksize_t;
-/* Types from the Large File Support interface.  */
-typedef __blkcnt_t blkcnt_t; /* Type to count number of disk blocks.  */
-typedef __fsblkcnt_t fsblkcnt_t; /* Type to count file system blocks.  */
-typedef __fsfilcnt_t fsfilcnt_t; /* Type to count file system inodes.  */
-/* Now add the thread types.  */
-/* Declaration of common pthread types for all architectures.
-   Copyright (C) 2017-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-
-/* These are the functions that actually do things.  The `random', `srandom',
-   `initstate' and `setstate' functions are those from BSD Unices.
-   The `rand' and `srand' functions are required by the ANSI standard.
-   We provide both interfaces to the same random number generator.  */
-/* Return a random long integer between 0 and RAND_MAX inclusive.  */
-extern long int random (void) __attribute__ ((__nothrow__ , __leaf__));
-/* Seed the random number generator with the given number.  */
-extern void srandom (unsigned int __seed) __attribute__ ((__nothrow__ , __leaf__));
-/* Initialize the random number generator to use state buffer STATEBUF,
-   of length STATELEN, and seed it with SEED.  Optimal lengths are 8, 16,
-   32, 64, 128 and 256, the bigger the better; values less than 8 will
-   cause an error and values greater than 256 will be rounded down.  */
-extern char *initstate (unsigned int __seed, char *__statebuf,
-   size_t __statelen) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
-/* Switch the random number generator to state buffer STATEBUF,
-   which should have been previously initialized by `initstate'.  */
-extern char *setstate (char *__statebuf) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Reentrant versions of the `random' family of functions.
-   These functions all use the following data structure to contain
-   state, rather than global state variables.  */
-struct random_data
-  {
-    int32_t *fptr; /* Front pointer.  */
-    int32_t *rptr; /* Rear pointer.  */
-    int32_t *state; /* Array of state values.  */
-    int rand_type; /* Type of random number generator.  */
-    int rand_deg; /* Degree of random number generator.  */
-    int rand_sep; /* Distance between front and rear.  */
-    int32_t *end_ptr; /* Pointer behind state table.  */
-  };
-extern int random_r (struct random_data *__restrict __buf,
-       int32_t *__restrict __result) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-extern int srandom_r (unsigned int __seed, struct random_data *__buf)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
-extern int initstate_r (unsigned int __seed, char *__restrict __statebuf,
-   size_t __statelen,
-   struct random_data *__restrict __buf)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2, 4)));
-extern int setstate_r (char *__restrict __statebuf,
-         struct random_data *__restrict __buf)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Return a random integer between 0 and RAND_MAX inclusive.  */
 extern int rand (void) __attribute__ ((__nothrow__ , __leaf__));
-/* Seed the random number generator with the given number.  */
 extern void srand (unsigned int __seed) __attribute__ ((__nothrow__ , __leaf__));
-/* Reentrant interface according to POSIX.1.  */
-extern int rand_r (unsigned int *__seed) __attribute__ ((__nothrow__ , __leaf__));
-/* System V style 48-bit random number generator functions.  */
-/* Return non-negative, double-precision floating-point value in [0.0,1.0).  */
-extern double drand48 (void) __attribute__ ((__nothrow__ , __leaf__));
-extern double erand48 (unsigned short int __xsubi[3]) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return non-negative, long integer in [0,2^31).  */
-extern long int lrand48 (void) __attribute__ ((__nothrow__ , __leaf__));
-extern long int nrand48 (unsigned short int __xsubi[3])
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Return signed, long integers in [-2^31,2^31).  */
-extern long int mrand48 (void) __attribute__ ((__nothrow__ , __leaf__));
-extern long int jrand48 (unsigned short int __xsubi[3])
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Seed random number generator.  */
-extern void srand48 (long int __seedval) __attribute__ ((__nothrow__ , __leaf__));
-extern unsigned short int *seed48 (unsigned short int __seed16v[3])
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-extern void lcong48 (unsigned short int __param[7]) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Data structure for communication with thread safe versions.  This
-   type is to be regarded as opaque.  It's only exported because users
-   have to allocate objects of this type.  */
-struct drand48_data
-  {
-    unsigned short int __x[3]; /* Current state.  */
-    unsigned short int __old_x[3]; /* Old state.  */
-    unsigned short int __c; /* Additive const. in congruential formula.  */
-    unsigned short int __init; /* Flag for initializing.  */
-    __extension__ unsigned long long int __a; /* Factor in congruential
-						   formula.  */
-  };
-/* Return non-negative, double-precision floating-point value in [0.0,1.0).  */
-extern int drand48_r (struct drand48_data *__restrict __buffer,
-        double *__restrict __result) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-extern int erand48_r (unsigned short int __xsubi[3],
-        struct drand48_data *__restrict __buffer,
-        double *__restrict __result) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Return non-negative, long integer in [0,2^31).  */
-extern int lrand48_r (struct drand48_data *__restrict __buffer,
-        long int *__restrict __result)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-extern int nrand48_r (unsigned short int __xsubi[3],
-        struct drand48_data *__restrict __buffer,
-        long int *__restrict __result)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Return signed, long integers in [-2^31,2^31).  */
-extern int mrand48_r (struct drand48_data *__restrict __buffer,
-        long int *__restrict __result)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-extern int jrand48_r (unsigned short int __xsubi[3],
-        struct drand48_data *__restrict __buffer,
-        long int *__restrict __result)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Seed random number generator.  */
-extern int srand48_r (long int __seedval, struct drand48_data *__buffer)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
-extern int seed48_r (unsigned short int __seed16v[3],
-       struct drand48_data *__buffer) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-extern int lcong48_r (unsigned short int __param[7],
-        struct drand48_data *__buffer)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-/* Allocate SIZE bytes of memory.  */
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__))
      __attribute__ ((__alloc_size__ (1))) ;
-/* Allocate NMEMB elements of SIZE bytes each, all initialized to 0.  */
 extern void *calloc (size_t __nmemb, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (1, 2))) ;
-/* Re-allocate the previously allocated block
-   in PTR, making the new block SIZE bytes long.  */
-/* __attribute_malloc__ is not used, because if realloc returns
-   the same pointer that was passed to it, aliasing needs to be allowed
-   between objects pointed by the old and new pointers.  */
 extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
-/* Re-allocate the previously allocated block in PTR, making the new
-   block large enough for NMEMB elements of SIZE bytes each.  */
-/* __attribute_malloc__ is not used, because if reallocarray returns
-   the same pointer that was passed to it, aliasing needs to be allowed
-   between objects pointed by the old and new pointers.  */
-extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__))
-     __attribute__ ((__alloc_size__ (2, 3)));
-/* Free a block allocated by `malloc', `realloc' or `calloc'.  */
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
-/* Copyright (C) 1992-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Copyright (C) 1989-2019 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-/*
- * ISO C Standard:  7.17  Common definitions  <stddef.h>
- */
-/* Any one of these symbols __need_* means that GNU libc
-   wants us just to define one data type.  So don't define
-   the symbols that indicate this file's entire job has been done.  */
-/* This avoids lossage on SunOS but only if stdtypes.h comes first.
-   There's no way to win with the other order!  Sun lossage.  */
-/* Sequent's header files use _PTRDIFF_T_ in some conflicting way.
-   Just ignore it.  */
-/* On VxWorks, <type/vxTypesBase.h> may have defined macros like
-   _TYPE_size_t which will typedef size_t.  fixincludes patched the
-   vxTypesBase.h so that this macro is only defined if _GCC_SIZE_T is
-   not defined, and so that defining this macro defines _GCC_SIZE_T.
-   If we find that the macros are still defined at this point, we must
-   invoke them so that the type is defined as expected.  */
-/* In case nobody has defined these types, but we aren't running under
-   GCC 2.00, make sure that __PTRDIFF_TYPE__, __SIZE_TYPE__, and
-   __WCHAR_TYPE__ have reasonable values.  This can happen if the
-   parts of GCC is compiled by an older compiler, that actually
-   include gstddef.h, such as collect2.  */
-/* Signed type of difference of two pointers.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Unsigned type of `sizeof' something.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Wide character type.
-   Locale-writers should change this as necessary to
-   be big enough to hold unique values not between 0 and 127,
-   and not (wchar_t) -1, for each defined multibyte character.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* A null pointer constant.  */
-
-/* Remove any previous definitions.  */
-/* Allocate a block that will be freed when the calling function exits.  */
-extern void *alloca (size_t __size) __attribute__ ((__nothrow__ , __leaf__));
-
-/* Allocate SIZE bytes on a page boundary.  The storage cannot be freed.  */
-extern void *valloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__))
-     __attribute__ ((__alloc_size__ (1))) ;
-/* Allocate memory of SIZE bytes with an alignment of ALIGNMENT.  */
-extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
-/* ISO C variant of aligned allocation.  */
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
-/* Abort execution and generate a core-dump.  */
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-/* Register a function to be called when `exit' is called.  */
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Register a function to be called when `quick_exit' is called.  */
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Register a function to be called with the status
-   given to `exit' and the given argument.  */
-extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Call all functions registered with `atexit' and `on_exit',
-   in the reverse of the order in which they were registered,
-   perform stdio cleanup, and terminate program execution with STATUS.  */
 extern void exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-/* Call all functions registered with `at_quick_exit' in the reverse
-   of the order in which they were registered and terminate program
-   execution with STATUS.  */
 extern void quick_exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-/* Terminate the program with STATUS without calling any of the
-   functions registered with `atexit' or `on_exit'.  */
 extern void _Exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-/* Return the value of envariable NAME, or NULL if it doesn't exist.  */
 extern char *getenv (const char *__name) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
-/* The SVID says this is in <stdio.h>, but this seems a better place.	*/
-/* Put STRING, which is of the form "NAME=VALUE", in the environment.
-   If there is no `=', remove NAME from the environment.  */
-extern int putenv (char *__string) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Set NAME to VALUE in the environment.
-   If REPLACE is nonzero, overwrite an existing value.  */
-extern int setenv (const char *__name, const char *__value, int __replace)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
-/* Remove the variable NAME from the environment.  */
-extern int unsetenv (const char *__name) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* The `clearenv' was planned to be added to POSIX.1 but probably
-   never made it.  Nevertheless the POSIX.9 standard (POSIX bindings
-   for Fortran 77) requires this function.  */
-extern int clearenv (void) __attribute__ ((__nothrow__ , __leaf__));
-/* Generate a unique temporary file name from TEMPLATE.
-   The last six characters of TEMPLATE must be "XXXXXX";
-   they are replaced with a string that makes the file name unique.
-   Always returns TEMPLATE, it's either a temporary file name or a null
-   string if it cannot get a unique file name.  */
-extern char *mktemp (char *__template) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Generate a unique temporary file name from TEMPLATE.
-   The last six characters of TEMPLATE must be "XXXXXX";
-   they are replaced with a string that makes the filename unique.
-   Returns a file descriptor open on the file for reading and writing,
-   or -1 if it cannot create a uniquely-named file.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
-extern int mkstemp (char *__template) __attribute__ ((__nonnull__ (1))) ;
-/* Similar to mkstemp, but the template can have a suffix after the
-   XXXXXX.  The length of the suffix is specified in the second
-   parameter.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
-extern int mkstemps (char *__template, int __suffixlen) __attribute__ ((__nonnull__ (1))) ;
-/* Create a unique temporary directory from TEMPLATE.
-   The last six characters of TEMPLATE must be "XXXXXX";
-   they are replaced with a string that makes the directory name unique.
-   Returns TEMPLATE, or a null pointer if it cannot get a unique name.
-   The directory is created mode 700.  */
-extern char *mkdtemp (char *__template) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
-/* Execute the given line as a shell command.
-
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
 extern int system (const char *__command) ;
-/* Return the canonical absolute name of file NAME.  If RESOLVED is
-   null, the result is malloc'd; otherwise, if the canonical name is
-   PATH_MAX chars or more, returns null with `errno' set to
-   ENAMETOOLONG; if the name fits in fewer than PATH_MAX chars,
-   returns the name in RESOLVED.  */
-extern char *realpath (const char *__restrict __name,
-         char *__restrict __resolved) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Shorthand for type of comparison functions.  */
 typedef int (*__compar_fn_t) (const void *, const void *);
-/* Do a binary search for KEY in BASE, which consists of NMEMB elements
-   of SIZE bytes each, using COMPAR to perform the comparisons.  */
 extern void *bsearch (const void *__key, const void *__base,
         size_t __nmemb, size_t __size, __compar_fn_t __compar)
      __attribute__ ((__nonnull__ (1, 2, 5))) ;
-/* Sort NMEMB elements of BASE, of SIZE bytes each,
-   using COMPAR to perform the comparisons.  */
 extern void qsort (void *__base, size_t __nmemb, size_t __size,
      __compar_fn_t __compar) __attribute__ ((__nonnull__ (1, 4)));
-/* Return the absolute value of X.  */
 extern int abs (int __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)) ;
 extern long int labs (long int __x) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)) ;
 __extension__ extern long long int llabs (long long int __x)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)) ;
-/* Return the `div_t', `ldiv_t' or `lldiv_t' representation
-   of the value of NUMER over DENOM. */
-/* GCC may have built-ins for these someday.  */
 extern div_t div (int __numer, int __denom)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)) ;
 extern ldiv_t ldiv (long int __numer, long int __denom)
@@ -3528,308 +540,18 @@ extern ldiv_t ldiv (long int __numer, long int __denom)
 __extension__ extern lldiv_t lldiv (long long int __numer,
         long long int __denom)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__)) ;
-/* Convert floating point numbers to strings.  The returned values are
-   valid only until another call to the same function.  */
-/* Convert VALUE to a string with NDIGIT digits and return a pointer to
-   this.  Set *DECPT with the position of the decimal character and *SIGN
-   with the sign of the number.  */
-extern char *ecvt (double __value, int __ndigit, int *__restrict __decpt,
-     int *__restrict __sign) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3, 4))) ;
-/* Convert VALUE to a string rounded to NDIGIT decimal digits.  Set *DECPT
-   with the position of the decimal character and *SIGN with the sign of
-   the number.  */
-extern char *fcvt (double __value, int __ndigit, int *__restrict __decpt,
-     int *__restrict __sign) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3, 4))) ;
-/* If possible convert VALUE to a string with NDIGIT significant digits.
-   Otherwise use exponential representation.  The resulting string will
-   be written to BUF.  */
-extern char *gcvt (double __value, int __ndigit, char *__buf)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3))) ;
-/* Long double versions of above functions.  */
-extern char *qecvt (long double __value, int __ndigit,
-      int *__restrict __decpt, int *__restrict __sign)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3, 4))) ;
-extern char *qfcvt (long double __value, int __ndigit,
-      int *__restrict __decpt, int *__restrict __sign)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3, 4))) ;
-extern char *qgcvt (long double __value, int __ndigit, char *__buf)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3))) ;
-/* Reentrant version of the functions above which provide their own
-   buffers.  */
-extern int ecvt_r (double __value, int __ndigit, int *__restrict __decpt,
-     int *__restrict __sign, char *__restrict __buf,
-     size_t __len) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3, 4, 5)));
-extern int fcvt_r (double __value, int __ndigit, int *__restrict __decpt,
-     int *__restrict __sign, char *__restrict __buf,
-     size_t __len) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3, 4, 5)));
-extern int qecvt_r (long double __value, int __ndigit,
-      int *__restrict __decpt, int *__restrict __sign,
-      char *__restrict __buf, size_t __len)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3, 4, 5)));
-extern int qfcvt_r (long double __value, int __ndigit,
-      int *__restrict __decpt, int *__restrict __sign,
-      char *__restrict __buf, size_t __len)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3, 4, 5)));
-/* Return the length of the multibyte character
-   in S, which is no longer than N.  */
 extern int mblen (const char *__s, size_t __n) __attribute__ ((__nothrow__ , __leaf__));
-/* Return the length of the given multibyte character,
-   putting its `wchar_t' representation in *PWC.  */
 extern int mbtowc (wchar_t *__restrict __pwc,
      const char *__restrict __s, size_t __n) __attribute__ ((__nothrow__ , __leaf__));
-/* Put the multibyte character represented
-   by WCHAR in S, returning its length.  */
 extern int wctomb (char *__s, wchar_t __wchar) __attribute__ ((__nothrow__ , __leaf__));
-/* Convert a multibyte string to a wide char string.  */
 extern size_t mbstowcs (wchar_t *__restrict __pwcs,
    const char *__restrict __s, size_t __n) __attribute__ ((__nothrow__ , __leaf__));
-/* Convert a wide char string to multibyte string.  */
 extern size_t wcstombs (char *__restrict __s,
    const wchar_t *__restrict __pwcs, size_t __n)
      __attribute__ ((__nothrow__ , __leaf__));
-/* Determine whether the string value of RESPONSE matches the affirmation
-   or negative response expression as specified by the LC_MESSAGES category
-   in the program's current locale.  Returns 1 if affirmative, 0 if
-   negative, and -1 if not matching.  */
-extern int rpmatch (const char *__response) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
-/* Parse comma separated suboption from *OPTIONP and match against
-   strings in TOKENS.  If found return index and set *VALUEP to
-   optional value introduced by an equal sign.  If the suboption is
-   not part of TOKENS return in *VALUEP beginning of unknown
-   suboption.  On exit *OPTIONP is set to the beginning of the next
-   token or at the terminating NUL character.  */
-extern int getsubopt (char **__restrict __optionp,
-        char *const *__restrict __tokens,
-        char **__restrict __valuep)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2, 3))) ;
-/* X/Open pseudo terminal handling.  */
-/* Put the 1 minute, 5 minute and 15 minute load averages into the first
-   NELEM elements of LOADAVG.  Return the number written (never more than
-   three, but may be less than NELEM), or -1 if an error occurred.  */
-extern int getloadavg (double __loadavg[], int __nelem)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-/* Floating-point inline functions for stdlib.h.
-   Copyright (C) 2012-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
 
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
 
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Define some macros helping to catch buffer overflows.  */
-
-/* Define ISO C stdio on top of C++ iostreams.
-   Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- *	ISO C99 Standard: 7.19 Input/output	<stdio.h>
- */
-/* Handle feature test macros at the start of a header.
-   Copyright (C) 2016-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* This header is internal to glibc and should not be included outside
-   of glibc headers.  Headers including it must define
-   __GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION first.  This header
-   cannot have multiple include guards because ISO C feature test
-   macros depend on the definition of the macro when an affected
-   header is included, not when the first system header is
-   included.  */
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* ISO/IEC TR 24731-2:2010 defines the __STDC_WANT_LIB_EXT2__
-   macro.  */
-/* ISO/IEC TS 18661-1:2014 defines the __STDC_WANT_IEC_60559_BFP_EXT__
-   macro.  Most but not all symbols enabled by that macro in TS
-   18661-1 are enabled unconditionally in C2X; the symbols in Annex F
-   still require that macro in C2X.  */
-/* ISO/IEC TS 18661-4:2015 defines the
-   __STDC_WANT_IEC_60559_FUNCS_EXT__ macro.  Other than the reduction
-   functions, the symbols from this TS are enabled unconditionally in
-   C2X.  */
-/* ISO/IEC TS 18661-3:2015 defines the
-   __STDC_WANT_IEC_60559_TYPES_EXT__ macro.  */
-
-/* Copyright (C) 1989-2019 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-/*
- * ISO C Standard:  7.17  Common definitions  <stddef.h>
- */
-/* Any one of these symbols __need_* means that GNU libc
-   wants us just to define one data type.  So don't define
-   the symbols that indicate this file's entire job has been done.  */
-/* This avoids lossage on SunOS but only if stdtypes.h comes first.
-   There's no way to win with the other order!  Sun lossage.  */
-/* Sequent's header files use _PTRDIFF_T_ in some conflicting way.
-   Just ignore it.  */
-/* On VxWorks, <type/vxTypesBase.h> may have defined macros like
-   _TYPE_size_t which will typedef size_t.  fixincludes patched the
-   vxTypesBase.h so that this macro is only defined if _GCC_SIZE_T is
-   not defined, and so that defining this macro defines _GCC_SIZE_T.
-   If we find that the macros are still defined at this point, we must
-   invoke them so that the type is defined as expected.  */
-/* In case nobody has defined these types, but we aren't running under
-   GCC 2.00, make sure that __PTRDIFF_TYPE__, __SIZE_TYPE__, and
-   __WCHAR_TYPE__ have reasonable values.  This can happen if the
-   parts of GCC is compiled by an older compiler, that actually
-   include gstddef.h, such as collect2.  */
-/* Signed type of difference of two pointers.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Unsigned type of `sizeof' something.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Wide character type.
-   Locale-writers should change this as necessary to
-   be big enough to hold unique values not between 0 and 127,
-   and not (wchar_t) -1, for each defined multibyte character.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* A null pointer constant.  */
-/* Copyright (C) 1989-2019 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-/*
- * ISO C Standard:  7.15  Variable arguments  <stdarg.h>
- */
-/* Define __gnuc_va_list.  */
 typedef __builtin_va_list __gnuc_va_list;
-/* Define the standard macros for the user,
-   if this invocation was from the user program.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* Integral type unchanged by default argument promotions that can
-   hold any value corresponding to members of the extended character
-   set, as well as at least one value that does not correspond to any
-   member of the extended character set.  */
-/* Conversion state information.  */
 typedef struct
 {
   int __count;
@@ -3837,39 +559,13 @@ typedef struct
   {
     unsigned int __wch;
     char __wchb[4];
-  } __value; /* Value so far.  */
+  } __value;
 } __mbstate_t;
-/* The tag name of this struct is _G_fpos_t to preserve historic
-   C++ mangled names for functions taking fpos_t arguments.
-   That name should not be used in new code.  */
 typedef struct _G_fpos_t
 {
   __off_t __pos;
   __mbstate_t __state;
 } __fpos_t;
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
-/* The tag name of this struct is _G_fpos64_t to preserve historic
-   C++ mangled names for functions taking fpos_t and/or fpos64_t
-   arguments.  That name should not be used in new code.  */
 typedef struct _G_fpos64_t
 {
   __off64_t __pos;
@@ -3878,603 +574,132 @@ typedef struct _G_fpos64_t
 struct _IO_FILE;
 typedef struct _IO_FILE __FILE;
 struct _IO_FILE;
-/* The opaque type of streams.  This is the definition used elsewhere.  */
 typedef struct _IO_FILE FILE;
-/* Copyright (C) 1991-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Caution: The contents of this file are not part of the official
-   stdio.h API.  However, much of it is part of the official *binary*
-   interface, and therefore cannot be changed.  */
-/* bits/types.h -- definitions of __*_t types underlying *_t types.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/*
- * Never include this file directly; use <sys/types.h> instead.
- */
 struct _IO_FILE;
 struct _IO_marker;
 struct _IO_codecvt;
 struct _IO_wide_data;
-/* During the build of glibc itself, _IO_lock_t will already have been
-   defined by internal headers.  */
 typedef void _IO_lock_t;
-/* The tag name of this struct is _IO_FILE to preserve historic
-   C++ mangled names for functions taking FILE* arguments.
-   That name should not be used in new code.  */
 struct _IO_FILE
 {
-  int _flags; /* High-order word is _IO_MAGIC; rest is flags. */
-  /* The following pointers correspond to the C++ streambuf protocol. */
-  char *_IO_read_ptr; /* Current read pointer */
-  char *_IO_read_end; /* End of get area. */
-  char *_IO_read_base; /* Start of putback+get area. */
-  char *_IO_write_base; /* Start of put area. */
-  char *_IO_write_ptr; /* Current put pointer. */
-  char *_IO_write_end; /* End of put area. */
-  char *_IO_buf_base; /* Start of reserve area. */
-  char *_IO_buf_end; /* End of reserve area. */
-  /* The following fields are used to support backing up and undo. */
-  char *_IO_save_base; /* Pointer to start of non-current get area. */
-  char *_IO_backup_base; /* Pointer to first valid character of backup area */
-  char *_IO_save_end; /* Pointer to end of non-current get area. */
+  int _flags;
+  char *_IO_read_ptr;
+  char *_IO_read_end;
+  char *_IO_read_base;
+  char *_IO_write_base;
+  char *_IO_write_ptr;
+  char *_IO_write_end;
+  char *_IO_buf_base;
+  char *_IO_buf_end;
+  char *_IO_save_base;
+  char *_IO_backup_base;
+  char *_IO_save_end;
   struct _IO_marker *_markers;
   struct _IO_FILE *_chain;
   int _fileno;
   int _flags2;
-  __off_t _old_offset; /* This used to be _offset but it's too small.  */
-  /* 1+column number of pbase(); 0 is unknown. */
+  __off_t _old_offset;
   unsigned short _cur_column;
   signed char _vtable_offset;
   char _shortbuf[1];
   _IO_lock_t *_lock;
   __off64_t _offset;
-  /* Wide character stream stuff.  */
   struct _IO_codecvt *_codecvt;
   struct _IO_wide_data *_wide_data;
   struct _IO_FILE *_freeres_list;
   void *_freeres_buf;
   size_t __pad5;
   int _mode;
-  /* Make sure we don't get into trouble again.  */
   char _unused2[15 * sizeof (int) - 4 * sizeof (void *) - sizeof (size_t)];
 };
-/* These macros are used by bits/stdio.h and internal headers.  */
-/* Many more flag bits are defined internally.  */
-typedef __gnuc_va_list va_list;
-/* The type of the second argument to `fgetpos' and `fsetpos'.  */
 typedef __fpos_t fpos_t;
-/* The possibilities for the third argument to `setvbuf'.  */
-/* Default buffer size.  */
-/* The value returned by fgetc and similar functions to indicate the
-   end of the file.  */
-/* The possibilities for the third argument to `fseek'.
-   These values should not be changed.  */
-/* Default path prefix for `tempnam' and `tmpnam'.  */
-/* Get the values:
-   L_tmpnam	How long an array of chars must be to be passed to `tmpnam'.
-   TMP_MAX	The minimum number of unique filenames generated by tmpnam
-		(and tempnam when it uses tmpnam's name space),
-		or tempnam (the two are separate).
-   L_ctermid	How long an array to pass to `ctermid'.
-   L_cuserid	How long an array to pass to `cuserid'.
-   FOPEN_MAX	Minimum number of files that can be open at once.
-   FILENAME_MAX	Maximum length of a filename.  */
-/* Copyright (C) 1994-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* Standard streams.  */
-extern FILE *stdin; /* Standard input stream.  */
-extern FILE *stdout; /* Standard output stream.  */
-extern FILE *stderr; /* Standard error output stream.  */
-/* C89/C99 say they're macros.  Make them happy.  */
-/* Remove file FILENAME.  */
+extern FILE *stdin;
+extern FILE *stdout;
+extern FILE *stderr;
 extern int remove (const char *__filename) __attribute__ ((__nothrow__ , __leaf__));
-/* Rename file OLD to NEW.  */
 extern int rename (const char *__old, const char *__new) __attribute__ ((__nothrow__ , __leaf__));
-/* Rename file OLD relative to OLDFD to NEW relative to NEWFD.  */
-extern int renameat (int __oldfd, const char *__old, int __newfd,
-       const char *__new) __attribute__ ((__nothrow__ , __leaf__));
-/* Create a temporary file and open it read/write.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern FILE *tmpfile (void) ;
-/* Generate a temporary filename.  */
 extern char *tmpnam (char *__s) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* This is the reentrant variant of `tmpnam'.  The only difference is
-   that it does not allow S to be NULL.  */
-extern char *tmpnam_r (char *__s) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Generate a unique temporary filename using up to five characters of PFX
-   if it is not NULL.  The directory to put this file in is searched for
-   as follows: First the environment variable "TMPDIR" is checked.
-   If it contains the name of a writable directory, that directory is used.
-   If not and if DIR is not NULL, that value is checked.  If that fails,
-   P_tmpdir is tried and finally "/tmp".  The storage for the filename
-   is allocated by `malloc'.  */
-extern char *tempnam (const char *__dir, const char *__pfx)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
-/* Close STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int fclose (FILE *__stream);
-/* Flush STREAM, or all streams if STREAM is NULL.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int fflush (FILE *__stream);
-/* Faster versions when locking is not required.
-
-   This function is not part of POSIX and therefore no official
-   cancellation point.  But due to similarity with an POSIX interface
-   or due to the implementation it is a cancellation point and
-   therefore not marked with __THROW.  */
-extern int fflush_unlocked (FILE *__stream);
-/* Open a file and create a new stream for it.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern FILE *fopen (const char *__restrict __filename,
       const char *__restrict __modes) ;
-/* Open a file, replacing an existing stream with it.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern FILE *freopen (const char *__restrict __filename,
         const char *__restrict __modes,
         FILE *__restrict __stream) ;
-/* Create a new stream that refers to an existing system file descriptor.  */
-extern FILE *fdopen (int __fd, const char *__modes) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Create a new stream that refers to a memory buffer.  */
-extern FILE *fmemopen (void *__s, size_t __len, const char *__modes)
-  __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Open a stream that writes into a malloc'd buffer that is expanded as
-   necessary.  *BUFLOC and *SIZELOC are updated with the buffer's location
-   and the number of characters written on fflush or fclose.  */
-extern FILE *open_memstream (char **__bufloc, size_t *__sizeloc) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* If BUF is NULL, make STREAM unbuffered.
-   Else make it use buffer BUF, of size BUFSIZ.  */
 extern void setbuf (FILE *__restrict __stream, char *__restrict __buf) __attribute__ ((__nothrow__ , __leaf__));
-/* Make STREAM use buffering mode MODE.
-   If BUF is not NULL, use N bytes of it for buffering;
-   else allocate an internal buffer N bytes long.  */
 extern int setvbuf (FILE *__restrict __stream, char *__restrict __buf,
       int __modes, size_t __n) __attribute__ ((__nothrow__ , __leaf__));
-/* If BUF is NULL, make STREAM unbuffered.
-   Else make it use SIZE bytes of BUF for buffering.  */
-extern void setbuffer (FILE *__restrict __stream, char *__restrict __buf,
-         size_t __size) __attribute__ ((__nothrow__ , __leaf__));
-/* Make STREAM line-buffered.  */
-extern void setlinebuf (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
-/* Write formatted output to STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int fprintf (FILE *__restrict __stream,
       const char *__restrict __format, ...);
-/* Write formatted output to stdout.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int printf (const char *__restrict __format, ...);
-/* Write formatted output to S.  */
 extern int sprintf (char *__restrict __s,
       const char *__restrict __format, ...) __attribute__ ((__nothrow__));
-/* Write formatted output to S from argument list ARG.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int vfprintf (FILE *__restrict __s, const char *__restrict __format,
        __gnuc_va_list __arg);
-/* Write formatted output to stdout from argument list ARG.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int vprintf (const char *__restrict __format, __gnuc_va_list __arg);
-/* Write formatted output to S from argument list ARG.  */
 extern int vsprintf (char *__restrict __s, const char *__restrict __format,
        __gnuc_va_list __arg) __attribute__ ((__nothrow__));
-/* Maximum chars of output to write in MAXLEN.  */
 extern int snprintf (char *__restrict __s, size_t __maxlen,
        const char *__restrict __format, ...)
      __attribute__ ((__nothrow__)) __attribute__ ((__format__ (__printf__, 3, 4)));
 extern int vsnprintf (char *__restrict __s, size_t __maxlen,
         const char *__restrict __format, __gnuc_va_list __arg)
      __attribute__ ((__nothrow__)) __attribute__ ((__format__ (__printf__, 3, 0)));
-/* Write formatted output to a file descriptor.  */
-extern int vdprintf (int __fd, const char *__restrict __fmt,
-       __gnuc_va_list __arg)
-     __attribute__ ((__format__ (__printf__, 2, 0)));
-extern int dprintf (int __fd, const char *__restrict __fmt, ...)
-     __attribute__ ((__format__ (__printf__, 2, 3)));
-/* Read formatted input from STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int fscanf (FILE *__restrict __stream,
      const char *__restrict __format, ...) ;
-/* Read formatted input from stdin.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int scanf (const char *__restrict __format, ...) ;
-/* Read formatted input from S.  */
 extern int sscanf (const char *__restrict __s,
      const char *__restrict __format, ...) __attribute__ ((__nothrow__ , __leaf__));
-/* For historical reasons, the C99-compliant versions of the scanf
-   functions are at alternative names.  When __LDBL_COMPAT is in
-   effect, this is handled in bits/stdio-ldbl.h.  */
 extern int fscanf (FILE *__restrict __stream, const char *__restrict __format, ...) __asm__ ("" "__isoc99_fscanf") ;
 extern int scanf (const char *__restrict __format, ...) __asm__ ("" "__isoc99_scanf") ;
 extern int sscanf (const char *__restrict __s, const char *__restrict __format, ...) __asm__ ("" "__isoc99_sscanf") __attribute__ ((__nothrow__ , __leaf__));
-/* Read formatted input from S into argument list ARG.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int vfscanf (FILE *__restrict __s, const char *__restrict __format,
       __gnuc_va_list __arg)
      __attribute__ ((__format__ (__scanf__, 2, 0))) ;
-/* Read formatted input from stdin into argument list ARG.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int vscanf (const char *__restrict __format, __gnuc_va_list __arg)
      __attribute__ ((__format__ (__scanf__, 1, 0))) ;
-/* Read formatted input from S into argument list ARG.  */
 extern int vsscanf (const char *__restrict __s,
       const char *__restrict __format, __gnuc_va_list __arg)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__format__ (__scanf__, 2, 0)));
-/* Same redirection as above for the v*scanf family.  */
 extern int vfscanf (FILE *__restrict __s, const char *__restrict __format, __gnuc_va_list __arg) __asm__ ("" "__isoc99_vfscanf")
      __attribute__ ((__format__ (__scanf__, 2, 0))) ;
 extern int vscanf (const char *__restrict __format, __gnuc_va_list __arg) __asm__ ("" "__isoc99_vscanf")
      __attribute__ ((__format__ (__scanf__, 1, 0))) ;
 extern int vsscanf (const char *__restrict __s, const char *__restrict __format, __gnuc_va_list __arg) __asm__ ("" "__isoc99_vsscanf") __attribute__ ((__nothrow__ , __leaf__))
      __attribute__ ((__format__ (__scanf__, 2, 0)));
-/* Read a character from STREAM.
-
-   These functions are possible cancellation points and therefore not
-   marked with __THROW.  */
 extern int fgetc (FILE *__stream);
 extern int getc (FILE *__stream);
-/* Read a character from stdin.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int getchar (void);
-/* These are defined in POSIX.1:1996.
-
-   These functions are possible cancellation points and therefore not
-   marked with __THROW.  */
-extern int getc_unlocked (FILE *__stream);
-extern int getchar_unlocked (void);
-/* Faster version when locking is not necessary.
-
-   This function is not part of POSIX and therefore no official
-   cancellation point.  But due to similarity with an POSIX interface
-   or due to the implementation it is a cancellation point and
-   therefore not marked with __THROW.  */
-extern int fgetc_unlocked (FILE *__stream);
-/* Write a character to STREAM.
-
-   These functions are possible cancellation points and therefore not
-   marked with __THROW.
-
-   These functions is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int fputc (int __c, FILE *__stream);
 extern int putc (int __c, FILE *__stream);
-/* Write a character to stdout.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int putchar (int __c);
-/* Faster version when locking is not necessary.
-
-   This function is not part of POSIX and therefore no official
-   cancellation point.  But due to similarity with an POSIX interface
-   or due to the implementation it is a cancellation point and
-   therefore not marked with __THROW.  */
-extern int fputc_unlocked (int __c, FILE *__stream);
-/* These are defined in POSIX.1:1996.
-
-   These functions are possible cancellation points and therefore not
-   marked with __THROW.  */
-extern int putc_unlocked (int __c, FILE *__stream);
-extern int putchar_unlocked (int __c);
-/* Get a word (int) from STREAM.  */
-extern int getw (FILE *__stream);
-/* Write a word (int) to STREAM.  */
-extern int putw (int __w, FILE *__stream);
-/* Get a newline-terminated string of finite length from STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern char *fgets (char *__restrict __s, int __n, FILE *__restrict __stream)
      ;
-/* Read up to (and including) a DELIMITER from STREAM into *LINEPTR
-   (and null-terminate it). *LINEPTR is a pointer returned from malloc (or
-   NULL), pointing to *N characters of space.  It is realloc'd as
-   necessary.  Returns the number of characters read (not including the
-   null terminator), or -1 on error or EOF.
-
-   These functions are not part of POSIX and therefore no official
-   cancellation point.  But due to similarity with an POSIX interface
-   or due to the implementation they are cancellation points and
-   therefore not marked with __THROW.  */
-extern __ssize_t __getdelim (char **__restrict __lineptr,
-                             size_t *__restrict __n, int __delimiter,
-                             FILE *__restrict __stream) ;
-extern __ssize_t getdelim (char **__restrict __lineptr,
-                           size_t *__restrict __n, int __delimiter,
-                           FILE *__restrict __stream) ;
-/* Like `getdelim', but reads up to a newline.
-
-   This function is not part of POSIX and therefore no official
-   cancellation point.  But due to similarity with an POSIX interface
-   or due to the implementation it is a cancellation point and
-   therefore not marked with __THROW.  */
-extern __ssize_t getline (char **__restrict __lineptr,
-                          size_t *__restrict __n,
-                          FILE *__restrict __stream) ;
-/* Write a string to STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int fputs (const char *__restrict __s, FILE *__restrict __stream);
-/* Write a string, followed by a newline, to stdout.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int puts (const char *__s);
-/* Push a character back onto the input buffer of STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int ungetc (int __c, FILE *__stream);
-/* Read chunks of generic data from STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern size_t fread (void *__restrict __ptr, size_t __size,
        size_t __n, FILE *__restrict __stream) ;
-/* Write chunks of generic data to STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern size_t fwrite (const void *__restrict __ptr, size_t __size,
         size_t __n, FILE *__restrict __s);
-/* Faster versions when locking is not necessary.
-
-   These functions are not part of POSIX and therefore no official
-   cancellation point.  But due to similarity with an POSIX interface
-   or due to the implementation they are cancellation points and
-   therefore not marked with __THROW.  */
-extern size_t fread_unlocked (void *__restrict __ptr, size_t __size,
-         size_t __n, FILE *__restrict __stream) ;
-extern size_t fwrite_unlocked (const void *__restrict __ptr, size_t __size,
-          size_t __n, FILE *__restrict __stream);
-/* Seek to a certain position on STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int fseek (FILE *__stream, long int __off, int __whence);
-/* Return the current position of STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern long int ftell (FILE *__stream) ;
-/* Rewind to the beginning of STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern void rewind (FILE *__stream);
-/* The Single Unix Specification, Version 2, specifies an alternative,
-   more adequate interface for the two functions above which deal with
-   file offset.  `long int' is not the right type.  These definitions
-   are originally defined in the Large File Support API.  */
-/* Seek to a certain position on STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
-extern int fseeko (FILE *__stream, __off_t __off, int __whence);
-/* Return the current position of STREAM.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
-extern __off_t ftello (FILE *__stream) ;
-/* Get STREAM's position.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int fgetpos (FILE *__restrict __stream, fpos_t *__restrict __pos);
-/* Set STREAM's position.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern int fsetpos (FILE *__stream, const fpos_t *__pos);
-/* Clear the error and EOF indicators for STREAM.  */
 extern void clearerr (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
-/* Return the EOF indicator for STREAM.  */
 extern int feof (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Return the error indicator for STREAM.  */
 extern int ferror (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Faster versions when locking is not required.  */
-extern void clearerr_unlocked (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
-extern int feof_unlocked (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) ;
-extern int ferror_unlocked (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Print a message describing the meaning of the value of errno.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
 extern void perror (const char *__s);
-/* Provide the declarations for `sys_errlist' and `sys_nerr' if they
-   are available on this system.  Even if available, these variables
-   should not be used directly.  The `strerror' function provides
-   all the necessary functionality.  */
-/* Declare sys_errlist and sys_nerr, or don't.  Compatibility (do) version.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Lesser General Public
-   License as published by the Free Software Foundation; either
-   version 2.1 of the License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Lesser General Public License for more details.
-
-   You should have received a copy of the GNU Lesser General Public
-   License along with the GNU C Library; if not, see
-   <https://www.gnu.org/licenses/>.  */
-/* sys_errlist and sys_nerr are deprecated.  Use strerror instead.  */
-extern int sys_nerr;
-extern const char *const sys_errlist[];
-/* Return the system file descriptor for STREAM.  */
-extern int fileno (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Faster version when locking is not required.  */
-extern int fileno_unlocked (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Create a new stream connected to a pipe running the given command.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
-extern FILE *popen (const char *__command, const char *__modes) ;
-/* Close a stream opened by popen and return the status of its child.
-
-   This function is a possible cancellation point and therefore not
-   marked with __THROW.  */
-extern int pclose (FILE *__stream);
-/* Return the name of the controlling terminal.  */
-extern char *ctermid (char *__s) __attribute__ ((__nothrow__ , __leaf__));
-/* These are defined in POSIX.1:1996.  */
-/* Acquire ownership of STREAM.  */
-extern void flockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
-/* Try to acquire ownership of STREAM but do not block if it is not
-   possible.  */
-extern int ftrylockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)) ;
-/* Relinquish the ownership granted for STREAM.  */
-extern void funlockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));
-/* Slow-path routines used by the optimized inline functions in
-   bits/stdio.h.  */
 extern int __uflow (FILE *);
 extern int __overflow (FILE *, int);
-/* If we are compiling with optimizing read this file.  It contains
-   several optimizing inline functions and macros.  */
 
-/* Copyright (C) 1989-2019 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-Under Section 7 of GPL version 3, you are granted additional
-permissions described in the GCC Runtime Library Exception, version
-3.1, as published by the Free Software Foundation.
-
-You should have received a copy of the GNU General Public License and
-a copy of the GCC Runtime Library Exception along with this program;
-see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-<http://www.gnu.org/licenses/>.  */
-/*
- * ISO C Standard:  7.17  Common definitions  <stddef.h>
- */
-/* Any one of these symbols __need_* means that GNU libc
-   wants us just to define one data type.  So don't define
-   the symbols that indicate this file's entire job has been done.  */
-/* snaroff@next.com says the NeXT needs this.  */
-/* This avoids lossage on SunOS but only if stdtypes.h comes first.
-   There's no way to win with the other order!  Sun lossage.  */
-/* Sequent's header files use _PTRDIFF_T_ in some conflicting way.
-   Just ignore it.  */
-/* On VxWorks, <type/vxTypesBase.h> may have defined macros like
-   _TYPE_size_t which will typedef size_t.  fixincludes patched the
-   vxTypesBase.h so that this macro is only defined if _GCC_SIZE_T is
-   not defined, and so that defining this macro defines _GCC_SIZE_T.
-   If we find that the macros are still defined at this point, we must
-   invoke them so that the type is defined as expected.  */
-/* In case nobody has defined these types, but we aren't running under
-   GCC 2.00, make sure that __PTRDIFF_TYPE__, __SIZE_TYPE__, and
-   __WCHAR_TYPE__ have reasonable values.  This can happen if the
-   parts of GCC is compiled by an older compiler, that actually
-   include gstddef.h, such as collect2.  */
-/* Signed type of difference of two pointers.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-typedef long int ptrdiff_t;
-/* If this symbol has done its job, get rid of it.  */
-/* Unsigned type of `sizeof' something.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* Wide character type.
-   Locale-writers should change this as necessary to
-   be big enough to hold unique values not between 0 and 127,
-   and not (wchar_t) -1, for each defined multibyte character.  */
-/* Define this type if we are doing the whole job,
-   or if we want this type in particular.  */
-/* A null pointer constant.  */
-/* Offset of member MEMBER in a struct of type TYPE. */
-/* Type whose alignment is supported in every context and is at least
-   as great as that of any standard type not using alignment
-   specifiers.  */
+typedef int ptrdiff_t;
 typedef struct {
   long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
   long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
-  /* _Float128 is defined as a basic type, so max_align_t must be
-     sufficiently aligned for it.  This code must work in C++, so we
-     use __float128 here; that is only available on some
-     architectures, but only on i386 is extra alignment needed for
-     __float128.  */
+  __float128 __max_align_f128 __attribute__((__aligned__(__alignof(__float128))));
 } max_align_t;
 struct s {
   int datum;
@@ -4488,7 +713,7 @@ void init (struct s *p, int x) {
 void update (int *p) {
   struct s *s = ((struct s *)((char *)(p)-(unsigned long)__builtin_offsetof (struct s, list)));
   pthread_mutex_lock(&s->mutex);
-  s->datum++; // NORACE
+  s->datum++;
   pthread_mutex_unlock(&s->mutex);
 }
 void *t_fun(void *arg) {
