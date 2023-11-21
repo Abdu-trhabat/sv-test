@@ -157,7 +157,8 @@ struct hlist_head *create()
 void loop(struct hlist_head *head)
 {
     struct my_item *now;
-    hlist_for_each_entry(now, head, link) {
+    struct hlist_node *tmp;
+    hlist_for_each_entry_safe(now, tmp, head, link) {
         do_data(&(now->data));
     }
 }
