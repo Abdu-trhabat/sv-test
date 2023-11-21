@@ -1,0 +1,13 @@
+format_version: '2.0'
+
+# source_files: 'linux-hlist-fst-data.c'
+input_files: 'linux-hlist-fst-data_unsafe.i'
+
+properties:
+  - property_file: ../properties/valid-memsafety.prp
+    expected_verdict: false
+    subproperty: valid-deref
+
+options:
+  language: C
+  data_model: LP64
