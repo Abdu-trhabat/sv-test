@@ -1,1 +1,1 @@
-CHECK( init(Main.main()), LTL(not (F RuntimeException))
+CHECK( init(Main.main()), LTL(! (F RuntimeException)))
