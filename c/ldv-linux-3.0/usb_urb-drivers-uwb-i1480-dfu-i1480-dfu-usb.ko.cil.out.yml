@@ -6,7 +6,6 @@ input_files: 'usb_urb-drivers-uwb-i1480-dfu-i1480-dfu-usb.ko.cil.out.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

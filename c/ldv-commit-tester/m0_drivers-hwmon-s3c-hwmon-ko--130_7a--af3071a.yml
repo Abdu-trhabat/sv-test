@@ -6,7 +6,6 @@ input_files: 'm0_drivers-hwmon-s3c-hwmon-ko--130_7a--af3071a.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

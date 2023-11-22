@@ -12,7 +12,6 @@ input_files: 'hardness_fillercode_fillercodesize_ps-cn-25_file-38.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

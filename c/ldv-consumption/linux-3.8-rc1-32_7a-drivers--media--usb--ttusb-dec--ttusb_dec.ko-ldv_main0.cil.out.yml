@@ -6,7 +6,6 @@ input_files: 'linux-3.8-rc1-32_7a-drivers--media--usb--ttusb-dec--ttusb_dec.ko-l
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

@@ -5,6 +5,7 @@ input_files: 'per-thread-index-bitmask.i'
 properties:
   - property_file: ../properties/no-data-race.prp
     expected_verdict: true
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

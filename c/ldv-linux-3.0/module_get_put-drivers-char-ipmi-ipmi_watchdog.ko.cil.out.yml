@@ -6,7 +6,6 @@ input_files: 'module_get_put-drivers-char-ipmi-ipmi_watchdog.ko.cil.out.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

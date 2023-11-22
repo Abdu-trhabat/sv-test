@@ -6,7 +6,6 @@ input_files: '32_7a_cilled_linux-3.8-rc1-32_7a-drivers--video--smscufx.ko-ldv_ma
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C
