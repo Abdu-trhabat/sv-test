@@ -842,11 +842,15 @@ enum
       4
   };
 
+float logistic(float x)
+{
+ return 0.5f * tanhf(0.5f * x) + 0.5f;
+}
 int main()
 {
  float x = __VERIFIER_nondet_float();
  if(!(!__builtin_isnan (x))) abort();
- float y = tanhf(x);
- if(!(__builtin_islessequal(y, 1.0f))) reach_error();
+ float y = logistic(x);
+ if(!(__builtin_isgreaterequal(y, 1.0f))) reach_error();
     return 0;
 }
