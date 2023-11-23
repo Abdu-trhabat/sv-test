@@ -385,7 +385,7 @@ int whoop_int;
 // Pthread wrappers for entry points
 void *whoop_wrapper_pc8736x_gpio_set(void* args)
 {
-	pc8736x_gpio_set(whoop_int, whoop_int);
+	pc8736x_gpio_set(whoop_int, whoop_int & 1);
 	return NULL;
 }
 

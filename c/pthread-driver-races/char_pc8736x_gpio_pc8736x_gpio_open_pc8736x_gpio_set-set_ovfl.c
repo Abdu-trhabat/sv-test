@@ -384,7 +384,7 @@ int whoop_int;
 // Pthread wrappers for entry points
 void *whoop_wrapper_pc8736x_gpio_set(void* args)
 {
-	pc8736x_gpio_set(whoop_int, whoop_int & 1);
+	pc8736x_gpio_set(whoop_int, whoop_int);
 	return NULL;
 }
 
@@ -458,14 +458,14 @@ int main(void)
 
 	// Declare pthread_t's
 	pthread_t pthread_t_pc8736x_gpio_set;
-	pthread_t pthread_t_pc8736x_gpio_configure;
+	pthread_t pthread_t_pc8736x_gpio_open;
 
 	// Create pthread threads
 	pthread_create(&pthread_t_pc8736x_gpio_set, NULL, whoop_wrapper_pc8736x_gpio_set, NULL);
-	pthread_create(&pthread_t_pc8736x_gpio_configure, NULL, whoop_wrapper_pc8736x_gpio_configure, NULL);
+	pthread_create(&pthread_t_pc8736x_gpio_open, NULL, whoop_wrapper_pc8736x_gpio_open, NULL);
 
 	// Wait for threads to finish
 	pthread_join(pthread_t_pc8736x_gpio_set, NULL);
-	pthread_join(pthread_t_pc8736x_gpio_configure, NULL);
+	pthread_join(pthread_t_pc8736x_gpio_open, NULL);
 
 }

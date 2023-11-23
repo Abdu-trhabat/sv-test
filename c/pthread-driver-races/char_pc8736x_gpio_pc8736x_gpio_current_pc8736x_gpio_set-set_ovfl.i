@@ -6851,8 +6851,12 @@ void pc8736x_gpio_set(unsigned minor, int val)
  curval = inb_p(pc8736x_gpio_base + port_offset[port] + 0);
  val = inb_p(pc8736x_gpio_base + port_offset[port] + 1);
  do {} while (0);
+ __VERIFIER_atomic_begin();
  pc8736x_gpio_shadow[port] = val;
+ __VERIFIER_atomic_end();
+ __VERIFIER_atomic_begin();
  __VERIFIER_assert(pc8736x_gpio_shadow[port] == val);
+ __VERIFIER_atomic_end();
 }
 int pc8736x_gpio_current(unsigned minor)
 {
@@ -6860,8 +6864,12 @@ int pc8736x_gpio_current(unsigned minor)
  minor &= 0x1f;
  port = minor >> 3;
  bit = minor & 7;
+        __VERIFIER_atomic_begin();
         u8 tmp = pc8736x_gpio_shadow[port];
+        __VERIFIER_atomic_end();
+        __VERIFIER_atomic_begin();
         __VERIFIER_assert(tmp == pc8736x_gpio_shadow[port]);
+        __VERIFIER_atomic_end();
  return ((tmp >> bit) & 0x01);
 }
 void pc8736x_gpio_change(unsigned index)
@@ -7004,7 +7012,7 @@ loff_t *whoop_loff_t;
 int whoop_int;
 void *whoop_wrapper_pc8736x_gpio_set(void* args)
 {
- pc8736x_gpio_set(whoop_int, whoop_int & 1);
+ pc8736x_gpio_set(whoop_int, whoop_int);
  return ((void *)0);
 }
 void *whoop_wrapper_pc8736x_gpio_open(void* args)
@@ -7064,9 +7072,9 @@ int main(void)
  assume_abort_if_not(whoop_int >= 0);
  int _whoop_init_result = _whoop_init();
  pthread_t pthread_t_pc8736x_gpio_set;
- pthread_t pthread_t_pc8736x_gpio_configure;
+ pthread_t pthread_t_pc8736x_gpio_current;
  pthread_create(&pthread_t_pc8736x_gpio_set, ((void *)0), whoop_wrapper_pc8736x_gpio_set, ((void *)0));
- pthread_create(&pthread_t_pc8736x_gpio_configure, ((void *)0), whoop_wrapper_pc8736x_gpio_configure, ((void *)0));
+ pthread_create(&pthread_t_pc8736x_gpio_current, ((void *)0), whoop_wrapper_pc8736x_gpio_current, ((void *)0));
  pthread_join(pthread_t_pc8736x_gpio_set, ((void *)0));
- pthread_join(pthread_t_pc8736x_gpio_configure, ((void *)0));
+ pthread_join(pthread_t_pc8736x_gpio_current, ((void *)0));
 }
