@@ -47,10 +47,9 @@ inline void findMax(int offset){
 		}
 	}
 	pthread_mutex_unlock(&m);
-
-    pthread_mutex_lock(&m);
+	// No race on max between write above and read below, because storage is zero-initialized:
+	// only one write ever happens and that's before any of the following reads can occur.
 	assert(my_max <= max);
-    pthread_mutex_unlock(&m);
 }
 
 void* thr1(void* arg) {
@@ -65,9 +64,6 @@ void* thr1(void* arg) {
 }
 
 int main(){
-  for (int i = 0; i < WORKPERTHREAD*THREADSMAX; i++)
-    storage[i] = __VERIFIER_nondet_int();
-
   pthread_t t;
 
 	while(1) { pthread_create(&t, 0, thr1, 0); }
