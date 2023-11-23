@@ -7,7 +7,7 @@
 
 format_version: '2.0'
 
-input_files: 'hardness_floatingpointinfluence_has-floats_file-93.i'
+input_files: 'hardness_floatingpointinfluence_has-floats_file-93_fixed.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp
