@@ -15,8 +15,19 @@ extern int __VERIFIER_nondet_int();
 
 #define WORKPERTHREAD 2
 #define THREADSMAX 3
-volatile int max = 0x80000000;
-pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+volatile int max = 0x80000000, m = 0;
+
+void __VERIFIER_atomic_acquire()
+{
+	assume(m==0);
+	m = 1;
+}
+
+void __VERIFIER_atomic_release()
+{
+	assume(m==1);
+	m = 0;
+}
 
 int storage[WORKPERTHREAD*THREADSMAX];
 
@@ -28,13 +39,15 @@ inline void findMax(int offset)
 	for(i = offset; i < offset+WORKPERTHREAD; i++) {
 		e = storage[i];
 		
-		pthread_mutex_lock(&m);
+		__VERIFIER_atomic_acquire();
 		{
 			if(e > max) {
 				max = e;
 			}
 		}
-		pthread_mutex_unlock(&m);
+		__VERIFIER_atomic_release();
+		// No race on max between write above and read below, because storage is zero-initialized:
+		// only one write ever happens and that's before any of the following reads can occur.
 		assert(e <= max);
 	}
 }
@@ -51,9 +64,6 @@ void* thr1(void* arg) {
 }
 
 int main(){
-  for (int i = 0; i < WORKPERTHREAD*THREADSMAX; i++)
-    storage[i] = __VERIFIER_nondet_int();
-
   pthread_t t;
 
 	while(1) { pthread_create(&t, 0, thr1, 0); }
