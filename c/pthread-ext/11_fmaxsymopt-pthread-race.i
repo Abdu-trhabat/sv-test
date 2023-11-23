@@ -13,7 +13,8 @@ extern void __assert_perror_fail (int __errnum, const char *__file,
 extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "37_stack_lock_p0_vs_concur-pthread.c", 7, __extension__ __PRETTY_FUNCTION__); })); }
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "11_fmaxsymopt-pthread.c", 7, __extension__ __PRETTY_FUNCTION__); })); }
+extern int __VERIFIER_nondet_int();
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
@@ -686,35 +687,36 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
-int memory[(2*32+1)];
-int next_alloc_idx = 1;
+volatile int max = 0x80000000;
 pthread_mutex_t m = { { 0, 0, 0, PTHREAD_MUTEX_TIMED_NP, 0, { { 0, 0 } } } };
-int top = 0;
-void __VERIFIER_atomic_index_malloc(int *curr_alloc_idx)
-{
- if(next_alloc_idx+2-1 > (2*32+1)) *curr_alloc_idx = 0;
- else *curr_alloc_idx = next_alloc_idx, next_alloc_idx += 2;
-}
-inline void push(int d) {
- int oldTop = -1, newTop = -1;
- __VERIFIER_atomic_index_malloc(&newTop);
- if(newTop == 0)
-  assume_abort_if_not(0);
- else{
-  memory[newTop+0] = d;
-  pthread_mutex_lock(&m);
-  oldTop = top;
-  memory[newTop+1] = oldTop;
-  top = newTop;
-  pthread_mutex_unlock(&m);
+int storage[2*3];
+inline void findMax(int offset){
+ int i;
+ int e;
+ int my_max = 0x80000000;
+ for(i = offset; i < offset+2; i++) {
+  e = storage[i];
+  if(e > my_max) {
+   my_max = e;
+  }
+  { if(!(e <= my_max)) { goto ERROR; } };
  }
+ pthread_mutex_lock(&m);
+ {
+  if(my_max > max) {
+   max = my_max;
+  }
+ }
+ pthread_mutex_unlock(&m);
+ { if(!(my_max <= max)) { ERROR: {reach_error();abort();}(void)0; } };
 }
-void* thr1(void* arg){
-  while(1){push(10); { pthread_mutex_lock(&m); if(!(top != 0)) { ERROR: {reach_error();abort();}(void)0; } pthread_mutex_lock(&m); };}
+void* thr1(void* arg) {
+ int offset=__VERIFIER_nondet_int();
+ assume_abort_if_not(offset % 2 == 0 && offset >= 0 && offset < 2*3);
+ findMax(offset);
   return 0;
 }
-int main()
-{
+int main(){
   pthread_t t;
  while(1) { pthread_create(&t, 0, thr1, 0); }
 }

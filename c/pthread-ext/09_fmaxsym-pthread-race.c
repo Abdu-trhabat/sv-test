@@ -35,9 +35,7 @@ inline void findMax(int offset)
 			}
 		}
 		pthread_mutex_unlock(&m);
-        pthread_mutex_lock(&m);
 		assert(e <= max);
-		pthread_mutex_unlock(&m);
 	}
 }
 

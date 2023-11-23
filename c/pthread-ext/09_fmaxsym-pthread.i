@@ -703,7 +703,9 @@ inline void findMax(int offset)
    }
   }
   pthread_mutex_unlock(&m);
+  pthread_mutex_lock(&m);
   { if(!(e <= max)) { ERROR: {reach_error();abort();}(void)0; } };
+  pthread_mutex_unlock(&m);
  }
 }
 void* thr1(void* arg) {

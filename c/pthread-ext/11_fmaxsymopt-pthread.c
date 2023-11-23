@@ -48,7 +48,9 @@ inline void findMax(int offset){
 	}
 	pthread_mutex_unlock(&m);
 
+    pthread_mutex_lock(&m);
 	assert(my_max <= max);
+    pthread_mutex_unlock(&m);
 }
 
 void* thr1(void* arg) {

@@ -51,12 +51,7 @@ inline void push(int d) {
 }
 
 void* thr1(void* arg){
-    while(1) {
-        push(10); 
-        pthread_mutex_lock(&m);
-        assert(top != 0);
-        pthread_mutex_unlock(&m);
-    }
+  while(1){push(10); assert(top != 0);}
 
   return 0;
 }
