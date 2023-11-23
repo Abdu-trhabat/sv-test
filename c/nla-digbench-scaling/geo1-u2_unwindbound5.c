@@ -22,7 +22,7 @@ void __VERIFIER_assert(int cond) {
 int counter = 0;
 int main() {
     unsigned int z, k;
-    unsigned long long x, y, c;
+    long long x, y, c;
     z = __VERIFIER_nondet_uint();
     k = __VERIFIER_nondet_uint();
 

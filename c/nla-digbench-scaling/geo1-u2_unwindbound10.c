@@ -22,7 +22,7 @@ void __VERIFIER_assert(int cond) {
 int counter = 0;
 int main() {
     unsigned int z, k;
-    unsigned long long x, y, c;
+    long long x, y, c;
     z = __VERIFIER_nondet_uint();
     k = __VERIFIER_nondet_uint();
 
@@ -30,7 +30,7 @@ int main() {
     y = z;
     c = 1;
 
-    while (counter++<5) {
+    while (counter++<10) {
         __VERIFIER_assert(x*z - x - y + 1 == 0);
 
         if (!(c < k)) 
