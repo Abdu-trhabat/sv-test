@@ -5,7 +5,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-extern void* __VERIFIER_nondet_pointer();
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
@@ -1233,13 +1232,13 @@ pthread_mutex_t A_mutex = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 pthread_mutex_t B_mutex = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 void *t_fun(void *arg) {
   int *ip;
-  struct s *t, *sp = __VERIFIER_nondet_pointer();
+  struct s *t;
   struct s *p = malloc(sizeof(struct s));
   init(p,7);
   pthread_mutex_lock(&B_mutex);
   t = A->next;
-  A->next = sp;
-  sp->next = t;
+  A->next = p;
+  p->next = t;
   pthread_mutex_unlock(&B_mutex);
   return ((void *)0);
 }
