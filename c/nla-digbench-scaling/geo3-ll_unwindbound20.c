@@ -21,7 +21,8 @@ void __VERIFIER_assert(int cond) {
 int counter = 0;
 int main() {
     int z, a, k;
-    long long x, y, c, az;
+    unsigned long long x, y, c;
+    long long az;
     z = __VERIFIER_nondet_int();
     a = __VERIFIER_nondet_int();
     k = __VERIFIER_nondet_int();
