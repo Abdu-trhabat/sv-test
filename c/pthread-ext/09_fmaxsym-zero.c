@@ -10,7 +10,6 @@ extern int __VERIFIER_nondet_int();
 #include <pthread.h>
 
 #define assume(e) assume_abort_if_not(e)
-#define assert_nl(e) { if(!(e)) { goto ERROR; } }
 #undef assert
 #define assert(e) { if(!(e)) { ERROR: {reach_error();abort();}(void)0; } }
 
@@ -21,40 +20,29 @@ pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 
 int storage[WORKPERTHREAD*THREADSMAX];
 
-inline void findMax(int offset){
-
+inline void findMax(int offset)
+{
 	int i;
 	int e;
-	int my_max = 0x80000000;
 
 	for(i = offset; i < offset+WORKPERTHREAD; i++) {
-#ifndef NOBUG
 		e = storage[i];
-#else
-    e = rand();
-#endif
-
-		if(e > my_max) {
-			my_max = e;
+		
+		pthread_mutex_lock(&m);
+		{
+			if(e > max) {
+				max = e;
+			}
 		}
-		assert_nl(e <= my_max);
+		pthread_mutex_unlock(&m);
+		// No race on max between write above and read below, because storage is zero-initialized:
+		// only one write ever happens and that's before any of the following reads can occur.
+		assert(e <= max);
 	}
-
-	pthread_mutex_lock(&m);
-	{
-		if(my_max > max) {
-			max = my_max;
-		}
-	}
-	pthread_mutex_unlock(&m);
-
-    pthread_mutex_lock(&m);
-	assert(my_max <= max);
-    pthread_mutex_unlock(&m);
 }
 
 void* thr1(void* arg) {
-	int offset=__VERIFIER_nondet_int();
+  int offset=__VERIFIER_nondet_int();
 
 	assume(offset % WORKPERTHREAD == 0 && offset >= 0 && offset < WORKPERTHREAD*THREADSMAX);
 	//assume(offset < WORKPERTHREAD && offset >= 0 && offset < WORKPERTHREAD*THREADSMAX);
@@ -65,9 +53,6 @@ void* thr1(void* arg) {
 }
 
 int main(){
-  for (int i = 0; i < WORKPERTHREAD*THREADSMAX; i++)
-    storage[i] = __VERIFIER_nondet_int();
-
   pthread_t t;
 
 	while(1) { pthread_create(&t, 0, thr1, 0); }
