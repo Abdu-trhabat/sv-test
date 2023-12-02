@@ -1,4 +1,4 @@
-/* 
+/*
 Geometric Series
 computes x = sum(z^k)[k=0..k-1], y = z^(k-1)
 */
@@ -20,7 +20,7 @@ void __VERIFIER_assert(int cond) {
 }
 int main() {
     int z, a, k;
-    long long x, y, c, az;
+    unsigned long long x, y, c, az;
     z = __VERIFIER_nondet_int();
     assume_abort_if_not(z>=0 && z<=100);
     a = __VERIFIER_nondet_int();
