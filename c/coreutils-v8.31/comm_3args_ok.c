@@ -47886,7 +47886,7 @@ void (*obstack_alloc_failed_handler)();
 extern int obstack_exit_failure;
 static _Bool only_file_1_350456;
 static _Bool only_file_2_350458;
-extern char *optarg;
+extern char *optarg; // <------- VIOLATION OF THE RULES!
 extern int opterr;
 extern int optind;
 extern int optopt;

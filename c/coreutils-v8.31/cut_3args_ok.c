@@ -48582,7 +48582,7 @@ static struct numname numname_table_279454[35];
 void (*obstack_alloc_failed_handler)();
 extern int obstack_exit_failure;
 static enum operating_mode operating_mode_350518;
-extern char *optarg;
+extern char *optarg; // <------- VIOLATION OF THE RULES!
 extern int opterr;
 extern int optind;
 extern int optopt;

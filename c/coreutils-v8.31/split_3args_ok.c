@@ -48085,7 +48085,7 @@ extern int obstack_exit_failure;
 static sigset_t oldblocked_350560;
 static int *open_pipes_350554;
 static size_t open_pipes_alloc_350556;
-extern char *optarg;
+extern char *optarg;  // <------- VIOLATION OF THE RULES!
 extern int opterr;
 extern int optind;
 extern int optopt;
