@@ -6338,7 +6338,7 @@ void ldv_initialize_v4l2_subdev_core_ops_4(void)
   void *tmp___1 ;
 
   {
-  tmp = ldv_init_zalloc(1736UL);
+  tmp = ldv_init_zalloc(2572UL);
   si4713_subdev_core_ops_group2 = (struct v4l2_subdev *)tmp;
   tmp___0 = ldv_init_zalloc(8UL);
   si4713_subdev_core_ops_group1 = (struct v4l2_control *)tmp___0;
