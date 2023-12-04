@@ -5,7 +5,7 @@ input_files: 'linux-4.0-rc1---drivers--scsi--advansys.ko.cil.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp
-    expected_verdict: false
+    expected_verdict: true
 
 options:
   language: C
