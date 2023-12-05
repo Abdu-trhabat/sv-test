@@ -8459,7 +8459,10 @@ void __CPROVER_file_local_priority_queue_c_s_swap(struct aws_priority_queue *que
 
 void aws_priority_queue_s_swap_harness() {
 
-    struct aws_priority_queue queue;
+    struct aws_priority_queue queue = {
+	0,
+	{0, nondet_size_t(), nondet_size_t(), nondet_size_t(), 0},
+	{0, nondet_size_t(), nondet_size_t(), nondet_size_t(), 0}};
 
 
     assume_abort_if_not(aws_priority_queue_is_bounded(&queue, 9223372036854775808U, 2));
@@ -8467,8 +8470,8 @@ void aws_priority_queue_s_swap_harness() {
 
 
     assume_abort_if_not(aws_priority_queue_is_valid(&queue));
-    size_t a;
-    size_t b;
+    size_t a = nondet_size_t();
+    size_t b = nondet_size_t();
     assume_abort_if_not(a < queue.container.length);
     assume_abort_if_not(b < queue.container.length);
 
@@ -8488,7 +8491,7 @@ void aws_priority_queue_s_swap_harness() {
     save_byte_from_array((uint8_t *)old.data, old.current_size, &old_byte);
 
     size_t item_sz = queue.container.item_size;
-    size_t offset;
+    size_t offset = nondet_size_t();
     assume_abort_if_not(offset < item_sz);
 
     struct store_byte_from_buffer old_a_byte;

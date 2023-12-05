@@ -9539,7 +9539,7 @@ void aws_string_eq_byte_buf_ignore_case_harness() {
     struct aws_string *str = nondet_bool() ? ensure_string_is_allocated_bounded_length(16) : 
                                                                                                         ((void *)0)
                                                                                                             ;
-    struct aws_byte_buf buf;
+    struct aws_byte_buf buf = {nondet_size_t(), 0, nondet_size_t(), 0};
 
     assume_abort_if_not(aws_byte_buf_is_bounded(&buf, 16));
     ensure_byte_buf_has_allocated_buffer_member(&buf);
@@ -9547,7 +9547,7 @@ void aws_string_eq_byte_buf_ignore_case_harness() {
 
     
    _Bool 
-        nondet_parameter;
+       nondet_parameter = nondet_bool();
     if (aws_string_eq_byte_buf_ignore_case(str, nondet_parameter ? &buf : 
                                                                          ((void *)0)
                                                                              ) && str) {

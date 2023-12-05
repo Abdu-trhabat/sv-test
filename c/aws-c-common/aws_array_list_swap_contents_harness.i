@@ -7950,8 +7950,8 @@ void aws_common_fatal_assert_library_initialized(void) {
 }
 void aws_array_list_swap_contents_harness() {
 
-    struct aws_array_list from;
-    struct aws_array_list to;
+    struct aws_array_list from = {0, __VERIFIER_nondet_ulong(), __VERIFIER_nondet_ulong(), __VERIFIER_nondet_ulong(), 0};
+    struct aws_array_list to = {0, __VERIFIER_nondet_ulong(), __VERIFIER_nondet_ulong(), __VERIFIER_nondet_ulong(), 0};
 
 
     assume_abort_if_not(aws_array_list_is_bounded(&from, 9223372036854775808U, 2));

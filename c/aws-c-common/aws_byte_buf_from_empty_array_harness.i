@@ -8957,7 +8957,7 @@ void aws_common_fatal_assert_library_initialized(void) {
     }
 }
 void aws_byte_buf_from_empty_array_harness() {
-    size_t capacity;
+    size_t capacity = nondet_size_t();
     void *array;
 
     array = bounded_malloc(sizeof(*(array)) * (capacity));
