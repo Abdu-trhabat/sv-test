@@ -7907,12 +7907,15 @@ void aws_common_fatal_assert_library_initialized(void) {
 void aws_priority_queue_init_static_harness() {
 
 
-    struct aws_priority_queue queue;
+    struct aws_priority_queue queue = {
+	0,
+	{0, nondet_size_t(), nondet_size_t(), nondet_size_t(), 0},
+	{0, nondet_size_t(), nondet_size_t(), nondet_size_t(), 0}};
 
 
-    size_t item_size;
-    size_t initial_item_allocation;
-    size_t len;
+    size_t item_size = nondet_size_t();
+    size_t initial_item_allocation = nondet_size_t();
+    size_t len = nondet_size_t();
 
 
     assume_abort_if_not(initial_item_allocation > 0 && initial_item_allocation <= 9223372036854775808U);

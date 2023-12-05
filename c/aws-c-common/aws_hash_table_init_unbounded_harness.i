@@ -10131,7 +10131,7 @@ int hash_table_state_required_bytes(size_t size, size_t *required_bytes) {
 }
 void aws_hash_table_init_unbounded_harness() {
     struct aws_allocator *allocator = can_fail_allocator();
-    size_t size;
+    size_t size = nondet_size_t();
     aws_hash_fn *hash_fn;
     assume_abort_if_not(hash_fn);
     aws_hash_callback_eq_fn *equals_fn;

@@ -8958,7 +8958,7 @@ void aws_common_fatal_assert_library_initialized(void) {
 }
 void aws_hash_array_ignore_case_harness() {
 
-    size_t length;
+    size_t length = nondet_size_t();
     assume_abort_if_not(length < 10);
     uint8_t *array = can_fail_malloc(length);
     assume_abort_if_not(((((length)) == 0) || ((array))));

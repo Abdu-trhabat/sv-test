@@ -9538,14 +9538,14 @@ void aws_string_eq_byte_cursor_ignore_case_harness() {
     struct aws_string *str = nondet_bool() ? ensure_string_is_allocated_bounded_length(16) : 
                                                                                                         ((void *)0)
                                                                                                             ;
-    struct aws_byte_cursor cursor;
+    struct aws_byte_cursor cursor = {nondet_size_t(), 0};
 
     ensure_byte_cursor_has_allocated_buffer_member(&cursor);
     assume_abort_if_not(aws_byte_cursor_is_valid(&cursor));
 
     
    _Bool 
-        nondet_parameter;
+       nondet_parameter = nondet_bool();
     if (aws_string_eq_byte_cursor_ignore_case(str, nondet_parameter ? &cursor : 
                                                                                ((void *)0)
                                                                                    ) && str) {

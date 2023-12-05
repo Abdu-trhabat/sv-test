@@ -8029,7 +8029,7 @@ void aws_common_fatal_assert_library_initialized(void) {
 void aws_array_list_erase_harness() {
 
     struct aws_array_list list = {0, __VERIFIER_nondet_ulong(), __VERIFIER_nondet_ulong(), __VERIFIER_nondet_ulong(), 0};
-    size_t index;
+    size_t index = nondet_size_t();
 
 
     assume_abort_if_not(aws_array_list_is_bounded(&list, 9223372036854775808U, 2));

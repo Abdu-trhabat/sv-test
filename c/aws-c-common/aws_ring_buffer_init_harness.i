@@ -7794,9 +7794,9 @@ void aws_common_fatal_assert_library_initialized(void) {
 }
 void aws_ring_buffer_init_harness() {
 
-    struct aws_ring_buffer ring_buf;
+    struct aws_ring_buffer ring_buf = {0, 0, {0}, {0}, 0};
     struct aws_allocator *allocator = can_fail_allocator();
-    size_t size;
+    size_t size = nondet_size_t();
     assume_abort_if_not(size > 0);
 
     if (aws_ring_buffer_init(&ring_buf, allocator, size) == (0)) {

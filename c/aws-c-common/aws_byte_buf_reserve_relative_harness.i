@@ -8785,12 +8785,12 @@ void aws_common_fatal_assert_library_initialized(void) {
     }
 }
 void aws_byte_buf_reserve_relative_harness() {
-    struct aws_byte_buf buf;
+    struct aws_byte_buf buf = {__VERIFIER_nondet_ulong(), 0, __VERIFIER_nondet_ulong(), 0};
     ensure_byte_buf_has_allocated_buffer_member(&buf);
     assume_abort_if_not(aws_byte_buf_is_valid(&buf));
 
     struct aws_byte_buf old = buf;
-    size_t requested_capacity;
+    size_t requested_capacity = nondet_size_t();
     int rval = aws_byte_buf_reserve_relative(&buf, requested_capacity);
 
     if (rval == (0)) {
