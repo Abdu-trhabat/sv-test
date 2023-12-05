@@ -11,7 +11,7 @@ input_files: 'hardness_operatoramount_amount500_file-61.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp
-    expected_verdict: true
+    expected_verdict: false
   - property_file: ../properties/coverage-branches.prp
 
 options:
