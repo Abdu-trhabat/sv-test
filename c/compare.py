@@ -47,6 +47,7 @@ CATEGORIES_TO_IGNORE = {
 LARGE_CATEGORIES = {
   "SoftwareSystems-DeviceDriversLinux64-ReachSafety": "(only custom includes, no system headers, checking takes too much time)",
   "SoftwareSystems-DeviceDriversLinux64-MemSafety": "(only custom includes, no system headers, checking takes too much time)",
+  "SoftwareSystems-DeviceDriversLinux64-Termination": "(only custom includes, no system headers, checking takes too much time)",
   "SoftwareSystems-DeviceDriversLinux64Large-ReachSafety": "(only custom includes, no system headers, checking takes too much time)",
 }
 
