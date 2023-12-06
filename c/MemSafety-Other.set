@@ -1,7 +1,6 @@
 # Contains tasks for checking memory safety of programs.
 loops/*.yml
 loop-acceleration/*.yml
-loops-crafted-1/*.yml
 ntdrivers/*.yml
 ntdrivers-simplified/*.yml
 locks/*.yml
