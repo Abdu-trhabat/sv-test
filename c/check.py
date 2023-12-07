@@ -701,7 +701,7 @@ def main(num_processes):
     with multiprocessing.Pool(num_processes) as p:
         check_results, matched_file_sets = zip(*p.map(check_func, entries))
     ok = all(check_results)
-    all_matched_files = set(f for f_set in matched_file_sets for f in f_set)
+    all_matched_files = set(os.path.relpath(os.path.abspath(f)) for f_set in matched_file_sets for f in f_set)
 
     try:
         GlobalChecks(all_matched_files, main_directory).run()
