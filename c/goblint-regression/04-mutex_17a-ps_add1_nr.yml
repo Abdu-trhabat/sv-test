@@ -5,7 +5,6 @@ input_files: '04-mutex_17a-ps_add1_nr.i'
 properties:
   - property_file: ../properties/no-overflow.prp
     expected_verdict: false
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

@@ -14,6 +14,7 @@ properties:
     subproperty: valid-memtrack
   - property_file: ../properties/valid-memcleanup.prp
     expected_verdict: false
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

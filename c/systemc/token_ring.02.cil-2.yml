@@ -6,7 +6,6 @@ input_files: 'token_ring.02.cil-2.c'
 properties:
   - property_file: ../properties/no-overflow.prp
     expected_verdict: false
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

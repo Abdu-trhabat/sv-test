@@ -6,7 +6,6 @@ input_files: '32_7_cilled_const_ok_linux-32_1-drivers--usb--image--microtek.ko-l
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

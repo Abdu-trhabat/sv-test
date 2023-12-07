@@ -6,7 +6,6 @@ input_files: '43_1a_cilled_ok_nondet_linux-43_1a-drivers--net--phy--icplus.ko-ld
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

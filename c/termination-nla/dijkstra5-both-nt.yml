@@ -3,7 +3,6 @@ input_files: 'dijkstra5-both-nt.c'
 properties:
   - property_file: ../properties/no-overflow.prp
     expected_verdict: false
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C
