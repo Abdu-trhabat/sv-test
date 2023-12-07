@@ -163,7 +163,163 @@ KNOWN_BENCHMARK_FILE_PROBLEMS = [
     ]
 
 KNOWN_SET_PROBLEMS = [
-    ]
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/busybox-1.22.0/seq-2.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-challenges/linux-3.14_linux-kernel-locking-spinlock_drivers-net-ethernet-ti-tlan.cil.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-consumption/32_7a_cilled_linux-3.8-rc1-drivers--media--usb--b2c2--b2c2-flexcop-usb.ko-main.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-linux-3.12-rc1/linux-3.12-rc1.tar.xz-144_2a-drivers--input--misc--ims-pcu.ko-entry_point.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-linux-3.12-rc1/linux-3.12-rc1.tar.xz-144_2a-drivers--media--usb--usbvision--usbvision.ko-entry_point.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-linux-3.12-rc1/linux-3.12-rc1.tar.xz-144_2a-drivers--net--wireless--libertas--usb8xxx.ko-entry_point.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-linux-3.12-rc1/linux-3.12-rc1.tar.xz-144_2a-drivers--net--wireless--p54--p54usb.ko-entry_point.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-linux-3.12-rc1/linux-3.12-rc1.tar.xz-144_2a-drivers--usb--misc--idmouse.ko-entry_point.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-linux-4.0-rc1-mav/linux-4.0-rc1---drivers--scsi--advansys.ko.cil.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-linux-4.2-rc1/linux-4.2-rc1.tar.xz-32_7a-drivers--staging--lustre--lustre--mdc--mdc.ko-entry_point.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-validator-v0.6/linux-stable-1dfa93a-1-100_1a-drivers--usb--serial--kobil_sct.ko-entry_point.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-validator-v0.6/linux-stable-90a4845-1-110_1a-drivers--char--ipmi--ipmi_si.ko-entry_point.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-validator-v0.6/linux-stable-c0cc359-104_1a-drivers--usb--serial--qcserial.ko-entry_point.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-validator-v0.8/linux-stable-064368f-1-111_1a-drivers--media--radio--si4713-i2c.ko-entry_point_ldv-val-v0.8.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-validator-v0.8/linux-stable-1dfa93a-1-100_1a-drivers--usb--serial--kobil_sct.ko-entry_point_ldv-val-v0.8.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-validator-v0.8/linux-stable-90a4845-1-110_1a-drivers--char--ipmi--ipmi_si.ko-entry_point_ldv-val-v0.8.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-validator-v0.8/linux-stable-a450319-1-144_1a-drivers--input--tablet--acecad.ko-entry_point_ldv-val-v0.8.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-validator-v0.8/linux-stable-a450319-1-144_2a-drivers--input--tablet--acecad.ko-entry_point_ldv-val-v0.8.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/ldv-validator-v0.8/linux-stable-c0cc359-1-104_1a-drivers--usb--serial--qcserial.ko-entry_point_ldv-val-v0.8.cil.out.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/loops/eureka_01-1.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/neural-networks/tanh_w8_r4_case_1_safe.c-amalgamation.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench/freire1.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench/freire2.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire1_unwindbound100.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire1_unwindbound10.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire1_unwindbound1.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire1_unwindbound20.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire1_unwindbound2.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire1_unwindbound50.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire1_unwindbound5.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire2_unwindbound100.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire2_unwindbound10.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire2_unwindbound1.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire2_unwindbound20.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire2_unwindbound2.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire2_unwindbound50.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/nla-digbench-scaling/freire2_unwindbound5.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/recursified_nla-digbench/recursified_freire1.yml> does not match anything.",
+    ),
+    (
+        "Invalid-TaskDefs.set",
+        "Pattern <../../sv-benchmarks/c/recursified_nla-digbench/recursified_freire2.yml> does not match anything.",
+    ),
+]
 
 KNOWN_GLOBAL_PROBLEMS = [
     ]
