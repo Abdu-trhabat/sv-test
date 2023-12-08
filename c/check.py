@@ -83,7 +83,7 @@ DATA_MODELS = {"ILP32": 32, "LP64": 64}
 
 # Ignore regression
 # as long as no yml-task definitions exist for the tasks in these directories
-IGNORED_DIRECTORIES = set(["properties", "regression"])
+IGNORED_DIRECTORIES = set(["properties", "regression", "memsafety-broom"])
 """Directories which are completely ignored by this script"""
 
 UNUSED_DIRECTORIES = set(["ldv-multiproperty", "regression"])
@@ -163,6 +163,10 @@ KNOWN_BENCHMARK_FILE_PROBLEMS = [
     ]
 
 KNOWN_SET_PROBLEMS = [
+    (
+        "MemSafety-LinkedLists.set",
+        "Pattern <memsafety-broom/*.yml> does not match anything."
+    ),
     (
         "Invalid-TaskDefs.set",
         "Pattern <../../sv-benchmarks/c/busybox-1.22.0/seq-2.yml> does not match anything.",
@@ -318,6 +322,51 @@ KNOWN_SET_PROBLEMS = [
     (
         "Invalid-TaskDefs.set",
         "Pattern <../../sv-benchmarks/c/recursified_nla-digbench/recursified_freire2.yml> does not match anything.",
+    ),
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE401*__int*_bad.yml> does not match anything."
+    ),
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE401*__twoIntsStruct*_bad.yml> does not match anything."
+    ),
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE415*_bad.yml> does not match anything."
+    ),
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE476*_int*_bad.yml> does not match anything."
+    ),
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE476*_long*_bad.yml> does not match anything."
+    ),
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE476*_struct*_bad.yml> does not match anything."
+    ),
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE590*_bad.yml> does not match anything."
+    ),
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE401*__struct*_bad.yml> does not match anything."
+    ),
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE121*rand*_bad.yml> does not match anything."
+    ),
+
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE121*fgets*_bad.yml> does not match anything."
+    ),
+    (
+        "Unused_Juliet.set",
+        "Pattern <Juliet_Test/CWE121*large*_bad.yml> does not match anything."
     ),
 ]
 
