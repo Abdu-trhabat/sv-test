@@ -10,8 +10,12 @@ properties:
   property_file: ../properties/termination.prp
 - expected_verdict: true
   property_file: ../properties/unreach-call.prp
-- expected_verdict: true
-  property_file: ../properties/valid-memsafety.prp
+# This is a trivial property for this task:
+# The task only uses a single integer variable.
+# This integer variable is referenced by a pointer, but the pointer use is very straightforward.
+# There is no pointer arithmetics or aliasing involved.
+#- expected_verdict: true
+#  property_file: ../properties/valid-memsafety.prp
 
 # original_yaml_file: even.yml
 # original_input_files: even.c
