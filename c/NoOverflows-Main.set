@@ -3,7 +3,10 @@ recursive/*.yml
 recursive-simple/*.yml
 bitvector/*.yml
 psyco/*.yml
+loop-invariants/*.yml
 loop-zilu/*.yml
+nla-digbench/*.yml
+nla-digbench-scaling/*.yml
 signedintegeroverflow-regression/*.yml
 unsignedintegeroverflow-sas23/*.yml
 termination-crafted/*.yml
@@ -53,6 +56,9 @@ ntdrivers/*.yml
 ntdrivers-simplified/*.yml
 openssl/*.yml
 openssl-simplified/*.yml
+recursified_loop-invariants/*.yml
+recursified_loop-simple/*.yml
+recursified_nla-digbench/*.yml
 recursive-with-pointer/*.yml
 reducercommutativity/*.yml
 seq-mthreaded/*.yml
