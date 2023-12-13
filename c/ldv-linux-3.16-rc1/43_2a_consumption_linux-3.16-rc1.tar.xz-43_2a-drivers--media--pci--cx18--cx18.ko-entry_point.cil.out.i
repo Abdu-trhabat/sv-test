@@ -12757,7 +12757,7 @@ struct sk_buff *ldv_skb_clone_164(struct sk_buff *ldv_func_arg1 , gfp_t flags )
 }
 extern void mutex_lock_nested(struct mutex * , unsigned int ) ;
 extern void mutex_unlock(struct mutex * ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern long schedule_timeout_uninterruptible(long ) ;
 __inline static void v4l2_set_subdevdata(struct v4l2_subdev *sd , void *p )
 {
@@ -13206,13 +13206,13 @@ void ldv_main_exported_17(void)
   u32 tmp___2 ;
   int tmp___3 ;
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg9 = tmp;
-  tmp___0 = __VERIFIER_nondet_u32();
+  tmp___0 = __VERIFIER_nondet_uint();
   ldvarg12 = tmp___0;
   tmp___1 = ldv_zalloc(304UL);
   ldvarg10 = (struct v4l2_subdev *)tmp___1;
-  tmp___2 = __VERIFIER_nondet_u32();
+  tmp___2 = __VERIFIER_nondet_uint();
   ldvarg11 = tmp___2;
   tmp___3 = __VERIFIER_nondet_int();
   switch (tmp___3) {
@@ -13236,7 +13236,7 @@ void ldv_main_exported_15(void)
   u32 tmp ;
   int tmp___0 ;
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg107 = tmp;
   tmp___0 = __VERIFIER_nondet_int();
   switch (tmp___0) {
@@ -19931,13 +19931,13 @@ void ldv_main_exported_11(void)
   u32 tmp___2 ;
   int tmp___3 ;
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg2 = tmp;
-  tmp___0 = __VERIFIER_nondet_u32();
+  tmp___0 = __VERIFIER_nondet_uint();
   ldvarg0 = tmp___0;
-  tmp___1 = __VERIFIER_nondet_u32();
+  tmp___1 = __VERIFIER_nondet_uint();
   ldvarg3 = tmp___1;
-  tmp___2 = __VERIFIER_nondet_u32();
+  tmp___2 = __VERIFIER_nondet_uint();
   ldvarg1 = tmp___2;
   tmp___3 = __VERIFIER_nondet_int();
   switch (tmp___3) {
@@ -23878,13 +23878,13 @@ void ldv_main_exported_6(void)
   {
   tmp = ldv_zalloc(48UL);
   ldvarg19 = (struct v4l2_mbus_framefmt *)tmp;
-  tmp___0 = __VERIFIER_nondet_u32();
+  tmp___0 = __VERIFIER_nondet_uint();
   ldvarg22 = tmp___0;
-  tmp___1 = __VERIFIER_nondet_u32();
+  tmp___1 = __VERIFIER_nondet_uint();
   ldvarg23 = tmp___1;
   tmp___2 = __VERIFIER_nondet_int();
   ldvarg21 = tmp___2;
-  tmp___3 = __VERIFIER_nondet_u32();
+  tmp___3 = __VERIFIER_nondet_uint();
   ldvarg24 = tmp___3;
   memset((void *)(& ldvarg20), 0, 8UL);
   tmp___4 = __VERIFIER_nondet_int();
@@ -23936,13 +23936,13 @@ void ldv_main_exported_7(void)
   u32 tmp___2 ;
   int tmp___3 ;
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg6 = tmp;
-  tmp___0 = __VERIFIER_nondet_u32();
+  tmp___0 = __VERIFIER_nondet_uint();
   ldvarg5 = tmp___0;
-  tmp___1 = __VERIFIER_nondet_u32();
+  tmp___1 = __VERIFIER_nondet_uint();
   ldvarg7 = tmp___1;
-  tmp___2 = __VERIFIER_nondet_u32();
+  tmp___2 = __VERIFIER_nondet_uint();
   ldvarg8 = tmp___2;
   tmp___3 = __VERIFIER_nondet_int();
   switch (tmp___3) {
@@ -24005,7 +24005,7 @@ void ldv_main_exported_9(void)
   ldvarg28 = (struct v4l2_dbg_register *)tmp;
   tmp___0 = ldv_zalloc(56UL);
   ldvarg26 = (struct v4l2_dbg_register *)tmp___0;
-  tmp___1 = __VERIFIER_nondet_u32();
+  tmp___1 = __VERIFIER_nondet_uint();
   ldvarg27 = tmp___1;
   tmp___2 = __VERIFIER_nondet_int();
   switch (tmp___2) {

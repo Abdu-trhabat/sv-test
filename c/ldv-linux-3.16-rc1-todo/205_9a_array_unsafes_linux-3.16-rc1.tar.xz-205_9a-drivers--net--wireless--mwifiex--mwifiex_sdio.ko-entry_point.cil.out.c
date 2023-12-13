@@ -7364,9 +7364,9 @@ extern void ldv_skb_free(struct sk_buff___0 * ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -10332,11 +10332,11 @@ int main(void)
   int tmp___11 ;
 
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg1 = tmp;
-  tmp___0 = __VERIFIER_nondet_u16();
+  tmp___0 = __VERIFIER_nondet_ushort();
   ldvarg4 = tmp___0;
-  tmp___1 = __VERIFIER_nondet_u8();
+  tmp___1 = __VERIFIER_nondet_uchar();
   ldvarg3 = tmp___1;
   tmp___2 = ldv_zalloc(32UL);
   ldvarg0 = (struct mwifiex_fw_image *)tmp___2;

@@ -6991,7 +6991,7 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -8628,7 +8628,7 @@ int main(void)
   int tmp___5 ;
   int tmp___6 ;
   {
-  tmp = __VERIFIER_nondet_u8();
+  tmp = __VERIFIER_nondet_uchar();
   ldvarg1 = tmp;
   tmp___0 = ldv_zalloc(4UL);
   ldvarg0 = (struct mwifiex_tx_param *)tmp___0;

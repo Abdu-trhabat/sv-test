@@ -18346,7 +18346,7 @@ __inline static void *ldv_kmalloc_124(size_t size , gfp_t flags )
 }
 }
 __inline static void *kmalloc(size_t size , gfp_t flags ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 void choose_timer_5(struct timer_list *timer ) ;
 void activate_pending_timer_5(struct timer_list *timer , unsigned long data , int pending_flag ) ;
 void disable_suitable_timer_5(struct timer_list *timer ) ;
@@ -21377,7 +21377,7 @@ void ldv_main_exported_15(void)
   int tmp___5 ;
 
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg52 = tmp;
   tmp___0 = __VERIFIER_nondet_int();
   ldvarg56 = tmp___0;
@@ -29845,7 +29845,7 @@ __inline static void rcu_read_unlock(void)
 }
 }
 __inline static void *kzalloc(size_t size , gfp_t flags ) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 void choose_timer_7(struct timer_list *timer ) ;
 struct sk_buff *ldv_skb_clone_282(struct sk_buff *ldv_func_arg1 , gfp_t flags ) ;
 struct sk_buff *ldv_skb_clone_290(struct sk_buff *ldv_func_arg1 , gfp_t flags ) ;
@@ -35260,15 +35260,15 @@ void ldv_main_exported_9(void)
   {
   tmp = ldv_zalloc(88UL);
   ldvarg34 = (struct nes_cm_listener *)tmp;
-  tmp___0 = __VERIFIER_nondet_u32();
+  tmp___0 = __VERIFIER_nondet_uint();
   ldvarg38 = tmp___0;
   tmp___1 = ldv_zalloc(1UL);
   ldvarg36 = tmp___1;
   tmp___2 = ldv_zalloc(232UL);
   ldvarg35 = (struct sk_buff *)tmp___2;
-  tmp___3 = __VERIFIER_nondet_u16();
+  tmp___3 = __VERIFIER_nondet_ushort();
   ldvarg37 = tmp___3;
-  tmp___4 = __VERIFIER_nondet_u32();
+  tmp___4 = __VERIFIER_nondet_uint();
   ldvarg39 = tmp___4;
   tmp___5 = __VERIFIER_nondet_int();
   switch (tmp___5) {

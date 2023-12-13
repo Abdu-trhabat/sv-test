@@ -8741,8 +8741,8 @@ void ldv_usb_deregister_11(struct usb_driver *arg )
   return;
 }
 }
-extern u16 __VERIFIER_nondet_u16(void) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 extern int request_firmware(struct firmware  const  ** , char const   * , struct device * ) ;
 extern void release_firmware(struct firmware  const  * ) ;
 extern int i2c_transfer(struct i2c_adapter * , struct i2c_msg * , int  ) ;
@@ -14556,9 +14556,9 @@ void ldv_main_exported_2(void)
   int tmp___1 ;
 
   {
-  tmp = __VERIFIER_nondet_u16();
+  tmp = __VERIFIER_nondet_ushort();
   ldvarg7 = tmp;
-  tmp___0 = __VERIFIER_nondet_u8();
+  tmp___0 = __VERIFIER_nondet_uchar();
   ldvarg8 = tmp___0;
   tmp___1 = __VERIFIER_nondet_int();
   switch (tmp___1) {
@@ -14678,9 +14678,9 @@ void ldv_main_exported_4(void)
   int tmp___1 ;
 
   {
-  tmp = __VERIFIER_nondet_u16();
+  tmp = __VERIFIER_nondet_ushort();
   ldvarg13 = tmp;
-  tmp___0 = __VERIFIER_nondet_u8();
+  tmp___0 = __VERIFIER_nondet_uchar();
   ldvarg14 = tmp___0;
   tmp___1 = __VERIFIER_nondet_int();
   switch (tmp___1) {

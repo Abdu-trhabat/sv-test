@@ -1,6 +1,6 @@
 extern unsigned __VERIFIER_nondet_uint();
 extern int __VERIFIER_nondet_int();
-extern char *__VERIFIER_nondet_charp();
+extern char *__VERIFIER_nondet_pchar();
 extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
@@ -30,7 +30,7 @@ Packet receive() {
     Packet packet;
     packet.size = __VERIFIER_nondet_uint();
     packet.prio = __VERIFIER_nondet_int() ? LOW : HIGH;
-    packet.payload = __VERIFIER_nondet_charp();
+    packet.payload = __VERIFIER_nondet_pchar();
     return packet;
 }
 

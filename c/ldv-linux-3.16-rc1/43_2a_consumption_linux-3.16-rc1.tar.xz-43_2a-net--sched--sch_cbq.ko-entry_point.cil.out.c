@@ -5499,7 +5499,7 @@ void ldv_check_alloc_flags(gfp_t flags ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -9130,11 +9130,11 @@ int main(void)
   ldvarg8 = (struct sk_buff *)tmp___8;
   tmp___9 = __VERIFIER_nondet_ulong();
   ldvarg13 = tmp___9;
-  tmp___10 = __VERIFIER_nondet_u32();
+  tmp___10 = __VERIFIER_nondet_uint();
   ldvarg10 = tmp___10;
   tmp___11 = __VERIFIER_nondet_ulong();
   ldvarg9 = tmp___11;
-  tmp___12 = __VERIFIER_nondet_u32();
+  tmp___12 = __VERIFIER_nondet_uint();
   ldvarg5 = tmp___12;
   tmp___13 = ldv_zalloc(8UL);
   ldvarg6 = (unsigned long *)tmp___13;
@@ -9144,13 +9144,13 @@ int main(void)
   ldvarg16 = tmp___15;
   tmp___16 = __VERIFIER_nondet_ulong();
   ldvarg21 = tmp___16;
-  tmp___17 = __VERIFIER_nondet_u32();
+  tmp___17 = __VERIFIER_nondet_uint();
   ldvarg4 = tmp___17;
   tmp___18 = __VERIFIER_nondet_ulong();
   ldvarg14 = tmp___18;
   tmp___19 = ldv_zalloc(8UL);
   ldvarg17 = (struct Qdisc **)tmp___19;
-  tmp___20 = __VERIFIER_nondet_u32();
+  tmp___20 = __VERIFIER_nondet_uint();
   ldvarg22 = tmp___20;
   tmp___21 = __VERIFIER_nondet_ulong();
   ldvarg19 = tmp___21;

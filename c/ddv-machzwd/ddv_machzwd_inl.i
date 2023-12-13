@@ -729,8 +729,6 @@ unsigned char __VERIFIER_nondet_uchar();
 unsigned __VERIFIER_nondet_unsigned();
 loff_t __VERIFIER_nondet_loff_t();
 size_t __VERIFIER_nondet_size_t();
-sector_t __VERIFIER_nondet_sector_t();
-u32 __VERIFIER_nondet_u32();
 char * __VERIFIER_nondet_pchar();
 _Bool __VERIFIER_nondet_bool();
 
@@ -2917,7 +2915,7 @@ create_request(int genhd_no)
 
     rq.cmd_type = REQ_TYPE_FS;
     rq.rq_disk = genhd_registered[genhd_no].gd;
-    rq.sector = __VERIFIER_nondet_sector_t();
+    rq.sector = __VERIFIER_nondet_ulong();
     rq.current_nr_sectors = __VERIFIER_nondet_uint();
     rq.buffer = __VERIFIER_nondet_pchar();
 
@@ -4493,7 +4491,6 @@ extern unsigned __VERIFIER_nondet_unsigned();
 extern long __VERIFIER_nondet_long();
 extern char* __VERIFIER_nondet_pchar();
 extern loff_t __VERIFIER_nondet_loff_t();
-extern sector_t __VERIFIER_nondet_sector_t();
 loff_t no_llseek(struct file *file, loff_t offset, int origin) { loff_t l; return l; }
 
 

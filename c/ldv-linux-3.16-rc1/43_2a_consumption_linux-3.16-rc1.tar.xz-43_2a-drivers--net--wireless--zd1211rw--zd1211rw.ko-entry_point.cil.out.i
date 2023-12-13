@@ -10088,7 +10088,6 @@ __inline static void *ldv_kmalloc_54(size_t size , gfp_t flags )
 }
 }
 __inline static void *kmalloc(size_t size , gfp_t flags ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
 extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static void ldv_stop(void)
 {
@@ -12433,13 +12432,13 @@ void ldv_main_exported_2(void)
   ldvarg9 = (struct netdev_hw_addr_list *)tmp___0;
   tmp___1 = ldv_zalloc(232UL);
   ldvarg4 = (struct ieee80211_bss_conf *)tmp___1;
-  tmp___2 = __VERIFIER_nondet_u32();
+  tmp___2 = __VERIFIER_nondet_uint();
   ldvarg8 = tmp___2;
   tmp___3 = ldv_zalloc(232UL);
   ldvarg1 = (struct sk_buff *)tmp___3;
   tmp___4 = ldv_zalloc(4UL);
   ldvarg6 = (unsigned int *)tmp___4;
-  tmp___5 = __VERIFIER_nondet_u32();
+  tmp___5 = __VERIFIER_nondet_uint();
   ldvarg3 = tmp___5;
   tmp___6 = __VERIFIER_nondet_uint();
   ldvarg7 = tmp___6;

@@ -20027,7 +20027,7 @@ __inline static char const *kobject_name(struct kobject const *kobj )
   return ((char const *)kobj->name);
 }
 }
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static char const *dev_name(struct device const *dev )
 {
   char const *tmp ;
@@ -21248,7 +21248,7 @@ void ldv_main_exported_1(void)
   ldvarg42 = (struct ethtool_drvinfo *)tmp___6;
   tmp___7 = ldv_zalloc(8UL);
   ldvarg41 = (struct ethtool_stats *)tmp___7;
-  tmp___8 = __VERIFIER_nondet_u32();
+  tmp___8 = __VERIFIER_nondet_uint();
   ldvarg31 = tmp___8;
   tmp___9 = ldv_zalloc(1UL);
   ldvarg32 = (u8 *)tmp___9;

@@ -7194,7 +7194,7 @@ extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
 extern size_t __VERIFIER_nondet_size_t(void) ;
 extern loff_t __VERIFIER_nondet_loff_t(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -14851,7 +14851,7 @@ int main(void)
   ldvarg18 = (struct ethtool_stats *)tmp___7;
   tmp___8 = ldv_zalloc(1UL);
   ldvarg11 = (u8 *)tmp___8;
-  tmp___9 = __VERIFIER_nondet_u32();
+  tmp___9 = __VERIFIER_nondet_uint();
   ldvarg12 = tmp___9;
   tmp___10 = ldv_zalloc(12UL);
   ldvarg16 = (struct ethtool_regs *)tmp___10;
@@ -14863,7 +14863,7 @@ int main(void)
   ldvarg17 = (u64 *)tmp___13;
   tmp___14 = __VERIFIER_nondet_int();
   ldvarg13 = tmp___14;
-  tmp___15 = __VERIFIER_nondet_u32();
+  tmp___15 = __VERIFIER_nondet_uint();
   ldvarg10 = tmp___15;
   tmp___16 = ldv_zalloc(196UL);
   ldvarg19 = (struct ethtool_drvinfo *)tmp___16;

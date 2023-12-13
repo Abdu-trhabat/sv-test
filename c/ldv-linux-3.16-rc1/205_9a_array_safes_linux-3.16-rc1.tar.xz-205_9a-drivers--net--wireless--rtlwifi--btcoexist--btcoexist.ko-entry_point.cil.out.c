@@ -13582,7 +13582,7 @@ void ldv_kfree_skb_29(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_30(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_33(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_consume_skb_27(struct sk_buff *ldv_func_arg1 ) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 __inline static void ldv_stop(void) 
 { 
 
@@ -13950,13 +13950,13 @@ int main(void)
   int tmp___6 ;
 
   {
-  tmp = __VERIFIER_nondet_u8();
+  tmp = __VERIFIER_nondet_uchar();
   ldvarg1 = tmp;
-  tmp___0 = __VERIFIER_nondet_u8();
+  tmp___0 = __VERIFIER_nondet_uchar();
   ldvarg3 = tmp___0;
-  tmp___1 = __VERIFIER_nondet_u8();
+  tmp___1 = __VERIFIER_nondet_uchar();
   ldvarg0 = tmp___1;
-  tmp___2 = __VERIFIER_nondet_u8();
+  tmp___2 = __VERIFIER_nondet_uchar();
   ldvarg5 = tmp___2;
   tmp___3 = ldv_zalloc(1UL);
   ldvarg2 = (u8 *)tmp___3;

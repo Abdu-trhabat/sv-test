@@ -24681,7 +24681,7 @@ extern void warn_slowpath_null(char const   * , int const    ) ;
 extern size_t strlcpy(char * , char const   * , size_t  ) ;
 __inline static void spin_lock(spinlock_t *lock ) ;
 __inline static void spin_unlock(spinlock_t *lock ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 void ldv_net_device_ops_3(void) ;
 struct sk_buff *ldv_skb_clone_526(struct sk_buff *ldv_func_arg1 , gfp_t flags ) ;
 struct sk_buff *ldv_skb_clone_534(struct sk_buff *ldv_func_arg1 , gfp_t flags ) ;
@@ -25229,7 +25229,7 @@ void ldv_main_exported_2(void)
   int tmp___2 ;
 
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg15 = tmp;
   tmp___0 = ldv_zalloc(196UL);
   ldvarg16 = (struct ethtool_drvinfo *)tmp___0;

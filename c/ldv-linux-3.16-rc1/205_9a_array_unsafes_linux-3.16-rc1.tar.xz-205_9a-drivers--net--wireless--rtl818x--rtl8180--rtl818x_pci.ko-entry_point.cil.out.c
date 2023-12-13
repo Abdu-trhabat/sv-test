@@ -7259,9 +7259,8 @@ extern void ldv_skb_free(struct sk_buff___0 * ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
 extern unsigned int __VERIFIER_nondet_uint(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -10338,11 +10337,11 @@ int main(void)
   ldvarg12 = (struct ieee80211_tx_control *)tmp___3;
   tmp___4 = ldv_zalloc(232UL);
   ldvarg16 = (struct ieee80211_bss_conf *)tmp___4;
-  tmp___5 = __VERIFIER_nondet_u32();
+  tmp___5 = __VERIFIER_nondet_uint();
   ldvarg15 = tmp___5;
-  tmp___6 = __VERIFIER_nondet_u32();
+  tmp___6 = __VERIFIER_nondet_uint();
   ldvarg21 = tmp___6;
-  tmp___7 = __VERIFIER_nondet_u16();
+  tmp___7 = __VERIFIER_nondet_ushort();
   ldvarg14 = tmp___7;
   tmp___8 = ldv_zalloc(10UL);
   ldvarg13 = (struct ieee80211_tx_queue_params *)tmp___8;
@@ -12133,7 +12132,7 @@ void ldv_kfree_skb_44(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_45(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_48(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_consume_skb_42(struct sk_buff *ldv_func_arg1 ) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 static u32 const   sa2400_chan[14U]  = 
   {      2412U,      526704U,      1050996U,      1575288U, 
         2432U,      526724U,      1051016U,      1575308U, 
@@ -12353,9 +12352,9 @@ void ldv_main_exported_6(void)
   {
   tmp = ldv_zalloc(56UL);
   ldvarg2 = (struct ieee80211_conf *)tmp;
-  tmp___0 = __VERIFIER_nondet_u8();
+  tmp___0 = __VERIFIER_nondet_uchar();
   ldvarg0 = tmp___0;
-  tmp___1 = __VERIFIER_nondet_u8();
+  tmp___1 = __VERIFIER_nondet_uchar();
   ldvarg1 = tmp___1;
   tmp___2 = __VERIFIER_nondet_int();
   switch (tmp___2) {
@@ -12682,9 +12681,9 @@ void ldv_main_exported_5(void)
   int tmp___2 ;
 
   {
-  tmp = __VERIFIER_nondet_u8();
+  tmp = __VERIFIER_nondet_uchar();
   ldvarg22 = tmp;
-  tmp___0 = __VERIFIER_nondet_u8();
+  tmp___0 = __VERIFIER_nondet_uchar();
   ldvarg23 = tmp___0;
   tmp___1 = ldv_zalloc(56UL);
   ldvarg24 = (struct ieee80211_conf *)tmp___1;
@@ -13044,11 +13043,11 @@ void ldv_main_exported_4(void)
   int tmp___2 ;
 
   {
-  tmp = __VERIFIER_nondet_u8();
+  tmp = __VERIFIER_nondet_uchar();
   ldvarg9 = tmp;
   tmp___0 = ldv_zalloc(56UL);
   ldvarg10 = (struct ieee80211_conf *)tmp___0;
-  tmp___1 = __VERIFIER_nondet_u8();
+  tmp___1 = __VERIFIER_nondet_uchar();
   ldvarg8 = tmp___1;
   tmp___2 = __VERIFIER_nondet_int();
   switch (tmp___2) {

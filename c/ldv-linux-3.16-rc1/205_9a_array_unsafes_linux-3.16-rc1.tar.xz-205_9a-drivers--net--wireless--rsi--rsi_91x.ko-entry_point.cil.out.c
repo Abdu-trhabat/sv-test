@@ -8085,10 +8085,9 @@ void ldv_kfree_skb_32(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_35(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_consume_skb_29(struct sk_buff *ldv_func_arg1 ) ;
 extern unsigned char *skb_pull(struct sk_buff * , unsigned int  ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
 extern unsigned int __VERIFIER_nondet_uint(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 __inline static void ether_addr_copy(u8 *dst , u8 const   *src ) 
 { 
 
@@ -9077,21 +9076,21 @@ void ldv_main_exported_1(void)
   ldvarg2 = (struct ieee80211_tx_queue_params *)tmp;
   tmp___0 = ldv_zalloc(2UL);
   ldvarg14 = (u16 *)tmp___0;
-  tmp___1 = __VERIFIER_nondet_u32();
+  tmp___1 = __VERIFIER_nondet_uint();
   ldvarg4 = tmp___1;
-  tmp___2 = __VERIFIER_nondet_u16();
+  tmp___2 = __VERIFIER_nondet_ushort();
   ldvarg17 = tmp___2;
   tmp___3 = ldv_zalloc(232UL);
   ldvarg6 = (struct ieee80211_bss_conf *)tmp___3;
-  tmp___4 = __VERIFIER_nondet_u8();
+  tmp___4 = __VERIFIER_nondet_uchar();
   ldvarg16 = tmp___4;
-  tmp___5 = __VERIFIER_nondet_u32();
+  tmp___5 = __VERIFIER_nondet_uint();
   ldvarg5 = tmp___5;
   tmp___6 = ldv_zalloc(232UL);
   ldvarg0 = (struct sk_buff *)tmp___6;
   tmp___7 = ldv_zalloc(4UL);
   ldvarg10 = (unsigned int *)tmp___7;
-  tmp___8 = __VERIFIER_nondet_u32();
+  tmp___8 = __VERIFIER_nondet_uint();
   ldvarg13 = tmp___8;
   tmp___9 = ldv_zalloc(8UL);
   ldvarg1 = (struct ieee80211_tx_control *)tmp___9;
@@ -9099,7 +9098,7 @@ void ldv_main_exported_1(void)
   ldvarg8 = (struct ieee80211_key_conf *)tmp___10;
   tmp___11 = ldv_zalloc(108UL);
   ldvarg12 = (struct cfg80211_bitrate_mask *)tmp___11;
-  tmp___12 = __VERIFIER_nondet_u16();
+  tmp___12 = __VERIFIER_nondet_ushort();
   ldvarg3 = tmp___12;
   tmp___13 = __VERIFIER_nondet_uint();
   ldvarg11 = tmp___13;

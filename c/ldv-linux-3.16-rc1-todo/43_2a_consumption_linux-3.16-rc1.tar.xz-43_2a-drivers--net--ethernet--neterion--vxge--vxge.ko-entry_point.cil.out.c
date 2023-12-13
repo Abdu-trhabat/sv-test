@@ -16541,7 +16541,7 @@ __inline static char const   *kobject_name(struct kobject  const  *kobj )
 }
 }
 __inline static void *kzalloc(size_t size , gfp_t flags ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static void ldv_stop(void) 
 { 
 
@@ -18962,7 +18962,7 @@ void ldv_main_exported_13(void)
   ldvarg21 = (u64 *)tmp___3;
   tmp___4 = ldv_zalloc(136UL);
   ldvarg23 = (struct ethtool_flash *)tmp___4;
-  tmp___5 = __VERIFIER_nondet_u32();
+  tmp___5 = __VERIFIER_nondet_uint();
   ldvarg20 = tmp___5;
   tmp___6 = ldv_zalloc(12UL);
   ldvarg18 = (struct ethtool_regs *)tmp___6;
@@ -19337,7 +19337,7 @@ __inline static void *ldv_kcalloc_166(size_t n , size_t size , gfp_t flags )
 }
 __inline static void *kcalloc(size_t n , size_t size , gfp_t flags ) ;
 __inline static void *kzalloc(size_t size , gfp_t flags ) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 int ldv_state_variable_8  ;
 struct timer_list *ldv_timer_list_5  ;
 struct __vxge_hw_device *vxge_callbacks_group0  ;
@@ -26962,13 +26962,13 @@ int main(void)
   ldvarg5 = tmp___2;
   tmp___3 = __VERIFIER_nondet_int();
   ldvarg8 = tmp___3;
-  tmp___4 = __VERIFIER_nondet_u16();
+  tmp___4 = __VERIFIER_nondet_ushort();
   ldvarg14 = tmp___4;
   tmp___5 = ldv_zalloc(184UL);
   ldvarg4 = (struct rtnl_link_stats64 *)tmp___5;
   tmp___6 = ldv_zalloc(40UL);
   ldvarg13 = (struct ifreq *)tmp___6;
-  tmp___7 = __VERIFIER_nondet_u16();
+  tmp___7 = __VERIFIER_nondet_ushort();
   ldvarg10 = tmp___7;
   ldv_initialize();
   memset((void *)(& ldvarg1), 0, 4UL);

@@ -23098,7 +23098,7 @@ extern void vfree(void const   * ) ;
 __inline static void *kmalloc(size_t size , gfp_t flags ) ;
 __inline static void *kzalloc(size_t size , gfp_t flags ) ;
 void ldv_check_alloc_nonatomic(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern void __const_udelay(unsigned long  ) ;
 extern int request_firmware(struct firmware  const  ** , char const   * , struct device * ) ;
 extern void release_firmware(struct firmware  const  * ) ;
@@ -26008,9 +26008,9 @@ void ldv_main_exported_2(void)
   int tmp___1 ;
 
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg99 = tmp;
-  tmp___0 = __VERIFIER_nondet_u32();
+  tmp___0 = __VERIFIER_nondet_uint();
   ldvarg100 = tmp___0;
   tmp___1 = __VERIFIER_nondet_int();
   switch (tmp___1) {

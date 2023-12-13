@@ -6419,7 +6419,7 @@ extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
 extern size_t __VERIFIER_nondet_size_t(void) ;
 extern loff_t __VERIFIER_nondet_loff_t(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
@@ -10955,7 +10955,7 @@ int main(void)
   ldvarg11 = (u8 *)tmp___6;
   tmp___7 = __VERIFIER_nondet_int();
   ldvarg7 = tmp___7;
-  tmp___8 = __VERIFIER_nondet_u32();
+  tmp___8 = __VERIFIER_nondet_uint();
   ldvarg10 = tmp___8;
   tmp___9 = ldv_zalloc(1UL);
   ldvarg12 = (u8 *)tmp___9;

@@ -51518,7 +51518,7 @@ int ldv_del_timer_47(struct timer_list *ldv_func_arg1 ) ;
 extern int sysfs_create_bin_file(struct kobject * , struct bin_attribute const * ) ;
 extern void sysfs_remove_bin_file(struct kobject * , struct bin_attribute const * ) ;
 extern size_t __VERIFIER_nondet_size_t(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 int reg_timer_10(struct timer_list *timer ) ;
 void activate_pending_timer_10(struct timer_list *timer , unsigned long data , int pending_flag ) ;
 void disable_suitable_timer_10(struct timer_list *timer ) ;
@@ -55097,7 +55097,7 @@ void ldv_main_exported_20(void)
   bool ldvarg111 ;
   int tmp___0 ;
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg112 = tmp;
   memset((void *)(& ldvarg110), 0, 1UL);
   memset((void *)(& ldvarg111), 0, 1UL);
@@ -56269,7 +56269,7 @@ void ldv_main_exported_19(void)
   u32 tmp ;
   int tmp___0 ;
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg262 = tmp;
   tmp___0 = __VERIFIER_nondet_int();
   switch (tmp___0) {

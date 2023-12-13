@@ -6913,7 +6913,7 @@ extern void ldv_skb_free(struct sk_buff___0 * ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -12215,13 +12215,13 @@ int main(void)
   ldvarg7 = (struct ethtool_drvinfo *)tmp___1;
   tmp___2 = ldv_zalloc(8UL);
   ldvarg4 = (u64 *)tmp___2;
-  tmp___3 = __VERIFIER_nondet_u32();
+  tmp___3 = __VERIFIER_nondet_uint();
   ldvarg3 = tmp___3;
   tmp___4 = ldv_zalloc(8UL);
   ldvarg5 = (struct ethtool_stats *)tmp___4;
   tmp___5 = ldv_zalloc(1UL);
   ldvarg2 = (u8 *)tmp___5;
-  tmp___6 = __VERIFIER_nondet_u32();
+  tmp___6 = __VERIFIER_nondet_uint();
   ldvarg6 = tmp___6;
   tmp___7 = __VERIFIER_nondet_int();
   ldvarg11 = tmp___7;

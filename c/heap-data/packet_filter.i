@@ -1,6 +1,6 @@
 extern unsigned __VERIFIER_nondet_uint();
 extern int __VERIFIER_nondet_int();
-extern char *__VERIFIER_nondet_charp();
+extern char *__VERIFIER_nondet_pchar();
 extern void abort(void);
 
 extern void __assert_fail (const char *__assertion, const char *__file,
@@ -583,7 +583,7 @@ Packet receive() {
     Packet packet;
     packet.size = __VERIFIER_nondet_uint();
     packet.prio = __VERIFIER_nondet_int() ? 0 : 1;
-    packet.payload = __VERIFIER_nondet_charp();
+    packet.payload = __VERIFIER_nondet_pchar();
     return packet;
 }
 void send(struct packet p) { (void)p; }

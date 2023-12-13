@@ -7666,7 +7666,7 @@ __inline static int kref_put(struct kref *kref , void (*release)(struct kref * )
 }
 extern void kfree(void const * ) ;
 __inline static void *kzalloc(size_t size , gfp_t flags ) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static void ldv_stop(void)
 {
@@ -8638,11 +8638,11 @@ void ldv_main_exported_52(void)
   {
   tmp = ldv_zalloc(2UL);
   ldvarg169 = (u16 *)tmp;
-  tmp___0 = __VERIFIER_nondet_u16();
+  tmp___0 = __VERIFIER_nondet_ushort();
   ldvarg166 = tmp___0;
   tmp___1 = __VERIFIER_nondet_int();
   ldvarg168 = tmp___1;
-  tmp___2 = __VERIFIER_nondet_u16();
+  tmp___2 = __VERIFIER_nondet_ushort();
   ldvarg165 = tmp___2;
   tmp___3 = ldv_zalloc(160UL);
   ldvarg163 = (struct drm_fb_helper *)tmp___3;
@@ -8654,7 +8654,7 @@ void ldv_main_exported_52(void)
   ldvarg172 = tmp___6;
   tmp___7 = ldv_zalloc(24UL);
   ldvarg164 = (struct drm_fb_helper_surface_size *)tmp___7;
-  tmp___8 = __VERIFIER_nondet_u16();
+  tmp___8 = __VERIFIER_nondet_ushort();
   ldvarg167 = tmp___8;
   tmp___9 = __VERIFIER_nondet_int();
   switch (tmp___9) {

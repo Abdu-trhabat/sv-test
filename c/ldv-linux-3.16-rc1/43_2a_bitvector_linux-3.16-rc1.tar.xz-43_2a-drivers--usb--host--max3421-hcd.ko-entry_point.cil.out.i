@@ -3921,7 +3921,7 @@ void ldv_check_alloc_flags(gfp_t flags ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -6216,19 +6216,19 @@ int main(void)
   {
   tmp = ldv_zalloc(1UL);
   ldvarg7 = (char *)tmp;
-  tmp___0 = __VERIFIER_nondet_u16();
+  tmp___0 = __VERIFIER_nondet_ushort();
   ldvarg3 = tmp___0;
-  tmp___1 = __VERIFIER_nondet_u16();
+  tmp___1 = __VERIFIER_nondet_ushort();
   ldvarg0 = tmp___1;
   tmp___2 = ldv_zalloc(72UL);
   ldvarg8 = (struct usb_host_endpoint *)tmp___2;
-  tmp___3 = __VERIFIER_nondet_u16();
+  tmp___3 = __VERIFIER_nondet_ushort();
   ldvarg1 = tmp___3;
   tmp___4 = ldv_zalloc(1UL);
   ldvarg4 = (char *)tmp___4;
   tmp___5 = __VERIFIER_nondet_int();
   ldvarg9 = tmp___5;
-  tmp___6 = __VERIFIER_nondet_u16();
+  tmp___6 = __VERIFIER_nondet_ushort();
   ldvarg2 = tmp___6;
   ldv_initialize();
   ldvarg5 = (gfp_t)__VERIFIER_nondet_int();

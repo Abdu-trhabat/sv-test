@@ -22031,7 +22031,7 @@ extern unsigned long volatile   jiffies ;
 extern unsigned long msecs_to_jiffies(unsigned int const    ) ;
 extern void *vmalloc(unsigned long  ) ;
 extern void vfree(void const   * ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern int request_firmware(struct firmware  const  ** , char const   * , struct device * ) ;
 extern void release_firmware(struct firmware  const  * ) ;
 extern int v4l2_ctrl_log_status(struct file * , void * ) ;
@@ -24923,9 +24923,9 @@ void ldv_main_exported_2(void)
   int tmp___1 ;
 
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg99 = tmp;
-  tmp___0 = __VERIFIER_nondet_u32();
+  tmp___0 = __VERIFIER_nondet_uint();
   ldvarg100 = tmp___0;
   tmp___1 = __VERIFIER_nondet_int();
   switch (tmp___1) {

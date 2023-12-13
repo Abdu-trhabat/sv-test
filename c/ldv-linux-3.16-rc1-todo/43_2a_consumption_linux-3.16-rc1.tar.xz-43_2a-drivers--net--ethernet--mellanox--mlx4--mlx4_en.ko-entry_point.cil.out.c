@@ -7508,7 +7508,7 @@ void ldv_check_alloc_flags(gfp_t flags ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -8186,7 +8186,7 @@ int main(void)
   {
   tmp = __VERIFIER_nondet_ulong();
   ldvarg24 = tmp;
-  tmp___0 = __VERIFIER_nondet_u8();
+  tmp___0 = __VERIFIER_nondet_uchar();
   ldvarg21 = tmp___0;
   tmp___1 = ldv_zalloc(1UL);
   ldvarg26 = tmp___1;
@@ -13516,7 +13516,7 @@ __inline static void ldv_spin_unlock_bh_144(spinlock_t *lock )
 }
 __inline static void spin_unlock_bh(spinlock_t *lock ) ;
 __inline static void *kzalloc(size_t size , gfp_t flags ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 struct sk_buff *ldv_skb_clone_162(struct sk_buff *ldv_func_arg1 , gfp_t flags ) ;
 struct sk_buff *ldv_skb_clone_170(struct sk_buff *ldv_func_arg1 , gfp_t flags ) ;
 struct sk_buff *ldv_skb_copy_164(struct sk_buff  const  *ldv_func_arg1 , gfp_t flags ) ;
@@ -15628,11 +15628,11 @@ void ldv_main_exported_6(void)
   ldvarg10 = (u32 *)tmp___1;
   tmp___2 = ldv_zalloc(4UL);
   ldvarg13 = (u32 *)tmp___2;
-  tmp___3 = __VERIFIER_nondet_u32();
+  tmp___3 = __VERIFIER_nondet_uint();
   ldvarg4 = tmp___3;
   tmp___4 = ldv_zalloc(196UL);
   ldvarg14 = (struct ethtool_drvinfo *)tmp___4;
-  tmp___5 = __VERIFIER_nondet_u32();
+  tmp___5 = __VERIFIER_nondet_uint();
   ldvarg1 = tmp___5;
   tmp___6 = ldv_zalloc(4UL);
   ldvarg8 = (u32 *)tmp___6;
@@ -17275,7 +17275,7 @@ extern void __bad_size_call_parameter(void) ;
 extern void kfree_call_rcu(struct callback_head * , void (*)(struct callback_head * ) ) ;
 __inline static void *kmalloc(size_t size , gfp_t flags ) ;
 __inline static void *kzalloc(size_t size , gfp_t flags ) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 void ldv_net_device_ops_5(void) ;
 void ldv_net_device_ops_4(void) ;
 extern void get_random_bytes(void * , int  ) ;
@@ -22561,13 +22561,13 @@ void ldv_main_exported_4(void)
   {
   tmp = __VERIFIER_nondet_int();
   ldvarg47 = tmp;
-  tmp___0 = __VERIFIER_nondet_u16();
+  tmp___0 = __VERIFIER_nondet_ushort();
   ldvarg34 = tmp___0;
-  tmp___1 = __VERIFIER_nondet_u16();
+  tmp___1 = __VERIFIER_nondet_ushort();
   ldvarg54 = tmp___1;
   tmp___2 = __VERIFIER_nondet_int();
   ldvarg48 = tmp___2;
-  tmp___3 = __VERIFIER_nondet_u32();
+  tmp___3 = __VERIFIER_nondet_uint();
   ldvarg33 = tmp___3;
   tmp___4 = __VERIFIER_nondet_int();
   ldvarg30 = tmp___4;
@@ -22589,17 +22589,17 @@ void ldv_main_exported_4(void)
   ldvarg50 = tmp___12;
   tmp___13 = ldv_zalloc(60UL);
   ldvarg49 = (struct ifla_vf_info *)tmp___13;
-  tmp___14 = __VERIFIER_nondet_u16();
+  tmp___14 = __VERIFIER_nondet_ushort();
   ldvarg42 = tmp___14;
   tmp___15 = __VERIFIER_nondet_int();
   ldvarg43 = tmp___15;
-  tmp___16 = __VERIFIER_nondet_u8();
+  tmp___16 = __VERIFIER_nondet_uchar();
   ldvarg41 = tmp___16;
-  tmp___17 = __VERIFIER_nondet_u8();
+  tmp___17 = __VERIFIER_nondet_uchar();
   ldvarg31 = tmp___17;
   tmp___18 = ldv_zalloc(1UL);
   ldvarg32 = tmp___18;
-  tmp___19 = __VERIFIER_nondet_u16();
+  tmp___19 = __VERIFIER_nondet_ushort();
   ldvarg51 = tmp___19;
   tmp___20 = ldv_zalloc(1UL);
   ldvarg39 = tmp___20;
@@ -23085,7 +23085,7 @@ void ldv_main_exported_5(void)
   int tmp___14 ;
 
   {
-  tmp = __VERIFIER_nondet_u16();
+  tmp = __VERIFIER_nondet_ushort();
   ldvarg75 = tmp;
   tmp___0 = ldv_zalloc(33UL);
   ldvarg74 = (struct netdev_phys_port_id *)tmp___0;
@@ -23097,15 +23097,15 @@ void ldv_main_exported_5(void)
   ldvarg70 = (struct napi_struct *)tmp___3;
   tmp___4 = ldv_zalloc(1UL);
   ldvarg66 = tmp___4;
-  tmp___5 = __VERIFIER_nondet_u32();
+  tmp___5 = __VERIFIER_nondet_uint();
   ldvarg58 = tmp___5;
   tmp___6 = ldv_zalloc(1UL);
   ldvarg57 = tmp___6;
-  tmp___7 = __VERIFIER_nondet_u8();
+  tmp___7 = __VERIFIER_nondet_uchar();
   ldvarg56 = tmp___7;
-  tmp___8 = __VERIFIER_nondet_u16();
+  tmp___8 = __VERIFIER_nondet_ushort();
   ldvarg72 = tmp___8;
-  tmp___9 = __VERIFIER_nondet_u16();
+  tmp___9 = __VERIFIER_nondet_ushort();
   ldvarg59 = tmp___9;
   tmp___10 = ldv_zalloc(232UL);
   ldvarg71 = (struct sk_buff *)tmp___10;
@@ -24995,7 +24995,7 @@ void ldv_main_exported_1(void)
   int tmp___0 ;
 
   {
-  tmp = __VERIFIER_nondet_u8();
+  tmp = __VERIFIER_nondet_uchar();
   ldvarg28 = tmp;
   tmp___0 = __VERIFIER_nondet_int();
   switch (tmp___0) {
@@ -25045,7 +25045,7 @@ void ldv_main_exported_2(void)
   int tmp___0 ;
 
   {
-  tmp = __VERIFIER_nondet_u8();
+  tmp = __VERIFIER_nondet_uchar();
   ldvarg27 = tmp;
   tmp___0 = __VERIFIER_nondet_int();
   switch (tmp___0) {

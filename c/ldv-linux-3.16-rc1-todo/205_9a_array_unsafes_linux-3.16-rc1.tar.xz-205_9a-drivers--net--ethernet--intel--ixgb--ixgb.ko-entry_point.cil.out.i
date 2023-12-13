@@ -7008,7 +7008,7 @@ extern void ldv_skb_free(struct sk_buff___0 * ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -10300,11 +10300,11 @@ int main(void)
   {
   tmp = ldv_zalloc(232UL);
   ldvarg3 = (struct sk_buff *)tmp;
-  tmp___0 = __VERIFIER_nondet_u16();
+  tmp___0 = __VERIFIER_nondet_ushort();
   ldvarg6 = tmp___0;
   tmp___1 = ldv_zalloc(1UL);
   ldvarg1 = tmp___1;
-  tmp___2 = __VERIFIER_nondet_u16();
+  tmp___2 = __VERIFIER_nondet_ushort();
   ldvarg8 = tmp___2;
   tmp___3 = __VERIFIER_nondet_int();
   ldvarg4 = tmp___3;
@@ -13063,7 +13063,7 @@ void ldv_kfree_skb_79(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_80(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_81(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_consume_skb_67(struct sk_buff *ldv_func_arg1 ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static void ethtool_cmd_speed_set(struct ethtool_cmd *ep , __u32 speed )
 {
   {
@@ -14189,13 +14189,13 @@ void ldv_main_exported_3(void)
   ldvarg13 = (u8 *)tmp___1;
   tmp___2 = ldv_zalloc(1UL);
   ldvarg17 = tmp___2;
-  tmp___3 = __VERIFIER_nondet_u32();
+  tmp___3 = __VERIFIER_nondet_uint();
   ldvarg14 = tmp___3;
   tmp___4 = ldv_zalloc(196UL);
   ldvarg21 = (struct ethtool_drvinfo *)tmp___4;
   tmp___5 = __VERIFIER_nondet_int();
   ldvarg15 = tmp___5;
-  tmp___6 = __VERIFIER_nondet_u32();
+  tmp___6 = __VERIFIER_nondet_uint();
   ldvarg12 = tmp___6;
   tmp___7 = ldv_zalloc(8UL);
   ldvarg20 = (struct ethtool_stats *)tmp___7;

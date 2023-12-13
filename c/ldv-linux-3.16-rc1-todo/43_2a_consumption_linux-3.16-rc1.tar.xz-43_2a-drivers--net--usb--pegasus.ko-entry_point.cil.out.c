@@ -5596,7 +5596,7 @@ void ldv_check_alloc_flags(gfp_t flags ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -8500,7 +8500,7 @@ int main(void)
   ldvarg1 = (struct usb_device_id *)tmp;
   tmp___0 = ldv_zalloc(196UL);
   ldvarg3 = (struct ethtool_drvinfo *)tmp___0;
-  tmp___1 = __VERIFIER_nondet_u32();
+  tmp___1 = __VERIFIER_nondet_uint();
   ldvarg2 = tmp___1;
   tmp___2 = ldv_zalloc(40UL);
   ldvarg8 = (struct ifreq *)tmp___2;

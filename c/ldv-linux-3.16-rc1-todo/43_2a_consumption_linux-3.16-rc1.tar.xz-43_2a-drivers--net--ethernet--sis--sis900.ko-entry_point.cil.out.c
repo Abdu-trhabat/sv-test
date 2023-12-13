@@ -5550,7 +5550,7 @@ void ldv_check_alloc_flags(gfp_t flags ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -9326,7 +9326,7 @@ int main(void)
   {
   tmp = ldv_zalloc(196UL);
   ldvarg1 = (struct ethtool_drvinfo *)tmp;
-  tmp___0 = __VERIFIER_nondet_u32();
+  tmp___0 = __VERIFIER_nondet_uint();
   ldvarg0 = tmp___0;
   tmp___1 = ldv_zalloc(32UL);
   ldvarg3 = (struct pci_device_id *)tmp___1;

@@ -5823,8 +5823,8 @@ extern void ldv_skb_free(struct sk_buff___0 * ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -10002,9 +10002,9 @@ int main(void)
   ldvarg2 = tmp___1;
   tmp___2 = __VERIFIER_nondet_int();
   ldvarg8 = tmp___2;
-  tmp___3 = __VERIFIER_nondet_u32();
+  tmp___3 = __VERIFIER_nondet_uint();
   ldvarg7 = tmp___3;
-  tmp___4 = __VERIFIER_nondet_u32();
+  tmp___4 = __VERIFIER_nondet_uint();
   ldvarg4 = tmp___4;
   tmp___5 = ldv_zalloc(1UL);
   ldvarg3 = (u8 *)tmp___5;
@@ -10014,9 +10014,9 @@ int main(void)
   ldvarg6 = (struct ethtool_stats *)tmp___7;
   tmp___8 = __VERIFIER_nondet_int();
   ldvarg11 = tmp___8;
-  tmp___9 = __VERIFIER_nondet_u16();
+  tmp___9 = __VERIFIER_nondet_ushort();
   ldvarg12 = tmp___9;
-  tmp___10 = __VERIFIER_nondet_u16();
+  tmp___10 = __VERIFIER_nondet_ushort();
   ldvarg16 = tmp___10;
   tmp___11 = ldv_zalloc(40UL);
   ldvarg15 = (struct ifreq *)tmp___11;

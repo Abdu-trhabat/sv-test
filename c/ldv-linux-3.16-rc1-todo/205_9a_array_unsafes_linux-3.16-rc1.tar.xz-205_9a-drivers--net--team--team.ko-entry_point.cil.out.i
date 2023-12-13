@@ -6181,7 +6181,7 @@ extern void ldv_skb_free(struct sk_buff___0 * ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -12042,7 +12042,7 @@ int main(void)
   int tmp___18 ;
   int tmp___19 ;
   {
-  tmp = __VERIFIER_nondet_u16();
+  tmp = __VERIFIER_nondet_ushort();
   ldvarg11 = tmp;
   tmp___0 = ldv_zalloc(448UL);
   ldvarg7 = (struct netpoll_info *)tmp___0;
@@ -12058,7 +12058,7 @@ int main(void)
   ldvarg1 = tmp___5;
   tmp___6 = __VERIFIER_nondet_int();
   ldvarg8 = tmp___6;
-  tmp___7 = __VERIFIER_nondet_u16();
+  tmp___7 = __VERIFIER_nondet_ushort();
   ldvarg13 = tmp___7;
   tmp___8 = ldv_zalloc(232UL);
   ldvarg10 = (struct sk_buff *)tmp___8;

@@ -6169,7 +6169,6 @@ extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
 extern size_t __VERIFIER_nondet_size_t(void) ;
 extern loff_t __VERIFIER_nondet_loff_t(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
 extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
@@ -12569,7 +12568,7 @@ int main(void)
   ldvarg1 = (char *)tmp;
   tmp___0 = ldv_zalloc(120UL);
   ldvarg0 = (struct device_driver *)tmp___0;
-  tmp___1 = __VERIFIER_nondet_u32();
+  tmp___1 = __VERIFIER_nondet_uint();
   ldvarg7 = tmp___1;
   tmp___2 = ldv_zalloc(456UL);
   ldvarg4 = (struct scsi_cmnd *)tmp___2;
@@ -12619,7 +12618,7 @@ int main(void)
   ldvarg25 = (struct scsi_cmnd *)tmp___24;
   tmp___25 = __VERIFIER_nondet_int();
   ldvarg23 = tmp___25;
-  tmp___26 = __VERIFIER_nondet_u32();
+  tmp___26 = __VERIFIER_nondet_uint();
   ldvarg28 = tmp___26;
   tmp___27 = ldv_zalloc(456UL);
   ldvarg39 = (struct scsi_cmnd *)tmp___27;
@@ -12627,7 +12626,7 @@ int main(void)
   ldvarg37 = tmp___28;
   tmp___29 = __VERIFIER_nondet_ulong();
   ldvarg41 = tmp___29;
-  tmp___30 = __VERIFIER_nondet_u32();
+  tmp___30 = __VERIFIER_nondet_uint();
   ldvarg42 = tmp___30;
   tmp___31 = ldv_zalloc(80UL);
   ldvarg40 = (struct megasas_cmd *)tmp___31;
@@ -12643,7 +12642,7 @@ int main(void)
   ldvarg48 = tmp___36;
   tmp___37 = ldv_zalloc(80UL);
   ldvarg51 = (struct megasas_cmd *)tmp___37;
-  tmp___38 = __VERIFIER_nondet_u32();
+  tmp___38 = __VERIFIER_nondet_uint();
   ldvarg53 = tmp___38;
   tmp___39 = __VERIFIER_nondet_ulong();
   ldvarg52 = tmp___39;
@@ -16406,7 +16405,7 @@ void ldv_main_exported_2(void)
   ldvarg31 = tmp___2;
   tmp___3 = ldv_zalloc(456UL);
   ldvarg32 = (struct scsi_cmnd *)tmp___3;
-  tmp___4 = __VERIFIER_nondet_u32();
+  tmp___4 = __VERIFIER_nondet_uint();
   ldvarg35 = tmp___4;
   memset((void *)(& ldvarg36), 0, 8UL);
   tmp___5 = __VERIFIER_nondet_int();

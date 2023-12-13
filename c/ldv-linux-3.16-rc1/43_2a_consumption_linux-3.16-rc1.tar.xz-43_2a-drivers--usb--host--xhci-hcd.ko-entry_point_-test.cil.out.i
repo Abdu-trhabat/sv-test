@@ -24977,7 +24977,7 @@ __inline static char const *kobject_name(struct kobject const *kobj )
   return ((char const *)kobj->name);
 }
 }
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static char const *dev_name(struct device const *dev )
 {
@@ -25500,7 +25500,7 @@ void ldv_main_exported_11(void)
   unsigned int tmp___11 ;
   int tmp___12 ;
   {
-  tmp = __VERIFIER_nondet_u16();
+  tmp = __VERIFIER_nondet_ushort();
   ldvarg14 = tmp;
   tmp___0 = __VERIFIER_nondet_uint();
   ldvarg17 = tmp___0;
@@ -25508,13 +25508,13 @@ void ldv_main_exported_11(void)
   ldvarg15 = (char *)tmp___1;
   tmp___2 = __VERIFIER_nondet_int();
   ldvarg10 = tmp___2;
-  tmp___3 = __VERIFIER_nondet_u16();
+  tmp___3 = __VERIFIER_nondet_ushort();
   ldvarg13 = tmp___3;
   tmp___4 = __VERIFIER_nondet_int();
   ldvarg1 = tmp___4;
   tmp___5 = __VERIFIER_nondet_int();
   ldvarg8 = tmp___5;
-  tmp___6 = __VERIFIER_nondet_u16();
+  tmp___6 = __VERIFIER_nondet_ushort();
   ldvarg12 = tmp___6;
   tmp___7 = __VERIFIER_nondet_uint();
   ldvarg3 = tmp___7;
@@ -25522,7 +25522,7 @@ void ldv_main_exported_11(void)
   ldvarg7 = (char *)tmp___8;
   tmp___9 = ldv_zalloc(192UL);
   ldvarg20 = (struct usb_tt *)tmp___9;
-  tmp___10 = __VERIFIER_nondet_u16();
+  tmp___10 = __VERIFIER_nondet_ushort();
   ldvarg11 = tmp___10;
   tmp___11 = __VERIFIER_nondet_uint();
   ldvarg18 = tmp___11;
@@ -26864,15 +26864,15 @@ void ldv_main_exported_9(void)
   gfp_t ldvarg39 ;
   int tmp___10 ;
   {
-  tmp = __VERIFIER_nondet_u16();
+  tmp = __VERIFIER_nondet_ushort();
   ldvarg34 = tmp;
   tmp___0 = __VERIFIER_nondet_uint();
   ldvarg40 = tmp___0;
-  tmp___1 = __VERIFIER_nondet_u16();
+  tmp___1 = __VERIFIER_nondet_ushort();
   ldvarg36 = tmp___1;
   tmp___2 = __VERIFIER_nondet_uint();
   ldvarg29 = tmp___2;
-  tmp___3 = __VERIFIER_nondet_u16();
+  tmp___3 = __VERIFIER_nondet_ushort();
   ldvarg37 = tmp___3;
   tmp___4 = __VERIFIER_nondet_int();
   ldvarg33 = tmp___4;
@@ -26884,7 +26884,7 @@ void ldv_main_exported_9(void)
   ldvarg41 = tmp___7;
   tmp___8 = ldv_zalloc(1UL);
   ldvarg31 = (char *)tmp___8;
-  tmp___9 = __VERIFIER_nondet_u16();
+  tmp___9 = __VERIFIER_nondet_ushort();
   ldvarg35 = tmp___9;
   memset((void *)(& ldvarg30), 0, 4UL);
   memset((void *)(& ldvarg42), 0, 4UL);

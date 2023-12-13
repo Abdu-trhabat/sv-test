@@ -21000,7 +21000,7 @@ void ldv_kfree_skb_56(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_59(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_61(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_consume_skb_53(struct sk_buff *ldv_func_arg1 ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static char const   *pci_name(struct pci_dev  const  *pdev ) 
 { 
   char const   *tmp ;
@@ -22279,7 +22279,7 @@ void ldv_main_exported_1(void)
   ldvarg42 = (struct ethtool_drvinfo *)tmp___6;
   tmp___7 = ldv_zalloc(8UL);
   ldvarg41 = (struct ethtool_stats *)tmp___7;
-  tmp___8 = __VERIFIER_nondet_u32();
+  tmp___8 = __VERIFIER_nondet_uint();
   ldvarg31 = tmp___8;
   tmp___9 = ldv_zalloc(1UL);
   ldvarg32 = (u8 *)tmp___9;

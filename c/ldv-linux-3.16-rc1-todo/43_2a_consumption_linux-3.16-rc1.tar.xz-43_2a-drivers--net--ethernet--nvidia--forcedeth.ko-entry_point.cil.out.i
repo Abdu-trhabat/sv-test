@@ -5913,7 +5913,7 @@ void ldv_check_alloc_flags(gfp_t flags ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -15213,7 +15213,7 @@ int main(void)
   ldvarg15 = (u64 *)tmp___12;
   tmp___13 = ldv_zalloc(8UL);
   ldvarg21 = (u64 *)tmp___13;
-  tmp___14 = __VERIFIER_nondet_u32();
+  tmp___14 = __VERIFIER_nondet_uint();
   ldvarg14 = tmp___14;
   tmp___15 = ldv_zalloc(44UL);
   ldvarg17 = (struct ethtool_ts_info *)tmp___15;

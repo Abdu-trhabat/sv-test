@@ -6319,10 +6319,9 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
 extern unsigned int __VERIFIER_nondet_uint(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -9731,7 +9730,7 @@ void ldv_main_exported_47(void)
   int tmp___15 ;
 
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg253 = tmp;
   tmp___0 = ldv_zalloc(24UL);
   ldvarg239 = (struct netdev_hw_addr_list *)tmp___0;
@@ -9747,21 +9746,21 @@ void ldv_main_exported_47(void)
   ldvarg235 = tmp___5;
   tmp___6 = ldv_zalloc(8UL);
   ldvarg245 = (struct ieee80211_tx_queue_params *)tmp___6;
-  tmp___7 = __VERIFIER_nondet_u16();
+  tmp___7 = __VERIFIER_nondet_ushort();
   ldvarg243 = tmp___7;
-  tmp___8 = __VERIFIER_nondet_u32();
+  tmp___8 = __VERIFIER_nondet_uint();
   ldvarg248 = tmp___8;
   tmp___9 = ldv_zalloc(16UL);
   ldvarg233 = (struct ieee80211_low_level_stats *)tmp___9;
   tmp___10 = __VERIFIER_nondet_uint();
   ldvarg238 = tmp___10;
-  tmp___11 = __VERIFIER_nondet_u16();
+  tmp___11 = __VERIFIER_nondet_ushort();
   ldvarg246 = tmp___11;
   tmp___12 = ldv_zalloc(2UL);
   ldvarg240 = (u16 *)tmp___12;
   tmp___13 = ldv_zalloc(4UL);
   ldvarg237 = (unsigned int *)tmp___13;
-  tmp___14 = __VERIFIER_nondet_u8();
+  tmp___14 = __VERIFIER_nondet_uchar();
   ldvarg242 = tmp___14;
   memset((void *)(& ldvarg250), 0, 1UL);
   memset((void *)(& ldvarg251), 0, 4UL);

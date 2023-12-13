@@ -35121,8 +35121,8 @@ __inline static void spin_lock_bh(spinlock_t *lock ) ;
 __inline static void spin_unlock_bh(spinlock_t *lock ) ;
 extern void *__alloc_percpu(size_t  , size_t  ) ;
 __inline static void *kzalloc(size_t size , gfp_t flags ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 struct sk_buff *ldv_skb_clone_742(struct sk_buff *ldv_func_arg1 , gfp_t flags ) ;
 struct sk_buff *ldv_skb_clone_750(struct sk_buff *ldv_func_arg1 , gfp_t flags ) ;
 struct sk_buff *ldv_skb_copy_744(struct sk_buff  const  *ldv_func_arg1 , gfp_t flags ) ;
@@ -36660,7 +36660,7 @@ void ldv_main_exported_21(void)
   ldvarg13 = (struct ethtool_stats *)tmp___0;
   tmp___1 = ldv_zalloc(44UL);
   ldvarg17 = (struct ethtool_cmd *)tmp___1;
-  tmp___2 = __VERIFIER_nondet_u32();
+  tmp___2 = __VERIFIER_nondet_uint();
   ldvarg14 = tmp___2;
   tmp___3 = ldv_zalloc(196UL);
   ldvarg15 = (struct ethtool_drvinfo *)tmp___3;
@@ -36668,7 +36668,7 @@ void ldv_main_exported_21(void)
   ldvarg16 = tmp___4;
   tmp___5 = ldv_zalloc(8UL);
   ldvarg12 = (u64 *)tmp___5;
-  tmp___6 = __VERIFIER_nondet_u32();
+  tmp___6 = __VERIFIER_nondet_uint();
   ldvarg11 = tmp___6;
   tmp___7 = __VERIFIER_nondet_int();
   switch (tmp___7) {
@@ -36833,9 +36833,9 @@ void ldv_main_exported_20(void)
   {
   tmp = ldv_zalloc(232UL);
   ldvarg62 = (struct sk_buff *)tmp;
-  tmp___0 = __VERIFIER_nondet_u16();
+  tmp___0 = __VERIFIER_nondet_ushort();
   ldvarg64 = tmp___0;
-  tmp___1 = __VERIFIER_nondet_u16();
+  tmp___1 = __VERIFIER_nondet_ushort();
   ldvarg66 = tmp___1;
   tmp___2 = ldv_zalloc(1UL);
   ldvarg61 = tmp___2;

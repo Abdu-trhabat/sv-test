@@ -7034,7 +7034,7 @@ void ldv_check_alloc_nonatomic(void) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -15431,11 +15431,11 @@ int main(void)
   ldvarg1 = (struct pci_device_id *)tmp;
   tmp___0 = ldv_zalloc(232UL);
   ldvarg18 = (struct sk_buff *)tmp___0;
-  tmp___1 = __VERIFIER_nondet_u16();
+  tmp___1 = __VERIFIER_nondet_ushort();
   ldvarg23 = tmp___1;
   tmp___2 = ldv_zalloc(1UL);
   ldvarg16 = tmp___2;
-  tmp___3 = __VERIFIER_nondet_u16();
+  tmp___3 = __VERIFIER_nondet_ushort();
   ldvarg21 = tmp___3;
   tmp___4 = __VERIFIER_nondet_int();
   ldvarg19 = tmp___4;
@@ -19602,7 +19602,7 @@ __inline static char const   *kobject_name(struct kobject  const  *kobj )
   return ((char const   *)kobj->name);
 }
 }
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static char const   *dev_name(struct device  const  *dev ) 
 { 
   char const   *tmp ;
@@ -20639,13 +20639,13 @@ void ldv_main_exported_2(void)
   ldvarg14 = (struct ethtool_drvinfo *)tmp___3;
   tmp___4 = __VERIFIER_nondet_int();
   ldvarg8 = tmp___4;
-  tmp___5 = __VERIFIER_nondet_u32();
+  tmp___5 = __VERIFIER_nondet_uint();
   ldvarg6 = tmp___5;
   tmp___6 = ldv_zalloc(16UL);
   ldvarg5 = (struct ethtool_test *)tmp___6;
   tmp___7 = ldv_zalloc(8UL);
   ldvarg12 = (u64 *)tmp___7;
-  tmp___8 = __VERIFIER_nondet_u32();
+  tmp___8 = __VERIFIER_nondet_uint();
   ldvarg3 = tmp___8;
   tmp___9 = ldv_zalloc(44UL);
   ldvarg7 = (struct ethtool_cmd *)tmp___9;

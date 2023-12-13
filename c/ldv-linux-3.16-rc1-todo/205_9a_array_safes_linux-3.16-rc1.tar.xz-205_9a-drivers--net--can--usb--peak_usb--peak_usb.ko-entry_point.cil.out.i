@@ -7543,7 +7543,7 @@ __inline static struct skb_shared_hwtstamps *skb_hwtstamps(struct sk_buff *skb )
 }
 }
 extern int ldv_skb_free_int(struct sk_buff___0 * ) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 void activate_pending_timer_1(struct timer_list *timer , unsigned long data , int pending_flag ) ;
 void choose_timer_1(struct timer_list *timer ) ;
 int reg_timer_1(struct timer_list *timer ) ;
@@ -8500,7 +8500,7 @@ void ldv_main_exported_3(void)
   ldvarg4 = (struct sk_buff *)tmp___0;
   tmp___1 = ldv_zalloc(1560UL);
   ldvarg8 = (struct usb_interface *)tmp___1;
-  tmp___2 = __VERIFIER_nondet_u8();
+  tmp___2 = __VERIFIER_nondet_uchar();
   ldvarg1 = tmp___2;
   tmp___3 = ldv_zalloc(4UL);
   ldvarg6 = (u32 *)tmp___3;
@@ -9683,7 +9683,7 @@ void ldv_main_exported_2(void)
   void *tmp___6 ;
   int tmp___7 ;
   {
-  tmp = __VERIFIER_nondet_u8();
+  tmp = __VERIFIER_nondet_uchar();
   ldvarg9 = tmp;
   tmp___0 = ldv_zalloc(8UL);
   ldvarg10 = (size_t *)tmp___0;

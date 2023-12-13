@@ -7410,8 +7410,8 @@ extern void ldv_skb_free(struct sk_buff___0 * ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -10962,11 +10962,11 @@ int main(void)
   ldvarg0 = (struct pci_device_id *)tmp;
   tmp___0 = ldv_zalloc(4UL);
   ldvarg1 = (struct mwifiex_tx_param *)tmp___0;
-  tmp___1 = __VERIFIER_nondet_u32();
+  tmp___1 = __VERIFIER_nondet_uint();
   ldvarg4 = tmp___1;
   tmp___2 = ldv_zalloc(32UL);
   ldvarg3 = (struct mwifiex_fw_image *)tmp___2;
-  tmp___3 = __VERIFIER_nondet_u8();
+  tmp___3 = __VERIFIER_nondet_uchar();
   ldvarg2 = tmp___3;
   ldv_initialize();
   ldv_state_variable_4 = 0;

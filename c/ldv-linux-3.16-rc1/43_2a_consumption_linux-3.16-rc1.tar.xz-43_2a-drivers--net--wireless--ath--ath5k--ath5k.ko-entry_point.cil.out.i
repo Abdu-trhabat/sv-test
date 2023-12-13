@@ -22173,7 +22173,7 @@ __inline static char const *kobject_name(struct kobject const *kobj )
 }
 }
 __inline static void *kcalloc(size_t n , size_t size , gfp_t flags ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static void ldv_stop(void)
 {
   {
@@ -26921,13 +26921,13 @@ void ldv_main_exported_25(void)
   {
   tmp = ldv_zalloc(1UL);
   ldvarg47 = tmp;
-  tmp___0 = __VERIFIER_nondet_u32();
+  tmp___0 = __VERIFIER_nondet_uint();
   ldvarg50 = tmp___0;
   tmp___1 = ldv_zalloc(1UL);
   ldvarg49 = tmp___1;
-  tmp___2 = __VERIFIER_nondet_u32();
+  tmp___2 = __VERIFIER_nondet_uint();
   ldvarg51 = tmp___2;
-  tmp___3 = __VERIFIER_nondet_u32();
+  tmp___3 = __VERIFIER_nondet_uint();
   ldvarg48 = tmp___3;
   tmp___4 = __VERIFIER_nondet_int();
   switch (tmp___4) {
@@ -29489,8 +29489,8 @@ struct sk_buff *ldv_skb_clone_668(struct sk_buff *ldv_func_arg1 , gfp_t flags )
 }
 __inline static void spin_lock_bh(spinlock_t *lock ) ;
 __inline static void spin_unlock_bh(spinlock_t *lock ) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 extern unsigned int __VERIFIER_nondet_uint(void) ;
 int ldv_state_variable_15 ;
 struct ieee80211_vif *ath5k_hw_ops_group0 ;
@@ -30395,13 +30395,13 @@ void ldv_main_exported_15(void)
   u32 tmp___24 ;
   int tmp___25 ;
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg82 = tmp;
   tmp___0 = ldv_zalloc(12UL);
   ldvarg107 = (struct ieee80211_key_conf *)tmp___0;
   tmp___1 = ldv_zalloc(24UL);
   ldvarg89 = (struct netdev_hw_addr_list *)tmp___1;
-  tmp___2 = __VERIFIER_nondet_u8();
+  tmp___2 = __VERIFIER_nondet_uchar();
   ldvarg108 = tmp___2;
   tmp___3 = ldv_zalloc(10UL);
   ldvarg93 = (struct ieee80211_tx_queue_params *)tmp___3;
@@ -30415,13 +30415,13 @@ void ldv_main_exported_15(void)
   ldvarg85 = tmp___7;
   tmp___8 = ldv_zalloc(4UL);
   ldvarg95 = (u32 *)tmp___8;
-  tmp___9 = __VERIFIER_nondet_u32();
+  tmp___9 = __VERIFIER_nondet_uint();
   ldvarg81 = tmp___9;
   tmp___10 = ldv_zalloc(16UL);
   ldvarg83 = (struct ieee80211_low_level_stats *)tmp___10;
   tmp___11 = ldv_zalloc(4UL);
   ldvarg99 = (u32 *)tmp___11;
-  tmp___12 = __VERIFIER_nondet_u32();
+  tmp___12 = __VERIFIER_nondet_uint();
   ldvarg103 = tmp___12;
   tmp___13 = ldv_zalloc(4UL);
   ldvarg96 = (u32 *)tmp___13;
@@ -30431,7 +30431,7 @@ void ldv_main_exported_15(void)
   ldvarg102 = (struct ieee80211_bss_conf *)tmp___15;
   tmp___16 = ldv_zalloc(4UL);
   ldvarg98 = (u32 *)tmp___16;
-  tmp___17 = __VERIFIER_nondet_u32();
+  tmp___17 = __VERIFIER_nondet_uint();
   ldvarg109 = tmp___17;
   tmp___18 = ldv_zalloc(4UL);
   ldvarg100 = (u32 *)tmp___18;
@@ -30439,13 +30439,13 @@ void ldv_main_exported_15(void)
   ldvarg87 = (unsigned int *)tmp___19;
   tmp___20 = ldv_zalloc(8UL);
   ldvarg91 = (struct ieee80211_tx_control *)tmp___20;
-  tmp___21 = __VERIFIER_nondet_u16();
+  tmp___21 = __VERIFIER_nondet_ushort();
   ldvarg94 = tmp___21;
-  tmp___22 = __VERIFIER_nondet_u32();
+  tmp___22 = __VERIFIER_nondet_uint();
   ldvarg101 = tmp___22;
   tmp___23 = ldv_zalloc(56UL);
   ldvarg84 = (struct survey_info *)tmp___23;
-  tmp___24 = __VERIFIER_nondet_u32();
+  tmp___24 = __VERIFIER_nondet_uint();
   ldvarg104 = tmp___24;
   memset((void *)(& ldvarg92), 0, 8UL);
   memset((void *)(& ldvarg86), 0, 8UL);
@@ -33853,7 +33853,7 @@ int main(void)
   {
   tmp = ldv_zalloc(32UL);
   ldvarg21 = (struct pci_device_id *)tmp;
-  tmp___0 = __VERIFIER_nondet_u32();
+  tmp___0 = __VERIFIER_nondet_uint();
   ldvarg116 = tmp___0;
   tmp___1 = ldv_zalloc(30992UL);
   ldvarg113 = (struct ath5k_hw *)tmp___1;

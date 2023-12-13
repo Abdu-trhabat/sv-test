@@ -5829,7 +5829,7 @@ extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
 extern size_t __VERIFIER_nondet_size_t(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -8984,7 +8984,7 @@ int main(void)
   ldvarg45 = tmp___40;
   tmp___41 = ldv_zalloc(192UL);
   ldvarg44 = (struct urb *)tmp___41;
-  tmp___42 = __VERIFIER_nondet_u32();
+  tmp___42 = __VERIFIER_nondet_uint();
   ldvarg48 = tmp___42;
   tmp___43 = __VERIFIER_nondet_int();
   ldvarg54 = tmp___43;
@@ -8992,7 +8992,7 @@ int main(void)
   ldvarg51 = (struct ethtool_ts_info *)tmp___44;
   tmp___45 = ldv_zalloc(196UL);
   ldvarg53 = (struct ethtool_drvinfo *)tmp___45;
-  tmp___46 = __VERIFIER_nondet_u32();
+  tmp___46 = __VERIFIER_nondet_uint();
   ldvarg52 = tmp___46;
   tmp___47 = ldv_zalloc(8UL);
   ldvarg49 = (u64 *)tmp___47;

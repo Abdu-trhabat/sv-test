@@ -3690,7 +3690,7 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -7888,7 +7888,7 @@ int main(void)
   int tmp___18 ;
   int tmp___19 ;
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg1 = tmp;
   tmp___0 = ldv_zalloc(8UL);
   ldvarg4 = (u64 *)tmp___0;
@@ -7898,7 +7898,7 @@ int main(void)
   ldvarg0 = (u8 *)tmp___2;
   tmp___3 = ldv_zalloc(8UL);
   ldvarg5 = (struct ethtool_stats *)tmp___3;
-  tmp___4 = __VERIFIER_nondet_u32();
+  tmp___4 = __VERIFIER_nondet_uint();
   ldvarg2 = tmp___4;
   tmp___5 = ldv_zalloc(196UL);
   ldvarg6 = (struct ethtool_drvinfo *)tmp___5;

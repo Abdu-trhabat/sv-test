@@ -6927,7 +6927,7 @@ void ldv_check_alloc_flags(gfp_t flags ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 void *ldv_malloc(size_t size ) 
 { 
@@ -12877,7 +12877,7 @@ int main(void)
   ldvarg3 = tmp___0;
   tmp___1 = ldv_zalloc(184UL);
   ldvarg0 = (struct rtnl_link_stats64 *)tmp___1;
-  tmp___2 = __VERIFIER_nondet_u16();
+  tmp___2 = __VERIFIER_nondet_ushort();
   ldvarg12 = tmp___2;
   tmp___3 = __VERIFIER_nondet_int();
   ldvarg5 = tmp___3;
@@ -12889,17 +12889,17 @@ int main(void)
   ldvarg1 = (u8 *)tmp___6;
   tmp___7 = ldv_zalloc(232UL);
   ldvarg4 = (struct sk_buff *)tmp___7;
-  tmp___8 = __VERIFIER_nondet_u16();
+  tmp___8 = __VERIFIER_nondet_ushort();
   ldvarg10 = tmp___8;
   tmp___9 = __VERIFIER_nondet_int();
   ldvarg9 = tmp___9;
   tmp___10 = __VERIFIER_nondet_int();
   ldvarg2 = tmp___10;
-  tmp___11 = __VERIFIER_nondet_u16();
+  tmp___11 = __VERIFIER_nondet_ushort();
   ldvarg24 = tmp___11;
   tmp___12 = ldv_zalloc(232UL);
   ldvarg18 = (struct sk_buff *)tmp___12;
-  tmp___13 = __VERIFIER_nondet_u16();
+  tmp___13 = __VERIFIER_nondet_ushort();
   ldvarg26 = tmp___13;
   tmp___14 = ldv_zalloc(8UL);
   ldvarg20 = (struct nlattr **)tmp___14;
@@ -18139,7 +18139,7 @@ __inline static char const   *kobject_name(struct kobject  const  *kobj )
   return ((char const   *)kobj->name);
 }
 }
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static char const   *dev_name(struct device  const  *dev ) 
 { 
   char const   *tmp ;
@@ -18644,7 +18644,7 @@ void ldv_main_exported_4(void)
   ldvarg34 = (struct ethtool_cmd *)tmp;
   tmp___0 = ldv_zalloc(1UL);
   ldvarg28 = (u8 *)tmp___0;
-  tmp___1 = __VERIFIER_nondet_u32();
+  tmp___1 = __VERIFIER_nondet_uint();
   ldvarg29 = tmp___1;
   tmp___2 = ldv_zalloc(8UL);
   ldvarg30 = (u64 *)tmp___2;
@@ -18652,7 +18652,7 @@ void ldv_main_exported_4(void)
   ldvarg33 = (struct ethtool_drvinfo *)tmp___3;
   tmp___4 = ldv_zalloc(8UL);
   ldvarg31 = (struct ethtool_stats *)tmp___4;
-  tmp___5 = __VERIFIER_nondet_u32();
+  tmp___5 = __VERIFIER_nondet_uint();
   ldvarg32 = tmp___5;
   tmp___6 = __VERIFIER_nondet_int();
   ldvarg35 = tmp___6;

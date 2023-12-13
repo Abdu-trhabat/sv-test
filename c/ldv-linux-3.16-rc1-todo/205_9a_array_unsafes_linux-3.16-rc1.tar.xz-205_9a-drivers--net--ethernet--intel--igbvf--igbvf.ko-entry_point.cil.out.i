@@ -7158,7 +7158,7 @@ void ldv_kfree_skb_27(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_28(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_31(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_consume_skb_25(struct sk_buff *ldv_func_arg1 ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static void ldv_stop(void)
 {
   {
@@ -7817,7 +7817,7 @@ void ldv_main_exported_10(void)
   void *tmp___11 ;
   int tmp___12 ;
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg19 = tmp;
   tmp___0 = ldv_zalloc(12UL);
   ldvarg22 = (struct ethtool_regs *)tmp___0;
@@ -7831,7 +7831,7 @@ void ldv_main_exported_10(void)
   ldvarg25 = (struct ethtool_drvinfo *)tmp___4;
   tmp___5 = ldv_zalloc(1UL);
   ldvarg21 = tmp___5;
-  tmp___6 = __VERIFIER_nondet_u32();
+  tmp___6 = __VERIFIER_nondet_uint();
   ldvarg15 = tmp___6;
   tmp___7 = ldv_zalloc(1UL);
   ldvarg16 = (u8 *)tmp___7;
@@ -8903,7 +8903,7 @@ __inline static void skb_checksum_none_assert(struct sk_buff const *skb )
   return;
 }
 }
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 int ldv_state_variable_8 ;
 struct ethtool_coalesce *igbvf_ethtool_ops_group2 ;
 int ldv_timer_4_0 ;
@@ -13060,7 +13060,7 @@ int main(void)
   {
   tmp = __VERIFIER_nondet_int();
   ldvarg7 = tmp;
-  tmp___0 = __VERIFIER_nondet_u16();
+  tmp___0 = __VERIFIER_nondet_ushort();
   ldvarg5 = tmp___0;
   tmp___1 = ldv_zalloc(1UL);
   ldvarg1 = tmp___1;
@@ -13068,7 +13068,7 @@ int main(void)
   ldvarg8 = (struct ifreq *)tmp___2;
   tmp___3 = ldv_zalloc(232UL);
   ldvarg4 = (struct sk_buff *)tmp___3;
-  tmp___4 = __VERIFIER_nondet_u16();
+  tmp___4 = __VERIFIER_nondet_ushort();
   ldvarg9 = tmp___4;
   tmp___5 = __VERIFIER_nondet_int();
   ldvarg2 = tmp___5;

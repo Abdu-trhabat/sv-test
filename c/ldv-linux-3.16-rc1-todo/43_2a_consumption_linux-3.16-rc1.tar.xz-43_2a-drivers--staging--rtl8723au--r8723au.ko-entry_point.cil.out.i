@@ -63611,9 +63611,9 @@ __inline static char const *kobject_name(struct kobject const *kobj )
 }
 }
 __inline static void *kzalloc(size_t size , gfp_t flags ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 struct wiphy *rtw_cfg80211_ops_group1 ;
 int ldv_state_variable_14 ;
 int ref_cnt ;
@@ -68040,7 +68040,7 @@ void ldv_main_exported_14(void)
   bool ldvarg18 ;
   int tmp___31 ;
   {
-  tmp = __VERIFIER_nondet_u16();
+  tmp = __VERIFIER_nondet_ushort();
   ldvarg19 = tmp;
   tmp___0 = ldv_zalloc(4UL);
   ldvarg25 = (u32 *)tmp___0;
@@ -68054,7 +68054,7 @@ void ldv_main_exported_14(void)
   ldvarg27 = (char *)tmp___4;
   tmp___5 = __VERIFIER_nondet_int();
   ldvarg45 = tmp___5;
-  tmp___6 = __VERIFIER_nondet_u32();
+  tmp___6 = __VERIFIER_nondet_uint();
   ldvarg9 = tmp___6;
   tmp___7 = ldv_zalloc(1UL);
   ldvarg10 = (u8 *)tmp___7;
@@ -68064,7 +68064,7 @@ void ldv_main_exported_14(void)
   ldvarg8 = (struct cfg80211_mgmt_tx_params *)tmp___9;
   tmp___10 = ldv_zalloc(32UL);
   ldvarg41 = (struct key_params *)tmp___10;
-  tmp___11 = __VERIFIER_nondet_u8();
+  tmp___11 = __VERIFIER_nondet_uchar();
   ldvarg31 = tmp___11;
   tmp___12 = ldv_zalloc(1UL);
   ldvarg20 = (u8 *)tmp___12;
@@ -68076,7 +68076,7 @@ void ldv_main_exported_14(void)
   ldvarg14 = (struct cfg80211_connect_params *)tmp___15;
   tmp___16 = ldv_zalloc(40UL);
   ldvarg4 = (struct bss_parameters *)tmp___16;
-  tmp___17 = __VERIFIER_nondet_u16();
+  tmp___17 = __VERIFIER_nondet_ushort();
   ldvarg6 = tmp___17;
   tmp___18 = ldv_zalloc(1UL);
   ldvarg33 = (u8 *)tmp___18;
@@ -68084,7 +68084,7 @@ void ldv_main_exported_14(void)
   ldvarg5 = (struct cfg80211_ibss_params *)tmp___19;
   tmp___20 = ldv_zalloc(96UL);
   ldvarg38 = (struct cfg80211_beacon_data *)tmp___20;
-  tmp___21 = __VERIFIER_nondet_u8();
+  tmp___21 = __VERIFIER_nondet_uchar();
   ldvarg35 = tmp___21;
   tmp___22 = ldv_zalloc(1UL);
   ldvarg24 = (u8 *)tmp___22;
@@ -68096,9 +68096,9 @@ void ldv_main_exported_14(void)
   ldvarg37 = (struct cfg80211_scan_request *)tmp___25;
   tmp___26 = ldv_zalloc(4UL);
   ldvarg12 = (int *)tmp___26;
-  tmp___27 = __VERIFIER_nondet_u8();
+  tmp___27 = __VERIFIER_nondet_uchar();
   ldvarg43 = tmp___27;
-  tmp___28 = __VERIFIER_nondet_u8();
+  tmp___28 = __VERIFIER_nondet_uchar();
   ldvarg23 = tmp___28;
   tmp___29 = ldv_zalloc(8UL);
   ldvarg7 = (u64 *)tmp___29;

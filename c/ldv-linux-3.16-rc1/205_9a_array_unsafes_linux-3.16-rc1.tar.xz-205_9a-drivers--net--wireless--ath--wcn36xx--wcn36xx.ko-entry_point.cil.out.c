@@ -7338,10 +7338,9 @@ extern void ldv_skb_free(struct sk_buff___0 * ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
-extern u8 __VERIFIER_nondet_u8(void) ;
 extern unsigned int __VERIFIER_nondet_uint(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
+extern unsigned char __VERIFIER_nondet_uchar(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -8888,7 +8887,7 @@ int main(void)
   {
   tmp = ldv_zalloc(232UL);
   ldvarg11 = (struct ieee80211_bss_conf *)tmp;
-  tmp___0 = __VERIFIER_nondet_u16();
+  tmp___0 = __VERIFIER_nondet_ushort();
   ldvarg7 = tmp___0;
   tmp___1 = __VERIFIER_nondet_uint();
   ldvarg3 = tmp___1;
@@ -8896,15 +8895,15 @@ int main(void)
   ldvarg12 = (struct cfg80211_wowlan *)tmp___2;
   tmp___3 = ldv_zalloc(232UL);
   ldvarg8 = (struct sk_buff *)tmp___3;
-  tmp___4 = __VERIFIER_nondet_u32();
+  tmp___4 = __VERIFIER_nondet_uint();
   ldvarg10 = tmp___4;
   tmp___5 = ldv_zalloc(8UL);
   ldvarg9 = (struct ieee80211_tx_control *)tmp___5;
-  tmp___6 = __VERIFIER_nondet_u32();
+  tmp___6 = __VERIFIER_nondet_uint();
   ldvarg0 = tmp___6;
-  tmp___7 = __VERIFIER_nondet_u8();
+  tmp___7 = __VERIFIER_nondet_uchar();
   ldvarg6 = tmp___7;
-  tmp___8 = __VERIFIER_nondet_u32();
+  tmp___8 = __VERIFIER_nondet_uint();
   ldvarg15 = tmp___8;
   tmp___9 = ldv_zalloc(2UL);
   ldvarg4 = (u16 *)tmp___9;

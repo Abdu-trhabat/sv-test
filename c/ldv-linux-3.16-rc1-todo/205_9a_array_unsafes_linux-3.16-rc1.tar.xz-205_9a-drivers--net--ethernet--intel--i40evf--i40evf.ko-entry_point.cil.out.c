@@ -7512,7 +7512,7 @@ extern void ldv_skb_free(struct sk_buff___0 * ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
-extern u16 __VERIFIER_nondet_u16(void) ;
+extern unsigned short __VERIFIER_nondet_ushort(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -11489,11 +11489,11 @@ int main(void)
   {
   tmp = ldv_zalloc(232UL);
   ldvarg1 = (struct sk_buff *)tmp;
-  tmp___0 = __VERIFIER_nondet_u16();
+  tmp___0 = __VERIFIER_nondet_ushort();
   ldvarg3 = tmp___0;
   tmp___1 = ldv_zalloc(1UL);
   ldvarg0 = tmp___1;
-  tmp___2 = __VERIFIER_nondet_u16();
+  tmp___2 = __VERIFIER_nondet_ushort();
   ldvarg5 = tmp___2;
   tmp___3 = __VERIFIER_nondet_int();
   ldvarg2 = tmp___3;
@@ -12190,7 +12190,7 @@ void ldv_kfree_skb_55(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_58(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_kfree_skb_60(struct sk_buff *ldv_func_arg1 ) ;
 void ldv_consume_skb_52(struct sk_buff *ldv_func_arg1 ) ;
-extern u32 __VERIFIER_nondet_u32(void) ;
+extern unsigned int __VERIFIER_nondet_uint(void) ;
 __inline static char const   *pci_name(struct pci_dev  const  *pdev ) 
 { 
   char const   *tmp ;
@@ -12972,11 +12972,11 @@ void ldv_main_exported_4(void)
   int tmp___13 ;
 
   {
-  tmp = __VERIFIER_nondet_u32();
+  tmp = __VERIFIER_nondet_uint();
   ldvarg9 = tmp;
   tmp___0 = ldv_zalloc(4UL);
   ldvarg19 = (u32 *)tmp___0;
-  tmp___1 = __VERIFIER_nondet_u32();
+  tmp___1 = __VERIFIER_nondet_uint();
   ldvarg10 = tmp___1;
   tmp___2 = ldv_zalloc(1UL);
   ldvarg13 = (u8 *)tmp___2;
