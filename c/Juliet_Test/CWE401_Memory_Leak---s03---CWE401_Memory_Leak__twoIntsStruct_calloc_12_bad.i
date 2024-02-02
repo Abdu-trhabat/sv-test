@@ -670,11 +670,6 @@ void CWE401_Memory_Leak__twoIntsStruct_calloc_12_bad(void)
     printStructLine((twoIntsStruct const *)data);
   }
   
-  tmp_2 = globalReturnsTrueOrFalse();
-  
-  if (tmp_2 != 0) ; else 
-                         free((void *)data);
-  
   return;
 }
 
