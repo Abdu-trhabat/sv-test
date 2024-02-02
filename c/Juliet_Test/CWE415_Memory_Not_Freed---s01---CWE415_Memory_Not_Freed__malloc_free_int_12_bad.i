@@ -868,9 +868,7 @@ void CWE415_Double_Free__malloc_free_int_12_bad(void)
     if (data == (int *)0) 
                           ldv_exit_2(-1); else ;
   }
-  
-  free((void *)data);
-  
+
   return;
 }
 

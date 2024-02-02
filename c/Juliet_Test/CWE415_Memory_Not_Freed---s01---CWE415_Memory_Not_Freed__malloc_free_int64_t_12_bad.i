@@ -842,34 +842,32 @@ static void ldv_exit_2(int ldv_func_arg1);
 time_t time(time_t *);
 
 
-void CWE415_Double_Free__malloc_free_int_12_bad(void)
+void CWE415_Double_Free__malloc_free_int64_t_12_bad(void)
 {
-  int *data = 0;
+  int64_t *data = 0;
   int tmp_1;
   int tmp_2;
   
-  data = (int *)0;
+  data = (int64_t *)0L;
   
   tmp_1 = globalReturnsTrueOrFalse();
   
   if (tmp_1 != 0) {
     
-    data = (int *)malloc(400UL);
+    data = (int64_t *)malloc(800UL);
     
-    if (data == (int *)0) 
-                          ldv_exit_1(-1); else ;
+    if (data == (int64_t *)0L) 
+                               ldv_exit_1(-1); else ;
     
     free((void *)data);
   }
   else {
     
-    data = (int *)malloc(400UL);
+    data = (int64_t *)malloc(800UL);
     
-    if (data == (int *)0) 
-                          ldv_exit_2(-1); else ;
+    if (data == (int64_t *)0L) 
+                               ldv_exit_2(-1); else ;
   }
-  
-  free((void *)data);
   
   return;
 }
@@ -887,7 +885,7 @@ int main(int argc, char **argv)
     
     printLine("Calling bad()...");
     
-    CWE415_Double_Free__malloc_free_int_12_bad();
+    CWE415_Double_Free__malloc_free_int64_t_12_bad();
     
     printLine("Finished bad()");
     
@@ -1256,7 +1254,7 @@ void *ldv_realloc(void *ptr, size_t size)
 
 void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "CWE415_Double_Free---s01---CWE415_Double_Free__malloc_free_int_12_bad.i", 1254, "reach_error"); }
+void reach_error() { __assert_fail("0", "CWE415_Double_Free---s01---CWE415_Double_Free__malloc_free_int64_t_12_bad.i", 1254, "reach_error"); }
 
 
 void ldv_error(void);

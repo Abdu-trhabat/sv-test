@@ -25,6 +25,10 @@ struct _twoIntsStruct {
 
 typedef struct _twoIntsStruct twoIntsStruct;
 
+typedef long __time_t;
+
+typedef __time_t time_t;
+
 struct __pthread_internal_list {
    struct __pthread_internal_list *__prev ;
    struct __pthread_internal_list *__next ;
@@ -45,12 +49,12 @@ struct __pthread_mutex_s {
 
 typedef unsigned long pthread_t;
 
-union __anonunion_pthread_mutexattr_t_36 {
+union __anonunion_pthread_mutexattr_t_57 {
    char __size[4U] ;
    int __align ;
 };
 
-typedef union __anonunion_pthread_mutexattr_t_36 pthread_mutexattr_t;
+typedef union __anonunion_pthread_mutexattr_t_57 pthread_mutexattr_t;
 
 union pthread_attr_t {
    char __size[56U] ;
@@ -59,13 +63,13 @@ union pthread_attr_t {
 
 typedef union pthread_attr_t pthread_attr_t;
 
-union __anonunion_pthread_mutex_t_38 {
+union __anonunion_pthread_mutex_t_59 {
    struct __pthread_mutex_s __data ;
    char __size[40U] ;
    long __align ;
 };
 
-typedef union __anonunion_pthread_mutex_t_38 pthread_mutex_t;
+typedef union __anonunion_pthread_mutex_t_59 pthread_mutex_t;
 
 struct _stdThread;
 
@@ -84,10 +88,6 @@ struct _stdThread {
 struct _stdThreadLock {
    pthread_mutex_t mutex ;
 };
-
-typedef long __time_t;
-
-typedef __time_t time_t;
 
 int printf(char const * , ...);
 
@@ -616,10 +616,101 @@ int globalArgc = 0;
 
 char **globalArgv = (char **)0;
 
+void ldv_exit(void);
+
+
+void srand(unsigned int);
+
+
 void *malloc(size_t);
 
 
 void free(void *);
+
+
+static void ldv_exit_1(int ldv_func_arg1);
+
+
+static void ldv_exit_2(int ldv_func_arg1);
+
+
+time_t time(time_t *);
+
+
+void CWE415_Double_Free__malloc_free_char_12_bad(void)
+{
+  char *data = 0;
+  int tmp_1;
+  int tmp_2;
+  
+  data = (char *)0;
+  
+  tmp_1 = globalReturnsTrueOrFalse();
+  
+  if (tmp_1 != 0) {
+    
+    data = (char *)malloc(100UL);
+    
+    if (data == (char *)0) 
+                           ldv_exit_1(-1); else ;
+    
+    free((void *)data);
+  }
+  else {
+    
+    data = (char *)malloc(100UL);
+    
+    if (data == (char *)0) 
+                           ldv_exit_2(-1); else ;
+  }
+  
+  return;
+}
+
+
+int main(int argc, char **argv)
+{
+  int __retres;
+  {
+    time_t tmp;
+    
+    tmp = time((time_t *)0L);
+    
+    srand((unsigned int)tmp);
+    
+    printLine("Calling bad()...");
+    
+    CWE415_Double_Free__malloc_free_char_12_bad();
+    
+    printLine("Finished bad()");
+    
+    __retres = 0;
+    
+    goto return_label;
+  }
+  
+  __retres = 0;
+  return_label: 
+                return __retres;
+}
+
+
+static void ldv_exit_1(int ldv_func_arg1)
+{
+  
+  ldv_exit();
+  
+  return;
+}
+
+
+static void ldv_exit_2(int ldv_func_arg1)
+{
+  
+  ldv_exit();
+  
+  return;
+}
 
 
 int pthread_create(pthread_t *, pthread_attr_t const *, void *(*)(void *), void *);
@@ -822,99 +913,6 @@ void stdThreadLockDestroy(stdThreadLock lock)
   pthread_mutex_destroy(& lock->mutex);
   
   free((void *)lock);
-  
-  return;
-}
-
-
-void ldv_exit(void);
-
-
-void srand(unsigned int);
-
-
-static void ldv_exit_1(int ldv_func_arg1);
-
-
-static void ldv_exit_2(int ldv_func_arg1);
-
-
-time_t time(time_t *);
-
-
-void CWE415_Double_Free__malloc_free_int_12_bad(void)
-{
-  int *data = 0;
-  int tmp_1;
-  int tmp_2;
-  
-  data = (int *)0;
-  
-  tmp_1 = globalReturnsTrueOrFalse();
-  
-  if (tmp_1 != 0) {
-    
-    data = (int *)malloc(400UL);
-    
-    if (data == (int *)0) 
-                          ldv_exit_1(-1); else ;
-    
-    free((void *)data);
-  }
-  else {
-    
-    data = (int *)malloc(400UL);
-    
-    if (data == (int *)0) 
-                          ldv_exit_2(-1); else ;
-  }
-  
-  free((void *)data);
-  
-  return;
-}
-
-
-int main(int argc, char **argv)
-{
-  int __retres;
-  {
-    time_t tmp;
-    
-    tmp = time((time_t *)0L);
-    
-    srand((unsigned int)tmp);
-    
-    printLine("Calling bad()...");
-    
-    CWE415_Double_Free__malloc_free_int_12_bad();
-    
-    printLine("Finished bad()");
-    
-    __retres = 0;
-    
-    goto return_label;
-  }
-  
-  __retres = 0;
-  return_label: 
-                return __retres;
-}
-
-
-static void ldv_exit_1(int ldv_func_arg1)
-{
-  
-  ldv_exit();
-  
-  return;
-}
-
-
-static void ldv_exit_2(int ldv_func_arg1)
-{
-  
-  ldv_exit();
   
   return;
 }
@@ -1256,7 +1254,7 @@ void *ldv_realloc(void *ptr, size_t size)
 
 void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "CWE415_Double_Free---s01---CWE415_Double_Free__malloc_free_int_12_bad.i", 1254, "reach_error"); }
+void reach_error() { __assert_fail("0", "CWE415_Double_Free---s01---CWE415_Double_Free__malloc_free_char_12_bad.i", 1254, "reach_error"); }
 
 
 void ldv_error(void);
