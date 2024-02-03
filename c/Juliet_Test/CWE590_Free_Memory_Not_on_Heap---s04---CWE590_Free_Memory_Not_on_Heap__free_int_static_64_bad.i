@@ -834,8 +834,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int_static_64b_badSink(void *dataVoidP
   
   int *data = *dataPtr;
   
-  printIntLine(*data);
-  
   free((void *)data);
   
   return;

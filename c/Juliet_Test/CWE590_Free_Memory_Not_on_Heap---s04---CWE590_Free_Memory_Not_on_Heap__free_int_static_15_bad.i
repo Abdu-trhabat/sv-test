@@ -880,8 +880,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int_static_15_bad(void)
   ldv_3205: 
   ;
   
-  printIntLine(*data);
-  
   free((void *)data);
   
   return;

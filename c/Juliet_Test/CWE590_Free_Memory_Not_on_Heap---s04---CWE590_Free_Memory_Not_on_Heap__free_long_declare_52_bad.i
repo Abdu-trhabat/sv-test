@@ -830,8 +830,6 @@ void stdThreadLockDestroy(stdThreadLock lock)
 void CWE590_Free_Memory_Not_on_Heap__free_long_declare_52c_badSink(long *data)
 {
   
-  printLongLine(*data);
-  
   free((void *)data);
   
   return;

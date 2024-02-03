@@ -880,8 +880,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int64_t_static_16_bad(void)
   ldv_3204: 
   ;
   
-  printLongLongLine(*data);
-  
   free((void *)data);
   
   return;

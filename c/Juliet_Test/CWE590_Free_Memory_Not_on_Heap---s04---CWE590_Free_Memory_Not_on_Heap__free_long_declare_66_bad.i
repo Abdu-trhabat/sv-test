@@ -832,8 +832,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_long_declare_66b_badSink(long **dataAr
   
   long *data = *(dataArray + 2U);
   
-  printLongLine(*data);
-  
   free((void *)data);
   
   return;

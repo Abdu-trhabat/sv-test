@@ -106,8 +106,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int64_t_declare_67b_badSink(CWE590_Fre
   
   int64_t *data = myStruct.structFirst;
   
-  printLongLongLine(*data);
-  
   free((void *)data);
   
   return;
