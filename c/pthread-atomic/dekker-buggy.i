@@ -779,7 +779,7 @@ void *thr2(void *_) {
     x = 1;
     if (!(x>=1)) ERROR: reach_error();
     __VERIFIER_atomic_begin();
-    turn = 0;
+    turn = 1;
     __VERIFIER_atomic_end();
     __VERIFIER_atomic_begin();
     flag2 = 0;

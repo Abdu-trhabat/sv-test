@@ -714,7 +714,7 @@ void *thr2(void *_) {
   }
   x = 1;
   if (!(x>=1)) ERROR: {reach_error();abort();}
-  turn = 1;
+  turn = 0;
   flag2 = 0;
   return 0;
 }

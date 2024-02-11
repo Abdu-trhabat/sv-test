@@ -48,7 +48,7 @@ void *thr2(void *_) {
   x = 1;
   assert(x>=1);
   // end: critical section
-  turn = 0;
+  turn = 1;
   flag2 = 0;
   return 0;
 }
