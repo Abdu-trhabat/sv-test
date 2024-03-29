@@ -21,3 +21,6 @@ Juliet_Test/CWE401*__twoIntsStruct*_good.yml
 #CWE590_Free_Memory_Not_on_Heap
 Juliet_Test/CWE590*_good.yml
 
+# NoOverflows
+Juliet_Test/CWE190_Integer_Overflow__int*.yml
+Juliet_Test/CWE191_Integer_Underflow__int*.yml
