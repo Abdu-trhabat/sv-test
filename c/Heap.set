@@ -7,6 +7,8 @@ heap-data/*.yml
 memsafety/*.yml
 memsafety-ext/*.yml
 memsafety-ext2/*.yml
+memsafety-ext3/*.yml
+memsafety-bftpd/*.yml
 memory-alloca/*.yml
 ldv-memsafety/*.yml
 ldv-memsafety-bitfields/*.yml
