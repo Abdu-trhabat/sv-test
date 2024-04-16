@@ -21,7 +21,9 @@ int main()
   for (index = 0; index < SIZE; index++) {
     array[index] = (index % 2);
   }
-
+  if (x == 0) {
+    reach_error();
+  }
   for (index = 0; index < SIZE; index++) {
     if (index % 2 == 0) {
       __VERIFIER_assert(array[index] == 0);
