@@ -22,7 +22,7 @@ int main()
   if(!(y<=65534)) return 0;
   // prevent underflow
   if(!(y>=-65534)) return 0;
-	while (x >= 0) {;
+	while (x >= 0) {
 		x = x + y;
 		y = y - 1;
 	}
