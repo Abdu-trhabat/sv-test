@@ -21,8 +21,8 @@ int main()
 
     cp = scheme;
 
-    //__VERIFIER_assert(cp-1 < urilen);
-    //__VERIFIER_assert(0 <= cp-1);
+    __VERIFIER_assert(cp-1 < urilen);
+    __VERIFIER_assert(0 <= cp-1);
 
     if (__VERIFIER_nondet_int()) {
         __VERIFIER_assert(cp < urilen);

@@ -1144,7 +1144,7 @@ void timeShift(void)
         tmp___5 = getReverseHeading(currentHeading);
         continueInDirection(tmp___5);
         }
-      } else {import scala.Int;
+      } else {
         {
         continueInDirection(currentHeading);
         }
