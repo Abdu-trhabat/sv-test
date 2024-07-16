@@ -1,0 +1,15 @@
+- entry_type: invariant_set
+  metadata:
+    format_version: "2.0"
+    producer:
+      name: "Handcrafted"
+  content:
+    - invariant:
+        type: loop_invariant
+        location:
+          file_name: "linear-inequality-inv-a.c"
+          line: 19
+          column: 10 # Incorrect, since it does not point to the first character of while
+          function: main
+        value: "s <= i*255 && 0 <= i && i <= 255 && n <= 255"
+        format: c_expression
