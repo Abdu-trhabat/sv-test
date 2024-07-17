@@ -1,4 +1,4 @@
-format_version: '3.0-witnesses-dev'
+format_version: '2.0'
 
 input_files: 'linear-inequality-inv-c.c'
 
@@ -9,11 +9,6 @@ properties:
     expected_verdict: true
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-    witnesses:
-      - witness_file: linear-inequality-inv-c.1.witness-2.0.yml
-        category: wrong
-      - witness_file: linear-inequality-inv-c.2.witness-2.0.yml
-        category: correct
 # This is a trivial property for this task:
 # The task only uses integer variables within the main method,
 # no pointers and no memory operations occur.
