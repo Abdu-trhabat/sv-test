@@ -1,6 +1,6 @@
 format_version: '3.0-witnesses-dev'
 
-input_files: 'linear-inequality-inv-a.c'
+input_files: 'linear-inequality-inv-c.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp
