@@ -25,7 +25,7 @@ int main() {
     reach_error();
     return 1;
   }
-  if (s > 18446744065119617025) { // (2**32 - 1)**2
+  if (s > 18446744065119617025ULL) { // (2**32 - 1)**2
     reach_error();
     return 1;
   }
