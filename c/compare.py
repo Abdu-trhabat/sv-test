@@ -92,7 +92,7 @@ def build_goto_cc():
     if not os.path.exists(CBMC_GIT_PATH + "src/goto-cc/goto-cc"):
       subprocess.check_call(["git", "clone", "--depth=1", "http://github.com/diffblue/cbmc.git", CBMC_GIT_PATH])
       subprocess.check_call(["make", "-j2", "minisat2-download"], cwd=CBMC_GIT_PATH + "src")
-      subprocess.check_call(["make", "-j2", "CXX=g++-5", "goto-diff.dir", "goto-cc.dir"], cwd=CBMC_GIT_PATH + "src")
+      subprocess.check_call(["make", "-j2", "CXX=g++", "goto-diff.dir", "goto-cc.dir"], cwd=CBMC_GIT_PATH + "src")
     cwd = os.getcwd()
     os.environ['PATH'] = ":".join([
         cwd + "/" + CBMC_GIT_PATH + "src/goto-cc",
@@ -202,6 +202,14 @@ def get_reason_if_ignored(taskfile):
       return reason
   return None
 
+def _is_witness(content):
+    if isinstance(content, list) and any(
+        isinstance(e, dict) and "entry_type" in e.keys() for e in content
+    ):
+        return True
+
+    return False
+
 
 # parse comand line options and set default values
 parser = argparse.ArgumentParser()
@@ -248,6 +256,9 @@ for setfile in get_setfiles(args):
     if taskfile.endswith(".yml"):
       with open(taskfile, 'r') as yamlfile:
         yml = yaml.safe_load(yamlfile)
+        if _is_witness(yml):
+            continue
+
         inputFiles = get_inputfiles_from_yml(yml, taskfile)
         bits = get_bits_from_yml(yml, taskfile)
       if len(inputFiles) == 1:
