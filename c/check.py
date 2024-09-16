@@ -353,6 +353,9 @@ class TaskDefinitionFileChecks(FileChecks):
             f_path = os.path.join(self.directory, f)
             if not os.path.exists(f_path):
                 self.error("references inaccessible file: " + f_path)
+            elif f.endswith(".yml"):
+                # We are dealing with a witness as input
+                continue
             else:
                 try:
                     InputFileChecks(
