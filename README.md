@@ -164,6 +164,9 @@ For each program, the repository contains a .yml file that specifies the followi
     - `language`: programming language that the program is written in (`C` or `Java`)
     - `data_model` data model of the computer architecture
       (`ILP32`, `LP64`, see https://www.unix.org/whitepapers/64bit.html, only for `C` programs)
+    - `witness` describes which input file is a witness. Only required  
+      for validation tasks, for example 
+      [c/loop-invariants/linear-inequality-inv-a.2.witness-2.0.yml](./c/loop-invariants/linear-inequality-inv-a.2.witness-2.0.yml).
 
 Optional items are explicitly marked as optional, all other items are mandatory.
 The dictionary `options` can contain additional data that are not mentioned above.
