@@ -283,6 +283,16 @@ class DirectoryChecks(Checks):
         for entry in self.content:
             if BENCHMARK_PATTERN.match(entry)\
                     and not self.all_patterns.match(os.path.join(self.name, entry)):
+                
+                yaml_contents = None
+                try:
+                    yaml_contents = yaml.safe_load(open(os.path.join(self.path, entry)))
+                except yaml.YAMLError:
+                    pass
+
+                if yaml_contents is not None and _is_witness(yaml_contents):
+                    continue
+            
                 self.error("%s is not contained in any category", entry)
 
 
@@ -320,6 +330,13 @@ class FileChecks(Checks):
                 "corresponding .yml file\n"
             )
 
+def _is_witness(yaml_file_content):
+    if isinstance(yaml_file_content, list) and any(
+        isinstance(e, dict) and "entry_type" in e.keys() for e in yaml_file_content
+    ):
+        return True
+
+    return False
 
 class TaskDefinitionFileChecks(FileChecks):
     """Checks about the content of a single task definition .yml file."""
@@ -335,7 +352,7 @@ class TaskDefinitionFileChecks(FileChecks):
                 self.content = yaml.safe_load(f)
 
     def check_format_version(self):
-        if self._is_witness():
+        if _is_witness(self.content):
             return None
         
         if not 'format_version' in self.content:
@@ -345,7 +362,7 @@ class TaskDefinitionFileChecks(FileChecks):
             self.error("has invalid format version")
 
     def check_input_files(self):
-        if not self.content or self._is_witness():
+        if not self.content or _is_witness(self.content):
             return None
 
         input_files = self._get_input_files()
@@ -378,7 +395,7 @@ class TaskDefinitionFileChecks(FileChecks):
             raise CheckFailed()
 
     def check_properties(self):
-        if self._is_witness():
+        if _is_witness(self.content):
             return None
 
         prop_and_verdict = self._get_properties()
@@ -389,14 +406,14 @@ class TaskDefinitionFileChecks(FileChecks):
         ).run()
 
     def check_language(self):
-        if not self.content or self._is_witness():
+        if not self.content or _is_witness(self.content):
             return None
         language = self.content.get("options", {}).get("language")
         if language != "C":
             self.error("unexpected language %s", language)
 
     def check_data_model(self):
-        if not self.content or self._is_witness():
+        if not self.content or _is_witness(self.content):
             return
         
         data_model = self.content.get("options", {}).get("data_model")
@@ -420,14 +437,6 @@ class TaskDefinitionFileChecks(FileChecks):
                     arch,
                     data_model,
                 )
-
-    def _is_witness(self):
-        if isinstance(self.content, list) and any(
-            isinstance(e, dict) and "entry_type" in e.keys() for e in self.content
-        ):
-            return True
-
-        return False
 
     def _get_input_files(self) -> list:
         if 'input_files' not in self.content:
