@@ -24,38 +24,7 @@
           format: "c_expression"
         location:
           file_name: "while.c"
-          line: 11
-          column: 5
-  - segment:
-    - waypoint:
-        type: "branching"
-        action: "follow"
-        constraint:
-          value: "true"
-        location:
-          file_name: "while.c"
-          line: 14
-          column: 5
-  - segment:
-    - waypoint:
-        type: "assumption"
-        action: "follow"
-        constraint:
-          value: "n == -1"
-          format: "c_expression"
-        location:
-          file_name: "while.c"
-          line: 16
-          column: 9
-  - segment:
-    - waypoint:
-        type: "branching"
-        action: "follow"
-        constraint:
-          value: "false"
-        location:
-          file_name: "while.c"
-          line: 14
+          line: 18
           column: 5
   - segment:
     - waypoint:
@@ -69,10 +38,41 @@
           column: 5
   - segment:
     - waypoint:
+        type: "assumption"
+        action: "follow"
+        constraint:
+          value: "n == -1"
+          format: "c_expression"
+        location:
+          file_name: "while.c"
+          line: 23
+          column: 9
+  - segment:
+    - waypoint:
+        type: "branching"
+        action: "follow"
+        constraint:
+          value: "false"
+        location:
+          file_name: "while.c"
+          line: 21
+          column: 5
+  - segment:
+    - waypoint:
+        type: "branching"
+        action: "follow"
+        constraint:
+          value: "true"
+        location:
+          file_name: "while.c"
+          line: 28
+          column: 5
+  - segment:
+    - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "while.c"
-          line: 22
+          line: 29
           column: 9
 

@@ -24,14 +24,14 @@
           format: "acsl_expression"
         location:
           file_name: "functions.c"
-          line: 41
+          line: 48
   - segment:
     - waypoint:
         type: "function_enter"
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 43
+          line: 50
   - segment:
     - waypoint:
         type: "function_return"
@@ -41,14 +41,14 @@
           format: "acsl_expression"
         location:
           file_name: "functions.c"
-          line: 10
+          line: 17
   - segment:
     - waypoint:
         type: "function_enter"
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 16
+          line: 23
   - segment:
     - waypoint:
         type: "function_return"
@@ -58,24 +58,24 @@
           format: "acsl_expression"
         location:
           file_name: "functions.c"
-          line: 22
+          line: 29
   - segment:
     - waypoint:
         type: "function_enter"
         action: "avoid"
         location:
           file_name: "functions.c"
-          line: 28
+          line: 35
     - waypoint:
         type: "function_enter"
         action: "avoid"
         location:
           file_name: "functions.c"
-          line: 45
+          line: 52
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 36
+          line: 43
 

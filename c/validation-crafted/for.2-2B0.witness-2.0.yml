@@ -23,7 +23,7 @@
           value: "true"
         location:
           file_name: "for.c"
-          line: 11
+          line: 18
   - segment:
     - waypoint:
         type: "branching"
@@ -32,7 +32,7 @@
           value: "false"
         location:
           file_name: "for.c"
-          line: 13
+          line: 20
     - waypoint:
         type: "branching"
         action: "follow"
@@ -40,7 +40,7 @@
           value: "false"
         location:
           file_name: "for.c"
-          line: 17
+          line: 24
   - segment:
     - waypoint:
         type: "function_return"
@@ -50,12 +50,12 @@
           format: "acsl_expression"
         location:
           file_name: "for.c"
-          line: 20
+          line: 27
   - segment:
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "for.c"
-          line: 18
+          line: 25
 

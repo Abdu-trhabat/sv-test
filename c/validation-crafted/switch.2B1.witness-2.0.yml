@@ -23,7 +23,7 @@
           value: 1
         location:
           file_name: "switch.c"
-          line: 10
+          line: 17
     - waypoint:
         type: "branching"
         action: "avoid"
@@ -31,7 +31,7 @@
           value: 3
         location:
           file_name: "switch.c"
-          line: 10
+          line: 17
     - waypoint:
         type: "branching"
         action: "avoid"
@@ -39,7 +39,7 @@
           value: "default"
         location:
           file_name: "switch.c"
-          line: 10
+          line: 17
     - waypoint:
         type: "branching"
         action: "follow"
@@ -47,7 +47,7 @@
           value: 2
         location:
           file_name: "switch.c"
-          line: 10
+          line: 17
   - segment:
     - waypoint:
         type: "branching"
@@ -56,7 +56,7 @@
           value: 2
         location:
           file_name: "switch.c"
-          line: 14
+          line: 21
           column: 9
     - waypoint:
         type: "branching"
@@ -65,7 +65,7 @@
           value: "default"
         location:
           file_name: "switch.c"
-          line: 14
+          line: 21
     - waypoint:
         type: "branching"
         action: "avoid"
@@ -73,7 +73,7 @@
           value: 3
         location:
           file_name: "switch.c"
-          line: 14
+          line: 21
     - waypoint:
         type: "branching"
         action: "follow"
@@ -81,12 +81,12 @@
           value: 1
         location:
           file_name: "switch.c"
-          line: 14
+          line: 21
   - segment:
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "switch.c"
-          line: 16
+          line: 23
 

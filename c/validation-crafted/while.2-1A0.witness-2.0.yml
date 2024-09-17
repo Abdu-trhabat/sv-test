@@ -24,7 +24,7 @@
           format: "c_expression"
         location:
           file_name: "while.c"
-          line: 11
+          line: 18
           column: 5
   - segment:
     - waypoint:
@@ -34,7 +34,7 @@
           value: "false"
         location:
           file_name: "while.c"
-          line: 14
+          line: 21
           column: 5
   - segment:
     - waypoint:
@@ -45,7 +45,7 @@
           format: "c_expression"
         location:
           file_name: "while.c"
-          line: 16
+          line: 23
           column: 9
   - segment:
     - waypoint:
@@ -55,7 +55,7 @@
           value: "false"
         location:
           file_name: "while.c"
-          line: 14
+          line: 21
           column: 5
   - segment:
     - waypoint:
@@ -65,7 +65,7 @@
           value: "true"
         location:
           file_name: "while.c"
-          line: 21
+          line: 28
           column: 5
   - segment:
     - waypoint:
@@ -73,6 +73,6 @@
         action: "follow"
         location:
           file_name: "while.c"
-          line: 22
+          line: 29
           column: 9
 

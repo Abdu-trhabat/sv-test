@@ -24,7 +24,7 @@
           format: "acsl_expression"
         location:
           file_name: "while.c"
-          line: 9
+          line: 16
   - segment:
     - waypoint:
         type: "branching"
@@ -33,7 +33,7 @@
           value: "true"
         location:
           file_name: "while.c"
-          line: 14
+          line: 21
   - segment:
     - waypoint:
         type: "function_return"
@@ -43,7 +43,7 @@
           format: "acsl_expression"
         location:
           file_name: "while.c"
-          line: 15
+          line: 22
   - segment:
     - waypoint:
         type: "branching"
@@ -52,7 +52,7 @@
           value: "true"
         location:
           file_name: "while.c"
-          line: 14
+          line: 21
   - segment:
     - waypoint:
         type: "function_return"
@@ -62,7 +62,7 @@
           format: "acsl_expression"
         location:
           file_name: "while.c"
-          line: 15
+          line: 22
   - segment:
     - waypoint:
         type: "branching"
@@ -71,7 +71,7 @@
           value: "true"
         location:
           file_name: "while.c"
-          line: 14
+          line: 21
     - waypoint:
         type: "branching"
         action: "follow"
@@ -79,12 +79,12 @@
           value: "false"
         location:
           file_name: "while.c"
-          line: 21
+          line: 28
   - segment:
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "while.c"
-          line: 22
+          line: 29
 

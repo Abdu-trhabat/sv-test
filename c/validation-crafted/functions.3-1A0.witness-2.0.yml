@@ -21,14 +21,14 @@
         action: "avoid"
         location:
           file_name: "functions.c"
-          line: 41
+          line: 48
           column: 35
     - waypoint:
         type: "function_enter"
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 43
+          line: 50
           column: 18
   - segment:
     - waypoint:
@@ -36,7 +36,7 @@
         action: "avoid"
         location:
           file_name: "functions.c"
-          line: 16
+          line: 23
           column: 25
     - waypoint:
         type: "function_return"
@@ -46,7 +46,7 @@
           format: "acsl_expression"
         location:
           file_name: "functions.c"
-          line: 43
+          line: 50
           column: 18
   - segment:
     - waypoint:
@@ -54,7 +54,7 @@
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 44
+          line: 51
           column: 18
   - segment:
     - waypoint:
@@ -64,14 +64,14 @@
           value: "true"
         location:
           file_name: "functions.c"
-          line: 27
+          line: 34
           column: 5
     - waypoint:
         type: "function_enter"
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 45
+          line: 52
           column: 10
   - segment:
     - waypoint:
@@ -82,7 +82,7 @@
           format: "acsl_expression"
         location:
           file_name: "functions.c"
-          line: 34
+          line: 41
           column: 35
   - segment:
     - waypoint:
@@ -90,6 +90,6 @@
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 36
+          line: 43
           column: 9
 

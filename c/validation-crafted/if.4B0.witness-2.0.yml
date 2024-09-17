@@ -23,12 +23,12 @@
           value: "false"
         location:
           file_name: "if.c"
-          line: 15
+          line: 22
   - segment:
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "if.c"
-          line: 16
+          line: 23
 

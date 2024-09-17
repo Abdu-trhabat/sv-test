@@ -24,7 +24,7 @@
           format: "acsl_expression"
         location:
           file_name: "functions.c"
-          line: 41
+          line: 48
           column: 35
   - segment:
     - waypoint:
@@ -32,7 +32,7 @@
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 43
+          line: 50
           column: 18
   - segment:
     - waypoint:
@@ -43,7 +43,7 @@
           format: "acsl_expression"
         location:
           file_name: "functions.c"
-          line: 10
+          line: 17
           column: 35
   - segment:
     - waypoint:
@@ -51,7 +51,7 @@
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 16
+          line: 23
           column: 25
   - segment:
     - waypoint:
@@ -62,7 +62,7 @@
           format: "acsl_expression"
         location:
           file_name: "functions.c"
-          line: 22
+          line: 29
           column: 35
   - segment:
     - waypoint:
@@ -70,20 +70,20 @@
         action: "avoid"
         location:
           file_name: "functions.c"
-          line: 28
+          line: 35
           column: 25
     - waypoint:
         type: "function_enter"
         action: "avoid"
         location:
           file_name: "functions.c"
-          line: 45
+          line: 52
           column: 10
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 36
+          line: 43
           column: 9
 

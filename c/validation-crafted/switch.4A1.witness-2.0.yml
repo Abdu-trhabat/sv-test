@@ -23,7 +23,7 @@
           value: "default"
         location:
           file_name: "switch.c"
-          line: 10
+          line: 17
           column: 5
     - waypoint:
         type: "branching"
@@ -32,13 +32,13 @@
           value: 3
         location:
           file_name: "switch.c"
-          line: 10
+          line: 17
           column: 5
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "switch.c"
-          line: 16
+          line: 23
           column: 13
 

@@ -23,7 +23,7 @@
           value: "true"
         location:
           file_name: "ternary.c"
-          line: 7
+          line: 14
     - waypoint:
         type: "branching"
         action: "avoid"
@@ -31,7 +31,7 @@
           value: "true"
         location:
           file_name: "ternary.c"
-          line: 8
+          line: 15
     - waypoint:
         type: "branching"
         action: "follow"
@@ -39,7 +39,7 @@
           value: "true"
         location:
           file_name: "ternary.c"
-          line: 8
+          line: 15
   - segment:
     - waypoint:
         type: "branching"
@@ -48,12 +48,12 @@
           value: "true"
         location:
           file_name: "ternary.c"
-          line: 10
+          line: 17
   - segment:
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "ternary.c"
-          line: 11
+          line: 18
 

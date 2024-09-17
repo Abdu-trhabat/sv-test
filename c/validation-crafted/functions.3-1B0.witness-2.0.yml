@@ -21,20 +21,20 @@
         action: "avoid"
         location:
           file_name: "functions.c"
-          line: 41
+          line: 48
     - waypoint:
         type: "function_enter"
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 43
+          line: 50
   - segment:
     - waypoint:
         type: "function_enter"
         action: "avoid"
         location:
           file_name: "functions.c"
-          line: 16
+          line: 23
     - waypoint:
         type: "function_return"
         action: "follow"
@@ -43,14 +43,14 @@
           format: "acsl_expression"
         location:
           file_name: "functions.c"
-          line: 43
+          line: 50
   - segment:
     - waypoint:
         type: "function_enter"
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 44
+          line: 51
   - segment:
     - waypoint:
         type: "branching"
@@ -59,13 +59,13 @@
           value: "true"
         location:
           file_name: "functions.c"
-          line: 27
+          line: 34
     - waypoint:
         type: "function_enter"
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 45
+          line: 52
   - segment:
     - waypoint:
         type: "function_return"
@@ -75,12 +75,12 @@
           format: "acsl_expression"
         location:
           file_name: "functions.c"
-          line: 34
+          line: 41
   - segment:
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "functions.c"
-          line: 36
+          line: 43
 

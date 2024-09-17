@@ -23,7 +23,7 @@
           value: "false"
         location:
           file_name: "ternary.c"
-          line: 7
+          line: 14
           column: 41
   - segment:
     - waypoint:
@@ -33,7 +33,7 @@
           value: "false"
         location:
           file_name: "ternary.c"
-          line: 8
+          line: 15
           column: 55
   - segment:
     - waypoint:
@@ -41,6 +41,6 @@
         action: "follow"
         location:
           file_name: "ternary.c"
-          line: 11
+          line: 18
           column: 9
 

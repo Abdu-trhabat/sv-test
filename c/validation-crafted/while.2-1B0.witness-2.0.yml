@@ -24,7 +24,7 @@
           format: "c_expression"
         location:
           file_name: "while.c"
-          line: 11
+          line: 18
   - segment:
     - waypoint:
         type: "branching"
@@ -33,7 +33,7 @@
           value: "false"
         location:
           file_name: "while.c"
-          line: 14
+          line: 21
   - segment:
     - waypoint:
         type: "assumption"
@@ -43,7 +43,7 @@
           format: "c_expression"
         location:
           file_name: "while.c"
-          line: 16
+          line: 23
   - segment:
     - waypoint:
         type: "branching"
@@ -52,7 +52,7 @@
           value: "false"
         location:
           file_name: "while.c"
-          line: 14
+          line: 21
   - segment:
     - waypoint:
         type: "branching"
@@ -61,12 +61,12 @@
           value: "true"
         location:
           file_name: "while.c"
-          line: 21
+          line: 28
   - segment:
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "while.c"
-          line: 22
+          line: 29
 

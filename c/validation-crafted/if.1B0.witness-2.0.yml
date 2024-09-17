@@ -23,7 +23,7 @@
           value: "true"
         location:
           file_name: "if.c"
-          line: 10
+          line: 17
   - segment:
     - waypoint:
         type: "branching"
@@ -32,7 +32,7 @@
           value: "true"
         location:
           file_name: "if.c"
-          line: 13
+          line: 20
   - segment:
     - waypoint:
         type: "branching"
@@ -41,12 +41,12 @@
           value: "true"
         location:
           file_name: "if.c"
-          line: 15
+          line: 22
   - segment:
     - waypoint:
         type: "target"
         action: "follow"
         location:
           file_name: "if.c"
-          line: 16
+          line: 23
 
