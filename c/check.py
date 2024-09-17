@@ -17,6 +17,8 @@ import logging
 import multiprocessing
 import os
 import re
+import shutil
+import subprocess
 import sys
 
 from typing import List, Tuple
@@ -355,7 +357,13 @@ class TaskDefinitionFileChecks(FileChecks):
                 self.error("references inaccessible file: " + f_path)
             elif f.endswith(".yml"):
                 # We are dealing with a witness as input
-                continue
+                try:
+                    WitnessInputFileChecks(
+                        path=f_path,
+                        name=f_path,
+                    ).run()
+                except CheckFailed:
+                    ok = False
             else:
                 try:
                     InputFileChecks(
@@ -585,6 +593,27 @@ class InputFileChecks(FileChecks):
 
         if any(PREPROCESSOR_DIRECTIVE.match(line) for line in self.lines):
             self.error("#define or #include statement present, please add preprocessed version")
+
+class WitnessInputFileChecks(Checks):
+
+    def __init__(self, path, *args, **kwargs):
+        super().__init__(known_problems=KNOWN_SET_PROBLEMS, quiet=True, *args, **kwargs)
+        self.path = path
+        self.witness_linter_executable = "witnesslinter.py"
+
+    def check_with_linter(self):
+        if shutil.which(self.witness_linter_executable) is None:
+            self.error(f"Could not find witnesslinter executable '{self.witness_linter_executable}'")
+            return
+        
+        result = subprocess.run([self.witness_linter_executable, "--witness", self.path], 
+                                stdout = subprocess.DEVNULL,
+                                stderr = subprocess.DEVNULL)
+        
+        if result.returncode != 0:
+            self.error(f"witnesslinter failed")
+
+        return
 
 class SetFileChecks(Checks):
     """Checks about the .set files that define categories."""
