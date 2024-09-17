@@ -1,0 +1,14 @@
+format_version: '2.0'
+
+input_files: 
+  - 'if.c'
+  - 'if.1A1.witness-2.0.yml'
+
+properties:
+  - property_file: ../properties/unreach-call.prp
+    expected_verdict: false
+
+options:
+  language: C
+  data_model: LP64
+  witness: 'if.1A1.witness-2.0.yml'
