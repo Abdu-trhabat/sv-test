@@ -48,7 +48,7 @@ void *thr2(void *_) {
   x = 1;
   assert(x>=1);
   // end: critical section
-  turn = 1;
+  turn = 1; // should be 0 (turn is never set to 0 this way, making the algorithm unfair)
   flag2 = 0;
   return 0;
 }
