@@ -1,7 +1,7 @@
 format_version: '2.0'
 
-# old file name: read_write_lock_true-unreach-call.i
-input_files: 'read_write_lock-1-pthread.i'
+# old file name: 39_rand_lock_p0_vs_true-unreach-call.i
+input_files: '39_rand_lock_p0_vs.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp

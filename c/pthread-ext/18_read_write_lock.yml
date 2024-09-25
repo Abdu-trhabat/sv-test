@@ -1,7 +1,7 @@
 format_version: '2.0'
 
-# old file name: 35_double_lock_p3_vs_true-unreach-call.i
-input_files: '35_double_lock_p3_vs-pthread.i'
+# old file name: 18_read_write_lock_true-unreach-call.i
+input_files: '18_read_write_lock.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp

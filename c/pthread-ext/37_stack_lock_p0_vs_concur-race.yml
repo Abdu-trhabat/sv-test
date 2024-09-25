@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: 37_stack_lock_p0_vs_concur_true-unreach-call.i
-input_files: '37_stack_lock_p0_vs_concur-pthread-race.i'
+input_files: '37_stack_lock_p0_vs_concur-race.i'
 
 properties:
   - property_file: ../properties/no-data-race.prp

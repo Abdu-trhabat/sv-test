@@ -1,11 +1,11 @@
 format_version: '2.0'
 
-# old file name: 39_rand_lock_p0_vs_true-unreach-call.i
-input_files: '39_rand_lock_p0_vs-pthread.i'
+# old file name: 25_stack_longer_false-unreach-call.i
+input_files: '25_stack_longer-1.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp
-    expected_verdict: true
+    expected_verdict: false
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: true
   - property_file: ../properties/no-overflow.prp

@@ -1,7 +1,7 @@
 format_version: '2.0'
 
-# old file name: 03_incdec_true-unreach-call.i
-input_files: '03_incdec-pthread.i'
+# old file name: 14_spin2003_true-unreach-call.i
+input_files: '14_spin2003.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp
