@@ -38,12 +38,16 @@ CATEGORIES_TO_IGNORE = {
   "SoftwareSystems-OpenBSD-MemSafety": "(only custom includes, no system headers, complicated build process)",
   "SoftwareSystems-OpenBSD-ReachSafety": "(only custom includes, no system headers, complicated build process)",
   "SoftwareSystems-SQLite-MemSafety": "(complicated build process, requires patched version of cilly)",
+  "MemSafety_Juliet": "(no corresponding .c files)",
+  "NoOverflowsSafety_Juliet": "(no corresponding .c files)",
+  "Unused_Juliet": "(no corresponding .c files)",
 }
 
 # categories to be excluded, if option "skip-large" is used ... (with reason and debug information)
 LARGE_CATEGORIES = {
   "SoftwareSystems-DeviceDriversLinux64-ReachSafety": "(only custom includes, no system headers, checking takes too much time)",
   "SoftwareSystems-DeviceDriversLinux64-MemSafety": "(only custom includes, no system headers, checking takes too much time)",
+  "SoftwareSystems-DeviceDriversLinux64-Termination": "(only custom includes, no system headers, checking takes too much time)",
   "SoftwareSystems-DeviceDriversLinux64Large-ReachSafety": "(only custom includes, no system headers, checking takes too much time)",
 }
 

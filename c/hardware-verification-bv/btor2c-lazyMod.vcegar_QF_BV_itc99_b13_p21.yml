@@ -13,7 +13,6 @@ input_files: 'btor2c-lazyMod.vcegar_QF_BV_itc99_b13_p21.c'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

@@ -10,6 +10,7 @@ properties:
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: false
     subproperty: valid-memtrack
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

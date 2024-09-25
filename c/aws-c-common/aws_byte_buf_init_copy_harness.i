@@ -8984,7 +8984,7 @@ void aws_byte_buf_init_copy_harness() {
 
 
     struct aws_allocator *allocator;
-    struct aws_byte_buf src;
+    struct aws_byte_buf src = {__VERIFIER_nondet_ulong(), 0, __VERIFIER_nondet_ulong(), 0};
 
 
     assume_abort_if_not(aws_byte_buf_is_bounded(&src, 10));

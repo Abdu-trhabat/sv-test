@@ -5,7 +5,6 @@ input_files: '4SB.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

@@ -7978,10 +7978,10 @@ void aws_array_list_get_at_harness() {
     assume_abort_if_not(aws_array_list_is_bounded(&list, 9223372036854775808U, 2));
     ensure_array_list_has_allocated_data_member(&list);
     assume_abort_if_not(aws_array_list_is_valid(&list));
-    size_t malloc_size;
+    size_t malloc_size = nondet_size_t();
     assume_abort_if_not(malloc_size <= list.item_size);
     void *val = can_fail_malloc(malloc_size);
-    size_t index;
+    size_t index = nondet_size_t();
 
 
     struct aws_array_list old = list;

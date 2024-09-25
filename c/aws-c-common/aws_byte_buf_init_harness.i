@@ -8740,11 +8740,11 @@ void aws_common_fatal_assert_library_initialized(void) {
 }
 void aws_byte_buf_init_harness() {
 
-    struct aws_byte_buf buf;
+    struct aws_byte_buf buf = {__VERIFIER_nondet_ulong(), 0, __VERIFIER_nondet_ulong(), 0};
 
 
     struct aws_allocator *allocator = can_fail_allocator();
-    size_t capacity;
+    size_t capacity = nondet_size_t();
 
     if (aws_byte_buf_init(&buf, allocator, capacity) == (0)) {
 

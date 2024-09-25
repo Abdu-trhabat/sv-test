@@ -7,7 +7,6 @@ input_files: 'or-02.c'
 properties:
   - property_file: ../properties/termination.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 options:
   language: C
   data_model: LP64

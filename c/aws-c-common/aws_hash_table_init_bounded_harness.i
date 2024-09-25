@@ -10113,7 +10113,7 @@ int hash_table_state_required_bytes(size_t size, size_t *required_bytes) {
 }
 void aws_hash_table_init_bounded_harness() {
     struct aws_allocator *allocator = can_fail_allocator();
-    size_t size;
+    size_t size = nondet_size_t();
     assume_abort_if_not(size <= 
    (18446744073709551615UL)
    );

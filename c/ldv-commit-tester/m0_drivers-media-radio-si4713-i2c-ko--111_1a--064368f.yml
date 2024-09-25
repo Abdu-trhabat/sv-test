@@ -6,7 +6,6 @@ input_files: 'm0_drivers-media-radio-si4713-i2c-ko--111_1a--064368f.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

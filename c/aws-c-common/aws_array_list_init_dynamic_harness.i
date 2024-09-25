@@ -7736,8 +7736,8 @@ void aws_array_list_init_dynamic_harness() {
 
 
     struct aws_allocator *allocator = can_fail_allocator();
-    size_t item_size;
-    size_t initial_item_allocation;
+    size_t item_size = nondet_size_t();
+    size_t initial_item_allocation = nondet_size_t();
 
 
     assume_abort_if_not(initial_item_allocation <= 9223372036854775808U);

@@ -6,7 +6,6 @@ input_files: 'linux-4.2-rc1.tar.xz-43_2a-drivers--media--usb--gspca--gspca_topro
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

@@ -7982,10 +7982,10 @@ void aws_array_list_set_at_harness() {
     assume_abort_if_not(list.data != 
    ((void *)0)
    );
-    size_t malloc_size;
+    size_t malloc_size = nondet_size_t();
     assume_abort_if_not(malloc_size <= list.item_size);
     void *val = can_fail_malloc(malloc_size);
-    size_t index;
+    size_t index = nondet_size_t();
 
 
     struct aws_array_list old = list;

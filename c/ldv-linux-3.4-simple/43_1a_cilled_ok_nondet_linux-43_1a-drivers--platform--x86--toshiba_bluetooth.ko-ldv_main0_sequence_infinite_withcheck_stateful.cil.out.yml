@@ -6,7 +6,6 @@ input_files: '43_1a_cilled_ok_nondet_linux-43_1a-drivers--platform--x86--toshiba
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

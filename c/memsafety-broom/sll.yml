@@ -6,6 +6,7 @@ input_files: 'sll.i'
 properties:
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: true
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

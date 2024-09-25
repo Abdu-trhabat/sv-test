@@ -8980,8 +8980,8 @@ void aws_common_fatal_assert_library_initialized(void) {
 }
 void aws_byte_buf_write_be32_harness() {
 
-    struct aws_byte_buf buf;
-    uint32_t x;
+    struct aws_byte_buf buf = {__VERIFIER_nondet_ulong(), 0, __VERIFIER_nondet_ulong(), 0};
+    uint32_t x = nondet_uint32_t();
 
 
     assume_abort_if_not(aws_byte_buf_is_bounded(&buf, 10));

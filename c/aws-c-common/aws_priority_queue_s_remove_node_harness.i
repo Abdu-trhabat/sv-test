@@ -8512,7 +8512,10 @@ int __CPROVER_file_local_priority_queue_c_s_remove_node(struct aws_priority_queu
 
 void aws_priority_queue_s_remove_node_harness() {
 
-    struct aws_priority_queue queue;
+    struct aws_priority_queue queue = {
+	0,
+	{0, nondet_size_t(), nondet_size_t(), nondet_size_t(), 0},
+	{0, nondet_size_t(), nondet_size_t(), nondet_size_t(), 0}};
 
 
     assume_abort_if_not(aws_priority_queue_is_bounded(&queue, 9223372036854775808U, 2));
@@ -8521,7 +8524,7 @@ void aws_priority_queue_s_remove_node_harness() {
 
     assume_abort_if_not(aws_priority_queue_is_valid(&queue));
     void *item = can_fail_malloc(queue.container.item_size);
-    size_t index;
+    size_t index = nondet_size_t();
     assume_abort_if_not(index < queue.container.length);
 
     struct aws_priority_queue_node *node = can_fail_malloc(sizeof(struct aws_priority_queue_node));

@@ -1,4 +1,4 @@
-/* 
+/*
 Geometric Series
 computes x=(z-1)* sum(z^k)[k=0..k-1] , y = z^k
 returns 1+x-y == 0
@@ -21,7 +21,7 @@ void __VERIFIER_assert(int cond) {
 }
 int main() {
     unsigned int z, k;
-    long long x, y, c;
+    unsigned long long x, y, c;
     z = __VERIFIER_nondet_uint();
     assume_abort_if_not(z>=0 && z<=100);
     k = __VERIFIER_nondet_uint();
@@ -34,7 +34,7 @@ int main() {
     while (1) {
         __VERIFIER_assert(x*z - x - y + 1 == 0);
 
-        if (!(c < k)) 
+        if (!(c < k))
             break;
 
         c = c + 1;

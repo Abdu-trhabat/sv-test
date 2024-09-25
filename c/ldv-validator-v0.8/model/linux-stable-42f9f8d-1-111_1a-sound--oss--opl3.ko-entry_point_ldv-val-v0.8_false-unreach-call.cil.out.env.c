@@ -138,7 +138,9 @@ void sequencer_init() {
 int __VERIFIER_nondet_int(void);
 int sound_alloc_synthdev() {
   // Simple type
-  return __VERIFIER_nondet_int();
+  int dev = __VERIFIER_nondet_int();
+  assume_abort_if_not(dev >= -1 && dev < 11);
+  return dev;
 }
 
 // Function: sound_unload_synthdev

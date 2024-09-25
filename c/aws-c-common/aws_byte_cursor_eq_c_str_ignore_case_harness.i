@@ -8966,7 +8966,7 @@ void aws_common_fatal_assert_library_initialized(void) {
 }
 void aws_byte_cursor_eq_c_str_ignore_case_harness() {
 
-    struct aws_byte_cursor cur;
+    struct aws_byte_cursor cur = {__VERIFIER_nondet_ulong(), 0};
     const char *c_str = ensure_c_str_is_allocated(10);
 
 

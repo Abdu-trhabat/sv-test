@@ -5,8 +5,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-extern void* __VERIFIER_nondet_pointer();
-
 #include<pthread.h>
 #include<stdlib.h>
 #include<stdio.h>
@@ -29,14 +27,14 @@ pthread_mutex_t B_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void *t_fun(void *arg) {
   int *ip;
-  struct s *t, *sp = __VERIFIER_nondet_pointer();
+  struct s *t;
   struct s *p = malloc(sizeof(struct s));
   init(p,7);
 
   pthread_mutex_lock(&B_mutex);
   t = A->next;
-  A->next = sp; // RACE!
-  sp->next = t;
+  A->next = p; // RACE!
+  p->next = t;
   pthread_mutex_unlock(&B_mutex);
   return NULL;
 }

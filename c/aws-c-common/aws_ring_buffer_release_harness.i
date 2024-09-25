@@ -9244,9 +9244,9 @@ _Bool
 
 void aws_ring_buffer_release_harness() {
 
-    struct aws_ring_buffer ring_buf;
-    size_t ring_buf_size;
-    struct aws_byte_buf buf;
+    struct aws_ring_buffer ring_buf = {0, 0, {0}, {0}, 0};
+    size_t ring_buf_size = nondet_size_t();
+    struct aws_byte_buf buf = {nondet_size_t(), 0, nondet_size_t(), 0};
 
 
     ensure_ring_buffer_has_allocated_members(&ring_buf, ring_buf_size);

@@ -12,7 +12,6 @@ input_files: 'hardness_codestructure_steplocals_file-17.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

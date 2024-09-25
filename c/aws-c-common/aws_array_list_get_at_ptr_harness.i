@@ -7979,7 +7979,7 @@ void aws_array_list_get_at_ptr_harness() {
     ensure_array_list_has_allocated_data_member(&list);
     assume_abort_if_not(aws_array_list_is_valid(&list));
     void **val = can_fail_malloc(sizeof(void *));
-    size_t index;
+    size_t index = nondet_size_t();
 
 
     struct aws_array_list old = list;

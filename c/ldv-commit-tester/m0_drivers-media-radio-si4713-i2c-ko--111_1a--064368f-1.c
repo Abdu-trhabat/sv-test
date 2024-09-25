@@ -6297,6 +6297,7 @@ int main(void)
   goto ldv_26041;
   case 10: ;
   if (ldv_s_si4713_i2c_driver_i2c_driver == 0) {
+    assume_abort_if_not(var_group7 != 0);
     res_si4713_probe_38 = si4713_probe(var_group7, var_si4713_probe_38_p1);
     ldv_check_return_value(res_si4713_probe_38);
     ldv_check_return_value_probe(res_si4713_probe_38);
@@ -6313,6 +6314,7 @@ int main(void)
   case 11: ;
   if (ldv_s_si4713_i2c_driver_i2c_driver == 1) {
     ldv_handler_precall();
+    assume_abort_if_not(var_group7 != 0);
     res_si4713_remove_39 = si4713_remove(var_group7);
     ldv_check_return_value(res_si4713_remove_39);
     if (res_si4713_remove_39 != 0) {

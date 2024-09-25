@@ -48,7 +48,7 @@ void __VERIFIER_assert(int cond)
   return;
 }
 
-void func_to_recursive_line_30_to_38_0(int *k, long long *c, long long *x, long long *y, int *z)
+void func_to_recursive_line_30_to_38_0(int *k, unsigned long long *c, unsigned long long *x, unsigned long long *y, int *z)
 {
   if (1)
   {
@@ -76,9 +76,9 @@ int main()
 {
   int z;
   int k;
-  long long x;
-  long long y;
-  long long c;
+  unsigned long long x;
+  unsigned long long y;
+  unsigned long long c;
   z = __VERIFIER_nondet_int();
   k = __VERIFIER_nondet_int();
   x = 1;

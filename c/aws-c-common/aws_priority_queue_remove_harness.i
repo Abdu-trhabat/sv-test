@@ -8447,7 +8447,10 @@ size_t aws_priority_queue_capacity(const struct aws_priority_queue *queue) {
 }
 void aws_priority_queue_remove_harness() {
 
-    struct aws_priority_queue queue;
+    struct aws_priority_queue queue = {
+	0,
+	{0, nondet_size_t(), nondet_size_t(), nondet_size_t(), 0},
+	{0, nondet_size_t(), nondet_size_t(), nondet_size_t(), 0}};
 
 
     assume_abort_if_not(aws_priority_queue_is_bounded(&queue, 9223372036854775808U, 2));

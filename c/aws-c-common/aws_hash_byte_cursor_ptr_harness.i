@@ -11338,7 +11338,7 @@ int hash_table_state_required_bytes(size_t size, size_t *required_bytes) {
     return (0);
 }
 void aws_hash_byte_cursor_ptr_harness() {
-    struct aws_byte_cursor cur;
+    struct aws_byte_cursor cur = {__VERIFIER_nondet_ulong(), 0};
 
     assume_abort_if_not(aws_byte_cursor_is_bounded(&cur, 32));
     ensure_byte_cursor_has_allocated_buffer_member(&cur);

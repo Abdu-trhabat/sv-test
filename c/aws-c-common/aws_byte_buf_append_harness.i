@@ -8979,7 +8979,7 @@ void aws_common_fatal_assert_library_initialized(void) {
     }
 }
 void aws_byte_buf_append_harness() {
-    struct aws_byte_buf to;
+    struct aws_byte_buf to = {__VERIFIER_nondet_ulong(), 0, __VERIFIER_nondet_ulong(), 0};
     assume_abort_if_not(aws_byte_buf_is_bounded(&to, 10));
     ensure_byte_buf_has_allocated_buffer_member(&to);
     assume_abort_if_not(aws_byte_buf_is_valid(&to));
@@ -8987,7 +8987,7 @@ void aws_byte_buf_append_harness() {
 
     struct aws_byte_buf to_old = to;
 
-    struct aws_byte_cursor from;
+    struct aws_byte_cursor from = {__VERIFIER_nondet_ulong(), 0};
     assume_abort_if_not(aws_byte_cursor_is_bounded(&from, 10));
     ensure_byte_cursor_has_allocated_buffer_member(&from);
     assume_abort_if_not(aws_byte_cursor_is_valid(&from));

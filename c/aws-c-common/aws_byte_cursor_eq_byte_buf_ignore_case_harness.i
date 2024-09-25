@@ -8966,8 +8966,8 @@ void aws_common_fatal_assert_library_initialized(void) {
 }
 void aws_byte_cursor_eq_byte_buf_ignore_case_harness() {
 
-    struct aws_byte_cursor cur;
-    struct aws_byte_buf buf;
+    struct aws_byte_cursor cur = {__VERIFIER_nondet_ulong(), 0};
+    struct aws_byte_buf buf = {__VERIFIER_nondet_ulong(), 0, __VERIFIER_nondet_ulong(), 0};
 
 
     assume_abort_if_not(aws_byte_cursor_is_bounded(&cur, 10));
