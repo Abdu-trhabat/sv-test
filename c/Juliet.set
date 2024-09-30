@@ -1,4 +1,4 @@
-# Contains tasks for checking memory safety of programs from Juliet Test Suite.
+# Contains tasks for programs from Juliet Test Suite.
 
 #CWE415_Double_Free
 Juliet_Test/CWE415*.yml
