@@ -1,4 +1,4 @@
-# Contains integer overflow checks for concurrency problems.
+# Contains concurrency problems.
 pthread/*.yml
 pthread-atomic/*.yml
 pthread-ext/*.yml
@@ -14,3 +14,5 @@ pthread-nondet/*.yml
 goblint-regression/*.yml
 weaver/*.yml
 pthread-deagle/*.yml
+pthread-race-challenges/*.yml
+pthread-memsafety/*.yml
