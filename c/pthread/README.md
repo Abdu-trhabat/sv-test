@@ -11,6 +11,8 @@ Various small concurrent programs.
 
 - `bigshot*`, `sigma*`, `singleton*`: Submitted by the CSeq project
 - `triangular*`: Submitted by the CPAchecker project
+- `unwind*`: Submitted by the Theta project.
+  Regression tests for loop unwinding for concurrent programs. Three types of programs with different parameters: `N=1,2,5,10,50,100`.
 - Remainder submitted by the ESBMC project.
   Some of these are described in https://doi.org/10.1145/1985793.1985839
   or https://dl.acm.org/doi/10.1145/1639622.1639631 (also cf. https://wiki.cs.byu.edu/vv-lab/concurrency-tool-comparison).
