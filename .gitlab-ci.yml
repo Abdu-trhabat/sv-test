@@ -45,7 +45,7 @@ sanity-checks:
   script:
     - "${CC} -v --version"
     - "cd c"
-    - "./diff_ci.sh 'make -j2 -C'"
+    - "make -j2" # TODO: remove
 
 .clang-3-9: &clang-3-9
   image: registry.gitlab.com/sosy-lab/benchmarking/sv-benchmarks/ci/clang:3.9
