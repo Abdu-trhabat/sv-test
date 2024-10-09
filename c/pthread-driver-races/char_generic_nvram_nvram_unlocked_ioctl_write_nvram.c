@@ -11,6 +11,7 @@
  */
 
 #include <svcomp.h>
+extern long long __VERIFIER_nondet_longlong(void);
 
 #define NVRAM_VERSION "1.1"
 
@@ -256,6 +257,7 @@ int main(void)
 	whoop_poll_table = (poll_table *) malloc(sizeof(poll_table));
 
 	whoop_loff_t = (loff_t *) malloc(sizeof(loff_t));
+	*whoop_loff_t = __VERIFIER_nondet_longlong();
 	whoop_int = __VERIFIER_nondet_int();
 	assume_abort_if_not(whoop_int >= 0);
 

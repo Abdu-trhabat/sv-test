@@ -175,6 +175,7 @@ void __VERIFIER_assert(int cond) {
   }
   return;
 }
+extern long long __VERIFIER_nondet_longlong(void);
 struct task_struct;
 typedef struct kernel_cap_struct {
  __u32 cap[2];
@@ -6875,6 +6876,7 @@ int main(void)
  whoop_cx_dev = (struct cx_dev *) malloc(sizeof(struct cx_dev));
  whoop_poll_table = (poll_table *) malloc(sizeof(poll_table));
  whoop_loff_t = (loff_t *) malloc(sizeof(loff_t));
+ *whoop_loff_t = __VERIFIER_nondet_longlong();
  whoop_int = __VERIFIER_nondet_int();
  assume_abort_if_not(whoop_int >= 0);
  int _whoop_init_result = _whoop_init();
