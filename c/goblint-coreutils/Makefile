@@ -10,6 +10,7 @@
 LEVEL := ../
 
 CC.Arch := 64
+CC.Standard := gnu89 # TODO: remove
 # Activate -Wno-shift-count-overflow because code that is affected by warning is unreachable for given architecture.
 # Activate -Wno-bool-operation, because purposely a bitwise operation is performed on the result of a boolean operation.
 # Activate -Wno-sizeof-pointer-memaccess, because that is a style-issue in the original program.
