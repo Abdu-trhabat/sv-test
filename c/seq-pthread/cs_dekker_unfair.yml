@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: cs_dekker_true-unreach-call.i
-input_files: 'cs_dekker_buggy.i'
+input_files: 'cs_dekker_unfair.i'
 
 properties:
   - property_file: ../properties/no-overflow.prp
