@@ -10,6 +10,8 @@ LEVEL := ../
 
 CC.Arch := 64
 
+CC.Standard := gnu11
+
 IGNORE_DIRS := ./model/ ./todo/
 
 # Directory has too many warnings and errors, disable them all

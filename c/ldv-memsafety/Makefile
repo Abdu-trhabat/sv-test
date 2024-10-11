@@ -8,6 +8,8 @@
 
 LEVEL := ../
 
+CC.Standard := gnu11
+
 # FIXME: These don't build
 IGNORE_DIRS := ./memleaks-notpreprocessed/
 

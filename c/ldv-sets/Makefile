@@ -8,6 +8,8 @@
 
 LEVEL := ../
 
+CC.Standard := gnu11
+
 IGNORE_DIRS := ./model/
 
 include $(LEVEL)/Makefile.config
