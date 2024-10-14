@@ -768,7 +768,6 @@ void *f2() {
     return 0;
 }
 int main() {
-    __extension__ ({ __auto_type __atomic_store_ptr = (&limit); __typeof__ ((void)0, *__atomic_store_ptr) __atomic_store_tmp = (0); __atomic_store (__atomic_store_ptr, &__atomic_store_tmp, (0)); });
     pthread_t t1, t2;
     pthread_create(&t1, 0, f1, 0);
     pthread_create(&t2, 0, f2, 0);

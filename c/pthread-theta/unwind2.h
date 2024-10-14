@@ -37,7 +37,6 @@ void *f2() {
 }
 
 int main() {
-    atomic_init(&limit, 0);
     pthread_t t1, t2;
     pthread_create(&t1, 0, f1, 0);
     pthread_create(&t2, 0, f2, 0);

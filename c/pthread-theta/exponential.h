@@ -26,7 +26,6 @@ void *f2(void *arg) { // N threads with f2
 }
 int main() {
   int x, z, p, i;
-  atomic_init(&y, 0);
   __VERIFIER_atomic_begin();
   pthread_t t;
   p = 0;

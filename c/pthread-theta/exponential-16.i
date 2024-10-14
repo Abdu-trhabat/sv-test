@@ -760,7 +760,6 @@ void *f2(void *arg) {
 }
 int main() {
   int x, z, p, i;
-  __extension__ ({ __auto_type __atomic_store_ptr = (&y); __typeof__ ((void)0, *__atomic_store_ptr) __atomic_store_tmp = (0); __atomic_store (__atomic_store_ptr, &__atomic_store_tmp, (0)); });
   __VERIFIER_atomic_begin();
   pthread_t t;
   p = 0;
