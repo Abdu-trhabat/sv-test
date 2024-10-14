@@ -1,12 +1,14 @@
 # Contains tasks that require the analysis of data structures on the heap, pointer aliases, and function pointers.
-heap-manipulation/*.yml
-list-properties/*.yml
 ldv-regression/*.yml
-ddv-machzwd/*.yml
-forester-heap/*.yml
 list-ext-properties/*.yml
 list-ext2-properties/*.yml
 ldv-sets/*.yml
-list-simple/*.yml
 heap-data/*.yml
-list-ext3-properties/*.yml
+memsafety/*.yml
+memsafety-ext/*.yml
+memsafety-ext2/*.yml
+memsafety-ext3/*.yml
+memsafety-bftpd/*.yml
+memory-alloca/*.yml
+ldv-memsafety/*.yml
+ldv-memsafety-bitfields/*.yml

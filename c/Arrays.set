@@ -10,3 +10,5 @@ array-patterns/*.yml
 array-cav19/*.yml
 array-lopstr16/*.yml
 array-fpi/*.yml
+array-memsafety/*.yml
+array-memsafety-realloc/*.yml
