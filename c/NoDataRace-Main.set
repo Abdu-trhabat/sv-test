@@ -15,3 +15,4 @@ goblint-regression/*.yml
 weaver/*.yml
 pthread-deagle/*.yml
 pthread-race-challenges/*.yml
+pthread-theta/*.yml
