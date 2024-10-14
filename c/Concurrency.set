@@ -15,4 +15,5 @@ goblint-regression/*.yml
 weaver/*.yml
 pthread-deagle/*.yml
 pthread-race-challenges/*.yml
+pthread-memsafety/*.yml
 pthread-theta/*.yml
