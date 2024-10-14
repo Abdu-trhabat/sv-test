@@ -1,3 +1,10 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2024 The SV-Benchmarks community
+//
+// SPDX-License-Identifier: Apache-2.0
+
 #include <pthread.h>
 #include <stdatomic.h>
 #include <assert.h>
@@ -12,6 +19,8 @@ void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error(
 // [1] Florian Furbach, Roland Meyer, Klaus Schneider, Maximilian Senftleben: Memory-Model-Aware Testing: A Unified Complexity Analysis. ACM Trans. Embed. Comput. Syst. 14(4): 63:1-63:25 (2015)
 // [2] Liangze Yin, Wei Dong, Wanwei Liu, Ji Wang: On Scheduling Constraint Abstraction for Multi-Threaded Program Verification. IEEE Trans. Software Eng. 46(5): 549-565 (2020)
 // [3] Zhihang Sun, Hongyu Fan, Fei He: Consistency-preserving propagation for SMT solving of concurrent program verification. Proc. ACM Program. Lang. 6(OOPSLA2): 929-956 (2022)
+
+// Contributed-by: Hernan Ponce de Leon (Dartagnan Team)
 
 atomic_int m,n,x,y,w;
 atomic_int success = 0;
