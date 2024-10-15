@@ -745,17 +745,17 @@ extern _Bool atomic_flag_test_and_set_explicit (volatile atomic_flag *,
 extern void atomic_flag_clear (volatile atomic_flag *);
 extern void atomic_flag_clear_explicit (volatile atomic_flag *, memory_order);
 extern void abort(void);
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/exponential.h", 6, __extension__ __PRETTY_FUNCTION__); })); }
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/exponential.h", 7, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
 extern void __VERIFIER_atomic_begin(void);
 extern void __VERIFIER_atomic_end(void);
-atomic_int y;
+atomic_uint y;
 void *f1(void *arg) {
-  y = y + 1;
+  y = (y + 1) % 0x7fffffff;
   return 0;
 }
 void *f2(void *arg) {
-  y = y * y;
+  y = (2 * y) % 0x7fffffff;
   return 0;
 }
 int main() {

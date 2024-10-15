@@ -8,7 +8,7 @@ properties:
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: true
   - property_file: ../properties/no-overflow.prp
-    expected_verdict: false
+    expected_verdict: true
   - property_file: ../properties/no-data-race.prp
     expected_verdict: true
 

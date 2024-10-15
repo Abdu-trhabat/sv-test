@@ -8,6 +8,7 @@
 #include <assert.h>
 #include <pthread.h>
 #include <stdatomic.h>
+#include <limits.h>
 
 extern void abort(void);
 void reach_error() { assert(0); }
@@ -15,13 +16,13 @@ void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error(
 extern void __VERIFIER_atomic_begin(void);
 extern void __VERIFIER_atomic_end(void);
 
-atomic_int y;
+atomic_uint y; // assignment to y is always between 0 and INT_MAX, therefore 2*y fits in an unsigned int
 void *f1(void *arg) { // N threads with f1
-  y = y + 1;
+  y = (y + 1) % INT_MAX;
   return 0;
 }
 void *f2(void *arg) { // N threads with f2
-  y = y * y;
+  y = (2 * y) % INT_MAX;
   return 0;
 }
 int main() {
