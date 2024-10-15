@@ -12294,3 +12294,19 @@ void *ldv_calloc(size_t nmemb , size_t size )
   }
 }
 }
+void *ldv_xmalloc(size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  {
+  {
+  tmp = malloc(size);
+  res = tmp;
+  ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+  tmp___0 = ldv_is_err((void const *)res);
+  ldv_assume(tmp___0 == 0L);
+  }
+  return (res);
+}
+}
