@@ -10331,3 +10331,14 @@ long ldv__builtin_expect(long val , long res )
 }
 #include "model/32_7_cilled_false-unreach-call_const_ok_linux-32_1-drivers--net--phy--dp83640.ko-ldv_main0_sequence_infinite_withcheck_stateful.cil.out.env.c"
 #include "model/common.env.c"
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}

@@ -11920,3 +11920,6 @@ void ldv_assert_linux_usb_dev__unincremented_counter_decrement(int expr )
 }
 #include "model/linux-3.14__linux-usb-dev__drivers-net-ethernet-ti-tlan_true-unreach-call.cil.env.c"
 #include "model/common.env.c"
+struct resource *__request_region(struct resource *arg0, resource_size_t arg1, resource_size_t arg2, const char *arg3, int arg4) {
+  return ldv_malloc(sizeof(struct resource));
+}

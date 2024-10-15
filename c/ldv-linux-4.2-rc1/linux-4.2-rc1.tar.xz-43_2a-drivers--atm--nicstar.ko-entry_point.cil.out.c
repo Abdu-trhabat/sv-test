@@ -11669,3 +11669,19 @@ int ldv_spin_trylock(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-43_2a-drivers--atm--nicstar.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void *ldv_xmalloc(size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  {
+  {
+  tmp = malloc(size);
+  res = tmp;
+  ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+  tmp___0 = ldv_is_err((void const *)res);
+  ldv_assume(tmp___0 == 0L);
+  }
+  return (res);
+}
+}

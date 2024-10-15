@@ -12230,3 +12230,6 @@ void ldv_assert_linux_drivers_clk1__more_at_exit(int expr )
 }
 #include "model/linux-3.14__complex_emg__linux-drivers-clk1__drivers-net-ethernet-ti-tlan_true-unreach-call.cil.env.c"
 #include "model/common.env.c"
+struct resource *__request_region(struct resource *arg0, resource_size_t arg1, resource_size_t arg2, const char *arg3, int arg4) {
+  return ldv_malloc(sizeof(struct resource));
+}

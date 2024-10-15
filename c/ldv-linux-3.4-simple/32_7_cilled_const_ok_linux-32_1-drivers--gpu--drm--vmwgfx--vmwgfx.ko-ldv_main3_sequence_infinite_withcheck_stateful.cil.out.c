@@ -56239,3 +56239,19 @@ void ldv_main17_sequence_infinite_withcheck_stateful(void)
 }
 #include "model/32_7_cilled_false-unreach-call_const_ok_linux-32_1-drivers--gpu--drm--vmwgfx--vmwgfx.ko-ldv_main3_sequence_infinite_withcheck_stateful.cil.out.env.c"
 #include "model/common.env.c"
+void *ldv_xmalloc(size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  {
+  {
+  tmp = malloc(size);
+  res = tmp;
+  ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+  tmp___0 = ldv_is_err((void const *)res);
+  ldv_assume(tmp___0 == 0L);
+  }
+  return (res);
+}
+}

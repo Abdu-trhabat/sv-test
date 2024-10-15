@@ -21095,3 +21095,25 @@ int ldv_spin_trylock(void)
 }
 #include "model/main7-linux-3.10-rc1-43_1a-bitvector-drivers--net--ethernet--mellanox--mlx4--mlx4_en.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void *ldv_xmalloc(size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  {
+  {
+  tmp = malloc(size);
+  res = tmp;
+  ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+  tmp___0 = ldv_is_err((void const *)res);
+  ldv_assume(tmp___0 == 0L);
+  }
+  return (res);
+}
+}
+void *vmap(struct page **arg0, unsigned int arg1, unsigned long arg2, pgprot_t arg3) {
+  return ldv_malloc(0UL);
+}
+void vunmap(const void *arg0) {
+  return;
+}

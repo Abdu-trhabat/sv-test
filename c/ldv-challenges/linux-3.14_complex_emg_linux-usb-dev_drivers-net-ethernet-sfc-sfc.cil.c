@@ -101109,3 +101109,6 @@ void ldv_assert_linux_usb_dev__unincremented_counter_decrement(int expr )
 }
 #include "model/linux-3.14__complex_emg__linux-usb-dev__drivers-net-ethernet-sfc-sfc_true-unreach-call.cil.env.c"
 #include "model/common.env.c"
+int netdev_printk(const char *arg0, const struct net_device *arg1, const char *arg2, ...) {
+  return __VERIFIER_nondet_int();
+}

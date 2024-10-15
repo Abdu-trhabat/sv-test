@@ -2481,3 +2481,23 @@ void main(void)
 }
 #include "model/32_1_cilled_true-unreach-call_ok_nondet_linux-3_false-termination.4-32_1-drivers--xen--xenfs--xenfs.ko-ldv_main1_sequence_infinite_withcheck_stateful.cil.out.env.c"
 #include "model/common.env.c"
+long ldv_is_err(void const *ptr )
+{
+  return ((unsigned long )ptr > 4294967295UL);
+}
+void *ldv_xmalloc(size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  {
+  {
+  tmp = malloc(size);
+  res = tmp;
+  ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+  tmp___0 = ldv_is_err((void const *)res);
+  ldv_assume(tmp___0 == 0L);
+  }
+  return (res);
+}
+}

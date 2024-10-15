@@ -25272,3 +25272,6 @@ int ldv_spin_trylock(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-43_2a-drivers--net--wireless--iwlegacy--iwl3945.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void il_write_targ_mem(struct il_priv *arg0, u32 arg1, u32 arg2) {
+  return;
+}
