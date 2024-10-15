@@ -54726,6 +54726,7 @@ u32 crc32_le(u32 arg0, const unsigned char *arg1, size_t arg2) {
 struct crypto_tfm *crypto_alloc_base(const char *arg0, u32 arg1, u32 arg2) {
   return ldv_malloc(sizeof(struct crypto_tfm));
 }
+void *ldv_xmalloc(size_t size );
 struct timespec current_fs_time(struct super_block *arg0) {
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));
 }
@@ -55124,6 +55125,17 @@ void writeback_inodes_sb(struct super_block *arg0, enum wb_reason arg1) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

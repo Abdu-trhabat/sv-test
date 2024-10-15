@@ -6723,6 +6723,7 @@ int __VERIFIER_nondet_int(void);
 int kthread_stop(struct task_struct *arg0) {
   return __VERIFIER_nondet_int();
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get() {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }
@@ -6788,6 +6789,17 @@ int wake_up_process(struct task_struct *arg0) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

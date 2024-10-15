@@ -21420,6 +21420,7 @@ int __VERIFIER_nondet_int(void);
 int irq_cpu_rmap_add(struct cpu_rmap *arg0, int arg1) {
   return __VERIFIER_nondet_int();
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get() {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }

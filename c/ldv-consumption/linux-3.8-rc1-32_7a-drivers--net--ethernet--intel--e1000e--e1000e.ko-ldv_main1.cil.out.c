@@ -39079,6 +39079,17 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-3.8-rc1-32_7a-drivers--net--ethernet--intel--e1000e--e1000e.ko-ldv_main1_true-unreach-call.env.c"
 #include "model/common.env.c"
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
 void *ldv_xmalloc(size_t size )
 {
   void *res ;

@@ -19978,6 +19978,7 @@ void *kmem_cache_alloc(struct kmem_cache *arg0, gfp_t arg1) {
 void *kmemdup(const void *arg0, size_t arg1, gfp_t arg2) {
   return ldv_malloc(0UL);
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get_real() {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }
@@ -20401,6 +20402,17 @@ void warn_slowpath_null(const char *arg0, const int arg1) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

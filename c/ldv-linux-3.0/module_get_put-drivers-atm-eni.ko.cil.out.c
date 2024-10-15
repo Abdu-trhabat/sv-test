@@ -10955,6 +10955,17 @@ long ldv_is_err(void const *ptr )
 {
   return ((unsigned long )ptr > 4294967295UL);
 }
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
 void *ldv_xmalloc(size_t size )
 {
   void *res ;

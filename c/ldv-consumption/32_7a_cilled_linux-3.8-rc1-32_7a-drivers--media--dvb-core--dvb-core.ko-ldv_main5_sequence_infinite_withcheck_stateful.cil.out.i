@@ -20867,6 +20867,7 @@ unsigned int __VERIFIER_nondet_uint(void);
 u32 crc32_be(u32 arg0, const unsigned char *arg1, size_t arg2) {
   return __VERIFIER_nondet_uint();
 }
+void *ldv_xmalloc(size_t size );
 struct timespec current_kernel_time() {
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));
 }
@@ -21069,6 +21070,17 @@ void warn_slowpath_null(const char *arg0, const int arg1) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

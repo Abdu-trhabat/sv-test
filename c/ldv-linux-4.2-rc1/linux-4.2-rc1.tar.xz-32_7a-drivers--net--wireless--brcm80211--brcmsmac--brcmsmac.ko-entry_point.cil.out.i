@@ -69976,6 +69976,7 @@ bool __VERIFIER_nondet_bool(void);
 bool cancel_work_sync(struct work_struct *arg0) {
   return __VERIFIER_nondet_bool();
 }
+void *ldv_xmalloc(size_t size );
 struct cordic_iq cordic_calc_iq(s32 arg0) {
   return *(struct cordic_iq *)ldv_xmalloc(sizeof(struct cordic_iq));
 }
@@ -70293,6 +70294,17 @@ struct ieee80211_hw *wiphy_to_ieee80211_hw(struct wiphy *arg0) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

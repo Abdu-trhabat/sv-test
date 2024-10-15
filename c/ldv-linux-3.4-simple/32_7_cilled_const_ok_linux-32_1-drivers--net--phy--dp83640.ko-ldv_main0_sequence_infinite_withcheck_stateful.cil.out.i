@@ -4865,6 +4865,7 @@ void *ldv_malloc(size_t size)
   return ((void *)0);
  }
 }
+void ldv_assume(int expression );
 void *ldv_xmalloc(size_t size) {
   void *res ;
   void *tmp ;

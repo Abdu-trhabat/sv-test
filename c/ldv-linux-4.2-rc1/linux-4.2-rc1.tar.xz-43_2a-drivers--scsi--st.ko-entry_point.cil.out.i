@@ -11869,6 +11869,7 @@ void idr_preload(gfp_t arg0) {
 void idr_remove(struct idr *arg0, int arg1) {
   return;
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get() {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }
@@ -11984,6 +11985,17 @@ void warn_slowpath_null(const char *arg0, const int arg1) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

@@ -422,6 +422,7 @@ void kfree_skb(struct sk_buff *arg0) {
 // Function: ktime_get
 // with type: ktime_t ktime_get()
 // with return type: ktime_t 
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get() {
   // Typedef type
   // Real type: union ktime

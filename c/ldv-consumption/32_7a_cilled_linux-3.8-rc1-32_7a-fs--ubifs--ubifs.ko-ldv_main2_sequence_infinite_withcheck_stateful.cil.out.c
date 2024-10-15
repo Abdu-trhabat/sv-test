@@ -60237,6 +60237,17 @@ void ldv_check_final_state(void)
 }
 #include "model/32_7a_cilled_false-unreach-call_linux-3.8-rc1-32_7a-fs--ubifs--ubifs.ko-ldv_main2_sequence_infinite_withcheck_stateful.env.c"
 #include "model/common.env.c"
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
 void *ldv_xmalloc(size_t size )
 {
   void *res ;

@@ -5457,6 +5457,7 @@ __inline static void *kmalloc(size_t size , gfp_t flags )
 }
 }
 bool ldv_is_err(const void *);
+void ldv_assume(int expression );
 void *ldv_xmalloc(size_t size) {
   void *res ;
   void *tmp ;

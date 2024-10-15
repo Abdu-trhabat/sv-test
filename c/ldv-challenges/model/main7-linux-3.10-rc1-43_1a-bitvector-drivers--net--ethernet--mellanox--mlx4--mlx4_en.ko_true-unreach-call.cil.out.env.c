@@ -456,6 +456,7 @@ void *kmemdup(const void *arg0, size_t arg1, gfp_t arg2) {
 // Function: ktime_get_real
 // with type: ktime_t ktime_get_real()
 // with return type: ktime_t 
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get_real() {
   // Typedef type
   // Real type: union ktime

@@ -24536,6 +24536,7 @@ int __VERIFIER_nondet_int(void);
 int kstrtouint(const char *arg0, unsigned int arg1, unsigned int *arg2) {
   return __VERIFIER_nondet_int();
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get_with_offset(enum tk_offsets arg0) {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }

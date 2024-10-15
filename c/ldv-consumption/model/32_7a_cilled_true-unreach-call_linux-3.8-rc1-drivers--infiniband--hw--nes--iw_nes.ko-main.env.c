@@ -248,6 +248,7 @@ u32 crc32c(u32 arg0, const void *arg1, unsigned int arg2) {
 // Function: current_kernel_time
 // with type: struct timespec current_kernel_time()
 // with return type: struct timespec
+void *ldv_xmalloc(size_t size );
 struct timespec current_kernel_time() {
   // Composite type
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));

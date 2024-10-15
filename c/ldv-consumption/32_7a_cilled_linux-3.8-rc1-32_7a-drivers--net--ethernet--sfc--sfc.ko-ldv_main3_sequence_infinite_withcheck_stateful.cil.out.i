@@ -42061,6 +42061,7 @@ int __VERIFIER_nondet_int(void);
 int netpoll_trap() {
   return __VERIFIER_nondet_int();
 }
+void *ldv_xmalloc(size_t size );
 struct timespec ns_to_timespec(const s64 arg0) {
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));
 }
@@ -42293,6 +42294,17 @@ bool zalloc_cpumask_var(cpumask_var_t **arg0, gfp_t arg1) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

@@ -21095,6 +21095,17 @@ int ldv_spin_trylock(void)
 }
 #include "model/main7-linux-3.10-rc1-43_1a-bitvector-drivers--net--ethernet--mellanox--mlx4--mlx4_en.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
 void *ldv_xmalloc(size_t size )
 {
   void *res ;

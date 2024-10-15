@@ -55236,6 +55236,7 @@ int __VERIFIER_nondet_int(void);
 int mtrr_del(int arg0, unsigned long arg1, unsigned long arg2) {
   return __VERIFIER_nondet_int();
 }
+void *ldv_xmalloc(size_t size );
 struct timespec ns_to_timespec(s64 arg0) {
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));
 }
@@ -55500,6 +55501,17 @@ int autoremove_wake_function(wait_queue_t *arg0, unsigned int arg1, int arg2, vo
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

@@ -1071,6 +1071,7 @@ int netpoll_trap() {
 // Function: ns_to_timespec
 // with type: struct timespec ns_to_timespec(const s64 )
 // with return type: struct timespec
+void *ldv_xmalloc(size_t size );
 struct timespec ns_to_timespec(const s64 arg0) {
   // Composite type
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));

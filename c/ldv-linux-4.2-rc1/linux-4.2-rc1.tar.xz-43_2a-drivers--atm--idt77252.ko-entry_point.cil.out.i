@@ -12765,6 +12765,7 @@ void *ioremap_nocache(resource_size_t arg0, unsigned long arg1) {
 void iounmap(volatile void *arg0) {
   return;
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get_with_offset(enum tk_offsets arg0) {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }
@@ -12874,6 +12875,17 @@ void vfree(const void *arg0) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

@@ -24584,6 +24584,7 @@ int mutex_trylock(struct mutex *arg0) {
 void mutex_unlock(struct mutex *arg0) {
   return;
 }
+void *ldv_xmalloc(size_t size );
 pgprot_t pgprot_writecombine(pgprot_t arg0) {
   return *(struct pgprot *)ldv_xmalloc(sizeof(struct pgprot));
 }
@@ -24646,6 +24647,17 @@ void warn_slowpath_null(const char *arg0, const int arg1) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

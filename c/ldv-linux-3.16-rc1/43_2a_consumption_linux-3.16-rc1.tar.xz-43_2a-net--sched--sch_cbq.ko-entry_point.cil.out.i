@@ -5513,6 +5513,8 @@ void *ldv_malloc(size_t size )
   }
 }
 }
+long ldv_is_err(void const *ptr );
+void ldv_assume(int expression );
 void *ldv_xmalloc(size_t size) {
   void *res;
   void *tmp;

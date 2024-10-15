@@ -39012,6 +39012,7 @@ int clear_page_dirty_for_io(struct page *arg0) {
 void complete_all(struct completion *arg0) {
   return;
 }
+void *ldv_xmalloc(size_t size );
 struct timespec current_kernel_time() {
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));
 }
@@ -39449,6 +39450,17 @@ void warn_slowpath_null(const char *arg0, const int arg1) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

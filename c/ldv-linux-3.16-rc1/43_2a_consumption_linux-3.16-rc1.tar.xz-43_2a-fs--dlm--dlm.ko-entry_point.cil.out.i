@@ -32116,6 +32116,7 @@ int __VERIFIER_nondet_int(void);
 int kthread_stop(struct task_struct *arg0) {
   return __VERIFIER_nondet_int();
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get() {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }
@@ -32371,6 +32372,17 @@ long ldv_is_err(void const *ptr )
 {
   return ((unsigned long )ptr > 4294967295UL);
 }
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
 void *ldv_xmalloc(size_t size )
 {
   void *res ;
@@ -32387,6 +32399,6 @@ void *ldv_xmalloc(size_t size )
   return (res);
 }
 }
-void panic(char const * , ...) {
+void panic(char const * arg, ...) {
   return;
 }

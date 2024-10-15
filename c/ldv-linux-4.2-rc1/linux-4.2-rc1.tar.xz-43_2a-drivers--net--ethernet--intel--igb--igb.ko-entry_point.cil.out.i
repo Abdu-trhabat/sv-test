@@ -43310,6 +43310,7 @@ void kfree_call_rcu(struct callback_head *arg0, void (*arg1)(struct callback_hea
 void kfree_skb(struct sk_buff *arg0) {
   return;
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get_with_offset(enum tk_offsets arg0) {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }

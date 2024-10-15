@@ -17950,6 +17950,7 @@ void kfree_skb(struct sk_buff *arg0) {
 struct task_struct *kthread_create_on_node(int (*arg0)(void *), void *arg1, int arg2, const char *arg3, ...) {
   return ldv_malloc(sizeof(struct task_struct));
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get_real() {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }
@@ -18106,6 +18107,17 @@ void kfree(void const *p) {
 long ldv_is_err(void const *ptr )
 {
   return ((unsigned long )ptr > 4294967295UL);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

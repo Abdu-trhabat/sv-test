@@ -67327,6 +67327,17 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-08_1a-drivers--net--ethernet--sfc--sfc.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
 void *ldv_xmalloc(size_t size )
 {
   void *res ;
@@ -67343,6 +67354,5 @@ void *ldv_xmalloc(size_t size )
   return (res);
 }
 }
-int netdev_printk(const char *arg0, const struct net_device *arg1, const char *arg2, ...) {
-  return __VERIFIER_nondet_int();
+void netdev_printk(const char *arg0, const struct net_device *arg1, const char *arg2, ...) {
 }

@@ -45398,6 +45398,7 @@ void iounmap(volatile void *arg0) {
 char *kstrdup(const char *arg0, gfp_t arg1) {
   return ldv_malloc(sizeof(char));
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get_with_offset(enum tk_offsets arg0) {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }

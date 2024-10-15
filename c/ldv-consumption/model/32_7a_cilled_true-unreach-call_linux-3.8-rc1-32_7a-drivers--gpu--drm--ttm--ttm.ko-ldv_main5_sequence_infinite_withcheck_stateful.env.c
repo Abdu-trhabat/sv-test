@@ -749,6 +749,7 @@ void mutex_unlock(struct mutex *arg0) {
 // Function: pgprot_writecombine
 // with type: pgprot_t pgprot_writecombine(pgprot_t )
 // with return type: pgprot_t 
+void *ldv_xmalloc(size_t size );
 pgprot_t pgprot_writecombine(pgprot_t arg0) {
   // Typedef type
   // Real type: struct pgprot

@@ -6496,6 +6496,7 @@ void *ldv_malloc(size_t size) {
   }
 }
 }
+void ldv_assume(int expression );
 void *ldv_calloc(size_t nmemb , size_t size )
 {
   void *res ;

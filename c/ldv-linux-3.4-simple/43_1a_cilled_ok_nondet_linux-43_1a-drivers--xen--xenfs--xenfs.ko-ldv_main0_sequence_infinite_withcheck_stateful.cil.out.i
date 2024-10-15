@@ -2513,6 +2513,7 @@ unsigned long __VERIFIER_nondet_ulong(void);
 unsigned long int __phys_addr(unsigned long arg0) {
   return __VERIFIER_nondet_ulong();
 }
+void *ldv_xmalloc(size_t size );
 struct timespec current_kernel_time() {
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));
 }
@@ -2590,6 +2591,17 @@ void kfree(void const *p) {
 long ldv_is_err(void const *ptr )
 {
   return ((unsigned long )ptr > 4294967295UL);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }
 void *ldv_xmalloc(size_t size )
 {

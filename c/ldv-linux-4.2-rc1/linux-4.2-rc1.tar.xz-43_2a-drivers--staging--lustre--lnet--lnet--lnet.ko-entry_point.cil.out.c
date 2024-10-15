@@ -38661,6 +38661,17 @@ int ldv_spin_trylock(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-43_2a-drivers--staging--lustre--lnet--lnet--lnet.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
 void *ldv_xmalloc(size_t size )
 {
   void *res ;
