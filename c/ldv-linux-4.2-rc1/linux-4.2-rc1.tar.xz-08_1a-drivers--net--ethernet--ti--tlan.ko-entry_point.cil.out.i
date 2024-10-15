@@ -10709,3 +10709,6 @@ void free(void *);
 void kfree(void const *p) {
   free((void *)p);
 }
+struct resource *__request_region(struct resource *arg0, resource_size_t arg1, resource_size_t arg2, const char *arg3, int arg4) {
+  return ldv_malloc(sizeof(struct resource));
+}

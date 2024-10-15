@@ -79311,3 +79311,6 @@ void free(void *);
 void kfree(void const *p) {
   free((void *)p);
 }
+void sg_init_table(struct scatterlist *arg0, unsigned int arg1) {
+  return;
+}

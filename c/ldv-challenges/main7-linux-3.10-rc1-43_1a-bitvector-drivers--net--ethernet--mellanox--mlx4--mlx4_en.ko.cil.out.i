@@ -20418,3 +20418,9 @@ void *ldv_xmalloc(size_t size )
   return (res);
 }
 }
+void *vmap(struct page **arg0, unsigned int arg1, unsigned long arg2, pgprot_t arg3) {
+  return ldv_malloc(0UL);
+}
+void vunmap(const void *arg0) {
+  return;
+}

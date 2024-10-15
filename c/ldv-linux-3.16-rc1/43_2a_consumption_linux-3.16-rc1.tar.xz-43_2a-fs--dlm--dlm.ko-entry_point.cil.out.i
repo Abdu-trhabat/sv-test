@@ -32387,3 +32387,6 @@ void *ldv_xmalloc(size_t size )
   return (res);
 }
 }
+void panic(char const * , ...) {
+  return;
+}
