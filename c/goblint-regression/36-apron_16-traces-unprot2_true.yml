@@ -6,8 +6,6 @@ input_files: '36-apron_16-traces-unprot2_true.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/valid-memsafety.prp
-    expected_verdict: true
   - property_file: ../properties/no-data-race.prp
     expected_verdict: true
 
