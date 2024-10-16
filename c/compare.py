@@ -66,7 +66,8 @@ TASKS_ONLY_PREPROCESSED = [
   'recursified_loop-crafted',
   'recursified_loop-invariants',
   'recursified_loop-simple',
-  'recursified_nla-digbench'
+  'recursified_nla-digbench',
+  'libvsync' # sources are located in libvsync/src for reference; preprocessing them is not straightforward.
 ]
 
 CBMC_GIT_PATH = "../cbmc.git/"
