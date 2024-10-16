@@ -8,6 +8,6 @@ The benchmarks in this directory come from regression tests of the [Theta verifi
 
 * `unwind*`: regression tests for loop unwinding for concurrent programs. Three types of programs with different parameters: `N=1,10,100`.
 
-* `exponential*`: these programs are challenging to verify due to the great number of possible thread interleavings which cannot be handled by basic partial order reduction algorithms either due to the dependence between the operations using the variable `y`. They are easy to handle with a combination of abstraction-based techniques and partial order reduction. Same type of program with different parameters: `N=4,16,64`.
+* `exponential*`: these programs are challenging to verify due to the great number of possible thread interleavings which cannot be handled by basic partial order reduction algorithms due to the dependence between the operations using the variable `y`. They are easy to handle with a combination of abstraction-based techniques and partial order reduction. Same type of program with different parameters: `N=4,16,64`.
 
 * `wsc`: intends to test verifiers if they can distinguish sequential consistency and weak sequential consistency (see Zennou et al. Boosting sequential consistency checking using saturation)

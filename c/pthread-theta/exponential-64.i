@@ -747,8 +747,6 @@ extern void atomic_flag_clear_explicit (volatile atomic_flag *, memory_order);
 extern void abort(void);
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/exponential.h", 7, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 atomic_uint y;
 void *f1(void *arg) {
   y = (y + 1) % 0x7fffffff;
@@ -760,7 +758,6 @@ void *f2(void *arg) {
 }
 int main() {
   int x, z, p, i;
-  __VERIFIER_atomic_begin();
   pthread_t t;
   p = 0;
   while(p < 64) {
@@ -768,7 +765,6 @@ int main() {
     pthread_create(&t, 0, f2, 0);
     p++;
   }
-  __VERIFIER_atomic_end();
   z = 0;
   i = 0;
   while(i < 64) {

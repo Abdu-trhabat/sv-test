@@ -13,8 +13,6 @@
 extern void abort(void);
 void reach_error() { assert(0); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 atomic_uint y; // assignment to y is always between 0 and INT_MAX, therefore 2*y fits in an unsigned int
 void *f1(void *arg) { // N threads with f1
@@ -27,7 +25,6 @@ void *f2(void *arg) { // N threads with f2
 }
 int main() {
   int x, z, p, i;
-  __VERIFIER_atomic_begin();
   pthread_t t;
   p = 0;
   while(p < N) {
@@ -35,7 +32,6 @@ int main() {
     pthread_create(&t, 0, f2, 0);
     p++;
   }
-  __VERIFIER_atomic_end();
   z = 0;
   i = 0;
   while(i < N) {
