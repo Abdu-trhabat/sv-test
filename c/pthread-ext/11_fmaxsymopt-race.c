@@ -31,7 +31,7 @@ inline void findMax(int offset){
 #ifndef NOBUG
 		e = storage[i];
 #else
-    e = rand();
+		e = rand();
 #endif
 
 		if(e > my_max) {
@@ -59,14 +59,14 @@ void* thr1(void* arg) {
 
 	findMax(offset);
 
-  return 0;
+	return 0;
 }
 
 int main(){
-  for (int i = 0; i < WORKPERTHREAD*THREADSMAX; i++)
-    storage[i] = __VERIFIER_nondet_int();
+	for (int i = 0; i < WORKPERTHREAD*THREADSMAX; i++)
+		storage[i] = __VERIFIER_nondet_int();
 
-  pthread_t t;
+	pthread_t t;
 
 	while(1) { pthread_create(&t, 0, thr1, 0); }
 }

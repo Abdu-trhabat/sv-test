@@ -709,14 +709,14 @@ inline void findMax(int offset)
  }
 }
 void* thr1(void* arg) {
-  int offset=__VERIFIER_nondet_int();
+ int offset=__VERIFIER_nondet_int();
  assume_abort_if_not(offset % 2 == 0 && offset >= 0 && offset < 2*3);
  findMax(offset);
-  return 0;
+ return 0;
 }
 int main(){
-  for (int i = 0; i < 2*3; i++)
-    storage[i] = __VERIFIER_nondet_int();
-  pthread_t t;
+ for (int i = 0; i < 2*3; i++)
+  storage[i] = __VERIFIER_nondet_int();
+ pthread_t t;
  while(1) { pthread_create(&t, 0, thr1, 0); }
 }
