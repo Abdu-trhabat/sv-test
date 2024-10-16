@@ -36,6 +36,7 @@ int main() {
     p++;
   }
   __VERIFIER_atomic_end();
+  z = 0;
   i = 0;
   while(i < N) {
     z = z + 2 * y; // the z % 2 == 0 predicate remains the same

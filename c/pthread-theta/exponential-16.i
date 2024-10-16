@@ -769,6 +769,7 @@ int main() {
     p++;
   }
   __VERIFIER_atomic_end();
+  z = 0;
   i = 0;
   while(i < 16) {
     z = z + 2 * y;
