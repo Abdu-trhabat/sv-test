@@ -1,8 +1,4 @@
 extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
-extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
 extern void __VERIFIER_atomic_begin(void);
@@ -13,37 +9,25 @@ extern void __VERIFIER_atomic_end(void);
 
 #include <pthread.h>
 
-#define assume(e) assume_abort_if_not(e)
 #undef assert
 #define assert(e) { if(!(e)) { ERROR: {reach_error();abort();}(void)0; } }
 
-volatile unsigned value, m = 0;
-
-void __VERIFIER_atomic_acquire()
-{
-	assume(m==0);
-	m = 1;
-}
-
-void __VERIFIER_atomic_release()
-{
-	assume(m==1);
-	m = 0;
-}
+volatile unsigned value;
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 
 void * thr1(void* arg) {
 	unsigned v = 0;
 
-	__VERIFIER_atomic_acquire();
+	pthread_mutex_lock(&m);
 	if(value == 0u-1) {
-		__VERIFIER_atomic_release();
+		pthread_mutex_unlock(&m);
 
 		return 0;
 	}else{
 
 		v = value;
 		__VERIFIER_atomic_begin(); value = v + 1; __VERIFIER_atomic_end(); // atomics added to prevent data race
-		__VERIFIER_atomic_release();
+		pthread_mutex_unlock(&m);
 
         __VERIFIER_atomic_begin();
         assert(value > v);

@@ -13,7 +13,7 @@ extern void __assert_perror_fail (int __errnum, const char *__file,
 extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "11_fmaxsymopt-pthread.c", 7, __extension__ __PRETTY_FUNCTION__); })); }
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "11_fmaxsymopt-zero.c", 7, __extension__ __PRETTY_FUNCTION__); })); }
 extern int __VERIFIER_nondet_int();
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
@@ -714,9 +714,9 @@ void* thr1(void* arg) {
  int offset=__VERIFIER_nondet_int();
  assume_abort_if_not(offset % 2 == 0 && offset >= 0 && offset < 2*3);
  findMax(offset);
-  return 0;
+ return 0;
 }
 int main(){
-  pthread_t t;
+ pthread_t t;
  while(1) { pthread_create(&t, 0, thr1, 0); }
 }

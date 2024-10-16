@@ -42,18 +42,18 @@ inline void findMax(int offset)
 }
 
 void* thr1(void* arg) {
-  int offset=__VERIFIER_nondet_int();
+	int offset=__VERIFIER_nondet_int();
 
 	assume(offset % WORKPERTHREAD == 0 && offset >= 0 && offset < WORKPERTHREAD*THREADSMAX);
 	//assume(offset < WORKPERTHREAD && offset >= 0 && offset < WORKPERTHREAD*THREADSMAX);
 
 	findMax(offset);
 
-  return 0;
+	return 0;
 }
 
 int main(){
-  pthread_t t;
+	pthread_t t;
 
 	while(1) { pthread_create(&t, 0, thr1, 0); }
 }

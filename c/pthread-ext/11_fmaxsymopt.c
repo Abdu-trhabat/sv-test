@@ -16,19 +16,8 @@ extern int __VERIFIER_nondet_int();
 
 #define WORKPERTHREAD 2
 #define THREADSMAX 3
-volatile int max = 0x80000000, m = 0;
-
-void __VERIFIER_atomic_acquire()
-{
-	assume(m==0);
-	m = 1;
-}
-
-void __VERIFIER_atomic_release()
-{
-	assume(m==1);
-	m = 0;
-}
+volatile int max = 0x80000000;
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 
 int storage[WORKPERTHREAD*THREADSMAX];
 
@@ -42,7 +31,7 @@ inline void findMax(int offset){
 #ifndef NOBUG
 		e = storage[i];
 #else
-    e = rand();
+		e = rand();
 #endif
 
 		if(e > my_max) {
@@ -51,17 +40,17 @@ inline void findMax(int offset){
 		assert_nl(e <= my_max);
 	}
 
-	__VERIFIER_atomic_acquire();
+	pthread_mutex_lock(&m);
 	{
 		if(my_max > max) {
 			max = my_max;
 		}
 	}
-	__VERIFIER_atomic_release();
+	pthread_mutex_unlock(&m);
 
-	__VERIFIER_atomic_acquire();
+	pthread_mutex_lock(&m);
 	assert(my_max <= max);
-	__VERIFIER_atomic_release();
+	pthread_mutex_unlock(&m);
 }
 
 void* thr1(void* arg) {
@@ -72,14 +61,14 @@ void* thr1(void* arg) {
 
 	findMax(offset);
 
-  return 0;
+	return 0;
 }
 
 int main(){
-  for (int i = 0; i < WORKPERTHREAD*THREADSMAX; i++)
-    storage[i] = __VERIFIER_nondet_int();
+	for (int i = 0; i < WORKPERTHREAD*THREADSMAX; i++)
+		storage[i] = __VERIFIER_nondet_int();
 
-  pthread_t t;
+	pthread_t t;
 
 	while(1) { pthread_create(&t, 0, thr1, 0); }
 }

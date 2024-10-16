@@ -21,20 +21,8 @@ int memory[MEMSIZE];
 #define INDIR(cell,idx) memory[cell+idx]
 
 int next_alloc_idx = 1;
-int m = 0;
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 int top = 0;
-
-void __VERIFIER_atomic_acquire()
-{
-	assume(m==0);
-	m = 1;
-}
-
-void __VERIFIER_atomic_release()
-{
-	assume(m==1);
-	m = 0;
-}
 
 void __VERIFIER_atomic_index_malloc(int *curr_alloc_idx)
 {
@@ -54,11 +42,11 @@ inline void push(int d) {
 		exit(-1);
 	else{
 		INDIR(newTop,0) = d;
-		__VERIFIER_atomic_acquire();
+		pthread_mutex_lock(&m);
 		oldTop = top;
 		INDIR(newTop,1) = oldTop;
 		top = newTop; 
-		__VERIFIER_atomic_release();
+		pthread_mutex_unlock(&m);
 	}
 }
 

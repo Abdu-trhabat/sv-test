@@ -1,7 +1,3 @@
-extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
@@ -11,36 +7,22 @@ void reach_error() { assert(0); }
 
 int count = 0;
 
-#define assume(e) assume_abort_if_not(e)
 #define assert_nl(e) { if(!(e)) { goto ERROR; } }
 #undef assert
 #define assert(e) { if(!(e)) { ERROR: {reach_error();abort();}(void)0; } }
 
-void __VERIFIER_atomic_acquire(int * m)
-{
-	assume(*m==0);
-	*m = 1;
-}
-
-void __VERIFIER_atomic_release(int * m)
-{
-	assume(*m==1);
-	*m = 0;
-}
-
-int mutexa = 0;
-int mutexb = 0;
+pthread_mutex_t mutexa = PTHREAD_MUTEX_INITIALIZER;
 inline void my_thread1()
 {
-  __VERIFIER_atomic_acquire(&mutexa);
+  pthread_mutex_lock(&mutexa);
   count++;
   count--;
-  __VERIFIER_atomic_release(&mutexa);
+  pthread_mutex_unlock(&mutexa);
 
-  __VERIFIER_atomic_acquire(&mutexa);
+  pthread_mutex_lock(&mutexa);
   count--;
   count++;
-  __VERIFIER_atomic_release(&mutexa);
+  pthread_mutex_unlock(&mutexa);
 
   return;
 }
@@ -49,9 +31,9 @@ void* thr1(void* arg)
 {
   while(1)
   {
-    __VERIFIER_atomic_acquire(&mutexa);
+    pthread_mutex_lock(&mutexa);
     assert(count >= -1);
-    __VERIFIER_atomic_release(&mutexa);
+    pthread_mutex_unlock(&mutexa);
   }
   return 0;
 }
