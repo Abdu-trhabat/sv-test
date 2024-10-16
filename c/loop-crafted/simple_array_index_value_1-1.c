@@ -21,7 +21,7 @@ int main()
   for (index = 0; index < SIZE; index++) {
     array[index] = (index % 2);
   }
-  
+
   for (index = 0; index < SIZE; index++) {
     if (index % 2 == 0) {
       __VERIFIER_assert(array[index] == 0);
@@ -31,6 +31,7 @@ int main()
   }
 
 }
+
 
 
 

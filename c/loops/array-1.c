@@ -24,9 +24,10 @@ int main()
        if(array[j]<=menor)
           menor = array[j];                          
     }                       
-
+    
     __VERIFIER_assert(array[0]>=menor);    
 
     return 0;
 }
+
 
