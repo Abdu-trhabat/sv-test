@@ -1,7 +1,3 @@
-extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
@@ -12,25 +8,13 @@ void reach_error() { assert(0); }
 
 #include <pthread.h>
 
-#define assume(e) assume_abort_if_not(e)
 #undef assert
 #define assert(e) { if(!(e)) { ERROR: {reach_error();abort();}(void)0; } }
 
-#define atomic_assert(e) {__VERIFIER_atomic_acquire();assert(e);__VERIFIER_atomic_release();}
+#define atomic_assert(e) {pthread_mutex_lock(&m);assert(e);pthread_mutex_unlock(&m);}
 
-volatile unsigned value = 0, m = 0;
-
-void __VERIFIER_atomic_acquire()
-{
-	assume(m==0);
-	m = 1;
-}
-
-void __VERIFIER_atomic_release()
-{
-	assume(m==1);
-	m = 0;
-}
+volatile unsigned value = 0;
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 
 /*helpers for the property*/
 volatile unsigned inc_flag = 0;
@@ -39,14 +23,14 @@ volatile unsigned dec_flag = 0;
 inline unsigned inc() {
 	unsigned inc_v = 0;
 
-	__VERIFIER_atomic_acquire();
+	pthread_mutex_lock(&m);
 	if(value == 0u-1) {
-		__VERIFIER_atomic_release();
+		pthread_mutex_unlock(&m);
 		return 0;
 	}else{
 		inc_v = value;
 		inc_flag = 1, value = inc_v + 1; /*set flag, then update*/
-		__VERIFIER_atomic_release();
+		pthread_mutex_unlock(&m);
 
 		atomic_assert(dec_flag || value > inc_v);
 
@@ -57,15 +41,15 @@ inline unsigned inc() {
 inline unsigned dec() {
 	unsigned dec_v;
 
-	__VERIFIER_atomic_acquire();
+	pthread_mutex_lock(&m);
 	if(value == 0) {
-		__VERIFIER_atomic_release();
+		pthread_mutex_unlock(&m);
 
 		return 0u-1; /*decrement failed, return max*/
 	}else{
 		dec_v = value;
 		dec_flag = 1, value = dec_v - 1; /*set flag, then update*/
-		__VERIFIER_atomic_release();
+		pthread_mutex_unlock(&m);
 
 		atomic_assert(inc_flag || value < dec_v);
 

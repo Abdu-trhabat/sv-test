@@ -1,8 +1,4 @@
 extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
-extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
 extern void __VERIFIER_atomic_begin(void);
@@ -20,34 +16,19 @@ extern void __VERIFIER_atomic_end(void);
 #undef assert
 #define assert(e) if (!(e)) ERROR: reach_error()
 
-int w=0, r=0, x, y;
-
-void __VERIFIER_atomic_take_write_lock() {
-  assume_abort_if_not(w==0 && r==0);
-  w = 1;
-} 
-
-void __VERIFIER_atomic_take_read_lock() {
-  assume_abort_if_not(w==0);
-  r = r+1;
-}
-
-void __VERIFIER_atomic_release_read_lock() {
-  r = r-1;
-}
+int x, y;
+pthread_rwlock_t rwlock = PTHREAD_RWLOCK_INITIALIZER;
 
 void *writer(void *arg) { //writer
-  __VERIFIER_atomic_take_write_lock();  
+  pthread_rwlock_wrlock(&rwlock);
   x = 3;
-  __VERIFIER_atomic_begin();
-  w = 0;
-  __VERIFIER_atomic_end();
+  pthread_rwlock_unlock(&rwlock);
   return 0;
 }
 
 void *reader(void *arg) { //reader
   int l;
-  __VERIFIER_atomic_take_read_lock();
+  pthread_rwlock_rdlock(&rwlock);
   __VERIFIER_atomic_begin();
   l = x;
   __VERIFIER_atomic_end();
@@ -61,7 +42,7 @@ void *reader(void *arg) { //reader
   int lx = x;
   __VERIFIER_atomic_end();
   assert(ly == lx);
-  __VERIFIER_atomic_release_read_lock();
+  pthread_rwlock_unlock(&rwlock);
   return 0;
 }
 

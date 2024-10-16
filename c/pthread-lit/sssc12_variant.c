@@ -9,32 +9,18 @@
 int *data;
 volatile int len;
 volatile int next;
-volatile int lock;
-
-void acquire() {
-    __VERIFIER_atomic_begin();
-    assume_abort_if_not(lock == 0);
-    lock = 1;
-    __VERIFIER_atomic_end();
-}
-
-void release() {
-    __VERIFIER_atomic_begin();
-    assume_abort_if_not(lock == 1);
-    lock = 0;
-    __VERIFIER_atomic_end();
-}
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
 void* thr(void* arg) {
     int c, end;
     c = 0;
     end = 0;
-    acquire();
+    pthread_mutex_lock(&lock);
     if (next + 10 <= len) {
 	c = next;
 	next = end = next + 10;
     }
-    release();
+    pthread_mutex_unlock(&lock);
     while (c < end) {
 	data[c] = 0;
 	data[c] = 1;
@@ -46,7 +32,6 @@ void* thr(void* arg) {
 
 int main(int argc, char* argv[]) {
     pthread_t t;
-    lock=0;
     next = 0;
     len = __VERIFIER_nondet_int();
     assume_abort_if_not(len > 0 && len < 4294967296 / sizeof(int));

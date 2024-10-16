@@ -10,39 +10,48 @@ typedef signed int __int32_t;
 typedef unsigned int __uint32_t;
 __extension__ typedef signed long long int __int64_t;
 __extension__ typedef unsigned long long int __uint64_t;
+typedef __int8_t __int_least8_t;
+typedef __uint8_t __uint_least8_t;
+typedef __int16_t __int_least16_t;
+typedef __uint16_t __uint_least16_t;
+typedef __int32_t __int_least32_t;
+typedef __uint32_t __uint_least32_t;
+typedef __int64_t __int_least64_t;
+typedef __uint64_t __uint_least64_t;
 __extension__ typedef long long int __quad_t;
 __extension__ typedef unsigned long long int __u_quad_t;
 __extension__ typedef long long int __intmax_t;
 __extension__ typedef unsigned long long int __uintmax_t;
-__extension__ typedef __u_quad_t __dev_t;
+__extension__ typedef __uint64_t __dev_t;
 __extension__ typedef unsigned int __uid_t;
 __extension__ typedef unsigned int __gid_t;
 __extension__ typedef unsigned long int __ino_t;
-__extension__ typedef __u_quad_t __ino64_t;
+__extension__ typedef __uint64_t __ino64_t;
 __extension__ typedef unsigned int __mode_t;
 __extension__ typedef unsigned int __nlink_t;
 __extension__ typedef long int __off_t;
-__extension__ typedef __quad_t __off64_t;
+__extension__ typedef __int64_t __off64_t;
 __extension__ typedef int __pid_t;
 __extension__ typedef struct { int __val[2]; } __fsid_t;
 __extension__ typedef long int __clock_t;
 __extension__ typedef unsigned long int __rlim_t;
-__extension__ typedef __u_quad_t __rlim64_t;
+__extension__ typedef __uint64_t __rlim64_t;
 __extension__ typedef unsigned int __id_t;
 __extension__ typedef long int __time_t;
 __extension__ typedef unsigned int __useconds_t;
 __extension__ typedef long int __suseconds_t;
+__extension__ typedef __int64_t __suseconds64_t;
 __extension__ typedef int __daddr_t;
 __extension__ typedef int __key_t;
 __extension__ typedef int __clockid_t;
 __extension__ typedef void * __timer_t;
 __extension__ typedef long int __blksize_t;
 __extension__ typedef long int __blkcnt_t;
-__extension__ typedef __quad_t __blkcnt64_t;
+__extension__ typedef __int64_t __blkcnt64_t;
 __extension__ typedef unsigned long int __fsblkcnt_t;
-__extension__ typedef __u_quad_t __fsblkcnt64_t;
+__extension__ typedef __uint64_t __fsblkcnt64_t;
 __extension__ typedef unsigned long int __fsfilcnt_t;
-__extension__ typedef __u_quad_t __fsfilcnt64_t;
+__extension__ typedef __uint64_t __fsfilcnt64_t;
 __extension__ typedef int __fsword_t;
 __extension__ typedef int __ssize_t;
 __extension__ typedef long int __syscall_slong_t;
@@ -52,31 +61,7 @@ typedef char *__caddr_t;
 __extension__ typedef int __intptr_t;
 __extension__ typedef unsigned int __socklen_t;
 typedef int __sig_atomic_t;
-static __inline unsigned int
-__bswap_32 (unsigned int __bsx)
-{
-  return __builtin_bswap32 (__bsx);
-}
-static __inline __uint64_t
-__bswap_64 (__uint64_t __bsx)
-{
-  return __builtin_bswap64 (__bsx);
-}
-static __inline __uint16_t
-__uint16_identity (__uint16_t __x)
-{
-  return __x;
-}
-static __inline __uint32_t
-__uint32_identity (__uint32_t __x)
-{
-  return __x;
-}
-static __inline __uint64_t
-__uint64_identity (__uint64_t __x)
-{
-  return __x;
-}
+__extension__ typedef __int64_t __time64_t;
 typedef unsigned int size_t;
 typedef __time_t time_t;
 struct timespec
@@ -179,7 +164,6 @@ extern char *tzname[2];
 extern void tzset (void) __attribute__ ((__nothrow__ , __leaf__));
 extern int daylight;
 extern long int timezone;
-extern int stime (const time_t *__when) __attribute__ ((__nothrow__ , __leaf__));
 extern time_t timegm (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
 extern time_t timelocal (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
 extern int dysize (int __year) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
@@ -206,6 +190,41 @@ extern int timer_getoverrun (timer_t __timerid) __attribute__ ((__nothrow__ , __
 extern int timespec_get (struct timespec *__ts, int __base)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
+typedef union
+{
+  __extension__ unsigned long long int __value64;
+  struct
+  {
+    unsigned int __low;
+    unsigned int __high;
+  } __value32;
+} __atomic_wide_counter;
+typedef struct __pthread_internal_list
+{
+  struct __pthread_internal_list *__prev;
+  struct __pthread_internal_list *__next;
+} __pthread_list_t;
+typedef struct __pthread_internal_slist
+{
+  struct __pthread_internal_slist *__next;
+} __pthread_slist_t;
+struct __pthread_mutex_s
+{
+  int __lock;
+  unsigned int __count;
+  int __owner;
+  int __kind;
+  unsigned int __nusers;
+  __extension__ union
+  {
+    struct
+    {
+      short __espins;
+      short __eelision;
+    } __elision_data;
+    __pthread_slist_t __list;
+  };
+};
 struct __pthread_rwlock_arch_t
 {
   unsigned int __readers;
@@ -220,51 +239,22 @@ struct __pthread_rwlock_arch_t
   unsigned char __pad2;
   int __cur_writer;
 };
-typedef struct __pthread_internal_slist
-{
-  struct __pthread_internal_slist *__next;
-} __pthread_slist_t;
-struct __pthread_mutex_s
-{
-  int __lock ;
-  unsigned int __count;
-  int __owner;
-  int __kind;
- 
-  unsigned int __nusers;
-  __extension__ union
-  {
-    struct { short __espins; short __eelision; } __elision_data;
-    __pthread_slist_t __list;
-  };
- 
-};
 struct __pthread_cond_s
 {
-  __extension__ union
-  {
-    __extension__ unsigned long long int __wseq;
-    struct
-    {
-      unsigned int __low;
-      unsigned int __high;
-    } __wseq32;
-  };
-  __extension__ union
-  {
-    __extension__ unsigned long long int __g1_start;
-    struct
-    {
-      unsigned int __low;
-      unsigned int __high;
-    } __g1_start32;
-  };
+  __atomic_wide_counter __wseq;
+  __atomic_wide_counter __g1_start;
   unsigned int __g_refs[2] ;
   unsigned int __g_size[2];
   unsigned int __g1_orig_size;
   unsigned int __wrefs;
   unsigned int __g_signals[2];
 };
+typedef unsigned int __tss_t;
+typedef unsigned long int __thrd_t;
+typedef struct
+{
+  int __data ;
+} __once_flag;
 typedef unsigned long int pthread_t;
 typedef union
 {
@@ -319,6 +309,16 @@ typedef union
   int __align;
 } pthread_barrierattr_t;
 typedef int __jmp_buf[6];
+typedef struct
+{
+  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
+} __sigset_t;
+struct __jmp_buf_tag
+  {
+    __jmp_buf __jmpbuf;
+    int __mask_was_saved;
+    __sigset_t __saved_mask;
+  };
 enum
 {
   PTHREAD_CREATE_JOINABLE,
@@ -469,13 +469,14 @@ extern int pthread_setcancelstate (int __state, int *__oldstate);
 extern int pthread_setcanceltype (int __type, int *__oldtype);
 extern int pthread_cancel (pthread_t __th);
 extern void pthread_testcancel (void);
+struct __cancel_jmp_buf_tag
+{
+  __jmp_buf __cancel_jmp_buf;
+  int __mask_was_saved;
+};
 typedef struct
 {
-  struct
-  {
-    __jmp_buf __cancel_jmp_buf;
-    int __mask_was_saved;
-  } __cancel_jmp_buf[1];
+  struct __cancel_jmp_buf_tag __cancel_jmp_buf[1];
   void *__pad[4];
 } __pthread_unwind_buf_t __attribute__ ((__aligned__));
 struct __pthread_cleanup_frame
@@ -493,8 +494,7 @@ extern void __pthread_unwind_next (__pthread_unwind_buf_t *__buf)
      __attribute__ ((__regparm__ (1))) __attribute__ ((__noreturn__))
      __attribute__ ((__weak__))
      ;
-struct __jmp_buf_tag;
-extern int __sigsetjmp (struct __jmp_buf_tag *__env, int __savemask) __attribute__ ((__nothrow__));
+extern int __sigsetjmp_cancel (struct __cancel_jmp_buf_tag __env[1], int __savemask) __asm__ ("" "__sigsetjmp") __attribute__ ((__nothrow__)) __attribute__ ((__returns_twice__));
 extern int pthread_mutex_init (pthread_mutex_t *__mutex,
           const pthread_mutexattr_t *__mutexattr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
@@ -661,7 +661,8 @@ extern int pthread_key_create (pthread_key_t *__key,
 extern int pthread_key_delete (pthread_key_t __key) __attribute__ ((__nothrow__ , __leaf__));
 extern void *pthread_getspecific (pthread_key_t __key) __attribute__ ((__nothrow__ , __leaf__));
 extern int pthread_setspecific (pthread_key_t __key,
-    const void *__pointer) __attribute__ ((__nothrow__ , __leaf__)) ;
+    const void *__pointer)
+  __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__access__ (__none__, 2)));
 extern int pthread_getcpuclockid (pthread_t __thread_id,
       __clockid_t *__clock_id)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
@@ -671,12 +672,6 @@ extern int pthread_atfork (void (*__prepare) (void),
 
 typedef long int wchar_t;
 
-typedef enum
-{
-  P_ALL,
-  P_PID,
-  P_PGID
-} idtype_t;
 typedef struct
   {
     int quot;
@@ -762,15 +757,41 @@ typedef __int8_t int8_t;
 typedef __int16_t int16_t;
 typedef __int32_t int32_t;
 typedef __int64_t int64_t;
-typedef unsigned int u_int8_t __attribute__ ((__mode__ (__QI__)));
-typedef unsigned int u_int16_t __attribute__ ((__mode__ (__HI__)));
-typedef unsigned int u_int32_t __attribute__ ((__mode__ (__SI__)));
-typedef unsigned int u_int64_t __attribute__ ((__mode__ (__DI__)));
+typedef __uint8_t u_int8_t;
+typedef __uint16_t u_int16_t;
+typedef __uint32_t u_int32_t;
+typedef __uint64_t u_int64_t;
 typedef int register_t __attribute__ ((__mode__ (__word__)));
-typedef struct
+static __inline __uint16_t
+__bswap_16 (__uint16_t __bsx)
 {
-  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
-} __sigset_t;
+  return __builtin_bswap16 (__bsx);
+}
+static __inline __uint32_t
+__bswap_32 (__uint32_t __bsx)
+{
+  return __builtin_bswap32 (__bsx);
+}
+__extension__ static __inline __uint64_t
+__bswap_64 (__uint64_t __bsx)
+{
+  return __builtin_bswap64 (__bsx);
+}
+static __inline __uint16_t
+__uint16_identity (__uint16_t __x)
+{
+  return __x;
+}
+static __inline __uint32_t
+__uint32_identity (__uint32_t __x)
+{
+  return __x;
+}
+static __inline __uint64_t
+__uint64_identity (__uint64_t __x)
+{
+  return __x;
+}
 typedef __sigset_t sigset_t;
 struct timeval
 {
@@ -794,11 +815,6 @@ extern int pselect (int __nfds, fd_set *__restrict __readfds,
       fd_set *__restrict __exceptfds,
       const struct timespec *__restrict __timeout,
       const __sigset_t *__restrict __sigmask);
-
-
-extern unsigned int gnu_dev_major (__dev_t __dev) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
-extern unsigned int gnu_dev_minor (__dev_t __dev) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
-extern __dev_t gnu_dev_makedev (unsigned int __major, unsigned int __minor) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
 
 typedef __blksize_t blksize_t;
 typedef __blkcnt_t blkcnt_t;
@@ -880,20 +896,28 @@ extern int seed48_r (unsigned short int __seed16v[3],
 extern int lcong48_r (unsigned short int __param[7],
         struct drand48_data *__buffer)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
+extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__))
+     __attribute__ ((__alloc_size__ (1))) ;
 extern void *calloc (size_t __nmemb, size_t __size)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
+     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (1, 2))) ;
 extern void *realloc (void *__ptr, size_t __size)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
+extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
+     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__))
+     __attribute__ ((__alloc_size__ (2, 3)));
+extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
+     __attribute__ ((__nothrow__ , __leaf__));
 
 extern void *alloca (size_t __size) __attribute__ ((__nothrow__ , __leaf__));
 
-extern void *valloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
+extern void *valloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__))
+     __attribute__ ((__alloc_size__ (1))) ;
 extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
 extern void *aligned_alloc (size_t __alignment, size_t __size)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
+     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_align__ (1)))
+     __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
@@ -965,10 +989,13 @@ extern int mbtowc (wchar_t *__restrict __pwc,
      const char *__restrict __s, size_t __n) __attribute__ ((__nothrow__ , __leaf__));
 extern int wctomb (char *__s, wchar_t __wchar) __attribute__ ((__nothrow__ , __leaf__));
 extern size_t mbstowcs (wchar_t *__restrict __pwcs,
-   const char *__restrict __s, size_t __n) __attribute__ ((__nothrow__ , __leaf__));
+   const char *__restrict __s, size_t __n) __attribute__ ((__nothrow__ , __leaf__))
+    __attribute__ ((__access__ (__read_only__, 2)));
 extern size_t wcstombs (char *__restrict __s,
    const wchar_t *__restrict __pwcs, size_t __n)
-     __attribute__ ((__nothrow__ , __leaf__));
+     __attribute__ ((__nothrow__ , __leaf__))
+  __attribute__ ((__access__ (__write_only__, 1, 3)))
+  __attribute__ ((__access__ (__read_only__, 2)));
 extern int rpmatch (const char *__response) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
 extern int getsubopt (char **__restrict __optionp,
         char *const *__restrict __tokens,
@@ -1005,29 +1032,17 @@ int __VERIFIER_nondet_int();
 int *data;
 volatile int len;
 volatile int next;
-volatile int lock;
-void acquire() {
-    __VERIFIER_atomic_begin();
-    assume_abort_if_not(lock == 0);
-    lock = 1;
-    __VERIFIER_atomic_end();
-}
-void release() {
-    __VERIFIER_atomic_begin();
-    assume_abort_if_not(lock == 1);
-    lock = 0;
-    __VERIFIER_atomic_end();
-}
+pthread_mutex_t lock = { { 0, 0, 0, PTHREAD_MUTEX_TIMED_NP, 0, { { 0, 0 } } } };
 void* thr(void* arg) {
     int c, end;
     c = 0;
     end = 0;
-    acquire();
+    pthread_mutex_lock(&lock);
     if (next + 10 <= len) {
  c = next;
  next = end = next + 10;
     }
-    release();
+    pthread_mutex_unlock(&lock);
     while (c < end) {
  __VERIFIER_assert(0 <= c && c < len);
  data[c] = 0;
@@ -1038,7 +1053,6 @@ void* thr(void* arg) {
 int main() {
     pthread_t t;
     next = 0;
-    lock = 0;
     len = __VERIFIER_nondet_int();
     assume_abort_if_not(len > 0 && len < 4294967296 / sizeof(int));
     data = malloc(sizeof(int) * len);

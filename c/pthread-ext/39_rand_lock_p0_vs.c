@@ -1,7 +1,3 @@
-extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
 extern int __VERIFIER_nondet_int(void);
 extern void __VERIFIER_atomic_begin(void);
 extern void __VERIFIER_atomic_end(void);
@@ -14,23 +10,10 @@ void reach_error() { assert(0); }
 
 #include <pthread.h>
 
-#define assume(e) assume_abort_if_not(e)
 #undef assert
 #define assert(e) { if(!(e)) { ERROR: {reach_error();abort();}(void)0; } }
 
-int m = 0;
-
-void __VERIFIER_atomic_acquire()
-{
-	assume(m==0);
-	m = 1;
-}
-
-void __VERIFIER_atomic_release()
-{
-	assume(m==1);
-	m = 0;
-}
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 
 #define min(x,y) ((y>=x)?(x):(y))
 
@@ -52,13 +35,13 @@ inline int PseudoRandomUsingAtomic_nextInt() {
     assert(seed != 0);
     __VERIFIER_atomic_end();
 
-	__VERIFIER_atomic_acquire();
+	pthread_mutex_lock(&m);
 	read = seed;
 	nexts = calculateNext(read);
     __VERIFIER_atomic_begin();
 	seed = nexts;
     __VERIFIER_atomic_end();
-	__VERIFIER_atomic_release();
+	pthread_mutex_unlock(&m);
 	nextInt_return = min(nexts,NUM);
 	return nextInt_return;
 }

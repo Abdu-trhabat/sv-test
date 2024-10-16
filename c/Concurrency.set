@@ -16,4 +16,5 @@ weaver/*.yml
 pthread-deagle/*.yml
 pthread-race-challenges/*.yml
 pthread-memsafety/*.yml
+libvsync/*.yml
 pthread-theta/*.yml

@@ -102,6 +102,7 @@ KNOWN_DIRECTORY_PROBLEMS = [
     ("ldv-memsafety", "missing readme"),
     ("ldv-races", "missing readme"),
     ("ldv-validator-v0.8", "missing readme"),
+    ("libvsync", "unexpected subdirectory src"),
     ("Juliet_Test", "unexpected subdirectory Juliet_Test_Suite_v1.3_for_C_Cpp"),
 
     ("termination-memory-alloca", "BradleyMannaSipma-2005CAV-Fig1-alloca_unknown-termination.c has no known verdict"),

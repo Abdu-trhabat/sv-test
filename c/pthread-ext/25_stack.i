@@ -1,9 +1,5 @@
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
-extern void abort(void);
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -14,7 +10,7 @@ extern void __assert_perror_fail (int __errnum, const char *__file,
 extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "25_stack.c", 8, __extension__ __PRETTY_FUNCTION__); })); }
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "25_stack.c", 4, __extension__ __PRETTY_FUNCTION__); })); }
 extern void __VERIFIER_atomic_begin(void);
 extern void __VERIFIER_atomic_end(void);
 typedef unsigned char __u_char;
@@ -29,39 +25,48 @@ typedef signed int __int32_t;
 typedef unsigned int __uint32_t;
 __extension__ typedef signed long long int __int64_t;
 __extension__ typedef unsigned long long int __uint64_t;
+typedef __int8_t __int_least8_t;
+typedef __uint8_t __uint_least8_t;
+typedef __int16_t __int_least16_t;
+typedef __uint16_t __uint_least16_t;
+typedef __int32_t __int_least32_t;
+typedef __uint32_t __uint_least32_t;
+typedef __int64_t __int_least64_t;
+typedef __uint64_t __uint_least64_t;
 __extension__ typedef long long int __quad_t;
 __extension__ typedef unsigned long long int __u_quad_t;
 __extension__ typedef long long int __intmax_t;
 __extension__ typedef unsigned long long int __uintmax_t;
-__extension__ typedef __u_quad_t __dev_t;
+__extension__ typedef __uint64_t __dev_t;
 __extension__ typedef unsigned int __uid_t;
 __extension__ typedef unsigned int __gid_t;
 __extension__ typedef unsigned long int __ino_t;
-__extension__ typedef __u_quad_t __ino64_t;
+__extension__ typedef __uint64_t __ino64_t;
 __extension__ typedef unsigned int __mode_t;
 __extension__ typedef unsigned int __nlink_t;
 __extension__ typedef long int __off_t;
-__extension__ typedef __quad_t __off64_t;
+__extension__ typedef __int64_t __off64_t;
 __extension__ typedef int __pid_t;
 __extension__ typedef struct { int __val[2]; } __fsid_t;
 __extension__ typedef long int __clock_t;
 __extension__ typedef unsigned long int __rlim_t;
-__extension__ typedef __u_quad_t __rlim64_t;
+__extension__ typedef __uint64_t __rlim64_t;
 __extension__ typedef unsigned int __id_t;
 __extension__ typedef long int __time_t;
 __extension__ typedef unsigned int __useconds_t;
 __extension__ typedef long int __suseconds_t;
+__extension__ typedef __int64_t __suseconds64_t;
 __extension__ typedef int __daddr_t;
 __extension__ typedef int __key_t;
 __extension__ typedef int __clockid_t;
 __extension__ typedef void * __timer_t;
 __extension__ typedef long int __blksize_t;
 __extension__ typedef long int __blkcnt_t;
-__extension__ typedef __quad_t __blkcnt64_t;
+__extension__ typedef __int64_t __blkcnt64_t;
 __extension__ typedef unsigned long int __fsblkcnt_t;
-__extension__ typedef __u_quad_t __fsblkcnt64_t;
+__extension__ typedef __uint64_t __fsblkcnt64_t;
 __extension__ typedef unsigned long int __fsfilcnt_t;
-__extension__ typedef __u_quad_t __fsfilcnt64_t;
+__extension__ typedef __uint64_t __fsfilcnt64_t;
 __extension__ typedef int __fsword_t;
 __extension__ typedef int __ssize_t;
 __extension__ typedef long int __syscall_slong_t;
@@ -71,31 +76,7 @@ typedef char *__caddr_t;
 __extension__ typedef int __intptr_t;
 __extension__ typedef unsigned int __socklen_t;
 typedef int __sig_atomic_t;
-static __inline unsigned int
-__bswap_32 (unsigned int __bsx)
-{
-  return __builtin_bswap32 (__bsx);
-}
-static __inline __uint64_t
-__bswap_64 (__uint64_t __bsx)
-{
-  return __builtin_bswap64 (__bsx);
-}
-static __inline __uint16_t
-__uint16_identity (__uint16_t __x)
-{
-  return __x;
-}
-static __inline __uint32_t
-__uint32_identity (__uint32_t __x)
-{
-  return __x;
-}
-static __inline __uint64_t
-__uint64_identity (__uint64_t __x)
-{
-  return __x;
-}
+__extension__ typedef __int64_t __time64_t;
 typedef unsigned int size_t;
 typedef __time_t time_t;
 struct timespec
@@ -198,7 +179,6 @@ extern char *tzname[2];
 extern void tzset (void) __attribute__ ((__nothrow__ , __leaf__));
 extern int daylight;
 extern long int timezone;
-extern int stime (const time_t *__when) __attribute__ ((__nothrow__ , __leaf__));
 extern time_t timegm (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
 extern time_t timelocal (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
 extern int dysize (int __year) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
@@ -225,6 +205,41 @@ extern int timer_getoverrun (timer_t __timerid) __attribute__ ((__nothrow__ , __
 extern int timespec_get (struct timespec *__ts, int __base)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
+typedef union
+{
+  __extension__ unsigned long long int __value64;
+  struct
+  {
+    unsigned int __low;
+    unsigned int __high;
+  } __value32;
+} __atomic_wide_counter;
+typedef struct __pthread_internal_list
+{
+  struct __pthread_internal_list *__prev;
+  struct __pthread_internal_list *__next;
+} __pthread_list_t;
+typedef struct __pthread_internal_slist
+{
+  struct __pthread_internal_slist *__next;
+} __pthread_slist_t;
+struct __pthread_mutex_s
+{
+  int __lock;
+  unsigned int __count;
+  int __owner;
+  int __kind;
+  unsigned int __nusers;
+  __extension__ union
+  {
+    struct
+    {
+      short __espins;
+      short __eelision;
+    } __elision_data;
+    __pthread_slist_t __list;
+  };
+};
 struct __pthread_rwlock_arch_t
 {
   unsigned int __readers;
@@ -239,51 +254,22 @@ struct __pthread_rwlock_arch_t
   unsigned char __pad2;
   int __cur_writer;
 };
-typedef struct __pthread_internal_slist
-{
-  struct __pthread_internal_slist *__next;
-} __pthread_slist_t;
-struct __pthread_mutex_s
-{
-  int __lock ;
-  unsigned int __count;
-  int __owner;
-  int __kind;
- 
-  unsigned int __nusers;
-  __extension__ union
-  {
-    struct { short __espins; short __eelision; } __elision_data;
-    __pthread_slist_t __list;
-  };
- 
-};
 struct __pthread_cond_s
 {
-  __extension__ union
-  {
-    __extension__ unsigned long long int __wseq;
-    struct
-    {
-      unsigned int __low;
-      unsigned int __high;
-    } __wseq32;
-  };
-  __extension__ union
-  {
-    __extension__ unsigned long long int __g1_start;
-    struct
-    {
-      unsigned int __low;
-      unsigned int __high;
-    } __g1_start32;
-  };
+  __atomic_wide_counter __wseq;
+  __atomic_wide_counter __g1_start;
   unsigned int __g_refs[2] ;
   unsigned int __g_size[2];
   unsigned int __g1_orig_size;
   unsigned int __wrefs;
   unsigned int __g_signals[2];
 };
+typedef unsigned int __tss_t;
+typedef unsigned long int __thrd_t;
+typedef struct
+{
+  int __data ;
+} __once_flag;
 typedef unsigned long int pthread_t;
 typedef union
 {
@@ -338,6 +324,16 @@ typedef union
   int __align;
 } pthread_barrierattr_t;
 typedef int __jmp_buf[6];
+typedef struct
+{
+  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
+} __sigset_t;
+struct __jmp_buf_tag
+  {
+    __jmp_buf __jmpbuf;
+    int __mask_was_saved;
+    __sigset_t __saved_mask;
+  };
 enum
 {
   PTHREAD_CREATE_JOINABLE,
@@ -488,13 +484,14 @@ extern int pthread_setcancelstate (int __state, int *__oldstate);
 extern int pthread_setcanceltype (int __type, int *__oldtype);
 extern int pthread_cancel (pthread_t __th);
 extern void pthread_testcancel (void);
+struct __cancel_jmp_buf_tag
+{
+  __jmp_buf __cancel_jmp_buf;
+  int __mask_was_saved;
+};
 typedef struct
 {
-  struct
-  {
-    __jmp_buf __cancel_jmp_buf;
-    int __mask_was_saved;
-  } __cancel_jmp_buf[1];
+  struct __cancel_jmp_buf_tag __cancel_jmp_buf[1];
   void *__pad[4];
 } __pthread_unwind_buf_t __attribute__ ((__aligned__));
 struct __pthread_cleanup_frame
@@ -512,8 +509,7 @@ extern void __pthread_unwind_next (__pthread_unwind_buf_t *__buf)
      __attribute__ ((__regparm__ (1))) __attribute__ ((__noreturn__))
      __attribute__ ((__weak__))
      ;
-struct __jmp_buf_tag;
-extern int __sigsetjmp (struct __jmp_buf_tag *__env, int __savemask) __attribute__ ((__nothrow__));
+extern int __sigsetjmp_cancel (struct __cancel_jmp_buf_tag __env[1], int __savemask) __asm__ ("" "__sigsetjmp") __attribute__ ((__nothrow__)) __attribute__ ((__returns_twice__));
 extern int pthread_mutex_init (pthread_mutex_t *__mutex,
           const pthread_mutexattr_t *__mutexattr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
@@ -680,7 +676,8 @@ extern int pthread_key_create (pthread_key_t *__key,
 extern int pthread_key_delete (pthread_key_t __key) __attribute__ ((__nothrow__ , __leaf__));
 extern void *pthread_getspecific (pthread_key_t __key) __attribute__ ((__nothrow__ , __leaf__));
 extern int pthread_setspecific (pthread_key_t __key,
-    const void *__pointer) __attribute__ ((__nothrow__ , __leaf__)) ;
+    const void *__pointer)
+  __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__access__ (__none__, 2)));
 extern int pthread_getcpuclockid (pthread_t __thread_id,
       __clockid_t *__clock_id)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
@@ -688,30 +685,20 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
-void __VERIFIER_atomic_acquire(int * m)
-{
- assume_abort_if_not(*m==0);
- *m = 1;
-}
-void __VERIFIER_atomic_release(int * m)
-{
- assume_abort_if_not(*m==1);
- *m = 0;
-}
 int memory[(2*32+1)];
 int next_alloc_idx = 1;
-int m = 0;
+pthread_mutex_t m = { { 0, 0, 0, PTHREAD_MUTEX_TIMED_NP, 0, { { 0, 0 } } } };
 int top;
 inline int index_malloc(){
  int curr_alloc_idx = -1;
- __VERIFIER_atomic_acquire(&m);
+ pthread_mutex_lock(&m);
  if(next_alloc_idx+2-1 > (2*32+1)){
-  __VERIFIER_atomic_release(&m);
+  pthread_mutex_unlock(&m);
   curr_alloc_idx = 0;
  }else{
   curr_alloc_idx = next_alloc_idx;
   next_alloc_idx += 2;
-  __VERIFIER_atomic_release(&m);
+  pthread_mutex_unlock(&m);
  }
  return curr_alloc_idx;
 }
@@ -731,13 +718,13 @@ inline int push(int d) {
   return 0;
  }else{
   memory[newTop+0] = d;
-  __VERIFIER_atomic_acquire(&m);
+  pthread_mutex_lock(&m);
   oldTop = top;
   memory[newTop+1] = oldTop;
   __VERIFIER_atomic_begin();
   top = newTop;
   __VERIFIER_atomic_end();
-  __VERIFIER_atomic_release(&m);
+  pthread_mutex_unlock(&m);
   return 1;
  }
 }
@@ -756,18 +743,18 @@ inline void push_loop(){
     __VERIFIER_atomic_assert(r);
  }
 }
-int m2 = 0;
+pthread_mutex_t m2 = { { 0, 0, 0, PTHREAD_MUTEX_TIMED_NP, 0, { { 0, 0 } } } };
 int state = 0;
 void* thr1(void* arg)
 {
- __VERIFIER_atomic_acquire(&m2);
+ pthread_mutex_lock(&m2);
  switch(state)
  {
  case 0:
   EBStack_init();
   state = 1;
  case 1:
-  __VERIFIER_atomic_release(&m2);
+  pthread_mutex_unlock(&m2);
   push_loop();
   break;
  }
