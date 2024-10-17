@@ -5,10 +5,6 @@ input_files: '13-privatized_40-traces-ex-6_true.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/valid-memsafety.prp
-    expected_verdict: true
-  - property_file: ../properties/no-overflow.prp
-    expected_verdict: true
   - property_file: ../properties/no-data-race.prp
     expected_verdict: true
 
