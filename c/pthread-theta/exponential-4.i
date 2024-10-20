@@ -746,7 +746,10 @@ extern void atomic_flag_clear (volatile atomic_flag *);
 extern void atomic_flag_clear_explicit (volatile atomic_flag *, memory_order);
 extern int __VERIFIER_nondet_int();
 extern void abort(void);
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/exponential.h", 8, __extension__ __PRETTY_FUNCTION__); })); }
+void assume_abort_if_not(int cond) {
+  if(!cond) {abort();}
+}
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/exponential.h", 11, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
 atomic_uint y;
 void *f1(void *arg) {
@@ -759,7 +762,8 @@ void *f2(void *arg) {
 }
 int main() {
   int _N = 4;
-  unsigned int x, z, p, i;
+  int x, p, i;
+  unsigned int z;
   pthread_t t;
   p = 0;
   while(p < _N) {
@@ -770,7 +774,8 @@ int main() {
   z = 0;
   i = 0;
   while(i < _N) {
-    z = (z + 2 * y) % 0x7fffffff;
+    assume_abort_if_not(z < 0x7fffffff);
+    z = z + 2 * y;
     i++;
   }
   if(z % 2 == 0) {

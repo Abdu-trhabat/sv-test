@@ -12,6 +12,9 @@
 
 extern int __VERIFIER_nondet_int();
 extern void abort(void);
+void assume_abort_if_not(int cond) {
+  if(!cond) {abort();}
+}
 void reach_error() { assert(0); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
 
@@ -26,7 +29,8 @@ void *f2(void *arg) { // N threads with f2
 }
 int main() {
   int _N = N;
-  unsigned int x, z, p, i;
+  int x, p, i;
+  unsigned int z;
   pthread_t t;
   p = 0;
   while(p < _N) {
@@ -37,8 +41,9 @@ int main() {
   z = 0;
   i = 0;
   while(i < _N) {
-    z = (z + 2 * y) % INT_MAX; // the z % 2 == 0 predicate remains the same
-                               // z and 2*y are always between 0 and INT_MAX, so z + 2*y fits in an unsigned int
+    assume_abort_if_not(z < INT_MAX); // z is always between 0 and INT_MAX
+    z = z + 2 * y; // the z % 2 == 0 predicate remains the same
+                   // z and 2*y are always between 0 and INT_MAX, so z + 2*y fits in an unsigned int
     i++;
   }
   if(z % 2 == 0) { // z % 2 == 0 was initially true and have not been affected, so it is always true
