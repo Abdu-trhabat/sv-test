@@ -5,5 +5,5 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-#define N 10
-#include "unwind2.h"
+#define N __VERIFIER_nondet_int()
+#include "unwind1.h"

@@ -26,42 +26,42 @@ void reach_error() { assert(0); }
 
 atomic_int x, y, z, s, t;
 
-void *f0() {
+void *f0(void* arg) {
     assume_abort_if_not(z == 2);
     y = 2;
     assume_abort_if_not(x == 1);
     return 0;
 }
 
-void *f1() {
+void *f1(void* arg) {
     x = 1;
     y = 1;
     z = 1;
     return 0;
 }
 
-void *f2() {
+void *f2(void* arg) {
     t = 1;
     s = 1;
     z = 2;
     return 0;
 }
 
-void *f3() {
+void *f3(void* arg) {
     assume_abort_if_not(z == 2);
     x = 2;
     assume_abort_if_not(y == 1);
     return 0;
 }
 
-void *f4() {
+void *f4(void* arg) {
     assume_abort_if_not(z == 1);
     t = 2;
     assume_abort_if_not(s == 1);
     return 0;
 }
 
-void *f5() {
+void *f5(void* arg) {
     assume_abort_if_not(z == 1);
     s = 2;
     assume_abort_if_not(t == 1);

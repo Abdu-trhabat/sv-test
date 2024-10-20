@@ -746,32 +746,31 @@ extern void atomic_flag_clear (volatile atomic_flag *);
 extern void atomic_flag_clear_explicit (volatile atomic_flag *, memory_order);
 extern int __VERIFIER_nondet_int();
 extern void abort(void);
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/unwind2.h", 7, __extension__ __PRETTY_FUNCTION__); })); }
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/unwind3.h", 7, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
+int _N;
 atomic_int limit;
-void *f1() {
-    int i, bound;
-    int lim = 10;
-    limit = lim;
-    bound = limit;
-    for(i = 0; i < bound; i++);
-    __VERIFIER_assert(i == lim);
+void *f1(void* arg) {
+    int l;
+    l = limit;
+    limit = l + 1;
     return 0;
 }
-void *f2() {
+void *f2(void* arg) {
     int i, bound;
-    int lim = 10 + 1;
-    limit = lim;
     bound = limit;
     for(i = 0; i < bound; i++);
-    __VERIFIER_assert(i == lim);
+    __VERIFIER_assert(i != 2 * _N);
     return 0;
 }
 int main() {
-    pthread_t t1, t2;
-    pthread_create(&t1, 0, f1, 0);
-    pthread_create(&t2, 0, f2, 0);
-    pthread_join(t1, 0);
-    pthread_join(t2, 0);
+    _N = __VERIFIER_nondet_int();
+    limit = _N;
+    for(int i = 0; i < _N; ++i) {
+        pthread_t t;
+        pthread_create(&t, 0, f1, 0);
+    }
+    pthread_t t;
+    pthread_create(&t, 0, f2, 0);
     return 0;
 }

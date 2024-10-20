@@ -744,31 +744,33 @@ extern _Bool atomic_flag_test_and_set_explicit (volatile atomic_flag *,
       memory_order);
 extern void atomic_flag_clear (volatile atomic_flag *);
 extern void atomic_flag_clear_explicit (volatile atomic_flag *, memory_order);
+extern int __VERIFIER_nondet_int();
 extern void abort(void);
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/exponential.h", 7, __extension__ __PRETTY_FUNCTION__); })); }
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/exponential.h", 8, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
 atomic_uint y;
 void *f1(void *arg) {
-  y = (y + 1) % 0x7fffffff;
+  y = (y + 1) % (0x7fffffff / 2);
   return 0;
 }
 void *f2(void *arg) {
-  y = (2 * y) % 0x7fffffff;
+  y = (2 * y) % (0x7fffffff / 2);
   return 0;
 }
 int main() {
-  int x, z, p, i;
+  int _N = 64;
+  unsigned int x, z, p, i;
   pthread_t t;
   p = 0;
-  while(p < 64) {
+  while(p < _N) {
     pthread_create(&t, 0, f1, 0);
     pthread_create(&t, 0, f2, 0);
     p++;
   }
   z = 0;
   i = 0;
-  while(i < 64) {
-    z = z + 2 * y;
+  while(i < _N) {
+    z = (z + 2 * y) % 0x7fffffff;
     i++;
   }
   if(z % 2 == 0) {

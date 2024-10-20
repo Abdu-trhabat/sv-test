@@ -14,26 +14,28 @@ extern void abort(void);
 void reach_error() { assert(0); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
 
+int _N;
 atomic_int limit;
 
-void *f1() {
+void *f1(void* arg) {
     if(__VERIFIER_nondet_int()) { // non-deterministic branching
-        limit = N;
+        limit = _N;
     } else {
-        limit = N + 1;
+        limit = _N + 1;
     }
     return 0;
 }
 
-void *f2() {
+void *f2(void* arg) {
     int i, bound;
     bound = limit;
     for (i = 0; i < bound; i++) ; // loop bound is non-deterministic due to unknown branching in the other thread
-    __VERIFIER_assert(i <= N);
+    __VERIFIER_assert(i <= _N);
     return 0;
 }
 
 int main() {
+    _N = N;
     pthread_t t1, t2;
     pthread_create(&t1, 0, f1, 0);
     pthread_create(&t2, 0, f2, 0);

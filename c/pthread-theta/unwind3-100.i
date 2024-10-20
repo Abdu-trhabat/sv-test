@@ -748,31 +748,29 @@ extern int __VERIFIER_nondet_int();
 extern void abort(void);
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/unwind3.h", 7, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
+int _N;
 atomic_int limit;
-void *f1() {
+void *f1(void* arg) {
     int l;
     l = limit;
     limit = l + 1;
     return 0;
 }
-void *f2() {
+void *f2(void* arg) {
     int i, bound;
     bound = limit;
     for(i = 0; i < bound; i++);
-    __VERIFIER_assert(i != 2 * 100);
+    __VERIFIER_assert(i != 2 * _N);
     return 0;
 }
 int main() {
-    limit = 100;
-    pthread_t threads[100];
-    for(int i = 0; i < 100; ++i) {
-        pthread_create(&threads[i], 0, f1, 0);
+    _N = 100;
+    limit = _N;
+    for(int i = 0; i < _N; ++i) {
+        pthread_t t;
+        pthread_create(&t, 0, f1, 0);
     }
     pthread_t t;
     pthread_create(&t, 0, f2, 0);
-    for(int i = 0; i < 100; ++i) {
-        pthread_join(threads[i], 0);
-    }
-    pthread_join(t, 0);
     return 0;
 }

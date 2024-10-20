@@ -14,11 +14,12 @@ extern void abort(void);
 void reach_error() { assert(0); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
 
+int _N;
 atomic_int limit;
 
-void *f1() {
+void *f1(void* arg) {
     int i, bound;
-    int lim = N;
+    int lim = _N;
     limit = lim;
     bound = limit; // limit is either N or N + 1 due to potential interleavings of the two threads
     for(i = 0; i < bound; i++);
@@ -26,9 +27,9 @@ void *f1() {
     return 0;
 }
 
-void *f2() {
+void *f2(void* arg) {
     int i, bound;
-    int lim = N + 1;
+    int lim = _N + 1;
     limit = lim;
     bound = limit; // limit is either N or N + 1 due to potential interleavings of the two threads
     for(i = 0; i < bound; i++);
@@ -37,6 +38,7 @@ void *f2() {
 }
 
 int main() {
+    _N = N;
     pthread_t t1, t2;
     pthread_create(&t1, 0, f1, 0);
     pthread_create(&t2, 0, f2, 0);
