@@ -1,3 +1,10 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2024 Lei Bu
+#
+# SPDX-License-Identifier: Apache-2.0
+
 These benchmarks came from the paper
 
 Lei Bu, Yongjuan Liang, et al.:
