@@ -46,6 +46,8 @@ int solve(int s0, int s1, int s2, int s3) {
     if (s0 + s1 + s2 + s3 == 4 && s0 * 0 + s1 * 1 + s2 * 2 + s3 * 3 == 4 &&
         check_sum(s0, s1, s2, s3))
       return 1;
+    else
+      return 0;
   } else
     return 0;
 }

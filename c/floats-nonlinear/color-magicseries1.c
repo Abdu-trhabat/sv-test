@@ -48,6 +48,8 @@ int solve(int s0, int s1, int s2, int s3) {
     else
       return 0;
   }
+  else
+    return 0;
 }
 
 int main() {
