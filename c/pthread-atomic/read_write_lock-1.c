@@ -1,8 +1,6 @@
 extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 /* Testcase from Threader's distribution. For details see:
    http://www.model.in.tum.de/~popeea/research/threader
@@ -27,21 +25,9 @@ void *writer(void *arg) { //writer
 }
 
 void *reader(void *arg) { //reader
-  int l;
   pthread_rwlock_rdlock(&rwlock);
-  __VERIFIER_atomic_begin();
-  l = x;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  y = l;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  int ly = y;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  int lx = x;
-  __VERIFIER_atomic_end();
-  assert(ly == lx);
+  y = x;
+  assert(y == x);
   pthread_rwlock_unlock(&rwlock);
   return 0;
 }

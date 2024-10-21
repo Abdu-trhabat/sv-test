@@ -10,8 +10,6 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "lamport.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
@@ -75,36 +73,6 @@ __extension__ typedef int __intptr_t;
 __extension__ typedef unsigned int __socklen_t;
 typedef int __sig_atomic_t;
 __extension__ typedef __int64_t __time64_t;
-static __inline __uint16_t
-__bswap_16 (__uint16_t __bsx)
-{
-  return __builtin_bswap16 (__bsx);
-}
-static __inline __uint32_t
-__bswap_32 (__uint32_t __bsx)
-{
-  return __builtin_bswap32 (__bsx);
-}
-__extension__ static __inline __uint64_t
-__bswap_64 (__uint64_t __bsx)
-{
-  return __builtin_bswap64 (__bsx);
-}
-static __inline __uint16_t
-__uint16_identity (__uint16_t __x)
-{
-  return __x;
-}
-static __inline __uint32_t
-__uint32_identity (__uint32_t __x)
-{
-  return __x;
-}
-static __inline __uint64_t
-__uint64_identity (__uint64_t __x)
-{
-  return __x;
-}
 typedef unsigned int size_t;
 typedef __time_t time_t;
 struct timespec
@@ -207,7 +175,6 @@ extern char *tzname[2];
 extern void tzset (void) __attribute__ ((__nothrow__ , __leaf__));
 extern int daylight;
 extern long int timezone;
-extern int stime (const time_t *__when) __attribute__ ((__nothrow__ , __leaf__));
 extern time_t timegm (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
 extern time_t timelocal (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
 extern int dysize (int __year) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
@@ -234,6 +201,32 @@ extern int timer_getoverrun (timer_t __timerid) __attribute__ ((__nothrow__ , __
 extern int timespec_get (struct timespec *__ts, int __base)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
+typedef struct __pthread_internal_list
+{
+  struct __pthread_internal_list *__prev;
+  struct __pthread_internal_list *__next;
+} __pthread_list_t;
+typedef struct __pthread_internal_slist
+{
+  struct __pthread_internal_slist *__next;
+} __pthread_slist_t;
+struct __pthread_mutex_s
+{
+  int __lock;
+  unsigned int __count;
+  int __owner;
+  int __kind;
+  unsigned int __nusers;
+  __extension__ union
+  {
+    struct
+    {
+      short __espins;
+      short __eelision;
+    } __elision_data;
+    __pthread_slist_t __list;
+  };
+};
 struct __pthread_rwlock_arch_t
 {
   unsigned int __readers;
@@ -247,25 +240,6 @@ struct __pthread_rwlock_arch_t
   signed char __rwelision;
   unsigned char __pad2;
   int __cur_writer;
-};
-typedef struct __pthread_internal_slist
-{
-  struct __pthread_internal_slist *__next;
-} __pthread_slist_t;
-struct __pthread_mutex_s
-{
-  int __lock ;
-  unsigned int __count;
-  int __owner;
-  int __kind;
- 
-  unsigned int __nusers;
-  __extension__ union
-  {
-    struct { short __espins; short __eelision; } __elision_data;
-    __pthread_slist_t __list;
-  };
- 
 };
 struct __pthread_cond_s
 {
@@ -697,148 +671,117 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
-int x, y;
-int b1, b2;
+typedef enum
+  {
+    memory_order_relaxed = 0,
+    memory_order_consume = 1,
+    memory_order_acquire = 2,
+    memory_order_release = 3,
+    memory_order_acq_rel = 4,
+    memory_order_seq_cst = 5
+  } memory_order;
+typedef _Atomic _Bool atomic_bool;
+typedef _Atomic char atomic_char;
+typedef _Atomic signed char atomic_schar;
+typedef _Atomic unsigned char atomic_uchar;
+typedef _Atomic short atomic_short;
+typedef _Atomic unsigned short atomic_ushort;
+typedef _Atomic int atomic_int;
+typedef _Atomic unsigned int atomic_uint;
+typedef _Atomic long atomic_long;
+typedef _Atomic unsigned long atomic_ulong;
+typedef _Atomic long long atomic_llong;
+typedef _Atomic unsigned long long atomic_ullong;
+typedef _Atomic short unsigned int atomic_char16_t;
+typedef _Atomic unsigned int atomic_char32_t;
+typedef _Atomic long int atomic_wchar_t;
+typedef _Atomic signed char atomic_int_least8_t;
+typedef _Atomic unsigned char atomic_uint_least8_t;
+typedef _Atomic short int atomic_int_least16_t;
+typedef _Atomic short unsigned int atomic_uint_least16_t;
+typedef _Atomic int atomic_int_least32_t;
+typedef _Atomic unsigned int atomic_uint_least32_t;
+typedef _Atomic long long int atomic_int_least64_t;
+typedef _Atomic long long unsigned int atomic_uint_least64_t;
+typedef _Atomic signed char atomic_int_fast8_t;
+typedef _Atomic unsigned char atomic_uint_fast8_t;
+typedef _Atomic int atomic_int_fast16_t;
+typedef _Atomic unsigned int atomic_uint_fast16_t;
+typedef _Atomic int atomic_int_fast32_t;
+typedef _Atomic unsigned int atomic_uint_fast32_t;
+typedef _Atomic long long int atomic_int_fast64_t;
+typedef _Atomic long long unsigned int atomic_uint_fast64_t;
+typedef _Atomic int atomic_intptr_t;
+typedef _Atomic unsigned int atomic_uintptr_t;
+typedef _Atomic unsigned int atomic_size_t;
+typedef _Atomic int atomic_ptrdiff_t;
+typedef _Atomic long long int atomic_intmax_t;
+typedef _Atomic long long unsigned int atomic_uintmax_t;
+extern void atomic_thread_fence (memory_order);
+extern void atomic_signal_fence (memory_order);
+typedef _Atomic struct
+{
+  _Bool __val;
+} atomic_flag;
+extern _Bool atomic_flag_test_and_set (volatile atomic_flag *);
+extern _Bool atomic_flag_test_and_set_explicit (volatile atomic_flag *,
+      memory_order);
+extern void atomic_flag_clear (volatile atomic_flag *);
+extern void atomic_flag_clear_explicit (volatile atomic_flag *, memory_order);
+atomic_int x, y;
+atomic_int b1, b2;
 int X;
 void *thr1(void *_) {
-    while (1) {
-        __VERIFIER_atomic_begin();
-        b1 = 1;
-        __VERIFIER_atomic_end();
-        __VERIFIER_atomic_begin();
-        x = 1;
-        __VERIFIER_atomic_end();
-        __VERIFIER_atomic_begin();
-        int y1 = y;
-        __VERIFIER_atomic_end();
-        if (y1 != 0) {
-            __VERIFIER_atomic_begin();
-            b1 = 0;
-            __VERIFIER_atomic_end();
-            __VERIFIER_atomic_begin();
-            y1 = y;
-            __VERIFIER_atomic_end();
-            while (y1 != 0) {
-                __VERIFIER_atomic_begin();
-                y1 = y;
-                __VERIFIER_atomic_end();
-            };
-            continue;
-        }
-        __VERIFIER_atomic_begin();
-        y = 1;
-        __VERIFIER_atomic_end();
-        __VERIFIER_atomic_begin();
-        int x1 = x;
-        __VERIFIER_atomic_end();
-        if (x1 != 1) {
-            __VERIFIER_atomic_begin();
-            b1 = 0;
-            __VERIFIER_atomic_end();
-            __VERIFIER_atomic_begin();
-            int b21 = b2;
-            __VERIFIER_atomic_end();
-            while (b21 >= 1) {
-                __VERIFIER_atomic_begin();
-                b21 = b2;
-                __VERIFIER_atomic_end();
-            };
-            __VERIFIER_atomic_begin();
-            y1 = y;
-            __VERIFIER_atomic_end();
-            if (y1 != 1) {
-                __VERIFIER_atomic_begin();
-                y1 = y;
-                __VERIFIER_atomic_end();
-                while (y1 != 0) {
-                    __VERIFIER_atomic_begin();
-                    y1 = y;
-                    __VERIFIER_atomic_end();
-                };
-                continue;
-            }
-        }
-        break;
+  while (1) {
+    b1 = 1;
+    x = 1;
+    if (y != 0) {
+      b1 = 0;
+      while (y != 0) {};
+      continue;
     }
-    X = 0;
-    if (!(X <= 0)) ERROR: reach_error();
-    __VERIFIER_atomic_begin();
-    y = 0;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    b1 = 0;
-    __VERIFIER_atomic_end();
-    return 0;
+    y = 1;
+    if (x != 1) {
+      b1 = 0;
+      while (b2 >= 1) {};
+      if (y != 1) {
+ while (y != 0) {};
+ continue;
+      }
+    }
+    break;
+  }
+  X = 0;
+  if (!(X <= 0)) ERROR: reach_error();
+  y = 0;
+  b1 = 0;
+  return 0;
 }
 void *thr2(void *_) {
-    while (1) {
-        __VERIFIER_atomic_begin();
-        b2 = 1;
-        __VERIFIER_atomic_end();
-        __VERIFIER_atomic_begin();
-        x = 2;
-        __VERIFIER_atomic_end();
-        __VERIFIER_atomic_begin();
-        int y2 = y;
-        __VERIFIER_atomic_end();
-        if (y2 != 0) {
-            __VERIFIER_atomic_begin();
-            b2 = 0;
-            __VERIFIER_atomic_end();
-            __VERIFIER_atomic_begin();
-            y2 = y;
-            __VERIFIER_atomic_end();
-            while (y2 != 0) {
-                __VERIFIER_atomic_begin();
-                y2 = y;
-                __VERIFIER_atomic_end();
-            };
-            continue;
-        }
-        __VERIFIER_atomic_begin();
-        y = 2;
-        __VERIFIER_atomic_end();
-        __VERIFIER_atomic_begin();
-        int x2 = x;
-        __VERIFIER_atomic_end();
-        if (x2 != 2) {
-            __VERIFIER_atomic_begin();
-            b2 = 0;
-            __VERIFIER_atomic_end();
-            __VERIFIER_atomic_begin();
-            int b12 = b1;
-            __VERIFIER_atomic_end();
-            while (b12 >= 1) {
-                __VERIFIER_atomic_begin();
-                b12 = b1;
-                __VERIFIER_atomic_end();
-            };
-            __VERIFIER_atomic_begin();
-            y2 = y;
-            __VERIFIER_atomic_end();
-            if (y2 != 2) {
-                __VERIFIER_atomic_begin();
-                y2 = y;
-                __VERIFIER_atomic_end();
-                while (y2 != 0) {
-                    __VERIFIER_atomic_begin();
-                    y2 = y;
-                    __VERIFIER_atomic_end();
-                };
-                continue;
-            }
-        }
-        break;
+  while (1) {
+    b2 = 1;
+    x = 2;
+    if (y != 0) {
+      b2 = 0;
+      while (y != 0) {};
+      continue;
     }
-    X = 1;
-    if (!(X >= 1)) ERROR: reach_error();
-    __VERIFIER_atomic_begin();
-    y = 0;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    b2 = 0;
-    __VERIFIER_atomic_end();
-    return 0;
+    y = 2;
+    if (x != 2) {
+      b2 = 0;
+      while (b1 >= 1) {};
+      if (y != 2) {
+ while (y != 0) {};
+ continue;
+      }
+    }
+    break;
+  }
+  X = 1;
+  if (!(X >= 1)) ERROR: reach_error();
+  y = 0;
+  b2 = 0;
+  return 0;
 }
 int main() {
   pthread_t t1, t2;

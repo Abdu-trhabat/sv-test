@@ -14,8 +14,6 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "dekker.c", 7, __extension__ __PRETTY_FUNCTION__); })); }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
@@ -79,36 +77,6 @@ __extension__ typedef int __intptr_t;
 __extension__ typedef unsigned int __socklen_t;
 typedef int __sig_atomic_t;
 __extension__ typedef __int64_t __time64_t;
-static __inline __uint16_t
-__bswap_16 (__uint16_t __bsx)
-{
-  return __builtin_bswap16 (__bsx);
-}
-static __inline __uint32_t
-__bswap_32 (__uint32_t __bsx)
-{
-  return __builtin_bswap32 (__bsx);
-}
-__extension__ static __inline __uint64_t
-__bswap_64 (__uint64_t __bsx)
-{
-  return __builtin_bswap64 (__bsx);
-}
-static __inline __uint16_t
-__uint16_identity (__uint16_t __x)
-{
-  return __x;
-}
-static __inline __uint32_t
-__uint32_identity (__uint32_t __x)
-{
-  return __x;
-}
-static __inline __uint64_t
-__uint64_identity (__uint64_t __x)
-{
-  return __x;
-}
 typedef unsigned int size_t;
 typedef __time_t time_t;
 struct timespec
@@ -211,7 +179,6 @@ extern char *tzname[2];
 extern void tzset (void) __attribute__ ((__nothrow__ , __leaf__));
 extern int daylight;
 extern long int timezone;
-extern int stime (const time_t *__when) __attribute__ ((__nothrow__ , __leaf__));
 extern time_t timegm (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
 extern time_t timelocal (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
 extern int dysize (int __year) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
@@ -238,6 +205,32 @@ extern int timer_getoverrun (timer_t __timerid) __attribute__ ((__nothrow__ , __
 extern int timespec_get (struct timespec *__ts, int __base)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
+typedef struct __pthread_internal_list
+{
+  struct __pthread_internal_list *__prev;
+  struct __pthread_internal_list *__next;
+} __pthread_list_t;
+typedef struct __pthread_internal_slist
+{
+  struct __pthread_internal_slist *__next;
+} __pthread_slist_t;
+struct __pthread_mutex_s
+{
+  int __lock;
+  unsigned int __count;
+  int __owner;
+  int __kind;
+  unsigned int __nusers;
+  __extension__ union
+  {
+    struct
+    {
+      short __espins;
+      short __eelision;
+    } __elision_data;
+    __pthread_slist_t __list;
+  };
+};
 struct __pthread_rwlock_arch_t
 {
   unsigned int __readers;
@@ -251,25 +244,6 @@ struct __pthread_rwlock_arch_t
   signed char __rwelision;
   unsigned char __pad2;
   int __cur_writer;
-};
-typedef struct __pthread_internal_slist
-{
-  struct __pthread_internal_slist *__next;
-} __pthread_slist_t;
-struct __pthread_mutex_s
-{
-  int __lock ;
-  unsigned int __count;
-  int __owner;
-  int __kind;
- 
-  unsigned int __nusers;
-  __extension__ union
-  {
-    struct { short __espins; short __eelision; } __elision_data;
-    __pthread_slist_t __list;
-  };
- 
 };
 struct __pthread_cond_s
 {
@@ -701,90 +675,95 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
-int flag1 = 0, flag2 = 0;
-int turn;
+typedef enum
+  {
+    memory_order_relaxed = 0,
+    memory_order_consume = 1,
+    memory_order_acquire = 2,
+    memory_order_release = 3,
+    memory_order_acq_rel = 4,
+    memory_order_seq_cst = 5
+  } memory_order;
+typedef _Atomic _Bool atomic_bool;
+typedef _Atomic char atomic_char;
+typedef _Atomic signed char atomic_schar;
+typedef _Atomic unsigned char atomic_uchar;
+typedef _Atomic short atomic_short;
+typedef _Atomic unsigned short atomic_ushort;
+typedef _Atomic int atomic_int;
+typedef _Atomic unsigned int atomic_uint;
+typedef _Atomic long atomic_long;
+typedef _Atomic unsigned long atomic_ulong;
+typedef _Atomic long long atomic_llong;
+typedef _Atomic unsigned long long atomic_ullong;
+typedef _Atomic short unsigned int atomic_char16_t;
+typedef _Atomic unsigned int atomic_char32_t;
+typedef _Atomic long int atomic_wchar_t;
+typedef _Atomic signed char atomic_int_least8_t;
+typedef _Atomic unsigned char atomic_uint_least8_t;
+typedef _Atomic short int atomic_int_least16_t;
+typedef _Atomic short unsigned int atomic_uint_least16_t;
+typedef _Atomic int atomic_int_least32_t;
+typedef _Atomic unsigned int atomic_uint_least32_t;
+typedef _Atomic long long int atomic_int_least64_t;
+typedef _Atomic long long unsigned int atomic_uint_least64_t;
+typedef _Atomic signed char atomic_int_fast8_t;
+typedef _Atomic unsigned char atomic_uint_fast8_t;
+typedef _Atomic int atomic_int_fast16_t;
+typedef _Atomic unsigned int atomic_uint_fast16_t;
+typedef _Atomic int atomic_int_fast32_t;
+typedef _Atomic unsigned int atomic_uint_fast32_t;
+typedef _Atomic long long int atomic_int_fast64_t;
+typedef _Atomic long long unsigned int atomic_uint_fast64_t;
+typedef _Atomic int atomic_intptr_t;
+typedef _Atomic unsigned int atomic_uintptr_t;
+typedef _Atomic unsigned int atomic_size_t;
+typedef _Atomic int atomic_ptrdiff_t;
+typedef _Atomic long long int atomic_intmax_t;
+typedef _Atomic long long unsigned int atomic_uintmax_t;
+extern void atomic_thread_fence (memory_order);
+extern void atomic_signal_fence (memory_order);
+typedef _Atomic struct
+{
+  _Bool __val;
+} atomic_flag;
+extern _Bool atomic_flag_test_and_set (volatile atomic_flag *);
+extern _Bool atomic_flag_test_and_set_explicit (volatile atomic_flag *,
+      memory_order);
+extern void atomic_flag_clear (volatile atomic_flag *);
+extern void atomic_flag_clear_explicit (volatile atomic_flag *, memory_order);
+atomic_int flag1 = 0, flag2 = 0;
+atomic_int turn;
 int x;
 void *thr1(void *_) {
-    __VERIFIER_atomic_begin();
-    flag1 = 1;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    int f2 = flag2;
-    __VERIFIER_atomic_end();
-    while (f2 >= 1) {
-        __VERIFIER_atomic_begin();
-        int t = turn;
-        __VERIFIER_atomic_end();
-        if (t != 0) {
-            __VERIFIER_atomic_begin();
-            flag1 = 0;
-            __VERIFIER_atomic_end();
-            __VERIFIER_atomic_begin();
-            t = turn;
-            __VERIFIER_atomic_end();
-            while (t != 0) {
-                __VERIFIER_atomic_begin();
-                t = turn;
-                __VERIFIER_atomic_end();
-            };
-            __VERIFIER_atomic_begin();
-            flag1 = 1;
-            __VERIFIER_atomic_end();
-        }
-        __VERIFIER_atomic_begin();
-        f2 = flag2;
-        __VERIFIER_atomic_end();
+  flag1 = 1;
+  while (flag2 >= 1) {
+    if (turn != 0) {
+      flag1 = 0;
+      while (turn != 0) {};
+      flag1 = 1;
     }
-    x = 0;
-    if (!(x<=0)) ERROR: reach_error();
-    __VERIFIER_atomic_begin();
-    turn = 1;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    flag1 = 0;
-    __VERIFIER_atomic_end();
-    return 0;
+  }
+  x = 0;
+  if (!(x<=0)) ERROR: reach_error();
+  turn = 1;
+  flag1 = 0;
+  return 0;
 }
 void *thr2(void *_) {
-    __VERIFIER_atomic_begin();
-    flag2 = 1;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    int f1 = flag1;
-    __VERIFIER_atomic_end();
-    while (f1 >= 1) {
-        __VERIFIER_atomic_begin();
-        int t = turn;
-        __VERIFIER_atomic_end();
-        if (t != 1) {
-            __VERIFIER_atomic_begin();
-            flag2 = 0;
-            __VERIFIER_atomic_end();
-            __VERIFIER_atomic_begin();
-            t = turn;
-            __VERIFIER_atomic_end();
-            while (t != 1) {
-                __VERIFIER_atomic_begin();
-                t = turn;
-                __VERIFIER_atomic_end();
-            };
-            __VERIFIER_atomic_begin();
-            flag2 = 1;
-            __VERIFIER_atomic_end();
-        }
-        __VERIFIER_atomic_begin();
-        f1 = flag1;
-        __VERIFIER_atomic_end();
+  flag2 = 1;
+  while (flag1 >= 1) {
+    if (turn != 1) {
+      flag2 = 0;
+      while (turn != 1) {};
+      flag2 = 1;
     }
-    x = 1;
-    if (!(x>=1)) ERROR: reach_error();
-    __VERIFIER_atomic_begin();
-    turn = 0;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    flag2 = 0;
-    __VERIFIER_atomic_end();
-    return 0;
+  }
+  x = 1;
+  if (!(x>=1)) ERROR: reach_error();
+  turn = 1;
+  flag2 = 0;
+  return 0;
 }
 int main() {
   pthread_t t1, t2;
