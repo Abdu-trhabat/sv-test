@@ -56,10 +56,9 @@ void* thread1(void* _argptr) {
     size1++;
     __VERIFIER_atomic_end();
     assume_abort_if_not(state11 >= 0 && state11 < n_update);
-    state11 = update[state11];
-    assume_abort_if_not(state11 >= 0 && state11 < n_update);
+    state11 = update[state11]; // Reads some non-det value
     __VERIFIER_atomic_begin();
-    finished1 = done[state11];
+    finished1 = done[state11]; // Accesses non-det location in `done` which is out-of-bounds
     __VERIFIER_atomic_end();
   }
 
@@ -95,9 +94,8 @@ void* thread3(void* _argptr) {
     assume_abort_if_not(produce[state21] >= 0 && produce[state21] < n2);
     state22 = consume[state22][produce[state21]];
     assume_abort_if_not(state21 >= 0 && state21 < n_update);
-    state21 = update[state21];
-    assume_abort_if_not(state21 >= 0 && state21 < n_update);
-    finished2 = done[state21];
+    state21 = update[state21]; // Reads some non-det value
+    finished2 = done[state21]; // Accesses non-det location in `done` which is out-of-bounds
   }
 
   return 0;
