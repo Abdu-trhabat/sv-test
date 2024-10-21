@@ -404,7 +404,7 @@ void *thr2()
 	__CS_cs(); if (__CS_ret != 0) return 0;
 	;
 	__CS_cs(); if (__CS_ret != 0) return 0;
-	turn[__CS_round] = 0;
+	turn[__CS_round] = 1; // should be 0 (turn is never set to 0 this way, making the algorithm unfair)
 	__CS_cs(); if (__CS_ret != 0) return 0;
 	flag2[__CS_round] = 0;
 	__CS_cs(); if (__CS_ret != 0) return 0;

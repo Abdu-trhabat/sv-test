@@ -100,7 +100,7 @@ void *thr2(void *_) {
     assert(x>=1);
     // end: critical section
     __VERIFIER_atomic_begin();
-    turn = 0;
+    turn = 1; // should be 0 (turn is never set to 0 this way, making the algorithm unfair)
     __VERIFIER_atomic_end();
     __VERIFIER_atomic_begin();
     flag2 = 0;
