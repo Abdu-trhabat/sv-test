@@ -31,7 +31,7 @@ TASKS_TO_IGNORE = {
 
 # categories to be excluded ... (with reason and debug information)
 CATEGORIES_TO_IGNORE = {
-  "ConcurrencySafety": "(platform-dependent types)",
+  "Concurrency": "(platform-dependent types)",
   "SoftwareSystems-OpenBSD": "(only custom includes, no system headers, complicated build process)",
   "SoftwareSystems-SQLite": "(complicated build process, requires patched version of cilly)",
   "Juliet": "(no corresponding .c files)",
