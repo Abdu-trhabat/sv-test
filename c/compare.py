@@ -31,24 +31,17 @@ TASKS_TO_IGNORE = {
 
 # categories to be excluded ... (with reason and debug information)
 CATEGORIES_TO_IGNORE = {
-  "ConcurrencySafety-Main": "(platform-dependent types)",
-  "ConcurrencySafety-NoOverflows": "(platform-dependent types)",
-  "ConcurrencySafety-MemSafety": "(platform-dependent types)",
-  "NoDataRace-Main": "(platform-dependent types)",
-  "SoftwareSystems-OpenBSD-MemSafety": "(only custom includes, no system headers, complicated build process)",
-  "SoftwareSystems-OpenBSD-ReachSafety": "(only custom includes, no system headers, complicated build process)",
-  "SoftwareSystems-SQLite-MemSafety": "(complicated build process, requires patched version of cilly)",
-  "MemSafety_Juliet": "(no corresponding .c files)",
-  "NoOverflowsSafety_Juliet": "(no corresponding .c files)",
+  "ConcurrencySafety": "(platform-dependent types)",
+  "SoftwareSystems-OpenBSD": "(only custom includes, no system headers, complicated build process)",
+  "SoftwareSystems-SQLite": "(complicated build process, requires patched version of cilly)",
+  "Juliet": "(no corresponding .c files)",
   "Unused_Juliet": "(no corresponding .c files)",
 }
 
 # categories to be excluded, if option "skip-large" is used ... (with reason and debug information)
 LARGE_CATEGORIES = {
-  "SoftwareSystems-DeviceDriversLinux64-ReachSafety": "(only custom includes, no system headers, checking takes too much time)",
-  "SoftwareSystems-DeviceDriversLinux64-MemSafety": "(only custom includes, no system headers, checking takes too much time)",
-  "SoftwareSystems-DeviceDriversLinux64-Termination": "(only custom includes, no system headers, checking takes too much time)",
-  "SoftwareSystems-DeviceDriversLinux64Large-ReachSafety": "(only custom includes, no system headers, checking takes too much time)",
+  "SoftwareSystems-DeviceDriversLinux64": "(only custom includes, no system headers, checking takes too much time)",
+  "SoftwareSystems-DeviceDriversLinux64Large": "(only custom includes, no system headers, checking takes too much time)",
 }
 
 # no original source available, there are only preprocessed files.
