@@ -746,7 +746,10 @@ extern void atomic_flag_clear (volatile atomic_flag *);
 extern void atomic_flag_clear_explicit (volatile atomic_flag *, memory_order);
 extern int __VERIFIER_nondet_int();
 extern void abort(void);
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/unwind1.h", 7, __extension__ __PRETTY_FUNCTION__); })); }
+void assume_abort_if_not(int cond) {
+  if(!cond) {abort();}
+}
+void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "generated/unwind1.h", 11, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
 int _N;
 atomic_int limit;
@@ -767,6 +770,7 @@ void *f2(void* arg) {
 }
 int main() {
     _N = 100;
+    assume_abort_if_not(0 <= _N && _N <= 0x7fffffff - 1);
     pthread_t t1, t2;
     pthread_create(&t1, 0, f1, 0);
     pthread_create(&t2, 0, f2, 0);

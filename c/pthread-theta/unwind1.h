@@ -8,9 +8,13 @@
 #include <assert.h>
 #include <pthread.h>
 #include <stdatomic.h>
+#include <limits.h>
 
 extern int __VERIFIER_nondet_int();
 extern void abort(void);
+void assume_abort_if_not(int cond) {
+  if(!cond) {abort();}
+}
 void reach_error() { assert(0); }
 void __VERIFIER_assert(int expression) { if (!expression) { ERROR: {reach_error();abort();}}; return; }
 
@@ -36,6 +40,7 @@ void *f2(void* arg) {
 
 int main() {
     _N = N;
+    assume_abort_if_not(0 <= _N && _N <= INT_MAX - 1);
     pthread_t t1, t2;
     pthread_create(&t1, 0, f1, 0);
     pthread_create(&t2, 0, f2, 0);
