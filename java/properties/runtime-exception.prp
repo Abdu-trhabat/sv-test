@@ -1,1 +1,1 @@
-G ! uncaught(java.lang.RuntimeException)
+CHECK(init(Main.main()), LTL(G ! uncaught(java.lang.RuntimeException)))
