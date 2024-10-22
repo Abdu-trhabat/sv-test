@@ -629,9 +629,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_declare_67b_badSink(CWE590_Free_M
 {
   
   char *data = myStruct.structFirst;
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;

@@ -834,9 +834,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_static_68b_badSink(void)
 {
   
   char *data = CWE590_Free_Memory_Not_on_Heap__free_char_static_68_badData;
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;

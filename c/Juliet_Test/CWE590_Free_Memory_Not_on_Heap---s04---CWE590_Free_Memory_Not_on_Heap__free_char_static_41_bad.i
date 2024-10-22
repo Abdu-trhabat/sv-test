@@ -838,9 +838,7 @@ void *memset(void *, int, size_t);
 
 void CWE590_Free_Memory_Not_on_Heap__free_char_static_41_badSink(char *data)
 {
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;

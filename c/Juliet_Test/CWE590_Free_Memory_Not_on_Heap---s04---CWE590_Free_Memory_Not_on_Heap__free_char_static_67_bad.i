@@ -1,3 +1,4 @@
+
 // This file is part of the SV-Benchmarks collection of verification tasks:
 // https://github.com/sosy-lab/sv-benchmarks
 //
@@ -629,9 +630,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_static_67b_badSink(CWE590_Free_Me
 {
   
   char *data = myStruct.structFirst;
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;

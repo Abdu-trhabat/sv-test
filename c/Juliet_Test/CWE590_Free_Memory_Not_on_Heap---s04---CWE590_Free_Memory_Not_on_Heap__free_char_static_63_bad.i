@@ -623,9 +623,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_static_63b_badSink(char **dataPtr
 {
   
   char *data = *dataPtr;
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;
