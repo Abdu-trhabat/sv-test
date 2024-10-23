@@ -1,10 +1,10 @@
 format_version: '2.0'
 
-input_files: 'popl20-more-buffer-series.wvr.c'
+input_files: 'popl20-bad-buffer-mult-alt3.wvr.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp
-    expected_verdict: true
+    expected_verdict: false
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: true
   - property_file: ../properties/no-overflow.prp

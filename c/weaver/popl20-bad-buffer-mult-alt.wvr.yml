@@ -4,7 +4,7 @@ input_files: 'popl20-bad-buffer-mult-alt.wvr.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp
-    expected_verdict: false
+    expected_verdict: true
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: true
   - property_file: ../properties/no-overflow.prp
