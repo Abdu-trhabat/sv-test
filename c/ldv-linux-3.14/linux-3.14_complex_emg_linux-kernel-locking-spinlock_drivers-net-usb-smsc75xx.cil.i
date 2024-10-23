@@ -13750,6 +13750,18 @@ int usbnet_suspend(struct usb_interface *arg0, pm_message_t arg1) {
 void usbnet_tx_timeout(struct net_device *arg0) {
   return;
 }
+int usbnet_read_cmd(struct usbnet * arg0, u8 arg1, u8 arg2, u16 arg3, u16 arg4, void * arg5, u16 arg6) {
+  return __VERIFIER_nondet_int();
+}
+int usbnet_write_cmd(struct usbnet *arg0, u8 arg1, u8 arg2, u16 arg3, u16 arg4, const void *arg5, u16 arg6) {
+  return __VERIFIER_nondet_int();
+}
+int usbnet_read_cmd_nopm(struct usbnet *arg0, u8 arg1, u8 arg2, u16 arg3, u16 arg4, void *arg5, u16 arg6) {
+  return __VERIFIER_nondet_int();
+}
+int usbnet_write_cmd_nopm(struct usbnet *arg0, u8 arg1, u8 arg2, u16 arg3, u16 arg4, const void *arg5, u16 arg6) {
+  return __VERIFIER_nondet_int();
+}
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
