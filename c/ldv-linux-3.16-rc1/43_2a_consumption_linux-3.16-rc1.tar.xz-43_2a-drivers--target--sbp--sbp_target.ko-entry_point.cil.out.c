@@ -7831,6 +7831,7 @@ __inline static struct fw_card *fw_card_get(struct fw_card *card )
 }
 }
 extern void fw_card_release(struct kref * ) ;
+void fw_card_release(struct kref * x) {}
 __inline static void fw_card_put(struct fw_card *card ) 
 { 
 
