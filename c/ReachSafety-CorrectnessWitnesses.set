@@ -1,2 +1,2 @@
-loop-invariants64/*.witness-validation.yml
-loop-invariants/*.witness-validation.yml
+loop-invariants64/witnesses/*.witness-validation.yml
+loop-invariants/witnesses/*.witness-validation.yml
