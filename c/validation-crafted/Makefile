@@ -9,4 +9,6 @@
 CC.Arch := 64
 LEVEL := ../
 
+IGNORE_DIRS := ./witnesses/
+
 include $(LEVEL)/Makefile.config

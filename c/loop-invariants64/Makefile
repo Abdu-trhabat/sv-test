@@ -12,4 +12,6 @@ CC.Arch := 64
 CLANG_WARNINGS := \
 	-Wno-error=tautological-constant-out-of-range-compare \
 
+IGNORE_DIRS := ./witnesses/
+
 include $(LEVEL)/Makefile.config
