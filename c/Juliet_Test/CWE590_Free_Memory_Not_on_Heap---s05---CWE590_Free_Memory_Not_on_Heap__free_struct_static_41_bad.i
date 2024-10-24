@@ -107,8 +107,6 @@ void printStructLine(twoIntsStruct const *structTwoIntsStruct);
 void CWE590_Free_Memory_Not_on_Heap__free_struct_static_41_badSink(twoIntsStruct *data)
 {
   
-  printStructLine((twoIntsStruct const *)data);
-  
   free((void *)data);
   
   return;

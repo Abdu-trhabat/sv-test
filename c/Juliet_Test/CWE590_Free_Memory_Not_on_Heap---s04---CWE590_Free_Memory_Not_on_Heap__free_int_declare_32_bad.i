@@ -878,8 +878,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int_declare_32_bad(void)
     
     int *data_1 = *dataPtr2;
     
-    printIntLine(*data_1);
-    
     free((void *)data_1);
   }
   

@@ -885,8 +885,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int64_t_static_32_bad(void)
     
     int64_t *data_1 = *dataPtr2;
     
-    printLongLongLine(*data_1);
-    
     free((void *)data_1);
   }
   

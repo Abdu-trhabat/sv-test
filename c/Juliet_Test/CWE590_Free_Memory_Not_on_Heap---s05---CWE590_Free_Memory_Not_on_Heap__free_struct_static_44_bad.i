@@ -836,8 +836,6 @@ time_t time(time_t *);
 static void badSink(twoIntsStruct *data)
 {
   
-  printStructLine((twoIntsStruct const *)data);
-  
   free((void *)data);
   
   return;
