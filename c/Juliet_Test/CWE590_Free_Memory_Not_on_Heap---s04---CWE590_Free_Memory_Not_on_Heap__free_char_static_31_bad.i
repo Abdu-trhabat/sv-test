@@ -855,9 +855,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_static_31_bad(void)
     char *dataCopy = data;
     
     char *data_0 = dataCopy;
-    
-    printLine((char const *)data_0);
-    
+        
     free((void *)data_0);
   }
   

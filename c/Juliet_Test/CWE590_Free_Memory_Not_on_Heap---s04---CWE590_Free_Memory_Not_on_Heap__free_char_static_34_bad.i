@@ -863,9 +863,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_static_34_bad(void)
   {
     
     char *data_0 = myUnion.unionSecond;
-    
-    printLine((char const *)data_0);
-    
+        
     free((void *)data_0);
   }
   
