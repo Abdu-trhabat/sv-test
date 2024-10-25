@@ -36563,3 +36563,5 @@ void ldv_check_final_state(void)
 #include "model/common.env.c"
 void __bad_percpu_size(void) {
 }
+void __bad_unaligned_access_size(void) {
+}
