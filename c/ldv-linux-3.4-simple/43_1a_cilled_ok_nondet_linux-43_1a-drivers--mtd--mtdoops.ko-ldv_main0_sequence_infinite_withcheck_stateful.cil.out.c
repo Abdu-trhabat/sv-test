@@ -4523,3 +4523,5 @@ void *ldv_vmalloc_20(unsigned long ldv_func_arg1 )
 #include "model/common.env.c"
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

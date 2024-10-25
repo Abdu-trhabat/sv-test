@@ -79316,3 +79316,5 @@ void sg_init_table(struct scatterlist *arg0, unsigned int arg1) {
 }
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

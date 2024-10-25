@@ -21546,3 +21546,5 @@ void _Calculate_D_SwECC(BYTE *buf , BYTE *ecc )
 #include "model/common.env.c"
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

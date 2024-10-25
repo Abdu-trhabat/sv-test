@@ -27744,3 +27744,5 @@ void __buggy_use_of_MTHCA_PUT() {
 }
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

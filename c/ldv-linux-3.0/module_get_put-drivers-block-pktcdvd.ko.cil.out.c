@@ -10237,3 +10237,5 @@ void ldv_module_put_5(struct module *ldv_func_arg1 )
 #include "model/common.env.c"
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

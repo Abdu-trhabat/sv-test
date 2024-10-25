@@ -14459,3 +14459,5 @@ long ldv__builtin_expect(long val , long res )
 #include "model/common.env.c"
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

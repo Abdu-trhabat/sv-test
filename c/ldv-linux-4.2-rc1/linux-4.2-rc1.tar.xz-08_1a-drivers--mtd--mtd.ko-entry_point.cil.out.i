@@ -12536,3 +12536,5 @@ int vm_iomap_memory(struct vm_area_struct *arg0, phys_addr_t arg1, unsigned long
 }
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

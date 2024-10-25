@@ -11815,3 +11815,5 @@ void ldv_assert_linux_alloc_spinlock__wrong_flags(int expr )
 #include "model/common.env.c"
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

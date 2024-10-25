@@ -8372,3 +8372,5 @@ int ldv_atomic_dec_and_lock_siglock_of_sighand_struct(void)
 #include "model/linux-3.14--drivers--usb--misc--adutux.ko_false-unreach-call.env.c"
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

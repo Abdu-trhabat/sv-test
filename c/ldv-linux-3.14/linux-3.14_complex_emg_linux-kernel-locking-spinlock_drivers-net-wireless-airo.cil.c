@@ -26661,3 +26661,5 @@ void ldv_assert_linux_kernel_locking_spinlock__one_thread_locked_at_exit(int exp
 #include "model/common.env.c"
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

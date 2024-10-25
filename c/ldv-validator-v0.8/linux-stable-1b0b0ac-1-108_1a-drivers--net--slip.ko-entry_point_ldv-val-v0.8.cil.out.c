@@ -7967,3 +7967,5 @@ void ldv_check_callback_ret_val(int ret_val )
 #include "model/common.env.c"
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}

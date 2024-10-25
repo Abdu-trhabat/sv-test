@@ -20225,3 +20225,5 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 #include "model/common.env.c"
 void __bad_percpu_size(void) {
 }
+void __xchg_wrong_size(void) {
+}
