@@ -843,6 +843,8 @@ static void badSink(void)
   
   char *data = CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_char_static_45_badData;
 
+  printLine((char const *)data);
+
   free((void *)data);
   
   return;
