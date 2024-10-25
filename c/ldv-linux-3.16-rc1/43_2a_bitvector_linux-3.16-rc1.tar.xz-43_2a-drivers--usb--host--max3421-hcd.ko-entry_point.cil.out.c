@@ -6897,3 +6897,5 @@ int ldv_spin_trylock(void)
 }
 #include "model/43_2a_bitvector_linux-3.16-rc1.tar.xz-43_2a-drivers--usb--host--max3421-hcd.ko-entry_point_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

@@ -12450,3 +12450,5 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-32_7a-drivers--media--usb--cpia2--cpia2.ko-entry_point_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

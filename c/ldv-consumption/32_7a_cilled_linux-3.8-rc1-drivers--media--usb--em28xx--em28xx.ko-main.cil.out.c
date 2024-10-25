@@ -19986,3 +19986,5 @@ void ldv_check_final_state(void)
 }
 #include "model/32_7a_cilled_true-unreach-call_linux-3.8-rc1-drivers--media--usb--em28xx--em28xx.ko-main.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

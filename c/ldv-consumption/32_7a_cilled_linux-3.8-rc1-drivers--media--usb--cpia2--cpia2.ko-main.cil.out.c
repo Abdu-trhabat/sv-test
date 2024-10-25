@@ -11419,3 +11419,5 @@ void ldv_check_final_state(void)
 }
 #include "model/32_7a_cilled_false-unreach-call_linux-3.8-rc1-drivers--media--usb--cpia2--cpia2.ko-main.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

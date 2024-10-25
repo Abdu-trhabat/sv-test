@@ -15063,3 +15063,5 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-3.12-rc1.tar.xz-08_1a-drivers--staging--comedi--comedi.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

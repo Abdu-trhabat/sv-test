@@ -70163,3 +70163,5 @@ void *ldv_xmalloc(size_t size )
 }
 void netdev_printk(const char *arg0, const struct net_device *arg1, const char *arg2, ...) {
 }
+void __bad_percpu_size(void) {
+}

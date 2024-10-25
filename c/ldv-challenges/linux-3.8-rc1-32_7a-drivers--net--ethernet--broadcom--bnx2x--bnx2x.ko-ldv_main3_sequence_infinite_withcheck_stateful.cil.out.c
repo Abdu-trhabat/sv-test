@@ -85802,3 +85802,5 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-3.8-rc1-32_7a-drivers--net--ethernet--broadcom--bnx2x--bnx2x.ko-ldv_main3_sequence_infinite_withcheck_stateful_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

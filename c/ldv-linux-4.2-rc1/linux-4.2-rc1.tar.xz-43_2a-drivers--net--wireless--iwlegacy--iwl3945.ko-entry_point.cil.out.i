@@ -24364,3 +24364,5 @@ void kfree(void const *p) {
 void il_write_targ_mem(struct il_priv *arg0, u32 arg1, u32 arg2) {
   return;
 }
+void __bad_percpu_size(void) {
+}

@@ -13237,3 +13237,5 @@ void ldv_check_final_state(void)
 }
 #include "model/main0_false-unreach-call_drivers-media-video-tlg2300-poseidon-ko--32_7a--4a349aa-1.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

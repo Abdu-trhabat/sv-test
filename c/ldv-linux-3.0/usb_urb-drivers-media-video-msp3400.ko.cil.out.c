@@ -9877,3 +9877,5 @@ int msp_detect_stereo(struct i2c_client *client )
 }
 #include "model/usb_urb-drivers-media-video-msp3400.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

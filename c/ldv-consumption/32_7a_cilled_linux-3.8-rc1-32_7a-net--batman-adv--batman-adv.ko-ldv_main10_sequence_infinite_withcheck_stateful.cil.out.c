@@ -33942,3 +33942,5 @@ void ldv_check_final_state(void)
 }
 #include "model/32_7a_cilled_true-unreach-call_linux-3.8-rc1-32_7a-net--batman-adv--batman-adv.ko-ldv_main10_sequence_infinite_withcheck_stateful.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

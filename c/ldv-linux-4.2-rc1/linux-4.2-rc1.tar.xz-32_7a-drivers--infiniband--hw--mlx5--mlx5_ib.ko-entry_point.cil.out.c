@@ -26057,3 +26057,5 @@ void *ldv_xmalloc(size_t size )
   return (res);
 }
 }
+void __bad_percpu_size(void) {
+}

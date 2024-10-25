@@ -13173,3 +13173,5 @@ long ldv_is_err(void const *ptr )
 {
   return ((unsigned long )ptr > 4294967295UL);
 }
+void __bad_percpu_size(void) {
+}

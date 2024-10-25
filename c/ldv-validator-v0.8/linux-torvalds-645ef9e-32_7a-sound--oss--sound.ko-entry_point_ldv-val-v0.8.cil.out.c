@@ -15779,3 +15779,5 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-torvalds-645ef9e-32_7a-sound--oss--sound.ko-entry_point_ldv-val-v0.8_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

@@ -20436,3 +20436,5 @@ void *vmap(struct page **arg0, unsigned int arg1, unsigned long arg2, pgprot_t a
 void vunmap(const void *arg0) {
   return;
 }
+void __bad_percpu_size(void) {
+}

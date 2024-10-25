@@ -28977,3 +28977,5 @@ void ldv_assert_linux_alloc_spinlock__wrong_flags(int expr )
 }
 #include "model/linux-3.14__linux-alloc-spinlock__drivers-net-ethernet-broadcom-bnx2_true-unreach-call.cil.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

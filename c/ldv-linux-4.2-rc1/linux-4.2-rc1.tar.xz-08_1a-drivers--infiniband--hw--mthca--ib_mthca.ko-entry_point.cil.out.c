@@ -28060,3 +28060,5 @@ void __buggy_use_of_MTHCA_GET() {
 void __buggy_use_of_MTHCA_PUT() {
   return;
 }
+void __bad_percpu_size(void) {
+}

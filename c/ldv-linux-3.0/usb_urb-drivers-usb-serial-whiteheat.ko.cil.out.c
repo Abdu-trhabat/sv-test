@@ -8043,3 +8043,5 @@ void ldv_check_final_state(void)
 }
 #include "model/usb_urb-drivers-usb-serial-whiteheat.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

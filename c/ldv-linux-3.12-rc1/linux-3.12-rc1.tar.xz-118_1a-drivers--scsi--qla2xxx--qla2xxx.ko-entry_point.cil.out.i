@@ -79314,3 +79314,5 @@ void kfree(void const *p) {
 void sg_init_table(struct scatterlist *arg0, unsigned int arg1) {
   return;
 }
+void __bad_percpu_size(void) {
+}

@@ -14720,3 +14720,5 @@ void ldv_check_final_state(void)
 }
 #include "model/main8_true-unreach-call_sound-oss-sound-ko--32_7a--c4cb1dd-1.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

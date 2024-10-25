@@ -23608,3 +23608,5 @@ void ldv_assert_linux_kernel_locking_spinlock__one_thread_locked_at_exit(int exp
 }
 #include "model/linux-3.14__complex_emg__linux-kernel-locking-spinlock__drivers-net-ethernet-cisco-enic-enic_true-unreach-call.cil.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

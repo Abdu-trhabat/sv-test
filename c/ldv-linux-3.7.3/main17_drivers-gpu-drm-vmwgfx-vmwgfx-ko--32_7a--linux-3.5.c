@@ -27835,3 +27835,5 @@ void ldv_check_final_state(void)
 }
 #include "model/main17_false-unreach-call_drivers-gpu-drm-vmwgfx-vmwgfx-ko--32_7a--linux-3.5.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

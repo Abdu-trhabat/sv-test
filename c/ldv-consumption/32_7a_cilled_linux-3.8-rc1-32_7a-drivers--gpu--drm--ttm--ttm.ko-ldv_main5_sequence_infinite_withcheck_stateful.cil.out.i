@@ -15841,3 +15841,5 @@ void ldv_assume(int expression )
   return;
 }
 }
+void __bad_percpu_size(void) {
+}

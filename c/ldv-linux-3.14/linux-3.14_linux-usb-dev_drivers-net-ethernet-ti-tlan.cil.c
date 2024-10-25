@@ -11923,3 +11923,5 @@ void ldv_assert_linux_usb_dev__unincremented_counter_decrement(int expr )
 struct resource *__request_region(struct resource *arg0, resource_size_t arg1, resource_size_t arg2, const char *arg3, int arg4) {
   return ldv_malloc(sizeof(struct resource));
 }
+void __bad_percpu_size(void) {
+}

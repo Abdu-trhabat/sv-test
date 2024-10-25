@@ -8112,3 +8112,5 @@ unsigned long __VERIFIER_nondet_ulong(void);
 unsigned long int _copy_from_user(void *arg0, const void *arg1, unsigned int arg2){
   return __VERIFIER_nondet_ulong();
 }
+void __bad_percpu_size(void) {
+}

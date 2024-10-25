@@ -92914,3 +92914,5 @@ void kfree(void const *p) {
 int netdev_printk(const char *arg0, const struct net_device *arg1, const char *arg2, ...) {
   return __VERIFIER_nondet_int();
 }
+void __bad_percpu_size(void) {
+}

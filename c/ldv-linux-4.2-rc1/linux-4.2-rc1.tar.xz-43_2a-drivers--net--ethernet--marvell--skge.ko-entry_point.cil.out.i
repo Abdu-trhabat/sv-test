@@ -14687,3 +14687,5 @@ void *ldv_calloc(size_t nmemb , size_t size )
   }
 }
 }
+void __bad_percpu_size(void) {
+}

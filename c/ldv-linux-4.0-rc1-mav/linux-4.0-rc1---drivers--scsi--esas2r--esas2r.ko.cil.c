@@ -31521,3 +31521,5 @@ void ldv_assert_linux_kernel_rcu_update_lock_sched__locked_at_exit(int expr )
 }
 #include "model/linux-4.0-rc1---drivers--scsi--esas2r--esas2r.ko_false-unreach-call.cil.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
