@@ -31650,3 +31650,5 @@ void __bad_size_call_parameter(void) {
 }
 void __xadd_wrong_size(void) {
 }
+void __put_user_bad(void) {
+}
