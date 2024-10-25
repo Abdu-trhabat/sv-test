@@ -28305,3 +28305,5 @@ void *ldv_xmalloc(size_t size )
 }
 void __bad_percpu_size(void) {
 }
+void __xadd_wrong_size(void) {
+}

@@ -36563,3 +36563,5 @@ void ldv_assume(int expression )
 }
 void __bad_percpu_size(void) {
 }
+void __xadd_wrong_size(void) {
+}

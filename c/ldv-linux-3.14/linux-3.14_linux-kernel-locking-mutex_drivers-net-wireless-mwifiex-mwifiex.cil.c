@@ -46761,3 +46761,5 @@ void ldv_assert_linux_kernel_locking_mutex__one_thread_locked_at_exit(int expr )
 #include "model/common.env.c"
 void __bad_percpu_size(void) {
 }
+void __xadd_wrong_size(void) {
+}

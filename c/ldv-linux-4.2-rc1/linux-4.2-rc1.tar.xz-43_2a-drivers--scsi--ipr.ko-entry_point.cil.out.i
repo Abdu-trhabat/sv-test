@@ -21815,3 +21815,5 @@ void *ldv_calloc(size_t nmemb , size_t size )
   }
 }
 }
+void __xadd_wrong_size(void) {
+}

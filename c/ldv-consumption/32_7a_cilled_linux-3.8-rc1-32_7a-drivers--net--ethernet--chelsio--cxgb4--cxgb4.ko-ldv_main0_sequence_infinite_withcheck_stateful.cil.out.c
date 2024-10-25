@@ -26887,3 +26887,5 @@ void __bad_size_call_parameter(void) {
 }
 void __xchg_wrong_size(void) {
 }
+void __xadd_wrong_size(void) {
+}

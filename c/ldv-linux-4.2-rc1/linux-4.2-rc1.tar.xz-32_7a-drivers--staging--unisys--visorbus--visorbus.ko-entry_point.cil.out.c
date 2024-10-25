@@ -16462,3 +16462,5 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-32_7a-drivers--staging--unisys--visorbus--visorbus.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __xadd_wrong_size(void) {
+}

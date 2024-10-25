@@ -30429,3 +30429,5 @@ void kfree(void const *p) {
 }
 void __bad_percpu_size(void) {
 }
+void __xadd_wrong_size(void) {
+}

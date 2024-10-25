@@ -43578,3 +43578,5 @@ void __bad_percpu_size(void) {
 }
 void __xchg_wrong_size(void) {
 }
+void __xadd_wrong_size(void) {
+}
