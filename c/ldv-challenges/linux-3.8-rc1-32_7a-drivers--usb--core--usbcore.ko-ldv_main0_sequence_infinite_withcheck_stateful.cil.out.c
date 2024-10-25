@@ -36569,3 +36569,6 @@ void __xchg_wrong_size(void) {
 }
 void __xadd_wrong_size(void) {
 }
+int __get_user_bad(void) {
+  return __VERIFIER_nondet_int();
+}

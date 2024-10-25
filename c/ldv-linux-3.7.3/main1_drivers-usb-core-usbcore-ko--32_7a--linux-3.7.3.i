@@ -34712,3 +34712,6 @@ void __bad_unaligned_access_size(void) {
 }
 void __xchg_wrong_size(void) {
 }
+int __get_user_bad(void) {
+  return __VERIFIER_nondet_int();
+}

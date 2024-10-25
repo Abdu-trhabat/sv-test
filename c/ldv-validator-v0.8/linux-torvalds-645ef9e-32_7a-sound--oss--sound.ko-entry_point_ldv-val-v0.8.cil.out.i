@@ -14626,3 +14626,6 @@ void __bad_size_call_parameter(void) {
 }
 void __put_user_bad(void) {
 }
+int __get_user_bad(void) {
+  return __VERIFIER_nondet_int();
+}
