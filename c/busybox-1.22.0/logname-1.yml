@@ -6,7 +6,7 @@ input_files: 'logname-1.i'
 properties:
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: false
-    subpropert: valid-deref
+    subproperty: valid-deref
 
 options:
   language: C
