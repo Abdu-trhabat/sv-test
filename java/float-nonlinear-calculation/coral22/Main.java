@@ -15,6 +15,7 @@ public class Main {
     double d4 = Verifier.nondetDouble();
     double d5 = Verifier.nondetDouble();
     double d6 = Verifier.nondetDouble();
-    JPFBenchmark.benchmark22(d1, d2, d3, d4, d5, d6);
+    double d7 = Verifier.nondetDouble();
+    JPFBenchmark.benchmark22(d1, d2, d3, d4, d5, d6, d7);
   }
 }

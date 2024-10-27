@@ -11,6 +11,8 @@ public class Main {
   public static void main(String[] args) {
     double d1 = Verifier.nondetDouble();
     double d2 = Verifier.nondetDouble();
-    Optimization.wood(d1, d2);
+    double d3 = Verifier.nondetDouble();
+    double d4 = Verifier.nondetDouble();
+    Optimization.wood(d1, d2, d3, d4);
   }
 }

@@ -10,6 +10,6 @@ import org.sosy_lab.sv_benchmarks.Verifier;
 public class Main {
   public static void main(String[] main) {
     double d1 = Verifier.nondetDouble();
-    JPFBenchmark.benchmark22(d1);
+    JPFBenchmark.benchmark30(d1);
   }
 }

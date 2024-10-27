@@ -11,6 +11,7 @@ public class Main {
   public static void main(String[] args) {
     double d1 = Verifier.nondetDouble();
     double d2 = Verifier.nondetDouble();
-    Optimization.helicalValley(d1, d2);
+    double d3 = Verifier.nondetDouble();
+    Optimization.helicalValley(d1, d2, d3);
   }
 }
