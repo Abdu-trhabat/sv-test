@@ -73,8 +73,8 @@ public class Optimization {
 
   // This is public only because JPF keeps generating test cases for it
   // and it is highly annoying to remove them every time we regenerate them.
-  public final static double theta(double x1, double x2) {
-    if(x1 > 0.0) {
+  public static final double theta(double x1, double x2) {
+    if (x1 > 0.0) {
       return Math.atan(x2 / x1) / (2 * Math.PI);
     } else if (x1 < 0.0) {
       return (Math.atan(x2 / x1) / (2 * Math.PI) + 0.5);

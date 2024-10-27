@@ -20,6 +20,6 @@ public class Main {
         || d3 >= Math.PI / 6) {
       return;
     }
-    JPFBenchmark.benchmark05(d1);
+    JPFBenchmark.benchmark05(d1, d2, d3);
   }
 }
