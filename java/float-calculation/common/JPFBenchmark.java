@@ -174,16 +174,6 @@ public class JPFBenchmark {
     }
   }
 
-  //  sin(cos(x*y)) < cos(sin(x*z)) &
-  // (sin(2w - y)/(cos(2y + v) + 1) = cos(2z + x)/(sin(2w + v) - 1)
-  public static void benchmark25(double x, double y, double z, double w, double v) {
-    if (Math.sin(Math.cos(x * y)) < Math.cos(Math.sin(x * z))
-        && (Math.sin(2 * w - y) / (Math.cos(2 * y + v) + 1)
-            == Math.cos(2 * z + x) / (Math.sin(2 * w + v) - 1))) {
-      assert false;
-    }
-  }
-
   // sin(cos(x*y)) < cos(sin(x*z))
   // (sin(2w - y)/(cos(2y + v) + 1) = cos(2z + x)/(sin(2w + v) - 1)
   // sin(x*y*z*w) > 0 && cos(x*y*z*w) < 0
@@ -332,13 +322,6 @@ public class JPFBenchmark {
         && y < x + 2
         && w == x + 2) {
       System.out.println("sucess");
-    }
-  }
-
-  // e ^ (x + y) == e ^ z
-  public static void benchmark47(double x, double y, double z) {
-    if (Math.exp(x + y) == Math.exp(z)) {
-      assert false;
     }
   }
 
