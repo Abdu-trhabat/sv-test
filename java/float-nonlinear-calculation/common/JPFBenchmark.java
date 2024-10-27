@@ -1,13 +1,19 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2024 The SV-Benchmarks Community
+//
+// SPDX-License-Identifier: MIT
 /*
  * This benchmark task is a modification of the following original Benchmark:
  * Origin of the benchmark:
- * 	   license: MIT (see /java/jayhorn-recursive/LICENSE)
+ * 	   license: MIT (see /java/float-nonlinear-calculation/LICENSE)
  *     repo: https://github.com/osl/concolic-walk
  *     branch: master
  *     root directory: experiments/src/programs/coral/
  * The benchmark was taken from the repo: 8 October 2024
  *
- * Following the original license model, modifications are as well licensed  under the
+ * Following the original license model, modifications are as well licensed under the
  * MIT license.
  */
 

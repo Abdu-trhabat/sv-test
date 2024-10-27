@@ -1,3 +1,9 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2024 The SV-Benchmarks Community
+//
+// SPDX-License-Identifier: Apache-2.0
 /*
  * This benchmark task is a modification of the following original Benchmark:
  * Origin of the benchmark:
@@ -5,9 +11,6 @@
  *     branch: master
  *     root directory: src/examples/concolic
  * The benchmark was taken from the repo: 8 October 2024
- *
- * Following the original license model, modifications are as well licensed  under the
- * MIT license.
  */
 /*
  * Copyright (C) 2014, United States Government, as represented by the

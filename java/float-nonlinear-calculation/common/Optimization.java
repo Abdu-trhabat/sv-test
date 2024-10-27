@@ -1,13 +1,19 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2024 The SV-Benchmarks Community
+//
+// SPDX-License-Identifier: MIT
 /*
  * This benchmark task is a modification of the following original Benchmark:
  * Origin of the benchmark:
- * 	   license: MIT (see /java/jayhorn-recursive/LICENSE)
+ * 	   license: MIT (see /java/float-nonlinear-calculation/LICENSE.MIT.txt)
  *     repo: https://github.com/osl/concolic-walk
  *     branch: master
  *     root directory: experiments/src/programs/optimization/
  * The benchmark was taken from the repo: 8 October 2024
  *
- * Following the original license model, modifications are as well licensed  under the
+ * Following the original license model, modifications are as well licensed under the
  * MIT license.
  */
 /**
@@ -63,5 +69,16 @@ public class Optimization {
         && (Math.pow(10, -0.5) * (x2 - x4)) == 0.0) {
       assert false;
     }
+  }
+
+  // This is public only because JPF keeps generating test cases for it
+  // and it is highly annoying to remove them every time we regenerate them.
+  public final static double theta(double x1, double x2) {
+    if(x1 > 0.0) {
+      return Math.atan(x2 / x1) / (2 * Math.PI);
+    } else if (x1 < 0.0) {
+      return (Math.atan(x2 / x1) / (2 * Math.PI) + 0.5);
+    }
+    return 0.0;
   }
 }
