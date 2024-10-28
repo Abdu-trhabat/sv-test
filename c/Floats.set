@@ -8,3 +8,5 @@ loop-floats-scientific-comp/*.yml
 
 # Contains programs from the Plain C Neural Network Verification Benchmark
 neural-networks/*.yml
+
+floats-nonlinear/*.yml
