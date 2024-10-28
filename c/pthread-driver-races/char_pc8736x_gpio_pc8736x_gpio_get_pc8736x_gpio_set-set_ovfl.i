@@ -6763,6 +6763,9 @@ void tty_unlock(struct tty_struct *arg0) {
 void tty_wait_until_sent(struct tty_struct *arg0, long arg1) {
   return;
 }
+void __xchg_wrong_size(void) {
+  return;
+}
 void unregister_chrdev_region(dev_t arg0, unsigned arg1) {
   return;
 }
