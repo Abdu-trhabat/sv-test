@@ -5462,7 +5462,9 @@ extern void dump_page_badflags(struct page *page, const char *reason,
 void dump_vma(const struct vm_area_struct *vma);
 void dump_mm(const struct mm_struct *mm);
 extern __attribute__((const, noreturn))
-int ____ilog2_NaN(void);
+int ____ilog2_NaN(void) {
+ abort();
+}
 static __attribute__((always_inline)) __attribute__((const))
 int __ilog2_u32(u32 n)
 {
@@ -6761,6 +6763,9 @@ void tty_unlock(struct tty_struct *arg0) {
   return;
 }
 void tty_wait_until_sent(struct tty_struct *arg0, long arg1) {
+  return;
+}
+void __xchg_wrong_size(void) {
   return;
 }
 void unregister_chrdev_region(dev_t arg0, unsigned arg1) {

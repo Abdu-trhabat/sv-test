@@ -410,3 +410,7 @@ void tty_wait_until_sent(struct tty_struct *arg0, long arg1) {
   return;
 }
 
+void __xchg_wrong_size(void) {
+  // Void type
+  return;
+}

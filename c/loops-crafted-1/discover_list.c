@@ -103,7 +103,10 @@ extern char * strchr(char  const* __s, int  __c);
 extern size_t strlen(char  const* __s);
 extern int  getopt_long(int  ___argc, char * const* ___argv, char  const* __shortopts, struct option const* __longopts, int * __longind);
 extern int  smp_initiator_open(char  const* device_name, int  subvalue, char  const* i_params, unsigned long long  sa, struct smp_target_obj* tobj, int  verbose);
-extern int  smp_send_req(struct smp_target_obj const* tobj, struct smp_req_resp* rresp, int  verbose);
+extern int __VERIFIER_nondet_int(void);
+int  smp_send_req(struct smp_target_obj const* tobj, struct smp_req_resp* rresp, int  verbose) {
+  return __VERIFIER_nondet_int();
+}
 extern int  smp_get_func_def_resp_len(int  func_code);
 extern int  smp_is_naa5(unsigned long long  addr);
 extern void  dStrHex(char  const* str, int  len, int  no_ascii);

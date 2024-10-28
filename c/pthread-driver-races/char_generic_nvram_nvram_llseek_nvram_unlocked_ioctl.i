@@ -6683,6 +6683,9 @@ void tty_unlock(struct tty_struct *arg0) {
 void tty_wait_until_sent(struct tty_struct *arg0, long arg1) {
   return;
 }
+void __xchg_wrong_size(void) {
+  return;
+}
 static struct mutex nvram_mutex = { 1, 0 };
 static ssize_t nvram_len;
 loff_t nvram_llseek(struct file *file, loff_t offset, int origin)

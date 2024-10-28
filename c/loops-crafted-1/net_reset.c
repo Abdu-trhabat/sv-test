@@ -179,10 +179,12 @@ void  net_reset();
 extern void  net_reopen(struct hostent* address);
 void  net_reopen(struct hostent* addr);
 int  net_send_batch();
-int  addrcmp(char * a, char * b, int  af);
+extern int __VERIFIER_nondet_int(void);
+int  addrcmp(char * a, char * b, int  af) {
+  return __VERIFIER_nondet_int();
+}
 extern void  net_reset();
 extern int  net_send_batch();
-extern int  addrcmp(char * a, char * b, int  af);
 static int  batch_at = 0;
 extern int  fstTTL;
 static struct nethost host [256];
