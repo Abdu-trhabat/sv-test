@@ -27737,10 +27737,10 @@ void kfree(void const *p) {
   free((void *)p);
 }
 void __buggy_use_of_MTHCA_GET() {
-  return;
+  abort();
 }
 void __buggy_use_of_MTHCA_PUT() {
-  return;
+  abort();
 }
 void __bad_percpu_size(void) {
 }

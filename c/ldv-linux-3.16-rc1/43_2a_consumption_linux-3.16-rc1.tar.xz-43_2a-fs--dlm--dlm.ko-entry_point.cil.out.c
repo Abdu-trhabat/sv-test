@@ -34536,7 +34536,7 @@ void *ldv_xmalloc(size_t size )
 }
 }
 void panic(char const * arg, ...) {
-  return;
+  abort();
 }
 void __bad_percpu_size(void) {
 }
