@@ -5,6 +5,7 @@ input_files: 'popl20-prod-cons-eq.wvr-oob.c'
 properties:
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: false
+    subproperty: valid-deref
 
 options:
   language: C
