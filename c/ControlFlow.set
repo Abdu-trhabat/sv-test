@@ -8,4 +8,3 @@ memory-model/*.yml
 unsignedintegeroverflow-sas23/*.yml
 longjmp/*.yml
 signedintegeroverflow-regression/*.yml
-validation-crafted/*.yml
