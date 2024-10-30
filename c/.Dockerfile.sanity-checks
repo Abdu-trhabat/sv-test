@@ -15,7 +15,8 @@
 
 FROM python:3
 
-RUN apt install -y wget \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  wget \
   unzip
 
 RUN pip3 install \
