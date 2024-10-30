@@ -102,22 +102,21 @@ public class Main {
     double c1Psi = Verifier.nondetDouble();
     double c1V = Verifier.nondetDouble();
     double cpA0_1_bankAng = Verifier.nondetDouble();
-    if (!(0.0 <= aPsi
-        && aPsi < 360.0
-        && 0.0 < aV
-        && aV < 100.0
-        && -100.0 <= c1X
-        && c1X < 100.0
-        && -100.0 <= c1Y
-        && c1Y < 100.0
-        && -100.0 <= c1Psi
-        && c1Psi < 100.0
-        && -100.0 <= c1V
-        && c1V < 100.0
-        && 0.0 < cpA0_1_bankAng
-        && cpA0_1_bankAng < 50.0)) {
-      return;
-    }
+    Verifier.assume(
+        0.0 <= aPsi
+            && aPsi < 360.0
+            && 0.0 < aV
+            && aV < 100.0
+            && -100.0 <= c1X
+            && c1X < 100.0
+            && -100.0 <= c1Y
+            && c1Y < 100.0
+            && -100.0 <= c1Psi
+            && c1Psi < 100.0
+            && -100.0 <= c1V
+            && c1V < 100.0
+            && 0.0 < cpA0_1_bankAng
+            && cpA0_1_bankAng < 50.0);
     double minsep_sec_result = snippet(aPsi, aV, c1X, c1Y, c1Psi, c1V, cpA0_1_bankAng);
     assert minsep_sec_result <= 2;
   }

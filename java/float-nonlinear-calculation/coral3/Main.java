@@ -11,9 +11,7 @@ public class Main {
   public static void main(String[] args) {
     double d1 = Verifier.nondetDouble();
     double d2 = Verifier.nondetDouble();
-    if (d1 < 0 || d1 >= Math.PI / 4 || d2 < 0 || d2 >= Math.PI / 4) {
-      return;
-    }
+    Verifier.assume(0 <= d1 && d1 < Math.PI / 4 && 0 <= d2 && d2 < Math.PI / 4);
     JPFBenchmark.benchmark03(d1, d2);
   }
 }

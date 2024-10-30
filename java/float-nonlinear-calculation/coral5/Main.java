@@ -12,14 +12,8 @@ public class Main {
     double d1 = Verifier.nondetDouble();
     double d2 = Verifier.nondetDouble();
     double d3 = Verifier.nondetDouble();
-    if (d1 <= 0
-        || d1 >= Math.PI / 6
-        || d2 <= 0
-        || d2 >= Math.PI / 6
-        || d3 <= 0
-        || d3 >= Math.PI / 6) {
-      return;
-    }
+    Verifier.assume(
+        0 < d1 && d1 < Math.PI / 6 && 0 < d2 && d2 < Math.PI / 6 && 0 < d3 && d3 < Math.PI / 6);
     JPFBenchmark.benchmark05(d1, d2, d3);
   }
 }

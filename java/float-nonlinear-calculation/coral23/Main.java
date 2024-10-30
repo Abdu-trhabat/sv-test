@@ -13,9 +13,8 @@ public class Main {
     double d2 = Verifier.nondetDouble();
     double d3 = Verifier.nondetDouble();
     double d4 = Verifier.nondetDouble();
-    if (d1 < 0 || d1 > 1 || d2 < 0 || d2 > 1 || d3 < 0 || d3 > 1 || d4 < 0 || d4 > 1) {
-      return;
-    }
+    Verifier.assume(
+        0 <= d1 && d1 <= 1 && 0 <= d2 && d2 <= 1 && 0 <= d3 && d3 <= 1 && 0 <= d4 && d4 <= 1);
     JPFBenchmark.benchmark23(d1, d2, d3, d4);
   }
 }

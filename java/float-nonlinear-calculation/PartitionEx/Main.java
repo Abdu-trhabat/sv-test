@@ -50,9 +50,7 @@ public class Main {
 
   public static void main(String[] args) {
     double x = Verifier.nondetDouble();
-    if (x <= 5.0 || x >= 10.0) {
-      return;
-    }
+    Verifier.assume(5.0 < x && x < 10.0);
     runSymbolic(x);
   }
 }
