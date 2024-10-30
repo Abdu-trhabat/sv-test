@@ -148,6 +148,14 @@ KNOWN_DIRECTORY_PROBLEMS = [
     ("xcsp", "unexpected file create_from_xmls.py"),
     ("xcsp", "unexpected file xcsp3_cpp_parser"),
     ("xcsp", "unexpected file xcsp3_cpp_parser.license"),
+
+    # The tasks are there for completeness and the C files are only used in the validation benchmarks
+    ("validation-crafted", "for.yml is not contained in any category"),
+    ("validation-crafted", "if.yml is not contained in any category"),
+    ("validation-crafted", "switch.yml is not contained in any category"),
+    ("validation-crafted", "ternary.yml is not contained in any category"),
+    ("validation-crafted", "while.yml is not contained in any category"),
+    ("validation-crafted", "functions.yml is not contained in any category"),
     ]
 
 KNOWN_BENCHMARK_FILE_PROBLEMS = [
@@ -163,14 +171,6 @@ KNOWN_BENCHMARK_FILE_PROBLEMS = [
 
     ("termination-memory-alloca/Avery-2006FLOPS-Tabel1_true-alloca.yml", "has unknown property alloca"),
     ("termination-memory-alloca/aviad_true-alloca.yml", "has unknown property alloca"),
-
-    # The tasks are there for completeness and the C files are only used in the validation benchmarks
-    ("validation-crafted/for.yml", "is not contained in any category"),
-    ("validation-crafted/if.yml", "is not contained in any category"),
-    ("validation-crafted/switch.yml", "is not contained in any category"),
-    ("validation-crafted/ternary.yml", "is not contained in any category"),
-    ("validation-crafted/while.yml", "is not contained in any category"),
-    ("validation-crafted/functions.yml", "is not contained in any category"),
     ]
 
 KNOWN_SET_PROBLEMS = [
