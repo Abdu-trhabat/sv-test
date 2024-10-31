@@ -7935,3 +7935,7 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-stable-a9e7fb5-1-32_7a-drivers--media--rc--imon.ko-entry_point_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}

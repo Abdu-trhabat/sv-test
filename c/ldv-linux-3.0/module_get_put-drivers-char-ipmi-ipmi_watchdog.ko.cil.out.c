@@ -7241,3 +7241,7 @@ int ldv_nonseekable_open_1(struct inode *ldv_func_arg1 , struct file *ldv_func_a
 }
 #include "model/module_get_put-drivers-char-ipmi-ipmi_watchdog.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}

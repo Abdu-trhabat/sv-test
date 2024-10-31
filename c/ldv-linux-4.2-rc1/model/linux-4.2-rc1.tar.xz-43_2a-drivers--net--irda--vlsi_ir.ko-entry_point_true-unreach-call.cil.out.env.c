@@ -245,6 +245,7 @@ struct irlap_cb *irlap_open(struct net_device *arg0, struct qos_info *arg1, cons
 // Function: ktime_get
 // with type: ktime_t ktime_get()
 // with return type: ktime_t 
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get() {
   // Typedef type
   // Real type: union ktime

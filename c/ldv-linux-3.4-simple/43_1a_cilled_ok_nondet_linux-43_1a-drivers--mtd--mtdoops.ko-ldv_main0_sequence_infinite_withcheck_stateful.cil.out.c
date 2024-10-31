@@ -4521,3 +4521,7 @@ void *ldv_vmalloc_20(unsigned long ldv_func_arg1 )
 }
 #include "model/43_1a_cilled_true-unreach-call_ok_nondet_linux-43_1a-drivers--mtd--mtdoops_true-termination.ko-ldv_main0_sequence_infinite_withcheck_stateful.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}

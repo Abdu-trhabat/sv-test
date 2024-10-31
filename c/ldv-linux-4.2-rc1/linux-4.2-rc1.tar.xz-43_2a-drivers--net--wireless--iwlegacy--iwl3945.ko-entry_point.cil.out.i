@@ -24361,3 +24361,10 @@ void free(void *);
 void kfree(void const *p) {
   free((void *)p);
 }
+void il_write_targ_mem(struct il_priv *arg0, u32 arg1, u32 arg2) {
+  return;
+}
+void __bad_percpu_size(void) {
+}
+void __xadd_wrong_size(void) {
+}

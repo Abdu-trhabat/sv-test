@@ -155,6 +155,7 @@ void cfs_array_free(void *arg0) {
 // Function: cfs_block_allsigs
 // with type: sigset_t cfs_block_allsigs()
 // with return type: sigset_t 
+void *ldv_xmalloc(size_t size );
 sigset_t cfs_block_allsigs() {
   // Typedef type
   // Real type: struct __anonstruct_sigset_t_180

@@ -28937,3 +28937,7 @@ void ldv_assert_linux_drivers_clk1__more_at_exit(int expr )
 }
 #include "model/linux-3.14__linux-drivers-clk1__drivers-net-ethernet-stmicro-stmmac-stmmac_false-unreach-call.cil.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}

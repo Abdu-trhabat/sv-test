@@ -27970,3 +27970,7 @@ int ldv_spin_trylock(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-43_2a-drivers--net--wireless--mediatek--mt7601u--mt7601u.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}

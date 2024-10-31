@@ -7375,3 +7375,7 @@ void ldv_check_callback_ret_val(int ret_val )
 }
 #include "model/m0_true-unreach-call_drivers-net-slip-ko--108_1a--1b0b0ac.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}

@@ -37472,3 +37472,12 @@ void ldv_check_final_state(void)
 }
 #include "model/main11_false-unreach-call_drivers-usb-core-usbcore-ko--32_7a--linux-3.7.3.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __bad_unaligned_access_size(void) {
+}
+void __xchg_wrong_size(void) {
+}
+int __get_user_bad(void) {
+  return __VERIFIER_nondet_int();
+}

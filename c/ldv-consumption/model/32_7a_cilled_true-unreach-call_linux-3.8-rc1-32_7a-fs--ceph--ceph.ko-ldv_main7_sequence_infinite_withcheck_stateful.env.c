@@ -677,6 +677,7 @@ void complete_all(struct completion *arg0) {
 // Function: current_kernel_time
 // with type: struct timespec current_kernel_time()
 // with return type: struct timespec
+void *ldv_xmalloc(size_t size );
 struct timespec current_kernel_time() {
   // Composite type
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));

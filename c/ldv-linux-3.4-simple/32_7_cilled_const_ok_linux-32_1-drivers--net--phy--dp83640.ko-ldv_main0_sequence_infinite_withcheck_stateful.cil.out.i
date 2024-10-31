@@ -4865,6 +4865,7 @@ void *ldv_malloc(size_t size)
   return ((void *)0);
  }
 }
+void ldv_assume(int expression );
 void *ldv_xmalloc(size_t size) {
   void *res ;
   void *tmp ;
@@ -10311,4 +10312,15 @@ void warn_slowpath_fmt(char *arg0, int arg1, char *arg2, ...) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
 }

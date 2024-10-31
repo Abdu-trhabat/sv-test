@@ -2567,3 +2567,6 @@ void free(void *);
 void kfree(void const *p) {
   free((void *)p);
 }
+int _kstrtol(const char *arg0, unsigned int arg1, long *arg2) {
+  return __VERIFIER_nondet_int();
+}

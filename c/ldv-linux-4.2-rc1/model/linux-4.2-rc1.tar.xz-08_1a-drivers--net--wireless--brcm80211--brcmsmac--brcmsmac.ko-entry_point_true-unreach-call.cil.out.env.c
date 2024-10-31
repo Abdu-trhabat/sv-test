@@ -388,6 +388,7 @@ bool cancel_work_sync(struct work_struct *arg0) {
 // Function: cordic_calc_iq
 // with type: struct cordic_iq cordic_calc_iq(s32 )
 // with return type: struct cordic_iq
+void *ldv_xmalloc(size_t size );
 struct cordic_iq cordic_calc_iq(s32 arg0) {
   // Composite type
   return *(struct cordic_iq *)ldv_xmalloc(sizeof(struct cordic_iq));

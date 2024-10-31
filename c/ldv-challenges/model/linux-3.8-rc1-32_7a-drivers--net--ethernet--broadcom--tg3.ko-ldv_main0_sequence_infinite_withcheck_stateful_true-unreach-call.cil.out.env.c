@@ -453,6 +453,7 @@ unsigned int jiffies_to_usecs(const unsigned long arg0) {
 // Function: ktime_get_real
 // with type: ktime_t ktime_get_real()
 // with return type: ktime_t 
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get_real() {
   // Typedef type
   // Real type: union ktime

@@ -32116,6 +32116,7 @@ int __VERIFIER_nondet_int(void);
 int kthread_stop(struct task_struct *arg0) {
   return __VERIFIER_nondet_int();
 }
+void *ldv_xmalloc(size_t size );
 ktime_t ktime_get() {
   return *(union ktime *)ldv_xmalloc(sizeof(union ktime));
 }
@@ -32366,4 +32367,44 @@ int default_wake_function(wait_queue_t *arg0, unsigned int arg1, int arg2, void 
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+long ldv_is_err(void const *ptr )
+{
+  return ((unsigned long )ptr > 4294967295UL);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
+void *ldv_xmalloc(size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  {
+  {
+  tmp = malloc(size);
+  res = tmp;
+  ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+  tmp___0 = ldv_is_err((void const *)res);
+  ldv_assume(tmp___0 == 0L);
+  }
+  return (res);
+}
+}
+void panic(char const * arg, ...) {
+  abort();
+}
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}
+void __xadd_wrong_size(void) {
 }

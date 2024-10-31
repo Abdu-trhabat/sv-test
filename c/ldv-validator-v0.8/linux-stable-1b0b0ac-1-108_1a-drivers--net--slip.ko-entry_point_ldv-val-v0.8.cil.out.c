@@ -7965,3 +7965,7 @@ void ldv_check_callback_ret_val(int ret_val )
 }
 #include "model/linux-stable-1b0b0ac-1-108_1a-drivers--net--slip.ko-entry_point_ldv-val-v0.8_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}

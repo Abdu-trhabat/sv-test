@@ -11902,3 +11902,7 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-3.12-rc1.tar.xz-144_2a-drivers--staging--gdm72xx--gdmwm.ko-entry_point_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}

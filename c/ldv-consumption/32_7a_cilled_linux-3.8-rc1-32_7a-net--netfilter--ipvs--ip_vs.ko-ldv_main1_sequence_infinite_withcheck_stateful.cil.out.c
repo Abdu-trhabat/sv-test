@@ -33989,3 +33989,7 @@ void ldv_check_final_state(void)
 }
 #include "model/32_7a_cilled_true-unreach-call_linux-3.8-rc1-32_7a-net--netfilter--ipvs--ip_vs.ko-ldv_main1_sequence_infinite_withcheck_stateful.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xadd_wrong_size(void) {
+}

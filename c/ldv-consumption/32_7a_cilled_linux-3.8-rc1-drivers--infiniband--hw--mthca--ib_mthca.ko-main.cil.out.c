@@ -29087,3 +29087,13 @@ void ldv_check_final_state(void)
 }
 #include "model/32_7a_cilled_true-unreach-call_linux-3.8-rc1-drivers--infiniband--hw--mthca--ib_mthca.ko-main.env.c"
 #include "model/common.env.c"
+void __buggy_use_of_MTHCA_GET() {
+  abort();
+}
+void __buggy_use_of_MTHCA_PUT() {
+  abort();
+}
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}

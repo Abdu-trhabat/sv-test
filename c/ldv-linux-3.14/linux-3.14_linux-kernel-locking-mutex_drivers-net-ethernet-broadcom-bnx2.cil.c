@@ -27273,3 +27273,7 @@ void ldv_assert_linux_kernel_locking_mutex__one_thread_locked_at_exit(int expr )
 }
 #include "model/linux-3.14__linux-kernel-locking-mutex__drivers-net-ethernet-broadcom-bnx2_true-unreach-call.cil.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}

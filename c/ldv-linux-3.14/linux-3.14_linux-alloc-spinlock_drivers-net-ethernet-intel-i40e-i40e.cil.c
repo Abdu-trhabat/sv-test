@@ -49394,3 +49394,7 @@ void ldv_assert_linux_alloc_spinlock__wrong_flags(int expr )
 }
 #include "model/linux-3.14__linux-alloc-spinlock__drivers-net-ethernet-intel-i40e-i40e_true-unreach-call.cil.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}

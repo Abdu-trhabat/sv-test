@@ -7390,3 +7390,5 @@ void ldv_check_final_state(void)
 }
 #include "model/usb_urb-drivers-media-video-c-qcam.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

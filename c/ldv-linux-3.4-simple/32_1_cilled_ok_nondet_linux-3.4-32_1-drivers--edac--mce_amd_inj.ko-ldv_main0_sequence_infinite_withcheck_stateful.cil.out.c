@@ -1481,3 +1481,6 @@ long ldv__builtin_expect(long val , long res )
 }
 #include "model/32_1_cilled_true-unreach-call_ok_nondet_linux-3_true-termination.4-32_1-drivers--edac--mce_amd_inj.ko-ldv_main0_sequence_infinite_withcheck_stateful.cil.out.env.c"
 #include "model/common.env.c"
+int _kstrtoul(const char *arg0, unsigned int arg1, unsigned long *arg2) {
+  return __VERIFIER_nondet_int();
+}

@@ -18795,3 +18795,36 @@ void ldv_module_put_3(struct module *ldv_func_arg1 )
 }
 #include "model/module_get_put-drivers-isdn-mISDN-mISDN_core.ko_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+long ldv_is_err(void const *ptr )
+{
+  return ((unsigned long )ptr > 4294967295UL);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
+void *ldv_xmalloc(size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  {
+  {
+  tmp = malloc(size);
+  res = tmp;
+  ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+  tmp___0 = ldv_is_err((void const *)res);
+  ldv_assume(tmp___0 == 0L);
+  }
+  return (res);
+}
+}
+void __bad_percpu_size(void) {
+}

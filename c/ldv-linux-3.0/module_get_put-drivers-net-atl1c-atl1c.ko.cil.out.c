@@ -13935,3 +13935,5 @@ int main(void)
 }
 #include "model/module_get_put-drivers-net-atl1c-atl1c.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

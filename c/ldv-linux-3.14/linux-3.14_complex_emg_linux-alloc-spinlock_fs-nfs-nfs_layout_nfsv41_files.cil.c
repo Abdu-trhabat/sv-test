@@ -17948,3 +17948,7 @@ void ldv_assert_linux_alloc_spinlock__wrong_flags(int expr )
 }
 #include "model/linux-3.14__complex_emg__linux-alloc-spinlock__fs-nfs-nfs_layout_nfsv41_files_true-unreach-call.cil.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xadd_wrong_size(void) {
+}

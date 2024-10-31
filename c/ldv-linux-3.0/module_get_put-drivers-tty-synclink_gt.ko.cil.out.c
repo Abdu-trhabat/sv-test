@@ -15483,3 +15483,7 @@ void ldv_module_put_2(struct module *ldv_func_arg1 )
 }
 #include "model/module_get_put-drivers-tty-synclink_gt.ko_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}

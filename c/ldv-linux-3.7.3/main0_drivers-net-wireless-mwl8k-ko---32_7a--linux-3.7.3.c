@@ -14243,3 +14243,5 @@ void ldv_check_final_state(void)
 }
 #include "model/main0_false-unreach-call_drivers-net-wireless-mwl8k-ko---32_7a--linux-3.7.3.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

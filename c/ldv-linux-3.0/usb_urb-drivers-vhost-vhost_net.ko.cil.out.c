@@ -14427,3 +14427,12 @@ int main(void)
 }
 #include "model/usb_urb-drivers-vhost-vhost_net.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}
+void __put_user_bad(void) {
+}
+int __get_user_bad(void) {
+  return __VERIFIER_nondet_int();
+}

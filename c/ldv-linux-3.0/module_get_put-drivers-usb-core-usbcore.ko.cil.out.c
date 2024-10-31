@@ -35089,3 +35089,12 @@ void usbfs_cleanup(void)
 }
 #include "model/module_get_put-drivers-usb-core-usbcore.ko_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __bad_unaligned_access_size(void) {
+}
+void __xchg_wrong_size(void) {
+}
+int __get_user_bad(void) {
+  return __VERIFIER_nondet_int();
+}

@@ -6496,6 +6496,7 @@ void *ldv_malloc(size_t size) {
   }
 }
 }
+void ldv_assume(int expression );
 void *ldv_calloc(size_t nmemb , size_t size )
 {
   void *res ;
@@ -14197,4 +14198,21 @@ void warn_slowpath_null(const char *arg0, const int arg1) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}
+void __bad_unaligned_access_size(void) {
 }

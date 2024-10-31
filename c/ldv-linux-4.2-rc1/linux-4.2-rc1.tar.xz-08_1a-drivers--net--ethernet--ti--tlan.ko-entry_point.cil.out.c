@@ -11028,3 +11028,8 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-08_1a-drivers--net--ethernet--ti--tlan.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+struct resource *__request_region(struct resource *arg0, resource_size_t arg1, resource_size_t arg2, const char *arg3, int arg4) {
+  return ldv_malloc(sizeof(struct resource));
+}
+void __bad_percpu_size(void) {
+}

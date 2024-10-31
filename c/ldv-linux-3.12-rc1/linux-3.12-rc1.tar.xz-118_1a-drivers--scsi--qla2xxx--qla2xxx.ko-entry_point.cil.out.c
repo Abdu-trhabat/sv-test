@@ -84450,3 +84450,12 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-3.12-rc1.tar.xz-118_1a-drivers--scsi--qla2xxx--qla2xxx.ko-entry_point_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void sg_init_table(struct scatterlist *arg0, unsigned int arg1) {
+  return;
+}
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}
+void __xadd_wrong_size(void) {
+}

@@ -5533,3 +5533,5 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-3.8-rc1-32_7a-drivers--input--misc--uinput.ko-ldv_main0_true-unreach-call.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

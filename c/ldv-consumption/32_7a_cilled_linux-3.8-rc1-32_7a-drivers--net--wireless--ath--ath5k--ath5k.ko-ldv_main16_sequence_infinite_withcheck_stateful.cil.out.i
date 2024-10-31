@@ -30905,3 +30905,5 @@ void free(void *);
 void kfree(void const *p) {
   free((void *)p);
 }
+void __bad_percpu_size(void) {
+}

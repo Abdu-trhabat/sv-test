@@ -92911,3 +92911,10 @@ void free(void *);
 void kfree(void const *p) {
   free((void *)p);
 }
+int netdev_printk(const char *arg0, const struct net_device *arg1, const char *arg2, ...) {
+  return __VERIFIER_nondet_int();
+}
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}

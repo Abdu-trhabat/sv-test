@@ -22230,3 +22230,7 @@ void ldv_check_final_state(void)
 }
 #include "model/32_7a_cilled_true-unreach-call_linux-3.8-rc1-drivers--net--wireless--hostap--hostap.ko-main.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}

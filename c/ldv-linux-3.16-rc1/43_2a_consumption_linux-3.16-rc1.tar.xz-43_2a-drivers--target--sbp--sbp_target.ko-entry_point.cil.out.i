@@ -7765,6 +7765,7 @@ __inline static struct fw_card *fw_card_get(struct fw_card *card )
 }
 }
 extern void fw_card_release(struct kref * ) ;
+void fw_card_release(struct kref * x) {}
 __inline static void fw_card_put(struct fw_card *card )
 {
   {
@@ -12259,4 +12260,6 @@ void warn_slowpath_null(const char *arg0, const int arg1) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void __xadd_wrong_size(void) {
 }

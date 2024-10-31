@@ -14423,3 +14423,9 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-3.12-rc1.tar.xz-144_2a-drivers--media--usb--tlg2300--poseidon.ko-entry_point_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}
+void __xadd_wrong_size(void) {
+}

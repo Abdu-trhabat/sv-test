@@ -14129,3 +14129,12 @@ void free(void *);
 void kfree(void const *p) {
   free((void *)p);
 }
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}
+void __put_user_bad(void) {
+}
+int __get_user_bad(void) {
+  return __VERIFIER_nondet_int();
+}

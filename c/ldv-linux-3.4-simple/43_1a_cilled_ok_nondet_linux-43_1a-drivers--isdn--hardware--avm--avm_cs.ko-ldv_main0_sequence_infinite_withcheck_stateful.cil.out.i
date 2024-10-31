@@ -4192,6 +4192,15 @@ int __VERIFIER_nondet_int(void);
 int b1pcmcia_delcard(unsigned int arg0, unsigned int arg1) {
   return __VERIFIER_nondet_int();
 }
+int b1pcmcia_addcard_b1(unsigned int port , unsigned int irq ) {
+  return __VERIFIER_nondet_int();
+}
+int b1pcmcia_addcard_m1(unsigned int port , unsigned int irq ) {
+  return __VERIFIER_nondet_int();
+}
+int b1pcmcia_addcard_m2(unsigned int port , unsigned int irq ) {
+  return __VERIFIER_nondet_int();
+}
 int __VERIFIER_nondet_int(void);
 int dev_err(const struct device *arg0, const char *arg1, ...) {
   return __VERIFIER_nondet_int();

@@ -23846,3 +23846,7 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-3.8-rc1-32_7a-drivers--net--ethernet--emulex--benet--be2net.ko-ldv_main2_true-unreach-call.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}

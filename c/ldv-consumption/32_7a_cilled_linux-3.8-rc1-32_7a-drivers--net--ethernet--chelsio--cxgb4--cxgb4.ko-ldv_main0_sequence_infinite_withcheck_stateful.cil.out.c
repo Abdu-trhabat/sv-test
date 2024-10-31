@@ -26881,3 +26881,11 @@ void ldv_check_final_state(void)
 }
 #include "model/32_7a_cilled_true-unreach-call_linux-3.8-rc1-32_7a-drivers--net--ethernet--chelsio--cxgb4--cxgb4.ko-ldv_main0_sequence_infinite_withcheck_stateful.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}
+void __xchg_wrong_size(void) {
+}
+void __xadd_wrong_size(void) {
+}

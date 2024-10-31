@@ -4020,7 +4020,8 @@ void *ldv_malloc(size_t size )
   }
 }
 }
-bool ldv_is_err(const void *);
+long ldv_is_err(const void *);
+void ldv_assume(int expression );
 void *ldv_xmalloc(size_t size) {
   void *res ;
   void *tmp ;
@@ -6847,4 +6848,19 @@ void tasklet_kill(struct tasklet_struct *arg0) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
+long ldv_is_err(void const *ptr )
+{
+  return ((unsigned long )ptr > 4294967295UL);
 }

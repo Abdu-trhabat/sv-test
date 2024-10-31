@@ -11410,3 +11410,7 @@ __inline static int ldv_try_module_get_7(struct module *module )
 }
 #include "model/module_get_put-drivers-net-ppp_generic.ko_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}

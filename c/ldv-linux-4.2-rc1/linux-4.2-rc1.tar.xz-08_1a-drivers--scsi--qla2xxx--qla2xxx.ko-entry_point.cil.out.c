@@ -93650,3 +93650,9 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-08_1a-drivers--scsi--qla2xxx--qla2xxx.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}
+void __xadd_wrong_size(void) {
+}

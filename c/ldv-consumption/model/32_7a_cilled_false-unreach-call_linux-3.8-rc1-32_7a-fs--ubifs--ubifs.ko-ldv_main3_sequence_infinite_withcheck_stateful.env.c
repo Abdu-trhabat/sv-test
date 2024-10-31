@@ -264,6 +264,7 @@ struct crypto_tfm *crypto_alloc_base(const char *arg0, u32 arg1, u32 arg2) {
 // Function: current_fs_time
 // with type: struct timespec current_fs_time(struct super_block *)
 // with return type: struct timespec
+void *ldv_xmalloc(size_t size );
 struct timespec current_fs_time(struct super_block *arg0) {
   // Composite type
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));

@@ -51146,3 +51146,34 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-08_1a-drivers--net--ethernet--intel--i40e--i40e.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
+void *ldv_xmalloc(size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  {
+  {
+  tmp = malloc(size);
+  res = tmp;
+  ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+  tmp___0 = ldv_is_err((void const *)res);
+  ldv_assume(tmp___0 == 0L);
+  }
+  return (res);
+}
+}
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}

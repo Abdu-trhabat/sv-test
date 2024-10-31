@@ -34324,6 +34324,7 @@ void *cfs_array_alloc(int arg0, unsigned int arg1) {
 void cfs_array_free(void *arg0) {
   return;
 }
+void *ldv_xmalloc(size_t size );
 sigset_t cfs_block_allsigs() {
   return *(struct __anonstruct_sigset_t_180 *)ldv_xmalloc(sizeof(struct __anonstruct_sigset_t_180));
 }
@@ -34572,4 +34573,37 @@ int default_wake_function(wait_queue_t *arg0, unsigned int arg1, int arg2, void 
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
+void *ldv_xmalloc(size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  {
+  {
+  tmp = malloc(size);
+  res = tmp;
+  ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+  tmp___0 = ldv_is_err((void const *)res);
+  ldv_assume(tmp___0 == 0L);
+  }
+  return (res);
+}
+}
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
+}
+void __xchg_wrong_size(void) {
 }

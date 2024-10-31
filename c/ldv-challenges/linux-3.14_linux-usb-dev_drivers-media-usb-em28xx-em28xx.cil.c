@@ -14774,3 +14774,5 @@ void ldv_assert_linux_usb_dev__unincremented_counter_decrement(int expr )
 }
 #include "model/linux-3.14__linux-usb-dev__drivers-media-usb-em28xx-em28xx_true-unreach-call.cil.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}

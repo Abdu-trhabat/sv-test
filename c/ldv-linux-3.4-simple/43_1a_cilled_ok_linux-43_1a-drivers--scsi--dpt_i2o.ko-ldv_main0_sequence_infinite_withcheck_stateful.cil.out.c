@@ -20223,3 +20223,7 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 }
 #include "model/43_1a_cilled_false-unreach-call_ok_linux-43_1a-drivers--scsi--dpt_i2o.ko-ldv_main0_sequence_infinite_withcheck_stateful.cil.out.env.c"
 #include "model/common.env.c"
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}

@@ -42061,6 +42061,7 @@ int __VERIFIER_nondet_int(void);
 int netpoll_trap() {
   return __VERIFIER_nondet_int();
 }
+void *ldv_xmalloc(size_t size );
 struct timespec ns_to_timespec(const s64 arg0) {
   return *(struct timespec *)ldv_xmalloc(sizeof(struct timespec));
 }
@@ -42293,4 +42294,38 @@ bool zalloc_cpumask_var(cpumask_var_t **arg0, gfp_t arg1) {
 void free(void *);
 void kfree(void const *p) {
   free((void *)p);
+}
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
+void *ldv_xmalloc(size_t size )
+{
+  void *res ;
+  void *tmp ;
+  long tmp___0 ;
+  {
+  {
+  tmp = malloc(size);
+  res = tmp;
+  ldv_assume((unsigned long )res != (unsigned long )((void *)0));
+  tmp___0 = ldv_is_err((void const *)res);
+  ldv_assume(tmp___0 == 0L);
+  }
+  return (res);
+}
+}
+int netdev_printk(const char *arg0, const struct net_device *arg1, const char *arg2, ...) {
+  return __VERIFIER_nondet_int();
+}
+void __bad_percpu_size(void) {
+}
+void __bad_size_call_parameter(void) {
 }

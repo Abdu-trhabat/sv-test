@@ -14860,3 +14860,16 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-08_1a-drivers--video--fbdev--core--fb.ko-entry_point_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+void ldv_assume(int expression )
+{
+  {
+  if (expression == 0) {
+    ldv_assume_label: ;
+    goto ldv_assume_label;
+  } else {
+  }
+  return;
+}
+}
+void __bad_percpu_size(void) {
+}

@@ -13041,3 +13041,13 @@ void ldv_check_final_state(void)
 }
 #include "model/linux-4.2-rc1.tar.xz-08_1a-drivers--mtd--mtd.ko-entry_point_false-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+unsigned long int __phys_addr(unsigned long arg0) {
+  return __VERIFIER_nondet_ulong();
+}
+int vm_iomap_memory(struct vm_area_struct *arg0, phys_addr_t arg1, unsigned long arg2) {
+  return __VERIFIER_nondet_int();
+}
+void __bad_percpu_size(void) {
+}
+void __xchg_wrong_size(void) {
+}
