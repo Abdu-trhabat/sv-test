@@ -1,8 +1,4 @@
 extern void abort(void);
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
-extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -15,38 +11,24 @@ void reach_error() { assert(0); }
 */
 
 #include <pthread.h>
+#undef assert
 #define assert(e) if (!(e)) ERROR: reach_error()
 
-int w=0, r=0, x, y;
-
-void __VERIFIER_atomic_take_write_lock() {
-  assume_abort_if_not(w==0 && r==0);
-  w = 1;
-} 
-
-void __VERIFIER_atomic_take_read_lock() {
-  assume_abort_if_not(w==0);
-  r = r+1;
-}
-
-void __VERIFIER_atomic_release_read_lock() {
-  r = r-1;
-}
+int x, y;
+pthread_rwlock_t rwlock = PTHREAD_RWLOCK_INITIALIZER;
 
 void *writer(void *arg) { //writer
-  __VERIFIER_atomic_take_write_lock();  
+  pthread_rwlock_wrlock(&rwlock);
   x = 3;
-  w = 0;
+  pthread_rwlock_unlock(&rwlock);
   return 0;
 }
 
 void *reader(void *arg) { //reader
-  int l;
-  __VERIFIER_atomic_take_read_lock();
-  l = x;
-  y = l;
+  pthread_rwlock_rdlock(&rwlock);
+  y = x; // writing in a CS only protected for reads. RACE!
   assert(y == x);
-  __VERIFIER_atomic_release_read_lock();
+  pthread_rwlock_unlock(&rwlock);
   return 0;
 }
 
