@@ -671,7 +671,7 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
-int x, y;
+int x;
 pthread_rwlock_t rwlock = { { 0, 0, 0, 0, 0, 0, PTHREAD_RWLOCK_DEFAULT_NP, 0, 0, 0, 0 } };
 void *writer(void *arg) {
   pthread_rwlock_wrlock(&rwlock);
@@ -681,7 +681,7 @@ void *writer(void *arg) {
 }
 void *reader(void *arg) {
   pthread_rwlock_rdlock(&rwlock);
-  y = x;
+  int y = x;
   if (!(y == x)) ERROR: reach_error();
   pthread_rwlock_unlock(&rwlock);
   return 0;

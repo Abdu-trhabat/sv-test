@@ -14,7 +14,7 @@ void reach_error() { assert(0); }
 #undef assert
 #define assert(e) if (!(e)) ERROR: reach_error()
 
-int x, y;
+int x;
 pthread_rwlock_t rwlock = PTHREAD_RWLOCK_INITIALIZER;
 
 void *writer(void *arg) { //writer
@@ -26,7 +26,7 @@ void *writer(void *arg) { //writer
 
 void *reader(void *arg) { //reader
   pthread_rwlock_rdlock(&rwlock);
-  y = x;
+  int y = x;
   assert(y == x);
   pthread_rwlock_unlock(&rwlock);
   return 0;
