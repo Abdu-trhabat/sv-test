@@ -151,6 +151,7 @@ extern uint __VERIFIER_nondet_uint(void);
 extern int __VERIFIER_nondet_int(void);
 extern ulong __VERIFIER_nondet_ulong(void);
 extern long __VERIFIER_nondet_long(void);
+extern long long __VERIFIER_nondet_longlong(void);
 extern void __VERIFIER_atomic_begin(void);
 extern void __VERIFIER_atomic_end(void);
 extern void abort(void);
@@ -6858,6 +6859,7 @@ int main(void)
  whoop_cx_dev = (struct cx_dev *) malloc(sizeof(struct cx_dev));
  whoop_poll_table = (poll_table *) malloc(sizeof(poll_table));
  whoop_loff_t = (loff_t *) malloc(sizeof(loff_t));
+ *whoop_loff_t = __VERIFIER_nondet_longlong();
  whoop_int = __VERIFIER_nondet_int();
  assume_abort_if_not(whoop_int >= 0);
  int _whoop_init_result = _whoop_init();
