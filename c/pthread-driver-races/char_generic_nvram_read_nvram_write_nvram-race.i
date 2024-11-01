@@ -151,6 +151,7 @@ extern uint __VERIFIER_nondet_uint(void);
 extern int __VERIFIER_nondet_int(void);
 extern ulong __VERIFIER_nondet_ulong(void);
 extern long __VERIFIER_nondet_long(void);
+extern long long __VERIFIER_nondet_longlong(void);
 extern void __VERIFIER_atomic_begin(void);
 extern void __VERIFIER_atomic_end(void);
 extern void abort(void);
@@ -175,7 +176,6 @@ void __VERIFIER_assert(int cond) {
   }
   return;
 }
-extern long long __VERIFIER_nondet_longlong(void);
 struct task_struct;
 typedef struct kernel_cap_struct {
  __u32 cap[2];

@@ -11,7 +11,6 @@
  */
 
 #include <svcomp.h>
-extern long long __VERIFIER_nondet_longlong(void);
 
 #define NVRAM_VERSION "1.1"
 
