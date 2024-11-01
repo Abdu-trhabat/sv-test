@@ -1,0 +1,187 @@
+# Copyright (C) 2023 Intel Corporation                                          
+#                                                                               
+# Permission is hereby granted, free of charge, to any person obtaining a copy  
+# of this software and associated documentation files (the "Software"),         
+# to deal in the Software without restriction, including without limitation     
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,      
+# and/or sell copies of the Software, and to permit persons to whom             
+# the Software is furnished to do so, subject to the following conditions:      
+#                                                                               
+# The above copyright notice and this permission notice shall be included       
+# in all copies or substantial portions of the Software.                        
+#                                                                               
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS       
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,   
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL      
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES             
+# OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,      
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE            
+# OR OTHER DEALINGS IN THE SOFTWARE.                                            
+#                                                                               
+# SPDX-License-Identifier: MIT
+
+name: tdh_mr_finalize_config.yml
+description: reach-safety tasks for tdh_mr_finalize
+tasks:
+
+  - name: tdh_mr_finalize__requirement__expected
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__valid_entry
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__requirement__unexpected
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__invalid_entry
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__requirement__invalid_input_hkid
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__invalid_input_hkid
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__requirement__invalid_state_td_state
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__invalid_state_td_state
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__requirement__invalid_state_lifecycle
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__invalid_state_lifecycle
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__requirement__invalid_state_op_state
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__invalid_state_op_state
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__requirement__invalid_state_tdr_metadata
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__invalid_state_tdr_metadata
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__cover__success
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__free_entry
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__post_cover_success
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__cover__unsuccess
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__free_entry
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__post_cover_unsuccess
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: false

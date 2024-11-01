@@ -1,0 +1,205 @@
+# Copyright (C) 2023 Intel Corporation                                          
+#                                                                               
+# Permission is hereby granted, free of charge, to any person obtaining a copy  
+# of this software and associated documentation files (the "Software"),         
+# to deal in the Software without restriction, including without limitation     
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,      
+# and/or sell copies of the Software, and to permit persons to whom             
+# the Software is furnished to do so, subject to the following conditions:      
+#                                                                               
+# The above copyright notice and this permission notice shall be included       
+# in all copies or substantial portions of the Software.                        
+#                                                                               
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS       
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,   
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL      
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES             
+# OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,      
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE            
+# OR OTHER DEALINGS IN THE SOFTWARE.                                            
+#                                                                               
+# SPDX-License-Identifier: MIT
+
+name: tdh_mng_addcx_config.yml
+description: reach-safety tasks for tdh_mng_addcx
+tasks:
+
+  - name: tdh_mng_addcx__requirement__expected
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__valid_entry
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__requirement__unexpected
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__invalid_entry
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__requirement__invalid_input_tdcx_pa
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__invalid_input_tdcx_pa
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__requirement__invalid_input_tdr_pa
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__invalid_input_tdr_pa
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__requirement__invalid_state_td_state
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__invalid_state_td_state
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__requirement__invalid_state_num_tdcx
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__invalid_state_num_tdcx
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__requirement__invalid_state_lifecycle
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__invalid_state_lifecycle
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__requirement__invalid_state_pamt_metadata
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__invalid_state_pamt_metadata
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_postcond
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__cover__success
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__free_entry
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__post_cover_success
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__cover__unsuccess
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__free_entry
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdx_general
+      - filename: formal/src/initialization.c
+        method: init_vmm_dispatcher
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__common_precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__post_cover_unsuccess
+    properties:
+      - property_file: unreach-call.prp
+        expected_verdict: false
