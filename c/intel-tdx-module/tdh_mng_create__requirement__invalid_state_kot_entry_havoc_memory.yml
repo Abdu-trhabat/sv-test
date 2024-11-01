@@ -1,0 +1,15 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2024 The SV-Benchmarks Community
+#
+# SPDX-License-Identifier: Apache-2.0
+
+format_version: '2.0'
+input_files: tdh_mng_create__requirement__invalid_state_kot_entry_havoc_memory.i
+properties:
+- property_file: ../properties/unreach-call.prp
+  expected_verdict: true
+options:
+  language: C
+  data_model: LP64
