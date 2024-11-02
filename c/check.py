@@ -17,6 +17,8 @@ import logging
 import multiprocessing
 import os
 import re
+import shutil
+import subprocess
 import sys
 
 from typing import List, Tuple
@@ -89,7 +91,7 @@ IGNORED_DIRECTORIES = set(["properties", "regression"])
 UNUSED_DIRECTORIES = set(["ldv-multiproperty", "regression"])
 """Directories which expected to contain tasks that are not included in any category"""
 
-EXPECTED_SUBDIRECTORIES = set(["model", "todo", "properties", "original"])
+EXPECTED_SUBDIRECTORIES = set(["model", "todo", "properties", "original", "witnesses"])
 """Directories that can appear inside directories with tasks but contain other files"""
 
 LINE_DIRECTIVE = re.compile('^#(line| [0-9]+) ')
@@ -146,6 +148,14 @@ KNOWN_DIRECTORY_PROBLEMS = [
     ("xcsp", "unexpected file create_from_xmls.py"),
     ("xcsp", "unexpected file xcsp3_cpp_parser"),
     ("xcsp", "unexpected file xcsp3_cpp_parser.license"),
+
+    # The tasks are there for completeness and the C files are only used in the validation benchmarks
+    ("validation-crafted", "for.yml is not contained in any category"),
+    ("validation-crafted", "if.yml is not contained in any category"),
+    ("validation-crafted", "switch.yml is not contained in any category"),
+    ("validation-crafted", "ternary.yml is not contained in any category"),
+    ("validation-crafted", "while.yml is not contained in any category"),
+    ("validation-crafted", "functions.yml is not contained in any category"),
     ]
 
 KNOWN_BENCHMARK_FILE_PROBLEMS = [
@@ -219,11 +229,13 @@ class DirectoryChecks(Checks):
     """Checks for a directory in the repository, e.g. about what files are in it.
     Also executes specific checks for each benchmark file in the directory."""
 
-    def __init__(self, path, all_patterns, *args, **kwargs):
+    def __init__(self, path, all_patterns, requires_makefile, requires_readme, *args, **kwargs):
         super(DirectoryChecks, self).__init__(known_problems=KNOWN_DIRECTORY_PROBLEMS, *args, **kwargs)
         self.path = path
         self.content = os.listdir(path)
         self.all_patterns = all_patterns
+        self.requires_makefile = requires_makefile
+        self.requires_readme = requires_readme
 
     def run(self):
         ok = True
@@ -265,13 +277,16 @@ class DirectoryChecks(Checks):
                 self.error("unexpected file %s", entry)
 
     def check_has_readme(self):
+        if not self.requires_readme:
+            return
+
         for entry in self.content:
             if README_PATTERN.match(entry):
                 return
         self.error("missing readme")
 
     def check_has_Makefile(self):
-        if not 'Makefile' in self.content:
+        if not 'Makefile' in self.content and self.requires_makefile:
             self.error("missing Makefile")
 
     def check_files_contained_in_category(self):
@@ -281,6 +296,16 @@ class DirectoryChecks(Checks):
         for entry in self.content:
             if BENCHMARK_PATTERN.match(entry)\
                     and not self.all_patterns.match(os.path.join(self.name, entry)):
+                
+                yaml_contents = None
+                try:
+                    yaml_contents = yaml.safe_load(open(os.path.join(self.path, entry)))
+                except yaml.YAMLError:
+                    pass
+
+                if yaml_contents is not None and _is_witness(yaml_contents):
+                    continue
+            
                 self.error("%s is not contained in any category", entry)
 
 
@@ -318,6 +343,13 @@ class FileChecks(Checks):
                 "corresponding .yml file\n"
             )
 
+def _is_witness(yaml_file_content):
+    if isinstance(yaml_file_content, list) and any(
+        isinstance(e, dict) and "entry_type" in e.keys() for e in yaml_file_content
+    ):
+        return True
+
+    return False
 
 class TaskDefinitionFileChecks(FileChecks):
     """Checks about the content of a single task definition .yml file."""
@@ -333,6 +365,9 @@ class TaskDefinitionFileChecks(FileChecks):
                 self.content = yaml.safe_load(f)
 
     def check_format_version(self):
+        if _is_witness(self.content):
+            return None
+        
         if not 'format_version' in self.content:
             self.error("has no format_version")
         elif not (self.content['format_version']
@@ -340,12 +375,13 @@ class TaskDefinitionFileChecks(FileChecks):
             self.error("has invalid format version")
 
     def check_input_files(self):
-        if not self.content:
+        if not self.content or _is_witness(self.content):
             return None
-        input_files = self._get_input_files()
+
+        program_files, witness_files = self.__partition_into_program_and_witness_files()
         properties_and_verdicts = self._get_properties()
         ok = True
-        for f in input_files:
+        for f in program_files:
             f_path = os.path.join(self.directory, f)
             if not os.path.exists(f_path):
                 self.error("references inaccessible file: " + f_path)
@@ -359,10 +395,26 @@ class TaskDefinitionFileChecks(FileChecks):
                     ).run()
                 except CheckFailed:
                     ok = False
+        for f in witness_files:
+            f_path = os.path.join(self.directory, f)
+            if not os.path.exists(f_path):
+                self.error("references inaccessible file: " + f_path)
+            else:
+                try:
+                    WitnessInputFileChecks(
+                        witness_path=f_path,
+                        program_paths=list(map(lambda x: os.path.join(self.directory, x), program_files)),
+                        name=f_path,
+                    ).run()
+                except CheckFailed:
+                    ok = False
         if not ok:
             raise CheckFailed()
 
     def check_properties(self):
+        if _is_witness(self.content):
+            return None
+
         prop_and_verdict = self._get_properties()
         PropertiesChecks(
             properties=prop_and_verdict,
@@ -371,15 +423,16 @@ class TaskDefinitionFileChecks(FileChecks):
         ).run()
 
     def check_language(self):
-        if not self.content:
-            return
+        if not self.content or _is_witness(self.content):
+            return None
         language = self.content.get("options", {}).get("language")
         if language != "C":
             self.error("unexpected language %s", language)
 
     def check_data_model(self):
-        if not self.content:
+        if not self.content or _is_witness(self.content):
             return
+        
         data_model = self.content.get("options", {}).get("data_model")
         if not data_model:
             self.error("missing declaration of data_model")
@@ -402,8 +455,7 @@ class TaskDefinitionFileChecks(FileChecks):
                     data_model,
                 )
 
-
-    def _get_input_files(self) -> list:
+    def __get_input_files(self) -> list:
         if 'input_files' not in self.content:
             self.error("has no input file definition")
             return []
@@ -417,6 +469,26 @@ class TaskDefinitionFileChecks(FileChecks):
         if type(input_files) is not list:
             input_files = [input_files]
         return input_files
+    
+    def _get_witness_files(self) -> list:
+        _, witness_files = self.__partition_into_program_and_witness_files()
+        return witness_files
+    
+    def _get_program_files(self) -> list:
+        program_files, _ = self._partition_into_program_and_witness_files()
+        return program_files
+    
+    def __partition_into_program_and_witness_files(self) -> Tuple[list, list]:
+        input_files = self.__get_input_files()
+        witness_files = []
+        program_files = []
+        for f in input_files:
+            if isinstance(self.content, dict) and "options" in self.content.keys() and isinstance(self.content["options"], dict) and \
+                "witness" in self.content["options"].keys() and f == self.content["options"]["witness"]:
+                witness_files.append(f)
+            else:
+                program_files.append(f)
+        return program_files, witness_files
 
     def _get_properties(self) -> List[Tuple[str, str]]:
         """Return list of tuples (property, verdict) present in the task definition."""
@@ -568,6 +640,34 @@ class InputFileChecks(FileChecks):
         if any(PREPROCESSOR_DIRECTIVE.match(line) for line in self.lines):
             self.error("#define or #include statement present, please add preprocessed version")
 
+class WitnessInputFileChecks(Checks):
+
+    def __init__(self, witness_path, program_paths, *args, **kwargs):
+        super().__init__(known_problems=KNOWN_SET_PROBLEMS, quiet=True, *args, **kwargs)
+        self.witness_path = witness_path
+        self.program_paths = program_paths
+        self.witness_linter_executable = "witnesslinter.py"
+
+    def check_with_linter(self):
+        if shutil.which(self.witness_linter_executable) is None:
+            self.error(f"Could not find witnesslinter executable '{self.witness_linter_executable}'")
+            return
+        
+        if len(self.program_paths) != 1:
+            self.error(f"Expected exactly one program file, but found {len(self.program_paths)}")
+            return
+
+        command_line = [self.witness_linter_executable, "--witness", 
+                                 self.witness_path, self.program_paths[0]]
+        result = subprocess.run(command_line, 
+                                stdout = subprocess.DEVNULL,
+                                stderr = subprocess.DEVNULL)
+        
+        if result.returncode != 0:
+            self.error(f"witnesslinter failed")
+
+        return
+
 class SetFileChecks(Checks):
     """Checks about the .set files that define categories."""
 
@@ -652,9 +752,9 @@ def _check_known_errors_consistent(main_dir):
         assert os.path.exists(path), "Whitelisted file doesn't exist: %s" % path
 
 
-def _run_directory_checks(directory, all_patterns, entry):
+def _run_directory_checks(directory, all_patterns, requires_makefile, requires_readme, entry):
     try:
-        DirectoryChecks(directory, all_patterns, entry).run()
+        DirectoryChecks(directory, all_patterns, requires_makefile, requires_readme, entry).run()
     except CheckFailed:
         return False, set()
     else:
@@ -671,11 +771,11 @@ def _run_set_file_checks(set_file, all_patterns, entry):
         return True, check.matched_files
 
 
-def _check_benchmark_entry(entry, main_directory, all_patterns):
+def _check_benchmark_entry(entry, requires_makefile, requires_readme, main_directory, all_patterns):
     path = os.path.join(main_directory, entry)
     if not (entry[0] == "." or entry == "bin" or entry.endswith("-todo")):
         if os.path.isdir(path) and not entry in IGNORED_DIRECTORIES:
-            return _run_directory_checks(path, all_patterns, entry)
+            return _run_directory_checks(path, all_patterns, requires_makefile, requires_readme, entry)
         elif entry.endswith(".set"):
             return _run_set_file_checks(path, all_patterns, entry)
     logging.debug("%s: skipped", entry)
@@ -689,6 +789,8 @@ def main(num_processes):
 
     main_directory = os.path.relpath(os.path.dirname(__file__) or '.')
     _check_known_errors_consistent(main_directory)
+    # The [2:] is necessary to remove "./" from the beginning of the path
+    witness_dirs = list(map(lambda x: x[0][2:], filter(lambda x: x[0].endswith("witnesses"), os.walk(main_directory))))
     entries = sorted(os.listdir(main_directory))
     all_patterns_re = (
         fnmatch.translate(pattern)
@@ -699,8 +801,10 @@ def main(num_processes):
     check_func = functools.partial(
         _check_benchmark_entry, main_directory=main_directory, all_patterns=all_patterns
     )
+
+    entries_to_check = [(entry, True, True) for entry in entries] + [(entry, False, False) for entry in witness_dirs]
     with multiprocessing.Pool(num_processes) as p:
-        check_results, matched_file_sets = zip(*p.map(check_func, entries))
+        check_results, matched_file_sets = zip(*p.starmap(check_func, entries_to_check))
     ok = all(check_results)
     all_matched_files = set(os.path.relpath(os.path.abspath(f)) for f_set in matched_file_sets for f in f_set)
 

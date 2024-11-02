@@ -15,6 +15,19 @@
 
 FROM python:3
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  wget \
+  unzip
+
 RUN pip3 install \
   coloredlogs \
-  pyyaml
+  pyyaml \
+  lxml \
+  pycparser \
+  jsonschema
+
+# Currently the witness linter is not available as a python package
+RUN wget https://zenodo.org/records/13988752/files/WitnessLint-2.0.3-dev-8f5dc4bf0.zip -O WitnessLint.zip
+RUN unzip WitnessLint.zip
+RUN rm WitnessLint.zip
+ENV PATH="${PATH}:/lint"
