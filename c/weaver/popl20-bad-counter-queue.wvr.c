@@ -30,8 +30,6 @@ extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __a
 
 extern int  __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -39,7 +37,8 @@ void assume_abort_if_not(int cond) {
 }
 
 int* A;
-int counter, N;
+_Atomic int counter;
+int N;
 
 int *create_fresh_int_array(int size);
 int minus(int a, int b);
@@ -47,12 +46,8 @@ int plus(int a, int b);
 
 void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
     int tmp = plus(counter, A[i]);
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
     counter = tmp;
-    __VERIFIER_atomic_end();
   }
 
   return 0;
@@ -60,12 +55,8 @@ void* thread1(void* _argptr) {
 
 void* thread2(void* _argptr) {
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
     int tmp = minus(counter, A[i]);
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
     counter = tmp;
-    __VERIFIER_atomic_end();
   }
 
   return 0;

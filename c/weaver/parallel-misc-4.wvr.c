@@ -27,69 +27,46 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern int   __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void  __VERIFIER_atomic_begin();
-extern void  __VERIFIER_atomic_end();
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-int pos;
-_Bool d1, d2, v_assert;
+_Atomic int pos;
+_Bool d1, d2;
+_Atomic _Bool v_assert;
 
 void* thread1(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  _Bool lv_assert = v_assert;
-  __VERIFIER_atomic_end();
-  while (lv_assert) {
+  while (v_assert) {
     if (d1) {
-      __VERIFIER_atomic_begin();
       pos++;
-      __VERIFIER_atomic_end();
     }
     else {
-      __VERIFIER_atomic_begin();
       pos--;
-      __VERIFIER_atomic_end();
     }
     d1 = !d1;
-    __VERIFIER_atomic_begin();
-    lv_assert = v_assert;
-    __VERIFIER_atomic_end();
   }
 
   return 0;
 }
 
 void* thread2(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  _Bool lv_assert = v_assert;
-  __VERIFIER_atomic_end();
-  while (lv_assert) {
+  while (v_assert) {
     if (d2) {
-      __VERIFIER_atomic_begin();
-      pos = ( pos + 2 );
-      __VERIFIER_atomic_end();
+      pos += 2;
     }
     else {
-      __VERIFIER_atomic_begin();
-      pos = ( pos - 2 );
-      __VERIFIER_atomic_end();
+      pos -= 2;
     }
     d2 = !d2;
-    __VERIFIER_atomic_begin();
-    lv_assert = v_assert;
-    __VERIFIER_atomic_end();
   }
 
   return 0;
 }
 
 void* thread3(void* _argptr) {
-  __VERIFIER_atomic_begin();
   v_assert = (pos >= 0);
-  __VERIFIER_atomic_end();
 
   return 0;
 }

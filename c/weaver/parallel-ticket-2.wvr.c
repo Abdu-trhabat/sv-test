@@ -27,54 +27,33 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern int   __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void  __VERIFIER_atomic_begin();
-extern void  __VERIFIER_atomic_end();
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-int m1, m2, s, t, x;
-_Bool b;
+int m1, m2;
+_Atomic int s, t, x;
+_Atomic _Bool b;
 
 void* thread1(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  m1 = t;
-  t++;
-  __VERIFIER_atomic_end();
+  m1 = t++;
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( m1 <= s );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   x = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   x = 0;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   s++;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread2(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  m2 = t;
-  t++;
-  __VERIFIER_atomic_end();
+  m2 = t++;
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( m2 <= s );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  b = b || x == 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  if (x == 1) b = 1;
   s++;
-  __VERIFIER_atomic_end();
 
   return 0;
 }

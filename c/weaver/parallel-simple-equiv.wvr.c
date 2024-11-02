@@ -27,27 +27,22 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern unsigned int   __VERIFIER_nondet_uint(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void  __VERIFIER_atomic_begin();
-extern void  __VERIFIER_atomic_end();
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-unsigned int x_0, x_1, temp_2;
+_Atomic unsigned int x_0;
+unsigned int x_1, temp_2;
 
 void* thread1(void* _argptr) {
-  __VERIFIER_atomic_begin();
   x_0++;
-  __VERIFIER_atomic_end();
   return 0;
 }
 
 void* thread2(void* _argptr) {
-  __VERIFIER_atomic_begin();
   x_0++;
-  __VERIFIER_atomic_end();
   return 0;
 }
 

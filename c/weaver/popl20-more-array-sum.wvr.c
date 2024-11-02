@@ -29,8 +29,6 @@ typedef unsigned int size_t;
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
 
 extern int  __VERIFIER_nondet_int(void);
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -39,19 +37,15 @@ void assume_abort_if_not(int cond) {
 
 int*  A;
 int*  B;
-int res1, res2, M, N;
+_Atomic int res2;
+int res1, M, N;
 
 int *create_fresh_int_array(int size);
 int plus(int a, int b);
 
 void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
-    int tmp = plus(res1, plus(A[i], B[i]));
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    res1 = tmp;
-    __VERIFIER_atomic_end();
+    res1 = plus(res1, plus(A[i], B[i]));
   }
 
   return 0;
@@ -59,12 +53,8 @@ void* thread1(void* _argptr) {
 
 void* thread2(void* _argptr) {
   for (int i=0; i<M; i++) {
-    __VERIFIER_atomic_begin();
     int tmp = plus(res2, plus(A[i], B[i]));
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
     res2 = tmp;
-    __VERIFIER_atomic_end();
   }
 
   return 0;
@@ -72,12 +62,8 @@ void* thread2(void* _argptr) {
 
 void* thread3(void* _argptr) {
   for (int i=M; i<N; i++) {
-    __VERIFIER_atomic_begin();
     int tmp = plus(res2, plus(A[i], B[i]));
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
     res2 = tmp;
-    __VERIFIER_atomic_end();
   }
 
   return 0;

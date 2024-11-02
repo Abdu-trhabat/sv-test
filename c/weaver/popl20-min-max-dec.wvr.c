@@ -30,51 +30,39 @@ extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __a
 
 extern int  __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-int* A;
-int min, max, N;
-_Bool v_assert, b1, b2;
+_Atomic int* A;
+_Atomic int min, max, N;
+_Atomic _Bool v_assert, b1, b2;
 
-int *create_fresh_int_array(int size);
+_Atomic int *create_fresh_int_array(int size);
 
 void* thread1(void* _argptr) {
-  __VERIFIER_atomic_begin();
   min = A[0];
-  __VERIFIER_atomic_end();
   
-  __VERIFIER_atomic_begin();
   b1 = 1;
-  __VERIFIER_atomic_end();
   
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
-    min = min < A[i] ? min : A[i];
-    __VERIFIER_atomic_end();
+    int read = A[i];
+    if (min >= read) min = read;
   }
 
   return 0;
 }
 
 void* thread2(void* _argptr) {
-  __VERIFIER_atomic_begin();
   max = A[0];
-  __VERIFIER_atomic_end();
   
-  __VERIFIER_atomic_begin();
   b2 = 1;
-  __VERIFIER_atomic_end();
   
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
-    max = max > A[i] ? max : A[i];
-    __VERIFIER_atomic_end();
+    int read = A[i];
+    if (max <= read) max = read;
   }
 
   return 0;
@@ -82,19 +70,18 @@ void* thread2(void* _argptr) {
 
 void* thread3(void* _argptr) {
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
     assume_abort_if_not(A[i] > -2147483648);
     A[i]--;
-    __VERIFIER_atomic_end();
   }
 
   return 0;
 }
 
 void* thread4(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  v_assert = !b1 || !b2 || max >= 2147483647 || min <= max + 1;
-  __VERIFIER_atomic_end();
+  _Bool b1Local = b1;
+  _Bool b2Local = b2;
+  int maxLocal = max;
+  v_assert = !b1Local || !b2Local || maxLocal >= 2147483647 || min <= maxLocal + 1;
 
   return 0;
 }
@@ -122,11 +109,11 @@ int main() {
   return 0;
 }
 
-int *create_fresh_int_array(int size) {
+_Atomic int *create_fresh_int_array(int size) {
   assume_abort_if_not(size >= 0);
-  assume_abort_if_not(size <= (((size_t) 4294967295) / sizeof(int)));
+  assume_abort_if_not(size <= (((size_t) 4294967295) / sizeof(_Atomic int)));
 
-  int* arr = (int*)malloc(sizeof(int) * (size_t)size);
+  _Atomic int* arr = (_Atomic int*)malloc(sizeof(_Atomic int) * (size_t)size);
   for (int i = 0; i < size; i++) {
     arr[i] = __VERIFIER_nondet_int();
   }

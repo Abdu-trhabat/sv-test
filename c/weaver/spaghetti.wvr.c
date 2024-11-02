@@ -27,83 +27,53 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern unsigned int __VERIFIER_nondet_uint(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void __VERIFIER_atomic_begin();
-extern void __VERIFIER_atomic_end();
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-unsigned int x_0, x_1;
+_Atomic unsigned int x_0, x_1;
 
 
 void* thread1(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
-    __VERIFIER_atomic_begin();
     x_0 = __VERIFIER_nondet_uint();
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    x_0 = x_0 + 3;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    x_0 = 2 * x_0;
-    __VERIFIER_atomic_end();
+    x_0 += 3;
+    x_0 *= 2;
   }
-  __VERIFIER_atomic_begin();
   x_0 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread2(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
-    __VERIFIER_atomic_begin();
-    x_0 = x_0 * 10;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    x_0 = x_0 + x_0;
-    __VERIFIER_atomic_end();
+    x_0 *= 10;
+    x_0 += x_0;
   }
-  __VERIFIER_atomic_begin();
   x_0 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread3(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
-    __VERIFIER_atomic_begin();
     x_1 = __VERIFIER_nondet_uint();
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    x_1 = x_1 + 3;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    x_1 = 2 * x_1;
-    __VERIFIER_atomic_end();
+    x_1 += 3;
+    x_1 *= 2;
   }
-  __VERIFIER_atomic_begin();
   x_1 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread4(void* _argptr) {
   while (__VERIFIER_nondet_bool()) {
-    __VERIFIER_atomic_begin();
-    x_1 = x_1 * 10;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
-    x_1 = x_1 + x_1;
-    __VERIFIER_atomic_end();
+    x_1 *= 10;
+    x_1 += x_1;
   }
-  __VERIFIER_atomic_begin();
   x_1 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }

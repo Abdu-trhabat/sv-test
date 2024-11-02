@@ -27,15 +27,14 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern int  __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-int X, Y;
+int X;
+_Atomic int Y;
 
 void* thread1(void* _argptr) {
   int x;
@@ -43,9 +42,7 @@ void* thread1(void* _argptr) {
   while (x < 10000) {
     x++;
   }
-  __VERIFIER_atomic_begin();
-  Y = Y + x;
-  __VERIFIER_atomic_end();
+  Y += x;
 
   return 0;
 }
@@ -56,9 +53,7 @@ void* thread2(void* _argptr) {
   while (x < 10000) {
     x++;
   }
-  __VERIFIER_atomic_begin();
-  Y = Y + x;
-  __VERIFIER_atomic_end();
+  Y += x;
 
   return 0;
 }

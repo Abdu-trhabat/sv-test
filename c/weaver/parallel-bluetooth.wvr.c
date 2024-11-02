@@ -27,62 +27,38 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern int   __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void  __VERIFIER_atomic_begin();
-extern void  __VERIFIER_atomic_end();
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-int count, pos;
-_Bool sFlag, sEvent, stopped, v_assert;
+_Atomic int count, pos;
+_Atomic _Bool sFlag, sEvent, stopped, v_assert;
 
 void* thread1(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  count = sFlag ? count : (count + 1);
-  v_assert = ( sFlag || !stopped );
-  __VERIFIER_atomic_end();
+  _Bool sFlagLocal = sFlag;
+  _Bool stoppedLocal = stopped;
+  if (!sFlagLocal) count++;
+  v_assert = ( sFlagLocal || !stoppedLocal );
 
-  __VERIFIER_atomic_begin();
   count--;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  _Bool cond = count == 0;
-  __VERIFIER_atomic_end();
-  if (cond) {
-    __VERIFIER_atomic_begin();
+  if (count == 0) {
     sEvent = 1;
-    __VERIFIER_atomic_end();
   }
 
   return 0;
 }
 
 void* thread2(void* _argptr) {
-  __VERIFIER_atomic_begin();
   sFlag = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   count--;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   count--;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  _Bool cond = count == 0;
-  __VERIFIER_atomic_end();
-  if (cond) {
-    __VERIFIER_atomic_begin();
+  if (count == 0) {
     sEvent = 1;
-    __VERIFIER_atomic_end();
   }
-  __VERIFIER_atomic_begin();
   assume_abort_if_not(sEvent);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   stopped = 1;
-  __VERIFIER_atomic_end();
 
   return 0;
 }

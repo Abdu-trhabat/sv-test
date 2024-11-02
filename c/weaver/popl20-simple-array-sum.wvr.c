@@ -31,20 +31,20 @@ extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __a
 extern int  __VERIFIER_nondet_int(void);
 extern unsigned int  __VERIFIER_nondet_uint(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-unsigned int* A;
-unsigned int* C;
-unsigned int asum, csum;
-int p, N;
+_Atomic unsigned int* A;
+_Atomic unsigned int* C;
+unsigned int asum;
+_Atomic unsigned int csum;
+_Atomic int p;
+int N;
 
-unsigned int *create_fresh_uint_array(int size);
+_Atomic unsigned int *create_fresh_uint_array(int size);
 
 void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
@@ -56,12 +56,8 @@ void* thread1(void* _argptr) {
 
 void* thread2(void* _argptr) {
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
     C[i] = A[i] + 1;
-    __VERIFIER_atomic_end();
-    __VERIFIER_atomic_begin();
     p = i;
-    __VERIFIER_atomic_end();
   }
 
   return 0;
@@ -70,13 +66,8 @@ void* thread2(void* _argptr) {
 void* thread3(void* _argptr) {
   int i = 0;
   while (i < N) {
-    __VERIFIER_atomic_begin();
-    _Bool cond = i < p;
-    __VERIFIER_atomic_end();
-    if (cond) {
-      __VERIFIER_atomic_begin();
-      csum = csum + C[i];
-      __VERIFIER_atomic_end();
+    if (i < p) {
+      csum += C[i];
       i++;
     }
   }
@@ -105,11 +96,11 @@ int main() {
   return 0;
 }
 
-unsigned int *create_fresh_uint_array(int size) {
+_Atomic unsigned int *create_fresh_uint_array(int size) {
   assume_abort_if_not(size >= 0);
-  assume_abort_if_not(size <= (((size_t) 4294967295) / sizeof(unsigned int)));
+  assume_abort_if_not(size <= (((size_t) 4294967295) / sizeof(_Atomic unsigned int)));
 
-  unsigned int* arr = (unsigned int*)malloc(sizeof(unsigned int) * (size_t)size);
+  _Atomic unsigned int* arr = (_Atomic unsigned int*)malloc(sizeof(_Atomic unsigned int) * (size_t)size);
   for (int i = 0; i < size; i++) {
     arr[i] = __VERIFIER_nondet_uint();
   }

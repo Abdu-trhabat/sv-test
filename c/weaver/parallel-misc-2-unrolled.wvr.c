@@ -26,25 +26,20 @@ extern int pthread_create (pthread_t *__restrict __newthread,
 extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern unsigned int __VERIFIER_nondet_uint(void);
-extern void  __VERIFIER_atomic_begin();
-extern void  __VERIFIER_atomic_end();
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-unsigned int pos, i1, i2, N;
+_Atomic unsigned int pos;
+unsigned int i1, i2, N;
 
 void* thread1(void* _argptr) {
   while (( i1 < ( 2 * N ) )) {
-    __VERIFIER_atomic_begin();
     pos++;
-    __VERIFIER_atomic_end();
     i1++;
-    __VERIFIER_atomic_begin();
     pos--;
-    __VERIFIER_atomic_end();
     i1++;
   }
 
@@ -53,13 +48,9 @@ void* thread1(void* _argptr) {
 
 void* thread2(void* _argptr) {
   while (( i2 < ( 2 * N ) )) {
-    __VERIFIER_atomic_begin();
-    pos = ( pos + 2 );
-    __VERIFIER_atomic_end();
+    pos += 2;
     i2++;
-    __VERIFIER_atomic_begin();
-    pos = ( pos - 2 );
-    __VERIFIER_atomic_end();
+    pos -= 2;
     i2++;
   }
 

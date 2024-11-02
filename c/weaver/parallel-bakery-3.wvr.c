@@ -27,142 +27,83 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern int   __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void  __VERIFIER_atomic_begin();
-extern void  __VERIFIER_atomic_end();
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-_Bool e1, e2, e3;
-int n1, n2, n3, i, i1, i2, i3;
+_Atomic _Bool e1, e2, e3;
+_Atomic int n1, n2, n3, i, i1, i2, i3;
 
 void* thread1(void* _argptr) {
-  __VERIFIER_atomic_begin();
+  int tmp2, tmp3;
   e1 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  n1 = (n1 < n2) ? n2 : n1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  n1 = (n1 < n3) ? n3 : n1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  tmp2 = n2;
+  if (n1 < tmp2) n1 = tmp2;
+  tmp3 = n3;
+  if (n1 < tmp3) n1 = tmp3;
   n1++;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   e1 = 0;
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not(!e2);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not( !( ( n2 != 0 ) && ( ( n2 < n1 ) || ( ( n2 == n1 ) && ( 2 < 1 ) ) ) ) );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  tmp2 = n2;
+  assume_abort_if_not( !( ( tmp2 != 0 ) && ( ( tmp2 < n1 ) || ( ( tmp2 == n1 ) && ( 2 < 1 ) ) ) ) );
   assume_abort_if_not(!e3);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not( !( ( n3 != 0 ) && ( ( n3 < n1 ) || ( ( n3 == n1 ) && ( 3 < 1 ) ) ) ) );
-  __VERIFIER_atomic_end();
+  tmp3 = n3;
+  assume_abort_if_not( !( ( tmp3 != 0 ) && ( ( tmp3 < n1 ) || ( ( tmp3 == n1 ) && ( 3 < 1 ) ) ) ) );
 
-  __VERIFIER_atomic_begin();
   i1 = i;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   i = i1 + 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   n1 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread2(void* _argptr) {
-  __VERIFIER_atomic_begin();
+  int tmp1, tmp3;
   e2 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  n2 = (n2 < n1) ? n1 : n2;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  n2 = (n2 < n3) ? n3 : n2;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  tmp1 = n1;
+  if (n2 < tmp1) n2 = tmp1;
+  tmp3 = n3;
+  if (n2 < tmp3) n2 = tmp3;
   n2++;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   e2 = 0;
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not(!e1);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not( !( ( n1 != 0 ) && ( ( n1 < n2 ) || ( ( n1 == n2 ) && ( 1 < 2 ) ) ) ) );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  tmp1 = n1;
+  assume_abort_if_not( !( ( tmp1 != 0 ) && ( ( tmp1 < n2 ) || ( ( tmp1 == n2 ) && ( 1 < 2 ) ) ) ) );
   assume_abort_if_not(!e3);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not( !( ( n3 != 0 ) && ( ( n3 < n2 ) || ( ( n3 == n2 ) && ( 3 < 2 ) ) ) ) );
-  __VERIFIER_atomic_end();
+  tmp3 = n3;
+  assume_abort_if_not( !( ( tmp3 != 0 ) && ( ( tmp3 < n2 ) || ( ( tmp3 == n2 ) && ( 3 < 2 ) ) ) ) );
 
-  __VERIFIER_atomic_begin();
   i2 = i;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   i = i2 + 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   n2 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread3(void* _argptr) {
-  __VERIFIER_atomic_begin();
+  int tmp1, tmp2;
   e3 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  n3 = (n3 < n1) ? n1 : n3;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  n3 = (n3 < n2) ? n2 : n3;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  tmp1 = n1;
+  if (n3 < tmp1) n3 = tmp1;
+  tmp2 = n2;
+  if (n3 < tmp2) n3 = tmp2;
   n3++;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   e3 = 0;
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not(!e1);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not( !( ( n1 != 0 ) && ( ( n1 < n3 ) || ( ( n1 == n3 ) && ( 1 < 3 ) ) ) ) );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  tmp1 = n1;
+  assume_abort_if_not( !( ( tmp1 != 0 ) && ( ( tmp1 < n3 ) || ( ( tmp1 == n3 ) && ( 1 < 3 ) ) ) ) );
   assume_abort_if_not(!e2);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not( !( ( n2 != 0 ) && ( ( n2 < n3 ) || ( ( n2 == n3 ) && ( 2 < 3 ) ) ) ) );
-  __VERIFIER_atomic_end();
+  tmp2 = n2;
+  assume_abort_if_not( !( ( tmp2 != 0 ) && ( ( tmp2 < n3 ) || ( ( tmp2 == n3 ) && ( 2 < 3 ) ) ) ) );
 
-  __VERIFIER_atomic_begin();
   i3 = i;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   i = i3 + 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   n3 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
