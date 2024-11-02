@@ -27,78 +27,42 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern int  __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-_Bool e1, e2;
-int n1, n2, tmp1, tmp2, i, i1, i2;
+_Atomic _Bool e1, e2;
+_Atomic int n1, n2, tmp1, tmp2, i, i1, i2;
 
 
 void* thread1(void* _argptr) {
-  __VERIFIER_atomic_begin();
   e1 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   tmp1 = n2;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   n1 = tmp1 + 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   e1 = 0;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   assume_abort_if_not(!e2);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not(n2 == 0 || n2 >= n1);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  int tmp = n2;
+  assume_abort_if_not(tmp == 0 || tmp >= n1);
   i1 = i;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   i = i1 + 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   n1 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread2(void* _argptr) {
-  __VERIFIER_atomic_begin();
   e2 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   tmp2 = n1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   n2 = tmp2 + 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   e2 = 0;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   assume_abort_if_not(!e1);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not(n1 == 0 || n1 > n2);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  int tmp = n1;
+  assume_abort_if_not(tmp == 0 || tmp > n2);
   i2 = i;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   i = i2 + 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   n2 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }

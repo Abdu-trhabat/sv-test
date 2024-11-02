@@ -27,21 +27,18 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern int  __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-int N, counter1, counter2;
+int N;
+_Atomic int counter1, counter2;
 
 void* thread1(void* _argptr) {
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
     counter1++;
-    __VERIFIER_atomic_end();
   }
 
   return 0;
@@ -49,10 +46,8 @@ void* thread1(void* _argptr) {
 
 void* thread2(void* _argptr) {
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
     assume_abort_if_not(counter1 > 0);
     counter1--;
-  __VERIFIER_atomic_end();
   }
 
   return 0;
@@ -60,9 +55,7 @@ void* thread2(void* _argptr) {
 
 void* thread3(void* _argptr) {
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
     counter2++;
-    __VERIFIER_atomic_end();
   }
 
   return 0;
@@ -70,10 +63,8 @@ void* thread3(void* _argptr) {
 
 void* thread4(void* _argptr) {
   for (int i=0; i<N; i++) {
-    __VERIFIER_atomic_begin();
     assume_abort_if_not(counter2 > 0);
     counter2--;
-    __VERIFIER_atomic_end();
   }
 
   return 0;

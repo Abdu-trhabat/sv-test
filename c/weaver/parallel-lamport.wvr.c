@@ -30,100 +30,61 @@ extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __a
 
 extern int   __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void  __VERIFIER_atomic_begin();
-extern void  __VERIFIER_atomic_end();
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-_Bool e1, e2;
-int n1, n2, tmp1, tmp2, i, j, i1, i2, n;
+_Atomic _Bool e1, e2;
+_Atomic int n1, n2, i, j, i1, i2, n;
 int* f;
 
 int *create_fresh_int_array(int size);
 
 void* thread1(void* _argptr) {
-  __VERIFIER_atomic_begin();
   e1 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  tmp1 = n2;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  n1 = ( tmp1 + 1 );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  n1 = n2 + 1;
   e1 = 0;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( !e2 );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not( ( n2 == 0 ) || ( n2 >= n1 ) );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  int tmp1 = n1;
+  int tmp2 = n2;
+  assume_abort_if_not( ( tmp2 == 0 ) || ( tmp2 >= tmp1 ) );
   i1 = i;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   i = f[i1];
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not(0 <= i && i < n);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  int tmpI = i;
+  int tmpN = n;
+  assume_abort_if_not(0 <= tmpI && tmpI < tmpN);
   n1 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread2(void* _argptr) {
-  __VERIFIER_atomic_begin();
   e2 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  tmp2 = n1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  n2 = ( tmp2 + 1 );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  n2 = n1 + 1;
   e2 = 0;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( !e1 );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not ( ( n1 == 0 ) || ( n1 > n2 ) );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  int tmp1 = n1;
+  int tmp2 = n2;
+  assume_abort_if_not( ( tmp2 == 0 ) || ( tmp2 >= tmp1 ) );
+  assume_abort_if_not ( ( tmp1 == 0 ) || ( tmp1 > tmp2 ) );
   i2 = i;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   i = f[i2];
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not(0 <= i && i < n);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  int tmpI = i;
+  int tmpN = n;
+  assume_abort_if_not(0 <= tmpI && tmpI < tmpN);
   n2 = 0;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread3(void* _argptr) {
-  __VERIFIER_atomic_begin();
   j = f[j];
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  assume_abort_if_not(0 <= j && j < n);
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  int tmpJ = j;
+  int tmpN = n;
+  assume_abort_if_not(0 <= tmpJ && tmpJ < tmpN);
   j = f[j];
-  __VERIFIER_atomic_end();
 
   return 0;
 }
@@ -132,8 +93,6 @@ int main() {
   pthread_t t1, t2, t3;
 
   // initialize global variables
-  tmp1 = __VERIFIER_nondet_int();
-  tmp2 = __VERIFIER_nondet_int();
   i  = __VERIFIER_nondet_int();
   j  = __VERIFIER_nondet_int();
   i1 = __VERIFIER_nondet_int();

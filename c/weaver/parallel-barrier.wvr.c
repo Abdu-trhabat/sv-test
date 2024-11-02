@@ -27,68 +27,42 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern int   __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void  __VERIFIER_atomic_begin();
-extern void  __VERIFIER_atomic_end();
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-int x_0, y_1;
-_Bool f1_2, f2_3;
+_Atomic int x_0, y_1;
+_Atomic _Bool f1_2, f2_3;
 int temp_4, temp_5;
-int x_6, x_7;
-_Bool f1_8, f2_9;
+_Atomic int x_6, x_7;
+_Atomic _Bool f1_8, f2_9;
 int temp_10, temp_11;
-int y_7;
+_Atomic int y_7;
 
 void* thread2(void* _argptr) {
-  __VERIFIER_atomic_begin();
   temp_4 = x_0;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   x_0 = temp_4 + 1;
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   f1_2 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( f1_2 && f2_3 );
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   temp_4 = y_1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   y_1 = temp_4 + 1;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread3(void* _argptr) {
-  __VERIFIER_atomic_begin();
   temp_5 = y_1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   y_1 = temp_5 + 1;
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   f2_3 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( f1_2 && f2_3 );
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   temp_5 = x_0;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   x_0 = temp_5 + 1;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
@@ -107,51 +81,27 @@ void* thread1(void* _argptr) {
 }
 
 void* thread5(void* _argptr) {
-  __VERIFIER_atomic_begin();
   temp_10 = x_6;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   x_6 = temp_10 + 1;
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   f1_8 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( f1_8 && f2_9 );
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   temp_10 = y_7;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   y_7 = temp_10 + 1;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread6(void* _argptr) {
-  __VERIFIER_atomic_begin();
   temp_11 = y_7;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   y_7 = temp_11 + 1;
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   f2_9 = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( f1_8 && f2_9 );
-  __VERIFIER_atomic_end();
 
-  __VERIFIER_atomic_begin();
   temp_11 = x_6;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   x_6 = temp_11 + 1;
-  __VERIFIER_atomic_end();
 
   return 0;
 }

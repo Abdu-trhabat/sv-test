@@ -30,8 +30,6 @@ extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __a
 
 extern int  __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -39,22 +37,17 @@ void assume_abort_if_not(int cond) {
 }
 
 int* queue;
-int front, back, element, sum, n;
+_Atomic int front, back;
+int element, sum, n;
 
 int *create_fresh_int_array(int size);
 
 void* thread1(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  _Bool cond = back > front;
-  __VERIFIER_atomic_end();
-  while (cond) {
+  while (back > front) {
     assume_abort_if_not(front >= 0 && front < n);
     element = queue[front];
     front++;
     sum = sum + element;
-    __VERIFIER_atomic_begin();
-    cond = back > front;
-    __VERIFIER_atomic_end();
   }
 
   return 0;
@@ -63,23 +56,13 @@ void* thread1(void* _argptr) {
 void* thread2(void* _argptr) {
   _Bool flag = 1;
   while (__VERIFIER_nondet_bool()) {
-    __VERIFIER_atomic_begin();
     assume_abort_if_not(back >= 0 && back < n);
-    __VERIFIER_atomic_end();
     if (flag) {
-      __VERIFIER_atomic_begin();
       assume_abort_if_not(queue[back] == 1);
-      __VERIFIER_atomic_end();
-      __VERIFIER_atomic_begin();
       back++;
-      __VERIFIER_atomic_end();
     } else {
-      __VERIFIER_atomic_begin();
       assume_abort_if_not(queue[back] == -1);
-      __VERIFIER_atomic_end();
-      __VERIFIER_atomic_begin();
       back++;
-      __VERIFIER_atomic_end();
     }
     flag = !flag;
   }

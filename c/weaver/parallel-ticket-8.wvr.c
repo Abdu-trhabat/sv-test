@@ -27,168 +27,93 @@ extern int pthread_join (pthread_t __th, void **__thread_return);
 
 extern int   __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
-extern void  __VERIFIER_atomic_begin();
-extern void  __VERIFIER_atomic_end();
 
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 
-int m1, m2, m3, m4, m5, m6, m7, m8, s, t, x;
-_Bool b;
+int m1, m2, m3, m4, m5, m6, m7, m8;
+_Atomic int s, t, x;
+_Atomic _Bool b;
 
 void* thread1(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  m1 = t;
-  t++;
-  __VERIFIER_atomic_end();
+  m1 = t++;
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( m1 <= s );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   x = 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   x = 0;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
   s++;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread2(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  m2 = t;
-  t++;
-  __VERIFIER_atomic_end();
+  m2 = t++;
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( m2 <= s );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  b = b || x == 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  if (x == 1) b = 1;
   s++;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread3(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  m3 = t;
-  t++;
-  __VERIFIER_atomic_end();
+  m3 = t++;
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( m3 <= s );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  b = b || x == 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  if (x == 1) b = 1;
   s++;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread4(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  m4 = t;
-  t++;
-  __VERIFIER_atomic_end();
+  m4 = t++;
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( m4 <= s );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  b = b || x == 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  if (x == 1) b = 1;
   s++;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread5(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  m5 = t;
-  t++;
-  __VERIFIER_atomic_end();
+  m5 = t++;
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( m5 <= s );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  b = b || x == 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  if (x == 1) b = 1;
   s++;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread6(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  m6 = t;
-  t++;
-  __VERIFIER_atomic_end();
+  m6 = t++;
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( m6 <= s );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  b = b || x == 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  if (x == 1) b = 1;
   s++;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread7(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  m7 = t;
-  t++;
-  __VERIFIER_atomic_end();
+  m7 = t++;
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( m7 <= s );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  b = b || x == 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  if (x == 1) b = 1;
   s++;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
 
 void* thread8(void* _argptr) {
-  __VERIFIER_atomic_begin();
-  m8 = t;
-  t++;
-  __VERIFIER_atomic_end();
+  m8 = t++;
 
-  __VERIFIER_atomic_begin();
   assume_abort_if_not( m8 <= s );
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
-  b = b || x == 1;
-  __VERIFIER_atomic_end();
-  __VERIFIER_atomic_begin();
+  if (x == 1) b = 1;
   s++;
-  __VERIFIER_atomic_end();
 
   return 0;
 }
