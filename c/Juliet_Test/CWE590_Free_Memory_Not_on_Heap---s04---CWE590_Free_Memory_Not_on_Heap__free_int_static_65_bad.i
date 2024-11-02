@@ -98,8 +98,6 @@ void printIntLine(int intNumber);
 void CWE590_Free_Memory_Not_on_Heap__free_int_static_65b_badSink(int *data)
 {
   
-  printIntLine(*data);
-  
   free((void *)data);
   
   return;

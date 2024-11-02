@@ -630,9 +630,7 @@ void *memset(void *, int, size_t);
 
 static void badSink(char *data)
 {
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;

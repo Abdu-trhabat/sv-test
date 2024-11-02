@@ -676,8 +676,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_struct_static_17_bad(void)
   ldv_3207: 
   ;
   
-  printStructLine((twoIntsStruct const *)data);
-  
   free((void *)data);
   
   return;

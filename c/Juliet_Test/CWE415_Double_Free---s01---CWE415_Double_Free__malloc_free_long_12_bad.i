@@ -869,10 +869,7 @@ void CWE415_Double_Free__malloc_free_long_12_bad(void)
                             ldv_exit_2(-1); else ;
   }
   
-  tmp_2 = globalReturnsTrueOrFalse();
-  
-  if (tmp_2 != 0) 
-                  free((void *)data); else ;
+  free((void *)data);
   
   return;
 }

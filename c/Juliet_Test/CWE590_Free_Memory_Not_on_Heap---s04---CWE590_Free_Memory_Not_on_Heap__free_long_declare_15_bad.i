@@ -880,8 +880,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_long_declare_15_bad(void)
   ldv_3205: 
   ;
   
-  printLongLine(*data);
-  
   free((void *)data);
   
   return;

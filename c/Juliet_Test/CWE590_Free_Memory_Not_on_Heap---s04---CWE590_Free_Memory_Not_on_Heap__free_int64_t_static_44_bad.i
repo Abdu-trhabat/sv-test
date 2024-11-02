@@ -843,8 +843,6 @@ time_t time(time_t *);
 static void badSink(int64_t *data)
 {
   
-  printLongLongLine(*data);
-  
   free((void *)data);
   
   return;

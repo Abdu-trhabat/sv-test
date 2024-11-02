@@ -869,8 +869,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int_declare_18_bad(void)
     data = (int *)(& dataBuffer);
   }
   
-  printIntLine(*data);
-  
   free((void *)data);
   
   return;

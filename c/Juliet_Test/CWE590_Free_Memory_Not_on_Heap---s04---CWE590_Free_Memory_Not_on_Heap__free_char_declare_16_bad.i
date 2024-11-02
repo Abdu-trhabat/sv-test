@@ -650,9 +650,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_declare_16_bad(void)
   goto ldv_3201;
   ldv_3200: 
   ;
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;

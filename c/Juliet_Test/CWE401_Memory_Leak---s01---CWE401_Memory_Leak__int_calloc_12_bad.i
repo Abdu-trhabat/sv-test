@@ -874,11 +874,6 @@ void CWE401_Memory_Leak__int_calloc_12_bad(void)
     printIntLine(*data);
   }
   
-  tmp_2 = globalReturnsTrueOrFalse();
-  
-  if (tmp_2 != 0) ; else 
-                         free((void *)data);
-  
   return;
 }
 

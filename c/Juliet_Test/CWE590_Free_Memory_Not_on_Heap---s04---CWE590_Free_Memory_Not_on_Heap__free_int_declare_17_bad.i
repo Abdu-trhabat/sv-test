@@ -674,8 +674,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int_declare_17_bad(void)
   ldv_3207: 
   ;
   
-  printIntLine(*data);
-  
   free((void *)data);
   
   return;

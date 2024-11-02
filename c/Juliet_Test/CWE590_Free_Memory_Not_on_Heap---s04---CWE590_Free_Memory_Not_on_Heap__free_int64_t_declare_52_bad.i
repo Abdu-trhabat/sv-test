@@ -920,8 +920,6 @@ int main(int argc, char **argv)
 void CWE590_Free_Memory_Not_on_Heap__free_int64_t_declare_52c_badSink(int64_t *data)
 {
   
-  printLongLongLine(*data);
-  
   free((void *)data);
   
   return;

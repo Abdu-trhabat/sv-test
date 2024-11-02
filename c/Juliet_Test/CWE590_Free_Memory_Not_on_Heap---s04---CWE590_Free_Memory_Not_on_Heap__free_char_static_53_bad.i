@@ -898,9 +898,7 @@ int main(int argc, char **argv)
 
 void CWE590_Free_Memory_Not_on_Heap__free_char_static_53d_badSink(char *data)
 {
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;

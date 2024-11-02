@@ -878,9 +878,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_static_12_bad(void)
     
     data = dataBuffer_0;
   }
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;

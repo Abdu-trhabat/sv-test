@@ -894,9 +894,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_static_66b_badSink(char **dataArr
 {
   
   char *data = *(dataArray + 2U);
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;

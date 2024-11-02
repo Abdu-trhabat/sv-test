@@ -840,8 +840,6 @@ static void badSink(void)
   
   int *data = CWE590_Free_Memory_Not_on_Heap__free_int_static_45_badData;
   
-  printIntLine(*data);
-  
   free((void *)data);
   
   return;

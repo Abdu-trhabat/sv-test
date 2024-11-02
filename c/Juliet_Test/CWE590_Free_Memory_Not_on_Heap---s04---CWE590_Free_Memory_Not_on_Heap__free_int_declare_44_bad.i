@@ -107,8 +107,6 @@ void printIntLine(int intNumber);
 static void badSink(int *data)
 {
   
-  printIntLine(*data);
-  
   free((void *)data);
   
   return;

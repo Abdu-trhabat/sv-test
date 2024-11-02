@@ -910,8 +910,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_long_static_12_bad(void)
     data = dataBuffer_0;
   }
   
-  printLongLine(*data);
-  
   free((void *)data);
   
   return;

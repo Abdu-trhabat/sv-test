@@ -878,8 +878,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_long_static_34_bad(void)
     
     long *data_0 = myUnion.unionSecond;
     
-    printLongLine(*data_0);
-    
     free((void *)data_0);
   }
   

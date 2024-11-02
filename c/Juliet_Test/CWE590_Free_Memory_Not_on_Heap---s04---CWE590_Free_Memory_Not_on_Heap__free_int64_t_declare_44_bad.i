@@ -107,8 +107,6 @@ void printLongLongLine(int64_t longLongIntNumber);
 static void badSink(int64_t *data)
 {
   
-  printLongLongLine(*data);
-  
   free((void *)data);
   
   return;

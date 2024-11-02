@@ -709,8 +709,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_struct_static_12_bad(void)
     data = dataBuffer_0;
   }
   
-  printStructLine((twoIntsStruct const *)data);
-  
   free((void *)data);
   
   return;

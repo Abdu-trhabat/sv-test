@@ -703,8 +703,6 @@ void free(void *);
 void CWE590_Free_Memory_Not_on_Heap__free_int64_t_declare_53d_badSink(int64_t *data)
 {
   
-  printLongLongLine(*data);
-  
   free((void *)data);
   
   return;

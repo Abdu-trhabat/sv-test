@@ -836,8 +836,6 @@ time_t time(time_t *);
 void CWE590_Free_Memory_Not_on_Heap__free_long_static_41_badSink(long *data)
 {
   
-  printLongLine(*data);
-  
   free((void *)data);
   
   return;

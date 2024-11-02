@@ -838,8 +838,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int_static_67b_badSink(CWE590_Free_Mem
   
   int *data = myStruct.structFirst;
   
-  printIntLine(*data);
-  
   free((void *)data);
   
   return;

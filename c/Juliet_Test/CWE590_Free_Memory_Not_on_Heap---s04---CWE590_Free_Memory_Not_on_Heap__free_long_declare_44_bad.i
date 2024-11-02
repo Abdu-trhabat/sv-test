@@ -836,8 +836,6 @@ time_t time(time_t *);
 static void badSink(long *data)
 {
   
-  printLongLine(*data);
-  
   free((void *)data);
   
   return;

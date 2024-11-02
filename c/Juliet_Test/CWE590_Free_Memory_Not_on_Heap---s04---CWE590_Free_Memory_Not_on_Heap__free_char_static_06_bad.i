@@ -838,9 +838,11 @@ void *memset(void *, int, size_t);
 
 static int const STATIC_CONST_FIVE = 5;
 
+char *data;
+
 void CWE590_Free_Memory_Not_on_Heap__free_char_static_06_bad(void)
 {
-  char *data = 0;
+  data = 0;
   
   data = (char *)0;
   
@@ -854,9 +856,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_static_06_bad(void)
     data = (char *)(& dataBuffer);
   }
   else ;
-  
-  printLine((char const *)data);
-  
+
   free((void *)data);
   
   return;

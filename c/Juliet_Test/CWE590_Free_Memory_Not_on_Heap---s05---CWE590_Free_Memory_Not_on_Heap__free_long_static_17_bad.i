@@ -674,8 +674,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_long_static_17_bad(void)
   ldv_3207: 
   ;
   
-  printLongLine(*data);
-  
   free((void *)data);
   
   return;

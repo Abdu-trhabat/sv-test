@@ -703,8 +703,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_struct_declare_66b_badSink(twoIntsStru
   
   twoIntsStruct *data = *(dataArray + 2U);
   
-  printStructLine((twoIntsStruct const *)data);
-  
   free((void *)data);
   
   return;

@@ -867,8 +867,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_int_static_14_bad(void)
   }
   else ;
   
-  printIntLine(*data);
-  
   free((void *)data);
   
   return;

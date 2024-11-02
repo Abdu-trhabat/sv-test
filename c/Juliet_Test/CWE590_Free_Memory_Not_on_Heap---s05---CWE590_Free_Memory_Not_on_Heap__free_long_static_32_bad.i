@@ -149,8 +149,6 @@ void CWE590_Free_Memory_Not_on_Heap__free_long_static_32_bad(void)
     
     long *data_1 = *dataPtr2;
     
-    printLongLine(*data_1);
-    
     free((void *)data_1);
   }
   
