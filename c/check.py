@@ -396,6 +396,7 @@ class TaskDefinitionFileChecks(FileChecks):
             else:
                 try:
                     InputFileChecks(
+                        definition_name=self.filename,
                         path=f_path,
                         name=f_path,
                         contained_in_category=self.contained_in_category,
@@ -627,18 +628,52 @@ class PropertiesChecks(Checks):
             if prop.startswith("coverage-") and verdict is not None:
                 self.error("has verdict for property " + prop)
 
+# Global; used files -> definition files; to check that files are only referenced at most once
+files_to_defs = dict()
 
 class InputFileChecks(FileChecks):
     """Checks about the contents of a single benchmark input file."""
 
     def __init__(
-        self, path, contained_in_category, properties_and_verdicts, *args, **kwargs
+        self, definition_name, path, contained_in_category, properties_and_verdicts, *args, **kwargs
     ):
         super(InputFileChecks, self).__init__(path, *args, **kwargs)
+        self.definition_name = definition_name
         self.path = path
         self.filename = os.path.basename(self.path)
         self.contained_in_category = contained_in_category
         self.prop_and_verdict = properties_and_verdicts
+
+    # Check that the the task is only referenced in one task definition and that the names of the task and definition match
+    def check_task_references(self):
+        if self.definition_name.endswith("witness-validation.yml"):
+            # Exclude witness validation for now
+            return
+        # First check the names
+        definition_name_wo_suffic = self.definition_name.removesuffix("yml")
+        if self.filename.endswith(".c"):
+            f_wo_suffix = self.filename.removesuffix("c")
+            if f_wo_suffix != definition_name_wo_suffic:
+                self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
+        elif self.filename.endswith(".i"):
+            f_wo_suffix = self.filename.removesuffix("i")
+            if f_wo_suffix != definition_name_wo_suffic:
+                self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
+        # elif f.endswith(".yml"):
+            # Ignore Witnesses for now as i don't know the format completely
+            # f_wo_suffix = self.filename.removesuffix("yml")
+            # if f_wo_suffix != definition_name_wo_suffic:
+            #     self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
+        else:
+            # Ignore Witnesses for now as i don't know the format completely
+            if not self.filename.endswith(".yml"):
+                self.error("Uses unknown suffix in task definition " + self.definition_name + ". Allowed are .yml for witnesses and .c and .i for programs.")
+        
+        # Task uniqueness check
+        if self.filename in files_to_defs:
+            self.error("Referenced from multiple task definitions: " + files_to_defs[self.filename] +" and " + self.definition_name)
+        else:
+            files_to_defs[self.filename] = self.definition_name
 
     def check_file_has_no_line_directive(self):
         if any(LINE_DIRECTIVE.match(line) for line in self.lines):
