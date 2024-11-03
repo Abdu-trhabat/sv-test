@@ -1004,7 +1004,7 @@ static char ** print_formatted(char *f, char **argv, signed int *conv_err)
 
 
       return_value___builtin_strchr$2=strchr("-+ #", (signed int)*f);
-      if(!(return_value___builtin_strchr$2 == ((char *)NULL)))
+      if(*f && !(return_value___builtin_strchr$2 == ((char *)NULL)))
       {
         f = f + 1l;
         direc_length = direc_length + 1u;
@@ -1091,7 +1091,7 @@ static char ** print_formatted(char *f, char **argv, signed int *conv_err)
       static const char format_chars[14l] = { (const char)100, (const char)105, (const char)111, (const char)117, (const char)120, (const char)88, (const char)102, (const char)101, (const char)69, (const char)103, (const char)71, (const char)99, (const char)115, (const char)0 };
       return_value___builtin_strchr$5=strchr(format_chars, (signed int)*f);
       p = return_value___builtin_strchr$5;
-      if(p == ((char *)NULL))
+      if(p == ((char *)NULL) || *f == '\0')
       {
         bb_error_msg("%s: invalid format", direc_start);
         return saved_argv - (signed long int)1;
