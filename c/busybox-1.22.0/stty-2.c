@@ -631,7 +631,7 @@ static void display_recoverable(struct termios *mode, signed int dummy)
 // file coreutils/stty.c line 977
 static void display_speed(struct termios *mode, signed int fancy)
 {
-  const char *fmt_str = "%lu %lu\n";
+  const char *fmt_str = "%lu %lu\n\0ispeed %lu baud; ospeed %lu baud;";
   unsigned long int ispeed;
   unsigned long int ospeed;
   unsigned int return_value_cfgetispeed$1;
@@ -653,7 +653,7 @@ static void display_speed(struct termios *mode, signed int fancy)
   __CPROVER_DUMP_L1:
     ;
     ispeed = ospeed;
-    fmt_str = "%lu\n";
+    fmt_str = "%lu\n\0\0\0\0\0speed %lu baud;";
   }
   if(!(fancy == 0))
     fmt_str = fmt_str + (signed long int)9;
