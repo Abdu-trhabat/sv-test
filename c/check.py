@@ -232,7 +232,7 @@ class DirectoryChecks(Checks):
     """Checks for a directory in the repository, e.g. about what files are in it.
     Also executes specific checks for each benchmark file in the directory."""
 
-    def __init__(self, path, all_patterns, all_unused_patterns, requires_makefile, requires_readme, *args, **kwargs):
+    def __init__(self, path, all_patterns, all_unused_patterns, requires_makefile, requires_readme, task_defs_info, *args, **kwargs):
         super(DirectoryChecks, self).__init__(known_problems=KNOWN_DIRECTORY_PROBLEMS, *args, **kwargs)
         self.path = path
         self.content = os.listdir(path)
@@ -240,6 +240,7 @@ class DirectoryChecks(Checks):
         self.requires_makefile = requires_makefile
         self.requires_readme = requires_readme
         self.all_unused_patterns = all_unused_patterns
+        self.task_defs_info = task_defs_info
 
     def run(self):
         ok = True
@@ -256,7 +257,8 @@ class DirectoryChecks(Checks):
                         TaskDefinitionFileChecks(
                             path=os.path.join(self.path, entry),
                             name=dir_and_name,
-                            contained_in_category=self.all_patterns.match(dir_and_name)
+                            contained_in_category=self.all_patterns.match(dir_and_name),
+                            task_defs_info=self.task_defs_info
                             ).run()
                     except CheckFailed:
                         ok = False
@@ -362,12 +364,13 @@ def _is_witness(yaml_file_content):
 class TaskDefinitionFileChecks(FileChecks):
     """Checks about the content of a single task definition .yml file."""
 
-    def __init__(self, path, contained_in_category, *args, **kwargs):
+    def __init__(self, path, contained_in_category, task_defs_info, *args, **kwargs):
         super(TaskDefinitionFileChecks, self).__init__(path, *args, **kwargs)
         self.path = path
         self.directory = os.path.dirname(path)
         self.filename = os.path.basename(self.name)
         self.contained_in_category = contained_in_category
+        self.task_defs_info = task_defs_info
         if yaml:
             with open(self.path) as f:
                 self.content = yaml.safe_load(f)
@@ -388,6 +391,7 @@ class TaskDefinitionFileChecks(FileChecks):
 
         program_files, witness_files = self.__partition_into_program_and_witness_files()
         properties_and_verdicts = self._get_properties()
+        options = self._get_options()
         ok = True
         for f in program_files:
             f_path = os.path.join(self.directory, f)
@@ -401,6 +405,8 @@ class TaskDefinitionFileChecks(FileChecks):
                         name=f_path,
                         contained_in_category=self.contained_in_category,
                         properties_and_verdicts=properties_and_verdicts,
+                        task_defs_info=self.task_defs_info,
+                        options=options,
                     ).run()
                 except CheckFailed:
                     ok = False
@@ -528,6 +534,26 @@ class TaskDefinitionFileChecks(FileChecks):
                 prop = prop_def["subproperty"]
             prop_and_verdict.append((prop, verdict))
         return prop_and_verdict
+    
+    def _get_options(self) -> set[Tuple[str, str]]:
+        """Return set of options present in the task definition as tuples."""
+        if not "options" in self.content or not self.content["options"]:
+            self.error("No options specified")
+            # Return empty set instead of None so that calling check stops gracefully
+            return set()
+
+        options = set()
+        options_content = self.content['options']
+        if type(options_content) is not dict:
+            self.error("invalid options definition")
+            return set()
+        if 'language' not in options_content:
+            self.error("invalid options definition: missing language")
+
+        for option, value in self.content['options'].items():
+            options.add((option,value))
+
+        return options
 
 
     @classmethod
@@ -628,14 +654,11 @@ class PropertiesChecks(Checks):
             if prop.startswith("coverage-") and verdict is not None:
                 self.error("has verdict for property " + prop)
 
-# Global; used files -> definition files; to check that files are only referenced at most once
-files_to_defs = dict()
-
 class InputFileChecks(FileChecks):
     """Checks about the contents of a single benchmark input file."""
 
     def __init__(
-        self, definition_name, path, contained_in_category, properties_and_verdicts, *args, **kwargs
+        self, definition_name, path, contained_in_category, properties_and_verdicts, task_defs_info, options, *args, **kwargs
     ):
         super(InputFileChecks, self).__init__(path, *args, **kwargs)
         self.definition_name = definition_name
@@ -643,6 +666,8 @@ class InputFileChecks(FileChecks):
         self.filename = os.path.basename(self.path)
         self.contained_in_category = contained_in_category
         self.prop_and_verdict = properties_and_verdicts
+        self.task_defs_info = task_defs_info
+        self.options = options
 
     # Check that the the task is only referenced in one task definition and that the names of the task and definition match
     def check_task_references(self):
@@ -669,11 +694,30 @@ class InputFileChecks(FileChecks):
             if not self.filename.endswith(".yml"):
                 self.error("Uses unknown suffix in task definition " + self.definition_name + ". Allowed are .yml for witnesses and .c and .i for programs.")
         
-        # Task uniqueness check
-        if self.filename in files_to_defs:
-            self.error("Referenced from multiple task definitions: " + files_to_defs[self.filename] +" and " + self.definition_name)
+    # Task uniqueness check. Also adds task to task info (w options) relation to info.
+    def check_is_task_unique_for_task_definition(self):
+        tasks_to_task_defs = self.task_defs_info.get_task_and_task_def_info()
+        # Task uniqueness check and update of seen tasks to task defs
+        if self.filename in tasks_to_task_defs:
+            known_task_defs = tasks_to_task_defs[self.filename]
+            if self.definition_name in known_task_defs:
+                if self.options == known_task_defs[self.definition_name]:
+                    # Known task def, do nothing
+                    return
+                else:
+                    self.error("Multiple task definitions with the same name: " + self.definition_name + " but conflicting options specified.")
+            else:
+                # Check if there are other task definitions with the same options, if yes, error
+                for other_task_def, other_options in known_task_defs.items():
+                    if other_options == self.options:
+                        self.error("Task referenced from multiple task definitions with identical options: " + self.definition_name +" and " + other_task_def)
+                # Add the new info
+                new_info = {self.definition_name: self.options}
+                known_task_defs.update(new_info)
+                tasks_to_task_defs[self.filename] = known_task_defs
         else:
-            files_to_defs[self.filename] = self.definition_name
+            # No known task defs for task, add
+            tasks_to_task_defs[self.filename] = {self.definition_name: self.options}
 
     def check_file_has_no_line_directive(self):
         if any(LINE_DIRECTIVE.match(line) for line in self.lines):
@@ -810,9 +854,9 @@ def _check_known_errors_consistent(main_dir):
         assert os.path.exists(path), "Whitelisted file doesn't exist: %s" % path
 
 
-def _run_directory_checks(directory, all_used_patterns, all_unused_patterns, requires_makefile, requires_readme, entry):
+def _run_directory_checks(directory, all_used_patterns, all_unused_patterns, requires_makefile, requires_readme, entry, task_defs_info):
     try:
-        DirectoryChecks(directory, all_used_patterns, all_unused_patterns, requires_makefile, requires_readme, entry).run()
+        DirectoryChecks(directory, all_used_patterns, all_unused_patterns, requires_makefile, requires_readme, task_defs_info, entry).run()
     except CheckFailed:
         return False, set()
     else:
@@ -829,15 +873,23 @@ def _run_set_file_checks(set_file, entry):
         return True, check.matched_files
 
 
-def _check_benchmark_entry(entry, requires_makefile, requires_readme, main_directory, all_used_patterns, all_unused_patterns):
+def _check_benchmark_entry(entry, requires_makefile, requires_readme, main_directory, all_used_patterns, all_unused_patterns, task_defs_info):
     path = os.path.join(main_directory, entry)
     if not (entry[0] == "." or entry == "bin" or entry.endswith("-todo")):
         if os.path.isdir(path) and not entry in IGNORED_DIRECTORIES:
-            return _run_directory_checks(path, all_used_patterns, all_unused_patterns, requires_makefile, requires_readme, entry)
+            return _run_directory_checks(path, all_used_patterns, all_unused_patterns, requires_makefile, requires_readme, entry, task_defs_info)
         elif entry.endswith(".set"):
             return _run_set_file_checks(path, entry)
     logging.debug("%s: skipped", entry)
     return True, set()
+
+class TasksInTaskDefnitionInfo:
+    def __init__(self):
+        # tasks_to_task_defs is a dict of task_name -> dict of task_def_name -> options defined in task def
+        self.tasks_to_task_defs = dict()
+
+    def get_task_and_task_def_info(self):
+        return self.tasks_to_task_defs
 
 
 def main(num_processes):
@@ -862,9 +914,11 @@ def main(num_processes):
         for entry in entries if entry.endswith(".set") and entry not in UNUSED_SETS
         for pattern in read_set_file(os.path.join(main_directory, entry)))
     all_used_patterns = re.compile("^(" + "|".join(all_used_patterns_re) + ")$")
+    task_defs_info = TasksInTaskDefnitionInfo()
 
     check_func = functools.partial(
-        _check_benchmark_entry, main_directory=main_directory, all_used_patterns=all_used_patterns, all_unused_patterns=all_unused_patterns
+        _check_benchmark_entry, main_directory=main_directory, all_used_patterns=all_used_patterns, all_unused_patterns=all_unused_patterns, task_defs_info=task_defs_info
+
     )
 
     entries_to_check = [(entry, True, True) for entry in entries] + [(entry, False, False) for entry in witness_dirs]
