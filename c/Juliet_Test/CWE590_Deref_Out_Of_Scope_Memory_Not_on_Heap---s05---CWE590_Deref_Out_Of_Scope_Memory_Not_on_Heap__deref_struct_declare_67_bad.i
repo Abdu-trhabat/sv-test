@@ -85,11 +85,11 @@ struct _stdThreadLock {
    pthread_mutex_t mutex ;
 };
 
-struct _CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67_structType {
+struct _CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_67_structType {
    twoIntsStruct *structFirst ;
 };
 
-typedef struct _CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67_structType CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67_structType;
+typedef struct _CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_67_structType CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_67_structType;
 
 typedef long __time_t;
 
@@ -833,7 +833,7 @@ void stdThreadLockDestroy(stdThreadLock lock)
 }
 
 
-void CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67b_badSink(CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67_structType myStruct)
+void CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_67b_badSink(CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_67_structType myStruct)
 {
   
   twoIntsStruct *data = myStruct.structFirst;
@@ -852,10 +852,10 @@ void srand(unsigned int);
 time_t time(time_t *);
 
 
-void CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67_bad(void)
+void CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_67_bad(void)
 {
   twoIntsStruct *data;
-  CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67_structType myStruct;
+  CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_67_structType myStruct;
   
   data = (twoIntsStruct *)0;
   {
@@ -889,7 +889,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67_bad(void)
   
   myStruct.structFirst = data;
   
-  CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67b_badSink(myStruct);
+  CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_67b_badSink(myStruct);
   
   return;
 }
@@ -907,7 +907,7 @@ int main(int argc, char **argv)
     
     printLine("Calling bad()...");
     
-    CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67_bad();
+    CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_67_bad();
     
     printLine("Finished bad()");
     
@@ -1261,7 +1261,7 @@ void *ldv_realloc(void *ptr, size_t size)
 
 void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "CWE590_Free_Memory_Not_on_Heap---s05---CWE590_Free_Memory_Not_on_Heap__free_struct_declare_67_bad.i", 1256, "reach_error"); }
+void reach_error() { __assert_fail("0", "CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap---s05---CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_67_bad.i", 1256, "reach_error"); }
 
 
 void ldv_error(void);

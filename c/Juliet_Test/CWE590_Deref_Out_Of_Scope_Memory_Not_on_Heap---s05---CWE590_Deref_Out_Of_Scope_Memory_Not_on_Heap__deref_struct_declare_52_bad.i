@@ -95,7 +95,7 @@ void free(void *);
 void printStructLine(twoIntsStruct const *structTwoIntsStruct);
 
 
-void CWE590_Free_Memory_Not_on_Heap__free_struct_declare_52c_badSink(twoIntsStruct *data)
+void CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_52c_badSink(twoIntsStruct *data)
 {
   
   printStructLine((twoIntsStruct const *)data);
@@ -115,10 +115,10 @@ time_t time(time_t *);
 void printLine(char const *line);
 
 
-void CWE590_Free_Memory_Not_on_Heap__free_struct_declare_52b_badSink(twoIntsStruct *data);
+void CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_52b_badSink(twoIntsStruct *data);
 
 
-void CWE590_Free_Memory_Not_on_Heap__free_struct_declare_52_bad(void)
+void CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_52_bad(void)
 {
   twoIntsStruct *data;
   
@@ -152,7 +152,7 @@ void CWE590_Free_Memory_Not_on_Heap__free_struct_declare_52_bad(void)
     data = (twoIntsStruct *)(& dataBuffer);
   }
   
-  CWE590_Free_Memory_Not_on_Heap__free_struct_declare_52b_badSink(data);
+  CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_52b_badSink(data);
   
   return;
 }
@@ -170,7 +170,7 @@ int main(int argc, char **argv)
     
     printLine("Calling bad()...");
     
-    CWE590_Free_Memory_Not_on_Heap__free_struct_declare_52_bad();
+    CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_52_bad();
     
     printLine("Finished bad()");
     
@@ -185,10 +185,10 @@ int main(int argc, char **argv)
 }
 
 
-void CWE590_Free_Memory_Not_on_Heap__free_struct_declare_52b_badSink(twoIntsStruct *data)
+void CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_52b_badSink(twoIntsStruct *data)
 {
   
-  CWE590_Free_Memory_Not_on_Heap__free_struct_declare_52c_badSink(data);
+  CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_52c_badSink(data);
   
   return;
 }
@@ -1262,7 +1262,7 @@ void *ldv_realloc(void *ptr, size_t size)
 
 void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "CWE590_Free_Memory_Not_on_Heap---s05---CWE590_Free_Memory_Not_on_Heap__free_struct_declare_52_bad.i", 1257, "reach_error"); }
+void reach_error() { __assert_fail("0", "CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap---s05---CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_declare_52_bad.i", 1257, "reach_error"); }
 
 
 void ldv_error(void);

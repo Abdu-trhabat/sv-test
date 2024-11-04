@@ -95,13 +95,13 @@ void free(void *);
 void printStructLine(twoIntsStruct const *structTwoIntsStruct);
 
 
-twoIntsStruct *CWE590_Free_Memory_Not_on_Heap__free_struct_static_68_badData;
+twoIntsStruct *CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_static_68_badData;
 
 
-void CWE590_Free_Memory_Not_on_Heap__free_struct_static_68b_badSink(void)
+void CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_static_68b_badSink(void)
 {
   
-  twoIntsStruct *data = CWE590_Free_Memory_Not_on_Heap__free_struct_static_68_badData;
+  twoIntsStruct *data = CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_static_68_badData;
   
   printStructLine((twoIntsStruct const *)data);
   
@@ -120,11 +120,11 @@ time_t time(time_t *);
 void printLine(char const *line);
 
 
-twoIntsStruct *CWE590_Free_Memory_Not_on_Heap__free_struct_static_68_badData;
+twoIntsStruct *CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_static_68_badData;
 
-twoIntsStruct *CWE590_Free_Memory_Not_on_Heap__free_struct_static_68_goodG2BData;
+twoIntsStruct *CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_static_68_goodG2BData;
 
-void CWE590_Free_Memory_Not_on_Heap__free_struct_static_68_bad(void)
+void CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_static_68_bad(void)
 {
   twoIntsStruct *data;
   
@@ -158,9 +158,9 @@ void CWE590_Free_Memory_Not_on_Heap__free_struct_static_68_bad(void)
     data = (twoIntsStruct *)(& dataBuffer);
   }
   
-  CWE590_Free_Memory_Not_on_Heap__free_struct_static_68_badData = data;
+  CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_static_68_badData = data;
   
-  CWE590_Free_Memory_Not_on_Heap__free_struct_static_68b_badSink();
+  CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_static_68b_badSink();
   
   return;
 }
@@ -178,7 +178,7 @@ int main(int argc, char **argv)
     
     printLine("Calling bad()...");
     
-    CWE590_Free_Memory_Not_on_Heap__free_struct_static_68_bad();
+    CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_static_68_bad();
     
     printLine("Finished bad()");
     
@@ -1261,7 +1261,7 @@ void *ldv_realloc(void *ptr, size_t size)
 
 void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "CWE590_Free_Memory_Not_on_Heap---s05---CWE590_Free_Memory_Not_on_Heap__free_struct_static_68_bad.i", 1256, "reach_error"); }
+void reach_error() { __assert_fail("0", "CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap---s05---CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_struct_static_68_bad.i", 1256, "reach_error"); }
 
 
 void ldv_error(void);

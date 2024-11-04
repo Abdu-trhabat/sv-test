@@ -89,12 +89,12 @@ typedef long __time_t;
 
 typedef __time_t time_t;
 
-union __anonunion_CWE590_Free_Memory_Not_on_Heap__free_long_static_34_unionType_68 {
+union __anonunion_CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_long_static_34_unionType_68 {
    long *unionFirst ;
    long *unionSecond ;
 };
 
-typedef union __anonunion_CWE590_Free_Memory_Not_on_Heap__free_long_static_34_unionType_68 CWE590_Free_Memory_Not_on_Heap__free_long_static_34_unionType;
+typedef union __anonunion_CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_long_static_34_unionType_68 CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_long_static_34_unionType;
 
 int printf(char const * , ...);
 
@@ -840,10 +840,10 @@ void srand(unsigned int);
 time_t time(time_t *);
 
 
-void CWE590_Free_Memory_Not_on_Heap__free_long_static_34_bad(void)
+void CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_long_static_34_bad(void)
 {
   long *data;
-  CWE590_Free_Memory_Not_on_Heap__free_long_static_34_unionType myUnion;
+  CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_long_static_34_unionType myUnion;
   
   data = (long *)0L;
   {
@@ -899,7 +899,7 @@ int main(int argc, char **argv)
     
     printLine("Calling bad()...");
     
-    CWE590_Free_Memory_Not_on_Heap__free_long_static_34_bad();
+    CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_long_static_34_bad();
     
     printLine("Finished bad()");
     
@@ -1253,7 +1253,7 @@ void *ldv_realloc(void *ptr, size_t size)
 
 void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "CWE590_Free_Memory_Not_on_Heap---s05---CWE590_Free_Memory_Not_on_Heap__free_long_static_34_bad.i", 1248, "reach_error"); }
+void reach_error() { __assert_fail("0", "CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap---s05---CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap__deref_long_static_34_bad.i", 1248, "reach_error"); }
 
 
 void ldv_error(void);
