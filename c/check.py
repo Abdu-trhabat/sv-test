@@ -21,7 +21,7 @@ import shutil
 import subprocess
 import sys
 
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 try:
     import yaml
@@ -374,7 +374,7 @@ class TaskDefinitionFileChecks(FileChecks):
         if yaml:
             with open(self.path) as f:
                 self.content = yaml.safe_load(f)
-        self.options: dict[str, str] = self._get_options()
+        self.options: Optional[dict[str, str]] = self._get_options()
 
     def check_format_version(self):
         if _is_witness(self.content):
@@ -535,14 +535,14 @@ class TaskDefinitionFileChecks(FileChecks):
             prop_and_verdict.append((prop, verdict))
         return prop_and_verdict
     
-    def _get_options(self) -> dict[str, str]:
+    def _get_options(self) -> Optional[dict[str, str]]:
         """Return dict of options present in the task definition."""
         if not self.content or _is_witness(self.content):
-            return dict()
+            return None
         if not "options" in self.content or not self.content["options"]:
             self.error("No options specified")
-            # Return empty set instead of None so that calling check stops gracefully
-            return dict()
+            # Return None in an Optional so that calling check stops gracefully
+            return None
         return self.content['options']
 
 
@@ -648,7 +648,7 @@ class InputFileChecks(FileChecks):
     """Checks about the contents of a single benchmark input file."""
 
     def __init__(
-        self, definition_name, path, contained_in_category, properties_and_verdicts, task_defs_info, options: dict[str, str], *args, **kwargs
+        self, definition_name, path, contained_in_category, properties_and_verdicts, task_defs_info, options: Optional[dict[str, str]], *args, **kwargs
     ):
         super(InputFileChecks, self).__init__(path, *args, **kwargs)
         self.definition_name = definition_name
@@ -661,7 +661,7 @@ class InputFileChecks(FileChecks):
 
     # Check that the the task is only referenced in one task definition and that the names of the task and definition match
     def check_task_references(self):
-        if 'witness' in self.options:
+        if self.options is None or 'witness' in self.options:
             # Exclude tasks in witness validation for now
             return
         # First check the names
