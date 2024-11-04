@@ -374,6 +374,7 @@ class TaskDefinitionFileChecks(FileChecks):
         if yaml:
             with open(self.path) as f:
                 self.content = yaml.safe_load(f)
+        self.options: dict[str, str] = self._get_options()
 
     def check_format_version(self):
         if _is_witness(self.content):
@@ -391,7 +392,6 @@ class TaskDefinitionFileChecks(FileChecks):
 
         program_files, witness_files = self.__partition_into_program_and_witness_files()
         properties_and_verdicts = self._get_properties()
-        options = self._get_options()
         ok = True
         for f in program_files:
             f_path = os.path.join(self.directory, f)
@@ -406,7 +406,7 @@ class TaskDefinitionFileChecks(FileChecks):
                         contained_in_category=self.contained_in_category,
                         properties_and_verdicts=properties_and_verdicts,
                         task_defs_info=self.task_defs_info,
-                        options=options,
+                        options=self.options,
                     ).run()
                 except CheckFailed:
                     ok = False
@@ -535,25 +535,15 @@ class TaskDefinitionFileChecks(FileChecks):
             prop_and_verdict.append((prop, verdict))
         return prop_and_verdict
     
-    def _get_options(self) -> set[Tuple[str, str]]:
-        """Return set of options present in the task definition as tuples."""
+    def _get_options(self) -> dict[str, str]:
+        """Return dict of options present in the task definition."""
+        if not self.content or _is_witness(self.content):
+            return dict()
         if not "options" in self.content or not self.content["options"]:
             self.error("No options specified")
             # Return empty set instead of None so that calling check stops gracefully
-            return set()
-
-        options = set()
-        options_content = self.content['options']
-        if type(options_content) is not dict:
-            self.error("invalid options definition")
-            return set()
-        if 'language' not in options_content:
-            self.error("invalid options definition: missing language")
-
-        for option, value in self.content['options'].items():
-            options.add((option,value))
-
-        return options
+            return dict()
+        return self.content['options']
 
 
     @classmethod
@@ -658,7 +648,7 @@ class InputFileChecks(FileChecks):
     """Checks about the contents of a single benchmark input file."""
 
     def __init__(
-        self, definition_name, path, contained_in_category, properties_and_verdicts, task_defs_info, options, *args, **kwargs
+        self, definition_name, path, contained_in_category, properties_and_verdicts, task_defs_info, options: dict[str, str], *args, **kwargs
     ):
         super(InputFileChecks, self).__init__(path, *args, **kwargs)
         self.definition_name = definition_name
@@ -685,7 +675,7 @@ class InputFileChecks(FileChecks):
             if f_wo_suffix != definition_name_wo_suffic:
                 self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
         else:
-            self.error("Uses unknown suffix in task definition " + self.definition_name + ". Allowed are .yml for witnesses and .c and .i for programs.")
+            self.error("Uses unknown suffix of task in task definition " + self.definition_name + ". Allowed are .yml for witnesses and .c and .i for programs.")
         
     # Task uniqueness check. Also adds task to task info (w options) relation to info.
     def check_is_task_unique_for_task_definition(self):
