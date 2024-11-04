@@ -671,8 +671,8 @@ class InputFileChecks(FileChecks):
 
     # Check that the the task is only referenced in one task definition and that the names of the task and definition match
     def check_task_references(self):
-        if self.definition_name.endswith("witness-validation.yml"):
-            # Exclude witness validation for now
+        if 'witness' in self.options:
+            # Exclude tasks in witness validation for now
             return
         # First check the names
         definition_name_wo_suffic = self.definition_name.removesuffix("yml")
@@ -684,15 +684,8 @@ class InputFileChecks(FileChecks):
             f_wo_suffix = self.filename.removesuffix("i")
             if f_wo_suffix != definition_name_wo_suffic:
                 self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
-        # elif f.endswith(".yml"):
-            # Ignore Witnesses for now as i don't know the format completely
-            # f_wo_suffix = self.filename.removesuffix("yml")
-            # if f_wo_suffix != definition_name_wo_suffic:
-            #     self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
         else:
-            # Ignore Witnesses for now as i don't know the format completely
-            if not self.filename.endswith(".yml"):
-                self.error("Uses unknown suffix in task definition " + self.definition_name + ". Allowed are .yml for witnesses and .c and .i for programs.")
+            self.error("Uses unknown suffix in task definition " + self.definition_name + ". Allowed are .yml for witnesses and .c and .i for programs.")
         
     # Task uniqueness check. Also adds task to task info (w options) relation to info.
     def check_is_task_unique_for_task_definition(self):
