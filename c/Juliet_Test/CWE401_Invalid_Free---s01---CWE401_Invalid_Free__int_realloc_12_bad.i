@@ -639,7 +639,7 @@ static void ldv_exit_2(int ldv_func_arg1);
 time_t time(time_t *);
 
 
-void CWE401_Memory_Leak__int_realloc_12_bad(void)
+void CWE401_Invalid_Free__int_realloc_12_bad(void)
 {
   int *data = 0;
   int tmp_1;
@@ -687,7 +687,7 @@ int main(int argc, char **argv)
     
     printLine("Calling bad()...");
     
-    CWE401_Memory_Leak__int_realloc_12_bad();
+    CWE401_Invalid_Free__int_realloc_12_bad();
     
     printLine("Finished bad()");
     
@@ -1262,7 +1262,7 @@ void *ldv_realloc(void *ptr, size_t size)
 
 void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "CWE401_Memory_Leak---s01---CWE401_Memory_Leak__int_realloc_12_bad.i", 1260, "reach_error"); }
+void reach_error() { __assert_fail("0", "CWE401_Invalid_Free---s01---CWE401_Invalid_Free__int_realloc_12_bad.i", 1260, "reach_error"); }
 
 
 void ldv_error(void);
