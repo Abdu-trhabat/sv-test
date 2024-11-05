@@ -43,6 +43,7 @@ EXPECTED_FILE_PATTERN = re.compile(
 CONFIG_KEYS = set(["Architecture", "Description"])
 PROPERTIES = set(["def-behavior", "no-overflow", "no-data-race", "termination", "unreach-call", "valid-deref", "valid-free", "valid-memcleanup", "valid-memsafety", "valid-memtrack",
     "coverage-error-call", "coverage-branches", "coverage-conditions", "coverage-statements", "unreach-call-a", "unreach-call-b"])
+ALLOWED_INPUT_FILE_ENDINGS = ['.c', '.i', '.yml']
 # multiple properties for eca-rers2018-files
 for i in range(100):
     PROPERTIES.add("unreach-call-%d" % i)
@@ -660,22 +661,22 @@ class InputFileChecks(FileChecks):
         self.options = options
 
     # Check that the the task is only referenced in one task definition and that the names of the task and definition match
+    # This is not a hard rule currently, but spots MANY mistakes!
     def check_task_references(self):
         if self.options is None or 'witness' in self.options:
             # Exclude tasks in witness validation for now
             return
         # First check the names
-        definition_name_wo_suffic = self.definition_name.removesuffix("yml")
-        if self.filename.endswith(".c"):
-            f_wo_suffix = self.filename.removesuffix("c")
-            if f_wo_suffix != definition_name_wo_suffic:
-                self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
-        elif self.filename.endswith(".i"):
-            f_wo_suffix = self.filename.removesuffix("i")
-            if f_wo_suffix != definition_name_wo_suffic:
-                self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
-        else:
-            self.error("Uses unknown suffix of task in task definition " + self.definition_name + ". Allowed are .yml for witnesses and .c and .i for programs.")
+        definition_name_wo_suffic = self.definition_name.removesuffix(".yml")
+        for suffix in ALLOWED_INPUT_FILE_ENDINGS:
+            if self.filename.endswith(suffix):
+                f_wo_suffix = self.filename.removesuffix(suffix)
+                if f_wo_suffix != definition_name_wo_suffic:
+                    self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
+                return
+        
+        # Keep up to date with ALLOWED_INPUT_FILE_ENDINGS
+        self.error("Uses unknown suffix of task in task definition " + self.definition_name + ". Allowed are .yml for witnesses, as well as .c and .i for programs.")
         
     # Task uniqueness check. Also adds task to task info (w options) relation to info.
     def check_is_task_unique_for_task_definition(self):
