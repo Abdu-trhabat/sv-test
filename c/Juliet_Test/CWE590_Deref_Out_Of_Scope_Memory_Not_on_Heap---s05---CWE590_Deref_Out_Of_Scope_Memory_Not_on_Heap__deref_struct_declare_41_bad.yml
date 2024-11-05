@@ -5,6 +5,7 @@ input_files: 'CWE590_Deref_Out_Of_Scope_Memory_Not_on_Heap---s05---CWE590_Deref_
 properties:
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: false
+    subproperty: valid-deref
   - property_file: ../properties/coverage-branches.prp
 
 options:
