@@ -10132,3 +10132,9 @@ void aws_hash_table_get_entry_count_harness() {
     check_hash_table_unchanged(&table, &stored_byte);
 }
 int main() { aws_hash_table_get_entry_count_harness(); return 0; }
+
+int aws_array_list_ensure_capacity(struct aws_array_list *restrict list, size_t index) {
+    // This is a default implementation to ensure that the function is never called.
+    reach_error();
+    return __VERIFIER_nondet_int();
+}

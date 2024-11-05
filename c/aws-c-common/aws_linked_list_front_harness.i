@@ -7393,3 +7393,9 @@ void aws_linked_list_front_harness() {
     __VERIFIER_assert(front == old_first);
 }
 int main() { aws_linked_list_front_harness(); return 0; }
+
+int aws_array_list_ensure_capacity(struct aws_array_list *restrict list, size_t index) {
+    // This is a default implementation to ensure that the function is never called.
+    reach_error();
+    return __VERIFIER_nondet_int();
+}
