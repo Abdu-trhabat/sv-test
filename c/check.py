@@ -867,7 +867,7 @@ def _check_benchmark_entry(entry, requires_makefile, requires_readme, main_direc
     logging.debug("%s: skipped", entry)
     return True, set()
 
-class TasksInTaskDefnitionInfo:
+class TasksInTaskDefinitionInfo:
     def __init__(self):
         # tasks_to_task_defs is a dict of task_name -> dict of task_def_name -> options defined in task def
         self.tasks_to_task_defs = dict()
@@ -898,7 +898,7 @@ def main(num_processes):
         for entry in entries if entry.endswith(".set") and entry not in UNUSED_SETS
         for pattern in read_set_file(os.path.join(main_directory, entry)))
     all_used_patterns = re.compile("^(" + "|".join(all_used_patterns_re) + ")$")
-    task_defs_info = TasksInTaskDefnitionInfo()
+    task_defs_info = TasksInTaskDefinitionInfo()
 
     check_func = functools.partial(
         _check_benchmark_entry, main_directory=main_directory, all_used_patterns=all_used_patterns, all_unused_patterns=all_unused_patterns, task_defs_info=task_defs_info
