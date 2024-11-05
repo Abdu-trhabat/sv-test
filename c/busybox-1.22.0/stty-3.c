@@ -631,7 +631,8 @@ static void display_recoverable(struct termios *mode, signed int dummy)
 // file coreutils/stty.c line 977
 static void display_speed(struct termios *mode, signed int fancy)
 {
-  const char *fmt_str = "%lu %lu\n\0ispeed %lu baud; ospeed %lu baud;";
+  // String literal is missing content after \0 to account for fancy below: https://github.com/mirror/busybox/blob/371fe9f71d445d18be28c82a2a6d82115c8af19d/coreutils/stty.c#L1000-L1015.
+  const char *fmt_str = "%lu %lu\n";
   unsigned long int ispeed;
   unsigned long int ospeed;
   unsigned int return_value_cfgetispeed$1;
@@ -653,7 +654,8 @@ static void display_speed(struct termios *mode, signed int fancy)
   __CPROVER_DUMP_L1:
     ;
     ispeed = ospeed;
-    fmt_str = "%lu\n\0\0\0\0\0speed %lu baud;";
+    // String literal is missing content after \0 to account for fancy below: https://github.com/mirror/busybox/blob/371fe9f71d445d18be28c82a2a6d82115c8af19d/coreutils/stty.c#L1000-L1015.
+    fmt_str = "%lu\n";
   }
   if(!(fancy == 0))
     fmt_str = fmt_str + (signed long int)9;
