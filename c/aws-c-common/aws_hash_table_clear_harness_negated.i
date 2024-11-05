@@ -10118,3 +10118,9 @@ void aws_hash_table_clear_harness() {
     assert_all_zeroes(&impl->slots[0], impl->size * sizeof(impl->slots[0]));
 }
 int main() { aws_hash_table_clear_harness(); return 0; }
+
+int aws_array_list_ensure_capacity(struct aws_array_list *restrict list, size_t index) {
+    // This is a default implementation to ensure that the function is never called.
+    reach_error();
+    return __VERIFIER_nondet_int();
+}

@@ -1931,8 +1931,7 @@ const char *aws_error_debug_str(int err);
 
 
 
-void aws_raise_error_private(int err) {
-}
+void aws_raise_error_private(int err);
 
 
 
@@ -7345,6 +7344,22 @@ uint64_t uninterpreted_hasher(const void *a) {
 
 _Bool 
     uninterpreted_predicate_fn(uint8_t value);
+static __thread int tl_last_error = 0;
+
+
+
+
+
+void aws_raise_error_private(int err) {
+    tl_last_error = err;
+}
+
+
+
+
+int aws_last_error(void) {
+    return tl_last_error;
+}
 enum aws_log_level {
     AWS_LL_NONE = 0,
     AWS_LL_FATAL = 1,
@@ -10200,3 +10215,9 @@ void aws_hash_callback_string_destroy_harness() {
     aws_hash_callback_string_destroy(str);
 }
 int main() { aws_hash_callback_string_destroy_harness(); return 0; }
+
+int aws_array_list_ensure_capacity(struct aws_array_list *restrict list, size_t index) {
+    // This is a default implementation to ensure that the function is never called.
+    reach_error();
+    return __VERIFIER_nondet_int();
+}

@@ -7170,3 +7170,20 @@ void aws_mul_size_checked_harness() {
     }
 }
 int main() { aws_mul_size_checked_harness(); return 0; }
+
+void *aws_mem_acquire(struct aws_allocator *allocator, size_t size) {
+    // This is a default implementation to ensure that the function is never called.
+    reach_error();
+    return (void*)__VERIFIER_nondet_ulong();
+}
+
+void aws_mem_release(struct aws_allocator *allocator, void *ptr) {
+    // This is a default implementation to ensure that the function is never called.
+    reach_error();
+}
+
+int aws_array_list_ensure_capacity(struct aws_array_list *restrict list, size_t index) {
+    // This is a default implementation to ensure that the function is never called.
+    reach_error();
+    return __VERIFIER_nondet_int();
+}

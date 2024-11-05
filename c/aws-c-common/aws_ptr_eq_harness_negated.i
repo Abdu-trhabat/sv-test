@@ -2647,18 +2647,37 @@ static inline
 static inline int aws_round_up_to_power_of_two(size_t n, size_t *result);
 
 
+int aws_raise_error(int err) {
 
 
 
 
 
 
+    aws_raise_error_private(err);
+
+    return (-1);
+}
+
+
+static inline int aws_mul_u64_checked(uint64_t a, uint64_t b, uint64_t *r) {
+    unsigned long c;
+    if (__builtin_umull_overflow(a, b, &c))
+        return aws_raise_error(AWS_ERROR_OVERFLOW_DETECTED);
+    *r = a * b;
+    return (0);
+}
+
+
+int aws_mul_size_checked(size_t a, size_t b, size_t *r) {
 
 
 
+    return aws_mul_u64_checked(a, b, (uint64_t *)r);
 
 
 
+}
 
 static inline uint64_t aws_mul_u64_saturating(uint64_t a, uint64_t b) {
     if (__CPROVER_overflow_mult(a, b))
@@ -8607,7 +8626,22 @@ struct aws_string *ensure_string_is_allocated(size_t size);
 
 const char *ensure_c_str_is_allocated(size_t max_size);
 
+static __thread int tl_last_error = 0;
 
+
+
+
+
+void aws_raise_error_private(int err) {
+    tl_last_error = err;
+}
+
+
+
+
+int aws_last_error(void) {
+    return tl_last_error;
+}
 
 void aws_ptr_eq_harness() {
     void *p1;
@@ -8618,3 +8652,20 @@ void aws_ptr_eq_harness() {
     __VERIFIER_assert(!(rval == (p1 == p2)));
 }
 int main() { aws_ptr_eq_harness(); return 0; }
+
+void *aws_mem_acquire(struct aws_allocator *allocator, size_t size) {
+    // This is a default implementation to ensure that the function is never called.
+    reach_error();
+    return (void*)__VERIFIER_nondet_ulong();
+}
+
+void aws_mem_release(struct aws_allocator *allocator, void *ptr) {
+    // This is a default implementation to ensure that the function is never called.
+    reach_error();
+}
+
+int aws_array_list_ensure_capacity(struct aws_array_list *restrict list, size_t index) {
+    // This is a default implementation to ensure that the function is never called.
+    reach_error();
+    return __VERIFIER_nondet_int();
+}
