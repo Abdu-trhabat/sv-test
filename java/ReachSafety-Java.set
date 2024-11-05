@@ -14,3 +14,4 @@ algorithms/*.yml
 juliet-java/*.yml
 jdart-regression/*.yml
 securibench/*.yml
+float-nonlinear-calculation/*.yml
