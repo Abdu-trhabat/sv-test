@@ -680,28 +680,15 @@ class InputFileChecks(FileChecks):
         
     # Task uniqueness check. Also adds task to task info (w options) relation to info.
     def check_is_task_unique_for_task_definition(self):
-        tasks_to_task_defs = self.task_defs_info.get_task_and_task_def_info()
         # Task uniqueness check and update of seen tasks to task defs
-        if self.filename in tasks_to_task_defs:
-            known_task_defs = tasks_to_task_defs[self.filename]
-            if self.definition_name in known_task_defs:
-                if self.options == known_task_defs[self.definition_name]:
-                    # Known task def, do nothing
-                    return
-                else:
-                    self.error("Multiple task definitions with the same name: " + self.definition_name + " but conflicting options specified.")
+        other_def: Optional[str] = self.task_defs_info.exists_equal_task_def_for_task(self.filename, self.options)
+        if not other_def is None:
+            if other_def == self.definition_name:
+                self.error("Multiple task definitions with the same name: " + self.definition_name + " but conflicting options specified.")
             else:
-                # Check if there are other task definitions with the same options, if yes, error
-                for other_task_def, other_options in known_task_defs.items():
-                    if other_options == self.options:
-                        self.error("Task referenced from multiple task definitions with identical options: " + self.definition_name +" and " + other_task_def)
-                # Add the new info
-                new_info = {self.definition_name: self.options}
-                known_task_defs.update(new_info)
-                tasks_to_task_defs[self.filename] = known_task_defs
-        else:
-            # No known task defs for task, add
-            tasks_to_task_defs[self.filename] = {self.definition_name: self.options}
+                self.error("Task referenced from multiple task definitions with identical options: " + self.definition_name +" and " + other_def)
+
+        self.task_defs_info.add_task_info_for_task(self.filename, self.definition_name, self.options)
 
     def check_file_has_no_line_directive(self):
         if any(LINE_DIRECTIVE.match(line) for line in self.lines):
@@ -872,8 +859,25 @@ class TasksInTaskDefinitionInfo:
         # tasks_to_task_defs is a dict of task_name -> dict of task_def_name -> options defined in task def
         self.tasks_to_task_defs = dict()
 
-    def get_task_and_task_def_info(self):
-        return self.tasks_to_task_defs
+    def exists_task_def_info_for_task(self, task_name):
+        return task_name in self.tasks_to_task_defs
+    
+    def exists_equal_task_def_for_task(self, task_name, options) -> Optional[str]:
+        if self.exists_task_def_info_for_task(task_name):
+            for known_def, known_options in self.tasks_to_task_defs[task_name].items():
+                if known_options == options:
+                    return known_def
+        return None
+    
+    def add_task_info_for_task(self, task, task_def, options):
+        if not self.exists_task_def_info_for_task(task):
+            self.tasks_to_task_defs[task] = dict()
+
+        inner = self.tasks_to_task_defs[task]
+        # What to do for equal task defs with distinct options?
+        if not task_def in inner:
+            inner[task_def] = options
+            self.tasks_to_task_defs[task] = inner
 
 
 def main(num_processes):
