@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 extern void abort(void);
-extern int __VERIFIER_nondet_int();
+extern double __VERIFIER_nondet_double();
 extern void __assert_fail(const char *, const char *, unsigned int,
                           const char *) __attribute__((__nothrow__, __leaf__))
 __attribute__((__noreturn__));
@@ -23,8 +23,8 @@ void __VERIFIER_assert(int cond) {
 }
 
 int main() {
-  int x, y;
-  x = __VERIFIER_nondet_int();
+  double x, y;
+  x = __VERIFIER_nondet_double();
   y = x * x * x;
   __VERIFIER_assert((x >= 0 && y >= 0) || (x <= 0 && y <= 0));
   return 0;
