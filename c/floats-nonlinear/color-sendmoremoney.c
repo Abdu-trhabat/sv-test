@@ -57,7 +57,7 @@ int solve(double S, double E, double N, double D, double M, double O, double R, 
 int main() {
   double s, e, n, d, m, o, r, y;
   s = __VERIFIER_nondet_double();
-  e = __VERIFIER_nondet_doublet();
+  e = __VERIFIER_nondet_double();
   n = __VERIFIER_nondet_double();
   d = __VERIFIER_nondet_double();
   m = __VERIFIER_nondet_double();
