@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 extern void abort(void);
-extern int __VERIFIER_nondet_int();
+extern double __VERIFIER_nondet_double(void);
 extern void __assert_fail(const char *, const char *, unsigned int,
                           const char *) __attribute__((__nothrow__, __leaf__))
 __attribute__((__noreturn__));
@@ -22,13 +22,13 @@ void __VERIFIER_assert(int cond) {
   return;
 }
 
-int check_domain(int x) {
-  if (x >= 0 && x <= 711) return 1;
+int check_domain(double x) {
+  if (x >= 0.0 && x <= 711.0) return 1;
   return 0;
 }
-int solve(int item1, int item2, int item3, int item4) {
+int solve(double item1, double item2, double item3, double item4) {
   if (check_domain(item1) && check_domain(item2) && check_domain(item3) &&
-      check_domain(item4) && item1 + item2 + item3 + item4 == 711 &&
+      check_domain(item4) && item1 + item2 + item3 + item4 == 711.0 &&
       (item1 + 0.0) * item2 * item3 * item4 == 711.0 * 100 * 100 * 100 &&
       item1 <= item2 && item2 <= item3 && item3 <= item4)
     return 1;
@@ -37,11 +37,11 @@ int solve(int item1, int item2, int item3, int item4) {
 }
 
 int main() {
-  int x, y, z, w;
-  x = __VERIFIER_nondet_int();
-  y = __VERIFIER_nondet_int();
-  z = __VERIFIER_nondet_int();
-  w = __VERIFIER_nondet_int();
+  double x, y, z, w;
+  x = __VERIFIER_nondet_double();
+  y = __VERIFIER_nondet_double();
+  z = __VERIFIER_nondet_double();
+  w = __VERIFIER_nondet_double();
   __VERIFIER_assert(!solve(x, y, z, w));
   return 0;
 }
