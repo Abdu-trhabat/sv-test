@@ -710,7 +710,7 @@ inline void push(int d) {
  }
 }
 void* thr1(void* arg){
-  while(1){push(10); { pthread_mutex_lock(&m); if(!(top != 0)) { ERROR: {reach_error();abort();}(void)0; } pthread_mutex_lock(&m); };}
+  while(1){push(10); { pthread_mutex_lock(&m); if(!(top != 0)) { ERROR: {reach_error();abort();}(void)0; } pthread_mutex_unlock(&m); };}
   return 0;
 }
 int main()
