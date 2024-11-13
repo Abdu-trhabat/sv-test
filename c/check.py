@@ -94,6 +94,9 @@ UNUSED_DIRECTORIES = set(["ldv-multiproperty", "regression"])
 EXPECTED_SUBDIRECTORIES = set(["model", "todo", "properties", "original", "witnesses"])
 """Directories that can appear inside directories with tasks but contain other files"""
 
+UNUSED_SETS = set(["Unused_Juliet.set"])
+"""Task sets that are supposed to be ignored and none of the tasks are allowed to appear in any other task set"""
+
 LINE_DIRECTIVE = re.compile('^#(line| [0-9]+) ')
 PREPROCESSOR_DIRECTIVE = re.compile('^ *#(define|include)')
 
@@ -229,13 +232,14 @@ class DirectoryChecks(Checks):
     """Checks for a directory in the repository, e.g. about what files are in it.
     Also executes specific checks for each benchmark file in the directory."""
 
-    def __init__(self, path, all_patterns, requires_makefile, requires_readme, *args, **kwargs):
+    def __init__(self, path, all_patterns, all_unused_patterns, requires_makefile, requires_readme, *args, **kwargs):
         super(DirectoryChecks, self).__init__(known_problems=KNOWN_DIRECTORY_PROBLEMS, *args, **kwargs)
         self.path = path
         self.content = os.listdir(path)
         self.all_patterns = all_patterns
         self.requires_makefile = requires_makefile
         self.requires_readme = requires_readme
+        self.all_unused_patterns = all_unused_patterns
 
     def run(self):
         ok = True
@@ -247,14 +251,15 @@ class DirectoryChecks(Checks):
         for entry in self.content:
             if BENCHMARK_PATTERN.match(entry):
                 dir_and_name = os.path.join(self.name, entry)
-                try:
-                    TaskDefinitionFileChecks(
-                        path=os.path.join(self.path, entry),
-                        name=dir_and_name,
-                        contained_in_category=self.all_patterns.match(dir_and_name)
-                        ).run()
-                except CheckFailed:
-                    ok = False
+                if not self.all_unused_patterns.match(dir_and_name):
+                    try:
+                        TaskDefinitionFileChecks(
+                            path=os.path.join(self.path, entry),
+                            name=dir_and_name,
+                            contained_in_category=self.all_patterns.match(dir_and_name)
+                            ).run()
+                    except CheckFailed:
+                        ok = False
 
         if not ok:
             raise CheckFailed()
@@ -295,7 +300,7 @@ class DirectoryChecks(Checks):
 
         for entry in self.content:
             if BENCHMARK_PATTERN.match(entry)\
-                    and not self.all_patterns.match(os.path.join(self.name, entry)):
+                    and not self.all_patterns.match(os.path.join(self.name, entry)) and not self.all_unused_patterns.match(os.path.join(self.name, entry)):
                 
                 yaml_contents = None
                 try:
@@ -305,8 +310,11 @@ class DirectoryChecks(Checks):
 
                 if yaml_contents is not None and _is_witness(yaml_contents):
                     continue
-            
+
                 self.error("%s is not contained in any category", entry)
+            elif (BENCHMARK_PATTERN.match(entry) and self.all_patterns.match(os.path.join(self.name, entry)) and self.all_unused_patterns.match(os.path.join(self.name, entry))):
+                self.error("%s is contained in a used and unused set file", entry)
+
 
 
 class FileChecks(Checks):
@@ -538,10 +546,14 @@ class PropertiesChecks(Checks):
         )
         self.prop_and_verdict = properties
         self.prop_names = [prop for prop, verdict in properties]
+        self.prop_to_verdict = dict(self.prop_and_verdict)
 
     def check_no_unknown_property(self):
         [self.error("has unknown property " + p)
             for p in self.prop_names if p not in PROPERTIES]
+        
+    def violates(self, prop):
+        return prop in self.prop_to_verdict and self.prop_to_verdict[prop] is False
 
     def check_no_duplicate_properties(self):
         counts = collections.Counter((prop for prop, verdict in self.prop_and_verdict))
@@ -552,51 +564,62 @@ class PropertiesChecks(Checks):
     def check_no_multiple_memsafety_verdicts(self):
         distinct_prop_count = self.prop_names.count("valid-deref")\
                 + self.prop_names.count("valid-free")\
-                + self.prop_names.count("valid-memtrack")\
-                + self.prop_names.count("valid-memsafety")
+                + self.prop_names.count("valid-memtrack")
         if distinct_prop_count > 1:
             self.error("has verdicts for multiple memsafety properties")
 
+        if distinct_prop_count == 1:
+            if self.prop_names.count("valid-memsafety") > 0:
+                self.error("has verdicts for multiple memsafety properties")
+
+        if self.violates("valid-memsafety"):
+            # valid-memsafety is only ever present without subproperty in a violation case if the subproperty is missing
+            self.error("missing subproperty for memsafety violation")
+            
+
     def check_no_contradicting_verdicts(self):
         # Properties may also have no verdict (None), i.e., (not violates) != fulfills. Thus we need both methods
-        prop_to_verdict = dict(self.prop_and_verdict)
 
         def has_prop(prop):
-            return prop in prop_to_verdict
+            return prop in self.prop_to_verdict
 
-        def violates(prop):
-            return prop in prop_to_verdict and prop_to_verdict[prop] is False
-
+        # This does not include test-comp properties!
         def fulfills(prop):
-            return prop in prop_to_verdict and prop_to_verdict[prop] is True
+            return prop in self.prop_to_verdict and self.prop_to_verdict[prop] is True
+        
+        def has_test_prop(prop):
+            return prop in self.prop_and_verdict and prop in ["coverage-branches", "coverage-conditions", "coverage-error-call", "coverage-statements"]
 
         if (
-            violates("valid-deref")
-            or violates("valid-free")
-            or violates("no-overflow")
-            or violates("no-data-race")
-            or violates("def-behavior")
+            self.violates("valid-deref")
+            or self.violates("valid-free")
+            or self.violates("no-overflow")
+            or self.violates("no-data-race")
+            or self.violates("def-behavior")
         ):
             if (
-                any(fulfills(p) for p in prop_to_verdict)
-                or len([p for p in prop_to_verdict if violates(p)]) > 1
+                any(fulfills(p) or has_test_prop(p) for p in self.prop_to_verdict)
+                or len([p for p in self.prop_to_verdict if self.violates(p)]) > 1
             ):
-                # this check excludes coverage-error-call because it has no expected verdict.
-                # but we check below that coverage-error-call only exists when
-                # unreach-call is violated, so checks for coverage-error-call are subsumed
-                # by checks for 'unreach-call: false'.
-                self.error(
-                        "has expected undefined behavior but also a verdict for some other property")
+                if not (has_prop("coverage-error-call") and not self.violates("unreach-call")
+                    or self.violates("termination") and has_prop("coverage-branches")):
+                    # this check excludes coverage-error-call because it has no expected verdict.
+                    # but we check below that coverage-error-call only exists when
+                    # unreach-call is violated, so checks for coverage-error-call are subsumed
+                    # by checks for 'unreach-call: false'.
+                    # Similar with termination and coverage-branches.
+                    self.error(
+                            "has expected undefined behavior but also a verdict for some other property")
 
-        if violates("unreach-call") and fulfills("valid-memcleanup"):
+        if self.violates("unreach-call") and fulfills("valid-memcleanup"):
             # calling the error function aborts the program, and if there is still any
             # allocated memory this would violate memcleanup.
             # We think this is probable (though not guaranteed), so we issue a warning.
             self.error("has reachable error location but claims to have no memory leaks (this is not necessarily wrong but should be checked)")
 
-        if has_prop("coverage-error-call") and not violates("unreach-call"):
+        if has_prop("coverage-error-call") and not self.violates("unreach-call"):
             self.error("claims that coverage-error-call is possible but has no reachable error location")
-        if violates("termination") and has_prop("coverage-branches"):
+        if self.violates("termination") and has_prop("coverage-branches"):
             self.error("does not terminate but claims to have coverage-branches")
 
     def check_no_invalid_verdicts(self):
@@ -752,16 +775,16 @@ def _check_known_errors_consistent(main_dir):
         assert os.path.exists(path), "Whitelisted file doesn't exist: %s" % path
 
 
-def _run_directory_checks(directory, all_patterns, requires_makefile, requires_readme, entry):
+def _run_directory_checks(directory, all_used_patterns, all_unused_patterns, requires_makefile, requires_readme, entry):
     try:
-        DirectoryChecks(directory, all_patterns, requires_makefile, requires_readme, entry).run()
+        DirectoryChecks(directory, all_used_patterns, all_unused_patterns, requires_makefile, requires_readme, entry).run()
     except CheckFailed:
         return False, set()
     else:
         return True, set()
 
 
-def _run_set_file_checks(set_file, all_patterns, entry):
+def _run_set_file_checks(set_file, entry):
     try:
         check = SetFileChecks(set_file, entry)
         check.run()
@@ -771,13 +794,13 @@ def _run_set_file_checks(set_file, all_patterns, entry):
         return True, check.matched_files
 
 
-def _check_benchmark_entry(entry, requires_makefile, requires_readme, main_directory, all_patterns):
+def _check_benchmark_entry(entry, requires_makefile, requires_readme, main_directory, all_used_patterns, all_unused_patterns):
     path = os.path.join(main_directory, entry)
     if not (entry[0] == "." or entry == "bin" or entry.endswith("-todo")):
         if os.path.isdir(path) and not entry in IGNORED_DIRECTORIES:
-            return _run_directory_checks(path, all_patterns, requires_makefile, requires_readme, entry)
+            return _run_directory_checks(path, all_used_patterns, all_unused_patterns, requires_makefile, requires_readme, entry)
         elif entry.endswith(".set"):
-            return _run_set_file_checks(path, all_patterns, entry)
+            return _run_set_file_checks(path, entry)
     logging.debug("%s: skipped", entry)
     return True, set()
 
@@ -792,14 +815,21 @@ def main(num_processes):
     # The [2:] is necessary to remove "./" from the beginning of the path
     witness_dirs = list(map(lambda x: x[0][2:], filter(lambda x: x[0].endswith("witnesses"), os.walk(main_directory))))
     entries = sorted(os.listdir(main_directory))
-    all_patterns_re = (
+    # Collect all patterns of tasks that are not used and are never supposed to appear in all_used_patterns
+    all_unused_patterns_re = (
+        fnmatch.translate(unused_task_pattern)
+        for entry in entries if entry.endswith(".set") and entry in UNUSED_SETS
+        for unused_task_pattern in read_set_file(os.path.join(main_directory, entry)))
+    all_unused_patterns = re.compile("^(" + "|".join(all_unused_patterns_re) + ")$")
+    # Collect all patterns that define included/used tasks
+    all_used_patterns_re = (
         fnmatch.translate(pattern)
-        for entry in entries if entry.endswith(".set")
+        for entry in entries if entry.endswith(".set") and entry not in UNUSED_SETS
         for pattern in read_set_file(os.path.join(main_directory, entry)))
-    all_patterns = re.compile("^(" + "|".join(all_patterns_re) + ")$")
+    all_used_patterns = re.compile("^(" + "|".join(all_used_patterns_re) + ")$")
 
     check_func = functools.partial(
-        _check_benchmark_entry, main_directory=main_directory, all_patterns=all_patterns
+        _check_benchmark_entry, main_directory=main_directory, all_used_patterns=all_used_patterns, all_unused_patterns=all_unused_patterns
     )
 
     entries_to_check = [(entry, True, True) for entry in entries] + [(entry, False, False) for entry in witness_dirs]
