@@ -6,7 +6,7 @@ void reach_error() { __assert_fail("0", "mea8000.c", 3, "reach_error"); }
  */
 
 extern int __VERIFIER_nondet_int(void);
-extern unsigned char __VERIFIER_nondet_unsigned_char(void);
+extern unsigned char __VERIFIER_nondet_uchar(void);
 extern double __VERIFIER_nondet_double();
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -517,7 +517,7 @@ int main()
         while (1) {
                 switch (__VERIFIER_nondet_int()) {
                 case 0: read(__VERIFIER_nondet_int()); break;
-                case 1: write(__VERIFIER_nondet_int(), __VERIFIER_nondet_unsigned_char()); break;
+                case 1: write(__VERIFIER_nondet_int(), __VERIFIER_nondet_uchar()); break;
                 case 2: if (timer_enabled) timer_expire(); break;
                 case 3: device_reset(); break;
                 }
