@@ -16,15 +16,15 @@
 
 #include <limits.h>
 
-extern unsigned __VERIFIER_nondet_unsigned_int(void);
+extern unsigned __VERIFIER_nondet_uint(void);
 
 extern double sqrt(double);
 
 int main() {
     unsigned n, a;
     unsigned r, k, q, d, s, t;
-    n = __VERIFIER_nondet_unsigned_int();
-    a = __VERIFIER_nondet_unsigned_int();
+    n = __VERIFIER_nondet_uint();
+    a = __VERIFIER_nondet_uint();
     // assume_abort_if_not(n < UINT_MAX/8);
     // assume_abort_if_not(a > 2);
 

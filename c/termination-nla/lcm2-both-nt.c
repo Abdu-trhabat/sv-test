@@ -14,13 +14,13 @@
 
 /* Algorithm for computing simultaneously the GCD and the LCM, by Dijkstra */
 
-extern unsigned __VERIFIER_nondet_unsigned_int(void);
+extern unsigned __VERIFIER_nondet_uint(void);
 
 int main() {
     int a, b;
     int x, y, u, v;
-    a = __VERIFIER_nondet_unsigned_int();
-    b = __VERIFIER_nondet_unsigned_int();
+    a = __VERIFIER_nondet_uint();
+    b = __VERIFIER_nondet_uint();
     // assume_abort_if_not(a >= 1); //inf loop if remove
     // assume_abort_if_not(b >= 1);
 

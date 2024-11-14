@@ -17,13 +17,13 @@
  * by Sankaranarayanan
  */
 
-extern unsigned __VERIFIER_nondet_unsigned_int(void);
+extern unsigned __VERIFIER_nondet_uint(void);
 
 int main() {
     unsigned a, b;
     unsigned x, y, u, v;
-    a = __VERIFIER_nondet_unsigned_int();
-    b = __VERIFIER_nondet_unsigned_int();
+    a = __VERIFIER_nondet_uint();
+    b = __VERIFIER_nondet_uint();
     // assume_abort_if_not(a >= 1);  //infinite loop if remove
     // assume_abort_if_not(b >= 1);
 

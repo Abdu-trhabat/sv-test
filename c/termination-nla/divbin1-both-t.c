@@ -19,18 +19,18 @@
 
 #include <limits.h>
 /*
-extern unsigned __VERIFIER_nondet_unsigned_int(void);
+extern unsigned __VERIFIER_nondet_uint(void);
 */
 
 extern int __VERIFIER_nondet_int(void);
-extern unsigned __VERIFIER_nondet_unsigned_int(void);
+extern unsigned __VERIFIER_nondet_uint(void);
 
 int main() {
   unsigned A, B;
   unsigned q, r, b;
   int c = 0, k = __VERIFIER_nondet_int();
-  A = __VERIFIER_nondet_unsigned_int();
-  B = __VERIFIER_nondet_unsigned_int();
+  A = __VERIFIER_nondet_uint();
+  B = __VERIFIER_nondet_uint();
   // if (! (B < UINT_MAX/2) ) { abort(); }
   if (B >= UINT_MAX/2) return 0;
   // if (! (B >= 1) ) { abort(); }
