@@ -30,7 +30,7 @@ For each program, the repository contains a .yml file that specifies the followi
     - `language`: programming language that the program is written in (`C` or `Java`)
     - `data_model` data model of the computer architecture
       (`ILP32`, `LP64`, see https://www.unix.org/whitepapers/64bit.html, only for `C` programs)
-    - `witness_input_file` describes which input file is a witness. Only required  
+    - `witness_input_file` (optional): describes which input file is a witness. Only required  
       for validation tasks, for example 
       [c/loop-invariants/witnesses/linear-inequality-inv-a.2.witness-validation.yml](../c/loop-invariants/witnesses/linear-inequality-inv-a.2.witness-validation.yml).
 
@@ -65,20 +65,20 @@ options:
 ## Version 2.1
 
 In order to add additional information to a task, which is mostly relevant
-to process tasks and for human readability, version 2.1 introduces the
+to process tasks and for human readability, version 2.1 introduces the optional
 key `additional_information`. This key should be ignored by any tool making use
-of the task and should only contain information for either analysing or modifying
+of the task and should only contain information for either analyzing or modifying
 the tasks or to aid humans readability.
 Apart from this it remains backwards compatible with Version 2.0 of the format.
 
 ```yaml
+format_version: '2.1'
+
 additional_information:
   task_type: validation # Mainly for human readability
   verification: # To know what the verdict is for the verification
   - property_file: ../../properties/unreach-call.prp
     expected_verdict: true
-
-format_version: '2.1'
 
 # The rest remains the same as in version 2.0
 
