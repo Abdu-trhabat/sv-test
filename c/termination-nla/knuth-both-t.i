@@ -364,13 +364,13 @@ struct exception
   };
 extern int matherr (struct exception *__exc);
 
-extern unsigned __VERIFIER_nondet_unsigned_int(void);
+extern unsigned __VERIFIER_nondet_uint(void);
 extern double sqrt(double);
 int main() {
     unsigned n, a;
     unsigned r, k, q, d, s, t;
-    n = __VERIFIER_nondet_unsigned_int();
-    a = __VERIFIER_nondet_unsigned_int();
+    n = __VERIFIER_nondet_uint();
+    a = __VERIFIER_nondet_uint();
     if (n >= (0x7fffffff * 2U + 1U)/8 || a <= 2) {
         return 0;
     }
