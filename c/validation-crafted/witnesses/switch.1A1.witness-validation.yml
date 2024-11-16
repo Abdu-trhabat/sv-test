@@ -1,19 +1,19 @@
+format_version: '2.1'
+
 additional_information:
   task_type: validation
   verification:
-  - property_file: ../../properties/unreach-call.prp
-    expected_verdict: false
+    - property_file: ../../properties/unreach-call.prp
+      expected_verdict: false
 
-
-format_version: '2.1'
 
 input_files:
-- '../switch.c'
-- 'switch.1A1.witness-2.0.yml'
+  - '../switch.c'
+  - 'switch.1A1.witness-2.0.yml'
 
 properties:
-- property_file: ../../properties/unreach-call.prp
-  expected_verdict: false
+  - property_file: ../../properties/unreach-call.prp
+    expected_verdict: false
 
 options:
   language: C
