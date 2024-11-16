@@ -26,6 +26,9 @@ int fibonacci(int n) {
 
 int main() {
     int x = __VERIFIER_nondet_int();
+    if (x > 46) {
+        return 0;
+    }
 	if(x < 1)
 		return 0;
     int result = fibonacci(x);
