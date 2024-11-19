@@ -92410,7 +92410,7 @@ static void get_dev(char const *disk , char const *mount_point , char const *sta
     }
   }
   {
-  { if(!((((struct fs_usage *)force_fsu)->fsu_blocksize <= 1UL && (void *)force_fsu == (void *)(& grand_fsu)) || force_fsu == 0)) { reach_error(); abort(); } };
+  { if(!(((void *)force_fsu == (void *)(& grand_fsu) && ((struct fs_usage *)force_fsu)->fsu_blocksize <= 1UL) || force_fsu == 0)) { reach_error(); abort(); } };
   if (me_dummy) {
     {
     { if(!(me_dummy != (_Bool)0)) { reach_error(); abort(); } };

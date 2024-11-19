@@ -135795,7 +135795,7 @@ static void get_dev(char const   *disk , char const   *mount_point , char const 
   }
   {
 #line 456
-  __VERIFIER_assert((((struct fs_usage *)force_fsu)->fsu_blocksize <= 1UL && (void *)force_fsu == (void *)(& grand_fsu)) || force_fsu == 0);
+  __VERIFIER_assert(((void *)force_fsu == (void *)(& grand_fsu) && ((struct fs_usage *)force_fsu)->fsu_blocksize <= 1UL) || force_fsu == 0);
 #line 456
   if (me_dummy) {
     {
