@@ -1,6 +1,6 @@
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "Fibonacci05.c", 3, "reach_error"); }
+void reach_error() { __assert_fail("0", "Fibonacci01-2-overflow.c", 3, "reach_error"); }
 
 /*
  * Recursive computation of fibonacci numbers.
@@ -26,14 +26,14 @@ int fibonacci(int n) {
 
 int main() {
     int x = __VERIFIER_nondet_int();
-    if (x > 46) {
-        return 0;
-    }
+	if(x < 1)
+		return 0;
     int result = fibonacci(x);
-    if (x < 8 || result >= 34) {
+    if (result >= 1) {
         return 0;
     } else {
         ERROR: {reach_error();abort();}
     }
 }
     
+
