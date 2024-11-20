@@ -1,6 +1,13 @@
-format_version: '2.0'
+format_version: '2.1'
 
-input_files: 
+additional_information:
+  task_type: validation
+  verification:
+    - property_file: ../../properties/unreach-call.prp
+      expected_verdict: false
+
+
+input_files:
   - '../while.c'
   - 'while.1B1.witness-2.0.yml'
 
@@ -11,4 +18,4 @@ properties:
 options:
   language: C
   data_model: LP64
-  witness: 'while.1B1.witness-2.0.yml'
+  witness_input_file: 'while.1B1.witness-2.0.yml'

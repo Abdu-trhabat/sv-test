@@ -151,6 +151,7 @@ We use [version 2.0 of this format](https://gitlab.com/sosy-lab/benchmarking/tas
 with some additional requirements.
 For each program, the repository contains a .yml file that specifies the following items:
   - `format_version`: the version of the format (the version string `2.0`)
+  - `additional_information`: defines the type of the task, and in case of a validation task, defines the corresponding verification task
   - `input_files`: the subject program files or directories
     (a file or directory name, or a list of files or directory names, that the program consists of)
   - `properties`: the properties that constitute the specification of the program,
@@ -164,7 +165,7 @@ For each program, the repository contains a .yml file that specifies the followi
     - `language`: programming language that the program is written in (`C` or `Java`)
     - `data_model` data model of the computer architecture
       (`ILP32`, `LP64`, see https://www.unix.org/whitepapers/64bit.html, only for `C` programs)
-    - `witness` describes which input file is a witness. Only required  
+    - `witness_input_file` describes which input file is a witness; only required  
       for validation tasks, for example 
       [c/loop-invariants/witnesses/linear-inequality-inv-a.2.witness-2.0.yml](./c/loop-invariants/witnesses/linear-inequality-inv-a.2.witness-2.0.yml).
 
@@ -179,7 +180,7 @@ and contains a description of the format with an example in Sect. 4 and Fig. 3.
 Format 2.0 adds the `options` dictionary.
 Here as example an extract of the task-definition file [c/list-properties/list-1.yml](c/list-properties/list-1.yml):
 
-```
+```yaml
 format_version: '2.0'
 
 input_files: 'list-1.i'
@@ -194,6 +195,33 @@ properties:
 options:
   language: C
   data_model: ILP32
+```
+
+Format 2.1 adds the `additional_information` dictionary.
+Here as example an extract of the task-definition file [c/loop-invariants/witnesses/linear-inequality-inv-a.1.witness-validation.yml](c/loop-invariants/witnesses/linear-inequality-inv-a.1.witness-validation.yml):
+
+```yaml
+format_version: '2.1'
+
+additional_information:
+  task_type: validation
+  verification:
+    - property_file: ../../properties/unreach-call.prp
+      expected_verdict: true
+
+
+input_files:
+  - '../linear-inequality-inv-a.c'
+  - 'linear-inequality-inv-a.1.witness-2.0.yml'
+
+properties:
+  - property_file: ../../properties/unreach-call.prp
+    expected_verdict: false
+
+options:
+  language: C
+  data_model: ILP32
+  witness_input_file: 'linear-inequality-inv-a.1.witness-2.0.yml'
 ```
 
 
