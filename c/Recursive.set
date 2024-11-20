@@ -6,3 +6,6 @@ recursified_loop-crafted/*.yml
 recursified_loop-invariants/*.yml
 recursified_loop-simple/*.yml
 recursified_nla-digbench/*.yml
+
+# Contains tasks from the Fuzzle tool benchmark set.
+fuzzle-programs/*.yml
