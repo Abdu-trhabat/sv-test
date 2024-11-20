@@ -1113,8 +1113,9 @@ static inline uint32_t _lock_cmpxchg_32b(uint32_t cmp_val, uint32_t set_val, uin
 }
 static inline uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 }
 static inline uint16_t _lock_xadd_16b(uint16_t *mem, uint16_t quantum)
 {
@@ -3634,7 +3635,7 @@ void tdh_vp_enter__invalid_state_op_state() {
     assume_abort_if_not(tdvpr_pamt_entry_ptr != ((void*)0));
     assume_abort_if_not(tdvpr_pamt_entry_ptr->pt == PT_TDVPR);
     local_data->vmm_regs.rax = tdh_vp_enter(local_data->vmm_regs.rcx);
-    __VERIFIER_assert(local_data->vmm_regs.rax == 0xC000060800000000ULL);
+    __VERIFIER_assert((local_data->vmm_regs.rax == 0xC000060800000000ULL) || ((local_data->vmm_regs.rax >> 32) == (0x8000020000000000ULL >> 32)));
 }
 void tdh_vp_enter__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();

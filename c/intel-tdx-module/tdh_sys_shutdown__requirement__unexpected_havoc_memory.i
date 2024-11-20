@@ -505,8 +505,9 @@ static inline uint16_t _lock_cmpxchg_16b(uint16_t cmp_val, uint16_t set_val, uin
 }
 static inline uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 }
 static inline void mfence(void)
 {

@@ -505,8 +505,9 @@ static inline uint16_t _lock_cmpxchg_16b(uint16_t cmp_val, uint16_t set_val, uin
 }
 static inline uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 }
 static inline void mfence(void)
 {
@@ -1882,7 +1883,7 @@ void tdh_sys_shutdown__invalid_input_handoff_no_downgrade() {
     tdx_module_global_t* global_data = get_global_data();
     assume_abort_if_not((global_data->no_downgrade == 1) && (local_data->vmm_regs.rcx != global_data->module_hv));
     local_data->vmm_regs.rax = tdh_sys_shutdown(local_data->vmm_regs.rcx);
-    __VERIFIER_assert(local_data->vmm_regs.rax == api_error_with_operand_id(0xC000010000000000ULL, 1ULL));
+    __VERIFIER_assert((local_data->vmm_regs.rax == api_error_with_operand_id(0xC000010000000000ULL, 1ULL)) || (local_data->vmm_regs.rax == 0x8000020200000000ULL));
 }
 void tdh_sys_shutdown__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();

@@ -559,8 +559,9 @@ static inline uint16_t _lock_cmpxchg_16b(uint16_t cmp_val, uint16_t set_val, uin
 }
 static inline uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 }
 static inline uint16_t _lock_xadd_16b(uint16_t *mem, uint16_t quantum)
 {
@@ -2241,7 +2242,7 @@ void tdh_mng_create__invalid_input_rdx() {
     assume_abort_if_not(global_data->kot.entries[hkid_info.hkid].state == 0);
     assume_abort_if_not(local_data->vp_ctx.tdr_pamt_entry->pt == PT_TDR);
     local_data->vmm_regs.rax = tdh_mng_create(local_data->vmm_regs.rcx, hkid_info);
-    __VERIFIER_assert(local_data->vmm_regs.rax == api_error_with_operand_id(0xC000010000000000ULL, 2ULL));
+    __VERIFIER_assert((local_data->vmm_regs.rax == api_error_with_operand_id(0xC000010000000000ULL, 2ULL)) || ((local_data->vmm_regs.rax >> 32) == (0x8000020000000000ULL >> 32)));
 }
 void tdh_mng_create__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();

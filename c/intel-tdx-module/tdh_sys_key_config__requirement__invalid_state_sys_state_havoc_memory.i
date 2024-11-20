@@ -538,8 +538,9 @@ static inline uint16_t _lock_cmpxchg_16b(uint16_t cmp_val, uint16_t set_val, uin
 }
 static inline uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 }
 static inline bool_t _lock_bts_32b(volatile uint32_t* mem, uint32_t bit)
 {
@@ -1902,7 +1903,7 @@ void tdh_sys_key_config__invalid_state_sys_state() {
     tdx_module_global_t* global_data = get_global_data();
     assume_abort_if_not(global_data->global_state.sys_state != SYSCONFIG_DONE);
     local_data->vmm_regs.rax = tdh_sys_key_config();
-    __VERIFIER_assert(local_data->vmm_regs.rax == 0xC000050700000000ULL);
+    __VERIFIER_assert((local_data->vmm_regs.rax == 0xC000050700000000ULL) || (local_data->vmm_regs.rax == 0x8000020200000000ULL) || ((local_data->vmm_regs.rax >> 32) == (0x8000020000000000ULL >> 32)));
 }
 void tdh_sys_key_config__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();

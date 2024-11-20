@@ -182,7 +182,13 @@ void tdh_vp_enter__invalid_input_vcpu_handle() {
 
     // Task-specific postcondition
 
-    TDXFV_ASSERT(local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX));
+    TDXFV_ASSERT(
+
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+
+    );
 
 }
 
@@ -258,7 +264,13 @@ void tdh_vp_enter__invalid_state_td_state() {
 
     // Task-specific postcondition
 
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_TD_FATAL);
+    TDXFV_ASSERT(
+
+        (local_data->vmm_regs.rax == TDX_TD_FATAL) ||
+
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+
+    );
 
 }
 
@@ -334,7 +346,13 @@ void tdh_vp_enter__invalid_state_lifecycle() {
 
     // Task-specific postcondition
 
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_TD_KEYS_NOT_CONFIGURED);
+    TDXFV_ASSERT(
+
+        (local_data->vmm_regs.rax == TDX_TD_KEYS_NOT_CONFIGURED) ||
+
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+
+    );
 
 }
 
@@ -410,7 +428,13 @@ void tdh_vp_enter__invalid_state_num_tdcx() {
 
     // Task-specific postcondition
 
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_TDCX_NUM_INCORRECT);
+    TDXFV_ASSERT(
+
+        (local_data->vmm_regs.rax == TDX_TDCX_NUM_INCORRECT) ||
+
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+
+    );
 
 }
 
@@ -486,7 +510,13 @@ void tdh_vp_enter__invalid_state_op_state() {
 
     // Task-specific postcondition
 
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_OP_STATE_INCORRECT);
+    TDXFV_ASSERT(
+
+        (local_data->vmm_regs.rax == TDX_OP_STATE_INCORRECT) ||
+
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+
+    );
 
 }
 
@@ -562,7 +592,13 @@ void tdh_vp_enter__invalid_state_pamt_metadata() {
 
     // Task-specific postcondition
 
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT);
+    TDXFV_ASSERT(
+
+        (local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT) ||
+
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+
+    );
 
 }
 
