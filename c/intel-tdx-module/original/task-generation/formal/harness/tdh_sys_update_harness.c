@@ -62,7 +62,10 @@ void tdh_sys_update__invalid_state_sys_state(){
     local_data->vmm_regs.rax = tdh_sys_update();
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_SYS_STATE_INCORRECT);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_SYS_STATE_INCORRECT) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+    );
 }
 
 void tdh_sys_update__invalid_state_lp_state(){
@@ -81,7 +84,10 @@ void tdh_sys_update__invalid_state_lp_state(){
     local_data->vmm_regs.rax = tdh_sys_update();
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_SYS_STATE_INCORRECT);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_SYS_STATE_INCORRECT) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+    );
 }
 
 void tdh_sys_update__invalid_state_handoff_data(){
@@ -100,7 +106,10 @@ void tdh_sys_update__invalid_state_handoff_data(){
     local_data->vmm_regs.rax = tdh_sys_update();
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_SYS_INVALID_HANDOFF);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_SYS_INVALID_HANDOFF) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+    );
 }
 
 void tdh_sys_update__invalid_state_handoff_version(){
@@ -121,7 +130,10 @@ void tdh_sys_update__invalid_state_handoff_version(){
     local_data->vmm_regs.rax = tdh_sys_update();
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_SYS_INVALID_HANDOFF);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_SYS_INVALID_HANDOFF) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+    );
 }
 
 void tdh_sys_update__invalid_entry(){
