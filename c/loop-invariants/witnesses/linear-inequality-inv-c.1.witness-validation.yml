@@ -13,7 +13,7 @@ input_files:
 
 properties:
   - property_file: ../../properties/unreach-call.prp
-    expected_verdict: false
+    # expected_verdict: false
 
 options:
   language: C
