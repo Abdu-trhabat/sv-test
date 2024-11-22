@@ -11,9 +11,9 @@ input_files:
   - '../linear-inequality-inv-c.c'
   - 'linear-inequality-inv-c.1.witness-2.0.yml'
 
-properties: []
-#  - property_file: ../../properties/unreach-call.prp
-#    expected_verdict: false
+properties:
+  - property_file: ../../properties/unreach-call.prp
+    # expected_verdict: false
 
 options:
   language: C
