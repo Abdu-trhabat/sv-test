@@ -14,8 +14,8 @@ input_files:
 properties:
   - property_file: ../../properties/unreach-call.prp
     expected_verdict: false
-    subproperty: invalid-format
-    
+    subproperty: valid-format
+
 options:
   language: C
   data_model: LP64
