@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 extern void abort(void);
-extern int __VERIFIER_nondet_int();
+extern double __VERIFIER_nondet_double();
 extern void __assert_fail(const char *, const char *, unsigned int,
                           const char *) __attribute__((__nothrow__, __leaf__))
 __attribute__((__noreturn__));
@@ -24,17 +24,17 @@ void __VERIFIER_assert(int cond) {
   return;
 }
 
-int solve(int a, int b) {
-  if (200 * a + 150 * b <= 4000 && 100 * a + 250 * b >= 0)
+int solve(double a, double b) {
+  if (200.0 * a + 150.0 * b <= 4000.0 && 100.0 * a + 250.0 * b >= 0.0)
     return 1;
   else
     return 0;
 }
 
 int main() {
-  int x, y;
-  x = __VERIFIER_nondet_int();
-  y = __VERIFIER_nondet_int();
+  double x, y;
+  x = __VERIFIER_nondet_double();
+  y = __VERIFIER_nondet_double();
   __VERIFIER_assert(!solve(x, y));
   return 0;
 }

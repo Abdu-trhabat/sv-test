@@ -26,6 +26,6 @@ int main() {
   double x, y;
   x = __VERIFIER_nondet_double();
   y = x * x * x;
-  __VERIFIER_assert((x >= 0 && y >= 0) || (x <= 0 && y <= 0));
+  __VERIFIER_assert((x >= 0.0 && y >= 0.0) || (x <= 0.0 && y <= 0.0));
   return 0;
 }
