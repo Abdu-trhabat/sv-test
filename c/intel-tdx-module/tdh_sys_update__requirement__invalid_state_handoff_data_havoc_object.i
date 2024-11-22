@@ -497,8 +497,9 @@ static inline uint16_t _lock_cmpxchg_16b(uint16_t cmp_val, uint16_t set_val, uin
 }
 static inline uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 }
 typedef enum
 {
@@ -1869,7 +1870,7 @@ void tdh_sys_update__invalid_state_handoff_data(){
     assume_abort_if_not(((handoff_data_header_t*) sysinfo_table->data_rgn_base)->hv >= global_data_fv.min_update_hv);
     assume_abort_if_not(((handoff_data_header_t*) sysinfo_table->data_rgn_base)->hv <= global_data_fv.module_hv);
     local_data->vmm_regs.rax = tdh_sys_update();
-    __VERIFIER_assert(local_data->vmm_regs.rax == 0xC000050900000000ULL);
+    __VERIFIER_assert((local_data->vmm_regs.rax == 0xC000050900000000ULL) || (local_data->vmm_regs.rax == 0x8000020200000000ULL));
 }
 void tdh_sys_update__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();

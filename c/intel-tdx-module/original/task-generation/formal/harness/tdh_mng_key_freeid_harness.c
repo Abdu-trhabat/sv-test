@@ -60,7 +60,10 @@ void tdh_mng_key_freeid__invalid_input_tdr_hkid() {
     local_data->vmm_regs.rax = tdh_mng_key_freeid(local_data->vmm_regs.rcx);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX));
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
 }
 
 void tdh_mng_key_freeid__invalid_state_tdr_metadata() {
@@ -78,7 +81,10 @@ void tdh_mng_key_freeid__invalid_state_tdr_metadata() {
     local_data->vmm_regs.rax = tdh_mng_key_freeid(local_data->vmm_regs.rcx);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
 }
 
 void tdh_mng_key_freeid__invalid_state_tdr_lifecycle() {
@@ -96,7 +102,10 @@ void tdh_mng_key_freeid__invalid_state_tdr_lifecycle() {
     local_data->vmm_regs.rax = tdh_mng_key_freeid(local_data->vmm_regs.rcx);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_LIFECYCLE_STATE_INCORRECT);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_LIFECYCLE_STATE_INCORRECT) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
 }
 
 void tdh_mng_key_freeid__invalid_state_kot() {
@@ -114,7 +123,10 @@ void tdh_mng_key_freeid__invalid_state_kot() {
     local_data->vmm_regs.rax = tdh_mng_key_freeid(local_data->vmm_regs.rcx);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_WBCACHE_NOT_COMPLETE);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_WBCACHE_NOT_COMPLETE) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
 }
 
 void tdh_mng_key_freeid__invalid_entry() {

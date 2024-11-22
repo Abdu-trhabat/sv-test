@@ -128,7 +128,13 @@ void tdh_sys_shutdown__invalid_input_handoff_range() {
 
     // Task-specific postcondition
 
-    TDXFV_ASSERT(local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX));
+    TDXFV_ASSERT(
+
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+
+    );
 
 }
 
@@ -158,7 +164,13 @@ void tdh_sys_shutdown__invalid_input_handoff_no_downgrade() {
 
     // Task-specific postcondition
 
-    TDXFV_ASSERT(local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX));
+    TDXFV_ASSERT(
+
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+
+    );
 
 }
 

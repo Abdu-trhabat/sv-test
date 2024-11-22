@@ -746,8 +746,9 @@ static inline uint16_t _lock_cmpxchg_16b(uint16_t cmp_val, uint16_t set_val, uin
 }
 static inline uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 }
 static inline bool_t bit_scan_forward64(uint64_t mask, uint64_t* lsb_position)
 {
@@ -2339,7 +2340,7 @@ void tdh_sys_init__invalid_input_rcx() {
     assume_abort_if_not(local_data->vmm_regs.rcx != 0);
     assume_abort_if_not(global_data->global_state.sys_state == SYSINIT_PENDING);
     local_data->vmm_regs.rax = tdh_sys_init();
-    __VERIFIER_assert(local_data->vmm_regs.rax == api_error_with_operand_id(0xC000010000000000ULL, 1ULL));
+    __VERIFIER_assert((local_data->vmm_regs.rax == api_error_with_operand_id(0xC000010000000000ULL, 1ULL)) || (local_data->vmm_regs.rax == 0x8000020200000000ULL));
     __VERIFIER_assert(local_data->vmm_regs.rcx == 0);
     __VERIFIER_assert(local_data->vmm_regs.rdx == 0);
     __VERIFIER_assert(local_data->vmm_regs.r8 == 0);

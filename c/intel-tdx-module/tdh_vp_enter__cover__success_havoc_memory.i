@@ -1113,8 +1113,9 @@ static inline uint32_t _lock_cmpxchg_32b(uint32_t cmp_val, uint32_t set_val, uin
 }
 static inline uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 }
 static inline uint16_t _lock_xadd_16b(uint16_t *mem, uint16_t quantum)
 {

@@ -536,8 +536,9 @@ static inline uint16_t _lock_cmpxchg_16b(uint16_t cmp_val, uint16_t set_val, uin
 }
 static inline uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 }
 static inline uint16_t _lock_xadd_16b(uint16_t *mem, uint16_t quantum)
 {
@@ -2166,7 +2167,7 @@ void tdh_mng_key_freeid__invalid_state_kot() {
     assume_abort_if_not(tdr_fv.management_fields.lifecycle_state == TD_BLOCKED);
     assume_abort_if_not((global_data->kot.entries[tdr_fv.key_management_fields.hkid].state != 2) || (global_data->kot.entries[tdr_fv.key_management_fields.hkid].wbinvd_bitmap != 0));
     local_data->vmm_regs.rax = tdh_mng_key_freeid(local_data->vmm_regs.rcx);
-    __VERIFIER_assert(local_data->vmm_regs.rax == 0x8000081700000000ULL);
+    __VERIFIER_assert((local_data->vmm_regs.rax == 0x8000081700000000ULL) || ((local_data->vmm_regs.rax >> 32) == (0x8000020000000000ULL >> 32)));
 }
 void tdh_mng_key_freeid__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();

@@ -727,8 +727,9 @@ _STATIC_INLINE_ uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: x86 / x86
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 #else
     //according to SDM, XCHG on memory operand is automatically uses the processor's locking protocol
     //regardless of LOCK prefix
@@ -741,8 +742,9 @@ _STATIC_INLINE_ uint32_t _xchg_32b(uint32_t *mem, uint32_t quantum)
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: x86 / x86
+    uint32_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 #else
     //according to SDM, XCHG on memory operand is automatically uses the processor's locking protocol
     //regardless of LOCK prefix

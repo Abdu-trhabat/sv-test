@@ -59,7 +59,10 @@ void tdh_mng_vpflushdone__invalid_input_tdr_hkid() {
     local_data->vmm_regs.rax = tdh_mng_vpflushdone(local_data->vmm_regs.rcx);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX));
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
 }
 
 void tdh_mng_vpflushdone__invalid_state_tdr_metadata() {
@@ -76,7 +79,10 @@ void tdh_mng_vpflushdone__invalid_state_tdr_metadata() {
     local_data->vmm_regs.rax = tdh_mng_vpflushdone(local_data->vmm_regs.rcx);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
 }
 
 void tdh_mng_vpflushdone__invalid_state_tdr_lifecycle() {
@@ -94,7 +100,10 @@ void tdh_mng_vpflushdone__invalid_state_tdr_lifecycle() {
     local_data->vmm_regs.rax = tdh_mng_vpflushdone(local_data->vmm_regs.rcx);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_LIFECYCLE_STATE_INCORRECT);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_LIFECYCLE_STATE_INCORRECT) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
 }
 
 void tdh_mng_vpflushdone__invalid_state_op_state() {
@@ -112,7 +121,10 @@ void tdh_mng_vpflushdone__invalid_state_op_state() {
     local_data->vmm_regs.rax = tdh_mng_vpflushdone(local_data->vmm_regs.rcx);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_FLUSHVP_NOT_DONE);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_FLUSHVP_NOT_DONE) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
 }
 
 void tdh_mng_vpflushdone__invalid_entry() {

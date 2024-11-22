@@ -549,8 +549,9 @@ static inline uint16_t _lock_cmpxchg_16b(uint16_t cmp_val, uint16_t set_val, uin
 }
 static inline uint16_t _xchg_16b(uint16_t *mem, uint16_t quantum)
 {
+    uint16_t temp = *mem;
     *mem = quantum;
-    return quantum;
+    return temp;
 }
 static inline void lfence(void)
 {
@@ -2010,7 +2011,7 @@ void tdh_sys_config__invalid_state_sys_state() {
     local_data->vmm_regs.rax = tdh_sys_config(local_data->vmm_regs.rcx,
                                               local_data->vmm_regs.rdx,
                                               global_private_hkid);
-    __VERIFIER_assert(local_data->vmm_regs.rax == 0xC000050C00000000ULL);
+    __VERIFIER_assert((local_data->vmm_regs.rax == 0xC000050C00000000ULL) || (local_data->vmm_regs.rax == 0x8000020200000000ULL));
 }
 void tdh_sys_config__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();

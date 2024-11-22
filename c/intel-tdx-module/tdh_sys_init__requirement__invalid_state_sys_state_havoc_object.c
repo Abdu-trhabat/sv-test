@@ -136,7 +136,13 @@ void tdh_sys_init__invalid_input_rcx() {
 
     // Task-specific postcondition
 
-    TDXFV_ASSERT(local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX));
+    TDXFV_ASSERT(
+
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+
+    );
 
     TDXFV_ASSERT(local_data->vmm_regs.rcx == 0);
 
@@ -176,7 +182,13 @@ void tdh_sys_init__invalid_state_sys_state() {
 
     // Task-specific postcondition
 
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_SYS_INIT_NOT_PENDING);
+    TDXFV_ASSERT(
+
+        (local_data->vmm_regs.rax == TDX_SYS_INIT_NOT_PENDING) ||
+
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+
+    );
 
     TDXFV_ASSERT(local_data->vmm_regs.rcx == 0);
 

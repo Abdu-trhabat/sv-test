@@ -125,7 +125,10 @@ void tdh_sys_config__invalid_input_hkid() {
                                               global_private_hkid);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_R8));
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_R8)) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+    );
 }
 
 void tdh_sys_config__invalid_input_num_ptr() {
@@ -199,7 +202,10 @@ void tdh_sys_config__invalid_input_num_ptr() {
                                               global_private_hkid);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RDX));
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RDX)) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+    );
 }
 
 void tdh_sys_config__invalid_state_sys_state() {
@@ -273,7 +279,10 @@ void tdh_sys_config__invalid_state_sys_state() {
                                               global_private_hkid);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_SYS_CONFIG_NOT_PENDING);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_SYS_CONFIG_NOT_PENDING) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+    );
 }
 
 void tdh_sys_config__invalid_state_lp_state() {
@@ -347,7 +356,10 @@ void tdh_sys_config__invalid_state_lp_state() {
                                               global_private_hkid);
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_SYS_CONFIG_NOT_PENDING);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_SYS_CONFIG_NOT_PENDING) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+    );
 }
 
 void tdh_sys_config__invalid_state_tdmr_info() {
@@ -431,6 +443,7 @@ void tdh_sys_config__invalid_state_tdmr_info() {
                  (local_data->vmm_regs.rax == TDX_NON_ORDERED_TDMR) ||
                  (local_data->vmm_regs.rax == TDX_PAMT_OUTSIDE_CMRS) ||
                  (local_data->vmm_regs.rax == TDX_PAMT_OVERLAP) ||
+                 (local_data->vmm_regs.rax == TDX_SYS_BUSY) ||
                  (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX))
     );
 }

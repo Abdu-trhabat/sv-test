@@ -54,7 +54,11 @@ void tdh_sys_key_config__invalid_state_sys_state() {
     local_data->vmm_regs.rax = tdh_sys_key_config();
 
     // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_SYS_KEY_CONFIG_NOT_PENDING);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_SYS_KEY_CONFIG_NOT_PENDING) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
 }
 
 void tdh_sys_key_config__invalid_entry() {
