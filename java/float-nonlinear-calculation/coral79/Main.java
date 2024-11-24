@@ -14,7 +14,7 @@ public class Main {
     double d3 = Verifier.nondetDouble();
     double d4 = Verifier.nondetDouble();
     int i = Verifier.nondetInt();
-    Verifier.assume(d1 > 0 && d2 > 0 && d3 > 0 && d4 > 0 && i > 0);
+    Verifier.assume(d1 > Math.pow(10, -10) && d2 > 0 && d3 > 0 && d4 > 0 && i > 0);
     JPFBenchmark.benchmark79(d1, d2, d3, d4, i);
   }
 }
