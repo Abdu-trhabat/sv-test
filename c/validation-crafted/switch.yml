@@ -4,7 +4,7 @@ input_files:
   - 'switch.c'
 
 properties:
-  - property_file: ../../properties/unreach-call.prp
+  - property_file: ../properties/unreach-call.prp
     expected_verdict: false
 
 options:
