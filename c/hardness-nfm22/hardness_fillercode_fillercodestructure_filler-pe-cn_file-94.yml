@@ -10,9 +10,8 @@ format_version: '2.0'
 input_files: 'hardness_fillercode_fillercodestructure_filler-pe-cn_file-94.i'
 
 properties:
-  - property_file: ../properties/unreach-call.prp
-    expected_verdict: true
-  - property_file: ../properties/coverage-branches.prp
+  - property_file: ../properties/def-behavior.prp
+    expected_verdict: false
 
 options:
   language: C
