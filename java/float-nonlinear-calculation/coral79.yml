@@ -5,7 +5,7 @@ input_files:
   - common/
 properties:
   - property_file: ../properties/assert_java.prp
-    expected_verdict: true
+    expected_verdict: false
   - property_file: ../properties/runtime-exception.prp
     expected_verdict: true
 
