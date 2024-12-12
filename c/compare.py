@@ -37,6 +37,7 @@ CATEGORIES_TO_IGNORE = {
   "SoftwareSystems-SQLite": "(complicated build process, requires patched version of cilly)",
   "Juliet": "(no corresponding .c files)",
   "Unused_Juliet": "(no corresponding .c files)",
+  "Invalid-TaskDefs": "(all included in other categories)"
 }
 
 # categories to be excluded, if option "skip-large" is used ... (with reason and debug information)
