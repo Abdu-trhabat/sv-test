@@ -20,7 +20,7 @@
         location:
           file_name: "linear-inequality-inv-c.c"
           line: 19
-          column: 10 # Incorrect, since it does not point to the first character of while
+          column: 3
           function: main
-        value: "s <= i*65535 && 0 <= i && i <= 65535 && n <= 65535"
+        value: "0" # Incorrect, wrong invariant
         format: c_expression
