@@ -212,3 +212,6 @@
 ../../sv-benchmarks/c/termination-nla/lcm2-both-t.yml
 ../../sv-benchmarks/c/termination-numeric/Fibonacci01-2-overflow.yml
 ../../sv-benchmarks/c/termination-numeric/Fibonacci01-2.yml
+../../sv-benchmarks/c/loop-invariants/witnesses/linear-inequality-inv-a.1.witness-validation.yml
+../../sv-benchmarks/c/loop-invariants/witnesses/linear-inequality-inv-c.1.witness-validation.yml
+../../sv-benchmarks/c/loop-invariants64/witnesses/linear-inequality-inv-d.1.witness-validation.yml
