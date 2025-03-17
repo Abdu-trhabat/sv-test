@@ -35,7 +35,7 @@ Viktor Vafeiadis - ASPLOS 2021.
 [Contributed by][drc]: Huawei Dresden Research Center
 
 [drc]: https://github.com/open-s4c
-[paper]: https://dl.acm.org/doi/10.1145/3445814.3446748
+[paper]: https://doi.org/10.1145/3445814.3446748
 
 
 ## Test cases
