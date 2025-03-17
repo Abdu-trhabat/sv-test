@@ -3,6 +3,7 @@ Upstream-Name: SV-Benchmarks
 Source: https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 
 Files:
+ *.set
  c/*.set
  c/*/*.yml
  java/*.set
