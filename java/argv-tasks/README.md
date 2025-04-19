@@ -83,3 +83,41 @@ ActiveCheck
 ### [achartengine](https://github.com/ddany/achartengine) project:
 
 TimeChart
+
+
+## Versioning and config
+
+### Version:
+
+ARG-V 1.0.0 with manual changes adding assert statement conditions.
+
+
+
+### Config used (ARG-V config.properties file):
+
+csv=[dataset.csv](https://github.com/unl-pal/argv-transformer/blob/master/dataset.csv)
+
+projectCount=50
+
+maxLoc=10000
+
+minLoc=100
+
+downloadDir=database
+
+benchmarkDir=benchmarks
+
+transformAll=true
+
+debugLevel=2
+
+type=I
+
+minExpr=3
+
+minIfStmt=1
+
+minParams=0
+
+target=SVCOMP
+
