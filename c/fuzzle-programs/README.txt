@@ -10,3 +10,5 @@ The benchmarks in this directory were submitted by Haeun Lee <haeun.lee@kaist.ac
 Programs were synthesized based on randomly generated mazes using Fuzzle (https://github.com/SoftSec-KAIST/Fuzzle).
 
 Fuzzle and Fuzzle-generated programs are described in: "Fuzzle: Making a Puzzle for Fuzzers" (ASE 2022).
+https://doi.org/10.1145/3551349.3556908
+
