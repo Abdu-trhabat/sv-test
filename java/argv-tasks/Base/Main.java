@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: Portions copyright 2002, Google, Inc.
-// SPDX-License-Identifier: Apache 2.0
+// SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: Copyright (C) 2025 The ARG-V Project
 
 // Portions copyright 2002 , Google , Inc .

@@ -1,3 +1,12 @@
+<!--
+This file is part of the SV-Benchmarks collection of verification tasks:
+https://github.com/sosy-lab/sv-benchmarks
+
+SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 [ARG-V](https://arg-v.dev) was used to collect, filter, and modify these benchmarks automatically.
 Please direct any inquiries to Dr. Robert Dyer (rdyer@unl.edu) and Dr. Elena Sherman (elenasherman@boisestate.edu)
 
