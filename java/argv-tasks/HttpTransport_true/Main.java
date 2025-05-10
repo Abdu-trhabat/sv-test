@@ -18,64 +18,59 @@
  */
 
 /** filtered and transformed by ARG-V */
-
-
 import org.sosy_lab.sv_benchmarks.Verifier;
 
 public final class Main {
   /** PACLab: suitable */
-    public static Object createRequestBody() throws Exception {
-        int defaultChunkLength = Verifier.nondetInt();
-        boolean chunked = Verifier.nondetBoolean();
-        if (!chunked
-            && Verifier.nondetInt() > 0
-            && Verifier.nondetInt() != 0) {
-          chunked = true;
-        }
+  public static Object createRequestBody() throws Exception {
+    int defaultChunkLength = Verifier.nondetInt();
+    boolean chunked = Verifier.nondetBoolean();
+    if (!chunked && Verifier.nondetInt() > 0 && Verifier.nondetInt() != 0) {
+      chunked = true;
+    }
 
-        // Stream a request body of unknown length.
-        if (chunked) {
-          int chunkLength = Verifier.nondetInt();
-          if (chunkLength == -1) {
-            chunkLength = defaultChunkLength;
-          }
-          return new Object();
-        }
+    // Stream a request body of unknown length.
+    if (chunked) {
+      int chunkLength = Verifier.nondetInt();
+      if (chunkLength == -1) {
+        chunkLength = defaultChunkLength;
+      }
+      return new Object();
+    }
 
-        // Stream a request body of a known length.
-        long fixedContentLength = Verifier.nondetInt();
-        if (fixedContentLength != -1) {
-          return new Object();
-        }
+    // Stream a request body of a known length.
+    long fixedContentLength = Verifier.nondetInt();
+    if (fixedContentLength != -1) {
+      return new Object();
+    }
 
-        long contentLength = Verifier.nondetInt();
-        if (contentLength > Verifier.nondetInt()) {
-          throw new IllegalArgumentException("Use setFixedLengthStreamingMode() or "
+    long contentLength = Verifier.nondetInt();
+    if (contentLength > Verifier.nondetInt()) {
+      throw new IllegalArgumentException(
+          "Use setFixedLengthStreamingMode() or "
               + "setChunkedStreamingMode() for requests larger than 2 GiB.");
-        }
-
-        // Buffer a request body of a known length.
-        if (contentLength != -1) {
-          return new Object();
-        }
-
-        // Buffer a request body of an unknown length. Don't write request
-        // headers until the entire body is ready; otherwise we can't set the
-        // Content-Length header correctly.
-        return new Object();
     }
 
-    public static void main(String[] args){
-        try{
-            Object object = createRequestBody();
-            assert(object != null);
-        } catch (Exception e){
-            assert(e.getMessage().equals("Use setFixedLengthStreamingMode() or "
-                    + "setChunkedStreamingMode() for requests larger than 2 GiB."));
-        }
-
-
+    // Buffer a request body of a known length.
+    if (contentLength != -1) {
+      return new Object();
     }
 
+    // Buffer a request body of an unknown length. Don't write request
+    // headers until the entire body is ready; otherwise we can't set the
+    // Content-Length header correctly.
+    return new Object();
+  }
 
+  public static void main(String[] args) {
+    try {
+      Object object = createRequestBody();
+      assert (object != null);
+    } catch (Exception e) {
+      assert (e.getMessage()
+          .equals(
+              "Use setFixedLengthStreamingMode() or "
+                  + "setChunkedStreamingMode() for requests larger than 2 GiB."));
+    }
+  }
 }

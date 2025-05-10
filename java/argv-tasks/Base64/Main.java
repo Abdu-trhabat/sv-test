@@ -18,22 +18,18 @@
  *  limitations under the License.
  */
 
-/**
- * @author Alexander Y. Kleymenov
- */
+/** @author Alexander Y. Kleymenov */
 
 /** filtered and transformed by ARG-V */
-
-
 import org.sosy_lab.sv_benchmarks.Verifier;
 
 /**
- * <a href="http://www.ietf.org/rfc/rfc2045.txt">Base64</a> encoder/decoder.
- * In violation of the RFC, this encoder doesn't wrap lines at 76 columns.
+ * <a href="http://www.ietf.org/rfc/rfc2045.txt">Base64</a> encoder/decoder. In violation of the
+ * RFC, this encoder doesn't wrap lines at 76 columns.
  */
 public final class Main {
   /** PACLab: suitable */
- public static byte[] decode(byte[] in, int len) {
+  public static byte[] decode(byte[] in, int len) {
 
     // approximate output length
     int length = len / 4 * 3;
@@ -115,20 +111,19 @@ public final class Main {
         out[outIndex++] = (byte) (quantum >> 8);
       }
     }
-    assert(out != null);
-    assert(out.length > 0);
+    assert (out != null);
+    assert (out.length > 0);
     return out;
   }
 
-  public static void main(String[] args){
-      int N = Verifier.nondetInt();
-      Verifier.assume(N > 0);
-      byte a[] = new byte[N];
-      for(byte i = 0; i < N; i++){
-          a[i] = Verifier.nondetByte();
-      }
+  public static void main(String[] args) {
+    int N = Verifier.nondetInt();
+    Verifier.assume(N > 0);
+    byte a[] = new byte[N];
+    for (byte i = 0; i < N; i++) {
+      a[i] = Verifier.nondetByte();
+    }
 
-      byte[] decoded = decode(a,N);
-
+    byte[] decoded = decode(a, N);
   }
 }
