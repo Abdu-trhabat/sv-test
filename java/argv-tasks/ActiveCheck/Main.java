@@ -1,6 +1,6 @@
 /** filtered and transformed by ARG-V */
 // SPDX-FileCopyrightText: Frederik Happel
-// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-or-later
 // SPDX-FileCopyrightText: Copyright (C) 2025 The ARG-V Project
 
 import org.sosy_lab.sv_benchmarks.Verifier;
