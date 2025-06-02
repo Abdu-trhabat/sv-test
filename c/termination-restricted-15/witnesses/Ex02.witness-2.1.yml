@@ -1,0 +1,35 @@
+- entry_type: "violation_sequence"
+  metadata:
+    format_version: "2.1"
+    uuid: 51938346-bd6a-416e-b139-c68b39daf0c1
+    creation_time: "2025-06-02T13:13:07+02:00"
+    producer:
+      name: "Handcrafted"
+    task:
+      input_files:
+      - "Ex02.c"
+      input_file_hashes:
+        Ex02.c: afd40820c7a09c073d225c09c6690862ff04506300463cb312087d541b42d981
+      specification: "CHECK( init(main()), LTL(F end) )"
+      data_model: "LP64"
+      language: "C"
+  content:
+  - segment:
+    - waypoint:
+        type: "assumption"
+        constraint:
+          value: "i == 5"
+          format: "c_expression"
+        location:
+          line: 3
+          column: 3
+        action: "follow"
+  - segment:
+    - waypoint:
+        type: "branching"
+        constraint:
+          value: "true"
+        location:
+          line: 3
+          column: 3
+        action: "cycle"
