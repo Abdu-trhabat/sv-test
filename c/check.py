@@ -44,6 +44,7 @@ CONFIG_KEYS = set(["Architecture", "Description"])
 PROPERTIES = set(["def-behavior", "no-overflow", "no-data-race", "termination", "unreach-call", "valid-deref", "valid-free", "valid-memcleanup", "valid-memsafety", "valid-memtrack",
     "coverage-error-call", "coverage-branches", "coverage-conditions", "coverage-statements", "unreach-call-a", "unreach-call-b"])
 ALLOWED_INPUT_FILE_ENDINGS = ('.c', '.i', '.yml')
+WITNESS_OPTION_NAME = ('witness_input_file')
 # multiple properties for eca-rers2018-files
 for i in range(100):
     PROPERTIES.add("unreach-call-%d" % i)
@@ -402,12 +403,13 @@ class TaskDefinitionFileChecks(FileChecks):
                 try:
                     InputFileChecks(
                         definition_name=self.filename,
-                        path=f_path,
+                        file_path=f_path,
                         name=f_path,
                         contained_in_category=self.contained_in_category,
                         properties_and_verdicts=properties_and_verdicts,
                         task_defs_info=self.task_defs_info,
                         options=self.options,
+                        yaml_content=self.content
                     ).run()
                 except CheckFailed:
                     ok = False
@@ -649,16 +651,17 @@ class InputFileChecks(FileChecks):
     """Checks about the contents of a single benchmark input file."""
 
     def __init__(
-        self, definition_name, path, contained_in_category, properties_and_verdicts, task_defs_info, options: Optional[dict[str, str]], *args, **kwargs
+        self, definition_name, file_path, contained_in_category, properties_and_verdicts, task_defs_info, options: Optional[dict[str, str]], yaml_content, *args, **kwargs
     ):
-        super(InputFileChecks, self).__init__(path, *args, **kwargs)
+        super(InputFileChecks, self).__init__(file_path, *args, **kwargs)
         self.definition_name = definition_name
-        self.path = path
-        self.filename = os.path.basename(self.path)
+        self.file_path = file_path
+        self.filename = os.path.basename(self.file_path)
         self.contained_in_category = contained_in_category
         self.prop_and_verdict = properties_and_verdicts
         self.task_defs_info = task_defs_info
         self.options = options
+        self.yaml_content = yaml_content
 
     '''
     Check that the the task is only referenced in one task definition and that the names of the task and definition match.
@@ -666,6 +669,8 @@ class InputFileChecks(FileChecks):
     Also checks that there are never no options at all.
     '''
     def check_task_references(self):
+        if self.yaml_content is None or _is_witness(self.yaml_content):
+            return
         if not self.task_has_options():
             self.error("Missing options in task definition " + self.definition_name + ". At least the programming language is required, potentially more.")
             # TODO: we could extend this with a check for the data_model etc.
@@ -725,7 +730,7 @@ class InputFileChecks(FileChecks):
         return not self.options is None
 
     def is_validation_task(self):
-        return 'witness' in self.options
+        return WITNESS_OPTION_NAME in self.options
 
 class WitnessInputFileChecks(Checks):
 
