@@ -660,9 +660,11 @@ class InputFileChecks(FileChecks):
         self.task_defs_info = task_defs_info
         self.options = options
 
-    # Check that the the task is only referenced in one task definition and that the names of the task and definition match.
-    # This is not a hard rule currently, but spots MANY mistakes!
-    # Also checks that there are never no options at all.
+    '''
+    Check that the the task is only referenced in one task definition and that the names of the task and definition match.
+    This is not a hard rule currently, but spots MANY mistakes!
+    Also checks that there are never no options at all.
+    '''
     def check_task_references(self):
         if not self.task_has_options():
             self.error("Missing options in task definition " + self.definition_name + ". At least the programming language is required, potentially more.")
