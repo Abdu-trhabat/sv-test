@@ -664,11 +664,11 @@ class InputFileChecks(FileChecks):
     # This is not a hard rule currently, but spots MANY mistakes!
     # Also checks that there are never no options at all.
     def check_task_references(self):
-        if not self.task_has_options:
+        if not self.task_has_options():
             self.error("Missing options in task definition " + self.definition_name + ". At least the programming language is required, potentially more.")
             # TODO: we could extend this with a check for the data_model etc.
             return
-        if self.is_validation_task:
+        if self.is_validation_task():
             # Exclude tasks in witness validation for now
             # TODO: implement me
             return
