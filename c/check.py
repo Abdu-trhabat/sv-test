@@ -673,11 +673,11 @@ class InputFileChecks(FileChecks):
             # TODO: implement me
             return
         # First check the names
-        definition_name_wo_suffic = self.definition_name.removesuffix(".yml")
+        definition_name_wo_suffix = self.definition_name.removesuffix(".yml")
         for suffix in ALLOWED_INPUT_FILE_ENDINGS:
             if self.filename.endswith(suffix):
                 f_wo_suffix = self.filename.removesuffix(suffix)
-                if f_wo_suffix != definition_name_wo_suffic:
+                if f_wo_suffix != definition_name_wo_suffix:
                     self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
                 return
         
