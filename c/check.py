@@ -870,28 +870,28 @@ def _check_benchmark_entry(entry, requires_makefile, requires_readme, main_direc
 
 class TasksInTaskDefinitionInfo:
     def __init__(self):
-        # tasks_to_task_defs is a dict of task_name -> dict of task_def_name -> options defined in task def
+        # tasks_to_task_defs is a dict of file_name (program name) -> dict of task_def_file_name (name of task def.) -> options defined in task def
         self.tasks_to_task_defs = dict()
 
-    def exists_task_def_info_for_task(self, task_name):
-        return task_name in self.tasks_to_task_defs
+    def exists_task_def_info_for_task(self, file_name):
+        return file_name in self.tasks_to_task_defs
     
-    def exists_equal_task_def_for_task(self, task_name, options) -> Optional[str]:
-        if self.exists_task_def_info_for_task(task_name):
-            for known_def, known_options in self.tasks_to_task_defs[task_name].items():
+    def exists_equal_task_def_for_task(self, file_name, options) -> Optional[str]:
+        if self.exists_task_def_info_for_task(file_name):
+            for known_def, known_options in self.tasks_to_task_defs[file_name].items():
                 if known_options == options:
                     return known_def
         return None
     
-    def add_task_info_for_task(self, task, task_def, options):
-        if not self.exists_task_def_info_for_task(task):
-            self.tasks_to_task_defs[task] = dict()
+    def add_task_info_for_task(self, file_name, task_def_file_name, options):
+        if not self.exists_task_def_info_for_task(file_name):
+            self.tasks_to_task_defs[file_name] = dict()
 
-        inner = self.tasks_to_task_defs[task]
+        inner = self.tasks_to_task_defs[file_name]
         # What to do for equal task defs with distinct options?
-        if not task_def in inner:
-            inner[task_def] = options
-            self.tasks_to_task_defs[task] = inner
+        if not task_def_file_name in inner:
+            inner[task_def_file_name] = options
+            self.tasks_to_task_defs[file_name] = inner
 
 
 def main(num_processes):
