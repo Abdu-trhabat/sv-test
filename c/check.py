@@ -688,8 +688,8 @@ class InputFileChecks(FileChecks):
                     self.error("Referenced in task definition " + self.definition_name + " but does not share the same name.")
                 return
         
-        # Keep up to date with ALLOWED_INPUT_FILE_ENDINGS
-        self.error("Uses unknown suffix of task in task definition " + self.definition_name + ". Allowed are .yml for witnesses, as well as .c and .i for programs.")
+        if not any(self.filename.endswith(suffix) for suffix in ALLOWED_INPUT_FILE_ENDINGS):
+            self.error("Uses unknown suffix of task in task definition " + self.definition_name + ". Allowed suffixes are " + ", ".join(ALLOWED_INPUT_FILE_ENDINGS))
         
     # Task uniqueness check. Also adds task to task info (w options) relation to info.
     def check_is_task_unique_for_task_definition(self):
