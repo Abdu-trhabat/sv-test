@@ -660,11 +660,17 @@ class InputFileChecks(FileChecks):
         self.task_defs_info = task_defs_info
         self.options = options
 
-    # Check that the the task is only referenced in one task definition and that the names of the task and definition match
+    # Check that the the task is only referenced in one task definition and that the names of the task and definition match.
     # This is not a hard rule currently, but spots MANY mistakes!
+    # Also checks that there are never no options at all.
     def check_task_references(self):
-        if self.options is None or 'witness' in self.options:
+        if not self.task_has_options:
+            self.error("Missing options in task definition " + self.definition_name + ". At least the programming language is required, potentially more.")
+            # TODO: we could extend this with a check for the data_model etc.
+            return
+        if self.is_validation_task:
             # Exclude tasks in witness validation for now
+            # TODO: implement me
             return
         # First check the names
         definition_name_wo_suffic = self.definition_name.removesuffix(".yml")
@@ -712,6 +718,12 @@ class InputFileChecks(FileChecks):
 
         if any(PREPROCESSOR_DIRECTIVE.match(line) for line in self.lines):
             self.error("#define or #include statement present, please add preprocessed version")
+
+    def task_has_options(self):
+        return not self.options is None
+
+    def is_validation_task(self):
+        return 'witness' in self.options
 
 class WitnessInputFileChecks(Checks):
 
