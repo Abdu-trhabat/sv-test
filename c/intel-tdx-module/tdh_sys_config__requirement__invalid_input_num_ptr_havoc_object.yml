@@ -10,6 +10,7 @@ input_files: tdh_sys_config__requirement__invalid_input_num_ptr_havoc_object.i
 properties:
 - property_file: ../properties/unreach-call.prp
   expected_verdict: true
+- property_file: ../properties/coverage-branches.prp
 options:
   language: C
   data_model: LP64

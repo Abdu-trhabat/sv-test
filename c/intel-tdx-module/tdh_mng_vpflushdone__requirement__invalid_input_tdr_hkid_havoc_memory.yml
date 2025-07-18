@@ -10,6 +10,7 @@ input_files: tdh_mng_vpflushdone__requirement__invalid_input_tdr_hkid_havoc_memo
 properties:
 - property_file: ../properties/unreach-call.prp
   expected_verdict: true
+- property_file: ../properties/coverage-branches.prp
 options:
   language: C
   data_model: LP64
