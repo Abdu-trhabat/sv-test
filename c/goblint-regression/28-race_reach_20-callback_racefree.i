@@ -695,7 +695,7 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 pthread_mutex_t __global_lock = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
-void foo(int (*callback)()) {
+void foo(int (*callback)(void)) {
   for (int i = 0; i < 10; i++) {
     if (__VERIFIER_nondet_int())
       callback();
@@ -704,7 +704,7 @@ void foo(int (*callback)()) {
 int glob;
 pthread_mutex_t mutex1 = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 pthread_mutex_t mutex2 = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
-int bar() {
+int bar(void) {
   pthread_mutex_lock(&mutex1);
   do { do { pthread_mutex_lock(&__global_lock); (glob)++; pthread_mutex_unlock(&__global_lock); } while (0); do { pthread_mutex_lock(&__global_lock); (glob)--; pthread_mutex_unlock(&__global_lock); } while (0); } while (0);
   pthread_mutex_unlock(&mutex1);

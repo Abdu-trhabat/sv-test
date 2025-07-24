@@ -10,7 +10,7 @@ extern int __VERIFIER_nondet_int();
 #include<pthread.h>
 #include "racemacros.h"
 
-void foo(int (*callback)()) {
+void foo(int (*callback)(void)) {
   for (int i = 0; i < 10; i++) {
     if (__VERIFIER_nondet_int())
       callback();
@@ -23,7 +23,7 @@ pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex2 = PTHREAD_MUTEX_INITIALIZER;
 
 
-int bar() {
+int bar(void) {
   pthread_mutex_lock(&mutex1);
   access(glob);
   pthread_mutex_unlock(&mutex1);
