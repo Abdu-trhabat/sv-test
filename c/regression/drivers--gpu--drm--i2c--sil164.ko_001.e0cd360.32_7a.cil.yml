@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--gpu--drm--i2c--sil164.ko_001.e0cd360.32_7a.cil_true-unreach-call.i"
+input_files: "drivers--gpu--drm--i2c--sil164.ko_001.e0cd360.32_7a.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

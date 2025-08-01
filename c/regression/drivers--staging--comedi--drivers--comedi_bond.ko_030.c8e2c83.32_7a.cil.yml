@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--staging--comedi--drivers--comedi_bond.ko_030.c8e2c83.32_7a.cil_true-unreach-call.i"
+input_files: "drivers--staging--comedi--drivers--comedi_bond.ko_030.c8e2c83.32_7a.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--usb--serial--spcp8x5.ko_011.a509a7e.68_1.cil_true-unreach-call.i"
+input_files: "drivers--usb--serial--spcp8x5.ko_011.a509a7e.68_1.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

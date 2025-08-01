@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--gpu--drm--i915--i915.ko_041.881ee98.32_1.cil_true-unreach-call.i"
+input_files: "drivers--gpu--drm--i915--i915.ko_041.881ee98.32_1.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

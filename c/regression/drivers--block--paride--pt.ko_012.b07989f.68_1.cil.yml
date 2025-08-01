@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--block--paride--pt.ko_012.b07989f.68_1.cil_true-unreach-call.i"
+input_files: "drivers--block--paride--pt.ko_012.b07989f.68_1.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--i2c--algos--i2c-algo-pca.ko_018.8e99ada.32_7a.cil_true-unreach-call.i"
+input_files: "drivers--i2c--algos--i2c-algo-pca.ko_018.8e99ada.32_7a.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

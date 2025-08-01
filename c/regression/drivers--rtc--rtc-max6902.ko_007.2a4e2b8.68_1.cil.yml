@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--rtc--rtc-max6902.ko_007.2a4e2b8.68_1.cil_true-unreach-call.i"
+input_files: "drivers--rtc--rtc-max6902.ko_007.2a4e2b8.68_1.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

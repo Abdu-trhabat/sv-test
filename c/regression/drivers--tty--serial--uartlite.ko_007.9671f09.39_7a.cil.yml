@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--tty--serial--uartlite.ko_007.9671f09.39_7a.cil_true-unreach-call.i"
+input_files: "drivers--tty--serial--uartlite.ko_007.9671f09.39_7a.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

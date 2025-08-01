@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--net--phy--dp83640.ko_008.88c5100.32_7a.cil_false-unreach-call.i"
+input_files: "drivers--net--phy--dp83640.ko_008.88c5100.32_7a.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

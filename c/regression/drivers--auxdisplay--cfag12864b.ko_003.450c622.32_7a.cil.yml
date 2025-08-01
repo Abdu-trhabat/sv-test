@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--auxdisplay--cfag12864b.ko_003.450c622.32_7a.cil_true-unreach-call.i"
+input_files: "drivers--auxdisplay--cfag12864b.ko_003.450c622.32_7a.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

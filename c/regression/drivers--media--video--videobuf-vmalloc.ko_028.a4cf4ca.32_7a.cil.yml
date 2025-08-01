@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--media--video--videobuf-vmalloc.ko_028.a4cf4ca.32_7a.cil_true-unreach-call.i"
+input_files: "drivers--media--video--videobuf-vmalloc.ko_028.a4cf4ca.32_7a.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"

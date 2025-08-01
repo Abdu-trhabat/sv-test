@@ -8,7 +8,7 @@
 
 format_version: '2.0'
 
-input_files: "drivers--hwmon--it87.ko_087.9172b5d.39_7a.cil_true-unreach-call.i"
+input_files: "drivers--hwmon--it87.ko_087.9172b5d.39_7a.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"
