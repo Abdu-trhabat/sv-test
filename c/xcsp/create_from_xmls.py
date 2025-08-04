@@ -6,7 +6,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-""" to run this script you need to install libxml2-dev, libboost-dev and clang-format (sudo apt-get install %s) [Python 3.6.9] """
+"""to run this script you need to install libxml2-dev, libboost-dev and clang-format (sudo apt-get install %s) [Python 3.6.9]"""
 
 import argparse
 import os
@@ -16,7 +16,7 @@ import subprocess
 
 
 def progressBar(value, endvalue, bar_length=20):
-    """ small output dialog on terminal with progression bar"""
+    """small output dialog on terminal with progression bar"""
     percent = float(value) / endvalue
     arrow = "-" * int(round(percent * bar_length) - 1) + ">"
     spaces = " " * (bar_length - len(arrow))
@@ -45,7 +45,7 @@ def get_taskdef(inputfile: str, verdict: bool) -> str:
 
 
 def find_all_constraint_definitions(path):
-    """ find all xml files in the directory and its subdirectories """
+    """find all xml files in the directory and its subdirectories"""
     return path.glob("**/*.xml")
 
 
