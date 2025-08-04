@@ -205,3 +205,12 @@ reuse:
     entrypoint: [""]
   script:
     - reuse lint
+
+# Check formatting of scripts
+format-python-scripts:
+  stage: checks
+  image:
+    name: ghcr.io/astral-sh/ruff:latest
+    entrypoint: [""]
+  script:
+    - ruff format --check .
