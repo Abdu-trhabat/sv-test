@@ -28,7 +28,6 @@ else:
 ERRORS = 0
 
 for task_file in glob.iglob(os.path.join(base_dir, "**/*.yml"), recursive=True):
-
     with open(task_file) as f:
         task_def = yaml.safe_load(f)
 
