@@ -10,6 +10,7 @@ input_files: tdh_sys_update__requirement__invalid_state_handoff_version_havoc_ob
 properties:
 - property_file: ../properties/unreach-call.prp
   expected_verdict: true
+- property_file: ../properties/coverage-branches.prp
 options:
   language: C
   data_model: LP64
