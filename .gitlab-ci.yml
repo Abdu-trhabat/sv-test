@@ -211,5 +211,6 @@ format-python-scripts:
   stage: checks
   image:
     name: ghcr.io/astral-sh/ruff:latest
+    entrypoint: ["/ruff"]
   script:
     - format --check .
