@@ -212,7 +212,7 @@ reuse:
   stage: checks
   interruptible: true
   image:
-    name: ghcr.io/astral-sh/ruff:0.12.7-alpine
+    name: ghcr.io/astral-sh/ruff:alpine
   before_script:
     - cd $CI_PROJECT_DIR
     - ruff --version
