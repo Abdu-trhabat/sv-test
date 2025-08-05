@@ -360,7 +360,7 @@ class DirectoryChecks(Checks):
         for entry in self.content:
             if (
                 os.path.isdir(os.path.join(self.path, entry))
-                and not entry in EXPECTED_SUBDIRECTORIES
+                and entry not in EXPECTED_SUBDIRECTORIES
             ):
                 self.error("unexpected subdirectory %s", entry)
 
@@ -381,7 +381,7 @@ class DirectoryChecks(Checks):
         self.error("missing readme")
 
     def check_has_Makefile(self):
-        if not "Makefile" in self.content and self.requires_makefile:
+        if "Makefile" not in self.content and self.requires_makefile:
             self.error("missing Makefile")
 
     def check_files_contained_in_category(self):
@@ -477,7 +477,7 @@ class TaskDefinitionFileChecks(FileChecks):
         if _is_witness(self.content):
             return None
 
-        if not "format_version" in self.content:
+        if "format_version" not in self.content:
             self.error("has no format_version")
         elif not (
             self.content["format_version"]
@@ -556,7 +556,7 @@ class TaskDefinitionFileChecks(FileChecks):
         if not data_model:
             self.error("missing declaration of data_model")
             return
-        if not data_model in DATA_MODELS:
+        if data_model not in DATA_MODELS:
             self.error("unknown data_model %s", data_model)
             return
 
@@ -616,7 +616,7 @@ class TaskDefinitionFileChecks(FileChecks):
 
     def _get_properties(self) -> List[Tuple[str, str]]:
         """Return list of tuples (property, verdict) present in the task definition."""
-        if not "properties" in self.content or not self.content["properties"]:
+        if "properties" not in self.content or not self.content["properties"]:
             self.error("No properties")
             # Return empty dict instead of None so that calling check stops gracefully
             return dict()
@@ -647,7 +647,7 @@ class TaskDefinitionFileChecks(FileChecks):
         """Return dict of options present in the task definition."""
         if not self.content or _is_witness(self.content):
             return None
-        if not "options" in self.content or not self.content["options"]:
+        if "options" not in self.content or not self.content["options"]:
             self.error("No options specified")
             # Return None in an Optional so that calling check stops gracefully
             return None
@@ -844,7 +844,7 @@ class InputFileChecks(FileChecks):
         other_def: Optional[str] = self.task_defs_info.exists_equal_task_def_for_task(
             self.filename, self.options
         )
-        if not other_def is None:
+        if other_def is not None:
             if other_def == self.definition_name:
                 self.error(
                     "Multiple task definitions with the same name: "
@@ -871,7 +871,7 @@ class InputFileChecks(FileChecks):
             )
 
     def check_unreach_call_tasks_have_verifier_error(self):
-        if not "unreach-call" in dict(self.prop_and_verdict):
+        if "unreach-call" not in dict(self.prop_and_verdict):
             return
         if not self.contained_in_category:
             # Some such files have calls to reach_error inside #include
@@ -880,7 +880,7 @@ class InputFileChecks(FileChecks):
         if not any(
             "reach_error" in line
             for line in self.lines
-            if not "void reach_error" in line
+            if "void reach_error" not in line
         ):
             self.error("has property unreach-call, but does not call reach_error")
 
@@ -894,7 +894,7 @@ class InputFileChecks(FileChecks):
             )
 
     def task_has_options(self):
-        return not self.options is None
+        return self.options is not None
 
     def is_validation_task(self):
         return WITNESS_OPTION_NAME in self.options
@@ -931,7 +931,7 @@ class WitnessInputFileChecks(Checks):
         )
 
         if result.returncode != 0:
-            self.error(f"witnesslinter failed")
+            self.error("witnesslinter failed")
 
         return
 
@@ -1086,7 +1086,7 @@ def _check_benchmark_entry(
 ):
     path = os.path.join(main_directory, entry)
     if not (entry[0] == "." or entry == "bin" or entry.endswith("-todo")):
-        if os.path.isdir(path) and not entry in IGNORED_DIRECTORIES:
+        if os.path.isdir(path) and entry not in IGNORED_DIRECTORIES:
             return _run_directory_checks(
                 path,
                 all_used_patterns,
@@ -1123,7 +1123,7 @@ class TasksInTaskDefinitionInfo:
 
         inner = self.tasks_to_task_defs[file_name]
         # What to do for equal task defs with distinct options?
-        if not task_def_file_name in inner:
+        if task_def_file_name not in inner:
             inner[task_def_file_name] = options
             self.tasks_to_task_defs[file_name] = inner
 

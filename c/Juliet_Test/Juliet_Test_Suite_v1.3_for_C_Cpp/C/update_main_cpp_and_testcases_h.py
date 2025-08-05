@@ -7,7 +7,9 @@
 # by create_per_cwe_files.py, create_single_batch_file.py, and create_single_Makefile.py.
 #
 
-import sys, os, re
+import sys
+import os
+import re
 
 # add parent directory to search path so we can use py_common
 sys.path.append("..")

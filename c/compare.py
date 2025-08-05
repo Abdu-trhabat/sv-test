@@ -204,7 +204,7 @@ def get_bits_from_yml(yml, taskfile):
     data_model = yml.get("options", {}).get("data_model")
     if not data_model:
         fail("No data model defined in", taskfile)
-    if not data_model in DATA_MODELS:
+    if data_model not in DATA_MODELS:
         fail("Unknown data model", data_model, "defined in", taskfile)
     return DATA_MODELS[data_model]
 
