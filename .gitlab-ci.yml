@@ -207,10 +207,25 @@ reuse:
     - reuse lint
 
 # Check formatting of scripts
-format-python-scripts:
+
+.base_ruff:
   stage: checks
+  interruptible: true
   image:
-    name: ghcr.io/astral-sh/ruff:latest
-    entrypoint: ["/ruff"]
+    name: ghcr.io/astral-sh/ruff:0.12.7-alpine
+  before_script:
+    - cd $CI_PROJECT_DIR
+    - ruff --version
+
+Ruff Check:
+  extends: .base_ruff
   script:
-    - format --check .
+    - ruff check --output-format=gitlab ./c/*.py > code-quality-report.json
+  artifacts:
+    reports:
+      codequality: $CI_PROJECT_DIR/code-quality-report.json
+
+Ruff Format:
+  extends: .base_ruff
+  script:
+    - ruff format --diff
