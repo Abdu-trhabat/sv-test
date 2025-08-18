@@ -4,5 +4,7 @@
 # SPDX-FileCopyrightText: 2007-2023 Dirk Beyer <https://www.sosy-lab.org>
 #
 # SPDX-License-Identifier: Apache-2.0
-LEVEL := ../../
-include $(LEVEL)/Makefile.common
+
+LEVEL := ../
+
+include $(LEVEL)/Makefile.config

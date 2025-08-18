@@ -5,5 +5,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-LEVEL := ../../
-include $(LEVEL)/Makefile.common
+LEVEL := ../
+
+include $(LEVEL)/Makefile.config

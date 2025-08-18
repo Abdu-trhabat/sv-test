@@ -1,0 +1,10 @@
+# C11 Unspecified behaviour: use of an unspecified value, or other behaviour where
+# this International Standard provides, two or more possibilities and imposes
+# no further requirements on which is chosen in any instance.
+
+unspecified-compile-array/*.yml
+unspecified-compile-pointer/*.yml
+unspecified-compile-global-function-designator-arguments-subexpression-order/*.yml
+unspecified-compile-global-assignment-order/*.yml
+unspecified-compile-global-initialization-order/*.yml
+unspecified-compile-global-subexpressions-order/*.yml
