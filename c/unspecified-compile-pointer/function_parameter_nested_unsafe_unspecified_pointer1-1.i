@@ -5,9 +5,6 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-#
-#
-
 typedef unsigned int size_t;
 typedef long int wchar_t;
 
