@@ -5,5 +5,4 @@ locks/*.yml
 ntdrivers/*.yml
 openssl/*.yml
 unspecified-compile/*.yml
-unspecified-compile-global-variables/*.yml
 unspecified-runtime/*.yml
