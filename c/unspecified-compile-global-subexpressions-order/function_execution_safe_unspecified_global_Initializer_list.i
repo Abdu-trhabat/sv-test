@@ -5,9 +5,6 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-#
-#
-
 typedef unsigned int size_t;
 typedef long int wchar_t;
 
@@ -116,12 +113,12 @@ int f() {
   g = 2;
   return 5;
 }
-int g() {
+int p() {
   g = 4;
   return 7;
 }
 int main() {
-  int arr[1] = { (f() + x) + g() };
+  int arr[1] = { (f() + x) + p() };
   if (g != 2 && g != 4) { reach_error(); abort(); }
   return 0;
 }

@@ -18,14 +18,14 @@ int f() {
   return 5;
 }
 
-int g() {
+int p() {
   g = 4;        // write g
   return 7;
 }
 
 int main() {
   // C11 ISO/IEC 9899:201x Annex J.1 Unspecified behaviour states that the order in which subexpressions are evaluated is not specified (with some exceptions, + not being one)
-  int arr[1] = { (f() + x) + g() };
+  int arr[1] = { (f() + x) + p() };
 
   // Depending on whether f() or g() is evaluated first,
   // the final value of g may be 2 or 4.
