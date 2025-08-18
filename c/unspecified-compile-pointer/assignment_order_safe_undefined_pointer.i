@@ -107,20 +107,28 @@ extern size_t wcstombs (char *__restrict __s,
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "assignment_order_unsafe_pointer1-1.c", 3, "reach_error"); }
-int* f1(int * p1) {
-  *p1 = 3;
-  return malloc(sizeof(int));
+struct int_cache {
+    int cache;
+};
+int* f1(struct int_cache* p1) {
+    p1->cache = 3;
+    return malloc(sizeof(int));
 }
-int f2(int * p2) {
-  *p2 = 5;
-  return 7;
+int f2(struct int_cache* p2) {
+    p2->cache = 5;
+    return 7;
+}
+int f3(struct int_cache** p3) {
+  struct int_cache g;
+  *p3 = &g;
+  return f2(*p3);
 }
 int main() {
-  int a = 0;
-  int * g = &a;
-  int * p = g;
-  *g = 0;
-  *f1(p) = f2(g);
-  if (*g != 3 && *g != 5) {reach_error();abort();}
-  return 0;
+    struct int_cache g;
+    struct int_cache* a = &g;
+    struct int_cache* b = &g;
+    g.cache = 0;
+    *f1(a) = f3(&b);
+    if (g.cache != 3) {reach_error();abort();}
+    return g.cache;
 }
