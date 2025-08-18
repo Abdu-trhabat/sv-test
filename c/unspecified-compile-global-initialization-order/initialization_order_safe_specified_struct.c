@@ -36,7 +36,7 @@ int main() {
   int t1 = f1();  // g = 1
   int t2 = f2();  // g = 2 (last write, deterministic)
 
-  struct S s = { t1, t2 }
+  struct S s = { t1, t2 };
 
   if (g != 1 && g != 2) {
     reach_error();
