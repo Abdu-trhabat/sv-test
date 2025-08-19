@@ -28,7 +28,7 @@ int main() {
   int arr[2] = {f1(), f2()};  // Evaluation order not specified
 
   if (g == 1) {
-    reach_error();
+    reach_error();abort();
   }
 
   return 0;

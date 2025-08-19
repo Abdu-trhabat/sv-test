@@ -136,6 +136,6 @@ int main() {
     { t2, t1a },
     { t3, t1b }
   };
-  if (g != 1) { reach_error(); abort(); }
+  if (g != 1) { reach_error();abort(); }
   return 0;
 }

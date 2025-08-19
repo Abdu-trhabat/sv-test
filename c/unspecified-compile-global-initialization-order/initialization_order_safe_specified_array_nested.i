@@ -129,7 +129,7 @@ int main() {
     { t3, t1 }
   };
   if (g != 1 && g != 2 && g != 3) {
-      reach_error();
+      reach_error();abort();
   }
   return 0;
 }

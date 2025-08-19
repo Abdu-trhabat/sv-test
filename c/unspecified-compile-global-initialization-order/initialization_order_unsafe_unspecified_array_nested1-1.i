@@ -127,6 +127,7 @@ int main() {
   };
   if (g == 1) {
     reach_error();
+    abort();
   }
   return 0;
 }

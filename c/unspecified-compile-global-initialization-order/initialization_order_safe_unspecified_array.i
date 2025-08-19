@@ -119,7 +119,7 @@ int f2() {
 int main() {
   int arr[2] = {f1(), f2()};
   if (g != 1 && g != 2) {
-    reach_error();
+    reach_error();abort();
   }
   return 0;
 }

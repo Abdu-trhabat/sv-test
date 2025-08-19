@@ -49,7 +49,7 @@ int main() {
   };
 
   // With the fixed order above, the final value of g must be 1.
-  if (g != 1) { reach_error(); abort(); }
+  if (g != 1) { reach_error();abort(); }
 
   return 0;
 }

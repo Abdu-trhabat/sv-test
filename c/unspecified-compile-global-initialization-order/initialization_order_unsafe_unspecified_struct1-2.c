@@ -38,6 +38,7 @@ int main() {
 
   if (g == 2) {
     reach_error();
+    abort();
   }
 
   return 0;

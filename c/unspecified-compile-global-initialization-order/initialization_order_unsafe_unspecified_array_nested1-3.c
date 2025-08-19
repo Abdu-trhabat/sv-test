@@ -37,6 +37,7 @@ int main() {
 
   if (g == 3) {
     reach_error();
+    abort();
   }
 
   return 0;

@@ -37,7 +37,7 @@ int main() {
   struct S s = { f1(), f2() };  // Order of evaluation of f1 and f2 is unspecified
 
   if (g != 1 && g != 2) {
-    reach_error();
+    reach_error();abort();
   }
 
   return 0;

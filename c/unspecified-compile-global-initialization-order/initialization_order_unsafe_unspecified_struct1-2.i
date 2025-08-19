@@ -127,6 +127,7 @@ int main() {
   struct S s = { f1(), f2() };
   if (g == 2) {
     reach_error();
+    abort();
   }
   return 0;
 }

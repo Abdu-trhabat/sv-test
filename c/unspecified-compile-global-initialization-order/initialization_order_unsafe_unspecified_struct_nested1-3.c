@@ -45,7 +45,8 @@ int main() {
   };
 
   if (g == 3) {
-    reach_error();  // triggered only in specific evaluation orders
+    reach_error();
+    abort();  // triggered only in specific evaluation orders
   }
 
   return 0;

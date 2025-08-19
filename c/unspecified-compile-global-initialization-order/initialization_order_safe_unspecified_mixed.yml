@@ -7,7 +7,7 @@
 
 format_version: '2.0'
 
-input_files: 'assignment_order_safe_undefined_pointer.i'
+input_files: 'initialization_order_safe_unspecified_mixed.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp

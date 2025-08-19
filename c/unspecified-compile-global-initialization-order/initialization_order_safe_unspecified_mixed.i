@@ -105,29 +105,20 @@ extern size_t wcstombs (char *__restrict __s,
   __attribute__ ((__access__ (__read_only__, 2)));
 
 extern void abort(void);
-extern void __assert_fail(const char *, const char *, unsigned int, const char *)
-  __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
-void reach_error() {
-  __assert_fail("0", "unspecified_initializer_struct.c", 3, "reach_error");
-}
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
+void reach_error() { __assert_fail("0", "unspecified_initializer_struct_nested.c", 3, "reach_error"); }
 int g = 0;
-int f1() {
-  g = 1;
-  return 10;
-}
-int f2() {
-  g = 2;
-  return 20;
-}
-struct S {
-  int a;
-  int b;
-};
+struct S { int a, b; };
+int f1() { g = 1; return 11; }
+int f2() { g = 2; return 22; }
+int f3() { g = 3; return 33; }
+int f4() { g = 4; return 44; }
 int main() {
-  int t1 = f1();
-  int t2 = f2();
-  struct S s = { t1, t2 };
-  if (g != 1 && g != 2) {
+  struct S arr[2][2] = {
+    { { .a = 8, .b = f2() }, { .a = f1(), .b = 0 } },
+    { { f3(), f4() }, { .a = 9, .b = 6 } }
+  };
+  if (g != 1 && g != 2 && g != 3 && g != 4) {
     reach_error();abort();
   }
   return 0;
