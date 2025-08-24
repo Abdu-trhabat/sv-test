@@ -7,7 +7,7 @@
 
 format_version: '2.0'
 
-input_files: 'assignment_order_safe_unspecified_array_aliasing.i'
+input_files: 'assignment_order_safe_unspecified_array_global.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp
