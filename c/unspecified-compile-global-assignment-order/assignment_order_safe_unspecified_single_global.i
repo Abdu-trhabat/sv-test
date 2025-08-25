@@ -106,7 +106,7 @@ extern size_t wcstombs (char *__restrict __s,
 
 extern void abort(void);
 extern void __assert_fail(const char*, const char*, unsigned, const char*) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
-void reach_error() { __assert_fail("0", "assignment_order_safe_unspecified_call_vs_global_read1-1.c", 3, "reach_error"); }
+void reach_error() { __assert_fail("0", "assignment_order_safe_unspecified_single_global.c", 3, "reach_error"); }
 int g = 0;
 int result = -1;
 int* f1() {

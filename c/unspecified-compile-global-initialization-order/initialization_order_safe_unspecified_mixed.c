@@ -8,7 +8,7 @@
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
-void reach_error() { __assert_fail("0", "unspecified_initializer_struct_nested.c", 3, "reach_error"); }
+void reach_error() { __assert_fail("0", "initialization_order_safe_unspecified_mixed.c", 3, "reach_error"); }
 
 // Global side-effect target
 int g = 0;

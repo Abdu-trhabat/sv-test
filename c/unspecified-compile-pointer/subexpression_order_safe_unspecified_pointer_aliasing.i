@@ -106,7 +106,7 @@ extern size_t wcstombs (char *__restrict __s,
 
 extern void abort(void);
 extern void __assert_fail(const char*, const char*, unsigned, const char*) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
-void reach_error() { __assert_fail("0", "assignment_order_safe_unspecified_alias_writewrite1-1.c", 3, "reach_error"); }
+void reach_error() { __assert_fail("0", "subexpression_order_safe_unspecified_pointer_aliasing.c", 3, "reach_error"); }
 extern unsigned int __VERIFIER_nondet_uint(void);
 extern _Bool __VERIFIER_nondet_bool(void);
 int f1(int *g) {

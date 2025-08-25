@@ -11,7 +11,7 @@ extern void __assert_fail(const char *, const char *, unsigned int, const char *
   __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
 
 void reach_error() {
-  __assert_fail("0", "unspecified_initializer_struct.c", 3, "reach_error");
+  __assert_fail("0", "initialization_order_unsafe_unspecified_struct1-1.c", 3, "reach_error");
 }
 
 int g = 0;

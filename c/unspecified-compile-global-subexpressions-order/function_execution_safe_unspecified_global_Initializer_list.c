@@ -8,7 +8,7 @@
 
 extern void abort(void);
 extern void __assert_fail(const char*, const char*, unsigned, const char*) __attribute__((__nothrow__, __leaf__)) __attribute__((__noreturn__));
-void reach_error() { __assert_fail("0", "assignment_order_safe_unspecified_initlist_call_plus_var_vs_call1-1.c", 3, "reach_error"); }
+void reach_error() { __assert_fail("0", "function_execution_safe_unspecified_global_Initializer_list.c", 3, "reach_error"); }
 
 int g = 0;
 int x = 1;

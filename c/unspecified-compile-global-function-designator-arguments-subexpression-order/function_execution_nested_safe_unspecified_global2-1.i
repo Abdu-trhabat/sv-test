@@ -158,7 +158,7 @@ extern char *strerror (int __errnum) __attribute__ ((__nothrow__ , __leaf__));
 
 extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "detected_functioncall_nested_global.c", 3, "reach_error"); }
+void reach_error() { __assert_fail("0", "function_execution_nested_safe_unspecified_global2-1.c", 3, "reach_error"); }
 char global_char;
 const char* change_log[6];
 int log_index = 0;
