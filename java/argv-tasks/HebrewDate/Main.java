@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: https://github.com/hebcal/hebcal-java
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // SPDX-FileCopyrightText: Copyright (C) 2025 The ARG-V Project
 /** filtered and transformed by ARG-V */
 import org.sosy_lab.sv_benchmarks.Verifier;
