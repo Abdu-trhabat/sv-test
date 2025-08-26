@@ -12,15 +12,6 @@ Please direct any inquiries to Dr. Robert Dyer (rdyer@unl.edu) and Dr. Elena She
 
 Benchmarks in this repository came from a variety of repositories:
 
-### [myJavaProjects](https://github.com/caseyjames/myJavaProjects/blob/433e0caf8954ce2e7486ba9d26bedceae086746c/Assignments/src/assignment3/ArrayBasedCollectionTimer.java) project:
-
-ArrayBasedCollectionTimer
-
-
-### [MTG-Deck-Builder](https://github.com/Jarcionek/MTG-Deck-Builder/blob/67ddeed85e771264b5e690530afd69cb84f92d01/src/main/java/mtgdeckbuilder/frontend/CardsDisplayPanel.java) project:
-
-CardsDisplayPanel
-
 
 ### [bc-java](https://github.com/bcgit/bc-java/blob/2aeb19f832252e2dc6817f472738f03f0446e451/core/src/main/java/org/bouncycastle/crypto/BufferedBlockCipher.java) project:
 
@@ -45,11 +36,6 @@ TouchPadView
 ### [plugins-source-google-iap-v3](https://github.com/coronalabs/plugins-source-google-iap-v3/blob/52868507158208d046ea990a6251c72a959dfc76/android/plugin/src/main/java/plugin/google/iap/v3/util/Base64.java) project:
 
 Base64
-
-
-### [The-WUUSTER/Randoms](https://archive.softwareheritage.org/browse/content/sha1_git:80f4bd6040acc89aede95c5c4eb8ede712ea703f/?origin_url=https://github.com/The-WUUSTER/Randoms&path=src/Twenty48.java):
-
-Twenty48
 
 
 ### [SlidingMenu](https://github.com/jfeinstein10/SlidingMenu/blob/4254feca3ece9397cd501921ee733f19ea0fdad8/library/src/com/jeremyfeinstein/slidingmenu/lib/CustomViewAbove.java) project:
