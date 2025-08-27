@@ -29,7 +29,7 @@ int main() {
   *p = 0;
 
   // C11 ISO/IEC 9899:201x Annex J.1 Unspecified behaviour and 6.5.16 state that the order in which the operands of an assignment operator are evaluated is not specified
-  *f1(g) = f2(g);
+  *f1(g) = f2(p);
   if (*g != 3 && *p != 5) {reach_error();abort();}
   return 0;
 }

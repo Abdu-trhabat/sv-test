@@ -120,7 +120,7 @@ int main() {
   int * p = malloc(sizeof(int));
   *g = 0;
   *p = 0;
-  *f1(g) = f2(g);
+  *f1(g) = f2(p);
   if (*g != 3 && *p != 5) {reach_error();abort();}
   return 0;
 }
