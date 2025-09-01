@@ -12,7 +12,7 @@ input_files: "drivers--media--dvb--dvb-usb--dvb-usb-vp7045.ko_024.78e9200.32_1.c
 
 properties:
   - property_file: "../properties/unreach-call.prp"
-    expected_verdict: true
+    expected_verdict: false
 
 options:
   language: C

@@ -12,7 +12,7 @@ input_files: "drivers--usb--serial--mos7840.ko_031.e9b8cff.68_1.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"
-    expected_verdict: true
+    expected_verdict: false
 
 options:
   language: C

@@ -12,7 +12,7 @@ input_files: "drivers--block--drbd--drbd.ko_432.c12a3d8.08_1a.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"
-    expected_verdict: true
+    expected_verdict: false
 
 options:
   language: C
