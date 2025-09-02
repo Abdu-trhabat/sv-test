@@ -11,6 +11,7 @@
       - bh2017-ex1-poly.i
       input_file_hashes:
         bh2017-ex1-poly.i: d6dbcbf51695ea037a123bcc006ce5f6db095b874a22b169ec869d834ce41de6
+      specification: G ! call(reach_error())
       data_model: LP64
       language: C
   content:

@@ -11,6 +11,7 @@
       - hh2012-ex3.i
       input_file_hashes:
         hh2012-ex3.i: 3c7177334f88b94ca4ee99044935e396702561856a6f48616f98f91aafc609bb
+      specification: G ! call(reach_error())
       data_model: LP64
       language: C
   content:

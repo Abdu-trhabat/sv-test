@@ -11,6 +11,7 @@
       - bh2017-ex3.i
       input_file_hashes:
         bh2017-ex3.i: 67c3f42f5641e6993fb8445c2fa4fe121d859872ed17b178229098422831f110
+      specification: G ! call(reach_error())
       data_model: LP64
       language: C
   content:

@@ -11,6 +11,7 @@
       - mine2017-ex4.10.i
       input_file_hashes:
         mine2017-ex4.10.i: 55b5907667de8828dab419c82ab626d27191191343b82d619fed89d8923b6a77
+      specification: G ! call(reach_error())
       data_model: LP64
       language: C
   content:

@@ -11,6 +11,7 @@
       - hh2012-ex2b.i
       input_file_hashes:
         hh2012-ex2b.i: 33d07b945bedf27c99ae2e0c2f8250a85a01f89cb7fb82b15572e4678e4d0d97
+      specification: G ! call(reach_error())
       data_model: LP64
       language: C
   content:

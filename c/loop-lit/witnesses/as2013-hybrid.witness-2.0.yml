@@ -11,6 +11,7 @@
       - as2013-hybrid.i
       input_file_hashes:
         as2013-hybrid.i: 6f4877babf2234c4d9f84af37e06b0d1c35e333b586df80a0a3a6ac5b1b8e2d2
+      specification: G ! call(reach_error())
       data_model: LP64
       language: C
   content:

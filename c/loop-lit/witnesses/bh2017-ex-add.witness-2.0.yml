@@ -11,6 +11,7 @@
       - bh2017-ex-add.i
       input_file_hashes:
         bh2017-ex-add.i: 9067bcd66b4865bfb6aa4fb5c23797c879c2b81c36d918479d6650dc5a4b5edc
+      specification: G ! call(reach_error())
       data_model: LP64
       language: C
   content:
