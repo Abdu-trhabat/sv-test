@@ -606,8 +606,8 @@ class TaskDefinitionFileChecks(FileChecks):
                 isinstance(self.content, dict)
                 and "options" in self.content.keys()
                 and isinstance(self.content["options"], dict)
-                and "witness" in self.content["options"].keys()
-                and f == self.content["options"]["witness"]
+                and WITNESS_OPTION_NAME in self.content["options"].keys()
+                and f == self.content["options"][WITNESS_OPTION_NAME]
             ):
                 witness_files.append(f)
             else:
