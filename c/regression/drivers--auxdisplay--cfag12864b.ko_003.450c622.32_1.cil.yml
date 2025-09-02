@@ -12,7 +12,7 @@ input_files: "drivers--auxdisplay--cfag12864b.ko_003.450c622.32_1.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"
-    expected_verdict: false
+    expected_verdict: true
 
 options:
   language: C

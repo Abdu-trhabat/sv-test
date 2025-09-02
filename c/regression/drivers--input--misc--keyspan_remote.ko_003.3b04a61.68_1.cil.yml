@@ -12,7 +12,7 @@ input_files: "drivers--input--misc--keyspan_remote.ko_003.3b04a61.68_1.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"
-    expected_verdict: true
+    expected_verdict: false
 
 options:
   language: C
