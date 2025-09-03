@@ -12,7 +12,7 @@ input_files: "drivers--net--usb--catc.ko_003.4dc8994.43_1a.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"
-    expected_verdict: true
+    expected_verdict: false
 
 options:
   language: C

@@ -12,7 +12,7 @@ input_files: "drivers--video--arkfb.ko_004.20e061f.32_1.cil.i"
 
 properties:
   - property_file: "../properties/unreach-call.prp"
-    expected_verdict: true
+    expected_verdict: false
 
 options:
   language: C
