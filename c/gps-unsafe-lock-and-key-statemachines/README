@@ -1,0 +1,8 @@
+The benchmarks in this directory were submitted by Ruijie Fang.
+They were taken from the following paper:
+ Ruijie Fang, Zachary Kincaid, Thomas Reps. "Software Model Checking via Summary-Guided Search." OOPSLA 2025
+They correspond to the "State Machines" category of "Suite #3 --- Lock and Key Benchmarks" described in the evaluations section of the paper. 
+
+The following benchmarks were adapted from prior literature by the authors:
+ - `godefroid-ndss09.c` is adapted from figure 1 of the following paper: P. Godefroid, M.Y. Levin, and D. Molnar. 2008. Automated Whitebox Fuzz Testing. NDSS 2008
+ - `majumdar-icse07.c` is adapted from figure 1 of the following paper: Rupak Majumdar and Koushik Sen. 2007. Hybrid Concolic Testing. ICSE 2007

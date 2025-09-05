@@ -1,0 +1,12 @@
+The benchmarks in this directory were submitted by Ruijie Fang.
+They were taken from the following paper:
+ Ruijie Fang, Zachary Kincaid, Thomas Reps. "Software Model Checking via Summary-Guided Search." OOPSLA 2025
+They correspond to the "Parametrizable" category of "Suite #3 --- Lock and Key Benchmarks" described in the evaluations section of the paper. 
+
+The following benchmarks were adapted by the authors from the following papers:
+ - `ccbse-refute1-*` is adapted from Figure 4 of: Kin-Keung Ma, Khoo Yit Phang, Jeffrey S. Foster, and Michael Hicks. 2011. Directed Symbolic Execution. In Static Analysis, Eran Yahav (Ed.). Springer Berlin Heidelberg, Berlin, Heidelberg, 95–111.
+ - `ccbse-refute2-*` is adapted from Figure 6 of the above paper.
+ - `godefroid-issta-1a-*` is adapted from Figure 1 (error 1) of the following paper: Patrice Godefroid and Daniel Luchaup. 2011. Automatic partial loop summarization in dynamic test generation. In Proceedings of the 2011 International Symposium on Software Testing and Analysis (Toronto, Ontario, Canada) (ISSTA ’11). Association for Computing Machinery, New York, NY, USA, 23–33
+ - `godefroid-issta-1b-*` is adapted from Figure 1 of the same paper above (error 2)
+ - `godefroid-issta-2-*` is adapted from Figure 2 of the above paper.
+ - `lese*.c` is adapted from the HTTP server bug example described in Section 2 (Figure 1) of the following paper: P. Saxena, P. Poosankam, S. McCamant, and D. Song. Loop-Extended Symbolic Execution on Binary Programs. In ISSTA’2009, pages 225–236, Chicago, July 2009.
