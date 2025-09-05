@@ -11,5 +11,9 @@ loop-invariants/*.yml
 loop-invariants64/*.yml
 loop-simple/*.yml
 loop-zilu/*.yml
+gps-safe/*.yml
+gps-unsafe-lock-and-key-parametrizable/*.yml
+gps-unsafe-lock-and-key-statemachines/*.yml
+gps-unsafe-lock-and-key-unparametrizable/*.yml
 nla-digbench/*.yml
 nla-digbench-scaling/*.yml
