@@ -62,7 +62,9 @@ assert not re.search(p("hard2"), "hard-ll.c")
 assert not re.search(p("hard\."), "hard-u.c")
 
 # task patterns where the expected result should become true if the values are restricted:
-healed_by_valuebound = [p(x) for x in ["divbin", "hard-ll", "hard\.", "hard-u", "freire1"]]
+healed_by_valuebound = [
+    p(x) for x in ["divbin", "hard-ll", "hard\.", "hard-u", "freire1"]
+]
 # task patterns where the expected result should become true if the number of iterations is restricted:
 healed_by_unwindbound = [p("divbin")]
 # task patterns where the expected result should become false if the number of iterations is restricted:
@@ -82,7 +84,7 @@ broken_by_unwindbound = [
         "ps4",
         "ps5",
         "ps6",
-        "divbin",      # only with bound >=10
+        "divbin",  # only with bound >=10
         "dijkstra-u",  # only with bound >=5
         "fermat1-ll",  # CEX e.g. with A=11; R=4;
         "fermat2-ll",  # CEX e.g. with A=11; R=4;
@@ -105,7 +107,7 @@ for file, bound in itertools.product(cfiles, [1, 2, 5, 10, 20, 50, 100]):
     fullpath = join(NLADIR, file)
     fullpathToPreprocessed = fullpath[:-2] + ".i"
     iFileExists = isfile(fullpathToPreprocessed)
-    for (templatefun, name) in [
+    for templatefun, name in [
         (looptemplate, "_unwindbound"),
         (valuetemplate, "_valuebound"),
     ]:
