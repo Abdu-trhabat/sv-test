@@ -43,7 +43,9 @@ RUN apt-get update && apt-get install -y \
   jq \
   python3-pip
 
-RUN pip3 install yq
+# Upper bound on PyYAML only because ubuntu:trusty has too old Python 3 to support syntax in newer PyYAML
+# TODO: remove after updating Ubuntu
+RUN pip3 install "PyYAML<6" yq
 
 COPY --from=0 /cbmc /cbmc
 
