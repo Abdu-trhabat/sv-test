@@ -24,7 +24,8 @@ import tempfile
 
 # tasks to ignore, with reason why
 TASKS_TO_IGNORE = {
-  "floats-esbmc-regression/trunc_nondet_2.i": "(platform-dependent types)",
+  "floats-cbmc-regression/*": "(platform-dependent types, preprocessed on Ubuntu 14.04)",
+  "floats-esbmc-regression/*": "(platform-dependent types, preprocessed on Ubuntu 14.04)",
   "*pthread*/*": "(platform-dependent types)",
   "goblint-regression/*": "(platform-dependent types)",
 }
@@ -32,6 +33,7 @@ TASKS_TO_IGNORE = {
 # categories to be excluded ... (with reason and debug information)
 CATEGORIES_TO_IGNORE = {
   "Concurrency": "(platform-dependent types)",
+  "SoftwareSystems-BusyBox": "(.c files include libio.h which has been removed from modern glibc, preprocessed on Ubuntu 14.04)",
   "SoftwareSystems-Intel-TDX-Module": "(.c files only to show hardware modeling, complicated build process)",
   "SoftwareSystems-OpenBSD": "(only custom includes, no system headers, complicated build process)",
   "SoftwareSystems-SQLite": "(complicated build process, requires patched version of cilly)",
