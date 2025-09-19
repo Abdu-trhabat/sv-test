@@ -23,28 +23,18 @@ RUN apt-get update && apt-get install -y \
   make \
   git \
   curl \
-  patch
-
-RUN git clone --depth=1 --branch=cbmc-5.71.0 https://github.com/diffblue/cbmc.git
-
-RUN make -C cbmc/src minisat2-download
-
-# Make sure goto-cc is executable on trusty image
-ENV LINKFLAGS=-static
-
-RUN make -C cbmc/src -j2 goto-diff.dir goto-cc.dir
-
-# Base image needs to be Ubuntu 14.04 because programs were preprocessed with headers from this version
-FROM ubuntu:focal
-
-RUN apt-get update && apt-get install -y \
-  git \
+  patch \
   libc6-dev-i386 \
   jq \
   python3-pip
 
 RUN pip3 install yq
 
-COPY --from=0 /cbmc /cbmc
+
+RUN git clone --depth=1 --branch=cbmc-5.71.0 https://github.com/diffblue/cbmc.git
+
+RUN make -C cbmc/src minisat2-download
+
+RUN make -C cbmc/src -j2 goto-diff.dir goto-cc.dir
 
 ENV PATH="/cbmc/src/goto-cc:/cbmc/src/goto-diff:${PATH}"
