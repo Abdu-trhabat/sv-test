@@ -30,16 +30,16 @@ def progressBar(value, endvalue, bar_length=20):
 
 def get_taskdef(inputfile: str, verdict: bool) -> str:
     content = [
-        f"format_version: '2.0'",
-        f"",
+        "format_version: '2.0'",
+        "",
         f"input_files: '{inputfile}'",
-        f"properties:",
-        f"  - property_file: ../properties/unreach-call.prp",
+        "properties:",
+        "  - property_file: ../properties/unreach-call.prp",
         f"    expected_verdict: {verdict}",
-        f"",
-        f"options:",
-        f"  language: C",
-        f"  data_model: ILP32",
+        "",
+        "options:",
+        "  language: C",
+        "  data_model: ILP32",
     ]
     return "\n".join(content) + "\n"
 

@@ -5,7 +5,9 @@
 # and header files needed for a successful compilation with these files.
 #
 #
-import os, glob, shutil, time, sys
+import os
+import shutil
+import sys
 
 # add parent directory to search path so we can use py_common
 sys.path.append("..")

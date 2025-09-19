@@ -3,7 +3,14 @@
 # Contains common functions necessary for various python testcase scripts.
 #
 
-import os, re, csv, datetime, subprocess, glob, sys, time, shutil
+import os
+import re
+import csv
+import datetime
+import subprocess
+import sys
+import time
+import shutil
 
 
 def is_generated_file(fullfilepath):
