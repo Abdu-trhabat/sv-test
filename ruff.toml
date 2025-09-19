@@ -1,0 +1,3 @@
+# Generate Python 3.8-compatible code.
+# Required for preprocessing-consistency CI on Ubuntu 20.04.
+target-version = "py38"
