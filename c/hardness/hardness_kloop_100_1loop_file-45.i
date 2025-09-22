@@ -1,0 +1,204 @@
+extern unsigned long __VERIFIER_nondet_ulong(void);
+extern long __VERIFIER_nondet_long(void);
+extern unsigned char __VERIFIER_nondet_uchar(void);
+extern char __VERIFIER_nondet_char(void);
+extern unsigned short __VERIFIER_nondet_ushort(void);
+extern short __VERIFIER_nondet_short(void);
+extern float __VERIFIER_nondet_float(void);
+extern double __VERIFIER_nondet_double(void);
+extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error(void) { __assert_fail("0", "Req1_Prop1_Batch45100_1loop.c", 13, "reach_error"); }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } return; }
+void assume_abort_if_not(int cond) { if(!cond) { abort(); } }
+void initially(void);
+void step(void);
+void updateVariables(void);
+void updateLastVariables(void);
+int property(void);
+int main(void);
+unsigned char isInitial = 0;
+unsigned long int var_1_1 = 0;
+unsigned long int var_1_2 = 16;
+unsigned long int var_1_3 = 256;
+unsigned char var_1_4 = 0;
+signed long int var_1_5 = 5;
+unsigned short int var_1_6 = 128;
+unsigned short int var_1_7 = 27927;
+unsigned short int var_1_8 = 20056;
+unsigned short int var_1_9 = 32;
+unsigned short int var_1_10 = 16;
+unsigned short int var_1_11 = 48855;
+unsigned char var_1_12 = 1;
+unsigned char var_1_13 = 0;
+unsigned char var_1_14 = 0;
+unsigned char var_1_15 = 0;
+double var_1_16 = 50.25;
+double var_1_19 = 32.25;
+signed char var_1_20 = -5;
+signed char var_1_21 = 50;
+signed short int var_1_22 = -5;
+float var_1_23 = 1.125;
+float var_1_24 = 1.6;
+float var_1_25 = 100.44;
+float var_1_26 = 15.5;
+signed short int var_1_27 = 4;
+unsigned short int var_1_28 = 1;
+double var_1_29 = 31.32;
+void initially(void) {
+}
+void step(void) {
+ unsigned short int stepLocal_3 = var_1_8;
+ if (! var_1_4) {
+  if (stepLocal_3 < var_1_10) {
+   var_1_12 = (! var_1_13);
+  } else {
+   var_1_12 = ((var_1_13 && var_1_14) && var_1_15);
+  }
+ }
+ unsigned short int stepLocal_7 = var_1_11;
+ if (var_1_10 > stepLocal_7) {
+  var_1_26 = var_1_19;
+ }
+ if (var_1_19 < (var_1_25 + 10.25)) {
+  if (var_1_12 || var_1_15) {
+   if ((var_1_8 <= (256 | var_1_21)) && var_1_13) {
+    var_1_28 = var_1_11;
+   } else {
+    var_1_28 = var_1_7;
+   }
+  } else {
+   var_1_28 = var_1_11;
+  }
+ } else {
+  var_1_28 = var_1_7;
+ }
+ unsigned long int stepLocal_1 = (var_1_2 * var_1_3) >> var_1_5;
+ unsigned char stepLocal_0 = var_1_12;
+ if ((var_1_2 >= var_1_3) || stepLocal_0) {
+  if (stepLocal_1 >= 50u) {
+   var_1_1 = var_1_5;
+  } else {
+   var_1_1 = 4u;
+  }
+ } else {
+  var_1_1 = var_1_5;
+ }
+ unsigned long int stepLocal_2 = var_1_3;
+ if (var_1_1 != stepLocal_2) {
+  var_1_6 = (((((2) > (var_1_5)) ? (2) : (var_1_5))) + (((((var_1_7) > (var_1_8)) ? (var_1_7) : (var_1_8))) - ((((var_1_9) < (var_1_10)) ? (var_1_9) : (var_1_10)))));
+ } else {
+  var_1_6 = (((((var_1_11 - var_1_10)) > (((((var_1_9) > (var_1_8)) ? (var_1_9) : (var_1_8))))) ? ((var_1_11 - var_1_10)) : (((((var_1_9) > (var_1_8)) ? (var_1_9) : (var_1_8))))));
+ }
+ if (var_1_1 != var_1_7) {
+  var_1_20 = ((((var_1_5 - var_1_21) < 0 ) ? -(var_1_5 - var_1_21) : (var_1_5 - var_1_21)));
+ }
+ signed long int stepLocal_10 = (((var_1_11) < (var_1_6)) ? (var_1_11) : (var_1_6));
+ signed long int stepLocal_9 = var_1_11 - var_1_8;
+ signed long int stepLocal_8 = (((var_1_10) > (var_1_5)) ? (var_1_10) : (var_1_5));
+ if (var_1_8 < stepLocal_10) {
+  if (var_1_7 == stepLocal_9) {
+   if (stepLocal_8 > var_1_7) {
+    var_1_29 = var_1_25;
+   }
+  }
+ } else {
+  var_1_29 = var_1_19;
+ }
+ signed long int stepLocal_5 = (var_1_8 << var_1_1) * -25;
+ signed long int stepLocal_4 = 64;
+ if ((var_1_7 ^ var_1_9) <= stepLocal_5) {
+  if ((var_1_5 - var_1_8) >= stepLocal_4) {
+   if ((- var_1_29) <= (- var_1_26)) {
+    var_1_16 = (var_1_19 + ((((32.6) < (127.5)) ? (32.6) : (127.5))));
+   } else {
+    var_1_16 = var_1_19;
+   }
+  } else {
+   var_1_16 = var_1_19;
+  }
+ }
+ unsigned char stepLocal_6 = var_1_12;
+ if ((128u < var_1_5) && stepLocal_6) {
+  var_1_22 = (var_1_21 - var_1_9);
+ } else {
+  if (var_1_29 < var_1_26) {
+   var_1_22 = ((((var_1_5) > ((var_1_21 - var_1_10))) ? (var_1_5) : ((var_1_21 - var_1_10))));
+  } else {
+   var_1_22 = var_1_9;
+  }
+ }
+ if ((var_1_29 / var_1_24) != var_1_16) {
+  var_1_23 = ((((999999.5f) > ((var_1_19 + var_1_25))) ? (999999.5f) : ((var_1_19 + var_1_25))));
+ }
+ if (((((var_1_29) > (var_1_25)) ? (var_1_29) : (var_1_25))) < var_1_19) {
+  var_1_27 = (var_1_5 - var_1_9);
+ }
+}
+void updateVariables(void) {
+ var_1_2 = __VERIFIER_nondet_ulong();
+ assume_abort_if_not(var_1_2 >= 0);
+ assume_abort_if_not(var_1_2 <= 4294967295);
+ var_1_3 = __VERIFIER_nondet_ulong();
+ assume_abort_if_not(var_1_3 >= 0);
+ assume_abort_if_not(var_1_3 <= 4294967295);
+ var_1_4 = __VERIFIER_nondet_uchar();
+ assume_abort_if_not(var_1_4 >= 0);
+ assume_abort_if_not(var_1_4 <= 1);
+ var_1_5 = __VERIFIER_nondet_long();
+ assume_abort_if_not(var_1_5 >= 1);
+ assume_abort_if_not(var_1_5 <= 31);
+ var_1_7 = __VERIFIER_nondet_ushort();
+ assume_abort_if_not(var_1_7 >= 16383);
+ assume_abort_if_not(var_1_7 <= 32767);
+ var_1_8 = __VERIFIER_nondet_ushort();
+ assume_abort_if_not(var_1_8 >= 16383);
+ assume_abort_if_not(var_1_8 <= 32767);
+ var_1_9 = __VERIFIER_nondet_ushort();
+ assume_abort_if_not(var_1_9 >= 0);
+ assume_abort_if_not(var_1_9 <= 16383);
+ var_1_10 = __VERIFIER_nondet_ushort();
+ assume_abort_if_not(var_1_10 >= 0);
+ assume_abort_if_not(var_1_10 <= 16383);
+ var_1_11 = __VERIFIER_nondet_ushort();
+ assume_abort_if_not(var_1_11 >= 32767);
+ assume_abort_if_not(var_1_11 <= 65534);
+ var_1_13 = __VERIFIER_nondet_uchar();
+ assume_abort_if_not(var_1_13 >= 1);
+ assume_abort_if_not(var_1_13 <= 1);
+ var_1_14 = __VERIFIER_nondet_uchar();
+ assume_abort_if_not(var_1_14 >= 1);
+ assume_abort_if_not(var_1_14 <= 1);
+ var_1_15 = __VERIFIER_nondet_uchar();
+ assume_abort_if_not(var_1_15 >= 1);
+ assume_abort_if_not(var_1_15 <= 1);
+ var_1_19 = __VERIFIER_nondet_double();
+ assume_abort_if_not((var_1_19 >= -461168.6018427383000e+13F && var_1_19 <= -1.0e-20F) || (var_1_19 <= 4611686.018427383000e+12F && var_1_19 >= 1.0e-20F ));
+ var_1_21 = __VERIFIER_nondet_char();
+ assume_abort_if_not(var_1_21 >= 0);
+ assume_abort_if_not(var_1_21 <= 126);
+ var_1_24 = __VERIFIER_nondet_float();
+ assume_abort_if_not((var_1_24 >= -922337.2036854776000e+13F && var_1_24 <= -1.0e-20F) || (var_1_24 <= 9223372.036854776000e+12F && var_1_24 >= 1.0e-20F ));
+ assume_abort_if_not(var_1_24 != 0.0F);
+ var_1_25 = __VERIFIER_nondet_float();
+ assume_abort_if_not((var_1_25 >= -461168.6018427383000e+13F && var_1_25 <= -1.0e-20F) || (var_1_25 <= 4611686.018427383000e+12F && var_1_25 >= 1.0e-20F ));
+}
+void updateLastVariables(void) {
+}
+int property(void) {
+ return ((((((((((((var_1_2 >= var_1_3) || var_1_12) ? ((((var_1_2 * var_1_3) >> var_1_5) >= 50u) ? (var_1_1 == ((unsigned long int) var_1_5)) : (var_1_1 == ((unsigned long int) 4u))) : (var_1_1 == ((unsigned long int) var_1_5))) && ((var_1_1 != var_1_3) ? (var_1_6 == ((unsigned short int) (((((2) > (var_1_5)) ? (2) : (var_1_5))) + (((((var_1_7) > (var_1_8)) ? (var_1_7) : (var_1_8))) - ((((var_1_9) < (var_1_10)) ? (var_1_9) : (var_1_10))))))) : (var_1_6 == ((unsigned short int) (((((var_1_11 - var_1_10)) > (((((var_1_9) > (var_1_8)) ? (var_1_9) : (var_1_8))))) ? ((var_1_11 - var_1_10)) : (((((var_1_9) > (var_1_8)) ? (var_1_9) : (var_1_8)))))))))) && ((! var_1_4) ? ((var_1_8 < var_1_10) ? (var_1_12 == ((unsigned char) (! var_1_13))) : (var_1_12 == ((unsigned char) ((var_1_13 && var_1_14) && var_1_15)))) : 1)) && (((var_1_7 ^ var_1_9) <= ((var_1_8 << var_1_1) * -25)) ? (((var_1_5 - var_1_8) >= 64) ? (((- var_1_29) <= (- var_1_26)) ? (var_1_16 == ((double) (var_1_19 + ((((32.6) < (127.5)) ? (32.6) : (127.5)))))) : (var_1_16 == ((double) var_1_19))) : (var_1_16 == ((double) var_1_19))) : 1)) && ((var_1_1 != var_1_7) ? (var_1_20 == ((signed char) ((((var_1_5 - var_1_21) < 0 ) ? -(var_1_5 - var_1_21) : (var_1_5 - var_1_21))))) : 1)) && (((128u < var_1_5) && var_1_12) ? (var_1_22 == ((signed short int) (var_1_21 - var_1_9))) : ((var_1_29 < var_1_26) ? (var_1_22 == ((signed short int) ((((var_1_5) > ((var_1_21 - var_1_10))) ? (var_1_5) : ((var_1_21 - var_1_10)))))) : (var_1_22 == ((signed short int) var_1_9))))) && (((var_1_29 / var_1_24) != var_1_16) ? (var_1_23 == ((float) ((((999999.5f) > ((var_1_19 + var_1_25))) ? (999999.5f) : ((var_1_19 + var_1_25)))))) : 1)) && ((var_1_10 > var_1_11) ? (var_1_26 == ((float) var_1_19)) : 1)) && ((((((var_1_29) > (var_1_25)) ? (var_1_29) : (var_1_25))) < var_1_19) ? (var_1_27 == ((signed short int) (var_1_5 - var_1_9))) : 1)) && ((var_1_19 < (var_1_25 + 10.25)) ? ((var_1_12 || var_1_15) ? (((var_1_8 <= (256 | var_1_21)) && var_1_13) ? (var_1_28 == ((unsigned short int) var_1_11)) : (var_1_28 == ((unsigned short int) var_1_7))) : (var_1_28 == ((unsigned short int) var_1_11))) : (var_1_28 == ((unsigned short int) var_1_7)))) && ((var_1_8 < ((((var_1_11) < (var_1_6)) ? (var_1_11) : (var_1_6)))) ? ((var_1_7 == (var_1_11 - var_1_8)) ? ((((((var_1_10) > (var_1_5)) ? (var_1_10) : (var_1_5))) > var_1_7) ? (var_1_29 == ((double) var_1_25)) : 1) : 1) : (var_1_29 == ((double) var_1_19)))
+;
+}
+int main(void) {
+ isInitial = 1;
+ initially();
+ int k_loop;
+ for (k_loop = 0; k_loop < 1; k_loop++) {
+  updateLastVariables();
+  updateVariables();
+  step();
+  __VERIFIER_assert(property());
+  isInitial = 0;
+ }
+ return 0;
+}

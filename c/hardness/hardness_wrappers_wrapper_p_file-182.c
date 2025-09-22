@@ -1,0 +1,182 @@
+// Prototype declarations of the functions used to communicate with the model checkers
+extern unsigned long __VERIFIER_nondet_ulong(void);
+extern long __VERIFIER_nondet_long(void);
+extern unsigned char __VERIFIER_nondet_uchar(void);
+extern char __VERIFIER_nondet_char(void);
+extern unsigned short __VERIFIER_nondet_ushort(void);
+extern short __VERIFIER_nondet_short(void);
+extern float __VERIFIER_nondet_float(void);
+extern double __VERIFIER_nondet_double(void);
+
+extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error(void) { __assert_fail("0", "Req1_Prop1_Batch182Wrapper_P.c", 13, "reach_error"); }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } return; }
+void assume_abort_if_not(int cond) { if(!cond) { abort(); } }
+
+
+
+#define max(a,b) (((a) > (b)) ? (a) : (b))
+#define min(a,b) (((a) < (b)) ? (a) : (b))
+#define abs(a) (((a) < 0 ) ? -(a) : (a))
+
+
+
+
+
+// Function prototypes
+void initially(void);
+void step(void);
+void updateVariables(void);
+void updateLastVariables(void);
+int property(void);
+int main(void);
+
+
+// Internal control logic variables
+unsigned char isInitial = 0;
+
+// Signal variables
+float var_1_1 = 127.25;
+float* var_1_1_Pointer = &(var_1_1);
+signed long int var_1_2 = 5;
+signed long int* var_1_2_Pointer = &(var_1_2);
+unsigned char var_1_3 = 1;
+unsigned char* var_1_3_Pointer = &(var_1_3);
+float var_1_4 = 255.4;
+float* var_1_4_Pointer = &(var_1_4);
+float var_1_5 = 64.2;
+float* var_1_5_Pointer = &(var_1_5);
+float var_1_6 = 128.5;
+float* var_1_6_Pointer = &(var_1_6);
+signed short int var_1_7 = -16;
+signed short int* var_1_7_Pointer = &(var_1_7);
+signed short int var_1_8 = -32;
+signed short int* var_1_8_Pointer = &(var_1_8);
+float var_1_9 = 5.6;
+float* var_1_9_Pointer = &(var_1_9);
+float var_1_10 = 2.125;
+float* var_1_10_Pointer = &(var_1_10);
+float var_1_11 = -0.3;
+float* var_1_11_Pointer = &(var_1_11);
+double var_1_12 = 1.75;
+double* var_1_12_Pointer = &(var_1_12);
+double var_1_13 = 255.5;
+double* var_1_13_Pointer = &(var_1_13);
+float var_1_14 = 49.5;
+float* var_1_14_Pointer = &(var_1_14);
+float var_1_15 = 9999999.3;
+float* var_1_15_Pointer = &(var_1_15);
+float var_1_16 = 7.4;
+float* var_1_16_Pointer = &(var_1_16);
+
+// Calibration values
+
+// Last'ed variables
+
+// Additional functions
+
+
+void initially(void) {
+}
+
+
+
+void step(void) {
+	// From: Req1Batch182Wrapper_P
+	if (! (*(var_1_3_Pointer))) {
+		(*(var_1_1_Pointer)) = ((min ((*(var_1_4_Pointer)) , (*(var_1_5_Pointer)))) - (*(var_1_6_Pointer)));
+	}
+
+
+	// From: Req2Batch182Wrapper_P
+	signed long int stepLocal_0 = min ((*(var_1_2_Pointer)) , 10);
+	if (-16 <= stepLocal_0) {
+		(*(var_1_7_Pointer)) = (*(var_1_8_Pointer));
+	} else {
+		(*(var_1_7_Pointer)) = (abs (1));
+	}
+
+
+	// From: Req3Batch182Wrapper_P
+	if ((*(var_1_3_Pointer))) {
+		(*(var_1_9_Pointer)) = ((*(var_1_10_Pointer)) + (*(var_1_11_Pointer)));
+	} else {
+		(*(var_1_9_Pointer)) = (*(var_1_4_Pointer));
+	}
+
+
+	// From: Req4Batch182Wrapper_P
+	(*(var_1_12_Pointer)) = (min ((max ((*(var_1_4_Pointer)) , (*(var_1_11_Pointer)))) , (*(var_1_6_Pointer))));
+
+
+	// From: Req5Batch182Wrapper_P
+	if ((*(var_1_3_Pointer))) {
+		(*(var_1_13_Pointer)) = (max (16.5 , ((*(var_1_4_Pointer)) - 9.99999999975E9)));
+	}
+
+
+	// From: Req6Batch182Wrapper_P
+	if (((min ((*(var_1_4_Pointer)) , (*(var_1_15_Pointer)))) - (*(var_1_5_Pointer))) < (((*(var_1_6_Pointer)) - (*(var_1_16_Pointer))) * (- (*(var_1_12_Pointer))))) {
+		if ((*(var_1_3_Pointer))) {
+			(*(var_1_14_Pointer)) = (*(var_1_5_Pointer));
+		} else {
+			(*(var_1_14_Pointer)) = 1.8199999999999998f;
+		}
+	} else {
+		(*(var_1_14_Pointer)) = (*(var_1_4_Pointer));
+	}
+}
+
+
+
+void updateVariables(void) {
+	var_1_2 = __VERIFIER_nondet_long();
+	assume_abort_if_not(var_1_2 >= -2147483648);
+	assume_abort_if_not(var_1_2 <= 2147483647);
+	var_1_3 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_3 >= 0);
+	assume_abort_if_not(var_1_3 <= 1);
+	var_1_4 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_4 >= 0.0F && var_1_4 <= -1.0e-20F) || (var_1_4 <= 9223372.036854766000e+12F && var_1_4 >= 1.0e-20F ));
+	var_1_5 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_5 >= 0.0F && var_1_5 <= -1.0e-20F) || (var_1_5 <= 9223372.036854766000e+12F && var_1_5 >= 1.0e-20F ));
+	var_1_6 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_6 >= 0.0F && var_1_6 <= -1.0e-20F) || (var_1_6 <= 9223372.036854766000e+12F && var_1_6 >= 1.0e-20F ));
+	var_1_8 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_8 >= -32767);
+	assume_abort_if_not(var_1_8 <= 32766);
+	var_1_10 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_10 >= -461168.6018427383000e+13F && var_1_10 <= -1.0e-20F) || (var_1_10 <= 4611686.018427383000e+12F && var_1_10 >= 1.0e-20F ));
+	var_1_11 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_11 >= -461168.6018427383000e+13F && var_1_11 <= -1.0e-20F) || (var_1_11 <= 4611686.018427383000e+12F && var_1_11 >= 1.0e-20F ));
+	var_1_15 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_15 >= 0.0F && var_1_15 <= -1.0e-20F) || (var_1_15 <= 9223372.036854776000e+12F && var_1_15 >= 1.0e-20F ));
+	var_1_16 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_16 >= 0.0F && var_1_16 <= -1.0e-20F) || (var_1_16 <= 9223372.036854776000e+12F && var_1_16 >= 1.0e-20F ));
+}
+
+
+
+void updateLastVariables(void) {
+}
+
+int property(void) {
+	return ((((((! (*(var_1_3_Pointer))) ? ((*(var_1_1_Pointer)) == ((float) ((min ((*(var_1_4_Pointer)) , (*(var_1_5_Pointer)))) - (*(var_1_6_Pointer))))) : 1) && ((-16 <= (min ((*(var_1_2_Pointer)) , 10))) ? ((*(var_1_7_Pointer)) == ((signed short int) (*(var_1_8_Pointer)))) : ((*(var_1_7_Pointer)) == ((signed short int) (abs (1)))))) && ((*(var_1_3_Pointer)) ? ((*(var_1_9_Pointer)) == ((float) ((*(var_1_10_Pointer)) + (*(var_1_11_Pointer))))) : ((*(var_1_9_Pointer)) == ((float) (*(var_1_4_Pointer)))))) && ((*(var_1_12_Pointer)) == ((double) (min ((max ((*(var_1_4_Pointer)) , (*(var_1_11_Pointer)))) , (*(var_1_6_Pointer))))))) && ((*(var_1_3_Pointer)) ? ((*(var_1_13_Pointer)) == ((double) (max (16.5 , ((*(var_1_4_Pointer)) - 9.99999999975E9))))) : 1)) && ((((min ((*(var_1_4_Pointer)) , (*(var_1_15_Pointer)))) - (*(var_1_5_Pointer))) < (((*(var_1_6_Pointer)) - (*(var_1_16_Pointer))) * (- (*(var_1_12_Pointer))))) ? ((*(var_1_3_Pointer)) ? ((*(var_1_14_Pointer)) == ((float) (*(var_1_5_Pointer)))) : ((*(var_1_14_Pointer)) == ((float) 1.8199999999999998f))) : ((*(var_1_14_Pointer)) == ((float) (*(var_1_4_Pointer)))))
+;
+}
+int main(void) {
+	isInitial = 1;
+	initially();
+
+	while (1) {
+		updateLastVariables();
+
+		updateVariables();
+		step();
+		__VERIFIER_assert(property());
+		isInitial = 0;
+	}
+
+	return 0;
+}

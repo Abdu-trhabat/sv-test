@@ -1,0 +1,164 @@
+// Prototype declarations of the functions used to communicate with the model checkers
+extern unsigned long __VERIFIER_nondet_ulong(void);
+extern long __VERIFIER_nondet_long(void);
+extern unsigned char __VERIFIER_nondet_uchar(void);
+extern char __VERIFIER_nondet_char(void);
+extern unsigned short __VERIFIER_nondet_ushort(void);
+extern short __VERIFIER_nondet_short(void);
+extern float __VERIFIER_nondet_float(void);
+extern double __VERIFIER_nondet_double(void);
+
+extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error(void) { __assert_fail("0", "Req1_Prop1_Batch153has_floats.c", 13, "reach_error"); }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } return; }
+void assume_abort_if_not(int cond) { if(!cond) { abort(); } }
+
+
+
+#define max(a,b) (((a) > (b)) ? (a) : (b))
+#define min(a,b) (((a) < (b)) ? (a) : (b))
+#define abs(a) (((a) < 0 ) ? -(a) : (a))
+
+
+
+
+
+// Function prototypes
+void initially(void);
+void step(void);
+void updateVariables(void);
+void updateLastVariables(void);
+int property(void);
+int main(void);
+
+
+// Internal control logic variables
+unsigned char isInitial = 0;
+
+// Signal variables
+unsigned long int var_1_1 = 50;
+unsigned long int var_1_3 = 256;
+signed short int var_1_4 = -50;
+unsigned short int var_1_6 = 32;
+unsigned short int var_1_7 = 1;
+unsigned short int var_1_8 = 32;
+unsigned char var_1_9 = 0;
+unsigned char var_1_10 = 0;
+unsigned char var_1_11 = 1;
+unsigned char var_1_12 = 1;
+double var_1_13 = 8.0;
+double var_1_14 = 32.0;
+double var_1_15 = 4.0;
+double var_1_16 = 50.0;
+double var_1_17 = -64.0;
+
+// Calibration values
+
+// Last'ed variables
+signed short int last_1_var_1_4 = -50;
+
+// Additional functions
+
+
+void initially(void) {
+}
+
+
+
+void step(void) {
+	// From: Req1Batch153has_floats
+	if (last_1_var_1_4 <= ((abs (-32)) + 16)) {
+		var_1_1 = (abs (var_1_3));
+	} else {
+		var_1_1 = var_1_3;
+	}
+
+
+	// From: Req3Batch153has_floats
+	var_1_6 = ((abs (var_1_7)) + var_1_8);
+
+
+	// From: Req4Batch153has_floats
+	unsigned long int stepLocal_0 = var_1_1;
+	if (stepLocal_0 <= var_1_6) {
+		var_1_9 = (! var_1_10);
+	} else {
+		var_1_9 = (var_1_11 && var_1_12);
+	}
+
+
+	// From: Req2Batch153has_floats
+	if (var_1_6 <= var_1_3) {
+		if (var_1_6 <= var_1_1) {
+			if (var_1_9) {
+				var_1_4 = var_1_6;
+			}
+		}
+	}
+
+
+	// From: Req5Batch153has_floats
+	if (! (var_1_9 || var_1_12)) {
+		var_1_13 = (min ((max ((var_1_14 - var_1_15) , var_1_16)) , (abs (var_1_17))));
+	} else {
+		var_1_13 = var_1_14;
+	}
+}
+
+
+
+void updateVariables(void) {
+	var_1_3 = __VERIFIER_nondet_ulong();
+	assume_abort_if_not(var_1_3 >= 0);
+	assume_abort_if_not(var_1_3 <= 4294967294);
+	var_1_7 = __VERIFIER_nondet_ushort();
+	assume_abort_if_not(var_1_7 >= 0);
+	assume_abort_if_not(var_1_7 <= 32767);
+	var_1_8 = __VERIFIER_nondet_ushort();
+	assume_abort_if_not(var_1_8 >= 0);
+	assume_abort_if_not(var_1_8 <= 32767);
+	var_1_10 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_10 >= 0);
+	assume_abort_if_not(var_1_10 <= 0);
+	var_1_11 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_11 >= 1);
+	assume_abort_if_not(var_1_11 <= 1);
+	var_1_12 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_12 >= 1);
+	assume_abort_if_not(var_1_12 <= 1);
+	var_1_14 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_14 >= 0.0F && var_1_14 <= -1.0e-20F) || (var_1_14 <= 9223372.036854766000e+12F && var_1_14 >= 1.0e-20F ));
+	var_1_15 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_15 >= 0.0F && var_1_15 <= -1.0e-20F) || (var_1_15 <= 9223372.036854766000e+12F && var_1_15 >= 1.0e-20F ));
+	var_1_16 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_16 >= -922337.2036854766000e+13F && var_1_16 <= -1.0e-20F) || (var_1_16 <= 9223372.036854766000e+12F && var_1_16 >= 1.0e-20F ));
+	var_1_17 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_17 >= -922337.2036854766000e+13F && var_1_17 <= -1.0e-20F) || (var_1_17 <= 9223372.036854766000e+12F && var_1_17 >= 1.0e-20F ));
+}
+
+
+
+void updateLastVariables(void) {
+	last_1_var_1_4 = var_1_4;
+}
+
+int property(void) {
+	return (((((last_1_var_1_4 <= ((abs (-32)) + 16)) ? (var_1_1 == ((unsigned long int) (abs (var_1_3)))) : (var_1_1 == ((unsigned long int) var_1_3))) && ((var_1_6 <= var_1_3) ? ((var_1_6 <= var_1_1) ? (var_1_9 ? (var_1_4 == ((signed short int) var_1_6)) : 1) : 1) : 1)) && (var_1_6 == ((unsigned short int) ((abs (var_1_7)) + var_1_8)))) && ((var_1_1 <= var_1_6) ? (var_1_9 == ((unsigned char) (! var_1_10))) : (var_1_9 == ((unsigned char) (var_1_11 && var_1_12))))) && ((! (var_1_9 || var_1_12)) ? (var_1_13 == ((double) (min ((max ((var_1_14 - var_1_15) , var_1_16)) , (abs (var_1_17)))))) : (var_1_13 == ((double) var_1_14)))
+;
+}
+int main(void) {
+	isInitial = 1;
+	initially();
+
+	while (1) {
+		updateLastVariables();
+
+		updateVariables();
+		step();
+		__VERIFIER_assert(property());
+		isInitial = 0;
+	}
+
+	return 0;
+}

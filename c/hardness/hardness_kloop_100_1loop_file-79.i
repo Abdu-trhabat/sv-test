@@ -1,0 +1,240 @@
+extern unsigned long __VERIFIER_nondet_ulong(void);
+extern long __VERIFIER_nondet_long(void);
+extern unsigned char __VERIFIER_nondet_uchar(void);
+extern char __VERIFIER_nondet_char(void);
+extern unsigned short __VERIFIER_nondet_ushort(void);
+extern short __VERIFIER_nondet_short(void);
+extern float __VERIFIER_nondet_float(void);
+extern double __VERIFIER_nondet_double(void);
+extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error(void) { __assert_fail("0", "Req1_Prop1_Batch79100_1loop.c", 13, "reach_error"); }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } return; }
+void assume_abort_if_not(int cond) { if(!cond) { abort(); } }
+void initially(void);
+void step(void);
+void updateVariables(void);
+void updateLastVariables(void);
+int property(void);
+int main(void);
+unsigned char isInitial = 0;
+signed short int var_1_1 = 0;
+unsigned char var_1_2 = 1;
+unsigned char var_1_3 = 0;
+signed short int var_1_5 = -32;
+signed short int var_1_6 = 256;
+signed short int var_1_7 = 8;
+double var_1_8 = 5.3;
+double var_1_9 = 5.575;
+double var_1_10 = 31.5;
+double var_1_11 = 2.38;
+double var_1_12 = 1.25;
+unsigned short int var_1_13 = 100;
+unsigned long int var_1_16 = 8;
+unsigned long int var_1_17 = 4;
+unsigned short int var_1_19 = 49755;
+unsigned short int var_1_20 = 0;
+unsigned short int var_1_21 = 10;
+unsigned short int var_1_22 = 5;
+float var_1_23 = 200.8;
+signed long int var_1_24 = 256;
+unsigned short int var_1_25 = 16;
+double var_1_26 = 0.625;
+double var_1_27 = 2.25;
+double var_1_28 = 25.8;
+double var_1_29 = 15.5;
+unsigned long int var_1_30 = 1;
+unsigned long int var_1_31 = 2553598654;
+unsigned char var_1_32 = 1;
+unsigned char var_1_33 = 0;
+signed char var_1_34 = -1;
+signed char var_1_35 = -8;
+signed char var_1_36 = 25;
+signed char var_1_37 = 10;
+signed char var_1_38 = 64;
+unsigned long int var_1_39 = 128;
+double last_1_var_1_8 = 5.3;
+unsigned short int last_1_var_1_13 = 100;
+signed long int last_1_var_1_24 = 256;
+double last_1_var_1_26 = 0.625;
+unsigned char last_1_var_1_32 = 1;
+unsigned long int last_1_var_1_39 = 128;
+void initially(void) {
+}
+void step(void) {
+ if (last_1_var_1_8 == last_1_var_1_26) {
+  var_1_39 = ((((var_1_38) < 0 ) ? -(var_1_38) : (var_1_38)));
+ } else {
+  if ((var_1_19 * 64u) < var_1_38) {
+   var_1_39 = var_1_19;
+  } else {
+   var_1_39 = var_1_16;
+  }
+ }
+ signed long int stepLocal_2 = 32;
+ if (stepLocal_2 >= var_1_39) {
+  var_1_26 = (var_1_9 - 8.625);
+ }
+ signed short int stepLocal_5 = var_1_7;
+ unsigned long int stepLocal_4 = (var_1_20 + last_1_var_1_39) / var_1_19;
+ signed long int stepLocal_3 = last_1_var_1_24;
+ if ((last_1_var_1_39 | var_1_22) > stepLocal_3) {
+  if (last_1_var_1_32) {
+   if (last_1_var_1_13 == stepLocal_4) {
+    var_1_30 = ((((var_1_22) > (10u)) ? (var_1_22) : (10u)));
+   }
+  } else {
+   var_1_30 = ((((var_1_22) > ((var_1_31 - var_1_20))) ? (var_1_22) : ((var_1_31 - var_1_20))));
+  }
+ } else {
+  if (stepLocal_5 > last_1_var_1_39) {
+   var_1_30 = var_1_21;
+  } else {
+   var_1_30 = var_1_31;
+  }
+ }
+ unsigned short int stepLocal_6 = var_1_19;
+ if ((var_1_29 - var_1_11) <= last_1_var_1_26) {
+  if (last_1_var_1_13 == stepLocal_6) {
+   var_1_32 = var_1_33;
+  }
+ }
+ if (var_1_32) {
+  var_1_8 = ((var_1_9 + ((((31.5) > (var_1_10)) ? (31.5) : (var_1_10)))) - ((((var_1_11) < (var_1_12)) ? (var_1_11) : (var_1_12))));
+ }
+ if (var_1_2 && var_1_3) {
+  if (var_1_26 != 16.5) {
+   var_1_1 = ((((-256) > (var_1_5)) ? (-256) : (var_1_5)));
+  } else {
+   var_1_1 = (var_1_6 - var_1_7);
+  }
+ } else {
+  var_1_1 = var_1_6;
+ }
+ var_1_23 = (((((var_1_11) < 0 ) ? -(var_1_11) : (var_1_11))) - var_1_9);
+ if (! ((var_1_12 < 9999999.625) && var_1_32)) {
+  var_1_25 = var_1_19;
+ } else {
+  var_1_25 = ((((var_1_20) < (((((var_1_7) < (var_1_19)) ? (var_1_7) : (var_1_19))))) ? (var_1_20) : (((((var_1_7) < (var_1_19)) ? (var_1_7) : (var_1_19))))));
+ }
+ if (-32 > var_1_20) {
+  var_1_27 = (((((((((var_1_9) > (var_1_10)) ? (var_1_9) : (var_1_10))) + (var_1_28 - var_1_29))) < (var_1_11)) ? ((((((var_1_9) > (var_1_10)) ? (var_1_9) : (var_1_10))) + (var_1_28 - var_1_29))) : (var_1_11)));
+ } else {
+  var_1_27 = 63.75;
+ }
+ if (var_1_20 >= var_1_16) {
+  if (var_1_30 > var_1_39) {
+   var_1_34 = (var_1_35 + var_1_36);
+  } else {
+   var_1_34 = (var_1_37 - var_1_38);
+  }
+ }
+ unsigned long int stepLocal_0 = var_1_7 * var_1_39;
+ if (stepLocal_0 != (var_1_30 / (var_1_16 + var_1_17))) {
+  if (var_1_8 >= (((((var_1_12 * var_1_8)) < (var_1_8)) ? ((var_1_12 * var_1_8)) : (var_1_8)))) {
+   var_1_13 = var_1_7;
+  } else {
+   if (var_1_32) {
+    var_1_13 = ((var_1_19 - var_1_20) - (((((8 + var_1_21)) > (var_1_22)) ? ((8 + var_1_21)) : (var_1_22))));
+   }
+  }
+ } else {
+  var_1_13 = ((((var_1_19) > ((var_1_7 + var_1_20))) ? (var_1_19) : ((var_1_7 + var_1_20))));
+ }
+ signed long int stepLocal_1 = -10000000;
+ if (var_1_32) {
+  if (stepLocal_1 <= var_1_30) {
+   var_1_24 = (var_1_30 - var_1_20);
+  }
+ }
+}
+void updateVariables(void) {
+ var_1_2 = __VERIFIER_nondet_uchar();
+ assume_abort_if_not(var_1_2 >= 0);
+ assume_abort_if_not(var_1_2 <= 1);
+ var_1_3 = __VERIFIER_nondet_uchar();
+ assume_abort_if_not(var_1_3 >= 0);
+ assume_abort_if_not(var_1_3 <= 1);
+ var_1_5 = __VERIFIER_nondet_short();
+ assume_abort_if_not(var_1_5 >= -32767);
+ assume_abort_if_not(var_1_5 <= 32766);
+ var_1_6 = __VERIFIER_nondet_short();
+ assume_abort_if_not(var_1_6 >= -1);
+ assume_abort_if_not(var_1_6 <= 32766);
+ var_1_7 = __VERIFIER_nondet_short();
+ assume_abort_if_not(var_1_7 >= 0);
+ assume_abort_if_not(var_1_7 <= 32766);
+ var_1_9 = __VERIFIER_nondet_double();
+ assume_abort_if_not((var_1_9 >= 0.0F && var_1_9 <= -1.0e-20F) || (var_1_9 <= 4611686.018427383000e+12F && var_1_9 >= 1.0e-20F ));
+ var_1_10 = __VERIFIER_nondet_double();
+ assume_abort_if_not((var_1_10 >= 0.0F && var_1_10 <= -1.0e-20F) || (var_1_10 <= 4611686.018427383000e+12F && var_1_10 >= 1.0e-20F ));
+ var_1_11 = __VERIFIER_nondet_double();
+ assume_abort_if_not((var_1_11 >= 0.0F && var_1_11 <= -1.0e-20F) || (var_1_11 <= 9223372.036854766000e+12F && var_1_11 >= 1.0e-20F ));
+ var_1_12 = __VERIFIER_nondet_double();
+ assume_abort_if_not((var_1_12 >= 0.0F && var_1_12 <= -1.0e-20F) || (var_1_12 <= 9223372.036854766000e+12F && var_1_12 >= 1.0e-20F ));
+ var_1_16 = __VERIFIER_nondet_ulong();
+ assume_abort_if_not(var_1_16 >= 1);
+ assume_abort_if_not(var_1_16 <= 2147483648);
+ var_1_17 = __VERIFIER_nondet_ulong();
+ assume_abort_if_not(var_1_17 >= 1);
+ assume_abort_if_not(var_1_17 <= 2147483647);
+ var_1_19 = __VERIFIER_nondet_ushort();
+ assume_abort_if_not(var_1_19 >= 49150);
+ assume_abort_if_not(var_1_19 <= 65534);
+ var_1_20 = __VERIFIER_nondet_ushort();
+ assume_abort_if_not(var_1_20 >= 0);
+ assume_abort_if_not(var_1_20 <= 16383);
+ var_1_21 = __VERIFIER_nondet_ushort();
+ assume_abort_if_not(var_1_21 >= 0);
+ assume_abort_if_not(var_1_21 <= 16383);
+ var_1_22 = __VERIFIER_nondet_ushort();
+ assume_abort_if_not(var_1_22 >= 0);
+ assume_abort_if_not(var_1_22 <= 32767);
+ var_1_28 = __VERIFIER_nondet_double();
+ assume_abort_if_not((var_1_28 >= 0.0F && var_1_28 <= -1.0e-20F) || (var_1_28 <= 4611686.018427383000e+12F && var_1_28 >= 1.0e-20F ));
+ var_1_29 = __VERIFIER_nondet_double();
+ assume_abort_if_not((var_1_29 >= 0.0F && var_1_29 <= -1.0e-20F) || (var_1_29 <= 4611686.018427383000e+12F && var_1_29 >= 1.0e-20F ));
+ var_1_31 = __VERIFIER_nondet_ulong();
+ assume_abort_if_not(var_1_31 >= 2147483647);
+ assume_abort_if_not(var_1_31 <= 4294967294);
+ var_1_33 = __VERIFIER_nondet_uchar();
+ assume_abort_if_not(var_1_33 >= 0);
+ assume_abort_if_not(var_1_33 <= 0);
+ var_1_35 = __VERIFIER_nondet_char();
+ assume_abort_if_not(var_1_35 >= -63);
+ assume_abort_if_not(var_1_35 <= 63);
+ var_1_36 = __VERIFIER_nondet_char();
+ assume_abort_if_not(var_1_36 >= -63);
+ assume_abort_if_not(var_1_36 <= 63);
+ var_1_37 = __VERIFIER_nondet_char();
+ assume_abort_if_not(var_1_37 >= -1);
+ assume_abort_if_not(var_1_37 <= 126);
+ var_1_38 = __VERIFIER_nondet_char();
+ assume_abort_if_not(var_1_38 >= 0);
+ assume_abort_if_not(var_1_38 <= 126);
+}
+void updateLastVariables(void) {
+ last_1_var_1_8 = var_1_8;
+ last_1_var_1_13 = var_1_13;
+ last_1_var_1_24 = var_1_24;
+ last_1_var_1_26 = var_1_26;
+ last_1_var_1_32 = var_1_32;
+ last_1_var_1_39 = var_1_39;
+}
+int property(void) {
+ return ((((((((((((var_1_2 && var_1_3) ? ((var_1_26 != 16.5) ? (var_1_1 == ((signed short int) ((((-256) > (var_1_5)) ? (-256) : (var_1_5))))) : (var_1_1 == ((signed short int) (var_1_6 - var_1_7)))) : (var_1_1 == ((signed short int) var_1_6))) && (var_1_32 ? (var_1_8 == ((double) ((var_1_9 + ((((31.5) > (var_1_10)) ? (31.5) : (var_1_10)))) - ((((var_1_11) < (var_1_12)) ? (var_1_11) : (var_1_12)))))) : 1)) && (((var_1_7 * var_1_39) != (var_1_30 / (var_1_16 + var_1_17))) ? ((var_1_8 >= (((((var_1_12 * var_1_8)) < (var_1_8)) ? ((var_1_12 * var_1_8)) : (var_1_8)))) ? (var_1_13 == ((unsigned short int) var_1_7)) : (var_1_32 ? (var_1_13 == ((unsigned short int) ((var_1_19 - var_1_20) - (((((8 + var_1_21)) > (var_1_22)) ? ((8 + var_1_21)) : (var_1_22)))))) : 1)) : (var_1_13 == ((unsigned short int) ((((var_1_19) > ((var_1_7 + var_1_20))) ? (var_1_19) : ((var_1_7 + var_1_20)))))))) && (var_1_23 == ((float) (((((var_1_11) < 0 ) ? -(var_1_11) : (var_1_11))) - var_1_9)))) && (var_1_32 ? ((-10000000 <= var_1_30) ? (var_1_24 == ((signed long int) (var_1_30 - var_1_20))) : 1) : 1)) && ((! ((var_1_12 < 9999999.625) && var_1_32)) ? (var_1_25 == ((unsigned short int) var_1_19)) : (var_1_25 == ((unsigned short int) ((((var_1_20) < (((((var_1_7) < (var_1_19)) ? (var_1_7) : (var_1_19))))) ? (var_1_20) : (((((var_1_7) < (var_1_19)) ? (var_1_7) : (var_1_19)))))))))) && ((32 >= var_1_39) ? (var_1_26 == ((double) (var_1_9 - 8.625))) : 1)) && ((-32 > var_1_20) ? (var_1_27 == ((double) (((((((((var_1_9) > (var_1_10)) ? (var_1_9) : (var_1_10))) + (var_1_28 - var_1_29))) < (var_1_11)) ? ((((((var_1_9) > (var_1_10)) ? (var_1_9) : (var_1_10))) + (var_1_28 - var_1_29))) : (var_1_11))))) : (var_1_27 == ((double) 63.75)))) && (((last_1_var_1_39 | var_1_22) > last_1_var_1_24) ? (last_1_var_1_32 ? ((last_1_var_1_13 == ((var_1_20 + last_1_var_1_39) / var_1_19)) ? (var_1_30 == ((unsigned long int) ((((var_1_22) > (10u)) ? (var_1_22) : (10u))))) : 1) : (var_1_30 == ((unsigned long int) ((((var_1_22) > ((var_1_31 - var_1_20))) ? (var_1_22) : ((var_1_31 - var_1_20))))))) : ((var_1_7 > last_1_var_1_39) ? (var_1_30 == ((unsigned long int) var_1_21)) : (var_1_30 == ((unsigned long int) var_1_31))))) && (((var_1_29 - var_1_11) <= last_1_var_1_26) ? ((last_1_var_1_13 == var_1_19) ? (var_1_32 == ((unsigned char) var_1_33)) : 1) : 1)) && ((var_1_20 >= var_1_16) ? ((var_1_30 > var_1_39) ? (var_1_34 == ((signed char) (var_1_35 + var_1_36))) : (var_1_34 == ((signed char) (var_1_37 - var_1_38)))) : 1)) && ((last_1_var_1_8 == last_1_var_1_26) ? (var_1_39 == ((unsigned long int) ((((var_1_38) < 0 ) ? -(var_1_38) : (var_1_38))))) : (((var_1_19 * 64u) < var_1_38) ? (var_1_39 == ((unsigned long int) var_1_19)) : (var_1_39 == ((unsigned long int) var_1_16))))
+;
+}
+int main(void) {
+ isInitial = 1;
+ initially();
+ int k_loop;
+ for (k_loop = 0; k_loop < 1; k_loop++) {
+  updateLastVariables();
+  updateVariables();
+  step();
+  __VERIFIER_assert(property());
+  isInitial = 0;
+ }
+ return 0;
+}

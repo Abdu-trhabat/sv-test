@@ -1,0 +1,211 @@
+// Prototype declarations of the functions used to communicate with the model checkers
+extern unsigned long __VERIFIER_nondet_ulong(void);
+extern long __VERIFIER_nondet_long(void);
+extern unsigned char __VERIFIER_nondet_uchar(void);
+extern char __VERIFIER_nondet_char(void);
+extern unsigned short __VERIFIER_nondet_ushort(void);
+extern short __VERIFIER_nondet_short(void);
+extern float __VERIFIER_nondet_float(void);
+extern double __VERIFIER_nondet_double(void);
+
+extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error(void) { __assert_fail("0", "Req1_Prop1_Batch190Wrapper_SP.c", 13, "reach_error"); }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } return; }
+void assume_abort_if_not(int cond) { if(!cond) { abort(); } }
+
+
+
+#define max(a,b) (((a) > (b)) ? (a) : (b))
+#define min(a,b) (((a) < (b)) ? (a) : (b))
+#define abs(a) (((a) < 0 ) ? -(a) : (a))
+
+
+
+struct WrapperStruct00;
+
+struct WrapperStruct00 {
+	signed short int var_1_1;
+	unsigned char var_1_2;
+	unsigned char var_1_3;
+	unsigned char var_1_4;
+	unsigned short int var_1_5;
+	unsigned short int var_1_6;
+	signed short int var_1_7;
+	double var_1_8;
+	double var_1_10;
+	double var_1_11;
+	signed long int var_1_12;
+	signed char var_1_13;
+	signed long int var_1_14;
+	float var_1_15;
+	unsigned long int var_1_16;
+	signed short int var_1_17;
+};
+
+// Function prototypes
+void initially(void);
+void step(void);
+void updateVariables(void);
+void updateLastVariables(void);
+int property(void);
+int main(void);
+
+
+// Internal control logic variables
+unsigned char isInitial = 0;
+
+// Signal variables
+struct WrapperStruct00 WrapperStruct00 = {
+	64,
+	0,
+	0,
+	1,
+	256,
+	2,
+	16,
+	24.5,
+	64.75,
+	9999.2,
+	-64,
+	100,
+	256,
+	-0.75,
+	16,
+	-4
+};
+signed short int* WrapperStruct00_var_1_1_Pointer = &(WrapperStruct00.var_1_1);
+unsigned char* WrapperStruct00_var_1_2_Pointer = &(WrapperStruct00.var_1_2);
+unsigned char* WrapperStruct00_var_1_3_Pointer = &(WrapperStruct00.var_1_3);
+unsigned char* WrapperStruct00_var_1_4_Pointer = &(WrapperStruct00.var_1_4);
+unsigned short int* WrapperStruct00_var_1_5_Pointer = &(WrapperStruct00.var_1_5);
+unsigned short int* WrapperStruct00_var_1_6_Pointer = &(WrapperStruct00.var_1_6);
+signed short int* WrapperStruct00_var_1_7_Pointer = &(WrapperStruct00.var_1_7);
+double* WrapperStruct00_var_1_8_Pointer = &(WrapperStruct00.var_1_8);
+double* WrapperStruct00_var_1_10_Pointer = &(WrapperStruct00.var_1_10);
+double* WrapperStruct00_var_1_11_Pointer = &(WrapperStruct00.var_1_11);
+signed long int* WrapperStruct00_var_1_12_Pointer = &(WrapperStruct00.var_1_12);
+signed char* WrapperStruct00_var_1_13_Pointer = &(WrapperStruct00.var_1_13);
+signed long int* WrapperStruct00_var_1_14_Pointer = &(WrapperStruct00.var_1_14);
+float* WrapperStruct00_var_1_15_Pointer = &(WrapperStruct00.var_1_15);
+unsigned long int* WrapperStruct00_var_1_16_Pointer = &(WrapperStruct00.var_1_16);
+signed short int* WrapperStruct00_var_1_17_Pointer = &(WrapperStruct00.var_1_17);
+
+// Calibration values
+
+// Last'ed variables
+
+// Additional functions
+
+
+void initially(void) {
+}
+
+
+
+void step(void) {
+	// From: Req1Batch190Wrapper_SP
+	unsigned char stepLocal_0 = (*(WrapperStruct00_var_1_3_Pointer)) && ((*(WrapperStruct00_var_1_5_Pointer)) <= (*(WrapperStruct00_var_1_6_Pointer)));
+	if ((*(WrapperStruct00_var_1_2_Pointer)) || stepLocal_0) {
+		(*(WrapperStruct00_var_1_1_Pointer)) = (*(WrapperStruct00_var_1_7_Pointer));
+	} else {
+		if ((*(WrapperStruct00_var_1_3_Pointer))) {
+			(*(WrapperStruct00_var_1_1_Pointer)) = (*(WrapperStruct00_var_1_7_Pointer));
+		} else {
+			(*(WrapperStruct00_var_1_1_Pointer)) = -32;
+		}
+	}
+
+
+	// From: Req3Batch190Wrapper_SP
+	signed long int stepLocal_1 = -5 % (*(WrapperStruct00_var_1_13_Pointer));
+	if (! (*(WrapperStruct00_var_1_4_Pointer))) {
+		if (stepLocal_1 == (max (10 , ((*(WrapperStruct00_var_1_7_Pointer)) / (*(WrapperStruct00_var_1_14_Pointer)))))) {
+			(*(WrapperStruct00_var_1_12_Pointer)) = ((*(WrapperStruct00_var_1_6_Pointer)) - (*(WrapperStruct00_var_1_5_Pointer)));
+		}
+	}
+
+
+	// From: Req4Batch190Wrapper_SP
+	(*(WrapperStruct00_var_1_15_Pointer)) = (*(WrapperStruct00_var_1_11_Pointer));
+
+
+	// From: Req5Batch190Wrapper_SP
+	(*(WrapperStruct00_var_1_16_Pointer)) = (*(WrapperStruct00_var_1_12_Pointer));
+
+
+	// From: Req6Batch190Wrapper_SP
+	(*(WrapperStruct00_var_1_17_Pointer)) = (*(WrapperStruct00_var_1_7_Pointer));
+
+
+	// From: Req2Batch190Wrapper_SP
+	if (! ((*(WrapperStruct00_var_1_16_Pointer)) > ((*(WrapperStruct00_var_1_12_Pointer)) + 1))) {
+		if (8.5f <= (*(WrapperStruct00_var_1_15_Pointer))) {
+			(*(WrapperStruct00_var_1_8_Pointer)) = (max ((*(WrapperStruct00_var_1_10_Pointer)) , (*(WrapperStruct00_var_1_11_Pointer))));
+		} else {
+			(*(WrapperStruct00_var_1_8_Pointer)) = (*(WrapperStruct00_var_1_10_Pointer));
+		}
+	} else {
+		(*(WrapperStruct00_var_1_8_Pointer)) = (*(WrapperStruct00_var_1_10_Pointer));
+	}
+}
+
+
+
+void updateVariables(void) {
+	WrapperStruct00.var_1_2 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(WrapperStruct00.var_1_2 >= 0);
+	assume_abort_if_not(WrapperStruct00.var_1_2 <= 1);
+	WrapperStruct00.var_1_3 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(WrapperStruct00.var_1_3 >= 0);
+	assume_abort_if_not(WrapperStruct00.var_1_3 <= 1);
+	WrapperStruct00.var_1_4 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(WrapperStruct00.var_1_4 >= 0);
+	assume_abort_if_not(WrapperStruct00.var_1_4 <= 1);
+	WrapperStruct00.var_1_5 = __VERIFIER_nondet_ushort();
+	assume_abort_if_not(WrapperStruct00.var_1_5 >= 0);
+	assume_abort_if_not(WrapperStruct00.var_1_5 <= 65535);
+	WrapperStruct00.var_1_6 = __VERIFIER_nondet_ushort();
+	assume_abort_if_not(WrapperStruct00.var_1_6 >= 0);
+	assume_abort_if_not(WrapperStruct00.var_1_6 <= 65535);
+	WrapperStruct00.var_1_7 = __VERIFIER_nondet_short();
+	assume_abort_if_not(WrapperStruct00.var_1_7 >= -32767);
+	assume_abort_if_not(WrapperStruct00.var_1_7 <= 32766);
+	WrapperStruct00.var_1_10 = __VERIFIER_nondet_double();
+	assume_abort_if_not((WrapperStruct00.var_1_10 >= -922337.2036854766000e+13F && WrapperStruct00.var_1_10 <= -1.0e-20F) || (WrapperStruct00.var_1_10 <= 9223372.036854766000e+12F && WrapperStruct00.var_1_10 >= 1.0e-20F ));
+	WrapperStruct00.var_1_11 = __VERIFIER_nondet_double();
+	assume_abort_if_not((WrapperStruct00.var_1_11 >= -922337.2036854766000e+13F && WrapperStruct00.var_1_11 <= -1.0e-20F) || (WrapperStruct00.var_1_11 <= 9223372.036854766000e+12F && WrapperStruct00.var_1_11 >= 1.0e-20F ));
+	WrapperStruct00.var_1_13 = __VERIFIER_nondet_char();
+	assume_abort_if_not(WrapperStruct00.var_1_13 >= -128);
+	assume_abort_if_not(WrapperStruct00.var_1_13 <= 127);
+	assume_abort_if_not(WrapperStruct00.var_1_13 != 0);
+	WrapperStruct00.var_1_14 = __VERIFIER_nondet_long();
+	assume_abort_if_not(WrapperStruct00.var_1_14 >= -2147483648);
+	assume_abort_if_not(WrapperStruct00.var_1_14 <= 2147483647);
+	assume_abort_if_not(WrapperStruct00.var_1_14 != 0);
+}
+
+
+
+void updateLastVariables(void) {
+}
+
+int property(void) {
+	return (((((((*(WrapperStruct00_var_1_2_Pointer)) || ((*(WrapperStruct00_var_1_3_Pointer)) && ((*(WrapperStruct00_var_1_5_Pointer)) <= (*(WrapperStruct00_var_1_6_Pointer))))) ? ((*(WrapperStruct00_var_1_1_Pointer)) == ((signed short int) (*(WrapperStruct00_var_1_7_Pointer)))) : ((*(WrapperStruct00_var_1_3_Pointer)) ? ((*(WrapperStruct00_var_1_1_Pointer)) == ((signed short int) (*(WrapperStruct00_var_1_7_Pointer)))) : ((*(WrapperStruct00_var_1_1_Pointer)) == ((signed short int) -32)))) && ((! ((*(WrapperStruct00_var_1_16_Pointer)) > ((*(WrapperStruct00_var_1_12_Pointer)) + 1))) ? ((8.5f <= (*(WrapperStruct00_var_1_15_Pointer))) ? ((*(WrapperStruct00_var_1_8_Pointer)) == ((double) (max ((*(WrapperStruct00_var_1_10_Pointer)) , (*(WrapperStruct00_var_1_11_Pointer)))))) : ((*(WrapperStruct00_var_1_8_Pointer)) == ((double) (*(WrapperStruct00_var_1_10_Pointer))))) : ((*(WrapperStruct00_var_1_8_Pointer)) == ((double) (*(WrapperStruct00_var_1_10_Pointer)))))) && ((! (*(WrapperStruct00_var_1_4_Pointer))) ? (((-5 % (*(WrapperStruct00_var_1_13_Pointer))) == (max (10 , ((*(WrapperStruct00_var_1_7_Pointer)) / (*(WrapperStruct00_var_1_14_Pointer)))))) ? ((*(WrapperStruct00_var_1_12_Pointer)) == ((signed long int) ((*(WrapperStruct00_var_1_6_Pointer)) - (*(WrapperStruct00_var_1_5_Pointer))))) : 1) : 1)) && ((*(WrapperStruct00_var_1_15_Pointer)) == ((float) (*(WrapperStruct00_var_1_11_Pointer))))) && ((*(WrapperStruct00_var_1_16_Pointer)) == ((unsigned long int) (*(WrapperStruct00_var_1_12_Pointer))))) && ((*(WrapperStruct00_var_1_17_Pointer)) == ((signed short int) (*(WrapperStruct00_var_1_7_Pointer))))
+;
+}
+int main(void) {
+	isInitial = 1;
+	initially();
+
+	while (1) {
+		updateLastVariables();
+
+		updateVariables();
+		step();
+		__VERIFIER_assert(property());
+		isInitial = 0;
+	}
+
+	return 0;
+}

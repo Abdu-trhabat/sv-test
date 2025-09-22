@@ -1,0 +1,856 @@
+// Prototype declarations of the functions used to communicate with the model checkers
+extern unsigned long __VERIFIER_nondet_ulong(void);
+extern long __VERIFIER_nondet_long(void);
+extern unsigned char __VERIFIER_nondet_uchar(void);
+extern char __VERIFIER_nondet_char(void);
+extern unsigned short __VERIFIER_nondet_ushort(void);
+extern short __VERIFIER_nondet_short(void);
+extern float __VERIFIER_nondet_float(void);
+extern double __VERIFIER_nondet_double(void);
+
+extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error(void) { __assert_fail("0", "Req1_Prop1_Batch106Filler_PE_CN.c", 13, "reach_error"); }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } return; }
+void assume_abort_if_not(int cond) { if(!cond) { abort(); } }
+
+
+
+#define max(a,b) (((a) > (b)) ? (a) : (b))
+#define min(a,b) (((a) < (b)) ? (a) : (b))
+#define abs(a) (((a) < 0 ) ? -(a) : (a))
+
+
+
+
+
+// Function prototypes
+void initially(void);
+void step(void);
+void updateVariables(void);
+void updateLastVariables(void);
+int property(void);
+int main(void);
+
+
+// Internal control logic variables
+unsigned char isInitial = 0;
+
+// Signal variables
+signed short int var_1_1 = -128;
+unsigned char var_1_2 = 0;
+unsigned char var_1_3 = 1;
+signed short int var_1_4 = 25;
+signed short int var_1_5 = 64;
+signed short int var_1_6 = 1000;
+signed short int var_1_7 = 2;
+float var_1_8 = 5.55;
+signed short int var_1_9 = 4;
+float var_1_10 = 9.58;
+float var_1_11 = 200.25;
+signed short int var_1_12 = -2;
+signed short int var_1_13 = 1;
+unsigned short int var_1_14 = 32;
+unsigned short int var_1_15 = 10;
+unsigned char var_1_16 = 100;
+unsigned char var_1_17 = 1;
+unsigned char var_1_19 = 128;
+double var_1_20 = 200.5;
+double var_1_21 = 1.6;
+double var_1_22 = 15.75;
+unsigned long int var_1_23 = 1;
+unsigned long int var_1_24 = 32;
+signed short int var_1_25 = -10;
+signed long int var_1_26 = -100;
+unsigned long int var_1_27 = 1000000000;
+unsigned char var_1_28 = 0;
+unsigned long int var_1_29 = 4;
+unsigned long int var_1_30 = 256;
+unsigned long int var_1_31 = 2517672879;
+signed long int var_1_32 = -2;
+signed long int var_1_33 = -4;
+float var_1_34 = 4.75;
+unsigned short int var_1_35 = 25;
+unsigned short int var_1_36 = 0;
+unsigned short int var_1_37 = 4;
+unsigned char var_1_38 = 0;
+unsigned short int var_1_39 = 32;
+unsigned short int var_1_40 = 46045;
+double var_1_41 = 99999999999999.25;
+double var_1_42 = 1.8;
+double var_1_43 = 255.125;
+double var_1_44 = 199.2;
+double var_1_45 = 16.4;
+double var_1_46 = 1.8;
+unsigned long int var_1_47 = 256;
+unsigned char var_1_49 = 1;
+unsigned char var_1_50 = 0;
+unsigned char var_1_51 = 0;
+
+// Calibration values
+
+// Last'ed variables
+
+// Additional functions
+
+
+void initially(void) {
+}
+
+
+
+void step(void) {
+	// From: Req1Batch106Filler_PE_CN
+	/* 844L, 32L, 252L, 279L) */ if (var_1_2) {
+		/* 846L, 26L, 254L, 281L) */ if (var_1_3) {
+			/* 848L, 19L, 256L, 283L) */ var_1_1 = (
+				/* 851L, 18L, 259L, 286L) */ (min (
+					/* 851L, 18L, 259L, 286L) */ (
+						var_1_4
+					) , (
+						/* 853L, 17L, 261L, 288L) */ ((
+							/* 854L, 13L, 262L, 289L) */ ((
+								var_1_5
+							) + (
+								256
+							))
+						) - (
+							/* 857L, 16L, 265L, 292L) */ (min (
+								/* 857L, 16L, 265L, 292L) */ (
+									var_1_6
+								) , (
+									var_1_7
+								)
+							))
+						))
+					)
+				))
+			);
+		} else {
+			/* 860L, 25L, 268L, 295L) */ var_1_1 = (
+				/* 863L, 24L, 271L, 298L) */ ((
+					var_1_5
+				) - (
+					var_1_7
+				))
+			);
+		}
+	} else {
+		/* 866L, 31L, 274L, 301L) */ var_1_1 = (
+			var_1_4
+		);
+	}
+
+
+	// From: Req2Batch106Filler_PE_CN
+	/* 872L, 80L, 361L, 389L) */ if (/* 873L, 44L, 45L, 362L, 390L) */ ((var_1_7) <= (/* 875L, 43L, 47L, 364L, 392L) */ ((var_1_5) + (/* 877L, 42L, 49L, 366L, 394L) */ ((var_1_6) - (var_1_9))))))) {
+		/* 880L, 74L, 369L, 397L) */ if (var_1_3) {
+			/* 882L, 67L, 371L, 399L) */ var_1_8 = (
+				/* 885L, 66L, 374L, 402L) */ ((
+					var_1_10
+				) - (
+					var_1_11
+				))
+			);
+		} else {
+			/* 888L, 73L, 377L, 405L) */ var_1_8 = (
+				/* 891L, 72L, 380L, 408L) */ (max (
+					/* 891L, 72L, 380L, 408L) */ (
+						var_1_11
+					) , (
+						var_1_10
+					)
+				))
+			);
+		}
+	} else {
+		/* 894L, 79L, 383L, 411L) */ var_1_8 = (
+			var_1_11
+		);
+	}
+
+
+	// From: Req4Batch106Filler_PE_CN
+	/* 926L, 137L, 558L, 571L) */ var_1_14 = (
+		/* 929L, 136L, 561L, 574L) */ ((
+			/* 930L, 134L, 562L, 575L) */ ((
+				/* 931L, 132L, 563L, 576L) */ (min (
+					/* 931L, 132L, 563L, 576L) */ (
+						4
+					) , (
+						var_1_13
+					)
+				))
+			) + (
+				var_1_5
+			))
+		) + (
+			var_1_7
+		))
+	);
+
+
+	// From: Req5Batch106Filler_PE_CN
+	/* 938L, 149L, 609L, 615L) */ var_1_15 = (
+		var_1_6
+	);
+
+
+	// From: Req6Batch106Filler_PE_CN
+	unsigned char stepLocal_1 = var_1_2;
+	/* 957L, 183L, 632L, 646L) */ if (/* 947L, 158L, 159L, 633L, 647L) */ ((var_1_17) || (stepLocal_1))) {
+		/* 956L, 181L, 636L, 650L) */ if (/* 951L, 168L, 169L, 637L, 651L) */ ((var_1_11) > (/* 950L, 167L, 171L, 639L, 653L) */ (- (var_1_8))))) {
+			/* 955L, 180L, 641L, 655L) */ var_1_16 = (
+				var_1_19
+			);
+		}
+	}
+
+
+	// From: Req8Batch106Filler_PE_CN
+	/* 987L, 227L, 773L, 779L) */ var_1_23 = (
+		var_1_24
+	);
+
+
+	// From: Req10Batch106Filler_PE_CN
+	/* 999L, 247L, 821L, 827L) */ var_1_26 = (
+		var_1_23
+	);
+
+
+	// From: Req3Batch106Filler_PE_CN
+	unsigned long int stepLocal_0 = /* 900L, 94L, 100L, 477L, 498L) */ ((var_1_23) * (var_1_9));
+	/* 920L, 122L, 472L, 493L) */ if (/* 907L, 95L, 96L, 473L, 494L) */ ((/* 906L, 90L, 97L, 474L, 495L) */ ((var_1_7) + (var_1_6))) > (stepLocal_0))) {
+		/* 915L, 117L, 480L, 501L) */ var_1_12 = (
+			/* 914L, 116L, 483L, 504L) */ ((
+				var_1_5
+			) - (
+				/* 913L, 115L, 485L, 506L) */ ((
+					var_1_13
+				) + (
+					64
+				))
+			))
+		);
+	} else {
+		/* 919L, 121L, 488L, 509L) */ var_1_12 = (
+			var_1_13
+		);
+	}
+
+
+	// From: Req7Batch106Filler_PE_CN
+	unsigned long int stepLocal_2 = var_1_23;
+	/* 982L, 218L, 688L, 709L) */ if (/* 967L, 193L, 194L, 689L, 710L) */ ((/* 966L, 191L, 195L, 690L, 711L) */ ((var_1_6) + (var_1_15))) <= (stepLocal_2))) {
+		/* 971L, 207L, 694L, 715L) */ var_1_20 = (
+			var_1_10
+		);
+	} else {
+		/* 981L, 217L, 698L, 719L) */ var_1_20 = (
+			/* 980L, 216L, 701L, 722L) */ (max (
+				/* 980L, 216L, 701L, 722L) */ (
+					var_1_11
+				) , (
+					/* 979L, 215L, 703L, 724L) */ (min (
+						/* 979L, 215L, 703L, 724L) */ (
+							var_1_10
+						) , (
+							/* 978L, 214L, 705L, 726L) */ ((
+								var_1_21
+							) + (
+								var_1_22
+							))
+						)
+					))
+				)
+			))
+		);
+	}
+
+
+	// From: Req9Batch106Filler_PE_CN
+	/* 993L, 237L, 797L, 803L) */ var_1_25 = (
+		var_1_12
+	);
+
+
+	// From: CodeObject1
+	/* 19L) */ if (var_1_28) {
+		/* 10L) */ var_1_27 = (
+			/* 9L) */ ((
+				var_1_29
+			) + (
+				var_1_30
+			))
+		);
+	} else {
+		/* 18L) */ var_1_27 = (
+			/* 17L) */ ((
+				var_1_31
+			) - (
+				/* 16L) */ (min (
+					/* 16L) */ (
+						var_1_29
+					) , (
+						var_1_30
+					)
+				))
+			))
+		);
+	}
+
+
+	// From: CodeObject2
+	/* 39L) */ if (/* 27L, 26L) */ ((var_1_31) >= (/* 29L, 25L) */ (~ (var_1_27))))) {
+		/* 38L) */ var_1_32 = (
+			var_1_33
+		);
+	}
+
+
+	// From: CodeObject3
+	/* 48L) */ var_1_34 = (
+		15.8f
+	);
+
+
+	// From: CodeObject4
+	/* 56L) */ var_1_35 = (
+		var_1_36
+	);
+
+
+	// From: CodeObject5
+	/* 85L) */ if (var_1_28) {
+		/* 67L) */ var_1_37 = (
+			var_1_36
+		);
+	} else {
+		/* 83L) */ if (var_1_38) {
+			/* 76L) */ var_1_37 = (
+				/* 75L) */ (max (
+					/* 75L) */ (
+						var_1_36
+					) , (
+						var_1_39
+					)
+				))
+			);
+		} else {
+			/* 82L) */ var_1_37 = (
+				/* 81L) */ ((
+					var_1_40
+				) - (
+					32
+				))
+			);
+		}
+	}
+
+
+	// From: CodeObject6
+	/* 107L) */ if (var_1_28) {
+		/* 99L) */ var_1_41 = (
+			/* 98L) */ (max (
+				/* 98L) */ (
+					/* 96L) */ (max (
+						/* 96L) */ (
+							var_1_42
+						) , (
+							var_1_43
+						)
+					))
+				) , (
+					var_1_44
+				)
+			))
+		);
+	} else {
+		/* 106L) */ var_1_41 = (
+			/* 105L) */ (abs (
+				/* 104L) */ ((
+					var_1_45
+				) - (
+					var_1_46
+				))
+			))
+		);
+	}
+
+
+	// From: CodeObject7
+	/* 183L) */ if (/* 116L, 115L) */ ((/* 117L, 113L) */ ((var_1_30) & (var_1_33))) <= (var_1_39))) {
+		/* 149L) */ if (var_1_38) {
+			/* 142L) */ if (/* 132L, 131L) */ ((var_1_34) <= (var_1_45))) {
+				/* 141L) */ var_1_47 = (
+					var_1_30
+				);
+			}
+		} else {
+			/* 148L) */ var_1_47 = (
+				/* 147L) */ (abs (
+					var_1_30
+				))
+			);
+		}
+	} else {
+		/* 181L) */ if (/* 161L, 160L) */ ((var_1_42) >= (/* 163L, 159L) */ ((var_1_44) * (/* 165L, 158L) */ (abs (var_1_45))))))) {
+			/* 176L) */ var_1_47 = (
+				var_1_31
+			);
+		} else {
+			/* 180L) */ var_1_47 = (
+				8u
+			);
+		}
+	}
+
+
+	// From: CodeObject8
+	/* 226L) */ if (/* 195L, 194L) */ ((/* 196L, 191L) */ (min (/* 196L, 191L) */ (/* 197L, 189L) */ (min (/* 197L, 189L) */ (var_1_42) , (var_1_43)))) , (var_1_41)))) < (/* 201L, 193L) */ (- (var_1_44))))) {
+		/* 224L) */ if (var_1_28) {
+			/* 219L) */ var_1_49 = (
+				/* 218L) */ ((
+					var_1_50
+				) || (
+					var_1_51
+				))
+			);
+		} else {
+			/* 223L) */ var_1_49 = (
+				0
+			);
+		}
+	}
+}
+
+
+
+void updateVariables(void) {
+	var_1_2 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_2 >= 0);
+	assume_abort_if_not(var_1_2 <= 1);
+	var_1_3 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_3 >= 0);
+	assume_abort_if_not(var_1_3 <= 1);
+	var_1_4 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_4 >= -32767);
+	assume_abort_if_not(var_1_4 <= 32766);
+	var_1_5 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_5 >= 0);
+	assume_abort_if_not(var_1_5 <= 16383);
+	var_1_6 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_6 >= 0);
+	assume_abort_if_not(var_1_6 <= 32766);
+	var_1_7 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_7 >= 0);
+	assume_abort_if_not(var_1_7 <= 32766);
+	var_1_9 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_9 >= 0);
+	assume_abort_if_not(var_1_9 <= 32767);
+	var_1_10 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_10 >= 0.0F && var_1_10 <= -1.0e-20F) || (var_1_10 <= 9223372.036854766000e+12F && var_1_10 >= 1.0e-20F ));
+	var_1_11 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_11 >= 0.0F && var_1_11 <= -1.0e-20F) || (var_1_11 <= 9223372.036854766000e+12F && var_1_11 >= 1.0e-20F ));
+	var_1_13 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_13 >= 0);
+	assume_abort_if_not(var_1_13 <= 16383);
+	var_1_17 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_17 >= 0);
+	assume_abort_if_not(var_1_17 <= 1);
+	var_1_19 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_19 >= 0);
+	assume_abort_if_not(var_1_19 <= 254);
+	var_1_21 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_21 >= -461168.6018427383000e+13F && var_1_21 <= -1.0e-20F) || (var_1_21 <= 4611686.018427383000e+12F && var_1_21 >= 1.0e-20F ));
+	var_1_22 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_22 >= -461168.6018427383000e+13F && var_1_22 <= -1.0e-20F) || (var_1_22 <= 4611686.018427383000e+12F && var_1_22 >= 1.0e-20F ));
+	var_1_24 = __VERIFIER_nondet_ulong();
+	assume_abort_if_not(var_1_24 >= 0);
+	assume_abort_if_not(var_1_24 <= 4294967294);
+	var_1_28 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_28 >= 0);
+	assume_abort_if_not(var_1_28 <= 1);
+	var_1_29 = __VERIFIER_nondet_ulong();
+	assume_abort_if_not(var_1_29 >= 0);
+	assume_abort_if_not(var_1_29 <= 2147483647);
+	var_1_30 = __VERIFIER_nondet_ulong();
+	assume_abort_if_not(var_1_30 >= 0);
+	assume_abort_if_not(var_1_30 <= 2147483647);
+	var_1_31 = __VERIFIER_nondet_ulong();
+	assume_abort_if_not(var_1_31 >= 2147483647);
+	assume_abort_if_not(var_1_31 <= 4294967294);
+	var_1_33 = __VERIFIER_nondet_long();
+	assume_abort_if_not(var_1_33 >= -2147483647);
+	assume_abort_if_not(var_1_33 <= 2147483646);
+	var_1_36 = __VERIFIER_nondet_ushort();
+	assume_abort_if_not(var_1_36 >= 0);
+	assume_abort_if_not(var_1_36 <= 65534);
+	var_1_38 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_38 >= 0);
+	assume_abort_if_not(var_1_38 <= 1);
+	var_1_39 = __VERIFIER_nondet_ushort();
+	assume_abort_if_not(var_1_39 >= 0);
+	assume_abort_if_not(var_1_39 <= 65534);
+	var_1_40 = __VERIFIER_nondet_ushort();
+	assume_abort_if_not(var_1_40 >= 32767);
+	assume_abort_if_not(var_1_40 <= 65534);
+	var_1_42 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_42 >= -922337.2036854766000e+13F && var_1_42 <= -1.0e-20F) || (var_1_42 <= 9223372.036854766000e+12F && var_1_42 >= 1.0e-20F ));
+	var_1_43 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_43 >= -922337.2036854766000e+13F && var_1_43 <= -1.0e-20F) || (var_1_43 <= 9223372.036854766000e+12F && var_1_43 >= 1.0e-20F ));
+	var_1_44 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_44 >= -922337.2036854766000e+13F && var_1_44 <= -1.0e-20F) || (var_1_44 <= 9223372.036854766000e+12F && var_1_44 >= 1.0e-20F ));
+	var_1_45 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_45 >= 0.0F && var_1_45 <= -1.0e-20F) || (var_1_45 <= 9223372.036854766000e+12F && var_1_45 >= 1.0e-20F ));
+	var_1_46 = __VERIFIER_nondet_double();
+	assume_abort_if_not((var_1_46 >= 0.0F && var_1_46 <= -1.0e-20F) || (var_1_46 <= 9223372.036854766000e+12F && var_1_46 >= 1.0e-20F ));
+	var_1_50 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_50 >= 0);
+	assume_abort_if_not(var_1_50 <= 0);
+	var_1_51 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_51 >= 0);
+	assume_abort_if_not(var_1_51 <= 0);
+}
+
+
+
+void updateLastVariables(void) {
+}
+
+int property(void) {
+	if (var_1_2) {
+		if (var_1_3) {
+		} else {
+		}
+	} else {
+	}
+	if (/* 257L, 44L, 52L, 418L, 446L, 1033L) */ ((var_1_7) <= (/* 259L, 43L, 54L, 420L, 448L, 1035L) */ ((var_1_5) + (/* 261L, 42L, 56L, 422L, 450L, 1037L) */ ((var_1_6) - (var_1_9))))))) {
+		if (var_1_3) {
+		} else {
+		}
+	} else {
+	}
+	if (/* 284L, 95L, 103L, 515L, 536L, 1060L) */ ((/* 285L, 90L, 104L, 516L, 537L, 1061L) */ ((var_1_7) + (var_1_6))) > (/* 288L, 94L, 107L, 519L, 540L, 1064L) */ ((var_1_23) * (var_1_9))))) {
+	} else {
+	}
+	if (/* 324L, 158L, 162L, 661L, 675L, 1100L) */ ((var_1_17) || (var_1_2))) {
+		if (/* 328L, 168L, 173L, 665L, 679L, 1104L) */ ((var_1_11) > (/* 330L, 167L, 175L, 667L, 681L, 1106L) */ (- (var_1_8))))) {
+		}
+	}
+	if (/* 338L, 193L, 199L, 731L, 752L, 1114L) */ ((/* 339L, 191L, 200L, 732L, 753L, 1115L) */ ((var_1_6) + (var_1_15))) <= (var_1_23))) {
+	} else {
+	}
+	return /* 384L) */ ((
+	/* 383L) */ ((
+		/* 382L) */ ((
+			/* 381L) */ ((
+				/* 380L) */ ((
+					/* 379L) */ ((
+						/* 378L) */ ((
+							/* 377L) */ ((
+								/* 376L) */ ((
+									/* 228L, 33L, 306L, 333L, 1004L) */ ((
+										var_1_2
+									) ? (
+										/* 230L, 27L, 308L, 335L, 1006L) */ ((
+											var_1_3
+										) ? (
+											/* 232L, 19L, 310L, 337L, 1008L) */ ((
+												var_1_1
+											) == (
+												/* 232L, 19L, 310L, 337L, 1008L) */ ((signed short int) (
+													/* 235L, 18L, 313L, 340L, 1011L) */ (min (
+														/* 235L, 18L, 313L, 340L, 1011L) */ (
+															var_1_4
+														) , (
+															/* 237L, 17L, 315L, 342L, 1013L) */ ((
+																/* 238L, 13L, 316L, 343L, 1014L) */ ((
+																	var_1_5
+																) + (
+																	256
+																))
+															) - (
+																/* 241L, 16L, 319L, 346L, 1017L) */ (min (
+																	/* 241L, 16L, 319L, 346L, 1017L) */ (
+																		var_1_6
+																	) , (
+																		var_1_7
+																	)
+																))
+															))
+														)
+													))
+												))
+											))
+										) : (
+											/* 244L, 25L, 322L, 349L, 1020L) */ ((
+												var_1_1
+											) == (
+												/* 244L, 25L, 322L, 349L, 1020L) */ ((signed short int) (
+													/* 247L, 24L, 325L, 352L, 1023L) */ ((
+														var_1_5
+													) - (
+														var_1_7
+													))
+												))
+											))
+										))
+									) : (
+										/* 250L, 31L, 328L, 355L, 1026L) */ ((
+											var_1_1
+										) == (
+											/* 250L, 31L, 328L, 355L, 1026L) */ ((signed short int) (
+												var_1_4
+											))
+										))
+									))
+								) && (
+									/* 256L, 81L, 417L, 445L, 1032L) */ ((
+										/* 257L, 44L, 52L, 418L, 446L, 1033L) */ ((
+											var_1_7
+										) <= (
+											/* 259L, 43L, 54L, 420L, 448L, 1035L) */ ((
+												var_1_5
+											) + (
+												/* 261L, 42L, 56L, 422L, 450L, 1037L) */ ((
+													var_1_6
+												) - (
+													var_1_9
+												))
+											))
+										))
+									) ? (
+										/* 264L, 75L, 425L, 453L, 1040L) */ ((
+											var_1_3
+										) ? (
+											/* 266L, 67L, 427L, 455L, 1042L) */ ((
+												var_1_8
+											) == (
+												/* 266L, 67L, 427L, 455L, 1042L) */ ((float) (
+													/* 269L, 66L, 430L, 458L, 1045L) */ ((
+														var_1_10
+													) - (
+														var_1_11
+													))
+												))
+											))
+										) : (
+											/* 272L, 73L, 433L, 461L, 1048L) */ ((
+												var_1_8
+											) == (
+												/* 272L, 73L, 433L, 461L, 1048L) */ ((float) (
+													/* 275L, 72L, 436L, 464L, 1051L) */ (max (
+														/* 275L, 72L, 436L, 464L, 1051L) */ (
+															var_1_11
+														) , (
+															var_1_10
+														)
+													))
+												))
+											))
+										))
+									) : (
+										/* 278L, 79L, 439L, 467L, 1054L) */ ((
+											var_1_8
+										) == (
+											/* 278L, 79L, 439L, 467L, 1054L) */ ((float) (
+												var_1_11
+											))
+										))
+									))
+								))
+							) && (
+								/* 283L, 123L, 514L, 535L, 1059L) */ ((
+									/* 284L, 95L, 103L, 515L, 536L, 1060L) */ ((
+										/* 285L, 90L, 104L, 516L, 537L, 1061L) */ ((
+											var_1_7
+										) + (
+											var_1_6
+										))
+									) > (
+										/* 288L, 94L, 107L, 519L, 540L, 1064L) */ ((
+											var_1_23
+										) * (
+											var_1_9
+										))
+									))
+								) ? (
+									/* 291L, 117L, 522L, 543L, 1067L) */ ((
+										var_1_12
+									) == (
+										/* 291L, 117L, 522L, 543L, 1067L) */ ((signed short int) (
+											/* 294L, 116L, 525L, 546L, 1070L) */ ((
+												var_1_5
+											) - (
+												/* 296L, 115L, 527L, 548L, 1072L) */ ((
+													var_1_13
+												) + (
+													64
+												))
+											))
+										))
+									))
+								) : (
+									/* 299L, 121L, 530L, 551L, 1075L) */ ((
+										var_1_12
+									) == (
+										/* 299L, 121L, 530L, 551L, 1075L) */ ((signed short int) (
+											var_1_13
+										))
+									))
+								))
+							))
+						) && (
+							/* 306L, 137L, 584L, 597L, 1082L) */ ((
+								var_1_14
+							) == (
+								/* 306L, 137L, 584L, 597L, 1082L) */ ((unsigned short int) (
+									/* 309L, 136L, 587L, 600L, 1085L) */ ((
+										/* 310L, 134L, 588L, 601L, 1086L) */ ((
+											/* 311L, 132L, 589L, 602L, 1087L) */ (min (
+												/* 311L, 132L, 589L, 602L, 1087L) */ (
+													4
+												) , (
+													var_1_13
+												)
+											))
+										) + (
+											var_1_5
+										))
+									) + (
+										var_1_7
+									))
+								))
+							))
+						))
+					) && (
+						/* 318L, 149L, 621L, 627L, 1094L) */ ((
+							var_1_15
+						) == (
+							/* 318L, 149L, 621L, 627L, 1094L) */ ((unsigned short int) (
+								var_1_6
+							))
+						))
+					))
+				) && (
+					/* 323L, 184L, 660L, 674L, 1099L) */ ((
+						/* 324L, 158L, 162L, 661L, 675L, 1100L) */ ((
+							var_1_17
+						) || (
+							var_1_2
+						))
+					) ? (
+						/* 327L, 182L, 664L, 678L, 1103L) */ ((
+							/* 328L, 168L, 173L, 665L, 679L, 1104L) */ ((
+								var_1_11
+							) > (
+								/* 330L, 167L, 175L, 667L, 681L, 1106L) */ (- (
+									var_1_8
+								))
+							))
+						) ? (
+							/* 332L, 180L, 669L, 683L, 1108L) */ ((
+								var_1_16
+							) == (
+								/* 332L, 180L, 669L, 683L, 1108L) */ ((unsigned char) (
+									var_1_19
+								))
+							))
+						) : (
+							1
+						))
+					) : (
+						1
+					))
+				))
+			) && (
+				/* 337L, 219L, 730L, 751L, 1113L) */ ((
+					/* 338L, 193L, 199L, 731L, 752L, 1114L) */ ((
+						/* 339L, 191L, 200L, 732L, 753L, 1115L) */ ((
+							var_1_6
+						) + (
+							var_1_15
+						))
+					) <= (
+						var_1_23
+					))
+				) ? (
+					/* 343L, 207L, 736L, 757L, 1119L) */ ((
+						var_1_20
+					) == (
+						/* 343L, 207L, 736L, 757L, 1119L) */ ((double) (
+							var_1_10
+						))
+					))
+				) : (
+					/* 347L, 217L, 740L, 761L, 1123L) */ ((
+						var_1_20
+					) == (
+						/* 347L, 217L, 740L, 761L, 1123L) */ ((double) (
+							/* 350L, 216L, 743L, 764L, 1126L) */ (max (
+								/* 350L, 216L, 743L, 764L, 1126L) */ (
+									var_1_11
+								) , (
+									/* 352L, 215L, 745L, 766L, 1128L) */ (min (
+										/* 352L, 215L, 745L, 766L, 1128L) */ (
+											var_1_10
+										) , (
+											/* 354L, 214L, 747L, 768L, 1130L) */ ((
+												var_1_21
+											) + (
+												var_1_22
+											))
+										)
+									))
+								)
+							))
+						))
+					))
+				))
+			))
+		) && (
+			/* 359L, 227L, 785L, 791L, 1135L) */ ((
+				var_1_23
+			) == (
+				/* 359L, 227L, 785L, 791L, 1135L) */ ((unsigned long int) (
+					var_1_24
+				))
+			))
+		))
+	) && (
+		/* 365L, 237L, 809L, 815L, 1141L) */ ((
+			var_1_25
+		) == (
+			/* 365L, 237L, 809L, 815L, 1141L) */ ((signed short int) (
+				var_1_12
+			))
+		))
+	))
+) && (
+	/* 371L, 247L, 833L, 839L, 1147L) */ ((
+		var_1_26
+	) == (
+		/* 371L, 247L, 833L, 839L, 1147L) */ ((signed long int) (
+			var_1_23
+		))
+	))
+))
+;
+}
+int main(void) {
+	isInitial = 1;
+	initially();
+
+	while (1) {
+		updateLastVariables();
+
+		updateVariables();
+		step();
+		__VERIFIER_assert(property());
+		isInitial = 0;
+	}
+
+	return 0;
+}
