@@ -9,7 +9,7 @@ additional_information:
 
 input_files:
   - '../nonterminating-loop.c'
-  - 'nonterminating-loop.good3.witness-2.0.yml'
+  - 'nonterminating-loop.good3.witness-2.1.yml'
 
 properties:
   - property_file: ../../properties/termination.prp
@@ -18,4 +18,4 @@ properties:
 options:
   language: C
   data_model: LP64
-  witness_input_file: 'nonterminating-loop.good3.witness-2.0.yml'
+  witness_input_file: 'nonterminating-loop.good3.witness-2.1.yml'
