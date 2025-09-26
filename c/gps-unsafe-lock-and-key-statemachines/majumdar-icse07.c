@@ -1,3 +1,12 @@
+/*
+ * This file is part of the SV-Benchmarks collection of verification tasks:
+ * https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+ *
+ * SPDX-FileCopyrightText: 2025 ...
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // Taken from Majumdar&Sen, "Hybrid Concolic Testing", ICSE 2007
 
 extern void abort(void);

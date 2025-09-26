@@ -1,3 +1,12 @@
+/*
+ * This file is part of the SV-Benchmarks collection of verification tasks:
+ * https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+ *
+ * SPDX-FileCopyrightText: 2025 ...
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // https://dl.acm.org/doi/10.1145/2001420.2001424
 // fig 1, unafe
 extern void abort(void);
