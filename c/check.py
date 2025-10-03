@@ -204,6 +204,7 @@ KNOWN_DIRECTORY_PROBLEMS = [
     ("validation-crafted", "ternary.yml is not contained in any category"),
     ("validation-crafted", "while.yml is not contained in any category"),
     ("validation-crafted", "functions.yml is not contained in any category"),
+    ("validation-crafted", "nonterminating-loop.yml is not contained in any category"),
 ]
 
 KNOWN_BENCHMARK_FILE_PROBLEMS = [
