@@ -1,0 +1,38 @@
+- entry_type: "violation_sequence"
+  metadata:
+    format_version: "2.1"
+    uuid: 65501c6e-9e0d-4f15-ba08-85b54ad31863
+    creation_time: "2024-04-29T13:13:07+02:00"
+    producer:
+      name: "Paulina"
+      version: "ASE-paper"
+    task:
+      input_files:
+      - "Ex02.c"
+      input_file_hashes:
+        Ex02.c: afd40820c7a09c073d225c09c6690862ff04506300463cb312087d541b42d981
+      specification: "CHECK( init(main()), LTL(F end) )"
+      data_model: "LP64"
+      language: "C"
+  content:
+  - segment:
+    - waypoint:
+        type: "assumption"
+        constraint:
+          value: "i == 5"
+          format: "c_expression"
+        location:
+          line: 9
+          column: 5
+          file_name: "Ex02.c"
+        action: "follow"
+  - segment:
+    - waypoint:
+        type: "branching"
+        constraint:
+          value: "true"
+        location:
+          line: 9
+          column: 5
+          file_name: "Ex02.c"
+        action: "cycle"
