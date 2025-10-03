@@ -21,6 +21,7 @@
         action: "follow"
         constraint:
           value: "x == y" # skips infinite cycle
+          format: "c_expression"
         location:
           file_name: "nonterminating-loop.c"
           line: 14

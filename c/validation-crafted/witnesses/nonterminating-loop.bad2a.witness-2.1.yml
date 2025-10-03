@@ -21,6 +21,7 @@
         action: "follow"
         constraint:
           value: "x == 0"
+          format: "c_expression"
         location:
           file_name: "nonterminating-loop.c"
           line: 13
@@ -31,6 +32,7 @@
         action: "follow"
         constraint:
           value: "y == 1"
+          format: "c_expression"
         location:
           file_name: "nonterminating-loop.c"
           line: 14
@@ -41,6 +43,7 @@
         action: "cycle"
         constraint:
           value: "x == 0"
+          format: "c_expression"
         location:
           file_name: "nonterminating-loop.c"
           line: 18
@@ -51,6 +54,7 @@
         action: "cycle"
         constraint:
           value: "y == 1"
+          format: "c_expression"
         location:
           file_name: "nonterminating-loop.c"
           line: 19
