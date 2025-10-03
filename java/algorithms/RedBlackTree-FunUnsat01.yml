@@ -4,9 +4,9 @@ input_files:
   - RedBlackTree-FunUnsat01/
   - RedBlackTree-FunUnsat01/rbtree/
 properties:
-  - property_file: ../properties/assert_java.prp
+  - property_file: ../properties/valid-assert.prp
     expected_verdict: false
-  - property_file: ../properties/runtime-exception.prp
+  - property_file: ../properties/no-runtime-exception.prp
     expected_verdict: true
 options:
   language: Java

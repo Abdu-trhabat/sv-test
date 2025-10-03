@@ -4,9 +4,9 @@ input_files:
   - micro/
   - Basic19/
 properties:
-  - property_file: ../properties/assert_java.prp
+  - property_file: ../properties/valid-assert.prp
     expected_verdict: false
-  - property_file: ../properties/runtime-exception.prp
+  - property_file: ../properties/no-runtime-exception.prp
     expected_verdict: true
 options:
   language: Java

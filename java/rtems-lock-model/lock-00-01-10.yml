@@ -5,7 +5,7 @@ input_files:
 properties:
   - property_file: ../properties/no-deadlock.prp
     expected_verdict: false
-  - property_file: ../properties/runtime-exception.prp
+  - property_file: ../properties/no-runtime-exception.prp
     expected_verdict: true
 options:
   language: Java
