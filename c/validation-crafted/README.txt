@@ -11,7 +11,14 @@ inspects the input witnesses and supports various features of the witness
 format.
 
 Additionally, it contains 1 non-terminating program and 10 witnesses of
-non-termination contributed as part of a research paper:
+non-termination taken from the following artifact:
+
+Non-termination Witnesses in Format 2.1 for ASE 2025 Article `Non-termination Witnesses and Their Validation'
+by Zs. Ádám, P. Ayaziová, L. Bajczi, D. Beyer, M. Jankola, M. Lingsch-Rosenfeld, and J. Strejček.
+Zenodo (2025).
+https://doi.org/10.5281/zenodo.17264555
+
+which is part of the following research paper:
 
 Non-termination Witnesses and Their Validation.
 by Zs. Ádám, P. Ayaziová, L. Bajczi, D. Beyer, M. Jankola, M. Lingsch-Rosenfeld, and J. Strejček.
