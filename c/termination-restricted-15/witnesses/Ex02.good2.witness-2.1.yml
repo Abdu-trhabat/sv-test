@@ -29,7 +29,7 @@
           value: "\\result == 5"
           format: "ext_c_expression"
         location:
-          line: 7
+          line: 14
           column: 31
           file_name: "Ex02.c"
         action: "follow"
@@ -39,7 +39,7 @@
         constraint:
           value: "false"
         location:
-          line: 10
+          line: 17
           column: 9
           file_name: "Ex02.c"
         action: "cycle"

@@ -28,7 +28,7 @@
         constraint:
           value: "true" # This does not happen infinitely often
         location:
-          line: 10
+          line: 17
           column: 9
           file_name: "Ex02.c"
         action: "cycle"

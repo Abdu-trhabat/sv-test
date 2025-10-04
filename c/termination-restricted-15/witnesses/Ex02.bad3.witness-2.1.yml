@@ -29,7 +29,7 @@
           value: "\\result > 5"
           format: "ext_c_expression"
         location:
-          line: 7
+          line: 14
           column: 31
           file_name: "Ex02.c"
         action: "follow"
@@ -39,7 +39,7 @@
         constraint:
           value: "true"
         location:
-          line: 9
+          line: 16
           column: 5
           file_name: "Ex02.c"
         action: "follow"
@@ -50,7 +50,7 @@
           value: "i == 6"
           format: "c_expression"
         location:
-          line: 10
+          line: 17
           column: 9
           file_name: "Ex02.c"
         action: "follow"
@@ -60,7 +60,7 @@
         constraint:
           value: "true"
         location:
-          line: 10
+          line: 17
           column: 9
           file_name: "Ex02.c"
         action: "cycle" # This does not happen ininitely often
@@ -70,7 +70,7 @@
         constraint:
           value: "true"
         location:
-          line: 9
+          line: 16
           column: 5
           file_name: "Ex02.c"
         action: "cycle"
@@ -80,7 +80,7 @@
         constraint:
           value: "false"
         location:
-          line: 10
+          line: 17
           column: 9
           file_name: "Ex02.c"
         action: "cycle"
