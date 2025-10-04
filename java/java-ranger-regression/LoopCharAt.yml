@@ -3,7 +3,7 @@ input_files:
   - ../common/
   - loopCharAt/
 properties:
-  - property_file: ../properties/assert_java.prp
+  - property_file: ../properties/valid-assert.prp
     expected_verdict: false
 
 options:
