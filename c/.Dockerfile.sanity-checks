@@ -24,7 +24,8 @@ RUN pip3 install \
   pyyaml \
   lxml \
   pycparser \
-  jsonschema
+  jsonschema \
+  libclang
 
 # Currently the witness linter is not available as a python package
 RUN wget https://zenodo.org/records/17156323/files/WitnessLint-2.1.zip -O WitnessLint.zip
