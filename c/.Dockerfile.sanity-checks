@@ -28,7 +28,7 @@ RUN pip3 install \
   libclang
 
 # Currently the witness linter is not available as a python package
-RUN wget https://zenodo.org/records/17156323/files/WitnessLint-2.1.zip -O WitnessLint.zip
+RUN wget https://zenodo.org/records/17277275/files/WitnessLint-2.1.zip -O WitnessLint.zip
 RUN unzip WitnessLint.zip
 RUN rm WitnessLint.zip
 ENV PATH="${PATH}:/lint"
