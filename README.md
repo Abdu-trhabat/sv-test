@@ -95,10 +95,15 @@ A *verification result* is a triple (ANSWER, WITNESS, TIME) with
 
 ### Programs
 
-The program files in this repository are named as follows:
-- the filename ends with ending `.c` for not preprocessed files and `.i` for preprocessed files (for C files).
+#### C Programs
 
-There are some old programs that have ending `.c` although they are preprocessed.
+Each C program consists of a single file, which is either: a `.i` file, which is preprocessed, or a `.c` file, which may be un-preprocessed.
+Un-preprocessed programs fulfill the following requirements:
+1. `#include` directives only include headers from the C standard or `pthread.h`.
+2. No `#define` directives are used.
+3. All used macros are defined by the C standard or `pthread.h`.
+
+Each program contains all code that is needed for the verification, i.e., all non-standard functions are defined.
 
 ### Behavioral Specifications
 

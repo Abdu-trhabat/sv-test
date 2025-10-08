@@ -445,7 +445,7 @@ class FileChecks(Checks):
                 "  void reach_error() { assert(0); }\n"
                 "\n"
                 "2. Replace any '__VERIFIER_error()' by 'reach_error()'\n"
-                "3. Create a preprocessed file (.i)-file and refer to that in the "
+                "3. If necessary, create a preprocessed file (.i)-file and refer to that in the "
                 "corresponding .yml file\n"
             )
 
@@ -890,6 +890,7 @@ class InputFileChecks(FileChecks):
             return
 
         if any(PREPROCESSOR_DIRECTIVE.match(line) for line in self.lines):
+            # TODO: allow #include-s as per README rules
             self.error(
                 "#define or #include statement present, please add preprocessed version"
             )
