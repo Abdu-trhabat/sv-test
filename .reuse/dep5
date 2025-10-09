@@ -8,6 +8,7 @@ Files:
  c/*/*.yml
  java/*.set
  java/*/*.yml
+ .gitlab/merge_request_templates/*.md
 Copyright: 2011-2020 The SV-Benchmarks Community
 License: CC0-1.0
 
