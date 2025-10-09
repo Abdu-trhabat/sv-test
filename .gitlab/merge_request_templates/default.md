@@ -1,0 +1,23 @@
+<!--
+  Please describe your PR as usual.
+
+  For submission of new verification tasks,
+  keep the following checklist and make sure that all items are fullfilled.
+  For other PRs, just remove it.
+-->
+
+- [ ] programs added to new and [appropriately named](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/blob/main/CONTRIBUTING.md#directory-structure-and-names) directory
+- [ ] license present and [acceptable](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/blob/main/CONTRIBUTING.md#license) (in machine-readable comment at beginning of program as specified by the [REUSE project](https://reuse.software/))
+- [ ] [contributed-by](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/blob/main/CONTRIBUTING.md#origin-description-and-attribution) present (either in README file or as comment at beginning of program)
+
+- [ ] programs added to a `.set` file of an existing category, or new sub-category established (if justified)
+- [ ] suggest to add it to benchmark definitions (.XML) in repositories for benchmark-definitions
+- [ ] intended property matches the corresponding `.prp` file
+- [ ] programs and expected answer added to a `.yml` file according to [task definitions](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks#task-definitions)
+
+<!-- For C programs: -->
+- [ ] [data model](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/blob/main/CONTRIBUTING.md#data-model) present in task-definition file
+- [ ] original (ideally not preprocessed) sources present
+- [ ] [preprocessed](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/blob/main/CONTRIBUTING.md#preprocessing) files present
+- [ ] preprocessed files generated with correct architecture
+- [ ] [Makefile](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/blob/main/CONTRIBUTING.md#compile-checks) added with correct content and without overly broad suppression of warnings
