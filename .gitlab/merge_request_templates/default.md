@@ -18,6 +18,6 @@
 <!-- For C programs: -->
 - [ ] [data model](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/blob/main/CONTRIBUTING.md#data-model) present in task-definition file
 - [ ] original (ideally not preprocessed) sources present
-- [ ] [preprocessed](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/blob/main/CONTRIBUTING.md#preprocessing) files present
-- [ ] preprocessed files generated with correct architecture
+- [ ] [preprocessed](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/blob/main/CONTRIBUTING.md#preprocessing) files present (if necessary)
+- [ ] preprocessed files generated with correct architecture (if necessary)
 - [ ] [Makefile](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/blob/main/CONTRIBUTING.md#compile-checks) added with correct content and without overly broad suppression of warnings
