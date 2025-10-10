@@ -16,4 +16,6 @@ COMMON_WARNINGS := \
 CLANG_WARNINGS := \
 	-Wno-error=self-assign \
 
+IGNORE_DIRS := ./witnesses/
+
 include $(LEVEL)/Makefile.config
