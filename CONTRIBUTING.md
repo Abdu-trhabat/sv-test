@@ -152,7 +152,7 @@ If a submitted C program consists of a single file which fulfills these requirem
 
 If a submitted C program consists of multiple files and/or does not fulfill these requirements, then:
 * It should be submitted as a `.i` file which has been preprocessed as follows:
-  * Use a recent version of `cpp` (from GCC).
+  * Use a recent version of `cpp`/GCC/Clang.
   * Use the architecture flag `-m32` or `-m64` corresponding to the data model in the task definition.
   * Use the `-P` flag to omit `#line` directives from the result.
   * If preprocessing requires additional macro definitions (`-D` arguments) or include paths (`-I` arguments), then these should be documented, e.g., in a README file or in a comment in the `.c` file.
