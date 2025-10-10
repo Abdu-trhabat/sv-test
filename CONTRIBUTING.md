@@ -147,6 +147,7 @@ The README states:
 
 If a submitted C program consists of a single file which fulfills these requirements, then:
 * It should be submitted as a `.c` file which is un-preprocessed.
+* The `.c` file should be compilable by recent versions of GCC and Clang.
 * No corresponding preprocessed `.i` file should be added to the repository.
 * The task definition should define the `.c` file as input file.
 
@@ -156,6 +157,7 @@ If a submitted C program consists of multiple files and/or does not fulfill thes
   * Use the architecture flag `-m32` or `-m64` corresponding to the data model in the task definition.
   * Use the `-P` flag to omit `#line` directives from the result.
   * If preprocessing requires additional macro definitions (`-D` arguments) or include paths (`-I` arguments), then these should be documented, e.g., in a README file or in a comment in the `.c` file.
+* The `.i` file should be compilable by recent versions of GCC and Clang.
 * All original un-preprocessed `.c` and `.h` files should be added to the repository for reference.
 * The task definition should define the `.i` file as input file.
 
