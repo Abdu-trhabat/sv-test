@@ -1,0 +1,210 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2025 Dirk Beyer <https://www.sosy-lab.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: getlimits
+description: tasks that verify functionality of decimal absolute value increment
+tasks:
+  - name: getlimits_decimal_absval_add_one_positive_functional
+    before_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: init_positive
+      - filename: formal/harnesses/getlimits-harness.c
+        method: store_old_getlimits_state
+    target:
+      filename: formal/harnesses/getlimits-harness.c
+      method: call_decimal_absval_add_one
+    after_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: postcond_positive
+      - filename: formal/harnesses/getlimits-harness.c
+        method: free_getlimits_buffer
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: getlimits_decimal_absval_add_one_positive_cover_target
+    before_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: init_positive
+      - filename: formal/harnesses/getlimits-harness.c
+        method: store_old_getlimits_state
+    target:
+      filename: formal/harnesses/getlimits-harness.c
+      method: call_decimal_absval_add_one
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      - filename: formal/harnesses/getlimits-harness.c
+        method: free_getlimits_buffer
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: getlimits_decimal_absval_add_one_positive_cover_proof
+    before_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: init_positive
+      - filename: formal/harnesses/getlimits-harness.c
+        method: store_old_getlimits_state
+    target:
+      filename: formal/harnesses/getlimits-harness.c
+      method: call_decimal_absval_add_one
+    after_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: postcond_positive
+      - filename: formal/harnesses/getlimits-harness.c
+        method: free_getlimits_buffer
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: getlimits_decimal_absval_add_one_negative_functional
+    before_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: init_negative
+      - filename: formal/harnesses/getlimits-harness.c
+        method: store_old_getlimits_state
+    target:
+      filename: formal/harnesses/getlimits-harness.c
+      method: call_decimal_absval_add_one
+    after_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: postcond_negative
+      - filename: formal/harnesses/getlimits-harness.c
+        method: free_getlimits_buffer
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: getlimits_decimal_absval_add_one_negative_cover_target
+    before_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: init_negative
+      - filename: formal/harnesses/getlimits-harness.c
+        method: store_old_getlimits_state
+    target:
+      filename: formal/harnesses/getlimits-harness.c
+      method: call_decimal_absval_add_one
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      - filename: formal/harnesses/getlimits-harness.c
+        method: free_getlimits_buffer
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: getlimits_decimal_absval_add_one_negative_cover_proof
+    before_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: init_negative
+      - filename: formal/harnesses/getlimits-harness.c
+        method: store_old_getlimits_state
+    target:
+      filename: formal/harnesses/getlimits-harness.c
+      method: call_decimal_absval_add_one
+    after_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: postcond_negative
+      - filename: formal/harnesses/getlimits-harness.c
+        method: free_getlimits_buffer
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: getlimits_decimal_absval_add_one_all_nines_functional
+    before_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: init_all_nines
+      - filename: formal/harnesses/getlimits-harness.c
+        method: store_old_getlimits_state
+    target:
+      filename: formal/harnesses/getlimits-harness.c
+      method: call_decimal_absval_add_one
+    after_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: postcond_all_nines
+      - filename: formal/harnesses/getlimits-harness.c
+        method: free_getlimits_buffer
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: getlimits_decimal_absval_add_one_all_nines_cover_target
+    before_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: init_all_nines
+      - filename: formal/harnesses/getlimits-harness.c
+        method: store_old_getlimits_state
+    target:
+      filename: formal/harnesses/getlimits-harness.c
+      method: call_decimal_absval_add_one
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      - filename: formal/harnesses/getlimits-harness.c
+        method: free_getlimits_buffer
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: getlimits_decimal_absval_add_one_all_nines_cover_proof
+    before_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: init_all_nines
+      - filename: formal/harnesses/getlimits-harness.c
+        method: store_old_getlimits_state
+    target:
+      filename: formal/harnesses/getlimits-harness.c
+      method: call_decimal_absval_add_one
+    after_target:
+      - filename: formal/harnesses/getlimits-harness.c
+        method: postcond_all_nines
+      - filename: formal/harnesses/getlimits-harness.c
+        method: free_getlimits_buffer
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp

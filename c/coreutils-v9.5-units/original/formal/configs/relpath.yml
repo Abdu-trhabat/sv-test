@@ -1,0 +1,504 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2025 Dirk Beyer <https://www.sosy-lab.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: relpath
+description: tasks that verify functionality of path common prefix computation
+tasks:
+  - name: relpath_path_common_prefix_symmetry_functional
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_path_common_prefix
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_path_common_prefix_symmetric
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_path_common_prefix_symmetry_cover_target
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_path_common_prefix
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_path_common_prefix_symmetry_cover_proof
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_path_common_prefix
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_path_common_prefix_symmetric
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_path_common_prefix_valid_functional
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_path_common_prefix
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_path_common_prefix_valid
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_path_common_prefix_valid_cover_target
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_path_common_prefix
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_path_common_prefix_valid_cover_proof
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_path_common_prefix
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_path_common_prefix_valid
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_path_common_prefix_identical_functional
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_path_common_prefix_identical
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_path_common_prefix_identical
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_path_common_prefix_identical_cover_target
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_path_common_prefix_identical
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_path_common_prefix_identical_cover_proof
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_path_common_prefix_identical
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_path_common_prefix_identical
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_matching_paths_output_functional
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+      - filename: formal/harnesses/relpath-harness.c
+        method: precond_paths_equal_in_first_directory
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_success
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_valid_output
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_matching_paths_output_cover_target
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+      - filename: formal/harnesses/relpath-harness.c
+        method: precond_paths_equal_in_first_directory
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_matching_paths_output_cover_proof
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+      - filename: formal/harnesses/relpath-harness.c
+        method: precond_paths_equal_in_first_directory
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_success
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_valid_output
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_different_paths_output_functional
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+      - filename: formal/harnesses/relpath-harness.c
+        method: precond_paths_not_equal_in_first_directory
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_failure
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_different_paths_output_cover_target
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+      - filename: formal/harnesses/relpath-harness.c
+        method: precond_paths_not_equal_in_first_directory
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_different_paths_output_cover_proof
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+      - filename: formal/harnesses/relpath-harness.c
+        method: precond_paths_not_equal_in_first_directory
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_failure
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_potential_buffer_overflow_functional
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_for_overflow
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+      # Make sure that the paths are equal in the first directory,
+      # so that something _should be_ written to the output buffer
+      - filename: formal/harnesses/relpath-harness.c
+        method: precond_paths_equal_for_more_than_output_length
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_failure
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_potential_buffer_overflow_cover_target
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_for_overflow
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+      # Make sure that the paths are equal in the first directory,
+      # so that something _should be_ written to the output buffer
+      - filename: formal/harnesses/relpath-harness.c
+        method: precond_paths_equal_for_more_than_output_length
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_potential_buffer_overflow_cover_proof
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_for_overflow
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+      # Make sure that the paths are equal in the first directory,
+      # so that something _should be_ written to the output buffer
+      - filename: formal/harnesses/relpath-harness.c
+        method: precond_paths_equal_for_more_than_output_length
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_failure
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_identical_paths_functional
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath_identical
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_success
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_identical_result
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_identical_paths_cover_target
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath_identical
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: relpath_relpath_identical_paths_cover_proof
+    before_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_buffers_large
+      - filename: formal/harnesses/relpath-harness.c
+        method: init_input_paths
+    target:
+      filename: formal/harnesses/relpath-harness.c
+      method: call_relpath_identical
+    after_target:
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_success
+      - filename: formal/harnesses/relpath-harness.c
+        method: postcond_relpath_identical_result
+      - filename: formal/harnesses/relpath-harness.c
+        method: free_buffers
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp

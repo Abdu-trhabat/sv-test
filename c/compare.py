@@ -28,6 +28,7 @@ TASKS_TO_IGNORE = {
     "floats-esbmc-regression/*": "(platform-dependent types, preprocessed on Ubuntu 14.04)",
     "*pthread*/*": "(platform-dependent types)",
     "goblint-regression/*": "(platform-dependent types)",
+    "coreutils-v9.5-units/*": "(.c files only exist to show original file composition, complicated build process)",
 }
 
 # categories to be excluded ... (with reason and debug information)

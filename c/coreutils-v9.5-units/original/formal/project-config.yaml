@@ -1,0 +1,29 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2025 Dirk Beyer <https://www.sosy-lab.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+sources:
+- lib/
+- src/
+includes:
+- formal/includes
+- lib
+- src
+defs:
+- HASH_ALGO_BLAKE2: 1
+- HAVE_CONFIG_H: 1
+- BASE_TYPE: 64
+- HASH_ALGO_CKSUM: 1
+- HASH_ALGO_MD5: 1
+- HASH_ALGO_SHA1: 1
+- HASH_ALGO_SHA224: 1
+- HASH_ALGO_SHA256: 1
+- HASH_ALGO_SHA384: 1
+- HASH_ALGO_SHA512: 1
+- HASH_ALGO_SUM: 1
+- EXEEXT: '""'
+- IN_COREUTILS_GNULIB_TESTS: 1
+override_dir: 'formal/overrides'
