@@ -138,24 +138,28 @@ This mostly affects sizes of data types.
 
 #### Preprocessing
 
-For C programs with preprocessor directives (e.g., `#define`, `#ifdef`, or `#include`),
-in addition to the original `.c` (and `.h`) files,
-preprocessed files (extension `.i`) also need to be added.
-The reason for this is that preprocessing can produce different results
-depending on the version of installed libraries,
-and thus the precise nature of the verification tasks would depend on a user's system
-if non-preprocessed files would be used.
-Thus, only preprocessed files will be part of official verification tasks
-and may appear in `.set` files.
+The README states:
 
-For preprocessing, please make sure to follow these rules:
-- No `#line` directives should appear in the result (use `-P` flag for `cpp`).
-- Preferably use a recent `gcc` (e.g., on an Ubuntu 16.04 system).
-- The preprocessor needs to use the correct architecture
-  (pass `-m32` or `-m64` to `cpp` depending on whether you are submitting 32-bit or 64-bit programs).
+> Un-preprocessed programs fulfill the following requirements:
+> 1. `#include` directives only include headers from the C standard or `pthread.h`.
+> 2. No `#define` directives are used.
+> 3. All used macros are defined by the C standard or `pthread.h`.
 
-Of course, if the source code does not need preprocessing,
-this step is not necessary and the `.c` files can be used directly.
+If a submitted C program consists of a single file which fulfills these requirements, then:
+* It should be submitted as a `.c` file which is un-preprocessed.
+* The `.c` file should be compilable by recent versions of GCC and Clang.
+* No corresponding preprocessed `.i` file should be added to the repository.
+* The task definition should define the `.c` file as input file.
+
+If a submitted C program consists of multiple files and/or does not fulfill these requirements, then:
+* It should be submitted as a `.i` file which has been preprocessed as follows:
+  * Use a recent version of `cpp`/GCC/Clang.
+  * Use the architecture flag `-m32` or `-m64` corresponding to the data model in the task definition.
+  * Use the `-P` flag to omit `#line` directives from the result.
+  * If preprocessing requires additional macro definitions (`-D` arguments) or include paths (`-I` arguments), then these should be documented, e.g., in a README file or in a comment in the `.c` file.
+* The `.i` file should be compilable by recent versions of GCC and Clang.
+* All original un-preprocessed `.c` and `.h` files should be added to the repository for reference.
+* The task definition should define the `.i` file as input file.
 
 #### Compile Checks
 

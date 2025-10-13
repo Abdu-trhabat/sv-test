@@ -120,7 +120,49 @@ UNUSED_SETS = set(["Unused_Juliet.set"])
 """Task sets that are supposed to be ignored and none of the tasks are allowed to appear in any other task set"""
 
 LINE_DIRECTIVE = re.compile("^#(line| [0-9]+) ")
-PREPROCESSOR_DIRECTIVE = re.compile("^ *#(define|include)")
+PREPROCESSOR_DIRECTIVE = re.compile(
+    r"""^\s*#(?:define|include\s*(?:<(?P<include>[^>]+)>)?)"""
+)
+
+ALLOWED_INCLUDES = set(
+    [
+        # C11
+        "assert.h",
+        "complex.h",
+        "ctype.h",
+        "errno.h",
+        "fenv.h",
+        "float.h",
+        "inttypes.h",
+        "iso646.h",
+        "limits.h",
+        "locale.h",
+        "math.h",
+        "setjmp.h",
+        "signal.h",
+        "stdalign.h",
+        "stdarg.h",
+        "stdatomic.h",
+        "stdbool.h",
+        "stddef.h",
+        "stdint.h",
+        "stdio.h",
+        "stdlib.h",
+        "stdnoreturn.h",
+        "string.h",
+        "tgmath.h",
+        "threads.h",
+        "time.h",
+        "uchar.h",
+        "wchar.h",
+        "wctype.h",
+        # C23
+        "stdbit.h",
+        "stdckdint.h",
+        # Pthreads
+        "pthread.h",
+    ]
+)
 
 KNOWN_DIRECTORY_PROBLEMS = [
     # TODO Please fix
@@ -445,7 +487,7 @@ class FileChecks(Checks):
                 "  void reach_error() { assert(0); }\n"
                 "\n"
                 "2. Replace any '__VERIFIER_error()' by 'reach_error()'\n"
-                "3. Create a preprocessed file (.i)-file and refer to that in the "
+                "3. If necessary, create a preprocessed file (.i)-file and refer to that in the "
                 "corresponding .yml file\n"
             )
 
@@ -889,10 +931,13 @@ class InputFileChecks(FileChecks):
         if not self.contained_in_category:
             return
 
-        if any(PREPROCESSOR_DIRECTIVE.match(line) for line in self.lines):
-            self.error(
-                "#define or #include statement present, please add preprocessed version"
-            )
+        for line in self.lines:
+            m = PREPROCESSOR_DIRECTIVE.match(line)
+            if m and m.group("include") not in ALLOWED_INCLUDES:
+                self.error(
+                    "#define or non-standard #include statement present, please add preprocessed version"
+                )
+                return
 
     def task_has_options(self):
         return self.options is not None
