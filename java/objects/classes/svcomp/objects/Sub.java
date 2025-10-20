@@ -7,5 +7,6 @@
 package svcomp.objects;
 
 public abstract class Sub {
-    public abstract void bar();
+    
+  public abstract void bar();
 }

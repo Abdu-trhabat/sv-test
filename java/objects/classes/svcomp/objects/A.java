@@ -1,54 +1,58 @@
 /* 
  * Contributed to SV-COMP by Marvin Lazar and Falk Howar
  * License: MIT (see /java/objects/LICENSE-MIT)
+ *
+ * SPDX-FileCopyrightText: 2025 AMarvin Lazar and Falk Howar, TU Dortmund University
+ * SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+ * SPDX-License-Identifier: MIT
  */
-
 
 package svcomp.objects;
 
 public class A {
-    private int x;
-    private int y;
-    private Sub sub;
 
-    public A() {}
+  private int x;
+  private int y;
+  private Sub sub;
 
-    public A(int x) {
-        assert false: "Error in constructor A()";
-    }
+  public A() {}
 
-    public A(int x,  int y) {
-    	this.x = x; 
-    	this.y = y; 
-    }
+  public A(int x) {
+      assert false: "Error in constructor A()";
+  }
 
-    public A(int x, int y,  Sub sub) {
-        this.x = x;
-        this.y = y;
-        this.sub = sub;
-    }
+  public A(int x,  int y) {
+    this.x = x; 
+    this.y = y; 
+  }
 
-    public Sub getSub() {
-        return sub;
-    }
+  public A(int x, int y,  Sub sub) {
+    this.x = x;
+    this.y = y;
+    this.sub = sub;
+  }
 
-    public int getX() {
-        return this.x;
-    }
+  public Sub getSub() {
+    return sub;
+  }
 
-    public void setX(int x) {
-        this.x = x;
-    }
+  public int getX() {
+    return this.x;
+  }
 
-    public int getY() {
-        return this.y;
-    }
+  public void setX(int x) {
+    this.x = x;
+  }
 
-    public void setY(int y) {
-        this.y = y;
-    }
+  public int getY() {
+    return this.y;
+  }
 
-    public void foo() {
-        System.out.println("A correctly executed method foo()");
-    }
+  public void setY(int y) {
+    this.y = y;
+  }
+
+  public void foo() {
+    System.out.println("A correctly executed method foo()");
+  }
 }

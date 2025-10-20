@@ -10,4 +10,3 @@ properties:
     expected_verdict: true
 options:
   language: Java
-  object_packages: svcomp.objects

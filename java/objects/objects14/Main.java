@@ -1,18 +1,23 @@
 /* 
  * Contributed to SV-COMP by Marvin Lazar and Falk Howar
  * License: MIT (see /java/objects/LICENSE-MIT)
+ *
+ * SPDX-FileCopyrightText: 2025 AMarvin Lazar and Falk Howar, TU Dortmund University
+ * SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+ * SPDX-License-Identifier: MIT
  */
 
-
 import org.sosy_lab.sv_benchmarks.Verifier;
+import svcomp.objects.*;
 
 public class Main {
-    public static void main(String[] args) {
-        // class-cast exception for type D
-        A a = (A) Verifier.nondetObject(); 
-        // assertion violation reachable
-        if (a.getX() != 0) {
-            assert false;
-        }
+
+  public static void main(String[] args) {
+    // class-cast exception for type D
+    A a = (A) Verifier.nondetObject(); 
+    // assertion violation reachable
+    if (a.getX() != 0) {
+      assert false;
     }
+  }
 }
