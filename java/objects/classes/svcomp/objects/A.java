@@ -1,4 +1,4 @@
-/* 
+/*
  * Contributed to SV-COMP by Marvin Lazar and Falk Howar
  * License: MIT (see /java/objects/LICENSE-MIT)
  *
@@ -18,15 +18,15 @@ public class A {
   public A() {}
 
   public A(int x) {
-      assert false: "Error in constructor A()";
+    assert false : "Error in constructor A()";
   }
 
-  public A(int x,  int y) {
-    this.x = x; 
-    this.y = y; 
+  public A(int x, int y) {
+    this.x = x;
+    this.y = y;
   }
 
-  public A(int x, int y,  Sub sub) {
+  public A(int x, int y, Sub sub) {
     this.x = x;
     this.y = y;
     this.sub = sub;

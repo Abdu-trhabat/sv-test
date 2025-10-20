@@ -1,4 +1,4 @@
-/* 
+/*
  * Contributed to SV-COMP by Marvin Lazar and Falk Howar
  * License: MIT (see /java/objects/LICENSE-MIT)
  *
@@ -13,6 +13,6 @@ public class C extends A {
 
   @Override
   public void foo() {
-    assert false; 
+    assert false;
   }
 }

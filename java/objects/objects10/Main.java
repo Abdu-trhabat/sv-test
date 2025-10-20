@@ -1,4 +1,4 @@
-/* 
+/*
  * Contributed to SV-COMP by Marvin Lazar and Falk Howar
  * License: MIT (see /java/objects/LICENSE-MIT)
  *
@@ -13,7 +13,7 @@ import svcomp.objects.*;
 public class Main {
 
   public static void main(String[] args) {
-    Object o = Verifier.nondetObject(); 
+    Object o = Verifier.nondetObject();
     // assertion violation reachable for type D
     if (!(o instanceof A)) {
       assert false;
