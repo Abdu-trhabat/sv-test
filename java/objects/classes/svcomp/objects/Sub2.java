@@ -1,8 +1,10 @@
-/* Copyright, TU Dortmund 2025 Marvin Lazar, Falk Howar
- * contributed-by: Marvin Lazar (marvin.lazar@tu-dortmund.de)
- *
- * license: MIT (see /java/jayhorn-recursive/LICENSE)
+/* 
+ * Contributed to SV-COMP by Marvin Lazar and Falk Howar
+ * License: MIT (see /java/objects/LICENSE-MIT)
  */
+
+
+package svcomp.objects;
 
 public class Sub2 extends Sub{
     private int z;
