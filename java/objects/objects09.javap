@@ -1,0 +1,43 @@
+Compiled from "A.java"
+public class svcomp.objects.A {
+  public svcomp.objects.A();
+  public svcomp.objects.A(int);
+  public svcomp.objects.A(int, int);
+  public svcomp.objects.A(int, int, svcomp.objects.Sub);
+  public svcomp.objects.Sub getSub();
+  public int getX();
+  public void setX(int);
+  public int getY();
+  public void setY(int);
+  public void foo();
+}
+Compiled from "B.java"
+public class svcomp.objects.B extends svcomp.objects.A {
+  public svcomp.objects.B();
+}
+Compiled from "C.java"
+public class svcomp.objects.C extends svcomp.objects.A {
+  public svcomp.objects.C();
+  public void foo();
+}
+Compiled from "D.java"
+public class svcomp.objects.D {
+  public svcomp.objects.D();
+}
+Compiled from "Sub.java"
+public abstract class svcomp.objects.Sub {
+  public svcomp.objects.Sub();
+  public abstract void bar();
+}
+Compiled from "Sub1.java"
+public class svcomp.objects.Sub1 extends svcomp.objects.Sub {
+  public svcomp.objects.Sub1();
+  public void bar();
+}
+Compiled from "Sub2.java"
+public class svcomp.objects.Sub2 extends svcomp.objects.Sub {
+  public svcomp.objects.Sub2(int);
+  public svcomp.objects.Sub2();
+  public int getZ();
+  public void bar();
+}
