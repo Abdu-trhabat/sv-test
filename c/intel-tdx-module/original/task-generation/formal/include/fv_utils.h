@@ -30,22 +30,27 @@
 
 #include "tdx_basic_types.h"
 
+// Define size_t using Clang's macro
+typedef __SIZE_TYPE__ size_t;
+extern void* malloc(size_t);
+extern void free(void*);
+extern void abort(void);
+extern void exit(int);
+
 //
 // SV-COMP and standard primitives
 //
 
-extern void abort(void);
-
-void assume_abort_if_not(int cond) {
+void assume_exit_if_not(int cond) {
     if (!cond) { 
-        abort(); 
+        exit(0);
     }
 }
 
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
 void reach_error() { 
-    __assert_fail("0", "even.c", 3, "reach_error"); 
+    __assert_fail("", "", 0, "reach_error");
 }
 
 void __VERIFIER_assert(int cond) {
@@ -67,8 +72,31 @@ extern unsigned long __VERIFIER_nondet_ulong();
 // TDX FV wrappers
 //
 
-#define TDXFV_ASSUME(expr) assume_abort_if_not(expr)
+#ifdef TDXFV_CPROVER_ASSUME
+#define TDXFV_ASSUME(expr) __CPROVER_assume(expr)
+#elif TDXFV_ESBMC_ASSUME
+#define TDXFV_ASSUME(expr) __ESBMC_assume(expr)
+#elif TDXFV_KLEE_ASSUME
+#define TDXFV_ASSUME(expr) klee_assume(expr)
+#else
+#define TDXFV_ASSUME(expr) assume_exit_if_not(expr)
+#endif
+
 #define TDXFV_ASSERT(expr) __VERIFIER_assert(expr)
+
+#ifndef TDXFV_ASSIGN_EQ_PTR
+#define TDXFV_ASSIGN_EQ_PTR 0
+#endif
+
+// Assumes equality between the two pointers.
+// Optionally assigns `r` to `l` if `TDXFV_ASSIGN_EQ_PTR` is non-zero.
+#define TDXFV_ASSUME_EQ_PTR(l, r) \
+    do { \
+        TDXFV_ASSUME(l == r); \
+        if (TDXFV_ASSIGN_EQ_PTR) { \
+            l = r; \
+        } \
+    } while (0)
 
 static inline uint8_t TDXFV_NONDET_uint8t() { return __VERIFIER_nondet_uchar(); }
 static inline uint16_t TDXFV_NONDET_uint16t() { return __VERIFIER_nondet_ushort(); }
@@ -112,6 +140,13 @@ static inline void TDXFV_ABST_incomplete() {
         TDXFV_ASSERT(false);
     }
 #endif
+}
+
+// Assume malloc always return a non-null pointer
+static inline void* TDXFV_malloc(size_t size) {
+    void* ptr = malloc(size);
+    TDXFV_ASSUME(ptr != (void*)0);
+    return ptr;
 }
 
 #endif /* FORMAL_FV_UTILS_H_ */

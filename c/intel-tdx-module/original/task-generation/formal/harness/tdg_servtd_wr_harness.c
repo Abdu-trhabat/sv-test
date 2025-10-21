@@ -19,6 +19,7 @@
 // OR OTHER DEALINGS IN THE SOFTWARE.                                            
 //                                                                               
 // SPDX-License-Identifier: MIT
+
 /**
  * @file tdg_servd_rd_wr_harness.c
  * @brief TDGSERVTDRDWR API handler FV harness
@@ -39,84 +40,111 @@
 
 #include "fv_utils.h"
 #include "fv_env.h"
+#include "fv_nondets.h"
+#include "invariants/td_control_structures_invariants.h"
 
-void tdg_servtd_wr__common_precond() {
+tdr_t* target_tdr_ptr;
+pamt_entry_t * target_tdr_pamt_entry_ptr;
+tdcs_t* target_tdcs_ptr;
+
+void tdg_servtd_wr__call() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    tdx_leaf_and_version_t leaf_opcode = { .raw = tdx_local_data_ptr->td_regs.rax };
+
+    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_servtd_wr(
+        tdx_local_data_ptr->td_regs.rcx,
+        tdx_local_data_ptr->td_regs.rdx,
+        tdx_local_data_ptr->td_regs.r8,
+        tdx_local_data_ptr->td_regs.r9
+    );
+}
+
+static inline void tdg_servtd_wr__common_precond() {
+    tdx_leaf_and_version_t leaf_opcode = { .raw = get_local_data()->td_regs.rax };
     TDXFV_ASSUME(leaf_opcode.leaf == TDG_SERVTD_WR_LEAF);
-}
 
-void tdg_servtd_wr__invalid_entry() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
+    target_tdr_ptr = NULL;
+    target_tdr_pamt_entry_ptr = NULL;
+    target_tdcs_ptr = NULL;
 
-    // Task-specific precondition
-    md_field_id_t field_id = { .raw = tdx_local_data_ptr->td_regs.rdx };
-    TDXFV_ASSUME((field_id.last_element_in_field != 0) || (field_id.last_field_in_sequence != 0));
-    TDXFV_ASSUME(field_id.raw != -1);
-
-    // Call ABI function
-    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_servtd_wr(
-        tdx_local_data_ptr->td_regs.rcx,
-        tdx_local_data_ptr->td_regs.rdx,
-        tdx_local_data_ptr->td_regs.r8,
-        tdx_local_data_ptr->td_regs.r9
+    // Borrowing implementation from tdg_servtd_wr to allocate the target TD's TDR and TDCS
+    pa_t target_tdr_pa;
+    uint64_t target_slot;
+    break_servtd_binding_handle(
+        (servtd_binding_handle_t) get_local_data()->td_regs.rcx,
+        get_local_data()->vp_ctx.tdr->management_fields.td_uuid,
+        &target_tdr_pa, 
+        &target_slot
     );
 
-    // Task-specific postcondition
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax != TDX_SUCCESS);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r8 == 0);
+    if (target_slot < MAX_SERV_TDS) {
+        pamt_block_t target_tdr_pamt_block;
+        bool_t target_tdr_locked_flag = false;
+        api_error_type map_tdr_status = othertd_check_lock_and_map_explicit_tdr(
+            target_tdr_pa,
+            OPERAND_ID_TDR,
+            TDX_RANGE_RW,
+            TDX_LOCK_SHARED,
+            PT_TDR,
+            &target_tdr_pamt_block,
+            &target_tdr_pamt_entry_ptr,
+            &target_tdr_locked_flag,
+            &target_tdr_ptr
+        );
+
+        tdr_t* tmp_target_tdr_ptr = TDXFV_malloc(sizeof(tdr_t));
+        TDXFV_NONDET_struct_tdr_t(tmp_target_tdr_ptr);
+        TDXFV_ASSUME(fv_invariant_tdr_t(tmp_target_tdr_ptr));
+        TDXFV_ASSUME_EQ_PTR(target_tdr_ptr, tmp_target_tdr_ptr);
+
+        if (map_tdr_status == TDX_SUCCESS) {
+            api_error_type map_tdcs_status = othertd_check_state_map_tdcs_and_lock(
+                target_tdr_ptr,
+                TDX_RANGE_RW,
+                TDX_LOCK_SHARED,
+                true,
+                TDG_SERVTD_WR_LEAF,
+                true,
+                &target_tdcs_ptr
+            );
+
+            if (map_tdcs_status == TDX_SUCCESS) {
+                tdcs_t* tmp_target_tdcs_ptr = TDXFV_malloc(sizeof(tdcs_t));
+                TDXFV_NONDET_struct_tdcs_t(tmp_target_tdcs_ptr);
+                TDXFV_ASSUME(fv_invariant_tdcs_t(tmp_target_tdcs_ptr));
+                TDXFV_ASSUME_EQ_PTR(target_tdcs_ptr, tmp_target_tdcs_ptr);
+            }
+        }
+    }
 }
 
-void tdg_servtd_wr__valid_entry() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
+void tdg_servtd_wr__free() {
+    if (target_tdr_ptr != NULL) {
+        free(target_tdr_ptr);
+    }
+    if (target_tdcs_ptr != NULL) {
+        free(target_tdcs_ptr);
+    }
+}
 
-    // Task-specific precondition
-    md_field_id_t field_id = { .raw = tdx_local_data_ptr->td_regs.rdx };
-    TDXFV_ASSUME((field_id.last_element_in_field == 0) && (field_id.last_field_in_sequence == 0));
-    TDXFV_ASSUME(field_id.raw != -1);
-
-    // Call ABI function
-    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_servtd_wr(
-        tdx_local_data_ptr->td_regs.rcx,
-        tdx_local_data_ptr->td_regs.rdx,
-        tdx_local_data_ptr->td_regs.r8,
-        tdx_local_data_ptr->td_regs.r9
+static inline bool_t input_field_is_valid() {
+    md_field_id_t field_code = { .raw = get_local_data()->td_regs.rdx };
+    
+    bool_t field_identifier_is_special_case = (
+        ((get_local_data()->td_regs.rdx | (0x7ULL << 52)) == -1)
     );
-
-    // Task-specific postcondition
-}
-
-void tdg_servtd_wr__free_entry() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-
-    // Task-specific precondition
-
-    // Call ABI function
-    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_servtd_wr(
-        tdx_local_data_ptr->td_regs.rcx,
-        tdx_local_data_ptr->td_regs.rdx,
-        tdx_local_data_ptr->td_regs.r8,
-        tdx_local_data_ptr->td_regs.r9
+    bool_t field_identifier_is_valid = (
+        (field_code.reserved_0 == 0) &&
+        (field_code.reserved_1 == 0) &&
+        (field_code.reserved_2 == 0) &&
+        (field_code.reserved_3 == 0) &&
+        (field_code.last_element_in_field == 0) &&
+        (field_code.last_field_in_sequence == 0)
     );
-
-    // Task-specific postcondition
+    
+    return (field_identifier_is_special_case || field_identifier_is_valid);
 }
 
-void tdg_servtd_wr__post_cover_success() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    TDXFV_ASSUME(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdg_servtd_wr__post_cover_unsuccess() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    TDXFV_ASSUME(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax != TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdg_servtd_wr__common_postcond() {
+static inline void tdg_servtd_wr__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();
 
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rax == shadow_td_regs_precall.rax);
@@ -169,4 +197,35 @@ void tdg_servtd_wr__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r13 == shadow_vmm_regs_precall.r13);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r14 == shadow_vmm_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r15 == shadow_vmm_regs_precall.r15);
+}
+
+void tdg_servtd_wr__expected__precond() {
+    tdg_servtd_wr__common_precond();
+    TDXFV_ASSUME(input_field_is_valid());
+}
+
+void tdg_servtd_wr__expected__postcond() {
+#ifdef TDXFV_CHECK_TDX_SUCCESS
+    TDXFV_ASSERT(get_local_data()->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_SUCCESS);
+#else
+    TDXFV_ASSERT(true);
+#endif
+    tdg_servtd_wr__common_postcond();
+}
+
+void tdg_servtd_wr__unexpected__precond() {
+    tdg_servtd_wr__common_precond();
+    TDXFV_ASSUME(!input_field_is_valid());
+}
+
+void tdg_servtd_wr__unexpected__postcond() {
+    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
+    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax != TDX_SUCCESS);
+    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r8 == 0);
+    tdg_servtd_wr__common_postcond();
+}
+
+void tdg_servtd_wr__unconstrained__precond() {
+    tdg_servtd_wr__common_precond();
+    TDXFV_ASSUME(true);
 }

@@ -44,6 +44,22 @@ void tdxfv_abst_vcpu_init() {
     fv_vcpu_dr6 = TDXFV_NONDET_uint64t();
 }
 
+#define VCPU_METADATA_ACCESS(target) \
+    uint64_t tdxfv_abst_vcpu_read_##target() {\
+        return fv_vcpu_##target;\
+    }\
+    void tdxfv_abst_vcpu_write_##target(uint64_t value) {\
+        fv_vcpu_##target = value;\
+    }
+
+VCPU_METADATA_ACCESS(cr2);
+VCPU_METADATA_ACCESS(dr0);
+VCPU_METADATA_ACCESS(dr1);
+VCPU_METADATA_ACCESS(dr2);
+VCPU_METADATA_ACCESS(dr3);
+VCPU_METADATA_ACCESS(dr6);
+
+#if 0 // access permission is for direct host VMM / guest TD, not SEAM program
 #define VCPU_METADATA_READ(target, host_is_allowed, guest_is_allowed) \
     uint64_t tdxfv_abst_vcpu_read_##target() {\
         if ((fv_is_called_by_host && host_is_allowed) || (fv_is_called_by_guest && guest_is_allowed)) {\
@@ -75,3 +91,4 @@ VCPU_METADATA_READ(dr3, true, false);
 VCPU_METADATA_WRITE(dr3, true, false);
 VCPU_METADATA_READ(dr6, true, false);
 VCPU_METADATA_WRITE(dr6, true, false);
+#endif

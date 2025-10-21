@@ -209,7 +209,7 @@ uint64_t td_debug_config(uint64_t leaf, uint64_t payload, uint64_t second_payloa
 
 //Debug Assertion
 #ifdef TDXFV_ENABLE_DEBUG_ASSERT
-#define tdx_debug_assert(cond) TDXFV_ASSERT(cond);
+#define tdx_debug_assert(cond) TDXFV_ASSERT((int) (cond));
 #else
 #define tdx_debug_assert(cond)
 #endif

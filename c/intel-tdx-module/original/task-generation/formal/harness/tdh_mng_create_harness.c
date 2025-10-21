@@ -39,186 +39,63 @@
 #include "fv_utils.h"
 #include "fv_env.h"
 
-void tdh_mng_create__common_precond() {
+void tdh_mng_create__call() {
     tdx_module_local_t* local_data = get_local_data();
+    hkid_api_input_t hkid_info = { .raw = local_data->vmm_regs.rdx };
+    
+    local_data->vmm_regs.rax = tdh_mng_create(local_data->vmm_regs.rcx, hkid_info);
+}
+
+static inline void tdh_mng_create__common_precond() {
     tdx_leaf_and_version_t leaf_opcode;
-    leaf_opcode.raw = local_data->vmm_regs.rax;
+    leaf_opcode.raw = get_local_data()->vmm_regs.rax;
     TDXFV_ASSUME(leaf_opcode.leaf == TDH_MNG_CREATE_LEAF);
+
+    // TODO tdr (rcx) allocation and initialization for valid entry
 }
 
-void tdh_mng_create__invalid_input_rcx() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-    pa_t tdr_pa = { .raw = local_data->vmm_regs.rcx };
-    hkid_api_input_t hkid_info = { .raw = local_data->vmm_regs.rdx };
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((tdr_pa.full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) != 0); // invalid input rcx
-    TDXFV_ASSUME((hkid_info.reserved == 0) &&
-        (hkid_info.hkid >= global_data->private_hkid_min) &&
-        (hkid_info.hkid <= global_data->private_hkid_max)
-    );
-    TDXFV_ASSUME(global_data->kot.entries[hkid_info.hkid].state == KOT_STATE_HKID_FREE);
-    TDXFV_ASSUME(local_data->vp_ctx.tdr_pamt_entry->pt == PT_TDR);
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mng_create(local_data->vmm_regs.rcx, hkid_info);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(
-        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
-        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+static inline bool_t input_rcx_is_valid() {
+    pa_t pa = { .raw = get_local_data()->vmm_regs.rcx };
+    return (
+        ((get_local_data()->vmm_regs.rcx & (_4KB - 1)) == 0) &&
+        (((pa.full_pa & get_global_data()->hkid_mask) >> get_global_data()->hkid_start_bit) == 0) &&
+        (get_local_data()->vmm_regs.rcx < BIT(MAX_PA))
     );
 }
 
-void tdh_mng_create__invalid_input_rdx() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-    pa_t tdr_pa = { .raw = local_data->vmm_regs.rcx };
-    hkid_api_input_t hkid_info = { .raw = local_data->vmm_regs.rdx };
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((tdr_pa.full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    TDXFV_ASSUME((hkid_info.reserved != 0) || 
-        (hkid_info.hkid < global_data->private_hkid_min) ||
-        (hkid_info.hkid > global_data->private_hkid_max)
-    ); // invalid input rdx
-    TDXFV_ASSUME(global_data->kot.entries[hkid_info.hkid].state == KOT_STATE_HKID_FREE);
-    TDXFV_ASSUME(local_data->vp_ctx.tdr_pamt_entry->pt == PT_TDR);
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mng_create(local_data->vmm_regs.rcx, hkid_info);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(
-        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RDX)) ||
-        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+static inline bool_t input_rdx_is_valid() {
+    hkid_api_input_t hkid_info = { .raw = get_local_data()->vmm_regs.rdx };
+    return (
+        (hkid_info.reserved == 0) &&
+        (hkid_info.hkid >= get_global_data()->private_hkid_min) &&
+        (hkid_info.hkid <= get_global_data()->private_hkid_max)
     );
 }
 
-void tdh_mng_create__invalid_state_kot_entry() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-    pa_t tdr_pa = { .raw = local_data->vmm_regs.rcx };
-    hkid_api_input_t hkid_info = { .raw = local_data->vmm_regs.rdx };
+static inline bool_t state_kot_entry_is_valid() {
+    if (input_rdx_is_valid()) {
+        hkid_api_input_t hkid_info = { .raw = get_local_data()->vmm_regs.rdx };
+        return get_global_data()->kot.entries[hkid_info.hkid].state == KOT_STATE_HKID_FREE;
+    }
+    return true;
+}
 
-    // Task-specific precondition
-    TDXFV_ASSUME(((tdr_pa.full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    TDXFV_ASSUME((hkid_info.reserved == 0) &&
-        (hkid_info.hkid >= global_data->private_hkid_min) &&
-        (hkid_info.hkid <= global_data->private_hkid_max)
-    );
-    TDXFV_ASSUME(global_data->kot.entries[hkid_info.hkid].state != KOT_STATE_HKID_FREE); // invalid kot entry
-    TDXFV_ASSUME(local_data->vp_ctx.tdr_pamt_entry->pt == PT_TDR);
+static inline bool_t state_tdr_page_is_valid() {
+    return get_local_data()->vp_ctx.tdr_pamt_entry->pt == PT_TDR;
+}
 
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mng_create(local_data->vmm_regs.rcx, hkid_info);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(
-        (local_data->vmm_regs.rax == TDX_HKID_NOT_FREE) ||
-        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+static inline bool_t all_conditions_valid() {
+    return (
+        input_rcx_is_valid() &&
+        input_rdx_is_valid() &&
+        state_kot_entry_is_valid() &&
+        state_tdr_page_is_valid()
     );
 }
 
-void tdh_mng_create__invalid_state_tdr_page() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-    pa_t tdr_pa = { .raw = local_data->vmm_regs.rcx };
-    hkid_api_input_t hkid_info = { .raw = local_data->vmm_regs.rdx };
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((tdr_pa.full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    TDXFV_ASSUME((hkid_info.reserved == 0) &&
-        (hkid_info.hkid >= global_data->private_hkid_min) &&
-        (hkid_info.hkid <= global_data->private_hkid_max)
-    );
-    TDXFV_ASSUME(global_data->kot.entries[hkid_info.hkid].state == KOT_STATE_HKID_FREE);
-    TDXFV_ASSUME(local_data->vp_ctx.tdr_pamt_entry->pt != PT_TDR); // invalid tdr page metadata
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mng_create(local_data->vmm_regs.rcx, hkid_info);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(
-        (local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT) ||
-        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
-    );
-}
-
-void tdh_mng_create__invalid_entry() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-    pa_t tdr_pa = { .raw = local_data->vmm_regs.rcx };
-    hkid_api_input_t hkid_info = { .raw = local_data->vmm_regs.rdx };
-
-    // Task-specific precondition
-    TDXFV_ASSUME(
-        (((tdr_pa.full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) != 0) ||
-        (hkid_info.reserved != 0) ||
-        (hkid_info.hkid < global_data->private_hkid_min) ||
-        (hkid_info.hkid > global_data->private_hkid_max) ||
-        (global_data->kot.entries[hkid_info.hkid].state != KOT_STATE_HKID_FREE) ||
-        (local_data->vp_ctx.tdr_pamt_entry->pt != PT_TDR)
-    );
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mng_create(local_data->vmm_regs.rcx, hkid_info);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax != TDX_SUCCESS);
-}
-
-void tdh_mng_create__valid_entry() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-    pa_t tdr_pa = { .raw = local_data->vmm_regs.rcx };
-    hkid_api_input_t hkid_info = { .raw = local_data->vmm_regs.rdx };
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((tdr_pa.full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    TDXFV_ASSUME((hkid_info.reserved == 0) &&
-        (hkid_info.hkid >= global_data->private_hkid_min) &&
-        (hkid_info.hkid <= global_data->private_hkid_max)
-    );
-    TDXFV_ASSUME(global_data->kot.entries[hkid_info.hkid].state == KOT_STATE_HKID_FREE);
-    TDXFV_ASSUME(local_data->vp_ctx.tdr_pamt_entry->pt == PT_TDR);
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mng_create(local_data->vmm_regs.rcx, hkid_info);
-
-    // Task-specific postcondition
-}
-
-void tdh_mng_create__free_entry() {
-    tdx_module_local_t* local_data = get_local_data();
-    hkid_api_input_t hkid_info = { .raw = local_data->vmm_regs.rdx };
-
-    // Task-specific precondition
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mng_create(local_data->vmm_regs.rcx, hkid_info);
-
-    // Task-specific postcondition
-}
-
-void tdh_mng_create__post_cover_success() {
-    tdx_module_local_t* local_data = get_local_data();
-    TDXFV_ASSUME(local_data->vmm_regs.rax == TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdh_mng_create__post_cover_unsuccess() {
-    tdx_module_local_t* local_data = get_local_data();
-    TDXFV_ASSUME(local_data->vmm_regs.rax != TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdh_mng_create__common_postcond() {
+static inline void tdh_mng_create__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-
+    
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rax == shadow_td_regs_precall.rax);
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rbx == shadow_td_regs_precall.rbx);
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rcx == shadow_td_regs_precall.rcx);
@@ -236,23 +113,6 @@ void tdh_mng_create__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.r14 == shadow_td_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.r15 == shadow_td_regs_precall.r15);
 
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax == shadow_guest_gpr_state_precall.rax);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rbx == shadow_guest_gpr_state_precall.rbx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rcx == shadow_guest_gpr_state_precall.rcx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdx == shadow_guest_gpr_state_precall.rdx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rsp == shadow_guest_gpr_state_precall.rsp);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rbp == shadow_guest_gpr_state_precall.rbp);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rsi == shadow_guest_gpr_state_precall.rsi);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdi == shadow_guest_gpr_state_precall.rdi);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r8  == shadow_guest_gpr_state_precall.r8);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r9  == shadow_guest_gpr_state_precall.r9);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r10 == shadow_guest_gpr_state_precall.r10);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r11 == shadow_guest_gpr_state_precall.r11);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r12 == shadow_guest_gpr_state_precall.r12);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r13 == shadow_guest_gpr_state_precall.r13);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r14 == shadow_guest_gpr_state_precall.r14);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r15 == shadow_guest_gpr_state_precall.r15);
-
     //tdx_local_data_ptr->vmm_regs.rax
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.rbx == shadow_vmm_regs_precall.rbx);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.rcx == shadow_vmm_regs_precall.rcx);
@@ -269,4 +129,111 @@ void tdh_mng_create__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r13 == shadow_vmm_regs_precall.r13);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r14 == shadow_vmm_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r15 == shadow_vmm_regs_precall.r15);
+}
+
+void tdh_mng_create__expected__precond() {
+    tdh_mng_create__common_precond();
+    TDXFV_ASSUME(all_conditions_valid());
+}
+
+void tdh_mng_create__expected__postcond() {
+#ifdef TDXFV_CHECK_TDX_SUCCESS
+    TDXFV_ASSERT(get_local_data()->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_SUCCESS);
+#else
+    TDXFV_ASSERT(true);
+#endif
+    tdh_mng_create__common_postcond();
+}
+
+void tdh_mng_create__unexpected__precond() {
+    tdh_mng_create__common_precond();
+    TDXFV_ASSUME(!all_conditions_valid());
+}
+
+void tdh_mng_create__unexpected__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(local_data->vmm_regs.rax != TDX_SUCCESS);
+    tdh_mng_create__common_postcond();
+}
+
+void tdh_mng_create__unconstrained__precond() {
+    tdh_mng_create__common_precond();
+    TDXFV_ASSUME(true);
+}
+
+// Special test cases
+void tdh_mng_create__invalid_input_rcx__precond() {
+    tdh_mng_create__common_precond();
+    TDXFV_ASSUME(
+        !input_rcx_is_valid() && // invalid input rcx
+        input_rdx_is_valid() &&
+        state_kot_entry_is_valid() &&
+        state_tdr_page_is_valid()
+    );
+}
+
+void tdh_mng_create__invalid_input_rcx__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    tdh_mng_create__common_postcond();
+}
+
+void tdh_mng_create__invalid_input_rdx__precond() {
+    tdh_mng_create__common_precond();
+    TDXFV_ASSUME(
+        input_rcx_is_valid() &&
+        !input_rdx_is_valid() && // invalid input rdx
+        state_kot_entry_is_valid() &&
+        state_tdr_page_is_valid()
+    );
+}
+
+void tdh_mng_create__invalid_input_rdx__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RDX)) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    tdh_mng_create__common_postcond();
+}
+
+void tdh_mng_create__invalid_state_kot_entry__precond() {
+    tdh_mng_create__common_precond();
+    TDXFV_ASSUME(
+        input_rcx_is_valid() &&
+        input_rdx_is_valid() &&
+        !state_kot_entry_is_valid() && // invalid kot entry
+        state_tdr_page_is_valid()
+    );
+}
+
+void tdh_mng_create__invalid_state_kot_entry__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_HKID_NOT_FREE) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    tdh_mng_create__common_postcond();
+}
+
+void tdh_mng_create__invalid_state_tdr_page__precond() {
+    tdh_mng_create__common_precond();
+    TDXFV_ASSUME(
+        input_rcx_is_valid() &&
+        input_rdx_is_valid() &&
+        state_kot_entry_is_valid() &&
+        !state_tdr_page_is_valid() // invalid tdr page state
+    );
+}
+
+void tdh_mng_create__invalid_state_tdr_page__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    tdh_mng_create__common_postcond();
 }

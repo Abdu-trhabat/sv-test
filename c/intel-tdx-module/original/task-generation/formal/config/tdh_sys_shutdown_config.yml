@@ -24,110 +24,466 @@ name: tdh_sys_shutdown_config.yml
 description: reach-safety tasks for tdh_sys_shutdown
 tasks:
 
-  - name: tdh_sys_shutdown__requirement__expected
+  - name: tdh_sys_shutdown__expected__safety_requirement
     target:
       filename: formal/harness/tdh_sys_shutdown_harness.c
-      method: tdh_sys_shutdown__valid_entry
+      method: tdh_sys_shutdown__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
+        method: init_tdh_sys_xxx
       - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_handoff_data_region
       - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__common_precond
+        method: tdh_sys_shutdown__expected__precond
     after_target:
       - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__common_postcond
+        method: tdh_sys_shutdown__expected__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx_with_check
     properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: true
 
-  - name: tdh_sys_shutdown__requirement__unexpected
+  - name: tdh_sys_shutdown__expected__cover_entry
     target:
       filename: formal/harness/tdh_sys_shutdown_harness.c
-      method: tdh_sys_shutdown__invalid_entry
+      method: tdh_sys_shutdown__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
+        method: init_tdh_sys_xxx
       - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_handoff_data_region
       - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__common_precond
+        method: tdh_sys_shutdown__expected__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
     after_target:
-      - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__common_postcond
+#       - filename: formal/harness/tdh_sys_shutdown_harness.c
+#         method: tdh_sys_shutdown__expected__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx
     properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_sys_shutdown__requirement__invalid_input_handoff_range
-    target:
-      filename: formal/harness/tdh_sys_shutdown_harness.c
-      method: tdh_sys_shutdown__invalid_input_handoff_range
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__common_precond
-    after_target:
-      - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_sys_shutdown__requirement__invalid_input_handoff_no_downgrade
-    target:
-      filename: formal/harness/tdh_sys_shutdown_harness.c
-      method: tdh_sys_shutdown__invalid_input_handoff_no_downgrade
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__common_precond
-    after_target:
-      - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_sys_shutdown__cover__success
-    target:
-      filename: formal/harness/tdh_sys_shutdown_harness.c
-      method: tdh_sys_shutdown__free_entry
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__common_precond
-    after_target:
-      - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__post_cover_success
-    properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: false
 
-  - name: tdh_sys_shutdown__cover__unsuccess
+  - name: tdh_sys_shutdown__expected__cover_exit
     target:
       filename: formal/harness/tdh_sys_shutdown_harness.c
-      method: tdh_sys_shutdown__free_entry
+      method: tdh_sys_shutdown__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
+        method: init_tdh_sys_xxx
       - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_handoff_data_region
       - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__common_precond
+        method: tdh_sys_shutdown__expected__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_sys_shutdown_harness.c
+#         method: tdh_sys_shutdown__expected__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_sys_shutdown__expected__cover_proof
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__expected__precond
     after_target:
       - filename: formal/harness/tdh_sys_shutdown_harness.c
-        method: tdh_sys_shutdown__post_cover_unsuccess
+        method: tdh_sys_shutdown__expected__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
     properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_sys_shutdown__unexpected__safety_requirement
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__unexpected__precond
+    after_target:
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_sys_shutdown__unexpected__cover_entry
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__unexpected__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_sys_shutdown_harness.c
+#         method: tdh_sys_shutdown__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_sys_shutdown__unexpected__cover_exit
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__unexpected__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_sys_shutdown_harness.c
+#         method: tdh_sys_shutdown__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_sys_shutdown__unexpected__cover_proof
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__unexpected__precond
+    after_target:
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_sys_shutdown__invalid_input_handoff_range__safety_requirement
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_range__precond
+    after_target:
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_range__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_sys_shutdown__invalid_input_handoff_range__cover_entry
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_range__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_sys_shutdown_harness.c
+#         method: tdh_sys_shutdown__invalid_input_handoff_range__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_sys_shutdown__invalid_input_handoff_range__cover_exit
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_range__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_sys_shutdown_harness.c
+#         method: tdh_sys_shutdown__invalid_input_handoff_range__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_sys_shutdown__invalid_input_handoff_range__cover_proof
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_range__precond
+    after_target:
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_range__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__safety_requirement
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__precond
+    after_target:
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__cover_entry
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_sys_shutdown_harness.c
+#         method: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__cover_exit
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_sys_shutdown_harness.c
+#         method: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__cover_proof
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__precond
+    after_target:
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__invalid_input_handoff_no_downgrade__postcond
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  #
+  # Return status code coverage tasks
+  #
+
+  # - name: tdh_sys_shutdown__unconstrained__cover_exit_success
+  #   target:
+  #     filename: formal/harness/tdh_sys_shutdown_harness.c
+  #     method: tdh_sys_shutdown__call
+  #   before_target:
+  #     - filename: formal/src/initialization.c
+  #       method: init_tdh_sys_xxx
+  #     - filename: formal/src/initialization.c
+  #       method: init_handoff_data_region
+  #     - filename: formal/harness/tdh_sys_shutdown_harness.c
+  #       method: tdh_sys_shutdown__unconstrained__precond
+  #   after_target:
+  #     - filename: formal/harness/common.c
+  #       method: seam_call__exit_status_success
+  #     - filename: formal/harness/common.c
+  #       method: insert_cover_point
+  #     - filename: formal/src/initialization.c
+  #       method: free_handoff_data_region
+  #     - filename: formal/src/initialization.c
+  #       method: close_tdh_sys_xxx
+  #   properties:
+  #     - property_file: ../../../properties/unreach-call.prp
+  #       expected_verdict: false
+  #     - property_file: ../../../properties/coverage-error-call.prp
+  #       expected_verdict: false
+
+  - name: tdh_sys_shutdown__unconstrained__cover_exit_unsuccess
+    target:
+      filename: formal/harness/tdh_sys_shutdown_harness.c
+      method: tdh_sys_shutdown__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_sys_xxx
+      - filename: formal/src/initialization.c
+        method: init_handoff_data_region
+      - filename: formal/harness/tdh_sys_shutdown_harness.c
+        method: tdh_sys_shutdown__unconstrained__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: seam_call__exit_status_unsuccess
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+      - filename: formal/src/initialization.c
+        method: free_handoff_data_region
+      - filename: formal/src/initialization.c
+        method: close_tdh_sys_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: false

@@ -38,14 +38,13 @@
 // TDX Module variables
 //
 
-extern tdx_module_local_t local_data_fv;
-extern tdx_module_global_t global_data_fv;
-extern sysinfo_table_t sysinfo_table_fv;
+extern tdx_module_local_t* local_data_fv_ptr;
+extern tdx_module_global_t* global_data_fv_ptr;
+extern sysinfo_table_t* sysinfo_table_fv_ptr;
 
-extern tdr_t tdr_fv;
-extern tdcs_t tdcs_fv;
-extern tdvps_t tdvps_fv;
-extern tdmr_info_entry_t tdmr_info_fv[MAX_TDMRS];
+extern tdr_t* tdr_fv_ptr;
+extern tdcs_t* tdcs_fv_ptr;
+extern tdvps_t* tdvps_fv_ptr;
 
 extern gprs_state_t shadow_vmm_regs_precall;
 extern gprs_state_t shadow_td_regs_precall;
@@ -95,9 +94,27 @@ extern bool_t fv_is_called_by_guest;
 // General TDX-op methods
 //
 
-void init_tdx_general();
 void init_tdcall();
 void init_vmm_dispatcher();
+
+//
+// FV fixtures
+//
+void fv_setup_module_state();
+void fv_teardown_module_state();
+void fv_teardown_with_check_module_state();
+void fv_setup_tdr();
+void fv_teardown_tdr();
+void fv_teardown_with_check_tdr();
+void fv_setup_tdcs();
+void fv_teardown_tdcs();
+void fv_teardown_with_check_tdcs();
+void fv_setup_tdvps();
+void fv_teardown_tdvps();
+void fv_teardown_with_check_tdvps();
+void fv_setup_tdmr_info();
+void fv_teardown_tdmr_info();
+void fv_teardown_with_check_tdmr_info();
 
 //
 // Abstraction/modeling-specific methods

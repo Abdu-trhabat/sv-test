@@ -35,9 +35,9 @@
 #include "data_structures/loader_data.h"
 
 // Extract from "fv_env.h" to avoid preprocessing errors
-extern tdx_module_local_t local_data_fv;
-extern tdx_module_global_t global_data_fv;
-extern sysinfo_table_t sysinfo_table_fv;
+extern tdx_module_local_t* local_data_fv_ptr;
+extern tdx_module_global_t* global_data_fv_ptr;
+extern sysinfo_table_t* sysinfo_table_fv_ptr;
 
 //****************************************************************************************
 // Optimized accessors to SEAM module data structures - always use those in the code
@@ -55,7 +55,7 @@ _STATIC_INLINE_ tdx_module_local_t* get_local_data(void)
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: tdx / tdx
-    return &local_data_fv;
+    return local_data_fv_ptr;
 #else
     uint64_t local_data_addr;
 
@@ -71,7 +71,7 @@ _STATIC_INLINE_ sysinfo_table_t* get_sysinfo_table(void)
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: tdx / tdx
-    return &sysinfo_table_fv;
+    return sysinfo_table_fv_ptr;
 #else
     uint64_t sysinfo_table_addr;
     _ASM_ ("movq %%gs:%c[sysinfo], %0\n\t"
@@ -86,7 +86,7 @@ _STATIC_INLINE_ tdx_module_global_t* get_global_data(void)
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: tdx / tdx
-    return &global_data_fv;
+    return global_data_fv_ptr;
 #else
     uint64_t global_data_addr;
     _ASM_ ("movq %%gs:%c[global_data], %0\n\t"
@@ -127,7 +127,7 @@ _STATIC_INLINE_ tdx_module_local_t* calculate_local_data(void)
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: tdx / tdx
-    return &local_data_fv;
+    return local_data_fv_ptr;
 #else
     void* local_data_addr;
     _ASM_VOLATILE_ ("rdgsbase %0"
@@ -145,7 +145,7 @@ _STATIC_INLINE_ sysinfo_table_t* calculate_sysinfo_table(void)
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: tdx / tdx
-    return &sysinfo_table_fv;
+    return sysinfo_table_fv_ptr;
 #else
     void* sysinfo_table_addr;
     _ASM_VOLATILE_ ("rdfsbase %0"

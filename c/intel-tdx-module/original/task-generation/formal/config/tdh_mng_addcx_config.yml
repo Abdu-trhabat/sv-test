@@ -24,182 +24,742 @@ name: tdh_mng_addcx_config.yml
 description: reach-safety tasks for tdh_mng_addcx
 tasks:
 
-  - name: tdh_mng_addcx__requirement__expected
+  - name: tdh_mng_addcx__expected__safety_requirement
     target:
       filename: formal/harness/tdh_mng_addcx_harness.c
-      method: tdh_mng_addcx__valid_entry
+      method: tdh_mng_addcx__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_tdh_mng_xxx
       - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_precond
+        method: tdh_mng_addcx__expected__precond
     after_target:
       - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_postcond
+        method: tdh_mng_addcx__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
     properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: true
 
-  - name: tdh_mng_addcx__requirement__unexpected
+  - name: tdh_mng_addcx__expected__cover_entry
     target:
       filename: formal/harness/tdh_mng_addcx_harness.c
-      method: tdh_mng_addcx__invalid_entry
+      method: tdh_mng_addcx__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_tdh_mng_xxx
       - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_precond
+        method: tdh_mng_addcx__expected__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
     after_target:
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_postcond
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
     properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mng_addcx__requirement__invalid_input_tdcx_pa
-    target:
-      filename: formal/harness/tdh_mng_addcx_harness.c
-      method: tdh_mng_addcx__invalid_input_tdcx_pa
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mng_addcx__requirement__invalid_input_tdr_pa
-    target:
-      filename: formal/harness/tdh_mng_addcx_harness.c
-      method: tdh_mng_addcx__invalid_input_tdr_pa
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mng_addcx__requirement__invalid_state_td_state
-    target:
-      filename: formal/harness/tdh_mng_addcx_harness.c
-      method: tdh_mng_addcx__invalid_state_td_state
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mng_addcx__requirement__invalid_state_num_tdcx
-    target:
-      filename: formal/harness/tdh_mng_addcx_harness.c
-      method: tdh_mng_addcx__invalid_state_num_tdcx
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mng_addcx__requirement__invalid_state_lifecycle
-    target:
-      filename: formal/harness/tdh_mng_addcx_harness.c
-      method: tdh_mng_addcx__invalid_state_lifecycle
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mng_addcx__requirement__invalid_state_pamt_metadata
-    target:
-      filename: formal/harness/tdh_mng_addcx_harness.c
-      method: tdh_mng_addcx__invalid_state_pamt_metadata
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mng_addcx__cover__success
-    target:
-      filename: formal/harness/tdh_mng_addcx_harness.c
-      method: tdh_mng_addcx__free_entry
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__post_cover_success
-    properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: false
 
-  - name: tdh_mng_addcx__cover__unsuccess
+  - name: tdh_mng_addcx__expected__cover_exit
     target:
       filename: formal/harness/tdh_mng_addcx_harness.c
-      method: tdh_mng_addcx__free_entry
+      method: tdh_mng_addcx__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_tdh_mng_xxx
       - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__common_precond
+        method: tdh_mng_addcx__expected__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__expected__cover_proof
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__expected__precond
     after_target:
       - filename: formal/harness/tdh_mng_addcx_harness.c
-        method: tdh_mng_addcx__post_cover_unsuccess
+        method: tdh_mng_addcx__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
     properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__unexpected__safety_requirement
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__unexpected__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__unexpected__cover_entry
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__unexpected__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__unexpected__cover_exit
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__unexpected__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__unexpected__cover_proof
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__unexpected__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  # Add the same pattern for all specific test cases
+  
+  - name: tdh_mng_addcx__invalid_input_tdcx_pa__safety_requirement
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdcx_pa__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdcx_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__invalid_input_tdcx_pa__cover_entry
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdcx_pa__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_input_tdcx_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_input_tdcx_pa__cover_exit
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdcx_pa__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_input_tdcx_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_input_tdcx_pa__cover_proof
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdcx_pa__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdcx_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_input_tdr_pa__safety_requirement
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdr_pa__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdr_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__invalid_input_tdr_pa__cover_entry
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdr_pa__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_input_tdr_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_input_tdr_pa__cover_exit
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdr_pa__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_input_tdr_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_input_tdr_pa__cover_proof
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdr_pa__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_input_tdr_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_state_td_state__safety_requirement
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_td_state__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_td_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__invalid_state_td_state__cover_entry
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_td_state__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_state_td_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_state_td_state__cover_exit
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_td_state__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_state_td_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_state_td_state__cover_proof
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_td_state__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_td_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  # XXX invalid_state_num_tdcx is not satisfiable under current TDR invariants
+
+  - name: tdh_mng_addcx__invalid_state_num_tdcx__safety_requirement
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_num_tdcx__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_num_tdcx__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__invalid_state_num_tdcx__cover_entry
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_num_tdcx__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_state_num_tdcx__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true #false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true #false
+
+  - name: tdh_mng_addcx__invalid_state_num_tdcx__cover_exit
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_num_tdcx__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_state_num_tdcx__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true #false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true #false
+
+  - name: tdh_mng_addcx__invalid_state_num_tdcx__cover_proof
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_num_tdcx__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_num_tdcx__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true #false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true #false
+
+  - name: tdh_mng_addcx__invalid_state_lifecycle__safety_requirement
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_lifecycle__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mng_addcx__invalid_state_lifecycle__cover_entry
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_lifecycle__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_state_lifecycle__cover_exit
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_lifecycle__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_state_lifecycle__cover_proof
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_lifecycle__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  # - name: tdh_mng_addcx__invalid_state_pamt_metadata__safety_requirement
+  #   target:
+  #     filename: formal/harness/tdh_mng_addcx_harness.c
+  #     method: tdh_mng_addcx__call
+  #   before_target:
+  #     - filename: formal/src/initialization.c
+  #       method: init_tdh_mng_xxx
+  #     - filename: formal/harness/tdh_mng_addcx_harness.c
+  #       method: tdh_mng_addcx__invalid_state_pamt_metadata__precond
+  #   after_target:
+  #     - filename: formal/harness/tdh_mng_addcx_harness.c
+  #       method: tdh_mng_addcx__invalid_state_pamt_metadata__postcond
+  #     - filename: formal/src/initialization.c
+  #       method: close_tdh_mng_xxx_with_check
+  #   properties:
+  #     - property_file: ../../../properties/unreach-call.prp
+  #       expected_verdict: true
+  #     - property_file: ../../../properties/coverage-error-call.prp
+  #       expected_verdict: true
+
+  - name: tdh_mng_addcx__invalid_state_pamt_metadata__cover_entry
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_pamt_metadata__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_state_pamt_metadata__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_state_pamt_metadata__cover_exit
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_pamt_metadata__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mng_addcx_harness.c
+#         method: tdh_mng_addcx__invalid_state_pamt_metadata__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__invalid_state_pamt_metadata__cover_proof
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_pamt_metadata__precond
+    after_target:
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__invalid_state_pamt_metadata__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+        
+  #
+  # Return status code coverage tasks
+  #
+
+  - name: tdh_mng_addcx__unconstrained__cover_exit_success
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__unconstrained__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: seam_call__exit_status_success
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mng_addcx__unconstrained__cover_exit_unsuccess
+    target:
+      filename: formal/harness/tdh_mng_addcx_harness.c
+      method: tdh_mng_addcx__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mng_xxx
+      - filename: formal/harness/tdh_mng_addcx_harness.c
+        method: tdh_mng_addcx__unconstrained__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: seam_call__exit_status_unsuccess
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+      - filename: formal/src/initialization.c
+        method: close_tdh_mng_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: false

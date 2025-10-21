@@ -38,251 +38,73 @@
 #include "fv_utils.h"
 #include "fv_env.h"
 
-void tdh_mr_finalize__common_precond() {
+void tdh_mr_finalize__call() {
     tdx_module_local_t* local_data = get_local_data();
+    
+    local_data->vmm_regs.rax = tdh_mr_finalize(local_data->vmm_regs.rcx);
+}
+
+static inline void tdh_mr_finalize__common_precond() {
     tdx_leaf_and_version_t leaf_opcode;
-    leaf_opcode.raw = local_data->vmm_regs.rax;
+    leaf_opcode.raw = get_local_data()->vmm_regs.rax;
     TDXFV_ASSUME(leaf_opcode.leaf == TDH_MR_FINALIZE_LEAF);
 }
 
-void tdh_mr_finalize__invalid_input_hkid() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) != 0); // invalid rcx
-    TDXFV_ASSUME(tdr_fv.management_fields.fatal == false);
-    TDXFV_ASSUME(tdr_fv.management_fields.lifecycle_state == TD_KEYS_CONFIGURED);
-    TDXFV_ASSUME((tdr_fv.management_fields.num_tdcx >= MIN_NUM_TDCS_PAGES) &&
-                 (tdr_fv.management_fields.num_tdcx <= MAX_NUM_TDCS_PAGES) &&
-                 (tdcs_fv.management_fields.op_state == OP_STATE_INITIALIZED));
-
-    pamt_block_t tdr_pamt_block; // dummy
-    pamt_entry_t* tdr_pamt_entry_ptr = NULL;
-    bool_t tdr_locked_flag = false; // dummy
-    tdr_t* tdr_ptr = NULL; // dummy
-    api_error_type map_result = check_lock_and_map_explicit_tdr(
-        (pa_t) local_data->vmm_regs.rcx, OPERAND_ID_RCX, 1, TDX_LOCK_EXCLUSIVE, PT_TDR, 
-        &tdr_pamt_block, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr
+static inline bool_t input_hkid_is_valid() {
+    pa_t pa = { .raw = get_local_data()->vmm_regs.rcx };
+    return (
+        ((get_local_data()->vmm_regs.rcx & (_4KB - 1)) == 0) &&
+        (((pa.full_pa & get_global_data()->hkid_mask) >> get_global_data()->hkid_start_bit) == 0) &&
+        (get_local_data()->vmm_regs.rcx < BIT(MAX_PA))
     );
-    TDXFV_ASSUME(map_result == TDX_SUCCESS); // XXX potential overconstrain
-    TDXFV_ASSUME(tdr_pamt_entry_ptr->pt == PT_TDR);
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mr_finalize(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX));
 }
 
-void tdh_mr_finalize__invalid_state_td_state() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    TDXFV_ASSUME(tdr_fv.management_fields.fatal == true); // invalid td state
-    TDXFV_ASSUME(tdr_fv.management_fields.lifecycle_state == TD_KEYS_CONFIGURED);
-    TDXFV_ASSUME((tdr_fv.management_fields.num_tdcx >= MIN_NUM_TDCS_PAGES) &&
-                 (tdr_fv.management_fields.num_tdcx <= MAX_NUM_TDCS_PAGES) &&
-                 (tdcs_fv.management_fields.op_state == OP_STATE_INITIALIZED));
-
-    pamt_block_t tdr_pamt_block; // dummy
-    pamt_entry_t* tdr_pamt_entry_ptr = NULL;
-    bool_t tdr_locked_flag = false; // dummy
-    tdr_t* tdr_ptr = NULL; // dummy
-    api_error_type map_result = check_lock_and_map_explicit_tdr(
-        (pa_t) local_data->vmm_regs.rcx, OPERAND_ID_RCX, 1, TDX_LOCK_EXCLUSIVE, PT_TDR, 
-        &tdr_pamt_block, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr
-    );
-    TDXFV_ASSUME(map_result == TDX_SUCCESS); // XXX potential overconstrain
-    TDXFV_ASSUME(tdr_pamt_entry_ptr->pt == PT_TDR);
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mr_finalize(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_TD_FATAL);
+static inline bool_t state_td_state_is_valid() {
+    return (get_local_data()->vp_ctx.tdr->management_fields.fatal == false);
 }
 
-void tdh_mr_finalize__invalid_state_lifecycle() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    TDXFV_ASSUME(tdr_fv.management_fields.fatal == false);
-    TDXFV_ASSUME(tdr_fv.management_fields.lifecycle_state != TD_KEYS_CONFIGURED); // invalid lifecycle
-    TDXFV_ASSUME((tdr_fv.management_fields.num_tdcx >= MIN_NUM_TDCS_PAGES) &&
-                 (tdr_fv.management_fields.num_tdcx <= MAX_NUM_TDCS_PAGES) &&
-                 (tdcs_fv.management_fields.op_state == OP_STATE_INITIALIZED));
-
-    pamt_block_t tdr_pamt_block; // dummy
-    pamt_entry_t* tdr_pamt_entry_ptr = NULL;
-    bool_t tdr_locked_flag = false; // dummy
-    tdr_t* tdr_ptr = NULL; // dummy
-    api_error_type map_result = check_lock_and_map_explicit_tdr(
-        (pa_t) local_data->vmm_regs.rcx, OPERAND_ID_RCX, 1, TDX_LOCK_EXCLUSIVE, PT_TDR, 
-        &tdr_pamt_block, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr
-    );
-    TDXFV_ASSUME(map_result == TDX_SUCCESS); // XXX potential overconstrain
-    TDXFV_ASSUME(tdr_pamt_entry_ptr->pt == PT_TDR);
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mr_finalize(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_TD_KEYS_NOT_CONFIGURED);
+static inline bool_t state_lifecycle_is_valid() {
+    return (get_local_data()->vp_ctx.tdr->management_fields.lifecycle_state == TD_KEYS_CONFIGURED);
 }
 
-void tdh_mr_finalize__invalid_state_op_state() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    TDXFV_ASSUME(tdr_fv.management_fields.fatal == false);
-    TDXFV_ASSUME(tdr_fv.management_fields.lifecycle_state == TD_KEYS_CONFIGURED);
-    TDXFV_ASSUME(!(tdr_fv.management_fields.num_tdcx >= MIN_NUM_TDCS_PAGES) ||
-                 !(tdr_fv.management_fields.num_tdcx <= MAX_NUM_TDCS_PAGES) ||
-                 !(tdcs_fv.management_fields.op_state == OP_STATE_INITIALIZED)); // invalid op state
-
-    pamt_block_t tdr_pamt_block; // dummy
-    pamt_entry_t* tdr_pamt_entry_ptr = NULL;
-    bool_t tdr_locked_flag = false; // dummy
-    tdr_t* tdr_ptr = NULL; // dummy
-    api_error_type map_result = check_lock_and_map_explicit_tdr(
-        (pa_t) local_data->vmm_regs.rcx, OPERAND_ID_RCX, 1, TDX_LOCK_EXCLUSIVE, PT_TDR, 
-        &tdr_pamt_block, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr
+// XXX Note: The condition on num_tdcx is enforced by current TDR invariants.
+static inline bool_t state_num_tdcx_and_op_state_is_valid() {
+    return (
+        (get_local_data()->vp_ctx.tdr->management_fields.num_tdcx >= MIN_NUM_TDCS_PAGES) &&
+        (get_local_data()->vp_ctx.tdr->management_fields.num_tdcx <= MAX_NUM_TDCS_PAGES) &&
+        (get_local_data()->vp_ctx.tdcs->management_fields.op_state == OP_STATE_INITIALIZED)
     );
-    TDXFV_ASSUME(map_result == TDX_SUCCESS); // XXX potential overconstrain
-    TDXFV_ASSUME(tdr_pamt_entry_ptr->pt == PT_TDR);
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mr_finalize(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_OP_STATE_INCORRECT);
 }
 
-void tdh_mr_finalize__invalid_state_tdr_metadata() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    TDXFV_ASSUME(tdr_fv.management_fields.fatal == false);
-    TDXFV_ASSUME(tdr_fv.management_fields.lifecycle_state == TD_KEYS_CONFIGURED);
-    TDXFV_ASSUME((tdr_fv.management_fields.num_tdcx >= MIN_NUM_TDCS_PAGES) &&
-                 (tdr_fv.management_fields.num_tdcx <= MAX_NUM_TDCS_PAGES) &&
-                 (tdcs_fv.management_fields.op_state == OP_STATE_INITIALIZED));
-
-    pamt_block_t tdr_pamt_block; // dummy
+static inline bool_t state_tdr_metadata_is_valid() {
+    pamt_block_t tdr_pamt_block;
     pamt_entry_t* tdr_pamt_entry_ptr = NULL;
-    bool_t tdr_locked_flag = false; // dummy
-    tdr_t* tdr_ptr = NULL; // dummy
+    bool_t tdr_locked_flag = false;
+    tdr_t* tdr_ptr = NULL;
     api_error_type map_result = check_lock_and_map_explicit_tdr(
-        (pa_t) local_data->vmm_regs.rcx, OPERAND_ID_RCX, 1, TDX_LOCK_EXCLUSIVE, PT_TDR, 
+        (pa_t) get_local_data()->vmm_regs.rcx, OPERAND_ID_RCX, 1, TDX_LOCK_EXCLUSIVE, PT_TDR,
         &tdr_pamt_block, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr
     );
-    TDXFV_ASSUME(map_result == TDX_SUCCESS); // XXX potential overconstrain
-    TDXFV_ASSUME(tdr_pamt_entry_ptr->pt != PT_TDR); // invalid metadata
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mr_finalize(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT);
-}
-
-void tdh_mr_finalize__invalid_entry() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    bool_t precond = true;
-    precond = precond && (((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    precond = precond && (tdr_fv.management_fields.fatal == false);
-    precond = precond && (tdr_fv.management_fields.lifecycle_state == TD_KEYS_CONFIGURED);
-    precond = precond && ((tdr_fv.management_fields.num_tdcx >= MIN_NUM_TDCS_PAGES) &&
-                          (tdr_fv.management_fields.num_tdcx <= MAX_NUM_TDCS_PAGES) &&
-                          (tdcs_fv.management_fields.op_state == OP_STATE_INITIALIZED));
-
-    pamt_block_t tdr_pamt_block; // dummy
-    pamt_entry_t* tdr_pamt_entry_ptr = NULL;
-    bool_t tdr_locked_flag = false; // dummy
-    tdr_t* tdr_ptr = NULL; // dummy
-    api_error_type map_result = check_lock_and_map_explicit_tdr(
-        (pa_t) local_data->vmm_regs.rcx, OPERAND_ID_RCX, 1, TDX_LOCK_EXCLUSIVE, PT_TDR, 
-        &tdr_pamt_block, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr
-    );
-    if (map_result == TDX_SUCCESS) {
-        precond = precond && (tdr_pamt_entry_ptr->pt == PT_TDR);
+    if (!(
+        map_result == TDX_SUCCESS &&
+        tdr_pamt_entry_ptr != NULL)
+    ) {
+        return false;
     }
-    TDXFV_ASSUME(precond == false);
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mr_finalize(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax != TDX_SUCCESS);
+    return (tdr_pamt_entry_ptr->pt == PT_TDR);
 }
 
-void tdh_mr_finalize__valid_entry() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    TDXFV_ASSUME(tdr_fv.management_fields.fatal == false);
-    TDXFV_ASSUME(tdr_fv.management_fields.lifecycle_state == TD_KEYS_CONFIGURED);
-    TDXFV_ASSUME((tdr_fv.management_fields.num_tdcx >= MIN_NUM_TDCS_PAGES) &&
-                 (tdr_fv.management_fields.num_tdcx <= MAX_NUM_TDCS_PAGES) &&
-                 (tdcs_fv.management_fields.op_state == OP_STATE_INITIALIZED));
-
-    pamt_block_t tdr_pamt_block; // dummy
-    pamt_entry_t* tdr_pamt_entry_ptr = NULL;
-    bool_t tdr_locked_flag = false; // dummy
-    tdr_t* tdr_ptr = NULL; // dummy
-    api_error_type map_result = check_lock_and_map_explicit_tdr(
-        (pa_t) local_data->vmm_regs.rcx, OPERAND_ID_RCX, 1, TDX_LOCK_EXCLUSIVE, PT_TDR, 
-        &tdr_pamt_block, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr
+static inline bool_t all_conditions_valid() {
+    return (
+        input_hkid_is_valid() &&
+        state_td_state_is_valid() &&
+        state_lifecycle_is_valid() &&
+        state_num_tdcx_and_op_state_is_valid() &&
+        state_tdr_metadata_is_valid()
     );
-    TDXFV_ASSUME(map_result == TDX_SUCCESS); // XXX potential overconstrain
-    TDXFV_ASSUME(tdr_pamt_entry_ptr->pt == PT_TDR);
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mr_finalize(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
 }
 
-void tdh_mr_finalize__free_entry() {
-    tdx_module_local_t* local_data = get_local_data();
-
-    // Task-specific precondition
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_mr_finalize(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-}
-
-void tdh_mr_finalize__post_cover_success() {
-    tdx_module_local_t* local_data = get_local_data();
-    TDXFV_ASSUME(local_data->vmm_regs.rax == TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdh_mr_finalize__post_cover_unsuccess() {
-    tdx_module_local_t* local_data = get_local_data();
-    TDXFV_ASSUME(local_data->vmm_regs.rax != TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdh_mr_finalize__common_postcond() {
+static inline void tdh_mr_finalize__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();
 
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rax == shadow_td_regs_precall.rax);
@@ -302,23 +124,6 @@ void tdh_mr_finalize__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.r14 == shadow_td_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.r15 == shadow_td_regs_precall.r15);
 
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax == shadow_guest_gpr_state_precall.rax);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rbx == shadow_guest_gpr_state_precall.rbx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rcx == shadow_guest_gpr_state_precall.rcx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdx == shadow_guest_gpr_state_precall.rdx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rsp == shadow_guest_gpr_state_precall.rsp);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rbp == shadow_guest_gpr_state_precall.rbp);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rsi == shadow_guest_gpr_state_precall.rsi);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdi == shadow_guest_gpr_state_precall.rdi);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r8  == shadow_guest_gpr_state_precall.r8);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r9  == shadow_guest_gpr_state_precall.r9);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r10 == shadow_guest_gpr_state_precall.r10);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r11 == shadow_guest_gpr_state_precall.r11);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r12 == shadow_guest_gpr_state_precall.r12);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r13 == shadow_guest_gpr_state_precall.r13);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r14 == shadow_guest_gpr_state_precall.r14);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r15 == shadow_guest_gpr_state_precall.r15);
-
     //tdx_local_data_ptr->vmm_regs.rax
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.rbx == shadow_vmm_regs_precall.rbx);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.rcx == shadow_vmm_regs_precall.rcx);
@@ -335,4 +140,135 @@ void tdh_mr_finalize__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r13 == shadow_vmm_regs_precall.r13);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r14 == shadow_vmm_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r15 == shadow_vmm_regs_precall.r15);
+}
+
+void tdh_mr_finalize__expected__precond() {
+    tdh_mr_finalize__common_precond();
+    TDXFV_ASSUME(all_conditions_valid());
+}
+
+void tdh_mr_finalize__expected__postcond() {
+#ifdef TDXFV_CHECK_TDX_SUCCESS
+    TDXFV_ASSERT(get_local_data()->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_SUCCESS);
+#else
+    TDXFV_ASSERT(true);
+#endif
+    tdh_mr_finalize__common_postcond();
+}
+
+void tdh_mr_finalize__unexpected__precond() {
+    tdh_mr_finalize__common_precond();
+    TDXFV_ASSUME(!all_conditions_valid());
+}
+
+void tdh_mr_finalize__unexpected__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(local_data->vmm_regs.rax != TDX_SUCCESS);
+    tdh_mr_finalize__common_postcond();
+}
+
+void tdh_mr_finalize__unconstrained__precond() {
+    tdh_mr_finalize__common_precond();
+    TDXFV_ASSUME(true);
+}
+
+// Special test cases
+void tdh_mr_finalize__invalid_input_hkid__precond() {
+    tdh_mr_finalize__common_precond();
+    TDXFV_ASSUME(
+        !input_hkid_is_valid() && // invalid input hkid
+        state_td_state_is_valid() &&
+        state_lifecycle_is_valid() &&
+        state_num_tdcx_and_op_state_is_valid() &&
+        state_tdr_metadata_is_valid()
+    );
+}
+
+void tdh_mr_finalize__invalid_input_hkid__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    tdh_mr_finalize__common_postcond();
+}
+
+void tdh_mr_finalize__invalid_state_td_state__precond() {
+    tdh_mr_finalize__common_precond();
+    TDXFV_ASSUME(
+        input_hkid_is_valid() &&
+        !state_td_state_is_valid() && // invalid TD state
+        state_lifecycle_is_valid() &&
+        state_num_tdcx_and_op_state_is_valid() &&
+        state_tdr_metadata_is_valid()
+    );
+}
+
+void tdh_mr_finalize__invalid_state_td_state__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_TD_FATAL) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    tdh_mr_finalize__common_postcond();
+}
+
+void tdh_mr_finalize__invalid_state_lifecycle__precond() {
+    tdh_mr_finalize__common_precond();
+    TDXFV_ASSUME(
+        input_hkid_is_valid() &&
+        state_td_state_is_valid() &&
+        !state_lifecycle_is_valid() && // invalid lifecycle state
+        state_num_tdcx_and_op_state_is_valid() &&
+        state_tdr_metadata_is_valid()
+    );
+}
+
+void tdh_mr_finalize__invalid_state_lifecycle__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_TD_KEYS_NOT_CONFIGURED) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    tdh_mr_finalize__common_postcond();
+}
+
+void tdh_mr_finalize__invalid_state_op_state__precond() {
+    tdh_mr_finalize__common_precond();
+    TDXFV_ASSUME(
+        input_hkid_is_valid() &&
+        state_td_state_is_valid() &&
+        state_lifecycle_is_valid() &&
+        !state_num_tdcx_and_op_state_is_valid() && // invalid op state
+        state_tdr_metadata_is_valid()
+    );
+}
+
+void tdh_mr_finalize__invalid_state_op_state__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_OP_STATE_INCORRECT) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    tdh_mr_finalize__common_postcond();
+}
+
+void tdh_mr_finalize__invalid_state_tdr_metadata__precond() {
+    tdh_mr_finalize__common_precond();
+    TDXFV_ASSUME(
+        input_hkid_is_valid() &&
+        state_td_state_is_valid() &&
+        state_lifecycle_is_valid() &&
+        state_num_tdcx_and_op_state_is_valid() &&
+        !state_tdr_metadata_is_valid() // invalid TDR metadata
+    );
+}
+
+void tdh_mr_finalize__invalid_state_tdr_metadata__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    tdh_mr_finalize__common_postcond();
 }

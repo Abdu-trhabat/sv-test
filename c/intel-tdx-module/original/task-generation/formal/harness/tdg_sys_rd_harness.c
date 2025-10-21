@@ -40,89 +40,38 @@
 #include "fv_utils.h"
 #include "fv_env.h"
 
-void tdg_sys_rd__common_precond() {
+void tdg_sys_rd__call() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    tdx_leaf_and_version_t leaf_opcode = { .raw = tdx_local_data_ptr->td_regs.rax };
+    md_field_id_t field_code = { .raw = tdx_local_data_ptr->td_regs.rdx };
+    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_sys_rd(field_code);
+}
+
+static inline void tdg_sys_rd__common_precond() {
+    tdx_leaf_and_version_t leaf_opcode = { .raw = get_local_data()->td_regs.rax };
     TDXFV_ASSUME(leaf_opcode.leaf == TDG_SYS_RD_LEAF);
 }
 
-void tdg_sys_rd__invalid_input_rdx() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    md_field_id_t field_code = { .raw = tdx_local_data_ptr->td_regs.rdx };
-
-    // Task-specific precondition
-    TDXFV_ASSUME((field_code.last_element_in_field != 0) || (field_code.last_field_in_sequence != 0)); // invalid rdx
-    TDXFV_ASSUME(field_code.raw != -1);
-
-    // Call ABI function
-    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_sys_rd(field_code);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_OPERAND_INVALID);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdx == -1);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r8  == 0);
+static inline bool_t input_field_is_valid() {
+    md_field_id_t field_code = { .raw = get_local_data()->td_regs.rdx };
+    
+    bool_t field_identifier_is_special_case = (
+        ((get_local_data()->td_regs.rdx | (0x7ULL << 52)) == -1)
+    );
+    bool_t field_identifier_is_valid = (
+        (field_code.reserved_0 == 0) &&
+        (field_code.reserved_1 == 0) &&
+        (field_code.reserved_2 == 0) &&
+        (field_code.reserved_3 == 0) &&
+        (field_code.last_element_in_field == 0) &&
+        (field_code.last_field_in_sequence == 0)
+    );
+    
+    return (field_identifier_is_special_case || field_identifier_is_valid);
 }
 
-void tdg_sys_rd__invalid_entry() {
+static inline void tdg_sys_rd__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    md_field_id_t field_code = { .raw = tdx_local_data_ptr->td_regs.rdx };
-
-    // Task-specific precondition
-    TDXFV_ASSUME((field_code.last_element_in_field != 0) || (field_code.last_field_in_sequence != 0)); // invalid rdx
-    TDXFV_ASSUME(field_code.raw != -1);
-
-    // Call ABI function
-    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_sys_rd(field_code);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax != TDX_SUCCESS);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdx == -1);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r8  == 0);
-}
-
-void tdg_sys_rd__valid_entry() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    md_field_id_t field_code = { .raw = tdx_local_data_ptr->td_regs.rdx };
-
-    // Task-specific precondition
-    TDXFV_ASSUME((field_code.last_element_in_field == 0) && (field_code.last_field_in_sequence == 0));
-    TDXFV_ASSUME(field_code.raw != -1);
-
-    // Call ABI function
-    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_sys_rd(field_code);
-
-    // Task-specific postcondition
-}
-
-void tdg_sys_rd__free_entry() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    md_field_id_t field_code = { .raw = tdx_local_data_ptr->td_regs.rdx };
-
-    // Task-specific precondition
-
-    // Call ABI function
-    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_sys_rd(field_code);
-
-    // Task-specific postcondition
-}
-
-void tdg_sys_rd__post_cover_success() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    TDXFV_ASSUME(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdg_sys_rd__post_cover_unsuccess() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    TDXFV_ASSUME(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax != TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdg_sys_rd__common_postcond() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-
+    
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rax == shadow_td_regs_precall.rax);
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rbx == shadow_td_regs_precall.rbx);
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rcx == shadow_td_regs_precall.rcx);
@@ -173,4 +122,36 @@ void tdg_sys_rd__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r13 == shadow_vmm_regs_precall.r13);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r14 == shadow_vmm_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r15 == shadow_vmm_regs_precall.r15);
+}
+
+void tdg_sys_rd__expected__precond() {
+    tdg_sys_rd__common_precond();
+    TDXFV_ASSUME(input_field_is_valid());
+}
+
+void tdg_sys_rd__expected__postcond() {
+#ifdef TDXFV_CHECK_TDX_SUCCESS
+    TDXFV_ASSERT(get_local_data()->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_SUCCESS);
+#else
+    TDXFV_ASSERT(true);
+#endif
+    tdg_sys_rd__common_postcond();
+}
+
+void tdg_sys_rd__unexpected__precond() {
+    tdg_sys_rd__common_precond();
+    TDXFV_ASSUME(!input_field_is_valid());
+}
+
+void tdg_sys_rd__unexpected__postcond() {
+    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
+    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax != TDX_SUCCESS);
+    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdx == -1);
+    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r8 == 0);
+    tdg_sys_rd__common_postcond();
+}
+
+void tdg_sys_rd__unconstrained__precond() {
+    tdg_sys_rd__common_precond();
+    TDXFV_ASSUME(true);
 }

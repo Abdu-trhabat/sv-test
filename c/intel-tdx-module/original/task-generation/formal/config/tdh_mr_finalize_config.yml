@@ -24,164 +24,653 @@ name: tdh_mr_finalize_config.yml
 description: reach-safety tasks for tdh_mr_finalize
 tasks:
 
-  - name: tdh_mr_finalize__requirement__expected
+  - name: tdh_mr_finalize__expected__safety_requirement
     target:
       filename: formal/harness/tdh_mr_finalize_harness.c
-      method: tdh_mr_finalize__valid_entry
+      method: tdh_mr_finalize__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_tdh_mr_xxx
       - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_precond
+        method: tdh_mr_finalize__expected__precond
     after_target:
       - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_postcond
+        method: tdh_mr_finalize__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
     properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: true
 
-  - name: tdh_mr_finalize__requirement__unexpected
+  - name: tdh_mr_finalize__expected__cover_entry
     target:
       filename: formal/harness/tdh_mr_finalize_harness.c
-      method: tdh_mr_finalize__invalid_entry
+      method: tdh_mr_finalize__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_tdh_mr_xxx
       - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_precond
+        method: tdh_mr_finalize__expected__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
     after_target:
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_postcond
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
     properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mr_finalize__requirement__invalid_input_hkid
-    target:
-      filename: formal/harness/tdh_mr_finalize_harness.c
-      method: tdh_mr_finalize__invalid_input_hkid
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mr_finalize__requirement__invalid_state_td_state
-    target:
-      filename: formal/harness/tdh_mr_finalize_harness.c
-      method: tdh_mr_finalize__invalid_state_td_state
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mr_finalize__requirement__invalid_state_lifecycle
-    target:
-      filename: formal/harness/tdh_mr_finalize_harness.c
-      method: tdh_mr_finalize__invalid_state_lifecycle
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mr_finalize__requirement__invalid_state_op_state
-    target:
-      filename: formal/harness/tdh_mr_finalize_harness.c
-      method: tdh_mr_finalize__invalid_state_op_state
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mr_finalize__requirement__invalid_state_tdr_metadata
-    target:
-      filename: formal/harness/tdh_mr_finalize_harness.c
-      method: tdh_mr_finalize__invalid_state_tdr_metadata
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_mr_finalize__cover__success
-    target:
-      filename: formal/harness/tdh_mr_finalize_harness.c
-      method: tdh_mr_finalize__free_entry
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_precond
-    after_target:
-      - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__post_cover_success
-    properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: false
 
-  - name: tdh_mr_finalize__cover__unsuccess
+  - name: tdh_mr_finalize__expected__cover_exit
     target:
       filename: formal/harness/tdh_mr_finalize_harness.c
-      method: tdh_mr_finalize__free_entry
+      method: tdh_mr_finalize__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_tdh_mr_xxx
       - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__common_precond
+        method: tdh_mr_finalize__expected__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__expected__cover_proof
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__expected__precond
     after_target:
       - filename: formal/harness/tdh_mr_finalize_harness.c
-        method: tdh_mr_finalize__post_cover_unsuccess
+        method: tdh_mr_finalize__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
     properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__unexpected__safety_requirement
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__unexpected__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__unexpected__cover_entry
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__unexpected__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__unexpected__cover_exit
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__unexpected__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__unexpected__cover_proof
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__unexpected__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  # Additional error cases - include all safety requirements and cover tasks for each
+  - name: tdh_mr_finalize__invalid_input_hkid__safety_requirement
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_input_hkid__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_input_hkid__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__invalid_input_hkid__cover_entry
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_input_hkid__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__invalid_input_hkid__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_input_hkid__cover_exit
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_input_hkid__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__invalid_input_hkid__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_input_hkid__cover_proof
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_input_hkid__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_input_hkid__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_td_state__safety_requirement
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_td_state__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_td_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__invalid_state_td_state__cover_entry
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_td_state__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__invalid_state_td_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_td_state__cover_exit
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_td_state__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__invalid_state_td_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_td_state__cover_proof
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_td_state__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_td_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_lifecycle__safety_requirement
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_lifecycle__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__invalid_state_lifecycle__cover_entry
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_lifecycle__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_lifecycle__cover_exit
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_lifecycle__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_lifecycle__cover_proof
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_lifecycle__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_op_state__safety_requirement
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_op_state__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_op_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_mr_finalize__invalid_state_op_state__cover_entry
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_op_state__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__invalid_state_op_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_op_state__cover_exit
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_op_state__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__invalid_state_op_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_op_state__cover_proof
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_op_state__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_op_state__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  # - name: tdh_mr_finalize__invalid_state_tdr_metadata__safety_requirement
+  #   target:
+  #     filename: formal/harness/tdh_mr_finalize_harness.c
+  #     method: tdh_mr_finalize__call
+  #   before_target:
+  #     - filename: formal/src/initialization.c
+  #       method: init_tdh_mr_xxx
+  #     - filename: formal/harness/tdh_mr_finalize_harness.c
+  #       method: tdh_mr_finalize__invalid_state_tdr_metadata__precond
+  #   after_target:
+  #     - filename: formal/harness/tdh_mr_finalize_harness.c
+  #       method: tdh_mr_finalize__invalid_state_tdr_metadata__postcond
+  #     - filename: formal/src/initialization.c
+  #       method: close_tdh_mr_xxx_with_check
+  #   properties:
+  #     - property_file: ../../../properties/unreach-call.prp
+  #       expected_verdict: true
+  #     - property_file: ../../../properties/coverage-error-call.prp
+  #       expected_verdict: true
+
+  - name: tdh_mr_finalize__invalid_state_tdr_metadata__cover_entry
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_tdr_metadata__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__invalid_state_tdr_metadata__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_tdr_metadata__cover_exit
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_tdr_metadata__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_mr_finalize_harness.c
+#         method: tdh_mr_finalize__invalid_state_tdr_metadata__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__invalid_state_tdr_metadata__cover_proof
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_tdr_metadata__precond
+    after_target:
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__invalid_state_tdr_metadata__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  #
+  # Return status code coverage tasks
+  #
+
+  - name: tdh_mr_finalize__unconstrained__cover_exit_success
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__unconstrained__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: seam_call__exit_status_success
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_mr_finalize__unconstrained__cover_exit_unsuccess
+    target:
+      filename: formal/harness/tdh_mr_finalize_harness.c
+      method: tdh_mr_finalize__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_mr_xxx
+      - filename: formal/harness/tdh_mr_finalize_harness.c
+        method: tdh_mr_finalize__unconstrained__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: seam_call__exit_status_unsuccess
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+      - filename: formal/src/initialization.c
+        method: close_tdh_mr_xxx
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: false
