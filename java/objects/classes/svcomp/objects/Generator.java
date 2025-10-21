@@ -9,6 +9,7 @@
 
 package svcomp.objects;
 
+import java.util.Random;
 import org.sosy_lab.sv_benchmarks.ObjectGenerator;
 
 public class Generator implements ObjectGenerator {
