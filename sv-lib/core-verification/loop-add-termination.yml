@@ -1,0 +1,9 @@
+format_version: '2.0'
+
+input_files:
+- ../sv-comp_common.svlib
+- loop-add-termination.svlib
+
+properties:
+- property_file: ../properties/svlib.prp
+  expected_verdict: true

@@ -1,0 +1,39 @@
+(set-logic LIA)
+
+(define-proc
+    upto
+    ((n Int))
+    ((i Int))
+    ()
+    (!
+        (sequence
+            (assign (i 0))
+            (!
+                (while
+                    (< i n)
+                    (assign (i (+ i 1))))
+                :tag while-1))
+        :tag proc-upto))
+
+(annotate-tag
+    proc-upto
+    :ensures  (= i n))
+
+(annotate-tag
+    while-1
+    :not-live)
+
+(annotate-tag
+    proc-upto
+    :requires (<= 0 n)) ; needed to make invariant and decreases modular
+
+(annotate-tag
+    while-1
+    :decreases (- n i)
+    :invariant (and (<= 0 i) (<= i n)))
+
+(declare-const n Int)
+(assert (<= 0 n))
+
+(verify-call
+    upto (n))

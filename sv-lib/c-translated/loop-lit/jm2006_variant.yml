@@ -1,0 +1,7 @@
+format_version: '2.0'
+input_files:
+- ../../sv-comp_common.svlib
+- jm2006_variant.svlib
+properties:
+- property_file: ../../properties/svlib.prp
+  expected_verdict: true

@@ -1,0 +1,30 @@
+(set-logic LIA)
+
+(define-proc
+    upto
+    ((n Int))
+    ((i Int))
+    ()
+    (!
+        (sequence
+            (assign (i 0))
+            (!
+                (while
+                    (< i n)
+                    (assign (i (+ i 1))))
+                :tag while-1))
+        :tag proc-add))
+
+(annotate-tag
+    upto
+    :ensures  (= i n))
+
+(annotate-tag
+    while-1
+    :not-live)
+
+(declare-const n Int)
+(assert (<= 0 n))
+
+(verify-call
+    upto (n))
