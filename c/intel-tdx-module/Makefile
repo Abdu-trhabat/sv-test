@@ -14,4 +14,5 @@ CLANG_WARNINGS := -Wno-tautological-compare -Wno-missing-braces
 IGNORE_DIRS := ./original/
 
 CC.Arch := 64
+CC.Standard := c11
 include $(LEVEL)/Makefile.config
