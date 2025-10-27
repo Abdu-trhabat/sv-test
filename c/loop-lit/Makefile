@@ -8,4 +8,6 @@
 
 LEVEL := ../
 
+IGNORE_DIRS := ./witnesses/
+
 include $(LEVEL)/Makefile.config
