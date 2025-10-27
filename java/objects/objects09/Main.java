@@ -13,9 +13,7 @@ import svcomp.objects.*;
 public class Main {
 
   public static void main(String[] args) {
-    Object o = Verifier.nondetObject(new Generator());
-    // class-cast exception for type D
-    A a = (A) o;
+    A a = Verifier.nondetObject(A.class, new Factories.AFactory());
     // assertion violation not reachable
     if (!(a instanceof A)) {
       assert false;

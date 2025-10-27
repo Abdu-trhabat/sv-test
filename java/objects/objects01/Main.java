@@ -13,8 +13,7 @@ import svcomp.objects.*;
 public class Main {
 
   public static void main(String[] args) {
-    // class-cast exception for type D
-    A a = (A) Verifier.nondetObject(new Generator());
+    A a = Verifier.nondetObject(A.class, new Factories.AFactory());
     a.getX();
   }
 }

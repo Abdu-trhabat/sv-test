@@ -13,8 +13,8 @@ import svcomp.objects.*;
 public class Main {
 
   public static void main(String[] args) {
-    Object o1 = Verifier.nondetObject(new Generator());
-    Object o2 = Verifier.nondetObject(new Generator());
+    Any o1 = Verifier.nondetObject(Any.class, new Factories.AnyFactory());
+    Any o2 = Verifier.nondetObject(Any.class, new Factories.AnyFactory());
     // assertion violation reachable
     if (o1 != o2) {
       assert false;

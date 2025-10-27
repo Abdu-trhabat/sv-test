@@ -9,4 +9,4 @@
 
 package svcomp.objects;
 
-public class D {}
+public class D extends Any {}

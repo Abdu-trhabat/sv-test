@@ -9,7 +9,7 @@
 
 package svcomp.objects;
 
-public class A {
+public class A extends Any {
 
   private int x;
   private int y;

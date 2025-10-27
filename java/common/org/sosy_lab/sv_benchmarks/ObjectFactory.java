@@ -8,6 +8,6 @@
 
 package org.sosy_lab.sv_benchmarks;
 
-public interface ObjectGenerator {
-  public Object randomObject();
+public interface ObjectFactory<T> {
+  T createObject();
 }

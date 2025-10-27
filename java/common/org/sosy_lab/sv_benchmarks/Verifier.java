@@ -58,7 +58,7 @@ public final class Verifier {
     return new String(bytes);
   }
 
-  public static Object nondetObject(ObjectGenerator o) {
-    return o.randomObject();
+  public static <T> T nondetObject(Class<T> type, ObjectFactory<T> factory) {
+    return factory.createObject();
   }
 }
