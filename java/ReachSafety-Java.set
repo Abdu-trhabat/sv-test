@@ -16,3 +16,4 @@ jdart-regression/*.yml
 securibench/*.yml
 float-nonlinear-calculation/*.yml
 argv-tasks/*.yml
+objects/*.yml
