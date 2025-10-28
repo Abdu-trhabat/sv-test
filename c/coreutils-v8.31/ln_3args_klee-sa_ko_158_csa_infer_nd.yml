@@ -1,6 +1,6 @@
 
 format_version: '2.0'
-input_files: "join_3args_klee-sa_ko_489_csa_uaf.c"
+input_files: "ln_3args_klee-sa_ko_158_csa_infer_nd.c"
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
