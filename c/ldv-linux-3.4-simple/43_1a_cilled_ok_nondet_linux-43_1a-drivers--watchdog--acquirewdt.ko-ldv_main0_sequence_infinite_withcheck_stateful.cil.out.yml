@@ -5,7 +5,7 @@ input_files: '43_1a_cilled_ok_nondet_linux-43_1a-drivers--watchdog--acquirewdt.k
 
 properties:
   - property_file: ../properties/termination.prp
-    expected_verdict: true
+    expected_verdict: false
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
 

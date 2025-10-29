@@ -5,7 +5,7 @@ input_files: '32_1_cilled_ok_nondet_linux-3.4-32_1-drivers--watchdog--cpu5wdt.ko
 
 properties:
   - property_file: ../properties/termination.prp
-    expected_verdict: true
+    expected_verdict: false
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
 
