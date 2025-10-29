@@ -8490,6 +8490,7 @@ void ldv_linux_lib_find_bit_initialize(void)
 {
   {
   {
+  nr_cpu_ids = __VERIFIER_nondet_int();
   ldv_assume(nr_cpu_ids > 0);
   }
   return;
