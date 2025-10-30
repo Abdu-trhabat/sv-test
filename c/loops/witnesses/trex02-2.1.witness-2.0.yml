@@ -22,5 +22,5 @@
           line: 23
           column: 3
           function: main
-        value: "x >= 0" # The invariant is correct, but the program is unsafe
+        value: "1" # The invariant is correct, but the program is unsafe
         format: c_expression
