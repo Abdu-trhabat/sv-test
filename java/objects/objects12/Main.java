@@ -16,6 +16,7 @@ public class Main {
     A a1 = Verifier.nondetObject(A.class, new Factories.AFactory());
     A a2 = Verifier.nondetObject(A.class, new Factories.AFactory());
     // assertion violation reachable
+    // NPE reachable
     if (a1.getX() == a2.getX()) {
       assert false;
     }
