@@ -32,5 +32,8 @@
 void tdx_fault_wrapper(void) {
     // TDXFV_ABST_LBL: tdx / none
     TDXFV_ABST_incomplete();
-    abort();
+#ifdef TDXFV_ENABLE_EXCEPTION_CHECK
+    TDXFV_ASSERT(false); // This is a verification trap
+#endif // TDXFV_ENABLE_EXCEPTION_CHECK
+    exit(0);
 }

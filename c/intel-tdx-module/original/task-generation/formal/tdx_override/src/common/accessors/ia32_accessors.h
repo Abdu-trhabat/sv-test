@@ -70,6 +70,8 @@ _STATIC_INLINE_ void ia32_invalidate_tlb_entries(uint64_t addr)
 #endif
 }
 
+bool_t ia32_cpuid_constrain_autogen(uint32_t leaf, uint32_t subleaf, uint32_t eax, uint32_t ebx, uint32_t ecx, uint32_t edx);
+
 /**
  * @brief Call CPUID instruction
  * @param leaf
@@ -83,12 +85,14 @@ _STATIC_INLINE_ void ia32_cpuid(uint32_t leaf, uint32_t subleaf, uint32_t *eax, 
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: tdx / nondet
-    // TODO more detailed modeling (cpuid_virtualization.json)
 
     *eax = TDXFV_NONDET_uint32t();
     *ebx = TDXFV_NONDET_uint32t();
     *ecx = TDXFV_NONDET_uint32t();
     *edx = TDXFV_NONDET_uint32t();
+
+    // More detailed modeling (cpuid_virtualization.json)
+    // TDXFV_ASSUME(ia32_cpuid_constrain_autogen(leaf, subleaf, *eax, *ebx, *ecx, *edx));
 #else
 	_ASM_VOLATILE_ ("cpuid;"              // CPUID
                      : "=a" (*eax),        // Outputs: eax = %eax
@@ -104,7 +108,17 @@ _STATIC_INLINE_ void ia32_clear_ac( void )
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: x86 / none
-    TDXFV_ABST_incomplete();
+    
+    // Alignment check is only relevant if the code is running in user mode with AC and AM set, 
+    // which is rare for kernel or firmware code. This only applies when the AC flag is set, 
+    // the AM (Alignment Mask) bit in CR0 is set, and the CPL (Current Privilege Level) is 3 (user mode). 
+    // In kernel mode (CPL=0), alignment checks are not enforced.
+    
+    // Instructions that might cause alignment checks (in this file): movdqa, movq, movdir64b, 
+    // cmpxchg16b, xsave*, xrstor*, and clflushopt
+
+    // Currently model as a no-op for verification purposes, given there is only one enabled usage in
+    // ia32e_pxe_t type assignment.
 #else
 	_ASM_VOLATILE_ ("clac;":::"cc");
 #endif
@@ -114,7 +128,13 @@ _STATIC_INLINE_ void ia32_set_ac( void )
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: x86 / none
-    TDXFV_ABST_incomplete();
+
+    // Set AC flag in RFLAGS register
+    // Alignment checking only matters when:
+    // 1. AC flag is set in RFLAGS (what this function does)
+    // 2. AM bit is set in CR0
+    // 3. Code is running at CPL=3 (user mode)
+    // Currently model as a no-op for verification purposes
 #else
 	_ASM_VOLATILE_ ("stac;":::"cc");
 #endif
@@ -125,12 +145,25 @@ _STATIC_INLINE_ void ia32_set_ac( void )
  * @param key_program_addr
  * @return
  */
+// FIXME: temporary workaround, should include "fv_nondets.h" instead once the autogen is updated
+ static void TDXFV_NONDET_struct_mktme_key_program_t(mktme_key_program_t*);
 _STATIC_INLINE_ uint64_t ia32_mktme_key_program(mktme_key_program_t *key_program_addr)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / none
-    TDXFV_ABST_incomplete();
-    return TDXFV_NONDET_uint64t();
+    // TDXFV_ABST_LBL: x86 / nondet
+
+    // Non-deterministically choose whether operation succeeds or fails
+    bool_t success = TDXFV_NONDET_bool();
+    uint64_t error_code = TDXFV_NONDET_uint64t();
+    if (success) {
+        // If successful, return 0
+        error_code = 0;
+        TDXFV_NONDET_struct_mktme_key_program_t(key_program_addr);
+    } else {
+        // If failed, return a non-zero error code
+        TDXFV_ASSUME(error_code >= 0x1 && error_code <= 0x7);
+    }
+    return error_code;
 #else
     ia32_rflags_t ret_flags;
     uint64_t error_code;
@@ -153,7 +186,13 @@ _STATIC_INLINE_ void ia32_wbinvd( void )
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: x86 / none
-    TDXFV_ABST_incomplete();
+
+    // WBINVD instruction:
+    // 1. Writes back all modified cache lines to main memory
+    // 2. Invalidates (flushes) all internal processor caches
+    // 3. Signals to other processors to write-back and invalidate their caches
+
+    // We model this as a no-op since concurrency and microarchitecture is out of scope for current FV.
 #else
 	_ASM_VOLATILE_ ("wbinvd" ::: "memory" ) ;
 #endif
@@ -168,7 +207,7 @@ _STATIC_INLINE_ void ia32_hlt( uint64_t leaf, uint64_t id )
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: x86 / x86
-    abort();
+    exit(0); // XXX interrupt currently not modeled
 #else
 	_ASM_VOLATILE_ ("hlt" :: "a"(leaf), "b"(id): "memory") ;
 #endif
@@ -180,9 +219,17 @@ _STATIC_INLINE_ void ia32_hlt( uint64_t leaf, uint64_t id )
 _STATIC_INLINE_ void ia32_ud2( void )
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / none
-    TDXFV_ABST_incomplete();
-    abort();
+    // TDXFV_ABST_LBL: x86 / x86
+
+    // The UD2 instruction always generates an invalid opcode exception (#UD)
+    // causing immediate program termination
+    //
+    // For verification purposes, we model this as exit(0) which
+    // has similar behavior in stopping execution flow
+#ifdef TDXFV_ENABLE_EXCEPTION_CHECK
+    TDXFV_ASSERT(false); // This is a verification trap
+#endif // TDXFV_ENABLE_EXCEPTION_CHECK
+    exit(0);
 #else
     _ASM_VOLATILE_ ("ud2" ::: "memory") ;
 #endif
@@ -626,9 +673,10 @@ _STATIC_INLINE_ uint8_t _lock_cmpxchg_8bit(uint8_t cmp_val, uint8_t set_val, uin
     // TDXFV_ABST_LBL: x86 / x86
     if (cmp_val == *sem) {
         *sem = set_val;
-        return cmp_val;
+        return set_val;  // Assembly returns set_val regardless
     } else {
-        return *sem;
+        set_val = *sem;  // Update set_val like assembly would
+        return set_val;
     }
 #else
     _ASM_VOLATILE_ ("lock\n"
@@ -646,9 +694,10 @@ _STATIC_INLINE_ uint16_t _lock_cmpxchg_16b(uint16_t cmp_val, uint16_t set_val, u
     // TDXFV_ABST_LBL: x86 / x86
     if (cmp_val == *sem) {
         *sem = set_val;
-        return cmp_val;
+        return set_val;  // Assembly returns set_val regardless
     } else {
-        return *sem;
+        set_val = *sem;  // Update set_val like assembly would
+        return set_val;
     }
 #else
     _ASM_VOLATILE_ ("lock\n"
@@ -666,9 +715,10 @@ _STATIC_INLINE_ uint32_t _lock_cmpxchg_32b(uint32_t cmp_val, uint32_t set_val, u
     // TDXFV_ABST_LBL: x86 / x86
     if (cmp_val == *sem) {
         *sem = set_val;
-        return cmp_val;
+        return set_val;  // Assembly returns set_val regardless
     } else {
-        return *sem;
+        set_val = *sem;  // Update set_val like assembly would
+        return set_val;
     }
 #else
     _ASM_VOLATILE_ ("lock\n"
@@ -686,9 +736,10 @@ _STATIC_INLINE_ uint64_t _lock_cmpxchg_64b(uint64_t cmp_val, uint64_t set_val, u
     // TDXFV_ABST_LBL: x86 / x86
     if (cmp_val == *sem) {
         *sem = set_val;
-        return cmp_val;
+        return set_val;  // Assembly returns set_val regardless
     } else {
-        return *sem;
+        set_val = *sem;  // Update set_val like assembly would
+        return set_val;
     }
 #else
     _ASM_VOLATILE_ ("lock\n"
@@ -756,9 +807,10 @@ _STATIC_INLINE_ uint32_t _xchg_32b(uint32_t *mem, uint32_t quantum)
 _STATIC_INLINE_ uint16_t _lock_xadd_16b(uint16_t *mem, uint16_t quantum)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint16t();
-    return TDXFV_NONDET_uint16t();
+    // TDXFV_ABST_LBL: x86 / x86
+    uint16_t old_value = *mem;
+    *mem = old_value + quantum;
+    return old_value;
 #else
     _ASM_VOLATILE_ ("lock; xaddw %2, %0" : "=m" ( *mem ), "=a"(quantum) : "a"(quantum) : "memory", "cc");
     return quantum;
@@ -768,9 +820,10 @@ _STATIC_INLINE_ uint16_t _lock_xadd_16b(uint16_t *mem, uint16_t quantum)
 _STATIC_INLINE_ uint32_t _lock_xadd_32b(uint32_t *mem, uint32_t quantum)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint32t();
-    return TDXFV_NONDET_uint32t();
+    // TDXFV_ABST_LBL: x86 / x86
+    uint32_t old_value = *mem;
+    *mem = old_value + quantum;
+    return old_value;
 #else
     _ASM_VOLATILE_ ("lock; xaddl %2, %0" : "=m" ( *mem ), "=a"(quantum) : "a"(quantum) : "memory", "cc");
     return quantum;
@@ -780,9 +833,10 @@ _STATIC_INLINE_ uint32_t _lock_xadd_32b(uint32_t *mem, uint32_t quantum)
 _STATIC_INLINE_ uint64_t _lock_xadd_64b(uint64_t *mem, uint64_t quantum)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint64t();
-    return TDXFV_NONDET_uint64t();
+    // TDXFV_ABST_LBL: x86 / x86
+    uint64_t old_value = *mem;
+    *mem = old_value + quantum;
+    return old_value;
 #else
     _ASM_VOLATILE_ ("lock; xaddq %2, %0" : "=m" ( *mem ), "=a"(quantum) : "a"(quantum) : "memory", "cc");
     return quantum;
@@ -792,8 +846,8 @@ _STATIC_INLINE_ uint64_t _lock_xadd_64b(uint64_t *mem, uint64_t quantum)
 _STATIC_INLINE_ void _lock_or_16b(uint16_t *mem, uint16_t quantum)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint16t();
+    // TDXFV_ABST_LBL: x86 / x86
+    *mem |= quantum;
 #else
     _ASM_VOLATILE_ ("lock; orw %1, %0" : "=m" ( *mem ) : "a"(quantum) : "memory");
 #endif
@@ -802,8 +856,8 @@ _STATIC_INLINE_ void _lock_or_16b(uint16_t *mem, uint16_t quantum)
 _STATIC_INLINE_ void _lock_and_8b(uint8_t *mem, uint8_t quantum)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint8t();
+    // TDXFV_ABST_LBL: x86 / x86
+    *mem &= quantum;
 #else
     _ASM_VOLATILE_ ("lock; andb %1, %0" : "=m" ( *mem ) : "a"(quantum) : "memory");
 #endif
@@ -812,8 +866,8 @@ _STATIC_INLINE_ void _lock_and_8b(uint8_t *mem, uint8_t quantum)
 _STATIC_INLINE_ void _lock_and_16b(uint16_t *mem, uint16_t quantum)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint16t();
+    // TDXFV_ABST_LBL: x86 / x86
+    *mem &= quantum;
 #else
     _ASM_VOLATILE_ ("lock; andw %1, %0" : "=m" ( *mem ) : "a"(quantum) : "memory");
 #endif
@@ -822,8 +876,8 @@ _STATIC_INLINE_ void _lock_and_16b(uint16_t *mem, uint16_t quantum)
 _STATIC_INLINE_ void _lock_xor_16b(uint16_t *mem, uint16_t quantum)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint16t();
+    // TDXFV_ABST_LBL: x86 / x86
+    *mem ^= quantum;
 #else
     _ASM_VOLATILE_ ("lock; xorw %1, %0" : "=m" ( *mem ) : "a"(quantum) : "memory");
 #endif
@@ -832,9 +886,12 @@ _STATIC_INLINE_ void _lock_xor_16b(uint16_t *mem, uint16_t quantum)
 _STATIC_INLINE_ bool_t _lock_bts_32b(volatile uint32_t* mem, uint32_t bit)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint32t();
-    return TDXFV_NONDET_bool();
+    // TDXFV_ABST_LBL: x86 / x86
+    uint32_t bit_position = bit % 32;
+    uint32_t bit_mask = 1U << bit_position;
+    bool_t old_bit_value = (*mem & bit_mask) != 0;
+    *mem |= bit_mask;  // Set the bit
+    return old_bit_value;
 #else
     bool_t result;
 
@@ -846,9 +903,12 @@ _STATIC_INLINE_ bool_t _lock_bts_32b(volatile uint32_t* mem, uint32_t bit)
 _STATIC_INLINE_ bool_t _lock_btr_32b(volatile uint32_t* mem, uint32_t bit)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint32t();
-    return TDXFV_NONDET_bool();
+    // TDXFV_ABST_LBL: x86 / x86
+    uint32_t bit_position = bit % 32;
+    uint32_t bit_mask = 1U << bit_position;
+    bool_t old_bit_value = (*mem & bit_mask) != 0;
+    *mem &= ~bit_mask;  // Reset the bit
+    return old_bit_value;
 #else
     bool_t result;
 
@@ -860,9 +920,12 @@ _STATIC_INLINE_ bool_t _lock_btr_32b(volatile uint32_t* mem, uint32_t bit)
 _STATIC_INLINE_ bool_t _lock_bts_64b(volatile uint64_t* mem, uint64_t bit)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint64t();
-    return TDXFV_NONDET_bool();
+    // TDXFV_ABST_LBL: x86 / x86
+    uint64_t bit_position = bit % 64;
+    uint64_t bit_mask = 1ULL << bit_position;
+    bool_t old_bit_value = (*mem & bit_mask) != 0;
+    *mem |= bit_mask;  // Set the bit
+    return old_bit_value;
 #else
     bool_t result;
 
@@ -874,9 +937,12 @@ _STATIC_INLINE_ bool_t _lock_bts_64b(volatile uint64_t* mem, uint64_t bit)
 _STATIC_INLINE_ bool_t _lock_btr_64b(volatile uint64_t* mem, uint64_t bit)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint64t();
-    return TDXFV_NONDET_bool();
+    // TDXFV_ABST_LBL: x86 / x86
+    uint64_t bit_position = bit % 64;
+    uint64_t bit_mask = 1ULL << bit_position;
+    bool_t old_bit_value = (*mem & bit_mask) != 0;
+    *mem &= ~bit_mask;  // Reset the bit
+    return old_bit_value;
 #else
     bool_t result;
 
@@ -888,9 +954,20 @@ _STATIC_INLINE_ bool_t _lock_btr_64b(volatile uint64_t* mem, uint64_t bit)
 _STATIC_INLINE_ bool_t bit_scan_forward64(uint64_t mask, uint64_t* lsb_position)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *lsb_position = TDXFV_NONDET_uint64t();
-    return (mask != 0);
+    // TDXFV_ABST_LBL: x86 / x86
+    if (mask == 0) {
+        // BSF on zero is undefined, but we match the return value check
+        return false;
+    }
+
+    // Find the position of the least significant bit set to 1
+    for (uint64_t i = 0; i < 64; i++) {
+        if ((mask & (1ULL << i)) != 0) {
+            *lsb_position = i;
+            break;
+        }
+    }
+    return true;
 #else
     _ASM_VOLATILE_ ("bsfq %1, %0 \n"
                         :"=r"(*lsb_position)
@@ -904,9 +981,20 @@ _STATIC_INLINE_ bool_t bit_scan_forward64(uint64_t mask, uint64_t* lsb_position)
 _STATIC_INLINE_ bool_t bit_scan_reverse32(uint32_t value, uint32_t* msb_position)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *msb_position = TDXFV_NONDET_uint32t();
-    return (value != 0);
+    // TDXFV_ABST_LBL: x86 / x86
+    if (value == 0) {
+        // BSR on zero is undefined, but we match the return value check
+        return false;
+    }
+
+    // Find the position of the most significant bit set to 1
+    for (int32_t i = 31; i >= 0; i--) {
+        if ((value & (1U << i)) != 0) {
+            *msb_position = i;
+            break;
+        }
+    }
+    return true;
 #else
     _ASM_VOLATILE_ ("bsrl %1, %0 \n"
                             :"=r"(*msb_position)
@@ -919,9 +1007,20 @@ _STATIC_INLINE_ bool_t bit_scan_reverse32(uint32_t value, uint32_t* msb_position
 _STATIC_INLINE_ bool_t bit_scan_reverse64(uint64_t value, uint64_t* msb_position)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *msb_position = TDXFV_NONDET_uint64t();
-    return (value != 0);
+    // TDXFV_ABST_LBL: x86 / x86
+    if (value == 0) {
+        // BSR on zero is undefined, but we match the return value check
+        return false;
+    }
+
+    // Find the position of the most significant bit set to 1
+    for (int64_t i = 63; i >= 0; i--) {
+        if ((value & (1ULL << i)) != 0) {
+            *msb_position = i;
+            break;
+        }
+    }
+    return true;
 #else
     _ASM_VOLATILE_ ("bsrq %1, %0 \n"
                             :"=r"(*msb_position)
@@ -934,8 +1033,15 @@ _STATIC_INLINE_ bool_t bit_scan_reverse64(uint64_t value, uint64_t* msb_position
 _STATIC_INLINE_ void bts_32b(volatile uint32_t* mem, uint32_t bit)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint32t();
+    // TDXFV_ABST_LBL: x86 / x86
+    uint32_t bit_position = bit % 32;
+    uint32_t bit_mask = 1U << bit_position;
+    
+    // The actual behavior of BTS: sets the bit and affects flags
+    // We don't need to save the previous bit value since the function
+    // doesn't return it, but it would be available as ((*mem & bit_mask) != 0)
+    
+    *mem |= bit_mask;
 #else
     _ASM_VOLATILE_ ("bts %1, %0;" : "=m" ( *mem ) : "a"(bit) : "cc" , "memory");
 #endif
@@ -944,8 +1050,15 @@ _STATIC_INLINE_ void bts_32b(volatile uint32_t* mem, uint32_t bit)
 _STATIC_INLINE_ void btr_32b(volatile uint32_t* mem, uint32_t bit)
 {
 #ifdef TDXFV_NO_ASM
-    // TDXFV_ABST_LBL: x86 / nondet
-    *mem = TDXFV_NONDET_uint32t();
+    // TDXFV_ABST_LBL: x86 / x86
+    uint32_t bit_position = bit % 32;
+    uint32_t bit_mask = 1U << bit_position;
+    
+    // The actual behavior of BTR: tests the bit and then resets it
+    // We don't need to save the previous bit value since the function
+    // doesn't return it, but it would be available as ((*mem & bit_mask) != 0)
+    
+    *mem &= ~bit_mask;
 #else
     _ASM_VOLATILE_ ("btr %1, %0;" : "=m" ( *mem ) : "a"(bit) : "cc" , "memory");
 #endif
@@ -955,8 +1068,13 @@ _STATIC_INLINE_ void movdir64b(const void *src, uint64_t dst)
 {
 #ifdef TDXFV_NO_ASM
     // TDXFV_ABST_LBL: x86 / x86
+    // Check 64-byte alignment requirements
+    TDXFV_ASSERT(((uint64_t)src % 64) == 0);
+    TDXFV_ASSERT((dst % 64) == 0);
+
+    // Copy 64 bytes from src to dst
     for (int i = 0; i < 8; i++) {
-        *((uint64_t*)src + i) = *((uint64_t*)dst + i);
+        *((uint64_t*)dst + i) = *((uint64_t*)src + i);
     }
 #else
     _ASM_VOLATILE_ (".byte  0x66, 0x0F, 0x38, 0xF8," /*movdir64b op*/ "0x37;" /*ModRM = RDI->RSI*/

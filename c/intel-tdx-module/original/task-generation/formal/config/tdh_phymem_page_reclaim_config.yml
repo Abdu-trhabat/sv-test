@@ -24,146 +24,566 @@ name: tdh_phymem_page_reclaim_config.yml
 description: reach-safety tasks for tdh_phymem_page_reclaim
 tasks:
 
-  - name: tdh_phymem_page_reclaim__requirement__expected
+  - name: tdh_phymem_page_reclaim__expected__safety_requirement
     target:
       filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-      method: tdh_phymem_page_reclaim__valid_entry
+      method: tdh_phymem_page_reclaim__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_tdh_phymem_reclaim
       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_precond
+        method: tdh_phymem_page_reclaim__expected__precond
     after_target:
       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_postcond
+        method: tdh_phymem_page_reclaim__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
     properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: true
 
-  - name: tdh_phymem_page_reclaim__requirement__unexpected
+  - name: tdh_phymem_page_reclaim__expected__cover_entry
     target:
       filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-      method: tdh_phymem_page_reclaim__invalid_entry
+      method: tdh_phymem_page_reclaim__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_tdh_phymem_reclaim
       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_precond
+        method: tdh_phymem_page_reclaim__expected__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
     after_target:
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_postcond
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
     properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_phymem_page_reclaim__requirement__invalid_input_pa
-    target:
-      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-      method: tdh_phymem_page_reclaim__invalid_input_pa
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_precond
-    after_target:
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_phymem_page_reclaim__requirement__invalid_state_pamt_metadata
-    target:
-      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-      method: tdh_phymem_page_reclaim__invalid_state_pamt_metadata
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_precond
-    after_target:
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_phymem_page_reclaim__requirement__invalid_state_lifecycle
-    target:
-      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-      method: tdh_phymem_page_reclaim__invalid_state_lifecycle
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_precond
-    after_target:
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_phymem_page_reclaim__requirement__invalid_state_child_count
-    target:
-      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-      method: tdh_phymem_page_reclaim__invalid_state_child_count
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_precond
-    after_target:
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_postcond
-    properties:
-      - property_file: unreach-call.prp
-        expected_verdict: true
-
-  - name: tdh_phymem_page_reclaim__cover__success
-    target:
-      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-      method: tdh_phymem_page_reclaim__free_entry
-    before_target:
-      - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_precond
-    after_target:
-      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__post_cover_success
-    properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: false
 
-  - name: tdh_phymem_page_reclaim__cover__unsuccess
+  - name: tdh_phymem_page_reclaim__expected__cover_exit
     target:
       filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-      method: tdh_phymem_page_reclaim__free_entry
+      method: tdh_phymem_page_reclaim__call
     before_target:
       - filename: formal/src/initialization.c
-        method: init_tdx_general
-      - filename: formal/src/initialization.c
-        method: init_vmm_dispatcher
+        method: init_tdh_phymem_reclaim
       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__common_precond
+        method: tdh_phymem_page_reclaim__expected__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__expected__cover_proof
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__expected__precond
     after_target:
       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
-        method: tdh_phymem_page_reclaim__post_cover_unsuccess
+        method: tdh_phymem_page_reclaim__expected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
     properties:
-      - property_file: unreach-call.prp
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__unexpected__safety_requirement
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__unexpected__precond
+    after_target:
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_phymem_page_reclaim__unexpected__cover_entry
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__unexpected__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__unexpected__cover_exit
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__unexpected__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__unexpected__cover_proof
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__unexpected__precond
+    after_target:
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__unexpected__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_input_pa__safety_requirement
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_input_pa__precond
+    after_target:
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_input_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_phymem_page_reclaim__invalid_input_pa__cover_entry
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_input_pa__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__invalid_input_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_input_pa__cover_exit
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_input_pa__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__invalid_input_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_input_pa__cover_proof
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_input_pa__precond
+    after_target:
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_input_pa__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  # - name: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__safety_requirement
+  #   target:
+  #     filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+  #     method: tdh_phymem_page_reclaim__call
+  #   before_target:
+  #     - filename: formal/src/initialization.c
+  #       method: init_tdh_phymem_reclaim
+  #     - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+  #       method: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__precond
+  #   after_target:
+  #     - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+  #       method: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__postcond
+  #     - filename: formal/src/initialization.c
+  #       method: close_tdh_phymem_reclaim_with_check
+  #   properties:
+  #     - property_file: ../../../properties/unreach-call.prp
+  #       expected_verdict: true
+  #     - property_file: ../../../properties/coverage-error-call.prp
+  #       expected_verdict: true
+
+  - name: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__cover_entry
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__cover_exit
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__cover_proof
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__precond
+    after_target:
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_pamt_metadata__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_state_lifecycle__safety_requirement
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_lifecycle__precond
+    after_target:
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_phymem_page_reclaim__invalid_state_lifecycle__cover_entry
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_lifecycle__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_state_lifecycle__cover_exit
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_lifecycle__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_state_lifecycle__cover_proof
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_lifecycle__precond
+    after_target:
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_lifecycle__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_state_child_count__safety_requirement
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_child_count__precond
+    after_target:
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_child_count__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: true
+
+  - name: tdh_phymem_page_reclaim__invalid_state_child_count__cover_entry
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_child_count__precond
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    after_target:
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__invalid_state_child_count__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_state_child_count__cover_exit
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_child_count__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+#       - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+#         method: tdh_phymem_page_reclaim__invalid_state_child_count__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__invalid_state_child_count__cover_proof
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_child_count__precond
+    after_target:
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__invalid_state_child_count__postcond
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim_with_check
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  #
+  # Return status code coverage tasks
+  #
+
+  - name: tdh_phymem_page_reclaim__unconstrained__cover_exit_success
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__unconstrained__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: seam_call__exit_status_success
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
+        expected_verdict: false
+
+  - name: tdh_phymem_page_reclaim__unconstrained__cover_exit_unsuccess
+    target:
+      filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+      method: tdh_phymem_page_reclaim__call
+    before_target:
+      - filename: formal/src/initialization.c
+        method: init_tdh_phymem_reclaim
+      - filename: formal/harness/tdh_phymem_page_reclaim_harness.c
+        method: tdh_phymem_page_reclaim__unconstrained__precond
+    after_target:
+      - filename: formal/harness/common.c
+        method: seam_call__exit_status_unsuccess
+      - filename: formal/harness/common.c
+        method: insert_cover_point
+      - filename: formal/src/initialization.c
+        method: close_tdh_phymem_reclaim
+    properties:
+      - property_file: ../../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../../properties/coverage-error-call.prp
         expected_verdict: false

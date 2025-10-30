@@ -24,6 +24,7 @@
  * @file tdg_mr_report_harness.c
  * @brief TDGMRREPORT API handler FV harness
  */
+
 #include "tdx_td_api_handlers.h"
 #include "tdx_basic_defs.h"
 #include "tdx_basic_types.h"
@@ -41,81 +42,28 @@
 #include "fv_utils.h"
 #include "fv_env.h"
 
-void tdg_mr_report__common_precond() {
+void tdg_mr_report__call() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    tdx_leaf_and_version_t leaf_opcode = { .raw = tdx_local_data_ptr->td_regs.rax };
+    bool_t interrupt_occurred = false;
+
+    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_mr_report(
+        tdx_local_data_ptr->td_regs.rcx,
+        tdx_local_data_ptr->td_regs.rdx,
+        tdx_local_data_ptr->td_regs.r8,
+        &interrupt_occurred
+    );
+}
+
+static inline void tdg_mr_report__common_precond() {
+    tdx_leaf_and_version_t leaf_opcode = { .raw = get_local_data()->td_regs.rax };
     TDXFV_ASSUME(leaf_opcode.leaf == TDG_MR_REPORT_LEAF);
 }
 
-void tdg_mr_report__invalid_entry() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    bool_t interrupt_occurred = false;
-
-    // Task-specific precondition
-    TDXFV_ASSUME(tdx_local_data_ptr->vmm_regs.r8 != 0);
-
-    // Call ABI function
-    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_mr_report(
-        tdx_local_data_ptr->td_regs.rcx,
-        tdx_local_data_ptr->td_regs.rdx,
-        tdx_local_data_ptr->td_regs.r8,
-        &interrupt_occurred
-    );
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax != TDX_SUCCESS);
+static inline bool_t input_r8_is_valid() {
+    return (get_local_data()->vmm_regs.r8 == 0);
 }
 
-void tdg_mr_report__valid_entry() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    bool_t interrupt_occurred = false;
-
-    // Task-specific precondition
-    TDXFV_ASSUME(tdx_local_data_ptr->vmm_regs.r8 == 0);
-
-    // Call ABI function
-    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_mr_report(
-        tdx_local_data_ptr->td_regs.rcx,
-        tdx_local_data_ptr->td_regs.rdx,
-        tdx_local_data_ptr->td_regs.r8,
-        &interrupt_occurred
-    );
-
-    // Task-specific postcondition
-}
-
-void tdg_mr_report__free_entry() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    bool_t interrupt_occurred = false;
-
-    // Task-specific precondition
-
-    // Call ABI function
-    tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax = tdg_mr_report(
-        tdx_local_data_ptr->td_regs.rcx,
-        tdx_local_data_ptr->td_regs.rdx,
-        tdx_local_data_ptr->td_regs.r8,
-        &interrupt_occurred
-    );
-
-    // Task-specific postcondition
-}
-
-void tdg_mr_report__post_cover_success() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    TDXFV_ASSUME(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdg_mr_report__post_cover_unsuccess() {
-    tdx_module_local_t* tdx_local_data_ptr = get_local_data();
-    TDXFV_ASSUME(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax != TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdg_mr_report__common_postcond() {
+static inline void tdg_mr_report__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();
 
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rax == shadow_td_regs_precall.rax);
@@ -168,4 +116,33 @@ void tdg_mr_report__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r13 == shadow_vmm_regs_precall.r13);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r14 == shadow_vmm_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r15 == shadow_vmm_regs_precall.r15);
+}
+
+void tdg_mr_report__expected__precond() {
+    tdg_mr_report__common_precond();
+    TDXFV_ASSUME(input_r8_is_valid());
+}
+
+void tdg_mr_report__expected__postcond() {
+#ifdef TDXFV_CHECK_TDX_SUCCESS
+    TDXFV_ASSERT(get_local_data()->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_SUCCESS);
+#else
+    TDXFV_ASSERT(true);
+#endif
+    tdg_mr_report__common_postcond();
+}
+
+void tdg_mr_report__unexpected__precond() {
+    tdg_mr_report__common_precond();
+    TDXFV_ASSUME(!input_r8_is_valid());
+}
+
+void tdg_mr_report__unexpected__postcond() {
+    TDXFV_ASSERT(get_local_data()->vp_ctx.tdvps->guest_state.gpr_state.rax != TDX_SUCCESS);
+    tdg_mr_report__common_postcond();
+}
+
+void tdg_mr_report__unconstrained__precond() {
+    tdg_mr_report__common_precond();
+    TDXFV_ASSUME(true);
 }

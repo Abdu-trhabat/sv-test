@@ -1,6 +1,5 @@
 // SPDX-FileCopyrightText: 2024 Dirk Beyer <https://www.sosy-lab.org>
 // SPDX-License-Identifier: Apache-2.0
-
 extern unsigned long long __VERIFIER_nondet_ulonglong(void);
 void __VERIFIER_nondet_struct_tdmr_info_entry_s(struct tdmr_info_entry_s *dest) {
     (*dest).tdmr_base = __VERIFIER_nondet_ulonglong();
@@ -47,13 +46,61 @@ void __VERIFIER_nondet_union_gprs_state_u(union gprs_state_u *dest) {
     #endif
 }
 
-extern unsigned int __VERIFIER_nondet_uint(void);
 extern unsigned short __VERIFIER_nondet_ushort(void);
+extern unsigned int __VERIFIER_nondet_uint(void);
+void __VERIFIER_nondet_mktme_keyid_ctrl_t(mktme_keyid_ctrl_t *dest) {
+    #ifdef FV_init_mktme_keyid_ctrl_t_anon_struct_0
+    (*dest).command = __VERIFIER_nondet_uint();
+    (*dest).enc_algo = __VERIFIER_nondet_uint();
+    (*dest).rsvd = __VERIFIER_nondet_uint();
+    
+    #else
+    (*dest).raw = __VERIFIER_nondet_uint();
+    #endif
+}
+
 extern unsigned char __VERIFIER_nondet_uchar(void);
 void __VERIFIER_nondet_array_1D_unsigned_char(unsigned char (*dest)[], int dim0) {
     for (int i = 0; i < dim0; i++) {
         (*dest)[i] = __VERIFIER_nondet_uchar();
     }
+}
+
+void __VERIFIER_nondet_array_1D_unsigned_int(unsigned int (*dest)[], int dim0) {
+    for (int i = 0; i < dim0; i++) {
+        (*dest)[i] = __VERIFIER_nondet_uint();
+    }
+}
+
+void __VERIFIER_nondet_uint128_t(uint128_t *dest) {
+    #ifdef FV_init_uint128_t_qwords
+    __VERIFIER_nondet_array_1D_unsigned_long_long(&((*dest).qwords), 2);
+    
+    #elif FV_init_uint128_t_dwords
+    __VERIFIER_nondet_array_1D_unsigned_int(&((*dest).dwords), 4);
+    
+    #else
+    __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).bytes), 16);
+    #endif
+}
+
+void __VERIFIER_nondet_struct_mktme_key_program_s(struct mktme_key_program_s *dest) {
+    (*dest).keyid = __VERIFIER_nondet_ushort();
+    __VERIFIER_nondet_mktme_keyid_ctrl_t(&((*dest).keyid_ctrl));
+    __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).rsvd), 58);
+    #ifdef FV_init_anon_union_1_key
+    __VERIFIER_nondet_uint128_t(&((*dest).key));
+    
+    #else
+    __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).key_field_1), 64);
+    #endif
+    #ifdef FV_init_anon_union_2_tweak_key
+    __VERIFIER_nondet_uint128_t(&((*dest).tweak_key));
+    
+    #else
+    __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).key_field_2), 64);
+    #endif
+    __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).rsvd2), 64);
 }
 
 void __VERIFIER_nondet_struct_tdvps_ve_info_s(struct tdvps_ve_info_s *dest) {
@@ -64,7 +111,7 @@ void __VERIFIER_nondet_struct_tdvps_ve_info_s(struct tdvps_ve_info_s *dest) {
     (*dest).gpa = __VERIFIER_nondet_ulonglong();
     (*dest).eptp_index = __VERIFIER_nondet_ushort();
     __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).reserved0), 2);
-    #ifdef FV_init_anon_union_1_anon_struct_0
+    #ifdef FV_init_anon_union_3_anon_struct_0
     (*dest).instruction_length = __VERIFIER_nondet_uint();
     (*dest).instruction_info = __VERIFIER_nondet_uint();
     
@@ -99,12 +146,6 @@ void __VERIFIER_nondet_array_1D_union_l2_vm_debug_ctls_u(union l2_vm_debug_ctls_
         #else
         (*dest)[i].raw = __VERIFIER_nondet_ulonglong();
         #endif
-    }
-}
-
-void __VERIFIER_nondet_array_1D_unsigned_int(unsigned int (*dest)[], int dim0) {
-    for (int i = 0; i < dim0; i++) {
-        (*dest)[i] = __VERIFIER_nondet_uint();
     }
 }
 
@@ -199,18 +240,6 @@ void __VERIFIER_nondet_array_1D_uint128_t(uint128_t (*dest)[], int dim0) {
         __VERIFIER_nondet_array_1D_unsigned_char(&((*dest)[i].bytes), 16);
         #endif
     }
-}
-
-void __VERIFIER_nondet_uint128_t(uint128_t *dest) {
-    #ifdef FV_init_uint128_t_qwords
-    __VERIFIER_nondet_array_1D_unsigned_long_long(&((*dest).qwords), 2);
-    
-    #elif FV_init_uint128_t_dwords
-    __VERIFIER_nondet_array_1D_unsigned_int(&((*dest).dwords), 4);
-    
-    #else
-    __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).bytes), 16);
-    #endif
 }
 
 void __VERIFIER_nondet_union_loadiwkey_ctl_u(union loadiwkey_ctl_u *dest) {
@@ -325,7 +354,7 @@ void __VERIFIER_nondet_xsave_area_t(xsave_area_t *dest) {
 }
 
 void __VERIFIER_nondet_struct_tdvps_guest_extension_state_s(struct tdvps_guest_extension_state_s *dest) {
-    #ifdef FV_init_anon_union_2_xbuf
+    #ifdef FV_init_anon_union_4_xbuf
     __VERIFIER_nondet_xsave_area_t(&((*dest).xbuf));
     
     #else
@@ -994,18 +1023,6 @@ void __VERIFIER_nondet_struct_tdx_module_global_s(struct tdx_module_global_s *de
     __VERIFIER_nondet_union_cpuid_1a_eax_u(&((*dest).native_model_info));
 }
 
-extern signed int __VERIFIER_nondet_int(void);
-page_size_t __VERIFIER_nondet_page_size_t(void) {
-    switch (__VERIFIER_nondet_int()) {
-    case 0:
-        return PT_4KB;
-    case 1:
-        return PT_2MB;
-    default:
-        return PT_1GB;
-    }
-}
-
 void __VERIFIER_nondet_sharex_hp_lock_t(sharex_hp_lock_t *dest) {
     #ifdef FV_init_sharex_hp_lock_t_anon_struct_0
     (*dest).exclusive = __VERIFIER_nondet_ushort();
@@ -1017,6 +1034,7 @@ void __VERIFIER_nondet_sharex_hp_lock_t(sharex_hp_lock_t *dest) {
     #endif
 }
 
+extern signed int __VERIFIER_nondet_int(void);
 page_type_t __VERIFIER_nondet_page_type_t(void) {
     switch (__VERIFIER_nondet_int()) {
     case 0:
@@ -1260,7 +1278,7 @@ void __VERIFIER_nondet_array_1D_unsigned_short(unsigned short (*dest)[], int dim
 }
 
 void __VERIFIER_nondet_struct_epoch_and_refcount_s(struct epoch_and_refcount_s *dest) {
-    #ifdef FV_init_anon_union_3_anon_struct_0
+    #ifdef FV_init_anon_union_5_anon_struct_0
     (*dest).td_epoch = __VERIFIER_nondet_ulonglong();
     __VERIFIER_nondet_array_1D_unsigned_short(&((*dest).refcount), 2);
     __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).reserved), 4);
@@ -1508,10 +1526,10 @@ void __VERIFIER_nondet_struct_tdcs_s(struct tdcs_s *dest) {
     __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).MSR_BITMAPS), 4096);
     __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).sept_root_page), 4096);
     __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).zero_page), 4096);
-    #ifdef FV_init_anon_union_4_migsc_links_page
+    #ifdef FV_init_anon_union_6_migsc_links_page
     __VERIFIER_nondet_array_1D_unsigned_char(&((*dest).migsc_links_page), 4096);
     
-    #elif FV_init_anon_union_5_migsc_links
+    #elif FV_init_anon_union_7_migsc_links
     __VERIFIER_nondet_array_1D_union_migsc_link_u(&((*dest).migsc_links), 512);
     
     #else
@@ -1555,10 +1573,10 @@ void __VERIFIER_nondet_ia32_debugctl_t(ia32_debugctl_t *dest) {
 
 void __VERIFIER_nondet_union_pa_u(union pa_u *dest) {
     #ifdef FV_init_union_pa_u_anon_struct_0
-    #ifdef FV_init_anon_union_20_full_pa
+    #ifdef FV_init_anon_union_22_full_pa
     (*dest).full_pa = __VERIFIER_nondet_ulonglong();
     
-    #elif FV_init_anon_union_21_fields_4k
+    #elif FV_init_anon_union_23_fields_4k
     (*dest).fields_4k.page_offset = __VERIFIER_nondet_ulonglong();
     (*dest).fields_4k.pt_index = __VERIFIER_nondet_ulonglong();
     (*dest).fields_4k.pd_index = __VERIFIER_nondet_ulonglong();
@@ -1566,26 +1584,26 @@ void __VERIFIER_nondet_union_pa_u(union pa_u *dest) {
     (*dest).fields_4k.pml4_index = __VERIFIER_nondet_ulonglong();
     (*dest).fields_4k.pml5_index = __VERIFIER_nondet_ulonglong();
     
-    #elif FV_init_anon_union_22_fields_2m
+    #elif FV_init_anon_union_24_fields_2m
     (*dest).fields_2m.page_offset = __VERIFIER_nondet_ulonglong();
     (*dest).fields_2m.pd_index = __VERIFIER_nondet_ulonglong();
     (*dest).fields_2m.pdpt_index = __VERIFIER_nondet_ulonglong();
     (*dest).fields_2m.pml4_index = __VERIFIER_nondet_ulonglong();
     (*dest).fields_2m.pml5_index = __VERIFIER_nondet_ulonglong();
     
-    #elif FV_init_anon_union_23_pamt_4k
+    #elif FV_init_anon_union_25_pamt_4k
     (*dest).pamt_4k.page_offset = __VERIFIER_nondet_ulonglong();
     (*dest).pamt_4k.idx = __VERIFIER_nondet_ulonglong();
     
-    #elif FV_init_anon_union_24_pamt_2m
+    #elif FV_init_anon_union_26_pamt_2m
     (*dest).pamt_2m.page_offset = __VERIFIER_nondet_ulonglong();
     (*dest).pamt_2m.idx = __VERIFIER_nondet_ulonglong();
     
-    #elif FV_init_anon_union_25_anon_struct_5
+    #elif FV_init_anon_union_27_anon_struct_5
     (*dest).low_12_bits = __VERIFIER_nondet_ulonglong();
     (*dest).page_4k_num = __VERIFIER_nondet_ulonglong();
     
-    #elif FV_init_anon_union_26_anon_struct_6
+    #elif FV_init_anon_union_28_anon_struct_6
     (*dest).low_21_bits = __VERIFIER_nondet_ulonglong();
     (*dest).page_2m_num = __VERIFIER_nondet_ulonglong();
     
@@ -1707,7 +1725,7 @@ void __VERIFIER_nondet_array_1D_struct_cmr_info_entry_s(struct cmr_info_entry_s 
 }
 
 void __VERIFIER_nondet_struct_sysinfo_table_s(struct sysinfo_table_s *dest) {
-    #ifdef FV_init_anon_union_27_mcheck_fields
+    #ifdef FV_init_anon_union_29_mcheck_fields
     (*dest).mcheck_fields.version = __VERIFIER_nondet_ulonglong();
     (*dest).mcheck_fields.tot_num_lps = __VERIFIER_nondet_uint();
     (*dest).mcheck_fields.tot_num_sockets = __VERIFIER_nondet_uint();

@@ -24,6 +24,7 @@
  * @file tdh_phymem_page_reclaim_harness.c
  * @brief TDHPHYMEMPAGERECLAIM API handler FV harness
  */
+
 #include "tdx_vmm_api_handlers.h"
 #include "tdx_basic_defs.h"
 #include "auto_gen/tdx_error_codes_defs.h"
@@ -42,254 +43,90 @@
 pamt_block_t reclaimed_page_pamt_block;
 pamt_entry_t reclaimed_page_pamt_entry;
 page_size_t reclaimed_page_leaf_size;
+pamt_entry_t* reclaimed_page_pamt_entry_ptr;
+pa_t page_owner_pa;
 
-void tdh_phymem_page_reclaim__common_precond() {
+void tdh_phymem_page_reclaim__call() {
     tdx_module_local_t* local_data = get_local_data();
+    
+    local_data->vmm_regs.rax = tdh_phymem_page_reclaim(local_data->vmm_regs.rcx);
+}
+
+static inline void tdh_phymem_page_reclaim__common_precond() {
     tdx_leaf_and_version_t leaf_opcode;
-    leaf_opcode.raw = local_data->vmm_regs.rax;
+    leaf_opcode.raw = get_local_data()->vmm_regs.rax;
     TDXFV_ASSUME(leaf_opcode.leaf == TDH_PHYMEM_PAGE_RECLAIM_LEAF);
 
     TDXFV_NONDET_struct_pamt_block_t(&reclaimed_page_pamt_block);
     TDXFV_NONDET_struct_pamt_entry_t(&reclaimed_page_pamt_entry);
     reclaimed_page_leaf_size = TDXFV_NONDET_page_size_t();
+    reclaimed_page_pamt_entry_ptr = NULL;
 }
 
-void tdh_phymem_page_reclaim__invalid_input_pa(){
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
+static inline bool_t input_pa_is_valid() {
+    pa_t pa = { .raw = get_local_data()->vmm_regs.rcx };
+    return (
+        ((get_local_data()->vmm_regs.rcx & (_4KB - 1)) == 0) &&
+        (((pa.full_pa & get_global_data()->hkid_mask) >> get_global_data()->hkid_start_bit) == 0) &&
+        (get_local_data()->vmm_regs.rcx < BIT(MAX_PA))
+    );
+}
 
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) != 0); // invalid input pa
-
-    pa_t reclaimed_page_pa = (pa_t) local_data->vmm_regs.rcx;
-    pamt_entry_t* reclaimed_page_pamt_entry_ptr = NULL;
+static inline bool_t state_pamt_metadata_is_valid() {
+    pa_t reclaimed_page_pa = (pa_t) get_local_data()->vmm_regs.rcx;
     bool_t pamt_get_block_result = pamt_get_block(reclaimed_page_pa, &reclaimed_page_pamt_block);
-    TDXFV_ASSUME(pamt_get_block_result == true); // borrowing impl helper
-    api_error_code_e pamt_walk_result = pamt_walk(reclaimed_page_pa, reclaimed_page_pamt_block, TDX_LOCK_EXCLUSIVE, 
-                                                  &reclaimed_page_leaf_size, false, false, &reclaimed_page_pamt_entry_ptr);
-    TDXFV_ASSUME(pamt_walk_result == TDX_SUCCESS); // borrowing impl helper
-    TDXFV_ASSUME((reclaimed_page_pamt_entry_ptr->pt != PT_NDA) && (reclaimed_page_pamt_entry_ptr->pt != PT_RSVD));  
-
-    tdr_t* tdr_ptr = NULL;
-    pa_t page_owner_pa = get_pamt_entry_owner(reclaimed_page_pamt_entry_ptr);
-    if (reclaimed_page_pamt_entry_ptr->pt != PT_TDR){
-        pamt_entry_t* tdr_pamt_entry_ptr = NULL; // dummy
-        bool_t tdr_locked_flag = false; // dummy
-        api_error_type map_result = lock_and_map_implicit_tdr(page_owner_pa, OPERAND_ID_TDR, 1, TDX_LOCK_SHARED, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr);
-        TDXFV_ASSUME(map_result == TDX_SUCCESS); // XXX potential overconstrain
-        TDXFV_ASSUME(tdr_ptr->management_fields.lifecycle_state == TD_TEARDOWN);
-    } else {
-        tdr_ptr = map_pa_with_global_hkid((void*)local_data->vmm_regs.rcx, 1);
-        TDXFV_ASSUME(tdr_ptr->management_fields.lifecycle_state == TD_TEARDOWN);
-        TDXFV_ASSUME(tdr_ptr->management_fields.chldcnt == 0);
+    if (!pamt_get_block_result) {
+        return false;
     }
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_phymem_page_reclaim(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX));
-    TDXFV_ASSERT(local_data->vmm_regs.rcx == reclaimed_page_pamt_entry_ptr->pt);
-    TDXFV_ASSERT(local_data->vmm_regs.rdx == page_owner_pa.raw);
-    TDXFV_ASSERT((local_data->vmm_regs.r8 >> 3) == 0);
-    TDXFV_ASSERT((local_data->vmm_regs.r8 & 7) == (uint64_t) reclaimed_page_leaf_size);
-    TDXFV_ASSERT(local_data->vmm_regs.r9 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r10 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r11 == 0);
-}
-
-void tdh_phymem_page_reclaim__invalid_state_pamt_metadata(){
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-
-    pa_t reclaimed_page_pa = (pa_t) local_data->vmm_regs.rcx;
-    pamt_entry_t* reclaimed_page_pamt_entry_ptr = NULL;
-    bool_t pamt_get_block_result = pamt_get_block(reclaimed_page_pa, &reclaimed_page_pamt_block);
-    TDXFV_ASSUME(pamt_get_block_result == true); // borrowing impl helper
-    api_error_code_e pamt_walk_result = pamt_walk(reclaimed_page_pa, reclaimed_page_pamt_block, TDX_LOCK_EXCLUSIVE, 
-                                                  &reclaimed_page_leaf_size, false, false, &reclaimed_page_pamt_entry_ptr);
-    TDXFV_ASSUME(pamt_walk_result == TDX_SUCCESS); // borrowing impl helper
-    TDXFV_ASSUME((reclaimed_page_pamt_entry_ptr->pt == PT_NDA) || (reclaimed_page_pamt_entry_ptr->pt == PT_RSVD)); // invalid metadata
-
-    tdr_t* tdr_ptr = NULL;
-    pa_t page_owner_pa = get_pamt_entry_owner(reclaimed_page_pamt_entry_ptr);
-    #if 1
-    if (reclaimed_page_pamt_entry_ptr->pt != PT_TDR){
-        pamt_entry_t* tdr_pamt_entry_ptr = NULL; // dummy
-        bool_t tdr_locked_flag = false; // dummy
-        api_error_type map_result = lock_and_map_implicit_tdr(page_owner_pa, OPERAND_ID_TDR, 1, TDX_LOCK_SHARED, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr);
-        TDXFV_ASSUME(map_result == TDX_SUCCESS); // XXX potential overconstrain
-        TDXFV_ASSUME(tdr_ptr->management_fields.lifecycle_state == TD_TEARDOWN);
-    } else {
-        tdr_ptr = map_pa_with_global_hkid((void*)local_data->vmm_regs.rcx, 1);
-        TDXFV_ASSUME(tdr_ptr->management_fields.lifecycle_state == TD_TEARDOWN);
-        TDXFV_ASSUME(tdr_ptr->management_fields.chldcnt == 0);
+    api_error_code_e pamt_walk_result = pamt_walk(
+        reclaimed_page_pa, reclaimed_page_pamt_block, TDX_LOCK_EXCLUSIVE, 
+        &reclaimed_page_leaf_size, false, false, &reclaimed_page_pamt_entry_ptr
+    );
+    if (!(
+        (pamt_walk_result == TDX_SUCCESS) &&
+        (reclaimed_page_pamt_entry_ptr != NULL)
+    )) {
+        return false;
     }
-    #endif
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_phymem_page_reclaim(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT);
-    TDXFV_ASSERT(local_data->vmm_regs.rcx == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.rdx == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r8 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r9 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r10 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r11 == 0);
+    return (
+        (reclaimed_page_pamt_entry_ptr->pt != PT_NDA) && 
+        (reclaimed_page_pamt_entry_ptr->pt != PT_RSVD)
+    );
 }
 
-void tdh_phymem_page_reclaim__invalid_state_lifecycle(){
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-
-    pa_t reclaimed_page_pa = (pa_t) local_data->vmm_regs.rcx;
-    pamt_entry_t* reclaimed_page_pamt_entry_ptr = NULL;
-    bool_t pamt_get_block_result = pamt_get_block(reclaimed_page_pa, &reclaimed_page_pamt_block);
-    TDXFV_ASSUME(pamt_get_block_result == true); // borrowing impl helper
-    api_error_code_e pamt_walk_result = pamt_walk(reclaimed_page_pa, reclaimed_page_pamt_block, TDX_LOCK_EXCLUSIVE, 
-                                                  &reclaimed_page_leaf_size, false, false, &reclaimed_page_pamt_entry_ptr);
-    TDXFV_ASSUME(pamt_walk_result == TDX_SUCCESS); // borrowing impl helper
-    TDXFV_ASSUME((reclaimed_page_pamt_entry_ptr->pt != PT_NDA) && (reclaimed_page_pamt_entry_ptr->pt != PT_RSVD));  
-
-    tdr_t* tdr_ptr = NULL;
-    pa_t page_owner_pa = get_pamt_entry_owner(reclaimed_page_pamt_entry_ptr);
-    if (reclaimed_page_pamt_entry_ptr->pt != PT_TDR){
-        pamt_entry_t* tdr_pamt_entry_ptr = NULL; // dummy
-        bool_t tdr_locked_flag = false; // dummy
-        api_error_type map_result = lock_and_map_implicit_tdr(page_owner_pa, OPERAND_ID_TDR, 1, TDX_LOCK_SHARED, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr);
-        TDXFV_ASSUME(map_result == TDX_SUCCESS); // XXX potential overconstrain
-        TDXFV_ASSUME(tdr_ptr->management_fields.lifecycle_state != TD_TEARDOWN); // invalid lifecycle
-    } else {
-        tdr_ptr = map_pa_with_global_hkid((void*)local_data->vmm_regs.rcx, 1);
-        TDXFV_ASSUME(tdr_ptr->management_fields.lifecycle_state != TD_TEARDOWN); // invalid lifecycle
-        TDXFV_ASSUME(tdr_ptr->management_fields.chldcnt == 0);
+static inline bool_t state_lifecycle_is_valid() {
+    if (reclaimed_page_pamt_entry_ptr == NULL) {
+        return false;
     }
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_phymem_page_reclaim(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_LIFECYCLE_STATE_INCORRECT);
-    TDXFV_ASSERT(local_data->vmm_regs.rcx == reclaimed_page_pamt_entry_ptr->pt);
-    TDXFV_ASSERT(local_data->vmm_regs.rdx == page_owner_pa.raw);
-    TDXFV_ASSERT((local_data->vmm_regs.r8 >> 3) == 0);
-    TDXFV_ASSERT((local_data->vmm_regs.r8 & 7) == (uint64_t) reclaimed_page_leaf_size);
-    TDXFV_ASSERT(local_data->vmm_regs.r9 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r10 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r11 == 0);
-}
-
-void tdh_phymem_page_reclaim__invalid_state_child_count(){
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-
-    pa_t reclaimed_page_pa = (pa_t) local_data->vmm_regs.rcx;
-    pamt_entry_t* reclaimed_page_pamt_entry_ptr = NULL;
-    bool_t pamt_get_block_result = pamt_get_block(reclaimed_page_pa, &reclaimed_page_pamt_block);
-    TDXFV_ASSUME(pamt_get_block_result == true); // borrowing impl helper
-    api_error_code_e pamt_walk_result = pamt_walk(reclaimed_page_pa, reclaimed_page_pamt_block, TDX_LOCK_EXCLUSIVE, 
-                                                  &reclaimed_page_leaf_size, false, false, &reclaimed_page_pamt_entry_ptr);
-    TDXFV_ASSUME(pamt_walk_result == TDX_SUCCESS); // borrowing impl helper
-    TDXFV_ASSUME((reclaimed_page_pamt_entry_ptr->pt != PT_NDA) && (reclaimed_page_pamt_entry_ptr->pt != PT_RSVD));  
-
     tdr_t* tdr_ptr = NULL;
-    pa_t page_owner_pa = get_pamt_entry_owner(reclaimed_page_pamt_entry_ptr);
-#if 0
     if (reclaimed_page_pamt_entry_ptr->pt != PT_TDR){
+        page_owner_pa = get_pamt_entry_owner(reclaimed_page_pamt_entry_ptr);
         pamt_entry_t* tdr_pamt_entry_ptr = NULL; // dummy
         bool_t tdr_locked_flag = false; // dummy
-        api_error_type map_result = lock_and_map_implicit_tdr(page_owner_pa, OPERAND_ID_TDR, 1, TDX_LOCK_SHARED, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr);
-        TDXFV_ASSUME(map_result == TDX_SUCCESS); // XXX potential overconstrain
-        TDXFV_ASSUME(tdr_ptr->management_fields.lifecycle_state == TD_TEARDOWN);
-    } else {
-#endif
-    TDXFV_ASSUME(reclaimed_page_pamt_entry_ptr->pt == PT_TDR); {
-        tdr_ptr = map_pa_with_global_hkid((void*)local_data->vmm_regs.rcx, 1);
-        TDXFV_ASSUME(tdr_ptr->management_fields.lifecycle_state == TD_TEARDOWN);
-        TDXFV_ASSUME(tdr_ptr->management_fields.chldcnt != 0); // invalid child count
-    }
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_phymem_page_reclaim(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax == TDX_TD_ASSOCIATED_PAGES_EXIST);
-    TDXFV_ASSERT(local_data->vmm_regs.rcx == reclaimed_page_pamt_entry_ptr->pt);
-    TDXFV_ASSERT(local_data->vmm_regs.rdx == page_owner_pa.raw);
-    TDXFV_ASSERT((local_data->vmm_regs.r8 >> 3) == 0);
-    TDXFV_ASSERT((local_data->vmm_regs.r8 & 7) == (uint64_t) reclaimed_page_leaf_size);
-    TDXFV_ASSERT(local_data->vmm_regs.r9 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r10 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r11 == 0);
-}
-
-void tdh_phymem_page_reclaim__invalid_entry(){
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    bool_t precond = true;
-    precond = precond && (((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-
-    pa_t reclaimed_page_pa = (pa_t) local_data->vmm_regs.rcx;
-    pamt_entry_t* reclaimed_page_pamt_entry_ptr = NULL;
-    bool_t pamt_get_block_result = pamt_get_block(reclaimed_page_pa, &reclaimed_page_pamt_block);
-    TDXFV_ASSUME(pamt_get_block_result == true); // borrowing impl helper
-    api_error_code_e pamt_walk_result = pamt_walk(reclaimed_page_pa, reclaimed_page_pamt_block, TDX_LOCK_EXCLUSIVE, 
-                                                  &reclaimed_page_leaf_size, false, false, &reclaimed_page_pamt_entry_ptr);
-    TDXFV_ASSUME(pamt_walk_result == TDX_SUCCESS); // borrowing impl helper
-    precond = precond && ((reclaimed_page_pamt_entry_ptr->pt != PT_NDA) && (reclaimed_page_pamt_entry_ptr->pt != PT_RSVD));  
-
-    tdr_t* tdr_ptr = NULL;
-    pa_t page_owner_pa = get_pamt_entry_owner(reclaimed_page_pamt_entry_ptr);
-    if (reclaimed_page_pamt_entry_ptr->pt != PT_TDR){
-        pamt_entry_t* tdr_pamt_entry_ptr = NULL; // dummy
-        bool_t tdr_locked_flag = false; // dummy
-        api_error_type map_result = lock_and_map_implicit_tdr(page_owner_pa, OPERAND_ID_TDR, 1, TDX_LOCK_SHARED, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr);
-        if(map_result == TDX_SUCCESS) {
-            precond = precond && (tdr_ptr->management_fields.lifecycle_state == TD_TEARDOWN);
+        api_error_type map_result = lock_and_map_implicit_tdr(
+            page_owner_pa, OPERAND_ID_TDR, 1, TDX_LOCK_SHARED, &tdr_pamt_entry_ptr, &tdr_locked_flag, &tdr_ptr
+        );
+        if (!(map_result == TDX_SUCCESS && tdr_ptr != NULL)) {
+            return false;
         }
     } else {
-        tdr_ptr = map_pa_with_global_hkid((void*)local_data->vmm_regs.rcx, 1);
-        precond = precond && (tdr_ptr->management_fields.lifecycle_state == TD_TEARDOWN);
-        precond = precond && (tdr_ptr->management_fields.chldcnt == 0);
+        tdr_ptr = map_pa_with_global_hkid((void*)get_local_data()->vmm_regs.rcx, 1);
     }
-    TDXFV_ASSUME(precond == false);
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_phymem_page_reclaim(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax != TDX_SUCCESS);
-    TDXFV_ASSERT((local_data->vmm_regs.rcx == reclaimed_page_pamt_entry_ptr->pt) || (local_data->vmm_regs.rcx == 0));
-    TDXFV_ASSERT((local_data->vmm_regs.rdx == page_owner_pa.raw) || (local_data->vmm_regs.rdx == 0));
-    TDXFV_ASSERT((((local_data->vmm_regs.r8 >> 3) == 0) && ((local_data->vmm_regs.r8 & 7) == (uint64_t) reclaimed_page_leaf_size)) ||
-                 (local_data->vmm_regs.r8 == 0));
-    TDXFV_ASSERT(local_data->vmm_regs.r9 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r10 == 0);
-    TDXFV_ASSERT(local_data->vmm_regs.r11 == 0);
+    return (tdr_ptr->management_fields.lifecycle_state == TD_TEARDOWN);
 }
 
-void tdh_phymem_page_reclaim__valid_entry(){
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
+static inline bool_t state_child_count_is_valid() {
+    if (reclaimed_page_pamt_entry_ptr == NULL) {
+        return false;
+    }
+    if (reclaimed_page_pamt_entry_ptr->pt != PT_TDR){
+        return true;
+    }
+    tdr_t* tdr_ptr = map_pa_with_global_hkid((void*)get_local_data()->vmm_regs.rcx, 1);
+    return (tdr_ptr->management_fields.chldcnt == 0);
+}
 
-    // Task-specific precondition
-    TDXFV_ASSUME(((((pa_t) local_data->vmm_regs.rcx).full_pa & global_data->hkid_mask) >> global_data->hkid_start_bit) == 0);
-    //TDXFV_ASSUME((local_data->vmm_regs.rcx & (TDX_PAGE_SIZE_IN_BYTES - 1)) != 0);
-    //TDXFV_ASSUME(local_data->vmm_regs.rcx >= BIT(MAX_PA));
-
+#if 0
     pa_t reclaimed_page_pa = (pa_t) local_data->vmm_regs.rcx;
     pamt_entry_t* reclaimed_page_pamt_entry_ptr = NULL;
     bool_t pamt_get_block_result = pamt_get_block(reclaimed_page_pa, &reclaimed_page_pamt_block);
@@ -312,39 +149,18 @@ void tdh_phymem_page_reclaim__valid_entry(){
         TDXFV_ASSUME(tdr_ptr->management_fields.lifecycle_state == TD_TEARDOWN);
         TDXFV_ASSUME(tdr_ptr->management_fields.chldcnt == 0);
     }
+#endif
 
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_phymem_page_reclaim(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
+static inline bool_t all_conditions_valid() {
+    return (
+        input_pa_is_valid() &&
+        state_pamt_metadata_is_valid() &&
+        state_lifecycle_is_valid() &&
+        state_child_count_is_valid()
+    );
 }
 
-void tdh_phymem_page_reclaim__free_entry(){
-    tdx_module_local_t* local_data = get_local_data();
-
-    // Task-specific precondition
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_phymem_page_reclaim(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-}
-
-void tdh_phymem_page_reclaim__post_cover_success(){
-    tdx_module_local_t* local_data = get_local_data();
-    TDXFV_ASSUME(local_data->vmm_regs.rax == TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdh_phymem_page_reclaim__post_cover_unsuccess(){
-    tdx_module_local_t* local_data = get_local_data();
-    TDXFV_ASSUME(local_data->vmm_regs.rax != TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdh_phymem_page_reclaim__common_postcond() {
+static inline void tdh_phymem_page_reclaim__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();
 
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rax == shadow_td_regs_precall.rax);
@@ -364,23 +180,6 @@ void tdh_phymem_page_reclaim__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.r14 == shadow_td_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.r15 == shadow_td_regs_precall.r15);
 
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax == shadow_guest_gpr_state_precall.rax);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rbx == shadow_guest_gpr_state_precall.rbx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rcx == shadow_guest_gpr_state_precall.rcx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdx == shadow_guest_gpr_state_precall.rdx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rsp == shadow_guest_gpr_state_precall.rsp);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rbp == shadow_guest_gpr_state_precall.rbp);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rsi == shadow_guest_gpr_state_precall.rsi);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdi == shadow_guest_gpr_state_precall.rdi);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r8  == shadow_guest_gpr_state_precall.r8);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r9  == shadow_guest_gpr_state_precall.r9);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r10 == shadow_guest_gpr_state_precall.r10);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r11 == shadow_guest_gpr_state_precall.r11);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r12 == shadow_guest_gpr_state_precall.r12);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r13 == shadow_guest_gpr_state_precall.r13);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r14 == shadow_guest_gpr_state_precall.r14);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r15 == shadow_guest_gpr_state_precall.r15);
-
     //tdx_local_data_ptr->vmm_regs.rax
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.rbx == shadow_vmm_regs_precall.rbx);
     //TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.rcx == shadow_vmm_regs_precall.rcx);
@@ -397,4 +196,157 @@ void tdh_phymem_page_reclaim__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r13 == shadow_vmm_regs_precall.r13);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r14 == shadow_vmm_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r15 == shadow_vmm_regs_precall.r15);
+}
+
+void tdh_phymem_page_reclaim__expected__precond() {
+    tdh_phymem_page_reclaim__common_precond();
+    TDXFV_ASSUME(all_conditions_valid());
+}
+
+void tdh_phymem_page_reclaim__expected__postcond() {
+#ifdef TDXFV_CHECK_TDX_SUCCESS
+    TDXFV_ASSERT(get_local_data()->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_SUCCESS);
+#else
+    TDXFV_ASSERT(true);
+#endif
+    tdh_phymem_page_reclaim__common_postcond();
+}
+
+void tdh_phymem_page_reclaim__unexpected__precond() {
+    tdh_phymem_page_reclaim__common_precond();
+    TDXFV_ASSUME(!all_conditions_valid());
+}
+
+void tdh_phymem_page_reclaim__unexpected__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(local_data->vmm_regs.rax != TDX_SUCCESS);
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rcx == reclaimed_page_pamt_entry_ptr->pt) ||
+        (local_data->vmm_regs.rcx == 0)
+    );
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rdx == page_owner_pa.raw) ||
+        (local_data->vmm_regs.rdx == 0)
+    );
+    TDXFV_ASSERT(
+        (
+            ((local_data->vmm_regs.r8 >> 3) == 0) &&
+            ((local_data->vmm_regs.r8 & 7) == (uint64_t) reclaimed_page_leaf_size)
+        ) ||
+        (local_data->vmm_regs.r8 == 0)
+    );
+    TDXFV_ASSERT(local_data->vmm_regs.r9 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r10 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r11 == 0);
+    tdh_phymem_page_reclaim__common_postcond();
+}
+
+void tdh_phymem_page_reclaim__unconstrained__precond() {
+    tdh_phymem_page_reclaim__common_precond();
+    TDXFV_ASSUME(true);
+}
+
+// Special test cases
+void tdh_phymem_page_reclaim__invalid_input_pa__precond() {
+    tdh_phymem_page_reclaim__common_precond();
+    TDXFV_ASSUME(
+        !input_pa_is_valid() && // invalid input PA
+        state_pamt_metadata_is_valid() &&
+        state_lifecycle_is_valid() &&
+        state_child_count_is_valid()
+    );
+}
+
+void tdh_phymem_page_reclaim__invalid_input_pa__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    TDXFV_ASSERT(local_data->vmm_regs.rcx == reclaimed_page_pamt_entry_ptr->pt);
+    TDXFV_ASSERT(local_data->vmm_regs.rdx == page_owner_pa.raw);
+    TDXFV_ASSERT((local_data->vmm_regs.r8 >> 3) == 0);
+    TDXFV_ASSERT((local_data->vmm_regs.r8 & 7) == (uint64_t) reclaimed_page_leaf_size);
+    TDXFV_ASSERT(local_data->vmm_regs.r9 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r10 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r11 == 0);
+    tdh_phymem_page_reclaim__common_postcond();
+}
+
+void tdh_phymem_page_reclaim__invalid_state_pamt_metadata__precond() {
+    tdh_phymem_page_reclaim__common_precond();
+    TDXFV_ASSUME(
+        input_pa_is_valid() &&
+        !state_pamt_metadata_is_valid() // invalid PAMT metadata
+        //state_lifecycle_is_valid() &&
+        //state_child_count_is_valid()
+
+    );
+}
+
+void tdh_phymem_page_reclaim__invalid_state_pamt_metadata__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_PAGE_METADATA_INCORRECT) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    TDXFV_ASSERT(local_data->vmm_regs.rcx == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.rdx == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r8 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r9 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r10 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r11 == 0);
+    tdh_phymem_page_reclaim__common_postcond();
+}
+
+void tdh_phymem_page_reclaim__invalid_state_lifecycle__precond() {
+    tdh_phymem_page_reclaim__common_precond();
+    TDXFV_ASSUME(
+        input_pa_is_valid() &&
+        state_pamt_metadata_is_valid() &&
+        !state_lifecycle_is_valid() && // invalid lifecycle state
+        state_child_count_is_valid()
+    );
+}
+
+void tdh_phymem_page_reclaim__invalid_state_lifecycle__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_LIFECYCLE_STATE_INCORRECT) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    TDXFV_ASSERT(local_data->vmm_regs.rcx == reclaimed_page_pamt_entry_ptr->pt);
+    TDXFV_ASSERT(local_data->vmm_regs.rdx == page_owner_pa.raw);
+    TDXFV_ASSERT((local_data->vmm_regs.r8 >> 3) == 0);
+    TDXFV_ASSERT((local_data->vmm_regs.r8 & 7) == (uint64_t) reclaimed_page_leaf_size);
+    TDXFV_ASSERT(local_data->vmm_regs.r9 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r10 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r11 == 0);
+    tdh_phymem_page_reclaim__common_postcond();
+}
+
+void tdh_phymem_page_reclaim__invalid_state_child_count__precond() {
+    tdh_phymem_page_reclaim__common_precond();
+    TDXFV_ASSUME(
+        input_pa_is_valid() &&
+        state_pamt_metadata_is_valid() &&
+        state_lifecycle_is_valid() &&
+        !state_child_count_is_valid() // invalid child count
+    );
+}
+
+void tdh_phymem_page_reclaim__invalid_state_child_count__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == TDX_TD_ASSOCIATED_PAGES_EXIST) ||
+        ((local_data->vmm_regs.rax >> 32) == (TDX_OPERAND_BUSY >> 32))
+    );
+    TDXFV_ASSERT(local_data->vmm_regs.rcx == reclaimed_page_pamt_entry_ptr->pt);
+    TDXFV_ASSERT(local_data->vmm_regs.rdx == page_owner_pa.raw);
+    TDXFV_ASSERT((local_data->vmm_regs.r8 >> 3) == 0);
+    TDXFV_ASSERT((local_data->vmm_regs.r8 & 7) == (uint64_t) reclaimed_page_leaf_size);
+    TDXFV_ASSERT(local_data->vmm_regs.r9 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r10 == 0);
+    TDXFV_ASSERT(local_data->vmm_regs.r11 == 0);
+    tdh_phymem_page_reclaim__common_postcond();
 }

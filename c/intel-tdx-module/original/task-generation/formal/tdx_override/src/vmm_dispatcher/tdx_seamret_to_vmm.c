@@ -32,5 +32,5 @@
 void tdx_seamret_to_vmm(void) {
     // TDXFV_ABST_LBL: tdx / none
     TDXFV_ABST_incomplete();
-    abort();
+    exit(0);
 }

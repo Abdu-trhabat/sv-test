@@ -19,6 +19,7 @@
 // OR OTHER DEALINGS IN THE SOFTWARE.                                            
 //                                                                               
 // SPDX-License-Identifier: MIT
+
 /**
  * @file tdh_sys_shutdown_harness.c
  * @brief TDH_SYS_SHUTDOWN API handler FV harness
@@ -39,110 +40,40 @@
 #include "fv_utils.h"
 #include "fv_env.h"
 
-void tdh_sys_shutdown__common_precond() {
+void tdh_sys_shutdown__call() {
     tdx_module_local_t* local_data = get_local_data();
+    
+    local_data->vmm_regs.rax = tdh_sys_shutdown(local_data->vmm_regs.rcx);
+}
+
+static inline void tdh_sys_shutdown__common_precond() {
     tdx_leaf_and_version_t leaf_opcode;
-    leaf_opcode.raw = local_data->vmm_regs.rax;
+    leaf_opcode.raw = get_local_data()->vmm_regs.rax;
     TDXFV_ASSUME(leaf_opcode.leaf == TDH_SYS_SHUTDOWN_LEAF);
 }
 
-void tdh_sys_shutdown__invalid_input_handoff_range() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME(!(
-        (local_data->vmm_regs.rcx >= global_data->min_update_hv) &&
-        (local_data->vmm_regs.rcx <= global_data->module_hv)
-    )); // invalid input handoff version (out of range)
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_sys_shutdown(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(
-        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
-        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+static inline bool_t input_handoff_version_is_valid_version() {
+    return (
+        (get_local_data()->vmm_regs.rcx >= get_global_data()->min_update_hv) &&
+        (get_local_data()->vmm_regs.rcx <= get_global_data()->module_hv)
     );
 }
 
-void tdh_sys_shutdown__invalid_input_handoff_no_downgrade() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME((global_data->no_downgrade == 1) && 
-                 (local_data->vmm_regs.rcx != global_data->module_hv)); // invalid input handoff version (no downgrade)
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_sys_shutdown(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(
-        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
-        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+static inline bool_t input_handoff_version_is_valid_no_downgrade() {
+    return (
+        (get_global_data()->no_downgrade != 1) ||
+        (get_local_data()->vmm_regs.rcx == get_global_data()->module_hv)
     );
 }
 
-void tdh_sys_shutdown__invalid_entry() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME((local_data->vmm_regs.rcx < global_data->min_update_hv) ||
-                 (local_data->vmm_regs.rcx > global_data->module_hv) ||
-                 ((global_data->no_downgrade == 1) && (local_data->vmm_regs.rcx != global_data->module_hv))
+static inline bool_t all_conditions_valid() {
+    return (
+        input_handoff_version_is_valid_version() &&
+        input_handoff_version_is_valid_no_downgrade()
     );
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_sys_shutdown(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-    TDXFV_ASSERT(local_data->vmm_regs.rax != TDX_SUCCESS);
 }
 
-void tdh_sys_shutdown__valid_entry() {
-    tdx_module_local_t* local_data = get_local_data();
-    tdx_module_global_t* global_data = get_global_data();
-
-    // Task-specific precondition
-    TDXFV_ASSUME((local_data->vmm_regs.rcx >= global_data->min_update_hv) &&
-                 (local_data->vmm_regs.rcx <= global_data->module_hv) &&
-                 ((global_data->no_downgrade != 1) || (local_data->vmm_regs.rcx == global_data->module_hv))
-    );
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_sys_shutdown(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-}
-
-void tdh_sys_shutdown__free_entry() {
-    tdx_module_local_t* local_data = get_local_data();
-
-    // Task-specific precondition
-
-    // Call ABI function
-    local_data->vmm_regs.rax = tdh_sys_shutdown(local_data->vmm_regs.rcx);
-
-    // Task-specific postcondition
-}
-
-void tdh_sys_shutdown__post_cover_success() {
-    tdx_module_local_t* local_data = get_local_data();
-    TDXFV_ASSUME(local_data->vmm_regs.rax == TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdh_sys_shutdown__post_cover_unsuccess() {
-    tdx_module_local_t* local_data = get_local_data();
-    TDXFV_ASSUME(local_data->vmm_regs.rax != TDX_SUCCESS);
-
-    TDXFV_ASSERT(false);
-}
-
-void tdh_sys_shutdown__common_postcond() {
+static inline void tdh_sys_shutdown__common_postcond() {
     tdx_module_local_t* tdx_local_data_ptr = get_local_data();
 
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.rax == shadow_td_regs_precall.rax);
@@ -162,23 +93,6 @@ void tdh_sys_shutdown__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.r14 == shadow_td_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->td_regs.r15 == shadow_td_regs_precall.r15);
 
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rax == shadow_guest_gpr_state_precall.rax);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rbx == shadow_guest_gpr_state_precall.rbx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rcx == shadow_guest_gpr_state_precall.rcx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdx == shadow_guest_gpr_state_precall.rdx);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rsp == shadow_guest_gpr_state_precall.rsp);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rbp == shadow_guest_gpr_state_precall.rbp);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rsi == shadow_guest_gpr_state_precall.rsi);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.rdi == shadow_guest_gpr_state_precall.rdi);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r8  == shadow_guest_gpr_state_precall.r8);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r9  == shadow_guest_gpr_state_precall.r9);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r10 == shadow_guest_gpr_state_precall.r10);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r11 == shadow_guest_gpr_state_precall.r11);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r12 == shadow_guest_gpr_state_precall.r12);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r13 == shadow_guest_gpr_state_precall.r13);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r14 == shadow_guest_gpr_state_precall.r14);
-    TDXFV_ASSERT(tdx_local_data_ptr->vp_ctx.tdvps->guest_state.gpr_state.r15 == shadow_guest_gpr_state_precall.r15);
-
     //tdx_local_data_ptr->vmm_regs.rax
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.rbx == shadow_vmm_regs_precall.rbx);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.rcx == shadow_vmm_regs_precall.rcx);
@@ -195,4 +109,69 @@ void tdh_sys_shutdown__common_postcond() {
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r13 == shadow_vmm_regs_precall.r13);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r14 == shadow_vmm_regs_precall.r14);
     TDXFV_ASSERT(tdx_local_data_ptr->vmm_regs.r15 == shadow_vmm_regs_precall.r15);
+}
+
+void tdh_sys_shutdown__expected__precond() {
+    tdh_sys_shutdown__common_precond();
+    TDXFV_ASSUME(all_conditions_valid());
+}
+
+void tdh_sys_shutdown__expected__postcond() {
+#ifdef TDXFV_CHECK_TDX_SUCCESS
+    TDXFV_ASSERT(get_local_data()->vp_ctx.tdvps->guest_state.gpr_state.rax == TDX_SUCCESS);
+#else
+    TDXFV_ASSERT(true);
+#endif
+    tdh_sys_shutdown__common_postcond();
+}
+
+void tdh_sys_shutdown__unexpected__precond() {
+    tdh_sys_shutdown__common_precond();
+    TDXFV_ASSUME(!all_conditions_valid());
+}
+
+void tdh_sys_shutdown__unexpected__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(local_data->vmm_regs.rax != TDX_SUCCESS);
+    tdh_sys_shutdown__common_postcond();
+}
+
+void tdh_sys_shutdown__unconstrained__precond() {
+    tdh_sys_shutdown__common_precond();
+    TDXFV_ASSUME(true);
+}
+
+// Special test cases
+void tdh_sys_shutdown__invalid_input_handoff_range__precond() {
+    tdh_sys_shutdown__common_precond();
+    TDXFV_ASSUME(
+        !input_handoff_version_is_valid_version() && // invalid input handoff version
+        input_handoff_version_is_valid_no_downgrade()
+    );
+}
+
+void tdh_sys_shutdown__invalid_input_handoff_range__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+    );
+    tdh_sys_shutdown__common_postcond();
+}
+
+void tdh_sys_shutdown__invalid_input_handoff_no_downgrade__precond() {
+    tdh_sys_shutdown__common_precond();
+    TDXFV_ASSUME(
+        input_handoff_version_is_valid_version() &&
+        !input_handoff_version_is_valid_no_downgrade() // invalid no downgrade condition
+    );
+}
+
+void tdh_sys_shutdown__invalid_input_handoff_no_downgrade__postcond() {
+    tdx_module_local_t* local_data = get_local_data();
+    TDXFV_ASSERT(
+        (local_data->vmm_regs.rax == api_error_with_operand_id(TDX_OPERAND_INVALID, OPERAND_ID_RCX)) ||
+        (local_data->vmm_regs.rax == TDX_SYS_BUSY)
+    );
+    tdh_sys_shutdown__common_postcond();
 }
