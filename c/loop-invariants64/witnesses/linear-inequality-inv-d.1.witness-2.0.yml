@@ -22,5 +22,5 @@
           line: 19
           column: 3
           function: main
-        value: "0" # Incorrect invariant
+        value: "i < 0xfffffffe" # Incorrect invariant, n can be equal to 0xffffffff, and in the last iteration i == n
         format: c_expression
