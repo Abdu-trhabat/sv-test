@@ -8,8 +8,8 @@
 format_version: '2.0'
 input_files: tdh_vp_enter__invalid_input_vcpu_handle__safety_requirement_havoc_memory.i
 properties:
-- property_file: ../../../properties/unreach-call.prp
-- property_file: ../../../properties/coverage-branches.prp
+- property_file: ../properties/unreach-call.prp
+- property_file: ../properties/coverage-branches.prp
 options:
   language: C
   data_model: LP64
