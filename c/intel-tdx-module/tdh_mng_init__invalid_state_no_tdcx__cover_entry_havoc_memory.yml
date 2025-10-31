@@ -9,6 +9,7 @@ format_version: '2.0'
 input_files: tdh_mng_init__invalid_state_no_tdcx__cover_entry_havoc_memory.i
 properties:
 - property_file: ../properties/unreach-call.prp
+  expected_verdict: true
 - property_file: ../properties/coverage-branches.prp
 options:
   language: C
