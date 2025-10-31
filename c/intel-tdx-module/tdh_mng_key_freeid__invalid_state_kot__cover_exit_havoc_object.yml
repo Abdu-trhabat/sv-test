@@ -8,10 +8,10 @@
 format_version: '2.0'
 input_files: tdh_mng_key_freeid__invalid_state_kot__cover_exit_havoc_object.i
 properties:
-- property_file: ../../../properties/unreach-call.prp
+- property_file: ../properties/unreach-call.prp
   expected_verdict: false
-- property_file: ../../../properties/coverage-error-call.prp
-- property_file: ../../../properties/coverage-branches.prp
+- property_file: ../properties/coverage-error-call.prp
+- property_file: ../properties/coverage-branches.prp
 options:
   language: C
   data_model: LP64
