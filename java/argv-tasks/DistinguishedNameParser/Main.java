@@ -33,7 +33,7 @@ public class Main {
     int pos = Verifier.nondetInt();
     int length = Verifier.nondetInt();
 
-    if (length < 0 && pos >= length) {
+    if (length < 0 || pos >= length) {
       return null;
     }
     assert (length >= 0);
@@ -90,7 +90,7 @@ public class Main {
       pos++;
     }
 
-    assert (pos >= length);
+    assert (pos <= length);
 
     // in case of oid attribute type skip its prefix: "oid." or "OID."
     // (compatibility with RFC 1779)

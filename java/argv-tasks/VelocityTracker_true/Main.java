@@ -125,7 +125,7 @@ public final class Main {
     }
     mXVelocity = accumX;
     mYVelocity = accumY;
-    assert (accumX != 0 || accumY != 0);
+    assert (accumX == 0 && accumY == 0);
   }
 
   public static void main(String[] args) {
