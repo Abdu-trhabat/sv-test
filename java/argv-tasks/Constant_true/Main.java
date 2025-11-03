@@ -11,7 +11,7 @@ import org.sosy_lab.sv_benchmarks.Verifier;
 
 public class Main {
 
-  double frequency = Verifier.nondetDouble();
+  double frequency = Math.abs(Verifier.nondetDouble());
   double previousEvent = 0;
   /** ARG-V: suitable */
   public double generateNextEvent(double currentTime) {
