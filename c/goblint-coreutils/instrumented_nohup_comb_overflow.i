@@ -13,7 +13,7 @@ extern void __assert_perror_fail (int __errnum, const char *__file,
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-
+extern unsigned int __VERIFIER_nondet_unsigned_uint();
 extern void abort(void);
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "instrumented_nohup_comb.c", 9, __extension__ __PRETTY_FUNCTION__); })); }
 typedef long ptrdiff_t;
