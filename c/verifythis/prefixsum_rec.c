@@ -1,3 +1,10 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2019 Gidon Ernst <gidonernst@gmail.com>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 extern void *calloc(unsigned int nmemb, unsigned int size);
 extern void free(void *);
 extern int __VERIFIER_nondet_int(void);
