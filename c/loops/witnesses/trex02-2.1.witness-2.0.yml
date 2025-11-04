@@ -8,9 +8,9 @@
       version: ""
     task:
       input_files:
-      - "./linear-inequality-inv-a.c"
+      - "./trex02-2.c"
       input_file_hashes:
-        "./linear-inequality-inv-a.c": "d2b9c65bc0d5e6814219e058019ca5895f861b5993bd9ff39cc6b3d5fb3e6a41"
+        "./trex02-2.c": "813a8ddd546bc7f5130f32994d5f684af23ea3f2882f066aeb97d0e96f57ab55"
       specification: "G ! call(reach_error())"
       data_model: "ILP32"
       language: "C"
@@ -18,9 +18,9 @@
     - invariant:
         type: loop_invariant
         location:
-          file_name: "linear-inequality-inv-a.c"
-          line: 19
+          file_name: "./trex02-2.c"
+          line: 23
           column: 3
           function: main
-        value: "0" # Incorrect, wrong invariant
+        value: "1" # The invariant is correct, but the program is unsafe
         format: c_expression
