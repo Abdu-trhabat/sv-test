@@ -7,7 +7,8 @@ http://www.pm.inf.ethz.ch/research/verifythis.html
 The conceptual authorship of these benchmarks is by the organizers
 of the respective VerifyThis event (mentioned below).
 The C source code alongside checker functions that test various properties,
-have been prepared by Gidon Ernst <gidonernst@gmail.com>
+have been prepared by Gidon Ernst <gidonernst@gmail.com> for 2011 and 2012,
+and by Marian Lingsch-Rosenfeld for 2025.
 
 The checkers of the computed results occasionally rely on temporary C data structures.
 For example, two trees are compared by taking an in-order scan into a temporary array.
@@ -55,5 +56,12 @@ in the corresponding STTT special issue 17 (6).
 - `prefixsum_iter.c`   Prefix sum computation (iterative variant)
 - `tree_del_iter.c`    Delete the minimum of a binary search tree (iterative, original challenge)
 - `tree_del_rec.c`     Delete the minimum of a binary search tree (recursive, simplified challenge)
+
+### 2025
+
+Challenge description by the organizers: https://github.com/VerifyThis2025/
+
+- 'linked-list-removal-stack.c'     Linus Torvalds' Elegant Linked-List Removal allocated on the Stack
+- 'linked-list-removal-heap.c'      Linus Torvalds' Elegant Linked-List Removal allocated on the Heap
 
 

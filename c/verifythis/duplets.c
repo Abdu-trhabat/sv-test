@@ -1,3 +1,10 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2019 Gidon Ernst <gidonernst@gmail.com>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /* Not quite the challenge from VerifyThis 2011,
  * only a single pair of duplicates here. */
 

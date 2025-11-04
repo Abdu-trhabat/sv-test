@@ -4,4 +4,5 @@ verifythis/lcp.yml
 verifythis/prefixsum_iter.yml
 verifythis/tree_del_iter.yml
 verifythis/tree_del_iter_incorrect.yml
+verifythis/linked-list-removal.yml
 
