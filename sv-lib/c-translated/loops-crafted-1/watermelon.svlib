@@ -1,15 +1,7 @@
-(declare-sort |c#ptr| 1)
-(declare-sort |c#heap| 0)
-(declare-var |c#heap| |c#heap|)
-(declare-fun |c#bitxor| (Int Int) Int)
-(declare-fun |c#bitand| (Int Int) Int)
-(declare-fun |c#bitor| (Int Int) Int)
-(declare-var true Int)
-(declare-var false Int)
 (define-proc
   correct_version
   ((w Int))
-  ((|c#result| Int))
+  ((result Int))
   ((is_divisible Int) (i Int))
   (sequence
     (assign
@@ -28,12 +20,12 @@
           (assign
             ((is_divisible false))))))
     (assign
-      ((|c#result| is_divisible)))
+      ((result is_divisible)))
     (return)))
 (define-proc
   student_version
   ((w Int))
-  ((|c#result| Int))
+  ((result Int))
   ((is_divisible Int) (i Int))
   (sequence
     (assign
@@ -52,12 +44,12 @@
           (assign
             ((is_divisible false))))))
     (assign
-      ((|c#result| is_divisible)))
+      ((result is_divisible)))
     (return)))
 (define-proc
   main
   ()
-  ((|c#result| Int))
+  ((result Int))
   ((w Int)
     (is_divisible1 Int)
     (is_divisible2 Int)
@@ -81,5 +73,5 @@
           ((is_divisible2 student_version$2)))
         (assert
           (= is_divisible1 is_divisible2))))
-    (assign ((|c#result| 0)))
+    (assign ((result 0)))
     (return)))

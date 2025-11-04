@@ -1,14 +1,7 @@
-(declare-datatypes ((|c#void| 0)) (((|c#void|))))
-(declare-sort |c#ptr| 1)
-(declare-sort |c#heap| 0)
-(declare-var |c#heap| |c#heap|)
-(declare-fun |c#bitxor| (Int Int) Int)
-(declare-fun |c#bitand| (Int Int) Int)
-(declare-fun |c#bitor| (Int Int) Int)
-(declare-var x Int)
 (define-proc
+  eval
   ()
-  ((|c#result| |c#void|))
+  ()
   ()
   (sequence
     (while
@@ -16,16 +9,17 @@
       (sequence (assign ((x 0))) (break)))
     (return)))
 (define-proc
+  main
   ()
-  ((|c#result| Int))
-  ((eval$1 |c#void|))
+  ((result Int))
+  ()
   (sequence
     (assign ((x 0)))
     (while
       (not (= 1 0))
       (sequence
-        (call eval () (eval$1))
+        (call eval () ())
         (assert (= x 0))))
     (assert (not (= x 0)))
-    (assign ((|c#result| 0)))
+    (assign ((result 0)))
     (return)))

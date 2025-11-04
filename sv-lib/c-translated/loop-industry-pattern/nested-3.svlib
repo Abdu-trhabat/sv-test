@@ -1,14 +1,7 @@
-(declare-sort |c#ptr| 1)
-(declare-sort |c#heap| 0)
-(declare-var |c#heap| |c#heap|)
-(declare-fun |c#bitxor| (Int Int) Int)
-(declare-fun |c#bitand| (Int Int) Int)
-(declare-fun |c#bitor| (Int Int) Int)
-(declare-var last Int)
 (define-proc
   main
   ()
-  ((|c#result| Int))
+  ((result Int))
   ((a Int) (b Int) (c Int) (st Int))
   (sequence
     (assign ((last 0)))

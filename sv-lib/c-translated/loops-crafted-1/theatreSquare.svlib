@@ -1,13 +1,7 @@
-(declare-sort |c#ptr| 1)
-(declare-sort |c#heap| 0)
-(declare-var |c#heap| |c#heap|)
-(declare-fun |c#bitxor| (Int Int) Int)
-(declare-fun |c#bitand| (Int Int) Int)
-(declare-fun |c#bitor| (Int Int) Int)
 (define-proc
   correct_version
   ((n Int) (m Int) (a Int))
-  ((|c#result| Int))
+  ((result Int))
   ((i Int) (j Int) (b Int) (l Int))
   (sequence
     (assign ((i 0)))
@@ -31,12 +25,12 @@
       (sequence
         (assign ((y (+ y j))))
         (assign ((x (+ x 1))))))
-    (assign ((|c#result| y)))
+    (assign ((result y)))
     (return)))
 (define-proc
   student_version
   ((n Int) (m Int) (a Int))
-  ((|c#result| Int))
+  ((result Int))
   ((i Int) (j Int) (b Int) (l Int))
   (sequence
     (assign ((i 0)))
@@ -60,12 +54,12 @@
       (sequence
         (assign ((y (+ y j))))
         (assign ((x (+ x 1))))))
-    (assign ((|c#result| y)))
+    (assign ((result y)))
     (return)))
 (define-proc
   main
   ()
-  ((|c#result| Int))
+  ((result Int))
   ((a Int)
     (n Int)
     (m Int)
@@ -87,5 +81,5 @@
           ((n_stones2 student_version$2)))))
     (assert
       (= n_stones1 n_stones2))
-    (assign ((|c#result| 0)))
+    (assign ((result 0)))
     (return)))

@@ -1,13 +1,7 @@
-(declare-sort |c#ptr| 1)
-(declare-sort |c#heap| 0)
-(declare-var |c#heap| |c#heap|)
-(declare-fun |c#bitxor| (Int Int) Int)
-(declare-fun |c#bitand| (Int Int) Int)
-(declare-fun |c#bitor| (Int Int) Int)
 (define-proc
   main
   ()
-  ((|c#result| Int))
+  ((result Int))
   ((idBitLength Int)
     (material_length Int)
     (nlen Int)
@@ -21,7 +15,7 @@
       (not
         (= nlen (div idBitLength 32)))
       (sequence
-        (assign ((|c#result| 0)))
+        (assign ((result 0)))
         (return)))
     (assign ((j 0)))
     (while
@@ -35,5 +29,5 @@
         (assert (<= 0 (div j 4)))
         (assert (< (div j 4) nlen))
         (assign ((j (+ j 1))))))
-    (assign ((|c#result| 0)))
+    (assign ((result 0)))
     (return)))
