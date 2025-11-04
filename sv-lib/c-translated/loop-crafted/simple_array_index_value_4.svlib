@@ -1,3 +1,20 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_ALIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
@@ -8,44 +25,58 @@
     (loop_entered Int)
     (i Int)
     (nondet_uint$1 Int))
-  (sequence
-    (assign ((loop_entered 0)))
-    (assign ((i 0)))
-    (while
-      (< i 100000)
-      (sequence
-        (assign
-          ((array
-              (store array i nondet_uint$1))))
-        (assign ((i (+ i 1))))))
-    (havoc (index1))
-    (assume (< index1 100000))
-    (havoc (index2))
-    (assume (< index2 100000))
-    (while
-      (< index1 index2)
-      (sequence
-        (assert
-          (and (< index1 100000) (< index2 100000)))
-        (assume
-          (=
-            (select array index1)
-            (select array index2)))
-        (assign
-          ((index1 (+ index1 1))))
-        (assign
-          ((index2 (- index2 1))))
-        (assign ((loop_entered 1)))))
-    (if
-      (not (= loop_entered 0))
-      (while
-        (< index2 index1)
-        (sequence
-          (assert
-            (=
-              (select array index1)
-              (select array index2)))
-          (assign
-            ((index2 (+ index2 1))))
-          (assign
-            ((index1 (- index1 1)))))))))
+  (!
+    (sequence
+      (assign (loop_entered 0))
+      (assign (i 0))
+      (!
+        (while
+          (< i 100000)
+          (sequence
+            (assign (array (store array i nondet_uint$1)))
+            (assign (i (+ i 1)))))
+        :tag
+        main-while-1)
+      (havoc index1)
+      (assume (< index1 100000))
+      (havoc index2)
+      (assume (< index2 100000))
+      (!
+        (while
+          (< index1 index2)
+          (sequence
+            (! (sequence) :tag main-check-1)
+            (assume
+              (= (select array index1) (select array index2)))
+            (assign (index1 (+ index1 1)))
+            (assign (index2 (- index2 1)))
+            (assign (loop_entered 1))))
+        :tag
+        main-while-2)
+      (if
+        (not (= loop_entered 0))
+        (!
+          (while
+            (< index2 index1)
+            (sequence
+              (! (sequence) :tag main-check-2)
+              (assign (index2 (+ index2 1)))
+              (assign (index1 (- index1 1)))))
+          :tag
+          main-while-3)))
+    :tag
+    main))
+
+(annotate-tag
+  main-check-1
+  :check-true
+  (and (< index1 100000) (< index2 100000)))
+
+(annotate-tag
+  main-check-2
+  :check-true
+  (= (select array index1) (select array index2)))
+
+(verify-call main ())
+
+(get-witness)

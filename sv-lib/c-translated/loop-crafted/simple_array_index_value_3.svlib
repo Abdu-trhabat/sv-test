@@ -1,29 +1,53 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_ALIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
   ((result Int))
-  ((array (Array Int Int))
-    (index Int)
-    (tmp Int))
-  (sequence
-    (assign ((index 0)))
-    (assign ((tmp 0)))
-    (while
-      (< index 10000)
-      (sequence
-        (assign
-          ((array
-              (store array index tmp))))
-        (assign
-          ((index (+ index 1))))
-        (assign ((tmp (+ tmp 2))))))
-    (assign ((index 0)))
-    (while
-      (< index 10000)
-      (sequence
-        (assert
-          (or
-            (= (select array index) (* 2 index))
-            (= (select array index) 0)))
-        (assign
-          ((index (+ index 1))))))))
+  ((array (Array Int Int)) (index Int) (tmp Int))
+  (!
+    (sequence
+      (assign (index 0))
+      (assign (tmp 0))
+      (!
+        (while
+          (< index 10000)
+          (sequence
+            (assign (array (store array index tmp)))
+            (assign (index (+ index 1)))
+            (assign (tmp (+ tmp 2)))))
+        :tag
+        main-while-1)
+      (assign (index 0))
+      (!
+        (while
+          (< index 10000)
+          (sequence (! (sequence) :tag main-check-1) (assign (index (+ index 1)))))
+        :tag
+        main-while-2))
+    :tag
+    main))
+
+(annotate-tag
+  main-check-1
+  :check-true
+  (or (= (select array index) (* 2 index)) (= (select array index) 0)))
+
+(verify-call main ())
+
+(get-witness)

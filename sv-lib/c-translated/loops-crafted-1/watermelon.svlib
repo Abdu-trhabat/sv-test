@@ -1,51 +1,60 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   correct_version
   ((w Int))
   ((result Int))
   ((is_divisible Int) (i Int))
-  (sequence
-    (assign
-      ((is_divisible true)))
-    (if
-      (< w 4)
-      (assign
-        ((is_divisible false)))
-      (sequence
-        (assign ((i 0)))
-        (while
-          (< i w)
-          (assign ((i (+ i 2)))))
-        (if
-          (not (= i w))
-          (assign
-            ((is_divisible false))))))
-    (assign
-      ((result is_divisible)))
-    (return)))
+  (!
+    (sequence
+      (assign (is_divisible true))
+      (if
+        (< w 4)
+        (assign (is_divisible false))
+        (sequence
+          (assign (i 0))
+          (! (while (< i w) (assign (i (+ i 2)))) :tag correct_version-while-1)
+          (if (not (= i w)) (assign (is_divisible false)))))
+      (assign (result is_divisible))
+      (return))
+    :tag
+    correct_version))
+
 (define-proc
   student_version
   ((w Int))
   ((result Int))
   ((is_divisible Int) (i Int))
-  (sequence
-    (assign
-      ((is_divisible true)))
-    (if
-      (< w 4)
-      (assign
-        ((is_divisible false)))
-      (sequence
-        (assign ((i 0)))
-        (while
-          (< i w)
-          (assign ((i (+ i 2)))))
-        (if
-          (not (= i w))
-          (assign
-            ((is_divisible false))))))
-    (assign
-      ((result is_divisible)))
-    (return)))
+  (!
+    (sequence
+      (assign (is_divisible true))
+      (if
+        (< w 4)
+        (assign (is_divisible false))
+        (sequence
+          (assign (i 0))
+          (! (while (< i w) (assign (i (+ i 2)))) :tag student_version-while-2)
+          (if (not (= i w)) (assign (is_divisible false)))))
+      (assign (result is_divisible))
+      (return))
+    :tag
+    student_version))
+
 (define-proc
   main
   ()
@@ -55,23 +64,27 @@
     (is_divisible2 Int)
     (correct_version$1 Int)
     (student_version$2 Int))
-  (sequence
-    (assign ((true 1)))
-    (assign ((false 0)))
-    (assign
-      ((is_divisible1 true)))
-    (assign
-      ((is_divisible2 true)))
-    (if
-      (and (< 0 w) (< w 10000000))
-      (sequence
-        (call correct_version (w) (correct_version$1))
-        (assign
-          ((is_divisible1 correct_version$1)))
-        (call student_version (w) (student_version$2))
-        (assign
-          ((is_divisible2 student_version$2)))
-        (assert
-          (= is_divisible1 is_divisible2))))
-    (assign ((result 0)))
-    (return)))
+  (!
+    (sequence
+      (assign (true 1))
+      (assign (false 0))
+      (assign (is_divisible1 true))
+      (assign (is_divisible2 true))
+      (if
+        (and (< 0 w) (< w 10000000))
+        (sequence
+          (call correct_version (w) (correct_version$1))
+          (assign (is_divisible1 correct_version$1))
+          (call student_version (w) (student_version$2))
+          (assign (is_divisible2 student_version$2))
+          (! (sequence) :tag main-check-1)))
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (= is_divisible1 is_divisible2))
+
+(verify-call main ())
+
+(get-witness)

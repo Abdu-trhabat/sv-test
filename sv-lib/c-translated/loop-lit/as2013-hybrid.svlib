@@ -1,21 +1,55 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
   ((result Int))
   ((i Int) (j Int))
-  (sequence
-    (assign ((i 0)))
-    (while
-      (not (= 1 0))
-      (sequence
-        (assign ((i (+ i 1))))
-        (assign ((j 0)))
+  (!
+    (sequence
+      (assign (i 0))
+      (!
         (while
-          (< j 10)
+          (not (= 1 0))
           (sequence
-            (assert (<= 0 i))
-            (assert (<= i 10))
-            (assign ((j (+ j 1))))))
-        (if (< 9 i) (assign ((i 0))))))
-    (assign ((result 0)))
-    (return)))
+            (assign (i (+ i 1)))
+            (assign (j 0))
+            (!
+              (while
+                (< j 10)
+                (sequence
+                  (! (sequence) :tag main-check-1)
+                  (! (sequence) :tag main-check-2)
+                  (assign (j (+ j 1)))))
+              :tag
+              main-while-2)
+            (if (< 9 i) (assign (i 0)))))
+        :tag
+        main-while-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (<= 0 i))
+
+(annotate-tag main-check-2 :check-true (<= i 10))
+
+(verify-call main ())
+
+(get-witness)

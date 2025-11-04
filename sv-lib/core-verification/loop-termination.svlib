@@ -1,30 +1,52 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (set-logic LIA)
 
 (define-proc
-    upto
-    ((n Int))
-    ((i Int))
-    ()
+  upto
+  ((n Int))
+  ((i Int))
+  ()
+  (!
     (!
-        (sequence
-            (assign (i 0))
-            (!
-                (while
-                    (< i n)
-                    (assign (i (+ i 1))))
-                :tag while-1))
-        :tag proc-add))
+      (sequence
+        (assign i 0)
+        (!
+          (! (while (< i n) (assign i (+ i 1))) :tag upto-while-1)
+          :tag
+          while-1))
+      :tag
+      proc-add)
+    :tag
+    upto))
 
-(annotate-tag
-    upto
-    :ensures  (= i n))
+(annotate-tag upto :ensures (= i n))
 
-(annotate-tag
-    while-1
-    :not-live)
+(annotate-tag while-1 :not -live)
 
 (declare-const n Int)
-(assert (<= 0 n))
 
-(verify-call
-    upto (n))
+(! (sequence) :tag None-check-1)
+
+(verify-call upto (n))
+
+(annotate-tag None-check-1 :check-true (<= 0 n))
+
+(verify-call main ())
+
+(get-witness)

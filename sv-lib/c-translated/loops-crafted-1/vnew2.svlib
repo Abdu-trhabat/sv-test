@@ -1,32 +1,50 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_NIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
   ((result Int))
   ((n Int) (i Int) (k Int) (j Int))
-  (sequence
-    (assign ((SIZE 20000001)))
-    (havoc (n))
-    (if
-      (not (<= n SIZE))
-      (sequence
-        (assign ((result 0)))
-        (return)))
-    (assign ((k 0)))
-    (assign ((j k)))
-    (assign ((i j)))
-    (while
-      (< i n)
-      (sequence
-        (assign ((i (+ i 3))))
-        (assign ((j (+ j 3))))
-        (assign ((k (+ k 3))))))
-    (if
-      (< 0 n)
-      (assert
-        (and
-          (= i j)
-          (= j k)
-          (not
-            (= (mod i (+ SIZE 2)) 0)))))
-    (assign ((result 0)))
-    (return)))
+  (!
+    (sequence
+      (assign (SIZE 20000001))
+      (havoc n)
+      (if (not (<= n SIZE)) (sequence (assign (result 0)) (return)))
+      (assign (k 0))
+      (assign (j k))
+      (assign (i j))
+      (!
+        (while
+          (< i n)
+          (sequence (assign (i (+ i 3))) (assign (j (+ j 3))) (assign (k (+ k 3)))))
+        :tag
+        main-while-1)
+      (if (< 0 n) (! (sequence) :tag main-check-1))
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag
+  main-check-1
+  :check-true
+  (and (= i j) (= j k) (not (= (mod i (+ SIZE 2)) 0))))
+
+(verify-call main ())
+
+(get-witness)

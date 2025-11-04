@@ -1,22 +1,58 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
   ((result Int))
   ((i Int) (j Int))
-  (sequence
-    (assign ((i 0)))
-    (while
-      (< i 100)
-      (sequence
-        (assign ((j 0)))
+  (!
+    (sequence
+      (assign (i 0))
+      (!
         (while
-          (< j 100)
+          (< i 100)
           (sequence
-            (assign ((j (+ j 1))))
-            (assert (<= j 100))))
-        (assert (= j 100))
-        (assign ((i (+ i 1))))
-        (assert (<= i 100))))
-    (assert (= i 100))
-    (assign ((result 0)))
-    (return)))
+            (assign (j 0))
+            (!
+              (while
+                (< j 100)
+                (sequence (assign (j (+ j 1))) (! (sequence) :tag main-check-1)))
+              :tag
+              main-while-2)
+            (! (sequence) :tag main-check-2)
+            (assign (i (+ i 1)))
+            (! (sequence) :tag main-check-3)))
+        :tag
+        main-while-1)
+      (! (sequence) :tag main-check-4)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (<= j 100))
+
+(annotate-tag main-check-2 :check-true (= j 100))
+
+(annotate-tag main-check-3 :check-true (<= i 100))
+
+(annotate-tag main-check-4 :check-true (= i 100))
+
+(verify-call main ())
+
+(get-witness)

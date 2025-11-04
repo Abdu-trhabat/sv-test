@@ -1,3 +1,20 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
@@ -8,29 +25,47 @@
     (nondet_bool$2 Int)
     (nondet_bool$4 Int)
     (nondet_bool$5 Int))
-  (sequence
-    (assign ((m 0)))
-    (assign ((n 0)))
-    (while
-      (not (= 1 0))
-      (sequence
-        (assert (<= m 60))
-        (assert (<= n 60))
-        (if
-          (not (= nondet_bool$1 0))
-          (if
-            (not (= nondet_bool$2 0))
+  (!
+    (sequence
+      (assign (m 0))
+      (assign (n 0))
+      (!
+        (while
+          (not (= 1 0))
+          (sequence
+            (! (sequence) :tag main-check-1)
+            (! (sequence) :tag main-check-2)
             (if
-              (< m 60)
-              (assign ((m (+ m 1))))
-              (sequence (assert (= m 60)) (assign ((m 0)))))))
-        (if
-          (not (= nondet_bool$4 0))
-          (if
-            (not (= nondet_bool$5 0))
+              (not (= nondet_bool$1 0))
+              (if
+                (not (= nondet_bool$2 0))
+                (if
+                  (< m 60)
+                  (assign (m (+ m 1)))
+                  (sequence (! (sequence) :tag main-check-3) (assign (m 0))))))
             (if
-              (< n 60)
-              (assign ((n (+ n 1))))
-              (sequence (assert (= n 60)) (assign ((n 0)))))))))
-    (assign ((result 0)))
-    (return)))
+              (not (= nondet_bool$4 0))
+              (if
+                (not (= nondet_bool$5 0))
+                (if
+                  (< n 60)
+                  (assign (n (+ n 1)))
+                  (sequence (! (sequence) :tag main-check-4) (assign (n 0))))))))
+        :tag
+        main-while-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (<= m 60))
+
+(annotate-tag main-check-2 :check-true (<= n 60))
+
+(annotate-tag main-check-3 :check-true (= m 60))
+
+(annotate-tag main-check-4 :check-true (= n 60))
+
+(verify-call main ())
+
+(get-witness)

@@ -1,3 +1,20 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
@@ -10,39 +27,40 @@
     (x$2 Bool)
     (nondet_int$3 Int)
     (nondet_int$4 Int))
-  (sequence
-    (assign ((w 0)))
-    (assign ((z w)))
-    (assign ((y z)))
-    (assign ((x y)))
-    (assign
-      ((x$2
-          (not (= nondet_int$1 0)))))
-    (if
-      x$2
-      (assign ((x$2 (< y 10000)))))
-    (while
-      true
-      (sequence
-        (if (not x$2) (break))
-        (if
-          (not (= nondet_int$3 0))
+  (!
+    (sequence
+      (assign (w 0))
+      (assign (z w))
+      (assign (y z))
+      (assign (x y))
+      (assign (x$2 (not (= nondet_int$1 0))))
+      (if x$2 (assign (x$2 (< y 10000))))
+      (!
+        (while
+          true
           (sequence
-            (assign ((x (+ x 1))))
-            (assign ((y (+ y 100)))))
-          (if
-            (not (= nondet_int$4 0))
+            (if (not x$2) (break))
             (if
-              (<= 4 x)
-              (sequence
-                (assign ((x (+ x 1))))
-                (assign ((y (+ y 1))))))
-            (if
-              (and (< (* 10 w) y) (<= (* 100 x) z))
-              (assign ((y (- y)))))))
-        (assign ((w (+ w 1))))
-        (assign ((z (+ z 10))))))
-    (assert
-      (and (<= 4 x) (<= y 2)))
-    (assign ((result 0)))
-    (return)))
+              (not (= nondet_int$3 0))
+              (sequence (assign (x (+ x 1))) (assign (y (+ y 100))))
+              (if
+                (not (= nondet_int$4 0))
+                (if
+                  (<= 4 x)
+                  (sequence (assign (x (+ x 1))) (assign (y (+ y 1)))))
+                (if (and (< (* 10 w) y) (<= (* 100 x) z)) (assign (y (- y))))))
+            (assign (w (+ w 1)))
+            (assign (z (+ z 10)))))
+        :tag
+        main-while-1)
+      (! (sequence) :tag main-check-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (and (<= 4 x) (<= y 2)))
+
+(verify-call main ())
+
+(get-witness)

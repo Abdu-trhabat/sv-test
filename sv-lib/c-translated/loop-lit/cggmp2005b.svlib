@@ -1,23 +1,48 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
   ((result Int))
   ((i Int) (j Int) (k Int))
-  (sequence
-    (assign ((i 0)))
-    (assign ((k 9)))
-    (assign ((j (- 100))))
-    (while
-      (<= i 100)
-      (sequence
-        (assign ((i (+ i 1))))
+  (!
+    (sequence
+      (assign (i 0))
+      (assign (k 9))
+      (assign (j (- 100)))
+      (!
         (while
-          (< j 20)
-          (assign ((j (+ i j)))))
-        (assign ((k 4)))
-        (while
-          (<= k 3)
-          (assign ((k (+ k 1)))))))
-    (assert (= k 4))
-    (assign ((result 0)))
-    (return)))
+          (<= i 100)
+          (sequence
+            (assign (i (+ i 1)))
+            (! (while (< j 20) (assign (j (+ i j)))) :tag main-while-2)
+            (assign (k 4))
+            (! (while (<= k 3) (assign (k (+ k 1)))) :tag main-while-3)))
+        :tag
+        main-while-1)
+      (! (sequence) :tag main-check-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (= k 4))
+
+(verify-call main ())
+
+(get-witness)

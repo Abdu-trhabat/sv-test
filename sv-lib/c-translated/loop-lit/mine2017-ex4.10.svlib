@@ -1,17 +1,52 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
   ((result Int))
   ((v Int))
-  (sequence
-    (assign ((v 1)))
-    (while
-      (<= v 50)
-      (sequence
-        (assert (<= 1 v))
-        (assign ((v (+ v 2))))
-        (assert (<= v 52))))
-    (assert (<= 51 v))
-    (assert (<= v 52))
-    (assign ((result 0)))
-    (return)))
+  (!
+    (sequence
+      (assign (v 1))
+      (!
+        (while
+          (<= v 50)
+          (sequence
+            (! (sequence) :tag main-check-1)
+            (assign (v (+ v 2)))
+            (! (sequence) :tag main-check-2)))
+        :tag
+        main-while-1)
+      (! (sequence) :tag main-check-3)
+      (! (sequence) :tag main-check-4)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (<= 1 v))
+
+(annotate-tag main-check-2 :check-true (<= v 52))
+
+(annotate-tag main-check-3 :check-true (<= 51 v))
+
+(annotate-tag main-check-4 :check-true (<= v 52))
+
+(verify-call main ())
+
+(get-witness)

@@ -1,31 +1,51 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
   ((result Int))
   ((i Int) (n Int) (a Int) (b Int) (nondet_int$1 Int))
-  (sequence
-    (assign ((i 0)))
-    (assign ((a 0)))
-    (assign ((b 0)))
-    (havoc (n))
-    (if
-      (not
-        (and (<= 0 n) (<= n 1000000)))
-      (sequence
-        (assign ((result 0)))
-        (return)))
-    (while
-      (< i n)
-      (sequence
-        (if
-          (not (= nondet_int$1 0))
+  (!
+    (sequence
+      (assign (i 0))
+      (assign (a 0))
+      (assign (b 0))
+      (havoc n)
+      (if (not (and (<= 0 n) (<= n 1000000))) (sequence (assign (result 0)) (return)))
+      (!
+        (while
+          (< i n)
           (sequence
-            (assign ((a (+ a 1))))
-            (assign ((b (+ b 2)))))
-          (sequence
-            (assign ((a (+ a 2))))
-            (assign ((b (+ b 1))))))
-        (assign ((i (+ i 1))))))
-    (assert (= (+ a b) (* 3 n)))
-    (assign ((result 0)))
-    (return)))
+            (if
+              (not (= nondet_int$1 0))
+              (sequence (assign (a (+ a 1))) (assign (b (+ b 2))))
+              (sequence (assign (a (+ a 2))) (assign (b (+ b 1)))))
+            (assign (i (+ i 1)))))
+        :tag
+        main-while-1)
+      (! (sequence) :tag main-check-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (= (+ a b) (* 3 n)))
+
+(verify-call main ())
+
+(get-witness)

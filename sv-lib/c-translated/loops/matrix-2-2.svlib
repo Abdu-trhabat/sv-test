@@ -1,3 +1,20 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic ALL)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
@@ -6,53 +23,60 @@
     (N_COL Int)
     (j Int)
     (k Int)
-    (matriz
-      (Array Int (Array Int Int)))
+    (matriz (Array Int (Array Int Int)))
     (maior Int)
     (nondet_int$1 Int))
-  (sequence
-    (if
-      (or
-        (<= (div 4000000000 4) N_LIN)
-        (<= (div 4000000000 4) N_COL))
-      (sequence
-        (assign ((result 0)))
-        (return)))
-    (havoc (maior))
-    (assign ((j 0)))
-    (while
-      (< j N_COL)
-      (sequence
-        (assign ((k 0)))
+  (!
+    (sequence
+      (if
+        (or (<= (div 4000000000 4) N_LIN) (<= (div 4000000000 4) N_COL))
+        (sequence (assign (result 0)) (return)))
+      (havoc maior)
+      (assign (j 0))
+      (!
         (while
-          (< k N_LIN)
+          (< j N_COL)
           (sequence
-            (assign
-              ((matriz
-                  (store
-                    matriz
-                    j
-                    (store (select matriz j) k nondet_int$1)))))
-            (if
-              (<
-                maior
-                (select (select matriz j) k))
-              (assign
-                ((maior
-                    (select (select matriz j) k)))))
-            (assign ((k (+ k 1))))))
-        (assign ((j (+ j 1))))))
-    (assign ((j 0)))
-    (while
-      (< j N_COL)
-      (sequence
-        (assign ((k 0)))
+            (assign (k 0))
+            (!
+              (while
+                (< k N_LIN)
+                (sequence
+                  (assign
+                    (matriz
+                      (store
+                        matriz
+                        j
+                        (store (select matriz j) k nondet_int$1))))
+                  (if
+                    (< maior (select (select matriz j) k))
+                    (assign (maior (select (select matriz j) k))))
+                  (assign (k (+ k 1)))))
+              :tag
+              main-while-2)
+            (assign (j (+ j 1)))))
+        :tag
+        main-while-1)
+      (assign (j 0))
+      (!
         (while
-          (< k N_LIN)
+          (< j N_COL)
           (sequence
-            (assert
-              (<
-                (select (select matriz j) k)
-                maior))
-            (assign ((k (+ k 1))))))
-        (assign ((j (+ j 1))))))))
+            (assign (k 0))
+            (!
+              (while
+                (< k N_LIN)
+                (sequence (! (sequence) :tag main-check-1) (assign (k (+ k 1)))))
+              :tag
+              main-while-4)
+            (assign (j (+ j 1)))))
+        :tag
+        main-while-3))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (< (select (select matriz j) k) maior))
+
+(verify-call main ())
+
+(get-witness)

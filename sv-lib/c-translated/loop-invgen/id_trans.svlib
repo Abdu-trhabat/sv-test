@@ -1,33 +1,56 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_NIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
   ((result Int))
-  ((idBitLength Int)
-    (material_length Int)
-    (nlen Int)
-    (j Int)
-    (k Int))
-  (sequence
-    (havoc (nlen))
-    (havoc (idBitLength))
-    (havoc (material_length))
-    (if
-      (not
-        (= nlen (div idBitLength 32)))
-      (sequence
-        (assign ((result 0)))
-        (return)))
-    (assign ((j 0)))
-    (while
-      (and
-        (< j (div idBitLength 8))
-        (< j material_length))
-      (sequence
-        (assert (<= 0 j))
-        (assert
-          (< j material_length))
-        (assert (<= 0 (div j 4)))
-        (assert (< (div j 4) nlen))
-        (assign ((j (+ j 1))))))
-    (assign ((result 0)))
-    (return)))
+  ((idBitLength Int) (material_length Int) (nlen Int) (j Int) (k Int))
+  (!
+    (sequence
+      (havoc nlen)
+      (havoc idBitLength)
+      (havoc material_length)
+      (if (not (= nlen (div idBitLength 32))) (sequence (assign (result 0)) (return)))
+      (assign (j 0))
+      (!
+        (while
+          (and (< j (div idBitLength 8)) (< j material_length))
+          (sequence
+            (! (sequence) :tag main-check-1)
+            (! (sequence) :tag main-check-2)
+            (! (sequence) :tag main-check-3)
+            (! (sequence) :tag main-check-4)
+            (assign (j (+ j 1)))))
+        :tag
+        main-while-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (<= 0 j))
+
+(annotate-tag main-check-2 :check-true (< j material_length))
+
+(annotate-tag main-check-3 :check-true (<= 0 (div j 4)))
+
+(annotate-tag main-check-4 :check-true (< (div j 4) nlen))
+
+(verify-call main ())
+
+(get-witness)

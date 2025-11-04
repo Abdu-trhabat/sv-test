@@ -1,3 +1,20 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_NIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
@@ -6,52 +23,54 @@
     (y Int)
     (z Int)
     (z__VERIFIER_LA_tmp0 Int)
-    (__VERIFIER_LA_iterations0
-      Int)
-    (z__VERIFIER_LA_old_tmp0
-      Int))
-  (sequence
-    (assign ((x 0)))
-    (assign ((y 0)))
-    (assign ((z 0)))
-    (while
-      (< x 268435455)
-      (sequence
-        (assign ((y 0)))
+    (__VERIFIER_LA_iterations0 Int)
+    (z__VERIFIER_LA_old_tmp0 Int))
+  (!
+    (sequence
+      (assign (x 0))
+      (assign (y 0))
+      (assign (z 0))
+      (!
         (while
-          (< y 268435455)
+          (< x 268435455)
           (sequence
-            (assign ((z 0)))
-            (if
-              (< z 268435455)
-              (sequence
-                (assign
-                  ((z__VERIFIER_LA_tmp0 z)))
-                (assign
-                  ((__VERIFIER_LA_iterations0
-                      (div
-                        (- 268435455 z__VERIFIER_LA_tmp0)
-                        1))))
-                (assign
-                  ((z__VERIFIER_LA_old_tmp0
-                      z)))
-                (assign
-                  ((z
-                      (+
-                        (*
-                          __VERIFIER_LA_iterations0
-                          1)
-                        z__VERIFIER_LA_old_tmp0))))))
-            (assert
-              (not
-                (not (= (mod z 4) 0))))
-            (assign ((y (+ y 1))))))
-        (assert
-          (not
-            (not (= (mod y 2) 0))))
-        (assign ((x (+ x 1))))))
-    (assert
-      (not
-        (not (= (mod x 2) 0))))
-    (assign ((result 0)))
-    (return)))
+            (assign (y 0))
+            (!
+              (while
+                (< y 268435455)
+                (sequence
+                  (assign (z 0))
+                  (if
+                    (< z 268435455)
+                    (sequence
+                      (assign (z__VERIFIER_LA_tmp0 z))
+                      (assign
+                        (__VERIFIER_LA_iterations0
+                          (div (- 268435455 z__VERIFIER_LA_tmp0) 1)))
+                      (assign (z__VERIFIER_LA_old_tmp0 z))
+                      (assign
+                        (z
+                          (+ (* __VERIFIER_LA_iterations0 1) z__VERIFIER_LA_old_tmp0)))))
+                  (! (sequence) :tag main-check-1)
+                  (assign (y (+ y 1)))))
+              :tag
+              main-while-2)
+            (! (sequence) :tag main-check-2)
+            (assign (x (+ x 1)))))
+        :tag
+        main-while-1)
+      (! (sequence) :tag main-check-3)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (not (not (= (mod z 4) 0))))
+
+(annotate-tag main-check-2 :check-true (not (not (= (mod y 2) 0))))
+
+(annotate-tag main-check-3 :check-true (not (not (= (mod x 2) 0))))
+
+(verify-call main ())
+
+(get-witness)

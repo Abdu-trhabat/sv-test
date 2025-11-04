@@ -1,19 +1,46 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
   ((result Int))
   ((x Int) (y Int) (z Int))
-  (sequence
-    (assign ((x 0)))
-    (assign ((y 10000000)))
-    (assign ((z 5000000)))
-    (while
-      (< x y)
-      (sequence
-        (if
-          (<= 5000000 x)
-          (assign ((z (+ z 1)))))
-        (assign ((x (+ x 1))))))
-    (assert (not (= z x)))
-    (assign ((result 0)))
-    (return)))
+  (!
+    (sequence
+      (assign (x 0))
+      (assign (y 10000000))
+      (assign (z 5000000))
+      (!
+        (while
+          (< x y)
+          (sequence
+            (if (<= 5000000 x) (assign (z (+ z 1))))
+            (assign (x (+ x 1)))))
+        :tag
+        main-while-1)
+      (! (sequence) :tag main-check-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (not (= z x)))
+
+(verify-call main ())
+
+(get-witness)

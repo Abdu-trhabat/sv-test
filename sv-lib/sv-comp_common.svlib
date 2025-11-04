@@ -1,3 +1,0 @@
-(set-option :produce-violation-witnesses true)
-(set-option :produce-correctness-witnesses true)
-(set-option :witness-output-channel ./witness.svlib)

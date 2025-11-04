@@ -1,24 +1,45 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
 (define-proc
   main
   ()
   ((result Int))
   ((lo Int) (mid Int) (hi Int))
-  (sequence
-    (assign ((lo 0)))
-    (havoc (mid))
-    (if
-      (not
-        (and (< 0 mid) (<= mid 1000000)))
-      (sequence
-        (assign ((result 0)))
-        (return)))
-    (assign ((hi (* 2 mid))))
-    (while
-      (< 0 mid)
-      (sequence
-        (assign ((lo (+ lo 1))))
-        (assign ((hi (- hi 1))))
-        (assign ((mid (- mid 1))))))
-    (assert (= lo hi))
-    (assign ((result 0)))
-    (return)))
+  (!
+    (sequence
+      (assign (lo 0))
+      (havoc mid)
+      (if (not (and (< 0 mid) (<= mid 1000000))) (sequence (assign (result 0)) (return)))
+      (assign (hi (* 2 mid)))
+      (!
+        (while
+          (< 0 mid)
+          (sequence (assign (lo (+ lo 1))) (assign (hi (- hi 1))) (assign (mid (- mid 1)))))
+        :tag
+        main-while-1)
+      (! (sequence) :tag main-check-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (= lo hi))
+
+(verify-call main ())
+
+(get-witness)
