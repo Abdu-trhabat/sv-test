@@ -12,4 +12,6 @@ CLANG_WARNINGS := \
 	-Wno-error=tautological-compare \
 	-Wno-error=uninitialized \
 
+IGNORE_DIRS := ./witnesses/
+
 include $(LEVEL)/Makefile.config
