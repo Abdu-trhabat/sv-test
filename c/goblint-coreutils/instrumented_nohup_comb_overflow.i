@@ -13,7 +13,7 @@ extern void __assert_perror_fail (int __errnum, const char *__file,
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-extern unsigned int __VERIFIER_nondet_unsigned_uint();
+extern unsigned int __VERIFIER_nondet_uint();
 extern void abort(void);
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "instrumented_nohup_comb.c", 9, __extension__ __PRETTY_FUNCTION__); })); }
 typedef long ptrdiff_t;
@@ -74176,7 +74176,7 @@ int _getopt_internal_r(int argc , char **argv , char const *optstring , struct r
   }
   }
   {
-  int t = argc * argc * (__VERIFIER_nondet_unsigned_uint() % 4);
+  int t = argc * argc * (__VERIFIER_nondet_uint() % 4);
   tmp___39 = d->__nextchar;
   (d->__nextchar) ++;
   c = *tmp___39;
