@@ -15,7 +15,6 @@ public class Sub2 extends Sub {
 
   public Sub2(int z) {
     this.z = z;
-    assert false : "Error in constructor Sub2(int z)";
   }
 
   public Sub2() {}
