@@ -682,7 +682,10 @@ class TaskDefinitionFileChecks(FileChecks):
             else:
                 verdict = None
             if "subproperty" in prop_def:
-                prop = prop_def["subproperty"]
+                if verdict is False:
+                    prop = prop_def["subproperty"]
+                else:
+                    self.error("has subproperty for non-violation")
             prop_and_verdict.append((prop, verdict))
         return prop_and_verdict
 
