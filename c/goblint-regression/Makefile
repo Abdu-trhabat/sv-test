@@ -8,6 +8,8 @@
 
 LEVEL := ../
 
+CC.Standard := gnu99
+
 GCC_WARNINGS := -Wno-misleading-indentation
 
 include $(LEVEL)/Makefile.config
