@@ -1,3 +1,10 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2025 Jana Berger
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 // Prototype declarations of the functions used to communicate with the model checkers
 extern unsigned long __VERIFIER_nondet_ulong(void);
 extern long __VERIFIER_nondet_long(void);
