@@ -1,6 +1,5 @@
 format_version: '2.0'
 input_files:
-- ../../sv-comp_common.svlib
 - simple_array_index_value_1-1.svlib
 properties:
 - property_file: ../../properties/svlib.prp

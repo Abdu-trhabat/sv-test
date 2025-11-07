@@ -1,6 +1,5 @@
 format_version: '2.0'
 input_files:
-- ../../sv-comp_common.svlib
 - sum01_bug02_sum01_bug02_base.case.svlib
 properties:
 - property_file: ../../properties/svlib.prp

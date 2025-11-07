@@ -1,6 +1,5 @@
 format_version: '2.0'
 input_files:
-- ../../sv-comp_common.svlib
 - insertion_sort-1.svlib
 properties:
 - property_file: ../../properties/svlib.prp

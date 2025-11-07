@@ -1,6 +1,5 @@
 format_version: '2.0'
 input_files:
-- ../../sv-comp_common.svlib
 - mine2017-ex4.6.svlib
 properties:
 - property_file: ../../properties/svlib.prp
