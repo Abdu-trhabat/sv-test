@@ -239,7 +239,7 @@ sv-lib-scripts-syntax:
   stage: checks
   image: python:3.12-slim
   script:
-    - apt update && apt install -yq git python3-pip
+    - apt update && apt install -yq git
     - pip install git+https://gitlab.com/sosy-lab/benchmarking/sv-lib.git@d0ab120ef97211369d185c53ef78d690d9e92f52#subdirectory=pysvlib
     - pysvlib lint sv-lib/
 
@@ -247,5 +247,5 @@ sv-lib-check-task-definitions:
   stage: checks
   image: python:3.12-slim
   script:
-    - apt update && apt install -yq python3-yaml
+    - pip install pyyaml --break-system-packages
     - ./sv-lib/check_task_definition_files.py sv-lib/
