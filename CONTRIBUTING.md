@@ -38,6 +38,8 @@ In order to contribute verification tasks, please use the following steps:
 
 In general, groups of new verification tasks should be added to a new directory
 under the respective language-specific directory.
+In case of SV-LIB programs, they can also be added to an arbitrarily nested subdirectory of `sv-lib/`.
+In contrast the CI for C programs only supports one level of subdirectories below `c/` for verification tasks.
 The name of this directory should describe the source and/or purpose of these verification tasks.
 
 The names of the individual files should be based on the file name or short title of the original program
