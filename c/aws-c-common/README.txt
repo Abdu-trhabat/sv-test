@@ -16,9 +16,12 @@ This is an automatic translation of these benchmark files into the format expect
 File `prelude.h` contains some definitions that are inserted in the generated benchmarks.
 If necessary, make modifications there.
 
+The additional files with prefix 'sliced_' are derivates of the original
+task files, generated and sliced with HarnessForge (https://gitlab.com/sosy-lab/software/harnessforge).
 
-Steps to re-create these files
-------------------------------
+
+Steps to re-create original files
+---------------------------------
 
 Based on commit `816ec134472c4d0d5ad0d949bae3417617f1e63d` from 
 `https://github.com/awslabs/aws-c-common`.
@@ -31,6 +34,14 @@ Based on commit `816ec134472c4d0d5ad0d949bae3417617f1e63d` from
 
     $SV/c/aws-c-common/makeall $AWS $SV
 
+Steps to re-create sliced files
+-------------------------------
+
+Slicing is done with [HarnessForge v1.2.1](https://gitlab.com/sosy-lab/software/harnessforge/-/tree/v1.2.1?ref_type=tags)
+
+* After installation, run `harnessforge slice -t ${task}.i`.
+  This produces `output/sliced_${task}.i`
+* Existing tasks are formatted with `clang-format -i sliced_${task}.i` (version 14.0.0-1ubuntu1.1)
 
 ### Mutation-Based Sanity Check
 
