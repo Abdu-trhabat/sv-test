@@ -223,7 +223,7 @@ reuse:
 ruff-check:
   extends: .base_ruff
   script:
-    - ruff check --output-format=gitlab ./c/*.py > code-quality-report.json
+    - ruff check --output-format=gitlab ./c/*.py ./sv-lib/ > code-quality-report.json
   artifacts:
     reports:
       codequality: $CI_PROJECT_DIR/code-quality-report.json
