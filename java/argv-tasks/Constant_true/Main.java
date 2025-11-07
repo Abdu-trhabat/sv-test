@@ -15,7 +15,7 @@ public class Main {
   double previousEvent = 0;
   /** ARG-V: suitable */
   public double generateNextEvent(double currentTime) {
-    if (!Double.isFinite(frequency) || !Double.isFinite(currentTime)){
+    if (!Double.isFinite(frequency) || !Double.isFinite(currentTime)) {
       return Double.NaN;
     }
     if (previousEvent + frequency <= currentTime) {
