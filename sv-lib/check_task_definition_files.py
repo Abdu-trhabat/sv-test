@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-# This file is part of SV-LIB: A Standard Exchange Format for Software-Verification Tasks
-# https://gitlab.com/sosy-lab/benchmarking/sv-lib
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://github.com/sosy-lab/sv-benchmarks
 #
-# SPDX-FileCopyrightText: 2025 The SV-LIB Maintainers
+# SPDX-FileCopyrightText: 2011-2020 The SV-Benchmarks Community
 #
 # SPDX-License-Identifier: Apache-2.0
 
