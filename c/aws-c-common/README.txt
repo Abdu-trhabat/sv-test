@@ -37,10 +37,11 @@ Based on commit `816ec134472c4d0d5ad0d949bae3417617f1e63d` from
 Steps to re-create sliced files
 -------------------------------
 
-Original data:
-https://gitlab.com/sosy-lab/research/data/harnessforge-automatic-extraction-of-verification-tasks/-/tree/main/task-creation/aws-c-common
-Run 'make generate' in the linked folder to generate the tasks.
+Slicing is done with [HarnessForge v1.2.1](https://gitlab.com/sosy-lab/software/harnessforge/-/tree/v1.2.1?ref_type=tags)
 
+* After installation, run `harnessforge slice -t ${task}.i`.
+  This produces `output/sliced_${task}.i`
+* Existing tasks are formatted with `clang-format -i sliced_${task}.i` (version 14.0.0-1ubuntu1.1)
 
 ### Mutation-Based Sanity Check
 
