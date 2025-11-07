@@ -3,4 +3,4 @@ input_files:
 - sum01_bug02_sum01_bug02_base.case.svlib
 properties:
 - property_file: ../../properties/svlib.prp
-  expected_verdict: unknown
+  

@@ -3,4 +3,4 @@ input_files:
 - nested-3.svlib
 properties:
 - property_file: ../../properties/svlib.prp
-  expected_verdict: unknown
+  

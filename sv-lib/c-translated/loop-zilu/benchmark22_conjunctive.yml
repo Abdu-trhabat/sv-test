@@ -3,4 +3,4 @@ input_files:
 - benchmark22_conjunctive.svlib
 properties:
 - property_file: ../../properties/svlib.prp
-  expected_verdict: unknown
+  

@@ -3,4 +3,4 @@ input_files:
 - benchmark49_linear.svlib
 properties:
 - property_file: ../../properties/svlib.prp
-  expected_verdict: unknown
+  

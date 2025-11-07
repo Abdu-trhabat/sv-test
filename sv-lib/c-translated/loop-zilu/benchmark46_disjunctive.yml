@@ -3,4 +3,4 @@ input_files:
 - benchmark46_disjunctive.svlib
 properties:
 - property_file: ../../properties/svlib.prp
-  expected_verdict: unknown
+  
