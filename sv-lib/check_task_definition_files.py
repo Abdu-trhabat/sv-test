@@ -32,7 +32,7 @@ def check_yaml_file(yaml_path: Path) -> bool:
     all_ok = True
 
     # Validate input_files
-    input_files = data.get('input_files', [])
+    input_files = data.get("input_files", [])
     if not input_files:
         log_error(f"{yaml_path}: Missing or empty 'input_files' field.")
         all_ok = False
@@ -44,21 +44,25 @@ def check_yaml_file(yaml_path: Path) -> bool:
                 all_ok = False
 
     # Validate properties
-    properties = data.get('properties', [])
+    properties = data.get("properties", [])
     if not properties:
         log_error(f"{yaml_path}: Missing or empty 'properties' field.")
         all_ok = False
     else:
         for prop in properties:
-            prop_file = prop.get('property_file')
+            prop_file = prop.get("property_file")
             if not prop_file:
-                log_error(f"{yaml_path}: 'property_file' missing in one of the properties.")
+                log_error(
+                    f"{yaml_path}: 'property_file' missing in one of the properties."
+                )
                 all_ok = False
                 continue
 
             full_path = yaml_dir / prop_file
             if not full_path.exists():
-                log_error(f"{yaml_path}: Missing property file '{prop_file}' → {full_path}")
+                log_error(
+                    f"{yaml_path}: Missing property file '{prop_file}' → {full_path}"
+                )
                 all_ok = False
 
     if all_ok:
@@ -95,9 +99,7 @@ def parse_args():
         description="Validate YAML test configuration files."
     )
     parser.add_argument(
-        "directory",
-        type=Path,
-        help="Root directory containing YAML files to validate."
+        "directory", type=Path, help="Root directory containing YAML files to validate."
     )
     return parser.parse_args()
 
@@ -118,7 +120,7 @@ def main():
     print(f"🔍 Checking {len(yaml_files)} YAML files under {root_dir}...\n")
 
     # --- Check filename uniqueness ---
-    unique_ok = check_unique_filenames(yaml_files)
+    check_unique_filenames(yaml_files)
 
     # --- Check each YAML file ---
     all_ok = True
