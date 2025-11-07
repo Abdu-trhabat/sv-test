@@ -34,6 +34,9 @@ public class Main {
    */
   /** ARG-V: suitable */
   public boolean isInSegment(double angle) {
+    if (!Double.isFinite(angle) || !Double.isFinite(mStartAngle) || !Double.isFinite(mEndAngle)) {
+      return false;
+    }
     if (angle >= mStartAngle && angle <= mEndAngle) {
       return true;
     }
