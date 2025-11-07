@@ -1,0 +1,10 @@
+format_version: '2.0'
+
+input_files: 'prop_bool_v13_c13_unsafe.c-amalgamation.i'
+
+properties:
+  - property_file: ../properties/unreach-call.prp
+    expected_verdict: false
+options:
+  language: C
+  data_model: ILP32
