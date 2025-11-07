@@ -16,30 +16,33 @@
 (set-info :format-version "1.0")
 
 (define-proc
-    upto
-    ((n Int))
-    ((i Int))
-    ()
-    (!
-        (sequence
-            (assign (i 0))
-            (!
-                (while
-                    (< i n)
-                    (assign (i (+ i 1))))
-                :tag while-1))
-        :tag proc-add))
+  add
+  ((x0 Int) (y0 Int))
+  ((x Int))
+  ((y Int))
+  (! (sequence
+       (assign (x x0) (y y0))
+       (! (while
+            (< 0 y)
+            (assign
+              (x (+ x 1))
+              (y (- y 1))))
+        :tag while-loop))
+    :tag proc-add))
 
 (annotate-tag
-    upto
-    :ensures  (= i n))
+  proc-add
+  :requires (<= 0 y0)
+  :ensures  (= x (+ x0 y0))
+  :not-live)
 
 (annotate-tag
-    while-1
-    :not-live)
+  while-loop
+  :invariant (= (+ x y) (+ x0 y0)))
 
-(declare-const n Int)
-(assert (<= 0 n))
+(declare-const x1 Int)
+(declare-const y1 Int)
 
-(verify-call
-    upto (n))
+(verify-call add (x1 y1))
+
+(get-witness)

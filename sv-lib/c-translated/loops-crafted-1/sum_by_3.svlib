@@ -15,6 +15,9 @@
 
 (set-info :format-version "1.0")
 
+(declare-var SIZE Int)
+(declare-var j Int)
+
 (define-proc
   main
   ()

@@ -15,6 +15,9 @@
 
 (set-info :format-version "1.0")
 
+(declare-var j Int)
+(declare-var x$4 Int)
+
 (define-proc
   main
   ()

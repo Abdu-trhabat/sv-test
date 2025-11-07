@@ -15,6 +15,9 @@
 
 (set-info :format-version "1.0")
 
+(declare-var trueVar Int)
+(declare-var falseVar Int)
+
 (define-proc
   correct_version
   ((w Int))
@@ -22,14 +25,14 @@
   ((is_divisible Int) (i Int))
   (!
     (sequence
-      (assign (is_divisible true))
+      (assign (is_divisible trueVar))
       (if
         (< w 4)
-        (assign (is_divisible false))
+        (assign (is_divisible falseVar))
         (sequence
           (assign (i 0))
           (! (while (< i w) (assign (i (+ i 2)))) :tag correct_version-while-1)
-          (if (not (= i w)) (assign (is_divisible false)))))
+          (if (not (= i w)) (assign (is_divisible falseVar)))))
       (assign (result is_divisible))
       (return))
     :tag
@@ -42,14 +45,14 @@
   ((is_divisible Int) (i Int))
   (!
     (sequence
-      (assign (is_divisible true))
+      (assign (is_divisible trueVar))
       (if
         (< w 4)
-        (assign (is_divisible false))
+        (assign (is_divisible falseVar))
         (sequence
           (assign (i 0))
           (! (while (< i w) (assign (i (+ i 2)))) :tag student_version-while-2)
-          (if (not (= i w)) (assign (is_divisible false)))))
+          (if (not (= i w)) (assign (is_divisible falseVar)))))
       (assign (result is_divisible))
       (return))
     :tag
@@ -66,10 +69,10 @@
     (student_version$2 Int))
   (!
     (sequence
-      (assign (true 1))
-      (assign (false 0))
-      (assign (is_divisible1 true))
-      (assign (is_divisible2 true))
+      (assign (trueVar 1))
+      (assign (falseVar 0))
+      (assign (is_divisible1 trueVar))
+      (assign (is_divisible2 trueVar))
       (if
         (and (< 0 w) (< w 10000000))
         (sequence
