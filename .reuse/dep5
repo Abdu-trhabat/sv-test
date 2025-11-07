@@ -6,6 +6,8 @@ Files:
  *.set
  c/*.set
  c/*/*.yml
+ sv-lib/*/*.yml
+ sv-lib/*/*/*.yml
  java/*.set
  java/*/*.yml
  .gitlab/merge_request_templates/*.md
