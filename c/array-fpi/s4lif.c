@@ -22,7 +22,8 @@ int main()
 {
 	N = __VERIFIER_nondet_int();
 	if(N <= 0) return 1;
-	assume_abort_if_not(N <= 2147483647/sizeof(int));
+	int check_size = sizeof(int) > 5 ? sizeof(int) : 5;
+	assume_abort_if_not(N <= 2147483647 / check_size);
 
 	int i;
 	long long sum[1];
