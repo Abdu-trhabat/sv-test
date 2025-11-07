@@ -232,3 +232,12 @@ ruff-format:
   extends: .base_ruff
   script:
     - ruff format --diff
+
+# SV-LIB verification tasks
+
+sv-lib-scripts-syntax:
+  stage: checks
+  image: python:3.12-slim
+  script:
+    - pip install git+https://gitlab.com/sosy-lab/benchmarking/sv-lib.git@d0ab120ef97211369d185c53ef78d690d9e92f52#subdirectory=pysvlib
+    - pysvlib lint sv-lib/
