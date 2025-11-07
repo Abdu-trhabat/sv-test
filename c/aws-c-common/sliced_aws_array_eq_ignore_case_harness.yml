@@ -1,7 +1,7 @@
 format_version: '2.0'
 input_files: sliced_aws_array_eq_ignore_case_harness.i
 properties:
-- property_file: ../../properties/unreach-call.prp
+- property_file: ../properties/unreach-call.prp
   expected_verdict: true
 options:
   language: C
