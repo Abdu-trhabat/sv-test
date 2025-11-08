@@ -223,7 +223,7 @@ reuse:
 ruff-check:
   extends: .base_ruff
   script:
-    - ruff check --output-format=gitlab ./c/*.py > code-quality-report.json
+    - ruff check --output-format=gitlab ./c/*.py ./sv-lib/ > code-quality-report.json
   artifacts:
     reports:
       codequality: $CI_PROJECT_DIR/code-quality-report.json
@@ -232,3 +232,20 @@ ruff-format:
   extends: .base_ruff
   script:
     - ruff format --diff
+
+# SV-LIB verification tasks
+
+sv-lib-scripts-syntax:
+  stage: checks
+  image: python:3.12-slim
+  script:
+    - apt update && apt install -yq git
+    - pip install git+https://gitlab.com/sosy-lab/benchmarking/sv-lib.git@d0ab120ef97211369d185c53ef78d690d9e92f52#subdirectory=pysvlib
+    - pysvlib lint sv-lib/
+
+sv-lib-check-task-definitions:
+  stage: checks
+  image: python:3.12-slim
+  script:
+    - pip install pyyaml --break-system-packages
+    - ./sv-lib/check_task_definition_files.py sv-lib/

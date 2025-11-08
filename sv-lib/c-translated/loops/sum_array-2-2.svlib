@@ -1,0 +1,81 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_ALIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
+(define-proc
+  main
+  ()
+  ((result Int))
+  ((M Int)
+    (A (Array Int Int))
+    (B (Array Int Int))
+    (C (Array Int Int))
+    (i Int)
+    (nondet_int$1 Int))
+  (!
+    (sequence
+      (if (< 1000000 M) (sequence (assign (result 0)) (return)))
+      (assign (i 0))
+      (!
+        (while
+          (< i M)
+          (sequence
+            (assign (A (store A i nondet_int$1)))
+            (if (not (<= (select A i) 1000000)) (sequence (assign (result 0)) (return)))
+            (if (not (<= (- 1000000) (select A i))) (sequence (assign (result 0)) (return)))
+            (assign (i (+ i 1)))))
+        :tag
+        main-while-1)
+      (assign (i 0))
+      (!
+        (while
+          (< i M)
+          (sequence
+            (assign (B (store B i nondet_int$3)))
+            (if (not (<= (select B i) 1000000)) (sequence (assign (result 0)) (return)))
+            (if (not (<= (- 1000000) (select B i))) (sequence (assign (result 0)) (return)))
+            (assign (i (+ i 1)))))
+        :tag
+        main-while-2)
+      (assign (i 0))
+      (!
+        (while
+          (< i M)
+          (sequence
+            (assign
+              (C
+                (store C i (+ (select A i) (select B i)))))
+            (assign (i (+ i 1)))))
+        :tag
+        main-while-3)
+      (assign (i 0))
+      (!
+        (while
+          (< i M)
+          (sequence (! (sequence) :tag main-check-1) (assign (i (+ i 1)))))
+        :tag
+        main-while-4))
+    :tag
+    main))
+
+(annotate-tag
+  main-check-1
+  :check-true
+  (= (select C i) (+ (select A i) (select B i))))
+
+(verify-call main ())
+
+(get-witness)

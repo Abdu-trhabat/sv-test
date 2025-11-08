@@ -1,0 +1,78 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
+(define-proc
+  main
+  ()
+  ((result Int))
+  ((a Int) (b Int) (c Int) (d Int) (e Int) (uint32_max Int))
+  (!
+    (sequence
+      (assign (uint32_max 4294967295))
+      (assign (a 0))
+      (!
+        (while
+          (< a (- uint32_max 1))
+          (sequence
+            (assign (b 0))
+            (!
+              (while
+                (< b (- uint32_max 1))
+                (sequence
+                  (assign (c 0))
+                  (!
+                    (while
+                      (< c (- uint32_max 1))
+                      (sequence
+                        (assign (d 0))
+                        (!
+                          (while
+                            (< d (- uint32_max 1))
+                            (sequence
+                              (assign (e 0))
+                              (!
+                                (while
+                                  (< e (- uint32_max 1))
+                                  (sequence
+                                    (if
+                                      (and (= a b) (= b c) (= c d) (= d e) (= e (- uint32_max 2)))
+                                      (! (sequence) :tag main-check-1))
+                                    (assign (e (+ e 1)))))
+                                :tag
+                                main-while-5)
+                              (assign (d (+ d 1)))))
+                          :tag
+                          main-while-4)
+                        (assign (c (+ c 1)))))
+                    :tag
+                    main-while-3)
+                  (assign (b (+ b 1)))))
+              :tag
+              main-while-2)
+            (assign (a (+ a 1)))))
+        :tag
+        main-while-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true false)
+
+(verify-call main ())
+
+(get-witness)

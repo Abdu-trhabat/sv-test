@@ -1,0 +1,73 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
+(define-proc
+  main
+  ()
+  ((result Int))
+  ((i Int) (j Int))
+  (!
+    (sequence
+      (assign (i 0))
+      (!
+        (while
+          (< i 4)
+          (sequence
+            (assign (j 0))
+            (!
+              (while
+                (< j 3)
+                (sequence
+                  (assign (i (+ i 1)))
+                  (assign (j (+ j 2)))
+                  (! (sequence) :tag main-check-1)
+                  (! (sequence) :tag main-check-2)
+                  (! (sequence) :tag main-check-3)
+                  (! (sequence) :tag main-check-4)))
+              :tag
+              main-while-2)
+            (! (sequence) :tag main-check-5)
+            (! (sequence) :tag main-check-6)
+            (! (sequence) :tag main-check-7)
+            (! (sequence) :tag main-check-8)
+            (assign (i (+ (- i (div j 2)) 1)))))
+        :tag
+        main-while-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (<= 0 j))
+
+(annotate-tag main-check-2 :check-true (<= j (* 2 i)))
+
+(annotate-tag main-check-3 :check-true (<= (* 2 i) (+ j 6)))
+
+(annotate-tag main-check-4 :check-true (<= j 4))
+
+(annotate-tag main-check-5 :check-true (<= 0 j))
+
+(annotate-tag main-check-6 :check-true (<= j (* 2 i)))
+
+(annotate-tag main-check-7 :check-true (<= (* 2 i) (+ j 6)))
+
+(annotate-tag main-check-8 :check-true (<= j 4))
+
+(verify-call main ())
+
+(get-witness)

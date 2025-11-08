@@ -1,0 +1,60 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_NIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
+(declare-var SIZE Int)
+
+(define-proc
+  main
+  ()
+  ((result Int))
+  ((n Int) (i Int) (k Int) (j Int) (l Int) (v4 Int))
+  (!
+    (sequence
+      (assign (SIZE 20000001))
+      (assign (n 0))
+      (assign (i 0))
+      (assign (k 0))
+      (assign (j 0))
+      (assign (l 0))
+      (assign (v4 0))
+      (havoc n)
+      (if (not (<= n SIZE)) (sequence (assign (result 0)) (return)))
+      (!
+        (while
+          (< l n)
+          (sequence
+            (if
+              (not (not (= (mod l 4) 0)))
+              (assign (v4 (+ v4 1)))
+              (if
+                (not (not (= (mod l 3) 0)))
+                (assign (i (+ i 1)))
+                (if (not (not (= (mod l 2) 0))) (assign (j (+ j 1))) (assign (k (+ k 1))))))
+            (assign (l (+ l 1)))))
+        :tag
+        main-while-1)
+      (! (sequence) :tag main-check-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (= (+ (+ (+ i j) k) v4) l))
+
+(verify-call main ())
+
+(get-witness)

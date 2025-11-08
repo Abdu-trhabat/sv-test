@@ -1,0 +1,56 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_LIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
+(define-proc
+  main
+  ()
+  ((result Int))
+  ((x Int)
+    (y Int)
+    (y__VERIFIER_LA_tmp0 Int)
+    (__VERIFIER_LA_iterations0 Int)
+    (x__VERIFIER_LA_old_tmp0 Int)
+    (y__VERIFIER_LA_old_tmp0 Int))
+  (!
+    (sequence
+      (assign (x 1))
+      (assign (y 0))
+      (if
+        (< y 1024)
+        (sequence
+          (assign (y__VERIFIER_LA_tmp0 y))
+          (assign
+            (__VERIFIER_LA_iterations0 (div (- 1024 y__VERIFIER_LA_tmp0) 1)))
+          (assign (x__VERIFIER_LA_old_tmp0 x))
+          (assign
+            (x
+              (+
+                (+ (* __VERIFIER_LA_iterations0 0) (* x__VERIFIER_LA_old_tmp0 0))
+                0)))
+          (assign (y__VERIFIER_LA_old_tmp0 y))
+          (assign
+            (y
+              (+ (* __VERIFIER_LA_iterations0 1) y__VERIFIER_LA_old_tmp0)))))
+      (! (sequence) :tag main-check-1))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (= x 1))
+
+(verify-call main ())
+
+(get-witness)

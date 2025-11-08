@@ -1,0 +1,6 @@
+format_version: '2.0'
+input_files:
+- sumt3.svlib
+properties:
+- property_file: ../../properties/correct-tags.prp
+  expected_verdict: correct

@@ -1,0 +1,56 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic ALL)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
+(define-proc
+  main
+  ()
+  ((result Int))
+  ((array (Array Int Int)) (index Int))
+  (!
+    (sequence
+      (assign (index 0))
+      (!
+        (while
+          (< index 1000)
+          (sequence
+            (assign
+              (array (store array index (mod index 2))))
+            (assign (index (+ index 1)))))
+        :tag
+        main-while-1)
+      (assign (index 0))
+      (!
+        (while
+          (< index 1000)
+          (sequence
+            (if
+              (= (mod index 2) 0)
+              (! (sequence) :tag main-check-1)
+              (! (sequence) :tag main-check-2))
+            (assign (index (+ index 1)))))
+        :tag
+        main-while-2))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (= (select array index) 0))
+
+(annotate-tag main-check-2 :check-true (not (= (select array index) 0)))
+
+(verify-call main ())
+
+(get-witness)

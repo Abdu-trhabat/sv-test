@@ -1,0 +1,48 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_NIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
+(define-proc
+  main
+  ()
+  ((result Int))
+  ((x Int)
+    (x__VERIFIER_LA_tmp0 Int)
+    (__VERIFIER_LA_iterations0 Int)
+    (x__VERIFIER_LA_old_tmp0 Int))
+  (!
+    (sequence
+      (assign (x 0))
+      (if
+        (< x 268435455)
+        (sequence
+          (assign (x__VERIFIER_LA_tmp0 x))
+          (assign
+            (__VERIFIER_LA_iterations0
+              (div (- 268435455 x__VERIFIER_LA_tmp0) 2)))
+          (assign (x__VERIFIER_LA_old_tmp0 x))
+          (assign
+            (x
+              (+ (* __VERIFIER_LA_iterations0 2) x__VERIFIER_LA_old_tmp0)))))
+      (! (sequence) :tag main-check-1))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (not (= (mod x 2) 0)))
+
+(verify-call main ())
+
+(get-witness)

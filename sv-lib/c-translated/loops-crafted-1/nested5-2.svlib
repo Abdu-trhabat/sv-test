@@ -1,0 +1,77 @@
+; This file is part of the SV-Benchmarks collection of verification tasks:
+; https://github.com/sosy-lab/sv-benchmarks
+;
+; SPDX-FileCopyrightText: 2025 The SV-Benchmarks Community
+;
+; SPDX-License-Identifier: Apache-2.0
+
+(set-logic QF_NIA)
+
+(set-option :produce-violation-witnesses true)
+
+(set-option :produce-correctness-witnesses true)
+
+(set-option :witness-output-channel "./witness.svlib")
+
+(set-info :format-version "1.0")
+
+(define-proc
+  main
+  ()
+  ((result Int))
+  ((x Int) (y Int) (z Int) (w Int) (v Int))
+  (!
+    (sequence
+      (assign (x 0))
+      (assign (y 0))
+      (assign (z 0))
+      (assign (w 0))
+      (assign (v 0))
+      (assign (w 0))
+      (!
+        (while
+          (< w 268435455)
+          (sequence
+            (assign (x 0))
+            (!
+              (while
+                (< x 10)
+                (sequence
+                  (assign (y 0))
+                  (!
+                    (while
+                      (< y 10)
+                      (sequence
+                        (assign (z 0))
+                        (!
+                          (while
+                            (< z 10)
+                            (sequence
+                              (assign (v 0))
+                              (!
+                                (while (< v 268435455) (assign (v (+ v 1))))
+                                :tag
+                                main-while-5)
+                              (! (sequence) :tag main-check-1)
+                              (assign (z (+ z 1)))))
+                          :tag
+                          main-while-4)
+                        (assign (y (+ y 1)))))
+                    :tag
+                    main-while-3)
+                  (assign (x (+ x 1)))))
+              :tag
+              main-while-2)
+            (assign (w (+ w 1)))))
+        :tag
+        main-while-1)
+      (assign (result 0))
+      (return))
+    :tag
+    main))
+
+(annotate-tag main-check-1 :check-true (not (not (= (mod v 4) 0))))
+
+(verify-call main ())
+
+(get-witness)
