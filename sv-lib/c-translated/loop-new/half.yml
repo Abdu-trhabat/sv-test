@@ -3,4 +3,4 @@ input_files:
 - half.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
-  expected_verdict: true
+  expected_verdict: correct

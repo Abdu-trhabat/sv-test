@@ -3,4 +3,4 @@ input_files:
 - sum04-1.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
-  expected_verdict: false
+  expected_verdict: incorrect

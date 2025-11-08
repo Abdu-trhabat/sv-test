@@ -3,4 +3,4 @@ input_files:
 - overflow_1-1.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
-  expected_verdict: true
+  expected_verdict: correct
