@@ -7,9 +7,17 @@
     SPDX-License-Identifier: Apache-2.0
 -->
 
-SV-LIB benchmarks
+SV-LIB Benchmarks
 -----------------
 
-The benchmarks in `core-*` represent small hand-crafted tasks to show-case the capabilities of the format.
-In contrast the benchmarks in `c-translated` are translated from the original C tasks of this repository.
-Contributed by Gidon Ernst and Marian Lingsch-Rosenfeld.
+The benchmark verification tasks in `core-*` represent small hand-crafted tasks to show-case the capabilities
+of the format.
+The benchmark verification tasks in `c-translated` were translated from the original C tasks of this repository.
+
+Contributed by Gidon Ernst and Marian Lingsch-Rosenfeld
+as part of the following article:
+
+SV-LIB: A Standard Exchange Format for Software-Verification Tasks.
+Dirk Beyer, Gidon Ernst, Martin Jonáš, Marian Lingsch-Rosenfeld.
+Technical Report, arXiv (2025).
+
