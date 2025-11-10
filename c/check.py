@@ -694,8 +694,11 @@ class TaskDefinitionFileChecks(FileChecks):
 
         prop_and_verdict = list()
         for prop_def in props:
+            prop_path = prop_def["property_file"]
+            if not os.path.exists(os.path.join(self.directory, prop_path)):
+                self.error("references inaccessible file: " + prop_path)
             # Strip directories and ".prp" suffix
-            prop = os.path.basename(prop_def["property_file"])
+            prop = os.path.basename(prop_path)
             if prop.endswith(".prp"):
                 prop = prop[:-4]
             if "expected_verdict" in prop_def:
