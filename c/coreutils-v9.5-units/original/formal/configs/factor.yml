@@ -1,0 +1,174 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2025 Dirk Beyer <https://www.sosy-lab.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: factor
+description: tasks that verify functionality of factor
+tasks:
+  - name: factors_trivial_functional
+    before_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: factors_trivial
+    target:
+      filename: formal/harnesses/factor-harness.c
+      method: call_factors
+    after_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: postcond_factors_empty
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: factors_trivial_cover_target
+    before_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: factors_trivial
+    target:
+      filename: formal/harnesses/factor-harness.c
+      method: call_factors
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: factors_trivial_cover_proof
+    before_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: factors_trivial
+    target:
+      filename: formal/harnesses/factor-harness.c
+      method: call_factors
+    after_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: postcond_factors_empty
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: factors_valid_numbers_functional
+    before_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: factors_valid_numbers
+    target:
+      filename: formal/harnesses/factor-harness.c
+      method: call_factors
+    after_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: postcond_factors_exist_and_valid
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: factors_valid_numbers_cover_target
+    before_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: factors_valid_numbers
+    target:
+      filename: formal/harnesses/factor-harness.c
+      method: call_factors
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: factors_valid_numbers_cover_proof
+    before_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: factors_valid_numbers
+    target:
+      filename: formal/harnesses/factor-harness.c
+      method: call_factors
+    after_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: postcond_factors_exist_and_valid
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: factors_valid_64bit_number_functional
+    before_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: factors_valid_64bit_number
+    target:
+      filename: formal/harnesses/factor-harness.c
+      method: call_factors
+    after_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: postcond_factors_exist_and_valid
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: factors_valid_64bit_number_cover_target
+    before_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: factors_valid_64bit_number
+    target:
+      filename: formal/harnesses/factor-harness.c
+      method: call_factors
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: factors_valid_64bit_number_cover_proof
+    before_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: factors_valid_64bit_number
+    target:
+      filename: formal/harnesses/factor-harness.c
+      method: call_factors
+    after_target:
+      - filename: formal/harnesses/factor-harness.c
+        method: postcond_factors_exist_and_valid
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp

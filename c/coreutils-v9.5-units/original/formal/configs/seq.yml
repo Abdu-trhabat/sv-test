@@ -1,0 +1,191 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2025 Dirk Beyer <https://www.sosy-lab.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: seq
+description: tasks that verify functionality of seq decimal string arithmetic
+tasks:
+  - name: seq_incr_with_trailing_nines_functional
+    before_target:
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: init_seq_buffer_with_trailing_nines
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: store_old_seq_state
+    target:
+      filename: formal/harnesses/seq-harness-incr.c
+      method: call_incr
+    after_target:
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: postcond_incr_with_trailing_nines_leads_to_carry
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: free_seq_buffer
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: seq_incr_with_trailing_nines_cover_target
+    before_target:
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: init_seq_buffer_with_trailing_nines
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: store_old_seq_state
+    target:
+      filename: formal/harnesses/seq-harness-incr.c
+      method: call_incr
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: free_seq_buffer
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: seq_incr_with_trailing_nines_cover_proof
+    before_target:
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: init_seq_buffer_with_trailing_nines
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: store_old_seq_state
+    target:
+      filename: formal/harnesses/seq-harness-incr.c
+      method: call_incr
+    after_target:
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: postcond_incr_with_trailing_nines_leads_to_carry
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: free_seq_buffer
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: seq_incr_no_carry_functional
+    before_target:
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: init_seq_buffer_with_no_trailing_nines
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: store_old_seq_state
+    target:
+      filename: formal/harnesses/seq-harness-incr.c
+      method: call_incr
+    after_target:
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: postcond_incr_no_carry
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: free_seq_buffer
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: seq_incr_no_carry_cover_target
+    before_target:
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: init_seq_buffer_with_no_trailing_nines
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: store_old_seq_state
+    target:
+      filename: formal/harnesses/seq-harness-incr.c
+      method: call_incr
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+      #- filename: formal/harnesses/seq-harness-incr.c
+      #  method: postcond_incr_no_carry
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: free_seq_buffer
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: seq_incr_no_carry_cover_proof
+    before_target:
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: init_seq_buffer_with_no_trailing_nines
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: store_old_seq_state
+    target:
+      filename: formal/harnesses/seq-harness-incr.c
+      method: call_incr
+    after_target:
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: postcond_incr_no_carry
+      - filename: formal/harnesses/seq-harness-incr.c
+        method: free_seq_buffer
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: seq_cmp_antisymmetry_functional
+    target:
+      filename: formal/harnesses/seq-harness-cmp.c
+      method: call_cmp_antisymmetry
+    after_target:
+      - filename: formal/harnesses/seq-harness-cmp.c
+        method: postcond_cmp_antisymmetry
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: true
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: seq_cmp_antisymmetry_cover_target
+    target:
+      filename: formal/harnesses/seq-harness-cmp.c
+      method: call_cmp_antisymmetry
+    after_target:
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
+
+  - name: seq_cmp_antisymmetry_cover_proof
+    target:
+      filename: formal/harnesses/seq-harness-cmp.c
+      method: call_cmp_antisymmetry
+    after_target:
+      - filename: formal/harnesses/seq-harness-cmp.c
+        method: postcond_cmp_antisymmetry
+      - filename: formal/harnesses/cover-check.c
+        method: cover_check
+    properties:
+      - property_file: ../../properties/unreach-call.prp
+        expected_verdict: false
+      - property_file: ../../properties/valid-memsafety.prp
+        expected_verdict: true
+      - property_file: ../../properties/coverage-error-call.prp
+      - property_file: ../../properties/coverage-branches.prp
