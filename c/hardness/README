@@ -1,0 +1,10 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2025 Jana Berger
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+Contains various tasks which require a wide variety of techniques in order to determine reachability.
+Some make specific use of pointers, some of arrays, some of structs, some of floats, and some combine everything.
+These examples are derived from the the dissertation "Applying software model checking: experiences and advancements" (https://doi.org/10.18154/RWTH-2024-10081).

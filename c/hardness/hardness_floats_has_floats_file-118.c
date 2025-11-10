@@ -1,0 +1,170 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2025 Jana Berger
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+// Prototype declarations of the functions used to communicate with the model checkers
+extern unsigned long __VERIFIER_nondet_ulong(void);
+extern long __VERIFIER_nondet_long(void);
+extern unsigned char __VERIFIER_nondet_uchar(void);
+extern char __VERIFIER_nondet_char(void);
+extern unsigned short __VERIFIER_nondet_ushort(void);
+extern short __VERIFIER_nondet_short(void);
+extern float __VERIFIER_nondet_float(void);
+extern double __VERIFIER_nondet_double(void);
+
+extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error(void) { __assert_fail("0", "Req1_Prop1_Batch118has_floats.c", 13, "reach_error"); }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } return; }
+void assume_abort_if_not(int cond) { if(!cond) { abort(); } }
+
+
+
+#define max(a,b) (((a) > (b)) ? (a) : (b))
+#define min(a,b) (((a) < (b)) ? (a) : (b))
+#define abs(a) (((a) < 0 ) ? -(a) : (a))
+
+
+
+
+
+// Function prototypes
+void initially(void);
+void step(void);
+void updateVariables(void);
+void updateLastVariables(void);
+int property(void);
+int main(void);
+
+
+// Internal control logic variables
+unsigned char isInitial = 0;
+
+// Signal variables
+signed short int var_1_1 = 10;
+signed short int var_1_3 = -32;
+signed short int var_1_4 = -4;
+signed short int var_1_5 = 2;
+unsigned char var_1_6 = 100;
+unsigned char var_1_7 = 2;
+unsigned char var_1_8 = 10;
+unsigned char var_1_9 = 4;
+signed short int var_1_10 = 4;
+float var_1_11 = 5.0;
+float var_1_12 = 50.0;
+float var_1_13 = 0.0;
+unsigned long int var_1_14 = 1;
+unsigned char var_1_15 = 128;
+unsigned short int var_1_16 = 256;
+
+// Calibration values
+
+// Last'ed variables
+
+// Additional functions
+
+
+void initially(void) {
+}
+
+
+
+void step(void) {
+	// From: Req4Batch118has_floats
+	if (var_1_5 < 64) {
+		var_1_14 = 25u;
+	}
+
+
+	// From: Req5Batch118has_floats
+	var_1_15 = var_1_9;
+
+
+	// From: Req6Batch118has_floats
+	var_1_16 = var_1_8;
+
+
+	// From: Req1Batch118has_floats
+	signed long int stepLocal_0 = 4;
+	if (var_1_14 < stepLocal_0) {
+		var_1_1 = (var_1_3 + var_1_4);
+	} else {
+		var_1_1 = (var_1_5 - 5);
+	}
+
+
+	// From: Req2Batch118has_floats
+	unsigned long int stepLocal_1 = var_1_14;
+	if (var_1_4 == stepLocal_1) {
+		var_1_6 = ((min (var_1_7 , var_1_8)) + (max ((64 + 8) , var_1_9)));
+	} else {
+		var_1_6 = (var_1_7 + 4);
+	}
+
+
+	// From: Req3Batch118has_floats
+	if ((var_1_11 - var_1_12) < var_1_13) {
+		var_1_10 = (var_1_8 + ((var_1_9 - var_1_7) + var_1_6));
+	} else {
+		if (-32.0f >= var_1_13) {
+			var_1_10 = var_1_3;
+		}
+	}
+}
+
+
+
+void updateVariables(void) {
+	var_1_3 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_3 >= -16383);
+	assume_abort_if_not(var_1_3 <= 16383);
+	var_1_4 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_4 >= -16383);
+	assume_abort_if_not(var_1_4 <= 16383);
+	var_1_5 = __VERIFIER_nondet_short();
+	assume_abort_if_not(var_1_5 >= -1);
+	assume_abort_if_not(var_1_5 <= 32766);
+	var_1_7 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_7 >= 0);
+	assume_abort_if_not(var_1_7 <= 127);
+	var_1_8 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_8 >= 0);
+	assume_abort_if_not(var_1_8 <= 127);
+	var_1_9 = __VERIFIER_nondet_uchar();
+	assume_abort_if_not(var_1_9 >= 0);
+	assume_abort_if_not(var_1_9 <= 127);
+	var_1_11 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_11 >= 0.0F && var_1_11 <= -1.0e-20F) || (var_1_11 <= 9223372.036854776000e+12F && var_1_11 >= 1.0e-20F ));
+	var_1_12 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_12 >= 0.0F && var_1_12 <= -1.0e-20F) || (var_1_12 <= 9223372.036854776000e+12F && var_1_12 >= 1.0e-20F ));
+	var_1_13 = __VERIFIER_nondet_float();
+	assume_abort_if_not((var_1_13 >= -922337.2036854776000e+13F && var_1_13 <= -1.0e-20F) || (var_1_13 <= 9223372.036854776000e+12F && var_1_13 >= 1.0e-20F ));
+}
+
+
+
+void updateLastVariables(void) {
+}
+
+int property(void) {
+	return ((((((var_1_14 < 4) ? (var_1_1 == ((signed short int) (var_1_3 + var_1_4))) : (var_1_1 == ((signed short int) (var_1_5 - 5)))) && ((var_1_4 == var_1_14) ? (var_1_6 == ((unsigned char) ((min (var_1_7 , var_1_8)) + (max ((64 + 8) , var_1_9))))) : (var_1_6 == ((unsigned char) (var_1_7 + 4))))) && (((var_1_11 - var_1_12) < var_1_13) ? (var_1_10 == ((signed short int) (var_1_8 + ((var_1_9 - var_1_7) + var_1_6)))) : ((-32.0f >= var_1_13) ? (var_1_10 == ((signed short int) var_1_3)) : 1))) && ((var_1_5 < 64) ? (var_1_14 == ((unsigned long int) 25u)) : 1)) && (var_1_15 == ((unsigned char) var_1_9))) && (var_1_16 == ((unsigned short int) var_1_8))
+;
+}
+int main(void) {
+	isInitial = 1;
+	initially();
+
+	while (1) {
+		updateLastVariables();
+
+		updateVariables();
+		step();
+		__VERIFIER_assert(property());
+		isInitial = 0;
+	}
+
+	return 0;
+}
