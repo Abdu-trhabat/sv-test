@@ -68,15 +68,20 @@ class, provided in
 `java/common/org/sosy_lab/sv_benchmarks/Verifier.java` in the
 `sv-benchmarks` repository. In order to make the benchmarks
 compilable, `../common/` needs to be added to the `input_files`
-property of the benchmark's YAML file.
+property of the benchmark's YAML file. Nondeterminism covers
+always the entire possible value range of a data type.
 
 The methods in `org.sosy_lab.sv_benchmarks.Verifier` call methods
 of the `java.util.Random` class. The rationale is to provide
 straightforward compatibility with verifiers that implement a
 nondeterministic semantics for the `java.util.Random` class, i.e.
 the methods in `java.util.Random` are expected to return a
-nondeterministic value instead of a random value, but satisfying
-the same constraints on their value range.
+nondeterministic value instead of a random value.
+The semantic of this nondeterministic random value
+is the same as described above for the Verifier.java.
+They cover always the entire value range. Range bounds implied
+by the standard java library on random values are *not* applicable
+for SV-COMP tasks. 
 
 `org.sosy_lab.sv_benchmarks.Verifier` also provides an `assume`
 method, which is defined as `Runtime.getRuntime().halt(1)`.  It is
