@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 
 extern int __VERIFIER_nondet_int(void);
@@ -46,7 +54,7 @@ void abort() {
 
 item_p create_item(end_point_t at, item_p link)
 {
-    user_item_p item = malloc(sizeof *item);
+    user_item_p item = safe_malloc(sizeof *item);
     if (!item)
         abort();
 

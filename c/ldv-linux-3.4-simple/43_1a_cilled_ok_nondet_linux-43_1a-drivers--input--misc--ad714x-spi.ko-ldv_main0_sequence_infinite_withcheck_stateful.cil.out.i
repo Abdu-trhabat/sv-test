@@ -3460,13 +3460,21 @@ void __list_add(struct list_head *arg0, struct list_head *arg1, struct list_head
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  void *p = malloc(size);
+  void *p = safe_malloc(size);
   assume_abort_if_not(IS_ERR(p) == 0);
   return p;
 }

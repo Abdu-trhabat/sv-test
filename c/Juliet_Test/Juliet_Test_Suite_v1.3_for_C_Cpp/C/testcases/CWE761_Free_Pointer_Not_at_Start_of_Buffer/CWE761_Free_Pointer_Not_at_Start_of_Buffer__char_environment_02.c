@@ -29,11 +29,19 @@ Template File: source-sinks-02.tmpl.c
 #define SEARCH_CHAR 'S'
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_environment_02_bad()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {
@@ -71,7 +79,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_environment_02_bad()
 static void goodB2G1()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {
@@ -112,7 +120,7 @@ static void goodB2G1()
 static void goodB2G2()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {

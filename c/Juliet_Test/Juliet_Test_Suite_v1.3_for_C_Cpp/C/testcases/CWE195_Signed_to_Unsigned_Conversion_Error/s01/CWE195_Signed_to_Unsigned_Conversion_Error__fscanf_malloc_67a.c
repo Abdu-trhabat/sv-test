@@ -9,7 +9,7 @@ Template File: sources-sink-67a.tmpl.c
  * BadSource: fscanf Read data from the console using fscanf()
  * GoodSource: Positive integer
  * Sinks: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 67 Data flow: data passed in a struct from one function to another in different source files
  *
  * */
@@ -24,6 +24,14 @@ typedef struct _CWE195_Signed_to_Unsigned_Conversion_Error__fscanf_malloc_67_str
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE195_Signed_to_Unsigned_Conversion_Error__fscanf_malloc_67b_badSink(CWE195_Signed_to_Unsigned_Conversion_Error__fscanf_malloc_67_structType myStruct);
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__fscanf_malloc_67_bad()

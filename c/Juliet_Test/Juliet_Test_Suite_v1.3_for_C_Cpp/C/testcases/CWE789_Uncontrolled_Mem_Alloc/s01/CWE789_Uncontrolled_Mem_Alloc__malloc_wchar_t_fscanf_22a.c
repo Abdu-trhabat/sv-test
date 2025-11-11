@@ -9,8 +9,8 @@ Template File: sources-sinks-22a.tmpl.c
  * BadSource: fscanf Read data from the console using fscanf()
  * GoodSource: Small number greater than zero
  * Sinks:
- *    GoodSink: Allocate memory with malloc() and check the size of the memory to be allocated
- *    BadSink : Allocate memory with malloc(), but incorrectly check the size of the memory to be allocated
+ *    GoodSink: Allocate memory with safe_malloc() and check the size of the memory to be allocated
+ *    BadSink : Allocate memory with safe_malloc(), but incorrectly check the size of the memory to be allocated
  * Flow Variant: 22 Control flow: Flow controlled by value of a global variable. Sink functions are in a separate file from sources.
  *
  * */
@@ -25,6 +25,14 @@ Template File: sources-sinks-22a.tmpl.c
 
 /* The global variable below is used to drive control flow in the sink function */
 int CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_fscanf_22_badGlobal = 0;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_fscanf_22_badSink(size_t data);
 

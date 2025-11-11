@@ -25,6 +25,14 @@ Template File: sources-sinks-07.tmpl.c
 static int staticFive = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE457_Use_of_Uninitialized_Variable__double_pointer_07_bad()
 {
@@ -63,7 +71,7 @@ static void goodB2G1()
     {
         /* FIX: Ensure data is initialized before use */
         /* initialize both the pointer and the data pointed to */
-        data = (double *)malloc(sizeof(double));
+        data = (double *)safe_malloc(sizeof(double));
         if (data == NULL) {exit(-1);}
         *data = 5.0;
         printDoubleLine(*data);
@@ -83,7 +91,7 @@ static void goodB2G2()
     {
         /* FIX: Ensure data is initialized before use */
         /* initialize both the pointer and the data pointed to */
-        data = (double *)malloc(sizeof(double));
+        data = (double *)safe_malloc(sizeof(double));
         if (data == NULL) {exit(-1);}
         *data = 5.0;
         printDoubleLine(*data);
@@ -103,7 +111,7 @@ static void goodG2B1()
     {
         /* FIX: Initialize data */
         /* initialize both the pointer and the data pointed to */
-        data = (double *)malloc(sizeof(double));
+        data = (double *)safe_malloc(sizeof(double));
         if (data == NULL) {exit(-1);}
         *data = 5.0;
     }
@@ -122,7 +130,7 @@ static void goodG2B2()
     {
         /* FIX: Initialize data */
         /* initialize both the pointer and the data pointed to */
-        data = (double *)malloc(sizeof(double));
+        data = (double *)safe_malloc(sizeof(double));
         if (data == NULL) {exit(-1);}
         *data = 5.0;
     }

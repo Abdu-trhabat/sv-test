@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE124_Buffer_Underwrite__malloc_char_loop_22b.c
 Label Definition File: CWE124_Buffer_Underwrite__malloc.label.xml
@@ -28,7 +36,7 @@ char * CWE124_Buffer_Underwrite__malloc_char_loop_22_badSource(char * data)
     if(CWE124_Buffer_Underwrite__malloc_char_loop_22_badGlobal)
     {
         {
-            char * dataBuffer = (char *)malloc(100*sizeof(char));
+            char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
             if (dataBuffer == NULL) {exit(-1);}
             memset(dataBuffer, 'A', 100-1);
             dataBuffer[100-1] = '\0';
@@ -58,7 +66,7 @@ char * CWE124_Buffer_Underwrite__malloc_char_loop_22_goodG2B1Source(char * data)
     else
     {
         {
-            char * dataBuffer = (char *)malloc(100*sizeof(char));
+            char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
             if (dataBuffer == NULL) {exit(-1);}
             memset(dataBuffer, 'A', 100-1);
             dataBuffer[100-1] = '\0';
@@ -75,7 +83,7 @@ char * CWE124_Buffer_Underwrite__malloc_char_loop_22_goodG2B2Source(char * data)
     if(CWE124_Buffer_Underwrite__malloc_char_loop_22_goodG2B2Global)
     {
         {
-            char * dataBuffer = (char *)malloc(100*sizeof(char));
+            char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
             if (dataBuffer == NULL) {exit(-1);}
             memset(dataBuffer, 'A', 100-1);
             dataBuffer[100-1] = '\0';

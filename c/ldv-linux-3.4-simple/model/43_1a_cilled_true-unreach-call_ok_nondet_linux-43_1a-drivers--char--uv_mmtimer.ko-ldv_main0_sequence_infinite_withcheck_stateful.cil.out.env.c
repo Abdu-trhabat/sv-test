@@ -8,6 +8,14 @@
 unsigned long __VERIFIER_nondet_ulong(void);
 unsigned long int _copy_to_user(void *arg0, const void *arg1, unsigned int arg2) {
   // Simple type
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
   return __VERIFIER_nondet_ulong();
 }
 
@@ -24,7 +32,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: kmem_cache_alloc

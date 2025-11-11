@@ -9,7 +9,7 @@ Template File: sources-sink-22b.tmpl.c
  * BadSource: connect_socket Read data using a connect socket (client side)
  * GoodSource: Positive integer
  * Sink: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 22 Control flow: Flow controlled by value of a global variable. Sink functions are in a separate file from sources.
  *
  * */
@@ -43,6 +43,14 @@ Template File: sources-sink-22b.tmpl.c
 
 /* The global variable below is used to drive control flow in the source function */
 extern int CWE194_Unexpected_Sign_Extension__connect_socket_malloc_22_badGlobal;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 short CWE194_Unexpected_Sign_Extension__connect_socket_malloc_22_badSource(short data)
 {

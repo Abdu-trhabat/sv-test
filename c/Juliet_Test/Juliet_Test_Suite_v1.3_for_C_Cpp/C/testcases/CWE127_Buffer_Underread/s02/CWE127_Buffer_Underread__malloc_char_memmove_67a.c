@@ -26,6 +26,14 @@ typedef struct _CWE127_Buffer_Underread__malloc_char_memmove_67_structType
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE127_Buffer_Underread__malloc_char_memmove_67b_badSink(CWE127_Buffer_Underread__malloc_char_memmove_67_structType myStruct);
 
 void CWE127_Buffer_Underread__malloc_char_memmove_67_bad()
@@ -34,7 +42,7 @@ void CWE127_Buffer_Underread__malloc_char_memmove_67_bad()
     CWE127_Buffer_Underread__malloc_char_memmove_67_structType myStruct;
     data = NULL;
     {
-        char * dataBuffer = (char *)malloc(100*sizeof(char));
+        char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}
         memset(dataBuffer, 'A', 100-1);
         dataBuffer[100-1] = '\0';
@@ -58,7 +66,7 @@ static void goodG2B()
     CWE127_Buffer_Underread__malloc_char_memmove_67_structType myStruct;
     data = NULL;
     {
-        char * dataBuffer = (char *)malloc(100*sizeof(char));
+        char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}
         memset(dataBuffer, 'A', 100-1);
         dataBuffer[100-1] = '\0';

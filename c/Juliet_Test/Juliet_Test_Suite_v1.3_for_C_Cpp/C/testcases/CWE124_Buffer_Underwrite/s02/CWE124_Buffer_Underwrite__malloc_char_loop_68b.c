@@ -24,6 +24,14 @@ extern char * CWE124_Buffer_Underwrite__malloc_char_loop_68_goodG2BData;
 /* all the sinks are the same, we just want to know where the hit originated if a tool flags one */
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE124_Buffer_Underwrite__malloc_char_loop_68b_badSink()
 {
@@ -42,7 +50,7 @@ void CWE124_Buffer_Underwrite__malloc_char_loop_68b_badSink()
         data[100-1] = '\0';
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by malloc() so can't safely call free() on it */
+         * returned by safe_malloc() so can't safely call free() on it */
     }
 }
 
@@ -68,7 +76,7 @@ void CWE124_Buffer_Underwrite__malloc_char_loop_68b_goodG2BSink()
         data[100-1] = '\0';
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by malloc() so can't safely call free() on it */
+         * returned by safe_malloc() so can't safely call free() on it */
     }
 }
 

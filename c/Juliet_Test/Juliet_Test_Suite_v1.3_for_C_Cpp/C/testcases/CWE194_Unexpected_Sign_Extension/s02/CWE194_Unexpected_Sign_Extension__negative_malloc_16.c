@@ -9,7 +9,7 @@ Template File: sources-sink-16.tmpl.c
  * BadSource: negative Set data to a fixed negative number
  * GoodSource: Positive integer
  * Sink: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 16 Control flow: while(1)
  *
  * */
@@ -17,6 +17,14 @@ Template File: sources-sink-16.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE194_Unexpected_Sign_Extension__negative_malloc_16_bad()
 {
@@ -32,9 +40,9 @@ void CWE194_Unexpected_Sign_Extension__negative_malloc_16_bad()
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {
-        /* POTENTIAL FLAW: malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
-         * the conversion will cause malloc() to allocate a very large amount of data or fail */
-        char * dataBuffer = (char *)malloc(data);
+        /* POTENTIAL FLAW: safe_malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
+         * the conversion will cause safe_malloc() to allocate a very large amount of data or fail */
+        char * dataBuffer = (char *)safe_malloc(data);
         if (dataBuffer == NULL) {exit(-1);}
         /* Do something with dataBuffer */
         memset(dataBuffer, 'A', data-1);
@@ -63,9 +71,9 @@ static void goodG2B()
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {
-        /* POTENTIAL FLAW: malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
-         * the conversion will cause malloc() to allocate a very large amount of data or fail */
-        char * dataBuffer = (char *)malloc(data);
+        /* POTENTIAL FLAW: safe_malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
+         * the conversion will cause safe_malloc() to allocate a very large amount of data or fail */
+        char * dataBuffer = (char *)safe_malloc(data);
         if (dataBuffer == NULL) {exit(-1);}
         /* Do something with dataBuffer */
         memset(dataBuffer, 'A', data-1);

@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <assert.h>
 void reach_error() { assert(0); }
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
@@ -25,14 +33,14 @@ int main()
 		struct S *s = NULL;
 		if (q == 0)
 		{
-			s = (struct S*) malloc(sizeof(struct S));
+			s = (struct S*) safe_malloc(sizeof(struct S));
 			s->n = q % 2;
 		}
 		if (s != 0)
 		{
 			if (s->n == 0)
 			{
-				s->p = (int *) malloc(sizeof(int));
+				s->p = (int *) safe_malloc(sizeof(int));
 			}
 			else
 			{
@@ -43,7 +51,7 @@ int main()
 		a[i] = s;
 	}
 
-	a[3] = (struct S*) malloc(sizeof(struct S));
+	a[3] = (struct S*) safe_malloc(sizeof(struct S));
 
 	for (i = 0; i < SIZE; i++)
 	{

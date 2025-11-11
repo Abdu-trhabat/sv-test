@@ -36,13 +36,21 @@ static void badSink(char * data)
     }
     free(data);
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_console_44_bad()
 {
     char * data;
     /* define a function pointer */
     void (*funcPtr) (char *) = badSink;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {
@@ -100,7 +108,7 @@ static void goodB2G()
 {
     char * data;
     void (*funcPtr) (char *) = goodB2GSink;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {

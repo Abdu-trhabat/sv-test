@@ -26,13 +26,21 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE244_Heap_Inspection__w32_wchar_t_free_04_bad()
 {
     if(STATIC_CONST_TRUE)
     {
         {
-            wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
+            wchar_t * password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;
@@ -89,7 +97,7 @@ static void good1()
     else
     {
         {
-            wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
+            wchar_t * password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;
@@ -139,7 +147,7 @@ static void good2()
     if(STATIC_CONST_TRUE)
     {
         {
-            wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
+            wchar_t * password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;

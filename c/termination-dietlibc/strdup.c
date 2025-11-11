@@ -1,5 +1,13 @@
 #include <stddef.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <alloca.h>
 
 #define __unlikely(x) x
@@ -26,7 +34,7 @@ size_t strlen(const char *s) {
 
 char *strdup(const char *s) {
   size_t l=strlen(s)+1;
-  char *tmp=(char *)malloc(l);
+  char *tmp=(char *)safe_malloc(l);
   if (!tmp) return 0;
   return memcpy(tmp,s,l);
 }

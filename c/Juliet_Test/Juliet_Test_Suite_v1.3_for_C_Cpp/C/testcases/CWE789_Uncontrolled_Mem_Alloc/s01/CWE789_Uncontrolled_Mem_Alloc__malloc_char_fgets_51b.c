@@ -9,8 +9,8 @@ Template File: sources-sinks-51b.tmpl.c
  * BadSource: fgets Read data from the console using fgets()
  * GoodSource: Small number greater than zero
  * Sinks:
- *    GoodSink: Allocate memory with malloc() and check the size of the memory to be allocated
- *    BadSink : Allocate memory with malloc(), but incorrectly check the size of the memory to be allocated
+ *    GoodSink: Allocate memory with safe_malloc() and check the size of the memory to be allocated
+ *    BadSink : Allocate memory with safe_malloc(), but incorrectly check the size of the memory to be allocated
  * Flow Variant: 51 Data flow: data passed as an argument from one function to another in different source files
  *
  * */
@@ -26,6 +26,14 @@ Template File: sources-sinks-51b.tmpl.c
 #define HELLO_STRING "hello"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE789_Uncontrolled_Mem_Alloc__malloc_char_fgets_51b_badSink(size_t data)
 {
@@ -36,7 +44,7 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_char_fgets_51b_badSink(size_t data)
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > strlen(HELLO_STRING))
         {
-            myString = (char *)malloc(data*sizeof(char));
+            myString = (char *)safe_malloc(data*sizeof(char));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             strcpy(myString, HELLO_STRING);
@@ -64,7 +72,7 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_char_fgets_51b_goodG2BSink(size_t dat
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > strlen(HELLO_STRING))
         {
-            myString = (char *)malloc(data*sizeof(char));
+            myString = (char *)safe_malloc(data*sizeof(char));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             strcpy(myString, HELLO_STRING);
@@ -88,7 +96,7 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_char_fgets_51b_goodB2GSink(size_t dat
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > strlen(HELLO_STRING) && data < 100)
         {
-            myString = (char *)malloc(data*sizeof(char));
+            myString = (char *)safe_malloc(data*sizeof(char));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             strcpy(myString, HELLO_STRING);

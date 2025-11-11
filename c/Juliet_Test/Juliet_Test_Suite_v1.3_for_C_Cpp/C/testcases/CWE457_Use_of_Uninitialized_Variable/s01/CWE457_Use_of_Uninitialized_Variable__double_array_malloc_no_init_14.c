@@ -18,11 +18,19 @@ Template File: sources-sinks-14.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE457_Use_of_Uninitialized_Variable__double_array_malloc_no_init_14_bad()
 {
     double * data;
-    data = (double *)malloc(10*sizeof(double));
+    data = (double *)safe_malloc(10*sizeof(double));
     if (data == NULL) {exit(-1);}
     if(globalFive==5)
     {
@@ -50,7 +58,7 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_malloc_no_init_14_bad()
 static void goodB2G1()
 {
     double * data;
-    data = (double *)malloc(10*sizeof(double));
+    data = (double *)safe_malloc(10*sizeof(double));
     if (data == NULL) {exit(-1);}
     if(globalFive==5)
     {
@@ -86,7 +94,7 @@ static void goodB2G1()
 static void goodB2G2()
 {
     double * data;
-    data = (double *)malloc(10*sizeof(double));
+    data = (double *)safe_malloc(10*sizeof(double));
     if (data == NULL) {exit(-1);}
     if(globalFive==5)
     {
@@ -117,7 +125,7 @@ static void goodB2G2()
 static void goodG2B1()
 {
     double * data;
-    data = (double *)malloc(10*sizeof(double));
+    data = (double *)safe_malloc(10*sizeof(double));
     if (data == NULL) {exit(-1);}
     if(globalFive!=5)
     {
@@ -152,7 +160,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     double * data;
-    data = (double *)malloc(10*sizeof(double));
+    data = (double *)safe_malloc(10*sizeof(double));
     if (data == NULL) {exit(-1);}
     if(globalFive==5)
     {

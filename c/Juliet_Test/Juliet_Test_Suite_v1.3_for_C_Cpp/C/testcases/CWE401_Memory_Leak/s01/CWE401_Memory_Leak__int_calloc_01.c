@@ -6,7 +6,7 @@ Template File: sources-sinks-01.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using calloc()
+ * BadSource: calloc Allocate data using safe_calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -20,13 +20,21 @@ Template File: sources-sinks-01.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE401_Memory_Leak__int_calloc_01_bad()
 {
     int * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int *)calloc(100, sizeof(int));
+    data = (int *)safe_calloc(100, sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;
@@ -59,7 +67,7 @@ static void goodB2G()
     int * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int *)calloc(100, sizeof(int));
+    data = (int *)safe_calloc(100, sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;

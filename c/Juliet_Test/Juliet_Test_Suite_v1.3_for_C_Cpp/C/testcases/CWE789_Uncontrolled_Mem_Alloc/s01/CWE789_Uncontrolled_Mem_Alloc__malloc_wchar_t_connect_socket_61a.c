@@ -9,8 +9,8 @@ Template File: sources-sinks-61a.tmpl.c
  * BadSource: connect_socket Read data using a connect socket (client side)
  * GoodSource: Small number greater than zero
  * Sinks:
- *    GoodSink: Allocate memory with malloc() and check the size of the memory to be allocated
- *    BadSink : Allocate memory with malloc(), but incorrectly check the size of the memory to be allocated
+ *    GoodSink: Allocate memory with safe_malloc() and check the size of the memory to be allocated
+ *    BadSink : Allocate memory with safe_malloc(), but incorrectly check the size of the memory to be allocated
  * Flow Variant: 61 Data flow: data returned from one function to another in different source files
  *
  * */
@@ -48,6 +48,14 @@ Template File: sources-sinks-61a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 size_t CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_connect_socket_61b_badSource(size_t data);
 
 void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_connect_socket_61_bad()
@@ -63,7 +71,7 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_connect_socket_61_bad()
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > wcslen(HELLO_STRING))
         {
-            myString = (wchar_t *)malloc(data*sizeof(wchar_t));
+            myString = (wchar_t *)safe_malloc(data*sizeof(wchar_t));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             wcscpy(myString, HELLO_STRING);
@@ -97,7 +105,7 @@ static void goodG2B()
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > wcslen(HELLO_STRING))
         {
-            myString = (wchar_t *)malloc(data*sizeof(wchar_t));
+            myString = (wchar_t *)safe_malloc(data*sizeof(wchar_t));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             wcscpy(myString, HELLO_STRING);
@@ -127,7 +135,7 @@ static void goodB2G()
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > wcslen(HELLO_STRING) && data < 100)
         {
-            myString = (wchar_t *)malloc(data*sizeof(wchar_t));
+            myString = (wchar_t *)safe_malloc(data*sizeof(wchar_t));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             wcscpy(myString, HELLO_STRING);

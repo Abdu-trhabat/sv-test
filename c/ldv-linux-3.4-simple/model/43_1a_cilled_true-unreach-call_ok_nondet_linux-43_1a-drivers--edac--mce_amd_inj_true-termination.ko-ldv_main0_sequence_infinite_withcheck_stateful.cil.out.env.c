@@ -5,6 +5,14 @@
 // Function: amd_decode_mce
 // with type: int amd_decode_mce(struct notifier_block *, unsigned long, void *)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int amd_decode_mce(struct notifier_block *arg0, unsigned long arg1, void *arg2) {
   // Simple type
@@ -15,7 +23,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: edac_get_sysfs_subsys

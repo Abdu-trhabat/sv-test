@@ -3628,6 +3628,30 @@ void triple_free(void *x ) ;
 char *xgetcwd(void) ;
 #pragma merger(0,"/tmp/cil-2LOrzFgC.i","-g,-O2")
 extern void abort(void) __attribute__((__nothrow__, __noreturn__)) ;
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #pragma merger(0,"/tmp/cil-GIolek74.i","-g,-O2")
 int set_cloexec_flag(int desc , _Bool value ) ;
 int dup_cloexec(int fd ) ;
@@ -8175,7 +8199,7 @@ char *areadlink_with_size(char const *file , size_t size )
       }
     }
     {
-    tmp___1 = malloc(buf_size);
+    tmp___1 = safe_malloc(buf_size);
     buffer = (char *)tmp___1;
     }
     if ((unsigned long )buffer == (unsigned long )((void *)0)) {
@@ -9171,7 +9195,7 @@ struct argv_iterator *( __attribute__((__nonnull__(1))) argv_iter_init_argv)(cha
   void *tmp ;
   {
   {
-  tmp = malloc(sizeof(*ai));
+  tmp = safe_malloc(sizeof(*ai));
   ai = (struct argv_iterator *)tmp;
   }
   if (! ai) {
@@ -9193,7 +9217,7 @@ struct argv_iterator *( __attribute__((__nonnull__(1))) argv_iter_init_stream)(F
   void *tmp ;
   {
   {
-  tmp = malloc(sizeof(*ai));
+  tmp = safe_malloc(sizeof(*ai));
   ai = (struct argv_iterator *)tmp;
   }
   if (! ai) {
@@ -10121,7 +10145,7 @@ size_t base64_encode_alloc(char const *in , size_t inlen , char **out )
     }
   }
   {
-  tmp = malloc(outlen);
+  tmp = safe_malloc(outlen);
   *out = (char *)tmp;
   }
   if (! *out) {
@@ -10657,7 +10681,7 @@ _Bool base64_decode_alloc_ctx(struct base64_decode_context *ctx , char const *in
   {
   {
   needlen = 3UL * (inlen / 4UL) + 3UL;
-  tmp = malloc(needlen);
+  tmp = safe_malloc(needlen);
   *out = (char *)tmp;
   }
   if (! *out) {
@@ -13050,7 +13074,7 @@ int md5_stream(FILE *stream , void *resblock )
   size_t tmp___4 ;
   {
   {
-  tmp = malloc((size_t )32840);
+  tmp = safe_malloc((size_t )32840);
   buffer = (char *)tmp;
   }
   if (! buffer) {
@@ -14598,7 +14622,7 @@ int sha1_stream(FILE *stream , void *resblock )
   size_t tmp___4 ;
   {
   {
-  tmp = malloc((size_t )32840);
+  tmp = safe_malloc((size_t )32840);
   buffer = (char *)tmp;
   }
   if (! buffer) {
@@ -16457,7 +16481,7 @@ int sha256_stream(FILE *stream , void *resblock )
   size_t tmp___4 ;
   {
   {
-  tmp = malloc((size_t )32840);
+  tmp = safe_malloc((size_t )32840);
   buffer = (char *)tmp;
   }
   if (! buffer) {
@@ -16564,7 +16588,7 @@ int sha224_stream(FILE *stream , void *resblock )
   size_t tmp___4 ;
   {
   {
-  tmp = malloc((size_t )32840);
+  tmp = safe_malloc((size_t )32840);
   buffer = (char *)tmp;
   }
   if (! buffer) {
@@ -18306,7 +18330,7 @@ int sha512_stream(FILE *stream , void *resblock )
   size_t tmp___4 ;
   {
   {
-  tmp = malloc((size_t )32840);
+  tmp = safe_malloc((size_t )32840);
   buffer = (char *)tmp;
   }
   if (! buffer) {
@@ -18413,7 +18437,7 @@ int sha384_stream(FILE *stream , void *resblock )
   size_t tmp___4 ;
   {
   {
-  tmp = malloc((size_t )32840);
+  tmp = safe_malloc((size_t )32840);
   buffer = (char *)tmp;
   }
   if (! buffer) {
@@ -20506,7 +20530,7 @@ struct di_set *di_set_alloc(void)
   void *tmp ;
   {
   {
-  tmp = malloc(sizeof(*dis));
+  tmp = safe_malloc(sizeof(*dis));
   dis = (struct di_set *)tmp;
   }
   if (dis) {
@@ -20571,7 +20595,7 @@ static struct hash_table *map_device(struct di_set *dis , dev_t dev )
   } else {
     {
     {
-    tmp = malloc(sizeof(*probe));
+    tmp = safe_malloc(sizeof(*probe));
     probe = (struct di_ent *)tmp;
     dis->probe = probe;
     }
@@ -20980,7 +21004,7 @@ char *mdir_name(char const *file )
   { if(!(tmp___0 <= 1)) { reach_error(); abort(); } };
   {
   append_dot = (_Bool )tmp___0;
-  tmp___1 = malloc((length + (size_t )append_dot) + 1UL);
+  tmp___1 = safe_malloc((length + (size_t )append_dot) + 1UL);
   dir = (char *)tmp___1;
   }
   }
@@ -24757,7 +24781,7 @@ char *mfile_name_concat(char const *dir , char const *abase , char **base_in_res
   base = tmp___2;
   tmp___3 = strlen(base);
   baselen = tmp___3;
-  tmp___4 = malloc(((dirlen + needs_separator) + baselen) + 1UL);
+  tmp___4 = safe_malloc(((dirlen + needs_separator) + baselen) + 1UL);
   p_concat = (char *)tmp___4;
   }
   if ((unsigned long )p_concat == (unsigned long )((void *)0)) {
@@ -30692,7 +30716,7 @@ ssize_t getndelim2(char **lineptr , size_t *linesize , size_t offset , size_t nm
       }
     }
     {
-    tmp = malloc(size);
+    tmp = safe_malloc(size);
     ptr = (char *)tmp;
     }
     if (! ptr) {
@@ -30871,7 +30895,7 @@ ssize_t getndelim2(char **lineptr , size_t *linesize , size_t offset , size_t nm
         }
         {
         nbytes_avail = newsize - (size_t )(read_pos - ptr);
-        tmp___2 = realloc((void *)ptr, newsize);
+        tmp___2 = safe_realloc((void *)ptr, newsize);
         newptr = (char *)tmp___2;
         }
         if (! newptr) {
@@ -32459,7 +32483,7 @@ Hash_table *( __attribute__((__warn_unused_result__)) hash_initialize)(size_t ca
   { if(!((((hasher == & triple_hash || hasher == & dev_info_hash) || hasher == & AD_hash) || hasher == & LCO_hash) || hasher == & src_to_dest_hash)) { reach_error(); abort(); } };
   { if(!((((comparator == & triple_compare || comparator == & dev_info_compare) || comparator == & AD_compare) || comparator == & LCO_compare) || comparator == & src_to_dest_compare)) { reach_error(); abort(); } };
   {
-  tmp = malloc(sizeof(*table___0));
+  tmp = safe_malloc(sizeof(*table___0));
   table___0 = (Hash_table *)tmp;
   }
   }
@@ -32505,7 +32529,7 @@ Hash_table *( __attribute__((__warn_unused_result__)) hash_initialize)(size_t ca
     }
   }
   {
-  tmp___1 = calloc(table___0->n_buckets, sizeof(*(table___0->bucket)));
+  tmp___1 = safe_calloc(table___0->n_buckets, sizeof(*(table___0->bucket)));
   table___0->bucket = (struct hash_entry *)tmp___1;
   }
   if ((unsigned long )table___0->bucket == (unsigned long )((void *)0)) {
@@ -32742,7 +32766,7 @@ static struct hash_entry *allocate_entry(Hash_table *table___0 )
   } else {
     {
     {
-    tmp = malloc(sizeof(*new));
+    tmp = safe_malloc(sizeof(*new));
     new = (struct hash_entry *)tmp;
     }
     }
@@ -33034,7 +33058,7 @@ _Bool ( __attribute__((__warn_unused_result__)) hash_rehash)(Hash_table *table__
   {
   new_table = & storage;
   { if(!(new_table == & storage)) { reach_error(); abort(); } };
-  tmp___0 = calloc(new_size, sizeof(*(new_table->bucket)));
+  tmp___0 = safe_calloc(new_size, sizeof(*(new_table->bucket)));
   new_table->bucket = (struct hash_entry *)tmp___0;
   }
   if ((unsigned long )new_table->bucket == (unsigned long )((void *)0)) {
@@ -35694,7 +35718,7 @@ struct ino_map *ino_map_alloc(size_t next_mapped_ino )
   void *tmp ;
   {
   {
-  tmp = malloc(sizeof(*im));
+  tmp = safe_malloc(sizeof(*im));
   im = (struct ino_map *)tmp;
   }
   if (im) {
@@ -35753,7 +35777,7 @@ size_t ( __attribute__((__nonnull__(1))) ino_map_insert)(struct ino_map *im , in
   } else {
     {
     {
-    tmp = malloc(sizeof(*probe));
+    tmp = safe_malloc(sizeof(*probe));
     probe = (struct ino_map_ent *)tmp;
     im->probe = probe;
     }
@@ -36458,7 +36482,7 @@ static char const *get_charset_aliases(void)
     }
     {
     add_slash = tmp___2;
-    tmp___3 = malloc(((dir_len___0 + (size_t )add_slash) + base_len___0) + 1UL);
+    tmp___3 = safe_malloc(((dir_len___0 + (size_t )add_slash) + base_len___0) + 1UL);
     file_name___1 = (char *)tmp___3;
     }
     if ((unsigned long )file_name___1 != (unsigned long )((void *)0)) {
@@ -36609,7 +36633,7 @@ static char const *get_charset_aliases(void)
               {
               {
               res_size = ((l1 + 1UL) + l2) + 1UL;
-              tmp___6 = malloc(res_size + 1UL);
+              tmp___6 = safe_malloc(res_size + 1UL);
               res_ptr = (char *)tmp___6;
               }
               }
@@ -36617,7 +36641,7 @@ static char const *get_charset_aliases(void)
               {
               {
               res_size += ((l1 + 1UL) + l2) + 1UL;
-              tmp___7 = realloc((void *)res_ptr, res_size + 1UL);
+              tmp___7 = safe_realloc((void *)res_ptr, res_size + 1UL);
               res_ptr = (char *)tmp___7;
               }
               }
@@ -36973,7 +36997,7 @@ void *mmalloca(size_t n )
   if (nplus >= n) {
     {
     {
-    tmp = malloc(nplus);
+    tmp = safe_malloc(nplus);
     p = (char *)tmp;
     }
     if ((unsigned long )p != (unsigned long )((void *)0)) {
@@ -37232,7 +37256,7 @@ size_t mbsalign(char const *src , char *dest , size_t dest_size , size_t *width 
     }
     {
     src_chars ++;
-    tmp___1 = malloc(src_chars * sizeof(wchar_t ));
+    tmp___1 = safe_malloc(src_chars * sizeof(wchar_t ));
     str_wc = (wchar_t *)tmp___1;
     }
     if ((unsigned long )str_wc == (unsigned long )((void *)0)) {
@@ -37286,7 +37310,7 @@ size_t mbsalign(char const *src , char *dest , size_t dest_size , size_t *width 
           }
         }
         {
-        tmp___6 = malloc(src_size);
+        tmp___6 = safe_malloc(src_size);
         newstr = (char *)tmp___6;
         }
         if ((unsigned long )newstr == (unsigned long )((void *)0)) {
@@ -37430,7 +37454,7 @@ char *ambsalign(char const *src , size_t *width , mbs_align_t align , int flags 
     }
     {
     size = req + 1UL;
-    tmp = realloc((void *)buf___1, size);
+    tmp = safe_realloc((void *)buf___1, size);
     nbuf = (char *)tmp;
     }
     if ((unsigned long )nbuf == (unsigned long )((void *)0)) {
@@ -40536,7 +40560,7 @@ static gid_t *realloc_groupbuf(gid_t *g , size_t num )
     }
   }
   {
-  tmp___1 = realloc((void *)g, num * sizeof(*g));
+  tmp___1 = safe_realloc((void *)g, num * sizeof(*g));
   }
   return ((gid_t *)tmp___1);
 }
@@ -43386,7 +43410,7 @@ int yyparse(parser_control *pc )
     }
     {
     yyss1 = yyss;
-    tmp = malloc(yystacksize * (sizeof(yytype_int16 ) + sizeof(YYSTYPE )) + (sizeof(union yyalloc ) - 1UL));
+    tmp = safe_malloc(yystacksize * (sizeof(yytype_int16 ) + sizeof(YYSTYPE )) + (sizeof(union yyalloc ) - 1UL));
     yyptr = (union yyalloc *)tmp;
     }
     if (! yyptr) {
@@ -55364,7 +55388,7 @@ char *fread_file(FILE *stream , size_t *length )
     }
   }
   {
-  tmp___3 = malloc(alloc);
+  tmp___3 = safe_malloc(alloc);
   buf___1 = (char *)tmp___3;
   }
   if (! buf___1) {
@@ -55407,7 +55431,7 @@ char *fread_file(FILE *stream , size_t *length )
       if (size < alloc - 1UL) {
         {
         {
-        tmp___7 = realloc((void *)buf___1, size + 1UL);
+        tmp___7 = safe_realloc((void *)buf___1, size + 1UL);
         smaller_buf = (char *)tmp___7;
         }
         if ((unsigned long )smaller_buf != (unsigned long )((void *)0)) {
@@ -55448,7 +55472,7 @@ char *fread_file(FILE *stream , size_t *length )
       }
     }
     {
-    tmp___9 = realloc((void *)buf___1, alloc);
+    tmp___9 = safe_realloc((void *)buf___1, alloc);
     new_buf = (char *)tmp___9;
     }
     if (! new_buf) {
@@ -60863,7 +60887,7 @@ int mem_cd_iconv(char const *src , size_t srclen , iconv_t cd , char **resultp ,
     {
     _L:
     {
-    tmp___4 = malloc(length);
+    tmp___4 = safe_malloc(length);
     result = (char *)tmp___4;
     }
     if ((unsigned long )result == (unsigned long )((void *)0)) {
@@ -61009,7 +61033,7 @@ char *str_cd_iconv(char const *src , iconv_t cd )
   }
   {
   result_size ++;
-  tmp___0 = malloc(result_size);
+  tmp___0 = safe_malloc(result_size);
   result = (char *)tmp___0;
   }
   if ((unsigned long )result == (unsigned long )((void *)0)) {
@@ -61070,7 +61094,7 @@ char *str_cd_iconv(char const *src , iconv_t cd )
             }
           }
           {
-          tmp___4 = realloc((void *)result, newsize);
+          tmp___4 = safe_realloc((void *)result, newsize);
           newresult = (char *)tmp___4;
           }
           if ((unsigned long )newresult == (unsigned long )((void *)0)) {
@@ -61139,7 +61163,7 @@ char *str_cd_iconv(char const *src , iconv_t cd )
           }
         }
         {
-        tmp___10 = realloc((void *)result, newsize___0);
+        tmp___10 = safe_realloc((void *)result, newsize___0);
         newresult___0 = (char *)tmp___10;
         }
         if ((unsigned long )newresult___0 == (unsigned long )((void *)0)) {
@@ -61181,7 +61205,7 @@ char *str_cd_iconv(char const *src , iconv_t cd )
   if (length < result_size) {
     {
     {
-    tmp___14 = realloc((void *)result, length);
+    tmp___14 = safe_realloc((void *)result, length);
     smaller_result = (char *)tmp___14;
     }
     if ((unsigned long )smaller_result != (unsigned long )((void *)0)) {
@@ -64008,7 +64032,7 @@ int utimecmp(char const *dst_name , struct stat const *dst_stat , struct stat co
       if (! new_dst_res) {
         {
         {
-        tmp___1 = malloc(sizeof(*new_dst_res));
+        tmp___1 = safe_malloc(sizeof(*new_dst_res));
         new_dst_res = (struct fs_res *)tmp___1;
         }
         if (! new_dst_res) {
@@ -66000,7 +66024,7 @@ void *xmalloc(size_t n )
   void *tmp ;
   {
   {
-  tmp = malloc(n);
+  tmp = safe_malloc(n);
   p = tmp;
   }
   if (! p) {
@@ -66036,7 +66060,7 @@ void *xrealloc(void *p , size_t n )
     }
   }
   {
-  p = realloc(p, n);
+  p = safe_realloc(p, n);
   }
   if (! p) {
     {
@@ -66081,7 +66105,7 @@ void *xcalloc(size_t n , size_t s )
   void *p ;
   {
   {
-  p = calloc(n, s);
+  p = safe_calloc(n, s);
   }
   if (! p) {
     {
@@ -70034,7 +70058,7 @@ static _Bool setup_dir(FTS *fts )
   } else {
     {
     {
-    tmp = malloc(sizeof(*(fts->fts_cycle.state)));
+    tmp = safe_malloc(sizeof(*(fts->fts_cycle.state)));
     fts->fts_cycle.state = (struct cycle_check_state *)tmp;
     }
     if (! fts->fts_cycle.state) {
@@ -70063,7 +70087,7 @@ static _Bool enter_dir(FTS *fts , FTSENT *ent )
     {
     {
     st = (struct stat const *)(ent->fts_statp);
-    tmp = malloc(sizeof(*ad));
+    tmp = safe_malloc(sizeof(*ad));
     ad = (struct Active_dir *)tmp;
     }
     if (! ad) {
@@ -70594,7 +70618,7 @@ FTS *( __attribute__((__warn_unused_result__)) fts_open)(char **argv , int optio
   }
   }
   {
-  tmp___3 = malloc(sizeof(FTS ));
+  tmp___3 = safe_malloc(sizeof(FTS ));
   sp = (FTS *)tmp___3;
   }
   if ((unsigned long )sp == (unsigned long )((void *)0)) {
@@ -71289,7 +71313,7 @@ static _Bool link_count_optimize_ok(FTSENT const *p )
     }
   }
   {
-  tmp___2 = malloc(sizeof(*t2));
+  tmp___2 = safe_malloc(sizeof(*t2));
   t2 = (struct LCO_ent *)tmp___2;
   }
   if ((unsigned long )t2 == (unsigned long )((void *)0)) {
@@ -74281,7 +74305,7 @@ static FTSENT *fts_sort(FTS *sp , FTSENT *head , size_t nitems )
     } else {
       {
       {
-      tmp___0 = realloc((void *)sp->fts_array, sp->fts_nitems * sizeof(*a));
+      tmp___0 = safe_realloc((void *)sp->fts_array, sp->fts_nitems * sizeof(*a));
       a = (FTSENT **)tmp___0;
       }
       if (! a) {
@@ -74372,7 +74396,7 @@ static FTSENT *fts_alloc(FTS *sp , char const *name , size_t namelen )
   {
   {
   len = sizeof(FTSENT ) + namelen;
-  tmp = malloc(len);
+  tmp = safe_malloc(len);
   p = (FTSENT *)tmp;
   }
   if ((unsigned long )p == (unsigned long )((void *)0)) {
@@ -74460,7 +74484,7 @@ static _Bool fts_palloc(FTS *sp , size_t more )
   }
   {
   sp->fts_pathlen = new_len;
-  tmp___0 = realloc((void *)sp->fts_path, sp->fts_pathlen);
+  tmp___0 = safe_realloc((void *)sp->fts_path, sp->fts_pathlen);
   p = (char *)tmp___0;
   }
   if ((unsigned long )p == (unsigned long )((void *)0)) {
@@ -75163,7 +75187,7 @@ char *rpl_getcwd(char *buf___1 , size_t size )
   if ((unsigned long )buf___1 == (unsigned long )((void *)0)) {
     {
     {
-    tmp___13 = malloc(allocated);
+    tmp___13 = safe_malloc(allocated);
     dir = (char *)tmp___13;
     }
     if ((unsigned long )dir == (unsigned long )((void *)0)) {
@@ -75444,7 +75468,7 @@ char *rpl_getcwd(char *buf___1 , size_t size )
         } else {
           {
           {
-          tmp___26 = realloc((void *)dir, allocated);
+          tmp___26 = safe_realloc((void *)dir, allocated);
           tmp___24 = (char *)tmp___26;
           }
           if (! tmp___24) {
@@ -75507,7 +75531,7 @@ char *rpl_getcwd(char *buf___1 , size_t size )
   if (size == 0UL) {
     {
     {
-    tmp___29 = realloc((void *)dir, used);
+    tmp___29 = safe_realloc((void *)dir, used);
     buf___1 = (char *)tmp___29;
     }
     }
@@ -76939,7 +76963,7 @@ int _getopt_internal_r(int argc , char **argv , char const *optstring , struct r
                     if (long_only) {
                       {
                       {
-                      tmp___8 = malloc(sizeof(*newp));
+                      tmp___8 = safe_malloc(sizeof(*newp));
                       newp = (struct option_list *)tmp___8;
                       newp->p = p;
                       newp->next = ambig_list;
@@ -76952,7 +76976,7 @@ int _getopt_internal_r(int argc , char **argv , char const *optstring , struct r
                       if (pfound->has_arg != p->has_arg) {
                         {
                         {
-                        tmp___8 = malloc(sizeof(*newp));
+                        tmp___8 = safe_malloc(sizeof(*newp));
                         newp = (struct option_list *)tmp___8;
                         newp->p = p;
                         newp->next = ambig_list;
@@ -76964,7 +76988,7 @@ int _getopt_internal_r(int argc , char **argv , char const *optstring , struct r
                         if ((unsigned long )pfound->flag != (unsigned long )p->flag) {
                           {
                           {
-                          tmp___8 = malloc(sizeof(*newp));
+                          tmp___8 = safe_malloc(sizeof(*newp));
                           newp = (struct option_list *)tmp___8;
                           newp->p = p;
                           newp->next = ambig_list;
@@ -76976,7 +77000,7 @@ int _getopt_internal_r(int argc , char **argv , char const *optstring , struct r
                           if (pfound->val != p->val) {
                             {
                             {
-                            tmp___8 = malloc(sizeof(*newp));
+                            tmp___8 = safe_malloc(sizeof(*newp));
                             newp = (struct option_list *)tmp___8;
                             newp->p = p;
                             newp->next = ambig_list;
@@ -80239,7 +80263,7 @@ char *openat_proc_name(char *buf___1 , int fd , char const *file )
     if (4032UL < bufsize___0) {
       {
       {
-      tmp___3 = malloc(bufsize___0);
+      tmp___3 = safe_malloc(bufsize___0);
       result = (char *)tmp___3;
       }
       if (! result) {
@@ -81057,14 +81081,14 @@ int printf_parse(char const *format , char_directives *d , arguments *a )
           if ((unsigned long )a->arg != (unsigned long )(a->direct_alloc_arg)) {
             {
             {
-            tmp___6 = realloc((void *)a->arg, memory_size);
+            tmp___6 = safe_realloc((void *)a->arg, memory_size);
             tmp___8 = tmp___6;
             }
             }
           } else {
             {
             {
-            tmp___7 = malloc(memory_size);
+            tmp___7 = safe_malloc(memory_size);
             tmp___8 = tmp___7;
             }
             }
@@ -81357,14 +81381,14 @@ int printf_parse(char const *format , char_directives *d , arguments *a )
             if ((unsigned long )a->arg != (unsigned long )(a->direct_alloc_arg)) {
               {
               {
-              tmp___14 = realloc((void *)a->arg, memory_size___0);
+              tmp___14 = safe_realloc((void *)a->arg, memory_size___0);
               tmp___16 = tmp___14;
               }
               }
             } else {
               {
               {
-              tmp___15 = malloc(memory_size___0);
+              tmp___15 = safe_malloc(memory_size___0);
               tmp___16 = tmp___15;
               }
               }
@@ -82042,14 +82066,14 @@ int printf_parse(char const *format , char_directives *d , arguments *a )
           if ((unsigned long )a->arg != (unsigned long )(a->direct_alloc_arg)) {
             {
             {
-            tmp___21 = realloc((void *)a->arg, memory_size___1);
+            tmp___21 = safe_realloc((void *)a->arg, memory_size___1);
             tmp___23 = tmp___21;
             }
             }
           } else {
             {
             {
-            tmp___22 = malloc(memory_size___1);
+            tmp___22 = safe_malloc(memory_size___1);
             tmp___23 = tmp___22;
             }
             }
@@ -82149,14 +82173,14 @@ int printf_parse(char const *format , char_directives *d , arguments *a )
         if ((unsigned long )d->dir != (unsigned long )(d->direct_alloc_dir)) {
           {
           {
-          tmp___25 = realloc((void *)d->dir, memory_size___2);
+          tmp___25 = safe_realloc((void *)d->dir, memory_size___2);
           tmp___27 = tmp___25;
           }
           }
         } else {
           {
           {
-          tmp___26 = malloc(memory_size___2);
+          tmp___26 = safe_malloc(memory_size___2);
           tmp___27 = tmp___26;
           }
           }
@@ -84635,7 +84659,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
       }
     }
     {
-    tmp___5 = malloc(buf_memsize);
+    tmp___5 = safe_malloc(buf_memsize);
     buf___1 = (char *)tmp___5;
     }
     if ((unsigned long )buf___1 == (unsigned long )((void *)0)) {
@@ -84740,7 +84764,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
         if ((unsigned long )result == (unsigned long )resultbuf) {
           {
           {
-          tmp___8 = malloc(memory_size);
+          tmp___8 = safe_malloc(memory_size);
           memory = (char *)tmp___8;
           }
           }
@@ -84749,14 +84773,14 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
           if ((unsigned long )result == (unsigned long )((void *)0)) {
             {
             {
-            tmp___8 = malloc(memory_size);
+            tmp___8 = safe_malloc(memory_size);
             memory = (char *)tmp___8;
             }
             }
           } else {
             {
             {
-            tmp___9 = realloc((void *)result, memory_size);
+            tmp___9 = safe_realloc((void *)result, memory_size);
             memory = (char *)tmp___9;
             }
             }
@@ -84897,7 +84921,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
         if ((unsigned long )result == (unsigned long )resultbuf) {
           {
           {
-          tmp___14 = malloc(memory_size___0);
+          tmp___14 = safe_malloc(memory_size___0);
           memory___0 = (char *)tmp___14;
           }
           }
@@ -84906,14 +84930,14 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
           if ((unsigned long )result == (unsigned long )((void *)0)) {
             {
             {
-            tmp___14 = malloc(memory_size___0);
+            tmp___14 = safe_malloc(memory_size___0);
             memory___0 = (char *)tmp___14;
             }
             }
           } else {
             {
             {
-            tmp___15 = realloc((void *)result, memory_size___0);
+            tmp___15 = safe_realloc((void *)result, memory_size___0);
             memory___0 = (char *)tmp___15;
             }
             }
@@ -85296,7 +85320,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
                                 }
                               }
                               {
-                              tmp___26 = malloc(tmp_memsize);
+                              tmp___26 = safe_malloc(tmp_memsize);
                               tmp___16 = (char *)tmp___26;
                               }
                               if ((unsigned long )tmp___16 == (unsigned long )((void *)0)) {
@@ -85965,7 +85989,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
                                 if ((unsigned long )result == (unsigned long )resultbuf) {
                                   {
                                   {
-                                  tmp___75 = malloc(memory_size___1);
+                                  tmp___75 = safe_malloc(memory_size___1);
                                   memory___1 = (char *)tmp___75;
                                   }
                                   }
@@ -85974,14 +85998,14 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
                                   if ((unsigned long )result == (unsigned long )((void *)0)) {
                                     {
                                     {
-                                    tmp___75 = malloc(memory_size___1);
+                                    tmp___75 = safe_malloc(memory_size___1);
                                     memory___1 = (char *)tmp___75;
                                     }
                                     }
                                   } else {
                                     {
                                     {
-                                    tmp___76 = realloc((void *)result, memory_size___1);
+                                    tmp___76 = safe_realloc((void *)result, memory_size___1);
                                     memory___1 = (char *)tmp___76;
                                     }
                                     }
@@ -86372,7 +86396,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
                           if ((unsigned long )result == (unsigned long )resultbuf) {
                             {
                             {
-                            tmp___97 = malloc(memory_size___2);
+                            tmp___97 = safe_malloc(memory_size___2);
                             memory___2 = (char *)tmp___97;
                             }
                             }
@@ -86381,14 +86405,14 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
                             if ((unsigned long )result == (unsigned long )((void *)0)) {
                               {
                               {
-                              tmp___97 = malloc(memory_size___2);
+                              tmp___97 = safe_malloc(memory_size___2);
                               memory___2 = (char *)tmp___97;
                               }
                               }
                             } else {
                               {
                               {
-                              tmp___98 = realloc((void *)result, memory_size___2);
+                              tmp___98 = safe_realloc((void *)result, memory_size___2);
                               memory___2 = (char *)tmp___98;
                               }
                               }
@@ -87646,7 +87670,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
                                 if ((unsigned long )result == (unsigned long )resultbuf) {
                                   {
                                   {
-                                  tmp___160 = malloc(memory_size___3);
+                                  tmp___160 = safe_malloc(memory_size___3);
                                   memory___3 = (char *)tmp___160;
                                   }
                                   }
@@ -87655,14 +87679,14 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
                                   if ((unsigned long )result == (unsigned long )((void *)0)) {
                                     {
                                     {
-                                    tmp___160 = malloc(memory_size___3);
+                                    tmp___160 = safe_malloc(memory_size___3);
                                     memory___3 = (char *)tmp___160;
                                     }
                                     }
                                   } else {
                                     {
                                     {
-                                    tmp___161 = realloc((void *)result, memory_size___3);
+                                    tmp___161 = safe_realloc((void *)result, memory_size___3);
                                     memory___3 = (char *)tmp___161;
                                     }
                                     }
@@ -87802,7 +87826,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
     if ((unsigned long )result == (unsigned long )resultbuf) {
       {
       {
-      tmp___167 = malloc(memory_size___4);
+      tmp___167 = safe_malloc(memory_size___4);
       memory___4 = (char *)tmp___167;
       }
       }
@@ -87811,14 +87835,14 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
       if ((unsigned long )result == (unsigned long )((void *)0)) {
         {
         {
-        tmp___167 = malloc(memory_size___4);
+        tmp___167 = safe_malloc(memory_size___4);
         memory___4 = (char *)tmp___167;
         }
         }
       } else {
         {
         {
-        tmp___168 = realloc((void *)result, memory_size___4);
+        tmp___168 = safe_realloc((void *)result, memory_size___4);
         memory___4 = (char *)tmp___168;
         }
         }
@@ -87855,7 +87879,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const *format , va_lis
     if (length + 1UL < allocated) {
       {
       {
-      tmp___170 = realloc((void *)result, (length + 1UL) * sizeof(char ));
+      tmp___170 = safe_realloc((void *)result, (length + 1UL) * sizeof(char ));
       memory___5 = (char *)tmp___170;
       }
       if ((unsigned long )memory___5 != (unsigned long )((void *)0)) {
@@ -91312,7 +91336,7 @@ static _Bool write_zeros(int fd , uint64_t n_bytes )
   if ((unsigned long )zeros == (unsigned long )((void *)0)) {
     {
     {
-    tmp = calloc(nz, (size_t )1);
+    tmp = safe_calloc(nz, (size_t )1);
     zeros = (char *)tmp;
     }
     if ((unsigned long )zeros == (unsigned long )((void *)0)) {

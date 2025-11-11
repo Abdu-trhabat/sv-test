@@ -6,8 +6,8 @@ Template File: sources-sink-68a.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
  * Sink: snprintf
  *    BadSink : Copy string to data using snprintf
  * Flow Variant: 68 Data flow: data passed as a global variable from one function to another in different source files
@@ -30,6 +30,14 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_snprintf_68_goodG2BData;
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_snprintf_68b_badSink();
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_snprintf_68_bad()
@@ -37,7 +45,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_snprintf_68_bad()
     char * data;
     data = NULL;
     /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-    data = (char *)malloc(50*sizeof(char));
+    data = (char *)safe_malloc(50*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0'; /* null terminate */
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_snprintf_68_badData = data;
@@ -57,7 +65,7 @@ static void goodG2B()
     char * data;
     data = NULL;
     /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0'; /* null terminate */
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_snprintf_68_goodG2BData = data;

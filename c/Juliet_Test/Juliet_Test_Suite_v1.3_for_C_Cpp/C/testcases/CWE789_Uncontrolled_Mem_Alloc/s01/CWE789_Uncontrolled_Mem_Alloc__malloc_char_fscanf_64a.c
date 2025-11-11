@@ -9,8 +9,8 @@ Template File: sources-sinks-64a.tmpl.c
  * BadSource: fscanf Read data from the console using fscanf()
  * GoodSource: Small number greater than zero
  * Sinks:
- *    GoodSink: Allocate memory with malloc() and check the size of the memory to be allocated
- *    BadSink : Allocate memory with malloc(), but incorrectly check the size of the memory to be allocated
+ *    GoodSink: Allocate memory with safe_malloc() and check the size of the memory to be allocated
+ *    BadSink : Allocate memory with safe_malloc(), but incorrectly check the size of the memory to be allocated
  * Flow Variant: 64 Data flow: void pointer to data passed from one function to another in different source files
  *
  * */
@@ -26,6 +26,14 @@ Template File: sources-sinks-64a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE789_Uncontrolled_Mem_Alloc__malloc_char_fscanf_64b_badSink(void * dataVoidPtr);
 
 void CWE789_Uncontrolled_Mem_Alloc__malloc_char_fscanf_64_bad()

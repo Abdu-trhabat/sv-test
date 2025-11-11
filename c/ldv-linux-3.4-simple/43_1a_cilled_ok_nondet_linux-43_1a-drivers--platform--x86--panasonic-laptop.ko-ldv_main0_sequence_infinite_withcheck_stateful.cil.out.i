@@ -11,6 +11,22 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "43_1a_cilled_ok_nondet_linux-43_1a-drivers--platform--x86--panasonic-laptop.ko-ldv_main0_sequence_infinite_withcheck_stateful.cil.out.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -4659,7 +4675,7 @@ extern int __VERIFIER_nondet_int(void) ;
 extern unsigned int __VERIFIER_nondet_uint();
 extern void *malloc(size_t );
 void *ldv_successful_malloc(size_t __size) {
-  void *p = malloc(__size);
+  void *p = safe_malloc(__size);
   assume_abort_if_not(p != (void *)0);
   return p;
 }
@@ -4876,7 +4892,7 @@ extern void *calloc(size_t, size_t) ;
 void *ldv_zalloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  void *p = calloc(1UL, size);
+  void *p = safe_calloc(1UL, size);
   assume_abort_if_not(IS_ERR(p) == 0);
   return p;
 }
@@ -4914,7 +4930,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  void *p = malloc(size);
+  void *p = safe_malloc(size);
   assume_abort_if_not(IS_ERR(p) == 0);
   return p;
 }

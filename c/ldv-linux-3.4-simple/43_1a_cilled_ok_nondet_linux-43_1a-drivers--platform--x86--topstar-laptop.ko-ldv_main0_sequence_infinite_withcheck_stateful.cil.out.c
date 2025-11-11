@@ -2,6 +2,22 @@ extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -3672,7 +3688,7 @@ void* ldv_successful_alloc(size_t size)
   void *res ;
   long tmp ;
 
-  res = malloc(size);
+  res = safe_malloc(size);
   assume_abort_if_not((unsigned long )res != (unsigned long )((void *)0));
   tmp = ldv_is_err((void const   *)res);
   assume_abort_if_not(tmp == 0L);
@@ -3802,7 +3818,7 @@ void *ldv_calloc(size_t nmemb , size_t size )
 
   tmp___1 = __VERIFIER_nondet_int();
   if (tmp___1 != 0) {
-    res = calloc(nmemb, size);
+    res = safe_calloc(nmemb, size);
     assume_abort_if_not((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const   *)res);
     assume_abort_if_not(tmp___0 == 0L);

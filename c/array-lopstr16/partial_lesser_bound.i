@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -22,7 +30,7 @@ int main()
  }
  for(i = 0; i < 1000000 / 2; i++)
  {
-  a[i] = malloc(sizeof(int)) ;
+  a[i] = safe_malloc(sizeof(int)) ;
  }
  for(i = 0; i < 1000000 / 2; i++)
  {

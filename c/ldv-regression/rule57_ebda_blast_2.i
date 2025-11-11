@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "rule57_ebda_blast_2.i", 3, "reach_error"); }
 extern int __VERIFIER_nondet_int(void);
@@ -44,9 +52,9 @@ int used_tmp_slot = 0;
 int freed_tmp_slot = 1;
 
 typedef long unsigned int size_t;
-extern void * calloc (size_t __nmemb, size_t __size)
+extern void * safe_calloc (size_t __nmemb, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
-void * kzalloc(int size, int flags) { (void)flags; return calloc(1, size); }
+void * kzalloc(int size, int flags) { (void)flags; return safe_calloc(1, size); }
 
 void kfree(void *p) {
  if(p!=0 && p==tmp_slot)

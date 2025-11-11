@@ -6,7 +6,7 @@ Template File: sources-sinks-63b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using realloc()
+ * BadSource: realloc Allocate data using safe_realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -20,6 +20,14 @@ Template File: sources-sinks-63b.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE401_Memory_Leak__twoIntsStruct_realloc_63b_badSink(twoIntsStruct * * dataPtr)
 {

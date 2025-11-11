@@ -6,6 +6,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 struct Node {
   struct Node *next;
@@ -41,7 +49,7 @@ int main() {
   struct Node *current = 0;
 
   do {
-    struct Node *new = malloc(sizeof(struct Node));
+    struct Node *new = safe_malloc(sizeof(struct Node));
     if (new == 0) {
       return 1;
     }

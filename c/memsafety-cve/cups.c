@@ -12,6 +12,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -19,7 +27,7 @@ int main() {
   char *cur = getRandomString(5, 500);
   char* curcpy = cur;
   size_t curSize = strlen(cur);
-  char *decoded = calloc(curSize, sizeof(char));
+  char *decoded = safe_calloc(curSize, sizeof(char));
   if (decoded == NULL) {
     printf("Out of memory\n");
     return 1;

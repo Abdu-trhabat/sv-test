@@ -34,10 +34,18 @@ struct B {
 } __attribute__((packed));
 
 struct A d = {.b = 3};
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int main(void)
 {
 	struct B *p;
-	p = malloc(sizeof(struct B));
+	p = safe_malloc(sizeof(struct B));
 	memcpy(p, &d, sizeof(struct B)); //ERROR: sizeof(struct B) > sizeof(struct A)
 	if (p->a != 0) {
 		free(p);

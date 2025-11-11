@@ -1,4 +1,20 @@
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -9492,7 +9508,7 @@ extern void *calloc(size_t, size_t) ;
 void *ldv_zalloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return calloc(1UL, size);
+  return safe_calloc(1UL, size);
 }
 __inline static void *kzalloc(size_t size , gfp_t flags )
 { void *tmp ;
@@ -9531,7 +9547,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 struct resource *__request_region(struct resource *arg0, resource_size_t arg1, resource_size_t arg2, const char *arg3, int arg4) {
   return ldv_malloc(sizeof(struct resource));

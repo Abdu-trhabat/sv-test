@@ -44,11 +44,19 @@ static void badSink(wchar_t * data)
         free(data);
     }
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_fixed_string_21_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     /* POTENTIAL FLAW: Initialize data to be a fixed string that contains the search character in the sinks */
@@ -94,7 +102,7 @@ static void goodB2G1Sink(wchar_t * data)
 static void goodB2G1()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     /* POTENTIAL FLAW: Initialize data to be a fixed string that contains the search character in the sinks */
@@ -127,7 +135,7 @@ static void goodB2G2Sink(wchar_t * data)
 static void goodB2G2()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     /* POTENTIAL FLAW: Initialize data to be a fixed string that contains the search character in the sinks */

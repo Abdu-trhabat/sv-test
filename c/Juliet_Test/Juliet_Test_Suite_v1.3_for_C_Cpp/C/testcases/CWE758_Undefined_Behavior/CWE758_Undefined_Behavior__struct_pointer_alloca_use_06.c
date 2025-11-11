@@ -21,6 +21,14 @@ Template File: point-flaw-06.tmpl.c
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE758_Undefined_Behavior__struct_pointer_alloca_use_06_bad()
 {
@@ -53,7 +61,7 @@ static void good1()
             twoIntsStruct * data;
             twoIntsStruct * * pointer = (twoIntsStruct * *)ALLOCA(sizeof(twoIntsStruct *));
             /* initialize both the pointer and the data pointed to */
-            data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
+            data = (twoIntsStruct *)safe_malloc(sizeof(twoIntsStruct));
             if (data == NULL) {exit(-1);}
             data->intOne = 5;
             data->intTwo = 6;
@@ -76,7 +84,7 @@ static void good2()
             twoIntsStruct * data;
             twoIntsStruct * * pointer = (twoIntsStruct * *)ALLOCA(sizeof(twoIntsStruct *));
             /* initialize both the pointer and the data pointed to */
-            data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
+            data = (twoIntsStruct *)safe_malloc(sizeof(twoIntsStruct));
             if (data == NULL) {exit(-1);}
             data->intOne = 5;
             data->intTwo = 6;

@@ -12,6 +12,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -47,7 +55,7 @@ void ParseString(char **jsonPtr) {
   }
   char *strStart;
   int length = SkipString(jsonPtr, &strStart);
-  char *string = calloc(length + 1, sizeof(char));
+  char *string = safe_calloc(length + 1, sizeof(char));
   if (!string) {
     printf("Out of memory!\n");
     return;

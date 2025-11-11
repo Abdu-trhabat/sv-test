@@ -25,12 +25,20 @@ Template File: source-sinks-53a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_fixed_string_53b_badSink(wchar_t * data);
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_fixed_string_53_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     /* POTENTIAL FLAW: Initialize data to be a fixed string that contains the search character in the sinks */
@@ -49,7 +57,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_fixed_string_53b_goodB2
 static void goodB2G()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     /* POTENTIAL FLAW: Initialize data to be a fixed string that contains the search character in the sinks */

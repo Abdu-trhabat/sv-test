@@ -28,6 +28,14 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_04_bad()
 {
@@ -52,7 +60,7 @@ void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_04_bad()
                     break;
                 }
                 /* Allocate memory for the decoded message */
-                decodedPayload = (BYTE*) malloc(requiredLength + 1);
+                decodedPayload = (BYTE*) safe_malloc(requiredLength + 1);
                 if (decodedPayload == NULL)
                 {
                     break;

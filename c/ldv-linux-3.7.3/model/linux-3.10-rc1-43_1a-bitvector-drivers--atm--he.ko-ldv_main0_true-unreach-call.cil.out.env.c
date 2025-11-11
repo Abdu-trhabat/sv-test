@@ -5,6 +5,14 @@
 // Function: __const_udelay
 // with type: void __const_udelay(unsigned long)
 // with return type: void
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void __const_udelay(unsigned long arg0) {
   // Void type
   return;
@@ -362,7 +370,7 @@ void *kmem_cache_alloc(struct kmem_cache *arg0, gfp_t arg1) {
 
 void *ldv_xmalloc(size_t size)
 {
-  void *res = malloc(size);
+  void *res = safe_malloc(size);
   assume_abort_if_not(res != (void *)0);
   return res;
 }

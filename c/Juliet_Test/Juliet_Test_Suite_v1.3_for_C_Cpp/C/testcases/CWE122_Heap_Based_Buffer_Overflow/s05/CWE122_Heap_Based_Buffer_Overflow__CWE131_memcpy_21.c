@@ -26,11 +26,19 @@ static int * badSource(int * data)
     if(badStatic)
     {
         /* FLAW: Allocate memory without using sizeof(int) */
-        data = (int *)malloc(10);
+        data = (int *)safe_malloc(10);
         if (data == NULL) {exit(-1);}
     }
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_21_bad()
 {
@@ -66,7 +74,7 @@ static int * goodG2B1Source(int * data)
     else
     {
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)malloc(10*sizeof(int));
+        data = (int *)safe_malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -93,7 +101,7 @@ static int * goodG2B2Source(int * data)
     if(goodG2B2Static)
     {
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)malloc(10*sizeof(int));
+        data = (int *)safe_malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;

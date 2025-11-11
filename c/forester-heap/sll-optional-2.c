@@ -10,6 +10,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
@@ -19,7 +27,7 @@ void reach_error() { assert(0); }
 	if (__VERIFIER_nondet_int()) \
 	{ \
 		X->data = 2; \
-		X->opt = malloc(sizeof(SLL)); \
+		X->opt = safe_malloc(sizeof(SLL)); \
 		X->opt->next = NULL; \
 	} \
 	else if (__VERIFIER_nondet_int()) \
@@ -34,7 +42,7 @@ void reach_error() { assert(0); }
 	}
 
 #define ALLOC_NODE(X) \
-	X->next = malloc(sizeof(SLL)); \
+	X->next = safe_malloc(sizeof(SLL)); \
 	X = X->next; \
 	X->next = NULL; \
 	ALLOC_DATA(X)
@@ -55,7 +63,7 @@ typedef struct TSLL
 int main()
 {
 	// create the head
-	SLL* head = malloc(sizeof(SLL));
+	SLL* head = safe_malloc(sizeof(SLL));
 	head->next = NULL;
 	ALLOC_DATA(head)
 	SLL* x = head;

@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "1_3.i", 3, "reach_error"); }
 
@@ -29,7 +37,7 @@ extern  __attribute__((__nothrow__)) void *malloc(size_t __size )  __attribute__
 
 rr * getrr()
 {
- rr * r = (rr *)malloc(sizeof *r);
+ rr * r = (rr *)safe_malloc(sizeof *r);
  r -> state = 0;
  return r;
 }

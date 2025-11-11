@@ -6,7 +6,7 @@ Template File: source-sinks-44.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using malloc()
+ * BadSource: malloc Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -27,6 +27,14 @@ static void badSink(long * data)
     printLongLine(data[0]);
     free(data);
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE690_NULL_Deref_From_Return__long_malloc_44_bad()
 {
@@ -35,7 +43,7 @@ void CWE690_NULL_Deref_From_Return__long_malloc_44_bad()
     void (*funcPtr) (long *) = badSink;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)malloc(1*sizeof(long));
+    data = (long *)safe_malloc(1*sizeof(long));
     /* use the function pointer */
     funcPtr(data);
 }
@@ -62,7 +70,7 @@ static void goodB2G()
     void (*funcPtr) (long *) = goodB2GSink;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)malloc(1*sizeof(long));
+    data = (long *)safe_malloc(1*sizeof(long));
     funcPtr(data);
 }
 

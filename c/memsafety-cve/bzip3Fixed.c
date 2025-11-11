@@ -13,6 +13,22 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -39,7 +55,7 @@ struct bz3_state *bz3_new(s32 block_size) {
     return NULL;
   }
 
-  struct bz3_state *bz3_state = (struct bz3_state *)malloc(sizeof(struct bz3_state));
+  struct bz3_state *bz3_state = (struct bz3_state *)safe_malloc(sizeof(struct bz3_state));
   if (!bz3_state) {
     return NULL;
   }
@@ -79,7 +95,7 @@ void bz3_decode_block(struct bz3_state *state, u8 *buffer, s32 data_size, s32 or
   else
     size_src = orig_size;
 
-  u8 *b1 = (u8*)malloc(size_src);
+  u8 *b1 = (u8*)safe_malloc(size_src);
   if(b1 == NULL) {
     state->last_error = 1;
     free(b1);
@@ -114,7 +130,7 @@ int bz3_decompress(const uint8_t *in, uint8_t *out, u32 in_size, u32 *out_size) 
   if (!state)
     return 1;
 
-  u8 *compression_buf = (u8 *)malloc(block_size);
+  u8 *compression_buf = (u8 *)safe_malloc(block_size);
   if (!compression_buf) {
     free(state);
     return 1;
@@ -162,7 +178,7 @@ int main() {
   uint8_t *in = getRandomByteStream(in_size);
 
   u32 orig_size = *(u32 *)in;
-  uint8_t *outbuf = (uint8_t *)calloc(orig_size, sizeof(uint8_t));
+  uint8_t *outbuf = (uint8_t *)safe_calloc(orig_size, sizeof(uint8_t));
   if (outbuf == NULL) {
     free(in);
     return 1;

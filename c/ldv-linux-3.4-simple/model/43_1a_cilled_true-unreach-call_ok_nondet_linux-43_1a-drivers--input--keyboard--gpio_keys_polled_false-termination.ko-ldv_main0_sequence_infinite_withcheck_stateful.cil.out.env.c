@@ -5,6 +5,14 @@
 // Function: __gpio_cansleep
 // with type: int __gpio_cansleep(unsigned int)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int __gpio_cansleep(unsigned int arg0) {
   // Simple type
@@ -77,7 +85,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: input_allocate_polled_device

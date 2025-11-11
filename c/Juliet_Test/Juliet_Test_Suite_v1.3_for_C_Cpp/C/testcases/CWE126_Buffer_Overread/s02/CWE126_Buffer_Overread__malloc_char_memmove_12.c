@@ -19,6 +19,14 @@ Template File: sources-sink-12.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE126_Buffer_Overread__malloc_char_memmove_12_bad()
 {
@@ -27,7 +35,7 @@ void CWE126_Buffer_Overread__malloc_char_memmove_12_bad()
     if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Use a small buffer */
-        data = (char *)malloc(50*sizeof(char));
+        data = (char *)safe_malloc(50*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 50-1); /* fill with 'A's */
         data[50-1] = '\0'; /* null terminate */
@@ -35,7 +43,7 @@ void CWE126_Buffer_Overread__malloc_char_memmove_12_bad()
     else
     {
         /* FIX: Use a large buffer */
-        data = (char *)malloc(100*sizeof(char));
+        data = (char *)safe_malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */
@@ -66,7 +74,7 @@ static void goodG2B()
     if(globalReturnsTrueOrFalse())
     {
         /* FIX: Use a large buffer */
-        data = (char *)malloc(100*sizeof(char));
+        data = (char *)safe_malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */
@@ -74,7 +82,7 @@ static void goodG2B()
     else
     {
         /* FIX: Use a large buffer */
-        data = (char *)malloc(100*sizeof(char));
+        data = (char *)safe_malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */

@@ -31,6 +31,14 @@ typedef struct _CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_67_stru
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_67b_badSink(CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_67_structType myStruct);
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_67_bad()
@@ -39,7 +47,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_67_bad()
     CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_67_structType myStruct;
     data = NULL;
     /* FLAW: Did not leave space for a null terminator */
-    data = (char *)malloc(10*sizeof(char));
+    data = (char *)safe_malloc(10*sizeof(char));
     if (data == NULL) {exit(-1);}
     myStruct.structFirst = data;
     CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_67b_badSink(myStruct);
@@ -58,7 +66,7 @@ static void goodG2B()
     CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_67_structType myStruct;
     data = NULL;
     /* FIX: Allocate space for a null terminator */
-    data = (char *)malloc((10+1)*sizeof(char));
+    data = (char *)safe_malloc((10+1)*sizeof(char));
     if (data == NULL) {exit(-1);}
     myStruct.structFirst = data;
     CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_67b_goodG2BSink(myStruct);

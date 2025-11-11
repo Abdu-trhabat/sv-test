@@ -5,6 +5,14 @@
 // Function: __bus_register
 // with type: int __bus_register(struct bus_type *, struct lock_class_key *)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int __bus_register(struct bus_type *arg0, struct lock_class_key *arg1) {
   // Simple type
@@ -559,7 +567,7 @@ bool creds_are_invalid(const struct cred *arg0) {
 
 void *ldv_xmalloc(size_t size)
 {
-  void *res = malloc(size);
+  void *res = safe_malloc(size);
   assume_abort_if_not(res != (void *)0);
   return res;
 }

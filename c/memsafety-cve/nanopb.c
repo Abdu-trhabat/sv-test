@@ -17,6 +17,14 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -64,7 +72,7 @@ bool pb_dec_string(pb_istream_t *stream, void **dest) {
   /* Space for null terminator */
   alloc_size = size + 1; // Problem: in case read data is 0xff, 0xff, 0xff, 0xff adding 1 to it will cause unsigned integer overflow
 
-  *dest = malloc(alloc_size);
+  *dest = safe_malloc(alloc_size);
   if (*dest == NULL) {
     return false;
   }

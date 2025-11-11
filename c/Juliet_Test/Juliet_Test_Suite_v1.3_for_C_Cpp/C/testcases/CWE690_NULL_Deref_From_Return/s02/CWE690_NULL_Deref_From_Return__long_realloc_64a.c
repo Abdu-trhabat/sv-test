@@ -6,7 +6,7 @@ Template File: source-sinks-64a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: realloc Allocate data using realloc()
+ * BadSource: realloc Allocate data using safe_realloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -21,6 +21,14 @@ Template File: source-sinks-64a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE690_NULL_Deref_From_Return__long_realloc_64b_badSink(void * dataVoidPtr);
 
 void CWE690_NULL_Deref_From_Return__long_realloc_64_bad()
@@ -28,7 +36,7 @@ void CWE690_NULL_Deref_From_Return__long_realloc_64_bad()
     long * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)realloc(data, 1*sizeof(long));
+    data = (long *)safe_realloc(data, 1*sizeof(long));
     CWE690_NULL_Deref_From_Return__long_realloc_64b_badSink(&data);
 }
 
@@ -44,7 +52,7 @@ static void goodB2G()
     long * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)realloc(data, 1*sizeof(long));
+    data = (long *)safe_realloc(data, 1*sizeof(long));
     CWE690_NULL_Deref_From_Return__long_realloc_64b_goodB2GSink(&data);
 }
 

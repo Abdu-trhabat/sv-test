@@ -19,6 +19,14 @@ Template File: sources-sink-66a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_66b_badSink(twoIntsStruct * dataArray[]);
 
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_66_bad()
@@ -28,8 +36,8 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_66_bad()
     /* Initialize data */
     data = NULL;
     /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-    /* FLAW: Using sizeof the pointer and not the data type in malloc() */
-    data = (twoIntsStruct *)malloc(sizeof(data));
+    /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
+    data = (twoIntsStruct *)safe_malloc(sizeof(data));
     if (data == NULL) {exit(-1);}
     data->intOne = 1;
     data->intTwo = 2;
@@ -51,8 +59,8 @@ static void goodG2B()
     twoIntsStruct * dataArray[5];
     /* Initialize data */
     data = NULL;
-    /* FIX: Using sizeof the data type in malloc() */
-    data = (twoIntsStruct *)malloc(sizeof(*data));
+    /* FIX: Using sizeof the data type in safe_malloc() */
+    data = (twoIntsStruct *)safe_malloc(sizeof(*data));
     if (data == NULL) {exit(-1);}
     data->intOne = 1;
     data->intTwo = 2;

@@ -6,8 +6,8 @@ Template File: sources-sinks-04.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using malloc() and Deallocate data using free()
- * GoodSource: Allocate data using malloc()
+ * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -26,6 +26,14 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE415_Double_Free__malloc_free_long_04_bad()
 {
@@ -34,7 +42,7 @@ void CWE415_Double_Free__malloc_free_long_04_bad()
     data = NULL;
     if(STATIC_CONST_TRUE)
     {
-        data = (long *)malloc(100*sizeof(long));
+        data = (long *)safe_malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
@@ -58,7 +66,7 @@ static void goodB2G1()
     data = NULL;
     if(STATIC_CONST_TRUE)
     {
-        data = (long *)malloc(100*sizeof(long));
+        data = (long *)safe_malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
@@ -84,7 +92,7 @@ static void goodB2G2()
     data = NULL;
     if(STATIC_CONST_TRUE)
     {
-        data = (long *)malloc(100*sizeof(long));
+        data = (long *)safe_malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
@@ -110,7 +118,7 @@ static void goodG2B1()
     }
     else
     {
-        data = (long *)malloc(100*sizeof(long));
+        data = (long *)safe_malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
         /* FIX: Do NOT free data in the source - the bad sink frees data */
     }
@@ -129,7 +137,7 @@ static void goodG2B2()
     data = NULL;
     if(STATIC_CONST_TRUE)
     {
-        data = (long *)malloc(100*sizeof(long));
+        data = (long *)safe_malloc(100*sizeof(long));
         if (data == NULL) {exit(-1);}
         /* FIX: Do NOT free data in the source - the bad sink frees data */
     }

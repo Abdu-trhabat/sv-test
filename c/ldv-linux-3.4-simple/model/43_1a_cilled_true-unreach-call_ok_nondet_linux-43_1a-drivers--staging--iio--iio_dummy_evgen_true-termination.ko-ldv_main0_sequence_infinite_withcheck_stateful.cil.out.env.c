@@ -5,6 +5,14 @@
 // Function: __irq_alloc_descs
 // with type: int __irq_alloc_descs(int, unsigned int, unsigned int, int, struct module *)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int __irq_alloc_descs(int arg0, unsigned int arg1, unsigned int arg2, int arg3, struct module *arg4) {
   // Simple type
@@ -98,7 +106,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Skip function: kfree

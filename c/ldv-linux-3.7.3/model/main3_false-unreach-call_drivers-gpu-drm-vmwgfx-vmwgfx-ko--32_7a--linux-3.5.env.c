@@ -5,6 +5,14 @@
 // Function: __free_pages
 // with type: void __free_pages(struct page *, unsigned int)
 // with return type: void
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void __free_pages(struct page *arg0, unsigned int arg1) {
   // Void type
   return;
@@ -889,7 +897,7 @@ void mutex_unlock(struct mutex *arg0) {
 
 void *ldv_xmalloc(size_t size)
 {
-  void *res = malloc(size);
+  void *res = safe_malloc(size);
   assume_abort_if_not(res != (void *)0);
   return res;
 }

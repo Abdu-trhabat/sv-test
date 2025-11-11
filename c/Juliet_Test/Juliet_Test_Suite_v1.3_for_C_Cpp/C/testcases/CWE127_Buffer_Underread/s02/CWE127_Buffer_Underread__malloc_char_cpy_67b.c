@@ -24,6 +24,14 @@ typedef struct _CWE127_Buffer_Underread__malloc_char_cpy_67_structType
 } CWE127_Buffer_Underread__malloc_char_cpy_67_structType;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE127_Buffer_Underread__malloc_char_cpy_67b_badSink(CWE127_Buffer_Underread__malloc_char_cpy_67_structType myStruct)
 {
@@ -36,7 +44,7 @@ void CWE127_Buffer_Underread__malloc_char_cpy_67b_badSink(CWE127_Buffer_Underrea
         strcpy(dest, data);
         printLine(dest);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by malloc() so can't safely call free() on it */
+         * returned by safe_malloc() so can't safely call free() on it */
     }
 }
 
@@ -56,7 +64,7 @@ void CWE127_Buffer_Underread__malloc_char_cpy_67b_goodG2BSink(CWE127_Buffer_Unde
         strcpy(dest, data);
         printLine(dest);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by malloc() so can't safely call free() on it */
+         * returned by safe_malloc() so can't safely call free() on it */
     }
 }
 

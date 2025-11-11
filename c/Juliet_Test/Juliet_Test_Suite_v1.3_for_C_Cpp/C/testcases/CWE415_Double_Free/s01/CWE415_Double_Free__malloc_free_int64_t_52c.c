@@ -6,8 +6,8 @@ Template File: sources-sinks-52c.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using malloc() and Deallocate data using free()
- * GoodSource: Allocate data using malloc()
+ * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -20,6 +20,14 @@ Template File: sources-sinks-52c.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE415_Double_Free__malloc_free_int64_t_52c_badSink(int64_t * data)
 {

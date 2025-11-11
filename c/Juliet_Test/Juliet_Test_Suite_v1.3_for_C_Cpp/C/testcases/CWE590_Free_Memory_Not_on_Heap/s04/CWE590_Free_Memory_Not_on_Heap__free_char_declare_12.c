@@ -19,6 +19,14 @@ Template File: sources-sink-12.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE590_Free_Memory_Not_on_Heap__free_char_declare_12_bad()
 {
@@ -38,10 +46,10 @@ void CWE590_Free_Memory_Not_on_Heap__free_char_declare_12_bad()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            char * dataBuffer = (char *)malloc(100*sizeof(char));
+            char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
             if (dataBuffer == NULL)
             {
-                printLine("malloc() failed");
+                printLine("safe_malloc() failed");
                 exit(1);
             }
             memset(dataBuffer, 'A', 100-1); /* fill with 'A's */
@@ -68,10 +76,10 @@ static void goodG2B()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            char * dataBuffer = (char *)malloc(100*sizeof(char));
+            char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
             if (dataBuffer == NULL)
             {
-                printLine("malloc() failed");
+                printLine("safe_malloc() failed");
                 exit(1);
             }
             memset(dataBuffer, 'A', 100-1); /* fill with 'A's */
@@ -83,10 +91,10 @@ static void goodG2B()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            char * dataBuffer = (char *)malloc(100*sizeof(char));
+            char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
             if (dataBuffer == NULL)
             {
-                printLine("malloc() failed");
+                printLine("safe_malloc() failed");
                 exit(1);
             }
             memset(dataBuffer, 'A', 100-1); /* fill with 'A's */

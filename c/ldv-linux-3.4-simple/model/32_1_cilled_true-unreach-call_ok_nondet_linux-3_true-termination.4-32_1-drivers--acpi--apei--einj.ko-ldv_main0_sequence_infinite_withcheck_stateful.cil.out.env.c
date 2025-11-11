@@ -5,6 +5,14 @@
 // Function: __apei_exec_run
 // with type: int __apei_exec_run(struct apei_exec_context *ctx, u8 action, bool optional)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int __apei_exec_run(struct apei_exec_context *arg0, u8 arg1, bool arg2) {
   // Simple type
@@ -31,7 +39,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: __request_region

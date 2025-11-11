@@ -25,9 +25,17 @@ typedef union
     uint8_t bytes[32];
 } uint256_t;
 typedef long unsigned int size_t;
-extern void* malloc(size_t);
+extern void* safe_malloc(size_t);
 extern void free(void*);
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void exit(int);
 void assume_exit_if_not(int cond) {
     if (!cond) {
@@ -68,7 +76,7 @@ static inline bool_t TDXFV_NONDET_bool() {
 static inline void TDXFV_ABST_incomplete() {
 }
 static inline void* TDXFV_malloc(size_t size) {
-    void* ptr = malloc(size);
+    void* ptr = safe_malloc(size);
     assume_exit_if_not(ptr != (void*)0);
     return ptr;
 }

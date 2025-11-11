@@ -764,6 +764,14 @@ extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern void exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void _Exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
@@ -6102,7 +6110,7 @@ main(void)
 {
     bounded_spsc_init(&g_queue, g_buf, 2);
     for (vsize_t i = 0; i < 3; i++) {
-        g_points[i] = malloc(sizeof(point_t));
+        g_points[i] = safe_malloc(sizeof(point_t));
         if (g_points[i] == ((void *)0)) {
             do { if (!(0 && "allocation failed")) reach_error(); } while (0);
         }

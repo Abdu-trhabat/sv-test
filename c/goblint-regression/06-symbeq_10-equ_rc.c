@@ -9,6 +9,14 @@ extern int __VERIFIER_nondet_int();
 
 #include<pthread.h>
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 struct q { int x; int y; };
 struct s {
@@ -31,7 +39,7 @@ int main () {
   int x = __VERIFIER_nondet_int();
   pthread_t id;
 
-  // struct s *s = malloc(sizeof(struct s));
+  // struct s *s = safe_malloc(sizeof(struct s));
   struct s *s;
   //struct q *q;
   int *d;

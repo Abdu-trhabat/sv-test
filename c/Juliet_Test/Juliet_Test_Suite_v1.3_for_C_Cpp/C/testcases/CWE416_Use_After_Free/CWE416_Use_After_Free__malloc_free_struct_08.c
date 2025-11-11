@@ -6,8 +6,8 @@ Template File: sources-sinks-08.tmpl.c
 /*
  * @description
  * CWE: 416 Use After Free
- * BadSource:  Allocate data using malloc(), initialize memory block, and Deallocate data using free()
- * GoodSource: Allocate data using malloc() and initialize memory block
+ * BadSource:  Allocate data using safe_malloc(), initialize memory block, and Deallocate data using free()
+ * GoodSource: Allocate data using safe_malloc() and initialize memory block
  * Sinks:
  *    GoodSink: Do nothing
  *    BadSink : Use data
@@ -33,6 +33,14 @@ static int staticReturnsFalse()
 }
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE416_Use_After_Free__malloc_free_struct_08_bad()
 {
@@ -41,7 +49,7 @@ void CWE416_Use_After_Free__malloc_free_struct_08_bad()
     data = NULL;
     if(staticReturnsTrue())
     {
-        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
         {
             size_t i;
@@ -74,7 +82,7 @@ static void goodB2G1()
     data = NULL;
     if(staticReturnsTrue())
     {
-        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
         {
             size_t i;
@@ -109,7 +117,7 @@ static void goodB2G2()
     data = NULL;
     if(staticReturnsTrue())
     {
-        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
         {
             size_t i;
@@ -144,7 +152,7 @@ static void goodG2B1()
     }
     else
     {
-        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
         {
             size_t i;
@@ -172,7 +180,7 @@ static void goodG2B2()
     data = NULL;
     if(staticReturnsTrue())
     {
-        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
         {
             size_t i;

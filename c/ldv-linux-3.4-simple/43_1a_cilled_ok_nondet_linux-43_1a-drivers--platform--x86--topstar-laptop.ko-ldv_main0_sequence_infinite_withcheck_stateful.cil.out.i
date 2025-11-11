@@ -11,6 +11,22 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "43_1a_cilled_ok_nondet_linux-43_1a-drivers--platform--x86--topstar-laptop.ko-ldv_main0_sequence_infinite_withcheck_stateful.cil.out.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -3648,7 +3664,7 @@ void* ldv_successful_alloc(size_t size)
 {
   void *res ;
   long tmp ;
-  res = malloc(size);
+  res = safe_malloc(size);
   assume_abort_if_not((unsigned long )res != (unsigned long )((void *)0));
   tmp = ldv_is_err((void const *)res);
   assume_abort_if_not(tmp == 0L);
@@ -3762,7 +3778,7 @@ void *ldv_calloc(size_t nmemb , size_t size )
   int tmp___1 ;
   tmp___1 = __VERIFIER_nondet_int();
   if (tmp___1 != 0) {
-    res = calloc(nmemb, size);
+    res = safe_calloc(nmemb, size);
     assume_abort_if_not((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const *)res);
     assume_abort_if_not(tmp___0 == 0L);
@@ -3803,7 +3819,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 void *kmem_cache_alloc(struct kmem_cache *arg0, gfp_t arg1) {
   return ldv_malloc(0UL);

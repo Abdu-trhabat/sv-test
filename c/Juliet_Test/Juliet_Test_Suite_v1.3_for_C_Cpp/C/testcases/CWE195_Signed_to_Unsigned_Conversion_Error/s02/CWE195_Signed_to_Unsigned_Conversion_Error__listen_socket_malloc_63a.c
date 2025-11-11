@@ -9,7 +9,7 @@ Template File: sources-sink-63a.tmpl.c
  * BadSource: listen_socket Read data using a listen socket (server side)
  * GoodSource: Positive integer
  * Sinks: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 63 Data flow: pointer to data passed from one function to another in different source files
  *
  * */
@@ -41,6 +41,14 @@ Template File: sources-sink-63a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE195_Signed_to_Unsigned_Conversion_Error__listen_socket_malloc_63b_badSink(int * dataPtr);
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__listen_socket_malloc_63_bad()

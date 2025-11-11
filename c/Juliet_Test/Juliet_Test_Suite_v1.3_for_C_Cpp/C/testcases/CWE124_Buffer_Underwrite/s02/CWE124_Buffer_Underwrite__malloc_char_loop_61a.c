@@ -22,6 +22,14 @@ Template File: sources-sink-61a.tmpl.c
 
 /* bad function declaration */
 char * CWE124_Buffer_Underwrite__malloc_char_loop_61b_badSource(char * data);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE124_Buffer_Underwrite__malloc_char_loop_61_bad()
 {
@@ -42,7 +50,7 @@ void CWE124_Buffer_Underwrite__malloc_char_loop_61_bad()
         data[100-1] = '\0';
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by malloc() so can't safely call free() on it */
+         * returned by safe_malloc() so can't safely call free() on it */
     }
 }
 
@@ -72,7 +80,7 @@ static void goodG2B()
         data[100-1] = '\0';
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by malloc() so can't safely call free() on it */
+         * returned by safe_malloc() so can't safely call free() on it */
     }
 }
 

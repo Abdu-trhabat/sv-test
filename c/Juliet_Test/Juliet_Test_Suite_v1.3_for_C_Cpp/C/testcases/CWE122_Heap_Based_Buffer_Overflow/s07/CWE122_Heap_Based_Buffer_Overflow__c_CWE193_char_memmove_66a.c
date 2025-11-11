@@ -26,6 +26,14 @@ Template File: sources-sink-66a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_66b_badSink(char * dataArray[]);
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_66_bad()
@@ -34,7 +42,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_66_bad()
     char * dataArray[5];
     data = NULL;
     /* FLAW: Did not leave space for a null terminator */
-    data = (char *)malloc(10*sizeof(char));
+    data = (char *)safe_malloc(10*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* put data in array */
     dataArray[2] = data;
@@ -54,7 +62,7 @@ static void goodG2B()
     char * dataArray[5];
     data = NULL;
     /* FIX: Allocate space for a null terminator */
-    data = (char *)malloc((10+1)*sizeof(char));
+    data = (char *)safe_malloc((10+1)*sizeof(char));
     if (data == NULL) {exit(-1);}
     dataArray[2] = data;
     CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_66b_goodG2BSink(dataArray);

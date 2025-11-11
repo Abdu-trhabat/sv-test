@@ -19,6 +19,14 @@ Template File: sources-sink-66a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_66b_badSink(int * dataArray[]);
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_66_bad()
@@ -27,7 +35,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_66_bad()
     int * dataArray[5];
     data = NULL;
     /* FLAW: Allocate memory without using sizeof(int) */
-    data = (int *)malloc(10);
+    data = (int *)safe_malloc(10);
     if (data == NULL) {exit(-1);}
     /* put data in array */
     dataArray[2] = data;
@@ -47,7 +55,7 @@ static void goodG2B()
     int * dataArray[5];
     data = NULL;
     /* FIX: Allocate memory using sizeof(int) */
-    data = (int *)malloc(10*sizeof(int));
+    data = (int *)safe_malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
     dataArray[2] = data;
     CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_66b_goodG2BSink(dataArray);

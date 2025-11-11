@@ -12,6 +12,14 @@
 
 #include <string.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <stdio.h>
 #include "helpers.c"
 
@@ -57,7 +65,7 @@ int __parse_json_members(const char *cursor, const char **end) {
       return -1;
     }
 
-    char *value = calloc(len + 1, sizeof(char));
+    char *value = safe_calloc(len + 1, sizeof(char));
     if (!value) {
       printf("Out of memory!\n");
       return -1;

@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 
 int main()
@@ -19,7 +27,7 @@ int main()
     } data;
 
     // alloc 37B on heap
-    data.p0 = malloc(37U);
+    data.p0 = safe_malloc(37U);
 
     // this should be fine
     data.str.p2 = &data;

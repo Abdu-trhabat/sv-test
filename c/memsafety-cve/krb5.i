@@ -280,6 +280,22 @@ extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern void exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void _Exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
@@ -385,7 +401,7 @@ int getNumberInRange(int lowestBound, int highestBound) {
   return value;
 }
 unsigned char *getRandomByteStream(int size) {
-  unsigned char *randomString = (unsigned char *)calloc(size, sizeof(unsigned char));
+  unsigned char *randomString = (unsigned char *)safe_calloc(size, sizeof(unsigned char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -397,7 +413,7 @@ unsigned char *getRandomByteStream(int size) {
 }
 char *getRandomString(int lowestSize, int highestSize) {
   int stringSize = getNumberInRange(lowestSize, highestSize);
-  char *randomString = (char *)calloc(stringSize + 1, sizeof(char));
+  char *randomString = (char *)safe_calloc(stringSize + 1, sizeof(char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -409,7 +425,7 @@ char *getRandomString(int lowestSize, int highestSize) {
   return randomString;
 }
 char *getRandomStringFixedSize(int size) {
-  char *randomString = (char *)calloc(size + 1, sizeof(char));
+  char *randomString = (char *)safe_calloc(size + 1, sizeof(char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -421,7 +437,7 @@ char *getRandomStringFixedSize(int size) {
 }
 char *strdup(const char *s) {
   size_t size = strlen(s) + 1;
-  char *p = malloc(size);
+  char *p = safe_malloc(size);
   if (p) {
     memcpy(p, s, size);
   }
@@ -461,7 +477,7 @@ int handle_authdata(struct tgs_req_info *t) {
 int krb5_encrypt_tkt_part(krb5_ticket *t) {
   if (t->enc_part.ciphertext.data == ((void *)0)) {
     char noData[] = "No data to encrypt";
-    t->enc_part.ciphertext.data = calloc(strlen(noData) + 1, sizeof(char));
+    t->enc_part.ciphertext.data = safe_calloc(strlen(noData) + 1, sizeof(char));
     if (t->enc_part.ciphertext.data == ((void *)0)) {
       printf("Out of memory\n");
       return 1;
@@ -470,7 +486,7 @@ int krb5_encrypt_tkt_part(krb5_ticket *t) {
     t->enc_part.ciphertext.length = strlen(noData);
     return 0;
   }
-  char *encrypted = calloc(t->enc_part.ciphertext.length * 2 + 1, sizeof(char));
+  char *encrypted = safe_calloc(t->enc_part.ciphertext.length * 2 + 1, sizeof(char));
   if (encrypted == ((void *)0)) {
     printf("Out of memory\n");
     return 1;
@@ -518,7 +534,7 @@ void krb5_free_ticket(krb5_ticket *val) {
 }
 int gather_tgs_req_info(struct tgs_req_info *val) {
   val->flags = (unsigned int)getNumberInRange(1, 255);
-  val->header_tkt = calloc(1, sizeof(krb5_ticket));
+  val->header_tkt = safe_calloc(1, sizeof(krb5_ticket));
   if (val->header_tkt == ((void *)0)) {
     printf("Out of memory\n");
     return 1;

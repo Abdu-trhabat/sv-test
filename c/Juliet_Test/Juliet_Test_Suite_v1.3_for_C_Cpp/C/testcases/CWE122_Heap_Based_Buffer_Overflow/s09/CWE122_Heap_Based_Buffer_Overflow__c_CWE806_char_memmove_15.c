@@ -19,11 +19,19 @@ Template File: sources-sink-15.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_memmove_15_bad()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     switch(6)
     {
@@ -55,7 +63,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_memmove_15_bad()
 static void goodG2B1()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     switch(5)
     {
@@ -83,7 +91,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     switch(6)
     {

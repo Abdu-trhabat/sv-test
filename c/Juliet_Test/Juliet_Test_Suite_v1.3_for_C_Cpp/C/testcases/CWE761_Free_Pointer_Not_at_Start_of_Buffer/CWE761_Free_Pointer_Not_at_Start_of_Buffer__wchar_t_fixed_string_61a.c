@@ -26,11 +26,19 @@ Template File: source-sinks-61a.tmpl.c
 
 /* bad function declaration */
 wchar_t * CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_fixed_string_61b_badSource(wchar_t * data);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_fixed_string_61_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     data = CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_fixed_string_61b_badSource(data);
@@ -57,7 +65,7 @@ wchar_t * CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_fixed_string_61b_g
 static void goodB2G()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     data = CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_fixed_string_61b_goodB2GSource(data);

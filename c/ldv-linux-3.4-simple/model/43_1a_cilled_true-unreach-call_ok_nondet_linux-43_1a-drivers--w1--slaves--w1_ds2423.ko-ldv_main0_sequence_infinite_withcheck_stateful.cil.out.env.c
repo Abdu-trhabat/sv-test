@@ -6,6 +6,14 @@
 // with type: u16 crc16(u16 , const u8 *, size_t )
 // with return type: u16 
 unsigned short __VERIFIER_nondet_ushort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 u16 crc16(u16 arg0, const u8 *arg1, size_t arg2) {
   // Typedef type
   // Real type: unsigned short
@@ -43,7 +51,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: kmem_cache_alloc

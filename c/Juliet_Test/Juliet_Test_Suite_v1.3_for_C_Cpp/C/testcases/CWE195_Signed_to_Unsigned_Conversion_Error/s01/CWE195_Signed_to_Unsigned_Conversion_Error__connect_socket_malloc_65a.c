@@ -9,7 +9,7 @@ Template File: sources-sink-65a.tmpl.c
  * BadSource: connect_socket Read data using a connect socket (client side)
  * GoodSource: Positive integer
  * Sinks: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 65 Data/control flow: data passed as an argument from one function to a function in a different source file called via a function pointer
  *
  * */
@@ -41,6 +41,14 @@ Template File: sources-sink-65a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE195_Signed_to_Unsigned_Conversion_Error__connect_socket_malloc_65b_badSink(int data);
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__connect_socket_malloc_65_bad()

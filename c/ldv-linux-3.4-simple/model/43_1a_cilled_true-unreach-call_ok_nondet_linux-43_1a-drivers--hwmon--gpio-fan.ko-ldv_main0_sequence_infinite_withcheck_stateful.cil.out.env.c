@@ -5,6 +5,14 @@
 // Function: __gpio_get_value
 // with type: int __gpio_get_value(unsigned int)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int __gpio_get_value(unsigned int arg0) {
   // Simple type
@@ -58,7 +66,7 @@ __inline static  IS_ERR(void const *ptr ) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  void *p = malloc(size);
+  void *p = safe_malloc(size);
   assume_abort_if_not(IS_ERR(p) == 0);
   return p;
 }

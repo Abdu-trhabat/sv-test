@@ -33,11 +33,19 @@ static wchar_t * badSource(wchar_t * data)
     if(badStatic)
     {
         /* FLAW: Did not leave space for a null terminator */
-        data = (wchar_t *)malloc(10*sizeof(wchar_t));
+        data = (wchar_t *)safe_malloc(10*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
     }
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_memcpy_21_bad()
 {
@@ -74,7 +82,7 @@ static wchar_t * goodG2B1Source(wchar_t * data)
     else
     {
         /* FIX: Allocate space for a null terminator */
-        data = (wchar_t *)malloc((10+1)*sizeof(wchar_t));
+        data = (wchar_t *)safe_malloc((10+1)*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -102,7 +110,7 @@ static wchar_t * goodG2B2Source(wchar_t * data)
     if(goodG2B2Static)
     {
         /* FIX: Allocate space for a null terminator */
-        data = (wchar_t *)malloc((10+1)*sizeof(wchar_t));
+        data = (wchar_t *)safe_malloc((10+1)*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
     }
     return data;

@@ -21,6 +21,14 @@ Template File: sources-sink-65a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE590_Free_Memory_Not_on_Heap__free_int_alloca_65b_badSink(int * data);
 
 void CWE590_Free_Memory_Not_on_Heap__free_int_alloca_65_bad()
@@ -59,10 +67,10 @@ static void goodG2B()
     data = NULL; /* Initialize data */
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
-        int * dataBuffer = (int *)malloc(100*sizeof(int));
+        int * dataBuffer = (int *)safe_malloc(100*sizeof(int));
         if (dataBuffer == NULL)
         {
-            printLine("malloc() failed");
+            printLine("safe_malloc() failed");
             exit(1);
         }
         {

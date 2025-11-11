@@ -8,7 +8,7 @@ Template File: point-flaw-08.tmpl.c
  * CWE: 401 Memory Leak
  * Sinks:
  *    GoodSink: Ensure the memory block pointed to by data is always freed
- *    BadSink : malloc() and use then realloc() and use data before free()
+ *    BadSink : safe_malloc() and use then safe_realloc() and use data before free()
  * Flow Variant: 08 Control flow: if(staticReturnsTrue()) and if(staticReturnsFalse())
  *
  * */
@@ -33,20 +33,36 @@ static int staticReturnsFalse()
 }
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE401_Memory_Leak__malloc_realloc_twoIntsStruct_08_bad()
 {
     if(staticReturnsTrue())
     {
         {
-            twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+            twoIntsStruct * data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
             if (data == NULL) {exit(-1);}
             /* Initialize and make use of data */
             data[0].intOne = 0;
             data[0].intTwo = 0;
             printStructLine(&data[0]);
-            /* FLAW: If realloc() fails, the initial memory block will not be freed() */
-            data = (twoIntsStruct *)realloc(data, (130000)*sizeof(twoIntsStruct));
+            /* FLAW: If safe_realloc() fails, the initial memory block will not be freed() */
+            data = (twoIntsStruct *)safe_realloc(data, (130000)*sizeof(twoIntsStruct));
             if (data != NULL)
             {
                 /* Reinitialize and make use of data */
@@ -74,16 +90,16 @@ static void good1()
     else
     {
         {
-            twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+            twoIntsStruct * data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
             if (data == NULL) {exit(-1);}
             twoIntsStruct * tmpData;
             /* Initialize and make use of data */
             data[0].intOne = 0;
             data[0].intTwo = 0;
             printStructLine(&data[0]);
-            tmpData = (twoIntsStruct *)realloc(data, (130000)*sizeof(twoIntsStruct));
-            /* FIX: Ensure realloc() was successful before assigning data to the memory block
-            * allocated with realloc() */
+            tmpData = (twoIntsStruct *)safe_realloc(data, (130000)*sizeof(twoIntsStruct));
+            /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
+            * allocated with safe_realloc() */
             if (tmpData != NULL)
             {
                 data = tmpData;
@@ -103,16 +119,16 @@ static void good2()
     if(staticReturnsTrue())
     {
         {
-            twoIntsStruct * data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+            twoIntsStruct * data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
             if (data == NULL) {exit(-1);}
             twoIntsStruct * tmpData;
             /* Initialize and make use of data */
             data[0].intOne = 0;
             data[0].intTwo = 0;
             printStructLine(&data[0]);
-            tmpData = (twoIntsStruct *)realloc(data, (130000)*sizeof(twoIntsStruct));
-            /* FIX: Ensure realloc() was successful before assigning data to the memory block
-            * allocated with realloc() */
+            tmpData = (twoIntsStruct *)safe_realloc(data, (130000)*sizeof(twoIntsStruct));
+            /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
+            * allocated with safe_realloc() */
             if (tmpData != NULL)
             {
                 data = tmpData;

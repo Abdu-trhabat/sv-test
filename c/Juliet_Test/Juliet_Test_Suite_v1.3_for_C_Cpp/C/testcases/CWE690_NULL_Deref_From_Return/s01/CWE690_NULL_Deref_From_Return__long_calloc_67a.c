@@ -6,7 +6,7 @@ Template File: source-sinks-67a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: calloc Allocate data using calloc()
+ * BadSource: calloc Allocate data using safe_calloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -26,6 +26,14 @@ typedef struct _CWE690_NULL_Deref_From_Return__long_calloc_67_structType
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE690_NULL_Deref_From_Return__long_calloc_67b_badSink(CWE690_NULL_Deref_From_Return__long_calloc_67_structType myStruct);
 
 void CWE690_NULL_Deref_From_Return__long_calloc_67_bad()
@@ -34,7 +42,7 @@ void CWE690_NULL_Deref_From_Return__long_calloc_67_bad()
     CWE690_NULL_Deref_From_Return__long_calloc_67_structType myStruct;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)calloc(1, sizeof(long));
+    data = (long *)safe_calloc(1, sizeof(long));
     myStruct.structFirst = data;
     CWE690_NULL_Deref_From_Return__long_calloc_67b_badSink(myStruct);
 }
@@ -52,7 +60,7 @@ static void goodB2G()
     CWE690_NULL_Deref_From_Return__long_calloc_67_structType myStruct;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)calloc(1, sizeof(long));
+    data = (long *)safe_calloc(1, sizeof(long));
     myStruct.structFirst = data;
     CWE690_NULL_Deref_From_Return__long_calloc_67b_goodB2GSink(myStruct);
 }

@@ -6,7 +6,7 @@ Template File: sources-sinks-67a.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using realloc()
+ * BadSource: realloc Allocate data using safe_realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -27,6 +27,14 @@ typedef struct _CWE401_Memory_Leak__char_realloc_67_structType
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE401_Memory_Leak__char_realloc_67b_badSink(CWE401_Memory_Leak__char_realloc_67_structType myStruct);
 
 void CWE401_Memory_Leak__char_realloc_67_bad()
@@ -35,7 +43,7 @@ void CWE401_Memory_Leak__char_realloc_67_bad()
     CWE401_Memory_Leak__char_realloc_67_structType myStruct;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (char *)realloc(data, 100*sizeof(char));
+    data = (char *)safe_realloc(data, 100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     strcpy(data, "A String");
@@ -74,7 +82,7 @@ static void goodB2G()
     CWE401_Memory_Leak__char_realloc_67_structType myStruct;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (char *)realloc(data, 100*sizeof(char));
+    data = (char *)safe_realloc(data, 100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     strcpy(data, "A String");

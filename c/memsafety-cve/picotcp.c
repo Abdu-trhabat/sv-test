@@ -12,6 +12,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -66,7 +74,7 @@ int pico_transport_receive(struct pico_frame *f, int proto) {
 }
 
 static int pico_fragments_reassemble(int proto) {
-  struct pico_frame *full = calloc(1, sizeof(struct pico_frame));
+  struct pico_frame *full = safe_calloc(1, sizeof(struct pico_frame));
   if (full == NULL) {
     printf("Out of memory\n");
     return 1;

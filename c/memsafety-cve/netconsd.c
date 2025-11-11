@@ -13,6 +13,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -123,7 +131,7 @@ einval:
 char *copy_msg(struct ncrx_msg *src) {
   char *dst;
 
-  dst = malloc(src->text_len + 1);
+  dst = safe_malloc(src->text_len + 1);
   if (!dst)
     return NULL;
 

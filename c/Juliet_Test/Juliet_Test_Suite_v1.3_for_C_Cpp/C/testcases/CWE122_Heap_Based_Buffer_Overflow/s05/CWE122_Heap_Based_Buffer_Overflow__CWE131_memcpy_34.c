@@ -23,6 +23,14 @@ typedef union
 } CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_34_unionType;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_34_bad()
 {
@@ -30,7 +38,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_34_bad()
     CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_34_unionType myUnion;
     data = NULL;
     /* FLAW: Allocate memory without using sizeof(int) */
-    data = (int *)malloc(10);
+    data = (int *)safe_malloc(10);
     if (data == NULL) {exit(-1);}
     myUnion.unionFirst = data;
     {
@@ -56,7 +64,7 @@ static void goodG2B()
     CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_34_unionType myUnion;
     data = NULL;
     /* FIX: Allocate memory using sizeof(int) */
-    data = (int *)malloc(10*sizeof(int));
+    data = (int *)safe_malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
     myUnion.unionFirst = data;
     {

@@ -26,14 +26,22 @@ static twoIntsStruct * badSource(twoIntsStruct * data)
     if(badStatic)
     {
         /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-        /* FLAW: Using sizeof the pointer and not the data type in malloc() */
-        data = (twoIntsStruct *)malloc(sizeof(data));
+        /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
+        data = (twoIntsStruct *)safe_malloc(sizeof(data));
         if (data == NULL) {exit(-1);}
         data->intOne = 1;
         data->intTwo = 2;
     }
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_21_bad()
 {
@@ -65,8 +73,8 @@ static twoIntsStruct * goodG2B1Source(twoIntsStruct * data)
     }
     else
     {
-        /* FIX: Using sizeof the data type in malloc() */
-        data = (twoIntsStruct *)malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in safe_malloc() */
+        data = (twoIntsStruct *)safe_malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         data->intOne = 1;
         data->intTwo = 2;
@@ -91,8 +99,8 @@ static twoIntsStruct * goodG2B2Source(twoIntsStruct * data)
 {
     if(goodG2B2Static)
     {
-        /* FIX: Using sizeof the data type in malloc() */
-        data = (twoIntsStruct *)malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in safe_malloc() */
+        data = (twoIntsStruct *)safe_malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         data->intOne = 1;
         data->intTwo = 2;

@@ -542,6 +542,14 @@ path_common_prefix (char const *path1, char const *path2)
 }
 extern int __VERIFIER_nondet_int();
 extern unsigned char __VERIFIER_nondet_uchar();
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void reach_error() {
     ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "/tmp/fv-intermediate-kd9yq_8a/sources/relpath/formal/includes/util.h", 14, __extension__ __PRETTY_FUNCTION__); }));
 }
@@ -574,9 +582,9 @@ static int length_common_prefix_2_1;
 static char *output_buf;
 static size_t output_len;
 static void init_buffers_large() {
-    path1 = malloc(200);
-    path2 = malloc(200);
-    output_buf = malloc(200);
+    path1 = safe_malloc(200);
+    path2 = safe_malloc(200);
+    output_buf = safe_malloc(200);
     output_len = 200;
     assume_or_exit(path1 != ((void*)0) && path2 != ((void*)0) && output_buf != ((void*)0));
 }

@@ -12,6 +12,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -35,7 +51,7 @@ static int get_query(char **elements, int element_counter, char *query, const ch
       length++;
   }
 
-  query_str = (char *)calloc(QUERYMAXLEN, sizeof(char));
+  query_str = (char *)safe_calloc(QUERYMAXLEN, sizeof(char));
 
   for (i = 0; i < element_counter; i++) {
     if (!elements[i]) {
@@ -72,7 +88,7 @@ static int get_query(char **elements, int element_counter, char *query, const ch
 
 int main() {
   char query[QUERYMAXLEN];
-  char **elements = (char **)malloc(5 * sizeof(char *));
+  char **elements = (char **)safe_malloc(5 * sizeof(char *));
   elements[0] = getRandomString(5, 100);
   elements[1] = getRandomString(5, 100);
   elements[2] = getRandomString(5, 100);

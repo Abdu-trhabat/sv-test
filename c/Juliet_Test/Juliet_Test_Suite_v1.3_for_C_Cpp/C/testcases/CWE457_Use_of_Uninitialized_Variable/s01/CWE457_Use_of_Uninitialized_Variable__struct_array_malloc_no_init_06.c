@@ -23,11 +23,19 @@ Template File: sources-sinks-06.tmpl.c
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_no_init_06_bad()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_FIVE==5)
     {
@@ -56,7 +64,7 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_no_init_06_bad()
 static void goodB2G1()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_FIVE==5)
     {
@@ -94,7 +102,7 @@ static void goodB2G1()
 static void goodB2G2()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_FIVE==5)
     {
@@ -127,7 +135,7 @@ static void goodB2G2()
 static void goodG2B1()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_FIVE!=5)
     {
@@ -164,7 +172,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_FIVE==5)
     {

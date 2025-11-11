@@ -21,13 +21,21 @@ Template File: point-flaw-06.tmpl.c
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE758_Undefined_Behavior__wchar_t_pointer_malloc_use_06_bad()
 {
     if(STATIC_CONST_FIVE==5)
     {
         {
-            wchar_t * * pointer = (wchar_t * *)malloc(sizeof(wchar_t *));
+            wchar_t * * pointer = (wchar_t * *)safe_malloc(sizeof(wchar_t *));
             if (pointer == NULL) {exit(-1);}
             wchar_t * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             free(pointer);
@@ -52,7 +60,7 @@ static void good1()
     {
         {
             wchar_t * data;
-            wchar_t * * pointer = (wchar_t * *)malloc(sizeof(wchar_t *));
+            wchar_t * * pointer = (wchar_t * *)safe_malloc(sizeof(wchar_t *));
             if (pointer == NULL) {exit(-1);}
             data = L"string";
             *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
@@ -72,7 +80,7 @@ static void good2()
     {
         {
             wchar_t * data;
-            wchar_t * * pointer = (wchar_t * *)malloc(sizeof(wchar_t *));
+            wchar_t * * pointer = (wchar_t * *)safe_malloc(sizeof(wchar_t *));
             if (pointer == NULL) {exit(-1);}
             data = L"string";
             *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */

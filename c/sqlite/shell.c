@@ -574,8 +574,8 @@ static int strlenChar(const char *z){
 
 /*
 ** This routine reads a line of text from FILE in, stores
-** the text in memory obtained from malloc() and returns a pointer
-** to the text.  NULL is returned at end of file, or if malloc()
+** the text in memory obtained from safe_malloc() and returns a pointer
+** to the text.  NULL is returned at end of file, or if safe_malloc()
 ** fails.
 **
 ** If zLine is not NULL then it is a malloced buffer returned from
@@ -588,7 +588,7 @@ static char *local_getline(char *zLine, FILE *in){
   while( 1 ){
     if( n+100>nLine ){
       nLine = nLine*2 + 100;
-      zLine = realloc(zLine, nLine);
+      zLine = safe_realloc(zLine, nLine);
       if( zLine==0 ) shell_out_of_memory();
     }
     if( fgets(&zLine[n], nLine - n, in)==0 ){
@@ -615,7 +615,7 @@ static char *local_getline(char *zLine, FILE *in){
     if( zTrans ){
       int nTrans = strlen30(zTrans)+1;
       if( nTrans>nLine ){
-        zLine = realloc(zLine, nTrans);
+        zLine = safe_realloc(zLine, nTrans);
         if( zLine==0 ) shell_out_of_memory();
       }
       memcpy(zLine, zTrans, nTrans);
@@ -636,7 +636,7 @@ static char *local_getline(char *zLine, FILE *in){
 ** If zPrior is not NULL then it is a buffer from a prior call to this
 ** routine that can be reused.
 **
-** The result is stored in space obtained from malloc() and must either
+** The result is stored in space obtained from safe_malloc() and must either
 ** be freed by the caller or else passed back into this routine via the
 ** zPrior argument for reuse.
 */
@@ -740,8 +740,8 @@ static void freeText(ShellText *p){
 }
 
 /* zIn is either a pointer to a NULL-terminated string in memory obtained
-** from malloc(), or a NULL pointer. The string pointed to by zAppend is
-** added to zIn, and the result returned in memory obtained from malloc().
+** from safe_malloc(), or a NULL pointer. The string pointed to by zAppend is
+** added to zIn, and the result returned in memory obtained from safe_malloc().
 ** zIn, if it was not NULL, is freed.
 **
 ** If the third argument, quote, is not '\0', then it is used as a
@@ -762,7 +762,7 @@ static void appendText(ShellText *p, char const *zAppend, char quote){
 
   if( p->n+len>=p->nAlloc ){
     p->nAlloc = p->nAlloc*2 + len + 20;
-    p->z = realloc(p->z, p->nAlloc);
+    p->z = safe_realloc(p->z, p->nAlloc);
     if( p->z==0 ) shell_out_of_memory();
   }
 
@@ -991,6 +991,22 @@ static void shellAddSchemaName(
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <errno.h>
 #include <io.h>
 #include <limits.h>
@@ -10822,7 +10838,7 @@ static void set_table_name(ShellState *p, const char *zName){
   cQuote = quoteChar(zName);
   n = strlen30(zName);
   if( cQuote ) n += n+2;
-  z = p->zDestTable = malloc( n+1 );
+  z = p->zDestTable = safe_malloc( n+1 );
   if( z==0 ) shell_out_of_memory();
   n = 0;
   if( cQuote ) z[n++] = cQuote;
@@ -11976,7 +11992,7 @@ static int run_schema_dump_query(
       sqlite3_free(zErr);
       zErr = 0;
     }
-    zQ2 = malloc( len+100 );
+    zQ2 = safe_malloc( len+100 );
     if( zQ2==0 ) return rc;
     sqlite3_snprintf(len+100, zQ2, "%s ORDER BY rowid DESC", zQuery);
     rc = sqlite3_exec(p->db, zQ2, dump_callback, p, &zErr);
@@ -18311,7 +18327,7 @@ static int process_input(ShellState *p){
     nLine = strlen30(zLine);
     if( nSql+nLine+2>=nAlloc ){
       nAlloc = nSql+nLine+100;
-      zSql = realloc(zSql, nAlloc);
+      zSql = safe_realloc(zSql, nAlloc);
       if( zSql==0 ) shell_out_of_memory();
     }
     nSqlPrior = nSql;
@@ -18398,7 +18414,7 @@ static char *find_home_dir(int clearFlag){
     zPath = getenv("HOMEPATH");
     if( zDrive && zPath ){
       n = strlen30(zDrive) + strlen30(zPath) + 1;
-      home_dir = malloc( n );
+      home_dir = safe_malloc( n );
       if( home_dir==0 ) return 0;
       sqlite3_snprintf(n, home_dir, "%s%s", zDrive, zPath);
       return home_dir;
@@ -18411,7 +18427,7 @@ static char *find_home_dir(int clearFlag){
 
   if( home_dir ){
     int n = strlen30(home_dir) + 1;
-    char *z = malloc( n );
+    char *z = safe_malloc( n );
     if( z ) memcpy(z, home_dir, n);
     home_dir = z;
   }
@@ -18658,7 +18674,7 @@ int SQLITE_CDECL wmain(int argc, wchar_t **wargv){
   */
 #if !SQLITE_SHELL_IS_UTF8
   sqlite3_initialize();
-  argvToFree = malloc(sizeof(argv[0])*argc*2);
+  argvToFree = safe_malloc(sizeof(argv[0])*argc*2);
   argcToFree = argc;
   argv = argvToFree + argc;
   if( argv==0 ) shell_out_of_memory();
@@ -18667,7 +18683,7 @@ int SQLITE_CDECL wmain(int argc, wchar_t **wargv){
     int n;
     if( z==0 ) shell_out_of_memory();
     n = (int)strlen(z);
-    argv[i] = malloc( n+1 );
+    argv[i] = safe_malloc( n+1 );
     if( argv[i]==0 ) shell_out_of_memory();
     memcpy(argv[i], z, n+1);
     argvToFree[i] = argv[i];
@@ -18717,7 +18733,7 @@ int SQLITE_CDECL wmain(int argc, wchar_t **wargv){
         ** mean that nothing is read from stdin */
         readStdin = 0;
         nCmd++;
-        azCmd = realloc(azCmd, sizeof(azCmd[0])*nCmd);
+        azCmd = safe_realloc(azCmd, sizeof(azCmd[0])*nCmd);
         if( azCmd==0 ) shell_out_of_memory();
         azCmd[nCmd-1] = z;
       }
@@ -18745,7 +18761,7 @@ int SQLITE_CDECL wmain(int argc, wchar_t **wargv){
       zSize = cmdline_option_value(argc, argv, ++i);
       szHeap = integerValue(zSize);
       if( szHeap>0x7fff0000 ) szHeap = 0x7fff0000;
-      sqlite3_config(SQLITE_CONFIG_HEAP, malloc((int)szHeap), (int)szHeap, 64);
+      sqlite3_config(SQLITE_CONFIG_HEAP, safe_malloc((int)szHeap), (int)szHeap, 64);
 #else
       (void)cmdline_option_value(argc, argv, ++i);
 #endif
@@ -18756,7 +18772,7 @@ int SQLITE_CDECL wmain(int argc, wchar_t **wargv){
       if( sz<0 ) sz = 0;
       n = (int)integerValue(cmdline_option_value(argc,argv,++i));
       sqlite3_config(SQLITE_CONFIG_PAGECACHE,
-                    (n>0 && sz>0) ? malloc(n*sz) : 0, sz, n);
+                    (n>0 && sz>0) ? safe_malloc(n*sz) : 0, sz, n);
       data.shellFlgs |= SHFLG_Pagecache;
     }else if( strcmp(z,"-lookaside")==0 ){
       int n, sz;
@@ -19071,7 +19087,7 @@ int SQLITE_CDECL wmain(int argc, wchar_t **wargv){
         zHistory = strdup(zHistory);
       }else if( (zHome = find_home_dir(0))!=0 ){
         nHistory = strlen30(zHome) + 20;
-        if( (zHistory = malloc(nHistory))!=0 ){
+        if( (zHistory = safe_malloc(nHistory))!=0 ){
           sqlite3_snprintf(nHistory, zHistory,"%s/.sqlite_history", zHome);
         }
       }

@@ -4,6 +4,14 @@
  * Then copy contents of s to itself and try to follow the link. 
  */
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 struct node {
   struct node* next;
@@ -14,7 +22,7 @@ void myexit(int s) {
 }
 
 struct node* alloc_node() {
-  struct node* temp = (struct node*) malloc(sizeof(struct node));
+  struct node* temp = (struct node*) safe_malloc(sizeof(struct node));
   if(NULL == temp) {
     myexit(1);
   }

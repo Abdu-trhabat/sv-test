@@ -23,6 +23,14 @@ Template File: sources-sink-07.tmpl.c
 static int staticFive = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_07_bad()
 {
@@ -31,7 +39,7 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_07_bad()
     data = -1;
     if(staticFive==5)
     {
-        /* FLAW: Set data to a value that will cause an integer overflow in the call to malloc() in the sink */
+        /* FLAW: Set data to a value that will cause an integer overflow in the call to safe_malloc() in the sink */
         data = INT_MAX / 2 + 2; /* 1073741825 */
         /* NOTE: This value will cause the sink to only allocate 4 bytes of memory, however
          * the for loop will attempt to access indices 0-1073741824 */
@@ -41,7 +49,7 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_07_bad()
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)malloc(data * sizeof(int));
+        intPointer = (int*)safe_malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {
@@ -77,7 +85,7 @@ static void goodG2B1()
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)malloc(data * sizeof(int));
+        intPointer = (int*)safe_malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {
@@ -104,7 +112,7 @@ static void goodG2B2()
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)malloc(data * sizeof(int));
+        intPointer = (int*)safe_malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {

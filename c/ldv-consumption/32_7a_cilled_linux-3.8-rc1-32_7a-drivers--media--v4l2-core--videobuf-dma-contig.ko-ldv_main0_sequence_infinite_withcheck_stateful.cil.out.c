@@ -3366,6 +3366,14 @@ __inline static void dma_free_attrs(struct device *dev , size_t size , void *vad
 extern void kfree(void const   * ) ;
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -3378,7 +3386,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
 	if (__VERIFIER_nondet_int()) {
-		void *res = malloc(size);
+		void *res = safe_malloc(size);
 		assume_abort_if_not(!ldv_is_err(res));
 
 		return res;
@@ -4228,12 +4236,12 @@ int main(void)
   struct videobuf_mapping *map ;
 
   {
-  var_group1 = (struct vm_area_struct*) malloc(sizeof(struct vm_area_struct));
-  map = (struct videobuf_mapping*) malloc(sizeof(struct videobuf_mapping));
+  var_group1 = (struct vm_area_struct*) safe_malloc(sizeof(struct vm_area_struct));
+  map = (struct videobuf_mapping*) safe_malloc(sizeof(struct videobuf_mapping));
   var_group1->vm_private_data = map;
-  map->q = (struct videobuf_queue*) malloc(sizeof(struct videobuf_queue));
+  map->q = (struct videobuf_queue*) safe_malloc(sizeof(struct videobuf_queue));
   for (i = 0; i < 32; ++i)
-    map->q->bufs[i] = (struct videobuf_buffer*) malloc(sizeof(struct videobuf_buffer));
+    map->q->bufs[i] = (struct videobuf_buffer*) safe_malloc(sizeof(struct videobuf_buffer));
 
   ldv_s_videobuf_vm_ops_vm_operations_struct = 0;
   LDV_IN_INTERRUPT = 1;

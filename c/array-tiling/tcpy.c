@@ -2,6 +2,14 @@ extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "tcpy.c", 3, "reach_error"); }
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -19,8 +27,8 @@ int main()
 	if(SIZE > 1 && SIZE < MAX)
 	{
 		int i;
-		int *a = malloc(sizeof(int)*SIZE);
-		int *acopy = malloc(sizeof(int)*SIZE);
+		int *a = safe_malloc(sizeof(int)*SIZE);
+		int *acopy = safe_malloc(sizeof(int)*SIZE);
 		
 		for(i = 0; i < SIZE; i++)
 		{

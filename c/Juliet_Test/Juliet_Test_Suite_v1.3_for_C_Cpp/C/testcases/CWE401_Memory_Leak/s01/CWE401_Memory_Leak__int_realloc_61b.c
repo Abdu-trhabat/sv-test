@@ -1,3 +1,11 @@
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE401_Memory_Leak__int_realloc_61b.c
 Label Definition File: CWE401_Memory_Leak.c.label.xml
@@ -6,7 +14,7 @@ Template File: sources-sinks-61b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using realloc()
+ * BadSource: realloc Allocate data using safe_realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -24,7 +32,7 @@ Template File: sources-sinks-61b.tmpl.c
 int * CWE401_Memory_Leak__int_realloc_61b_badSource(int * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int *)realloc(data, 100*sizeof(int));
+    data = (int *)safe_realloc(data, 100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;
@@ -51,7 +59,7 @@ int * CWE401_Memory_Leak__int_realloc_61b_goodG2BSource(int * data)
 int * CWE401_Memory_Leak__int_realloc_61b_goodB2GSource(int * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int *)realloc(data, 100*sizeof(int));
+    data = (int *)safe_realloc(data, 100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;

@@ -81317,7 +81317,7 @@ void *ldv_malloc(size_t size )
   }
   if (tmp___1 != 0) {
     {
-    tmp = malloc(size);
+    tmp = safe_malloc(size);
     res = tmp;
     ldv_assume((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const   *)res);
@@ -81342,7 +81342,7 @@ void *ldv_calloc(size_t nmemb , size_t size )
   }
   if (tmp___1 != 0) {
     {
-    tmp = calloc(nmemb, size);
+    tmp = safe_calloc(nmemb, size);
     res = tmp;
     ldv_assume((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const   *)res);
@@ -81384,7 +81384,7 @@ void *ldv_xmalloc(size_t size )
 
   {
   {
-  tmp = malloc(size);
+  tmp = safe_malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const   *)res);
@@ -81401,7 +81401,7 @@ void *ldv_xzalloc(size_t size )
 
   {
   {
-  tmp = calloc(1UL, size);
+  tmp = safe_calloc(1UL, size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const   *)res);
@@ -83767,6 +83767,22 @@ int ldv_exclusive_spin_is_locked(void)
 }
 }
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <assert.h>
 void reach_error() { assert(0); }
 void ldv_assert_linux_kernel_locking_spinlock__one_thread_double_lock(int expr ) 

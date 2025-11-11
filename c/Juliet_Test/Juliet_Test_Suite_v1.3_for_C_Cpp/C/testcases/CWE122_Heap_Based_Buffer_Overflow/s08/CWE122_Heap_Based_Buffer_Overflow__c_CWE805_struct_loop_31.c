@@ -6,8 +6,8 @@ Template File: sources-sink-31.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
  * Sinks: loop
  *    BadSink : Copy twoIntsStruct array to data using a loop
  * Flow Variant: 31 Data flow using a copy of data within the same function
@@ -17,13 +17,21 @@ Template File: sources-sink-31.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_31_bad()
 {
     twoIntsStruct * data;
     data = NULL;
     /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-    data = (twoIntsStruct *)malloc(50*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(50*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     {
         twoIntsStruct * dataCopy = data;
@@ -63,7 +71,7 @@ static void goodG2B()
     twoIntsStruct * data;
     data = NULL;
     /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-    data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     {
         twoIntsStruct * dataCopy = data;

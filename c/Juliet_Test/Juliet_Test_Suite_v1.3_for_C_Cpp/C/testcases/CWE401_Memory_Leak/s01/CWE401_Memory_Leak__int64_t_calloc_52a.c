@@ -6,7 +6,7 @@ Template File: sources-sinks-52a.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using calloc()
+ * BadSource: calloc Allocate data using safe_calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -22,6 +22,14 @@ Template File: sources-sinks-52a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE401_Memory_Leak__int64_t_calloc_52b_badSink(int64_t * data);
 
 void CWE401_Memory_Leak__int64_t_calloc_52_bad()
@@ -29,7 +37,7 @@ void CWE401_Memory_Leak__int64_t_calloc_52_bad()
     int64_t * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int64_t *)calloc(100, sizeof(int64_t));
+    data = (int64_t *)safe_calloc(100, sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5LL;
@@ -64,7 +72,7 @@ static void goodB2G()
     int64_t * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int64_t *)calloc(100, sizeof(int64_t));
+    data = (int64_t *)safe_calloc(100, sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5LL;

@@ -8,7 +8,7 @@ Template File: point-flaw-14.tmpl.c
  * CWE: 401 Memory Leak
  * Sinks:
  *    GoodSink: Ensure the memory block pointed to by data is always freed
- *    BadSink : malloc() and use then realloc() and use data before free()
+ *    BadSink : safe_malloc() and use then safe_realloc() and use data before free()
  * Flow Variant: 14 Control flow: if(globalFive==5) and if(globalFive!=5)
  *
  * */
@@ -20,19 +20,35 @@ Template File: point-flaw-14.tmpl.c
 #endif
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE401_Memory_Leak__malloc_realloc_int64_t_14_bad()
 {
     if(globalFive==5)
     {
         {
-            int64_t * data = (int64_t *)malloc(100*sizeof(int64_t));
+            int64_t * data = (int64_t *)safe_malloc(100*sizeof(int64_t));
             if (data == NULL) {exit(-1);}
             /* Initialize and make use of data */
             data[0] = 5LL;
             printLongLongLine(data[0]);
-            /* FLAW: If realloc() fails, the initial memory block will not be freed() */
-            data = (int64_t *)realloc(data, (130000)*sizeof(int64_t));
+            /* FLAW: If safe_realloc() fails, the initial memory block will not be freed() */
+            data = (int64_t *)safe_realloc(data, (130000)*sizeof(int64_t));
             if (data != NULL)
             {
                 /* Reinitialize and make use of data */
@@ -59,15 +75,15 @@ static void good1()
     else
     {
         {
-            int64_t * data = (int64_t *)malloc(100*sizeof(int64_t));
+            int64_t * data = (int64_t *)safe_malloc(100*sizeof(int64_t));
             if (data == NULL) {exit(-1);}
             int64_t * tmpData;
             /* Initialize and make use of data */
             data[0] = 5LL;
             printLongLongLine(data[0]);
-            tmpData = (int64_t *)realloc(data, (130000)*sizeof(int64_t));
-            /* FIX: Ensure realloc() was successful before assigning data to the memory block
-            * allocated with realloc() */
+            tmpData = (int64_t *)safe_realloc(data, (130000)*sizeof(int64_t));
+            /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
+            * allocated with safe_realloc() */
             if (tmpData != NULL)
             {
                 data = tmpData;
@@ -86,15 +102,15 @@ static void good2()
     if(globalFive==5)
     {
         {
-            int64_t * data = (int64_t *)malloc(100*sizeof(int64_t));
+            int64_t * data = (int64_t *)safe_malloc(100*sizeof(int64_t));
             if (data == NULL) {exit(-1);}
             int64_t * tmpData;
             /* Initialize and make use of data */
             data[0] = 5LL;
             printLongLongLine(data[0]);
-            tmpData = (int64_t *)realloc(data, (130000)*sizeof(int64_t));
-            /* FIX: Ensure realloc() was successful before assigning data to the memory block
-            * allocated with realloc() */
+            tmpData = (int64_t *)safe_realloc(data, (130000)*sizeof(int64_t));
+            /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
+            * allocated with safe_realloc() */
             if (tmpData != NULL)
             {
                 data = tmpData;

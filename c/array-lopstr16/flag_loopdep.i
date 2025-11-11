@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -22,7 +30,7 @@ void init(S a[], int size)
  int i;
  for(i = 0; i < size; i++)
  {
-  a[i].n = (int *) malloc(sizeof(int));
+  a[i].n = (int *) safe_malloc(sizeof(int));
  }
 }
 int main()

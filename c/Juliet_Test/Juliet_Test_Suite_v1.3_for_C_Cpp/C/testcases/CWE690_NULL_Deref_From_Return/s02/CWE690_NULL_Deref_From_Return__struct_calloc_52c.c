@@ -6,7 +6,7 @@ Template File: source-sinks-52c.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: calloc Allocate data using calloc()
+ * BadSource: calloc Allocate data using safe_calloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -19,6 +19,14 @@ Template File: source-sinks-52c.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE690_NULL_Deref_From_Return__struct_calloc_52c_badSink(twoIntsStruct * data)
 {

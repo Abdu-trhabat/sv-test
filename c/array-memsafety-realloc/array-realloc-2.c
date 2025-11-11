@@ -1,4 +1,20 @@
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -7,7 +23,7 @@ int num, ind, newsize, i = 1;
 void *expandArray(int **pointer) {
   while (newsize < num) {
     newsize = newsize + 1;
-    int *temp = realloc(*pointer, sizeof(int) * newsize);
+    int *temp = safe_realloc(*pointer, sizeof(int) * newsize);
     if (temp != NULL) {
       temp[newsize - 1] = i;
       *pointer = temp;
@@ -24,7 +40,7 @@ int main(int argc, char **argv) {
   if (!(num > 0 && num < 100)) {
     return 0;
   }
-  int *a = (int *)malloc(sizeof(int));
+  int *a = (int *)safe_malloc(sizeof(int));
   if (a == NULL) {
     return 0;
   }

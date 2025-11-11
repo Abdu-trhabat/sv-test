@@ -6,7 +6,7 @@ Template File: sources-sinks-44.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using calloc()
+ * BadSource: calloc Allocate data using safe_calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -26,6 +26,14 @@ static void badSink(struct _twoIntsStruct * data)
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE401_Memory_Leak__struct_twoIntsStruct_calloc_44_bad()
 {
@@ -34,7 +42,7 @@ void CWE401_Memory_Leak__struct_twoIntsStruct_calloc_44_bad()
     void (*funcPtr) (struct _twoIntsStruct *) = badSink;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (struct _twoIntsStruct *)calloc(100, sizeof(struct _twoIntsStruct));
+    data = (struct _twoIntsStruct *)safe_calloc(100, sizeof(struct _twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0].intOne = 0;
@@ -82,7 +90,7 @@ static void goodB2G()
     void (*funcPtr) (struct _twoIntsStruct *) = goodB2GSink;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (struct _twoIntsStruct *)calloc(100, sizeof(struct _twoIntsStruct));
+    data = (struct _twoIntsStruct *)safe_calloc(100, sizeof(struct _twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0].intOne = 0;

@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -1852,7 +1860,7 @@ __inline static int __attribute__((__warn_unused_result__))  request_irq(unsigne
 extern void free_irq(unsigned int  , void * ) ;
 extern void *calloc(size_t nmemb, size_t msize);
 static void *kzalloc(size_t size, gfp_t flags) {
-       return calloc(1UL, size);
+       return safe_calloc(1UL, size);
 }
 struct input_dev *input_allocate_device(void) {
        return kzalloc(sizeof(struct input_dev), 0x10u | 0x40u | 0x80u);

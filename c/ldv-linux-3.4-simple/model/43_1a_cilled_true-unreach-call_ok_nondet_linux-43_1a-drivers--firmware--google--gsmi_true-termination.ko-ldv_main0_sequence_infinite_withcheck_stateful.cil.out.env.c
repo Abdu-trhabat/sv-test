@@ -8,6 +8,14 @@
 unsigned long __VERIFIER_nondet_ulong(void);
 unsigned long int __phys_addr(unsigned long arg0) {
   // Simple type
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
   return __VERIFIER_nondet_ulong();
 }
 
@@ -50,7 +58,7 @@ __inline static  IS_ERR(void const *ptr ) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  void *p = malloc(size);
+  void *p = safe_malloc(size);
   assume_abort_if_not(IS_ERR(p) == 0);
   return p;
 }

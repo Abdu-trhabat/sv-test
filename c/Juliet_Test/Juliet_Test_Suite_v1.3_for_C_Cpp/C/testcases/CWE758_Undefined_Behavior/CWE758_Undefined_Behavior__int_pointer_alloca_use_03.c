@@ -16,6 +16,14 @@ Template File: point-flaw-03.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE758_Undefined_Behavior__int_pointer_alloca_use_03_bad()
 {
@@ -47,7 +55,7 @@ static void good1()
             int * data;
             int * * pointer = (int * *)ALLOCA(sizeof(int *));
             /* initialize both the pointer and the data pointed to */
-            data = (int *)malloc(sizeof(int));
+            data = (int *)safe_malloc(sizeof(int));
             if (data == NULL) {exit(-1);}
             *data = 5;
             *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
@@ -68,7 +76,7 @@ static void good2()
             int * data;
             int * * pointer = (int * *)ALLOCA(sizeof(int *));
             /* initialize both the pointer and the data pointed to */
-            data = (int *)malloc(sizeof(int));
+            data = (int *)safe_malloc(sizeof(int));
             if (data == NULL) {exit(-1);}
             *data = 5;
             *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */

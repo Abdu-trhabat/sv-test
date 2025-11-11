@@ -7,6 +7,14 @@
 
 #include<pthread.h>
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include "racemacros.h"
 
 struct q { int x; int y; };
@@ -29,7 +37,7 @@ int main () {
 
   int x = __VERIFIER_nondet_int();
 
-  // struct s *s = malloc(sizeof(struct s));
+  // struct s *s = safe_malloc(sizeof(struct s));
   struct s *s;
   //struct q *q;
   int *d;

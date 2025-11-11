@@ -2188,6 +2188,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 /* Abort execution and generate a core-dump.  */
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* Register a function to be called when `exit' is called.  */
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 /* Register a function to be called when `quick_exit' is called.  */
@@ -2550,10 +2558,10 @@ void do_data(int *data)
 }
 struct hlist_head *create()
 {
-    struct hlist_head *head=malloc(sizeof(struct hlist_head));
+    struct hlist_head *head=safe_malloc(sizeof(struct hlist_head));
     ((head)->first = ((void *)0));
     while(__VERIFIER_nondet_int()) {
-        struct my_item *ptr = malloc(sizeof *ptr);
+        struct my_item *ptr = safe_malloc(sizeof *ptr);
         INIT_HLIST_NODE(&ptr->link);
         ptr->data = __VERIFIER_nondet_int();
         hlist_add_head(&ptr->link, head);

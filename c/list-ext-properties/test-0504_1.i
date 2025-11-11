@@ -438,6 +438,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -538,7 +546,7 @@ int main() {
     int c2 = 0;
     while (c1 < 5 && __VERIFIER_nondet_int()) {
         c1++;
-        struct T2* x = malloc(sizeof(struct T2));
+        struct T2* x = safe_malloc(sizeof(struct T2));
         if (!x)
             abort();
         x->next = ((void *)0);
@@ -549,7 +557,7 @@ int main() {
         struct T* y = ((void *)0);
         while (c2 < 3 && __VERIFIER_nondet_int()) {
             c2++;
-            y = malloc(sizeof(struct T));
+            y = safe_malloc(sizeof(struct T));
             if (!y)
                 abort();
             y->next = x->head.next;

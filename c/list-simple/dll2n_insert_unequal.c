@@ -6,6 +6,14 @@ void reach_error() { assert(0); }
  * Insert node at middle index 1 with data = 5. Check result: 1-5-1
  */
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 typedef struct node {
   int data;
@@ -18,7 +26,7 @@ void myexit(int s) {
 }
 
 DLL node_create(int data) {
-  DLL temp = (DLL) malloc(sizeof(struct node));
+  DLL temp = (DLL) safe_malloc(sizeof(struct node));
   if(NULL == temp) {
     myexit(1);
   }
@@ -31,7 +39,7 @@ DLL node_create(int data) {
 DLL dll_create(int len, int data) {
   DLL head = NULL;
   while(len > 0) {
-    DLL new_head = (DLL) malloc(sizeof(struct node));
+    DLL new_head = (DLL) safe_malloc(sizeof(struct node));
     if(NULL == new_head) {
       myexit(1);
     }

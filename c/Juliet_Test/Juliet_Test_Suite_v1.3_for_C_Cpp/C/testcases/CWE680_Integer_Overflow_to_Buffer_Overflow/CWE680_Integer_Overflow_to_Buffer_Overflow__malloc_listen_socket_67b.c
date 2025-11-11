@@ -44,6 +44,14 @@ typedef struct _CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_listen_socket
 } CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_listen_socket_67_structType;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_listen_socket_67b_badSink(CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_listen_socket_67_structType myStruct)
 {
@@ -53,7 +61,7 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_listen_socket_67b_badSin
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)malloc(data * sizeof(int));
+        intPointer = (int*)safe_malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {
@@ -77,7 +85,7 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_listen_socket_67b_goodG2
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)malloc(data * sizeof(int));
+        intPointer = (int*)safe_malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {

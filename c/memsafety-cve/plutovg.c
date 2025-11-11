@@ -12,6 +12,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include "helpers.c"
 
 typedef struct {
@@ -21,12 +37,12 @@ typedef struct {
 } plutovg_surface_t;
 
 plutovg_surface_t *plutovg_surface_create(int width, int height) {
-  plutovg_surface_t *surface = malloc(sizeof(plutovg_surface_t));
+  plutovg_surface_t *surface = safe_malloc(sizeof(plutovg_surface_t));
   if (surface == NULL) {
     printf("Out of memory\n");
     return NULL;
   }
-  surface->data = calloc(1, (size_t)(width * height * 4)); // Problem: integer overflow or just allocation size too big
+  surface->data = safe_calloc(1, (size_t)(width * height * 4)); // Problem: integer overflow or just allocation size too big
   if (surface->data == NULL) {
     printf("Out of memory\n");
     free(surface);

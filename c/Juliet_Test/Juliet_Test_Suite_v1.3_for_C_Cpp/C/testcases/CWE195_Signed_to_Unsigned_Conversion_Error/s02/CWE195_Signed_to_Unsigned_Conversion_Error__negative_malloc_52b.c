@@ -9,7 +9,7 @@ Template File: sources-sink-52b.tmpl.c
  * BadSource: negative Set data to a fixed negative number
  * GoodSource: Positive integer
  * Sink: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 52 Data flow: data passed as an argument from one function to another to another in three different source files
  *
  * */
@@ -21,6 +21,14 @@ Template File: sources-sink-52b.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE195_Signed_to_Unsigned_Conversion_Error__negative_malloc_52c_badSink(int data);
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__negative_malloc_52b_badSink(int data)

@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -3794,7 +3802,7 @@ static void pcd_init_units(void)
   cd = (struct pcd_unit *)(& pcd);
   goto ldv_29969;
   ldv_29968: 
-  tmp = malloc(sizeof(struct gendisk));
+  tmp = safe_malloc(sizeof(struct gendisk));
   disk = tmp;
   if ((unsigned long )disk == (unsigned long )((struct gendisk *)0)) {
     goto ldv_29967;

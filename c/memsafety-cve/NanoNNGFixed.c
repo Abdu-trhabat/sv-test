@@ -12,6 +12,14 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <stdio.h>
 #include <string.h>
 #include "helpers.c"
@@ -82,7 +90,7 @@ uint8_t *copyn_utf8_str(const uint8_t *src, uint32_t *pos, int *str_len, int lim
     return NULL;
   }
   if (*str_len > 0) {
-    if ((dest = malloc(*str_len + 1)) == NULL) {
+    if ((dest = safe_malloc(*str_len + 1)) == NULL) {
       *str_len = 0;
       return NULL;
     }

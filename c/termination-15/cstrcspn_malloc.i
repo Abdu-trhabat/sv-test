@@ -20,6 +20,30 @@ typedef long unsigned int __uint_least64_t;
 typedef long int __intptr_t;
 typedef long unsigned int __uintptr_t;
 typedef void *_LOCK_T;
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void __cygwin_lock_init(_LOCK_T *);
 void __cygwin_lock_init_recursive(_LOCK_T *);
 void __cygwin_lock_fini(_LOCK_T *);
@@ -254,7 +278,7 @@ int __attribute__((__cdecl__)) _atoi_r (struct _reent *, const char *__nptr);
 long __attribute__((__cdecl__)) atol (const char *__nptr);
 long __attribute__((__cdecl__)) _atol_r (struct _reent *, const char *__nptr);
 void * __attribute__((__cdecl__)) bsearch (const void * __key, const void * __base, size_t __nmemb, size_t __size, __compar_fn_t _compar);
-void * __attribute__((__cdecl__)) calloc (size_t __nmemb, size_t __size) ;
+void * __attribute__((__cdecl__)) safe_calloc (size_t __nmemb, size_t __size) ;
 div_t __attribute__((__cdecl__)) div (int __numer, int __denom);
 void __attribute__((__cdecl__)) exit (int __status) __attribute__ ((__noreturn__));
 void __attribute__((__cdecl__)) free (void *) ;
@@ -266,7 +290,7 @@ extern char *suboptarg;
 int __attribute__((__cdecl__)) getsubopt (char **, char * const *, char **);
 long __attribute__((__cdecl__)) labs (long);
 ldiv_t __attribute__((__cdecl__)) ldiv (long __numer, long __denom);
-void * __attribute__((__cdecl__)) malloc (size_t __size) ;
+void * __attribute__((__cdecl__)) safe_malloc (size_t __size) ;
 int __attribute__((__cdecl__)) mblen (const char *, size_t);
 int __attribute__((__cdecl__)) _mblen_r (struct _reent *, const char *, size_t, _mbstate_t *);
 int __attribute__((__cdecl__)) mbtowc (wchar_t *, const char *, size_t);
@@ -291,7 +315,7 @@ int __attribute__((__cdecl__)) _mkstemps_r (struct _reent *, char *, int);
 char * __attribute__((__cdecl__)) _mktemp_r (struct _reent *, char *) __attribute__ ((__warning__ ("the use of `mktemp' is dangerous; use `mkstemp' instead")));
 void __attribute__((__cdecl__)) qsort (void * __base, size_t __nmemb, size_t __size, __compar_fn_t _compar);
 int __attribute__((__cdecl__)) rand (void);
-void * __attribute__((__cdecl__)) realloc (void * __r, size_t __size) ;
+void * __attribute__((__cdecl__)) safe_realloc (void * __r, size_t __size) ;
 void * __attribute__((__cdecl__)) reallocf (void * __r, size_t __size);
 char * __attribute__((__cdecl__)) realpath (const char * path, char * resolved_path);
 void __attribute__((__cdecl__)) srand (unsigned __seed);
@@ -385,8 +409,8 @@ int main() {
     if (length2 < 1) {
         length2 = 1;
     }
-    char* nondetString1 = (char*) malloc(length1 * sizeof(char));
-    char* nondetString2 = (char*) malloc(length2 * sizeof(char));
+    char* nondetString1 = (char*) safe_malloc(length1 * sizeof(char));
+    char* nondetString2 = (char*) safe_malloc(length2 * sizeof(char));
     nondetString1[length1-1] = '\0';
     nondetString2[length2-1] = '\0';
     int res = cstrcspn(nondetString1,nondetString2);

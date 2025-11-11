@@ -10,6 +10,14 @@ extern int __VERIFIER_nondet_int();
  * But it does not - the pattern and the check are inverted (1-2-1-2 vs. 2-1-2-1).
  */
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 typedef struct node {
   int h;
@@ -24,7 +32,7 @@ int main() {
   int flag = 1;
   
   /* Build a list of the form (1->2)*->0 */
-  List a = (List) malloc(sizeof(struct node));
+  List a = (List) safe_malloc(sizeof(struct node));
   if (a == 0) myexit(1);
   List t;
   List p = a;
@@ -36,7 +44,7 @@ int main() {
       p->h = 1;
       flag = 1;
     }
-    t = (List) malloc(sizeof(struct node));
+    t = (List) safe_malloc(sizeof(struct node));
     if (t == 0) myexit(1);
     p->n = t;
     p = p->n;

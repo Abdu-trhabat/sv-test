@@ -5,6 +5,14 @@
 // Function: __blk_end_request_all
 // with type: void __blk_end_request_all(struct request *, int)
 // with return type: void
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void __blk_end_request_all(struct request *arg0, int arg1) {
   // Void type
   return;
@@ -66,7 +74,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: blk_fetch_request

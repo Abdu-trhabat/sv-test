@@ -19,6 +19,14 @@ Template File: sources-sink-13.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE590_Free_Memory_Not_on_Heap__free_long_static_13_bad()
 {
@@ -62,10 +70,10 @@ static void goodG2B1()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            long * dataBuffer = (long *)malloc(100*sizeof(long));
+            long * dataBuffer = (long *)safe_malloc(100*sizeof(long));
             if (dataBuffer == NULL)
             {
-                printLine("malloc() failed");
+                printLine("safe_malloc() failed");
                 exit(1);
             }
             {
@@ -92,10 +100,10 @@ static void goodG2B2()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            long * dataBuffer = (long *)malloc(100*sizeof(long));
+            long * dataBuffer = (long *)safe_malloc(100*sizeof(long));
             if (dataBuffer == NULL)
             {
-                printLine("malloc() failed");
+                printLine("safe_malloc() failed");
                 exit(1);
             }
             {

@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_22b.c
 Label Definition File: CWE122_Heap_Based_Buffer_Overflow__c_CWE193.label.xml
@@ -33,7 +41,7 @@ wchar_t * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_22_badSource(
     if(CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_22_badGlobal)
     {
         /* FLAW: Did not leave space for a null terminator */
-        data = (wchar_t *)malloc(10*sizeof(wchar_t));
+        data = (wchar_t *)safe_malloc(10*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -58,7 +66,7 @@ wchar_t * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_22_goodG2B1So
     else
     {
         /* FIX: Allocate space for a null terminator */
-        data = (wchar_t *)malloc((10+1)*sizeof(wchar_t));
+        data = (wchar_t *)safe_malloc((10+1)*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -70,7 +78,7 @@ wchar_t * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_22_goodG2B2So
     if(CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_22_goodG2B2Global)
     {
         /* FIX: Allocate space for a null terminator */
-        data = (wchar_t *)malloc((10+1)*sizeof(wchar_t));
+        data = (wchar_t *)safe_malloc((10+1)*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
     }
     return data;

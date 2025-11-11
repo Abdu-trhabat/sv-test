@@ -3,6 +3,14 @@ extern void __assert_fail(const char *, const char *, unsigned int, const char *
 void reach_error() { __assert_fail("0", "fo_test.i", 3, "reach_error"); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <unistd.h>
 
 void __blast_assert()
@@ -23,7 +31,7 @@ int l_open(char*,int);
 int
 main(int argc, char* argv[]) {
  int file = l_open("unknown",00);
- void* cbuf = (void*) malloc(sizeof(char)*100);
+ void* cbuf = (void*) safe_malloc(sizeof(char)*100);
  int a = l_read(file,cbuf,99);
  return 0;
 }

@@ -12,6 +12,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <assert.h>
 #include <string.h>
 #include "helpers.c"
@@ -25,7 +33,7 @@ char *mallocAndJoin2Dir(const char *dir1, const char *dir2) {
   const size_t dir2Size = strlen(dir2);
   char *outDirBuffer, *buffer;
 
-  outDirBuffer = (char *)malloc(dir1Size + dir2Size + 2);
+  outDirBuffer = (char *)safe_malloc(dir1Size + dir2Size + 2);
   if (outDirBuffer == NULL) {
     printf("Out of memory!\n");
     exit(1);

@@ -19,11 +19,19 @@ Template File: sources-sink-31.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_ncpy_31_bad()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
     memset(data, 'A', 100-1); /* fill with 'A's */
@@ -50,7 +58,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_ncpy_31_bad()
 static void goodG2B()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
     memset(data, 'A', 50-1); /* fill with 'A's */

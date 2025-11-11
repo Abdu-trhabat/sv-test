@@ -5,6 +5,14 @@
 // Function: __mutex_init
 // with type: void __mutex_init(struct mutex *, const char *, struct lock_class_key *)
 // with return type: void
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void __mutex_init(struct mutex *arg0, const char *arg1, struct lock_class_key *arg2) {
   // Void type
   return;
@@ -23,7 +31,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: dev_get_drvdata

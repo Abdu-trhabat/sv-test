@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -27,7 +35,7 @@ int main() {
     while (c1 < 5 && __VERIFIER_nondet_int()) {
         c1++;
         
-        item = malloc(sizeof *item);
+        item = safe_malloc(sizeof *item);
         if (!item)
             abort();
 
@@ -42,7 +50,7 @@ int main() {
         if(c1 < 6)
         item->value = 2 * c1 + 4;
         
-        lItem = malloc(sizeof *lItem);
+        lItem = safe_malloc(sizeof *lItem);
         
         if (data) {
             lItem->next = data->next;

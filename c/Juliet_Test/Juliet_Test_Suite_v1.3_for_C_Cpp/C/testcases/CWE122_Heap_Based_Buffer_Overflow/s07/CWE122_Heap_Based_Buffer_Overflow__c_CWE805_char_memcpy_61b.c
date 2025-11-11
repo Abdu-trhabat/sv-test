@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_memcpy_61b.c
 Label Definition File: CWE122_Heap_Based_Buffer_Overflow__c_CWE805.string.label.xml
@@ -6,8 +14,8 @@ Template File: sources-sink-61b.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
  * Sinks: memcpy
  *    BadSink : Copy string to data using memcpy
  * Flow Variant: 61 Data flow: data returned from one function to another in different source files
@@ -23,7 +31,7 @@ Template File: sources-sink-61b.tmpl.c
 char * CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_memcpy_61b_badSource(char * data)
 {
     /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-    data = (char *)malloc(50*sizeof(char));
+    data = (char *)safe_malloc(50*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0'; /* null terminate */
     return data;
@@ -37,7 +45,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_memcpy_61b_badSource(cha
 char * CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_memcpy_61b_goodG2BSource(char * data)
 {
     /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0'; /* null terminate */
     return data;

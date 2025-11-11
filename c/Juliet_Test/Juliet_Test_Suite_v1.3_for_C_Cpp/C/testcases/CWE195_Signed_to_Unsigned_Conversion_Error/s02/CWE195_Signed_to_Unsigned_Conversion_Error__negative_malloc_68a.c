@@ -9,7 +9,7 @@ Template File: sources-sink-68a.tmpl.c
  * BadSource: negative Set data to a fixed negative number
  * GoodSource: Positive integer
  * Sink: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 68 Data flow: data passed as a global variable from one function to another in different source files
  *
  * */
@@ -22,6 +22,14 @@ int CWE195_Signed_to_Unsigned_Conversion_Error__negative_malloc_68_goodG2BData;
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE195_Signed_to_Unsigned_Conversion_Error__negative_malloc_68b_badSink();
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__negative_malloc_68_bad()

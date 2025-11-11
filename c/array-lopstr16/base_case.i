@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -24,11 +32,11 @@ int main()
  int i;
  for (i = 0; i < 1000000; i++)
  {
-  struct S *s1 = (struct S *) malloc(sizeof(struct S));
+  struct S *s1 = (struct S *) safe_malloc(sizeof(struct S));
   s1->n = __VERIFIER_nondet_int();
   if (s1->n == 0)
   {
-   s1->p = (int *) malloc(sizeof(int));
+   s1->p = (int *) safe_malloc(sizeof(int));
   }
   else
   {

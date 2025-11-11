@@ -33,11 +33,19 @@ static char * badSource(char * data)
     if(badStatic)
     {
         /* FLAW: Did not leave space for a null terminator */
-        data = (char *)malloc(10*sizeof(char));
+        data = (char *)safe_malloc(10*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_ncpy_21_bad()
 {
@@ -74,7 +82,7 @@ static char * goodG2B1Source(char * data)
     else
     {
         /* FIX: Allocate space for a null terminator */
-        data = (char *)malloc((10+1)*sizeof(char));
+        data = (char *)safe_malloc((10+1)*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -102,7 +110,7 @@ static char * goodG2B2Source(char * data)
     if(goodG2B2Static)
     {
         /* FIX: Allocate space for a null terminator */
-        data = (char *)malloc((10+1)*sizeof(char));
+        data = (char *)safe_malloc((10+1)*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     return data;

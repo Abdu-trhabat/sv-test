@@ -5,6 +5,14 @@
 // Function: __netif_schedule
 // with type: void __netif_schedule(struct Qdisc *q)
 // with return type: void
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void __netif_schedule(struct Qdisc *arg0) {
   // Void type
   return;
@@ -39,7 +47,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: alloc_etherdev_mqs

@@ -13,11 +13,27 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
-#define R_NEW0(x) (x *)calloc(1, sizeof(x))
-#define R_NEW(x) (x *)malloc(sizeof(x))
+#define R_NEW0(x) (x *)safe_calloc(1, sizeof(x))
+#define R_NEW(x) (x *)safe_malloc(sizeof(x))
 #define R_FREE(x)    \
   {                  \
     free((void *)x); \
@@ -133,7 +149,7 @@ static pyc_object *get_int_object(RBuffer *buffer) {
   }
   ret->type = TYPE_INT;
   int length = snprintf(NULL, 0, "%d", i);
-  ret->data = malloc(length + 1);
+  ret->data = safe_malloc(length + 1);
   if (!ret->data) {
     R_FREE(ret);
     return NULL;

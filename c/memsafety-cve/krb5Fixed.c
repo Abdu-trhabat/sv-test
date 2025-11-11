@@ -12,6 +12,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -44,7 +52,7 @@ int handle_authdata(struct tgs_req_info *t) {
 int krb5_encrypt_tkt_part(krb5_ticket *t) {
   if (t->enc_part.ciphertext.data == NULL) {
     char noData[] = "No data to encrypt";
-    t->enc_part.ciphertext.data = calloc(strlen(noData) + 1, sizeof(char));
+    t->enc_part.ciphertext.data = safe_calloc(strlen(noData) + 1, sizeof(char));
     if (t->enc_part.ciphertext.data == NULL) {
       printf("Out of memory\n");
       return 1;
@@ -53,7 +61,7 @@ int krb5_encrypt_tkt_part(krb5_ticket *t) {
     t->enc_part.ciphertext.length = strlen(noData);
     return 0;
   }
-  char *encrypted = calloc(t->enc_part.ciphertext.length * 2 + 1, sizeof(char));
+  char *encrypted = safe_calloc(t->enc_part.ciphertext.length * 2 + 1, sizeof(char));
   if (encrypted == NULL) {
     t->enc_part.ciphertext.data = NULL;
     printf("Out of memory\n");
@@ -114,7 +122,7 @@ void krb5_free_ticket(krb5_ticket *val) {
 
 int gather_tgs_req_info(struct tgs_req_info *val) {
   val->flags = (unsigned int)getNumberInRange(1, 255);
-  val->header_tkt = calloc(1, sizeof(krb5_ticket));
+  val->header_tkt = safe_calloc(1, sizeof(krb5_ticket));
   if (val->header_tkt == NULL) {
     printf("Out of memory\n");
     return 1;

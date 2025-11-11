@@ -207,6 +207,14 @@ extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "aws_add_size_saturating_harness.i", 208, "reach_error"); }
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(_Bool cond) { 
   if(!cond) {abort();}
 }
@@ -6684,7 +6692,7 @@ void ensure_linked_list_is_allocated(struct aws_linked_list *const list, size_t 
     for (size_t i = 0; i < length; i++) {
 
 
-        struct aws_linked_list_node *node = malloc(sizeof(struct aws_linked_list_node));
+        struct aws_linked_list_node *node = safe_malloc(sizeof(struct aws_linked_list_node));
         curr->next = node;
         node->prev = curr;
         curr = node;

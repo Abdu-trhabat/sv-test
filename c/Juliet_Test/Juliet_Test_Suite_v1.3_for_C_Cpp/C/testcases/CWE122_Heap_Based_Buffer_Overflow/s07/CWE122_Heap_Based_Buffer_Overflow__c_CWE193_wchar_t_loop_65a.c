@@ -26,6 +26,14 @@ Template File: sources-sink-65a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_65b_badSink(wchar_t * data);
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_65_bad()
@@ -35,7 +43,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_65_bad()
     void (*funcPtr) (wchar_t *) = CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_65b_badSink;
     data = NULL;
     /* FLAW: Did not leave space for a null terminator */
-    data = (wchar_t *)malloc(10*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(10*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* use the function pointer */
     funcPtr(data);
@@ -54,7 +62,7 @@ static void goodG2B()
     void (*funcPtr) (wchar_t *) = CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_loop_65b_goodG2BSink;
     data = NULL;
     /* FIX: Allocate space for a null terminator */
-    data = (wchar_t *)malloc((10+1)*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc((10+1)*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     funcPtr(data);
 }

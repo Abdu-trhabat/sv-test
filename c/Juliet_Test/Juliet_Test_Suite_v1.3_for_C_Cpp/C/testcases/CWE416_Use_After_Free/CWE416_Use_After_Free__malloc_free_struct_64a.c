@@ -6,8 +6,8 @@ Template File: sources-sinks-64a.tmpl.c
 /*
  * @description
  * CWE: 416 Use After Free
- * BadSource:  Allocate data using malloc(), initialize memory block, and Deallocate data using free()
- * GoodSource: Allocate data using malloc() and initialize memory block
+ * BadSource:  Allocate data using safe_malloc(), initialize memory block, and Deallocate data using free()
+ * GoodSource: Allocate data using safe_malloc() and initialize memory block
  * Sinks:
  *    GoodSink: Do nothing
  *    BadSink : Use data
@@ -22,6 +22,14 @@ Template File: sources-sinks-64a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE416_Use_After_Free__malloc_free_struct_64b_badSink(void * dataVoidPtr);
 
 void CWE416_Use_After_Free__malloc_free_struct_64_bad()
@@ -29,7 +37,7 @@ void CWE416_Use_After_Free__malloc_free_struct_64_bad()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     {
         size_t i;
@@ -56,7 +64,7 @@ static void goodG2B()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     {
         size_t i;
@@ -78,7 +86,7 @@ static void goodB2G()
     twoIntsStruct * data;
     /* Initialize data */
     data = NULL;
-    data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     {
         size_t i;

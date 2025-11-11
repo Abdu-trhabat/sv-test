@@ -6,6 +6,14 @@
 // with type: acpi_status acpi_get_table(acpi_string , u32 , struct acpi_table_header **)
 // with return type: acpi_status 
 unsigned int __VERIFIER_nondet_uint(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 acpi_status acpi_get_table(acpi_string arg0, u32 arg1, struct acpi_table_header **arg2) {
   // Typedef type
   // Real type: u32 
@@ -19,7 +27,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: ioremap_nocache

@@ -9,8 +9,8 @@ Template File: sources-sinks-15.tmpl.c
  * BadSource: listen_socket Read data using a listen socket (server side)
  * GoodSource: Small number greater than zero
  * Sinks:
- *    GoodSink: Allocate memory with malloc() and check the size of the memory to be allocated
- *    BadSink : Allocate memory with malloc(), but incorrectly check the size of the memory to be allocated
+ *    GoodSink: Allocate memory with safe_malloc() and check the size of the memory to be allocated
+ *    BadSink : Allocate memory with safe_malloc(), but incorrectly check the size of the memory to be allocated
  * Flow Variant: 15 Control flow: switch(6) and switch(7)
  *
  * */
@@ -46,6 +46,14 @@ Template File: sources-sinks-15.tmpl.c
 #define HELLO_STRING L"hello"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_listen_socket_15_bad()
 {
@@ -140,7 +148,7 @@ void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_listen_socket_15_bad()
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > wcslen(HELLO_STRING))
         {
-            myString = (wchar_t *)malloc(data*sizeof(wchar_t));
+            myString = (wchar_t *)safe_malloc(data*sizeof(wchar_t));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             wcscpy(myString, HELLO_STRING);
@@ -262,7 +270,7 @@ static void goodB2G1()
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > wcslen(HELLO_STRING) && data < 100)
         {
-            myString = (wchar_t *)malloc(data*sizeof(wchar_t));
+            myString = (wchar_t *)safe_malloc(data*sizeof(wchar_t));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             wcscpy(myString, HELLO_STRING);
@@ -372,7 +380,7 @@ static void goodB2G2()
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > wcslen(HELLO_STRING) && data < 100)
         {
-            myString = (wchar_t *)malloc(data*sizeof(wchar_t));
+            myString = (wchar_t *)safe_malloc(data*sizeof(wchar_t));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             wcscpy(myString, HELLO_STRING);
@@ -419,7 +427,7 @@ static void goodG2B1()
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > wcslen(HELLO_STRING))
         {
-            myString = (wchar_t *)malloc(data*sizeof(wchar_t));
+            myString = (wchar_t *)safe_malloc(data*sizeof(wchar_t));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             wcscpy(myString, HELLO_STRING);
@@ -466,7 +474,7 @@ static void goodG2B2()
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > wcslen(HELLO_STRING))
         {
-            myString = (wchar_t *)malloc(data*sizeof(wchar_t));
+            myString = (wchar_t *)safe_malloc(data*sizeof(wchar_t));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             wcscpy(myString, HELLO_STRING);

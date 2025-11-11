@@ -6,7 +6,7 @@ Template File: sources-sinks-11.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using realloc()
+ * BadSource: realloc Allocate data using safe_realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -20,6 +20,14 @@ Template File: sources-sinks-11.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE401_Memory_Leak__char_realloc_11_bad()
 {
@@ -28,7 +36,7 @@ void CWE401_Memory_Leak__char_realloc_11_bad()
     if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (char *)realloc(data, 100*sizeof(char));
+        data = (char *)safe_realloc(data, 100*sizeof(char));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         strcpy(data, "A String");
@@ -53,7 +61,7 @@ static void goodB2G1()
     if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (char *)realloc(data, 100*sizeof(char));
+        data = (char *)safe_realloc(data, 100*sizeof(char));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         strcpy(data, "A String");
@@ -79,7 +87,7 @@ static void goodB2G2()
     if(globalReturnsTrue())
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (char *)realloc(data, 100*sizeof(char));
+        data = (char *)safe_realloc(data, 100*sizeof(char));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         strcpy(data, "A String");

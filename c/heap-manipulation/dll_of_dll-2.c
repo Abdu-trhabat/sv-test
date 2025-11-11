@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -22,7 +30,7 @@ struct slave_item {
 
 struct slave_item* alloc_or_die_slave(void)
 {
-    struct slave_item *ptr = malloc(sizeof(*ptr));
+    struct slave_item *ptr = safe_malloc(sizeof(*ptr));
     if (!ptr)
         abort();
 
@@ -39,7 +47,7 @@ struct master_item {
 
 struct master_item* alloc_or_die_master(void)
 {
-    struct master_item *ptr = malloc(sizeof(*ptr));
+    struct master_item *ptr = safe_malloc(sizeof(*ptr));
     if (!ptr)
         abort();
 

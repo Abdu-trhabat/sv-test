@@ -8,6 +8,14 @@ void __blast_assert()
 }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 struct list_head {
  struct list_head *prev, *next;
@@ -28,7 +36,7 @@ static struct list_head head;
 
 int main() {
   struct list_head *dev;
-  dev = malloc(sizeof(*dev));
+  dev = safe_malloc(sizeof(*dev));
   if(dev!=((void *)0)) {
    dev->inserted=0;
    list_add(dev, &head);

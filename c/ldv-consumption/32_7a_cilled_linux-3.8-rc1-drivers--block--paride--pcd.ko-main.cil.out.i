@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -3782,7 +3790,7 @@ static void pcd_init_units(void)
   cd = (struct pcd_unit *)(& pcd);
   goto ldv_29969;
   ldv_29968:
-  tmp = malloc(sizeof(struct gendisk));
+  tmp = safe_malloc(sizeof(struct gendisk));
   disk = tmp;
   if ((unsigned long )disk == (unsigned long )((struct gendisk *)0)) {
     goto ldv_29967;
@@ -5991,7 +5999,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 struct request *blk_fetch_request(struct request_queue *arg0) {
   return ldv_malloc(sizeof(struct request));

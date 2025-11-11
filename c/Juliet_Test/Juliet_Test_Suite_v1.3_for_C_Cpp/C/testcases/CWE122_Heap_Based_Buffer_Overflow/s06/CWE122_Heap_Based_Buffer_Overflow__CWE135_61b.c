@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE122_Heap_Based_Buffer_Overflow__CWE135_61b.c
 Label Definition File: CWE122_Heap_Based_Buffer_Overflow__CWE135.label.xml
@@ -24,7 +32,7 @@ Template File: sources-sinks-61b.tmpl.c
 void * CWE122_Heap_Based_Buffer_Overflow__CWE135_61b_badSource(void * data)
 {
     {
-        wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
+        wchar_t * dataBadBuffer = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
         if (dataBadBuffer == NULL) {exit(-1);}
         wmemset(dataBadBuffer, L'A', 50-1);
         dataBadBuffer[50-1] = L'\0';
@@ -42,7 +50,7 @@ void * CWE122_Heap_Based_Buffer_Overflow__CWE135_61b_badSource(void * data)
 void * CWE122_Heap_Based_Buffer_Overflow__CWE135_61b_goodG2BSource(void * data)
 {
     {
-        char * dataGoodBuffer = (char *)malloc(50*sizeof(char));
+        char * dataGoodBuffer = (char *)safe_malloc(50*sizeof(char));
         if (dataGoodBuffer == NULL) {exit(-1);}
         memset(dataGoodBuffer, 'A', 50-1);
         dataGoodBuffer[50-1] = '\0';
@@ -56,7 +64,7 @@ void * CWE122_Heap_Based_Buffer_Overflow__CWE135_61b_goodG2BSource(void * data)
 void * CWE122_Heap_Based_Buffer_Overflow__CWE135_61b_goodB2GSource(void * data)
 {
     {
-        wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
+        wchar_t * dataBadBuffer = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
         if (dataBadBuffer == NULL) {exit(-1);}
         wmemset(dataBadBuffer, L'A', 50-1);
         dataBadBuffer[50-1] = L'\0';

@@ -14,6 +14,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #ifdef __linux__
 #include <arpa/inet.h>
@@ -95,7 +103,7 @@ int parse_rr(pj_dns_parsed_rr *rr, const uint8_t *start, const uint8_t *max, int
 
   } else {
     /* Copy the raw data */
-    rr->data = calloc(rr->rdlength, 1);
+    rr->data = safe_calloc(rr->rdlength, 1);
     memcpy(rr->data, p, rr->rdlength);
 
     p += rr->rdlength;

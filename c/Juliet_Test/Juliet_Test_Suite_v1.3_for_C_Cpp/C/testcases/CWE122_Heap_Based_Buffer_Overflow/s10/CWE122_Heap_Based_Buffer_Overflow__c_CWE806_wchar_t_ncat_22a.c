@@ -24,11 +24,19 @@ Template File: sources-sink-22a.tmpl.c
 int CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_badGlobal = 0;
 
 wchar_t * CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_badSource(wchar_t * data);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_badGlobal = 1; /* true */
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_badSource(data);
@@ -56,7 +64,7 @@ wchar_t * CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_goodG2B1So
 static void goodG2B1()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_goodG2B1Global = 0; /* false */
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_goodG2B1Source(data);
@@ -76,7 +84,7 @@ wchar_t * CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_goodG2B2So
 static void goodG2B2()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_goodG2B2Global = 1; /* true */
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncat_22_goodG2B2Source(data);

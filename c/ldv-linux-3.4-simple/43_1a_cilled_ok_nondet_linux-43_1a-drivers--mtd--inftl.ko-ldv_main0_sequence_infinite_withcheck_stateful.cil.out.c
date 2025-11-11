@@ -6305,7 +6305,7 @@ extern void *calloc(size_t, size_t) ;
 void *ldv_zalloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return calloc(1UL, size);
+  return safe_calloc(1UL, size);
 }
 __inline static void *kzalloc(size_t size , gfp_t flags ) 
 { void *tmp ;
@@ -6323,6 +6323,22 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 extern void *memcpy(void * , void const   * , size_t  ) ;
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -6335,7 +6351,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
 	if (__VERIFIER_nondet_int()) {
-		void *res = malloc(size);
+		void *res = safe_malloc(size);
 		assume_abort_if_not(!ldv_is_err(res));
 
 		return res;

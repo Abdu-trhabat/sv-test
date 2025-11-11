@@ -6,7 +6,7 @@ Template File: sources-sinks-53b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using calloc()
+ * BadSource: calloc Allocate data using safe_calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -22,6 +22,14 @@ Template File: sources-sinks-53b.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE401_Memory_Leak__struct_twoIntsStruct_calloc_53c_badSink(struct _twoIntsStruct * data);
 
 void CWE401_Memory_Leak__struct_twoIntsStruct_calloc_53b_badSink(struct _twoIntsStruct * data)

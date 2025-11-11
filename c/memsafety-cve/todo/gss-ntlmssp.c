@@ -14,6 +14,22 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -43,7 +59,7 @@ int ntlm_init_ctx(struct ntlm_ctx **ctx) {
   struct ntlm_ctx *_ctx;
   int ret = 0;
 
-  _ctx = calloc(1, sizeof(struct ntlm_ctx));
+  _ctx = safe_calloc(1, sizeof(struct ntlm_ctx));
   if (!_ctx) {
     return 1;
   }
@@ -118,7 +134,7 @@ static int ntlm_decode_u16l_str_hdr(struct ntlm_ctx *ctx,
 
   in = (char *)&buffer->data[str_offs];
 
-  out = malloc(str_len * 2 + 1);
+  out = safe_malloc(str_len * 2 + 1);
   if (!out) {
     return 1;
   }

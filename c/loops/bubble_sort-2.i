@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -636,7 +644,7 @@ static void gl_insert(int value )
   {
   {
   __cil_tmp4 = (unsigned int )20UL;
-  tmp = malloc(__cil_tmp4);
+  tmp = safe_malloc(__cil_tmp4);
   node = (struct node *)tmp;
   }
   if (! node) {

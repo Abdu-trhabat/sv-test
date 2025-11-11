@@ -6,8 +6,8 @@ Template File: sources-sinks-45.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using malloc() and Deallocate data using free()
- * GoodSource: Allocate data using malloc()
+ * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -31,13 +31,21 @@ static void badSink()
     /* POTENTIAL FLAW: Possibly freeing memory twice */
     free(data);
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE415_Double_Free__malloc_free_char_45_bad()
 {
     char * data;
     /* Initialize data */
     data = NULL;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);
@@ -62,7 +70,7 @@ static void goodG2B()
     char * data;
     /* Initialize data */
     data = NULL;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* FIX: Do NOT free data in the source - the bad sink frees data */
     CWE415_Double_Free__malloc_free_char_45_goodG2BData = data;
@@ -83,7 +91,7 @@ static void goodB2G()
     char * data;
     /* Initialize data */
     data = NULL;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);

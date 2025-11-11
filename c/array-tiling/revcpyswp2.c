@@ -3,6 +3,14 @@ extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "revcpyswp2.c", 4, "reach_error"); }
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -21,10 +29,10 @@ int main()
 	{
 		int i;
 		int tmp;
-		int *a = malloc(sizeof(int)*SIZE);
-		int *b = malloc(sizeof(int)*SIZE);
-		int *a_copy = malloc(sizeof(int)*SIZE);
-		int *b_copy = malloc(sizeof(int)*SIZE);
+		int *a = safe_malloc(sizeof(int)*SIZE);
+		int *b = safe_malloc(sizeof(int)*SIZE);
+		int *a_copy = safe_malloc(sizeof(int)*SIZE);
+		int *b_copy = safe_malloc(sizeof(int)*SIZE);
 		
 		for(i=0; i<SIZE; i++)
 		{

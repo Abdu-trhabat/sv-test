@@ -6,7 +6,7 @@ Template File: source-sinks-32.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using malloc()
+ * BadSource: malloc Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -19,6 +19,14 @@ Template File: source-sinks-32.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE690_NULL_Deref_From_Return__wchar_t_malloc_32_bad()
 {
@@ -29,7 +37,7 @@ void CWE690_NULL_Deref_From_Return__wchar_t_malloc_32_bad()
     {
         wchar_t * data = *dataPtr1;
         /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-        data = (wchar_t *)malloc(20*sizeof(wchar_t));
+        data = (wchar_t *)safe_malloc(20*sizeof(wchar_t));
         *dataPtr1 = data;
     }
     {
@@ -55,7 +63,7 @@ static void goodB2G()
     {
         wchar_t * data = *dataPtr1;
         /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-        data = (wchar_t *)malloc(20*sizeof(wchar_t));
+        data = (wchar_t *)safe_malloc(20*sizeof(wchar_t));
         *dataPtr1 = data;
     }
     {

@@ -9,7 +9,7 @@ Template File: sources-sink-66a.tmpl.c
  * BadSource: connect_socket Read data using a connect socket (client side)
  * GoodSource: Positive integer
  * Sinks: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 66 Data flow: data passed in an array from one function to another in different source files
  *
  * */
@@ -42,6 +42,14 @@ Template File: sources-sink-66a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE194_Unexpected_Sign_Extension__connect_socket_malloc_66b_badSink(short dataArray[]);
 
 void CWE194_Unexpected_Sign_Extension__connect_socket_malloc_66_bad()

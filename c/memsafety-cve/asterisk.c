@@ -12,6 +12,14 @@
 
 #include <string.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <stdio.h>
 #include "helpers.c"
 
@@ -41,7 +49,7 @@ void update_header(Header *headers, char *header, char *newValue) {
 }
 
 Header *initializeHeaders() {
-  Header *headers = calloc(NUMBER_OF_HEADERS, sizeof(Header));
+  Header *headers = safe_calloc(NUMBER_OF_HEADERS, sizeof(Header));
   if (headers == NULL) {
     printf("Out of memory\n");
     exit(1);

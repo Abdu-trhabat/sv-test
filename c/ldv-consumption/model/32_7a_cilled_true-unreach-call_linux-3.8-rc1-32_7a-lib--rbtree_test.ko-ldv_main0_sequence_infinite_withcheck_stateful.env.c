@@ -5,6 +5,14 @@
 // Function: __rb_erase_color
 // with type: void __rb_erase_color(struct rb_node *, struct rb_root *, void (*)(struct rb_node *, struct rb_node *))
 // with return type: void
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void __rb_erase_color(struct rb_node *arg0, struct rb_root *arg1, void (*arg2)(struct rb_node *, struct rb_node *)) {
   // Void type
   return;
@@ -75,7 +83,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: rb_first

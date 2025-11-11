@@ -6,7 +6,7 @@ Template File: source-sinks-05.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using malloc()
+ * BadSource: malloc Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -25,13 +25,21 @@ static int staticTrue = 1; /* true */
 static int staticFalse = 0; /* false */
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE690_NULL_Deref_From_Return__struct_malloc_05_bad()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(1*sizeof(twoIntsStruct));
     if(staticTrue)
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
@@ -52,7 +60,7 @@ static void goodB2G1()
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(1*sizeof(twoIntsStruct));
     if(staticFalse)
     {
         /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
@@ -77,7 +85,7 @@ static void goodB2G2()
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(1*sizeof(twoIntsStruct));
     if(staticTrue)
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */

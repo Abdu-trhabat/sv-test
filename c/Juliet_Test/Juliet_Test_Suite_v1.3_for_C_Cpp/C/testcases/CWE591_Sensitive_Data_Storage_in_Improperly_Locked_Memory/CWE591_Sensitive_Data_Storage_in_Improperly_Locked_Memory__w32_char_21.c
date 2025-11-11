@@ -30,7 +30,7 @@ static char * badSource(char * password)
 {
     if(badStatic)
     {
-        password = (char *)malloc(100*sizeof(char));
+        password = (char *)safe_malloc(100*sizeof(char));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -42,6 +42,14 @@ static char * badSource(char * password)
     }
     return password;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_21_bad()
 {
@@ -93,7 +101,7 @@ static char * goodG2B1Source(char * password)
     }
     else
     {
-        password = (char *)malloc(100*sizeof(char));
+        password = (char *)safe_malloc(100*sizeof(char));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -148,7 +156,7 @@ static char * goodG2B2Source(char * password)
 {
     if(goodG2B2Static)
     {
-        password = (char *)malloc(100*sizeof(char));
+        password = (char *)safe_malloc(100*sizeof(char));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");

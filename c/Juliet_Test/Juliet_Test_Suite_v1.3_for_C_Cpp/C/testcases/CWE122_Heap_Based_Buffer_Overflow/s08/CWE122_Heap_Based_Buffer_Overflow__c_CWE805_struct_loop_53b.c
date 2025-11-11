@@ -6,8 +6,8 @@ Template File: sources-sink-53b.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
  * Sink: loop
  *    BadSink : Copy twoIntsStruct array to data using a loop
  * Flow Variant: 53 Data flow: data passed as an argument from one function through two others to a fourth; all four functions are in different source files
@@ -21,6 +21,14 @@ Template File: sources-sink-53b.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_53c_badSink(twoIntsStruct * data);
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_53b_badSink(twoIntsStruct * data)

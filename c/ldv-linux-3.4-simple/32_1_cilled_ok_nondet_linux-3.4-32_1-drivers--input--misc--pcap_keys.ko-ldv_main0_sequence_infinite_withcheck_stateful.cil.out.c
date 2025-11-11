@@ -1876,7 +1876,7 @@ __inline static void platform_set_drvdata(struct platform_device *pdev , void *d
 }
 extern void *calloc(size_t nmemb, size_t msize);
 static void *kzalloc(size_t size, gfp_t flags) {
-	return calloc(1UL, size);
+	return safe_calloc(1UL, size);
 }
 struct input_dev *input_allocate_device(void) {
        return kzalloc(sizeof(struct input_dev), 0x10u | 0x40u | 0x80u);
@@ -1920,6 +1920,22 @@ extern int irq_to_pcap(struct pcap_chip * , int  ) ;
 extern void kfree(void const   * ) ;
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -1932,7 +1948,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
 	if (__VERIFIER_nondet_int()) {
-		void *res = malloc(size);
+		void *res = safe_malloc(size);
 		assume_abort_if_not(!ldv_is_err(res));
 
 		return res;

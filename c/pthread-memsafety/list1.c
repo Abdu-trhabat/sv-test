@@ -1,5 +1,13 @@
 #include <pthread.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -9,9 +17,9 @@ struct item {
 };
 
 static void append(struct item **plist) {
-  struct item *elem = malloc(sizeof *elem);
+  struct item *elem = safe_malloc(sizeof *elem);
   elem->next = *plist;
-  elem->data = (elem->next) ? elem->next->data : malloc(sizeof *elem);
+  elem->data = (elem->next) ? elem->next->data : safe_malloc(sizeof *elem);
   *plist = elem;
 }
 

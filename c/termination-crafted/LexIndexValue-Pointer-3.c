@@ -8,13 +8,21 @@
  */
  typedef long unsigned int size_t;
 
-void * __attribute__((__cdecl__)) malloc (size_t __size) ;
+void * __attribute__((__cdecl__)) safe_malloc (size_t __size) ;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void free (void *__ptr);
 
 extern int __VERIFIER_nondet_int(void);
 
 int main() {
-	int *p = malloc(1048 * sizeof(int));
+	int *p = safe_malloc(1048 * sizeof(int));
 	for (int i = 0; i < 1048; ++i) {
 		p[i] = __VERIFIER_nondet_int();
 	}

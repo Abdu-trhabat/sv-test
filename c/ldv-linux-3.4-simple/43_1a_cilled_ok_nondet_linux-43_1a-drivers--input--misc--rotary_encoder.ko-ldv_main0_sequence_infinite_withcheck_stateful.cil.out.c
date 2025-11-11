@@ -6,6 +6,14 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void avoid_zero(int y)
 {
     if (!y) 
@@ -3018,7 +3026,7 @@ extern void *calloc(size_t, size_t) ;
 void *ldv_zalloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return calloc(1UL, size);
+  return safe_calloc(1UL, size);
 }
 __inline static void *kzalloc(size_t size , gfp_t flags ) 
 { void *tmp ;

@@ -14,6 +14,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -40,7 +48,7 @@ int decode(RAnalOp *op) {
   }
   switch (buf[0]) {
   case '[':
-    buf = malloc(0xff);
+    buf = safe_malloc(0xff);
     if (len > 0xff) {
       memcpy(buf, op->bytes, 0xff); // copy fixed number of characters and try to find closing bracket among them
     } else {

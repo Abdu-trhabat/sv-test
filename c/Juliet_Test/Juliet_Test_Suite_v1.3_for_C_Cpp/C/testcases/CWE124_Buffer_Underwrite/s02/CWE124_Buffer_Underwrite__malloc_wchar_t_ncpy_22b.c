@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE124_Buffer_Underwrite__malloc_wchar_t_ncpy_22b.c
 Label Definition File: CWE124_Buffer_Underwrite__malloc.label.xml
@@ -28,7 +36,7 @@ wchar_t * CWE124_Buffer_Underwrite__malloc_wchar_t_ncpy_22_badSource(wchar_t * d
     if(CWE124_Buffer_Underwrite__malloc_wchar_t_ncpy_22_badGlobal)
     {
         {
-            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL) {exit(-1);}
             wmemset(dataBuffer, L'A', 100-1);
             dataBuffer[100-1] = L'\0';
@@ -58,7 +66,7 @@ wchar_t * CWE124_Buffer_Underwrite__malloc_wchar_t_ncpy_22_goodG2B1Source(wchar_
     else
     {
         {
-            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL) {exit(-1);}
             wmemset(dataBuffer, L'A', 100-1);
             dataBuffer[100-1] = L'\0';
@@ -75,7 +83,7 @@ wchar_t * CWE124_Buffer_Underwrite__malloc_wchar_t_ncpy_22_goodG2B2Source(wchar_
     if(CWE124_Buffer_Underwrite__malloc_wchar_t_ncpy_22_goodG2B2Global)
     {
         {
-            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL) {exit(-1);}
             wmemset(dataBuffer, L'A', 100-1);
             dataBuffer[100-1] = L'\0';

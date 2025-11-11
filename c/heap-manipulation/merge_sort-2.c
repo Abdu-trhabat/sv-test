@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -113,14 +121,14 @@ int main()
 {
     struct list *data = NULL;
     while (__VERIFIER_nondet_int()) {
-        struct node *node = malloc(sizeof *node);
+        struct node *node = safe_malloc(sizeof *node);
         if (!node)
             abort();
 
         node->next = NULL;
         node->value = __VERIFIER_nondet_int();
 
-        struct list *item = malloc(sizeof *item);
+        struct list *item = safe_malloc(sizeof *item);
         if (!item)
             abort();
 

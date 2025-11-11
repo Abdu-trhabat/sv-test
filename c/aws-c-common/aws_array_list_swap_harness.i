@@ -207,6 +207,30 @@ extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "aws_array_list_swap_harness.i", 208, "reach_error"); }
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(_Bool cond) { 
   if(!cond) {abort();}
 }
@@ -2772,14 +2796,14 @@ void *bounded_calloc(size_t num, size_t size) {
     assume_abort_if_not(required_bytes <= (
    (18446744073709551615UL) 
    >> (8 + 1)));
-    return calloc(num, size);
+    return safe_calloc(num, size);
 }
 
 void *bounded_malloc(size_t size) {
     assume_abort_if_not(size <= (
    (18446744073709551615UL) 
    >> (8 + 1)));
-    return malloc(size);
+    return safe_malloc(size);
 }
 
 struct aws_allocator *can_fail_allocator() {
@@ -2813,7 +2837,7 @@ void *can_fail_realloc(void *ptr, size_t newsize) {
     }
     return nondet_bool() ? 
                           ((void *)0) 
-                               : realloc(ptr, newsize);
+                               : safe_realloc(ptr, newsize);
 }
 
 _Bool 
@@ -7039,7 +7063,7 @@ void ensure_linked_list_is_allocated(struct aws_linked_list *const list, size_t 
     for (size_t i = 0; i < length; i++) {
 
 
-        struct aws_linked_list_node *node = malloc(sizeof(struct aws_linked_list_node));
+        struct aws_linked_list_node *node = safe_malloc(sizeof(struct aws_linked_list_node));
         curr->next = node;
         node->prev = curr;
         curr = node;

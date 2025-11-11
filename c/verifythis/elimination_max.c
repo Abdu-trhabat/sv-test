@@ -11,6 +11,14 @@ extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "elimination_max.c", 5, "reach_error"); }
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -24,7 +32,7 @@ int main() {
     int n = __VERIFIER_nondet_int();
     /* 1 << 30 will make sure n * sizeof(int) does not overflow */
     assume_abort_if_not(n >= 0 && n < (1 << 30));
-    int *a = calloc(n, sizeof(int));
+    int *a = safe_calloc(n, sizeof(int));
 
     int x = 0;
     int y = n - 1;

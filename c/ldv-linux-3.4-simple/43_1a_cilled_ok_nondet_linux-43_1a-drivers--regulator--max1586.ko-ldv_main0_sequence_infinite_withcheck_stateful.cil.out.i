@@ -15,6 +15,22 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void avoid_zero(int y)
 {
     if (!y)
@@ -3409,7 +3425,7 @@ extern void *calloc(size_t, size_t) ;
 void *ldv_zalloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  void *p = calloc(1UL, size);
+  void *p = safe_calloc(1UL, size);
   assume_abort_if_not(IS_ERR(p) == 0);
   return p;
 }
@@ -3440,7 +3456,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  void *p = malloc(size);
+  void *p = safe_malloc(size);
   assume_abort_if_not(IS_ERR(p) == 0);
   return p;
 }

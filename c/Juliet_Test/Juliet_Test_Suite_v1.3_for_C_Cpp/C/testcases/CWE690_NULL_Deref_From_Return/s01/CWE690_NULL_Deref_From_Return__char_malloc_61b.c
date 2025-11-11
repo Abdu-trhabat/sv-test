@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE690_NULL_Deref_From_Return__char_malloc_61b.c
 Label Definition File: CWE690_NULL_Deref_From_Return.free.label.xml
@@ -6,7 +14,7 @@ Template File: source-sinks-61b.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using malloc()
+ * BadSource: malloc Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -23,7 +31,7 @@ Template File: source-sinks-61b.tmpl.c
 char * CWE690_NULL_Deref_From_Return__char_malloc_61b_badSource(char * data)
 {
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (char *)malloc(20*sizeof(char));
+    data = (char *)safe_malloc(20*sizeof(char));
     return data;
 }
 
@@ -35,7 +43,7 @@ char * CWE690_NULL_Deref_From_Return__char_malloc_61b_badSource(char * data)
 char * CWE690_NULL_Deref_From_Return__char_malloc_61b_goodB2GSource(char * data)
 {
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (char *)malloc(20*sizeof(char));
+    data = (char *)safe_malloc(20*sizeof(char));
     return data;
 }
 

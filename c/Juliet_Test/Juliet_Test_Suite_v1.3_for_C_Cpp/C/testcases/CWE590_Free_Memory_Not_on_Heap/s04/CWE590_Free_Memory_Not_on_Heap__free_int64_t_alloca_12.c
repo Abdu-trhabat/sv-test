@@ -19,6 +19,14 @@ Template File: sources-sink-12.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE590_Free_Memory_Not_on_Heap__free_int64_t_alloca_12_bad()
 {
@@ -43,10 +51,10 @@ void CWE590_Free_Memory_Not_on_Heap__free_int64_t_alloca_12_bad()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            int64_t * dataBuffer = (int64_t *)malloc(100*sizeof(int64_t));
+            int64_t * dataBuffer = (int64_t *)safe_malloc(100*sizeof(int64_t));
             if (dataBuffer == NULL)
             {
-                printLine("malloc() failed");
+                printLine("safe_malloc() failed");
                 exit(1);
             }
             {
@@ -78,10 +86,10 @@ static void goodG2B()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            int64_t * dataBuffer = (int64_t *)malloc(100*sizeof(int64_t));
+            int64_t * dataBuffer = (int64_t *)safe_malloc(100*sizeof(int64_t));
             if (dataBuffer == NULL)
             {
-                printLine("malloc() failed");
+                printLine("safe_malloc() failed");
                 exit(1);
             }
             {
@@ -98,10 +106,10 @@ static void goodG2B()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            int64_t * dataBuffer = (int64_t *)malloc(100*sizeof(int64_t));
+            int64_t * dataBuffer = (int64_t *)safe_malloc(100*sizeof(int64_t));
             if (dataBuffer == NULL)
             {
-                printLine("malloc() failed");
+                printLine("safe_malloc() failed");
                 exit(1);
             }
             {

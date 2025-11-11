@@ -1,3 +1,11 @@
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE401_Memory_Leak__wchar_t_calloc_61b.c
 Label Definition File: CWE401_Memory_Leak.c.label.xml
@@ -6,7 +14,7 @@ Template File: sources-sinks-61b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using calloc()
+ * BadSource: calloc Allocate data using safe_calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -24,7 +32,7 @@ Template File: sources-sinks-61b.tmpl.c
 wchar_t * CWE401_Memory_Leak__wchar_t_calloc_61b_badSource(wchar_t * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (wchar_t *)calloc(100, sizeof(wchar_t));
+    data = (wchar_t *)safe_calloc(100, sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     wcscpy(data, L"A String");
@@ -51,7 +59,7 @@ wchar_t * CWE401_Memory_Leak__wchar_t_calloc_61b_goodG2BSource(wchar_t * data)
 wchar_t * CWE401_Memory_Leak__wchar_t_calloc_61b_goodB2GSource(wchar_t * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (wchar_t *)calloc(100, sizeof(wchar_t));
+    data = (wchar_t *)safe_calloc(100, sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     wcscpy(data, L"A String");

@@ -6,7 +6,7 @@ Template File: sources-sinks-15.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: malloc Allocate data using malloc()
+ * BadSource: malloc Allocate data using safe_malloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -20,6 +20,14 @@ Template File: sources-sinks-15.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE401_Memory_Leak__int_malloc_15_bad()
 {
@@ -29,7 +37,7 @@ void CWE401_Memory_Leak__int_malloc_15_bad()
     {
     case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (int *)malloc(100*sizeof(int));
+        data = (int *)safe_malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         data[0] = 5;
@@ -66,7 +74,7 @@ static void goodB2G1()
     {
     case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (int *)malloc(100*sizeof(int));
+        data = (int *)safe_malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         data[0] = 5;
@@ -99,7 +107,7 @@ static void goodB2G2()
     {
     case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (int *)malloc(100*sizeof(int));
+        data = (int *)safe_malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         data[0] = 5;

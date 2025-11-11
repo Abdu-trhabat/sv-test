@@ -6,7 +6,7 @@ Template File: source-sinks-08.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: realloc Allocate data using realloc()
+ * BadSource: realloc Allocate data using safe_realloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -32,13 +32,21 @@ static int staticReturnsFalse()
 }
 
 #ifndef OMITBAD
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE690_NULL_Deref_From_Return__struct_realloc_08_bad()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)realloc(data, 1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_realloc(data, 1*sizeof(twoIntsStruct));
     if(staticReturnsTrue())
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
@@ -59,7 +67,7 @@ static void goodB2G1()
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)realloc(data, 1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_realloc(data, 1*sizeof(twoIntsStruct));
     if(staticReturnsFalse())
     {
         /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
@@ -84,7 +92,7 @@ static void goodB2G2()
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)realloc(data, 1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_realloc(data, 1*sizeof(twoIntsStruct));
     if(staticReturnsTrue())
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */

@@ -13,6 +13,14 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -56,14 +64,14 @@ void gf_m2ts_process_sdt(u8 *data, u32 data_size) {
         u8 service_type = data[pos + d_pos];
         ulen = data[pos + d_pos + 1];
         d_pos += 2;
-        char *provider = (char *)malloc(sizeof(char) * (ulen + 1));
+        char *provider = (char *)safe_malloc(sizeof(char) * (ulen + 1));
         memcpy(provider, data + pos + d_pos, sizeof(char) * ulen);
         provider[ulen] = 0;
         d_pos += ulen;
 
         ulen = data[pos + d_pos];
         d_pos += 1;
-        char *service = (char *)malloc(sizeof(char) * (ulen + 1));
+        char *service = (char *)safe_malloc(sizeof(char) * (ulen + 1));
         memcpy(service, data + pos + d_pos, sizeof(char) * ulen);
         service[ulen] = 0;
         d_pos += ulen;

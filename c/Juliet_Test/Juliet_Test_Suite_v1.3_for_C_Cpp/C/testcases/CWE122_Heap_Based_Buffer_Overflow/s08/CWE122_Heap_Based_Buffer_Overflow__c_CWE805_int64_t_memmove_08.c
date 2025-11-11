@@ -6,8 +6,8 @@ Template File: sources-sink-08.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
  * Sink: memmove
  *    BadSink : Copy int64_t array to data using memmove
  * Flow Variant: 08 Control flow: if(staticReturnsTrue()) and if(staticReturnsFalse())
@@ -31,6 +31,14 @@ static int staticReturnsFalse()
 }
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_memmove_08_bad()
 {
@@ -39,7 +47,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_memmove_08_bad()
     if(staticReturnsTrue())
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-        data = (int64_t *)malloc(50*sizeof(int64_t));
+        data = (int64_t *)safe_malloc(50*sizeof(int64_t));
         if (data == NULL) {exit(-1);}
     }
     {
@@ -68,7 +76,7 @@ static void goodG2B1()
     else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (int64_t *)malloc(100*sizeof(int64_t));
+        data = (int64_t *)safe_malloc(100*sizeof(int64_t));
         if (data == NULL) {exit(-1);}
     }
     {
@@ -88,7 +96,7 @@ static void goodG2B2()
     if(staticReturnsTrue())
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (int64_t *)malloc(100*sizeof(int64_t));
+        data = (int64_t *)safe_malloc(100*sizeof(int64_t));
         if (data == NULL) {exit(-1);}
     }
     {

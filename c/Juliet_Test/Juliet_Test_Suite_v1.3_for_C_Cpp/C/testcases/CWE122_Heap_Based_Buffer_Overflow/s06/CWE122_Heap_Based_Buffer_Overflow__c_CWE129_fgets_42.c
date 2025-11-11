@@ -38,6 +38,14 @@ static int badSource(int data)
     }
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_fgets_42_bad()
 {
@@ -47,7 +55,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_fgets_42_bad()
     data = badSource(data);
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -94,7 +102,7 @@ static void goodG2B()
     data = goodG2BSource(data);
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -147,7 +155,7 @@ static void goodB2G()
     data = goodB2GSource(data);
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)

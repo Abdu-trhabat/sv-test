@@ -11,6 +11,14 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "linux-3.8-rc1-32_7a-drivers--net--ethernet--intel--e1000e--e1000e.ko-ldv_main1.cil.out.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -8423,7 +8431,7 @@ extern unsigned long int __VERIFIER_nondet_ulong();
 extern unsigned int __VERIFIER_nondet_uint();
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
 void *ldv_successful_malloc(size_t __size) {
-  void *p = malloc(__size);
+  void *p = safe_malloc(__size);
   assume_abort_if_not(p != (void *)0);
   return p;
 }
@@ -22567,7 +22575,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
  if (__VERIFIER_nondet_int()) {
-  void *res = malloc(size);
+  void *res = safe_malloc(size);
   assume_abort_if_not(!ldv_is_err(res));
   return res;
  } else {
@@ -36493,7 +36501,7 @@ void *ldv_xmalloc(size_t size )
   long tmp___0 ;
   {
   {
-  tmp = malloc(size);
+  tmp = safe_malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);

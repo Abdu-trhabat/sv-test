@@ -35,13 +35,21 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_04_bad()
 {
     if(STATIC_CONST_TRUE)
     {
         {
-            charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
+            charVoid * structCharVoid = (charVoid *)safe_malloc(sizeof(charVoid));
             if (structCharVoid == NULL) {exit(-1);}
             structCharVoid->voidSecond = (void *)SRC_STR;
             /* Print the initial block pointed to by structCharVoid->voidSecond */
@@ -70,7 +78,7 @@ static void good1()
     else
     {
         {
-            charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
+            charVoid * structCharVoid = (charVoid *)safe_malloc(sizeof(charVoid));
             if (structCharVoid == NULL) {exit(-1);}
             structCharVoid->voidSecond = (void *)SRC_STR;
             /* Print the initial block pointed to by structCharVoid->voidSecond */
@@ -90,7 +98,7 @@ static void good2()
     if(STATIC_CONST_TRUE)
     {
         {
-            charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
+            charVoid * structCharVoid = (charVoid *)safe_malloc(sizeof(charVoid));
             if (structCharVoid == NULL) {exit(-1);}
             structCharVoid->voidSecond = (void *)SRC_STR;
             /* Print the initial block pointed to by structCharVoid->voidSecond */

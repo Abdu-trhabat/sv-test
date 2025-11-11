@@ -13,6 +13,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -37,7 +45,7 @@ int get32_packet(vorb *f) {
 
 void *setup_malloc(int sz) {
   sz = (sz + 7) & ~7;
-  return sz ? malloc(sz) : NULL;
+  return sz ? safe_malloc(sz) : NULL;
 }
 
 void start_decoder(vorb *f) {

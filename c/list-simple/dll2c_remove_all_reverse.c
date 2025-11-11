@@ -6,6 +6,14 @@ void reach_error() { assert(0); }
  * Remove all nodes in a backward traversal. Check result: NULL
  */
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 typedef struct node {
   struct node *next;
@@ -18,7 +26,7 @@ void myexit(int s) {
 }
 
 DLL node_create(int data) {
-  DLL temp = (DLL) malloc(sizeof(struct node));
+  DLL temp = (DLL) safe_malloc(sizeof(struct node));
   if(NULL == temp) {
     myexit(1);
   }

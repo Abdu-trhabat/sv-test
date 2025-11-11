@@ -88,6 +88,22 @@ struct _stdThreadLock {
 typedef long __time_t;
 
 typedef __time_t time_t;
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int printf(char const * , ...);
 
@@ -689,7 +705,7 @@ int stdThreadCreate(void (*start)(void *), void *args, stdThread *thread)
   
   *thread = (struct _stdThread *)0;
   
-  my_thread = (stdThread)malloc(24UL);
+  my_thread = (stdThread)safe_malloc(24UL);
   
   if (my_thread == (struct _stdThread *)0) {
     
@@ -768,7 +784,7 @@ int stdThreadLockCreate(stdThreadLock *lock)
   
   *lock = (struct _stdThreadLock *)0;
   
-  my_lock = (stdThreadLock)malloc(40UL);
+  my_lock = (stdThreadLock)safe_malloc(40UL);
   
   if (my_lock == (struct _stdThreadLock *)0) {
     
@@ -905,7 +921,7 @@ static void goodB2G(void)
   
   if (tmp_1 != 0) {
     
-    wchar_t *dataBadBuffer = malloc(200UL);
+    wchar_t *dataBadBuffer = safe_malloc(200UL);
     
     if (dataBadBuffer == (wchar_t *)0) 
                                        ldv_exit_1(-1); else ;
@@ -918,7 +934,7 @@ static void goodB2G(void)
   }
   else {
     
-    wchar_t *dataBadBuffer_0 = malloc(200UL);
+    wchar_t *dataBadBuffer_0 = safe_malloc(200UL);
     
     if (dataBadBuffer_0 == (wchar_t *)0) 
                                          ldv_exit_2(-1); else ;
@@ -936,7 +952,7 @@ static void goodB2G(void)
     
     size_t dataLen = wcslen((wchar_t const *)data);
     
-    void *dest = calloc(dataLen + 1UL,4UL);
+    void *dest = safe_calloc(dataLen + 1UL,4UL);
     
     if (dest == (void *)0) 
                            ldv_exit_3(-1); else ;
@@ -951,7 +967,7 @@ static void goodB2G(void)
     
     size_t dataLen_0 = wcslen((wchar_t const *)data);
     
-    void *dest_0 = calloc(dataLen_0 + 1UL,4UL);
+    void *dest_0 = safe_calloc(dataLen_0 + 1UL,4UL);
     
     if (dest_0 == (void *)0) 
                              ldv_exit_4(-1); else ;
@@ -979,7 +995,7 @@ static void goodG2B(void)
   
   if (tmp_1 != 0) {
     
-    char *dataGoodBuffer = malloc(50UL);
+    char *dataGoodBuffer = safe_malloc(50UL);
     
     if (dataGoodBuffer == (char *)0) 
                                      ldv_exit_5(-1); else ;
@@ -992,7 +1008,7 @@ static void goodG2B(void)
   }
   else {
     
-    char *dataGoodBuffer_0 = malloc(50UL);
+    char *dataGoodBuffer_0 = safe_malloc(50UL);
     
     if (dataGoodBuffer_0 == (char *)0) 
                                        ldv_exit_6(-1); else ;
@@ -1010,7 +1026,7 @@ static void goodG2B(void)
     
     size_t dataLen = ldv_strlen_7((char const *)data);
     
-    void *dest = calloc(dataLen + 1UL,1UL);
+    void *dest = safe_calloc(dataLen + 1UL,1UL);
     
     if (dest == (void *)0) 
                            ldv_exit_8(-1); else ;
@@ -1025,7 +1041,7 @@ static void goodG2B(void)
     
     size_t dataLen_0 = ldv_strlen_10((char const *)data);
     
-    void *dest_0 = calloc(dataLen_0 + 1UL,1UL);
+    void *dest_0 = safe_calloc(dataLen_0 + 1UL,1UL);
     
     if (dest_0 == (void *)0) 
                              ldv_exit_11(-1); else ;
@@ -1680,7 +1696,7 @@ void *ldv_reference_malloc(size_t size)
   
   if (tmp != 0) {
     
-    res = malloc(size);
+    res = safe_malloc(size);
     
     assume_abort_if_not(res != (void *)0);
     
@@ -1703,7 +1719,7 @@ void *ldv_reference_calloc(size_t nmemb, size_t size)
 {
   void *tmp;
   
-  tmp = calloc(nmemb,size);
+  tmp = safe_calloc(nmemb,size);
   
   return tmp;
 }
@@ -1713,7 +1729,7 @@ void *ldv_reference_zalloc(size_t size)
 {
   void *tmp;
   
-  tmp = calloc(1UL,size);
+  tmp = safe_calloc(1UL,size);
   
   return tmp;
 }
@@ -1746,7 +1762,7 @@ void *ldv_reference_realloc(void *ptr, size_t size)
   
   if (ptr == (void *)0) {
     
-    res = malloc(size);
+    res = safe_malloc(size);
     
     __retres = res;
     
@@ -1758,7 +1774,7 @@ void *ldv_reference_realloc(void *ptr, size_t size)
   
   if (tmp != 0) {
     
-    res = malloc(size);
+    res = safe_malloc(size);
     
     assume_abort_if_not(res != (void *)0);
     
@@ -1785,7 +1801,7 @@ void *ldv_reference_xmalloc(size_t size)
 {
   void *res;
   
-  res = malloc(size);
+  res = safe_malloc(size);
   
   assume_abort_if_not(res != (void *)0);
   
@@ -1797,7 +1813,7 @@ void *ldv_reference_xzalloc(size_t size)
 {
   void *res;
   
-  res = calloc(1UL,size);
+  res = safe_calloc(1UL,size);
   
   assume_abort_if_not(res != (void *)0);
   

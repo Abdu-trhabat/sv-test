@@ -6,8 +6,8 @@ Template File: sources-sink-12.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
  * Sink: memmove
  *    BadSink : Copy twoIntsStruct array to data using memmove
  * Flow Variant: 12 Control flow: if(globalReturnsTrueOrFalse())
@@ -17,6 +17,14 @@ Template File: sources-sink-12.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_memmove_12_bad()
 {
@@ -25,13 +33,13 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_memmove_12_bad()
     if(globalReturnsTrueOrFalse())
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-        data = (twoIntsStruct *)malloc(50*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)safe_malloc(50*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
     }
     else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
     }
     {
@@ -65,13 +73,13 @@ static void goodG2B()
     if(globalReturnsTrueOrFalse())
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
     }
     else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
     }
     {

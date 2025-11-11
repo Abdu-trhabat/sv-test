@@ -20,12 +20,20 @@ Template File: sources-sinks-64a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_64b_badSink(void * dataVoidPtr);
 
 void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_64_bad()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Partially initialize data */
     {
@@ -49,7 +57,7 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_64b_
 static void goodG2B()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* FIX: Completely initialize data */
     {
@@ -69,7 +77,7 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_64b_
 static void goodB2G()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Partially initialize data */
     {

@@ -14,6 +14,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -233,7 +241,7 @@ int proxy_process_command(char *command, size_t cmdlen, bool multiget) {
     return 0;
   }
 
-  char *key = calloc(pr.klen + 1, sizeof(char));
+  char *key = safe_calloc(pr.klen + 1, sizeof(char));
   if (key == NULL) {
     printf("Out of memory!\n");
     return 1;

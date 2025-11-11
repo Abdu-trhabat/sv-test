@@ -13,6 +13,14 @@ void assume_abort_if_not(int cond) {
 
 #include<pthread.h>
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include<stdio.h>
 
 struct s {
@@ -26,7 +34,7 @@ struct cache {
 } c;
 
 struct s *new(int x) {
-  struct s *p = malloc(sizeof(struct s));
+  struct s *p = safe_malloc(sizeof(struct s));
   p->datum = x;
   p->next = NULL;
   return p;

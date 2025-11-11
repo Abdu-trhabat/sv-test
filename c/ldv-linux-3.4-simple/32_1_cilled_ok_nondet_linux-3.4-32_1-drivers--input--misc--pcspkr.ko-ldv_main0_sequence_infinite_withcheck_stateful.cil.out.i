@@ -1,4 +1,20 @@
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -2064,7 +2080,7 @@ extern void *dev_get_drvdata(struct device const *dev ) ;
 extern int dev_set_drvdata(struct device *dev , void *data ) ;
 extern void *calloc(size_t nmemb, size_t msize);
 static void *kzalloc(size_t size, gfp_t flags) {
-       return calloc(1UL, size);
+       return safe_calloc(1UL, size);
 }
 struct input_dev *input_allocate_device(void) {
        return kzalloc(sizeof(struct input_dev), 0x10u | 0x40u | 0x80u);
@@ -2692,7 +2708,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 void *dev_get_drvdata(const struct device *arg0) {
   return ldv_malloc(0UL);

@@ -5,6 +5,14 @@
 // Function: ___udelay
 // with type: void ___udelay(unsigned long xloops)
 // with return type: void
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void ___udelay(unsigned long arg0) {
   // Void type
   return;
@@ -55,7 +63,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: __request_region

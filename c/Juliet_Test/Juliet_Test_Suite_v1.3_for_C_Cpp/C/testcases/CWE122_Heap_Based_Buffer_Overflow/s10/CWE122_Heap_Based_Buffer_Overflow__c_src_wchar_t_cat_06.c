@@ -23,11 +23,19 @@ Template File: sources-sink-06.tmpl.c
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_src_wchar_t_cat_06_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_FIVE==5)
     {
@@ -52,7 +60,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_src_wchar_t_cat_06_bad()
 static void goodG2B1()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_FIVE!=5)
     {
@@ -78,7 +86,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_FIVE==5)
     {

@@ -33,11 +33,19 @@ static char * badSource(char * data)
     }
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_src_char_cpy_21_bad()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     badStatic = 1; /* true */
     data = badSource(data);
@@ -78,7 +86,7 @@ static char * goodG2B1Source(char * data)
 static void goodG2B1()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     goodG2B1Static = 0; /* false */
     data = goodG2B1Source(data);
@@ -106,7 +114,7 @@ static char * goodG2B2Source(char * data)
 static void goodG2B2()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     goodG2B2Static = 1; /* true */
     data = goodG2B2Source(data);

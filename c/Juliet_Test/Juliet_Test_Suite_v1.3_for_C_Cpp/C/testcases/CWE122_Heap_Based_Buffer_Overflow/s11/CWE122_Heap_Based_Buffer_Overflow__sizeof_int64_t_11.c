@@ -17,6 +17,14 @@ Template File: sources-sink-11.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_11_bad()
 {
@@ -26,8 +34,8 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_11_bad()
     if(globalReturnsTrue())
     {
         /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-        /* FLAW: Using sizeof the pointer and not the data type in malloc() */
-        data = (int64_t *)malloc(sizeof(data));
+        /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
+        data = (int64_t *)safe_malloc(sizeof(data));
         if (data == NULL) {exit(-1);}
         *data = 2147483643LL;
     }
@@ -53,8 +61,8 @@ static void goodG2B1()
     }
     else
     {
-        /* FIX: Using sizeof the data type in malloc() */
-        data = (int64_t *)malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in safe_malloc() */
+        data = (int64_t *)safe_malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         *data = 2147483643LL;
     }
@@ -71,8 +79,8 @@ static void goodG2B2()
     data = NULL;
     if(globalReturnsTrue())
     {
-        /* FIX: Using sizeof the data type in malloc() */
-        data = (int64_t *)malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in safe_malloc() */
+        data = (int64_t *)safe_malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         *data = 2147483643LL;
     }

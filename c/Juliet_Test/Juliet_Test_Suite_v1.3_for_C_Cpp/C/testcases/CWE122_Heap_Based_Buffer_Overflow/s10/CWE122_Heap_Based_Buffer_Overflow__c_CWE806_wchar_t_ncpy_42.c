@@ -27,11 +27,19 @@ static wchar_t * badSource(wchar_t * data)
     data[100-1] = L'\0'; /* null terminate */
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_ncpy_42_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data = badSource(data);
     {
@@ -60,7 +68,7 @@ static wchar_t * goodG2BSource(wchar_t * data)
 static void goodG2B()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data = goodG2BSource(data);
     {

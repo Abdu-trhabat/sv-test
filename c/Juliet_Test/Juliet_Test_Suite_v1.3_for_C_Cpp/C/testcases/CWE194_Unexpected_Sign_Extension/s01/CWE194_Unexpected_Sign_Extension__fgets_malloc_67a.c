@@ -9,7 +9,7 @@ Template File: sources-sink-67a.tmpl.c
  * BadSource: fgets Read data from the console using fgets()
  * GoodSource: Positive integer
  * Sinks: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 67 Data flow: data passed in a struct from one function to another in different source files
  *
  * */
@@ -27,6 +27,14 @@ typedef struct _CWE194_Unexpected_Sign_Extension__fgets_malloc_67_structType
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE194_Unexpected_Sign_Extension__fgets_malloc_67b_badSink(CWE194_Unexpected_Sign_Extension__fgets_malloc_67_structType myStruct);
 
 void CWE194_Unexpected_Sign_Extension__fgets_malloc_67_bad()

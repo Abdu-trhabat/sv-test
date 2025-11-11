@@ -740,6 +740,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -1471,7 +1479,7 @@ int bounded_buf_init(bounded_buf_t * bbuf, size_t sz)
     bbuf->max_size = sz;
     bbuf->head = 0;
     bbuf->rear = 0;
-    bbuf->buf = calloc( sz, sizeof(void*) );
+    bbuf->buf = safe_calloc( sz, sizeof(void*) );
     if (bbuf->buf == ((void *)0))
     {
         pthread_mutex_destroy(&bbuf->mutex);

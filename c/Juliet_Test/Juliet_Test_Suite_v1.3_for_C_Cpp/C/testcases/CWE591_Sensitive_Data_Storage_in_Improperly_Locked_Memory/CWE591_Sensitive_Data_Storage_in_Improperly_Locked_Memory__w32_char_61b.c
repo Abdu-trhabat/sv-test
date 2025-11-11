@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_61b.c
 Label Definition File: CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32.label.xml
@@ -25,7 +33,7 @@ Template File: sources-sink-61b.tmpl.c
 
 char * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_61b_badSource(char * password)
 {
-    password = (char *)malloc(100*sizeof(char));
+    password = (char *)safe_malloc(100*sizeof(char));
     if (password == NULL)
     {
         printLine("Memory could not be allocated");
@@ -44,7 +52,7 @@ char * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_61b_b
 /* goodG2B() uses the GoodSource with the BadSink */
 char * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_61b_goodG2BSource(char * password)
 {
-    password = (char *)malloc(100*sizeof(char));
+    password = (char *)safe_malloc(100*sizeof(char));
     if (password == NULL)
     {
         printLine("Memory could not be allocated");

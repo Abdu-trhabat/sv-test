@@ -16,6 +16,14 @@ Template File: point-flaw-15.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE758_Undefined_Behavior__int_pointer_malloc_use_15_bad()
 {
@@ -23,7 +31,7 @@ void CWE758_Undefined_Behavior__int_pointer_malloc_use_15_bad()
     {
     case 6:
     {
-        int * * pointer = (int * *)malloc(sizeof(int *));
+        int * * pointer = (int * *)safe_malloc(sizeof(int *));
         if (pointer == NULL) {exit(-1);}
         int * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         free(pointer);
@@ -53,10 +61,10 @@ static void good1()
     default:
     {
         int * data;
-        int * * pointer = (int * *)malloc(sizeof(int *));
+        int * * pointer = (int * *)safe_malloc(sizeof(int *));
         if (pointer == NULL) {exit(-1);}
         /* initialize both the pointer and the data pointed to */
-        data = (int *)malloc(sizeof(int));
+        data = (int *)safe_malloc(sizeof(int));
         if (data == NULL) {exit(-1);}
         *data = 5;
         *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
@@ -78,10 +86,10 @@ static void good2()
     case 6:
     {
         int * data;
-        int * * pointer = (int * *)malloc(sizeof(int *));
+        int * * pointer = (int * *)safe_malloc(sizeof(int *));
         if (pointer == NULL) {exit(-1);}
         /* initialize both the pointer and the data pointed to */
-        data = (int *)malloc(sizeof(int));
+        data = (int *)safe_malloc(sizeof(int));
         if (data == NULL) {exit(-1);}
         *data = 5;
         *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */

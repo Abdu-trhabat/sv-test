@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "kbfiltr.i.cil-1.c", 3, "reach_error"); }
 
@@ -2594,7 +2602,7 @@ PVOID ExAllocatePoolWithTag(POOL_TYPE PoolType , SIZE_T NumberOfBytes ,
 
   {
   {
-  tmp = malloc(NumberOfBytes);
+  tmp = safe_malloc(NumberOfBytes);
   x = tmp;
   }
   return (x);
@@ -2659,7 +2667,7 @@ PMDL IoAllocateMdl(PVOID VirtualAddress , ULONG Length , BOOLEAN SecondaryBuffer
     if (0) {
       switch_5_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(MDL ));
+      tmp = safe_malloc(sizeof(MDL ));
       }
       return ((void *)tmp);
       switch_5_default: /* CIL Label */ ;
@@ -2716,7 +2724,7 @@ PIRP IoBuildAsynchronousFsdRequest(ULONG MajorFunction , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_7_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(IRP ));
+      tmp = safe_malloc(sizeof(IRP ));
       }
       return ((void *)tmp);
       switch_7_default: /* CIL Label */ ;
@@ -2754,7 +2762,7 @@ PIRP IoBuildDeviceIoControlRequest(ULONG IoControlCode , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_8_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(IRP ));
+      tmp = safe_malloc(sizeof(IRP ));
       }
       return ((void *)tmp);
       switch_8_default: /* CIL Label */ ;
@@ -2786,7 +2794,7 @@ NTSTATUS IoCreateDevice(PDRIVER_OBJECT DriverObject , ULONG DeviceExtensionSize 
     if (0) {
       switch_9_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(DEVICE_OBJECT ));
+      tmp = safe_malloc(sizeof(DEVICE_OBJECT ));
       *DeviceObject = (void *)tmp;
       }
       return (0L);
@@ -2882,7 +2890,7 @@ PCONFIGURATION_INFORMATION IoGetConfigurationInformation(void)
 
   {
   {
-  tmp = malloc(sizeof(CONFIGURATION_INFORMATION ));
+  tmp = safe_malloc(sizeof(CONFIGURATION_INFORMATION ));
   }
   return ((void *)tmp);
 }
@@ -3263,7 +3271,7 @@ PVOID MmAllocateContiguousMemory(SIZE_T NumberOfBytes , PHYSICAL_ADDRESS Highest
       if (0) {
         switch_18_0: /* CIL Label */ 
         {
-        tmp = malloc(NumberOfBytes);
+        tmp = safe_malloc(NumberOfBytes);
         }
         return (tmp);
         switch_18_1: /* CIL Label */ ;

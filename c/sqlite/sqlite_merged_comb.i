@@ -6850,7 +6850,7 @@ static void *sqlite3MemMalloc(int nByte )
   void *tmp ;
 
   {
-  tmp = malloc((size_t )(nByte + 8));
+  tmp = safe_malloc((size_t )(nByte + 8));
   p = (sqlite_int64 *)tmp;
   if (p) {
     *(p + 0) = (sqlite_int64 )nByte;
@@ -6891,7 +6891,7 @@ static void *sqlite3MemRealloc(void *pPrior , int nByte )
   {
   p = (sqlite_int64 *)pPrior;
   p --;
-  tmp = realloc((void *)p, (size_t )(nByte + 8));
+  tmp = safe_realloc((void *)p, (size_t )(nByte + 8));
   p = (sqlite_int64 *)tmp;
   if (p) {
     *(p + 0) = (sqlite_int64 )nByte;
@@ -96603,7 +96603,7 @@ static char *local_getline(char *zLine , FILE *in )
   while (1) {
     if (n + 100 > nLine) {
       nLine = nLine * 2 + 100;
-      tmp___0 = realloc((void *)zLine, (size_t )nLine);
+      tmp___0 = safe_realloc((void *)zLine, (size_t )nLine);
       zLine = (char *)tmp___0;
       if ((unsigned long )zLine == (unsigned long )((char *)0)) {
         shell_out_of_memory();
@@ -96802,7 +96802,7 @@ static void appendText(ShellText *p , char const   *zAppend , char quote )
   }
   if (p->n + len >= p->nAlloc) {
     p->nAlloc = (p->nAlloc * 2 + len) + 20;
-    tmp___0 = realloc((void *)p->z, (size_t )p->nAlloc);
+    tmp___0 = safe_realloc((void *)p->z, (size_t )p->nAlloc);
     p->z = (char *)tmp___0;
     if ((unsigned long )p->z == (unsigned long )((char *)0)) {
       shell_out_of_memory();
@@ -103696,7 +103696,7 @@ static void set_table_name(ShellState *p , char const   *zName )
   if (cQuote) {
     n += n + 2;
   }
-  tmp___0 = malloc((size_t )(n + 1));
+  tmp___0 = safe_malloc((size_t )(n + 1));
   tmp = (char *)tmp___0;
   p->zDestTable = tmp;
   z = tmp;
@@ -105096,7 +105096,7 @@ static int run_schema_dump_query(ShellState *p , char const   *zQuery )
       sqlite3_free((void *)zErr);
       zErr = (char *)0;
     }
-    tmp___0 = malloc((size_t )(len + 100));
+    tmp___0 = safe_malloc((size_t )(len + 100));
     zQ2 = (char *)tmp___0;
     if ((unsigned long )zQ2 == (unsigned long )((char *)0)) {
       return (rc);
@@ -111397,7 +111397,7 @@ static int process_input(ShellState *p )
     nLine = strlen30((char const   *)zLine);
     if ((nSql + nLine) + 2 >= nAlloc) {
       nAlloc = (nSql + nLine) + 100;
-      tmp___2 = realloc((void *)zSql, (size_t )nAlloc);
+      tmp___2 = safe_realloc((void *)zSql, (size_t )nAlloc);
       zSql = (char *)tmp___2;
       if ((unsigned long )zSql == (unsigned long )((char *)0)) {
         shell_out_of_memory();
@@ -111513,7 +111513,7 @@ static char *find_home_dir(int clearFlag )
   if (home_dir) {
     tmp___0 = strlen30((char const   *)home_dir);
     n = tmp___0 + 1;
-    tmp___1 = malloc((size_t )n);
+    tmp___1 = safe_malloc((size_t )n);
     z = (char *)tmp___1;
     if (z) {
       memcpy((void * __restrict  )z, (void const   * __restrict  )home_dir, (size_t )n);
@@ -112182,7 +112182,7 @@ int wrapped_main(int argc , char **argv )
       } else {
         readStdin = 0;
         nCmd ++;
-        tmp___7 = realloc((void *)azCmd, sizeof(*(azCmd + 0)) * (unsigned long )nCmd);
+        tmp___7 = safe_realloc((void *)azCmd, sizeof(*(azCmd + 0)) * (unsigned long )nCmd);
         azCmd = (char **)tmp___7;
         if ((unsigned long )azCmd == (unsigned long )((char **)0)) {
           shell_out_of_memory();
@@ -112246,7 +112246,7 @@ int wrapped_main(int argc , char **argv )
                     n = (int )tmp___12;
                     if (n > 0) {
                       if (sz > 0) {
-                        tmp___13 = malloc((size_t )(n * sz));
+                        tmp___13 = safe_malloc((size_t )(n * sz));
                         tmp___14 = tmp___13;
                       } else {
                         tmp___14 = (void *)0;
@@ -112662,7 +112662,7 @@ int wrapped_main(int argc , char **argv )
       if ((unsigned long )zHome != (unsigned long )((char *)0)) {
         tmp___82 = strlen30((char const   *)zHome);
         nHistory = tmp___82 + 20;
-        tmp___83 = malloc((size_t )nHistory);
+        tmp___83 = safe_malloc((size_t )nHistory);
         zHistory = (char *)tmp___83;
         if ((unsigned long )zHistory != (unsigned long )((char *)0)) {
           sqlite3_snprintf(nHistory, zHistory, "%s/.sqlite_history", zHome);
@@ -112692,6 +112692,22 @@ int wrapped_main(int argc , char **argv )
 }
 }
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -112724,11 +112740,11 @@ int main(int argc , char **argv )
     tmp___0 = 0;
   }
   assume_abort_if_not(tmp___0);
-  tmp___1 = malloc(sizeof(*argv) * (unsigned long )wrapped_argc);
+  tmp___1 = safe_malloc(sizeof(*argv) * (unsigned long )wrapped_argc);
   wrapped_argv = (char **)tmp___1;
   i = 0;
   while (i < wrapped_argc) {
-    tmp___2 = malloc(sizeof(*(*argv)) * 50UL);
+    tmp___2 = safe_malloc(sizeof(*(*argv)) * 50UL);
     *(wrapped_argv + i) = (char *)tmp___2;
     j = 0;
     while (j < 50) {

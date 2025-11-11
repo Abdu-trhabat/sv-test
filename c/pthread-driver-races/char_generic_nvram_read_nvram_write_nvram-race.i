@@ -167,6 +167,14 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "svcomp.h", 24, __extension__ __PRETTY_FUNCTION__); })); }
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -719,10 +727,10 @@ struct thread_info {
  unsigned int sig_on_uaccess_error:1;
  unsigned int uaccess_err:1;
 };
-extern void* malloc(unsigned int);
+extern void* safe_malloc(unsigned int);
 static __attribute__((always_inline)) struct thread_info *current_thread_info(void)
 {
- struct thread_info *ti = (struct thread_info *) malloc(sizeof(struct thread_info));
+ struct thread_info *ti = (struct thread_info *) safe_malloc(sizeof(struct thread_info));
  return ti;
 }
 extern enum system_states {
@@ -3375,7 +3383,7 @@ static __attribute__((always_inline)) void proc_clear_tty(struct task_struct *p)
 { }
 static __attribute__((always_inline)) struct tty_struct *get_current_tty(void)
 {
- return (struct tty_struct *)malloc(sizeof(struct tty_struct));
+ return (struct tty_struct *)safe_malloc(sizeof(struct tty_struct));
 }
 static __attribute__((always_inline)) int tty_init(void)
 { return 0; }
@@ -6522,7 +6530,7 @@ extern void nvram_write_byte(unsigned char c, int i);
 const unsigned int default_alloc_size = 4;
 void *external_alloc(unsigned int size)
 {
-  char *p = malloc(size);
+  char *p = safe_malloc(size);
   for(unsigned i = 0; i < size; ++i)
     p[i] = __VERIFIER_nondet_char();
   return p;
@@ -6842,23 +6850,23 @@ void *whoop_wrapper_nvram_cleanup(void* args)
 }
 int main(void)
 {
- whoop_inode_0 = (struct inode *) malloc(sizeof(struct inode));
- whoop_file_0 = (struct file *) malloc(sizeof(struct file));
- whoop_inode_1 = (struct inode *) malloc(sizeof(struct inode));
- whoop_file_1 = (struct file *) malloc(sizeof(struct file));
- whoop_inode_2 = (struct inode *) malloc(sizeof(struct inode));
- whoop_file_2 = (struct file *) malloc(sizeof(struct file));
- whoop_inode_3 = (struct inode *) malloc(sizeof(struct inode));
- whoop_file_3 = (struct file *) malloc(sizeof(struct file));
- whoop_inode_4 = (struct inode *) malloc(sizeof(struct inode));
- whoop_file_4 = (struct file *) malloc(sizeof(struct file));
- whoop_pci_dev = (struct pci_dev *) malloc(sizeof(struct pci_dev));
- whoop_buf = (char *) malloc(sizeof(char));
- whoop_platform_device = (struct platform_device *) malloc(sizeof(struct platform_device));
- whoop_vm_area_struct = (struct vm_area_struct *) malloc(sizeof(struct vm_area_struct));
- whoop_cx_dev = (struct cx_dev *) malloc(sizeof(struct cx_dev));
- whoop_poll_table = (poll_table *) malloc(sizeof(poll_table));
- whoop_loff_t = (loff_t *) malloc(sizeof(loff_t));
+ whoop_inode_0 = (struct inode *) safe_malloc(sizeof(struct inode));
+ whoop_file_0 = (struct file *) safe_malloc(sizeof(struct file));
+ whoop_inode_1 = (struct inode *) safe_malloc(sizeof(struct inode));
+ whoop_file_1 = (struct file *) safe_malloc(sizeof(struct file));
+ whoop_inode_2 = (struct inode *) safe_malloc(sizeof(struct inode));
+ whoop_file_2 = (struct file *) safe_malloc(sizeof(struct file));
+ whoop_inode_3 = (struct inode *) safe_malloc(sizeof(struct inode));
+ whoop_file_3 = (struct file *) safe_malloc(sizeof(struct file));
+ whoop_inode_4 = (struct inode *) safe_malloc(sizeof(struct inode));
+ whoop_file_4 = (struct file *) safe_malloc(sizeof(struct file));
+ whoop_pci_dev = (struct pci_dev *) safe_malloc(sizeof(struct pci_dev));
+ whoop_buf = (char *) safe_malloc(sizeof(char));
+ whoop_platform_device = (struct platform_device *) safe_malloc(sizeof(struct platform_device));
+ whoop_vm_area_struct = (struct vm_area_struct *) safe_malloc(sizeof(struct vm_area_struct));
+ whoop_cx_dev = (struct cx_dev *) safe_malloc(sizeof(struct cx_dev));
+ whoop_poll_table = (poll_table *) safe_malloc(sizeof(poll_table));
+ whoop_loff_t = (loff_t *) safe_malloc(sizeof(loff_t));
  *whoop_loff_t = __VERIFIER_nondet_longlong();
  whoop_int = __VERIFIER_nondet_int();
  assume_abort_if_not(whoop_int >= 0);

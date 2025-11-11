@@ -7,6 +7,14 @@ extern int __VERIFIER_nondet_int(void);
 extern long __VERIFIER_nondet_long(void);
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void memcpy_guard(void* p1, const void* p2, unsigned int n)
 {
     if ((unsigned long)p1 + n <= (unsigned long)p2 || (unsigned long)p2 + n <= (unsigned long)p1)
@@ -20940,7 +20948,7 @@ PVOID ( __attribute__((__stdcall__)) ExAllocatePoolWithTag)(POOL_TYPE PoolType ,
   {
   {
   __cil_tmp6 = (int )NumberOfBytes;
-  tmp = malloc(__cil_tmp6);
+  tmp = safe_malloc(__cil_tmp6);
   x = (void *)tmp;
   }
   return (x);
@@ -21018,7 +21026,7 @@ PMDL IoAllocateMdl(PVOID VirtualAddress , ULONG Length , BOOLEAN SecondaryBuffer
       switch_191_0: /* CIL Label */ 
       {
       __cil_tmp8 = (int )28U;
-      tmp = malloc(__cil_tmp8);
+      tmp = safe_malloc(__cil_tmp8);
       }
       {
       __cil_tmp9 = (void *)tmp;
@@ -21089,7 +21097,7 @@ PIRP IoBuildAsynchronousFsdRequest(ULONG MajorFunction , PDEVICE_OBJECT DeviceOb
       switch_193_0: /* CIL Label */ 
       {
       __cil_tmp9 = (int )112U;
-      tmp = malloc(__cil_tmp9);
+      tmp = safe_malloc(__cil_tmp9);
       }
       {
       __cil_tmp10 = (void *)tmp;
@@ -21137,7 +21145,7 @@ PIRP IoBuildDeviceIoControlRequest(ULONG IoControlCode , PDEVICE_OBJECT DeviceOb
       switch_194_0: /* CIL Label */ 
       {
       __cil_tmp12 = (int )112U;
-      tmp = malloc(__cil_tmp12);
+      tmp = safe_malloc(__cil_tmp12);
       }
       {
       __cil_tmp13 = (void *)tmp;
@@ -21178,7 +21186,7 @@ NTSTATUS IoCreateDevice(PDRIVER_OBJECT DriverObject , ULONG DeviceExtensionSize 
       switch_195_0: /* CIL Label */ 
       {
       __cil_tmp10 = (int )184U;
-      tmp = malloc(__cil_tmp10);
+      tmp = safe_malloc(__cil_tmp10);
       __cil_tmp11 = (void *)tmp;
       *DeviceObject = (struct _DEVICE_OBJECT *)__cil_tmp11;
       }
@@ -21278,7 +21286,7 @@ PCONFIGURATION_INFORMATION IoGetConfigurationInformation(void)
   {
   {
   __cil_tmp2 = (int )40U;
-  tmp = malloc(__cil_tmp2);
+  tmp = safe_malloc(__cil_tmp2);
   }
   {
   __cil_tmp3 = (void *)tmp;
@@ -21662,7 +21670,7 @@ PVOID MmAllocateContiguousMemory(SIZE_T NumberOfBytes , PHYSICAL_ADDRESS Highest
         switch_204_0: /* CIL Label */ 
         {
         __cil_tmp5 = (int )NumberOfBytes;
-        tmp = malloc(__cil_tmp5);
+        tmp = safe_malloc(__cil_tmp5);
         }
         return ((void *)tmp);
         switch_204_1: /* CIL Label */ ;

@@ -31,6 +31,14 @@
 #include <undef_funcs_generic_nvram.h>
 
 #define NVRAM_SIZE	8192
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 static DEFINE_MUTEX(nvram_mutex);
 static ssize_t nvram_len;
@@ -237,25 +245,25 @@ void *whoop_wrapper_nvram_cleanup(void* args)
 int main(void)
 {
 	// Instantiate values required by entry points
-	whoop_inode_0 = (struct inode *) malloc(sizeof(struct inode));
-	whoop_file_0 = (struct file *) malloc(sizeof(struct file));
-	whoop_inode_1 = (struct inode *) malloc(sizeof(struct inode));
-	whoop_file_1 = (struct file *) malloc(sizeof(struct file));
-	whoop_inode_2 = (struct inode *) malloc(sizeof(struct inode));
-	whoop_file_2 = (struct file *) malloc(sizeof(struct file));
-	whoop_inode_3 = (struct inode *) malloc(sizeof(struct inode));
-	whoop_file_3 = (struct file *) malloc(sizeof(struct file));
-	whoop_inode_4 = (struct inode *) malloc(sizeof(struct inode));
-	whoop_file_4 = (struct file *) malloc(sizeof(struct file));
-	whoop_pci_dev = (struct pci_dev *) malloc(sizeof(struct pci_dev));
-	whoop_buf = (char *) malloc(sizeof(char));
-	whoop_platform_device = (struct platform_device *) malloc(sizeof(struct platform_device));
-	whoop_vm_area_struct = (struct vm_area_struct *) malloc(sizeof(struct vm_area_struct));
-	whoop_cx_dev = (struct cx_dev *) malloc(sizeof(struct cx_dev));
+	whoop_inode_0 = (struct inode *) safe_malloc(sizeof(struct inode));
+	whoop_file_0 = (struct file *) safe_malloc(sizeof(struct file));
+	whoop_inode_1 = (struct inode *) safe_malloc(sizeof(struct inode));
+	whoop_file_1 = (struct file *) safe_malloc(sizeof(struct file));
+	whoop_inode_2 = (struct inode *) safe_malloc(sizeof(struct inode));
+	whoop_file_2 = (struct file *) safe_malloc(sizeof(struct file));
+	whoop_inode_3 = (struct inode *) safe_malloc(sizeof(struct inode));
+	whoop_file_3 = (struct file *) safe_malloc(sizeof(struct file));
+	whoop_inode_4 = (struct inode *) safe_malloc(sizeof(struct inode));
+	whoop_file_4 = (struct file *) safe_malloc(sizeof(struct file));
+	whoop_pci_dev = (struct pci_dev *) safe_malloc(sizeof(struct pci_dev));
+	whoop_buf = (char *) safe_malloc(sizeof(char));
+	whoop_platform_device = (struct platform_device *) safe_malloc(sizeof(struct platform_device));
+	whoop_vm_area_struct = (struct vm_area_struct *) safe_malloc(sizeof(struct vm_area_struct));
+	whoop_cx_dev = (struct cx_dev *) safe_malloc(sizeof(struct cx_dev));
 
-	whoop_poll_table = (poll_table *) malloc(sizeof(poll_table));
+	whoop_poll_table = (poll_table *) safe_malloc(sizeof(poll_table));
 
-	whoop_loff_t = (loff_t *) malloc(sizeof(loff_t));
+	whoop_loff_t = (loff_t *) safe_malloc(sizeof(loff_t));
 	*whoop_loff_t = __VERIFIER_nondet_longlong();
 	whoop_int = __VERIFIER_nondet_int();
 	assume_abort_if_not(whoop_int >= 0);

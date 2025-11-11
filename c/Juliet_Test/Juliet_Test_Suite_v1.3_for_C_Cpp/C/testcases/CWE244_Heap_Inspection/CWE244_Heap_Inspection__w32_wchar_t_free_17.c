@@ -20,6 +20,14 @@ Template File: point-flaw-17.tmpl.c
 #pragma comment(lib, "advapi32.lib")
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE244_Heap_Inspection__w32_wchar_t_free_17_bad()
 {
@@ -27,7 +35,7 @@ void CWE244_Heap_Inspection__w32_wchar_t_free_17_bad()
     for(j = 0; j < 1; j++)
     {
         {
-            wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
+            wchar_t * password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;
@@ -80,7 +88,7 @@ static void good1()
     for(k = 0; k < 1; k++)
     {
         {
-            wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
+            wchar_t * password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;

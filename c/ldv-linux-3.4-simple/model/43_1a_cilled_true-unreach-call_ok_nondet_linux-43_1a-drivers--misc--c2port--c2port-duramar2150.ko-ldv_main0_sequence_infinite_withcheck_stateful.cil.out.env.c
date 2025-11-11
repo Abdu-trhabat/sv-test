@@ -5,6 +5,14 @@
 // Function: __release_region
 // with type: void __release_region(struct resource *, resource_size_t , resource_size_t )
 // with return type: void
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void __release_region(struct resource *arg0, resource_size_t arg1, resource_size_t arg2) {
   // Void type
   return;
@@ -14,7 +22,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: __request_region

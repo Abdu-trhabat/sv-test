@@ -45573,7 +45573,7 @@ void *ldv_malloc(size_t size )
   }
   if (tmp___1 != 0) {
     {
-    tmp = malloc(size);
+    tmp = safe_malloc(size);
     res = tmp;
     ldv_assume((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const *)res);
@@ -45597,7 +45597,7 @@ void *ldv_calloc(size_t nmemb , size_t size )
   }
   if (tmp___1 != 0) {
     {
-    tmp = calloc(nmemb, size);
+    tmp = safe_calloc(nmemb, size);
     res = tmp;
     ldv_assume((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const *)res);
@@ -45635,7 +45635,7 @@ void *ldv_xmalloc(size_t size )
   long tmp___0 ;
   {
   {
-  tmp = malloc(size);
+  tmp = safe_malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);
@@ -45651,7 +45651,7 @@ void *ldv_xzalloc(size_t size )
   long tmp___0 ;
   {
   {
-  tmp = calloc(1UL, size);
+  tmp = safe_calloc(1UL, size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);
@@ -47592,6 +47592,22 @@ void ldv_linux_lib_idr_check_final_state(void)
 }
 }
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)

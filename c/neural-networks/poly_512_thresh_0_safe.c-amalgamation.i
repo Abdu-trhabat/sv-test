@@ -465,6 +465,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_align__ (1)))
      __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -1999,7 +2007,7 @@ void k2c_bias_add(k2c_tensor* A, const k2c_tensor* b) {
     }
 }
 float* k2c_read_array(const char* filename, const size_t array_size) {
-    float* ptr = (float*) malloc(array_size * sizeof(float));
+    float* ptr = (float*) safe_malloc(array_size * sizeof(float));
     if (!ptr) {
         printf("cannot allocate memory %s \n", filename);
         exit(-1);

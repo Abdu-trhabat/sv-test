@@ -7,6 +7,14 @@
 // Function: acpi_bus_generate_proc_event
 // with type: int acpi_bus_generate_proc_event(struct acpi_device *, u8 , int)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int acpi_bus_generate_proc_event(struct acpi_device *arg0, u8 arg1, int arg2) {
   // Simple type
@@ -61,7 +69,7 @@ __inline static  IS_ERR(void const *ptr ) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  void *p = malloc(size);
+  void *p = safe_malloc(size);
   assume_abort_if_not(IS_ERR(p) == 0);
   return p;
 }

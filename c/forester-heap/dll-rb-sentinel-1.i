@@ -972,6 +972,14 @@ extern int getloadavg (double __loadavg[], int __nelem)
      __attribute__ ((__nothrow__ )) __attribute__ ((__nonnull__ (1)));
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -995,12 +1003,12 @@ struct TSLL
 
 int main()
 {
- struct TSLL* null = malloc(sizeof(struct TSLL));
+ struct TSLL* null = safe_malloc(sizeof(struct TSLL));
  null->next = ((void*)0);
  null->prev = ((void*)0);
  null->colour = BLACK;
 
- struct TSLL* list = malloc(sizeof(struct TSLL));
+ struct TSLL* list = safe_malloc(sizeof(struct TSLL));
  list->next = null;
  list->prev = null;
  list->colour = BLACK;
@@ -1011,7 +1019,7 @@ int main()
  while (__VERIFIER_nondet_int())
  {
 
-  end->next = malloc(sizeof(struct TSLL));
+  end->next = safe_malloc(sizeof(struct TSLL));
   end->next->prev = end;
   end = end->next;
   end->next = null;
@@ -1023,7 +1031,7 @@ int main()
   else
   {
    end->colour = RED;
-   end->next = malloc(sizeof(struct TSLL));
+   end->next = safe_malloc(sizeof(struct TSLL));
    end->next->prev = end;
    end = end->next;
    end->next = null;

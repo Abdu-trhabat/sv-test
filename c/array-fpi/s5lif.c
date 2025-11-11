@@ -9,12 +9,20 @@ extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "s5lif.c", 10, "reach_error"); }
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 extern int __VERIFIER_nondet_int(void);
-void* malloc(unsigned int size);
+void* safe_malloc(unsigned int size);
 
 int N;
 
@@ -26,7 +34,7 @@ int main()
 
 	int i;
 	long long sum[1];
-	int *a = malloc(sizeof(int)*N);
+	int *a = safe_malloc(sizeof(int)*N);
 
 	sum[0] = 0;
 	for(i=0; i<N; i++)

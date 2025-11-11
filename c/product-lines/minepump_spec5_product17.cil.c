@@ -7,6 +7,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "minepump_spec5_product17.cil.c", 3, "reach_error"); }
 
@@ -182,7 +190,7 @@ void __utac__exception__cf_handler_set(void *exception , int (*cflow_func)(int  
   {
   {
   excep = (struct __UTAC__EXCEPTION *)exception;
-  tmp = malloc(24UL);
+  tmp = safe_malloc(24UL);
   cf = (struct __UTAC__CFLOW_FUNC *)tmp;
   mem_15 = (int (**)(int  , int  ))cf;
   *mem_15 = cflow_func;
@@ -354,7 +362,7 @@ void *__utac__error_stack_mgt(void *env , int mode , int count )
   }
   if (mode == 0) {
     {
-    tmp = malloc(16UL);
+    tmp = safe_malloc(16UL);
     new = (struct __ACC__ERR *)tmp;
     mem_18 = (void **)new;
     *mem_18 = env;

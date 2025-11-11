@@ -81,6 +81,14 @@ int etherip_allow = 0;
 
 struct etheripstat etheripstat;
 #endif
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void etheripattach(int);
 int etherip_clone_create(struct if_clone *, int);
@@ -108,7 +116,7 @@ etherip_clone_create(struct if_clone *ifc, int unit)
 	struct ifnet *ifp;
 	struct etherip_softc *sc;
 
-	if ((sc = malloc(sizeof(*sc), M_DEVBUF, M_NOWAIT|M_ZERO)) == NULL)
+	if ((sc = safe_malloc(sizeof(*sc), M_DEVBUF, M_NOWAIT|M_ZERO)) == NULL)
 		return ENOMEM;
 
 	ifp = &sc->sc_ac.ac_if;

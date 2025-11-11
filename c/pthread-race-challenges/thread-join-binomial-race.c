@@ -22,6 +22,14 @@
                   15
 */
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <pthread.h>
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -60,7 +68,7 @@ int main() {
   threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 2);
 
-  tids = malloc(threads_total * sizeof(pthread_t));
+  tids = safe_malloc(threads_total * sizeof(pthread_t));
 
   // create threads
   // From original fzy: These must be created last-to-first to avoid a race condition when fanning in

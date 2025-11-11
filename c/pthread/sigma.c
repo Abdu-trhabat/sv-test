@@ -15,6 +15,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <pthread.h>
 #include <string.h>
 
@@ -38,8 +46,8 @@ int main()
 	int tid, sum;
 	pthread_t *t;
 
-	t = (pthread_t *)malloc(sizeof(pthread_t) * SIGMA);
-	array = (int *)malloc(sizeof(int) * SIGMA);
+	t = (pthread_t *)safe_malloc(sizeof(pthread_t) * SIGMA);
+	array = (int *)safe_malloc(sizeof(int) * SIGMA);
 
 	assume_abort_if_not(t);
 	assume_abort_if_not(array);

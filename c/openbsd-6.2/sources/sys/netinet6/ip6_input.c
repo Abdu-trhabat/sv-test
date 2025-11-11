@@ -117,6 +117,14 @@
 struct niqueue ip6intrq = NIQUEUE_INITIALIZER(IPQ_MAXLEN, NETISR_IPV6);
 
 struct cpumem *ip6counters;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int ip6_ours(struct mbuf **, int *, int, int);
 int ip6_local(struct mbuf **, int *, int, int);
@@ -1358,7 +1366,7 @@ ip6_sysctl_ip6stat(void *oldp, size_t *oldlenp, void *newp)
 
 	CTASSERT(sizeof(*ip6stat) == (ip6s_ncounters * sizeof(uint64_t)));
 
-	ip6stat = malloc(sizeof(*ip6stat), M_TEMP, M_WAITOK);
+	ip6stat = safe_malloc(sizeof(*ip6stat), M_TEMP, M_WAITOK);
 	counters_read(ip6counters, (uint64_t *)ip6stat, ip6s_ncounters);
 	ret = sysctl_rdstruct(oldp, oldlenp, newp,
 	    ip6stat, sizeof(*ip6stat));

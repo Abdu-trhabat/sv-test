@@ -13,6 +13,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -41,7 +49,7 @@ int main() {
   char *path = getRandomString(0, 500);
   size_t path_length = strlen(path);
 
-  char *pathwfs = (char *)calloc(path_length + 1, sizeof(char));
+  char *pathwfs = (char *)safe_calloc(path_length + 1, sizeof(char));
   if (pathwfs == NULL) {
     printf("Out of memory\n");
     free(path);

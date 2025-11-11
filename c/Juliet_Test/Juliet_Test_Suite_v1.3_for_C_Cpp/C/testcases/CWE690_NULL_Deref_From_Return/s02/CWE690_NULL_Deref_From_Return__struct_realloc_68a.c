@@ -6,7 +6,7 @@ Template File: source-sinks-68a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: realloc Allocate data using realloc()
+ * BadSource: realloc Allocate data using safe_realloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -25,6 +25,14 @@ twoIntsStruct * CWE690_NULL_Deref_From_Return__struct_realloc_68_badDataForGoodS
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE690_NULL_Deref_From_Return__struct_realloc_68b_badSink();
 
 void CWE690_NULL_Deref_From_Return__struct_realloc_68_bad()
@@ -32,7 +40,7 @@ void CWE690_NULL_Deref_From_Return__struct_realloc_68_bad()
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)realloc(data, 1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_realloc(data, 1*sizeof(twoIntsStruct));
     CWE690_NULL_Deref_From_Return__struct_realloc_68_badDataForBadSink = data;
     CWE690_NULL_Deref_From_Return__struct_realloc_68b_badSink();
 }
@@ -50,7 +58,7 @@ static void goodB2G()
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)realloc(data, 1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_realloc(data, 1*sizeof(twoIntsStruct));
     CWE690_NULL_Deref_From_Return__struct_realloc_68_badDataForGoodSink = data;
     CWE690_NULL_Deref_From_Return__struct_realloc_68b_goodB2GSink();
 }

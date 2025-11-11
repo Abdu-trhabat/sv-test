@@ -611,6 +611,14 @@ buffer_or_output (char const *str, char **pbuf, size_t *plen)
     }
   return 0;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 _Bool
 relpath (char const *can_fname, char const *can_reldir, char *buf, size_t len)
 {
@@ -682,11 +690,11 @@ static char *output_buf;
 static size_t output_len;
 static _Bool relpath_return_value;
 static void init_buffers_for_overflow() {
-    path1 = malloc(200);
-    path2 = malloc(200);
+    path1 = safe_malloc(200);
+    path2 = safe_malloc(200);
     output_len = __VERIFIER_nondet_size_t();
     assume_or_exit(output_len > 0 && output_len < 200);
-    output_buf = malloc(output_len);
+    output_buf = safe_malloc(output_len);
     assume_or_exit(path1 != ((void*)0) && path2 != ((void*)0) && output_buf != ((void*)0));
 }
 static void free_buffers() {

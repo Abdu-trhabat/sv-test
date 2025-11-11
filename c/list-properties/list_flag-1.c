@@ -10,6 +10,14 @@ extern int __VERIFIER_nondet_int();
  * that the list is what has been built just before.
  */
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /*  #include "assert.h" */
 
 void myexit(int s) {
@@ -28,7 +36,7 @@ int main() {
   /* Build a list of the form x->x->x->...->x->3
    * with x depending on some flag
    */
-  a = (List) malloc(sizeof(struct node));
+  a = (List) safe_malloc(sizeof(struct node));
   if (a == 0) myexit(1);
   p = a;
   while (__VERIFIER_nondet_int()) {
@@ -39,7 +47,7 @@ int main() {
     }
     /*** TVLA forgets at this point the dependence
 	 between p->h and the value of flag        ***/
-    t = (List) malloc(sizeof(struct node));
+    t = (List) safe_malloc(sizeof(struct node));
     if (t == 0) myexit(1);
     p->n = t;
     p = p->n;

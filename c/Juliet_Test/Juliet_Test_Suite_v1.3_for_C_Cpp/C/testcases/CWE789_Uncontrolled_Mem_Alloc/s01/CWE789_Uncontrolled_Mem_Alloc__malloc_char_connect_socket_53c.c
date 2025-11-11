@@ -9,8 +9,8 @@ Template File: sources-sinks-53c.tmpl.c
  * BadSource: connect_socket Read data using a connect socket (client side)
  * GoodSource: Small number greater than zero
  * Sinks:
- *    GoodSink: Allocate memory with malloc() and check the size of the memory to be allocated
- *    BadSink : Allocate memory with malloc(), but incorrectly check the size of the memory to be allocated
+ *    GoodSink: Allocate memory with safe_malloc() and check the size of the memory to be allocated
+ *    BadSink : Allocate memory with safe_malloc(), but incorrectly check the size of the memory to be allocated
  * Flow Variant: 53 Data flow: data passed as an argument from one function through two others to a fourth; all four functions are in different source files
  *
  * */
@@ -48,6 +48,14 @@ Template File: sources-sinks-53c.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE789_Uncontrolled_Mem_Alloc__malloc_char_connect_socket_53d_badSink(size_t data);
 
 void CWE789_Uncontrolled_Mem_Alloc__malloc_char_connect_socket_53c_badSink(size_t data)

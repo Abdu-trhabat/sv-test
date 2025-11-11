@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <assert.h>
 void reach_error() { assert(0); }
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
@@ -22,7 +30,7 @@ int main()
 		if(c > 5)
 			break;
 
-		s[i].n = malloc(sizeof(int));
+		s[i].n = safe_malloc(sizeof(int));
 	}
 
 	for(i = 0; i < SIZE; i++)

@@ -6,7 +6,7 @@ Template File: source-sinks-65a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: calloc Allocate data using calloc()
+ * BadSource: calloc Allocate data using safe_calloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -21,6 +21,14 @@ Template File: source-sinks-65a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE690_NULL_Deref_From_Return__int64_t_calloc_65b_badSink(int64_t * data);
 
 void CWE690_NULL_Deref_From_Return__int64_t_calloc_65_bad()
@@ -30,7 +38,7 @@ void CWE690_NULL_Deref_From_Return__int64_t_calloc_65_bad()
     void (*funcPtr) (int64_t *) = CWE690_NULL_Deref_From_Return__int64_t_calloc_65b_badSink;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (int64_t *)calloc(1, sizeof(int64_t));
+    data = (int64_t *)safe_calloc(1, sizeof(int64_t));
     /* use the function pointer */
     funcPtr(data);
 }
@@ -48,7 +56,7 @@ static void goodB2G()
     void (*funcPtr) (int64_t *) = CWE690_NULL_Deref_From_Return__int64_t_calloc_65b_goodB2GSink;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (int64_t *)calloc(1, sizeof(int64_t));
+    data = (int64_t *)safe_calloc(1, sizeof(int64_t));
     funcPtr(data);
 }
 

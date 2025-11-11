@@ -12,6 +12,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include "helpers.c"
 
 #define DNS_MAX_CNAME_LEN 256
@@ -163,7 +171,7 @@ int main() {
   int total_len = 0;
   struct dns_context context = {0};
   context.maxsize = 200;
-  context.data = calloc(context.maxsize, sizeof(unsigned char));
+  context.data = safe_calloc(context.maxsize, sizeof(unsigned char));
   if (!context.data) {
     printf("Out of memory!\n");
     return 1;

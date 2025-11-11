@@ -1,13 +1,21 @@
 typedef long unsigned int size_t;
 
-void * __attribute__((__cdecl__)) malloc (size_t __size) ;
+void * __attribute__((__cdecl__)) safe_malloc (size_t __size) ;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void __attribute__((__cdecl__)) free (void *) ;
  
 extern int __VERIFIER_nondet_int(void);
  
 void merge (int *a, int n, int m) {
     int i, j, k;
-    int *x = malloc(n * sizeof (int));
+    int *x = safe_malloc(n * sizeof (int));
     for (i = 0, j = m, k = 0; k < n; k++) {
         x[k] = j == n      ? a[i++]
              : i == m      ? a[j++]
@@ -36,7 +44,7 @@ int main () {
 		return 0;
 	
 	
-	int *a = malloc(n * sizeof (int));
+	int *a = safe_malloc(n * sizeof (int));
 	for(int i = 0; i < n; i++) {
 		a[i] = __VERIFIER_nondet_int();
 	}

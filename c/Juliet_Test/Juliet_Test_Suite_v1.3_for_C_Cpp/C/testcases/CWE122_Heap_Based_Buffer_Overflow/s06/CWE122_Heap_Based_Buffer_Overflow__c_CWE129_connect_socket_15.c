@@ -40,6 +40,14 @@ Template File: sources-sinks-15.tmpl.c
 #define CHAR_ARRAY_SIZE (3 * sizeof(data) + 2)
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_connect_socket_15_bad()
 {
@@ -116,7 +124,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_connect_socket_15_bad()
     case 7:
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -232,7 +240,7 @@ static void goodB2G1()
     default:
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -335,7 +343,7 @@ static void goodB2G2()
     case 7:
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -389,7 +397,7 @@ static void goodG2B1()
     case 7:
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -444,7 +452,7 @@ static void goodG2B2()
     case 7:
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)

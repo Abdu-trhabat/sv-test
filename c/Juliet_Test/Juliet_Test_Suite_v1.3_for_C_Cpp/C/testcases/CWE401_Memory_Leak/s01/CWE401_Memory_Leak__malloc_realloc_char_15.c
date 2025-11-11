@@ -8,7 +8,7 @@ Template File: point-flaw-15.tmpl.c
  * CWE: 401 Memory Leak
  * Sinks:
  *    GoodSink: Ensure the memory block pointed to by data is always freed
- *    BadSink : malloc() and use then realloc() and use data before free()
+ *    BadSink : safe_malloc() and use then safe_realloc() and use data before free()
  * Flow Variant: 15 Control flow: switch(6)
  *
  * */
@@ -20,6 +20,22 @@ Template File: point-flaw-15.tmpl.c
 #endif
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE401_Memory_Leak__malloc_realloc_char_15_bad()
 {
@@ -27,13 +43,13 @@ void CWE401_Memory_Leak__malloc_realloc_char_15_bad()
     {
     case 6:
     {
-        char * data = (char *)malloc(100*sizeof(char));
+        char * data = (char *)safe_malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         strcpy(data, "A String");
         printLine(data);
-        /* FLAW: If realloc() fails, the initial memory block will not be freed() */
-        data = (char *)realloc(data, (130000)*sizeof(char));
+        /* FLAW: If safe_realloc() fails, the initial memory block will not be freed() */
+        data = (char *)safe_realloc(data, (130000)*sizeof(char));
         if (data != NULL)
         {
             /* Reinitialize and make use of data */
@@ -65,15 +81,15 @@ static void good1()
         break;
     default:
     {
-        char * data = (char *)malloc(100*sizeof(char));
+        char * data = (char *)safe_malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         char * tmpData;
         /* Initialize and make use of data */
         strcpy(data, "A String");
         printLine(data);
-        tmpData = (char *)realloc(data, (130000)*sizeof(char));
-        /* FIX: Ensure realloc() was successful before assigning data to the memory block
-        * allocated with realloc() */
+        tmpData = (char *)safe_realloc(data, (130000)*sizeof(char));
+        /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
+        * allocated with safe_realloc() */
         if (tmpData != NULL)
         {
             data = tmpData;
@@ -94,15 +110,15 @@ static void good2()
     {
     case 6:
     {
-        char * data = (char *)malloc(100*sizeof(char));
+        char * data = (char *)safe_malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         char * tmpData;
         /* Initialize and make use of data */
         strcpy(data, "A String");
         printLine(data);
-        tmpData = (char *)realloc(data, (130000)*sizeof(char));
-        /* FIX: Ensure realloc() was successful before assigning data to the memory block
-        * allocated with realloc() */
+        tmpData = (char *)safe_realloc(data, (130000)*sizeof(char));
+        /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
+        * allocated with safe_realloc() */
         if (tmpData != NULL)
         {
             data = tmpData;

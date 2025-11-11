@@ -26,6 +26,14 @@ typedef struct _CWE590_Free_Memory_Not_on_Heap__free_int64_t_alloca_67_structTyp
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE590_Free_Memory_Not_on_Heap__free_int64_t_alloca_67b_badSink(CWE590_Free_Memory_Not_on_Heap__free_int64_t_alloca_67_structType myStruct);
 
 void CWE590_Free_Memory_Not_on_Heap__free_int64_t_alloca_67_bad()
@@ -63,10 +71,10 @@ static void goodG2B()
     data = NULL; /* Initialize data */
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
-        int64_t * dataBuffer = (int64_t *)malloc(100*sizeof(int64_t));
+        int64_t * dataBuffer = (int64_t *)safe_malloc(100*sizeof(int64_t));
         if (dataBuffer == NULL)
         {
-            printLine("malloc() failed");
+            printLine("safe_malloc() failed");
             exit(1);
         }
         {

@@ -13,6 +13,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -79,7 +87,7 @@ int avi_parse_input_file(avi_t *AVI) {
         if (hdrl_data) {
           free(hdrl_data);
         }
-        hdrl_data = (unsigned char *)malloc((uint32_t)n);
+        hdrl_data = (unsigned char *)safe_malloc((uint32_t)n);
         if (hdrl_data == 0) {
           printf("Out of memory\n");
           return 1;

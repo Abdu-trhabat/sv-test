@@ -13,6 +13,14 @@ void reach_error() { assert(0); }
 
 #include <stdio.h> 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <assert.h>
 
 void __VERIFIER_assert(int cond) {
@@ -289,7 +297,7 @@ int __CS_pthread_create(__CS_pthread_t *id1, void *attr, void *(*t1)(void*), voi
 void *__CS_malloc(int varID, int size)
 {
 	__CS_size[__CS_round][varID] = size;
-	return malloc((size_t)size);
+	return safe_malloc((size_t)size);
 }
 
 void __CS_free(int varID, void *ptr)

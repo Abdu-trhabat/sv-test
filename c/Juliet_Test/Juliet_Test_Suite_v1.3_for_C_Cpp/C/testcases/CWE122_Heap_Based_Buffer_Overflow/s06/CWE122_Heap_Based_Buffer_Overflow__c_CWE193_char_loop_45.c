@@ -45,13 +45,21 @@ static void badSink()
         free(data);
     }
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_loop_45_bad()
 {
     char * data;
     data = NULL;
     /* FLAW: Did not leave space for a null terminator */
-    data = (char *)malloc(10*sizeof(char));
+    data = (char *)safe_malloc(10*sizeof(char));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_loop_45_badData = data;
     badSink();
@@ -85,7 +93,7 @@ static void goodG2B()
     char * data;
     data = NULL;
     /* FIX: Allocate space for a null terminator */
-    data = (char *)malloc((10+1)*sizeof(char));
+    data = (char *)safe_malloc((10+1)*sizeof(char));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_loop_45_goodG2BData = data;
     goodG2BSink();

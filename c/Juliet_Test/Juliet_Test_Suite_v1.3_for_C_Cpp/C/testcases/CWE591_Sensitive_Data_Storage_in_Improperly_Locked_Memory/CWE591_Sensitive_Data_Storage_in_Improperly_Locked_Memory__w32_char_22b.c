@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_22b.c
 Label Definition File: CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32.label.xml
@@ -28,7 +36,7 @@ char * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_22_ba
 {
     if(CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_22_badGlobal)
     {
-        password = (char *)malloc(100*sizeof(char));
+        password = (char *)safe_malloc(100*sizeof(char));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -59,7 +67,7 @@ char * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_22_go
     }
     else
     {
-        password = (char *)malloc(100*sizeof(char));
+        password = (char *)safe_malloc(100*sizeof(char));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -82,7 +90,7 @@ char * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_22_go
 {
     if(CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_22_goodG2B2Global)
     {
-        password = (char *)malloc(100*sizeof(char));
+        password = (char *)safe_malloc(100*sizeof(char));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");

@@ -30,6 +30,14 @@ extern void exit (int __status) __attribute__ ((__nothrow__ )) __attribute__ ((_
 
 extern unsigned char __VERIFIER_nondet_uchar();
 extern size_t __VERIFIER_nondet_size_t();
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void reach_error() {
     ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "/tmp/fv-intermediate-xk1kodhw/sources/seq/formal/includes/util.h", 14, __extension__ __PRETTY_FUNCTION__); }));
 }
@@ -585,8 +593,8 @@ static size_t num_zeroes;
 static size_t old_num_digits;
 static size_t nine_position;
 static void init_seq_buffer() {
-    buffer = malloc(200);
-    old_buffer = malloc(200);
+    buffer = safe_malloc(200);
+    old_buffer = safe_malloc(200);
     assume_or_exit(buffer != ((void*)0) && old_buffer != ((void*)0));
 }
 static void free_seq_buffer() {

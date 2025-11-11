@@ -6,8 +6,8 @@ Template File: sources-sinks-67a.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using malloc() and Deallocate data using free()
- * GoodSource: Allocate data using malloc()
+ * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -27,6 +27,14 @@ typedef struct _CWE415_Double_Free__malloc_free_int64_t_67_structType
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE415_Double_Free__malloc_free_int64_t_67b_badSink(CWE415_Double_Free__malloc_free_int64_t_67_structType myStruct);
 
 void CWE415_Double_Free__malloc_free_int64_t_67_bad()
@@ -35,7 +43,7 @@ void CWE415_Double_Free__malloc_free_int64_t_67_bad()
     CWE415_Double_Free__malloc_free_int64_t_67_structType myStruct;
     /* Initialize data */
     data = NULL;
-    data = (int64_t *)malloc(100*sizeof(int64_t));
+    data = (int64_t *)safe_malloc(100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);
@@ -56,7 +64,7 @@ static void goodG2B()
     CWE415_Double_Free__malloc_free_int64_t_67_structType myStruct;
     /* Initialize data */
     data = NULL;
-    data = (int64_t *)malloc(100*sizeof(int64_t));
+    data = (int64_t *)safe_malloc(100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* FIX: Do NOT free data in the source - the bad sink frees data */
     myStruct.structFirst = data;
@@ -72,7 +80,7 @@ static void goodB2G()
     CWE415_Double_Free__malloc_free_int64_t_67_structType myStruct;
     /* Initialize data */
     data = NULL;
-    data = (int64_t *)malloc(100*sizeof(int64_t));
+    data = (int64_t *)safe_malloc(100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);

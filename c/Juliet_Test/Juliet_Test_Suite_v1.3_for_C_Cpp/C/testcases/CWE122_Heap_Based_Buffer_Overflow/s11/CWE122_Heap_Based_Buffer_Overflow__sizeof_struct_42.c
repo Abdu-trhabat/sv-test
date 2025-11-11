@@ -21,13 +21,21 @@ Template File: sources-sink-42.tmpl.c
 static twoIntsStruct * badSource(twoIntsStruct * data)
 {
     /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-    /* FLAW: Using sizeof the pointer and not the data type in malloc() */
-    data = (twoIntsStruct *)malloc(sizeof(data));
+    /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
+    data = (twoIntsStruct *)safe_malloc(sizeof(data));
     if (data == NULL) {exit(-1);}
     data->intOne = 1;
     data->intTwo = 2;
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_42_bad()
 {
@@ -46,8 +54,8 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_42_bad()
 
 static twoIntsStruct * goodG2BSource(twoIntsStruct * data)
 {
-    /* FIX: Using sizeof the data type in malloc() */
-    data = (twoIntsStruct *)malloc(sizeof(*data));
+    /* FIX: Using sizeof the data type in safe_malloc() */
+    data = (twoIntsStruct *)safe_malloc(sizeof(*data));
     if (data == NULL) {exit(-1);}
     data->intOne = 1;
     data->intTwo = 2;

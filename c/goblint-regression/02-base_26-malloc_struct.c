@@ -6,6 +6,14 @@
 // SPDX-License-Identifier: MIT
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <pthread.h>
 #include <stdio.h>
 
@@ -30,7 +38,7 @@ int main() {
   pthread_t id;
   data *z;
 
-  d = malloc(sizeof(data));
+  d = safe_malloc(sizeof(data));
   z = d;
 
   pthread_create(&id, NULL, t_fun, NULL);

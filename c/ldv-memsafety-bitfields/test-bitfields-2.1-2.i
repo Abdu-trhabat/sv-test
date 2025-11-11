@@ -21,10 +21,18 @@ struct A {
 } __attribute__((packed));
 
 struct A d;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int main(void)
 {
 	struct A *p;
-	p = malloc(12);
+	p = safe_malloc(12);
 	d.a = 1;
 	d.b = 2;
 	d.c = 3;

@@ -451,6 +451,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -567,13 +575,13 @@ void assume_abort_if_not(int cond) {
 int __VERIFIER_nondet_int(void);
 void *ldv_malloc(size_t size) {
  if(__VERIFIER_nondet_int()) {
-  return malloc(size);
+  return safe_malloc(size);
  } else {
   return 0;
  }
 };
 void *ldv_successful_malloc(size_t size) {
- void *ptr = malloc(size);
+ void *ptr = safe_malloc(size);
  assume_abort_if_not(ptr!=0);
  return ptr;
 };

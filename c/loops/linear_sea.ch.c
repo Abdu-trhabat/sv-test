@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "linear_sea.ch.c", 3, "reach_error"); }
 extern void *calloc(unsigned int num, unsigned int size);
@@ -24,7 +32,7 @@ int main() {
   SIZE=(__VERIFIER_nondet_uint()/8)+1;
 
   if (SIZE > 1 && SIZE < MAX) {
-    int *a = calloc(SIZE,sizeof(int));
+    int *a = safe_calloc(SIZE,sizeof(int));
     a[SIZE/2]=3;
     __VERIFIER_assert(linear_search(a,SIZE,3));
   }

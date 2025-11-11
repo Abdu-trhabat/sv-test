@@ -5,6 +5,14 @@
 // Function: dibx000_exit_i2c_master
 // with type: void dibx000_exit_i2c_master(struct dibx000_i2c_master *)
 // with return type: void
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void dibx000_exit_i2c_master(struct dibx000_i2c_master *arg0) {
   // Void type
   return;
@@ -14,7 +22,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: dibx000_get_i2c_adapter

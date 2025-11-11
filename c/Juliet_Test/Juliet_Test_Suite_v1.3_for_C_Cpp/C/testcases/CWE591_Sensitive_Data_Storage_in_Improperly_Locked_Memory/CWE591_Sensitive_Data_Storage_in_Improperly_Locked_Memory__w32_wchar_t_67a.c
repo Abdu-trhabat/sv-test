@@ -29,6 +29,14 @@ typedef struct _CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_w
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_67b_badSink(CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_67_structType myStruct);
 
 void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_67_bad()
@@ -37,7 +45,7 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_67_b
     CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_67_structType myStruct;
     /* Initialize Data */
     password = L"";
-    password = (wchar_t *)malloc(100*sizeof(wchar_t));
+    password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (password == NULL)
     {
         printLine("Memory could not be allocated");
@@ -63,7 +71,7 @@ static void goodG2B()
     CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_67_structType myStruct;
     /* Initialize Data */
     password = L"";
-    password = (wchar_t *)malloc(100*sizeof(wchar_t));
+    password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (password == NULL)
     {
         printLine("Memory could not be allocated");

@@ -548,6 +548,14 @@ decimal_absval_add_one (char *buf)
 
 extern unsigned char __VERIFIER_nondet_uchar();
 extern size_t __VERIFIER_nondet_size_t();
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void reach_error() {
     ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "/tmp/fv-intermediate-_paicl3t/sources/getlimits/formal/includes/util.h", 14, __extension__ __PRETTY_FUNCTION__); }));
 }
@@ -567,8 +575,8 @@ static const char *result;
 static _Bool is_negative;
 static size_t num_nines;
 static void init_getlimits_buffer() {
-    input_buf = malloc(200);
-    old_digits = malloc(200);
+    input_buf = safe_malloc(200);
+    old_digits = safe_malloc(200);
     assume_or_exit(input_buf != ((void*)0) && old_digits != ((void*)0));
 }
 static void free_getlimits_buffer() {

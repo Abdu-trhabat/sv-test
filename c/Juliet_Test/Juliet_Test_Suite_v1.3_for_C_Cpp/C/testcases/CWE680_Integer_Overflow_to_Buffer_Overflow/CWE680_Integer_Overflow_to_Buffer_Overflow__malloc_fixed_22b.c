@@ -20,12 +20,20 @@ Template File: sources-sink-22b.tmpl.c
 
 /* The global variable below is used to drive control flow in the source function */
 extern int CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_22_badGlobal;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_22_badSource(int data)
 {
     if(CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_22_badGlobal)
     {
-        /* FLAW: Set data to a value that will cause an integer overflow in the call to malloc() in the sink */
+        /* FLAW: Set data to a value that will cause an integer overflow in the call to safe_malloc() in the sink */
         data = INT_MAX / 2 + 2; /* 1073741825 */
         /* NOTE: This value will cause the sink to only allocate 4 bytes of memory, however
          * the for loop will attempt to access indices 0-1073741824 */

@@ -1998,6 +1998,14 @@ extern void input_unregister_polled_device(struct input_polled_dev * ) ;
 extern void kfree(void const * ) ;
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -2009,7 +2017,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
  if (__VERIFIER_nondet_int()) {
-  void *res = malloc(size);
+  void *res = safe_malloc(size);
   assume_abort_if_not(!ldv_is_err(res));
   return res;
  } else {

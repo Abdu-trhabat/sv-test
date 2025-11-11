@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "floppy.i.cil-1.c", 3, "reach_error"); }
 
@@ -2146,7 +2154,7 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject , PUNICODE_STRING RegistryPath 
   DriverObject->MajorFunction[27] = & FloppyPnp;
   DriverObject->MajorFunction[22] = & FloppyPower;
   DriverObject->DriverUnload = & FloppyUnload;
-  DriverObject->DriverExtension = malloc(sizeof(*DriverObject->DriverExtension));
+  DriverObject->DriverExtension = safe_malloc(sizeof(*DriverObject->DriverExtension));
   (DriverObject->DriverExtension)->AddDevice = & FloppyAddDevice;
   tmp = ExAllocatePoolWithTag(0, sizeof(FAST_MUTEX ), 1886350406UL);
   PagingMutex = tmp;
@@ -6577,7 +6585,7 @@ NTSTATUS FlFdcDeviceIo(PDEVICE_OBJECT DeviceObject , ULONG Ioctl , PVOID Data )
 
   }
   {
-  irp->Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation = malloc(sizeof (IO_STACK_LOCATION));
+  irp->Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation = safe_malloc(sizeof (IO_STACK_LOCATION));
   /* ensure a bounded number of subsequent decrements do not result in stack underflow */
   irp->Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation += 1;
   irpStack = irp->Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation - 1;
@@ -7022,11 +7030,11 @@ int main(void)
   int __BLAST_NONDET = __VERIFIER_nondet_int() ;
   int irp_choice = __VERIFIER_nondet_int() ;
   DEVICE_OBJECT devobj ;
-  devobj.DeviceExtension = malloc(sizeof (DISKETTE_EXTENSION));
+  devobj.DeviceExtension = safe_malloc(sizeof (DISKETTE_EXTENSION));
   memset(devobj.DeviceExtension, 0, sizeof (DISKETTE_EXTENSION));
 
   dummy_data.AlternativeArchitecture = __VERIFIER_nondet_int();
-  irp.Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation = malloc(4 * sizeof (IO_STACK_LOCATION));
+  irp.Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation = safe_malloc(4 * sizeof (IO_STACK_LOCATION));
   /* ensure a bounded number of subsequent decrements do not result in stack underflow */
   irp.Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation += 3;
 
@@ -7218,7 +7226,7 @@ PVOID ExAllocatePoolWithTag(POOL_TYPE PoolType , SIZE_T NumberOfBytes ,
 
   {
   {
-  tmp = malloc(NumberOfBytes); /* INLINED */
+  tmp = safe_malloc(NumberOfBytes); /* INLINED */
   x = tmp;
   }
   return (x);
@@ -7283,7 +7291,7 @@ PMDL IoAllocateMdl(PVOID VirtualAddress , ULONG Length , BOOLEAN SecondaryBuffer
     if (0) {
       switch_191_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(MDL )); /* INLINED */
+      tmp = safe_malloc(sizeof(MDL )); /* INLINED */
       }
       return ((void *)tmp);
       switch_191_default: /* CIL Label */ ;
@@ -7340,7 +7348,7 @@ PIRP IoBuildAsynchronousFsdRequest(ULONG MajorFunction , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_193_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(IRP )); /* INLINED */
+      tmp = safe_malloc(sizeof(IRP )); /* INLINED */
       }
       return ((void *)tmp);
       switch_193_default: /* CIL Label */ ;
@@ -7378,7 +7386,7 @@ PIRP IoBuildDeviceIoControlRequest(ULONG IoControlCode , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_194_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(IRP )); /* INLINED */
+      tmp = safe_malloc(sizeof(IRP )); /* INLINED */
       }
       return ((void *)tmp);
       switch_194_default: /* CIL Label */ ;
@@ -7410,7 +7418,7 @@ NTSTATUS IoCreateDevice(PDRIVER_OBJECT DriverObject , ULONG DeviceExtensionSize 
     if (0) {
       switch_195_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(DEVICE_OBJECT )); /* INLINED */
+      tmp = safe_malloc(sizeof(DEVICE_OBJECT )); /* INLINED */
       *DeviceObject = (void *)tmp;
       }
       return (0L);
@@ -7506,7 +7514,7 @@ PCONFIGURATION_INFORMATION IoGetConfigurationInformation(void)
 
   {
   {
-  tmp = malloc(sizeof(CONFIGURATION_INFORMATION )); /* INLINED */
+  tmp = safe_malloc(sizeof(CONFIGURATION_INFORMATION )); /* INLINED */
   }
   return ((void *)tmp);
 }
@@ -7878,7 +7886,7 @@ PVOID MmAllocateContiguousMemory(SIZE_T NumberOfBytes , PHYSICAL_ADDRESS Highest
       if (0) {
         switch_204_0: /* CIL Label */ 
         {
-        tmp = malloc(NumberOfBytes); /* INLINED */
+        tmp = safe_malloc(NumberOfBytes); /* INLINED */
         }
         return (tmp);
         switch_204_1: /* CIL Label */ ;

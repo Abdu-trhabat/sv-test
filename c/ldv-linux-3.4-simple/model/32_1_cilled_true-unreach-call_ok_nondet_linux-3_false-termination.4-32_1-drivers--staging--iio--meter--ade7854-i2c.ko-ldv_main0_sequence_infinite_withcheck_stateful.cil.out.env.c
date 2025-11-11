@@ -5,6 +5,14 @@
 // Function: ade7854_probe
 // with type: int ade7854_probe(struct iio_dev *indio_dev, struct device *dev)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int ade7854_probe(struct iio_dev *arg0, struct device *arg1) {
   // Simple type
@@ -24,7 +32,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: dev_get_drvdata

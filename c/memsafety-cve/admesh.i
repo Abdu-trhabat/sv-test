@@ -64,6 +64,22 @@ extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern void exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void _Exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
@@ -111,17 +127,17 @@ typedef struct {
 numbers_file *initializeStl() {
   numbers *lastNumber = ((void *)0);
   numbers *preLastNumber = ((void *)0);
-  numbers_file *stl = (numbers_file *)malloc(sizeof(numbers_file));
+  numbers_file *stl = (numbers_file *)safe_malloc(sizeof(numbers_file));
   if (stl == ((void *)0))
     exit(1);
-  stl->numbers_start = (numbers *)malloc(sizeof(numbers));
+  stl->numbers_start = (numbers *)safe_malloc(sizeof(numbers));
   if (stl->numbers_start == ((void *)0))
     exit(1);
   stl->number_of_numbers = 12;
   stl->numbers_start[0].number = 1;
   lastNumber = stl->numbers_start;
   for (int i = 1; i < 14; i++) {
-    numbers *number = (numbers *)malloc(sizeof(numbers));
+    numbers *number = (numbers *)safe_malloc(sizeof(numbers));
     if (number == ((void *)0))
       exit(1);
     if (i == 1 || preLastNumber == ((void *)0)) {
@@ -139,7 +155,7 @@ numbers_file *initializeStl() {
 int main() {
   numbers_file *stl = initializeStl();
   int i = 0;
-  int *extractedNumbers = (int *)calloc(stl->number_of_numbers, sizeof(int));
+  int *extractedNumbers = (int *)safe_calloc(stl->number_of_numbers, sizeof(int));
   if (extractedNumbers == ((void *)0))
     exit(1);
   numbers *currentNumber = stl->numbers_start;

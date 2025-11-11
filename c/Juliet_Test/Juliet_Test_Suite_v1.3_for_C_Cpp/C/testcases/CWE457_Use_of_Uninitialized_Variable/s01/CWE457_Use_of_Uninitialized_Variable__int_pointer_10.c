@@ -20,6 +20,14 @@ Template File: sources-sinks-10.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE457_Use_of_Uninitialized_Variable__int_pointer_10_bad()
 {
@@ -58,7 +66,7 @@ static void goodB2G1()
     {
         /* FIX: Ensure data is initialized before use */
         /* initialize both the pointer and the data pointed to */
-        data = (int *)malloc(sizeof(int));
+        data = (int *)safe_malloc(sizeof(int));
         if (data == NULL) {exit(-1);}
         *data = 5;
         printIntLine(*data);
@@ -78,7 +86,7 @@ static void goodB2G2()
     {
         /* FIX: Ensure data is initialized before use */
         /* initialize both the pointer and the data pointed to */
-        data = (int *)malloc(sizeof(int));
+        data = (int *)safe_malloc(sizeof(int));
         if (data == NULL) {exit(-1);}
         *data = 5;
         printIntLine(*data);
@@ -98,7 +106,7 @@ static void goodG2B1()
     {
         /* FIX: Initialize data */
         /* initialize both the pointer and the data pointed to */
-        data = (int *)malloc(sizeof(int));
+        data = (int *)safe_malloc(sizeof(int));
         if (data == NULL) {exit(-1);}
         *data = 5;
     }
@@ -117,7 +125,7 @@ static void goodG2B2()
     {
         /* FIX: Initialize data */
         /* initialize both the pointer and the data pointed to */
-        data = (int *)malloc(sizeof(int));
+        data = (int *)safe_malloc(sizeof(int));
         if (data == NULL) {exit(-1);}
         *data = 5;
     }

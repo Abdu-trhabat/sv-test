@@ -17,11 +17,19 @@ struct A {
 	unsigned char c:2;
 	unsigned char d;
 } __attribute__((packed));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int main(void)
 {
 	struct A *p;
-	p = malloc(2);
+	p = safe_malloc(2);
 	p->a = 1;
 	if (p->a != 1) {
 		free(p);

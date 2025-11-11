@@ -36,11 +36,19 @@ static int staticReturnsFalse()
 }
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_fixed_string_08_bad()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     /* POTENTIAL FLAW: Initialize data to be a fixed string that contains the search character in the sinks */
@@ -69,7 +77,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_fixed_string_08_bad()
 static void goodB2G1()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     /* POTENTIAL FLAW: Initialize data to be a fixed string that contains the search character in the sinks */
@@ -101,7 +109,7 @@ static void goodB2G1()
 static void goodB2G2()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     /* POTENTIAL FLAW: Initialize data to be a fixed string that contains the search character in the sinks */

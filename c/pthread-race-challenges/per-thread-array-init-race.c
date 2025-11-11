@@ -8,6 +8,22 @@
 // Per-thread array pointers passed via argument but initialized before thread create.
 // Extracted from silver searcher.
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <pthread.h>
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -25,8 +41,8 @@ int main() {
   int threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
 
-  pthread_t *tids = malloc(threads_total * sizeof(pthread_t));
-  int *is = calloc(threads_total, sizeof(int));
+  pthread_t *tids = safe_malloc(threads_total * sizeof(pthread_t));
+  int *is = safe_calloc(threads_total, sizeof(int));
 
   // create threads
   for (int i = 0; i < threads_total; i++) {

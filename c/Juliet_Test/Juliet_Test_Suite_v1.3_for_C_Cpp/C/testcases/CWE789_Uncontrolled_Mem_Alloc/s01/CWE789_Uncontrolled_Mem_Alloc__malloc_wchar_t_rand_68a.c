@@ -9,8 +9,8 @@ Template File: sources-sinks-68a.tmpl.c
  * BadSource: rand Set data to result of rand(), which may be zero
  * GoodSource: Small number greater than zero
  * Sinks:
- *    GoodSink: Allocate memory with malloc() and check the size of the memory to be allocated
- *    BadSink : Allocate memory with malloc(), but incorrectly check the size of the memory to be allocated
+ *    GoodSink: Allocate memory with safe_malloc() and check the size of the memory to be allocated
+ *    BadSink : Allocate memory with safe_malloc(), but incorrectly check the size of the memory to be allocated
  * Flow Variant: 68 Data flow: data passed as a global variable from one function to another in different source files
  *
  * */
@@ -30,6 +30,14 @@ size_t CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_rand_68_goodB2GData;
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_rand_68b_badSink();
 
 void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_rand_68_bad()

@@ -11,6 +11,14 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "main3_drivers-media-video-tlg2300-poseidon-ko--32_7a--4a349aa.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -5429,7 +5437,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
  if (__VERIFIER_nondet_int()) {
-  void *res = malloc(size);
+  void *res = safe_malloc(size);
   assume_abort_if_not(!ldv_is_err(res));
   return res;
  } else {
@@ -7716,7 +7724,7 @@ extern int __VERIFIER_nondet_int(void) ;
 extern unsigned int __VERIFIER_nondet_uint();
 extern void *malloc(size_t );
 void *ldv_successful_malloc(size_t __size) {
-  void *p = malloc(__size);
+  void *p = safe_malloc(__size);
   assume_abort_if_not(p != (void *)0);
   return p;
 }

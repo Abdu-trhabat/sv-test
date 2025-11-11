@@ -6,6 +6,14 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void avoid_zero(int y)
 {
     if (!y) 
@@ -197,7 +205,7 @@ static UINT32 Id_MCDC_110(UINT32 Id_MCDC_108, UINT32 Id_MCDC_109);
 static UINT32 Id_MCDC_113(UINT32 Id_MCDC_111, CHAR* Id_MCDC_112);
 UINT32 Id_MCDC_114(UINT16 Id_MCDC_100, UINT8 Id_MCDC_101, UINT32* Id_MCDC_102, UINT32* Id_MCDC_103, INT32* Id_MCDC_104, void ** Id_MCDC_105);
 UINT32 Id_MCDC_115();
-extern void * malloc(size_t Id_MCDC_116);
+extern void * safe_malloc(size_t Id_MCDC_116);
 void  Id_MCDC_117();
 void  Id_MCDC_118();
 extern FILE* fopen(char  const* Id_MCDC_119, char  const* Id_MCDC_120);
@@ -426,7 +434,7 @@ void  Id_MCDC_117()
 {
 CHAR Id_MCDC_157 [4]={0, 0, 0, 0};
 UINT32 Id_MCDC_158=0;
-Id_MCDC_131.Id_MCDC_66 = ( PDO_Buffer* ) malloc(372);
+Id_MCDC_131.Id_MCDC_66 = ( PDO_Buffer* ) safe_malloc(372);
 Id_MCDC_115();
 for(Id_MCDC_158 = 0 ; Id_MCDC_158 < 4 ; Id_MCDC_158++ )
 {

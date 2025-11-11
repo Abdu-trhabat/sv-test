@@ -20,13 +20,21 @@ Template File: sources-sinks-51b.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE135_51b_badSink(void * data)
 {
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
-        void * dest = (void *)calloc(dataLen+1, sizeof(wchar_t));
+        void * dest = (void *)safe_calloc(dataLen+1, sizeof(wchar_t));
         if (dest == NULL) {exit(-1);}
         (void)wcscpy(dest, data);
         printLine((char *)dest);
@@ -44,7 +52,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_51b_goodG2BSink(void * data)
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
-        void * dest = (void *)calloc(dataLen+1, 1);
+        void * dest = (void *)safe_calloc(dataLen+1, 1);
         if (dest == NULL) {exit(-1);}
         (void)strcpy(dest, data);
         printLine((char *)dest);
@@ -58,7 +66,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_51b_goodB2GSink(void * data)
     {
         /* FIX: treating pointer like a wchar_t*  */
         size_t dataLen = wcslen((wchar_t *)data);
-        void * dest = (void *)calloc(dataLen+1, sizeof(wchar_t));
+        void * dest = (void *)safe_calloc(dataLen+1, sizeof(wchar_t));
         if (dest == NULL) {exit(-1);}
         (void)wcscpy(dest, data);
         printWLine((wchar_t *)dest);

@@ -13,6 +13,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -44,7 +52,7 @@ int main() {
   SF_PRIVATE psf;
   psf.bytewidth = 8;
   psf.dataoffset = 0;
-  // psf.ptr = calloc(8, sizeof(byte));
+  // psf.ptr = safe_calloc(8, sizeof(byte));
   // unsigned char byte_sequence[8] = {0xff, 0xff, 0x00, 0x00, 0xff, 0xff, 0x00, 0x00};
   // memcpy(psf.ptr, byte_sequence, sizeof(byte_sequence));
   psf.ptr = getRandomByteStream(8);

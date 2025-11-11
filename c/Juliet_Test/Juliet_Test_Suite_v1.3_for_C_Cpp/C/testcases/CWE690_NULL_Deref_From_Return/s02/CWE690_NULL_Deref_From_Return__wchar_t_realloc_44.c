@@ -6,7 +6,7 @@ Template File: source-sinks-44.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: realloc Allocate data using realloc()
+ * BadSource: realloc Allocate data using safe_realloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -27,6 +27,14 @@ static void badSink(wchar_t * data)
     printWLine(data);
     free(data);
 }
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE690_NULL_Deref_From_Return__wchar_t_realloc_44_bad()
 {
@@ -35,7 +43,7 @@ void CWE690_NULL_Deref_From_Return__wchar_t_realloc_44_bad()
     void (*funcPtr) (wchar_t *) = badSink;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (wchar_t *)realloc(data, 20*sizeof(wchar_t));
+    data = (wchar_t *)safe_realloc(data, 20*sizeof(wchar_t));
     /* use the function pointer */
     funcPtr(data);
 }
@@ -62,7 +70,7 @@ static void goodB2G()
     void (*funcPtr) (wchar_t *) = goodB2GSink;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (wchar_t *)realloc(data, 20*sizeof(wchar_t));
+    data = (wchar_t *)safe_realloc(data, 20*sizeof(wchar_t));
     funcPtr(data);
 }
 

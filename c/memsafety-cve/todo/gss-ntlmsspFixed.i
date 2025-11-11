@@ -321,6 +321,22 @@ extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern void exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void _Exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
@@ -426,7 +442,7 @@ int getNumberInRange(int lowestBound, int highestBound) {
   return value;
 }
 unsigned char *getRandomByteStream(int size) {
-  unsigned char *randomString = (unsigned char *)calloc(size, sizeof(unsigned char));
+  unsigned char *randomString = (unsigned char *)safe_calloc(size, sizeof(unsigned char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -438,7 +454,7 @@ unsigned char *getRandomByteStream(int size) {
 }
 char *getRandomString(int lowestSize, int highestSize) {
   int stringSize = getNumberInRange(lowestSize, highestSize);
-  char *randomString = (char *)calloc(stringSize + 1, sizeof(char));
+  char *randomString = (char *)safe_calloc(stringSize + 1, sizeof(char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -450,7 +466,7 @@ char *getRandomString(int lowestSize, int highestSize) {
   return randomString;
 }
 char *getRandomStringFixedSize(int size) {
-  char *randomString = (char *)calloc(size + 1, sizeof(char));
+  char *randomString = (char *)safe_calloc(size + 1, sizeof(char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -462,7 +478,7 @@ char *getRandomStringFixedSize(int size) {
 }
 char *strdup(const char *s) {
   size_t size = strlen(s) + 1;
-  char *p = malloc(size);
+  char *p = safe_malloc(size);
   if (p) {
     memcpy(p, s, size);
   }
@@ -494,7 +510,7 @@ struct wire_field_hdr {
 int ntlm_init_ctx(struct ntlm_ctx **ctx) {
   struct ntlm_ctx *_ctx;
   int ret = 0;
-  _ctx = calloc(1, sizeof(struct ntlm_ctx));
+  _ctx = safe_calloc(1, sizeof(struct ntlm_ctx));
   if (!_ctx) {
     return 1;
   }
@@ -554,7 +570,7 @@ static int ntlm_decode_u16l_str_hdr(struct ntlm_ctx *ctx,
     return 1;
   }
   in = (char *)&buffer->data[str_offs];
-  out = malloc(str_len * 2 + 1);
+  out = safe_malloc(str_len * 2 + 1);
   if (!out) {
     return 1;
   }

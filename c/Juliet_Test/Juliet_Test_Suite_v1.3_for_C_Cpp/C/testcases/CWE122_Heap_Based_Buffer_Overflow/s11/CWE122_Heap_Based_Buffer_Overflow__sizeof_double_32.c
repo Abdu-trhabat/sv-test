@@ -17,6 +17,14 @@ Template File: sources-sink-32.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_double_32_bad()
 {
@@ -28,8 +36,8 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_double_32_bad()
     {
         double * data = *dataPtr1;
         /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-        /* FLAW: Using sizeof the pointer and not the data type in malloc() */
-        data = (double *)malloc(sizeof(data));
+        /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
+        data = (double *)safe_malloc(sizeof(data));
         if (data == NULL) {exit(-1);}
         *data = 1.7E300;
         *dataPtr1 = data;
@@ -56,8 +64,8 @@ static void goodG2B()
     data = NULL;
     {
         double * data = *dataPtr1;
-        /* FIX: Using sizeof the data type in malloc() */
-        data = (double *)malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in safe_malloc() */
+        data = (double *)safe_malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         *data = 1.7E300;
         *dataPtr1 = data;

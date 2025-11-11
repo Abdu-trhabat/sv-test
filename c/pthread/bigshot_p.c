@@ -11,6 +11,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <pthread.h>
 #include <string.h>
 
@@ -20,7 +28,7 @@ char *v;
 
 void *thread1(void * arg)
 {
-  v = calloc(8, sizeof(char));
+  v = safe_calloc(8, sizeof(char));
   return 0;
 }
 

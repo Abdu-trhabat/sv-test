@@ -25,7 +25,7 @@ static void badSink(int data)
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)malloc(data * sizeof(int));
+        intPointer = (int*)safe_malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {
@@ -35,6 +35,14 @@ static void badSink(int data)
         free(intPointer);
     }
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_44_bad()
 {
@@ -43,7 +51,7 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_44_bad()
     void (*funcPtr) (int) = badSink;
     /* Initialize data */
     data = -1;
-    /* FLAW: Set data to a value that will cause an integer overflow in the call to malloc() in the sink */
+    /* FLAW: Set data to a value that will cause an integer overflow in the call to safe_malloc() in the sink */
     data = INT_MAX / 2 + 2; /* 1073741825 */
     /* NOTE: This value will cause the sink to only allocate 4 bytes of memory, however
      * the for loop will attempt to access indices 0-1073741824 */
@@ -63,7 +71,7 @@ static void goodG2BSink(int data)
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)malloc(data * sizeof(int));
+        intPointer = (int*)safe_malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {

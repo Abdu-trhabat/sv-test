@@ -6,7 +6,7 @@ Template File: source-sinks-61a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using malloc()
+ * BadSource: malloc Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -22,6 +22,14 @@ Template File: source-sinks-61a.tmpl.c
 
 /* bad function declaration */
 char * CWE690_NULL_Deref_From_Return__char_malloc_61b_badSource(char * data);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE690_NULL_Deref_From_Return__char_malloc_61_bad()
 {

@@ -19,6 +19,14 @@ Template File: sources-sink-18.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE127_Buffer_Underread__malloc_wchar_t_memcpy_18_bad()
 {
@@ -27,7 +35,7 @@ void CWE127_Buffer_Underread__malloc_wchar_t_memcpy_18_bad()
     goto source;
 source:
     {
-        wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
+        wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
         if (dataBuffer == NULL) {exit(-1);}
         wmemset(dataBuffer, L'A', 100-1);
         dataBuffer[100-1] = L'\0';
@@ -44,7 +52,7 @@ source:
         dest[100-1] = L'\0';
         printWLine(dest);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by malloc() so can't safely call free() on it */
+         * returned by safe_malloc() so can't safely call free() on it */
     }
 }
 
@@ -60,7 +68,7 @@ static void goodG2B()
     goto source;
 source:
     {
-        wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
+        wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
         if (dataBuffer == NULL) {exit(-1);}
         wmemset(dataBuffer, L'A', 100-1);
         dataBuffer[100-1] = L'\0';
@@ -77,7 +85,7 @@ source:
         dest[100-1] = L'\0';
         printWLine(dest);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by malloc() so can't safely call free() on it */
+         * returned by safe_malloc() so can't safely call free() on it */
     }
 }
 

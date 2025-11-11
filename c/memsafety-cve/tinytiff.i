@@ -311,6 +311,14 @@ extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern void exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void _Exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
@@ -443,7 +451,7 @@ uint8_t TinyTIFFReader_readuint8(TinyTIFFReaderFile *tiff) {
   return res;
 }
 TinyTIFFReader_IFD *TinyTIFFReader_readIFD(TinyTIFFReaderFile *tiff) {
-  TinyTIFFReader_IFD *d = calloc(1, sizeof(TinyTIFFReader_IFD));
+  TinyTIFFReader_IFD *d = safe_calloc(1, sizeof(TinyTIFFReader_IFD));
   if (d == ((void *)0))
     return ((void *)0);
   d->pvalue = 0;
@@ -465,7 +473,7 @@ TinyTIFFReader_IFD *TinyTIFFReader_readIFD(TinyTIFFReaderFile *tiff) {
   switch (d->type) {
   case 1:
   case 2:
-    d->pvalue = (uint32_t *)calloc(d->value, sizeof(uint32_t));
+    d->pvalue = (uint32_t *)safe_calloc(d->value, sizeof(uint32_t));
     if (d->pvalue == ((void *)0)) {
       free(d);
       return ((void *)0);
@@ -480,7 +488,7 @@ TinyTIFFReader_IFD *TinyTIFFReader_readIFD(TinyTIFFReaderFile *tiff) {
     }
     break;
   case 3:
-    d->pvalue = (uint32_t *)calloc(d->value, sizeof(uint32_t));
+    d->pvalue = (uint32_t *)safe_calloc(d->value, sizeof(uint32_t));
     if (d->pvalue == ((void *)0)) {
       free(d);
       return ((void *)0);
@@ -495,7 +503,7 @@ TinyTIFFReader_IFD *TinyTIFFReader_readIFD(TinyTIFFReaderFile *tiff) {
     }
     break;
   case 4:
-    d->pvalue = (uint32_t *)calloc(d->value, sizeof(uint32_t));
+    d->pvalue = (uint32_t *)safe_calloc(d->value, sizeof(uint32_t));
     if (d->pvalue == ((void *)0)) {
       free(d);
       return ((void *)0);
@@ -532,7 +540,7 @@ void TinyTIFFReader_readNextFrame(TinyTIFFReaderFile *tiff) {
       if (tiff->currentFrame.stripoffsets != ((void *)0)) {
         free(tiff->currentFrame.stripoffsets);
       }
-      tiff->currentFrame.stripoffsets = (uint32_t *)calloc(ifd->value, sizeof(uint32_t));
+      tiff->currentFrame.stripoffsets = (uint32_t *)safe_calloc(ifd->value, sizeof(uint32_t));
       if (tiff->currentFrame.stripoffsets == ((void *)0))
         break;
       memcpy(tiff->currentFrame.stripoffsets, ifd->pvalue, ifd->value * sizeof(uint32_t));

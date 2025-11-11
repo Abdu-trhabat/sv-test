@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "discover_list.c", 3, "reach_error"); }
 void *malloc(unsigned int size);
@@ -495,7 +503,7 @@ int main(){
 struct smp_target_obj tobj;
 struct opts_t opts;
 unsigned char * resp;
-resp= (unsigned char *) malloc (sizeof (unsigned char));
+resp= (unsigned char *) safe_malloc (sizeof (unsigned char));
 int ret = do_discover_list( & tobj, __VERIFIER_nondet_int() , resp,  sizeof (resp),  & opts);
 return 0;
 }

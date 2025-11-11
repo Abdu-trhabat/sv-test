@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22b.c
 Label Definition File: CWE122_Heap_Based_Buffer_Overflow__c_CWE193.label.xml
@@ -33,7 +41,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22_badSource(char * 
     if(CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22_badGlobal)
     {
         /* FLAW: Did not leave space for a null terminator */
-        data = (char *)malloc(10*sizeof(char));
+        data = (char *)safe_malloc(10*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -58,7 +66,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22_goodG2B1Source(ch
     else
     {
         /* FIX: Allocate space for a null terminator */
-        data = (char *)malloc((10+1)*sizeof(char));
+        data = (char *)safe_malloc((10+1)*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -70,7 +78,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22_goodG2B2Source(ch
     if(CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22_goodG2B2Global)
     {
         /* FIX: Allocate space for a null terminator */
-        data = (char *)malloc((10+1)*sizeof(char));
+        data = (char *)safe_malloc((10+1)*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     return data;

@@ -1,6 +1,14 @@
 typedef long unsigned int size_t;
 
-void * __attribute__((__cdecl__)) malloc (size_t __size) ;
+void * __attribute__((__cdecl__)) safe_malloc (size_t __size) ;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void __attribute__((__cdecl__)) free (void *) ;
 
 extern int __VERIFIER_nondet_int(void);
@@ -14,7 +22,7 @@ void f(int *p, int *q) {
 		return;
 	
 	
-	int *np = malloc(sizeof(int));
+	int *np = safe_malloc(sizeof(int));
 	
 	*np = *p - 1;
 	
@@ -40,8 +48,8 @@ void g(int *p, int *q) {
 
 int main() {
 	
-	int *p1  = malloc(sizeof(int));
-	int *p2  = malloc(sizeof(int));
+	int *p1  = safe_malloc(sizeof(int));
+	int *p2  = safe_malloc(sizeof(int));
 	
 	*p1 = __VERIFIER_nondet_int();
 	*p2 = __VERIFIER_nondet_int();

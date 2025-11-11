@@ -8,7 +8,7 @@ Template File: point-flaw-07.tmpl.c
  * CWE: 479 Signal Handler Use of Non-Reentrant Function
  * Sinks:
  *    GoodSink: Don't call a function from within the signal handler
- *    BadSink : malloc() and free() inside a signal handler
+ *    BadSink : safe_malloc() and free() inside a signal handler
  * Flow Variant: 07 Control flow: if(staticFive==5) and if(staticFive!=5)
  *
  * */
@@ -25,7 +25,7 @@ static void helperBad(int sig)
      * procedural analysis, so we cannot do that either.  So instead,
      * do something very contrived with malloc/free
      */
-    void *voidPointer = malloc(10);
+    void *voidPointer = safe_malloc(10);
     if (voidPointer == NULL) {exit(-1);}
     free(voidPointer);
 }
@@ -47,6 +47,14 @@ static void helperGood(int sig)
 static int staticFive = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE479_Signal_Handler_Use_of_Non_Reentrant_Function__basic_07_bad()
 {

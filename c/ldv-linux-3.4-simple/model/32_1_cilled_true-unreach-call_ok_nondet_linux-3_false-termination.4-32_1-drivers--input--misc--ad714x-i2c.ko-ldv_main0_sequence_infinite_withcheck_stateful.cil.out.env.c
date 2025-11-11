@@ -5,6 +5,14 @@
 // Function: ad714x_disable
 // with type: int ad714x_disable(struct ad714x_chip *ad714x)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int ad714x_disable(struct ad714x_chip *arg0) {
   // Simple type
@@ -24,7 +32,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: ad714x_probe

@@ -12,6 +12,14 @@ extern int __VERIFIER_nondet_int();
  * This source code is licensed under the GPLv3 license.
  */
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void myexit(int s) {
 	_EXIT: goto _EXIT;
@@ -24,7 +32,7 @@ typedef struct node {
 
 int main() {
   /* Build a list of the form 1->2->3->4... */
-  List a = (List) malloc(sizeof(struct node));
+  List a = (List) safe_malloc(sizeof(struct node));
   if (a == 0) myexit(1);
   List t;
   List p = a;
@@ -32,7 +40,7 @@ int main() {
   int counter = 0;
   while (counter < 10 || __VERIFIER_nondet_int()) {
     p->h = counter;
-    t = (List) malloc(sizeof(struct node));
+    t = (List) safe_malloc(sizeof(struct node));
     if (t == 0) myexit(1);
     p->n = t;
     p = p->n;

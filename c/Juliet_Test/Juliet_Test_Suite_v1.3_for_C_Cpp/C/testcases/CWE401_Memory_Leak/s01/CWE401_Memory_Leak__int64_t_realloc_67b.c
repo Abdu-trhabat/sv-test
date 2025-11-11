@@ -6,7 +6,7 @@ Template File: sources-sinks-67b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using realloc()
+ * BadSource: realloc Allocate data using safe_realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -25,6 +25,14 @@ typedef struct _CWE401_Memory_Leak__int64_t_realloc_67_structType
 } CWE401_Memory_Leak__int64_t_realloc_67_structType;
 
 #ifndef OMITBAD
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE401_Memory_Leak__int64_t_realloc_67b_badSink(CWE401_Memory_Leak__int64_t_realloc_67_structType myStruct)
 {

@@ -30,11 +30,19 @@ static wchar_t * badSource(wchar_t * data)
     wcscpy(data, BAD_SOURCE_FIXED_STRING);
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_fixed_string_42_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     data = badSource(data);
@@ -66,7 +74,7 @@ static wchar_t * goodB2GSource(wchar_t * data)
 static void goodB2G()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     data = goodB2GSource(data);

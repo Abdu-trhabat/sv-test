@@ -33,11 +33,19 @@ static wchar_t * badSource(wchar_t * data)
     }
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_src_wchar_t_cat_21_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     badStatic = 1; /* true */
     data = badSource(data);
@@ -78,7 +86,7 @@ static wchar_t * goodG2B1Source(wchar_t * data)
 static void goodG2B1()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     goodG2B1Static = 0; /* false */
     data = goodG2B1Source(data);
@@ -106,7 +114,7 @@ static wchar_t * goodG2B2Source(wchar_t * data)
 static void goodG2B2()
 {
     wchar_t * data;
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     goodG2B2Static = 1; /* true */
     data = goodG2B2Source(data);

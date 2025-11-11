@@ -6,6 +6,14 @@ void reach_error() { assert(0); }
  * Prepend node with data = 5. Check result: 5-1-1
  */
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 typedef struct node {
   struct node *next;
@@ -17,7 +25,7 @@ void myexit(int s) {
 }
 
 SLL node_create(int data) {
-  SLL temp = (SLL) malloc(sizeof(struct node));
+  SLL temp = (SLL) safe_malloc(sizeof(struct node));
   if(NULL == temp) {
     myexit(1);
   }

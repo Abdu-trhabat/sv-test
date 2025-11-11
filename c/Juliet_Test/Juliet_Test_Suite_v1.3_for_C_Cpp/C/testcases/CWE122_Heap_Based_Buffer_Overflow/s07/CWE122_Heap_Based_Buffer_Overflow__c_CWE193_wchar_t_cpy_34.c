@@ -30,6 +30,14 @@ typedef union
 } CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_cpy_34_unionType;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_cpy_34_bad()
 {
@@ -37,7 +45,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_cpy_34_bad()
     CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_cpy_34_unionType myUnion;
     data = NULL;
     /* FLAW: Did not leave space for a null terminator */
-    data = (wchar_t *)malloc(10*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(10*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     myUnion.unionFirst = data;
     {
@@ -63,7 +71,7 @@ static void goodG2B()
     CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_cpy_34_unionType myUnion;
     data = NULL;
     /* FIX: Allocate space for a null terminator */
-    data = (wchar_t *)malloc((10+1)*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc((10+1)*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     myUnion.unionFirst = data;
     {

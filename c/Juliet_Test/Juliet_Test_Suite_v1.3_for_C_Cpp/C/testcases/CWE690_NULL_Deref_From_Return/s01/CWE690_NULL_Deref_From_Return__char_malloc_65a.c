@@ -6,7 +6,7 @@ Template File: source-sinks-65a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using malloc()
+ * BadSource: malloc Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -21,6 +21,14 @@ Template File: source-sinks-65a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE690_NULL_Deref_From_Return__char_malloc_65b_badSink(char * data);
 
 void CWE690_NULL_Deref_From_Return__char_malloc_65_bad()
@@ -30,7 +38,7 @@ void CWE690_NULL_Deref_From_Return__char_malloc_65_bad()
     void (*funcPtr) (char *) = CWE690_NULL_Deref_From_Return__char_malloc_65b_badSink;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (char *)malloc(20*sizeof(char));
+    data = (char *)safe_malloc(20*sizeof(char));
     /* use the function pointer */
     funcPtr(data);
 }
@@ -48,7 +56,7 @@ static void goodB2G()
     void (*funcPtr) (char *) = CWE690_NULL_Deref_From_Return__char_malloc_65b_goodB2GSink;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (char *)malloc(20*sizeof(char));
+    data = (char *)safe_malloc(20*sizeof(char));
     funcPtr(data);
 }
 

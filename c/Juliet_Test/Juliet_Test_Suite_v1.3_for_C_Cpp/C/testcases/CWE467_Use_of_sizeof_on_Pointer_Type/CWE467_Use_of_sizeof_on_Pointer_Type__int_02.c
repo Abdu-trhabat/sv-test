@@ -16,6 +16,14 @@ Template File: point-flaw-02.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE467_Use_of_sizeof_on_Pointer_Type__int_02_bad()
 {
@@ -23,8 +31,8 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__int_02_bad()
     {
         {
             int * badInt = NULL;
-            /* FLAW: Using sizeof the pointer and not the data type in malloc() */
-            badInt = (int *)malloc(sizeof(badInt));
+            /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
+            badInt = (int *)safe_malloc(sizeof(badInt));
             if (badInt == NULL) {exit(-1);}
             *badInt = 5;
             printIntLine(*badInt);
@@ -49,8 +57,8 @@ static void good1()
     {
         {
             int * goodInt = NULL;
-            /* FIX: Using sizeof the data type in malloc() */
-            goodInt = (int *)malloc(sizeof(*goodInt));
+            /* FIX: Using sizeof the data type in safe_malloc() */
+            goodInt = (int *)safe_malloc(sizeof(*goodInt));
             if (goodInt == NULL) {exit(-1);}
             *goodInt = 6;
             printIntLine(*goodInt);
@@ -66,8 +74,8 @@ static void good2()
     {
         {
             int * goodInt = NULL;
-            /* FIX: Using sizeof the data type in malloc() */
-            goodInt = (int *)malloc(sizeof(*goodInt));
+            /* FIX: Using sizeof the data type in safe_malloc() */
+            goodInt = (int *)safe_malloc(sizeof(*goodInt));
             if (goodInt == NULL) {exit(-1);}
             *goodInt = 6;
             printIntLine(*goodInt);

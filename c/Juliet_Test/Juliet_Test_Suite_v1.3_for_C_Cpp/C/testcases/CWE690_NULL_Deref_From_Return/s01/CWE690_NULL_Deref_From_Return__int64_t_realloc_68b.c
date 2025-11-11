@@ -6,7 +6,7 @@ Template File: source-sinks-68b.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: realloc Allocate data using realloc()
+ * BadSource: realloc Allocate data using safe_realloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -23,6 +23,14 @@ extern int64_t * CWE690_NULL_Deref_From_Return__int64_t_realloc_68_badDataForBad
 extern int64_t * CWE690_NULL_Deref_From_Return__int64_t_realloc_68_badDataForGoodSink;
 
 #ifndef OMITBAD
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE690_NULL_Deref_From_Return__int64_t_realloc_68b_badSink()
 {

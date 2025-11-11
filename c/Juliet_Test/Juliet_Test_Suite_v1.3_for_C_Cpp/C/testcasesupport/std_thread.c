@@ -44,6 +44,14 @@ static void *internal_start(void *args)
     return NULL;
 #endif
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int stdThreadCreate(stdThreadRoutine start, void *args, stdThread *thread)
 {
@@ -56,7 +64,7 @@ int stdThreadCreate(stdThreadRoutine start, void *args, stdThread *thread)
 
     *thread = NULL;
 
-    my_thread = (stdThread)malloc(sizeof(*my_thread));
+    my_thread = (stdThread)safe_malloc(sizeof(*my_thread));
     if (my_thread == NULL) {
         return 0;
     }
@@ -136,7 +144,7 @@ int stdThreadLockCreate(stdThreadLock *lock)
 
     *lock = NULL;
 
-    my_lock = (stdThreadLock)malloc(sizeof(*my_lock));
+    my_lock = (stdThreadLock)safe_malloc(sizeof(*my_lock));
     if (my_lock == NULL) return 0;
 
 #ifdef _WIN32

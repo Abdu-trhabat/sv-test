@@ -6,7 +6,7 @@ Template File: source-sinks-68a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using malloc()
+ * BadSource: malloc Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -25,6 +25,14 @@ int * CWE690_NULL_Deref_From_Return__int_malloc_68_badDataForGoodSink;
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE690_NULL_Deref_From_Return__int_malloc_68b_badSink();
 
 void CWE690_NULL_Deref_From_Return__int_malloc_68_bad()
@@ -32,7 +40,7 @@ void CWE690_NULL_Deref_From_Return__int_malloc_68_bad()
     int * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (int *)malloc(1*sizeof(int));
+    data = (int *)safe_malloc(1*sizeof(int));
     CWE690_NULL_Deref_From_Return__int_malloc_68_badDataForBadSink = data;
     CWE690_NULL_Deref_From_Return__int_malloc_68b_badSink();
 }
@@ -50,7 +58,7 @@ static void goodB2G()
     int * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (int *)malloc(1*sizeof(int));
+    data = (int *)safe_malloc(1*sizeof(int));
     CWE690_NULL_Deref_From_Return__int_malloc_68_badDataForGoodSink = data;
     CWE690_NULL_Deref_From_Return__int_malloc_68b_goodB2GSink();
 }

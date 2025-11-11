@@ -13,6 +13,22 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include "helpers.c"
 
@@ -43,14 +59,14 @@ void stun_parse_attribute(unsigned char *p, stun_attr_t **attr) {
     return;
   }
 
-  *attr = (stun_attr_t *)calloc(1, sizeof(stun_attr_t));
+  *attr = (stun_attr_t *)safe_calloc(1, sizeof(stun_attr_t));
   if (!(*attr)) {
     printf("Out of memory!\n");
     return;
   }
   p += 4;
   (*attr)->enc_buf.size = len;
-  (*attr)->enc_buf.data = (unsigned char *)malloc(len);
+  (*attr)->enc_buf.data = (unsigned char *)safe_malloc(len);
   if (!(*attr)->enc_buf.data) {
     printf("Out of memory!\n");
     free(*attr);

@@ -6,8 +6,8 @@ Template File: sources-sink-65b.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
  * Sinks: ncpy
  *    BadSink : Copy string to data using strncpy
  * Flow Variant: 65 Data/control flow: data passed as an argument from one function to a function in a different source file called via a function pointer
@@ -19,6 +19,14 @@ Template File: sources-sink-65b.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_ncpy_65b_badSink(char * data)
 {

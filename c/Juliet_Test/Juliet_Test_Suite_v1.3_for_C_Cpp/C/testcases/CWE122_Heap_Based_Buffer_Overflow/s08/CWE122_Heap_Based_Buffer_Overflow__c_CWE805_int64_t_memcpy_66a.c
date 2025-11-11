@@ -6,8 +6,8 @@ Template File: sources-sink-66a.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
  * Sinks: memcpy
  *    BadSink : Copy int64_t array to data using memcpy
  * Flow Variant: 66 Data flow: data passed in an array from one function to another in different source files
@@ -19,6 +19,14 @@ Template File: sources-sink-66a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_memcpy_66b_badSink(int64_t * dataArray[]);
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_memcpy_66_bad()
@@ -27,7 +35,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_memcpy_66_bad()
     int64_t * dataArray[5];
     data = NULL;
     /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-    data = (int64_t *)malloc(50*sizeof(int64_t));
+    data = (int64_t *)safe_malloc(50*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* put data in array */
     dataArray[2] = data;
@@ -47,7 +55,7 @@ static void goodG2B()
     int64_t * dataArray[5];
     data = NULL;
     /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-    data = (int64_t *)malloc(100*sizeof(int64_t));
+    data = (int64_t *)safe_malloc(100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     dataArray[2] = data;
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_memcpy_66b_goodG2BSink(dataArray);

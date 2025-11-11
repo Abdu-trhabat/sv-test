@@ -1,4 +1,20 @@
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "s3.i", 3, "reach_error"); }
 
@@ -1066,16 +1082,16 @@ int main(void)
 
   {
   {
-  s = malloc (sizeof (SSL));
-  s->s3 = malloc(sizeof(struct ssl3_state_st));
+  s = safe_malloc (sizeof (SSL));
+  s->s3 = safe_malloc(sizeof(struct ssl3_state_st));
   s->s3->flags = __VERIFIER_nondet_long();
   (s->s3)->tmp.cert_req = __VERIFIER_nondet_int();
-  (s->s3)->tmp.new_cipher = malloc(sizeof(struct ssl_cipher_st));
+  (s->s3)->tmp.new_cipher = safe_malloc(sizeof(struct ssl_cipher_st));
   ((s->s3)->tmp.new_cipher)->algorithms = __VERIFIER_nondet_ulong();
   s->s3->tmp.next_state = __VERIFIER_nondet_int();
   s->bbio = (BIO *) __VERIFIER_nondet_ulong();
   s->wbio = (BIO *) __VERIFIER_nondet_ulong();
-  s->ctx = malloc(sizeof(SSL_CTX));
+  s->ctx = safe_malloc(sizeof(SSL_CTX));
   (s->ctx)->info_callback = (void (*)()) __VERIFIER_nondet_ulong();
   s->state = 12292;
   s->version = __VERIFIER_nondet_int();
@@ -1118,7 +1134,7 @@ int ssl3_connect(SSL *s )
   cb = (void (*)())((void *)0);
   ret = -1;
   skip = 0;
-  tmp___0 = (int*)malloc(sizeof(int));
+  tmp___0 = (int*)safe_malloc(sizeof(int));
   *tmp___0 = 0;
   if ((unsigned long )s->info_callback != (unsigned long )((void *)0)) {
     cb = s->info_callback;
@@ -1665,7 +1681,7 @@ SSL_METHOD *sslv3_base_method() {
   // so we initialize them to null.
   // The only other fiels are "version" (initialized nondeterministically)
   // and "ssl3_enc_method" (unused, set to null).
-  SSL_METHOD *method = calloc(1, sizeof(SSL_METHOD));
+  SSL_METHOD *method = safe_calloc(1, sizeof(SSL_METHOD));
   method->version = __VERIFIER_nondet_int();
   return method;
 }

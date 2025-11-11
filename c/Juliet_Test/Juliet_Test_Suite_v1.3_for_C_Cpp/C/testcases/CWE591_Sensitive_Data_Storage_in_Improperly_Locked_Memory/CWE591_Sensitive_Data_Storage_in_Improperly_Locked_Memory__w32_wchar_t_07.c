@@ -28,6 +28,14 @@ Template File: sources-sink-07.tmpl.c
 static int staticFive = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_07_bad()
 {
@@ -36,7 +44,7 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_07_b
     password = L"";
     if(staticFive==5)
     {
-        password = (wchar_t *)malloc(100*sizeof(wchar_t));
+        password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -88,7 +96,7 @@ static void goodG2B1()
     }
     else
     {
-        password = (wchar_t *)malloc(100*sizeof(wchar_t));
+        password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -136,7 +144,7 @@ static void goodG2B2()
     password = L"";
     if(staticFive==5)
     {
-        password = (wchar_t *)malloc(100*sizeof(wchar_t));
+        password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");

@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_memcpy_22b.c
 Label Definition File: CWE122_Heap_Based_Buffer_Overflow__c_CWE805.label.xml
@@ -6,8 +14,8 @@ Template File: sources-sink-22b.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
  * Sink: memcpy
  *    BadSink : Copy int array to data using memcpy
  * Flow Variant: 22 Control flow: Flow controlled by value of a global variable. Sink functions are in a separate file from sources.
@@ -26,7 +34,7 @@ int * CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_memcpy_22_badSource(int * 
     if(CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_memcpy_22_badGlobal)
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-        data = (int *)malloc(50*sizeof(int));
+        data = (int *)safe_malloc(50*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -51,7 +59,7 @@ int * CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_memcpy_22_goodG2B1Source(i
     else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (int *)malloc(100*sizeof(int));
+        data = (int *)safe_malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -63,7 +71,7 @@ int * CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_memcpy_22_goodG2B2Source(i
     if(CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_memcpy_22_goodG2B2Global)
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (int *)malloc(100*sizeof(int));
+        data = (int *)safe_malloc(100*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;

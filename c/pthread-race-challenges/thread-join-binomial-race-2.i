@@ -1012,6 +1012,14 @@ extern int pthread_atfork (void (*__prepare) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -1038,7 +1046,7 @@ void *thread(void *arg) {
 int main() {
   threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 1);
-  tids = malloc(threads_total * sizeof(pthread_t));
+  tids = safe_malloc(threads_total * sizeof(pthread_t));
   for (int i = threads_total - 1; i >= 0; i--) {
     pthread_create(&tids[i], ((void *)0), &thread, (void*)i);
   }

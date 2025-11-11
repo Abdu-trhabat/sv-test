@@ -18,6 +18,14 @@
 #include "../../src/seq.c"
 #endif
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include<assert.h>
 #include<string.h>
 #include "util.h"
@@ -36,8 +44,8 @@ static void call_cmp_antisymmetry() {
     assume_or_exit(num_digits_a > 0 && num_digits_a < MAX_BUFFER_SIZE - 1);
     assume_or_exit(num_digits_b > 0 && num_digits_b < MAX_BUFFER_SIZE - 1);
 
-    char *buffer_a = malloc(num_digits_a+1);
-    char *buffer_b = malloc(num_digits_b+1);
+    char *buffer_a = safe_malloc(num_digits_a+1);
+    char *buffer_b = safe_malloc(num_digits_b+1);
     assume_or_exit(buffer_a != NULL && buffer_b != NULL);
 
     // Generate valid decimal strings that contain arbitrary digits

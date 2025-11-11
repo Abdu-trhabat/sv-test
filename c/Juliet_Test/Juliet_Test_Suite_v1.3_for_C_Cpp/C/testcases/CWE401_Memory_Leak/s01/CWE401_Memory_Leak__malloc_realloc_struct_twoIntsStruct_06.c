@@ -8,7 +8,7 @@ Template File: point-flaw-06.tmpl.c
  * CWE: 401 Memory Leak
  * Sinks:
  *    GoodSink: Ensure the memory block pointed to by data is always freed
- *    BadSink : malloc() and use then realloc() and use data before free()
+ *    BadSink : safe_malloc() and use then safe_realloc() and use data before free()
  * Flow Variant: 06 Control flow: if(STATIC_CONST_FIVE==5) and if(STATIC_CONST_FIVE!=5)
  *
  * */
@@ -25,20 +25,36 @@ Template File: point-flaw-06.tmpl.c
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE401_Memory_Leak__malloc_realloc_struct_twoIntsStruct_06_bad()
 {
     if(STATIC_CONST_FIVE==5)
     {
         {
-            struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
+            struct _twoIntsStruct * data = (struct _twoIntsStruct *)safe_malloc(100*sizeof(struct _twoIntsStruct));
             if (data == NULL) {exit(-1);}
             /* Initialize and make use of data */
             data[0].intOne = 0;
             data[0].intTwo = 0;
             printStructLine((twoIntsStruct *)&data[0]);
-            /* FLAW: If realloc() fails, the initial memory block will not be freed() */
-            data = (struct _twoIntsStruct *)realloc(data, (130000)*sizeof(struct _twoIntsStruct));
+            /* FLAW: If safe_realloc() fails, the initial memory block will not be freed() */
+            data = (struct _twoIntsStruct *)safe_realloc(data, (130000)*sizeof(struct _twoIntsStruct));
             if (data != NULL)
             {
                 /* Reinitialize and make use of data */
@@ -66,16 +82,16 @@ static void good1()
     else
     {
         {
-            struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
+            struct _twoIntsStruct * data = (struct _twoIntsStruct *)safe_malloc(100*sizeof(struct _twoIntsStruct));
             if (data == NULL) {exit(-1);}
             struct _twoIntsStruct * tmpData;
             /* Initialize and make use of data */
             data[0].intOne = 0;
             data[0].intTwo = 0;
             printStructLine((twoIntsStruct *)&data[0]);
-            tmpData = (struct _twoIntsStruct *)realloc(data, (130000)*sizeof(struct _twoIntsStruct));
-            /* FIX: Ensure realloc() was successful before assigning data to the memory block
-            * allocated with realloc() */
+            tmpData = (struct _twoIntsStruct *)safe_realloc(data, (130000)*sizeof(struct _twoIntsStruct));
+            /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
+            * allocated with safe_realloc() */
             if (tmpData != NULL)
             {
                 data = tmpData;
@@ -95,16 +111,16 @@ static void good2()
     if(STATIC_CONST_FIVE==5)
     {
         {
-            struct _twoIntsStruct * data = (struct _twoIntsStruct *)malloc(100*sizeof(struct _twoIntsStruct));
+            struct _twoIntsStruct * data = (struct _twoIntsStruct *)safe_malloc(100*sizeof(struct _twoIntsStruct));
             if (data == NULL) {exit(-1);}
             struct _twoIntsStruct * tmpData;
             /* Initialize and make use of data */
             data[0].intOne = 0;
             data[0].intTwo = 0;
             printStructLine((twoIntsStruct *)&data[0]);
-            tmpData = (struct _twoIntsStruct *)realloc(data, (130000)*sizeof(struct _twoIntsStruct));
-            /* FIX: Ensure realloc() was successful before assigning data to the memory block
-            * allocated with realloc() */
+            tmpData = (struct _twoIntsStruct *)safe_realloc(data, (130000)*sizeof(struct _twoIntsStruct));
+            /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
+            * allocated with safe_realloc() */
             if (tmpData != NULL)
             {
                 data = tmpData;

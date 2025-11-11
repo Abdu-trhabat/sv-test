@@ -5,6 +5,14 @@
 // Function: __pm_runtime_idle
 // with type: int __pm_runtime_idle(struct device *, int)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int __pm_runtime_idle(struct device *arg0, int arg1) {
   // Simple type
@@ -64,7 +72,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: kmem_cache_alloc

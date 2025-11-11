@@ -26,6 +26,22 @@
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include <unistd.h>
 #include <utmp.h>
@@ -282,7 +298,7 @@ static void bb_verror_msg(const char *s, va_list p, const char *strerr)
   return_value_strlen$4=strlen(msg_eol);
   msgeol_len = (signed int)return_value_strlen$4;
   void *return_value_realloc$5;
-  return_value_realloc$5=realloc((void *)msg, (unsigned long int)(applet_len + used + strerr_len + msgeol_len + 3));
+  return_value_realloc$5=safe_realloc((void *)msg, (unsigned long int)(applet_len + used + strerr_len + msgeol_len + 3));
   msg1 = (char *)return_value_realloc$5;
   signed int tmp_post$6;
   signed int tmp_post$7;
@@ -1240,7 +1256,7 @@ static struct passwd * xgetpwnam(const char *name)
 static void * xmalloc(unsigned long int size)
 {
   void *ptr;
-  ptr=malloc(size);
+  ptr=safe_malloc(size);
   if(ptr == NULL)
   {
     if(!(size == 0ul))
@@ -1254,7 +1270,7 @@ static void * xmalloc(unsigned long int size)
 // file include/libbb.h line 697
 static void * xrealloc(void *ptr, unsigned long int size)
 {
-  ptr=realloc(ptr, size);
+  ptr=safe_realloc(ptr, size);
   if(ptr == NULL)
   {
     if(!(size == 0ul))

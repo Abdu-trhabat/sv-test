@@ -23,7 +23,7 @@ static char * helperBad(char * aString)
     if (aString != NULL)
     {
         i = strlen(aString);
-        reversedString = (char *) malloc(i+1);
+        reversedString = (char *) safe_malloc(i+1);
         if (reversedString == NULL) {exit(-1);}
         for (j = 0; j < i; j++)
         {
@@ -48,7 +48,7 @@ static char * helperGood(char * aString)
     if (aString != NULL)
     {
         i = strlen(aString);
-        reversedString = (char *) malloc(i+1);
+        reversedString = (char *) safe_malloc(i+1);
         if (reversedString == NULL) {exit(-1);}
         for (j = 0; j < i; j++)
         {
@@ -70,6 +70,14 @@ static char * helperGood(char * aString)
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE416_Use_After_Free__return_freed_ptr_06_bad()
 {

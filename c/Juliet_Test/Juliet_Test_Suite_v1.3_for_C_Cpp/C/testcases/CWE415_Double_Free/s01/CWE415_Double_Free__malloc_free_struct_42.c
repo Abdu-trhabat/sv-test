@@ -6,8 +6,8 @@ Template File: sources-sinks-42.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using malloc() and Deallocate data using free()
- * GoodSource: Allocate data using malloc()
+ * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using safe_malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -23,12 +23,20 @@ Template File: sources-sinks-42.tmpl.c
 
 static twoIntsStruct * badSource(twoIntsStruct * data)
 {
-    data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE415_Double_Free__malloc_free_struct_42_bad()
 {
@@ -47,7 +55,7 @@ void CWE415_Double_Free__malloc_free_struct_42_bad()
 /* goodG2B uses the GoodSource with the BadSink */
 static twoIntsStruct * goodG2BSource(twoIntsStruct * data)
 {
-    data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* FIX: Do NOT free data in the source - the bad sink frees data */
     return data;
@@ -66,7 +74,7 @@ static void goodG2B()
 /* goodB2G uses the BadSource with the GoodSink */
 static twoIntsStruct * goodB2GSource(twoIntsStruct * data)
 {
-    data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);

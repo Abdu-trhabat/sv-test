@@ -24,6 +24,14 @@ typedef struct _CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_67_structType
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_67b_badSink(CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_67_structType myStruct);
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_67_bad()
@@ -32,7 +40,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_67_bad()
     CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_67_structType myStruct;
     data = NULL;
     /* FLAW: Allocate memory without using sizeof(int) */
-    data = (int *)malloc(10);
+    data = (int *)safe_malloc(10);
     if (data == NULL) {exit(-1);}
     myStruct.structFirst = data;
     CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_67b_badSink(myStruct);
@@ -51,7 +59,7 @@ static void goodG2B()
     CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_67_structType myStruct;
     data = NULL;
     /* FIX: Allocate memory using sizeof(int) */
-    data = (int *)malloc(10*sizeof(int));
+    data = (int *)safe_malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
     myStruct.structFirst = data;
     CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_67b_goodG2BSink(myStruct);

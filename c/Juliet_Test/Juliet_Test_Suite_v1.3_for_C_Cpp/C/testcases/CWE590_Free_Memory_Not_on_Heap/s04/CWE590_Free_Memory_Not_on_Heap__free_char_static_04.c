@@ -26,6 +26,14 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE590_Free_Memory_Not_on_Heap__free_char_static_04_bad()
 {
@@ -64,10 +72,10 @@ static void goodG2B1()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            char * dataBuffer = (char *)malloc(100*sizeof(char));
+            char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
             if (dataBuffer == NULL)
             {
-                printLine("malloc() failed");
+                printLine("safe_malloc() failed");
                 exit(1);
             }
             memset(dataBuffer, 'A', 100-1); /* fill with 'A's */
@@ -89,10 +97,10 @@ static void goodG2B2()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            char * dataBuffer = (char *)malloc(100*sizeof(char));
+            char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
             if (dataBuffer == NULL)
             {
-                printLine("malloc() failed");
+                printLine("safe_malloc() failed");
                 exit(1);
             }
             memset(dataBuffer, 'A', 100-1); /* fill with 'A's */

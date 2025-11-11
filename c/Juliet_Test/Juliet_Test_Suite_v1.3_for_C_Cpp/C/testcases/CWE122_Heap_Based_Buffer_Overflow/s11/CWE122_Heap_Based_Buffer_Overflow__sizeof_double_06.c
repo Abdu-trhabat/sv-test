@@ -21,6 +21,14 @@ Template File: sources-sink-06.tmpl.c
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_double_06_bad()
 {
@@ -30,8 +38,8 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_double_06_bad()
     if(STATIC_CONST_FIVE==5)
     {
         /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-        /* FLAW: Using sizeof the pointer and not the data type in malloc() */
-        data = (double *)malloc(sizeof(data));
+        /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
+        data = (double *)safe_malloc(sizeof(data));
         if (data == NULL) {exit(-1);}
         *data = 1.7E300;
     }
@@ -57,8 +65,8 @@ static void goodG2B1()
     }
     else
     {
-        /* FIX: Using sizeof the data type in malloc() */
-        data = (double *)malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in safe_malloc() */
+        data = (double *)safe_malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         *data = 1.7E300;
     }
@@ -75,8 +83,8 @@ static void goodG2B2()
     data = NULL;
     if(STATIC_CONST_FIVE==5)
     {
-        /* FIX: Using sizeof the data type in malloc() */
-        data = (double *)malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in safe_malloc() */
+        data = (double *)safe_malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         *data = 1.7E300;
     }

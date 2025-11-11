@@ -1,4 +1,12 @@
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -380,8 +388,8 @@ extern void __malloc_check_init (void) __attribute__ ((__nothrow__ , __leaf__)) 
 
 int CURRENTLY_UNSAFE;
 int main(void) {
- int * p1 = malloc(sizeof(int));
- int * p2 = malloc(sizeof(int));
+ int * p1 = safe_malloc(sizeof(int));
+ int * p2 = safe_malloc(sizeof(int));
  if(p1!=0 && p2!=0) {
   __VERIFIER_assert(p1!=p2);
  }

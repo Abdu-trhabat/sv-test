@@ -1,3 +1,11 @@
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_22b.c
 Label Definition File: CWE122_Heap_Based_Buffer_Overflow__CWE131.label.xml
@@ -26,7 +34,7 @@ int * CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_22_badSource(int * data)
     if(CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_22_badGlobal)
     {
         /* FLAW: Allocate memory without using sizeof(int) */
-        data = (int *)malloc(10);
+        data = (int *)safe_malloc(10);
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -51,7 +59,7 @@ int * CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_22_goodG2B1Source(int * dat
     else
     {
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)malloc(10*sizeof(int));
+        data = (int *)safe_malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -63,7 +71,7 @@ int * CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_22_goodG2B2Source(int * dat
     if(CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_22_goodG2B2Global)
     {
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)malloc(10*sizeof(int));
+        data = (int *)safe_malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;

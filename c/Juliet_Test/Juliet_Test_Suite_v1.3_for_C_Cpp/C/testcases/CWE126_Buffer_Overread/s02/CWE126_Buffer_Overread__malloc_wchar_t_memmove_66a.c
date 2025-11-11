@@ -21,6 +21,14 @@ Template File: sources-sink-66a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE126_Buffer_Overread__malloc_wchar_t_memmove_66b_badSink(wchar_t * dataArray[]);
 
 void CWE126_Buffer_Overread__malloc_wchar_t_memmove_66_bad()
@@ -29,7 +37,7 @@ void CWE126_Buffer_Overread__malloc_wchar_t_memmove_66_bad()
     wchar_t * dataArray[5];
     data = NULL;
     /* FLAW: Use a small buffer */
-    data = (wchar_t *)malloc(50*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     wmemset(data, L'A', 50-1); /* fill with 'A's */
     data[50-1] = L'\0'; /* null terminate */
@@ -51,7 +59,7 @@ static void goodG2B()
     wchar_t * dataArray[5];
     data = NULL;
     /* FIX: Use a large buffer */
-    data = (wchar_t *)malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     wmemset(data, L'A', 100-1); /* fill with 'A's */
     data[100-1] = L'\0'; /* null terminate */

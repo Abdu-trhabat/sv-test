@@ -26,6 +26,14 @@ static void badSink(twoIntsStruct * data)
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
     free(data);
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE590_Free_Memory_Not_on_Heap__free_struct_alloca_44_bad()
 {
@@ -69,10 +77,10 @@ static void goodG2B()
     data = NULL; /* Initialize data */
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
-        twoIntsStruct * dataBuffer = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
+        twoIntsStruct * dataBuffer = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
         if (dataBuffer == NULL)
         {
-            printLine("malloc() failed");
+            printLine("safe_malloc() failed");
             exit(1);
         }
         {

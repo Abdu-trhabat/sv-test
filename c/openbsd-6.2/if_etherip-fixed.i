@@ -131,6 +131,14 @@ typedef __clock_t clock_t;
 typedef __clockid_t clockid_t;
 typedef __pid_t pid_t;
 typedef __size_t size_t;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 typedef __ssize_t ssize_t;
 typedef __time_t time_t;
 typedef __timer_t timer_t;
@@ -420,7 +428,7 @@ void __VERIFIER_atomic_begin(void);
 void __VERIFIER_atomic_end(void);
 extern void *malloc(size_t);
 void *openbsd_kernel_malloc(size_t size, int type, int flags) {
-  return malloc(size);
+  return safe_malloc(size);
 }
 extern void free(void *);
 void openbsd_kernel_free(void *addr, int type, size_t size) { free(addr); }

@@ -30,11 +30,19 @@ Template File: sources-sink-22a.tmpl.c
 int CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_badGlobal = 0;
 
 char * CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_badSource(char * data);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_bad()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_badGlobal = 1; /* true */
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_badSource(data);
@@ -61,7 +69,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_goodG2B1Sour
 static void goodG2B1()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_goodG2B1Global = 0; /* false */
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_goodG2B1Source(data);
@@ -80,7 +88,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_goodG2B2Sour
 static void goodG2B2()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_goodG2B2Global = 1; /* true */
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_22_goodG2B2Source(data);

@@ -12,6 +12,14 @@
 
 #include <string.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <stdio.h>
 #include "helpers.c"
 
@@ -32,7 +40,7 @@ void decToString(char *input, char *string) {
 
 int main() {
   char* randomString = getRandomString(50, 500);
-  char* converted = calloc(strlen(randomString) + 1, sizeof(char));
+  char* converted = safe_calloc(strlen(randomString) + 1, sizeof(char));
   if (converted == NULL) {
     printf("Out of memory\n");
     free(randomString);

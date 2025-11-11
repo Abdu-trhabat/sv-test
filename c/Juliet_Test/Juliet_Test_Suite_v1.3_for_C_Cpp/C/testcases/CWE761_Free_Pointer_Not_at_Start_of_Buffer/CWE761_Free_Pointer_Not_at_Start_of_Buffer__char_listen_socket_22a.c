@@ -43,13 +43,21 @@ Template File: source-sinks-22a.tmpl.c
 
 /* The global variable below is used to drive control flow in the sink function */
 int CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_22_badGlobal = 0;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_22_badSink(char * data);
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_22_bad()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {
@@ -149,7 +157,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_22_goodB2G1S
 static void goodB2G1()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {
@@ -241,7 +249,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_22_goodB2G2S
 static void goodB2G2()
 {
     char * data;
-    data = (char *)malloc(100*sizeof(char));
+    data = (char *)safe_malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {

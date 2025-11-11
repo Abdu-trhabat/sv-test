@@ -23,7 +23,7 @@ Template File: sources-sink-42.tmpl.c
 static char * badSource(char * data)
 {
     {
-        char * dataBuffer = (char *)malloc(100*sizeof(char));
+        char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}
         memset(dataBuffer, 'A', 100-1);
         dataBuffer[100-1] = '\0';
@@ -32,6 +32,14 @@ static char * badSource(char * data)
     }
     return data;
 }
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE124_Buffer_Underwrite__malloc_char_ncpy_42_bad()
 {
@@ -48,7 +56,7 @@ void CWE124_Buffer_Underwrite__malloc_char_ncpy_42_bad()
         data[100-1] = '\0';
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by malloc() so can't safely call free() on it */
+         * returned by safe_malloc() so can't safely call free() on it */
     }
 }
 
@@ -59,7 +67,7 @@ void CWE124_Buffer_Underwrite__malloc_char_ncpy_42_bad()
 static char * goodG2BSource(char * data)
 {
     {
-        char * dataBuffer = (char *)malloc(100*sizeof(char));
+        char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}
         memset(dataBuffer, 'A', 100-1);
         dataBuffer[100-1] = '\0';
@@ -85,7 +93,7 @@ static void goodG2B()
         data[100-1] = '\0';
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by malloc() so can't safely call free() on it */
+         * returned by safe_malloc() so can't safely call free() on it */
     }
 }
 

@@ -18,12 +18,20 @@ Template File: sources-sinks-53d.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_large_53d_badSink(int data)
 {
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -58,7 +66,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_large_53d_goodG2BSink(int data)
 {
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -89,7 +97,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_large_53d_goodB2GSink(int data)
 {
     {
         int i;
-        int * buffer = (int *)malloc(10 * sizeof(int));
+        int * buffer = (int *)safe_malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)

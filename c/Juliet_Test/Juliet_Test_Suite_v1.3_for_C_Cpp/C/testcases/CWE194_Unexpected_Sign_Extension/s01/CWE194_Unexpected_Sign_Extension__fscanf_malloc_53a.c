@@ -9,7 +9,7 @@ Template File: sources-sink-53a.tmpl.c
  * BadSource: fscanf Read data from the console using fscanf()
  * GoodSource: Positive integer
  * Sink: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 53 Data flow: data passed as an argument from one function through two others to a fourth; all four functions are in different source files
  *
  * */
@@ -19,6 +19,14 @@ Template File: sources-sink-53a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void CWE194_Unexpected_Sign_Extension__fscanf_malloc_53b_badSink(short data);
 
 void CWE194_Unexpected_Sign_Extension__fscanf_malloc_53_bad()

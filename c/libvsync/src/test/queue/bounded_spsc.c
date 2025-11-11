@@ -6,6 +6,14 @@
 #include <pthread.h>
 #include <vsync/common/assert.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <vsync/queue/bounded_spsc.h>
 #include <vsync/atomic.h>
 #include <test/thread_launcher.h>
@@ -61,7 +69,7 @@ main(void)
 {
     bounded_spsc_init(&g_queue, g_buf, QUEUE_SIZE);
     for (vsize_t i = 0; i < VALUES; i++) {
-        g_points[i] = malloc(sizeof(point_t));
+        g_points[i] = safe_malloc(sizeof(point_t));
         if (g_points[i] == NULL) {
             ASSERT(0 && "allocation failed");
         }

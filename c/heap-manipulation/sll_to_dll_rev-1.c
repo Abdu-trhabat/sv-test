@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -26,7 +34,7 @@ struct node {
 
 static struct node* alloc_node(void)
 {
-    struct node *ptr = malloc(sizeof *ptr);
+    struct node *ptr = safe_malloc(sizeof *ptr);
     if (!ptr)
         abort();
 

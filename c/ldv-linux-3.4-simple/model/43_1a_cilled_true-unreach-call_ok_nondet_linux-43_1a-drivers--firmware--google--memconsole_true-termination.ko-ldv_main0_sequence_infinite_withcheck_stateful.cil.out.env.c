@@ -5,6 +5,14 @@
 // Function: dmi_check_system
 // with type: int dmi_check_system(const struct dmi_system_id *)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int dmi_check_system(const struct dmi_system_id *arg0) {
   // Simple type
@@ -15,7 +23,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Function: kmem_cache_alloc

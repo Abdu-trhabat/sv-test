@@ -29,6 +29,14 @@ extern void exit (int __status) __attribute__ ((__nothrow__ )) __attribute__ ((_
 
 extern unsigned char __VERIFIER_nondet_uchar();
 extern size_t __VERIFIER_nondet_size_t();
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void reach_error() {
     ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "/tmp/fv-intermediate-xk1kodhw/sources/seq/formal/includes/util.h", 14, __extension__ __PRETTY_FUNCTION__); }));
 }
@@ -574,8 +582,8 @@ static void call_cmp_antisymmetry() {
     size_t num_digits_b = __VERIFIER_nondet_size_t();
     assume_or_exit(num_digits_a > 0 && num_digits_a < 200 - 1);
     assume_or_exit(num_digits_b > 0 && num_digits_b < 200 - 1);
-    char *buffer_a = malloc(num_digits_a+1);
-    char *buffer_b = malloc(num_digits_b+1);
+    char *buffer_a = safe_malloc(num_digits_a+1);
+    char *buffer_b = safe_malloc(num_digits_b+1);
     assume_or_exit(buffer_a != ((void*)0) && buffer_b != ((void*)0));
     for (unsigned char i = 0; i < num_digits_a; i++) {
         buffer_a[i] = gen_decimal_digit();

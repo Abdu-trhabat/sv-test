@@ -21,6 +21,14 @@ Template File: point-flaw-06.tmpl.c
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE467_Use_of_sizeof_on_Pointer_Type__char_06_bad()
 {
@@ -28,8 +36,8 @@ void CWE467_Use_of_sizeof_on_Pointer_Type__char_06_bad()
     {
         {
             char * badChar = NULL;
-            /* FLAW: Using sizeof the pointer and not the data type in malloc() */
-            badChar = (char *)malloc(sizeof(badChar));
+            /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
+            badChar = (char *)safe_malloc(sizeof(badChar));
             if (badChar == NULL) {exit(-1);}
             *badChar = 'B';
             printHexCharLine(*badChar);
@@ -54,8 +62,8 @@ static void good1()
     {
         {
             char * goodChar = NULL;
-            /* FIX: Using sizeof the data type in malloc() */
-            goodChar = (char *)malloc(sizeof(*goodChar));
+            /* FIX: Using sizeof the data type in safe_malloc() */
+            goodChar = (char *)safe_malloc(sizeof(*goodChar));
             if (goodChar == NULL) {exit(-1);}
             *goodChar = 'G';
             printHexCharLine(*goodChar);
@@ -71,8 +79,8 @@ static void good2()
     {
         {
             char * goodChar = NULL;
-            /* FIX: Using sizeof the data type in malloc() */
-            goodChar = (char *)malloc(sizeof(*goodChar));
+            /* FIX: Using sizeof the data type in safe_malloc() */
+            goodChar = (char *)safe_malloc(sizeof(*goodChar));
             if (goodChar == NULL) {exit(-1);}
             *goodChar = 'G';
             printHexCharLine(*goodChar);

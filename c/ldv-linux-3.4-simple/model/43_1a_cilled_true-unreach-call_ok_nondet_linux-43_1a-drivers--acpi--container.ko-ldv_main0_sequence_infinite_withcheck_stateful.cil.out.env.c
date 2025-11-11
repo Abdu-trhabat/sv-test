@@ -5,6 +5,14 @@
 // Function: acpi_bus_add
 // with type: int acpi_bus_add(struct acpi_device **, struct acpi_device *, acpi_handle , int)
 // with return type: int
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 int __VERIFIER_nondet_int(void);
 int acpi_bus_add(struct acpi_device **arg0, struct acpi_device *arg1, acpi_handle arg2, int arg3) {
   // Simple type
@@ -149,7 +157,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 // Skip function: free

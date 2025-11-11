@@ -9,7 +9,7 @@ Template File: sources-sink-05.tmpl.c
  * BadSource: negative Set data to a fixed negative number
  * GoodSource: Positive integer
  * Sink: malloc
- *    BadSink : Allocate memory using malloc() with the size of data
+ *    BadSink : Allocate memory using safe_malloc() with the size of data
  * Flow Variant: 05 Control flow: if(staticTrue) and if(staticFalse)
  *
  * */
@@ -24,6 +24,14 @@ static int staticTrue = 1; /* true */
 static int staticFalse = 0; /* false */
 
 #ifndef OMITBAD
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__negative_malloc_05_bad()
 {
@@ -38,9 +46,9 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__negative_malloc_05_bad()
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {
-        /* POTENTIAL FLAW: malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
-         * the conversion will cause malloc() to allocate a very large amount of data or fail */
-        char * dataBuffer = (char *)malloc(data);
+        /* POTENTIAL FLAW: safe_malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
+         * the conversion will cause safe_malloc() to allocate a very large amount of data or fail */
+        char * dataBuffer = (char *)safe_malloc(data);
         if (dataBuffer == NULL) {exit(-1);}
         /* Do something with dataBuffer */
         memset(dataBuffer, 'A', data-1);
@@ -73,9 +81,9 @@ static void goodG2B1()
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {
-        /* POTENTIAL FLAW: malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
-         * the conversion will cause malloc() to allocate a very large amount of data or fail */
-        char * dataBuffer = (char *)malloc(data);
+        /* POTENTIAL FLAW: safe_malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
+         * the conversion will cause safe_malloc() to allocate a very large amount of data or fail */
+        char * dataBuffer = (char *)safe_malloc(data);
         if (dataBuffer == NULL) {exit(-1);}
         /* Do something with dataBuffer */
         memset(dataBuffer, 'A', data-1);
@@ -99,9 +107,9 @@ static void goodG2B2()
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {
-        /* POTENTIAL FLAW: malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
-         * the conversion will cause malloc() to allocate a very large amount of data or fail */
-        char * dataBuffer = (char *)malloc(data);
+        /* POTENTIAL FLAW: safe_malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
+         * the conversion will cause safe_malloc() to allocate a very large amount of data or fail */
+        char * dataBuffer = (char *)safe_malloc(data);
         if (dataBuffer == NULL) {exit(-1);}
         /* Do something with dataBuffer */
         memset(dataBuffer, 'A', data-1);
