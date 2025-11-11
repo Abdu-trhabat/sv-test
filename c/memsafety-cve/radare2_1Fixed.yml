@@ -5,6 +5,7 @@ input_files: 'radare2_1Fixed.i'
 properties:
   - property_file: ../properties/valid-memsafety.prp
     expected_verdict: true
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C

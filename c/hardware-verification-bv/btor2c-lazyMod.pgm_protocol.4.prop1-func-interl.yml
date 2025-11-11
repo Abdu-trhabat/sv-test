@@ -13,6 +13,7 @@ input_files: 'btor2c-lazyMod.pgm_protocol.4.prop1-func-interl.c'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
+  - property_file: ../properties/coverage-branches.prp
 
 options:
   language: C
