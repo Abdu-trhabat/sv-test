@@ -22,7 +22,7 @@ if [ -z "$property" -o -z "$task" ]; then
   exit 1
 fi
 
-for prp in $(yq --raw-output "select(.properties != null) | .properties[].property_file" "$task" ); do
+for prp in $(yq --raw-output "select(.properties? != null) | .properties[].property_file" "$task" ); do
   if [ $property -ef "$(dirname "$task")/$prp" ]; then
     echo "$task"
     break
