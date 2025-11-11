@@ -27,10 +27,5 @@ if [ -z "$property" ]; then
 fi
 
 for task in $(find "$directory" -name "*.yml"); do
-  for prp in $(yq --raw-output "select(.properties != null) | .properties[].property_file" "$task" ); do
-    if [ $property -ef "$(dirname "$task")/$prp" ]; then
-      echo "$task"
-      break
-    fi
-  done
+  "$(dirname "$0")"/match_task_for_property.sh "$property" "$task"
 done
