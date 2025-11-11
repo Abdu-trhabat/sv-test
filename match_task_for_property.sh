@@ -3,7 +3,7 @@
 # This file is part of the SV-Benchmarks collection of verification tasks:
 # https://github.com/sosy-lab/sv-benchmarks
 #
-# SPDX-FileCopyrightText: 2019-2020 Dirk Beyer
+# SPDX-FileCopyrightText: 2019-2025 Dirk Beyer
 #
 # SPDX-License-Identifier: Apache-2.0
 
