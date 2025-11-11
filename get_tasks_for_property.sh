@@ -26,6 +26,5 @@ if [ -z "$property" ]; then
   exit 1
 fi
 
-for task in $(find "$directory" -name "*.yml"); do
-  "$(dirname "$0")"/match_task_for_property.sh "$property" "$task"
-done
+find "$directory" -name "*.yml" \
+	| xargs --max-proc=$(nproc) --replace={} "$(dirname "$0")"/match_task_for_property.sh "$property" {}
