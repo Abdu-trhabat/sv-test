@@ -3,7 +3,7 @@
 # This file is part of the SV-Benchmarks collection of verification tasks:
 # https://github.com/sosy-lab/sv-benchmarks
 #
-# SPDX-FileCopyrightText: 2019-2020 Dirk Beyer
+# SPDX-FileCopyrightText: 2019-2025 Dirk Beyer
 #
 # SPDX-License-Identifier: Apache-2.0
 
@@ -18,9 +18,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# Make recursive globbing work
-shopt -s globstar
-
 property=${1:-}
 directory=${2:-./}
 
@@ -29,11 +26,5 @@ if [ -z "$property" ]; then
   exit 1
 fi
 
-for task in "$directory"/**/*.yml; do
-  for prp in $(yq --raw-output "select(.properties != null) | .properties[].property_file" "$task" ); do
-    if [ $property -ef "$(dirname "$task")/$prp" ]; then
-      echo "$task"
-      break
-    fi
-  done
-done
+find "$directory" -name "*.yml" \
+	| xargs --max-proc=$(nproc) --replace={} "$(dirname "$0")"/match_task_for_property.sh "$property" {}
