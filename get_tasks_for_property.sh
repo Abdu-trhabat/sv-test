@@ -18,9 +18,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# Make recursive globbing work
-shopt -s globstar
-
 property=${1:-}
 directory=${2:-./}
 
@@ -29,7 +26,7 @@ if [ -z "$property" ]; then
   exit 1
 fi
 
-for task in "$directory"/**/*.yml; do
+for task in $(find "$directory" -name "*.yml"); do
   for prp in $(yq --raw-output "select(.properties != null) | .properties[].property_file" "$task" ); do
     if [ $property -ef "$(dirname "$task")/$prp" ]; then
       echo "$task"
