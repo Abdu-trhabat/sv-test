@@ -12,6 +12,14 @@ void reach_error() { assert(0); }
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 typedef struct TListNode
 {
@@ -27,18 +35,18 @@ typedef struct TTreeNode
 
 int main()
 {
-	TreeNode* tree = malloc(sizeof(*tree));
+	TreeNode* tree = safe_malloc(sizeof(*tree));
 	TreeNode* tmp;
 	ListNode* tmpList;
 
 	tree->left  = NULL;
 	tree->right = NULL;
-	tree->list = malloc(sizeof(ListNode));
+	tree->list = safe_malloc(sizeof(ListNode));
 	tree->list->next = tree->list;
 
 	while (__VERIFIER_nondet_int())
 	{
-		tmpList = malloc(sizeof(ListNode));
+		tmpList = safe_malloc(sizeof(ListNode));
 		tmpList->next = tree->list->next;
 		tree->list->next = tmpList;
 	}
@@ -62,12 +70,12 @@ int main()
 		TreeNode* newNode;
 		if ((NULL == tmp->left) && __VERIFIER_nondet_int())
 		{
-			newNode = malloc(sizeof(*newNode));
+			newNode = safe_malloc(sizeof(*newNode));
 			tmp->left = newNode;
 		}
 		else if ((NULL == tmp->right) && __VERIFIER_nondet_int())
 		{
-			newNode = malloc(sizeof(*newNode));
+			newNode = safe_malloc(sizeof(*newNode));
 			tmp->right = newNode;
 		}
 		else
@@ -77,12 +85,12 @@ int main()
 
 		newNode->left = NULL;
 		newNode->right = NULL;
-		newNode->list = malloc(sizeof(*newNode->list));
+		newNode->list = safe_malloc(sizeof(*newNode->list));
 		newNode->list->next = newNode->list;
 
 		while (__VERIFIER_nondet_int())
 		{
-			tmpList = malloc(sizeof(ListNode));
+			tmpList = safe_malloc(sizeof(ListNode));
 			tmpList->next = tree->list->next;
 			tree->list->next = tmpList;
 		}

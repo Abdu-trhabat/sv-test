@@ -18,6 +18,14 @@ extern int __VERIFIER_nondet_int();
  *
  */
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void myexit(int s) {
  _EXIT: goto _EXIT;
@@ -35,7 +43,7 @@ int main() {
     struct TreeNode* right;
   };
 
-  struct TreeNode* root = malloc(sizeof(*root)), *n;
+  struct TreeNode* root = safe_malloc(sizeof(*root)), *n;
   root->left = NULL;
   root->right = NULL;
 
@@ -48,12 +56,12 @@ int main() {
         n = n->right;
     }
     if (!n->left && __VERIFIER_nondet_int()) {
-      n->left = malloc(sizeof(*n));
+      n->left = safe_malloc(sizeof(*n));
       n->left->left = NULL;
       n->left->right = NULL;
     }
     if (!n->right && __VERIFIER_nondet_int()) {
-      n->right = malloc(sizeof(*n));
+      n->right = safe_malloc(sizeof(*n));
       n->right->left = NULL;
       n->right->right = NULL;
     }
@@ -84,20 +92,20 @@ int main() {
     }
 
   /* Build a list of the form 1->...->1->2->....->2->3 */
-  List a = (List) malloc(sizeof(struct node));
+  List a = (List) safe_malloc(sizeof(struct node));
   if (a == 0) myexit(1);
   List t;
   List p = a;
   while (__VERIFIER_nondet_int()) {
     p->h = 1;
-    t = (List) malloc(sizeof(struct node));
+    t = (List) safe_malloc(sizeof(struct node));
     if (t == 0) myexit(1);
     p->n = t;
     p = p->n;
   }
   while (__VERIFIER_nondet_int()) {
     p->h = 2;
-    t = (List) malloc(sizeof(struct node));
+    t = (List) safe_malloc(sizeof(struct node));
     if (t == 0) myexit(1);
     p->n = t;
     p = p->n;

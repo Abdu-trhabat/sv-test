@@ -16,6 +16,14 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern void abort(void);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "tree_max.c", 13, "reach_error"); }
 void __VERIFIER_assert(int cond) {
@@ -31,7 +39,7 @@ struct node *nondet_tree() {
     if(__VERIFIER_nondet_bool()) {
         return 0;
     } else {
-        struct node *n = (struct node *)malloc(sizeof(struct node));
+        struct node *n = (struct node *)safe_malloc(sizeof(struct node));
         n->data = __VERIFIER_nondet_int();
         n->left = nondet_tree();
         n->right = nondet_tree();

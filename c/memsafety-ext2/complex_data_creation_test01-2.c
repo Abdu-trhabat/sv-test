@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -34,9 +42,9 @@ static Data create_data(Data prevData) {
     return prevData->nextData;
   }
 
-  Data data = malloc(sizeof *data);
+  Data data = safe_malloc(sizeof *data);
 
-  data->array = (int*) malloc(20 * sizeof(data->array));
+  data->array = (int*) safe_malloc(20 * sizeof(data->array));
 
   int counter = 0;
   for(counter = 0; counter < 20; counter++)  {
@@ -53,7 +61,7 @@ static Data create_data(Data prevData) {
 
   if(__VERIFIER_nondet_int()) {
 
-    Data nextData = malloc(sizeof *data);
+    Data nextData = safe_malloc(sizeof *data);
     nextData->array = NULL;
 
     nextData->number = data->number - 200;
@@ -77,7 +85,7 @@ static void freeData(Data data) {
 }
 
 static void append(struct node_t **pointerToList) {
-  struct node_t *node = malloc(sizeof *node);
+  struct node_t *node = safe_malloc(sizeof *node);
   node->next = *pointerToList;
 
   if(*pointerToList == NULL) {

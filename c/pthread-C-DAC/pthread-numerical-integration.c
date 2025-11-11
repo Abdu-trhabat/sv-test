@@ -27,6 +27,14 @@ extern int __VERIFIER_nondet_int(void);
 void __VERIFIER_assert(int cond) { if (!(cond)) { ERROR: {reach_error();abort();} } return; }
 #include<pthread.h>
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include<stdio.h>
 //#include<math.h>
 //#include<sys/time.h>
@@ -125,7 +133,7 @@ int main(int argc, char *argv[])
         printf("\nNumber of Intervals are assumed to be 8");
         numberOfIntervals = 8;
     }*/
-    threads = (pthread_t *) malloc(sizeof(pthread_t) * numberOfIntervals);
+    threads = (pthread_t *) safe_malloc(sizeof(pthread_t) * numberOfIntervals);
     /* Calculate Interval Width. */
     intervalWidth = 1.0 / (double) numberOfIntervals;
  

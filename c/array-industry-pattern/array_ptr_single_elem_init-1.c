@@ -1,6 +1,14 @@
 typedef unsigned int size_t;
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <assert.h>
 void reach_error() { assert(0); }
 extern int __VERIFIER_nondet_int(void);
@@ -28,14 +36,14 @@ int main()
 		struct S *s = NULL;
 		if (q == 0)
 		{
-			s = (struct S*) malloc(sizeof(struct S));
+			s = (struct S*) safe_malloc(sizeof(struct S));
 			s->n = q % 2;
 		}
 		if (s != 0)
 		{
 			if (s->n == 0)
 			{
-				s->p = (int *) malloc(sizeof(int));
+				s->p = (int *) safe_malloc(sizeof(int));
 			}
 			else
 			{
@@ -46,7 +54,7 @@ int main()
 		a[i] = s;
 	}
 
-	a[3] = (struct S*) malloc(sizeof(struct S));
+	a[3] = (struct S*) safe_malloc(sizeof(struct S));
 
 	//check 2
 	for (i = 0; i < SIZE; i++)

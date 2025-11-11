@@ -437,6 +437,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -550,9 +558,9 @@ static Data create_data() {
   if(__VERIFIER_nondet_int()) {
     return ((void *)0);
   }
-  Data data = malloc(sizeof *data);
+  Data data = safe_malloc(sizeof *data);
   if(__VERIFIER_nondet_int()) {
-    data->array = (int*) malloc(20 * sizeof(data->array));
+    data->array = (int*) safe_malloc(20 * sizeof(data->array));
     int counter = 0;
     for(counter = 0; counter < 20; counter++) {
       data->array[counter] = __VERIFIER_nondet_int();
@@ -573,7 +581,7 @@ static void freeData(Data data) {
   free(data);
 }
 static void append(struct node_t **pointerToList) {
-  struct node_t *node = malloc(sizeof *node);
+  struct node_t *node = safe_malloc(sizeof *node);
   node->next = *pointerToList;
   node->data = create_data();
   *pointerToList = node;

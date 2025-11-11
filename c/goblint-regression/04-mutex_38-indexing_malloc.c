@@ -7,6 +7,14 @@
 
 #include <pthread.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int* s;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -18,7 +26,7 @@ void *t_fun(void *arg) {
 
 int main(void) {
   pthread_t id;
-  s = (int*)malloc(sizeof(int));
+  s = (int*)safe_malloc(sizeof(int));
   pthread_create(&id, NULL, t_fun, NULL);
   s[0] = 9; // RACE!
   pthread_join (id, NULL);

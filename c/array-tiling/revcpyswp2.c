@@ -9,6 +9,14 @@ void assume_abort_if_not(int cond) {
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 extern int __VERIFIER_nondet_int(void);
 void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int SIZE;
 
@@ -21,10 +29,10 @@ int main()
 	{
 		int i;
 		int tmp;
-		int *a = malloc(sizeof(int)*SIZE);
-		int *b = malloc(sizeof(int)*SIZE);
-		int *a_copy = malloc(sizeof(int)*SIZE);
-		int *b_copy = malloc(sizeof(int)*SIZE);
+		int *a = safe_malloc(sizeof(int)*SIZE);
+		int *b = safe_malloc(sizeof(int)*SIZE);
+		int *a_copy = safe_malloc(sizeof(int)*SIZE);
+		int *b_copy = safe_malloc(sizeof(int)*SIZE);
 		
 		for(i=0; i<SIZE; i++)
 		{

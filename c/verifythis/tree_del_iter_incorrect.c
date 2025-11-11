@@ -17,6 +17,22 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern void abort(void);
+void *safe_calloc(unsigned int num, unsigned int size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "tree_del_iter_incorrect.c", 14, "reach_error"); }
 void __VERIFIER_assert(int cond) {
@@ -32,7 +48,7 @@ struct node *nondet_tree() {
     if(__VERIFIER_nondet_bool()) {
         return 0;
     } else {
-        struct node *n = (struct node *)malloc(sizeof(struct node));
+        struct node *n = (struct node *)safe_malloc(sizeof(struct node));
         n->data = __VERIFIER_nondet_int();
         n->left = nondet_tree();
         n->right = nondet_tree();
@@ -92,14 +108,14 @@ void task(struct node *t) {
 
     int n = size(t);
     assume_abort_if_not(n != 0);
-    int *x = calloc(n, sizeof(int));
+    int *x = safe_calloc(n, sizeof(int));
     tree_inorder(t, x, n);
     __VERIFIER_assert(a == x[0]);
 
     struct node *r = tree_del(t, &b);
     __VERIFIER_assert(a == b);
     int m = size(t);
-    int *y = calloc(n, sizeof(int));
+    int *y = safe_calloc(n, sizeof(int));
     tree_inorder(r, y, m);
 
     __VERIFIER_assert(n == m + 1);

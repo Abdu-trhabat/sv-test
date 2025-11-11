@@ -34,7 +34,7 @@ void readMessageFromFile(DltFile *file, char **message) {
     printf("Potentially invalid message.\n");
     return;
   }
-  *message = (char*)calloc(messageLength + 1, sizeof(char));
+  *message = (char*)safe_calloc(messageLength + 1, sizeof(char));
   if (*message == NULL) {
     printf("Out of memory\n");
     return;
@@ -65,7 +65,7 @@ int initializeDltFile(DltFile *file) {
     fclose(file->handle);
     return -1;
   }
-  file->index = (long*)calloc(messageCount, sizeof(long));
+  file->index = (long*)safe_calloc(messageCount, sizeof(long));
   if (file->index == NULL) {
     printf("Out of memory\n");
     fclose(file->handle);

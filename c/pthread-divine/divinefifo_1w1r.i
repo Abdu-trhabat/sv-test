@@ -897,6 +897,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -1012,7 +1020,7 @@ _Bool fifo_empty( Fifo *self ) {
     return self->head == self->tail && self->head->read >= self->head->write;
 }
 Fifo *fifo_init( Fifo *self ) {
-    self->head = self->tail = fifo_node_init( malloc( sizeof( FifoNode ) ) );
+    self->head = self->tail = fifo_node_init( safe_malloc( sizeof( FifoNode ) ) );
     (!(fifo_empty( self )) ? reach_error() : (void)0);
     return self;
 }
@@ -1029,7 +1037,7 @@ void *fifo_destroy( Fifo *self ) {
 void fifo_push( Fifo *self, int x ) {
     FifoNode *t;
     if ( self->tail->write == self->tail->buffer + 2 )
-        t = fifo_node_init( malloc( sizeof( FifoNode ) ) );
+        t = fifo_node_init( safe_malloc( sizeof( FifoNode ) ) );
     else
         t = self->tail;
     *t->write = x;

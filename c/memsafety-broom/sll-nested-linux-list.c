@@ -12,6 +12,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #define typeof __typeof__
 
 extern int __VERIFIER_nondet_int(void);
@@ -138,7 +146,7 @@ struct master_item {
 
 struct master_item* alloc_and_zero(void)
 {
-    struct master_item *pi = malloc(sizeof(*pi));
+    struct master_item *pi = safe_malloc(sizeof(*pi));
     pi->next = NULL;
     INIT_LIST_HEAD(&(pi->dll));
 
@@ -158,7 +166,7 @@ void create_internal(struct list_head *head)
     while(random())
 #endif
     {
-        struct my_item *ptr = malloc(sizeof *ptr);
+        struct my_item *ptr = safe_malloc(sizeof *ptr);
         ptr->data = __VERIFIER_nondet_int();
         list_add_tail(&ptr->link, head);
     }

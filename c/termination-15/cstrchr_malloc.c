@@ -3,6 +3,14 @@
  * Author: Thomas Ströder
  */
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <alloca.h>
 
 extern int __VERIFIER_nondet_int(void);
@@ -22,7 +30,7 @@ int main() {
     if (length < 1) {
         length = 1;
     }
-    char* nondetString = (char*) malloc(length * sizeof(char));
+    char* nondetString = (char*) safe_malloc(length * sizeof(char));
     nondetString[length-1] = '\0';
     cstrchr(nondetString,__VERIFIER_nondet_int());
     free(nondetString);

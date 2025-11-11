@@ -438,6 +438,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -552,14 +560,14 @@ struct sl {
 };
 struct sl_item* alloc_or_die(void)
 {
- struct sl_item *pi = malloc(sizeof(struct sl_item));
+ struct sl_item *pi = safe_malloc(sizeof(struct sl_item));
  return pi;
 }
 struct sl* create_sl_with_head_and_tail(void)
 {
- struct sl *sl = malloc(sizeof(*sl));
- sl->head = malloc(sizeof(struct sl_item));
- sl->tail = malloc(sizeof(struct sl_item));
+ struct sl *sl = safe_malloc(sizeof(*sl));
+ sl->head = safe_malloc(sizeof(struct sl_item));
+ sl->tail = safe_malloc(sizeof(struct sl_item));
  sl->head->n2 = sl->head->n1 = sl->tail;
  sl->tail->n2 = sl->tail->n1 = ((void *)0);
  return sl;
@@ -574,7 +582,7 @@ void sl_random_insert(struct sl *sl)
  a1 = a2;
  while (a1->n1 != a2->n2 && __VERIFIER_nondet_int())
   a1 = a1->n1;
- new = malloc(sizeof(struct sl_item));
+ new = safe_malloc(sizeof(struct sl_item));
  new->n1 = a1->n1;
  a1->n1 = new;
  if (__VERIFIER_nondet_int()) {
@@ -593,13 +601,13 @@ void destroy_sl(struct sl *sl)
  free(sl);
 }
 int main() {
-  List a = (List) malloc(sizeof(struct node));
+  List a = (List) safe_malloc(sizeof(struct node));
   if (a == 0) myexit(1);
   List t;
   List p = a;
   while (__VERIFIER_nondet_int()) {
     p->h = 1;
-    t = (List) malloc(sizeof(struct node));
+    t = (List) safe_malloc(sizeof(struct node));
     if (t == 0) myexit(1);
     p->n = t;
     p = p->n;

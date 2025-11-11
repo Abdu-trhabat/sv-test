@@ -8,6 +8,14 @@
 // Per-thread array pointers passed via argument.
 // Extracted from concrat/minimap2, concrat/klib.
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <pthread.h>
 extern void abort(void);
 void assume_abort_if_not(int cond) {
@@ -25,8 +33,8 @@ int main() {
   int threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
 
-  pthread_t *tids = malloc(threads_total * sizeof(pthread_t));
-  int *datas = malloc(threads_total * sizeof(int));
+  pthread_t *tids = safe_malloc(threads_total * sizeof(pthread_t));
+  int *datas = safe_malloc(threads_total * sizeof(int));
 
   // create threads
   for (int i = 0; i < threads_total; i++) {

@@ -5,6 +5,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
@@ -22,7 +30,7 @@ struct TSLL
 int main()
 {
 	// create the head
-	struct TSLL* list = malloc(sizeof(struct TSLL));
+	struct TSLL* list = safe_malloc(sizeof(struct TSLL));
 	list->next = NULL;
 	list->prev = NULL;
 	list->colour = BLACK;
@@ -33,7 +41,7 @@ int main()
 	while (__VERIFIER_nondet_int())
 	{
 		// create a node
-		end->next = malloc(sizeof(struct TSLL));
+		end->next = safe_malloc(sizeof(struct TSLL));
 		end->next->prev = end;
 		end = end->next;
 		end->next = NULL;
@@ -45,7 +53,7 @@ int main()
 		else
 		{	// mark the node as red and follow it by a black node
 			end->colour = RED;
-			end->next = malloc(sizeof(struct TSLL));
+			end->next = safe_malloc(sizeof(struct TSLL));
 			end->next->prev = end;
 			end = end->next;
 			end->next = NULL;

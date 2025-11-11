@@ -3,6 +3,15 @@ typedef long unsigned int size_t;
 void * __attribute__((__cdecl__)) malloc (size_t __size) ;
 void __attribute__((__cdecl__)) free (void *) ;
 
+extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void); 
 
  
@@ -32,7 +41,7 @@ int main()
 		return 0;
 	
 	
-	int *a = malloc(n * sizeof (int));
+	int *a = safe_malloc(n * sizeof (int));
 	for(int i = 0; i < n; i++) {
 		a[i] = __VERIFIER_nondet_int();
 	}

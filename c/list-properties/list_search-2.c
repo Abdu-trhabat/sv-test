@@ -10,6 +10,14 @@ void __VERIFIER_assert(int cond) {
 }
 #include <stdio.h>
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 typedef struct list {
 	int key;
@@ -43,7 +51,7 @@ int delete_list(mlist *l){
 
 int insert_list(mlist *l, int k){
 
-	l = (mlist*)malloc(sizeof(mlist));
+	l = (mlist*)safe_malloc(sizeof(mlist));
 
 	if (head==NULL) {
 		l->key = k;

@@ -11,6 +11,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #define typeof __typeof__
 
 extern int __VERIFIER_nondet_int(void);
@@ -133,10 +141,10 @@ void do_data(int *data)
 
 struct list_head *create()
 {
-    struct list_head *head=malloc(sizeof(struct list_head));
+    struct list_head *head=safe_malloc(sizeof(struct list_head));
     INIT_LIST_HEAD(head);
     while(random()) {
-        struct my_item *ptr = malloc(sizeof *ptr);
+        struct my_item *ptr = safe_malloc(sizeof *ptr);
         ptr->data = __VERIFIER_nondet_int();
         list_add_tail(&ptr->link, head);
     }

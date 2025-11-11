@@ -43,14 +43,14 @@ void stun_parse_attribute(unsigned char *p, stun_attr_t **attr) {
     return;
   }
 
-  *attr = (stun_attr_t *)calloc(1, sizeof(stun_attr_t));
+  *attr = (stun_attr_t *)safe_calloc(1, sizeof(stun_attr_t));
   if (!(*attr)) {
     printf("Out of memory!\n");
     return;
   }
   p += 4;
   (*attr)->enc_buf.size = len;
-  (*attr)->enc_buf.data = (unsigned char *)malloc(len);
+  (*attr)->enc_buf.data = (unsigned char *)safe_malloc(len);
   if (!(*attr)->enc_buf.data) {
     printf("Out of memory!\n");
     free(*attr);

@@ -979,6 +979,14 @@ extern int getloadavg (double __loadavg[], int __nelem)
      __attribute__ ((__nothrow__ )) __attribute__ ((__nonnull__ (1)));
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -1000,10 +1008,10 @@ typedef struct TSLL
 int main()
 {
 
- SLL* list = malloc(sizeof(SLL));
+ SLL* list = safe_malloc(sizeof(SLL));
  list->next = ((void*)0);
  list->prev = ((void*)0);
- do { if (!(list != ((void*)0))) {reach_error();abort();}} while (0); if (__VERIFIER_nondet_int()) { list->inner = ((void*)0); } else { list->inner = malloc(sizeof(SLL)); list->inner->next = ((void*)0); list->inner->inner = ((void*)0); } do { if (!(list->inner != ((void*)0) || list->inner == ((void*)0))) {reach_error();abort();}} while (0);;
+ do { if (!(list != ((void*)0))) {reach_error();abort();}} while (0); if (__VERIFIER_nondet_int()) { list->inner = ((void*)0); } else { list->inner = safe_malloc(sizeof(SLL)); list->inner->next = ((void*)0); list->inner->inner = ((void*)0); } do { if (!(list->inner != ((void*)0) || list->inner == ((void*)0))) {reach_error();abort();}} while (0);;
 
  SLL* end = list;
 
@@ -1011,12 +1019,12 @@ int main()
  while (__VERIFIER_nondet_int())
  {
 
-  end->next = malloc(sizeof(SLL));
+  end->next = safe_malloc(sizeof(SLL));
   end->next->prev = end;
   end = end->next;
   end->next = ((void*)0);
   do { if (!(((void*)0) != end)) {reach_error();abort();}} while (0);
-  do { if (!(end != ((void*)0))) {reach_error();abort();}} while (0); if (__VERIFIER_nondet_int()) { end->inner = ((void*)0); } else { end->inner = malloc(sizeof(SLL)); end->inner->next = ((void*)0); end->inner->inner = ((void*)0); } do { if (!(end->inner != ((void*)0) || end->inner == ((void*)0))) {reach_error();abort();}} while (0);;
+  do { if (!(end != ((void*)0))) {reach_error();abort();}} while (0); if (__VERIFIER_nondet_int()) { end->inner = ((void*)0); } else { end->inner = safe_malloc(sizeof(SLL)); end->inner->next = ((void*)0); end->inner->inner = ((void*)0); } do { if (!(end->inner != ((void*)0) || end->inner == ((void*)0))) {reach_error();abort();}} while (0);;
  }
 
  end = ((void*)0);

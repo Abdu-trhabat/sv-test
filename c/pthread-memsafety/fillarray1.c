@@ -1,5 +1,13 @@
 #include <pthread.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -46,7 +54,7 @@ int main(int argc, char **argv) {
     return 0;
   }
 
-  int *a = (int *)malloc(size);
+  int *a = (int *)safe_malloc(size);
   pthread_t id1, id2;
 
   ind = 0;

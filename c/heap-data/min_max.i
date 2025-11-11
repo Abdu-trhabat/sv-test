@@ -466,6 +466,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -573,7 +581,7 @@ int main() {
     Node *l = ((void *)0);
     int min = 0x7fffffff, max = -0x7fffffff;
     while (__VERIFIER_nondet_int()) {
-        Node *p = malloc(sizeof(*p));
+        Node *p = safe_malloc(sizeof(*p));
         p->val = __VERIFIER_nondet_int();
         {p->next=l; l=p;}
         if (min > p->val) {

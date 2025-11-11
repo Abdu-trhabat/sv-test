@@ -119,6 +119,14 @@ struct _GUID {
 };
 typedef struct _GUID GUID;
 typedef unsigned int size_t;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 typedef UCHAR KIRQL;
 struct _KTHREAD;
 typedef struct _KTHREAD *PKTHREAD;
@@ -7559,11 +7567,11 @@ int main(void)
   int __BLAST_NONDET___0 = __VERIFIER_nondet_int() ;
   int irp_choice = __VERIFIER_nondet_int() ;
   DEVICE_OBJECT devobj ;
-  devobj.DeviceExtension = malloc(sizeof (CD_DEVICE_EXTENSION));
-  irp.Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation = malloc(4 * sizeof (IO_STACK_LOCATION));
+  devobj.DeviceExtension = safe_malloc(sizeof (CD_DEVICE_EXTENSION));
+  irp.Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation = safe_malloc(4 * sizeof (IO_STACK_LOCATION));
   /* ensure a bounded number of subsequent decrements do not result in stack underflow */
   irp.Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation += 3;
-  irp.AssociatedIrp.SystemBuffer = malloc(sizeof (CDROM_TOC));
+  irp.AssociatedIrp.SystemBuffer = safe_malloc(sizeof (CDROM_TOC));
 
   {
   {
@@ -7721,7 +7729,7 @@ char *nondet_malloc(int i )
     return ((char *)0);
   } else {
     {
-    tmp = malloc(i);
+    tmp = safe_malloc(i);
     }
     return ((char *)tmp);
   }
@@ -7875,7 +7883,7 @@ PIRP IoBuildAsynchronousFsdRequest(ULONG MajorFunction , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_25_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(IRP ));
+      tmp = safe_malloc(sizeof(IRP ));
       }
       return ((void *)tmp);
       switch_25_default: /* CIL Label */ ;
@@ -7913,7 +7921,7 @@ PIRP IoBuildDeviceIoControlRequest(ULONG IoControlCode , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_26_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(IRP ));
+      tmp = safe_malloc(sizeof(IRP ));
       }
       return ((void *)tmp);
       switch_26_default: /* CIL Label */ ;
@@ -7945,7 +7953,7 @@ NTSTATUS IoCreateDevice(PDRIVER_OBJECT DriverObject , ULONG DeviceExtensionSize 
     if (0) {
       switch_27_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(DEVICE_OBJECT ));
+      tmp = safe_malloc(sizeof(DEVICE_OBJECT ));
       *DeviceObject = (void *)tmp;
       }
       return (0L);
@@ -8438,7 +8446,7 @@ PVOID MmAllocateContiguousMemory(SIZE_T NumberOfBytes , PHYSICAL_ADDRESS Highest
       if (0) {
         switch_36_0: /* CIL Label */ 
         {
-        tmp = malloc(NumberOfBytes);
+        tmp = safe_malloc(NumberOfBytes);
         }
         return (tmp);
         switch_36_1: /* CIL Label */ ;

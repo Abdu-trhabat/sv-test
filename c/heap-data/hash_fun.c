@@ -4,6 +4,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #define INTERVAL_SIZE 100
 
@@ -15,7 +23,7 @@ struct node {
 int hash_fun() { return __VERIFIER_nondet_int(); }
 
 void append_to_list(struct node **list, int hash) {
-    struct node *node = malloc(sizeof(*node));
+    struct node *node = safe_malloc(sizeof(*node));
     node->next = *list;
     node->hash = hash;
     *list = node;

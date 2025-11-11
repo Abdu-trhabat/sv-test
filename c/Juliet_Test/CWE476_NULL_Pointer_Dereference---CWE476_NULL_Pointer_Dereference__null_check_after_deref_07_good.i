@@ -620,6 +620,15 @@ void srand(unsigned int);
 
 
 void *malloc(size_t);
+extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 time_t time(time_t *);
@@ -636,7 +645,7 @@ static void good1_0(void)
     
     int *intPointer = (int *)0;
     
-    intPointer = (int *)malloc(4UL);
+    intPointer = (int *)safe_malloc(4UL);
     
     *intPointer = 5;
     
@@ -658,7 +667,7 @@ static void good2_0(void)
     
     int *intPointer = (int *)0;
     
-    intPointer = (int *)malloc(4UL);
+    intPointer = (int *)safe_malloc(4UL);
     
     *intPointer = 5;
     

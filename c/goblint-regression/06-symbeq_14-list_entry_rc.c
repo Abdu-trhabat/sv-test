@@ -7,6 +7,14 @@
 
 #include<pthread.h>
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include<stdio.h>
 
 #define list_entry(ptr, type, member) \
@@ -43,7 +51,7 @@ int main () {
   pthread_mutexattr_settype(&mutexattr, PTHREAD_MUTEX_ERRORCHECK);
 
   pthread_t t1;
-  A = malloc(2 * sizeof(struct s));
+  A = safe_malloc(2 * sizeof(struct s));
   init(A,666);
   init(&A[1],999); // extra element for s++ in update
 

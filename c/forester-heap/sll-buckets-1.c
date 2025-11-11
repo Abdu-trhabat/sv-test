@@ -8,6 +8,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
@@ -30,16 +38,16 @@ typedef struct TBCK
 int main()
 {
 	// create the head
-	BCK* bucket = malloc(sizeof(BCK));
+	BCK* bucket = safe_malloc(sizeof(BCK));
 	bucket->data = 0;
 	bucket->list = NULL;
 	
-	bucket->next = malloc(sizeof(BCK));
+	bucket->next = safe_malloc(sizeof(BCK));
 	BCK* bcki = bucket->next;
 	bcki->data = 1;
 	bcki->list = NULL;
 	
-	bcki->next = malloc(sizeof(BCK));
+	bcki->next = safe_malloc(sizeof(BCK));
 	bcki = bcki->next;
 	bcki->data = 2;
 	bcki->list = NULL;
@@ -49,7 +57,7 @@ int main()
 	struct TSLL* itr = NULL;
 	while (__VERIFIER_nondet_int())
 	{
-		item = malloc(sizeof(SLL));
+		item = safe_malloc(sizeof(SLL));
 		item->next = NULL;
 		if (__VERIFIER_nondet_int())
 			item->data = 0;

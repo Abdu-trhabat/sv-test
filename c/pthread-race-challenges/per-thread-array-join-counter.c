@@ -10,6 +10,22 @@
 // Thread pool joining via threads alive counter decremented based on thread array values.
 // Extracted from smtprc.
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <stdbool.h>
 #include <pthread.h>
 extern void abort(void);
@@ -65,9 +81,9 @@ int main() {
   threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
 
-  tids = malloc(threads_total * sizeof(pthread_t));
-  flags = calloc(threads_total, sizeof(bool));
-  flags_mutex = malloc(threads_total * sizeof(pthread_mutex_t));
+  tids = safe_malloc(threads_total * sizeof(pthread_t));
+  flags = safe_calloc(threads_total, sizeof(bool));
+  flags_mutex = safe_malloc(threads_total * sizeof(pthread_mutex_t));
 
   for (int i = 0; i < threads_total; i++)
     pthread_mutex_init(&flags_mutex[i], NULL);

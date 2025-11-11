@@ -48,6 +48,14 @@ __extension__
     extern void *
     malloc(size_t __size) __attribute__((__nothrow__, __leaf__))
     __attribute__((__malloc__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int memcmp(const void *__s1, const void *__s2, size_t __n)
     __attribute__((__nothrow__, __leaf__)) __attribute__((__pure__))
@@ -244,7 +252,7 @@ void save_byte_from_array(const uint8_t *const array, const size_t size,
 
 void *bounded_malloc(size_t size) {
   assume_abort_if_not(size <= ((18446744073709551615UL) >> (8 + 1)));
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 void *can_fail_malloc(size_t size) {

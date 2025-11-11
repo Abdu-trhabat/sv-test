@@ -475,6 +475,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -597,8 +605,8 @@ _Bool is_relaxed_prefix(
 int main()
 {
   unsigned long pat_len = __VERIFIER_nondet_ulong(), a_len = __VERIFIER_nondet_ulong();
-  int *pat=malloc(sizeof(int)*pat_len);
-  int *a=malloc(sizeof(int)*a_len);
+  int *pat=safe_malloc(sizeof(int)*pat_len);
+  int *a=safe_malloc(sizeof(int)*a_len);
   if(is_relaxed_prefix(pat, pat_len, a, a_len))
   {
     __VERIFIER_assert(pat_len<=a_len+1);

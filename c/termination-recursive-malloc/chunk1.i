@@ -3,6 +3,15 @@ typedef long unsigned int size_t;
 void * __attribute__((__cdecl__)) malloc (size_t __size) ;
 void __attribute__((__cdecl__)) free (void *) ;
 
+extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void);
 
 void chunk(int *data) {
@@ -17,7 +26,7 @@ void chunk(int *data) {
 
 
 int main() {
-	int *data  = malloc(4*sizeof(int));
+	int *data  = safe_malloc(4*sizeof(int));
 	
 	int i = __VERIFIER_nondet_int();
 	int upper = __VERIFIER_nondet_int();

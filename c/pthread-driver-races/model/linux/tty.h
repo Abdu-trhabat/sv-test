@@ -390,7 +390,7 @@ static inline void proc_clear_tty(struct task_struct *p)
 { }
 static inline struct tty_struct *get_current_tty(void)
 {
-	return (struct tty_struct *)malloc(sizeof(struct tty_struct));
+	return (struct tty_struct *)safe_malloc(sizeof(struct tty_struct));
 }
 /* tty_io.c */
 static inline int __init tty_init(void)
