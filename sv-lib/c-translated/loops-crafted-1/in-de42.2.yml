@@ -1,6 +1,6 @@
 format_version: '2.0'
 input_files:
-- in-de42.svlib
+- in-de42.2.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
   expected_verdict: correct
