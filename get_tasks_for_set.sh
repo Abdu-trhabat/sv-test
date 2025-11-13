@@ -9,7 +9,7 @@
 
 # This script returns the task-definition files for a given property file.
 # Requires `yq` to be installed (https://pypi.org/project/yq/). Tested with version 2.10.
-# Usage: ./get_tasks_for_set <PROPERTY_FILE> <SET_FILE>
+# Usage: ./get_tasks_for_set.sh <PROPERTY_FILE> <SET_FILE>
 # From the returned task definitions, it is possible to get the input files with the following
 # command line:
 # yq --raw-output ".input_files" TASK_DEFINITION
