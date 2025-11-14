@@ -3,4 +3,5 @@ input_files:
 - benchmark53_polynomial.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
+  expected_verdict: correct
   
