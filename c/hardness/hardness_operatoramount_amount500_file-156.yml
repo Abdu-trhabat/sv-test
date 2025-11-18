@@ -11,7 +11,7 @@ input_files: 'hardness_operatoramount_amount500_file-156.i'
 
 properties:
   - property_file: ../properties/unreach-call.prp
-    expected_verdict: true
+    # no expected verdict as it depends on non-standard x87 float semantics (see #1426 and #1451)
   - property_file: ../properties/coverage-branches.prp
 
 options:
