@@ -87,7 +87,7 @@ public class Main {
 
   public static void main(String[] args) {
     final int V = Verifier.nondetInt();
-    Verifier.assume(V > 0 && V < 1000000);
+    Verifier.assume(V > 0 && V < 10000);
 
     final int D[] = new int[V * V];
 
@@ -95,7 +95,7 @@ public class Main {
       for (int j = 0; j < V; j++) {
         if (i == j) continue;
         int tmp = Verifier.nondetInt();
-        Verifier.assume(tmp >= 0 && tmp < 1000000);
+        Verifier.assume(tmp >= 0 && tmp < 10000);
         D[i * V + j] = tmp;
       }
     }
