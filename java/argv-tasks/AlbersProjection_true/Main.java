@@ -56,6 +56,9 @@ public class Main {
               * (qs / Tone_es - sinpi / com + .5 / Te * Math.log((1. - con) / (1. + con)));
       Phi += dphi;
     } while (Math.abs(dphi) > TOL && --i != 0);
+    if (!Double.isFinite(Phi)) {
+      return Double.MAX_VALUE;
+    }
     return (i != 0 ? Math.abs(Phi) : Double.MAX_VALUE);
   }
 

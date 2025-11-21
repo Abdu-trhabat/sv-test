@@ -4,7 +4,7 @@ input_files:
 - AlbersProjection_true/
 properties:
 - property_file: ../properties/valid-assert.prp
-  expected_verdict: false
+  expected_verdict: true
 - property_file: ../properties/no-runtime-exception.prp
   expected_verdict: true
 options:
