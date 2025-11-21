@@ -38,6 +38,7 @@ public class Main {
   /** ARG-V: suitable */
   private static double getSunTrueLongitude(double sunMeanAnomaly) {
     double l = Verifier.nondetDouble();
+    Verifier.assume(l == l); // ensures that l is not NaN
     // get longitude into 0-360 degree range
     if (l >= 360.0) {
       l = 360.0;
