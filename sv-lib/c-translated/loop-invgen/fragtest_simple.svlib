@@ -16,7 +16,8 @@
 (set-info :format-version "1.0")
 
 (declare-var j Int)
-(declare-var x$4 Int)
+(declare-var x$4 Bool)
+(declare-var nondet_int$3 Int)
 
 (define-proc
   main

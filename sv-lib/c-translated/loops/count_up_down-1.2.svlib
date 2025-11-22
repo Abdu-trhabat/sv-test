@@ -5,7 +5,7 @@
 ;
 ; SPDX-License-Identifier: Apache-2.0
 
-(set-logic QF_NIA)
+(set-logic QF_LIA)
 
 (set-option :produce-violation-witnesses true)
 
@@ -15,32 +15,27 @@
 
 (set-info :format-version "1.0")
 
-(declare-var SIZE Int)
-
 (define-proc
   main
   ()
   ((result Int))
-  ((i Int) (j Int) (nondet_int$1 Int))
+  ((n Int) (x Int) (y Int))
   (!
     (sequence
-      (assign (SIZE 50000001))
-      (assign (i 0))
-      (assign (j 0))
+      (assume (>= n 0))
+      (assign (x n))
+      (assign (y 0))
       (!
         (while
-          (< i SIZE)
-          (if (not (= nondet_int$1 0)) (assign (i (+ i 8))) (assign (i (+ i 4)))))
+          (< 0 x)
+          (sequence (assign (x (- x 1))) (assign (y (+ y 1)))))
         :tag
         main-while-1)
-      (assign (j (div i 4)))
-      (! (sequence) :tag main-check-1)
-      (assign (result 0))
-      (return))
+      (! (sequence) :tag main-check-1))
     :tag
     main))
 
-(annotate-tag main-check-1 :check-true (= (* j 4) i))
+(annotate-tag main-check-1 :check-true (= y n))
 
 (verify-call main ())
 

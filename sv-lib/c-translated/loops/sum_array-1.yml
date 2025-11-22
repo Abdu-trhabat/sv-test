@@ -3,4 +3,5 @@ input_files:
 - sum_array-1.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
+  expected_verdict: incorrect
   

@@ -5,7 +5,7 @@
 ;
 ; SPDX-License-Identifier: Apache-2.0
 
-(set-logic QF_NIA)
+(set-logic QF_LIA)
 
 (set-option :produce-violation-witnesses true)
 
@@ -15,32 +15,37 @@
 
 (set-info :format-version "1.0")
 
-(declare-var SIZE Int)
-
 (define-proc
   main
   ()
   ((result Int))
-  ((i Int) (j Int) (nondet_int$1 Int))
+  ((n Int) (v Int) (s Int) (i Int))
   (!
     (sequence
-      (assign (SIZE 50000001))
+      (if (= n 0) (sequence (assign (result 0)) (return)))
+      (assign (v 0))
+      (assign (s 0))
       (assign (i 0))
-      (assign (j 0))
       (!
         (while
-          (< i SIZE)
-          (if (not (= nondet_int$1 0)) (assign (i (+ i 8))) (assign (i (+ i 4)))))
+          (< i n)
+          (sequence (havoc v) (assume (and (<= v 256) (>= v 0))) (assign (s (+ s v))) (assign (i (+ i 1)))))
         :tag
         main-while-1)
-      (assign (j (div i 4)))
-      (! (sequence) :tag main-check-1)
+      (if
+        (< s v)
+        (sequence (! (sequence) :tag main-check-1) (assign (result 1)) (return)))
+      (if
+        (< 65025 s)
+        (sequence (! (sequence) :tag main-check-2) (assign (result 1)) (return)))
       (assign (result 0))
       (return))
     :tag
     main))
 
-(annotate-tag main-check-1 :check-true (= (* j 4) i))
+(annotate-tag main-check-1 :check-true false)
+
+(annotate-tag main-check-2 :check-true false)
 
 (verify-call main ())
 

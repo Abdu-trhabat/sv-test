@@ -3,4 +3,5 @@ input_files:
 - benchmark13_conjunctive.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
+  expected_verdict: correct
   
