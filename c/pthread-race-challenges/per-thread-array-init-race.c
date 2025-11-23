@@ -9,6 +9,7 @@
 // Extracted from silver searcher.
 #include <stdlib.h>
 #include <pthread.h>
+#include <stdint.h>
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
@@ -25,7 +26,9 @@ int main() {
   int threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
 
+  assume_abort_if_not(threads_total <= SIZE_MAX / sizeof(pthread_t));
   pthread_t *tids = malloc(threads_total * sizeof(pthread_t));
+  assume_abort_if_not(threads_total <= SIZE_MAX / sizeof(int));
   int *is = calloc(threads_total, sizeof(int));
 
   // create threads
