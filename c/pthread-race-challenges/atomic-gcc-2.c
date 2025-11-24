@@ -5,31 +5,20 @@
 //
 // SPDX-License-Identifier: MIT
 
-// Per-thread array index using counter increment.
-// Extracted from concrat/ProcDump-for-Linux.
+// Race-free due to GCC atomic operation.
+// Extracted from concrat/klib.
 #include <stdlib.h>
 #include <pthread.h>
-#include <strings.h>
-#include <stdint.h>
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern int __VERIFIER_nondet_int();
 
-int *datas;
-
-int next_j = 0;
-pthread_mutex_t next_j_mutex = PTHREAD_MUTEX_INITIALIZER;
+int data;
 
 void *thread(void *arg) {
-  int j;
-  pthread_mutex_lock(&next_j_mutex);
-  j = next_j / 2; // NORACE
-  next_j++; // NORACE
-  pthread_mutex_unlock(&next_j_mutex);
-
-  datas[j] = __VERIFIER_nondet_int(); // RACE!
+  __sync_fetch_and_add(&data, 1); // NORACE
   return NULL;
 }
 
@@ -37,10 +26,7 @@ int main() {
   int threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
 
-  assume_abort_if_not(threads_total <= SIZE_MAX / sizeof(pthread_t));
   pthread_t *tids = malloc(threads_total * sizeof(pthread_t));
-  assume_abort_if_not(threads_total <= SIZE_MAX / sizeof(int));
-  datas = malloc(threads_total * sizeof(int));
 
   // create threads
   for (int i = 0; i < threads_total; i++) {
@@ -53,7 +39,6 @@ int main() {
   }
 
   free(tids);
-  free(datas);
 
   return 0;
 }

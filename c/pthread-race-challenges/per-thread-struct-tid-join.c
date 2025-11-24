@@ -9,6 +9,7 @@
 // Extracted from chrony.
 #include <stdlib.h>
 #include <pthread.h>
+#include <stdint.h>
 extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
@@ -33,6 +34,7 @@ int main() {
   int threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
 
+  assume_abort_if_not(threads_total <= SIZE_MAX / sizeof(struct thread *));
   struct thread **ts = malloc(threads_total * sizeof(struct thread *));
 
   // create threads
