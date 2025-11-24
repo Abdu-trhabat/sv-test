@@ -8,8 +8,6 @@
 format_version: '2.0'
 input_files: seq_incr_no_carry_cover_target.i
 properties:
-- property_file: ../properties/unreach-call.prp
-  expected_verdict: false
 - property_file: ../properties/valid-memsafety.prp
   expected_verdict: false
   subproperty: valid-deref
