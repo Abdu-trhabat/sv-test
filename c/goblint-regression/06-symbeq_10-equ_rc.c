@@ -40,10 +40,8 @@ int main () {
 
   if (x) {
 	  s = &A;
-	  x++;
   } else {
 	  s = &B;
-	  x++;
   }
 
   //q = &s->inside;

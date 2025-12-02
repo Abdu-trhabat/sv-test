@@ -7,7 +7,6 @@
 
 #include<pthread.h>
 #include<stdlib.h>
-#include<limits.h>
 #include "racemacros.h"
 
 struct q { int x; int y; };
@@ -29,9 +28,6 @@ int main () {
   pthread_mutex_init(&B.mutex, NULL);
 
   int x = __VERIFIER_nondet_int();
-  if (x == INT_MAX) {
-    return 0;
-  }
 
   // struct s *s = malloc(sizeof(struct s));
   struct s *s;
@@ -42,10 +38,8 @@ int main () {
 
   if (x) {
 	  s = &A;
-	  x++;
   } else {
 	  s = &B;
-	  x++;
   }
 
   //q = &s->inside;

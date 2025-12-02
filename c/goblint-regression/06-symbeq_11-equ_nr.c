@@ -9,7 +9,6 @@ extern int __VERIFIER_nondet_int();
 
 #include<pthread.h>
 #include<stdlib.h>
-#include<limits.h>
 
 struct q { int x; int y; };
 struct s {
@@ -30,9 +29,6 @@ int main () {
   pthread_mutex_init(&B.mutex, NULL);
 
   int x = __VERIFIER_nondet_int();
-  if (x == INT_MAX) {
-    return 0;
-  }
   pthread_t id;
 
   // struct s *s = malloc(sizeof(struct s));
@@ -44,10 +40,8 @@ int main () {
 
   if (x) {
 	  s = &A;
-	  x++;
   } else {
 	  s = &B;
-	  x++;
   }
 
   //q = &s->inside;
