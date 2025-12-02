@@ -5,7 +5,7 @@ input_files:
   - objects02/
 properties:
   - property_file: ../properties/valid-assert.prp
-    expected_verdict: true
+    expected_verdict: true # invalid for SV-COMP 2026 (https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/merge_requests/1681#note_2891626586)
   - property_file: ../properties/no-runtime-exception.prp
     expected_verdict: false
 options:
