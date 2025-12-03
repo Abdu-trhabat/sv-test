@@ -6,6 +6,7 @@
  */
 
 #include <stdlib.h>
+#include <limits.h>
 
 
 extern int __VERIFIER_nondet_int();
@@ -23,7 +24,7 @@ node_t* new_ll(int n)
     return NULL;
   node_t* head = malloc(sizeof(node_t));
   head->val = n;
-  head->next = new_ll(n > -2147483648 ? n-1 : n);
+  head->next = new_ll(n > INT_MIN ? n-1 : n);
   return head;
 }
 

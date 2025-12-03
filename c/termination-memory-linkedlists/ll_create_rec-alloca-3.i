@@ -549,7 +549,7 @@ node_t* new_ll(int n)
     return ((void *)0);
   node_t* head = malloc(sizeof(node_t));
   head->val = n;
-  head->next = new_ll(n > -2147483648 ? n-1 : n);
+  head->next = new_ll(n > (-0x7fffffff - 1) ? n-1 : n);
   return head;
 }
 int main ()
