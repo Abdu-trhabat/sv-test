@@ -9508,7 +9508,7 @@ void aws_string_destroy_secure_harness() {
     __CPROVER_allocated_memory((unsigned long)bytes, len);
     
    _Bool 
-        nondet_parameter;
+        nondet_parameter = nondet_bool();
     aws_string_destroy_secure(nondet_parameter ? str : 
                                                       ((void *)0)
                                                           );
