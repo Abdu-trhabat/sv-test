@@ -3,5 +3,5 @@ input_files:
 - sum01_bug02_sum01_bug02_base.case.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
-  expected_verdict: incorrect
+  expected_verdict: false
   

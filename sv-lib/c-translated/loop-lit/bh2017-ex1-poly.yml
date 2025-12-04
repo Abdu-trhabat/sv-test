@@ -3,4 +3,4 @@ input_files:
 - bh2017-ex1-poly.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
-  expected_verdict: correct
+  expected_verdict: true
