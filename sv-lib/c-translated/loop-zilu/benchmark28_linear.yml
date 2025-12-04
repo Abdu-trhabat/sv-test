@@ -3,5 +3,5 @@ input_files:
 - benchmark28_linear.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
-  expected_verdict: incorrect
+  expected_verdict: false
   

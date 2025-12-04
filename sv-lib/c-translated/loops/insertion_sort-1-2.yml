@@ -3,4 +3,4 @@ input_files:
 - insertion_sort-1-2.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
-  expected_verdict: incorrect
+  expected_verdict: false

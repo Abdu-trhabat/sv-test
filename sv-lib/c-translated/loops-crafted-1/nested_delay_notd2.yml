@@ -3,4 +3,4 @@ input_files:
 - nested_delay_notd2.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
-  expected_verdict: incorrect
+  expected_verdict: false
