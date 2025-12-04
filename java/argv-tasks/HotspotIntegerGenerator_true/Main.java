@@ -79,11 +79,7 @@ public class Main {
     double _hotOpnFraction = Verifier.nondetDouble();
     Verifier.assume(_hotOpnFraction > 0.0);
     Main instance =
-        new Main(
-            Verifier.nondetInt(),
-            Verifier.nondetInt(),
-            _hotsetFraction,
-            _hotOpnFraction);
+        new Main(Verifier.nondetInt(), Verifier.nondetInt(), _hotsetFraction, _hotOpnFraction);
     assert instance.hotOpnFraction >= 0.0 && instance.hotOpnFraction <= 1.0;
     assert instance.upperBound >= instance.lowerBound;
     assert instance.hotsetFraction >= 0.0 && instance.hotsetFraction <= 1.0;
