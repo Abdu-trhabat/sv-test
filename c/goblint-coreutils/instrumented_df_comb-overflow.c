@@ -76735,7 +76735,7 @@ static size_t quotearg_buffer_restyled(char *buffer , size_t buffersize , char c
           {
 
 #line 581
-          if (! (*(quote_these_too + (unsigned long )c / (sizeof(int ) * 8UL)) >> ((unsigned long )c % (sizeof(int ) * 8UL)) & 1)) {
+          if (! (*(quote_these_too + (unsigned long )c / (sizeof(int ) * 8UL)) & (unsigned int const   )(1 << (unsigned long )c % (sizeof(int ) * 8UL)))) {
             {
 
 #line 581

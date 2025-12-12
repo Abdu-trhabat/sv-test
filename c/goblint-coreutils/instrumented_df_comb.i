@@ -52782,7 +52782,7 @@ static size_t quotearg_buffer_restyled(char *buffer , size_t buffersize , char c
         { if(!(c != (unsigned char)0)) { reach_error(); abort(); } };
         if (quote_these_too) {
           {
-          if (! (*(quote_these_too + (unsigned long )c / (sizeof(int ) * 8UL)) & (unsigned int const )(1 << (unsigned long )c % (sizeof(int ) * 8UL)))) {
+          if (! (*(quote_these_too + (unsigned long )c / (sizeof(int ) * 8UL)) >> ((unsigned long )c % (sizeof(int ) * 8UL)) & 1)) {
             {
             goto _L___2;
             }
