@@ -3,4 +3,4 @@ input_files:
 - linear-inequality-inv-a.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
-  expected_verdict: correct
+  expected_verdict: true

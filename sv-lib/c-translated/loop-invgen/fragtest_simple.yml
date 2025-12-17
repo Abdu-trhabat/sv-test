@@ -3,4 +3,4 @@ input_files:
 - fragtest_simple.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
-  expected_verdict: correct
+  expected_verdict: true
