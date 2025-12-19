@@ -4,7 +4,7 @@ input_files:
 - ReverseInterpolator_true/
 properties:
 - property_file: ../properties/valid-assert.prp
-  expected_verdict: true
+  expected_verdict: false
 - property_file: ../properties/no-runtime-exception.prp
   expected_verdict: true
 options:
