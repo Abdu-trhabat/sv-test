@@ -4,7 +4,8 @@ format_version: '2.0'
 input_files: 'linux-torvalds-645ef9e-32_7a-sound--oss--sound.ko-entry_point_ldv-val-v0.8.cil.out.i'
 
 properties:
-  - property_file: ../properties/unreach-call.prp
+  - property_file: ../properties/valid-memsafety.prp
+    subproperty: valid-deref
     expected_verdict: false
 
 options:

@@ -1,7 +1,7 @@
 format_version: '2.0'
 input_files:
 - ../common/
-- AbstractSerializationStreamReader_true/
+- ReverseInterpolator_false2/
 properties:
 - property_file: ../properties/valid-assert.prp
   expected_verdict: false

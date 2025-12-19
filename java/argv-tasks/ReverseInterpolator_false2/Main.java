@@ -17,9 +17,7 @@ public class Main {
   public static void main(String[] args) throws Exception {
     Main instance = new Main();
     float input = Verifier.nondetFloat();
-    if (Math.abs(input) <= 100.0f) {
-      float result = instance.getInterpolation(input);
-      assert Math.abs(input * input * input * input * input * 16.0f - result) < 1.1f;
-    }
+    float result = instance.getInterpolation(input);
+    assert Math.abs(input * input * input * input * input * 16.0f - result) < 1.1f;
   }
 }
