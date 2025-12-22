@@ -18,6 +18,6 @@ public class Main {
     Float output_2 = input_2_0.floatValue();
 
     // Assert the expected outputs
-    assert !(output_1 == -6.0 && output_2 == 9.223372e+18); // desired values
+    assert !(output_1 == -6.0 && output_2 == 9.223372e+18f); // desired values
   }
 }
