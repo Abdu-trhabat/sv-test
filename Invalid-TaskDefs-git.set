@@ -221,12 +221,14 @@ java/argv-tasks/Constant_true.yml
 java/argv-tasks/DiskBasedCache.yml
 java/argv-tasks/FractalTouchHandler_true.yml
 java/argv-tasks/HotspotIntegerGenerator_true.yml
+java/argv-tasks/MathHelper_true.yml
 java/argv-tasks/Piecewise_true.yml
 java/argv-tasks/ReverseInterpolator_false2.yml
 java/argv-tasks/ReverseInterpolator_true.yml
 java/argv-tasks/SpdyStream.yml
 java/argv-tasks/SunTimes_true.yml
 java/argv-tasks/TallyCounts_true.yml
+java/autostub/Long_public_float_java_lang_Long_floatValue.yml
 java/float_unboundedloop/Adjustable-Inner-Count-Halving.yml
 java/float_unboundedloop/Hysteresis-On-Off-with-Deadband.yml
 java/objects/classes/svcomp/objects/A.yml
