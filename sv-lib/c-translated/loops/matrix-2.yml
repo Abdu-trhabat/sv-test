@@ -3,4 +3,5 @@ input_files:
 - matrix-2.svlib
 properties:
 - property_file: ../../properties/correct-tags.prp
+  expected_verdict: false
   
