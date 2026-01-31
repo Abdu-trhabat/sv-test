@@ -19,7 +19,7 @@
     (!
         (sequence
             (assign (y (+ x 2)))
-            (! (sequence) :check-true (> x y)))
+            (! (sequence) :tag main-check-1 :check-true (> x y)))
         :tag proc-increment))
 
 (annotate-tag
