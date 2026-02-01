@@ -236,3 +236,6 @@ java/objects/objects05.yml
 java/objects/objects08.yml
 java/objects/objects09.yml
 java/securibench/Inter10.yml
+sv-lib/c-translated/loop-invariants/linear-inequality-inv-a.2.yml
+sv-lib/core-validation/incremental.yml
+sv-lib/core-verification/loop-add.yml
