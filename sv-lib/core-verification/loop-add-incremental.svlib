@@ -36,6 +36,8 @@
 (declare-const x1 Int)
 (declare-const y1 Int)
 
+(assert (<= 0 y1))
+
 (verify-call add (x1 y1))
 
 (define-proc

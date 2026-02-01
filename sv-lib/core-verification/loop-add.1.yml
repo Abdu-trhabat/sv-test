@@ -1,7 +1,8 @@
 format_version: '2.0'
+
 input_files:
-- matrix-2.svlib
+- loop-add.1.svlib
+
 properties:
-- property_file: ../../properties/correct-tags.prp
+- property_file: ../properties/correct-tags.prp
   expected_verdict: false
-  
