@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: insertionSort_recursive_true-termination.c.i
-input_files: 'insertionSort_recursive.i'
+input_files: 'insertionSort_recursive.c'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp

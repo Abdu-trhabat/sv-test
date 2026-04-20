@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: selectionSort_recursive_true-termination.c.i
-input_files: 'selectionSort_recursive.i'
+input_files: 'selectionSort_recursive.c'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp

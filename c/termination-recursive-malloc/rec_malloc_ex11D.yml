@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: rec_malloc_ex11D_true-termination.c.i
-input_files: 'rec_malloc_ex11D.i'
+input_files: 'rec_malloc_ex11D.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp

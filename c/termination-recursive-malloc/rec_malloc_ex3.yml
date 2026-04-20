@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: rec_malloc_ex3_true-termination.c.i
-input_files: 'rec_malloc_ex3.i'
+input_files: 'rec_malloc_ex3.c'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp

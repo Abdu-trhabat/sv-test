@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: ll_search-alloca_true-termination.c.i
-input_files: 'll_search-alloca.i'
+input_files: 'll_search-alloca.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp

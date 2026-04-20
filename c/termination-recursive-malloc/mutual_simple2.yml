@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: mutual_simple2_true-termination.c.i
-input_files: 'mutual_simple2.i'
+input_files: 'mutual_simple2.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp

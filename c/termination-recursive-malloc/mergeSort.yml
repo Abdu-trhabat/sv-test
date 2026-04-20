@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: mergeSort_true-termination.c.i
-input_files: 'mergeSort.i'
+input_files: 'mergeSort.c'
 
 properties:
   - property_file: ../properties/termination.prp

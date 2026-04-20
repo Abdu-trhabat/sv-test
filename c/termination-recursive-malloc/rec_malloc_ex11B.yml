@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: rec_malloc_ex11B_true-termination.c.i
-input_files: 'rec_malloc_ex11B.i'
+input_files: 'rec_malloc_ex11B.c'
 
 properties:
   - property_file: ../properties/termination.prp
