@@ -9,8 +9,6 @@
 #include <stdlib.h>
 extern int __VERIFIER_nondet_int(void);
 
-//void __VERIFIER_assume();
-
 int main (){
   int a, x;
   x = __VERIFIER_nondet_int();
