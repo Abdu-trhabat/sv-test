@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: cstrchr_unsafe_false-valid-deref.i
-input_files: 'cstrchr_unsafe.i'
+input_files: 'cstrchr_unsafe.c'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp

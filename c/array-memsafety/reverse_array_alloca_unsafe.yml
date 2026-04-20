@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: reverse_array_alloca_unsafe_false-valid-deref.i
-input_files: 'reverse_array_alloca_unsafe.i'
+input_files: 'reverse_array_alloca_unsafe.c'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
