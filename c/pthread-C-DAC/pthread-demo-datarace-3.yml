@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: pthread-demo-datarace_true-unreach-call.i
-input_files: 'pthread-demo-datarace-3.i'
+input_files: 'pthread-demo-datarace-3.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp

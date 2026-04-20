@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: sync01_true-unreach-call.i
-input_files: 'sync01.i'
+input_files: 'sync01.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp

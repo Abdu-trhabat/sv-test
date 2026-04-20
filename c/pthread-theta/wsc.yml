@@ -1,6 +1,6 @@
 format_version: '2.0'
 
-input_files: 'wsc.i'
+input_files: 'wsc.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp

@@ -1,6 +1,6 @@
 format_version: '2.0'
 
-input_files: 'per-thread-array-ptr.i'
+input_files: 'per-thread-array-ptr.c'
 
 properties:
   - property_file: ../properties/no-data-race.prp
