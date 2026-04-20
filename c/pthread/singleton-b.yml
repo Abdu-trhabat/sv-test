@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: singleton_false-unreach-call.i
-input_files: 'singleton-b.i'
+input_files: 'singleton-b.c'
 
 properties:
   - property_file: ../properties/no-data-race.prp
