@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: list_false-unreach-call_false-valid-memcleanup.i
-input_files: 'list-2.i'
+input_files: 'list-2.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp

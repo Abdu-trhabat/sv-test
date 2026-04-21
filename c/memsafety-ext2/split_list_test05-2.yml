@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: split_list_test05_true-valid-memsafety.i
-input_files: 'split_list_test05-2.i'
+input_files: 'split_list_test05-2.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp

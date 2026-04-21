@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: splice_true-unreach-call_false-valid-memtrack.i
-input_files: 'splice-2.i'
+input_files: 'splice-2.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp

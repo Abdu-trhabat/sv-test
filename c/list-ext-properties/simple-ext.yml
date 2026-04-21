@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: simple-ext_false-unreach-call_false-valid-memcleanup_true-termination.i
-input_files: 'simple-ext.i'
+input_files: 'simple-ext.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp

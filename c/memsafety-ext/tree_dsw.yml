@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: tree_dsw_true-valid-memsafety_false-termination.i
-input_files: 'tree_dsw.i'
+input_files: 'tree_dsw.c'
 
 properties:
   - property_file: ../properties/termination.prp

@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: sll2c_remove_all_true-unreach-call_true-valid-memsafety.i
-input_files: 'sll2c_remove_all.i'
+input_files: 'sll2c_remove_all.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp

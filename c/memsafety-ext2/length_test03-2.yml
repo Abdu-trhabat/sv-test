@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: length_test03_false-valid-memtrack.i
-input_files: 'length_test03-2.i'
+input_files: 'length_test03-2.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp

@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: test-0235_true-valid-memsafety.i
-input_files: 'test-0235-2.i'
+input_files: 'test-0235-2.c'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp

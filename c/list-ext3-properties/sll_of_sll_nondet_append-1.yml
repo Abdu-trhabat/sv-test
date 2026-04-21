@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: sll_of_sll_nondet_append_true-unreach-call_true-valid-memsafety.i
-input_files: 'sll_of_sll_nondet_append-1.i'
+input_files: 'sll_of_sll_nondet_append-1.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp

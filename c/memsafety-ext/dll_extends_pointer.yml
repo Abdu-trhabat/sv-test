@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: dll_extends_pointer_true-valid-memsafety.i
-input_files: 'dll_extends_pointer.i'
+input_files: 'dll_extends_pointer.c'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp

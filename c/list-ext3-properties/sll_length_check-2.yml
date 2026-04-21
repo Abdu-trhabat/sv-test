@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: sll_length_check_true-unreach-call_true-valid-memsafety.i
-input_files: 'sll_length_check-2.i'
+input_files: 'sll_length_check-2.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp

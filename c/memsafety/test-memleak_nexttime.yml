@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: test-memleak_nexttime_true-valid-memsafety_true-termination.i
-input_files: 'test-memleak_nexttime.i'
+input_files: 'test-memleak_nexttime.c'
 
 properties:
   - property_file: ../properties/termination.prp

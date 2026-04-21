@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: tree_of_cslls_true-valid-memsafety.i
-input_files: 'tree_of_cslls.i'
+input_files: 'tree_of_cslls.c'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp

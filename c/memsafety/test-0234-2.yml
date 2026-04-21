@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: test-0234_false-valid-memtrack.i
-input_files: 'test-0234-2.i'
+input_files: 'test-0234-2.c'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp

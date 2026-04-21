@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: list-ext_flag_false-unreach-call_false-valid-deref.i
-input_files: 'list-ext_flag.i'
+input_files: 'list-ext_flag.c'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp

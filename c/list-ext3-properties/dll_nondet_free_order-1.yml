@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: dll_nondet_free_order_true-valid-memsafety.i
-input_files: 'dll_nondet_free_order-1.i'
+input_files: 'dll_nondet_free_order-1.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp
