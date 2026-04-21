@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: fmod_true-unreach-call.i
-input_files: 'fmod.i'
+input_files: 'fmod.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp

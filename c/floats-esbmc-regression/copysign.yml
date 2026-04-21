@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: copysign_true-unreach-call.i
-input_files: 'copysign.i'
+input_files: 'copysign.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp

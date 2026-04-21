@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: lrint_true-unreach-call.i
-input_files: 'lrint.i'
+input_files: 'lrint.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp

@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: fdim_true-unreach-call.i
-input_files: 'fdim.i'
+input_files: 'fdim.c'
 
 properties:
   - property_file: ../properties/unreach-call.prp
