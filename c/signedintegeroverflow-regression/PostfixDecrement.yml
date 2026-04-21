@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: PostfixDecrement_false-no-overflow.c.i
-input_files: 'PostfixDecrement.i'
+input_files: 'PostfixDecrement.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp

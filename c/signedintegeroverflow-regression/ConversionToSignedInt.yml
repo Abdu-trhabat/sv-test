@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: ConversionToSignedInt_true-no-overflow_true-termination.c.i
-input_files: 'ConversionToSignedInt.i'
+input_files: 'ConversionToSignedInt.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp

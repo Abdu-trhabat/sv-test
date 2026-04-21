@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: UnaryMinus_false-no-overflow.c.i
-input_files: 'UnaryMinus.i'
+input_files: 'UnaryMinus.c'
 
 properties:
   - property_file: ../properties/no-overflow.prp
