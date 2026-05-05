@@ -8,5 +8,6 @@ properties:
   - property_file: ../properties/coverage-branches.prp
 options:
   language: C
+  language_version: c99
   data_model: ILP32
 

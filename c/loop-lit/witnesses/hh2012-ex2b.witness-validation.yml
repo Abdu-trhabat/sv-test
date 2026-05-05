@@ -17,5 +17,6 @@ properties:
 
 options:
   language: C
+  language_version: c99
   data_model: ILP32
   witness_input_file: 'hh2012-ex2b.witness-2.0.yml'

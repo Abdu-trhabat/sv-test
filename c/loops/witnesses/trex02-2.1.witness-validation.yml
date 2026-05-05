@@ -17,5 +17,6 @@ properties:
 
 options:
   language: C
+  language_version: c99
   data_model: ILP32
   witness_input_file: 'trex02-2.1.witness-2.0.yml'

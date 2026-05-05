@@ -11,4 +11,5 @@ properties:
 
 options:
   language: C
+  language_version: gnu89
   data_model: LP64
