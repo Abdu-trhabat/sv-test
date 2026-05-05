@@ -162,6 +162,8 @@ For each program, the repository contains a .yml file that specifies the followi
       in cases where the property is a conjunction of subproperties (for verdict `false`)
   - `options`: parameters that are relevant for verification or give extra information:
     - `language`: programming language that the program is written in (`C` or `Java`)
+    - `language_version`: version of the programming language:
+      - For `C`, one of: `c89`, `c90`, `c99`, `c11`, `c17`, `c18`, `c23`, `gnu89`, `gnu90`, `gnu99`, `gnu11`, `gnu17`, `gnu18`, `gnu23`
     - `data_model` data model of the computer architecture
       (`ILP32`, `LP64`, see https://www.unix.org/whitepapers/64bit.html, only for `C` programs)
     - `witness_input_file` describes which input file is a witness; only required  
@@ -193,6 +195,7 @@ properties:
 
 options:
   language: C
+  language_version: c99
   data_model: ILP32
 ```
 
@@ -219,6 +222,7 @@ properties:
 
 options:
   language: C
+  language_version: c99
   data_model: ILP32
   witness_input_file: 'linear-inequality-inv-a.1.witness-2.0.yml'
 ```
