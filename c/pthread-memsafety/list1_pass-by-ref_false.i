@@ -1045,20 +1045,22 @@ static void append(struct item **plist) {
   *plist = elem;
 }
 void *build(void *plist) {
-  struct item *list = (struct item *)plist;
-  do
-    append(&list);
-  while (__VERIFIER_nondet_int());
+  struct item **list = (struct item **)plist;
+  // use while instead of do-while, which does not guarantee that
+  // list is not NULL anymore after this function returns
+  while (__VERIFIER_nondet_int()) {
+    append(list);
+  }
   pthread_exit(((void *)0));
 }
 void *delete (void *plist) {
-  struct item *list = (struct item *)plist;
-  if (list) {
-    struct item *next = list->next;
-    free(list->data);
-    free(list);
-    list = next;
-  }
+  struct item **plist_ref = (struct item **)plist;
+  struct item *list = *plist_ref;
+  // invalid dereference because there is no guard on whether list is NULL
+  struct item *next = list->next;
+  free(list->data);
+  free(list);
+  list = next;
   while (list) {
     struct item *next = list->next;
     free(list);

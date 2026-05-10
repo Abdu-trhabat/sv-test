@@ -1,7 +1,7 @@
 format_version: '2.0'
 
 # old file name: list1_false-valid-deref.i
-input_files: 'list1_pass-by-ref.i'
+input_files: 'list1_pass-by-ref_false.i'
 
 properties:
   - property_file: ../properties/valid-memsafety.prp
