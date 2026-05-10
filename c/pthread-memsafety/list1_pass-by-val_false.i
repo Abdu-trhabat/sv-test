@@ -1053,7 +1053,7 @@ void *build(void *plist) {
 }
 void *delete (void *plist) {
   struct item *list = (struct item *)plist;
-  // invalid dereference because there is no guard on whether list is (void*)0
+  // invalid dereference because there is no guard on whether list is NULL
   struct item *next = list->next;
   free(list->data);
   free(list);
