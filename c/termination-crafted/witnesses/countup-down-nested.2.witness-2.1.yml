@@ -1,7 +1,7 @@
 - entry_type: invariant_set
   metadata:
     format_version: "2.1"
-    uuid: "a1ffb552-9892-43da-a83a-badd6e58181c"
+    uuid: "4195c82d-66f0-454e-b8a9-e21052d1f16e"
     creation_time: "2026-05-10T09:35:16+0000"
     producer:
       name: "Handcrafted"
@@ -19,7 +19,8 @@
       type: loop_transition_invariant
       location:
         line: 14
-      value: "x < \\at(x, AnyPrev)"
+      # Not well-founded
+      value: "x <= \\at(x, AnyPrev)"
       format: ext_c_expression
   - invariant:
       type: loop_transition_invariant
