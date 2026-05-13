@@ -19,6 +19,7 @@
       type: loop_transition_invariant
       location:
         line: 15
+        file_name: "genady.c"
       # Not well-founded
       value: "i - j <= \\at(i, AnyPrev) - \\at(j, AnyPrev)"
       format: ext_c_expression

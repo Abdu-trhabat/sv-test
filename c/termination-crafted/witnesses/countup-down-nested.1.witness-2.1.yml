@@ -19,11 +19,13 @@
       type: loop_transition_invariant
       location:
         line: 14
+        file_name: "countup-down-nested.c"
       value: "x < \\at(x, AnyPrev)"
       format: ext_c_expression
   - invariant:
       type: loop_transition_invariant
       location:
         line: 16
+        file_name: "countup-down-nested.c"
       value: "(x <= \\at(x, AnyPrev) && \\at(y, AnyPrev) + 1 <= y) || (x + 1 <= \\at(x, AnyPrev) && 1 <= x)"
       format: ext_c_expression
