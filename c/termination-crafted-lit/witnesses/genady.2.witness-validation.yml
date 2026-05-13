@@ -8,7 +8,7 @@ additional_information:
 
 
 input_files:
-  - '../countup-down-nested.c'
+  - '../genady.c'
   - 'genady.2.witness-2.1.yml'
 
 properties:
