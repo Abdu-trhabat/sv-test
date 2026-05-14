@@ -16,7 +16,7 @@ static void append(struct item **plist) {
 }
 
 void *build(void *plist) {
-  struct item *list = (struct item *)plist;
+  struct item **list = (struct item **)plist;
   // use while instead of do-while, which does not guarantee that
   // list is not NULL anymore after this function returns
   while (__VERIFIER_nondet_int()) {
