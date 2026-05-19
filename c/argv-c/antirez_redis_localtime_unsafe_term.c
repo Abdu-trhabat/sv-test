@@ -135,7 +135,7 @@ int main(void) {
 
   struct tm my_tm;
 
-  nolocks_localtime(&my_tm, 2147483647, -1, 0);
+  nolocks_localtime(&my_tm, 0, 3601, 0); // epoch with UTC+1: t-tz=-3601, seconds negative
 
   return 0;
 }
