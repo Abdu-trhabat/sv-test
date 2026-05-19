@@ -142,10 +142,8 @@ int main(void) {
   long tz = __VERIFIER_nondet_long();
   int dst = __VERIFIER_nondet_int();
 
-  // first day after epoch: timezone adjustment can push t negative, triggering pre-1970 underflow
   if (!(dst == 0 || dst == 1)) { abort(); }
   if (!(tz >= -12 * 3600 && tz <= 14 * 3600)) { abort(); }
-  if (!(t >= 0 && t <= 86400)) { abort(); }
 
   nolocks_localtime(&my_tm, t, tz, dst);
 
