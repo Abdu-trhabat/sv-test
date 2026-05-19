@@ -20,6 +20,8 @@ void *build(void *plist) {
   do
     append(&list);
   while (__VERIFIER_nondet_int());
+  // on thread termination, no pointer points to the 
+  // heap memory allocated in the append function
   pthread_exit(NULL);
 }
 
