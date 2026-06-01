@@ -41,6 +41,7 @@ Thanks to all contributors of programs, patches, and discussion comments.
 The collection consists of three directories, which contain verification tasks written in different languages:
 - `c/` (programming language C, follows the GNU C standard, many programs even adhere to ANSI C)
 - `java/` (programming language Java)
+- `python/` (programming language Python)
 - `clauses/` (systems from the other directories translated to Horn clauses and stored in SMT format)
 
 ### License
