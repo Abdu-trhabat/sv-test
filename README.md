@@ -64,6 +64,12 @@ A (sub-)category `<category>` is defined by a file named `<category>.set`
 that contains patterns that specify the set of programs.
 
 
+### Benchmark Tasks
+
+The definition of verification tasks and test tasks can be found on the following sub-pages:
+- [Verification Tasks](VERIFICATION-TASKS.md)
+- [Test Tasks](TEST-TASKS.md)
+
 ### Programs
 
 #### C Programs
