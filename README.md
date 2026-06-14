@@ -67,8 +67,8 @@ that contains patterns that specify the set of programs.
 ### Benchmark Tasks
 
 The definition of verification tasks and test tasks can be found on the following sub-pages:
-- [Verification Tasks](VERIFICATION-TASKS.md)
-- [Test Tasks](TEST-TASKS.md)
+- [Verification Tasks](TASKS-VERIFICATION.md)
+- [Test Tasks](TASKS-TESTING.md)
 
 ### Programs
 
