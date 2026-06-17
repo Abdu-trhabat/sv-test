@@ -562,15 +562,8 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
 extern void abort();
-void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "DrKLO_Telegram_superfasthash.c", 43, __extension__ __PRETTY_FUNCTION__); })); }
 extern int __VERIFIER_nondet_int(void);
 extern char __VERIFIER_nondet_char(void);
-void __VERIFIER_assert(int cond) {
-  if (!cond) {
-    reach_error();
-    abort();
-  }
-}
 uint32_t SuperFastHash(const char *data, int len) {
   uint32_t hash = len, tmp;
   int rem;
@@ -614,17 +607,11 @@ int main(void) {
   int len = __VERIFIER_nondet_int();
   if (!(len < 2048)) { abort(); }
   char data[2048];
-  char data_2[2048];
   if (len > 0) {
     for (int i = 0; i < len; i++) {
       data[i] = __VERIFIER_nondet_char();
-      data_2[i] = __VERIFIER_nondet_char();
     }
   }
   uint32_t result = SuperFastHash(data, len);
-  uint32_t result_2 = SuperFastHash(data_2, len);
-  if (len > 0){
-    __VERIFIER_assert(result != result_2);
-  }
   return result;
 }
