@@ -76,3 +76,56 @@ We assume that the functions `malloc` and `alloca` always return
 a valid pointer, i.e., the memory allocation never fails,
 and function `free` always deallocates the memory and
 makes the pointer invalid for further dereferences.
+
+
+# TODO: README
+follows the GNU C standard, many programs even adhere to ANSI C
+
+### Programs
+
+#### C Programs
+
+Each C program consists of a single file, which is either: a `.i` file, which is preprocessed, or a `.c` file, which may be un-preprocessed.
+Un-preprocessed programs fulfill the following requirements:
+1. `#include` directives only include headers from the C standard or `pthread.h`.
+2. No `#define` directives are used.
+3. All used macros are defined by the C standard or `pthread.h`.
+
+Each program contains all code that is needed for the verification, i.e., all non-standard functions are defined.
+
+### Behavioral Specifications
+
+There are several 'default' specifications that many people use:
+  - [unreach-call](c/properties/unreach-call.prp):
+    A certain function call must not be reachable in the program.
+  - [valid-memsafety, valid-deref, valid-free, valid-memtrack](c/properties/valid-memsafety.prp):
+    A certain memory safety property must hold in the program.
+    "memsafety" is the conjunction the other three properties.
+  - [valid-memcleanup](c/properties/valid-memcleanup.prp):
+    All allocated memory must be deallocated before the program terminates (note that this is stronger then avoiding memory leaks).
+  - [no-overflow](c/properties/no-overflow.prp):
+    A certain kind of undefined behavior (overflows of signed ints) must not be present in the program.
+  - [termination](c/properties/termination.prp):
+    The program must terminate on all execution paths.
+
+The above specifications are used, e.g., by SV-COMP, and the [competition reports](https://doi.org/10.1007/978-3-030-45237-7_21)
+explains those specifications.
+
+### Test Specifications
+
+The following are some 'default' specifications that many people use for test-case generation:
+  - [coverage-branches](c/properties/coverage-branches.prp):
+    The generated test suite should cover all branches of the program.
+  - [coverage-error-call](c/properties/coverage-error-call.prp):
+    The generated test suite should contain (at least) one test case that covers the call of a certain function.
+
+The above test specifications are used, e.g., by Test-Comp, and the [competition reports](https://doi.org/10.1007/978-3-030-45234-6_25)
+define those specifications.
+
+### Parameters
+
+The parameters of a verification task are needed to make additional information
+about the verification task available to the verification run.
+The most prominent parameter is the machine model;
+currently, there are verification tasks for the ILP32 (32-bit) and the LP64 (64-bit) architecture
+(cf. https://www.unix.org/whitepapers/64bit.html).
