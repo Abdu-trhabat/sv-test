@@ -75,6 +75,11 @@ The definition of verification tasks and test tasks can be found on the followin
 The conventions for programs can be found on the following sub-pages:
 - [C programs](c/CONVENTIONS.md)
 
+### Specifications
+
+The specifications for programs can be found on the following sub-pages:
+- [C specifications](c/properties/)
+
 ### Parameters
 
 The parameters of a verification task are needed to make additional information
