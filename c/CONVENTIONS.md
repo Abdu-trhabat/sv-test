@@ -8,29 +8,34 @@ SPDX-License-Identifier: Apache-2.0
 -->
 
 ## Standard
-The programs are assumed to be written in GNU C (some of them adhere to ANSI C).
+The programs adhere to ISO C or GNU C.
+
+All programs in a directory adhere to the same standard, as specified by the `Makefile` in the directory.
 
 ## Architecture
-For each category, we specify whether the programs are written for
-an **ILP32 (32-bit)** or an **LP64 (64-bit)** architecture
-(cf. <https://www.unix.org/whitepapers/64bit.html>).
+Each program specifies its architecture, ILP32 (32-bit) or [LP64] (64-bit), in the corresponding task definition (in the `data_model` field).
+
+[LP64]: https://www.unix.org/whitepapers/64bit.html
+
+All programs in a directory use the same architecture, as specified by the `Makefile` in the directory.
 
 ## Preprocessing
-Each program consists of a single file, which is either: a .i file, which is preprocessed, or a .c file, which may be un-preprocessed.
-A verifier may distinguish between preprocessed and un-preprocessed programs using the given file extensions.
+Each program consists of a single file, which is either: a `.i` file, which is preprocessed, or a `.c` file, which may be un-preprocessed.
 Un-preprocessed programs fulfill the following requirements:
-- `#include` directives only include headers from the C standard or `pthread.h`.
-- No `#define` directives are used.
-- All used macros are defined by the C standard or `pthread.h`.
-A verifier may preprocess a .c file using `cpp -m32` or `cpp -m64`, depending on the program architecture (see below), without requiring additional macro definitions (`-D` arguments) or include paths (`-I` arguments) to be specified.
-Note that witnesses should still refer to the un-preprocessed .c file (a verifier can rely on [`#line` directives](https://gcc.gnu.org/onlinedocs/gcc-14.2.0/cpp/Line-Control.html) to achieve this).
-Each program contains all code that is needed for the verification, i.e., all non-standard functions are defined.
+1. `#include` directives only include headers from the C standard or `pthread.h`.
+2. No `#define` directives are used.
+3. All used macros are defined by the C standard or `pthread.h`.
+
+A verifier may distinguish between preprocessed and un-preprocessed programs using the given file extensions.
+A verifier may preprocess a `.c` file using `cpp -m32` or `cpp -m64`, depending on the program architecture (see above), without requiring additional macro definitions (`-D` arguments) or include paths (`-I` arguments) to be specified.
+Note that witnesses should still refer to the un-preprocessed `.c` file (a verifier can rely on [`#line` directives](https://gcc.gnu.org/onlinedocs/gcc-14.2.0/cpp/Line-Control.html) to achieve this).
 
 ## Special functions
-In the following, we list a few conventions that are used in some of the verification tasks,
-in order to express special information that is difficult to capture with the C language.
+The programs may use the non-standard functions described below.
+Each program contains all code that is needed for the verification, i.e., all non-standard non-special functions are defined.
 
 ### Undefined functions
+The following special functions are declared but not defined in the programs.
 
 #### `__VERIFIER_nondet_X()`
 In order to model nondeterministic values, the following functions can be assumed to return
@@ -69,19 +74,22 @@ int * values = malloc(sizeof(int) * 20);
 __VERIFIER_nondet_memory(values, sizeof(int) * 20);
 ```
 
-#### `__VERIFIER_atomic_*()`
-These functions are deprecated, but still used in existing tasks.
-Please consider using standard C features from `stdatomic.h` and `pthread.h` to model atomicity (e.g., atomic types, atomic loads / stores, mutexes, ...).
+#### `__VERIFIER_atomic_*()` _(deprecated)_
 For modeling an atomic execution of a sequence of statements in a multi-threaded run-time environment,
 those statements can be placed between two function calls `__VERIFIER_atomic_begin()` and `__VERIFIER_atomic_end()`
 or those statements can be placed in a function whose name starts with `__VERIFIER_atomic_`.
 The verifiers are instructed to assume that the execution between those calls is not interrupted.
 The two calls need to occur within the same control-flow block; nesting or interleaving of those function calls is not allowed.
 
+**NB!** Although these functions are deprecated, they are still used in existing tasks.
+For new tasks, consider using standard C features from `stdatomic.h` and `pthread.h` to model atomicity (e.g., atomic types, atomic loads / stores, mutexes, ...).
+
 ### Defined functions
+The following special functions are defined in the programs.
 TODO
 
 ## Assumptions
+The following non-standard assumptions are made by the programs.
 
 #### `malloc()`, `free()`
 We assume that the functions `malloc` and `alloca` always return
@@ -91,19 +99,6 @@ makes the pointer invalid for further dereferences.
 
 
 # TODO: README
-follows the GNU C standard, many programs even adhere to ANSI C
-
-### Programs
-
-#### C Programs
-
-Each C program consists of a single file, which is either: a `.i` file, which is preprocessed, or a `.c` file, which may be un-preprocessed.
-Un-preprocessed programs fulfill the following requirements:
-1. `#include` directives only include headers from the C standard or `pthread.h`.
-2. No `#define` directives are used.
-3. All used macros are defined by the C standard or `pthread.h`.
-
-Each program contains all code that is needed for the verification, i.e., all non-standard functions are defined.
 
 ### Behavioral Specifications
 
@@ -133,11 +128,3 @@ The following are some 'default' specifications that many people use for test-ca
 
 The above test specifications are used, e.g., by Test-Comp, and the [competition reports](https://doi.org/10.1007/978-3-030-45234-6_25)
 define those specifications.
-
-### Parameters
-
-The parameters of a verification task are needed to make additional information
-about the verification task available to the verification run.
-The most prominent parameter is the machine model;
-currently, there are verification tasks for the ILP32 (32-bit) and the LP64 (64-bit) architecture
-(cf. https://www.unix.org/whitepapers/64bit.html).
