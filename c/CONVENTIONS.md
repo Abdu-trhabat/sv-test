@@ -47,28 +47,6 @@ SPDX-License-Identifier: Apache-2.0
 </p>
 
 <p>
-  <span style="text-decoration: line-through;">
-    <strong>__VERIFIER_error(): </strong>
-    For checking (un)reachability we use the function <tt>__VERIFIER_error()</tt>.
-    The verification tool can assume the following implementation:<br>
-    <tt>void __VERIFIER_error() { abort(); }</tt><br>
-    Hence, a function call <tt>__VERIFIER_error()</tt> never returns and in the function <tt>__VERIFIER_error()</tt> the program terminates.
-  </span>
-</p>
-
-<p>
-  <span style="text-decoration: line-through;">
-    <strong>__VERIFIER_assume(expression): </strong>
-    A verification tool can assume that a function call
-    <tt>__VERIFIER_assume(expression)</tt>
-    has the following meaning: If 'expression' is evaluated to '0', then the function loops forever,
-    otherwise the function returns (no side effects).
-    The verification tool can assume the following implementation:<br />
-    <tt>void __VERIFIER_assume(int expression) { if (!expression) { LOOP: goto LOOP; }; return; }</tt>
-  </span>
-</p>
-
-<p>
   <strong>__VERIFIER_nondet_X(): </strong>
   In order to model nondeterministic values, the following functions can be assumed to return
   an arbitrary value of the indicated type:
