@@ -38,7 +38,7 @@ SPDX-License-Identifier: Apache-2.0
 <p>
   For each category, we specify whether the programs are written for
   an <strong>ILP32 (32-bit)</strong> or an <strong>LP64 (64-bit)</strong> architecture
-  (cf. <a href="http://www.unix.org/whitepapers/64bit.html">http://www.unix.org/whitepapers/64bit.html</a>).
+  (cf. <a href="https://www.unix.org/whitepapers/64bit.html">https://www.unix.org/whitepapers/64bit.html</a>).
 </p>
 
 <p>
