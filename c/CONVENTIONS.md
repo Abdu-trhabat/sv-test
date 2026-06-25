@@ -35,7 +35,8 @@ The programs may use the non-standard functions described below.
 Each program contains all code that is needed for the verification, i.e., all non-standard non-special functions are defined.
 
 ### Undefined functions
-The following special functions are declared but not defined in the programs.
+The following special functions are declared but not defined in the programs (if used).
+Tools are expected to identify their calls by name and model their behavior appropriately.
 
 #### `__VERIFIER_nondet_X()`
 In order to model nondeterministic values, the following functions can be assumed to return
@@ -85,8 +86,27 @@ The two calls need to occur within the same control-flow block; nesting or inter
 For new tasks, consider using standard C features from `stdatomic.h` and `pthread.h` to model atomicity (e.g., atomic types, atomic loads / stores, mutexes, ...).
 
 ### Defined functions
-The following special functions are defined in the programs.
-TODO
+The following special functions are defined in the programs (if used).
+Tools should not identify their calls by name (except for the reachability of `reach_error()`) or model their behavior.
+These functions are only described to ensure consistency across programs.
+
+#### `reach_error()`
+This function is used for the unreach-call and coverage-error-call properties.
+It is defined as follows:
+```c
+#include <assert.h>
+void reach_error() { assert(0); }
+```
+
+#### `assume_abort_if_not(int)`
+This function is often used to restrict the values returned by the `__VERIFIER_nondet_*()` functions.
+It is defined as follows:
+```c
+extern void abort(void);
+void assume_abort_if_not(int cond) {
+  if(!cond) {abort();}
+}
+```
 
 ## Assumptions
 The following non-standard assumptions are made by the programs.
