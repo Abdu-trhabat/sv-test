@@ -3,7 +3,7 @@ Consists of three subproperties that are checked simultaneously:
 - valid-free
 - valid-memtrack
 
-<i>Agreement:</i>
+_Agreement:_
 All programs in category 'MemorySafety' either satisfy all (partial) properties
 or violate exactly one (partial) property p (p in {valid-free, valid-deref, valid-memtrack})
 that is reachable from the program entry.
