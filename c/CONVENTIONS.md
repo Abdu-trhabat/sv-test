@@ -20,15 +20,6 @@ A verifier may preprocess a .c file using <tt>cpp -m32</tt> or <tt>cpp -m64</tt>
 Note that witnesses should still refer to the un-preprocessed .c file (a verifier can rely on <a href="https://gcc.gnu.org/onlinedocs/gcc-14.2.0/cpp/Line-Control.html"><tt>#line</tt> directives</a> to achieve this).
 Each program contains all code that is needed for the verification, i.e., all non-standard functions are defined.
 
-Potential competition participants are invited to submit benchmark verification tasks until the specified date.
-Verification tasks have to fulfill two requirements, to be eligible for the competition:
-(1) the program has to be written in GNU C or ANSI C, and
-(2) the program has to come with a specification given by one of the properties stated above.
-Other specifications are possible, but need to be proposed and discussed.
-
-New proposed categories will be included if at least three different tools or teams participate in the category
-(i.e., not the same tool twice with a different configuration).
-
 For each category, we specify whether the programs are written for
 an <strong>ILP32 (32-bit)</strong> or an <strong>LP64 (64-bit)</strong> architecture
 (cf. <a href="https://www.unix.org/whitepapers/64bit.html">https://www.unix.org/whitepapers/64bit.html</a>).
