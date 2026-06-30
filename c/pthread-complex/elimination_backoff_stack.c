@@ -2,15 +2,16 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <stdatomic.h>
+#include <assert.h>
 
 extern void abort(void);
-#include <assert.h>
-void reach_error() { assert(0); }
 extern int __VERIFIER_nondet_int(void);
-extern void abort(void);
+
+void reach_error() { assert(0); }
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
+
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct Cell Cell;
@@ -39,7 +40,7 @@ int TryPerformStackOp(ThreadInfo *p);
 int TryCollision(ThreadInfo * p, ThreadInfo * q, int him);
 void FinishCollision(ThreadInfo * p);
 
-int ti_cas(ThreadInfo * *p, ThreadInfo* cmp, ThreadInfo* new) {
+int non_atomic_compare_exchange_strong(_Atomic(ThreadInfo*) *p, ThreadInfo* cmp, ThreadInfo* new) {
     if (*p == cmp) {
         *p = new;
         return 1;
@@ -74,7 +75,7 @@ void LesOP(ThreadInfo *p) {
     int mypid = p->id;
     location[mypid] = p;
     int him = collision;
-    assume_abort_if_not (atomic_compare_exchange_strong(&collision, &him, mypid));
+    assume_abort_if_not(atomic_compare_exchange_strong(&collision, &him, mypid));
     if (him > 0) {
         ThreadInfo* q = location[him];
         if (q != NULL && q->id == him && q->op != p->op) {
@@ -98,7 +99,6 @@ stack:
     if (TryPerformStackOp(p) == 1) {
         return;
     }
-    assume_abort_if_not(0);
 }
 
 int TryPerformStackOp(ThreadInfo * p) {
@@ -106,16 +106,13 @@ int TryPerformStackOp(ThreadInfo * p) {
     if (p->op == 1) {
         phead = S.ptop;
         p->cell.pnext = phead;
-        if (atomic_compare_exchange_strong(&S.ptop, &phead, &p->cell)) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return atomic_compare_exchange_strong(&S.ptop, &phead, &p->cell);
     }
     if (p->op == 0) {
         phead = S.ptop;
         if (phead == NULL) {
-            p->cell.pnext = 0; p->cell.pdata = 2;
+            p->cell.pnext = 0;
+            p->cell.pdata = 2;
             return 1;
         }
         pnext = phead->pnext;
@@ -129,7 +126,8 @@ int TryPerformStackOp(ThreadInfo * p) {
             pthread_mutex_unlock(&mutex);
             return 1;
         } else {
-            p->cell.pnext = 0; p->cell.pdata = 2;
+            p->cell.pnext = 0;
+            p->cell.pdata = 2;
             return 0;
         }
     }
@@ -151,19 +149,12 @@ int TryCollision(ThreadInfo * p, ThreadInfo * q, int him) {
     pthread_mutex_lock(&mutex);
     int mypid = p->id;
     if (p->op == 1) {
-        if (ti_cas(&location[him], q, p)) {
-            ret = 1;
-        } else {
-            ret = 0;
-        }
+        ret = non_atomic_compare_exchange_strong(&location[him], q, p);
     }
     if (p->op == 0) {
-        if (ti_cas(&location[him], q, NULL)) {
+        if ((ret = non_atomic_compare_exchange_strong(&location[him], q, NULL))) {
             p->cell = q->cell;
             location[mypid] = NULL;
-            ret = 1;
-        } else {
-            ret = 0;
         }
     }
     pthread_mutex_unlock(&mutex);
@@ -204,9 +195,7 @@ int PopDone[3];
 void checkInvariant() {
     if (!(PopDone[0] <= PushDone[0] + PushOpen[0] && PopDone[1] <= PushDone[1] + PushOpen[1])) {reach_error();abort();}
 }
-void Incr_Push(int localPush1) {
-    atomic_fetch_add(&PushOpen[localPush1], 1);
-}
+
 void DecrIncr_Push(int localPush1) {
     pthread_mutex_lock(&mutex);
     PushOpen[localPush1]--;
@@ -215,9 +204,6 @@ void DecrIncr_Push(int localPush1) {
     pthread_mutex_unlock(&mutex);
 }
 
-void Incr_Pop() {
-    atomic_fetch_add(&PopOpen, 1);
-}
 void DecrIncr_Pop(int localPop_ret) {
     pthread_mutex_lock(&mutex);
     PopOpen--;
@@ -227,14 +213,14 @@ void DecrIncr_Pop(int localPop_ret) {
 }
 
 void* instrPush(void* unused) {
-    Incr_Push(1);
+    atomic_fetch_add(&PushOpen[1], 1);
     Push(1);
     DecrIncr_Push(1);
     return NULL;
 }
 
 void* instrPop(void* unused) {
-    Incr_Pop();
+    atomic_fetch_add(&PopOpen, 1);
     int localPop_ret = Pop();
     DecrIncr_Pop(localPop_ret);
     return NULL;
