@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <stdatomic.h>
 
 extern void abort(void);
 #include <assert.h>
@@ -26,11 +27,11 @@ struct ThreadInfo {
 };
 typedef struct Simple_Stack Simple_Stack;
 struct Simple_Stack {
-    Cell *ptop;
+    _Atomic(Cell*) ptop;
 };
 Simple_Stack S;
-ThreadInfo *location[8];
-int collision;
+_Atomic(ThreadInfo*) location[8];
+atomic_int collision;
 
 int unique_id = 0;
 
@@ -38,31 +39,6 @@ void StackOp(ThreadInfo *p);
 int TryPerformStackOp(ThreadInfo *p);
 int TryCollision(ThreadInfo * p, ThreadInfo * q, int him);
 void FinishCollision(ThreadInfo * p);
-
-int atomic_int_cas(int *p, int cmp, int new) {
-    int ret;
-    __VERIFIER_atomic_begin();
-    if (*p == cmp) {
-        *p = new;
-        ret = 1;
-    } else {
-        ret = 0;
-    }
-    __VERIFIER_atomic_end();
-    return ret;
-}
-int atomic_ti_cas(ThreadInfo * *p, ThreadInfo* cmp, ThreadInfo* new) {
-    int ret;
-    __VERIFIER_atomic_begin();
-    if (*p == cmp) {
-        *p = new;
-        ret = 1;
-    } else {
-        ret = 0;
-    }
-    __VERIFIER_atomic_end();
-    return ret;
-}
 
 int ti_cas(ThreadInfo * *p, ThreadInfo* cmp, ThreadInfo* new) {
     if (*p == cmp) {
@@ -73,18 +49,6 @@ int ti_cas(ThreadInfo * *p, ThreadInfo* cmp, ThreadInfo* new) {
     }
 }
 
-int atomic_c_cas(Cell * *p, Cell* cmp, Cell* new) {
-    int ret;
-    __VERIFIER_atomic_begin();
-    if (*p == cmp) {
-        *p = new;
-        ret = 1;
-    } else {
-        ret = 0;
-    }
-    __VERIFIER_atomic_end();
-    return ret;
-}
 ThreadInfo threads[4];
 int allocated[4];
 
@@ -111,11 +75,11 @@ void LesOP(ThreadInfo *p) {
     int mypid = p->id;
     location[mypid] = p;
     int him = collision;
-    assume_abort_if_not (atomic_int_cas(&collision, him, mypid));
+    assume_abort_if_not (atomic_compare_exchange_strong(&collision, &him, mypid));
     if (him > 0) {
         ThreadInfo* q = location[him];
         if (q != NULL && q->id == him && q->op != p->op) {
-            if (atomic_ti_cas(&location[mypid], p, NULL)) {
+            if (atomic_compare_exchange_strong(&location[mypid], &p, NULL)) {
                 if (TryCollision(p, q, him) == 1) {
                     return;
                 } else {
@@ -127,7 +91,7 @@ void LesOP(ThreadInfo *p) {
             }
         }
     }
-    if (!atomic_ti_cas(&location[mypid], p, NULL)) {
+    if (!atomic_compare_exchange_strong(&location[mypid], &p, NULL)) {
         FinishCollision(p);
         return;
     }
@@ -143,7 +107,7 @@ int TryPerformStackOp(ThreadInfo * p) {
     if (p->op == 1) {
         phead = S.ptop;
         p->cell.pnext = phead;
-        if (atomic_c_cas(&S.ptop, phead, &p->cell)) {
+        if (atomic_compare_exchange_strong(&S.ptop, &phead, &p->cell)) {
             return 1;
         } else {
             return 0;
@@ -156,7 +120,7 @@ int TryPerformStackOp(ThreadInfo * p) {
             return 1;
         }
         pnext = phead->pnext;
-        if (atomic_c_cas(&S.ptop, phead, pnext)) {
+        if (atomic_compare_exchange_strong(&S.ptop, &phead, pnext)) {
             p->cell = *phead;
             __VERIFIER_atomic_begin();
             int i = __VERIFIER_nondet_int();
@@ -233,18 +197,16 @@ int Pop() {
     return v;
 }
 
-int PushOpen[2];
+atomic_int PushOpen[2];
 int PushDone[2];
-int PopOpen;
+atomic_int PopOpen;
 int PopDone[3];
 
 void checkInvariant() {
     if (!(PopDone[0] <= PushDone[0] + PushOpen[0] && PopDone[1] <= PushDone[1] + PushOpen[1])) {reach_error();abort();}
 }
 void Incr_Push(int localPush1) {
-    __VERIFIER_atomic_begin();
-    PushOpen[localPush1]++;
-    __VERIFIER_atomic_end();
+    atomic_fetch_add(&PushOpen[localPush1], 1);
 }
 void DecrIncr_Push(int localPush1) {
     __VERIFIER_atomic_begin();
@@ -255,9 +217,7 @@ void DecrIncr_Push(int localPush1) {
 }
 
 void Incr_Pop() {
-    __VERIFIER_atomic_begin();
-    PopOpen++;
-    __VERIFIER_atomic_end();
+    atomic_fetch_add(&PopOpen, 1);
 }
 void DecrIncr_Pop(int localPop_ret) {
     __VERIFIER_atomic_begin();
@@ -287,9 +247,6 @@ void* instrPush2(void* unused) {
     DecrIncr_Push(1);
     return NULL;
 }
-
-
-
 
 void* instrPop3(void* unused) {
     Incr_Pop();
