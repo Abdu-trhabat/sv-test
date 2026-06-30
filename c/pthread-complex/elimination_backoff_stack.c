@@ -226,68 +226,32 @@ void DecrIncr_Pop(int localPop_ret) {
     pthread_mutex_unlock(&mutex);
 }
 
-void* instrPush0(void* unused) {
+void* instrPush(void* unused) {
     Incr_Push(1);
     Push(1);
     DecrIncr_Push(1);
     return NULL;
 }
 
-void* instrPush1(void* unused) {
-    Incr_Push(1);
-    Push(1);
-    DecrIncr_Push(1);
-    return NULL;
-}
-
-void* instrPush2(void* unused) {
-    Incr_Push(1);
-    Push(1);
-    DecrIncr_Push(1);
-    return NULL;
-}
-
-void* instrPop3(void* unused) {
+void* instrPop(void* unused) {
     Incr_Pop();
     int localPop_ret = Pop();
     DecrIncr_Pop(localPop_ret);
     return NULL;
 }
-
-void* instrPop4(void* unused) {
-    Incr_Pop();
-    int localPop_ret = Pop();
-    DecrIncr_Pop(localPop_ret);
-    return NULL;
-}
-
-void* instrPop5(void* unused) {
-    Incr_Pop();
-    int localPop_ret = Pop();
-    DecrIncr_Pop(localPop_ret);
-    return NULL;
-}
-
-void* instrPop6(void* unused) {
-    Incr_Pop();
-    int localPop_ret = Pop();
-    DecrIncr_Pop(localPop_ret);
-    return NULL;
-}
-
 
 int main(void) {
     Init();
 
     pthread_t tid1, tid2, tid3, tid4, tid5, tid6, tid7;
 
-    pthread_create(&tid1, NULL, &instrPush0, NULL);
-    pthread_create(&tid2, NULL, &instrPush1, NULL);
-    pthread_create(&tid3, NULL, &instrPush2, NULL);
+    pthread_create(&tid1, NULL, &instrPush, NULL);
+    pthread_create(&tid2, NULL, &instrPush, NULL);
+    pthread_create(&tid3, NULL, &instrPush, NULL);
 
-    pthread_create(&tid4, NULL, &instrPop3, NULL);
-    pthread_create(&tid5, NULL, &instrPop4, NULL);
-    pthread_create(&tid6, NULL, &instrPop5, NULL);
-    pthread_create(&tid7, NULL, &instrPop6, NULL);
+    pthread_create(&tid4, NULL, &instrPop, NULL);
+    pthread_create(&tid5, NULL, &instrPop, NULL);
+    pthread_create(&tid6, NULL, &instrPop, NULL);
+    pthread_create(&tid7, NULL, &instrPop, NULL);
     return 0;
 }
