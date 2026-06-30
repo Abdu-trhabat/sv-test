@@ -11,8 +11,7 @@ extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct Cell Cell;
 struct Cell {
@@ -53,22 +52,22 @@ ThreadInfo threads[4];
 int allocated[4];
 
 ThreadInfo* malloc_ThreadInfo() {
-    __VERIFIER_atomic_begin();
+    pthread_mutex_lock(&mutex);
     int i = __VERIFIER_nondet_int();
     assume_abort_if_not(0 <= i && i < 4);
     assume_abort_if_not(!allocated[i]);
     allocated[i] = 1;
-    __VERIFIER_atomic_end();
+    pthread_mutex_unlock(&mutex);
     return &threads[i];
 }
 
 void free_ThreadInfo(ThreadInfo* ti) {
-    __VERIFIER_atomic_begin();
+    pthread_mutex_lock(&mutex);
     int i = __VERIFIER_nondet_int();
     assume_abort_if_not(0 <= i && i < 4);
     assume_abort_if_not(&threads[i] == ti);
     allocated[i] = 0;
-    __VERIFIER_atomic_end();
+    pthread_mutex_unlock(&mutex);
 }
 
 void LesOP(ThreadInfo *p) {
@@ -122,12 +121,12 @@ int TryPerformStackOp(ThreadInfo * p) {
         pnext = phead->pnext;
         if (atomic_compare_exchange_strong(&S.ptop, &phead, pnext)) {
             p->cell = *phead;
-            __VERIFIER_atomic_begin();
+            pthread_mutex_lock(&mutex);
             int i = __VERIFIER_nondet_int();
             assume_abort_if_not(0 <= i && i < 4);
             assume_abort_if_not(&threads[i].cell == phead);
             allocated[i] = 0;
-            __VERIFIER_atomic_end();
+            pthread_mutex_unlock(&mutex);
             return 1;
         } else {
             p->cell.pnext = 0; p->cell.pdata = 2;
@@ -138,18 +137,18 @@ int TryPerformStackOp(ThreadInfo * p) {
 }
 
 void FinishCollision(ThreadInfo * p) {
-    __VERIFIER_atomic_begin();
+    pthread_mutex_lock(&mutex);
     if (p->op == 0) {
         int mypid = p->id;
         p->cell = location[mypid]->cell;
         location[mypid] = NULL;
     }
-    __VERIFIER_atomic_end();
+    pthread_mutex_unlock(&mutex);
 }
 
 int TryCollision(ThreadInfo * p, ThreadInfo * q, int him) {
     int ret = 0;
-    __VERIFIER_atomic_begin();
+    pthread_mutex_lock(&mutex);
     int mypid = p->id;
     if (p->op == 1) {
         if (ti_cas(&location[him], q, p)) {
@@ -167,7 +166,7 @@ int TryCollision(ThreadInfo * p, ThreadInfo * q, int him) {
             ret = 0;
         }
     }
-    __VERIFIER_atomic_end();
+    pthread_mutex_unlock(&mutex);
     return ret;
 }
 
@@ -209,22 +208,22 @@ void Incr_Push(int localPush1) {
     atomic_fetch_add(&PushOpen[localPush1], 1);
 }
 void DecrIncr_Push(int localPush1) {
-    __VERIFIER_atomic_begin();
+    pthread_mutex_lock(&mutex);
     PushOpen[localPush1]--;
     PushDone[localPush1]++;
     checkInvariant();
-    __VERIFIER_atomic_end();
+    pthread_mutex_unlock(&mutex);
 }
 
 void Incr_Pop() {
     atomic_fetch_add(&PopOpen, 1);
 }
 void DecrIncr_Pop(int localPop_ret) {
-    __VERIFIER_atomic_begin();
+    pthread_mutex_lock(&mutex);
     PopOpen--;
     PopDone[localPop_ret]++;
     checkInvariant();
-    __VERIFIER_atomic_end();
+    pthread_mutex_unlock(&mutex);
 }
 
 void* instrPush0(void* unused) {
