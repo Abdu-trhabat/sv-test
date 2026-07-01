@@ -50,15 +50,13 @@ int non_atomic_compare_exchange_strong(_Atomic(ThreadInfo*) *p, ThreadInfo* cmp,
 }
 
 ThreadInfo threads[4];
-int allocated[4];
+atomic_int allocated[4];
 
 ThreadInfo* malloc_ThreadInfo() {
-    pthread_mutex_lock(&mutex);
     int i = __VERIFIER_nondet_int();
     assume_abort_if_not(0 <= i && i < 4);
-    assume_abort_if_not(!allocated[i]);
-    allocated[i] = 1;
-    pthread_mutex_unlock(&mutex);
+    int already_allocated = atomic_fetch_add(&allocated[i], 1);
+    assume_abort_if_not(!already_allocated);
     return &threads[i];
 }
 
