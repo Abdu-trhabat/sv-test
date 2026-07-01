@@ -7,8 +7,6 @@
 extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
 #undef assert
 #define assert(X) if(!(X)) reach_error()
 
@@ -17,6 +15,7 @@ extern void __VERIFIER_atomic_end(void);
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <stdatomic.h>
 
 #define STATICSIZE 16
 
@@ -72,8 +71,8 @@ typedef struct WorkStealQueue {
     long MaxSize;
     long InitialSize; // must be a power of 2
 
-    long head;  // only updated by Take
-    long tail;  // only updated by Push and Pop
+    atomic_long head;  // only updated by Take
+    atomic_long tail;  // only updated by Push and Pop
 
     Obj*  elems[STATICSIZE];         // the array of tasks
     long mask;           // the mask for taking modulus
@@ -84,35 +83,13 @@ typedef struct WorkStealQueue {
 WorkStealQueue q;
 
 
-long atomic_exchange(long *obj, long v) {
-    __VERIFIER_atomic_begin();
-    long t = *obj;
-    *obj = v;
-    __VERIFIER_atomic_end();
-    return t;
-}
-
-_Bool atomic_compare_exchange_strong(long* obj, long* expected, long desired) {
-    int ret = 0;
-    __VERIFIER_atomic_begin();
-    if (*obj == *expected) {
-        *obj = desired;
-        ret = 1;
-    } else {
-        *expected = *obj;
-        ret = 0;
-    }
-    __VERIFIER_atomic_end();
-    return ret;
-}
-
-long readV(long *v) {
+long readV(atomic_long *v) {
     long expected = 0;
     atomic_compare_exchange_strong(v, &expected, 0);
     return expected;
 }
 
-void writeV(long *v, long w) {
+void writeV(atomic_long *v, long w) {
     atomic_exchange(v, w);
 }
 
