@@ -1,2 +1,3 @@
-CHECK( init(main()), (! ZeroDivisionError) & ! (FloatingPointError))
+CHECK( init(main()), ! ZeroDivisionError)
+CHECK( init(main()), ! FloatingPointError)
 
