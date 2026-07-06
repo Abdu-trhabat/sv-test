@@ -27,7 +27,7 @@ The programs are assumed to be written in Python 3.14 by default, but programs r
 ## Properties
 
 The properties we currently consider correspond to families of runtime exceptions:
-- reachability `AssertionError`
+- assertion safety `AssertionError`
 - dynamic typing `TypeError`, `AttributeError`
 - arithmetic `ZeroDivisionError`, `FloatingPointError`
 - data-structure lookups `KeyError`, `IndexError`
