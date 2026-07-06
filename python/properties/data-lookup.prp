@@ -1,1 +1,2 @@
-CHECK( init(main()), (! KeyError) & ! (IndexError))
+CHECK( init(main()), ! uncaught(KeyError))
+CHECK( init(main()), ! uncaught(IndexError))

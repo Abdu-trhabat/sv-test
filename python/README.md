@@ -16,7 +16,7 @@ Verification tasks are grouped in directories depending on their source. Within 
 
 All Python source files of a task need to have the suffix .py. Program files must have a copyright header indicating the source of the benchmark (at least in the "main" source file). The program may import objects from the standard library.
 
-The programs are assumed to be written in Python 3.8 by default, but programs requiring a later version can override this with the `python_version` keyword in the YAML task definition.
+The programs are assumed to be written in Python 3.14 by default, but programs requiring a later version can override this with the `language_version` keyword in the YAML task definition (the key is a string).
 
 ## Category structure
 
