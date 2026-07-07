@@ -28,3 +28,9 @@ In addition for benchmarks to be used in SV-COMP they need to fulfill the follow
 
 **Note**: All of these conditions should be checked by the CI, in case they are not please [open an issue](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/work_items)!
 
+## Validation Benchmarks
+
+In contrast to other programming languages like C, there are no
+validation benchmarks in SV-LIB, since each validation task (composed of a program and witness)
+can be joined together into a single verification task.
+Therefore, it is not necessary to have additional validation benchmarks.
