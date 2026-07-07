@@ -9,6 +9,8 @@ SPDX-License-Identifier: Apache-2.0
 
 # Conventions of SV-LIB Benchmarks
 
+## Conventions for Existing SV-LIB Benchmarks
+
 All benchmarks need to adhere to the [SV-LIB standard version 1.0](https://doi.org/10.48550/arXiv.2511.21509)
 and need to fulfill all requirements outlined in section 8 of the standard,
 including being a well-formed program (sections 8.1, 8.2)
@@ -28,9 +30,19 @@ In addition for benchmarks to be used in SV-COMP they need to fulfill the follow
 
 **Note**: All of these conditions should be checked by the CI, in case they are not please [open an issue](https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/work_items)!
 
-## Validation Benchmarks
+### Validation Benchmarks
 
 In contrast to other programming languages like C, there are no
 validation benchmarks in SV-LIB, since each validation task (composed of a program and witness)
 can be joined together into a single verification task.
 Therefore, it is not necessary to have additional validation benchmarks.
+
+## Conventions for Adding new SV-LIB Benchmarks
+
+To add new benchmarks for SV-LIB please consider the following checklist:
+
+* [ ] If not present: Add high-level explanation of added benchmarks to the [README.md](./README.md)
+* [ ] If transforming tasks: Ensure that only a sample of the tasks is 
+    added to not overwhelm the repository, due to the many possible transformations from C/Java/Rust to SV-LIB
+
+**Note**: This checklist should be kept in sync with the MR description template.
