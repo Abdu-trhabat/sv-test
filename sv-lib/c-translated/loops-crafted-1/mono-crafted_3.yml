@@ -2,5 +2,5 @@ format_version: '2.0'
 input_files:
 - mono-crafted_3.svlib
 properties:
-- property_file: ../../properties/correct-tags.prp
+- property_file: ../../properties/correct-annotations.prp
   expected_verdict: true

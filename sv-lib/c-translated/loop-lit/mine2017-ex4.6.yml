@@ -2,5 +2,5 @@ format_version: '2.0'
 input_files:
 - mine2017-ex4.6.svlib
 properties:
-- property_file: ../../properties/correct-tags.prp
+- property_file: ../../properties/correct-annotations.prp
   expected_verdict: true
