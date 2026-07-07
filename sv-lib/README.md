@@ -33,7 +33,8 @@ Dirk Beyer, Gidon Ernst, Martin Jonáš, Marian Lingsch-Rosenfeld.
 Technical Report, arXiv (2025).
 
 ### `c-translated` 
-The benchmark verification tasks in `c-translated` were translated from the original C tasks of this repository.
+The benchmark verification tasks in `c-translated` were translated from the original C tasks of this repository
+using the tool Cuvee and correspond to an integer encoding of the C programs.
 
 Contributed by Gidon Ernst and Marian Lingsch-Rosenfeld
 as part of the following article:
