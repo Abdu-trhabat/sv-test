@@ -3,7 +3,7 @@
 unsigned int x = 0;
 
 void does_not_terminate(void) {
-    while (x >= 0) x++;
+    while (x < 42) {if (x <= 30) x++; }
 }
 
 int main(void) {
