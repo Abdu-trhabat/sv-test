@@ -11,7 +11,7 @@ import string
 from typing import Callable
 
 def nondet_bool():
-    return bool(random.randint(0, 2))
+    return bool(random.randint(0, 1))
 
 def nondet_int() -> int:
     # unbounded int
@@ -44,5 +44,5 @@ def nondet_str():
 def nondet_float():
     import sys
     if nondet_bool():
-        return random.choice([float('inf'), float('-inf'), float('nan')])
-    return random.uniform(sys.float_info.min, sys.float_info.max)
+        return random.choice([float('inf'), float('-inf'), float('nan'), float('-0.')])
+    return random.uniform(-sys.float_info.max, sys.float_info.max)
