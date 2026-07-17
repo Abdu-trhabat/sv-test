@@ -1,8 +1,6 @@
 from array import array
 import math
 
-import pyperf
-
 
 class Array2D(object):
 
@@ -152,18 +150,14 @@ def SOR_execute(omega, G, cycles, Array):
 
 def bench_SOR(loops, n, cycles, Array):
     range_it = range(loops)
-    t0 = pyperf.perf_counter()
 
     for _ in range_it:
         G = Array(n, n)
         SOR_execute(1.25, G, cycles, Array)
 
-    return pyperf.perf_counter() - t0
-
 
 def SparseCompRow_matmult(M, y, val, row, col, x, num_iterations):
     range_it = range(num_iterations)
-    t0 = pyperf.perf_counter()
 
     for _ in range_it:
         for r in range(M):
@@ -171,8 +165,6 @@ def SparseCompRow_matmult(M, y, val, row, col, x, num_iterations):
             for i in range(row[r], row[r + 1]):
                 sa += x[col[i]] * val[i]
             y[r] = sa
-
-    return pyperf.perf_counter() - t0
 
 
 def bench_SparseMatMult(cycles, N, nz):
@@ -211,12 +203,10 @@ def MonteCarlo(Num_samples):
 
 def bench_MonteCarlo(loops, Num_samples):
     range_it = range(loops)
-    t0 = pyperf.perf_counter()
 
     for _ in range_it:
         MonteCarlo(Num_samples)
 
-    return pyperf.perf_counter() - t0
 
 
 def LU_factor(A, pivot):
@@ -260,12 +250,10 @@ def bench_LU(cycles, N):
     lu = ArrayList(N, N)
     pivot = array('i', [0]) * N
     range_it = range(cycles)
-    t0 = pyperf.perf_counter()
 
     for _ in range_it:
         LU(lu, A, pivot)
 
-    return pyperf.perf_counter() - t0
 
 
 def int_log2(n):
@@ -372,7 +360,6 @@ def bench_FFT(loops, N, cycles):
     twoN = 2 * N
     init_vec = Random(7).RandomVector(twoN)
     range_it = range(loops)
-    t0 = pyperf.perf_counter()
 
     for _ in range_it:
         x = copy_vector(init_vec)
@@ -380,36 +367,23 @@ def bench_FFT(loops, N, cycles):
             FFT_transform(twoN, x)
             FFT_inverse(twoN, x)
 
-    return pyperf.perf_counter() - t0
 
+import _sv_verifier
 
-def add_cmdline_args(cmd, args):
-    if args.benchmark:
-        cmd.append(args.benchmark)
-
+N = 1 + abs(_sv_verifier.nondet_int())
 
 BENCHMARKS = {
     # function name => arguments
-    'sor': (bench_SOR, 100, 10, Array2D),
-    'sparse_mat_mult': (bench_SparseMatMult, 1000, 50 * 1000),
-    'monte_carlo': (bench_MonteCarlo, 100 * 1000,),
-    'lu': (bench_LU, 100,),
-    'fft': (bench_FFT, 1024, 50),
+    'sor': (bench_SOR, abs(_sv_verifier.nondet_int()), abs(_sv_verifier.nondet_int()), abs(_sv_verifier.nondet_int()), Array2D),
+    'sparse_mat_mult': (bench_SparseMatMult, abs(_sv_verifier.nondet_int()), N, (1 + abs(_sv_verifier.nondet_int())) * N),
+    'monte_carlo': (bench_MonteCarlo, 1 + abs(_sv_verifier.nondet_int()), 1 + abs(_sv_verifier.nondet_int()),),
+    'lu': (bench_LU, abs(_sv_verifier.nondet_int()), abs(_sv_verifier.nondet_int()),),
+    'fft': (bench_FFT, abs(_sv_verifier.nondet_int()), 2**abs(_sv_verifier.nondet_int()), abs(_sv_verifier.nondet_int())),
 }
 
 
 if __name__ == "__main__":
-    runner = pyperf.Runner(add_cmdline_args=add_cmdline_args)
-    runner.argparser.add_argument("benchmark", nargs='?',
-                                  choices=sorted(BENCHMARKS))
-
-    args = runner.parse_args()
-    if args.benchmark:
-        benchmarks = (args.benchmark,)
-    else:
-        benchmarks = sorted(BENCHMARKS)
-
+    benchmarks = sorted(BENCHMARKS)
     for bench in benchmarks:
-        name = 'scimark_%s' % bench
         args = BENCHMARKS[bench]
-        runner.bench_time_func(name, *args)
+        args[0](*args[1:])

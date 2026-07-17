@@ -42,9 +42,6 @@
 # Python imports
 import re
 
-# Third party imports
-import pyperf
-
 
 # The precompiled regexs that were in vars in the V8 code, split into
 # tuples of (regex, flags).
@@ -1766,7 +1763,6 @@ def block11():
 
 
 def bench_regex_v8(loops):
-    t0 = pyperf.perf_counter()
     for loops in range(loops):
         block0()
         block1()
@@ -1780,11 +1776,6 @@ def bench_regex_v8(loops):
         block9()
         block10()
         block11()
-    return pyperf.perf_counter() - t0
-
 
 if __name__ == '__main__':
-    runner = pyperf.Runner()
-    runner.metadata['description'] = ("Test the performance of regexps "
-                                      "using V8's benchmarks")
-    runner.bench_time_func('regex_v8', bench_regex_v8)
+    bench_regex_v8(100)

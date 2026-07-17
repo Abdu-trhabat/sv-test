@@ -9,8 +9,6 @@ based on a Java version:
  Outer loop added by Alex Jacoby
 """
 
-import pyperf
-
 
 # Task IDs
 I_IDLE = 1
@@ -416,8 +414,6 @@ class Richards(object):
 
 
 if __name__ == "__main__":
-    runner = pyperf.Runner()
-    runner.metadata['description'] = "The Richards benchmark"
-
     richard = Richards()
-    runner.bench_func('richards', richard.run, 1)
+    richard.run(100)
+

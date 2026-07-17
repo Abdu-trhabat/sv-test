@@ -11,13 +11,11 @@ From http://www.lshift.net/blog/2008/10/29/toy-raytracer-in-python
 import array
 import math
 
-import pyperf
-
-
 DEFAULT_WIDTH = 100
 DEFAULT_HEIGHT = 100
 EPSILON = 0.00001
 
+import _sv_verifier
 
 class Vector(object):
 
@@ -356,7 +354,6 @@ class CheckerboardSurface(SimpleSurface):
 
 def bench_raytrace(loops, width, height, filename):
     range_it = range(loops)
-    t0 = pyperf.perf_counter()
 
     for i in range_it:
         canvas = Canvas(width, height)
@@ -373,37 +370,13 @@ def bench_raytrace(loops, width, height, filename):
                     CheckerboardSurface())
         s.render(canvas)
 
-    dt = pyperf.perf_counter() - t0
-
     if filename:
         canvas.write_ppm(filename)
-    return dt
-
-
-def add_cmdline_args(cmd, args):
-    cmd.append("--width=%s" % args.width)
-    cmd.append("--height=%s" % args.height)
-    if args.filename:
-        cmd.extend(("--filename", args.filename))
 
 
 if __name__ == "__main__":
-    runner = pyperf.Runner(add_cmdline_args=add_cmdline_args)
-    cmd = runner.argparser
-    cmd.add_argument("--width",
-                     type=int, default=DEFAULT_WIDTH,
-                     help="Image width (default: %s)" % DEFAULT_WIDTH)
-    cmd.add_argument("--height",
-                     type=int, default=DEFAULT_HEIGHT,
-                     help="Image height (default: %s)" % DEFAULT_HEIGHT)
-    cmd.add_argument("--filename", metavar="FILENAME.PPM",
-                     help="Output filename of the PPM picture")
-
-    args = runner.parse_args()
-    runner.metadata['description'] = "Simple raytracer"
-    runner.metadata['raytrace_width'] = args.width
-    runner.metadata['raytrace_height'] = args.height
-
-    runner.bench_time_func('raytrace', bench_raytrace,
-                           args.width, args.height,
-                           args.filename)
+    loops = 1 + abs(_sv_verifier.nondet_int())
+    args_width = 2 + abs(_sv_verifier.nondet_int())
+    args_height = 2 + abs(_sv_verifier.nondet_int())
+    args_filename = _sv_verifier.nondet_str()
+    bench_raytrace(loops, args_width, args_height, args_filename)

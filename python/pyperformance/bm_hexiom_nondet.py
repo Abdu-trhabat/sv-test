@@ -10,7 +10,7 @@ Source: https://github.com/slowfrog/hexiom : hexiom2.py, level36.txt
 
 import io
 
-import pyperf
+import _sv_verifier
 
 # 2016-07-07: CPython 3.6 takes ~25 ms to solve the board level 25
 DEFAULT_LEVEL = 25
@@ -628,7 +628,6 @@ def main(loops, level):
     expected = solution.rstrip()
 
     range_it = range(loops)
-    t0 = pyperf.perf_counter()
 
     for _ in range_it:
         stream = io.StringIO()
@@ -636,14 +635,12 @@ def main(loops, level):
         output = stream.getvalue()
         stream = None
 
-    dt = pyperf.perf_counter() - t0
-
     output = '\n'.join(line.rstrip() for line in output.splitlines())
     if output != expected:
         raise AssertionError("got a wrong answer:\n%s\nexpected: %s"
                              % (output, expected))
 
-    return dt
+    return 0
 
 
 def add_cmdline_args(cmd, args):
@@ -651,16 +648,7 @@ def add_cmdline_args(cmd, args):
 
 
 if __name__ == "__main__":
-    runner = pyperf.Runner(add_cmdline_args=add_cmdline_args)
     levels = sorted(LEVELS)
-    runner.argparser.add_argument("--level", type=int,
-                                  choices=levels,
-                                  default=DEFAULT_LEVEL,
-                                  help="Hexiom board level (default: %s)"
-                                       % DEFAULT_LEVEL)
-
-    args = runner.parse_args()
-    runner.metadata['description'] = "Solver of Hexiom board game"
-    runner.metadata['hexiom_level'] = args.level
-
-    runner.bench_time_func('hexiom', main, args.level)
+    level = abs(_sv_verifier.nondet_int()) % len(levels)
+    loops = 1 + abs(_sv_verifier.nondet_int())
+    main(loops, levels[level])

@@ -14,12 +14,12 @@ Contributed by Kevin Carson.
 Modified by Tupteq, Fredrik Johansson, and Daniel Nanz.
 """
 
-import pyperf
-
 __contact__ = "collinwinter@google.com (Collin Winter)"
 DEFAULT_ITERATIONS = 20000
 DEFAULT_REFERENCE = 'sun'
 
+import _sv_verifier
+import random
 
 def combinations(l):
     """Pure-Python implementation of itertools.combinations(l, 2)."""
@@ -125,32 +125,17 @@ def bench_nbody(loops, reference, iterations):
     offset_momentum(BODIES[reference])
 
     range_it = range(loops)
-    t0 = pyperf.perf_counter()
 
     for _ in range_it:
         report_energy()
         advance(0.01, iterations)
         report_energy()
 
-    return pyperf.perf_counter() - t0
-
-
-def add_cmdline_args(cmd, args):
-    cmd.extend(("--iterations", str(args.iterations)))
+    return
 
 
 if __name__ == '__main__':
-    runner = pyperf.Runner(add_cmdline_args=add_cmdline_args)
-    runner.metadata['description'] = "n-body benchmark"
-    runner.argparser.add_argument("--iterations",
-                                  type=int, default=DEFAULT_ITERATIONS,
-                                  help="Number of nbody advance() iterations "
-                                       "(default: %s)" % DEFAULT_ITERATIONS)
-    runner.argparser.add_argument("--reference",
-                                  type=str, default=DEFAULT_REFERENCE,
-                                  help="nbody reference (default: %s)"
-                                       % DEFAULT_REFERENCE)
-
-    args = runner.parse_args()
-    runner.bench_time_func('nbody', bench_nbody,
-                           args.reference, args.iterations)
+    args_loops = 1 + abs(_sv_verifier.nondet_int())
+    args_iterations = 1 + abs(_sv_verifier.nondet_int())
+    args_reference = random.choice(list(BODIES.keys()))
+    bench_nbody(args_loops, args_reference, args_iterations)

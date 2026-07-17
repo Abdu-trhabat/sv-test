@@ -1,7 +1,6 @@
 """
 Artificial, floating point-heavy benchmark originally used by Factor.
 """
-import pyperf
 
 from math import sin, cos, sqrt
 
@@ -53,8 +52,4 @@ def benchmark(n):
 
 
 if __name__ == "__main__":
-    runner = pyperf.Runner()
-    runner.metadata['description'] = "Float benchmark"
-
-    points = POINTS
-    runner.bench_func('float', benchmark, points)
+    benchmark(POINTS)

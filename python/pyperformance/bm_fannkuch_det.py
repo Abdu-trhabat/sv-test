@@ -5,9 +5,6 @@ http://benchmarksgame.alioth.debian.org/
 Contributed by Sokolov Yura, modified by Tupteq.
 """
 
-import pyperf
-
-
 DEFAULT_ARG = 9
 
 
@@ -49,6 +46,4 @@ def fannkuch(n):
 
 
 if __name__ == "__main__":
-    runner = pyperf.Runner()
-    arg = DEFAULT_ARG
-    runner.bench_func('fannkuch', fannkuch, arg)
+    fannkuch(DEFAULT_ARG)

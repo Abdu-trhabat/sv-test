@@ -4,16 +4,15 @@ Go board game
 import math
 import random
 
-import pyperf
+import _sv_verifier
 
-
-SIZE = 9
-GAMES = 200
+SIZE = 1 + abs(_sv_verifier.nondet_int())
+GAMES = 1 + abs(_sv_verifier.nondet_int())
 KOMI = 7.5
 EMPTY, WHITE, BLACK = 0, 1, 2
 SHOW = {EMPTY: '.', WHITE: 'o', BLACK: 'x'}
 PASS = -1
-MAXMOVES = SIZE * SIZE * 3
+MAXMOVES = abs(_sv_verifier.nondet_int())
 TIMESTAMP = 0
 MOVES = 0
 
@@ -452,6 +451,4 @@ def versus_cpu():
 
 
 if __name__ == "__main__":
-    runner = pyperf.Runner()
-    runner.metadata['description'] = "Test the performance of the Go benchmark"
-    runner.bench_func('go', versus_cpu)
+    versus_cpu()
