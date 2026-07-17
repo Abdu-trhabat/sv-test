@@ -135,6 +135,14 @@ java-format:
     paths:
       - "java/*.jar"
 
+python:
+  stage: checks
+  image: registry.gitlab.com/sosy-lab/benchmarking/sv-benchmarks/ci/python:latest
+  script:
+    - "cd python"
+    - "python3 --version"
+    - "./check-compile.py"
+
 check-links:
     stage: checks
     image: "$CI_REGISTRY/sosy-lab/benchmarking/sv-benchmarks/ci/link-checks:latest"
@@ -191,6 +199,13 @@ build-docker:java:latest:
   variables:
     DOCKERFILE: java/.Dockerfile
     IMAGE: ci/java:latest
+
+build-docker:python:latest:
+  extends: .build-docker
+  stage: images
+  variables:
+    DOCKERFILE: python/.Dockerfile
+    IMAGE: ci/python:latest
 
 build-docker:link-checks:latest:
   extends: .build-docker
