@@ -1,3 +1,10 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2026 Python Software Foundation
+#
+# SPDX-License-Identifier: MIT
+
 """
 Artificial, floating point-heavy benchmark originally used by Factor.
 """
