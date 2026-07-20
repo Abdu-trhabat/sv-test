@@ -11,10 +11,14 @@
 
 extern void abort(void);
 void reach_error() { assert(0); }
-#undef assert
-#define assert(X) if(!(X)) reach_error()
 
-#define STATICSIZE 16
+enum {
+    STATICSIZE    = 16,
+    INITQSIZE     = 2, // must be power of 2
+    ITEMS         = 4,
+    STEALERS      = 2,
+    STEAL_ATTEMPS = 1
+};
 
 typedef struct Obj {
     int field;
@@ -249,12 +253,6 @@ void Push(Obj* elem) {
         SyncPush(elem);
     }
 }
-
-#define INITQSIZE 2 // must be power of 2
-
-#define ITEMS 4
-#define STEALERS 2
-#define STEAL_ATTEMPS 1
 
 void *Stealer(void *param) {
     int i;

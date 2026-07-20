@@ -2,19 +2,17 @@
     Copyright (C) Dmitry Vyukov. All rights reserved.
 */
 
-extern void abort(void);
 #include <assert.h>
-void reach_error() { assert(0); }
-#undef assert
-#define assert(X) if(!(X)) reach_error()
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
 #include <stdbool.h>
 
-#define NUM_THREADS 3
+extern void abort(void);
+void reach_error() { assert(0); }
+
+enum { NUM_THREADS = 3 };
 
 typedef struct SafeStackItem
 {

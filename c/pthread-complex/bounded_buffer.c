@@ -1,8 +1,4 @@
-extern void abort(void);
 #include <assert.h>
-void reach_error() { assert(0); }
-extern int __VERIFIER_nondet_int(void);
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,6 +9,9 @@ extern int __VERIFIER_nondet_int(void);
 #define printf(...)
 #define fprintf(...)
 
+extern void abort(void);
+void reach_error() { assert(0); }
+extern int __VERIFIER_nondet_int(void);
 
 typedef struct bounded_buf_tag
 {
@@ -32,15 +31,11 @@ typedef struct bounded_buf_tag
     void **  buf;
 }bounded_buf_t;
 
-#define BOUNDED_BUF_VALID 0xACDEFA
-
-#define BOUNDED_BUF_INITIALIZER \
-{ BOUNDED_BUF_VALID,  PTHREAD_MUTEX_INITIALIZER, \
-PTHREAD_COND_INITIALIZER,  PTHREAD_COND_INITIALIZER, \
-0, 0, 0, 0, null }
-
-#define PRODUCER_SUM  2
-#define CONSUMER_SUM  2
+enum {
+    BOUNDED_BUF_VALID = 0xACDEFA,
+    PRODUCER_SUM      = 2,
+    CONSUMER_SUM      = 2
+};
 
 int bounded_buf_init(bounded_buf_t * bbuf, size_t sz)
 {
