@@ -1,0 +1,18 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2026 Levente Bajczi
+#
+# SPDX-License-Identifier: Apache-2.0
+
+format_version: '2.0'
+
+input_files: 'atomic-qual-cast.c'
+
+properties:
+  - property_file: ../properties/no-data-race.prp
+    expected_verdict: true
+
+options:
+  language: C
+  data_model: ILP32
