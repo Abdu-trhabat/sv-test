@@ -4,7 +4,6 @@
 #include <string.h>
 #include <errno.h>
 #include <pthread.h>
-#include <sys/types.h>
 
 extern void abort(void);
 void reach_error() { assert(0); }
