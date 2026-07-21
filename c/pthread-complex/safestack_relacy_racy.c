@@ -94,7 +94,9 @@ void* thread(void* arg)
         }
 
         stack.array[elem].Value = idx;
-        assert(stack.array[elem].Value == idx);
+        if(stack.array[elem].Value != idx) {
+            reach_error();
+        }
 
         Push(elem);
     }

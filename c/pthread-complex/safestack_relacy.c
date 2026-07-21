@@ -94,7 +94,9 @@ void* thread(void* arg)
         }
 
         __atomic_store_n(&stack.array[elem].Value,  idx, 5); // atomic to avoid race
-        assert(__atomic_load_n(&stack.array[elem].Value, 5) == idx); // atomic to avoid race
+        if(__atomic_load_n(&stack.array[elem].Value, 5) != idx) { // atomic to avoid race
+            reach_error();
+        }
 
         Push(elem);
     }

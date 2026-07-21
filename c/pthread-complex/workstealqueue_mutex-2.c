@@ -196,7 +196,9 @@ void SyncPush(Obj* elem) {
         //
         long newsize = (q.mask == 0 ? q.InitialSize : 2 * (q.mask + 1));
 
-        assert(newsize < q.MaxSize);
+        if(!(newsize < q.MaxSize)) {
+            reach_error();
+        }
 
         Obj *newtasks[STATICSIZE];
         long i;
@@ -213,7 +215,9 @@ void SyncPush(Obj* elem) {
         atomic_store(&q.tail, count);
     }
 
-    assert(count < q.mask);
+    if(!(count < q.mask)) {
+        reach_error();
+    }
 
     // push the element
     //
@@ -302,7 +306,9 @@ int main(void) {
     }
 
     for (i = 0; i < ITEMS; i++) {
-        assert(items[i].field == 1);
+        if(items[i].field != 1) {
+            reach_error();
+        }
     }
 
     return 0;
