@@ -16,9 +16,9 @@ static void append(struct item **plist) {
 }
 
 void *build(void *plist) {
-  struct item *list = (struct item *)plist;
+  struct item **list = (struct item **)plist;
   do
-    append(&list);
+    append(list);
   while (__VERIFIER_nondet_int());
   pthread_exit(NULL);
 }
