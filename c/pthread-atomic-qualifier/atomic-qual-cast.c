@@ -21,7 +21,7 @@ void *thr(void *arg) {
 int main(void) {
   pthread_t id;
   pthread_create(&id, 0, thr, 0);
-  if ((int)(_Atomic int)42 != 42) reach_error(); // UNREACH
+  if ((int)(_Atomic(int))42 != 42) reach_error(); // UNREACH
   pthread_join(id, 0);
   return 0;
 }
