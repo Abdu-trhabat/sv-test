@@ -1,4 +1,7 @@
-@fix_cilled_ptr_offset exists@
+// disable optional_qualifier to avoid matching cast on volatile jiffies
+// disable plus_comm to avoid matching add on jiffies
+
+@fix_cilled_ptr_offset disable optional_qualifier, plus_comm exists@
 identifier E1 =~ "__cil_tmp.*";
 identifier E3 =~ "__cil_tmp.*";
 expression E0, E2;
@@ -14,7 +17,7 @@ expression E0, E2;
 + ((void*)E0 + E2)
 
 
-@fix_cilled_addrof_offset exists@
+@fix_cilled_addrof_offset disable optional_qualifier, plus_comm exists@
 identifier E3 =~ "__cil_tmp.*";
 expression E0, E2;
 @@
