@@ -5,22 +5,22 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-// _Atomic in a pointer cast type name.
+// _Atomic in a pointer cast type name: x itself is ordinary, but every access
+// to it goes through a pointer explicitly cast to _Atomic int *, so the access
+// is atomic regardless of how x was declared.
 #include <pthread.h>
 
-_Atomic int x;
+int x;
 
 void *thr(void *arg) {
-  (void)arg;
-  (void)(_Atomic int *)0;
-  x = 1; // NORACE
+  *(_Atomic int *)&x = 1; // NORACE
   return 0;
 }
 
 int main(void) {
   pthread_t id;
   pthread_create(&id, 0, thr, 0);
-  x = 2; // NORACE
+  *(_Atomic int *)&x = 2; // NORACE
   pthread_join(id, 0);
   return 0;
 }

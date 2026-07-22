@@ -5,22 +5,24 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-// _Atomic inside sizeof.
+// _Atomic inside sizeof: the qualifier must not change the size of the object.
 #include <pthread.h>
 
+extern void abort(void);
+#include <assert.h>
+void reach_error() { assert(0); }
+
 _Atomic int x;
-unsigned long sz = sizeof(_Atomic int);
 
 void *thr(void *arg) {
-  (void)arg;
-  x = 1; // NORACE
+  if (sizeof(_Atomic int) != sizeof(int)) reach_error(); // UNREACH
   return 0;
 }
 
 int main(void) {
   pthread_t id;
   pthread_create(&id, 0, thr, 0);
-  x = 2; // NORACE
+  if (sizeof(x) != sizeof(int)) reach_error(); // UNREACH
   pthread_join(id, 0);
   return 0;
 }

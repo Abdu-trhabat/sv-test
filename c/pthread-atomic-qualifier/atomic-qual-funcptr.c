@@ -5,22 +5,24 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-// _Atomic function pointer declared alongside the raced object.
+// _Atomic function pointer: the pointer object itself is atomic, so writing it
+// is race-free.
 #include <pthread.h>
 
-_Atomic int x;
+void f1(void) {}
+void f2(void) {}
+
 void (* _Atomic fp)(void);
 
 void *thr(void *arg) {
-  (void)arg;
-  x = 1; // NORACE
+  fp = f1; // NORACE
   return 0;
 }
 
 int main(void) {
   pthread_t id;
   pthread_create(&id, 0, thr, 0);
-  x = 2; // NORACE
+  fp = f2; // NORACE
   pthread_join(id, 0);
   return 0;
 }

@@ -5,22 +5,25 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-// _Atomic array function parameter.
+// _Atomic array function parameter: a is ordinary, but an array parameter
+// decays to a pointer rather than copying the array, so writing through the
+// _Atomic int * that sink() receives reaches a's storage directly and is
+// atomic regardless of how a was declared.
 #include <pthread.h>
 
-_Atomic int x;
-void sink(_Atomic int v[4]) { (void)v; }
+int a[4];
+
+void sink(_Atomic int v[4], int val) { v[1] = val; }
 
 void *thr(void *arg) {
-  (void)arg;
-  x = 1; // NORACE
+  sink((_Atomic int *)a, 1); // NORACE
   return 0;
 }
 
 int main(void) {
   pthread_t id;
   pthread_create(&id, 0, thr, 0);
-  x = 2; // NORACE
+  sink((_Atomic int *)a, 2); // NORACE
   pthread_join(id, 0);
   return 0;
 }
