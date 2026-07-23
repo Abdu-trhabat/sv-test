@@ -224,3 +224,13 @@ If a C program contains undefined behavior other than the one related to the pro
 then it should be fixed according to the general procedure described above.
 The only difference is that the problematic copy would not have an expected verdict for the original property but rather the one related to the undefined behavior.
 If there is no property corresponding to that undefined behavior, then the `def-behavior` property can be used instead.
+
+
+## How to Maintain this Repository?
+
+### SV-COMP/Test-COMP Benchmark Freeze Period
+
+Changes during the benchmark freeze period of SV-COMP/Test-COMP invalidate changed tasks _for that year's competition_:
+* Any new tasks are considered invalid.
+* Any change to a program or its task definition file will invalidate the program _for all of its properties_.
+  Hence, new properties should _not_ be added for existing (unmodified) programs as this would unnecessarily invalidate tasks without problems.
