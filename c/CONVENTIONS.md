@@ -112,7 +112,7 @@ void assume_abort_if_not(int cond) {
 The following non-standard assumptions are made by the programs.
 
 #### `malloc()`, `free()`
-We assume that the functions `malloc` and `alloca` always return
+We assume that the functions `malloc`, `calloc`, `realloc` and `alloca` always return
 a valid pointer, i.e., the memory allocation never fails,
 and function `free` always deallocates the memory and
 makes the pointer invalid for further dereferences.
