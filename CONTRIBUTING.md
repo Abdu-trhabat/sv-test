@@ -203,3 +203,24 @@ Please run [check.py](c/check.py) and check for any `ERROR`s reported.
 If some violation is on purpose (e.g., additional files that are no verification tasks),
 please whitelist the respective warning by adding it to one of the `KNOWN_*_PROBLEMS` lists
 in the script.
+
+
+## How to Fix Verification Tasks?
+
+If a task has a wrong expected verdict, then it could be fixed in two ways:
+* either by modifying the program
+* or by changing the expected verdict.
+
+If it is possible and sensible, then the fix should do _both_:
+1. Make a copy of the problematic task.
+2. Change the expected verdict of the copy.
+3. Modify the original program such that the original expected verdict would be correct.
+
+This provides a natural source of new verification tasks inspired by actual problems.
+
+### C Programs
+
+If a C program contains undefined behavior other than the one related to the property in its task definition,
+then it should be fixed according to the general procedure described above.
+The only difference is that the problematic copy would not have an expected verdict for the original property but rather the one related to the undefined behavior.
+If there is no property corresponding to that undefined behavior, then the `def-behavior` property can be used instead.
