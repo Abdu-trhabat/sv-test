@@ -226,6 +226,14 @@ The only difference is that the problematic copy would not have an expected verd
 If there is no property corresponding to that undefined behavior, then the `def-behavior` property can be used instead.
 
 
+## How to Review Merge Requests related to Verification Tasks?
+
+Merge requests (MRs) related to verification tasks need to be reviewed by _two_ members of the community:
+* Ideally, the two reviewers should be independent of the creator of the MR, i.e., have a different affiliation or be associated with a different tool.
+* It is acceptable if only one of the reviewers is independent and the other is not.
+  However, the non-independent reviewer should not have been involved in the creation of the MR.
+
+
 ## How to Maintain this Repository?
 
 ### SV-COMP/Test-COMP Benchmark Freeze Period
