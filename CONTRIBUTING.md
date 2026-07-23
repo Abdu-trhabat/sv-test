@@ -119,6 +119,19 @@ The `.yml` file should be named just like the original verification problem (exc
 The task definition can contain additional information.
 For example, it needs to define the language (C or Java).
 
+Tasks, i.e., programs w.r.t. their property, should not be trivial:
+* Programs with the `unreach-call` or `coverage-error-call` property should contain a call to `reach_error`.
+* Programs with the `no-overflow` property should contain a signed-integer operation can ever overflow.
+* Programs with the `termination` property should contain a construct which can ever not terminate, e.g., loop, `goto`, recursion, `longjmp` or possibly some other.
+* Programs with the `no-data-race` property should be multi-threaded and contain accesses to memory shared between threads.
+* Programs with the `valid-memsafety` property should contain an array access, a pointer dereference, memory allocation or deallocation.
+* Programs with the `valid-memcleanup` property should contain memory allocation.
+* Programs in the `Concurrency` set should be multi-threaded.
+
+The above triviality descriptions may be incomplete.
+Small numbers of trivial tasks are acceptable (and welcome if missing) if they serve as sanity checks for tools
+that they implement the relevant feature correctly, e.g., do not consider unsigned-integer operation overflows as violations of the `no-overflow` property.
+
 
 #### Category
 
