@@ -2,7 +2,7 @@
 This file is part of the SV-Benchmarks collection of verification tasks:
 https://github.com/sosy-lab/sv-benchmarks
 
-SPDX-FileCopyrightText: 2011-2020 The SV-Benchmarks Community
+SPDX-FileCopyrightText: 2011-2026 The SV-Benchmarks Community
 
 SPDX-License-Identifier: Apache-2.0
 -->
@@ -40,8 +40,6 @@ in the default package as the entry point,
 and uses the assert property would look as follows:
 
     CHECK( init(Main.main()), LTL(G assert) )
-
-Other properties are currently not defined.
 
 ## Compiling the Verification Tasks
 
