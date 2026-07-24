@@ -4,7 +4,9 @@
 @fix_cilled_ptr_offset disable optional_qualifier, plus_comm exists@
 identifier E1 =~ "__cil_tmp.*";
 identifier E3 =~ "__cil_tmp.*";
-expression E0, E2;
+type T;
+T* E0;
+expression E2;
 @@
 
 - unsigned long E1;
