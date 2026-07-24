@@ -1807,14 +1807,11 @@ extern int dev_set_drvdata(struct device * , void * ) ;
 extern int dev_err(struct device const * , char const * , ...) ;
 extern int platform_get_irq_byname(struct platform_device * , char const * ) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1835,17 +1832,13 @@ extern int regmap_update_bits(struct regmap * , unsigned int , unsigned int , un
 __inline static int da9052_reg_read(struct da9052 *da9052 , unsigned char reg )
 { int val ;
   int ret ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct regmap *__cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   unsigned int *__cil_tmp9 ;
   int *__cil_tmp10 ;
   {
   {
-  __cil_tmp5 = (unsigned long )da9052;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((struct regmap **)__cil_tmp6);
+  __cil_tmp7 = *((struct regmap **)((void *)da9052 + 8));
   __cil_tmp8 = (unsigned int )reg;
   __cil_tmp9 = (unsigned int *)(& val);
   ret = regmap_read(__cil_tmp7, __cil_tmp8, __cil_tmp9);
@@ -1863,17 +1856,13 @@ __inline static int da9052_reg_read(struct da9052 *da9052 , unsigned char reg )
 __inline static int da9052_group_read(struct da9052 *da9052 , unsigned char reg ,
                                       unsigned int reg_cnt , unsigned char *val )
 { int tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct regmap *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   void *__cil_tmp10 ;
   size_t __cil_tmp11 ;
   {
   {
-  __cil_tmp6 = (unsigned long )da9052;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = *((struct regmap **)__cil_tmp7);
+  __cil_tmp8 = *((struct regmap **)((void *)da9052 + 8));
   __cil_tmp9 = (unsigned int )reg;
   __cil_tmp10 = (void *)val;
   __cil_tmp11 = (size_t )reg_cnt;
@@ -1885,17 +1874,13 @@ __inline static int da9052_group_read(struct da9052 *da9052 , unsigned char reg 
 __inline static int da9052_group_write(struct da9052 *da9052 , unsigned char reg ,
                                        unsigned int reg_cnt , unsigned char *val )
 { int tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct regmap *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   void const *__cil_tmp10 ;
   size_t __cil_tmp11 ;
   {
   {
-  __cil_tmp6 = (unsigned long )da9052;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = *((struct regmap **)__cil_tmp7);
+  __cil_tmp8 = *((struct regmap **)((void *)da9052 + 8));
   __cil_tmp9 = (unsigned int )reg;
   __cil_tmp10 = (void const *)val;
   __cil_tmp11 = (size_t )reg_cnt;
@@ -1907,17 +1892,13 @@ __inline static int da9052_group_write(struct da9052 *da9052 , unsigned char reg
 __inline static int da9052_reg_update(struct da9052 *da9052 , unsigned char reg ,
                                       unsigned char bit_mask , unsigned char reg_val )
 { int tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct regmap *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   {
   {
-  __cil_tmp6 = (unsigned long )da9052;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = *((struct regmap **)__cil_tmp7);
+  __cil_tmp8 = *((struct regmap **)((void *)da9052 + 8));
   __cil_tmp9 = (unsigned int )reg;
   __cil_tmp10 = (unsigned int )bit_mask;
   __cil_tmp11 = (unsigned int )reg_val;
@@ -1965,17 +1946,11 @@ static int da9052_rtc_enable_alarm(struct da9052 *da9052 , bool enable )
 static irqreturn_t da9052_rtc_irq(int irq , void *data )
 { struct da9052_rtc *rtc ;
   int ret ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct da9052 *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct da9052 *__cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device const *__cil_tmp12 ;
   int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct da9052 *__cil_tmp16 ;
   bool __cil_tmp17 ;
   struct rtc_device *__cil_tmp18 ;
@@ -1983,16 +1958,12 @@ static irqreturn_t da9052_rtc_irq(int irq , void *data )
   {
   {
   rtc = (struct da9052_rtc *)data;
-  __cil_tmp5 = (unsigned long )rtc;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((struct da9052 **)__cil_tmp6);
+  __cil_tmp7 = *((struct da9052 **)((void *)rtc + 8));
   ret = da9052_reg_read(__cil_tmp7, (unsigned char)117);
   }
   if (ret < 0) {
     {
-    __cil_tmp8 = (unsigned long )rtc;
-    __cil_tmp9 = __cil_tmp8 + 8;
-    __cil_tmp10 = *((struct da9052 **)__cil_tmp9);
+    __cil_tmp10 = *((struct da9052 **)((void *)rtc + 8));
     __cil_tmp11 = *((struct device **)__cil_tmp10);
     __cil_tmp12 = (struct device const *)__cil_tmp11;
     dev_err(__cil_tmp12, "%s: Read error: %d\n", "da9052_rtc_irq", ret);
@@ -2004,9 +1975,7 @@ static irqreturn_t da9052_rtc_irq(int irq , void *data )
   __cil_tmp13 = ret & 64;
   if (__cil_tmp13 != 0) {
     {
-    __cil_tmp14 = (unsigned long )rtc;
-    __cil_tmp15 = __cil_tmp14 + 8;
-    __cil_tmp16 = *((struct da9052 **)__cil_tmp15);
+    __cil_tmp16 = *((struct da9052 **)((void *)rtc + 8));
     __cil_tmp17 = (bool )0;
     da9052_rtc_enable_alarm(__cil_tmp16, __cil_tmp17);
     __cil_tmp18 = *((struct rtc_device **)rtc);
@@ -2028,34 +1997,24 @@ static int da9052_read_alarm(struct da9052 *da9052 , struct rtc_time *rtc_tm )
   unsigned char *__cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device const *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   uint8_t __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   uint8_t __cil_tmp19 ;
   int __cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   uint8_t __cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   uint8_t __cil_tmp32 ;
   int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   uint8_t __cil_tmp38 ;
@@ -2076,43 +2035,33 @@ static int da9052_read_alarm(struct da9052 *da9052 , struct rtc_time *rtc_tm )
   } else {
   }
   {
-  __cil_tmp8 = (unsigned long )rtc_tm;
-  __cil_tmp9 = __cil_tmp8 + 20;
   __cil_tmp10 = 4 * 1UL;
   __cil_tmp11 = (unsigned long )(v) + __cil_tmp10;
   __cil_tmp12 = *((uint8_t *)__cil_tmp11);
   __cil_tmp13 = (int )__cil_tmp12;
   __cil_tmp14 = __cil_tmp13 & 63;
-  *((int *)__cil_tmp9) = __cil_tmp14 + 100;
-  __cil_tmp15 = (unsigned long )rtc_tm;
-  __cil_tmp16 = __cil_tmp15 + 16;
+  *((int *)((void *)rtc_tm + 20)) = __cil_tmp14 + 100;
   __cil_tmp17 = 3 * 1UL;
   __cil_tmp18 = (unsigned long )(v) + __cil_tmp17;
   __cil_tmp19 = *((uint8_t *)__cil_tmp18);
   __cil_tmp20 = (int )__cil_tmp19;
   __cil_tmp21 = __cil_tmp20 & 15;
-  *((int *)__cil_tmp16) = __cil_tmp21 + -1;
-  __cil_tmp22 = (unsigned long )rtc_tm;
-  __cil_tmp23 = __cil_tmp22 + 12;
+  *((int *)((void *)rtc_tm + 16)) = __cil_tmp21 + -1;
   __cil_tmp24 = 2 * 1UL;
   __cil_tmp25 = (unsigned long )(v) + __cil_tmp24;
   __cil_tmp26 = *((uint8_t *)__cil_tmp25);
   __cil_tmp27 = (int )__cil_tmp26;
-  *((int *)__cil_tmp23) = __cil_tmp27 & 31;
-  __cil_tmp28 = (unsigned long )rtc_tm;
-  __cil_tmp29 = __cil_tmp28 + 8;
+  *((int *)((void *)rtc_tm + 12)) = __cil_tmp27 & 31;
   __cil_tmp30 = 1 * 1UL;
   __cil_tmp31 = (unsigned long )(v) + __cil_tmp30;
   __cil_tmp32 = *((uint8_t *)__cil_tmp31);
   __cil_tmp33 = (int )__cil_tmp32;
-  *((int *)__cil_tmp29) = __cil_tmp33 & 31;
-  __cil_tmp34 = (unsigned long )rtc_tm;
-  __cil_tmp35 = __cil_tmp34 + 4;
+  *((int *)((void *)rtc_tm + 8)) = __cil_tmp33 & 31;
   __cil_tmp36 = 0 * 1UL;
   __cil_tmp37 = (unsigned long )(v) + __cil_tmp36;
   __cil_tmp38 = *((uint8_t *)__cil_tmp37);
   __cil_tmp39 = (int )__cil_tmp38;
-  *((int *)__cil_tmp35) = __cil_tmp39 & 63;
+  *((int *)((void *)rtc_tm + 4)) = __cil_tmp39 & 63;
   ret = rtc_valid_tm(rtc_tm);
   }
   if (ret != 0) {
@@ -2125,18 +2074,8 @@ static int da9052_read_alarm(struct da9052 *da9052 , struct rtc_time *rtc_tm )
 static int da9052_set_alarm(struct da9052 *da9052 , struct rtc_time *rtc_tm )
 { int ret ;
   uint8_t v[3U] ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned char __cil_tmp18 ;
   int __cil_tmp19 ;
@@ -2145,22 +2084,14 @@ static int da9052_set_alarm(struct da9052 *da9052 , struct rtc_time *rtc_tm )
   struct device const *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   int __cil_tmp37 ;
   unsigned char *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   int __cil_tmp41 ;
   unsigned char __cil_tmp42 ;
   int __cil_tmp43 ;
@@ -2169,21 +2100,11 @@ static int da9052_set_alarm(struct da9052 *da9052 , struct rtc_time *rtc_tm )
   struct device const *__cil_tmp46 ;
   {
   {
-  __cil_tmp5 = (unsigned long )rtc_tm;
-  __cil_tmp6 = __cil_tmp5 + 20;
-  __cil_tmp7 = (unsigned long )rtc_tm;
-  __cil_tmp8 = __cil_tmp7 + 20;
-  __cil_tmp9 = *((int *)__cil_tmp8);
-  *((int *)__cil_tmp6) = __cil_tmp9 + -100;
-  __cil_tmp10 = (unsigned long )rtc_tm;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = (unsigned long )rtc_tm;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = *((int *)__cil_tmp13);
-  *((int *)__cil_tmp11) = __cil_tmp14 + 1;
-  __cil_tmp15 = (unsigned long )rtc_tm;
-  __cil_tmp16 = __cil_tmp15 + 4;
-  __cil_tmp17 = *((int *)__cil_tmp16);
+  __cil_tmp9 = *((int *)((void *)rtc_tm + 20));
+  *((int *)((void *)rtc_tm + 20)) = __cil_tmp9 + -100;
+  __cil_tmp14 = *((int *)((void *)rtc_tm + 16));
+  *((int *)((void *)rtc_tm + 16)) = __cil_tmp14 + 1;
+  __cil_tmp17 = *((int *)((void *)rtc_tm + 4));
   __cil_tmp18 = (unsigned char )__cil_tmp17;
   __cil_tmp19 = (int )__cil_tmp18;
   __cil_tmp20 = (unsigned char )__cil_tmp19;
@@ -2202,21 +2123,15 @@ static int da9052_set_alarm(struct da9052 *da9052 , struct rtc_time *rtc_tm )
   {
   __cil_tmp23 = 0 * 1UL;
   __cil_tmp24 = (unsigned long )(v) + __cil_tmp23;
-  __cil_tmp25 = (unsigned long )rtc_tm;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  __cil_tmp27 = *((int *)__cil_tmp26);
+  __cil_tmp27 = *((int *)((void *)rtc_tm + 8));
   *((uint8_t *)__cil_tmp24) = (uint8_t )__cil_tmp27;
   __cil_tmp28 = 1 * 1UL;
   __cil_tmp29 = (unsigned long )(v) + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )rtc_tm;
-  __cil_tmp31 = __cil_tmp30 + 12;
-  __cil_tmp32 = *((int *)__cil_tmp31);
+  __cil_tmp32 = *((int *)((void *)rtc_tm + 12));
   *((uint8_t *)__cil_tmp29) = (uint8_t )__cil_tmp32;
   __cil_tmp33 = 2 * 1UL;
   __cil_tmp34 = (unsigned long )(v) + __cil_tmp33;
-  __cil_tmp35 = (unsigned long )rtc_tm;
-  __cil_tmp36 = __cil_tmp35 + 16;
-  __cil_tmp37 = *((int *)__cil_tmp36);
+  __cil_tmp37 = *((int *)((void *)rtc_tm + 16));
   *((uint8_t *)__cil_tmp34) = (uint8_t )__cil_tmp37;
   __cil_tmp38 = (unsigned char *)(& v);
   ret = da9052_group_write(da9052, (unsigned char)118, 3U, __cil_tmp38);
@@ -2226,9 +2141,7 @@ static int da9052_set_alarm(struct da9052 *da9052 , struct rtc_time *rtc_tm )
   } else {
   }
   {
-  __cil_tmp39 = (unsigned long )rtc_tm;
-  __cil_tmp40 = __cil_tmp39 + 20;
-  __cil_tmp41 = *((int *)__cil_tmp40);
+  __cil_tmp41 = *((int *)((void *)rtc_tm + 20));
   __cil_tmp42 = (unsigned char )__cil_tmp41;
   __cil_tmp43 = (int )__cil_tmp42;
   __cil_tmp44 = (unsigned char )__cil_tmp43;
@@ -2274,43 +2187,29 @@ static int da9052_rtc_read_time(struct device *dev , struct rtc_time *rtc_tm )
   uint8_t v[6U] ;
   int ret ;
   struct device const *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct da9052 *__cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct da9052 *__cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   uint8_t __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   uint8_t __cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   uint8_t __cil_tmp35 ;
   int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   uint8_t __cil_tmp41 ;
   int __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   uint8_t __cil_tmp47 ;
@@ -2319,8 +2218,6 @@ static int da9052_rtc_read_time(struct device *dev , struct rtc_time *rtc_tm )
   unsigned long __cil_tmp50 ;
   uint8_t __cil_tmp51 ;
   int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct da9052 *__cil_tmp55 ;
   struct device *__cil_tmp56 ;
   struct device const *__cil_tmp57 ;
@@ -2329,17 +2226,13 @@ static int da9052_rtc_read_time(struct device *dev , struct rtc_time *rtc_tm )
   __cil_tmp7 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   rtc = (struct da9052_rtc *)tmp;
-  __cil_tmp8 = (unsigned long )rtc;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = *((struct da9052 **)__cil_tmp9);
+  __cil_tmp10 = *((struct da9052 **)((void *)rtc + 8));
   __cil_tmp11 = (unsigned char *)(& v);
   ret = da9052_group_read(__cil_tmp10, (unsigned char)111, 6U, __cil_tmp11);
   }
   if (ret < 0) {
     {
-    __cil_tmp12 = (unsigned long )rtc;
-    __cil_tmp13 = __cil_tmp12 + 8;
-    __cil_tmp14 = *((struct da9052 **)__cil_tmp13);
+    __cil_tmp14 = *((struct da9052 **)((void *)rtc + 8));
     __cil_tmp15 = *((struct device **)__cil_tmp14);
     __cil_tmp16 = (struct device const *)__cil_tmp15;
     dev_err(__cil_tmp16, "%s: Failed to read RTC time : %d\n", "da9052_rtc_read_time",
@@ -2349,43 +2242,33 @@ static int da9052_rtc_read_time(struct device *dev , struct rtc_time *rtc_tm )
   } else {
   }
   {
-  __cil_tmp17 = (unsigned long )rtc_tm;
-  __cil_tmp18 = __cil_tmp17 + 20;
   __cil_tmp19 = 5 * 1UL;
   __cil_tmp20 = (unsigned long )(v) + __cil_tmp19;
   __cil_tmp21 = *((uint8_t *)__cil_tmp20);
   __cil_tmp22 = (int )__cil_tmp21;
   __cil_tmp23 = __cil_tmp22 & 63;
-  *((int *)__cil_tmp18) = __cil_tmp23 + 100;
-  __cil_tmp24 = (unsigned long )rtc_tm;
-  __cil_tmp25 = __cil_tmp24 + 16;
+  *((int *)((void *)rtc_tm + 20)) = __cil_tmp23 + 100;
   __cil_tmp26 = 4 * 1UL;
   __cil_tmp27 = (unsigned long )(v) + __cil_tmp26;
   __cil_tmp28 = *((uint8_t *)__cil_tmp27);
   __cil_tmp29 = (int )__cil_tmp28;
   __cil_tmp30 = __cil_tmp29 & 15;
-  *((int *)__cil_tmp25) = __cil_tmp30 + -1;
-  __cil_tmp31 = (unsigned long )rtc_tm;
-  __cil_tmp32 = __cil_tmp31 + 12;
+  *((int *)((void *)rtc_tm + 16)) = __cil_tmp30 + -1;
   __cil_tmp33 = 3 * 1UL;
   __cil_tmp34 = (unsigned long )(v) + __cil_tmp33;
   __cil_tmp35 = *((uint8_t *)__cil_tmp34);
   __cil_tmp36 = (int )__cil_tmp35;
-  *((int *)__cil_tmp32) = __cil_tmp36 & 31;
-  __cil_tmp37 = (unsigned long )rtc_tm;
-  __cil_tmp38 = __cil_tmp37 + 8;
+  *((int *)((void *)rtc_tm + 12)) = __cil_tmp36 & 31;
   __cil_tmp39 = 2 * 1UL;
   __cil_tmp40 = (unsigned long )(v) + __cil_tmp39;
   __cil_tmp41 = *((uint8_t *)__cil_tmp40);
   __cil_tmp42 = (int )__cil_tmp41;
-  *((int *)__cil_tmp38) = __cil_tmp42 & 31;
-  __cil_tmp43 = (unsigned long )rtc_tm;
-  __cil_tmp44 = __cil_tmp43 + 4;
+  *((int *)((void *)rtc_tm + 8)) = __cil_tmp42 & 31;
   __cil_tmp45 = 1 * 1UL;
   __cil_tmp46 = (unsigned long )(v) + __cil_tmp45;
   __cil_tmp47 = *((uint8_t *)__cil_tmp46);
   __cil_tmp48 = (int )__cil_tmp47;
-  *((int *)__cil_tmp44) = __cil_tmp48 & 63;
+  *((int *)((void *)rtc_tm + 4)) = __cil_tmp48 & 63;
   __cil_tmp49 = 0 * 1UL;
   __cil_tmp50 = (unsigned long )(v) + __cil_tmp49;
   __cil_tmp51 = *((uint8_t *)__cil_tmp50);
@@ -2395,9 +2278,7 @@ static int da9052_rtc_read_time(struct device *dev , struct rtc_time *rtc_tm )
   }
   if (ret != 0) {
     {
-    __cil_tmp53 = (unsigned long )rtc;
-    __cil_tmp54 = __cil_tmp53 + 8;
-    __cil_tmp55 = *((struct da9052 **)__cil_tmp54);
+    __cil_tmp55 = *((struct da9052 **)((void *)rtc + 8));
     __cil_tmp56 = *((struct device **)__cil_tmp55);
     __cil_tmp57 = (struct device const *)__cil_tmp56;
     dev_err(__cil_tmp57, "%s: rtc_valid_tm failed: %d\n", "da9052_rtc_read_time",
@@ -2420,37 +2301,25 @@ static int da9052_rtc_set_time(struct device *dev , struct rtc_time *tm )
   int __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
   uint8_t __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
   unsigned int __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   int __cil_tmp38 ;
   uint8_t __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct da9052 *__cil_tmp44 ;
   unsigned char *__cil_tmp45 ;
   {
@@ -2464,43 +2333,31 @@ static int da9052_rtc_set_time(struct device *dev , struct rtc_time *tm )
   *((uint8_t *)__cil_tmp9) = (uint8_t )__cil_tmp10;
   __cil_tmp11 = 1 * 1UL;
   __cil_tmp12 = (unsigned long )(v) + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )tm;
-  __cil_tmp14 = __cil_tmp13 + 4;
-  __cil_tmp15 = *((int *)__cil_tmp14);
+  __cil_tmp15 = *((int *)((void *)tm + 4));
   *((uint8_t *)__cil_tmp12) = (uint8_t )__cil_tmp15;
   __cil_tmp16 = 2 * 1UL;
   __cil_tmp17 = (unsigned long )(v) + __cil_tmp16;
-  __cil_tmp18 = (unsigned long )tm;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  __cil_tmp20 = *((int *)__cil_tmp19);
+  __cil_tmp20 = *((int *)((void *)tm + 8));
   *((uint8_t *)__cil_tmp17) = (uint8_t )__cil_tmp20;
   __cil_tmp21 = 3 * 1UL;
   __cil_tmp22 = (unsigned long )(v) + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )tm;
-  __cil_tmp24 = __cil_tmp23 + 12;
-  __cil_tmp25 = *((int *)__cil_tmp24);
+  __cil_tmp25 = *((int *)((void *)tm + 12));
   *((uint8_t *)__cil_tmp22) = (uint8_t )__cil_tmp25;
   __cil_tmp26 = 4 * 1UL;
   __cil_tmp27 = (unsigned long )(v) + __cil_tmp26;
-  __cil_tmp28 = (unsigned long )tm;
-  __cil_tmp29 = __cil_tmp28 + 16;
-  __cil_tmp30 = *((int *)__cil_tmp29);
+  __cil_tmp30 = *((int *)((void *)tm + 16));
   __cil_tmp31 = (uint8_t )__cil_tmp30;
   __cil_tmp32 = (unsigned int )__cil_tmp31;
   __cil_tmp33 = __cil_tmp32 + 1U;
   *((uint8_t *)__cil_tmp27) = (uint8_t )__cil_tmp33;
   __cil_tmp34 = 5 * 1UL;
   __cil_tmp35 = (unsigned long )(v) + __cil_tmp34;
-  __cil_tmp36 = (unsigned long )tm;
-  __cil_tmp37 = __cil_tmp36 + 20;
-  __cil_tmp38 = *((int *)__cil_tmp37);
+  __cil_tmp38 = *((int *)((void *)tm + 20));
   __cil_tmp39 = (uint8_t )__cil_tmp38;
   __cil_tmp40 = (unsigned int )__cil_tmp39;
   __cil_tmp41 = __cil_tmp40 + 156U;
   *((uint8_t *)__cil_tmp35) = (uint8_t )__cil_tmp41;
-  __cil_tmp42 = (unsigned long )rtc;
-  __cil_tmp43 = __cil_tmp42 + 8;
-  __cil_tmp44 = *((struct da9052 **)__cil_tmp43);
+  __cil_tmp44 = *((struct da9052 **)((void *)rtc + 8));
   __cil_tmp45 = (unsigned char *)(& v);
   tmp___0 = da9052_group_write(__cil_tmp44, (unsigned char)111, 6U, __cil_tmp45);
   }
@@ -2513,26 +2370,16 @@ static int da9052_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   struct da9052_rtc *rtc ;
   void *tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device const *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct da9052 *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct da9052 *__cil_tmp16 ;
   {
   {
-  __cil_tmp8 = (unsigned long )alrm;
-  __cil_tmp9 = __cil_tmp8 + 4;
-  tm = (struct rtc_time *)__cil_tmp9;
+  tm = (struct rtc_time *)((void *)alrm + 4);
   __cil_tmp10 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp10);
   rtc = (struct da9052_rtc *)tmp;
-  __cil_tmp11 = (unsigned long )rtc;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((struct da9052 **)__cil_tmp12);
+  __cil_tmp13 = *((struct da9052 **)((void *)rtc + 8));
   ret = da9052_read_alarm(__cil_tmp13, tm);
   }
   if (ret != 0) {
@@ -2540,9 +2387,7 @@ static int da9052_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   } else {
   }
   {
-  __cil_tmp14 = (unsigned long )rtc;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((struct da9052 **)__cil_tmp15);
+  __cil_tmp16 = *((struct da9052 **)((void *)rtc + 8));
   tmp___0 = da9052_rtc_get_alarm_status(__cil_tmp16);
   *((unsigned char *)alrm) = (unsigned char )tmp___0;
   }
@@ -2554,31 +2399,19 @@ static int da9052_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   struct rtc_time *tm ;
   struct da9052_rtc *rtc ;
   void *tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device const *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct da9052 *__cil_tmp12 ;
   bool __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct da9052 *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct da9052 *__cil_tmp19 ;
   bool __cil_tmp20 ;
   {
   {
-  __cil_tmp7 = (unsigned long )alrm;
-  __cil_tmp8 = __cil_tmp7 + 4;
-  tm = (struct rtc_time *)__cil_tmp8;
+  tm = (struct rtc_time *)((void *)alrm + 4);
   __cil_tmp9 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp9);
   rtc = (struct da9052_rtc *)tmp;
-  __cil_tmp10 = (unsigned long )rtc;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  __cil_tmp12 = *((struct da9052 **)__cil_tmp11);
+  __cil_tmp12 = *((struct da9052 **)((void *)rtc + 8));
   __cil_tmp13 = (bool )0;
   ret = da9052_rtc_enable_alarm(__cil_tmp12, __cil_tmp13);
   }
@@ -2587,9 +2420,7 @@ static int da9052_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   } else {
   }
   {
-  __cil_tmp14 = (unsigned long )rtc;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((struct da9052 **)__cil_tmp15);
+  __cil_tmp16 = *((struct da9052 **)((void *)rtc + 8));
   ret = da9052_set_alarm(__cil_tmp16, tm);
   }
   if (ret != 0) {
@@ -2597,9 +2428,7 @@ static int da9052_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   } else {
   }
   {
-  __cil_tmp17 = (unsigned long )rtc;
-  __cil_tmp18 = __cil_tmp17 + 8;
-  __cil_tmp19 = *((struct da9052 **)__cil_tmp18);
+  __cil_tmp19 = *((struct da9052 **)((void *)rtc + 8));
   __cil_tmp20 = (bool )1;
   ret = da9052_rtc_enable_alarm(__cil_tmp19, __cil_tmp20);
   }
@@ -2611,8 +2440,6 @@ static int da9052_rtc_alarm_irq_enable(struct device *dev , unsigned int enabled
   void *tmp ;
   int tmp___0 ;
   struct device const *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct da9052 *__cil_tmp9 ;
   int __cil_tmp10 ;
   bool __cil_tmp11 ;
@@ -2621,9 +2448,7 @@ static int da9052_rtc_alarm_irq_enable(struct device *dev , unsigned int enabled
   __cil_tmp6 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp6);
   rtc = (struct da9052_rtc *)tmp;
-  __cil_tmp7 = (unsigned long )rtc;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = *((struct da9052 **)__cil_tmp8);
+  __cil_tmp9 = *((struct da9052 **)((void *)rtc + 8));
   __cil_tmp10 = enabled != 0U;
   __cil_tmp11 = (bool )__cil_tmp10;
   tmp___0 = da9052_rtc_enable_alarm(__cil_tmp9, __cil_tmp11);
@@ -2645,54 +2470,34 @@ static int da9052_rtc_probe(struct platform_device *pdev )
   void *tmp___0 ;
   long tmp___1 ;
   long tmp___2 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct da9052_rtc *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   irqreturn_t (*__cil_tmp27)(int , void * ) ;
   void *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct da9052 *__cil_tmp31 ;
   struct device *__cil_tmp32 ;
   struct device const *__cil_tmp33 ;
   char const *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct device *__cil_tmp37 ;
   struct rtc_device *__cil_tmp38 ;
   void const *__cil_tmp39 ;
   struct rtc_device *__cil_tmp40 ;
   void const *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   int __cil_tmp44 ;
   unsigned int __cil_tmp45 ;
   void *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct device *__cil_tmp49 ;
   void *__cil_tmp50 ;
   {
   {
-  __cil_tmp8 = (unsigned long )pdev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)pdev + 16);
   tmp = devm_kzalloc(__cil_tmp10, 24UL, 208U);
   rtc = (struct da9052_rtc *)tmp;
   }
@@ -2706,22 +2511,14 @@ static int da9052_rtc_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp14 = (unsigned long )pdev;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((struct device **)__cil_tmp15);
+  __cil_tmp16 = *((struct device **)((void *)pdev + 16));
   __cil_tmp17 = (struct device const *)__cil_tmp16;
   tmp___0 = dev_get_drvdata(__cil_tmp17);
-  __cil_tmp18 = (unsigned long )rtc;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  *((struct da9052 **)__cil_tmp19) = (struct da9052 *)tmp___0;
+  *((struct da9052 **)((void *)rtc + 8)) = (struct da9052 *)tmp___0;
   __cil_tmp20 = (void *)rtc;
   platform_set_drvdata(pdev, __cil_tmp20);
-  __cil_tmp21 = (unsigned long )rtc;
-  __cil_tmp22 = __cil_tmp21 + 16;
-  *((int *)__cil_tmp22) = platform_get_irq_byname(pdev, "ALM");
-  __cil_tmp23 = (unsigned long )rtc;
-  __cil_tmp24 = __cil_tmp23 + 16;
-  __cil_tmp25 = *((int *)__cil_tmp24);
+  *((int *)((void *)rtc + 16)) = platform_get_irq_byname(pdev, "ALM");
+  __cil_tmp25 = *((int *)((void *)rtc + 16));
   __cil_tmp26 = (unsigned int )__cil_tmp25;
   __cil_tmp27 = (irqreturn_t (*)(int , void * ))0;
   __cil_tmp28 = (void *)rtc;
@@ -2730,9 +2527,7 @@ static int da9052_rtc_probe(struct platform_device *pdev )
   }
   if (ret != 0) {
     {
-    __cil_tmp29 = (unsigned long )rtc;
-    __cil_tmp30 = __cil_tmp29 + 8;
-    __cil_tmp31 = *((struct da9052 **)__cil_tmp30);
+    __cil_tmp31 = *((struct da9052 **)((void *)rtc + 8));
     __cil_tmp32 = *((struct device **)__cil_tmp31);
     __cil_tmp33 = (struct device const *)__cil_tmp32;
     dev_err(__cil_tmp33, "%s: irq registration failed: %d\n", "da9052_rtc_probe",
@@ -2743,9 +2538,7 @@ static int da9052_rtc_probe(struct platform_device *pdev )
   }
   {
   __cil_tmp34 = *((char const **)pdev);
-  __cil_tmp35 = (unsigned long )pdev;
-  __cil_tmp36 = __cil_tmp35 + 16;
-  __cil_tmp37 = (struct device *)__cil_tmp36;
+  __cil_tmp37 = (struct device *)((void *)pdev + 16);
   *((struct rtc_device **)rtc) = rtc_device_register(__cil_tmp34, __cil_tmp37, & da9052_rtc_ops,
                                                      & __this_module);
   __cil_tmp38 = *((struct rtc_device **)rtc);
@@ -2765,18 +2558,14 @@ static int da9052_rtc_probe(struct platform_device *pdev )
   return (0);
   err_free_irq:
   {
-  __cil_tmp42 = (unsigned long )rtc;
-  __cil_tmp43 = __cil_tmp42 + 16;
-  __cil_tmp44 = *((int *)__cil_tmp43);
+  __cil_tmp44 = *((int *)((void *)rtc + 16));
   __cil_tmp45 = (unsigned int )__cil_tmp44;
   __cil_tmp46 = (void *)rtc;
   free_irq(__cil_tmp45, __cil_tmp46);
   }
   err_mem:
   {
-  __cil_tmp47 = (unsigned long )pdev;
-  __cil_tmp48 = __cil_tmp47 + 16;
-  __cil_tmp49 = (struct device *)__cil_tmp48;
+  __cil_tmp49 = (struct device *)((void *)pdev + 16);
   __cil_tmp50 = (void *)rtc;
   devm_kfree(__cil_tmp49, __cil_tmp50);
   }

@@ -2149,15 +2149,11 @@ extern s32 i2c_smbus_read_i2c_block_data(struct i2c_client  const  *client , u8 
 __inline static void *i2c_get_clientdata(struct i2c_client  const  *dev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_clientdata(struct i2c_client  const  *dev ) 
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)dev + 40);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -2165,15 +2161,12 @@ __inline static void *i2c_get_clientdata(struct i2c_client  const  *dev )
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2256,8 +2249,6 @@ static s32 bmp085_read_calibration_data(struct i2c_client *client )
   __u16 tmp___19 ;
   __u16 tmp___20 ;
   struct i2c_client  const  *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct i2c_client  const  *__cil_tmp22 ;
   u8 __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
@@ -2275,62 +2266,42 @@ static s32 bmp085_read_calibration_data(struct i2c_client *client )
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   u16 __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   int __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   u16 __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   int __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   u16 __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   int __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   u16 __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   u16 __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   int __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   u16 __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   int __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   u16 __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   int __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   u16 __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   int __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
   u16 __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   int __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
   u16 __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   int __cil_tmp95 ;
 
   {
@@ -2338,9 +2309,7 @@ static s32 bmp085_read_calibration_data(struct i2c_client *client )
   __cil_tmp19 = (struct i2c_client  const  *)client;
   tmp___8 = i2c_get_clientdata(__cil_tmp19);
   data = (struct bmp085_data *)tmp___8;
-  __cil_tmp20 = (unsigned long )data;
-  __cil_tmp21 = __cil_tmp20 + 80;
-  cali = (struct bmp085_calibration_data *)__cil_tmp21;
+  cali = (struct bmp085_calibration_data *)((void *)data + 80);
   __cil_tmp22 = (struct i2c_client  const  *)client;
   __cil_tmp23 = (u8 )170;
   __cil_tmp24 = 11UL * 2UL;
@@ -2377,82 +2346,62 @@ static s32 bmp085_read_calibration_data(struct i2c_client *client )
   __cil_tmp37 = (unsigned long )(tmp___7) + __cil_tmp36;
   __cil_tmp38 = *((u16 *)__cil_tmp37);
   tmp___11 = __fswab16(__cil_tmp38);
-  __cil_tmp39 = (unsigned long )cali;
-  __cil_tmp40 = __cil_tmp39 + 2;
   __cil_tmp41 = (int )tmp___11;
-  *((s16 *)__cil_tmp40) = (s16 )__cil_tmp41;
+  *((s16 *)((void *)cali + 2)) = (s16 )__cil_tmp41;
   __cil_tmp42 = 2 * 2UL;
   __cil_tmp43 = (unsigned long )(tmp___7) + __cil_tmp42;
   __cil_tmp44 = *((u16 *)__cil_tmp43);
   tmp___12 = __fswab16(__cil_tmp44);
-  __cil_tmp45 = (unsigned long )cali;
-  __cil_tmp46 = __cil_tmp45 + 4;
   __cil_tmp47 = (int )tmp___12;
-  *((s16 *)__cil_tmp46) = (s16 )__cil_tmp47;
+  *((s16 *)((void *)cali + 4)) = (s16 )__cil_tmp47;
   __cil_tmp48 = 3 * 2UL;
   __cil_tmp49 = (unsigned long )(tmp___7) + __cil_tmp48;
   __cil_tmp50 = *((u16 *)__cil_tmp49);
   tmp___13 = __fswab16(__cil_tmp50);
-  __cil_tmp51 = (unsigned long )cali;
-  __cil_tmp52 = __cil_tmp51 + 6;
   __cil_tmp53 = (int )tmp___13;
-  *((u16 *)__cil_tmp52) = (u16 )__cil_tmp53;
+  *((u16 *)((void *)cali + 6)) = (u16 )__cil_tmp53;
   __cil_tmp54 = 4 * 2UL;
   __cil_tmp55 = (unsigned long )(tmp___7) + __cil_tmp54;
   __cil_tmp56 = *((u16 *)__cil_tmp55);
   tmp___14 = __fswab16(__cil_tmp56);
-  __cil_tmp57 = (unsigned long )cali;
-  __cil_tmp58 = __cil_tmp57 + 8;
   __cil_tmp59 = (int )tmp___14;
-  *((u16 *)__cil_tmp58) = (u16 )__cil_tmp59;
+  *((u16 *)((void *)cali + 8)) = (u16 )__cil_tmp59;
   __cil_tmp60 = 5 * 2UL;
   __cil_tmp61 = (unsigned long )(tmp___7) + __cil_tmp60;
   __cil_tmp62 = *((u16 *)__cil_tmp61);
   tmp___15 = __fswab16(__cil_tmp62);
-  __cil_tmp63 = (unsigned long )cali;
-  __cil_tmp64 = __cil_tmp63 + 10;
   __cil_tmp65 = (int )tmp___15;
-  *((u16 *)__cil_tmp64) = (u16 )__cil_tmp65;
+  *((u16 *)((void *)cali + 10)) = (u16 )__cil_tmp65;
   __cil_tmp66 = 6 * 2UL;
   __cil_tmp67 = (unsigned long )(tmp___7) + __cil_tmp66;
   __cil_tmp68 = *((u16 *)__cil_tmp67);
   tmp___16 = __fswab16(__cil_tmp68);
-  __cil_tmp69 = (unsigned long )cali;
-  __cil_tmp70 = __cil_tmp69 + 12;
   __cil_tmp71 = (int )tmp___16;
-  *((s16 *)__cil_tmp70) = (s16 )__cil_tmp71;
+  *((s16 *)((void *)cali + 12)) = (s16 )__cil_tmp71;
   __cil_tmp72 = 7 * 2UL;
   __cil_tmp73 = (unsigned long )(tmp___7) + __cil_tmp72;
   __cil_tmp74 = *((u16 *)__cil_tmp73);
   tmp___17 = __fswab16(__cil_tmp74);
-  __cil_tmp75 = (unsigned long )cali;
-  __cil_tmp76 = __cil_tmp75 + 14;
   __cil_tmp77 = (int )tmp___17;
-  *((s16 *)__cil_tmp76) = (s16 )__cil_tmp77;
+  *((s16 *)((void *)cali + 14)) = (s16 )__cil_tmp77;
   __cil_tmp78 = 8 * 2UL;
   __cil_tmp79 = (unsigned long )(tmp___7) + __cil_tmp78;
   __cil_tmp80 = *((u16 *)__cil_tmp79);
   tmp___18 = __fswab16(__cil_tmp80);
-  __cil_tmp81 = (unsigned long )cali;
-  __cil_tmp82 = __cil_tmp81 + 16;
   __cil_tmp83 = (int )tmp___18;
-  *((s16 *)__cil_tmp82) = (s16 )__cil_tmp83;
+  *((s16 *)((void *)cali + 16)) = (s16 )__cil_tmp83;
   __cil_tmp84 = 9 * 2UL;
   __cil_tmp85 = (unsigned long )(tmp___7) + __cil_tmp84;
   __cil_tmp86 = *((u16 *)__cil_tmp85);
   tmp___19 = __fswab16(__cil_tmp86);
-  __cil_tmp87 = (unsigned long )cali;
-  __cil_tmp88 = __cil_tmp87 + 18;
   __cil_tmp89 = (int )tmp___19;
-  *((s16 *)__cil_tmp88) = (s16 )__cil_tmp89;
+  *((s16 *)((void *)cali + 18)) = (s16 )__cil_tmp89;
   __cil_tmp90 = 10 * 2UL;
   __cil_tmp91 = (unsigned long )(tmp___7) + __cil_tmp90;
   __cil_tmp92 = *((u16 *)__cil_tmp91);
   tmp___20 = __fswab16(__cil_tmp92);
-  __cil_tmp93 = (unsigned long )cali;
-  __cil_tmp94 = __cil_tmp93 + 20;
   __cil_tmp95 = (int )tmp___20;
-  *((s16 *)__cil_tmp94) = (s16 )__cil_tmp95;
+  *((s16 *)((void *)cali + 20)) = (s16 )__cil_tmp95;
   }
   return (0);
 }
@@ -2461,16 +2410,12 @@ static s32 bmp085_update_raw_temperature(struct bmp085_data *data )
 { u16 tmp___7 ;
   s32 status ;
   __u16 tmp___8 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct mutex *__cil_tmp7 ;
   struct i2c_client *__cil_tmp8 ;
   struct i2c_client  const  *__cil_tmp9 ;
   u8 __cil_tmp10 ;
   u8 __cil_tmp11 ;
   struct i2c_client *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device  const  *__cil_tmp16 ;
   struct i2c_client *__cil_tmp17 ;
@@ -2480,26 +2425,16 @@ static s32 bmp085_update_raw_temperature(struct bmp085_data *data )
   u8 *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   struct i2c_client *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct device *__cil_tmp26 ;
   struct device  const  *__cil_tmp27 ;
   u16 *__cil_tmp28 ;
   u16 __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct mutex *__cil_tmp37 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )data;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = (struct mutex *)__cil_tmp6;
+  __cil_tmp7 = (struct mutex *)((void *)data + 8);
   mutex_lock(__cil_tmp7);
   __cil_tmp8 = *((struct i2c_client **)data);
   __cil_tmp9 = (struct i2c_client  const  *)__cil_tmp8;
@@ -2510,9 +2445,7 @@ static s32 bmp085_update_raw_temperature(struct bmp085_data *data )
   if (status != 0) {
     {
     __cil_tmp12 = *((struct i2c_client **)data);
-    __cil_tmp13 = (unsigned long )__cil_tmp12;
-    __cil_tmp14 = __cil_tmp13 + 40;
-    __cil_tmp15 = (struct device *)__cil_tmp14;
+    __cil_tmp15 = (struct device *)((void *)__cil_tmp12 + 40);
     __cil_tmp16 = (struct device  const  *)__cil_tmp15;
     dev_err(__cil_tmp16, "Error while requesting temperature measurement.\n");
     }
@@ -2539,9 +2472,7 @@ static s32 bmp085_update_raw_temperature(struct bmp085_data *data )
   if (__cil_tmp22 != 2UL) {
     {
     __cil_tmp23 = *((struct i2c_client **)data);
-    __cil_tmp24 = (unsigned long )__cil_tmp23;
-    __cil_tmp25 = __cil_tmp24 + 40;
-    __cil_tmp26 = (struct device *)__cil_tmp25;
+    __cil_tmp26 = (struct device *)((void *)__cil_tmp23 + 40);
     __cil_tmp27 = (struct device  const  *)__cil_tmp26;
     dev_err(__cil_tmp27, "Error while reading temperature measurement result\n");
     status = -5;
@@ -2555,20 +2486,14 @@ static s32 bmp085_update_raw_temperature(struct bmp085_data *data )
   __cil_tmp28 = & tmp___7;
   __cil_tmp29 = *__cil_tmp28;
   tmp___8 = __fswab16(__cil_tmp29);
-  __cil_tmp30 = (unsigned long )data;
-  __cil_tmp31 = __cil_tmp30 + 104;
   __cil_tmp32 = (int )tmp___8;
-  *((u32 *)__cil_tmp31) = (u32 )__cil_tmp32;
-  __cil_tmp33 = (unsigned long )data;
-  __cil_tmp34 = __cil_tmp33 + 120;
-  *((unsigned long *)__cil_tmp34) = (unsigned long )jiffies;
+  *((u32 *)((void *)data + 104)) = (u32 )__cil_tmp32;
+  *((unsigned long *)((void *)data + 120)) = (unsigned long )jiffies;
   status = 0;
   }
   exit: 
   {
-  __cil_tmp35 = (unsigned long )data;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = (struct mutex *)__cil_tmp36;
+  __cil_tmp37 = (struct mutex *)((void *)data + 8);
   mutex_unlock(__cil_tmp37);
   }
   return (status);
@@ -2579,26 +2504,18 @@ static s32 bmp085_update_raw_pressure(struct bmp085_data *data )
   s32 status ;
   __u32 tmp___8 ;
   u32 *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct mutex *__cil_tmp8 ;
   struct i2c_client *__cil_tmp9 ;
   struct i2c_client  const  *__cil_tmp10 ;
   u8 __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned char __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
   int __cil_tmp17 ;
   u8 __cil_tmp18 ;
   struct i2c_client *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device  const  *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned char __cil_tmp26 ;
   int __cil_tmp27 ;
   int __cil_tmp28 ;
@@ -2611,42 +2528,26 @@ static s32 bmp085_update_raw_pressure(struct bmp085_data *data )
   u8 *__cil_tmp35 ;
   u8 *__cil_tmp36 ;
   struct i2c_client *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct device *__cil_tmp40 ;
   struct device  const  *__cil_tmp41 ;
   u32 *__cil_tmp42 ;
   u32 __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned char __cil_tmp50 ;
   int __cil_tmp51 ;
   int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   u32 __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct mutex *__cil_tmp58 ;
 
   {
   {
   __cil_tmp5 = & tmp___7;
   *__cil_tmp5 = (u32 )0;
-  __cil_tmp6 = (unsigned long )data;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = (struct mutex *)__cil_tmp7;
+  __cil_tmp8 = (struct mutex *)((void *)data + 8);
   mutex_lock(__cil_tmp8);
   __cil_tmp9 = *((struct i2c_client **)data);
   __cil_tmp10 = (struct i2c_client  const  *)__cil_tmp9;
   __cil_tmp11 = (u8 )244;
-  __cil_tmp12 = (unsigned long )data;
-  __cil_tmp13 = __cil_tmp12 + 112;
-  __cil_tmp14 = *((unsigned char *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned char *)((void *)data + 112));
   __cil_tmp15 = (int )__cil_tmp14;
   __cil_tmp16 = __cil_tmp15 << 6;
   __cil_tmp17 = 52 + __cil_tmp16;
@@ -2656,9 +2557,7 @@ static s32 bmp085_update_raw_pressure(struct bmp085_data *data )
   if (status != 0) {
     {
     __cil_tmp19 = *((struct i2c_client **)data);
-    __cil_tmp20 = (unsigned long )__cil_tmp19;
-    __cil_tmp21 = __cil_tmp20 + 40;
-    __cil_tmp22 = (struct device *)__cil_tmp21;
+    __cil_tmp22 = (struct device *)((void *)__cil_tmp19 + 40);
     __cil_tmp23 = (struct device  const  *)__cil_tmp22;
     dev_err(__cil_tmp23, "Error while requesting pressure measurement.\n");
     }
@@ -2667,9 +2566,7 @@ static s32 bmp085_update_raw_pressure(struct bmp085_data *data )
 
   }
   {
-  __cil_tmp24 = (unsigned long )data;
-  __cil_tmp25 = __cil_tmp24 + 112;
-  __cil_tmp26 = *((unsigned char *)__cil_tmp25);
+  __cil_tmp26 = *((unsigned char *)((void *)data + 112));
   __cil_tmp27 = (int )__cil_tmp26;
   __cil_tmp28 = 3 << __cil_tmp27;
   __cil_tmp29 = 2 + __cil_tmp28;
@@ -2691,9 +2588,7 @@ static s32 bmp085_update_raw_pressure(struct bmp085_data *data )
   if (status != 3) {
     {
     __cil_tmp37 = *((struct i2c_client **)data);
-    __cil_tmp38 = (unsigned long )__cil_tmp37;
-    __cil_tmp39 = __cil_tmp38 + 40;
-    __cil_tmp40 = (struct device *)__cil_tmp39;
+    __cil_tmp40 = (struct device *)((void *)__cil_tmp37 + 40);
     __cil_tmp41 = (struct device  const  *)__cil_tmp40;
     dev_err(__cil_tmp41, "Error while reading pressure measurement results\n");
     status = -5;
@@ -2706,27 +2601,17 @@ static s32 bmp085_update_raw_pressure(struct bmp085_data *data )
   __cil_tmp42 = & tmp___7;
   __cil_tmp43 = *__cil_tmp42;
   tmp___8 = __fswab32(__cil_tmp43);
-  __cil_tmp44 = (unsigned long )data;
-  __cil_tmp45 = __cil_tmp44 + 108;
-  *((u32 *)__cil_tmp45) = tmp___8;
-  __cil_tmp46 = (unsigned long )data;
-  __cil_tmp47 = __cil_tmp46 + 108;
-  __cil_tmp48 = (unsigned long )data;
-  __cil_tmp49 = __cil_tmp48 + 112;
-  __cil_tmp50 = *((unsigned char *)__cil_tmp49);
+  *((u32 *)((void *)data + 108)) = tmp___8;
+  __cil_tmp50 = *((unsigned char *)((void *)data + 112));
   __cil_tmp51 = (int )__cil_tmp50;
   __cil_tmp52 = 8 - __cil_tmp51;
-  __cil_tmp53 = (unsigned long )data;
-  __cil_tmp54 = __cil_tmp53 + 108;
-  __cil_tmp55 = *((u32 *)__cil_tmp54);
-  *((u32 *)__cil_tmp47) = __cil_tmp55 >> __cil_tmp52;
+  __cil_tmp55 = *((u32 *)((void *)data + 108));
+  *((u32 *)((void *)data + 108)) = __cil_tmp55 >> __cil_tmp52;
   status = 0;
   }
   exit: 
   {
-  __cil_tmp56 = (unsigned long )data;
-  __cil_tmp57 = __cil_tmp56 + 8;
-  __cil_tmp58 = (struct mutex *)__cil_tmp57;
+  __cil_tmp58 = (struct mutex *)((void *)data + 8);
   mutex_unlock(__cil_tmp58);
   }
   return (status);
@@ -2737,35 +2622,21 @@ static s32 bmp085_get_temperature(struct bmp085_data *data , int *temperature )
   long x1 ;
   long x2 ;
   int status ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u16 __cil_tmp11 ;
   u32 __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   u16 __cil_tmp15 ;
   u32 __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   u32 __cil_tmp19 ;
   u32 __cil_tmp20 ;
   u32 __cil_tmp21 ;
   u32 __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   s16 __cil_tmp25 ;
   long __cil_tmp26 ;
   long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   s16 __cil_tmp30 ;
   int __cil_tmp31 ;
   int __cil_tmp32 ;
   long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   long __cil_tmp36 ;
   long __cil_tmp37 ;
   void *__cil_tmp38 ;
@@ -2777,9 +2648,7 @@ static s32 bmp085_get_temperature(struct bmp085_data *data , int *temperature )
 
   {
   {
-  __cil_tmp7 = (unsigned long )data;
-  __cil_tmp8 = __cil_tmp7 + 80;
-  cali = (struct bmp085_calibration_data *)__cil_tmp8;
+  cali = (struct bmp085_calibration_data *)((void *)data + 80);
   status = bmp085_update_raw_temperature(data);
   }
   if (status != 0) {
@@ -2787,38 +2656,26 @@ static s32 bmp085_get_temperature(struct bmp085_data *data , int *temperature )
   } else {
 
   }
-  __cil_tmp9 = (unsigned long )cali;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = *((u16 *)__cil_tmp10);
+  __cil_tmp11 = *((u16 *)((void *)cali + 8));
   __cil_tmp12 = (u32 )__cil_tmp11;
-  __cil_tmp13 = (unsigned long )cali;
-  __cil_tmp14 = __cil_tmp13 + 10;
-  __cil_tmp15 = *((u16 *)__cil_tmp14);
+  __cil_tmp15 = *((u16 *)((void *)cali + 10));
   __cil_tmp16 = (u32 )__cil_tmp15;
-  __cil_tmp17 = (unsigned long )data;
-  __cil_tmp18 = __cil_tmp17 + 104;
-  __cil_tmp19 = *((u32 *)__cil_tmp18);
+  __cil_tmp19 = *((u32 *)((void *)data + 104));
   __cil_tmp20 = __cil_tmp19 - __cil_tmp16;
   __cil_tmp21 = __cil_tmp20 * __cil_tmp12;
   __cil_tmp22 = __cil_tmp21 >> 15;
   x1 = (long )__cil_tmp22;
-  __cil_tmp23 = (unsigned long )cali;
-  __cil_tmp24 = __cil_tmp23 + 20;
-  __cil_tmp25 = *((s16 *)__cil_tmp24);
+  __cil_tmp25 = *((s16 *)((void *)cali + 20));
   __cil_tmp26 = (long )__cil_tmp25;
   __cil_tmp27 = x1 + __cil_tmp26;
-  __cil_tmp28 = (unsigned long )cali;
-  __cil_tmp29 = __cil_tmp28 + 18;
-  __cil_tmp30 = *((s16 *)__cil_tmp29);
+  __cil_tmp30 = *((s16 *)((void *)cali + 18));
   __cil_tmp31 = (int )__cil_tmp30;
   __cil_tmp32 = __cil_tmp31 << 11;
   __cil_tmp33 = (long )__cil_tmp32;
   x2 = __cil_tmp33 / __cil_tmp27;
-  __cil_tmp34 = (unsigned long )data;
-  __cil_tmp35 = __cil_tmp34 + 128;
   __cil_tmp36 = x1 + x2;
   __cil_tmp37 = __cil_tmp36 - 4000L;
-  *((s32 *)__cil_tmp35) = (s32 )__cil_tmp37;
+  *((s32 *)((void *)data + 128)) = (s32 )__cil_tmp37;
   {
   __cil_tmp38 = (void *)0;
   __cil_tmp39 = (unsigned long )__cil_tmp38;
@@ -2846,40 +2703,22 @@ static s32 bmp085_get_pressure(struct bmp085_data *data , int *pressure )
   u32 b7 ;
   s32 p ;
   int status ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   long __cil_tmp26 ;
   long __cil_tmp27 ;
   void *__cil_tmp28 ;
   int *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   s32 __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   s32 __cil_tmp35 ;
   s32 __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   s16 __cil_tmp39 ;
   s32 __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   s32 __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   s16 __cil_tmp46 ;
   int __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned char __cil_tmp50 ;
   int __cil_tmp51 ;
   s16 __cil_tmp52 ;
@@ -2887,24 +2726,14 @@ static s32 bmp085_get_pressure(struct bmp085_data *data , int *pressure )
   s32 __cil_tmp54 ;
   s32 __cil_tmp55 ;
   s32 __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   s32 __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   s16 __cil_tmp62 ;
   int __cil_tmp63 ;
   int __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   s32 __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   s32 __cil_tmp70 ;
   s32 __cil_tmp71 ;
   s32 __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   s16 __cil_tmp75 ;
   int __cil_tmp76 ;
   int __cil_tmp77 ;
@@ -2912,20 +2741,14 @@ static s32 bmp085_get_pressure(struct bmp085_data *data , int *pressure )
   s32 __cil_tmp79 ;
   s32 __cil_tmp80 ;
   u32 __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   u16 __cil_tmp84 ;
   u32 __cil_tmp85 ;
   u32 __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   unsigned char __cil_tmp89 ;
   int __cil_tmp90 ;
   int __cil_tmp91 ;
   u32 __cil_tmp92 ;
   u32 __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   u32 __cil_tmp96 ;
   u32 __cil_tmp97 ;
   u32 __cil_tmp98 ;
@@ -2939,21 +2762,15 @@ static s32 bmp085_get_pressure(struct bmp085_data *data , int *pressure )
   s32 __cil_tmp106 ;
 
   {
-  __cil_tmp16 = (unsigned long )data;
-  __cil_tmp17 = __cil_tmp16 + 80;
-  cali = (struct bmp085_calibration_data *)__cil_tmp17;
+  cali = (struct bmp085_calibration_data *)((void *)data + 80);
   {
-  __cil_tmp18 = (unsigned long )data;
-  __cil_tmp19 = __cil_tmp18 + 120;
-  __cil_tmp20 = *((unsigned long *)__cil_tmp19);
+  __cil_tmp20 = *((unsigned long *)((void *)data + 120));
   if (__cil_tmp20 == 0UL) {
     goto _L;
   } else {
     {
     __cil_tmp21 = (long )jiffies;
-    __cil_tmp22 = (unsigned long )data;
-    __cil_tmp23 = __cil_tmp22 + 120;
-    __cil_tmp24 = *((unsigned long *)__cil_tmp23);
+    __cil_tmp24 = *((unsigned long *)((void *)data + 120));
     __cil_tmp25 = __cil_tmp24 + 250UL;
     __cil_tmp26 = (long )__cil_tmp25;
     __cil_tmp27 = __cil_tmp26 - __cil_tmp21;
@@ -2983,33 +2800,21 @@ static s32 bmp085_get_pressure(struct bmp085_data *data , int *pressure )
   } else {
 
   }
-  __cil_tmp30 = (unsigned long )data;
-  __cil_tmp31 = __cil_tmp30 + 128;
-  __cil_tmp32 = *((s32 *)__cil_tmp31);
-  __cil_tmp33 = (unsigned long )data;
-  __cil_tmp34 = __cil_tmp33 + 128;
-  __cil_tmp35 = *((s32 *)__cil_tmp34);
+  __cil_tmp32 = *((s32 *)((void *)data + 128));
+  __cil_tmp35 = *((s32 *)((void *)data + 128));
   __cil_tmp36 = __cil_tmp35 * __cil_tmp32;
   x1 = __cil_tmp36 >> 12;
-  __cil_tmp37 = (unsigned long )cali;
-  __cil_tmp38 = __cil_tmp37 + 14;
-  __cil_tmp39 = *((s16 *)__cil_tmp38);
+  __cil_tmp39 = *((s16 *)((void *)cali + 14));
   __cil_tmp40 = (s32 )__cil_tmp39;
   x1 = x1 * __cil_tmp40;
   x1 = x1 >> 11;
-  __cil_tmp41 = (unsigned long )data;
-  __cil_tmp42 = __cil_tmp41 + 128;
-  __cil_tmp43 = *((s32 *)__cil_tmp42);
-  __cil_tmp44 = (unsigned long )cali;
-  __cil_tmp45 = __cil_tmp44 + 2;
-  __cil_tmp46 = *((s16 *)__cil_tmp45);
+  __cil_tmp43 = *((s32 *)((void *)data + 128));
+  __cil_tmp46 = *((s16 *)((void *)cali + 2));
   __cil_tmp47 = (int )__cil_tmp46;
   x2 = __cil_tmp47 * __cil_tmp43;
   x2 = x2 >> 11;
   x3 = x1 + x2;
-  __cil_tmp48 = (unsigned long )data;
-  __cil_tmp49 = __cil_tmp48 + 112;
-  __cil_tmp50 = *((unsigned char *)__cil_tmp49);
+  __cil_tmp50 = *((unsigned char *)((void *)data + 112));
   __cil_tmp51 = (int )__cil_tmp50;
   __cil_tmp52 = *((s16 *)cali);
   __cil_tmp53 = (s32 )__cil_tmp52;
@@ -3018,26 +2823,16 @@ static s32 bmp085_get_pressure(struct bmp085_data *data , int *pressure )
   __cil_tmp56 = __cil_tmp55 << __cil_tmp51;
   b3 = __cil_tmp56 + 2;
   b3 = b3 >> 2;
-  __cil_tmp57 = (unsigned long )data;
-  __cil_tmp58 = __cil_tmp57 + 128;
-  __cil_tmp59 = *((s32 *)__cil_tmp58);
-  __cil_tmp60 = (unsigned long )cali;
-  __cil_tmp61 = __cil_tmp60 + 4;
-  __cil_tmp62 = *((s16 *)__cil_tmp61);
+  __cil_tmp59 = *((s32 *)((void *)data + 128));
+  __cil_tmp62 = *((s16 *)((void *)cali + 4));
   __cil_tmp63 = (int )__cil_tmp62;
   __cil_tmp64 = __cil_tmp63 * __cil_tmp59;
   x1 = __cil_tmp64 >> 13;
-  __cil_tmp65 = (unsigned long )data;
-  __cil_tmp66 = __cil_tmp65 + 128;
-  __cil_tmp67 = *((s32 *)__cil_tmp66);
-  __cil_tmp68 = (unsigned long )data;
-  __cil_tmp69 = __cil_tmp68 + 128;
-  __cil_tmp70 = *((s32 *)__cil_tmp69);
+  __cil_tmp67 = *((s32 *)((void *)data + 128));
+  __cil_tmp70 = *((s32 *)((void *)data + 128));
   __cil_tmp71 = __cil_tmp70 * __cil_tmp67;
   __cil_tmp72 = __cil_tmp71 >> 12;
-  __cil_tmp73 = (unsigned long )cali;
-  __cil_tmp74 = __cil_tmp73 + 12;
-  __cil_tmp75 = *((s16 *)__cil_tmp74);
+  __cil_tmp75 = *((s16 *)((void *)cali + 12));
   __cil_tmp76 = (int )__cil_tmp75;
   __cil_tmp77 = __cil_tmp76 * __cil_tmp72;
   x2 = __cil_tmp77 >> 16;
@@ -3046,22 +2841,16 @@ static s32 bmp085_get_pressure(struct bmp085_data *data , int *pressure )
   x3 = __cil_tmp79 >> 2;
   __cil_tmp80 = x3 + 32768;
   __cil_tmp81 = (u32 )__cil_tmp80;
-  __cil_tmp82 = (unsigned long )cali;
-  __cil_tmp83 = __cil_tmp82 + 6;
-  __cil_tmp84 = *((u16 *)__cil_tmp83);
+  __cil_tmp84 = *((u16 *)((void *)cali + 6));
   __cil_tmp85 = (u32 )__cil_tmp84;
   __cil_tmp86 = __cil_tmp85 * __cil_tmp81;
   b4 = __cil_tmp86 >> 15;
-  __cil_tmp87 = (unsigned long )data;
-  __cil_tmp88 = __cil_tmp87 + 112;
-  __cil_tmp89 = *((unsigned char *)__cil_tmp88);
+  __cil_tmp89 = *((unsigned char *)((void *)data + 112));
   __cil_tmp90 = (int )__cil_tmp89;
   __cil_tmp91 = 50000 >> __cil_tmp90;
   __cil_tmp92 = (u32 )__cil_tmp91;
   __cil_tmp93 = (u32 )b3;
-  __cil_tmp94 = (unsigned long )data;
-  __cil_tmp95 = __cil_tmp94 + 108;
-  __cil_tmp96 = *((u32 *)__cil_tmp95);
+  __cil_tmp96 = *((u32 *)((void *)data + 108));
   __cil_tmp97 = __cil_tmp96 - __cil_tmp93;
   b7 = __cil_tmp97 * __cil_tmp92;
   if (b7 < 2147483648U) {
@@ -3090,8 +2879,6 @@ static s32 bmp085_get_pressure(struct bmp085_data *data , int *pressure )
 }
 static void bmp085_set_oversampling(struct bmp085_data *data , unsigned char oversampling ) 
 { int __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
 
   {
   {
@@ -3102,21 +2889,15 @@ static void bmp085_set_oversampling(struct bmp085_data *data , unsigned char ove
 
   }
   }
-  __cil_tmp4 = (unsigned long )data;
-  __cil_tmp5 = __cil_tmp4 + 112;
-  *((unsigned char *)__cil_tmp5) = oversampling;
+  *((unsigned char *)((void *)data + 112)) = oversampling;
   return;
 }
 }
 static unsigned char bmp085_get_oversampling(struct bmp085_data *data ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )data;
-  __cil_tmp3 = __cil_tmp2 + 112;
-  return (*((unsigned char *)__cil_tmp3));
+  return (*((unsigned char *)((void *)data + 112)));
   }
 }
 }
@@ -3130,8 +2911,6 @@ static ssize_t set_oversampling(struct device *dev , struct device_attribute *at
   int success ;
   int tmp___8 ;
   struct i2c_client *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   char *__cil_tmp17 ;
@@ -3145,9 +2924,7 @@ static ssize_t set_oversampling(struct device *dev , struct device_attribute *at
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp12 = (struct i2c_client *)0;
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + 40;
-  __cil_tmp15 = (struct device *)__cil_tmp14;
+  __cil_tmp15 = (struct device *)((void *)__cil_tmp12 + 40);
   __cil_tmp16 = (unsigned int )__cil_tmp15;
   __cil_tmp17 = (char *)__mptr;
   __cil_tmp18 = __cil_tmp17 - __cil_tmp16;
@@ -3181,8 +2958,6 @@ static ssize_t show_oversampling(struct device *dev , struct device_attribute *a
   unsigned char tmp___8 ;
   int tmp___9 ;
   struct i2c_client *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
@@ -3194,9 +2969,7 @@ static ssize_t show_oversampling(struct device *dev , struct device_attribute *a
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp10 = (struct i2c_client *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 40;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 40);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
@@ -3222,8 +2995,6 @@ static ssize_t show_temperature(struct device *dev , struct device_attribute *at
   void *tmp___7 ;
   int tmp___8 ;
   struct i2c_client *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
@@ -3236,9 +3007,7 @@ static ssize_t show_temperature(struct device *dev , struct device_attribute *at
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp11 = (struct i2c_client *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 40;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 40);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
@@ -3274,8 +3043,6 @@ static ssize_t show_pressure(struct device *dev , struct device_attribute *attr 
   void *tmp___7 ;
   int tmp___8 ;
   struct i2c_client *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
@@ -3288,9 +3055,7 @@ static ssize_t show_pressure(struct device *dev , struct device_attribute *attr 
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp11 = (struct i2c_client *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 40;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 40);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
@@ -3321,8 +3086,6 @@ static struct attribute_group  const  bmp085_attr_group  =    {(char const   *)0
     bmp085_attributes};
 static int bmp085_detect(struct i2c_client *client , struct i2c_board_info *info ) 
 { s32 tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned short __cil_tmp6 ;
   int __cil_tmp7 ;
   struct i2c_client  const  *__cil_tmp8 ;
@@ -3330,9 +3093,7 @@ static int bmp085_detect(struct i2c_client *client , struct i2c_board_info *info
 
   {
   {
-  __cil_tmp4 = (unsigned long )client;
-  __cil_tmp5 = __cil_tmp4 + 2;
-  __cil_tmp6 = *((unsigned short *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned short *)((void *)client + 2));
   __cil_tmp7 = (int )__cil_tmp6;
   if (__cil_tmp7 != 119) {
     return (-19);
@@ -3363,16 +3124,8 @@ static int bmp085_init_client(struct i2c_client *client )
   struct i2c_client  const  *__cil_tmp7 ;
   struct i2c_client  const  *__cil_tmp8 ;
   u8 __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct mutex *__cil_tmp16 ;
   struct i2c_client *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device  const  *__cil_tmp21 ;
   int __cil_tmp22 ;
@@ -3399,20 +3152,14 @@ static int bmp085_init_client(struct i2c_client *client )
   __cil_tmp9 = (u8 )209;
   tmp___8 = i2c_smbus_read_byte_data(__cil_tmp8, __cil_tmp9);
   version = (unsigned char )tmp___8;
-  __cil_tmp10 = (unsigned long )data;
-  __cil_tmp11 = __cil_tmp10 + 120;
-  *((unsigned long *)__cil_tmp11) = 0UL;
-  __cil_tmp12 = (unsigned long )data;
-  __cil_tmp13 = __cil_tmp12 + 112;
-  *((unsigned char *)__cil_tmp13) = (unsigned char)3;
+  *((unsigned long *)((void *)data + 120)) = 0UL;
+  *((unsigned char *)((void *)data + 112)) = (unsigned char)3;
   }
   {
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp14 = (unsigned long )data;
-    __cil_tmp15 = __cil_tmp14 + 8;
-    __cil_tmp16 = (struct mutex *)__cil_tmp15;
+    __cil_tmp16 = (struct mutex *)((void *)data + 8);
     __mutex_init(__cil_tmp16, "&data->lock", & __key___3);
     }
     goto while_break;
@@ -3421,9 +3168,7 @@ static int bmp085_init_client(struct i2c_client *client )
   }
   {
   __cil_tmp17 = *((struct i2c_client **)data);
-  __cil_tmp18 = (unsigned long )__cil_tmp17;
-  __cil_tmp19 = __cil_tmp18 + 40;
-  __cil_tmp20 = (struct device *)__cil_tmp19;
+  __cil_tmp20 = (struct device *)((void *)__cil_tmp17 + 40);
   __cil_tmp21 = (struct device  const  *)__cil_tmp20;
   __cil_tmp22 = (int )version;
   __cil_tmp23 = __cil_tmp22 & 15;
@@ -3442,16 +3187,10 @@ static int bmp085_probe(struct i2c_client *client , struct i2c_device_id  const 
 { struct bmp085_data *data ;
   int err ;
   void *tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct kobject *__cil_tmp12 ;
   struct i2c_client *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device  const  *__cil_tmp17 ;
   void const   *__cil_tmp18 ;
@@ -3469,9 +3208,7 @@ static int bmp085_probe(struct i2c_client *client , struct i2c_device_id  const 
 
   }
   {
-  __cil_tmp6 = (unsigned long )data;
-  __cil_tmp7 = __cil_tmp6 + 112;
-  *((unsigned char *)__cil_tmp7) = (unsigned char)0;
+  *((unsigned char *)((void *)data + 112)) = (unsigned char)0;
   __cil_tmp8 = (void *)data;
   i2c_set_clientdata(client, __cil_tmp8);
   err = bmp085_init_client(client);
@@ -3483,9 +3220,7 @@ static int bmp085_probe(struct i2c_client *client , struct i2c_device_id  const 
   }
   {
   __cil_tmp9 = 40 + 16;
-  __cil_tmp10 = (unsigned long )client;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  __cil_tmp12 = (struct kobject *)__cil_tmp11;
+  __cil_tmp12 = (struct kobject *)((void *)client + __cil_tmp9);
   err = (int )sysfs_create_group(__cil_tmp12, & bmp085_attr_group);
   }
   if (err) {
@@ -3495,9 +3230,7 @@ static int bmp085_probe(struct i2c_client *client , struct i2c_device_id  const 
   }
   {
   __cil_tmp13 = *((struct i2c_client **)data);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 40;
-  __cil_tmp16 = (struct device *)__cil_tmp15;
+  __cil_tmp16 = (struct device *)((void *)__cil_tmp13 + 40);
   __cil_tmp17 = (struct device  const  *)__cil_tmp16;
   _dev_info(__cil_tmp17, "Successfully initialized bmp085!\n");
   }
@@ -3516,8 +3249,6 @@ __no_instrument_function__)) ;
 static int bmp085_remove(struct i2c_client *client ) 
 { void *tmp___7 ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct kobject *__cil_tmp6 ;
   struct i2c_client  const  *__cil_tmp7 ;
   void const   *__cil_tmp8 ;
@@ -3525,9 +3256,7 @@ static int bmp085_remove(struct i2c_client *client )
   {
   {
   __cil_tmp3 = 40 + 16;
-  __cil_tmp4 = (unsigned long )client;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  __cil_tmp6 = (struct kobject *)__cil_tmp5;
+  __cil_tmp6 = (struct kobject *)((void *)client + __cil_tmp3);
   sysfs_remove_group(__cil_tmp6, & bmp085_attr_group);
   __cil_tmp7 = (struct i2c_client  const  *)client;
   tmp___7 = i2c_get_clientdata(__cil_tmp7);

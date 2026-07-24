@@ -730,10 +730,6 @@ static int map_get_value(struct battery_property_map *map , char const   *key , 
   int __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   char const   *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
@@ -777,18 +773,14 @@ static int map_get_value(struct battery_property_map *map , char const   *key , 
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp26 = (unsigned long )map;
-    __cil_tmp27 = __cil_tmp26 + 8;
-    if (*((char const   **)__cil_tmp27)) {
+    if (*((char const   **)((void *)map + 8))) {
 
     } else {
       goto while_break;
     }
     }
     {
-    __cil_tmp28 = (unsigned long )map;
-    __cil_tmp29 = __cil_tmp28 + 8;
-    __cil_tmp30 = *((char const   **)__cil_tmp29);
+    __cil_tmp30 = *((char const   **)((void *)map + 8));
     __cil_tmp31 = 0 * 1UL;
     __cil_tmp32 = (unsigned long )(buf) + __cil_tmp31;
     __cil_tmp33 = (char *)__cil_tmp32;
@@ -809,20 +801,15 @@ static int map_get_value(struct battery_property_map *map , char const   *key , 
 }
 }
 static char const   *map_get_key(struct battery_property_map *map , int value , char const   *def_key ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
 
   {
   {
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp4 = (unsigned long )map;
-    __cil_tmp5 = __cil_tmp4 + 8;
-    if (*((char const   **)__cil_tmp5)) {
+    if (*((char const   **)((void *)map + 8))) {
 
     } else {
       goto while_break;
@@ -832,9 +819,7 @@ static char const   *map_get_key(struct battery_property_map *map , int value , 
     __cil_tmp6 = *((int *)map);
     if (__cil_tmp6 == value) {
       {
-      __cil_tmp7 = (unsigned long )map;
-      __cil_tmp8 = __cil_tmp7 + 8;
-      return (*((char const   **)__cil_tmp8));
+      return (*((char const   **)((void *)map + 8)));
       }
     } else {
 

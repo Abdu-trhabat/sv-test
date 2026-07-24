@@ -3090,14 +3090,10 @@ extern int i2c_master_recv(struct i2c_client const *client , char *buf , int cou
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)dev + 40);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -3105,14 +3101,11 @@ __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3136,14 +3129,11 @@ struct input_dev *input_allocate_device(void) {
 extern void input_free_device(struct input_dev *dev ) ;
 __inline static void input_set_drvdata(struct input_dev *dev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void input_set_drvdata(struct input_dev *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 648;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 648);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3288,8 +3278,6 @@ static irqreturn_t egalax_ts_interrupt(int irq , void *dev_id )
   long tmp___8 ;
   char const *tmp___9 ;
   long tmp___10 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct i2c_client const *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
@@ -3342,8 +3330,6 @@ static irqreturn_t egalax_ts_interrupt(int irq , void *dev_id )
   int __cil_tmp71 ;
   int __cil_tmp72 ;
   long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   struct device *__cil_tmp76 ;
   struct device const *__cil_tmp77 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp78 ;
@@ -3352,16 +3338,12 @@ static irqreturn_t egalax_ts_interrupt(int irq , void *dev_id )
   int __cil_tmp81 ;
   int __cil_tmp82 ;
   long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   struct device *__cil_tmp86 ;
   struct device const *__cil_tmp87 ;
   bool __cil_tmp88 ;
   {
   ts = (struct egalax_ts *)dev_id;
-  __cil_tmp20 = (unsigned long )ts;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  input_dev = *((struct input_dev **)__cil_tmp21);
+  input_dev = *((struct input_dev **)((void *)ts + 8));
   client = *((struct i2c_client **)ts);
   tries = 0;
   {
@@ -3468,9 +3450,7 @@ static irqreturn_t egalax_ts_interrupt(int irq , void *dev_id )
         }
         if (tmp___8) {
           {
-          __cil_tmp74 = (unsigned long )client;
-          __cil_tmp75 = __cil_tmp74 + 40;
-          __cil_tmp76 = (struct device *)__cil_tmp75;
+          __cil_tmp76 = (struct device *)((void *)client + 40);
           __cil_tmp77 = (struct device const *)__cil_tmp76;
           __dynamic_dev_dbg(& descriptor, __cil_tmp77, "point invalid\n");
           }
@@ -3513,9 +3493,7 @@ static irqreturn_t egalax_ts_interrupt(int irq , void *dev_id )
           tmp___9 = "up";
         }
         {
-        __cil_tmp84 = (unsigned long )client;
-        __cil_tmp85 = __cil_tmp84 + 40;
-        __cil_tmp86 = (struct device *)__cil_tmp85;
+        __cil_tmp86 = (struct device *)((void *)client + 40);
         __cil_tmp87 = (struct device const *)__cil_tmp86;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp87, "%s id:%d x:%d y:%d z:%d",
                           tmp___9, id, x, y, z);
@@ -3550,13 +3528,9 @@ static int egalax_wake_up_device(struct i2c_client *client )
 { int gpio ;
   int tmp___7 ;
   int ret ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device const *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
@@ -3565,9 +3539,7 @@ static int egalax_wake_up_device(struct i2c_client *client )
   unsigned int __cil_tmp17 ;
   {
   {
-  __cil_tmp5 = (unsigned long )client;
-  __cil_tmp6 = __cil_tmp5 + 808;
-  __cil_tmp7 = *((int *)__cil_tmp6);
+  __cil_tmp7 = *((int *)((void *)client + 808));
   __cil_tmp8 = (unsigned int )__cil_tmp7;
   tmp___7 = irq_to_gpio(__cil_tmp8);
   gpio = tmp___7;
@@ -3576,9 +3548,7 @@ static int egalax_wake_up_device(struct i2c_client *client )
   }
   if (ret < 0) {
     {
-    __cil_tmp10 = (unsigned long )client;
-    __cil_tmp11 = __cil_tmp10 + 40;
-    __cil_tmp12 = (struct device *)__cil_tmp11;
+    __cil_tmp12 = (struct device *)((void *)client + 40);
     __cil_tmp13 = (struct device const *)__cil_tmp12;
     dev_err(__cil_tmp13, "request gpio failed, cannot wake up controller: %d\n", ret);
     }
@@ -3637,62 +3607,34 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id cons
   int ret ;
   int error ;
   void *tmp___7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device const *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device const *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device const *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long *__cil_tmp32 ;
   unsigned long volatile *__cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned long *__cil_tmp38 ;
   unsigned long volatile *__cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long *__cil_tmp44 ;
   unsigned long volatile *__cil_tmp45 ;
   void *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   int __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
   void *__cil_tmp51 ;
   irqreturn_t (*__cil_tmp52)(int , void * ) ;
   void *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct device *__cil_tmp56 ;
   struct device const *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   struct input_dev *__cil_tmp60 ;
   void *__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   int __cil_tmp64 ;
   unsigned int __cil_tmp65 ;
   void *__cil_tmp66 ;
@@ -3704,9 +3646,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id cons
   }
   if (! ts) {
     {
-    __cil_tmp8 = (unsigned long )client;
-    __cil_tmp9 = __cil_tmp8 + 40;
-    __cil_tmp10 = (struct device *)__cil_tmp9;
+    __cil_tmp10 = (struct device *)((void *)client + 40);
     __cil_tmp11 = (struct device const *)__cil_tmp10;
     dev_err(__cil_tmp11, "Failed to allocate memory\n");
     }
@@ -3718,9 +3658,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id cons
   }
   if (! input_dev) {
     {
-    __cil_tmp12 = (unsigned long )client;
-    __cil_tmp13 = __cil_tmp12 + 40;
-    __cil_tmp14 = (struct device *)__cil_tmp13;
+    __cil_tmp14 = (struct device *)((void *)client + 40);
     __cil_tmp15 = (struct device const *)__cil_tmp14;
     dev_err(__cil_tmp15, "Failed to allocate memory\n");
     error = -12;
@@ -3730,17 +3668,13 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id cons
   }
   {
   *((struct i2c_client **)ts) = client;
-  __cil_tmp16 = (unsigned long )ts;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  *((struct input_dev **)__cil_tmp17) = input_dev;
+  *((struct input_dev **)((void *)ts + 8)) = input_dev;
   egalax_wake_up_device(client);
   ret = egalax_firmware_version(client);
   }
   if (ret < 0) {
     {
-    __cil_tmp18 = (unsigned long )client;
-    __cil_tmp19 = __cil_tmp18 + 40;
-    __cil_tmp20 = (struct device *)__cil_tmp19;
+    __cil_tmp20 = (struct device *)((void *)client + 40);
     __cil_tmp21 = (struct device const *)__cil_tmp20;
     dev_err(__cil_tmp21, "Failed to read firmware version\n");
     error = -5;
@@ -3750,33 +3684,21 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id cons
   }
   {
   *((char const **)input_dev) = "EETI eGalax Touch Screen";
-  __cil_tmp22 = (unsigned long )input_dev;
-  __cil_tmp23 = __cil_tmp22 + 24;
-  *((__u16 *)__cil_tmp23) = (__u16 )24;
-  __cil_tmp24 = (unsigned long )input_dev;
-  __cil_tmp25 = __cil_tmp24 + 648;
-  __cil_tmp26 = (unsigned long )client;
-  __cil_tmp27 = __cil_tmp26 + 40;
-  *((struct device **)__cil_tmp25) = (struct device *)__cil_tmp27;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )24;
+  *((struct device **)((void *)input_dev + 648)) = (struct device *)((void *)client + 40);
   __cil_tmp28 = 0 * 8UL;
   __cil_tmp29 = 40 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )input_dev;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = (unsigned long *)__cil_tmp31;
+  __cil_tmp32 = (unsigned long *)((void *)input_dev + __cil_tmp29);
   __cil_tmp33 = (unsigned long volatile *)__cil_tmp32;
   __set_bit(3, __cil_tmp33);
   __cil_tmp34 = 0 * 8UL;
   __cil_tmp35 = 40 + __cil_tmp34;
-  __cil_tmp36 = (unsigned long )input_dev;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  __cil_tmp38 = (unsigned long *)__cil_tmp37;
+  __cil_tmp38 = (unsigned long *)((void *)input_dev + __cil_tmp35);
   __cil_tmp39 = (unsigned long volatile *)__cil_tmp38;
   __set_bit(1, __cil_tmp39);
   __cil_tmp40 = 0 * 8UL;
   __cil_tmp41 = 48 + __cil_tmp40;
-  __cil_tmp42 = (unsigned long )input_dev;
-  __cil_tmp43 = __cil_tmp42 + __cil_tmp41;
-  __cil_tmp44 = (unsigned long *)__cil_tmp43;
+  __cil_tmp44 = (unsigned long *)((void *)input_dev + __cil_tmp41);
   __cil_tmp45 = (unsigned long volatile *)__cil_tmp44;
   __set_bit(330, __cil_tmp45);
   input_set_abs_params(input_dev, 0U, 0, 32760, 0, 0);
@@ -3786,9 +3708,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id cons
   input_mt_init_slots(input_dev, 5U);
   __cil_tmp46 = (void *)ts;
   input_set_drvdata(input_dev, __cil_tmp46);
-  __cil_tmp47 = (unsigned long )client;
-  __cil_tmp48 = __cil_tmp47 + 808;
-  __cil_tmp49 = *((int *)__cil_tmp48);
+  __cil_tmp49 = *((int *)((void *)client + 808));
   __cil_tmp50 = (unsigned int )__cil_tmp49;
   __cil_tmp51 = (void *)0;
   __cil_tmp52 = (irqreturn_t (*)(int , void * ))__cil_tmp51;
@@ -3798,9 +3718,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id cons
   }
   if (error < 0) {
     {
-    __cil_tmp54 = (unsigned long )client;
-    __cil_tmp55 = __cil_tmp54 + 40;
-    __cil_tmp56 = (struct device *)__cil_tmp55;
+    __cil_tmp56 = (struct device *)((void *)client + 40);
     __cil_tmp57 = (struct device const *)__cil_tmp56;
     dev_err(__cil_tmp57, "Failed to register interrupt\n");
     }
@@ -3808,9 +3726,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id cons
   } else {
   }
   {
-  __cil_tmp58 = (unsigned long )ts;
-  __cil_tmp59 = __cil_tmp58 + 8;
-  __cil_tmp60 = *((struct input_dev **)__cil_tmp59);
+  __cil_tmp60 = *((struct input_dev **)((void *)ts + 8));
   error = (int )input_register_device(__cil_tmp60);
   }
   if (error) {
@@ -3824,9 +3740,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id cons
   return (0);
   err_free_irq:
   {
-  __cil_tmp62 = (unsigned long )client;
-  __cil_tmp63 = __cil_tmp62 + 808;
-  __cil_tmp64 = *((int *)__cil_tmp63);
+  __cil_tmp64 = *((int *)((void *)client + 808));
   __cil_tmp65 = (unsigned int )__cil_tmp64;
   __cil_tmp66 = (void *)ts;
   free_irq(__cil_tmp65, __cil_tmp66);
@@ -3849,13 +3763,9 @@ static int egalax_ts_remove(struct i2c_client *client )
 { struct egalax_ts *ts ;
   void *tmp___7 ;
   struct i2c_client const *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct input_dev *__cil_tmp12 ;
   void const *__cil_tmp13 ;
   {
@@ -3863,15 +3773,11 @@ static int egalax_ts_remove(struct i2c_client *client )
   __cil_tmp4 = (struct i2c_client const *)client;
   tmp___7 = i2c_get_clientdata(__cil_tmp4);
   ts = (struct egalax_ts *)tmp___7;
-  __cil_tmp5 = (unsigned long )client;
-  __cil_tmp6 = __cil_tmp5 + 808;
-  __cil_tmp7 = *((int *)__cil_tmp6);
+  __cil_tmp7 = *((int *)((void *)client + 808));
   __cil_tmp8 = (unsigned int )__cil_tmp7;
   __cil_tmp9 = (void *)ts;
   free_irq(__cil_tmp8, __cil_tmp9);
-  __cil_tmp10 = (unsigned long )ts;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  __cil_tmp12 = *((struct input_dev **)__cil_tmp11);
+  __cil_tmp12 = *((struct input_dev **)((void *)ts + 8));
   input_unregister_device(__cil_tmp12);
   __cil_tmp13 = (void const *)ts;
   kfree(__cil_tmp13);
@@ -3895,8 +3801,6 @@ static int egalax_ts_suspend(struct device *dev )
   int ret ;
   int tmp___7 ;
   struct i2c_client *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   char *__cil_tmp11 ;
@@ -3910,9 +3814,7 @@ static int egalax_ts_suspend(struct device *dev )
   {
   __mptr = (struct device const *)dev;
   __cil_tmp6 = (struct i2c_client *)0;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 40;
-  __cil_tmp9 = (struct device *)__cil_tmp8;
+  __cil_tmp9 = (struct device *)((void *)__cil_tmp6 + 40);
   __cil_tmp10 = (unsigned int )__cil_tmp9;
   __cil_tmp11 = (char *)__mptr;
   __cil_tmp12 = __cil_tmp11 - __cil_tmp10;
@@ -3937,8 +3839,6 @@ static int egalax_ts_resume(struct device *dev )
   struct device const *__mptr ;
   int tmp___7 ;
   struct i2c_client *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   char *__cil_tmp10 ;
@@ -3947,9 +3847,7 @@ static int egalax_ts_resume(struct device *dev )
   {
   __mptr = (struct device const *)dev;
   __cil_tmp5 = (struct i2c_client *)0;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 40;
-  __cil_tmp8 = (struct device *)__cil_tmp7;
+  __cil_tmp8 = (struct device *)((void *)__cil_tmp5 + 40);
   __cil_tmp9 = (unsigned int )__cil_tmp8;
   __cil_tmp10 = (char *)__mptr;
   __cil_tmp11 = __cil_tmp10 - __cil_tmp9;

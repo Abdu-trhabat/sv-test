@@ -2097,30 +2097,23 @@ extern int i2c_master_send(struct i2c_client  const  * , char const   * , int  )
 extern int i2c_transfer(struct i2c_adapter * , struct i2c_msg * , int  ) ;
 __inline static void *i2c_get_clientdata(struct i2c_client  const  *dev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)dev + 40);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2142,12 +2135,8 @@ static int tps6507x_i2c_read_device(struct tps6507x_dev *tps6507x , char reg , i
 { struct i2c_client *i2c ;
   struct i2c_msg xfer[2U] ;
   int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
@@ -2159,8 +2148,6 @@ static int tps6507x_i2c_read_device(struct tps6507x_dev *tps6507x , char reg , i
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
@@ -2170,21 +2157,15 @@ static int tps6507x_i2c_read_device(struct tps6507x_dev *tps6507x , char reg , i
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct i2c_adapter *__cil_tmp38 ;
   struct i2c_msg *__cil_tmp39 ;
 
   {
   {
-  __cil_tmp8 = (unsigned long )tps6507x;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  i2c = *((struct i2c_client **)__cil_tmp9);
+  i2c = *((struct i2c_client **)((void *)tps6507x + 8));
   __cil_tmp10 = 0 * 16UL;
   __cil_tmp11 = (unsigned long )(xfer) + __cil_tmp10;
-  __cil_tmp12 = (unsigned long )i2c;
-  __cil_tmp13 = __cil_tmp12 + 2;
-  *((__u16 *)__cil_tmp11) = *((unsigned short *)__cil_tmp13);
+  *((__u16 *)__cil_tmp11) = *((unsigned short *)((void *)i2c + 2));
   __cil_tmp14 = 0 * 16UL;
   __cil_tmp15 = __cil_tmp14 + 2;
   __cil_tmp16 = (unsigned long )(xfer) + __cil_tmp15;
@@ -2199,9 +2180,7 @@ static int tps6507x_i2c_read_device(struct tps6507x_dev *tps6507x , char reg , i
   *((__u8 **)__cil_tmp22) = (__u8 *)(& reg);
   __cil_tmp23 = 1 * 16UL;
   __cil_tmp24 = (unsigned long )(xfer) + __cil_tmp23;
-  __cil_tmp25 = (unsigned long )i2c;
-  __cil_tmp26 = __cil_tmp25 + 2;
-  *((__u16 *)__cil_tmp24) = *((unsigned short *)__cil_tmp26);
+  *((__u16 *)__cil_tmp24) = *((unsigned short *)((void *)i2c + 2));
   __cil_tmp27 = 1 * 16UL;
   __cil_tmp28 = __cil_tmp27 + 2;
   __cil_tmp29 = (unsigned long )(xfer) + __cil_tmp28;
@@ -2214,9 +2193,7 @@ static int tps6507x_i2c_read_device(struct tps6507x_dev *tps6507x , char reg , i
   __cil_tmp34 = __cil_tmp33 + 8;
   __cil_tmp35 = (unsigned long )(xfer) + __cil_tmp34;
   *((__u8 **)__cil_tmp35) = (__u8 *)dest;
-  __cil_tmp36 = (unsigned long )i2c;
-  __cil_tmp37 = __cil_tmp36 + 24;
-  __cil_tmp38 = *((struct i2c_adapter **)__cil_tmp37);
+  __cil_tmp38 = *((struct i2c_adapter **)((void *)i2c + 24));
   __cil_tmp39 = (struct i2c_msg *)(& xfer);
   ret = i2c_transfer(__cil_tmp38, __cil_tmp39, 2);
   }
@@ -2239,8 +2216,6 @@ static int tps6507x_i2c_write_device(struct tps6507x_dev *tps6507x , char reg , 
   int ret ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
@@ -2252,9 +2227,7 @@ static int tps6507x_i2c_write_device(struct tps6507x_dev *tps6507x , char reg , 
   int __cil_tmp20 ;
 
   {
-  __cil_tmp10 = (unsigned long )tps6507x;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  i2c = *((struct i2c_client **)__cil_tmp11);
+  i2c = *((struct i2c_client **)((void *)tps6507x + 8));
   if (bytes > 25) {
     return (-22);
   } else {
@@ -2298,14 +2271,6 @@ static int tps6507x_i2c_probe(struct i2c_client *i2c , struct i2c_device_id  con
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct mfd_cell *__cil_tmp19 ;
   struct resource *__cil_tmp20 ;
@@ -2331,18 +2296,10 @@ static int tps6507x_i2c_probe(struct i2c_client *i2c , struct i2c_device_id  con
   {
   __cil_tmp9 = (void *)tps6507x;
   i2c_set_clientdata(i2c, __cil_tmp9);
-  __cil_tmp10 = (unsigned long )i2c;
-  __cil_tmp11 = __cil_tmp10 + 40;
-  *((struct device **)tps6507x) = (struct device *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )tps6507x;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  *((struct i2c_client **)__cil_tmp13) = i2c;
-  __cil_tmp14 = (unsigned long )tps6507x;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  *((int (**)(struct tps6507x_dev * , char  , int  , void * ))__cil_tmp15) = & tps6507x_i2c_read_device;
-  __cil_tmp16 = (unsigned long )tps6507x;
-  __cil_tmp17 = __cil_tmp16 + 24;
-  *((int (**)(struct tps6507x_dev * , char  , int  , void * ))__cil_tmp17) = & tps6507x_i2c_write_device;
+  *((struct device **)tps6507x) = (struct device *)((void *)i2c + 40);
+  *((struct i2c_client **)((void *)tps6507x + 8)) = i2c;
+  *((int (**)(struct tps6507x_dev * , char  , int  , void * ))((void *)tps6507x + 16)) = & tps6507x_i2c_read_device;
+  *((int (**)(struct tps6507x_dev * , char  , int  , void * ))((void *)tps6507x + 24)) = & tps6507x_i2c_write_device;
   __cil_tmp18 = *((struct device **)tps6507x);
   __cil_tmp19 = (struct mfd_cell *)(& tps6507x_devs);
   __cil_tmp20 = (struct resource *)0;

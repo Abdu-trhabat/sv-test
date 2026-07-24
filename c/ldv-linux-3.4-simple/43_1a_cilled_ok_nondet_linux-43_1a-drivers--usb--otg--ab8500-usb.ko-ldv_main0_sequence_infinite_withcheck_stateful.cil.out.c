@@ -2168,14 +2168,10 @@ void ldv_spin_lock(void) ;
 void ldv_spin_unlock(void) ;
 int ldv_spin_trylock(void) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -2214,30 +2210,23 @@ extern int platform_driver_register(struct platform_driver * ) ;
 extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2262,23 +2251,16 @@ __inline static struct ab8500_usb *phy_to_ab(struct usb_phy *x )
 }
 }
 static void ab8500_usb_wd_workaround(struct ab8500_usb *ab ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device *__cil_tmp4 ;
   u8 __cil_tmp5 ;
   u8 __cil_tmp6 ;
   u8 __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   u8 __cil_tmp11 ;
   u8 __cil_tmp12 ;
   u8 __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   u8 __cil_tmp20 ;
   u8 __cil_tmp21 ;
@@ -2286,26 +2268,20 @@ static void ab8500_usb_wd_workaround(struct ab8500_usb *ab )
 
   {
   {
-  __cil_tmp2 = (unsigned long )ab;
-  __cil_tmp3 = __cil_tmp2 + 184;
-  __cil_tmp4 = *((struct device **)__cil_tmp3);
+  __cil_tmp4 = *((struct device **)((void *)ab + 184));
   __cil_tmp5 = (u8 )2;
   __cil_tmp6 = (u8 )1;
   __cil_tmp7 = (u8 )1;
   abx500_set_register_interruptible(__cil_tmp4, __cil_tmp5, __cil_tmp6, __cil_tmp7);
   __const_udelay(429500UL);
-  __cil_tmp8 = (unsigned long )ab;
-  __cil_tmp9 = __cil_tmp8 + 184;
-  __cil_tmp10 = *((struct device **)__cil_tmp9);
+  __cil_tmp10 = *((struct device **)((void *)ab + 184));
   __cil_tmp11 = (u8 )2;
   __cil_tmp12 = (u8 )1;
   __cil_tmp13 = (u8 )3;
   abx500_set_register_interruptible(__cil_tmp10, __cil_tmp11, __cil_tmp12, __cil_tmp13);
   }
   {
-  __cil_tmp14 = (unsigned long )ab;
-  __cil_tmp15 = __cil_tmp14 + 512;
-  __cil_tmp16 = *((int *)__cil_tmp15);
+  __cil_tmp16 = *((int *)((void *)ab + 512));
   if (__cil_tmp16 > 16) {
     {
     __const_udelay(429500UL);
@@ -2317,9 +2293,7 @@ static void ab8500_usb_wd_workaround(struct ab8500_usb *ab )
   }
   }
   {
-  __cil_tmp17 = (unsigned long )ab;
-  __cil_tmp18 = __cil_tmp17 + 184;
-  __cil_tmp19 = *((struct device **)__cil_tmp18);
+  __cil_tmp19 = *((struct device **)((void *)ab + 184));
   __cil_tmp20 = (u8 )2;
   __cil_tmp21 = (u8 )1;
   __cil_tmp22 = (u8 )0;
@@ -2330,8 +2304,6 @@ static void ab8500_usb_wd_workaround(struct ab8500_usb *ab )
 }
 static void ab8500_usb_phy_ctrl(struct ab8500_usb *ab , bool sel_host , bool enable ) 
 { u8 ctrl_reg ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   u8 __cil_tmp8 ;
   u8 __cil_tmp9 ;
@@ -2355,8 +2327,6 @@ static void ab8500_usb_phy_ctrl(struct ab8500_usb *ab , bool sel_host , bool ena
   u8 __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device *__cil_tmp32 ;
   u8 __cil_tmp33 ;
   u8 __cil_tmp34 ;
@@ -2367,9 +2337,7 @@ static void ab8500_usb_phy_ctrl(struct ab8500_usb *ab , bool sel_host , bool ena
 
   {
   {
-  __cil_tmp5 = (unsigned long )ab;
-  __cil_tmp6 = __cil_tmp5 + 184;
-  __cil_tmp7 = *((struct device **)__cil_tmp6);
+  __cil_tmp7 = *((struct device **)((void *)ab + 184));
   __cil_tmp8 = (u8 )5;
   __cil_tmp9 = (u8 )138;
   abx500_get_register_interruptible(__cil_tmp7, __cil_tmp8, __cil_tmp9, & ctrl_reg);
@@ -2407,9 +2375,7 @@ static void ab8500_usb_phy_ctrl(struct ab8500_usb *ab , bool sel_host , bool ena
     *__cil_tmp25 = (u8 )__cil_tmp29;
   }
   {
-  __cil_tmp30 = (unsigned long )ab;
-  __cil_tmp31 = __cil_tmp30 + 184;
-  __cil_tmp32 = *((struct device **)__cil_tmp31);
+  __cil_tmp32 = *((struct device **)((void *)ab + 184));
   __cil_tmp33 = (u8 )5;
   __cil_tmp34 = (u8 )138;
   __cil_tmp35 = & ctrl_reg;
@@ -2433,8 +2399,6 @@ static int ab8500_usb_link_status_update(struct ab8500_usb *ab )
   enum ab8500_usb_link_status lsts ;
   void *v ;
   enum usb_phy_events event ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   u8 __cil_tmp9 ;
   u8 __cil_tmp10 ;
@@ -2449,71 +2413,41 @@ static int ab8500_usb_link_status_update(struct ab8500_usb *ab )
   bool __cil_tmp19 ;
   bool __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct usb_otg *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct usb_gadget *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct usb_otg *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct usb_gadget *__cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   bool __cil_tmp40 ;
   bool __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct usb_otg *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct usb_gadget *__cil_tmp48 ;
   struct usb_bus *__cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct usb_otg *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct usb_bus *__cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   bool __cil_tmp59 ;
   bool __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   struct usb_otg *__cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   struct usb_bus *__cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   struct usb_otg *__cil_tmp74 ;
   unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   struct atomic_notifier_head *__cil_tmp78 ;
   unsigned long __cil_tmp79 ;
 
   {
   {
   v = (void *)0;
-  __cil_tmp6 = (unsigned long )ab;
-  __cil_tmp7 = __cil_tmp6 + 184;
-  __cil_tmp8 = *((struct device **)__cil_tmp7);
+  __cil_tmp8 = *((struct device **)((void *)ab + 184));
   __cil_tmp9 = (u8 )5;
   __cil_tmp10 = (u8 )128;
   abx500_get_register_interruptible(__cil_tmp8, __cil_tmp9, __cil_tmp10, & reg);
@@ -2586,17 +2520,11 @@ static int ab8500_usb_link_status_update(struct ab8500_usb *ab )
     __cil_tmp20 = (bool )0;
     ab8500_usb_phy_ctrl(ab, __cil_tmp19, __cil_tmp20);
     __cil_tmp21 = 0 + 20;
-    __cil_tmp22 = (unsigned long )ab;
-    __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-    *((enum usb_otg_state *)__cil_tmp23) = (enum usb_otg_state )1;
+    *((enum usb_otg_state *)((void *)ab + __cil_tmp21)) = (enum usb_otg_state )1;
     __cil_tmp24 = 0 + 32;
-    __cil_tmp25 = (unsigned long )ab;
-    __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-    __cil_tmp27 = *((struct usb_otg **)__cil_tmp26);
+    __cil_tmp27 = *((struct usb_otg **)((void *)ab + __cil_tmp24));
     *((u8 *)__cil_tmp27) = (u8 )0U;
-    __cil_tmp28 = (unsigned long )ab;
-    __cil_tmp29 = __cil_tmp28 + 212;
-    *((unsigned int *)__cil_tmp29) = 0U;
+    *((unsigned int *)((void *)ab + 212)) = 0U;
     event = (enum usb_phy_events )0;
     }
     goto ldv_24155;
@@ -2610,12 +2538,8 @@ static int ab8500_usb_link_status_update(struct ab8500_usb *ab )
     __cil_tmp30 = (struct usb_gadget *)0;
     __cil_tmp31 = (unsigned long )__cil_tmp30;
     __cil_tmp32 = 0 + 32;
-    __cil_tmp33 = (unsigned long )ab;
-    __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-    __cil_tmp35 = *((struct usb_otg **)__cil_tmp34);
-    __cil_tmp36 = (unsigned long )__cil_tmp35;
-    __cil_tmp37 = __cil_tmp36 + 24;
-    __cil_tmp38 = *((struct usb_gadget **)__cil_tmp37);
+    __cil_tmp35 = *((struct usb_otg **)((void *)ab + __cil_tmp32));
+    __cil_tmp38 = *((struct usb_gadget **)((void *)__cil_tmp35 + 24));
     __cil_tmp39 = (unsigned long )__cil_tmp38;
     if (__cil_tmp39 != __cil_tmp31) {
       {
@@ -2623,12 +2547,8 @@ static int ab8500_usb_link_status_update(struct ab8500_usb *ab )
       __cil_tmp41 = (bool )1;
       ab8500_usb_phy_ctrl(ab, __cil_tmp40, __cil_tmp41);
       __cil_tmp42 = 0 + 32;
-      __cil_tmp43 = (unsigned long )ab;
-      __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
-      __cil_tmp45 = *((struct usb_otg **)__cil_tmp44);
-      __cil_tmp46 = (unsigned long )__cil_tmp45;
-      __cil_tmp47 = __cil_tmp46 + 24;
-      __cil_tmp48 = *((struct usb_gadget **)__cil_tmp47);
+      __cil_tmp45 = *((struct usb_otg **)((void *)ab + __cil_tmp42));
+      __cil_tmp48 = *((struct usb_gadget **)((void *)__cil_tmp45 + 24));
       v = (void *)__cil_tmp48;
       }
     } else {
@@ -2642,12 +2562,8 @@ static int ab8500_usb_link_status_update(struct ab8500_usb *ab )
     __cil_tmp49 = (struct usb_bus *)0;
     __cil_tmp50 = (unsigned long )__cil_tmp49;
     __cil_tmp51 = 0 + 32;
-    __cil_tmp52 = (unsigned long )ab;
-    __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-    __cil_tmp54 = *((struct usb_otg **)__cil_tmp53);
-    __cil_tmp55 = (unsigned long )__cil_tmp54;
-    __cil_tmp56 = __cil_tmp55 + 16;
-    __cil_tmp57 = *((struct usb_bus **)__cil_tmp56);
+    __cil_tmp54 = *((struct usb_otg **)((void *)ab + __cil_tmp51));
+    __cil_tmp57 = *((struct usb_bus **)((void *)__cil_tmp54 + 16));
     __cil_tmp58 = (unsigned long )__cil_tmp57;
     if (__cil_tmp58 != __cil_tmp50) {
       {
@@ -2655,12 +2571,8 @@ static int ab8500_usb_link_status_update(struct ab8500_usb *ab )
       __cil_tmp60 = (bool )1;
       ab8500_usb_phy_ctrl(ab, __cil_tmp59, __cil_tmp60);
       __cil_tmp61 = 0 + 32;
-      __cil_tmp62 = (unsigned long )ab;
-      __cil_tmp63 = __cil_tmp62 + __cil_tmp61;
-      __cil_tmp64 = *((struct usb_otg **)__cil_tmp63);
-      __cil_tmp65 = (unsigned long )__cil_tmp64;
-      __cil_tmp66 = __cil_tmp65 + 16;
-      __cil_tmp67 = *((struct usb_bus **)__cil_tmp66);
+      __cil_tmp64 = *((struct usb_otg **)((void *)ab + __cil_tmp61));
+      __cil_tmp67 = *((struct usb_bus **)((void *)__cil_tmp64 + 16));
       v = (void *)__cil_tmp67;
       }
     } else {
@@ -2668,13 +2580,9 @@ static int ab8500_usb_link_status_update(struct ab8500_usb *ab )
     }
     }
     __cil_tmp68 = 0 + 20;
-    __cil_tmp69 = (unsigned long )ab;
-    __cil_tmp70 = __cil_tmp69 + __cil_tmp68;
-    *((enum usb_otg_state *)__cil_tmp70) = (enum usb_otg_state )6;
+    *((enum usb_otg_state *)((void *)ab + __cil_tmp68)) = (enum usb_otg_state )6;
     __cil_tmp71 = 0 + 32;
-    __cil_tmp72 = (unsigned long )ab;
-    __cil_tmp73 = __cil_tmp72 + __cil_tmp71;
-    __cil_tmp74 = *((struct usb_otg **)__cil_tmp73);
+    __cil_tmp74 = *((struct usb_otg **)((void *)ab + __cil_tmp71));
     *((u8 *)__cil_tmp74) = (u8 )1U;
     event = (enum usb_phy_events )2;
     goto ldv_24155;
@@ -2693,9 +2601,7 @@ static int ab8500_usb_link_status_update(struct ab8500_usb *ab )
   ldv_24155: 
   {
   __cil_tmp75 = 0 + 64;
-  __cil_tmp76 = (unsigned long )ab;
-  __cil_tmp77 = __cil_tmp76 + __cil_tmp75;
-  __cil_tmp78 = (struct atomic_notifier_head *)__cil_tmp77;
+  __cil_tmp78 = (struct atomic_notifier_head *)((void *)ab + __cil_tmp75);
   __cil_tmp79 = (unsigned long )event;
   atomic_notifier_call_chain(__cil_tmp78, __cil_tmp79, v);
   }
@@ -2719,22 +2625,14 @@ static void ab8500_usb_delayed_work(struct work_struct *work )
 }
 static irqreturn_t ab8500_usb_v1x_common_irq(int irq , void *data ) 
 { struct ab8500_usb *ab ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct delayed_work *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
 
   {
   {
   ab = (struct ab8500_usb *)data;
-  __cil_tmp4 = (unsigned long )ab;
-  __cil_tmp5 = __cil_tmp4 + 216;
-  __cil_tmp6 = (struct delayed_work *)__cil_tmp5;
-  __cil_tmp7 = (unsigned long )ab;
-  __cil_tmp8 = __cil_tmp7 + 504;
-  __cil_tmp9 = *((unsigned long *)__cil_tmp8);
+  __cil_tmp6 = (struct delayed_work *)((void *)ab + 216);
+  __cil_tmp9 = *((unsigned long *)((void *)ab + 504));
   schedule_delayed_work(__cil_tmp6, __cil_tmp9);
   }
   return ((irqreturn_t )1);
@@ -2744,11 +2642,7 @@ static irqreturn_t ab8500_usb_v1x_vbus_fall_irq(int irq , void *data )
 { struct ab8500_usb *ab ;
   bool __cil_tmp4 ;
   bool __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct delayed_work *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
 
   {
@@ -2757,12 +2651,8 @@ static irqreturn_t ab8500_usb_v1x_vbus_fall_irq(int irq , void *data )
   __cil_tmp4 = (bool )0;
   __cil_tmp5 = (bool )0;
   ab8500_usb_phy_ctrl(ab, __cil_tmp4, __cil_tmp5);
-  __cil_tmp6 = (unsigned long )ab;
-  __cil_tmp7 = __cil_tmp6 + 216;
-  __cil_tmp8 = (struct delayed_work *)__cil_tmp7;
-  __cil_tmp9 = (unsigned long )ab;
-  __cil_tmp10 = __cil_tmp9 + 504;
-  __cil_tmp11 = *((unsigned long *)__cil_tmp10);
+  __cil_tmp8 = (struct delayed_work *)((void *)ab + 216);
+  __cil_tmp11 = *((unsigned long *)((void *)ab + 504));
   schedule_delayed_work(__cil_tmp8, __cil_tmp11);
   }
   return ((irqreturn_t )1);
@@ -2786,11 +2676,7 @@ static void ab8500_usb_phy_disable_work(struct work_struct *work )
   struct usb_bus *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct usb_otg *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct usb_bus *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   bool __cil_tmp15 ;
@@ -2798,11 +2684,7 @@ static void ab8500_usb_phy_disable_work(struct work_struct *work )
   struct usb_gadget *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct usb_otg *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct usb_gadget *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   bool __cil_tmp27 ;
@@ -2816,12 +2698,8 @@ static void ab8500_usb_phy_disable_work(struct work_struct *work )
   __cil_tmp5 = (struct usb_bus *)0;
   __cil_tmp6 = (unsigned long )__cil_tmp5;
   __cil_tmp7 = 0 + 32;
-  __cil_tmp8 = (unsigned long )ab;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((struct usb_otg **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = *((struct usb_bus **)__cil_tmp12);
+  __cil_tmp10 = *((struct usb_otg **)((void *)ab + __cil_tmp7));
+  __cil_tmp13 = *((struct usb_bus **)((void *)__cil_tmp10 + 16));
   __cil_tmp14 = (unsigned long )__cil_tmp13;
   if (__cil_tmp14 == __cil_tmp6) {
     {
@@ -2837,12 +2715,8 @@ static void ab8500_usb_phy_disable_work(struct work_struct *work )
   __cil_tmp17 = (struct usb_gadget *)0;
   __cil_tmp18 = (unsigned long )__cil_tmp17;
   __cil_tmp19 = 0 + 32;
-  __cil_tmp20 = (unsigned long )ab;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  __cil_tmp22 = *((struct usb_otg **)__cil_tmp21);
-  __cil_tmp23 = (unsigned long )__cil_tmp22;
-  __cil_tmp24 = __cil_tmp23 + 24;
-  __cil_tmp25 = *((struct usb_gadget **)__cil_tmp24);
+  __cil_tmp22 = *((struct usb_otg **)((void *)ab + __cil_tmp19));
+  __cil_tmp25 = *((struct usb_gadget **)((void *)__cil_tmp22 + 24));
   __cil_tmp26 = (unsigned long )__cil_tmp25;
   if (__cil_tmp26 == __cil_tmp18) {
     {
@@ -2862,18 +2736,10 @@ static int ab8500_usb_set_power(struct usb_phy *phy , unsigned int mA )
   struct usb_phy *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct atomic_notifier_head *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct usb_otg *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct usb_gadget *__cil_tmp19 ;
   void *__cil_tmp20 ;
 
@@ -2890,23 +2756,15 @@ static int ab8500_usb_set_power(struct usb_phy *phy , unsigned int mA )
   }
   {
   ab = phy_to_ab(phy);
-  __cil_tmp7 = (unsigned long )ab;
-  __cil_tmp8 = __cil_tmp7 + 212;
-  *((unsigned int *)__cil_tmp8) = mA;
+  *((unsigned int *)((void *)ab + 212)) = mA;
   }
   if (mA != 0U) {
     {
     __cil_tmp9 = 0 + 64;
-    __cil_tmp10 = (unsigned long )ab;
-    __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-    __cil_tmp12 = (struct atomic_notifier_head *)__cil_tmp11;
+    __cil_tmp12 = (struct atomic_notifier_head *)((void *)ab + __cil_tmp9);
     __cil_tmp13 = 0 + 32;
-    __cil_tmp14 = (unsigned long )ab;
-    __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-    __cil_tmp16 = *((struct usb_otg **)__cil_tmp15);
-    __cil_tmp17 = (unsigned long )__cil_tmp16;
-    __cil_tmp18 = __cil_tmp17 + 24;
-    __cil_tmp19 = *((struct usb_gadget **)__cil_tmp18);
+    __cil_tmp16 = *((struct usb_otg **)((void *)ab + __cil_tmp13));
+    __cil_tmp19 = *((struct usb_gadget **)((void *)__cil_tmp16 + 24));
     __cil_tmp20 = (void *)__cil_tmp19;
     atomic_notifier_call_chain(__cil_tmp12, 4UL, __cil_tmp20);
     }
@@ -2928,29 +2786,13 @@ static int ab8500_usb_set_peripheral(struct usb_otg *otg , struct usb_gadget *ga
   struct usb_otg *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct usb_phy *__cil_tmp9 ;
   struct usb_gadget *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct work_struct *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct usb_phy *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct delayed_work *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
 
   {
@@ -2965,9 +2807,7 @@ static int ab8500_usb_set_peripheral(struct usb_otg *otg , struct usb_gadget *ga
   }
   }
   {
-  __cil_tmp7 = (unsigned long )otg;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = *((struct usb_phy **)__cil_tmp8);
+  __cil_tmp9 = *((struct usb_phy **)((void *)otg + 8));
   ab = phy_to_ab(__cil_tmp9);
   }
   {
@@ -2976,31 +2816,17 @@ static int ab8500_usb_set_peripheral(struct usb_otg *otg , struct usb_gadget *ga
   __cil_tmp12 = (unsigned long )gadget;
   if (__cil_tmp12 == __cil_tmp11) {
     {
-    __cil_tmp13 = (unsigned long )otg;
-    __cil_tmp14 = __cil_tmp13 + 24;
-    *((struct usb_gadget **)__cil_tmp14) = (struct usb_gadget *)0;
-    __cil_tmp15 = (unsigned long )ab;
-    __cil_tmp16 = __cil_tmp15 + 424;
-    __cil_tmp17 = (struct work_struct *)__cil_tmp16;
+    *((struct usb_gadget **)((void *)otg + 24)) = (struct usb_gadget *)0;
+    __cil_tmp17 = (struct work_struct *)((void *)ab + 424);
     schedule_work(__cil_tmp17);
     }
   } else {
     {
-    __cil_tmp18 = (unsigned long )otg;
-    __cil_tmp19 = __cil_tmp18 + 24;
-    *((struct usb_gadget **)__cil_tmp19) = gadget;
-    __cil_tmp20 = (unsigned long )otg;
-    __cil_tmp21 = __cil_tmp20 + 8;
-    __cil_tmp22 = *((struct usb_phy **)__cil_tmp21);
-    __cil_tmp23 = (unsigned long )__cil_tmp22;
-    __cil_tmp24 = __cil_tmp23 + 20;
-    *((enum usb_otg_state *)__cil_tmp24) = (enum usb_otg_state )1;
-    __cil_tmp25 = (unsigned long )ab;
-    __cil_tmp26 = __cil_tmp25 + 216;
-    __cil_tmp27 = (struct delayed_work *)__cil_tmp26;
-    __cil_tmp28 = (unsigned long )ab;
-    __cil_tmp29 = __cil_tmp28 + 504;
-    __cil_tmp30 = *((unsigned long *)__cil_tmp29);
+    *((struct usb_gadget **)((void *)otg + 24)) = gadget;
+    __cil_tmp22 = *((struct usb_phy **)((void *)otg + 8));
+    *((enum usb_otg_state *)((void *)__cil_tmp22 + 20)) = (enum usb_otg_state )1;
+    __cil_tmp27 = (struct delayed_work *)((void *)ab + 216);
+    __cil_tmp30 = *((unsigned long *)((void *)ab + 504));
     schedule_delayed_work(__cil_tmp27, __cil_tmp30);
     }
   }
@@ -3013,24 +2839,12 @@ static int ab8500_usb_set_host(struct usb_otg *otg , struct usb_bus *host )
   struct usb_otg *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct usb_phy *__cil_tmp9 ;
   struct usb_bus *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct work_struct *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct delayed_work *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
 
   {
@@ -3045,9 +2859,7 @@ static int ab8500_usb_set_host(struct usb_otg *otg , struct usb_bus *host )
   }
   }
   {
-  __cil_tmp7 = (unsigned long )otg;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = *((struct usb_phy **)__cil_tmp8);
+  __cil_tmp9 = *((struct usb_phy **)((void *)otg + 8));
   ab = phy_to_ab(__cil_tmp9);
   }
   {
@@ -3056,25 +2868,15 @@ static int ab8500_usb_set_host(struct usb_otg *otg , struct usb_bus *host )
   __cil_tmp12 = (unsigned long )host;
   if (__cil_tmp12 == __cil_tmp11) {
     {
-    __cil_tmp13 = (unsigned long )otg;
-    __cil_tmp14 = __cil_tmp13 + 16;
-    *((struct usb_bus **)__cil_tmp14) = (struct usb_bus *)0;
-    __cil_tmp15 = (unsigned long )ab;
-    __cil_tmp16 = __cil_tmp15 + 424;
-    __cil_tmp17 = (struct work_struct *)__cil_tmp16;
+    *((struct usb_bus **)((void *)otg + 16)) = (struct usb_bus *)0;
+    __cil_tmp17 = (struct work_struct *)((void *)ab + 424);
     schedule_work(__cil_tmp17);
     }
   } else {
     {
-    __cil_tmp18 = (unsigned long )otg;
-    __cil_tmp19 = __cil_tmp18 + 16;
-    *((struct usb_bus **)__cil_tmp19) = host;
-    __cil_tmp20 = (unsigned long )ab;
-    __cil_tmp21 = __cil_tmp20 + 216;
-    __cil_tmp22 = (struct delayed_work *)__cil_tmp21;
-    __cil_tmp23 = (unsigned long )ab;
-    __cil_tmp24 = __cil_tmp23 + 504;
-    __cil_tmp25 = *((unsigned long *)__cil_tmp24);
+    *((struct usb_bus **)((void *)otg + 16)) = host;
+    __cil_tmp22 = (struct delayed_work *)((void *)ab + 216);
+    __cil_tmp25 = *((unsigned long *)((void *)ab + 504));
     schedule_delayed_work(__cil_tmp22, __cil_tmp25);
     }
   }
@@ -3083,72 +2885,49 @@ static int ab8500_usb_set_host(struct usb_otg *otg , struct usb_bus *host )
 }
 }
 static void ab8500_usb_irq_free(struct ab8500_usb *ab ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   int __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   void *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   void *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
   void *__cil_tmp29 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )ab;
-  __cil_tmp3 = __cil_tmp2 + 512;
-  __cil_tmp4 = *((int *)__cil_tmp3);
+  __cil_tmp4 = *((int *)((void *)ab + 512));
   if (__cil_tmp4 <= 31) {
     {
-    __cil_tmp5 = (unsigned long )ab;
-    __cil_tmp6 = __cil_tmp5 + 192;
-    __cil_tmp7 = *((int *)__cil_tmp6);
+    __cil_tmp7 = *((int *)((void *)ab + 192));
     __cil_tmp8 = (unsigned int )__cil_tmp7;
     __cil_tmp9 = (void *)ab;
     free_irq(__cil_tmp8, __cil_tmp9);
-    __cil_tmp10 = (unsigned long )ab;
-    __cil_tmp11 = __cil_tmp10 + 196;
-    __cil_tmp12 = *((int *)__cil_tmp11);
+    __cil_tmp12 = *((int *)((void *)ab + 196));
     __cil_tmp13 = (unsigned int )__cil_tmp12;
     __cil_tmp14 = (void *)ab;
     free_irq(__cil_tmp13, __cil_tmp14);
-    __cil_tmp15 = (unsigned long )ab;
-    __cil_tmp16 = __cil_tmp15 + 200;
-    __cil_tmp17 = *((int *)__cil_tmp16);
+    __cil_tmp17 = *((int *)((void *)ab + 200));
     __cil_tmp18 = (unsigned int )__cil_tmp17;
     __cil_tmp19 = (void *)ab;
     free_irq(__cil_tmp18, __cil_tmp19);
-    __cil_tmp20 = (unsigned long )ab;
-    __cil_tmp21 = __cil_tmp20 + 204;
-    __cil_tmp22 = *((int *)__cil_tmp21);
+    __cil_tmp22 = *((int *)((void *)ab + 204));
     __cil_tmp23 = (unsigned int )__cil_tmp22;
     __cil_tmp24 = (void *)ab;
     free_irq(__cil_tmp23, __cil_tmp24);
     }
   } else {
     {
-    __cil_tmp25 = (unsigned long )ab;
-    __cil_tmp26 = __cil_tmp25 + 208;
-    __cil_tmp27 = *((int *)__cil_tmp26);
+    __cil_tmp27 = *((int *)((void *)ab + 208));
     __cil_tmp28 = (unsigned int )__cil_tmp27;
     __cil_tmp29 = (void *)ab;
     free_irq(__cil_tmp28, __cil_tmp29);
@@ -3160,137 +2939,73 @@ static void ab8500_usb_irq_free(struct ab8500_usb *ab )
 }
 static int ab8500_usb_v1x_res_setup(struct platform_device *pdev , struct ab8500_usb *ab ) 
 { int err ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device  const  *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   irqreturn_t (*__cil_tmp19)(int  , void * ) ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct device  const  *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device *__cil_tmp32 ;
   struct device  const  *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   int __cil_tmp38 ;
   unsigned int __cil_tmp39 ;
   irqreturn_t (*__cil_tmp40)(int  , void * ) ;
   void *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
   struct device  const  *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct device *__cil_tmp53 ;
   struct device  const  *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
   unsigned int __cil_tmp60 ;
   irqreturn_t (*__cil_tmp61)(int  , void * ) ;
   void *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   struct device *__cil_tmp65 ;
   struct device  const  *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   int __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   struct device *__cil_tmp74 ;
   struct device  const  *__cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   int __cil_tmp80 ;
   unsigned int __cil_tmp81 ;
   irqreturn_t (*__cil_tmp82)(int  , void * ) ;
   void *__cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   struct device *__cil_tmp86 ;
   struct device  const  *__cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   int __cil_tmp90 ;
   unsigned int __cil_tmp91 ;
   void *__cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   int __cil_tmp95 ;
   unsigned int __cil_tmp96 ;
   void *__cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   int __cil_tmp100 ;
   unsigned int __cil_tmp101 ;
   void *__cil_tmp102 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )ab;
-  __cil_tmp5 = __cil_tmp4 + 192;
-  *((int *)__cil_tmp5) = platform_get_irq_byname(pdev, "ID_WAKEUP_R");
+  *((int *)((void *)ab + 192)) = platform_get_irq_byname(pdev, "ID_WAKEUP_R");
   }
   {
-  __cil_tmp6 = (unsigned long )ab;
-  __cil_tmp7 = __cil_tmp6 + 192;
-  __cil_tmp8 = *((int *)__cil_tmp7);
+  __cil_tmp8 = *((int *)((void *)ab + 192));
   if (__cil_tmp8 < 0) {
     {
-    __cil_tmp9 = (unsigned long )pdev;
-    __cil_tmp10 = __cil_tmp9 + 16;
-    __cil_tmp11 = (struct device *)__cil_tmp10;
+    __cil_tmp11 = (struct device *)((void *)pdev + 16);
     __cil_tmp12 = (struct device  const  *)__cil_tmp11;
     dev_err(__cil_tmp12, "ID rise irq not found\n");
     }
     {
-    __cil_tmp13 = (unsigned long )ab;
-    __cil_tmp14 = __cil_tmp13 + 192;
-    return (*((int *)__cil_tmp14));
+    return (*((int *)((void *)ab + 192)));
     }
   } else {
 
   }
   }
   {
-  __cil_tmp15 = (unsigned long )ab;
-  __cil_tmp16 = __cil_tmp15 + 192;
-  __cil_tmp17 = *((int *)__cil_tmp16);
+  __cil_tmp17 = *((int *)((void *)ab + 192));
   __cil_tmp18 = (unsigned int )__cil_tmp17;
   __cil_tmp19 = (irqreturn_t (*)(int  , void * ))0;
   __cil_tmp20 = (void *)ab;
@@ -3299,9 +3014,7 @@ static int ab8500_usb_v1x_res_setup(struct platform_device *pdev , struct ab8500
   }
   if (err < 0) {
     {
-    __cil_tmp21 = (unsigned long )ab;
-    __cil_tmp22 = __cil_tmp21 + 184;
-    __cil_tmp23 = *((struct device **)__cil_tmp22);
+    __cil_tmp23 = *((struct device **)((void *)ab + 184));
     __cil_tmp24 = (struct device  const  *)__cil_tmp23;
     dev_err(__cil_tmp24, "request_irq failed for ID rise irq\n");
     }
@@ -3310,35 +3023,25 @@ static int ab8500_usb_v1x_res_setup(struct platform_device *pdev , struct ab8500
 
   }
   {
-  __cil_tmp25 = (unsigned long )ab;
-  __cil_tmp26 = __cil_tmp25 + 196;
-  *((int *)__cil_tmp26) = platform_get_irq_byname(pdev, "ID_WAKEUP_F");
+  *((int *)((void *)ab + 196)) = platform_get_irq_byname(pdev, "ID_WAKEUP_F");
   }
   {
-  __cil_tmp27 = (unsigned long )ab;
-  __cil_tmp28 = __cil_tmp27 + 196;
-  __cil_tmp29 = *((int *)__cil_tmp28);
+  __cil_tmp29 = *((int *)((void *)ab + 196));
   if (__cil_tmp29 < 0) {
     {
-    __cil_tmp30 = (unsigned long )pdev;
-    __cil_tmp31 = __cil_tmp30 + 16;
-    __cil_tmp32 = (struct device *)__cil_tmp31;
+    __cil_tmp32 = (struct device *)((void *)pdev + 16);
     __cil_tmp33 = (struct device  const  *)__cil_tmp32;
     dev_err(__cil_tmp33, "ID fall irq not found\n");
     }
     {
-    __cil_tmp34 = (unsigned long )ab;
-    __cil_tmp35 = __cil_tmp34 + 196;
-    return (*((int *)__cil_tmp35));
+    return (*((int *)((void *)ab + 196)));
     }
   } else {
 
   }
   }
   {
-  __cil_tmp36 = (unsigned long )ab;
-  __cil_tmp37 = __cil_tmp36 + 196;
-  __cil_tmp38 = *((int *)__cil_tmp37);
+  __cil_tmp38 = *((int *)((void *)ab + 196));
   __cil_tmp39 = (unsigned int )__cil_tmp38;
   __cil_tmp40 = (irqreturn_t (*)(int  , void * ))0;
   __cil_tmp41 = (void *)ab;
@@ -3347,9 +3050,7 @@ static int ab8500_usb_v1x_res_setup(struct platform_device *pdev , struct ab8500
   }
   if (err < 0) {
     {
-    __cil_tmp42 = (unsigned long )ab;
-    __cil_tmp43 = __cil_tmp42 + 184;
-    __cil_tmp44 = *((struct device **)__cil_tmp43);
+    __cil_tmp44 = *((struct device **)((void *)ab + 184));
     __cil_tmp45 = (struct device  const  *)__cil_tmp44;
     dev_err(__cil_tmp45, "request_irq failed for ID fall irq\n");
     }
@@ -3358,35 +3059,25 @@ static int ab8500_usb_v1x_res_setup(struct platform_device *pdev , struct ab8500
 
   }
   {
-  __cil_tmp46 = (unsigned long )ab;
-  __cil_tmp47 = __cil_tmp46 + 200;
-  *((int *)__cil_tmp47) = platform_get_irq_byname(pdev, "VBUS_DET_R");
+  *((int *)((void *)ab + 200)) = platform_get_irq_byname(pdev, "VBUS_DET_R");
   }
   {
-  __cil_tmp48 = (unsigned long )ab;
-  __cil_tmp49 = __cil_tmp48 + 200;
-  __cil_tmp50 = *((int *)__cil_tmp49);
+  __cil_tmp50 = *((int *)((void *)ab + 200));
   if (__cil_tmp50 < 0) {
     {
-    __cil_tmp51 = (unsigned long )pdev;
-    __cil_tmp52 = __cil_tmp51 + 16;
-    __cil_tmp53 = (struct device *)__cil_tmp52;
+    __cil_tmp53 = (struct device *)((void *)pdev + 16);
     __cil_tmp54 = (struct device  const  *)__cil_tmp53;
     dev_err(__cil_tmp54, "VBUS rise irq not found\n");
     }
     {
-    __cil_tmp55 = (unsigned long )ab;
-    __cil_tmp56 = __cil_tmp55 + 200;
-    return (*((int *)__cil_tmp56));
+    return (*((int *)((void *)ab + 200)));
     }
   } else {
 
   }
   }
   {
-  __cil_tmp57 = (unsigned long )ab;
-  __cil_tmp58 = __cil_tmp57 + 200;
-  __cil_tmp59 = *((int *)__cil_tmp58);
+  __cil_tmp59 = *((int *)((void *)ab + 200));
   __cil_tmp60 = (unsigned int )__cil_tmp59;
   __cil_tmp61 = (irqreturn_t (*)(int  , void * ))0;
   __cil_tmp62 = (void *)ab;
@@ -3395,9 +3086,7 @@ static int ab8500_usb_v1x_res_setup(struct platform_device *pdev , struct ab8500
   }
   if (err < 0) {
     {
-    __cil_tmp63 = (unsigned long )ab;
-    __cil_tmp64 = __cil_tmp63 + 184;
-    __cil_tmp65 = *((struct device **)__cil_tmp64);
+    __cil_tmp65 = *((struct device **)((void *)ab + 184));
     __cil_tmp66 = (struct device  const  *)__cil_tmp65;
     dev_err(__cil_tmp66, "request_irq failed for Vbus rise irq\n");
     }
@@ -3406,35 +3095,25 @@ static int ab8500_usb_v1x_res_setup(struct platform_device *pdev , struct ab8500
 
   }
   {
-  __cil_tmp67 = (unsigned long )ab;
-  __cil_tmp68 = __cil_tmp67 + 204;
-  *((int *)__cil_tmp68) = platform_get_irq_byname(pdev, "VBUS_DET_F");
+  *((int *)((void *)ab + 204)) = platform_get_irq_byname(pdev, "VBUS_DET_F");
   }
   {
-  __cil_tmp69 = (unsigned long )ab;
-  __cil_tmp70 = __cil_tmp69 + 204;
-  __cil_tmp71 = *((int *)__cil_tmp70);
+  __cil_tmp71 = *((int *)((void *)ab + 204));
   if (__cil_tmp71 < 0) {
     {
-    __cil_tmp72 = (unsigned long )pdev;
-    __cil_tmp73 = __cil_tmp72 + 16;
-    __cil_tmp74 = (struct device *)__cil_tmp73;
+    __cil_tmp74 = (struct device *)((void *)pdev + 16);
     __cil_tmp75 = (struct device  const  *)__cil_tmp74;
     dev_err(__cil_tmp75, "VBUS fall irq not found\n");
     }
     {
-    __cil_tmp76 = (unsigned long )ab;
-    __cil_tmp77 = __cil_tmp76 + 204;
-    return (*((int *)__cil_tmp77));
+    return (*((int *)((void *)ab + 204)));
     }
   } else {
 
   }
   }
   {
-  __cil_tmp78 = (unsigned long )ab;
-  __cil_tmp79 = __cil_tmp78 + 204;
-  __cil_tmp80 = *((int *)__cil_tmp79);
+  __cil_tmp80 = *((int *)((void *)ab + 204));
   __cil_tmp81 = (unsigned int )__cil_tmp80;
   __cil_tmp82 = (irqreturn_t (*)(int  , void * ))0;
   __cil_tmp83 = (void *)ab;
@@ -3443,9 +3122,7 @@ static int ab8500_usb_v1x_res_setup(struct platform_device *pdev , struct ab8500
   }
   if (err < 0) {
     {
-    __cil_tmp84 = (unsigned long )ab;
-    __cil_tmp85 = __cil_tmp84 + 184;
-    __cil_tmp86 = *((struct device **)__cil_tmp85);
+    __cil_tmp86 = *((struct device **)((void *)ab + 184));
     __cil_tmp87 = (struct device  const  *)__cil_tmp86;
     dev_err(__cil_tmp87, "request_irq failed for Vbus fall irq\n");
     }
@@ -3456,27 +3133,21 @@ static int ab8500_usb_v1x_res_setup(struct platform_device *pdev , struct ab8500
   return (0);
   fail3: 
   {
-  __cil_tmp88 = (unsigned long )ab;
-  __cil_tmp89 = __cil_tmp88 + 200;
-  __cil_tmp90 = *((int *)__cil_tmp89);
+  __cil_tmp90 = *((int *)((void *)ab + 200));
   __cil_tmp91 = (unsigned int )__cil_tmp90;
   __cil_tmp92 = (void *)ab;
   free_irq(__cil_tmp91, __cil_tmp92);
   }
   fail2: 
   {
-  __cil_tmp93 = (unsigned long )ab;
-  __cil_tmp94 = __cil_tmp93 + 196;
-  __cil_tmp95 = *((int *)__cil_tmp94);
+  __cil_tmp95 = *((int *)((void *)ab + 196));
   __cil_tmp96 = (unsigned int )__cil_tmp95;
   __cil_tmp97 = (void *)ab;
   free_irq(__cil_tmp96, __cil_tmp97);
   }
   fail1: 
   {
-  __cil_tmp98 = (unsigned long )ab;
-  __cil_tmp99 = __cil_tmp98 + 192;
-  __cil_tmp100 = *((int *)__cil_tmp99);
+  __cil_tmp100 = *((int *)((void *)ab + 192));
   __cil_tmp101 = (unsigned int )__cil_tmp100;
   __cil_tmp102 = (void *)ab;
   free_irq(__cil_tmp101, __cil_tmp102);
@@ -3487,59 +3158,37 @@ static int ab8500_usb_v1x_res_setup(struct platform_device *pdev , struct ab8500
 }
 static int ab8500_usb_v2_res_setup(struct platform_device *pdev , struct ab8500_usb *ab ) 
 { int err ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device  const  *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   irqreturn_t (*__cil_tmp19)(int  , void * ) ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct device  const  *__cil_tmp24 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )ab;
-  __cil_tmp5 = __cil_tmp4 + 208;
-  *((int *)__cil_tmp5) = platform_get_irq_byname(pdev, "USB_LINK_STATUS");
+  *((int *)((void *)ab + 208)) = platform_get_irq_byname(pdev, "USB_LINK_STATUS");
   }
   {
-  __cil_tmp6 = (unsigned long )ab;
-  __cil_tmp7 = __cil_tmp6 + 208;
-  __cil_tmp8 = *((int *)__cil_tmp7);
+  __cil_tmp8 = *((int *)((void *)ab + 208));
   if (__cil_tmp8 < 0) {
     {
-    __cil_tmp9 = (unsigned long )pdev;
-    __cil_tmp10 = __cil_tmp9 + 16;
-    __cil_tmp11 = (struct device *)__cil_tmp10;
+    __cil_tmp11 = (struct device *)((void *)pdev + 16);
     __cil_tmp12 = (struct device  const  *)__cil_tmp11;
     dev_err(__cil_tmp12, "Link status irq not found\n");
     }
     {
-    __cil_tmp13 = (unsigned long )ab;
-    __cil_tmp14 = __cil_tmp13 + 208;
-    return (*((int *)__cil_tmp14));
+    return (*((int *)((void *)ab + 208)));
     }
   } else {
 
   }
   }
   {
-  __cil_tmp15 = (unsigned long )ab;
-  __cil_tmp16 = __cil_tmp15 + 208;
-  __cil_tmp17 = *((int *)__cil_tmp16);
+  __cil_tmp17 = *((int *)((void *)ab + 208));
   __cil_tmp18 = (unsigned int )__cil_tmp17;
   __cil_tmp19 = (irqreturn_t (*)(int  , void * ))0;
   __cil_tmp20 = (void *)ab;
@@ -3548,9 +3197,7 @@ static int ab8500_usb_v2_res_setup(struct platform_device *pdev , struct ab8500_
   }
   if (err < 0) {
     {
-    __cil_tmp21 = (unsigned long )ab;
-    __cil_tmp22 = __cil_tmp21 + 184;
-    __cil_tmp23 = *((struct device **)__cil_tmp22);
+    __cil_tmp23 = *((struct device **)((void *)ab + 184));
     __cil_tmp24 = (struct device  const  *)__cil_tmp23;
     dev_err(__cil_tmp24, "request_irq failed for link status irq\n");
     }
@@ -3574,15 +3221,9 @@ static int ab8500_usb_probe(struct platform_device *pdev )
   struct lock_class_key __key___1 ;
   struct lock_class_key __key___2 ;
   atomic_long_t __constr_expr_1 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   struct device  const  *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct device  const  *__cil_tmp24 ;
   struct ab8500_usb *__cil_tmp25 ;
@@ -3592,99 +3233,39 @@ static int ab8500_usb_probe(struct platform_device *pdev )
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   void const   *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   void *__cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   spinlock_t *__cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct raw_spinlock *__cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   struct work_struct *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   struct lockdep_map *__cil_tmp83 ;
   unsigned long __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   struct list_head *__cil_tmp88 ;
   unsigned long __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   struct timer_list *__cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   struct work_struct *__cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
   unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   struct lockdep_map *__cil_tmp105 ;
   unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   struct list_head *__cil_tmp109 ;
   unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   int __cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
   struct usb_phy *__cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   struct device *__cil_tmp121 ;
   struct device  const  *__cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
   struct device *__cil_tmp125 ;
   struct device  const  *__cil_tmp126 ;
   void const   *__cil_tmp127 ;
@@ -3694,16 +3275,12 @@ static int ab8500_usb_probe(struct platform_device *pdev )
 
   {
   {
-  __cil_tmp14 = (unsigned long )pdev;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = (struct device *)__cil_tmp15;
+  __cil_tmp16 = (struct device *)((void *)pdev + 16);
   rev = abx500_get_chip_id(__cil_tmp16);
   }
   if (rev < 0) {
     {
-    __cil_tmp17 = (unsigned long )pdev;
-    __cil_tmp18 = __cil_tmp17 + 16;
-    __cil_tmp19 = (struct device *)__cil_tmp18;
+    __cil_tmp19 = (struct device *)((void *)pdev + 16);
     __cil_tmp20 = (struct device  const  *)__cil_tmp19;
     dev_err(__cil_tmp20, "Chip id read failed\n");
     }
@@ -3711,9 +3288,7 @@ static int ab8500_usb_probe(struct platform_device *pdev )
   } else
   if (rev <= 15) {
     {
-    __cil_tmp21 = (unsigned long )pdev;
-    __cil_tmp22 = __cil_tmp21 + 16;
-    __cil_tmp23 = (struct device *)__cil_tmp22;
+    __cil_tmp23 = (struct device *)((void *)pdev + 16);
     __cil_tmp24 = (struct device  const  *)__cil_tmp23;
     dev_err(__cil_tmp24, "Unsupported AB8500 chip\n");
     }
@@ -3754,126 +3329,70 @@ static int ab8500_usb_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp32 = (unsigned long )ab;
-  __cil_tmp33 = __cil_tmp32 + 184;
-  __cil_tmp34 = (unsigned long )pdev;
-  __cil_tmp35 = __cil_tmp34 + 16;
-  *((struct device **)__cil_tmp33) = (struct device *)__cil_tmp35;
-  __cil_tmp36 = (unsigned long )ab;
-  __cil_tmp37 = __cil_tmp36 + 512;
-  *((int *)__cil_tmp37) = rev;
-  __cil_tmp38 = (unsigned long )ab;
-  __cil_tmp39 = __cil_tmp38 + 184;
-  *((struct device **)ab) = *((struct device **)__cil_tmp39);
+  *((struct device **)((void *)ab + 184)) = (struct device *)((void *)pdev + 16);
+  *((int *)((void *)ab + 512)) = rev;
+  *((struct device **)ab) = *((struct device **)((void *)ab + 184));
   __cil_tmp40 = 0 + 32;
-  __cil_tmp41 = (unsigned long )ab;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-  *((struct usb_otg **)__cil_tmp42) = otg;
+  *((struct usb_otg **)((void *)ab + __cil_tmp40)) = otg;
   __cil_tmp43 = 0 + 8;
-  __cil_tmp44 = (unsigned long )ab;
-  __cil_tmp45 = __cil_tmp44 + __cil_tmp43;
-  *((char const   **)__cil_tmp45) = "ab8500";
+  *((char const   **)((void *)ab + __cil_tmp43)) = "ab8500";
   __cil_tmp46 = 0 + 176;
-  __cil_tmp47 = (unsigned long )ab;
-  __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-  *((int (**)(struct usb_phy * , int  ))__cil_tmp48) = & ab8500_usb_set_suspend;
+  *((int (**)(struct usb_phy * , int  ))((void *)ab + __cil_tmp46)) = & ab8500_usb_set_suspend;
   __cil_tmp49 = 0 + 168;
-  __cil_tmp50 = (unsigned long )ab;
-  __cil_tmp51 = __cil_tmp50 + __cil_tmp49;
-  *((int (**)(struct usb_phy * , unsigned int  ))__cil_tmp51) = & ab8500_usb_set_power;
+  *((int (**)(struct usb_phy * , unsigned int  ))((void *)ab + __cil_tmp49)) = & ab8500_usb_set_power;
   __cil_tmp52 = 0 + 20;
-  __cil_tmp53 = (unsigned long )ab;
-  __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-  *((enum usb_otg_state *)__cil_tmp54) = (enum usb_otg_state )0;
-  __cil_tmp55 = (unsigned long )otg;
-  __cil_tmp56 = __cil_tmp55 + 8;
-  *((struct usb_phy **)__cil_tmp56) = (struct usb_phy *)ab;
-  __cil_tmp57 = (unsigned long )otg;
-  __cil_tmp58 = __cil_tmp57 + 32;
-  *((int (**)(struct usb_otg * , struct usb_bus * ))__cil_tmp58) = & ab8500_usb_set_host;
-  __cil_tmp59 = (unsigned long )otg;
-  __cil_tmp60 = __cil_tmp59 + 40;
-  *((int (**)(struct usb_otg * , struct usb_gadget * ))__cil_tmp60) = & ab8500_usb_set_peripheral;
+  *((enum usb_otg_state *)((void *)ab + __cil_tmp52)) = (enum usb_otg_state )0;
+  *((struct usb_phy **)((void *)otg + 8)) = (struct usb_phy *)ab;
+  *((int (**)(struct usb_otg * , struct usb_bus * ))((void *)otg + 32)) = & ab8500_usb_set_host;
+  *((int (**)(struct usb_otg * , struct usb_gadget * ))((void *)otg + 40)) = & ab8500_usb_set_peripheral;
   __cil_tmp61 = (void *)ab;
   platform_set_drvdata(pdev, __cil_tmp61);
   __cil_tmp62 = 0 + 64;
-  __cil_tmp63 = (unsigned long )ab;
-  __cil_tmp64 = __cil_tmp63 + __cil_tmp62;
-  __cil_tmp65 = (spinlock_t *)__cil_tmp64;
+  __cil_tmp65 = (spinlock_t *)((void *)ab + __cil_tmp62);
   spinlock_check(__cil_tmp65);
   __cil_tmp66 = 0 + 64;
-  __cil_tmp67 = (unsigned long )ab;
-  __cil_tmp68 = __cil_tmp67 + __cil_tmp66;
-  __cil_tmp69 = (struct raw_spinlock *)__cil_tmp68;
+  __cil_tmp69 = (struct raw_spinlock *)((void *)ab + __cil_tmp66);
   __raw_spin_lock_init(__cil_tmp69, "&(&(&ab->phy.notifier)->lock)->rlock", & __key);
   __cil_tmp70 = 64 + 72;
   __cil_tmp71 = 0 + __cil_tmp70;
-  __cil_tmp72 = (unsigned long )ab;
-  __cil_tmp73 = __cil_tmp72 + __cil_tmp71;
-  *((struct notifier_block **)__cil_tmp73) = (struct notifier_block *)0;
-  __cil_tmp74 = (unsigned long )ab;
-  __cil_tmp75 = __cil_tmp74 + 216;
-  __cil_tmp76 = (struct work_struct *)__cil_tmp75;
+  *((struct notifier_block **)((void *)ab + __cil_tmp71)) = (struct notifier_block *)0;
+  __cil_tmp76 = (struct work_struct *)((void *)ab + 216);
   __init_work(__cil_tmp76, 0);
   __constr_expr_0_counter129 = 2097664L;
-  __cil_tmp77 = (unsigned long )ab;
-  __cil_tmp78 = __cil_tmp77 + 216;
-  ((atomic_long_t *)__cil_tmp78)->counter = __constr_expr_0_counter129;
+  ((atomic_long_t *)((void *)ab + 216))->counter = __constr_expr_0_counter129;
   __cil_tmp79 = 0 + 32;
   __cil_tmp80 = 216 + __cil_tmp79;
-  __cil_tmp81 = (unsigned long )ab;
-  __cil_tmp82 = __cil_tmp81 + __cil_tmp80;
-  __cil_tmp83 = (struct lockdep_map *)__cil_tmp82;
+  __cil_tmp83 = (struct lockdep_map *)((void *)ab + __cil_tmp80);
   lockdep_init_map(__cil_tmp83, "(&(&ab->dwork)->work)", & __key___0, 0);
   __cil_tmp84 = 0 + 8;
   __cil_tmp85 = 216 + __cil_tmp84;
-  __cil_tmp86 = (unsigned long )ab;
-  __cil_tmp87 = __cil_tmp86 + __cil_tmp85;
-  __cil_tmp88 = (struct list_head *)__cil_tmp87;
+  __cil_tmp88 = (struct list_head *)((void *)ab + __cil_tmp85);
   INIT_LIST_HEAD(__cil_tmp88);
   __cil_tmp89 = 0 + 24;
   __cil_tmp90 = 216 + __cil_tmp89;
-  __cil_tmp91 = (unsigned long )ab;
-  __cil_tmp92 = __cil_tmp91 + __cil_tmp90;
-  *((void (**)(struct work_struct * ))__cil_tmp92) = & ab8500_usb_delayed_work;
+  *((void (**)(struct work_struct * ))((void *)ab + __cil_tmp90)) = & ab8500_usb_delayed_work;
   __cil_tmp93 = 216 + 80;
-  __cil_tmp94 = (unsigned long )ab;
-  __cil_tmp95 = __cil_tmp94 + __cil_tmp93;
-  __cil_tmp96 = (struct timer_list *)__cil_tmp95;
+  __cil_tmp96 = (struct timer_list *)((void *)ab + __cil_tmp93);
   init_timer_key(__cil_tmp96, "&(&ab->dwork)->timer", & __key___1);
-  __cil_tmp97 = (unsigned long )ab;
-  __cil_tmp98 = __cil_tmp97 + 424;
-  __cil_tmp99 = (struct work_struct *)__cil_tmp98;
+  __cil_tmp99 = (struct work_struct *)((void *)ab + 424);
   __init_work(__cil_tmp99, 0);
   __constr_expr_1_counter130 = 2097664L;
-  __cil_tmp100 = (unsigned long )ab;
-  __cil_tmp101 = __cil_tmp100 + 424;
-  ((atomic_long_t *)__cil_tmp101)->counter = __constr_expr_1_counter130;
+  ((atomic_long_t *)((void *)ab + 424))->counter = __constr_expr_1_counter130;
   __cil_tmp102 = 424 + 32;
-  __cil_tmp103 = (unsigned long )ab;
-  __cil_tmp104 = __cil_tmp103 + __cil_tmp102;
-  __cil_tmp105 = (struct lockdep_map *)__cil_tmp104;
+  __cil_tmp105 = (struct lockdep_map *)((void *)ab + __cil_tmp102);
   lockdep_init_map(__cil_tmp105, "(&ab->phy_dis_work)", & __key___2, 0);
   __cil_tmp106 = 424 + 8;
-  __cil_tmp107 = (unsigned long )ab;
-  __cil_tmp108 = __cil_tmp107 + __cil_tmp106;
-  __cil_tmp109 = (struct list_head *)__cil_tmp108;
+  __cil_tmp109 = (struct list_head *)((void *)ab + __cil_tmp106);
   INIT_LIST_HEAD(__cil_tmp109);
   __cil_tmp110 = 424 + 24;
-  __cil_tmp111 = (unsigned long )ab;
-  __cil_tmp112 = __cil_tmp111 + __cil_tmp110;
-  *((void (**)(struct work_struct * ))__cil_tmp112) = & ab8500_usb_phy_disable_work;
+  *((void (**)(struct work_struct * ))((void *)ab + __cil_tmp110)) = & ab8500_usb_phy_disable_work;
   }
   {
-  __cil_tmp113 = (unsigned long )ab;
-  __cil_tmp114 = __cil_tmp113 + 512;
-  __cil_tmp115 = *((int *)__cil_tmp114);
+  __cil_tmp115 = *((int *)((void *)ab + 512));
   if (__cil_tmp115 <= 31) {
     {
     err = ab8500_usb_v1x_res_setup(pdev, ab);
-    __cil_tmp116 = (unsigned long )ab;
-    __cil_tmp117 = __cil_tmp116 + 504;
-    *((unsigned long *)__cil_tmp117) = 25UL;
+    *((unsigned long *)((void *)ab + 504)) = 25UL;
     }
   } else {
     {
@@ -3892,9 +3411,7 @@ static int ab8500_usb_probe(struct platform_device *pdev )
   }
   if (err != 0) {
     {
-    __cil_tmp119 = (unsigned long )pdev;
-    __cil_tmp120 = __cil_tmp119 + 16;
-    __cil_tmp121 = (struct device *)__cil_tmp120;
+    __cil_tmp121 = (struct device *)((void *)pdev + 16);
     __cil_tmp122 = (struct device  const  *)__cil_tmp121;
     dev_err(__cil_tmp122, "Can\'t register transceiver\n");
     }
@@ -3903,9 +3420,7 @@ static int ab8500_usb_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp123 = (unsigned long )pdev;
-  __cil_tmp124 = __cil_tmp123 + 16;
-  __cil_tmp125 = (struct device *)__cil_tmp124;
+  __cil_tmp125 = (struct device *)((void *)pdev + 16);
   __cil_tmp126 = (struct device  const  *)__cil_tmp125;
   _dev_info(__cil_tmp126, "AB8500 usb driver initialized\n");
   }
@@ -3928,11 +3443,7 @@ static int ab8500_usb_remove(struct platform_device *pdev )
 { struct ab8500_usb *ab ;
   void *tmp ;
   struct platform_device  const  *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct delayed_work *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct work_struct *__cil_tmp10 ;
   struct usb_phy *__cil_tmp11 ;
   bool __cil_tmp12 ;
@@ -3941,8 +3452,6 @@ static int ab8500_usb_remove(struct platform_device *pdev )
   bool __cil_tmp15 ;
   void *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct usb_otg *__cil_tmp20 ;
   void const   *__cil_tmp21 ;
   void const   *__cil_tmp22 ;
@@ -3953,13 +3462,9 @@ static int ab8500_usb_remove(struct platform_device *pdev )
   tmp = platform_get_drvdata(__cil_tmp4);
   ab = (struct ab8500_usb *)tmp;
   ab8500_usb_irq_free(ab);
-  __cil_tmp5 = (unsigned long )ab;
-  __cil_tmp6 = __cil_tmp5 + 216;
-  __cil_tmp7 = (struct delayed_work *)__cil_tmp6;
+  __cil_tmp7 = (struct delayed_work *)((void *)ab + 216);
   cancel_delayed_work_sync(__cil_tmp7);
-  __cil_tmp8 = (unsigned long )ab;
-  __cil_tmp9 = __cil_tmp8 + 424;
-  __cil_tmp10 = (struct work_struct *)__cil_tmp9;
+  __cil_tmp10 = (struct work_struct *)((void *)ab + 424);
   cancel_work_sync(__cil_tmp10);
   __cil_tmp11 = (struct usb_phy *)0;
   usb_set_transceiver(__cil_tmp11);
@@ -3972,9 +3477,7 @@ static int ab8500_usb_remove(struct platform_device *pdev )
   __cil_tmp16 = (void *)0;
   platform_set_drvdata(pdev, __cil_tmp16);
   __cil_tmp17 = 0 + 32;
-  __cil_tmp18 = (unsigned long )ab;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = *((struct usb_otg **)__cil_tmp19);
+  __cil_tmp20 = *((struct usb_otg **)((void *)ab + __cil_tmp17));
   __cil_tmp21 = (void const   *)__cil_tmp20;
   kfree(__cil_tmp21);
   __cil_tmp22 = (void const   *)ab;

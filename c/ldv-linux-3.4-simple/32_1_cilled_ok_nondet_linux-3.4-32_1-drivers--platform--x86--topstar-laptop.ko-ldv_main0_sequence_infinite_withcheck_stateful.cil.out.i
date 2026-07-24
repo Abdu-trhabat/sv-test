@@ -3230,13 +3230,10 @@ extern acpi_status acpi_evaluate_object(acpi_handle object , acpi_string pathnam
                                         struct acpi_buffer *return_object_buffer ) ;
 __inline static void *acpi_driver_data(struct acpi_device *d ) __attribute__((__no_instrument_function__)) ;
 __inline static void *acpi_driver_data(struct acpi_device *d )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   {
-  __cil_tmp2 = (unsigned long )d;
-  __cil_tmp3 = __cil_tmp2 + 936;
-  return (*((void **)__cil_tmp3));
+  return (*((void **)((void *)d + 936)));
   }
 }
 }
@@ -3326,7 +3323,6 @@ static int acpi_topstar_fncx_switch(struct acpi_device *device , bool state )
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   struct acpi_object_list *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
@@ -3337,8 +3333,6 @@ static int acpi_topstar_fncx_switch(struct acpi_device *device , bool state )
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   acpi_handle __cil_tmp22 ;
   acpi_string __cil_tmp23 ;
   void *__cil_tmp24 ;
@@ -3349,10 +3343,9 @@ static int acpi_topstar_fncx_switch(struct acpi_device *device , bool state )
   *((acpi_object_type *)__cil_tmp7) = (acpi_object_type )1;
   __cil_tmp8 = & fncx_arg_list;
   *((u32 *)__cil_tmp8) = (u32 )1;
-  __cil_tmp9 = (unsigned long )(& fncx_arg_list) + 8;
   __cil_tmp10 = 0 * 24UL;
   __cil_tmp11 = (unsigned long )(fncx_params) + __cil_tmp10;
-  *((union acpi_object **)__cil_tmp9) = (union acpi_object *)__cil_tmp11;
+  *((union acpi_object **)((void *)(&fncx_arg_list) + 8)) = (union acpi_object *)__cil_tmp11;
   if (state) {
     __cil_tmp12 = 0 + 8;
     __cil_tmp13 = 0 * 24UL;
@@ -3367,9 +3360,7 @@ static int acpi_topstar_fncx_switch(struct acpi_device *device , bool state )
     *((u64 *)__cil_tmp19) = (u64 )135;
   }
   {
-  __cil_tmp20 = (unsigned long )device;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  __cil_tmp22 = *((acpi_handle *)__cil_tmp21);
+  __cil_tmp22 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp23 = (acpi_string )"FNCX";
   __cil_tmp24 = (void *)0;
   __cil_tmp25 = (struct acpi_buffer *)__cil_tmp24;
@@ -3388,10 +3379,6 @@ static int acpi_topstar_fncx_switch(struct acpi_device *device , bool state )
 static int acpi_topstar_init_hkey(struct topstar_hkey *hkey )
 { struct input_dev *input ;
   int error ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   struct key_entry const *__cil_tmp10 ;
@@ -3410,12 +3397,8 @@ static int acpi_topstar_init_hkey(struct topstar_hkey *hkey )
   }
   {
   *((char const **)input) = "Topstar Laptop extra buttons";
-  __cil_tmp4 = (unsigned long )input;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  *((char const **)__cil_tmp5) = "topstar/input0";
-  __cil_tmp6 = (unsigned long )input;
-  __cil_tmp7 = __cil_tmp6 + 24;
-  *((__u16 *)__cil_tmp7) = (__u16 )25;
+  *((char const **)((void *)input + 8)) = "topstar/input0";
+  *((__u16 *)((void *)input + 24)) = (__u16 )25;
   __cil_tmp8 = 0 * 12UL;
   __cil_tmp9 = (unsigned long )(topstar_keymap) + __cil_tmp8;
   __cil_tmp10 = (struct key_entry const *)__cil_tmp9;
@@ -3461,18 +3444,12 @@ static int acpi_topstar_add(struct acpi_device *device )
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   char *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   char *__cil_tmp17 ;
   bool __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   void const *__cil_tmp21 ;
   {
   {
@@ -3487,16 +3464,12 @@ static int acpi_topstar_add(struct acpi_device *device )
   __cil_tmp6 = 0 * 1UL;
   __cil_tmp7 = 40 + __cil_tmp6;
   __cil_tmp8 = 80 + __cil_tmp7;
-  __cil_tmp9 = (unsigned long )device;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = (char *)__cil_tmp10;
+  __cil_tmp11 = (char *)((void *)device + __cil_tmp8);
   strcpy(__cil_tmp11, "Topstar TPSACPI");
   __cil_tmp12 = 0 * 1UL;
   __cil_tmp13 = 80 + __cil_tmp12;
   __cil_tmp14 = 80 + __cil_tmp13;
-  __cil_tmp15 = (unsigned long )device;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  __cil_tmp17 = (char *)__cil_tmp16;
+  __cil_tmp17 = (char *)((void *)device + __cil_tmp14);
   strcpy(__cil_tmp17, "topstar");
   __cil_tmp18 = (bool )1;
   tmp___8 = acpi_topstar_fncx_switch(device, __cil_tmp18);
@@ -3512,9 +3485,7 @@ static int acpi_topstar_add(struct acpi_device *device )
     goto add_err;
   } else {
   }
-  __cil_tmp19 = (unsigned long )device;
-  __cil_tmp20 = __cil_tmp19 + 936;
-  *((void **)__cil_tmp20) = (void *)tps_hkey;
+  *((void **)((void *)device + 936)) = (void *)tps_hkey;
   return (0);
   add_err:
   {

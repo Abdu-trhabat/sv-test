@@ -3072,21 +3072,13 @@ extern int mdiobus_read(struct mii_bus * , int  , u32  ) ;
 extern int mdiobus_write(struct mii_bus * , int  , u32  , u16  ) ;
 __inline static int phy_read(struct phy_device *phydev , u32 regnum ) 
 { int tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct mii_bus *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )phydev;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((struct mii_bus **)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )phydev;
-  __cil_tmp8 = __cil_tmp7 + 1184;
-  __cil_tmp9 = *((int *)__cil_tmp8);
+  __cil_tmp6 = *((struct mii_bus **)((void *)phydev + 8));
+  __cil_tmp9 = *((int *)((void *)phydev + 1184));
   tmp = mdiobus_read(__cil_tmp6, __cil_tmp9, regnum);
   }
   return (tmp);
@@ -3094,23 +3086,15 @@ __inline static int phy_read(struct phy_device *phydev , u32 regnum )
 }
 __inline static int phy_write(struct phy_device *phydev , u32 regnum , u16 val ) 
 { int tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct mii_bus *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   int __cil_tmp11 ;
   u16 __cil_tmp12 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )phydev;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((struct mii_bus **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )phydev;
-  __cil_tmp9 = __cil_tmp8 + 1184;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp7 = *((struct mii_bus **)((void *)phydev + 8));
+  __cil_tmp10 = *((int *)((void *)phydev + 1184));
   __cil_tmp11 = (int )val;
   __cil_tmp12 = (u16 )__cil_tmp11;
   tmp = mdiobus_write(__cil_tmp7, __cil_tmp10, regnum, __cil_tmp12);
@@ -3140,17 +3124,13 @@ static int rtl821x_ack_interrupt(struct phy_device *phydev )
 }
 static int rtl821x_config_intr(struct phy_device *phydev ) 
 { int err ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   u32 __cil_tmp5 ;
   u16 __cil_tmp6 ;
   u16 __cil_tmp7 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )phydev;
-  __cil_tmp4 = __cil_tmp3 + 1208;
-  __cil_tmp5 = *((u32 *)__cil_tmp4);
+  __cil_tmp5 = *((u32 *)((void *)phydev + 1208));
   if (__cil_tmp5 == 2147483648U) {
     {
     __cil_tmp6 = (u16 )25600;

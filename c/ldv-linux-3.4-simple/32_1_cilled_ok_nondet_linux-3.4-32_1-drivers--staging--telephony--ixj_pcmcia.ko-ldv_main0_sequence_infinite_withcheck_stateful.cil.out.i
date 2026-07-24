@@ -4208,14 +4208,8 @@ static int ixj_probe(struct pcmcia_device *p_dev )
   int __cil_tmp7 ;
   int __cil_tmp8 ;
   long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device const *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   void *__cil_tmp18 ;
   {
   {
@@ -4235,9 +4229,7 @@ static int ixj_probe(struct pcmcia_device *p_dev )
       }
       if (tmp___7) {
         {
-        __cil_tmp10 = (unsigned long )p_dev;
-        __cil_tmp11 = __cil_tmp10 + 184;
-        __cil_tmp12 = (struct device *)__cil_tmp11;
+        __cil_tmp12 = (struct device *)((void *)p_dev + 184);
         __cil_tmp13 = (struct device const *)__cil_tmp12;
         __dynamic_dev_dbg(& descriptor, __cil_tmp13, "ixj_attach()\n");
         }
@@ -4252,14 +4244,10 @@ static int ixj_probe(struct pcmcia_device *p_dev )
   while_break: ;
   }
   {
-  __cil_tmp14 = (unsigned long )p_dev;
-  __cil_tmp15 = __cil_tmp14 + 952;
-  *((void **)__cil_tmp15) = kzalloc(16UL, 208U);
+  *((void **)((void *)p_dev + 952)) = kzalloc(16UL, 208U);
   }
   {
-  __cil_tmp16 = (unsigned long )p_dev;
-  __cil_tmp17 = __cil_tmp16 + 952;
-  __cil_tmp18 = *((void **)__cil_tmp17);
+  __cil_tmp18 = *((void **)((void *)p_dev + 952));
   if (! __cil_tmp18) {
     return (-12);
   } else {
@@ -4283,12 +4271,8 @@ static void ixj_detach(struct pcmcia_device *link )
   int __cil_tmp6 ;
   int __cil_tmp7 ;
   long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device const *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   void const *__cil_tmp16 ;
   {
@@ -4309,9 +4293,7 @@ static void ixj_detach(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp9 = (unsigned long )link;
-        __cil_tmp10 = __cil_tmp9 + 184;
-        __cil_tmp11 = (struct device *)__cil_tmp10;
+        __cil_tmp11 = (struct device *)((void *)link + 184);
         __cil_tmp12 = (struct device const *)__cil_tmp11;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp12, "ixj_detach\n");
         }
@@ -4327,9 +4309,7 @@ static void ixj_detach(struct pcmcia_device *link )
   }
   {
   ixj_cs_release(link);
-  __cil_tmp13 = (unsigned long )link;
-  __cil_tmp14 = __cil_tmp13 + 952;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)link + 952));
   __cil_tmp16 = (void const *)__cil_tmp15;
   kfree(__cil_tmp16);
   }
@@ -4352,63 +4332,41 @@ static void ixj_get_serial(struct pcmcia_device *link , IXJ *j )
   int __cil_tmp11 ;
   int __cil_tmp12 ;
   long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   char const *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   char *__cil_tmp32 ;
   char __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   char *__cil_tmp36 ;
   char __cil_tmp37 ;
   int __cil_tmp38 ;
   int __cil_tmp39 ;
   int __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   char *__cil_tmp47 ;
   char __cil_tmp48 ;
   int __cil_tmp49 ;
   int __cil_tmp50 ;
   int __cil_tmp51 ;
   unsigned int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   char *__cil_tmp58 ;
   char __cil_tmp59 ;
   int __cil_tmp60 ;
   int __cil_tmp61 ;
   int __cil_tmp62 ;
   unsigned int __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned int __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   {
   {
   while (1) {
@@ -4427,9 +4385,7 @@ static void ixj_get_serial(struct pcmcia_device *link , IXJ *j )
       }
       if (tmp___7) {
         {
-        __cil_tmp14 = (unsigned long )link;
-        __cil_tmp15 = __cil_tmp14 + 184;
-        __cil_tmp16 = (struct device *)__cil_tmp15;
+        __cil_tmp16 = (struct device *)((void *)link + 184);
         __cil_tmp17 = (struct device const *)__cil_tmp16;
         __dynamic_dev_dbg(& descriptor___1, __cil_tmp17, "ixj_get_serial\n");
         }
@@ -4445,9 +4401,7 @@ static void ixj_get_serial(struct pcmcia_device *link , IXJ *j )
   }
   __cil_tmp18 = 0 * 8UL;
   __cil_tmp19 = 144 + __cil_tmp18;
-  __cil_tmp20 = (unsigned long )link;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  str = *((char **)__cil_tmp21);
+  str = *((char **)((void *)link + __cil_tmp19));
   if (! str) {
     goto failed;
   } else {
@@ -4456,9 +4410,7 @@ static void ixj_get_serial(struct pcmcia_device *link , IXJ *j )
   printk("%s", str);
   __cil_tmp22 = 1 * 8UL;
   __cil_tmp23 = 144 + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )link;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  str = *((char **)__cil_tmp25);
+  str = *((char **)((void *)link + __cil_tmp23));
   }
   if (! str) {
     goto failed;
@@ -4468,9 +4420,7 @@ static void ixj_get_serial(struct pcmcia_device *link , IXJ *j )
   printk(" %s", str);
   __cil_tmp26 = 2 * 8UL;
   __cil_tmp27 = 144 + __cil_tmp26;
-  __cil_tmp28 = (unsigned long )link;
-  __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-  str = *((char **)__cil_tmp29);
+  str = *((char **)((void *)link + __cil_tmp27));
   }
   if (! str) {
     goto failed;
@@ -4570,18 +4520,14 @@ static void ixj_get_serial(struct pcmcia_device *link , IXJ *j )
       case_55:
       case_56:
       case_57:
-      __cil_tmp34 = (unsigned long )j;
-      __cil_tmp35 = __cil_tmp34 + 124;
       __cil_tmp36 = str + i;
       __cil_tmp37 = *__cil_tmp36;
       __cil_tmp38 = (int )__cil_tmp37;
       __cil_tmp39 = __cil_tmp38 - 48;
       __cil_tmp40 = __cil_tmp39 * place;
       __cil_tmp41 = (unsigned int )__cil_tmp40;
-      __cil_tmp42 = (unsigned long )j;
-      __cil_tmp43 = __cil_tmp42 + 124;
-      __cil_tmp44 = *((unsigned int *)__cil_tmp43);
-      *((unsigned int *)__cil_tmp35) = __cil_tmp44 + __cil_tmp41;
+      __cil_tmp44 = *((unsigned int *)((void *)j + 124));
+      *((unsigned int *)((void *)j + 124)) = __cil_tmp44 + __cil_tmp41;
       goto switch_break;
       case_65:
       case_66:
@@ -4589,18 +4535,14 @@ static void ixj_get_serial(struct pcmcia_device *link , IXJ *j )
       case_68:
       case_69:
       case_70:
-      __cil_tmp45 = (unsigned long )j;
-      __cil_tmp46 = __cil_tmp45 + 124;
       __cil_tmp47 = str + i;
       __cil_tmp48 = *__cil_tmp47;
       __cil_tmp49 = (int )__cil_tmp48;
       __cil_tmp50 = __cil_tmp49 - 55;
       __cil_tmp51 = __cil_tmp50 * place;
       __cil_tmp52 = (unsigned int )__cil_tmp51;
-      __cil_tmp53 = (unsigned long )j;
-      __cil_tmp54 = __cil_tmp53 + 124;
-      __cil_tmp55 = *((unsigned int *)__cil_tmp54);
-      *((unsigned int *)__cil_tmp46) = __cil_tmp55 + __cil_tmp52;
+      __cil_tmp55 = *((unsigned int *)((void *)j + 124));
+      *((unsigned int *)((void *)j + 124)) = __cil_tmp55 + __cil_tmp52;
       goto switch_break;
       case_97:
       case_98:
@@ -4608,18 +4550,14 @@ static void ixj_get_serial(struct pcmcia_device *link , IXJ *j )
       case_100:
       case_101:
       case_102:
-      __cil_tmp56 = (unsigned long )j;
-      __cil_tmp57 = __cil_tmp56 + 124;
       __cil_tmp58 = str + i;
       __cil_tmp59 = *__cil_tmp58;
       __cil_tmp60 = (int )__cil_tmp59;
       __cil_tmp61 = __cil_tmp60 - 87;
       __cil_tmp62 = __cil_tmp61 * place;
       __cil_tmp63 = (unsigned int )__cil_tmp62;
-      __cil_tmp64 = (unsigned long )j;
-      __cil_tmp65 = __cil_tmp64 + 124;
-      __cil_tmp66 = *((unsigned int *)__cil_tmp65);
-      *((unsigned int *)__cil_tmp57) = __cil_tmp66 + __cil_tmp63;
+      __cil_tmp66 = *((unsigned int *)((void *)j + 124));
+      *((unsigned int *)((void *)j + 124)) = __cil_tmp66 + __cil_tmp63;
       goto switch_break;
     } else {
       switch_break: ;
@@ -4632,9 +4570,7 @@ static void ixj_get_serial(struct pcmcia_device *link , IXJ *j )
   }
   __cil_tmp67 = 3 * 8UL;
   __cil_tmp68 = 144 + __cil_tmp67;
-  __cil_tmp69 = (unsigned long )link;
-  __cil_tmp70 = __cil_tmp69 + __cil_tmp68;
-  str = *((char **)__cil_tmp70);
+  str = *((char **)((void *)link + __cil_tmp68));
   if (! str) {
     goto failed;
   } else {
@@ -4650,131 +4586,63 @@ static int ixj_config_check(struct pcmcia_device *p_dev , void *priv_data )
 { int tmp___7 ;
   unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct resource *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct resource *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct resource *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct resource *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct resource *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct resource *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct resource *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct resource *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   {
   {
   __cil_tmp4 = 0 * 8UL;
   __cil_tmp5 = 56 + __cil_tmp4;
-  __cil_tmp6 = (unsigned long )p_dev;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  __cil_tmp8 = *((struct resource **)__cil_tmp7);
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 24;
+  __cil_tmp8 = *((struct resource **)((void *)p_dev + __cil_tmp5));
   __cil_tmp11 = 0 * 8UL;
   __cil_tmp12 = 56 + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )p_dev;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((struct resource **)__cil_tmp14);
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + 24;
-  __cil_tmp18 = *((unsigned long *)__cil_tmp17);
-  *((unsigned long *)__cil_tmp10) = __cil_tmp18 & 0xffffffffffffffe7UL;
+  __cil_tmp15 = *((struct resource **)((void *)p_dev + __cil_tmp12));
+  __cil_tmp18 = *((unsigned long *)((void *)__cil_tmp15 + 24));
+  *((unsigned long *)((void *)__cil_tmp8 + 24)) = __cil_tmp18 & 0xffffffffffffffe7UL;
   __cil_tmp19 = 0 * 8UL;
   __cil_tmp20 = 56 + __cil_tmp19;
-  __cil_tmp21 = (unsigned long )p_dev;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  __cil_tmp23 = *((struct resource **)__cil_tmp22);
-  __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = __cil_tmp24 + 24;
+  __cil_tmp23 = *((struct resource **)((void *)p_dev + __cil_tmp20));
   __cil_tmp26 = 0 * 8UL;
   __cil_tmp27 = 56 + __cil_tmp26;
-  __cil_tmp28 = (unsigned long )p_dev;
-  __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-  __cil_tmp30 = *((struct resource **)__cil_tmp29);
-  __cil_tmp31 = (unsigned long )__cil_tmp30;
-  __cil_tmp32 = __cil_tmp31 + 24;
-  *((unsigned long *)__cil_tmp25) = *((unsigned long *)__cil_tmp32);
+  __cil_tmp30 = *((struct resource **)((void *)p_dev + __cil_tmp27));
+  *((unsigned long *)((void *)__cil_tmp23 + 24)) = *((unsigned long *)((void *)__cil_tmp30 + 24));
   __cil_tmp33 = 1 * 8UL;
   __cil_tmp34 = 56 + __cil_tmp33;
-  __cil_tmp35 = (unsigned long )p_dev;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  __cil_tmp37 = *((struct resource **)__cil_tmp36);
-  __cil_tmp38 = (unsigned long )__cil_tmp37;
-  __cil_tmp39 = __cil_tmp38 + 24;
+  __cil_tmp37 = *((struct resource **)((void *)p_dev + __cil_tmp34));
   __cil_tmp40 = 1 * 8UL;
   __cil_tmp41 = 56 + __cil_tmp40;
-  __cil_tmp42 = (unsigned long )p_dev;
-  __cil_tmp43 = __cil_tmp42 + __cil_tmp41;
-  __cil_tmp44 = *((struct resource **)__cil_tmp43);
-  __cil_tmp45 = (unsigned long )__cil_tmp44;
-  __cil_tmp46 = __cil_tmp45 + 24;
-  __cil_tmp47 = *((unsigned long *)__cil_tmp46);
-  *((unsigned long *)__cil_tmp39) = __cil_tmp47 & 0xffffffffffffffe7UL;
+  __cil_tmp44 = *((struct resource **)((void *)p_dev + __cil_tmp41));
+  __cil_tmp47 = *((unsigned long *)((void *)__cil_tmp44 + 24));
+  *((unsigned long *)((void *)__cil_tmp37 + 24)) = __cil_tmp47 & 0xffffffffffffffe7UL;
   __cil_tmp48 = 1 * 8UL;
   __cil_tmp49 = 56 + __cil_tmp48;
-  __cil_tmp50 = (unsigned long )p_dev;
-  __cil_tmp51 = __cil_tmp50 + __cil_tmp49;
-  __cil_tmp52 = *((struct resource **)__cil_tmp51);
-  __cil_tmp53 = (unsigned long )__cil_tmp52;
-  __cil_tmp54 = __cil_tmp53 + 24;
+  __cil_tmp52 = *((struct resource **)((void *)p_dev + __cil_tmp49));
   __cil_tmp55 = 1 * 8UL;
   __cil_tmp56 = 56 + __cil_tmp55;
-  __cil_tmp57 = (unsigned long )p_dev;
-  __cil_tmp58 = __cil_tmp57 + __cil_tmp56;
-  __cil_tmp59 = *((struct resource **)__cil_tmp58);
-  __cil_tmp60 = (unsigned long )__cil_tmp59;
-  __cil_tmp61 = __cil_tmp60 + 24;
-  *((unsigned long *)__cil_tmp54) = *((unsigned long *)__cil_tmp61);
-  __cil_tmp62 = (unsigned long )p_dev;
-  __cil_tmp63 = __cil_tmp62 + 132;
-  *((unsigned int *)__cil_tmp63) = 3U;
+  __cil_tmp59 = *((struct resource **)((void *)p_dev + __cil_tmp56));
+  *((unsigned long *)((void *)__cil_tmp52 + 24)) = *((unsigned long *)((void *)__cil_tmp59 + 24));
+  *((unsigned int *)((void *)p_dev + 132)) = 3U;
   tmp___7 = pcmcia_request_io(p_dev);
   }
   return (tmp___7);
@@ -4790,8 +4658,6 @@ static int ixj_config(struct pcmcia_device *link )
   long tmp___7 ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
@@ -4799,32 +4665,22 @@ static int ixj_config(struct pcmcia_device *link )
   int __cil_tmp13 ;
   int __cil_tmp14 ;
   long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device const *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct resource *__cil_tmp27 ;
   resource_size_t __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct resource *__cil_tmp34 ;
   resource_size_t __cil_tmp35 ;
   resource_size_t __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   {
-  __cil_tmp7 = (unsigned long )link;
-  __cil_tmp8 = __cil_tmp7 + 952;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)link + 952));
   info = (ixj_info_t *)__cil_tmp9;
   {
   while (1) {
@@ -4843,9 +4699,7 @@ static int ixj_config(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp16 = (unsigned long )link;
-        __cil_tmp17 = __cil_tmp16 + 184;
-        __cil_tmp18 = (struct device *)__cil_tmp17;
+        __cil_tmp18 = (struct device *)((void *)link + 184);
         __cil_tmp19 = (struct device const *)__cil_tmp18;
         __dynamic_dev_dbg(& descriptor___2, __cil_tmp19, "ixj_config\n");
         }
@@ -4860,9 +4714,7 @@ static int ixj_config(struct pcmcia_device *link )
   while_break: ;
   }
   {
-  __cil_tmp20 = (unsigned long )link;
-  __cil_tmp21 = __cil_tmp20 + 116;
-  *((unsigned int *)__cil_tmp21) = 2048U;
+  *((unsigned int *)((void *)link + 116)) = 2048U;
   __cil_tmp22 = (void *)0;
   tmp___8 = pcmcia_loop_config(link, & ixj_config_check, __cil_tmp22);
   }
@@ -4880,16 +4732,12 @@ static int ixj_config(struct pcmcia_device *link )
   {
   __cil_tmp23 = 0 * 8UL;
   __cil_tmp24 = 56 + __cil_tmp23;
-  __cil_tmp25 = (unsigned long )link;
-  __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-  __cil_tmp27 = *((struct resource **)__cil_tmp26);
+  __cil_tmp27 = *((struct resource **)((void *)link + __cil_tmp24));
   __cil_tmp28 = *((resource_size_t *)__cil_tmp27);
   __cil_tmp29 = (unsigned long )__cil_tmp28;
   __cil_tmp30 = 0 * 8UL;
   __cil_tmp31 = 56 + __cil_tmp30;
-  __cil_tmp32 = (unsigned long )link;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  __cil_tmp34 = *((struct resource **)__cil_tmp33);
+  __cil_tmp34 = *((struct resource **)((void *)link + __cil_tmp31));
   __cil_tmp35 = *((resource_size_t *)__cil_tmp34);
   __cil_tmp36 = __cil_tmp35 + 16ULL;
   __cil_tmp37 = (unsigned long )__cil_tmp36;
@@ -4912,8 +4760,6 @@ __section__("__verbose"))) = {"ixj_pcmcia", "ixj_cs_release", "/home/zakharov/la
 static void ixj_cs_release(struct pcmcia_device *link )
 { ixj_info_t *info ;
   long tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp7 ;
   unsigned int __cil_tmp8 ;
@@ -4921,14 +4767,10 @@ static void ixj_cs_release(struct pcmcia_device *link )
   int __cil_tmp10 ;
   int __cil_tmp11 ;
   long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
   {
-  __cil_tmp4 = (unsigned long )link;
-  __cil_tmp5 = __cil_tmp4 + 952;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)link + 952));
   info = (ixj_info_t *)__cil_tmp6;
   {
   while (1) {
@@ -4947,9 +4789,7 @@ static void ixj_cs_release(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp13 = (unsigned long )link;
-        __cil_tmp14 = __cil_tmp13 + 184;
-        __cil_tmp15 = (struct device *)__cil_tmp14;
+        __cil_tmp15 = (struct device *)((void *)link + 184);
         __cil_tmp16 = (struct device const *)__cil_tmp15;
         __dynamic_dev_dbg(& descriptor___3, __cil_tmp16, "ixj_cs_release\n");
         }

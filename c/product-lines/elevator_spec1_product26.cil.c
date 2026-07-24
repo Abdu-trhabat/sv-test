@@ -1602,14 +1602,6 @@ void __utac__exception__cf_handler_set(void *exception , int (*cflow_func)(int  
 { struct __UTAC__EXCEPTION *excep ;
   struct __UTAC__CFLOW_FUNC *cf ;
   void *tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int (**mem_15)(int  , int  ) ;
   int *mem_16 ;
   struct __UTAC__CFLOW_FUNC **mem_17 ;
@@ -1623,20 +1615,12 @@ void __utac__exception__cf_handler_set(void *exception , int (*cflow_func)(int  
   cf = (struct __UTAC__CFLOW_FUNC *)tmp;
   mem_15 = (int (**)(int  , int  ))cf;
   *mem_15 = cflow_func;
-  __cil_tmp7 = (unsigned long )cf;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  mem_16 = (int *)__cil_tmp8;
+  mem_16 = (int *)((void *)cf + 8);
   *mem_16 = val;
-  __cil_tmp9 = (unsigned long )cf;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = (unsigned long )excep;
-  __cil_tmp12 = __cil_tmp11 + 24;
-  mem_17 = (struct __UTAC__CFLOW_FUNC **)__cil_tmp10;
-  mem_18 = (struct __UTAC__CFLOW_FUNC **)__cil_tmp12;
+  mem_17 = (struct __UTAC__CFLOW_FUNC **)((void *)cf + 16);
+  mem_18 = (struct __UTAC__CFLOW_FUNC **)((void *)excep + 24);
   *mem_17 = *mem_18;
-  __cil_tmp13 = (unsigned long )excep;
-  __cil_tmp14 = __cil_tmp13 + 24;
-  mem_19 = (struct __UTAC__CFLOW_FUNC **)__cil_tmp14;
+  mem_19 = (struct __UTAC__CFLOW_FUNC **)((void *)excep + 24);
   *mem_19 = cf;
   }
   return;
@@ -1646,25 +1630,17 @@ void __utac__exception__cf_handler_free(void *exception )
 { struct __UTAC__EXCEPTION *excep ;
   struct __UTAC__CFLOW_FUNC *cf ;
   struct __UTAC__CFLOW_FUNC *tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct __UTAC__CFLOW_FUNC *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct __UTAC__CFLOW_FUNC **mem_15 ;
   struct __UTAC__CFLOW_FUNC **mem_16 ;
   struct __UTAC__CFLOW_FUNC **mem_17 ;
 
   {
   excep = (struct __UTAC__EXCEPTION *)exception;
-  __cil_tmp5 = (unsigned long )excep;
-  __cil_tmp6 = __cil_tmp5 + 24;
-  mem_15 = (struct __UTAC__CFLOW_FUNC **)__cil_tmp6;
+  mem_15 = (struct __UTAC__CFLOW_FUNC **)((void *)excep + 24);
   cf = *mem_15;
   {
   while (1) {
@@ -1681,9 +1657,7 @@ void __utac__exception__cf_handler_free(void *exception )
     }
     {
     tmp = cf;
-    __cil_tmp10 = (unsigned long )cf;
-    __cil_tmp11 = __cil_tmp10 + 16;
-    mem_16 = (struct __UTAC__CFLOW_FUNC **)__cil_tmp11;
+    mem_16 = (struct __UTAC__CFLOW_FUNC **)((void *)cf + 16);
     cf = *mem_16;
     __cil_tmp12 = (void *)tmp;
     free(__cil_tmp12);
@@ -1691,9 +1665,7 @@ void __utac__exception__cf_handler_free(void *exception )
   }
   while_3_break: /* CIL Label */ ;
   }
-  __cil_tmp13 = (unsigned long )excep;
-  __cil_tmp14 = __cil_tmp13 + 24;
-  mem_17 = (struct __UTAC__CFLOW_FUNC **)__cil_tmp14;
+  mem_17 = (struct __UTAC__CFLOW_FUNC **)((void *)excep + 24);
   *mem_17 = (struct __UTAC__CFLOW_FUNC *)0;
   return;
 }
@@ -1701,17 +1673,11 @@ void __utac__exception__cf_handler_free(void *exception )
 void __utac__exception__cf_handler_reset(void *exception ) 
 { struct __UTAC__EXCEPTION *excep ;
   struct __UTAC__CFLOW_FUNC *cf ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct __UTAC__CFLOW_FUNC *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   int (*__cil_tmp10)(int  , int  ) ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct __UTAC__CFLOW_FUNC **mem_16 ;
   int (**mem_17)(int  , int  ) ;
   int *mem_18 ;
@@ -1719,9 +1685,7 @@ void __utac__exception__cf_handler_reset(void *exception )
 
   {
   excep = (struct __UTAC__EXCEPTION *)exception;
-  __cil_tmp5 = (unsigned long )excep;
-  __cil_tmp6 = __cil_tmp5 + 24;
-  mem_16 = (struct __UTAC__CFLOW_FUNC **)__cil_tmp6;
+  mem_16 = (struct __UTAC__CFLOW_FUNC **)((void *)excep + 24);
   cf = *mem_16;
   {
   while (1) {
@@ -1739,14 +1703,10 @@ void __utac__exception__cf_handler_reset(void *exception )
     {
     mem_17 = (int (**)(int  , int  ))cf;
     __cil_tmp10 = *mem_17;
-    __cil_tmp11 = (unsigned long )cf;
-    __cil_tmp12 = __cil_tmp11 + 8;
-    mem_18 = (int *)__cil_tmp12;
+    mem_18 = (int *)((void *)cf + 8);
     __cil_tmp13 = *mem_18;
     (*__cil_tmp10)(4, __cil_tmp13);
-    __cil_tmp14 = (unsigned long )cf;
-    __cil_tmp15 = __cil_tmp14 + 16;
-    mem_19 = (struct __UTAC__CFLOW_FUNC **)__cil_tmp15;
+    mem_19 = (struct __UTAC__CFLOW_FUNC **)((void *)cf + 16);
     cf = *mem_19;
     }
   }
@@ -1767,13 +1727,7 @@ void *__utac__error_stack_mgt(void *env , int mode , int count )
   struct __ACC__ERR *temp ;
   struct __ACC__ERR *next ;
   void *excep ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void *__cil_tmp17 ;
   void **mem_18 ;
   struct __ACC__ERR **mem_19 ;
@@ -1795,9 +1749,7 @@ void *__utac__error_stack_mgt(void *env , int mode , int count )
     new = (struct __ACC__ERR *)tmp;
     mem_18 = (void **)new;
     *mem_18 = env;
-    __cil_tmp10 = (unsigned long )new;
-    __cil_tmp11 = __cil_tmp10 + 8;
-    mem_19 = (struct __ACC__ERR **)__cil_tmp11;
+    mem_19 = (struct __ACC__ERR **)((void *)new + 8);
     *mem_19 = head;
     head = new;
     retValue_acc = (void *)new;
@@ -1817,9 +1769,7 @@ void *__utac__error_stack_mgt(void *env , int mode , int count )
         goto while_5_break;
       }
       {
-      __cil_tmp12 = (unsigned long )temp;
-      __cil_tmp13 = __cil_tmp12 + 8;
-      mem_20 = (struct __ACC__ERR **)__cil_tmp13;
+      mem_20 = (struct __ACC__ERR **)((void *)temp + 8);
       next = *mem_20;
       mem_21 = (void **)temp;
       excep = *mem_21;
@@ -1833,9 +1783,7 @@ void *__utac__error_stack_mgt(void *env , int mode , int count )
     while_5_break: /* CIL Label */ ;
     }
     {
-    __cil_tmp15 = (unsigned long )temp;
-    __cil_tmp16 = __cil_tmp15 + 8;
-    mem_22 = (struct __ACC__ERR **)__cil_tmp16;
+    mem_22 = (struct __ACC__ERR **)((void *)temp + 8);
     head = *mem_22;
     mem_23 = (void **)temp;
     excep = *mem_23;
@@ -1865,12 +1813,8 @@ void *__utac__error_stack_mgt(void *env , int mode , int count )
 }
 void *__utac__get_this_arg(int i , struct JoinPoint *this ) 
 { void *retValue_acc ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void **__cil_tmp10 ;
   void **__cil_tmp11 ;
   int *mem_12 ;
@@ -1879,9 +1823,7 @@ void *__utac__get_this_arg(int i , struct JoinPoint *this )
   {
   if (i > 0) {
     {
-    __cil_tmp4 = (unsigned long )this;
-    __cil_tmp5 = __cil_tmp4 + 16;
-    mem_12 = (int *)__cil_tmp5;
+    mem_12 = (int *)((void *)this + 16);
     __cil_tmp6 = *mem_12;
     if (i <= __cil_tmp6) {
 
@@ -1899,9 +1841,7 @@ void *__utac__get_this_arg(int i , struct JoinPoint *this )
     }
   }
   __cil_tmp7 = i - 1;
-  __cil_tmp8 = (unsigned long )this;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  mem_13 = (void ***)__cil_tmp9;
+  mem_13 = (void ***)((void *)this + 8);
   __cil_tmp10 = *mem_13;
   __cil_tmp11 = __cil_tmp10 + __cil_tmp7;
   retValue_acc = *__cil_tmp11;
@@ -1911,12 +1851,8 @@ void *__utac__get_this_arg(int i , struct JoinPoint *this )
 }
 char const   *__utac__get_this_argtype(int i , struct JoinPoint *this ) 
 { char const   *retValue_acc ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   char const   **__cil_tmp10 ;
   char const   **__cil_tmp11 ;
   int *mem_12 ;
@@ -1925,9 +1861,7 @@ char const   *__utac__get_this_argtype(int i , struct JoinPoint *this )
   {
   if (i > 0) {
     {
-    __cil_tmp4 = (unsigned long )this;
-    __cil_tmp5 = __cil_tmp4 + 16;
-    mem_12 = (int *)__cil_tmp5;
+    mem_12 = (int *)((void *)this + 16);
     __cil_tmp6 = *mem_12;
     if (i <= __cil_tmp6) {
 
@@ -1945,9 +1879,7 @@ char const   *__utac__get_this_argtype(int i , struct JoinPoint *this )
     }
   }
   __cil_tmp7 = i - 1;
-  __cil_tmp8 = (unsigned long )this;
-  __cil_tmp9 = __cil_tmp8 + 24;
-  mem_13 = (char const   ***)__cil_tmp9;
+  mem_13 = (char const   ***)((void *)this + 24);
   __cil_tmp10 = *mem_13;
   __cil_tmp11 = __cil_tmp10 + __cil_tmp7;
   retValue_acc = *__cil_tmp11;

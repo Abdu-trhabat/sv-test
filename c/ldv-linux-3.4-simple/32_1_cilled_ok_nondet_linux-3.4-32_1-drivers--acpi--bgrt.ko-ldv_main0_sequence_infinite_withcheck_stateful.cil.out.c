@@ -2795,8 +2795,6 @@ static ssize_t show_version(struct device *dev , struct device_attribute *attr ,
   unsigned long __cil_tmp5 ;
   struct acpi_table_bgrt **__cil_tmp6 ;
   struct acpi_table_bgrt *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u16 __cil_tmp10 ;
   int __cil_tmp11 ;
 
@@ -2805,9 +2803,7 @@ static ssize_t show_version(struct device *dev , struct device_attribute *attr ,
   __cil_tmp5 = 1UL << 12;
   __cil_tmp6 = & bgrt_tab;
   __cil_tmp7 = *__cil_tmp6;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 36;
-  __cil_tmp10 = *((u16 *)__cil_tmp9);
+  __cil_tmp10 = *((u16 *)((void *)__cil_tmp7 + 36));
   __cil_tmp11 = (int )__cil_tmp10;
   tmp___7 = snprintf(buf, __cil_tmp5, "%d\n", __cil_tmp11);
   }
@@ -2822,8 +2818,6 @@ static ssize_t show_status(struct device *dev , struct device_attribute *attr , 
   unsigned long __cil_tmp5 ;
   struct acpi_table_bgrt **__cil_tmp6 ;
   struct acpi_table_bgrt *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u8 __cil_tmp10 ;
   int __cil_tmp11 ;
 
@@ -2832,9 +2826,7 @@ static ssize_t show_status(struct device *dev , struct device_attribute *attr , 
   __cil_tmp5 = 1UL << 12;
   __cil_tmp6 = & bgrt_tab;
   __cil_tmp7 = *__cil_tmp6;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 38;
-  __cil_tmp10 = *((u8 *)__cil_tmp9);
+  __cil_tmp10 = *((u8 *)((void *)__cil_tmp7 + 38));
   __cil_tmp11 = (int )__cil_tmp10;
   tmp___7 = snprintf(buf, __cil_tmp5, "%d\n", __cil_tmp11);
   }
@@ -2848,8 +2840,6 @@ static ssize_t show_type(struct device *dev , struct device_attribute *attr , ch
   unsigned long __cil_tmp5 ;
   struct acpi_table_bgrt **__cil_tmp6 ;
   struct acpi_table_bgrt *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u8 __cil_tmp10 ;
   int __cil_tmp11 ;
 
@@ -2858,9 +2848,7 @@ static ssize_t show_type(struct device *dev , struct device_attribute *attr , ch
   __cil_tmp5 = 1UL << 12;
   __cil_tmp6 = & bgrt_tab;
   __cil_tmp7 = *__cil_tmp6;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 39;
-  __cil_tmp10 = *((u8 *)__cil_tmp9);
+  __cil_tmp10 = *((u8 *)((void *)__cil_tmp7 + 39));
   __cil_tmp11 = (int )__cil_tmp10;
   tmp___7 = snprintf(buf, __cil_tmp5, "%d\n", __cil_tmp11);
   }
@@ -2874,8 +2862,6 @@ static ssize_t show_xoffset(struct device *dev , struct device_attribute *attr ,
   unsigned long __cil_tmp5 ;
   struct acpi_table_bgrt **__cil_tmp6 ;
   struct acpi_table_bgrt *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u32 __cil_tmp10 ;
 
   {
@@ -2883,9 +2869,7 @@ static ssize_t show_xoffset(struct device *dev , struct device_attribute *attr ,
   __cil_tmp5 = 1UL << 12;
   __cil_tmp6 = & bgrt_tab;
   __cil_tmp7 = *__cil_tmp6;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 48;
-  __cil_tmp10 = *((u32 *)__cil_tmp9);
+  __cil_tmp10 = *((u32 *)((void *)__cil_tmp7 + 48));
   tmp___7 = snprintf(buf, __cil_tmp5, "%d\n", __cil_tmp10);
   }
   return ((ssize_t )tmp___7);
@@ -2899,8 +2883,6 @@ static ssize_t show_yoffset(struct device *dev , struct device_attribute *attr ,
   unsigned long __cil_tmp5 ;
   struct acpi_table_bgrt **__cil_tmp6 ;
   struct acpi_table_bgrt *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u32 __cil_tmp10 ;
 
   {
@@ -2908,9 +2890,7 @@ static ssize_t show_yoffset(struct device *dev , struct device_attribute *attr ,
   __cil_tmp5 = 1UL << 12;
   __cil_tmp6 = & bgrt_tab;
   __cil_tmp7 = *__cil_tmp6;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 52;
-  __cil_tmp10 = *((u32 *)__cil_tmp9);
+  __cil_tmp10 = *((u32 *)((void *)__cil_tmp7 + 52));
   tmp___7 = snprintf(buf, __cil_tmp5, "%d\n", __cil_tmp10);
   }
   return ((ssize_t )tmp___7);
@@ -2923,11 +2903,7 @@ static ssize_t show_image(struct file *file , struct kobject *kobj , struct bin_
                           char *buf , loff_t off , size_t count ) 
 { int size ;
   void *image ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   size_t __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   loff_t __cil_tmp14 ;
   loff_t __cil_tmp15 ;
   loff_t __cil_tmp16 ;
@@ -2939,13 +2915,9 @@ static ssize_t show_image(struct file *file , struct kobject *kobj , struct bin_
   void const volatile   *__cil_tmp22 ;
 
   {
-  __cil_tmp9 = (unsigned long )attr;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = *((size_t *)__cil_tmp10);
+  __cil_tmp11 = *((size_t *)((void *)attr + 16));
   size = (int )__cil_tmp11;
-  __cil_tmp12 = (unsigned long )attr;
-  __cil_tmp13 = __cil_tmp12 + 24;
-  image = *((void **)__cil_tmp13);
+  image = *((void **)((void *)attr + 24));
   {
   __cil_tmp14 = (loff_t )size;
   if (off >= __cil_tmp14) {
@@ -2995,29 +2967,19 @@ static int bgrt_init(void)
   struct acpi_table_header **__cil_tmp6 ;
   struct acpi_table_bgrt **__cil_tmp7 ;
   struct acpi_table_bgrt *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u64 __cil_tmp11 ;
   void *__cil_tmp12 ;
   void const volatile   *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   u32 __cil_tmp16 ;
   void volatile   *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct acpi_table_bgrt **__cil_tmp19 ;
   struct acpi_table_bgrt *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u64 __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   size_t __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   void *__cil_tmp27 ;
   struct attribute_group  const  *__cil_tmp28 ;
   struct bin_attribute  const  *__cil_tmp29 ;
   struct attribute_group  const  *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   void *__cil_tmp32 ;
   void volatile   *__cil_tmp33 ;
 
@@ -3048,9 +3010,7 @@ static int bgrt_init(void)
   {
   __cil_tmp7 = & bgrt_tab;
   __cil_tmp8 = *__cil_tmp7;
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 40;
-  __cil_tmp11 = *((u64 *)__cil_tmp10);
+  __cil_tmp11 = *((u64 *)((void *)__cil_tmp8 + 40));
   bgrt = ioremap(__cil_tmp11, 6UL);
   }
   if (! bgrt) {
@@ -3063,25 +3023,18 @@ static int bgrt_init(void)
   __cil_tmp12 = (void *)(& bmp_header);
   __cil_tmp13 = (void const volatile   *)bgrt;
   memcpy_fromio(__cil_tmp12, __cil_tmp13, 6UL);
-  __cil_tmp14 = (unsigned long )(& image_attr) + 16;
-  __cil_tmp15 = (unsigned long )(& bmp_header) + 2;
-  __cil_tmp16 = *((u32 *)__cil_tmp15);
-  *((size_t *)__cil_tmp14) = (size_t )__cil_tmp16;
+  __cil_tmp16 = *((u32 *)((void *)(&bmp_header) + 2));
+  *((size_t *)((void *)(&image_attr) + 16)) = (size_t )__cil_tmp16;
   __cil_tmp17 = (void volatile   *)bgrt;
   iounmap(__cil_tmp17);
-  __cil_tmp18 = (unsigned long )(& image_attr) + 24;
   __cil_tmp19 = & bgrt_tab;
   __cil_tmp20 = *__cil_tmp19;
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 40;
-  __cil_tmp23 = *((u64 *)__cil_tmp22);
-  __cil_tmp24 = (unsigned long )(& image_attr) + 16;
-  __cil_tmp25 = *((size_t *)__cil_tmp24);
-  *((void **)__cil_tmp18) = ioremap(__cil_tmp23, __cil_tmp25);
+  __cil_tmp23 = *((u64 *)((void *)__cil_tmp20 + 40));
+  __cil_tmp25 = *((size_t *)((void *)(&image_attr) + 16));
+  *((void **)((void *)(&image_attr) + 24)) = ioremap(__cil_tmp23, __cil_tmp25);
   }
   {
-  __cil_tmp26 = (unsigned long )(& image_attr) + 24;
-  __cil_tmp27 = *((void **)__cil_tmp26);
+  __cil_tmp27 = *((void **)((void *)(&image_attr) + 24));
   if (! __cil_tmp27) {
     ret = -22;
     goto out_err;
@@ -3128,8 +3081,7 @@ static int bgrt_init(void)
   }
   out_iounmap: 
   {
-  __cil_tmp31 = (unsigned long )(& image_attr) + 24;
-  __cil_tmp32 = *((void **)__cil_tmp31);
+  __cil_tmp32 = *((void **)((void *)(&image_attr) + 24));
   __cil_tmp33 = (void volatile   *)__cil_tmp32;
   iounmap(__cil_tmp33);
   }
@@ -3139,7 +3091,7 @@ static int bgrt_init(void)
 }
 static void bgrt_exit(void)  __attribute__((__section__(".exit.text"), __no_instrument_function__)) ;
 static void bgrt_exit(void) 
-{ unsigned long __cil_tmp1 ;
+{
   void *__cil_tmp2 ;
   void volatile   *__cil_tmp3 ;
   struct attribute_group  const  *__cil_tmp4 ;
@@ -3147,8 +3099,7 @@ static void bgrt_exit(void)
 
   {
   {
-  __cil_tmp1 = (unsigned long )(& image_attr) + 24;
-  __cil_tmp2 = *((void **)__cil_tmp1);
+  __cil_tmp2 = *((void **)((void *)(&image_attr) + 24));
   __cil_tmp3 = (void volatile   *)__cil_tmp2;
   iounmap(__cil_tmp3);
   __cil_tmp4 = (struct attribute_group  const  *)(& bgrt_attribute_group);

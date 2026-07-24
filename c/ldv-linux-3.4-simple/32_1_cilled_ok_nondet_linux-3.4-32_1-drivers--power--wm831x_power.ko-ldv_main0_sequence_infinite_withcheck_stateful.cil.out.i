@@ -1134,14 +1134,10 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -1149,14 +1145,11 @@ __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1268,17 +1261,13 @@ static int wm831x_wall_get_prop(struct power_supply *psy , enum power_supply_pro
   void *tmp ;
   struct wm831x *wm831x ;
   int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device const *__cil_tmp12 ;
   enum wm831x_auxadc __cil_tmp13 ;
   {
   {
-  __cil_tmp8 = (unsigned long )psy;
-  __cil_tmp9 = __cil_tmp8 + 96;
-  __cil_tmp10 = *((struct device **)__cil_tmp9);
+  __cil_tmp10 = *((struct device **)((void *)psy + 96));
   __cil_tmp11 = *((struct device **)__cil_tmp10);
   __cil_tmp12 = (struct device const *)__cil_tmp11;
   tmp = dev_get_drvdata(__cil_tmp12);
@@ -1324,17 +1313,13 @@ static int wm831x_usb_get_prop(struct power_supply *psy , enum power_supply_prop
   void *tmp ;
   struct wm831x *wm831x ;
   int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device const *__cil_tmp12 ;
   enum wm831x_auxadc __cil_tmp13 ;
   {
   {
-  __cil_tmp8 = (unsigned long )psy;
-  __cil_tmp9 = __cil_tmp8 + 96;
-  __cil_tmp10 = *((struct device **)__cil_tmp9);
+  __cil_tmp10 = *((struct device **)((void *)psy + 96));
   __cil_tmp11 = *((struct device **)__cil_tmp10);
   __cil_tmp12 = (struct device const *)__cil_tmp11;
   tmp = dev_get_drvdata(__cil_tmp12);
@@ -1438,13 +1423,9 @@ static void wm831x_battey_apply_config(struct wm831x *wm831x , struct chg_map *m
   long tmp ;
   struct chg_map *__cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device const *__cil_tmp15 ;
   struct chg_map *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
   int __cil_tmp20 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp21 ;
@@ -1453,8 +1434,6 @@ static void wm831x_battey_apply_config(struct wm831x *wm831x , struct chg_map *m
   int __cil_tmp24 ;
   int __cil_tmp25 ;
   long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct device *__cil_tmp29 ;
   struct device const *__cil_tmp30 ;
   {
@@ -1480,17 +1459,13 @@ static void wm831x_battey_apply_config(struct wm831x *wm831x , struct chg_map *m
   }
   if (i == count) {
     {
-    __cil_tmp12 = (unsigned long )wm831x;
-    __cil_tmp13 = __cil_tmp12 + 72;
-    __cil_tmp14 = *((struct device **)__cil_tmp13);
+    __cil_tmp14 = *((struct device **)((void *)wm831x + 72));
     __cil_tmp15 = (struct device const *)__cil_tmp14;
     dev_err(__cil_tmp15, "Invalid %s %d%s\n", name, val, units);
     }
   } else {
     __cil_tmp16 = map + i;
-    __cil_tmp17 = (unsigned long )__cil_tmp16;
-    __cil_tmp18 = __cil_tmp17 + 4;
-    __cil_tmp19 = *((int *)__cil_tmp18);
+    __cil_tmp19 = *((int *)((void *)__cil_tmp16 + 4));
     __cil_tmp20 = *reg;
     *reg = __cil_tmp20 | __cil_tmp19;
     {
@@ -1510,9 +1485,7 @@ static void wm831x_battey_apply_config(struct wm831x *wm831x , struct chg_map *m
         }
         if (tmp) {
           {
-          __cil_tmp27 = (unsigned long )wm831x;
-          __cil_tmp28 = __cil_tmp27 + 72;
-          __cil_tmp29 = *((struct device **)__cil_tmp28);
+          __cil_tmp29 = *((struct device **)((void *)wm831x + 72));
           __cil_tmp30 = (struct device const *)__cil_tmp29;
           __dynamic_dev_dbg(& descriptor, __cil_tmp30, "Set %s of %d%s\n", name, val,
                             units);
@@ -1537,42 +1510,24 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   int ret ;
   int reg1 ;
   int reg2 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct wm831x_battery_pdata *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device const *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int *__cil_tmp26 ;
   int *__cil_tmp27 ;
   int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct device *__cil_tmp31 ;
   struct device const *__cil_tmp32 ;
   int *__cil_tmp33 ;
   int *__cil_tmp34 ;
   int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   int *__cil_tmp38 ;
   int *__cil_tmp39 ;
   int __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   int *__cil_tmp43 ;
   int *__cil_tmp44 ;
   int __cil_tmp45 ;
@@ -1582,8 +1537,6 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   int __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   int __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
@@ -1591,8 +1544,6 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   int __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   int __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
@@ -1600,8 +1551,6 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   int __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   int __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
@@ -1609,8 +1558,6 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   unsigned long __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
   int __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   int __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
@@ -1618,54 +1565,36 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
   int __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   int __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   struct device *__cil_tmp93 ;
   struct device const *__cil_tmp94 ;
   int *__cil_tmp95 ;
   int __cil_tmp96 ;
   unsigned short __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   struct device *__cil_tmp100 ;
   struct device const *__cil_tmp101 ;
   int *__cil_tmp102 ;
   int __cil_tmp103 ;
   unsigned short __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   struct device *__cil_tmp107 ;
   struct device const *__cil_tmp108 ;
   {
-  __cil_tmp7 = (unsigned long )wm831x;
-  __cil_tmp8 = __cil_tmp7 + 72;
-  __cil_tmp9 = *((struct device **)__cil_tmp8);
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 184;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp9 = *((struct device **)((void *)wm831x + 72));
+  __cil_tmp12 = *((void **)((void *)__cil_tmp9 + 184));
   wm831x_pdata = (struct wm831x_pdata *)__cil_tmp12;
   if (! wm831x_pdata) {
     {
-    __cil_tmp13 = (unsigned long )wm831x;
-    __cil_tmp14 = __cil_tmp13 + 72;
-    __cil_tmp15 = *((struct device **)__cil_tmp14);
+    __cil_tmp15 = *((struct device **)((void *)wm831x + 72));
     __cil_tmp16 = (struct device const *)__cil_tmp15;
     dev_warn(__cil_tmp16, "No battery charger configuration\n");
     }
     return;
   } else {
     {
-    __cil_tmp17 = (unsigned long )wm831x_pdata;
-    __cil_tmp18 = __cil_tmp17 + 120;
-    __cil_tmp19 = *((struct wm831x_battery_pdata **)__cil_tmp18);
+    __cil_tmp19 = *((struct wm831x_battery_pdata **)((void *)wm831x_pdata + 120));
     if (! __cil_tmp19) {
       {
-      __cil_tmp20 = (unsigned long )wm831x;
-      __cil_tmp21 = __cil_tmp20 + 72;
-      __cil_tmp22 = *((struct device **)__cil_tmp21);
+      __cil_tmp22 = *((struct device **)((void *)wm831x + 72));
       __cil_tmp23 = (struct device const *)__cil_tmp22;
       dev_warn(__cil_tmp23, "No battery charger configuration\n");
       }
@@ -1674,9 +1603,7 @@ static void wm831x_config_battery(struct wm831x *wm831x )
     }
     }
   }
-  __cil_tmp24 = (unsigned long )wm831x_pdata;
-  __cil_tmp25 = __cil_tmp24 + 120;
-  pdata = *((struct wm831x_battery_pdata **)__cil_tmp25);
+  pdata = *((struct wm831x_battery_pdata **)((void *)wm831x_pdata + 120));
   __cil_tmp26 = & reg1;
   *__cil_tmp26 = 0;
   __cil_tmp27 = & reg2;
@@ -1685,9 +1612,7 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   __cil_tmp28 = *((int *)pdata);
   if (! __cil_tmp28) {
     {
-    __cil_tmp29 = (unsigned long )wm831x;
-    __cil_tmp30 = __cil_tmp29 + 72;
-    __cil_tmp31 = *((struct device **)__cil_tmp30);
+    __cil_tmp31 = *((struct device **)((void *)wm831x + 72));
     __cil_tmp32 = (struct device const *)__cil_tmp31;
     _dev_info(__cil_tmp32, "Battery charger disabled\n");
     }
@@ -1700,9 +1625,7 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   __cil_tmp35 = *__cil_tmp34;
   *__cil_tmp33 = __cil_tmp35 | 32768;
   {
-  __cil_tmp36 = (unsigned long )pdata;
-  __cil_tmp37 = __cil_tmp36 + 8;
-  if (*((int *)__cil_tmp37)) {
+  if (*((int *)((void *)pdata + 8))) {
     __cil_tmp38 = & reg2;
     __cil_tmp39 = & reg2;
     __cil_tmp40 = *__cil_tmp39;
@@ -1711,9 +1634,7 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   }
   }
   {
-  __cil_tmp41 = (unsigned long )pdata;
-  __cil_tmp42 = __cil_tmp41 + 4;
-  if (*((int *)__cil_tmp42)) {
+  if (*((int *)((void *)pdata + 4))) {
     __cil_tmp43 = & reg1;
     __cil_tmp44 = & reg1;
     __cil_tmp45 = *__cil_tmp44;
@@ -1728,9 +1649,7 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   __cil_tmp49 = 32UL / 8UL;
   __cil_tmp50 = __cil_tmp49 + 0UL;
   __cil_tmp51 = (int )__cil_tmp50;
-  __cil_tmp52 = (unsigned long )pdata;
-  __cil_tmp53 = __cil_tmp52 + 12;
-  __cil_tmp54 = *((int *)__cil_tmp53);
+  __cil_tmp54 = *((int *)((void *)pdata + 12));
   wm831x_battey_apply_config(wm831x, __cil_tmp48, __cil_tmp51, __cil_tmp54, & reg2,
                              "trickle charge current limit", "mA");
   __cil_tmp55 = 0 * 8UL;
@@ -1739,9 +1658,7 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   __cil_tmp58 = 32UL / 8UL;
   __cil_tmp59 = __cil_tmp58 + 0UL;
   __cil_tmp60 = (int )__cil_tmp59;
-  __cil_tmp61 = (unsigned long )pdata;
-  __cil_tmp62 = __cil_tmp61 + 16;
-  __cil_tmp63 = *((int *)__cil_tmp62);
+  __cil_tmp63 = *((int *)((void *)pdata + 16));
   wm831x_battey_apply_config(wm831x, __cil_tmp57, __cil_tmp60, __cil_tmp63, & reg2,
                              "target voltage", "mV");
   __cil_tmp64 = 0 * 8UL;
@@ -1750,9 +1667,7 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   __cil_tmp67 = 128UL / 8UL;
   __cil_tmp68 = __cil_tmp67 + 0UL;
   __cil_tmp69 = (int )__cil_tmp68;
-  __cil_tmp70 = (unsigned long )pdata;
-  __cil_tmp71 = __cil_tmp70 + 24;
-  __cil_tmp72 = *((int *)__cil_tmp71);
+  __cil_tmp72 = *((int *)((void *)pdata + 24));
   wm831x_battey_apply_config(wm831x, __cil_tmp66, __cil_tmp69, __cil_tmp72, & reg2,
                              "fast charge current limit", "mA");
   __cil_tmp73 = 0 * 8UL;
@@ -1761,9 +1676,7 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   __cil_tmp76 = 64UL / 8UL;
   __cil_tmp77 = __cil_tmp76 + 0UL;
   __cil_tmp78 = (int )__cil_tmp77;
-  __cil_tmp79 = (unsigned long )pdata;
-  __cil_tmp80 = __cil_tmp79 + 20;
-  __cil_tmp81 = *((int *)__cil_tmp80);
+  __cil_tmp81 = *((int *)((void *)pdata + 20));
   wm831x_battey_apply_config(wm831x, __cil_tmp75, __cil_tmp78, __cil_tmp81, & reg1,
                              "end of charge current threshold", "mA");
   __cil_tmp82 = 0 * 8UL;
@@ -1772,18 +1685,14 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   __cil_tmp85 = 128UL / 8UL;
   __cil_tmp86 = __cil_tmp85 + 0UL;
   __cil_tmp87 = (int )__cil_tmp86;
-  __cil_tmp88 = (unsigned long )pdata;
-  __cil_tmp89 = __cil_tmp88 + 28;
-  __cil_tmp90 = *((int *)__cil_tmp89);
+  __cil_tmp90 = *((int *)((void *)pdata + 28));
   wm831x_battey_apply_config(wm831x, __cil_tmp84, __cil_tmp87, __cil_tmp90, & reg2,
                              "charger timeout", "min");
   ret = wm831x_reg_unlock(wm831x);
   }
   if (ret != 0) {
     {
-    __cil_tmp91 = (unsigned long )wm831x;
-    __cil_tmp92 = __cil_tmp91 + 72;
-    __cil_tmp93 = *((struct device **)__cil_tmp92);
+    __cil_tmp93 = *((struct device **)((void *)wm831x + 72));
     __cil_tmp94 = (struct device const *)__cil_tmp93;
     dev_err(__cil_tmp94, "Failed to unlock registers: %d\n", ret);
     }
@@ -1798,9 +1707,7 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   }
   if (ret != 0) {
     {
-    __cil_tmp98 = (unsigned long )wm831x;
-    __cil_tmp99 = __cil_tmp98 + 72;
-    __cil_tmp100 = *((struct device **)__cil_tmp99);
+    __cil_tmp100 = *((struct device **)((void *)wm831x + 72));
     __cil_tmp101 = (struct device const *)__cil_tmp100;
     dev_err(__cil_tmp101, "Failed to set charger control 1: %d\n", ret);
     }
@@ -1814,9 +1721,7 @@ static void wm831x_config_battery(struct wm831x *wm831x )
   }
   if (ret != 0) {
     {
-    __cil_tmp105 = (unsigned long )wm831x;
-    __cil_tmp106 = __cil_tmp105 + 72;
-    __cil_tmp107 = *((struct device **)__cil_tmp106);
+    __cil_tmp107 = *((struct device **)((void *)wm831x + 72));
     __cil_tmp108 = (struct device const *)__cil_tmp107;
     dev_err(__cil_tmp108, "Failed to set charger control 2: %d\n", ret);
     }
@@ -1985,8 +1890,6 @@ static int wm831x_bat_get_prop(struct power_supply *psy , enum power_supply_prop
   void *tmp ;
   struct wm831x *wm831x ;
   int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device const *__cil_tmp12 ;
@@ -1996,9 +1899,7 @@ static int wm831x_bat_get_prop(struct power_supply *psy , enum power_supply_prop
   int *__cil_tmp16 ;
   {
   {
-  __cil_tmp8 = (unsigned long )psy;
-  __cil_tmp9 = __cil_tmp8 + 96;
-  __cil_tmp10 = *((struct device **)__cil_tmp9);
+  __cil_tmp10 = *((struct device **)((void *)psy + 96));
   __cil_tmp11 = *((struct device **)__cil_tmp10);
   __cil_tmp12 = (struct device const *)__cil_tmp11;
   tmp = dev_get_drvdata(__cil_tmp12);
@@ -2083,14 +1984,8 @@ static irqreturn_t wm831x_bat_irq(int irq , void *data )
   int __cil_tmp9 ;
   int __cil_tmp10 ;
   long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device const *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct power_supply *__cil_tmp20 ;
   {
   wm831x_power = (struct wm831x_power *)data;
@@ -2112,9 +2007,7 @@ static irqreturn_t wm831x_bat_irq(int irq , void *data )
       }
       if (tmp) {
         {
-        __cil_tmp12 = (unsigned long )wm831x;
-        __cil_tmp13 = __cil_tmp12 + 72;
-        __cil_tmp14 = *((struct device **)__cil_tmp13);
+        __cil_tmp14 = *((struct device **)((void *)wm831x + 72));
         __cil_tmp15 = (struct device const *)__cil_tmp14;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp15, "Battery status changed: %d\n",
                           irq);
@@ -2130,13 +2023,9 @@ static irqreturn_t wm831x_bat_irq(int irq , void *data )
   while_break: ;
   }
   {
-  __cil_tmp16 = (unsigned long )wm831x_power;
-  __cil_tmp17 = __cil_tmp16 + 716;
-  if (*((bool *)__cil_tmp17)) {
+  if (*((bool *)((void *)wm831x_power + 716))) {
     {
-    __cil_tmp18 = (unsigned long )wm831x_power;
-    __cil_tmp19 = __cil_tmp18 + 440;
-    __cil_tmp20 = (struct power_supply *)__cil_tmp19;
+    __cil_tmp20 = (struct power_supply *)((void *)wm831x_power + 440);
     power_supply_changed(__cil_tmp20);
     }
   } else {
@@ -2148,17 +2037,13 @@ static irqreturn_t wm831x_bat_irq(int irq , void *data )
 static irqreturn_t wm831x_syslo_irq(int irq , void *data )
 { struct wm831x_power *wm831x_power ;
   struct wm831x *wm831x ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct device const *__cil_tmp8 ;
   {
   {
   wm831x_power = (struct wm831x_power *)data;
   wm831x = *((struct wm831x **)wm831x_power);
-  __cil_tmp5 = (unsigned long )wm831x;
-  __cil_tmp6 = __cil_tmp5 + 72;
-  __cil_tmp7 = *((struct device **)__cil_tmp6);
+  __cil_tmp7 = *((struct device **)((void *)wm831x + 72));
   __cil_tmp8 = (struct device const *)__cil_tmp7;
   dev_crit(__cil_tmp8, "SYSVDD under voltage\n");
   }
@@ -2179,20 +2064,10 @@ static irqreturn_t wm831x_pwr_src_irq(int irq , void *data )
   int __cil_tmp9 ;
   int __cil_tmp10 ;
   long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device const *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct power_supply *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct power_supply *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct power_supply *__cil_tmp26 ;
   {
   wm831x_power = (struct wm831x_power *)data;
@@ -2214,9 +2089,7 @@ static irqreturn_t wm831x_pwr_src_irq(int irq , void *data )
       }
       if (tmp) {
         {
-        __cil_tmp12 = (unsigned long )wm831x;
-        __cil_tmp13 = __cil_tmp12 + 72;
-        __cil_tmp14 = *((struct device **)__cil_tmp13);
+        __cil_tmp14 = *((struct device **)((void *)wm831x + 72));
         __cil_tmp15 = (struct device const *)__cil_tmp14;
         __dynamic_dev_dbg(& descriptor___1, __cil_tmp15, "Power source changed\n");
         }
@@ -2231,26 +2104,18 @@ static irqreturn_t wm831x_pwr_src_irq(int irq , void *data )
   while_break: ;
   }
   {
-  __cil_tmp16 = (unsigned long )wm831x_power;
-  __cil_tmp17 = __cil_tmp16 + 716;
-  if (*((bool *)__cil_tmp17)) {
+  if (*((bool *)((void *)wm831x_power + 716))) {
     {
-    __cil_tmp18 = (unsigned long )wm831x_power;
-    __cil_tmp19 = __cil_tmp18 + 440;
-    __cil_tmp20 = (struct power_supply *)__cil_tmp19;
+    __cil_tmp20 = (struct power_supply *)((void *)wm831x_power + 440);
     power_supply_changed(__cil_tmp20);
     }
   } else {
   }
   }
   {
-  __cil_tmp21 = (unsigned long )wm831x_power;
-  __cil_tmp22 = __cil_tmp21 + 224;
-  __cil_tmp23 = (struct power_supply *)__cil_tmp22;
+  __cil_tmp23 = (struct power_supply *)((void *)wm831x_power + 224);
   power_supply_changed(__cil_tmp23);
-  __cil_tmp24 = (unsigned long )wm831x_power;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  __cil_tmp26 = (struct power_supply *)__cil_tmp25;
+  __cil_tmp26 = (struct power_supply *)((void *)wm831x_power + 8);
   power_supply_changed(__cil_tmp26);
   }
   return ((irqreturn_t )1);
@@ -2270,150 +2135,76 @@ static int wm831x_power_probe(struct platform_device *pdev )
   int irq ;
   int i ;
   void *tmp___0 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
   void *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   void *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   char *__cil_tmp37 ;
   int __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   char *__cil_tmp43 ;
   int __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   char *__cil_tmp49 ;
   int __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   char *__cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   char *__cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   char *__cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   char *__cil_tmp70 ;
   unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   char *__cil_tmp75 ;
   unsigned long __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   char *__cil_tmp80 ;
   unsigned long __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   char *__cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   struct device *__cil_tmp99 ;
   unsigned long __cil_tmp100 ;
   unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   char *__cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   unsigned long __cil_tmp109 ;
   unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
   struct device *__cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   int __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
   unsigned long __cil_tmp124 ;
   unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
   char *__cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
   unsigned long __cil_tmp131 ;
   unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
   unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
   struct device *__cil_tmp142 ;
   unsigned int __cil_tmp143 ;
   void *__cil_tmp144 ;
   irqreturn_t (*__cil_tmp145)(int , void * ) ;
   void *__cil_tmp146 ;
-  unsigned long __cil_tmp147 ;
-  unsigned long __cil_tmp148 ;
   struct device *__cil_tmp149 ;
   struct device const *__cil_tmp150 ;
   unsigned int __cil_tmp151 ;
   void *__cil_tmp152 ;
   irqreturn_t (*__cil_tmp153)(int , void * ) ;
   void *__cil_tmp154 ;
-  unsigned long __cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
   struct device *__cil_tmp157 ;
   struct device const *__cil_tmp158 ;
   unsigned long __cil_tmp159 ;
@@ -2429,8 +2220,6 @@ static int wm831x_power_probe(struct platform_device *pdev )
   unsigned long __cil_tmp169 ;
   char const *__cil_tmp170 ;
   void *__cil_tmp171 ;
-  unsigned long __cil_tmp172 ;
-  unsigned long __cil_tmp173 ;
   struct device *__cil_tmp174 ;
   struct device const *__cil_tmp175 ;
   unsigned long __cil_tmp176 ;
@@ -2445,23 +2234,15 @@ static int wm831x_power_probe(struct platform_device *pdev )
   void *__cil_tmp185 ;
   unsigned int __cil_tmp186 ;
   void *__cil_tmp187 ;
-  unsigned long __cil_tmp188 ;
-  unsigned long __cil_tmp189 ;
   void const *__cil_tmp190 ;
   {
   {
-  __cil_tmp13 = (unsigned long )pdev;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((struct device **)__cil_tmp14);
+  __cil_tmp15 = *((struct device **)((void *)pdev + 16));
   __cil_tmp16 = (struct device const *)__cil_tmp15;
   tmp = dev_get_drvdata(__cil_tmp16);
   wm831x = (struct wm831x *)tmp;
-  __cil_tmp17 = (unsigned long )wm831x;
-  __cil_tmp18 = __cil_tmp17 + 72;
-  __cil_tmp19 = *((struct device **)__cil_tmp18);
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 184;
-  __cil_tmp22 = *((void **)__cil_tmp21);
+  __cil_tmp19 = *((struct device **)((void *)wm831x + 72));
+  __cil_tmp22 = *((void **)((void *)__cil_tmp19 + 184));
   wm831x_pdata = (struct wm831x_pdata *)__cil_tmp22;
   tmp___0 = kzalloc(720UL, 208U);
   power = (struct wm831x_power *)tmp___0;
@@ -2479,38 +2260,26 @@ static int wm831x_power_probe(struct platform_device *pdev )
   *((struct wm831x **)power) = wm831x;
   __cil_tmp26 = (void *)power;
   platform_set_drvdata(pdev, __cil_tmp26);
-  __cil_tmp27 = (unsigned long )power;
-  __cil_tmp28 = __cil_tmp27 + 224;
-  usb = (struct power_supply *)__cil_tmp28;
-  __cil_tmp29 = (unsigned long )power;
-  __cil_tmp30 = __cil_tmp29 + 440;
-  battery = (struct power_supply *)__cil_tmp30;
-  __cil_tmp31 = (unsigned long )power;
-  __cil_tmp32 = __cil_tmp31 + 8;
-  wall = (struct power_supply *)__cil_tmp32;
+  usb = (struct power_supply *)((void *)power + 224);
+  battery = (struct power_supply *)((void *)power + 440);
+  wall = (struct power_supply *)((void *)power + 8);
   }
   if (wm831x_pdata) {
     if (*((int *)wm831x_pdata)) {
       {
       __cil_tmp33 = 0 * 1UL;
       __cil_tmp34 = 656 + __cil_tmp33;
-      __cil_tmp35 = (unsigned long )power;
-      __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-      __cil_tmp37 = (char *)__cil_tmp36;
+      __cil_tmp37 = (char *)((void *)power + __cil_tmp34);
       __cil_tmp38 = *((int *)wm831x_pdata);
       snprintf(__cil_tmp37, 20UL, "wm831x-wall.%d", __cil_tmp38);
       __cil_tmp39 = 0 * 1UL;
       __cil_tmp40 = 696 + __cil_tmp39;
-      __cil_tmp41 = (unsigned long )power;
-      __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-      __cil_tmp43 = (char *)__cil_tmp42;
+      __cil_tmp43 = (char *)((void *)power + __cil_tmp40);
       __cil_tmp44 = *((int *)wm831x_pdata);
       snprintf(__cil_tmp43, 20UL, "wm831x-battery.%d", __cil_tmp44);
       __cil_tmp45 = 0 * 1UL;
       __cil_tmp46 = 676 + __cil_tmp45;
-      __cil_tmp47 = (unsigned long )power;
-      __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-      __cil_tmp49 = (char *)__cil_tmp48;
+      __cil_tmp49 = (char *)((void *)power + __cil_tmp46);
       __cil_tmp50 = *((int *)wm831x_pdata);
       snprintf(__cil_tmp49, 20UL, "wm831x-usb.%d", __cil_tmp50);
       }
@@ -2518,21 +2287,15 @@ static int wm831x_power_probe(struct platform_device *pdev )
       {
       __cil_tmp51 = 0 * 1UL;
       __cil_tmp52 = 656 + __cil_tmp51;
-      __cil_tmp53 = (unsigned long )power;
-      __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-      __cil_tmp55 = (char *)__cil_tmp54;
+      __cil_tmp55 = (char *)((void *)power + __cil_tmp52);
       snprintf(__cil_tmp55, 20UL, "wm831x-wall");
       __cil_tmp56 = 0 * 1UL;
       __cil_tmp57 = 696 + __cil_tmp56;
-      __cil_tmp58 = (unsigned long )power;
-      __cil_tmp59 = __cil_tmp58 + __cil_tmp57;
-      __cil_tmp60 = (char *)__cil_tmp59;
+      __cil_tmp60 = (char *)((void *)power + __cil_tmp57);
       snprintf(__cil_tmp60, 20UL, "wm831x-battery");
       __cil_tmp61 = 0 * 1UL;
       __cil_tmp62 = 676 + __cil_tmp61;
-      __cil_tmp63 = (unsigned long )power;
-      __cil_tmp64 = __cil_tmp63 + __cil_tmp62;
-      __cil_tmp65 = (char *)__cil_tmp64;
+      __cil_tmp65 = (char *)((void *)power + __cil_tmp62);
       snprintf(__cil_tmp65, 20UL, "wm831x-usb");
       }
     }
@@ -2540,21 +2303,15 @@ static int wm831x_power_probe(struct platform_device *pdev )
     {
     __cil_tmp66 = 0 * 1UL;
     __cil_tmp67 = 656 + __cil_tmp66;
-    __cil_tmp68 = (unsigned long )power;
-    __cil_tmp69 = __cil_tmp68 + __cil_tmp67;
-    __cil_tmp70 = (char *)__cil_tmp69;
+    __cil_tmp70 = (char *)((void *)power + __cil_tmp67);
     snprintf(__cil_tmp70, 20UL, "wm831x-wall");
     __cil_tmp71 = 0 * 1UL;
     __cil_tmp72 = 696 + __cil_tmp71;
-    __cil_tmp73 = (unsigned long )power;
-    __cil_tmp74 = __cil_tmp73 + __cil_tmp72;
-    __cil_tmp75 = (char *)__cil_tmp74;
+    __cil_tmp75 = (char *)((void *)power + __cil_tmp72);
     snprintf(__cil_tmp75, 20UL, "wm831x-battery");
     __cil_tmp76 = 0 * 1UL;
     __cil_tmp77 = 676 + __cil_tmp76;
-    __cil_tmp78 = (unsigned long )power;
-    __cil_tmp79 = __cil_tmp78 + __cil_tmp77;
-    __cil_tmp80 = (char *)__cil_tmp79;
+    __cil_tmp80 = (char *)((void *)power + __cil_tmp77);
     snprintf(__cil_tmp80, 20UL, "wm831x-usb");
     }
   }
@@ -2562,28 +2319,16 @@ static int wm831x_power_probe(struct platform_device *pdev )
   wm831x_config_battery(wm831x);
   __cil_tmp81 = 0 * 1UL;
   __cil_tmp82 = 656 + __cil_tmp81;
-  __cil_tmp83 = (unsigned long )power;
-  __cil_tmp84 = __cil_tmp83 + __cil_tmp82;
-  __cil_tmp85 = (char *)__cil_tmp84;
+  __cil_tmp85 = (char *)((void *)power + __cil_tmp82);
   *((char const **)wall) = (char const *)__cil_tmp85;
-  __cil_tmp86 = (unsigned long )wall;
-  __cil_tmp87 = __cil_tmp86 + 8;
-  *((enum power_supply_type *)__cil_tmp87) = (enum power_supply_type )3;
-  __cil_tmp88 = (unsigned long )wall;
-  __cil_tmp89 = __cil_tmp88 + 16;
+  *((enum power_supply_type *)((void *)wall + 8)) = (enum power_supply_type )3;
   __cil_tmp90 = 0 * 4UL;
   __cil_tmp91 = (unsigned long )(wm831x_wall_props) + __cil_tmp90;
-  *((enum power_supply_property **)__cil_tmp89) = (enum power_supply_property *)__cil_tmp91;
-  __cil_tmp92 = (unsigned long )wall;
-  __cil_tmp93 = __cil_tmp92 + 24;
+  *((enum power_supply_property **)((void *)wall + 16)) = (enum power_supply_property *)__cil_tmp91;
   __cil_tmp94 = 8UL / 4UL;
-  *((size_t *)__cil_tmp93) = __cil_tmp94 + 0UL;
-  __cil_tmp95 = (unsigned long )wall;
-  __cil_tmp96 = __cil_tmp95 + 48;
-  *((int (**)(struct power_supply *psy , enum power_supply_property psp , union power_supply_propval *val ))__cil_tmp96) = & wm831x_wall_get_prop;
-  __cil_tmp97 = (unsigned long )pdev;
-  __cil_tmp98 = __cil_tmp97 + 16;
-  __cil_tmp99 = (struct device *)__cil_tmp98;
+  *((size_t *)((void *)wall + 24)) = __cil_tmp94 + 0UL;
+  *((int (**)(struct power_supply *psy , enum power_supply_property psp , union power_supply_propval *val ))((void *)wall + 48)) = & wm831x_wall_get_prop;
+  __cil_tmp99 = (struct device *)((void *)pdev + 16);
   ret = power_supply_register(__cil_tmp99, wall);
   }
   if (ret) {
@@ -2593,28 +2338,16 @@ static int wm831x_power_probe(struct platform_device *pdev )
   {
   __cil_tmp100 = 0 * 1UL;
   __cil_tmp101 = 676 + __cil_tmp100;
-  __cil_tmp102 = (unsigned long )power;
-  __cil_tmp103 = __cil_tmp102 + __cil_tmp101;
-  __cil_tmp104 = (char *)__cil_tmp103;
+  __cil_tmp104 = (char *)((void *)power + __cil_tmp101);
   *((char const **)usb) = (char const *)__cil_tmp104;
-  __cil_tmp105 = (unsigned long )usb;
-  __cil_tmp106 = __cil_tmp105 + 8;
-  *((enum power_supply_type *)__cil_tmp106) = (enum power_supply_type )4;
-  __cil_tmp107 = (unsigned long )usb;
-  __cil_tmp108 = __cil_tmp107 + 16;
+  *((enum power_supply_type *)((void *)usb + 8)) = (enum power_supply_type )4;
   __cil_tmp109 = 0 * 4UL;
   __cil_tmp110 = (unsigned long )(wm831x_usb_props) + __cil_tmp109;
-  *((enum power_supply_property **)__cil_tmp108) = (enum power_supply_property *)__cil_tmp110;
-  __cil_tmp111 = (unsigned long )usb;
-  __cil_tmp112 = __cil_tmp111 + 24;
+  *((enum power_supply_property **)((void *)usb + 16)) = (enum power_supply_property *)__cil_tmp110;
   __cil_tmp113 = 8UL / 4UL;
-  *((size_t *)__cil_tmp112) = __cil_tmp113 + 0UL;
-  __cil_tmp114 = (unsigned long )usb;
-  __cil_tmp115 = __cil_tmp114 + 48;
-  *((int (**)(struct power_supply *psy , enum power_supply_property psp , union power_supply_propval *val ))__cil_tmp115) = & wm831x_usb_get_prop;
-  __cil_tmp116 = (unsigned long )pdev;
-  __cil_tmp117 = __cil_tmp116 + 16;
-  __cil_tmp118 = (struct device *)__cil_tmp117;
+  *((size_t *)((void *)usb + 24)) = __cil_tmp113 + 0UL;
+  *((int (**)(struct power_supply *psy , enum power_supply_property psp , union power_supply_propval *val ))((void *)usb + 48)) = & wm831x_usb_get_prop;
+  __cil_tmp118 = (struct device *)((void *)pdev + 16);
   ret = power_supply_register(__cil_tmp118, usb);
   }
   if (ret) {
@@ -2628,39 +2361,23 @@ static int wm831x_power_probe(struct platform_device *pdev )
     goto err_wall;
   } else {
   }
-  __cil_tmp119 = (unsigned long )power;
-  __cil_tmp120 = __cil_tmp119 + 716;
   __cil_tmp121 = ret & 32768;
-  *((bool *)__cil_tmp120) = (bool )__cil_tmp121;
+  *((bool *)((void *)power + 716)) = (bool )__cil_tmp121;
   {
-  __cil_tmp122 = (unsigned long )power;
-  __cil_tmp123 = __cil_tmp122 + 716;
-  if (*((bool *)__cil_tmp123)) {
+  if (*((bool *)((void *)power + 716))) {
     {
     __cil_tmp124 = 0 * 1UL;
     __cil_tmp125 = 696 + __cil_tmp124;
-    __cil_tmp126 = (unsigned long )power;
-    __cil_tmp127 = __cil_tmp126 + __cil_tmp125;
-    __cil_tmp128 = (char *)__cil_tmp127;
+    __cil_tmp128 = (char *)((void *)power + __cil_tmp125);
     *((char const **)battery) = (char const *)__cil_tmp128;
-    __cil_tmp129 = (unsigned long )battery;
-    __cil_tmp130 = __cil_tmp129 + 16;
     __cil_tmp131 = 0 * 4UL;
     __cil_tmp132 = (unsigned long )(wm831x_bat_props) + __cil_tmp131;
-    *((enum power_supply_property **)__cil_tmp130) = (enum power_supply_property *)__cil_tmp132;
-    __cil_tmp133 = (unsigned long )battery;
-    __cil_tmp134 = __cil_tmp133 + 24;
+    *((enum power_supply_property **)((void *)battery + 16)) = (enum power_supply_property *)__cil_tmp132;
     __cil_tmp135 = 20UL / 4UL;
-    *((size_t *)__cil_tmp134) = __cil_tmp135 + 0UL;
-    __cil_tmp136 = (unsigned long )battery;
-    __cil_tmp137 = __cil_tmp136 + 48;
-    *((int (**)(struct power_supply *psy , enum power_supply_property psp , union power_supply_propval *val ))__cil_tmp137) = & wm831x_bat_get_prop;
-    __cil_tmp138 = (unsigned long )battery;
-    __cil_tmp139 = __cil_tmp138 + 88;
-    *((int *)__cil_tmp139) = 1;
-    __cil_tmp140 = (unsigned long )pdev;
-    __cil_tmp141 = __cil_tmp140 + 16;
-    __cil_tmp142 = (struct device *)__cil_tmp141;
+    *((size_t *)((void *)battery + 24)) = __cil_tmp135 + 0UL;
+    *((int (**)(struct power_supply *psy , enum power_supply_property psp , union power_supply_propval *val ))((void *)battery + 48)) = & wm831x_bat_get_prop;
+    *((int *)((void *)battery + 88)) = 1;
+    __cil_tmp142 = (struct device *)((void *)pdev + 16);
     ret = power_supply_register(__cil_tmp142, battery);
     }
     if (ret) {
@@ -2681,9 +2398,7 @@ static int wm831x_power_probe(struct platform_device *pdev )
   }
   if (ret != 0) {
     {
-    __cil_tmp147 = (unsigned long )pdev;
-    __cil_tmp148 = __cil_tmp147 + 16;
-    __cil_tmp149 = (struct device *)__cil_tmp148;
+    __cil_tmp149 = (struct device *)((void *)pdev + 16);
     __cil_tmp150 = (struct device const *)__cil_tmp149;
     dev_err(__cil_tmp150, "Failed to request SYSLO IRQ %d: %d\n", irq, ret);
     }
@@ -2701,9 +2416,7 @@ static int wm831x_power_probe(struct platform_device *pdev )
   }
   if (ret != 0) {
     {
-    __cil_tmp155 = (unsigned long )pdev;
-    __cil_tmp156 = __cil_tmp155 + 16;
-    __cil_tmp157 = (struct device *)__cil_tmp156;
+    __cil_tmp157 = (struct device *)((void *)pdev + 16);
     __cil_tmp158 = (struct device const *)__cil_tmp157;
     dev_err(__cil_tmp158, "Failed to request PWR SRC IRQ %d: %d\n", irq, ret);
     }
@@ -2740,9 +2453,7 @@ static int wm831x_power_probe(struct platform_device *pdev )
     }
     if (ret != 0) {
       {
-      __cil_tmp172 = (unsigned long )pdev;
-      __cil_tmp173 = __cil_tmp172 + 16;
-      __cil_tmp174 = (struct device *)__cil_tmp173;
+      __cil_tmp174 = (struct device *)((void *)pdev + 16);
       __cil_tmp175 = (struct device const *)__cil_tmp174;
       __cil_tmp176 = i * 8UL;
       __cil_tmp177 = (unsigned long )(wm831x_bat_irqs) + __cil_tmp176;
@@ -2794,9 +2505,7 @@ static int wm831x_power_probe(struct platform_device *pdev )
   }
   err_battery:
   {
-  __cil_tmp188 = (unsigned long )power;
-  __cil_tmp189 = __cil_tmp188 + 716;
-  if (*((bool *)__cil_tmp189)) {
+  if (*((bool *)((void *)power + 716))) {
     {
     power_supply_unregister(battery);
     }
@@ -2839,16 +2548,8 @@ static int wm831x_power_remove(struct platform_device *pdev )
   void *__cil_tmp16 ;
   unsigned int __cil_tmp17 ;
   void *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct power_supply *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct power_supply *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct power_supply *__cil_tmp29 ;
   void const *__cil_tmp30 ;
   {
@@ -2894,26 +2595,18 @@ static int wm831x_power_remove(struct platform_device *pdev )
   free_irq(__cil_tmp17, __cil_tmp18);
   }
   {
-  __cil_tmp19 = (unsigned long )wm831x_power;
-  __cil_tmp20 = __cil_tmp19 + 716;
-  if (*((bool *)__cil_tmp20)) {
+  if (*((bool *)((void *)wm831x_power + 716))) {
     {
-    __cil_tmp21 = (unsigned long )wm831x_power;
-    __cil_tmp22 = __cil_tmp21 + 440;
-    __cil_tmp23 = (struct power_supply *)__cil_tmp22;
+    __cil_tmp23 = (struct power_supply *)((void *)wm831x_power + 440);
     power_supply_unregister(__cil_tmp23);
     }
   } else {
   }
   }
   {
-  __cil_tmp24 = (unsigned long )wm831x_power;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  __cil_tmp26 = (struct power_supply *)__cil_tmp25;
+  __cil_tmp26 = (struct power_supply *)((void *)wm831x_power + 8);
   power_supply_unregister(__cil_tmp26);
-  __cil_tmp27 = (unsigned long )wm831x_power;
-  __cil_tmp28 = __cil_tmp27 + 224;
-  __cil_tmp29 = (struct power_supply *)__cil_tmp28;
+  __cil_tmp29 = (struct power_supply *)((void *)wm831x_power + 224);
   power_supply_unregister(__cil_tmp29);
   __cil_tmp30 = (void const *)wm831x_power;
   kfree(__cil_tmp30);

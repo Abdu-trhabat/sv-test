@@ -2544,13 +2544,10 @@ int ldv_spin_trylock(void) ;
 extern int printk(char const * , ...) ;
 extern int sprintf(char * , char const * , ...) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -2607,23 +2604,17 @@ extern acpi_status acpi_get_table(acpi_string , u32 , struct acpi_table_header *
 extern void apei_exec_ctx_init(struct apei_exec_context * , struct apei_exec_ins_type * ,
                                u32 , struct acpi_whea_header * , u32 ) ;
 __inline static void apei_exec_ctx_set_input(struct apei_exec_context *ctx , u64 input )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   {
-  __cil_tmp3 = (unsigned long )ctx;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  *((u64 *)__cil_tmp4) = input;
+  *((u64 *)((void *)ctx + 8)) = input;
   return;
 }
 }
 __inline static u64 apei_exec_ctx_get_output(struct apei_exec_context *ctx )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   {
-  __cil_tmp2 = (unsigned long )ctx;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  return (*((u64 *)__cil_tmp3));
+  return (*((u64 *)((void *)ctx + 8)));
   }
 }
 }
@@ -2667,16 +2658,12 @@ extern int apei_exec_pre_map_gars(struct apei_exec_context * ) ;
 extern int apei_exec_post_unmap_gars(struct apei_exec_context * ) ;
 __inline static void apei_resources_init(struct apei_resources *resources )
 { struct list_head *__cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct list_head *__cil_tmp5 ;
   {
   {
   __cil_tmp2 = (struct list_head *)resources;
   INIT_LIST_HEAD(__cil_tmp2);
-  __cil_tmp3 = (unsigned long )resources;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct list_head *)__cil_tmp4;
+  __cil_tmp5 = (struct list_head *)((void *)resources + 16);
   INIT_LIST_HEAD(__cil_tmp5);
   }
   return;
@@ -2721,8 +2708,6 @@ static void einj_exec_ctx_init(struct apei_exec_context *ctx )
   struct acpi_whea_header *__cil_tmp6 ;
   struct acpi_table_einj **__cil_tmp7 ;
   struct acpi_table_einj *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u32 __cil_tmp11 ;
   {
   {
@@ -2733,9 +2718,7 @@ static void einj_exec_ctx_init(struct apei_exec_context *ctx )
   __cil_tmp6 = __cil_tmp5 + 48U;
   __cil_tmp7 = & einj_tab;
   __cil_tmp8 = *__cil_tmp7;
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 44;
-  __cil_tmp11 = *((u32 *)__cil_tmp10);
+  __cil_tmp11 = *((u32 *)((void *)__cil_tmp8 + 44));
   apei_exec_ctx_init(ctx, __cil_tmp2, 5U, __cil_tmp6, __cil_tmp11);
   }
   return;
@@ -2804,16 +2787,12 @@ static void check_vendor_extension(u64 paddr , struct set_error_type_with_addres
   struct vendor_error_type_extension *v ;
   u32 sbdf ;
   void *tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   u32 __cil_tmp9 ;
   u64 __cil_tmp10 ;
   u64 __cil_tmp11 ;
   struct vendor_error_type_extension *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   char *__cil_tmp17 ;
   u32 __cil_tmp18 ;
   u32 __cil_tmp19 ;
@@ -2822,23 +2801,15 @@ static void check_vendor_extension(u64 paddr , struct set_error_type_with_addres
   unsigned int __cil_tmp22 ;
   u32 __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u16 __cil_tmp27 ;
   int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   u16 __cil_tmp31 ;
   int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   u8 __cil_tmp35 ;
   int __cil_tmp36 ;
   void *__cil_tmp37 ;
   {
-  __cil_tmp7 = (unsigned long )v5param;
-  __cil_tmp8 = __cil_tmp7 + 4;
-  __cil_tmp9 = *((u32 *)__cil_tmp8);
+  __cil_tmp9 = *((u32 *)((void *)v5param + 4));
   offset = (int )__cil_tmp9;
   if (offset == 0) {
     return;
@@ -2860,9 +2831,7 @@ static void check_vendor_extension(u64 paddr , struct set_error_type_with_addres
   }
   }
   {
-  __cil_tmp15 = (unsigned long )v;
-  __cil_tmp16 = __cil_tmp15 + 4;
-  sbdf = *((u32 *)__cil_tmp16);
+  sbdf = *((u32 *)((void *)v + 4));
   __cil_tmp17 = (char *)(& vendor_dev);
   __cil_tmp18 = sbdf >> 24;
   __cil_tmp19 = sbdf >> 16;
@@ -2871,17 +2840,11 @@ static void check_vendor_extension(u64 paddr , struct set_error_type_with_addres
   __cil_tmp22 = __cil_tmp21 & 31U;
   __cil_tmp23 = sbdf >> 8;
   __cil_tmp24 = __cil_tmp23 & 7U;
-  __cil_tmp25 = (unsigned long )v;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  __cil_tmp27 = *((u16 *)__cil_tmp26);
+  __cil_tmp27 = *((u16 *)((void *)v + 8));
   __cil_tmp28 = (int )__cil_tmp27;
-  __cil_tmp29 = (unsigned long )v;
-  __cil_tmp30 = __cil_tmp29 + 10;
-  __cil_tmp31 = *((u16 *)__cil_tmp30);
+  __cil_tmp31 = *((u16 *)((void *)v + 10));
   __cil_tmp32 = (int )__cil_tmp31;
-  __cil_tmp33 = (unsigned long )v;
-  __cil_tmp34 = __cil_tmp33 + 12;
-  __cil_tmp35 = *((u8 *)__cil_tmp34);
+  __cil_tmp35 = *((u8 *)((void *)v + 12));
   __cil_tmp36 = (int )__cil_tmp35;
   sprintf(__cil_tmp17, "%x:%x:%x.%x vendor_id=%x device_id=%x rev_id=%x\n", __cil_tmp18,
           __cil_tmp20, __cil_tmp22, __cil_tmp24, __cil_tmp28, __cil_tmp32, __cil_tmp36);
@@ -2911,52 +2874,34 @@ static void *einj_get_parameter_address(void)
   struct acpi_whea_header *__cil_tmp17 ;
   u8 __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u8 __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   u8 __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   void *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   u64 *__cil_tmp32 ;
   void const *__cil_tmp33 ;
   void *__cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   u64 *__cil_tmp38 ;
   void const *__cil_tmp39 ;
   u8 __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   u8 __cil_tmp44 ;
   unsigned int __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   u8 __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
   void *__cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   u64 *__cil_tmp54 ;
   void const *__cil_tmp55 ;
   void *__cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   u64 *__cil_tmp60 ;
   void const *__cil_tmp61 ;
   struct acpi_table_einj **__cil_tmp62 ;
   struct acpi_table_einj *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   u32 __cil_tmp66 ;
   u32 __cil_tmp67 ;
   u64 *__cil_tmp68 ;
@@ -2977,12 +2922,8 @@ static void *einj_get_parameter_address(void)
   struct einj_parameter *__cil_tmp83 ;
   unsigned long __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   u64 __cil_tmp88 ;
   void *__cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   u64 __cil_tmp92 ;
   void *__cil_tmp93 ;
   {
@@ -3002,15 +2943,11 @@ static void *einj_get_parameter_address(void)
   __cil_tmp19 = (unsigned int )__cil_tmp18;
   if (__cil_tmp19 == 2U) {
     {
-    __cil_tmp20 = (unsigned long )entry;
-    __cil_tmp21 = __cil_tmp20 + 1;
-    __cil_tmp22 = *((u8 *)__cil_tmp21);
+    __cil_tmp22 = *((u8 *)((void *)entry + 1));
     __cil_tmp23 = (unsigned int )__cil_tmp22;
     if (__cil_tmp23 == 2U) {
       {
-      __cil_tmp24 = (unsigned long )entry;
-      __cil_tmp25 = __cil_tmp24 + 8;
-      __cil_tmp26 = *((u8 *)__cil_tmp25);
+      __cil_tmp26 = *((u8 *)((void *)entry + 8));
       __cil_tmp27 = (unsigned int )__cil_tmp26;
       if (__cil_tmp27 == 0U) {
         __len = 8UL;
@@ -3018,9 +2955,7 @@ static void *einj_get_parameter_address(void)
           {
           __cil_tmp28 = (void *)(& paddrv4);
           __cil_tmp29 = 8 + 8;
-          __cil_tmp30 = (unsigned long )entry;
-          __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-          __cil_tmp32 = (u64 *)__cil_tmp31;
+          __cil_tmp32 = (u64 *)((void *)entry + __cil_tmp29);
           __cil_tmp33 = (void const *)__cil_tmp32;
           __ret = memcpy(__cil_tmp28, __cil_tmp33, __len);
           }
@@ -3028,9 +2963,7 @@ static void *einj_get_parameter_address(void)
           {
           __cil_tmp34 = (void *)(& paddrv4);
           __cil_tmp35 = 8 + 8;
-          __cil_tmp36 = (unsigned long )entry;
-          __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-          __cil_tmp38 = (u64 *)__cil_tmp37;
+          __cil_tmp38 = (u64 *)((void *)entry + __cil_tmp35);
           __cil_tmp39 = (void const *)__cil_tmp38;
           __ret = memcpy(__cil_tmp34, __cil_tmp39, __len);
           }
@@ -3049,15 +2982,11 @@ static void *einj_get_parameter_address(void)
   __cil_tmp41 = (unsigned int )__cil_tmp40;
   if (__cil_tmp41 == 8U) {
     {
-    __cil_tmp42 = (unsigned long )entry;
-    __cil_tmp43 = __cil_tmp42 + 1;
-    __cil_tmp44 = *((u8 *)__cil_tmp43);
+    __cil_tmp44 = *((u8 *)((void *)entry + 1));
     __cil_tmp45 = (unsigned int )__cil_tmp44;
     if (__cil_tmp45 == 2U) {
       {
-      __cil_tmp46 = (unsigned long )entry;
-      __cil_tmp47 = __cil_tmp46 + 8;
-      __cil_tmp48 = *((u8 *)__cil_tmp47);
+      __cil_tmp48 = *((u8 *)((void *)entry + 8));
       __cil_tmp49 = (unsigned int )__cil_tmp48;
       if (__cil_tmp49 == 0U) {
         __len___0 = 8UL;
@@ -3065,9 +2994,7 @@ static void *einj_get_parameter_address(void)
           {
           __cil_tmp50 = (void *)(& paddrv5);
           __cil_tmp51 = 8 + 8;
-          __cil_tmp52 = (unsigned long )entry;
-          __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-          __cil_tmp54 = (u64 *)__cil_tmp53;
+          __cil_tmp54 = (u64 *)((void *)entry + __cil_tmp51);
           __cil_tmp55 = (void const *)__cil_tmp54;
           __ret___0 = memcpy(__cil_tmp50, __cil_tmp55, __len___0);
           }
@@ -3075,9 +3002,7 @@ static void *einj_get_parameter_address(void)
           {
           __cil_tmp56 = (void *)(& paddrv5);
           __cil_tmp57 = 8 + 8;
-          __cil_tmp58 = (unsigned long )entry;
-          __cil_tmp59 = __cil_tmp58 + __cil_tmp57;
-          __cil_tmp60 = (u64 *)__cil_tmp59;
+          __cil_tmp60 = (u64 *)((void *)entry + __cil_tmp57);
           __cil_tmp61 = (void const *)__cil_tmp60;
           __ret___0 = memcpy(__cil_tmp56, __cil_tmp61, __len___0);
           }
@@ -3097,9 +3022,7 @@ static void *einj_get_parameter_address(void)
   {
   __cil_tmp62 = & einj_tab;
   __cil_tmp63 = *__cil_tmp62;
-  __cil_tmp64 = (unsigned long )__cil_tmp63;
-  __cil_tmp65 = __cil_tmp64 + 44;
-  __cil_tmp66 = *((u32 *)__cil_tmp65);
+  __cil_tmp66 = *((u32 *)((void *)__cil_tmp63 + 44));
   __cil_tmp67 = (u32 )i;
   if (__cil_tmp67 < __cil_tmp66) {
     goto ldv_23506;
@@ -3160,9 +3083,7 @@ static void *einj_get_parameter_address(void)
       }
       }
       {
-      __cil_tmp86 = (unsigned long )v4param;
-      __cil_tmp87 = __cil_tmp86 + 8;
-      __cil_tmp88 = *((u64 *)__cil_tmp87);
+      __cil_tmp88 = *((u64 *)((void *)v4param + 8));
       if (__cil_tmp88 != 0ULL) {
         {
         __cil_tmp89 = (void *)v4param;
@@ -3171,9 +3092,7 @@ static void *einj_get_parameter_address(void)
         return ((void *)0);
       } else {
         {
-        __cil_tmp90 = (unsigned long )v4param;
-        __cil_tmp91 = __cil_tmp90 + 16;
-        __cil_tmp92 = *((u64 *)__cil_tmp91);
+        __cil_tmp92 = *((u64 *)((void *)v4param + 16));
         if (__cil_tmp92 != 0ULL) {
           {
           __cil_tmp93 = (void *)v4param;
@@ -3197,21 +3116,13 @@ static void *einj_get_parameter_address(void)
 }
 static int einj_check_trigger_header(struct acpi_einj_trigger *trigger_tab )
 { u32 __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   u32 __cil_tmp5 ;
   u32 __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   u32 __cil_tmp9 ;
   u32 __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u32 __cil_tmp13 ;
   u32 __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u32 __cil_tmp18 ;
   {
   {
@@ -3222,17 +3133,13 @@ static int einj_check_trigger_header(struct acpi_einj_trigger *trigger_tab )
   }
   }
   {
-  __cil_tmp3 = (unsigned long )trigger_tab;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((u32 *)__cil_tmp4);
+  __cil_tmp5 = *((u32 *)((void *)trigger_tab + 8));
   if (__cil_tmp5 > 4096U) {
     return (-22);
   } else {
     {
     __cil_tmp6 = *((u32 *)trigger_tab);
-    __cil_tmp7 = (unsigned long )trigger_tab;
-    __cil_tmp8 = __cil_tmp7 + 8;
-    __cil_tmp9 = *((u32 *)__cil_tmp8);
+    __cil_tmp9 = *((u32 *)((void *)trigger_tab + 8));
     if (__cil_tmp9 < __cil_tmp6) {
       return (-22);
     } else {
@@ -3242,14 +3149,10 @@ static int einj_check_trigger_header(struct acpi_einj_trigger *trigger_tab )
   }
   {
   __cil_tmp10 = *((u32 *)trigger_tab);
-  __cil_tmp11 = (unsigned long )trigger_tab;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((u32 *)__cil_tmp12);
+  __cil_tmp13 = *((u32 *)((void *)trigger_tab + 8));
   __cil_tmp14 = __cil_tmp13 - __cil_tmp10;
   __cil_tmp15 = __cil_tmp14 / 32U;
-  __cil_tmp16 = (unsigned long )trigger_tab;
-  __cil_tmp17 = __cil_tmp16 + 12;
-  __cil_tmp18 = *((u32 *)__cil_tmp17);
+  __cil_tmp18 = *((u32 *)((void *)trigger_tab + 12));
   if (__cil_tmp18 != __cil_tmp15) {
     return (-22);
   } else {
@@ -3266,24 +3169,14 @@ static struct acpi_generic_address *einj_get_trigger_parameter_region(struct acp
   struct acpi_whea_header *__cil_tmp6 ;
   u8 __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u8 __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   u8 __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u64 __cil_tmp20 ;
   unsigned long long __cil_tmp21 ;
   unsigned long long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u32 __cil_tmp27 ;
   u32 __cil_tmp28 ;
   {
@@ -3297,29 +3190,21 @@ static struct acpi_generic_address *einj_get_trigger_parameter_region(struct acp
   __cil_tmp8 = (unsigned int )__cil_tmp7;
   if (__cil_tmp8 == 255U) {
     {
-    __cil_tmp9 = (unsigned long )entry;
-    __cil_tmp10 = __cil_tmp9 + 1;
-    __cil_tmp11 = *((u8 *)__cil_tmp10);
+    __cil_tmp11 = *((u8 *)((void *)entry + 1));
     __cil_tmp12 = (unsigned int )__cil_tmp11;
     if (__cil_tmp12 == 3U) {
       {
-      __cil_tmp13 = (unsigned long )entry;
-      __cil_tmp14 = __cil_tmp13 + 8;
-      __cil_tmp15 = *((u8 *)__cil_tmp14);
+      __cil_tmp15 = *((u8 *)((void *)entry + 8));
       __cil_tmp16 = (unsigned int )__cil_tmp15;
       if (__cil_tmp16 == 0U) {
         {
         __cil_tmp17 = 8 + 8;
-        __cil_tmp18 = (unsigned long )entry;
-        __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-        __cil_tmp20 = *((u64 *)__cil_tmp19);
+        __cil_tmp20 = *((u64 *)((void *)entry + __cil_tmp17));
         __cil_tmp21 = __cil_tmp20 ^ param1;
         __cil_tmp22 = __cil_tmp21 & param2;
         if (__cil_tmp22 == 0ULL) {
           {
-          __cil_tmp23 = (unsigned long )entry;
-          __cil_tmp24 = __cil_tmp23 + 8;
-          return ((struct acpi_generic_address *)__cil_tmp24);
+          return ((struct acpi_generic_address *)((void *)entry + 8));
           }
         } else {
         }
@@ -3337,9 +3222,7 @@ static struct acpi_generic_address *einj_get_trigger_parameter_region(struct acp
   i = i + 1;
   ldv_23522: ;
   {
-  __cil_tmp25 = (unsigned long )trigger_tab;
-  __cil_tmp26 = __cil_tmp25 + 12;
-  __cil_tmp27 = *((u32 *)__cil_tmp26);
+  __cil_tmp27 = *((u32 *)((void *)trigger_tab + 12));
   __cil_tmp28 = (u32 )i;
   if (__cil_tmp28 < __cil_tmp27) {
     goto ldv_23521;
@@ -3370,11 +3253,7 @@ static int __einj_error_trigger(u64 trigger_paddr , u32 type , u64 param1 , u64 
   struct acpi_einj_trigger *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   u32 __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
@@ -3393,8 +3272,6 @@ static int __einj_error_trigger(u64 trigger_paddr , u32 type , u64 param1 , u64 
   unsigned long __cil_tmp43 ;
   struct acpi_whea_header *__cil_tmp44 ;
   struct apei_exec_ins_type *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   u32 __cil_tmp48 ;
   bool *__cil_tmp49 ;
   bool __cil_tmp50 ;
@@ -3402,12 +3279,8 @@ static int __einj_error_trigger(u64 trigger_paddr , u32 type , u64 param1 , u64 
   struct acpi_generic_address *__cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   u64 __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   u8 __cil_tmp61 ;
   unsigned int __cil_tmp62 ;
   unsigned int __cil_tmp63 ;
@@ -3471,9 +3344,7 @@ static int __einj_error_trigger(u64 trigger_paddr , u32 type , u64 param1 , u64 
   } else {
   }
   {
-  __cil_tmp23 = (unsigned long )trigger_tab;
-  __cil_tmp24 = __cil_tmp23 + 12;
-  __cil_tmp25 = *((u32 *)__cil_tmp24);
+  __cil_tmp25 = *((u32 *)((void *)trigger_tab + 12));
   if (__cil_tmp25 == 0U) {
     goto out_rel_header;
   } else {
@@ -3481,9 +3352,7 @@ static int __einj_error_trigger(u64 trigger_paddr , u32 type , u64 param1 , u64 
   }
   {
   rc = -5;
-  __cil_tmp26 = (unsigned long )trigger_tab;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  table_size = *((u32 *)__cil_tmp27);
+  table_size = *((u32 *)((void *)trigger_tab + 8));
   __cil_tmp28 = trigger_paddr + 16ULL;
   __cil_tmp29 = (unsigned long )table_size;
   __cil_tmp30 = __cil_tmp29 - 16UL;
@@ -3532,9 +3401,7 @@ static int __einj_error_trigger(u64 trigger_paddr , u32 type , u64 param1 , u64 
   trigger_entry = __cil_tmp44 + 16U;
   apei_resources_init(& trigger_resources);
   __cil_tmp45 = (struct apei_exec_ins_type *)(& einj_ins_type);
-  __cil_tmp46 = (unsigned long )trigger_tab;
-  __cil_tmp47 = __cil_tmp46 + 12;
-  __cil_tmp48 = *((u32 *)__cil_tmp47);
+  __cil_tmp48 = *((u32 *)((void *)trigger_tab + 12));
   apei_exec_ctx_init(& trigger_ctx, __cil_tmp45, 5U, trigger_entry, __cil_tmp48);
   rc = apei_exec_collect_resources(& trigger_ctx, & trigger_resources);
   }
@@ -3568,13 +3435,9 @@ static int __einj_error_trigger(u64 trigger_paddr , u32 type , u64 param1 , u64 
         __cil_tmp54 = (unsigned long )trigger_param_region;
         if (__cil_tmp54 != __cil_tmp53) {
           {
-          __cil_tmp55 = (unsigned long )trigger_param_region;
-          __cil_tmp56 = __cil_tmp55 + 8;
-          __cil_tmp57 = *((u64 *)__cil_tmp56);
+          __cil_tmp57 = *((u64 *)((void *)trigger_param_region + 8));
           __cil_tmp58 = (unsigned long )__cil_tmp57;
-          __cil_tmp59 = (unsigned long )trigger_param_region;
-          __cil_tmp60 = __cil_tmp59 + 1;
-          __cil_tmp61 = *((u8 *)__cil_tmp60);
+          __cil_tmp61 = *((u8 *)((void *)trigger_param_region + 1));
           __cil_tmp62 = (unsigned int )__cil_tmp61;
           __cil_tmp63 = __cil_tmp62 / 8U;
           __cil_tmp64 = (unsigned long )__cil_tmp63;
@@ -3676,39 +3539,11 @@ static int __einj_error_inject(u32 type , u64 param1 , u64 param2 )
   int __cil_tmp15 ;
   u32 *__cil_tmp16 ;
   u32 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   u32 *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   u8 __cil_tmp43 ;
   void *__cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   u8 __cil_tmp51 ;
   u8 __cil_tmp52 ;
   unsigned long long __cil_tmp53 ;
@@ -3753,32 +3588,22 @@ static int __einj_error_inject(u32 type , u64 param1 , u64 param2 )
       } else
       if (0) {
         case_1:
-        __cil_tmp18 = (unsigned long )v5param;
-        __cil_tmp19 = __cil_tmp18 + 12;
-        *((u32 *)__cil_tmp19) = (u32 )param1;
+        *((u32 *)((void *)v5param + 12)) = (u32 )param1;
         goto ldv_23558;
         case_2:
-        __cil_tmp20 = (unsigned long )v5param;
-        __cil_tmp21 = __cil_tmp20 + 16;
-        *((u64 *)__cil_tmp21) = param1;
-        __cil_tmp22 = (unsigned long )v5param;
-        __cil_tmp23 = __cil_tmp22 + 24;
-        *((u64 *)__cil_tmp23) = param2;
+        *((u64 *)((void *)v5param + 16)) = param1;
+        *((u64 *)((void *)v5param + 24)) = param2;
         goto ldv_23558;
         case_4:
-        __cil_tmp24 = (unsigned long )v5param;
-        __cil_tmp25 = __cil_tmp24 + 32;
-        *((u32 *)__cil_tmp25) = (u32 )param1;
+        *((u32 *)((void *)v5param + 32)) = (u32 )param1;
         goto ldv_23558;
       } else {
         switch_break: ;
       }
       }
       ldv_23558:
-      __cil_tmp26 = (unsigned long )v5param;
-      __cil_tmp27 = __cil_tmp26 + 8;
       __cil_tmp28 = & vendor_flags;
-      *((u32 *)__cil_tmp27) = *__cil_tmp28;
+      *((u32 *)((void *)v5param + 8)) = *__cil_tmp28;
     } else {
       if ((int )type == 1) {
         goto case_1___0;
@@ -3811,35 +3636,21 @@ static int __einj_error_inject(u32 type , u64 param1 , u64 param2 )
         case_1___0: ;
         case_2___0: ;
         case_4___0:
-        __cil_tmp29 = (unsigned long )v5param;
-        __cil_tmp30 = __cil_tmp29 + 12;
-        *((u32 *)__cil_tmp30) = (u32 )param1;
-        __cil_tmp31 = (unsigned long )v5param;
-        __cil_tmp32 = __cil_tmp31 + 8;
-        *((u32 *)__cil_tmp32) = 1U;
+        *((u32 *)((void *)v5param + 12)) = (u32 )param1;
+        *((u32 *)((void *)v5param + 8)) = 1U;
         goto ldv_23564;
         case_8: ;
         case_16: ;
         case_32:
-        __cil_tmp33 = (unsigned long )v5param;
-        __cil_tmp34 = __cil_tmp33 + 16;
-        *((u64 *)__cil_tmp34) = param1;
-        __cil_tmp35 = (unsigned long )v5param;
-        __cil_tmp36 = __cil_tmp35 + 24;
-        *((u64 *)__cil_tmp36) = param2;
-        __cil_tmp37 = (unsigned long )v5param;
-        __cil_tmp38 = __cil_tmp37 + 8;
-        *((u32 *)__cil_tmp38) = 2U;
+        *((u64 *)((void *)v5param + 16)) = param1;
+        *((u64 *)((void *)v5param + 24)) = param2;
+        *((u32 *)((void *)v5param + 8)) = 2U;
         goto ldv_23564;
         case_64: ;
         case_128: ;
         case_256:
-        __cil_tmp39 = (unsigned long )v5param;
-        __cil_tmp40 = __cil_tmp39 + 32;
-        *((u32 *)__cil_tmp40) = (u32 )param1;
-        __cil_tmp41 = (unsigned long )v5param;
-        __cil_tmp42 = __cil_tmp41 + 8;
-        *((u32 *)__cil_tmp42) = 4U;
+        *((u32 *)((void *)v5param + 32)) = (u32 )param1;
+        *((u32 *)((void *)v5param + 8)) = 4U;
         goto ldv_23564;
       } else {
         switch_break___0: ;
@@ -3862,12 +3673,8 @@ static int __einj_error_inject(u32 type , u64 param1 , u64 param2 )
     __cil_tmp46 = (unsigned long )einj_param;
     if (__cil_tmp46 != __cil_tmp45) {
       v4param = (struct einj_parameter *)einj_param;
-      __cil_tmp47 = (unsigned long )v4param;
-      __cil_tmp48 = __cil_tmp47 + 24;
-      *((u64 *)__cil_tmp48) = param1;
-      __cil_tmp49 = (unsigned long )v4param;
-      __cil_tmp50 = __cil_tmp49 + 32;
-      *((u64 *)__cil_tmp50) = param2;
+      *((u64 *)((void *)v4param + 24)) = param1;
+      *((u64 *)((void *)v4param + 32)) = param2;
     } else {
     }
     }
@@ -4358,37 +4165,24 @@ static struct file_operations const error_inject_fops =
                                                                         int , loff_t ,
                                                                         loff_t ))0};
 static int einj_check_table(struct acpi_table_einj *einj_tab___0 )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   u32 __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   u32 __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u32 __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   u32 __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   u32 __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   {
   {
-  __cil_tmp2 = (unsigned long )einj_tab___0;
-  __cil_tmp3 = __cil_tmp2 + 36;
-  __cil_tmp4 = *((u32 *)__cil_tmp3);
+  __cil_tmp4 = *((u32 *)((void *)einj_tab___0 + 36));
   if (__cil_tmp4 != 12U) {
     {
-    __cil_tmp5 = (unsigned long )einj_tab___0;
-    __cil_tmp6 = __cil_tmp5 + 36;
-    __cil_tmp7 = *((u32 *)__cil_tmp6);
+    __cil_tmp7 = *((u32 *)((void *)einj_tab___0 + 36));
     if (__cil_tmp7 != 48U) {
       return (-22);
     } else {
@@ -4399,9 +4193,7 @@ static int einj_check_table(struct acpi_table_einj *einj_tab___0 )
   }
   {
   __cil_tmp8 = 0 + 4;
-  __cil_tmp9 = (unsigned long )einj_tab___0;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = *((u32 *)__cil_tmp10);
+  __cil_tmp11 = *((u32 *)((void *)einj_tab___0 + __cil_tmp8));
   if (__cil_tmp11 <= 47U) {
     return (-22);
   } else {
@@ -4409,15 +4201,11 @@ static int einj_check_table(struct acpi_table_einj *einj_tab___0 )
   }
   {
   __cil_tmp12 = 0 + 4;
-  __cil_tmp13 = (unsigned long )einj_tab___0;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((u32 *)__cil_tmp14);
+  __cil_tmp15 = *((u32 *)((void *)einj_tab___0 + __cil_tmp12));
   __cil_tmp16 = (unsigned long )__cil_tmp15;
   __cil_tmp17 = __cil_tmp16 - 48UL;
   __cil_tmp18 = __cil_tmp17 / 32UL;
-  __cil_tmp19 = (unsigned long )einj_tab___0;
-  __cil_tmp20 = __cil_tmp19 + 44;
-  __cil_tmp21 = *((u32 *)__cil_tmp20);
+  __cil_tmp21 = *((u32 *)((void *)einj_tab___0 + 44));
   __cil_tmp22 = (unsigned long )__cil_tmp21;
   if (__cil_tmp22 != __cil_tmp18) {
     return (-22);
@@ -4481,7 +4269,6 @@ static int einj_init(void)
   signed char __cil_tmp51 ;
   int __cil_tmp52 ;
   struct debugfs_blob_wrapper *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   char const *__cil_tmp55 ;
   umode_t __cil_tmp56 ;
   struct dentry *__cil_tmp57 ;
@@ -4681,9 +4468,8 @@ static int einj_init(void)
     {
     __cil_tmp53 = & vendor_blob;
     *((void **)__cil_tmp53) = (void *)(& vendor_dev);
-    __cil_tmp54 = (unsigned long )(& vendor_blob) + 8;
     __cil_tmp55 = (char const *)(& vendor_dev);
-    *((unsigned long *)__cil_tmp54) = strlen(__cil_tmp55);
+    *((unsigned long *)((void *)(&vendor_blob) + 8)) = strlen(__cil_tmp55);
     __cil_tmp56 = (umode_t )256;
     fentry = debugfs_create_blob("vendor", __cil_tmp56, einj_debug_dir, & vendor_blob);
     }

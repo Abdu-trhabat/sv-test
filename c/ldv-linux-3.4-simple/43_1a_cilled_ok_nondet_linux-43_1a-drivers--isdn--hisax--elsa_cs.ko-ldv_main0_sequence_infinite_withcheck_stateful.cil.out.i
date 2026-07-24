@@ -2374,51 +2374,31 @@ static int elsa_cs_probe(struct pcmcia_device *link )
   void *tmp___0 ;
   int tmp___1 ;
   struct _ddebug *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned char __cil_tmp14 ;
   long __cil_tmp15 ;
   long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   struct device const *__cil_tmp20 ;
   local_info_t *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   {
   {
   __cil_tmp7 = & descriptor;
   *((char const **)__cil_tmp7) = "elsa_cs";
-  __cil_tmp8 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp8) = "elsa_cs_probe";
-  __cil_tmp9 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp9) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4082/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/elsa_cs.c.p";
-  __cil_tmp10 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp10) = "elsa_cs_attach()\n";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp11) = 94U;
-  __cil_tmp12 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp12) = (unsigned char)0;
-  __cil_tmp13 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp14 = *((unsigned char *)__cil_tmp13);
+  *((char const **)((void *)(&descriptor) + 8)) = "elsa_cs_probe";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4082/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/elsa_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "elsa_cs_attach()\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 94U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp14 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp15 = (long )__cil_tmp14;
   __cil_tmp16 = __cil_tmp15 & 1L;
   tmp = __builtin_expect(__cil_tmp16, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp17 = (unsigned long )link;
-    __cil_tmp18 = __cil_tmp17 + 184;
-    __cil_tmp19 = (struct device *)__cil_tmp18;
+    __cil_tmp19 = (struct device *)((void *)link + 184);
     __cil_tmp20 = (struct device const *)__cil_tmp19;
     __dynamic_dev_dbg(& descriptor, __cil_tmp20, "elsa_cs_attach()\n");
     }
@@ -2439,12 +2419,8 @@ static int elsa_cs_probe(struct pcmcia_device *link )
   }
   {
   *((struct pcmcia_device **)local) = link;
-  __cil_tmp24 = (unsigned long )link;
-  __cil_tmp25 = __cil_tmp24 + 1336;
-  *((void **)__cil_tmp25) = (void *)local;
-  __cil_tmp26 = (unsigned long )local;
-  __cil_tmp27 = __cil_tmp26 + 12;
-  *((int *)__cil_tmp27) = -1;
+  *((void **)((void *)link + 1336)) = (void *)local;
+  *((int *)((void *)local + 12)) = -1;
   tmp___1 = elsa_cs_config(link);
   }
   return (tmp___1);
@@ -2454,64 +2430,40 @@ static void elsa_cs_detach(struct pcmcia_device *link )
 { local_info_t *info ;
   struct _ddebug descriptor ;
   long tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   struct _ddebug *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned char __cil_tmp15 ;
   long __cil_tmp16 ;
   long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device const *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   void const *__cil_tmp24 ;
   {
   {
-  __cil_tmp5 = (unsigned long )link;
-  __cil_tmp6 = __cil_tmp5 + 1336;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)link + 1336));
   info = (local_info_t *)__cil_tmp7;
   __cil_tmp8 = & descriptor;
   *((char const **)__cil_tmp8) = "elsa_cs";
-  __cil_tmp9 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp9) = "elsa_cs_detach";
-  __cil_tmp10 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp10) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4082/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/elsa_cs.c.p";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp11) = "elsa_cs_detach(0x%p)\n";
-  __cil_tmp12 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp12) = 112U;
-  __cil_tmp13 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp13) = (unsigned char)0;
-  __cil_tmp14 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp15 = *((unsigned char *)__cil_tmp14);
+  *((char const **)((void *)(&descriptor) + 8)) = "elsa_cs_detach";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4082/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/elsa_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "elsa_cs_detach(0x%p)\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 112U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp15 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp16 = (long )__cil_tmp15;
   __cil_tmp17 = __cil_tmp16 & 1L;
   tmp = __builtin_expect(__cil_tmp17, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp18 = (unsigned long )link;
-    __cil_tmp19 = __cil_tmp18 + 184;
-    __cil_tmp20 = (struct device *)__cil_tmp19;
+    __cil_tmp20 = (struct device *)((void *)link + 184);
     __cil_tmp21 = (struct device const *)__cil_tmp20;
     __dynamic_dev_dbg(& descriptor, __cil_tmp21, "elsa_cs_detach(0x%p)\n", link);
     }
   } else {
   }
   {
-  __cil_tmp22 = (unsigned long )info;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  *((int *)__cil_tmp23) = 1;
+  *((int *)((void *)info + 8)) = 1;
   elsa_cs_release(link);
   __cil_tmp24 = (void const *)info;
   kfree(__cil_tmp24);
@@ -2523,124 +2475,66 @@ static int elsa_cs_configcheck(struct pcmcia_device *p_dev , void *priv_data )
 { int j ;
   int tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct resource *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct resource *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct resource *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct resource *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct resource *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct resource *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   resource_size_t __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct resource *__cil_tmp57 ;
   resource_size_t __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   struct resource *__cil_tmp63 ;
   {
-  __cil_tmp6 = (unsigned long )p_dev;
-  __cil_tmp7 = __cil_tmp6 + 132;
-  *((unsigned int *)__cil_tmp7) = 3U;
+  *((unsigned int *)((void *)p_dev + 132)) = 3U;
   __cil_tmp8 = 0 * 8UL;
   __cil_tmp9 = 56 + __cil_tmp8;
-  __cil_tmp10 = (unsigned long )p_dev;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  __cil_tmp12 = *((struct resource **)__cil_tmp11);
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  *((resource_size_t *)__cil_tmp14) = 8ULL;
+  __cil_tmp12 = *((struct resource **)((void *)p_dev + __cil_tmp9));
+  *((resource_size_t *)((void *)__cil_tmp12 + 8)) = 8ULL;
   __cil_tmp15 = 0 * 8UL;
   __cil_tmp16 = 56 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )p_dev;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = *((struct resource **)__cil_tmp18);
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 24;
+  __cil_tmp19 = *((struct resource **)((void *)p_dev + __cil_tmp16));
   __cil_tmp22 = 0 * 8UL;
   __cil_tmp23 = 56 + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )p_dev;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  __cil_tmp26 = *((struct resource **)__cil_tmp25);
-  __cil_tmp27 = (unsigned long )__cil_tmp26;
-  __cil_tmp28 = __cil_tmp27 + 24;
-  __cil_tmp29 = *((unsigned long *)__cil_tmp28);
-  *((unsigned long *)__cil_tmp21) = __cil_tmp29 & 24UL;
+  __cil_tmp26 = *((struct resource **)((void *)p_dev + __cil_tmp23));
+  __cil_tmp29 = *((unsigned long *)((void *)__cil_tmp26 + 24));
+  *((unsigned long *)((void *)__cil_tmp19 + 24)) = __cil_tmp29 & 24UL;
   __cil_tmp30 = 0 * 8UL;
   __cil_tmp31 = 56 + __cil_tmp30;
-  __cil_tmp32 = (unsigned long )p_dev;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  __cil_tmp34 = *((struct resource **)__cil_tmp33);
-  __cil_tmp35 = (unsigned long )__cil_tmp34;
-  __cil_tmp36 = __cil_tmp35 + 24;
+  __cil_tmp34 = *((struct resource **)((void *)p_dev + __cil_tmp31));
   __cil_tmp37 = 0 * 8UL;
   __cil_tmp38 = 56 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )p_dev;
-  __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-  __cil_tmp41 = *((struct resource **)__cil_tmp40);
-  __cil_tmp42 = (unsigned long )__cil_tmp41;
-  __cil_tmp43 = __cil_tmp42 + 24;
-  __cil_tmp44 = *((unsigned long *)__cil_tmp43);
-  *((unsigned long *)__cil_tmp36) = __cil_tmp44 | 16UL;
+  __cil_tmp41 = *((struct resource **)((void *)p_dev + __cil_tmp38));
+  __cil_tmp44 = *((unsigned long *)((void *)__cil_tmp41 + 24));
+  *((unsigned long *)((void *)__cil_tmp34 + 24)) = __cil_tmp44 | 16UL;
   {
   __cil_tmp45 = 0 * 8UL;
   __cil_tmp46 = 56 + __cil_tmp45;
-  __cil_tmp47 = (unsigned long )p_dev;
-  __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-  __cil_tmp49 = *((struct resource **)__cil_tmp48);
-  __cil_tmp50 = (unsigned long )__cil_tmp49;
-  __cil_tmp51 = __cil_tmp50 + 8;
-  __cil_tmp52 = *((resource_size_t *)__cil_tmp51);
+  __cil_tmp49 = *((struct resource **)((void *)p_dev + __cil_tmp46));
+  __cil_tmp52 = *((resource_size_t *)((void *)__cil_tmp49 + 8));
   if (__cil_tmp52 != 0ULL) {
     {
     __cil_tmp53 = 0 * 8UL;
     __cil_tmp54 = 56 + __cil_tmp53;
-    __cil_tmp55 = (unsigned long )p_dev;
-    __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-    __cil_tmp57 = *((struct resource **)__cil_tmp56);
+    __cil_tmp57 = *((struct resource **)((void *)p_dev + __cil_tmp54));
     __cil_tmp58 = *((resource_size_t *)__cil_tmp57);
     if (__cil_tmp58 != 0ULL) {
       {
@@ -2666,9 +2560,7 @@ static int elsa_cs_configcheck(struct pcmcia_device *p_dev , void *priv_data )
     {
     __cil_tmp59 = 0 * 8UL;
     __cil_tmp60 = 56 + __cil_tmp59;
-    __cil_tmp61 = (unsigned long )p_dev;
-    __cil_tmp62 = __cil_tmp61 + __cil_tmp60;
-    __cil_tmp63 = *((struct resource **)__cil_tmp62);
+    __cil_tmp63 = *((struct resource **)((void *)p_dev + __cil_tmp60));
     *((resource_size_t *)__cil_tmp63) = (resource_size_t )j;
     tmp___0 = pcmcia_request_io(p_dev);
     }
@@ -2695,102 +2587,59 @@ static int elsa_cs_config(struct pcmcia_device *link )
   struct _ddebug descriptor ;
   long tmp ;
   struct _ddebug *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned char __cil_tmp13 ;
   long __cil_tmp14 ;
   long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device const *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
   void *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct resource *__cil_tmp42 ;
   resource_size_t __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   int *__cil_tmp45 ;
   IsdnCard_t *__cil_tmp46 ;
   void *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   void *__cil_tmp50 ;
   local_info_t *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   int *__cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct resource *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   void *__cil_tmp62 ;
   local_info_t *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   {
   {
   __cil_tmp6 = & descriptor;
   *((char const **)__cil_tmp6) = "elsa_cs";
-  __cil_tmp7 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp7) = "elsa_cs_config";
-  __cil_tmp8 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp8) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4082/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/elsa_cs.c.p";
-  __cil_tmp9 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp9) = "elsa_config(0x%p)\n";
-  __cil_tmp10 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp10) = 149U;
-  __cil_tmp11 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp11) = (unsigned char)0;
-  __cil_tmp12 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp13 = *((unsigned char *)__cil_tmp12);
+  *((char const **)((void *)(&descriptor) + 8)) = "elsa_cs_config";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4082/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/elsa_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "elsa_config(0x%p)\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 149U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp13 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp14 = (long )__cil_tmp13;
   __cil_tmp15 = __cil_tmp14 & 1L;
   tmp = __builtin_expect(__cil_tmp15, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp16 = (unsigned long )link;
-    __cil_tmp17 = __cil_tmp16 + 184;
-    __cil_tmp18 = (struct device *)__cil_tmp17;
+    __cil_tmp18 = (struct device *)((void *)link + 184);
     __cil_tmp19 = (struct device const *)__cil_tmp18;
     __dynamic_dev_dbg(& descriptor, __cil_tmp19, "elsa_config(0x%p)\n", link);
     }
   } else {
   }
   {
-  __cil_tmp20 = (unsigned long )link;
-  __cil_tmp21 = __cil_tmp20 + 116;
-  __cil_tmp22 = (unsigned long )link;
-  __cil_tmp23 = __cil_tmp22 + 116;
-  __cil_tmp24 = *((unsigned int *)__cil_tmp23);
-  *((unsigned int *)__cil_tmp21) = __cil_tmp24 | 2049U;
+  __cil_tmp24 = *((unsigned int *)((void *)link + 116));
+  *((unsigned int *)((void *)link + 116)) = __cil_tmp24 | 2049U;
   __cil_tmp25 = (void *)0;
   i = pcmcia_loop_config(link, & elsa_cs_configcheck, __cil_tmp25);
   }
@@ -2799,9 +2648,7 @@ static int elsa_cs_config(struct pcmcia_device *link )
   } else {
   }
   {
-  __cil_tmp26 = (unsigned long )link;
-  __cil_tmp27 = __cil_tmp26 + 48;
-  __cil_tmp28 = *((unsigned int *)__cil_tmp27);
+  __cil_tmp28 = *((unsigned int *)((void *)link + 48));
   if (__cil_tmp28 == 0U) {
     goto failed;
   } else {
@@ -2817,54 +2664,37 @@ static int elsa_cs_config(struct pcmcia_device *link )
   {
   __cil_tmp29 = 0 * 8UL;
   __cil_tmp30 = 8 + __cil_tmp29;
-  __cil_tmp31 = (unsigned long )(& icard) + __cil_tmp30;
-  __cil_tmp32 = (unsigned long )link;
-  __cil_tmp33 = __cil_tmp32 + 48;
-  __cil_tmp34 = *((unsigned int *)__cil_tmp33);
-  *((unsigned long *)__cil_tmp31) = (unsigned long )__cil_tmp34;
+  __cil_tmp34 = *((unsigned int *)((void *)link + 48));
+  *((unsigned long *)((void *)(&icard) + __cil_tmp30)) = (unsigned long )__cil_tmp34;
   __cil_tmp35 = 1 * 8UL;
   __cil_tmp36 = 8 + __cil_tmp35;
-  __cil_tmp37 = (unsigned long )(& icard) + __cil_tmp36;
   __cil_tmp38 = 0 * 8UL;
   __cil_tmp39 = 56 + __cil_tmp38;
-  __cil_tmp40 = (unsigned long )link;
-  __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-  __cil_tmp42 = *((struct resource **)__cil_tmp41);
+  __cil_tmp42 = *((struct resource **)((void *)link + __cil_tmp39));
   __cil_tmp43 = *((resource_size_t *)__cil_tmp42);
-  *((unsigned long *)__cil_tmp37) = (unsigned long )__cil_tmp43;
-  __cil_tmp44 = (unsigned long )(& icard) + 4;
+  *((unsigned long *)((void *)(&icard) + __cil_tmp36)) = (unsigned long )__cil_tmp43;
   __cil_tmp45 = & protocol;
-  *((int *)__cil_tmp44) = *__cil_tmp45;
+  *((int *)((void *)(&icard) + 4)) = *__cil_tmp45;
   __cil_tmp46 = & icard;
   *((int *)__cil_tmp46) = 10;
   __cil_tmp47 = (void *)link;
-  __cil_tmp48 = (unsigned long )link;
-  __cil_tmp49 = __cil_tmp48 + 1336;
-  __cil_tmp50 = *((void **)__cil_tmp49);
+  __cil_tmp50 = *((void **)((void *)link + 1336));
   __cil_tmp51 = (local_info_t *)__cil_tmp50;
-  __cil_tmp52 = (unsigned long )__cil_tmp51;
-  __cil_tmp53 = __cil_tmp52 + 8;
-  __cil_tmp54 = (int *)__cil_tmp53;
+  __cil_tmp54 = (int *)((void *)__cil_tmp51 + 8);
   i = hisax_init_pcmcia(__cil_tmp47, __cil_tmp54, & icard);
   }
   if (i < 0) {
     {
     __cil_tmp55 = 0 * 8UL;
     __cil_tmp56 = 56 + __cil_tmp55;
-    __cil_tmp57 = (unsigned long )link;
-    __cil_tmp58 = __cil_tmp57 + __cil_tmp56;
-    __cil_tmp59 = *((struct resource **)__cil_tmp58);
+    __cil_tmp59 = *((struct resource **)((void *)link + __cil_tmp56));
     printk("<3>elsa_cs: failed to initialize Elsa PCMCIA %d with %pR\n", i, __cil_tmp59);
     elsa_cs_release(link);
     }
   } else {
-    __cil_tmp60 = (unsigned long )link;
-    __cil_tmp61 = __cil_tmp60 + 1336;
-    __cil_tmp62 = *((void **)__cil_tmp61);
+    __cil_tmp62 = *((void **)((void *)link + 1336));
     __cil_tmp63 = (local_info_t *)__cil_tmp62;
-    __cil_tmp64 = (unsigned long )__cil_tmp63;
-    __cil_tmp65 = __cil_tmp64 + 12;
-    *((int *)__cil_tmp65) = i;
+    *((int *)((void *)__cil_tmp63 + 12)) = i;
   }
   return (0);
   failed:
@@ -2878,61 +2708,37 @@ static void elsa_cs_release(struct pcmcia_device *link )
 { local_info_t *local ;
   struct _ddebug descriptor ;
   long tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   struct _ddebug *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned char __cil_tmp15 ;
   long __cil_tmp16 ;
   long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device const *__cil_tmp21 ;
   local_info_t *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
   {
   {
-  __cil_tmp5 = (unsigned long )link;
-  __cil_tmp6 = __cil_tmp5 + 1336;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)link + 1336));
   local = (local_info_t *)__cil_tmp7;
   __cil_tmp8 = & descriptor;
   *((char const **)__cil_tmp8) = "elsa_cs";
-  __cil_tmp9 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp9) = "elsa_cs_release";
-  __cil_tmp10 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp10) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4082/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/elsa_cs.c.p";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp11) = "elsa_cs_release(0x%p)\n";
-  __cil_tmp12 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp12) = 187U;
-  __cil_tmp13 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp13) = (unsigned char)0;
-  __cil_tmp14 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp15 = *((unsigned char *)__cil_tmp14);
+  *((char const **)((void *)(&descriptor) + 8)) = "elsa_cs_release";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4082/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/elsa_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "elsa_cs_release(0x%p)\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 187U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp15 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp16 = (long )__cil_tmp15;
   __cil_tmp17 = __cil_tmp16 & 1L;
   tmp = __builtin_expect(__cil_tmp17, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp18 = (unsigned long )link;
-    __cil_tmp19 = __cil_tmp18 + 184;
-    __cil_tmp20 = (struct device *)__cil_tmp19;
+    __cil_tmp20 = (struct device *)((void *)link + 184);
     __cil_tmp21 = (struct device const *)__cil_tmp20;
     __dynamic_dev_dbg(& descriptor, __cil_tmp21, "elsa_cs_release(0x%p)\n", link);
     }
@@ -2944,14 +2750,10 @@ static void elsa_cs_release(struct pcmcia_device *link )
   __cil_tmp24 = (unsigned long )local;
   if (__cil_tmp24 != __cil_tmp23) {
     {
-    __cil_tmp25 = (unsigned long )local;
-    __cil_tmp26 = __cil_tmp25 + 12;
-    __cil_tmp27 = *((int *)__cil_tmp26);
+    __cil_tmp27 = *((int *)((void *)local + 12));
     if (__cil_tmp27 >= 0) {
       {
-      __cil_tmp28 = (unsigned long )local;
-      __cil_tmp29 = __cil_tmp28 + 12;
-      __cil_tmp30 = *((int *)__cil_tmp29);
+      __cil_tmp30 = *((int *)((void *)local + 12));
       HiSax_closecard(__cil_tmp30);
       }
     } else {
@@ -2968,37 +2770,21 @@ static void elsa_cs_release(struct pcmcia_device *link )
 }
 static int elsa_suspend(struct pcmcia_device *link )
 { local_info_t *dev ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   {
-  __cil_tmp3 = (unsigned long )link;
-  __cil_tmp4 = __cil_tmp3 + 1336;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)link + 1336));
   dev = (local_info_t *)__cil_tmp5;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  *((int *)__cil_tmp7) = 1;
+  *((int *)((void *)dev + 8)) = 1;
   return (0);
 }
 }
 static int elsa_resume(struct pcmcia_device *link )
 { local_info_t *dev ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   {
-  __cil_tmp3 = (unsigned long )link;
-  __cil_tmp4 = __cil_tmp3 + 1336;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)link + 1336));
   dev = (local_info_t *)__cil_tmp5;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  *((int *)__cil_tmp7) = 0;
+  *((int *)((void *)dev + 8)) = 0;
   return (0);
 }
 }

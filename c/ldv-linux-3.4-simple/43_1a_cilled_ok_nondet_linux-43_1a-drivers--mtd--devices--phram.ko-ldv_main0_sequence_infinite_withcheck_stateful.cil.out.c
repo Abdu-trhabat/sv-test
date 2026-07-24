@@ -880,15 +880,12 @@ extern int printk(char const   *  , ...) ;
 extern unsigned long simple_strtoul(char const   * , char ** , unsigned int  ) ;
 extern void __list_add(struct list_head * , struct list_head * , struct list_head * ) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )head;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((struct list_head **)__cil_tmp4);
+  __cil_tmp5 = *((struct list_head **)((void *)head + 8));
   __list_add(new, __cil_tmp5, head);
   }
   return;
@@ -964,40 +961,24 @@ extern void mtd_erase_callback(struct erase_info * ) ;
 static struct list_head phram_list  =    {& phram_list, & phram_list};
 static int phram_erase(struct mtd_info *mtd , struct erase_info *instr ) 
 { u_char *start ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   uint64_t __cil_tmp9 ;
   u_char *__cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   uint64_t __cil_tmp14 ;
   size_t __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )mtd;
-  __cil_tmp5 = __cil_tmp4 + 360;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)mtd + 360));
   start = (u_char *)__cil_tmp6;
-  __cil_tmp7 = (unsigned long )instr;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = *((uint64_t *)__cil_tmp8);
+  __cil_tmp9 = *((uint64_t *)((void *)instr + 8));
   __cil_tmp10 = start + __cil_tmp9;
   __cil_tmp11 = (void *)__cil_tmp10;
-  __cil_tmp12 = (unsigned long )instr;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = *((uint64_t *)__cil_tmp13);
+  __cil_tmp14 = *((uint64_t *)((void *)instr + 16));
   __cil_tmp15 = (size_t )__cil_tmp14;
   memset(__cil_tmp11, 255, __cil_tmp15);
-  __cil_tmp16 = (unsigned long )instr;
-  __cil_tmp17 = __cil_tmp16 + 72;
-  *((u_char *)__cil_tmp17) = (u_char )8U;
+  *((u_char *)((void *)instr + 72)) = (u_char )8U;
   mtd_erase_callback(instr);
   }
   return (0);
@@ -1006,15 +987,11 @@ static int phram_erase(struct mtd_info *mtd , struct erase_info *instr )
 static int phram_point(struct mtd_info *mtd , loff_t from , size_t len , size_t *retlen ,
                        void **virt , resource_size_t *phys ) 
 { unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
 
   {
   __cil_tmp7 = (unsigned long )from;
-  __cil_tmp8 = (unsigned long )mtd;
-  __cil_tmp9 = __cil_tmp8 + 360;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)mtd + 360));
   *virt = __cil_tmp10 + __cil_tmp7;
   *retlen = len;
   return (0);
@@ -1033,8 +1010,6 @@ static int phram_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *
 { u_char *start ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   void *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
@@ -1043,9 +1018,7 @@ static int phram_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *
 
   {
   {
-  __cil_tmp9 = (unsigned long )mtd;
-  __cil_tmp10 = __cil_tmp9 + 360;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)mtd + 360));
   start = (u_char *)__cil_tmp11;
   __len = len;
   __cil_tmp12 = (void *)buf;
@@ -1063,8 +1036,6 @@ static int phram_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *r
 { u_char *start ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
@@ -1073,9 +1044,7 @@ static int phram_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *r
 
   {
   {
-  __cil_tmp9 = (unsigned long )mtd;
-  __cil_tmp10 = __cil_tmp9 + 360;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)mtd + 360));
   start = (u_char *)__cil_tmp11;
   __len = len;
   __cil_tmp12 = (unsigned long )to;
@@ -1097,29 +1066,19 @@ static void unregister_devices(void)
   struct list_head *__cil_tmp6 ;
   struct list_head *__cil_tmp7 ;
   struct phram_mtd_list *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct list_head *__cil_tmp11 ;
   struct phram_mtd_list *__cil_tmp12 ;
   struct mtd_info *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void *__cil_tmp17 ;
   void volatile   *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   char const   *__cil_tmp22 ;
   void const   *__cil_tmp23 ;
   void const   *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct list_head *__cil_tmp27 ;
   struct phram_mtd_list *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct list_head *__cil_tmp32 ;
   unsigned long __cil_tmp33 ;
 
@@ -1129,9 +1088,7 @@ static void unregister_devices(void)
   __mptr = (struct list_head  const  *)__cil_tmp7;
   __cil_tmp8 = (struct phram_mtd_list *)__mptr;
   this = __cil_tmp8 + 0xfffffffffffffa00UL;
-  __cil_tmp9 = (unsigned long )this;
-  __cil_tmp10 = __cil_tmp9 + 1536;
-  __cil_tmp11 = *((struct list_head **)__cil_tmp10);
+  __cil_tmp11 = *((struct list_head **)((void *)this + 1536));
   __mptr___0 = (struct list_head  const  *)__cil_tmp11;
   __cil_tmp12 = (struct phram_mtd_list *)__mptr___0;
   safe = __cil_tmp12 + 0xfffffffffffffa00UL;
@@ -1141,23 +1098,17 @@ static void unregister_devices(void)
   __cil_tmp13 = (struct mtd_info *)this;
   mtd_device_unregister(__cil_tmp13);
   __cil_tmp14 = 0 + 360;
-  __cil_tmp15 = (unsigned long )this;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  __cil_tmp17 = *((void **)__cil_tmp16);
+  __cil_tmp17 = *((void **)((void *)this + __cil_tmp14));
   __cil_tmp18 = (void volatile   *)__cil_tmp17;
   iounmap(__cil_tmp18);
   __cil_tmp19 = 0 + 56;
-  __cil_tmp20 = (unsigned long )this;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  __cil_tmp22 = *((char const   **)__cil_tmp21);
+  __cil_tmp22 = *((char const   **)((void *)this + __cil_tmp19));
   __cil_tmp23 = (void const   *)__cil_tmp22;
   kfree(__cil_tmp23);
   __cil_tmp24 = (void const   *)this;
   kfree(__cil_tmp24);
   this = safe;
-  __cil_tmp25 = (unsigned long )safe;
-  __cil_tmp26 = __cil_tmp25 + 1536;
-  __cil_tmp27 = *((struct list_head **)__cil_tmp26);
+  __cil_tmp27 = *((struct list_head **)((void *)safe + 1536));
   __mptr___1 = (struct list_head  const  *)__cil_tmp27;
   __cil_tmp28 = (struct phram_mtd_list *)__mptr___1;
   safe = __cil_tmp28 + 0xfffffffffffffa00UL;
@@ -1165,9 +1116,7 @@ static void unregister_devices(void)
   ldv_15413: ;
   {
   __cil_tmp29 = (unsigned long )(& phram_list);
-  __cil_tmp30 = (unsigned long )this;
-  __cil_tmp31 = __cil_tmp30 + 1536;
-  __cil_tmp32 = (struct list_head *)__cil_tmp31;
+  __cil_tmp32 = (struct list_head *)((void *)this + 1536);
   __cil_tmp33 = (unsigned long )__cil_tmp32;
   if (__cil_tmp33 != __cil_tmp29) {
     goto ldv_15412;
@@ -1188,59 +1137,29 @@ static int register_device(char *name , unsigned long start , unsigned long len 
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   resource_size_t __cil_tmp14 ;
   void *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct mtd_info *__cil_tmp55 ;
   char const   **__cil_tmp56 ;
   struct mtd_part_parser_data *__cil_tmp57 ;
   struct mtd_partition  const  *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct list_head *__cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   void *__cil_tmp65 ;
   void volatile   *__cil_tmp66 ;
   void const   *__cil_tmp67 ;
@@ -1264,18 +1183,14 @@ static int register_device(char *name , unsigned long start , unsigned long len 
   {
   ret = -5;
   __cil_tmp11 = 0 + 360;
-  __cil_tmp12 = (unsigned long )new;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
   __cil_tmp14 = (resource_size_t )start;
-  *((void **)__cil_tmp13) = ioremap(__cil_tmp14, len);
+  *((void **)((void *)new + __cil_tmp11)) = ioremap(__cil_tmp14, len);
   }
   {
   __cil_tmp15 = (void *)0;
   __cil_tmp16 = (unsigned long )__cil_tmp15;
   __cil_tmp17 = 0 + 360;
-  __cil_tmp18 = (unsigned long )new;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = *((void **)__cil_tmp19);
+  __cil_tmp20 = *((void **)((void *)new + __cil_tmp17));
   __cil_tmp21 = (unsigned long )__cil_tmp20;
   if (__cil_tmp21 == __cil_tmp16) {
     {
@@ -1288,50 +1203,28 @@ static int register_device(char *name , unsigned long start , unsigned long len 
   }
   {
   __cil_tmp22 = 0 + 56;
-  __cil_tmp23 = (unsigned long )new;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  *((char const   **)__cil_tmp24) = (char const   *)name;
+  *((char const   **)((void *)new + __cil_tmp22)) = (char const   *)name;
   __cil_tmp25 = 0 + 8;
-  __cil_tmp26 = (unsigned long )new;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  *((uint64_t *)__cil_tmp27) = (uint64_t )len;
+  *((uint64_t *)((void *)new + __cil_tmp25)) = (uint64_t )len;
   __cil_tmp28 = 0 + 4;
-  __cil_tmp29 = (unsigned long )new;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  *((uint32_t *)__cil_tmp30) = 7168U;
+  *((uint32_t *)((void *)new + __cil_tmp28)) = 7168U;
   __cil_tmp31 = 0 + 96;
-  __cil_tmp32 = (unsigned long )new;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  *((int (**)(struct mtd_info * , struct erase_info * ))__cil_tmp33) = & phram_erase;
+  *((int (**)(struct mtd_info * , struct erase_info * ))((void *)new + __cil_tmp31)) = & phram_erase;
   __cil_tmp34 = 0 + 104;
-  __cil_tmp35 = (unsigned long )new;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , void ** , resource_size_t * ))__cil_tmp36) = & phram_point;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , void ** , resource_size_t * ))((void *)new + __cil_tmp34)) = & phram_point;
   __cil_tmp37 = 0 + 112;
-  __cil_tmp38 = (unsigned long )new;
-  __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  ))__cil_tmp39) = & phram_unpoint;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  ))((void *)new + __cil_tmp37)) = & phram_unpoint;
   __cil_tmp40 = 0 + 128;
-  __cil_tmp41 = (unsigned long )new;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char * ))__cil_tmp42) = & phram_read;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char * ))((void *)new + __cil_tmp40)) = & phram_read;
   __cil_tmp43 = 0 + 136;
-  __cil_tmp44 = (unsigned long )new;
-  __cil_tmp45 = __cil_tmp44 + __cil_tmp43;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char const   * ))__cil_tmp45) = & phram_write;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char const   * ))((void *)new + __cil_tmp43)) = & phram_write;
   __cil_tmp46 = 0 + 368;
-  __cil_tmp47 = (unsigned long )new;
-  __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-  *((struct module **)__cil_tmp48) = & __this_module;
+  *((struct module **)((void *)new + __cil_tmp46)) = & __this_module;
   *((u_char *)new) = (u_char )1U;
   __cil_tmp49 = 0 + 16;
-  __cil_tmp50 = (unsigned long )new;
-  __cil_tmp51 = __cil_tmp50 + __cil_tmp49;
-  *((uint32_t *)__cil_tmp51) = 4096U;
+  *((uint32_t *)((void *)new + __cil_tmp49)) = 4096U;
   __cil_tmp52 = 0 + 20;
-  __cil_tmp53 = (unsigned long )new;
-  __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-  *((uint32_t *)__cil_tmp54) = 1U;
+  *((uint32_t *)((void *)new + __cil_tmp52)) = 1U;
   ret = -11;
   __cil_tmp55 = (struct mtd_info *)new;
   __cil_tmp56 = (char const   **)0;
@@ -1349,18 +1242,14 @@ static int register_device(char *name , unsigned long start , unsigned long len 
 
   }
   {
-  __cil_tmp59 = (unsigned long )new;
-  __cil_tmp60 = __cil_tmp59 + 1536;
-  __cil_tmp61 = (struct list_head *)__cil_tmp60;
+  __cil_tmp61 = (struct list_head *)((void *)new + 1536);
   list_add_tail(__cil_tmp61, & phram_list);
   }
   return (0);
   out2: 
   {
   __cil_tmp62 = 0 + 360;
-  __cil_tmp63 = (unsigned long )new;
-  __cil_tmp64 = __cil_tmp63 + __cil_tmp62;
-  __cil_tmp65 = *((void **)__cil_tmp64);
+  __cil_tmp65 = *((void **)((void *)new + __cil_tmp62));
   __cil_tmp66 = (void volatile   *)__cil_tmp65;
   iounmap(__cil_tmp66);
   }

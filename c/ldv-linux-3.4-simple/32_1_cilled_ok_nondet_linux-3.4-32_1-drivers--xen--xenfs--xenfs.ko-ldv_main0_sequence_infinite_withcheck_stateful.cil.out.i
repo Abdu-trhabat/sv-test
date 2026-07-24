@@ -1457,18 +1457,6 @@ static struct inode *xenfs_make_inode(struct super_block *sb , int mode )
   gid_t tmp___0 ;
   struct timespec tmp___1 ;
   struct timespec tmp___2 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   long tmp___1_tv_nsec20 ;
   __kernel_time_t tmp___1_tv_sec21 ;
   {
@@ -1480,28 +1468,16 @@ static struct inode *xenfs_make_inode(struct super_block *sb , int mode )
     {
     *((umode_t *)ret) = (umode_t )mode;
     tmp___0 = (gid_t )0;
-    __cil_tmp8 = (unsigned long )ret;
-    __cil_tmp9 = __cil_tmp8 + 8;
-    *((gid_t *)__cil_tmp9) = tmp___0;
-    __cil_tmp10 = (unsigned long )ret;
-    __cil_tmp11 = __cil_tmp10 + 4;
-    *((uid_t *)__cil_tmp11) = tmp___0;
-    __cil_tmp12 = (unsigned long )ret;
-    __cil_tmp13 = __cil_tmp12 + 160;
-    *((blkcnt_t *)__cil_tmp13) = (blkcnt_t )0;
+    *((gid_t *)((void *)ret + 8)) = tmp___0;
+    *((uid_t *)((void *)ret + 4)) = tmp___0;
+    *((blkcnt_t *)((void *)ret + 160)) = (blkcnt_t )0;
     tmp___2 = current_kernel_time();
-    __cil_tmp14 = (unsigned long )ret;
-    __cil_tmp15 = __cil_tmp14 + 112;
-    *((struct timespec *)__cil_tmp15) = tmp___2;
+    *((struct timespec *)((void *)ret + 112)) = tmp___2;
     tmp___1_tv_sec21 = tmp___2.tv_sec;
     tmp___1_tv_nsec20 = tmp___2.tv_nsec;
-    __cil_tmp16 = (unsigned long )ret;
-    __cil_tmp17 = __cil_tmp16 + 96;
-    ((struct timespec *)__cil_tmp17)->tv_sec = tmp___1_tv_sec21;
+    ((struct timespec *)((void *)ret + 96))->tv_sec = tmp___1_tv_sec21;
     ((struct timespec *)__cil_tmp17)->tv_nsec = tmp___1_tv_nsec20;
-    __cil_tmp18 = (unsigned long )ret;
-    __cil_tmp19 = __cil_tmp18 + 80;
-    ((struct timespec *)__cil_tmp19)->tv_sec = tmp___1_tv_sec21;
+    ((struct timespec *)((void *)ret + 80))->tv_sec = tmp___1_tv_sec21;
     ((struct timespec *)__cil_tmp19)->tv_nsec = tmp___1_tv_nsec20;
     }
   } else {
@@ -1517,10 +1493,6 @@ static struct dentry *xenfs_create_file(struct super_block *sb , struct dentry *
   void *__cil_tmp9 ;
   int __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   {
   {
   dentry = d_alloc_name(parent, name);
@@ -1547,12 +1519,8 @@ static struct dentry *xenfs_create_file(struct super_block *sb , struct dentry *
   } else {
   }
   {
-  __cil_tmp12 = (unsigned long )inode;
-  __cil_tmp13 = __cil_tmp12 + 368;
-  *((struct file_operations const **)__cil_tmp13) = fops;
-  __cil_tmp14 = (unsigned long )inode;
-  __cil_tmp15 = __cil_tmp14 + 696;
-  *((void **)__cil_tmp15) = data;
+  *((struct file_operations const **)((void *)inode + 368)) = fops;
+  *((void **)((void *)inode + 696)) = data;
   d_add(dentry, inode);
   }
   return (dentry);
@@ -1566,8 +1534,6 @@ static ssize_t capabilities_read(struct file *file , char *buf , size_t size , l
   unsigned int __cil_tmp9 ;
   int __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   uint32_t __cil_tmp14 ;
   char const *__cil_tmp15 ;
   void *__cil_tmp16 ;
@@ -1583,9 +1549,7 @@ static ssize_t capabilities_read(struct file *file , char *buf , size_t size , l
       {
       __cil_tmp10 = 1 << 1;
       __cil_tmp11 = (unsigned int )__cil_tmp10;
-      __cil_tmp12 = (unsigned long )xen_start_info;
-      __cil_tmp13 = __cil_tmp12 + 48;
-      __cil_tmp14 = *((uint32_t *)__cil_tmp13);
+      __cil_tmp14 = *((uint32_t *)((void *)xen_start_info + 48));
       if (__cil_tmp14 & __cil_tmp11) {
         tmp = (char *)"control_d\n";
       } else {
@@ -1652,15 +1616,9 @@ static int xenfs_fill_super(struct super_block *sb , void *data , int silent )
   unsigned int __cil_tmp9 ;
   int __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   uint32_t __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct dentry *__cil_tmp17 ;
   void *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct dentry *__cil_tmp21 ;
   void *__cil_tmp22 ;
   {
@@ -1683,20 +1641,14 @@ static int xenfs_fill_super(struct super_block *sb , void *data , int silent )
       {
       __cil_tmp10 = 1 << 1;
       __cil_tmp11 = (unsigned int )__cil_tmp10;
-      __cil_tmp12 = (unsigned long )xen_start_info;
-      __cil_tmp13 = __cil_tmp12 + 48;
-      __cil_tmp14 = *((uint32_t *)__cil_tmp13);
+      __cil_tmp14 = *((uint32_t *)((void *)xen_start_info + 48));
       if (__cil_tmp14 & __cil_tmp11) {
         {
-        __cil_tmp15 = (unsigned long )sb;
-        __cil_tmp16 = __cil_tmp15 + 96;
-        __cil_tmp17 = *((struct dentry **)__cil_tmp16);
+        __cil_tmp17 = *((struct dentry **)((void *)sb + 96));
         __cil_tmp18 = (void *)0;
         xenfs_create_file(sb, __cil_tmp17, "xsd_kva", & xsd_kva_file_ops, __cil_tmp18,
                           384);
-        __cil_tmp19 = (unsigned long )sb;
-        __cil_tmp20 = __cil_tmp19 + 96;
-        __cil_tmp21 = *((struct dentry **)__cil_tmp20);
+        __cil_tmp21 = *((struct dentry **)((void *)sb + 96));
         __cil_tmp22 = (void *)0;
         xenfs_create_file(sb, __cil_tmp21, "xsd_port", & xsd_port_file_ops, __cil_tmp22,
                           384);
@@ -2027,16 +1979,12 @@ static ssize_t xsd_read(struct file *file , char *buf , size_t size , loff_t *of
 { char const *str ;
   unsigned long tmp ;
   ssize_t tmp___0 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   void *__cil_tmp11 ;
   void const *__cil_tmp12 ;
   {
   {
-  __cil_tmp8 = (unsigned long )file;
-  __cil_tmp9 = __cil_tmp8 + 200;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)file + 200));
   str = (char const *)__cil_tmp10;
   tmp = strlen(str);
   __cil_tmp11 = (void *)buf;
@@ -2047,15 +1995,12 @@ static ssize_t xsd_read(struct file *file , char *buf , size_t size , loff_t *of
 }
 }
 static int xsd_release(struct inode *inode , struct file *file )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   void *__cil_tmp5 ;
   void const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )file;
-  __cil_tmp4 = __cil_tmp3 + 200;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)file + 200));
   __cil_tmp6 = (void const *)__cil_tmp5;
   kfree(__cil_tmp6);
   }
@@ -2064,22 +2009,14 @@ static int xsd_release(struct inode *inode , struct file *file )
 }
 static int xsd_kva_open(struct inode *inode , struct file *file )
 { char *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   {
   {
   tmp = kasprintf(208U, "0x%p", xen_store_interface);
-  __cil_tmp4 = (unsigned long )file;
-  __cil_tmp5 = __cil_tmp4 + 200;
-  *((void **)__cil_tmp5) = (void *)tmp;
+  *((void **)((void *)file + 200)) = (void *)tmp;
   }
   {
-  __cil_tmp6 = (unsigned long )file;
-  __cil_tmp7 = __cil_tmp6 + 200;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)file + 200));
   if (! __cil_tmp8) {
     return (-12);
   } else {
@@ -2092,33 +2029,19 @@ static int xsd_kva_mmap(struct file *file , struct vm_area_struct *vma )
 { size_t size ;
   unsigned long tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   pgprot_t __cil_tmp23 ;
   pgprotval_t __cil_tmp23_pgprot24 ;
   pgprotval_t __cil_tmp25 ;
   {
-  __cil_tmp6 = (unsigned long )vma;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = *((unsigned long *)__cil_tmp7);
-  __cil_tmp9 = (unsigned long )vma;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = *((unsigned long *)__cil_tmp10);
+  __cil_tmp8 = *((unsigned long *)((void *)vma + 8));
+  __cil_tmp11 = *((unsigned long *)((void *)vma + 16));
   size = __cil_tmp11 - __cil_tmp8;
   {
   __cil_tmp12 = 1UL << 12;
@@ -2126,9 +2049,7 @@ static int xsd_kva_mmap(struct file *file , struct vm_area_struct *vma )
     return (-22);
   } else {
     {
-    __cil_tmp13 = (unsigned long )vma;
-    __cil_tmp14 = __cil_tmp13 + 144;
-    __cil_tmp15 = *((unsigned long *)__cil_tmp14);
+    __cil_tmp15 = *((unsigned long *)((void *)vma + 144));
     if (__cil_tmp15 != 0UL) {
       return (-22);
     } else {
@@ -2139,13 +2060,9 @@ static int xsd_kva_mmap(struct file *file , struct vm_area_struct *vma )
   {
   __cil_tmp16 = (unsigned long )xen_store_interface;
   tmp = __phys_addr(__cil_tmp16);
-  __cil_tmp17 = (unsigned long )vma;
-  __cil_tmp18 = __cil_tmp17 + 8;
-  __cil_tmp19 = *((unsigned long *)__cil_tmp18);
+  __cil_tmp19 = *((unsigned long *)((void *)vma + 8));
   __cil_tmp20 = tmp >> 12;
-  __cil_tmp21 = (unsigned long )vma;
-  __cil_tmp22 = __cil_tmp21 + 40;
-  __cil_tmp25 = ((pgprot_t *)__cil_tmp22)->pgprot;
+  __cil_tmp25 = ((pgprot_t *)((void *)vma + 40))->pgprot;
   __cil_tmp23_pgprot24 = __cil_tmp25;
   tmp___0 = remap_pfn_range(vma, __cil_tmp19, __cil_tmp20, size, __cil_tmp23_pgprot24);
   }
@@ -2185,22 +2102,14 @@ struct file_operations const xsd_kva_file_ops =
                                                                         loff_t len ))0};
 static int xsd_port_open(struct inode *inode , struct file *file )
 { char *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   {
   {
   tmp = kasprintf(208U, "%d", xen_store_evtchn);
-  __cil_tmp4 = (unsigned long )file;
-  __cil_tmp5 = __cil_tmp4 + 200;
-  *((void **)__cil_tmp5) = (void *)tmp;
+  *((void **)((void *)file + 200)) = (void *)tmp;
   }
   {
-  __cil_tmp6 = (unsigned long )file;
-  __cil_tmp7 = __cil_tmp6 + 200;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)file + 200));
   if (! __cil_tmp8) {
     return (-12);
   } else {

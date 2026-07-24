@@ -1833,15 +1833,11 @@ extern int platform_driver_probe(struct platform_driver *driver , int (*probe)(s
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -1849,15 +1845,12 @@ __inline static void *platform_get_drvdata(struct platform_device  const  *pdev 
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1935,11 +1928,7 @@ static int mc13xxx_rtc_irq_enable_unlocked(struct device *dev , unsigned int ena
   int (*func)(struct mc13xxx *mc13xxx , int irq ) ;
   int tmp___0 ;
   struct device  const  *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct mc13xxx *__cil_tmp14 ;
 
   {
@@ -1949,9 +1938,7 @@ static int mc13xxx_rtc_irq_enable_unlocked(struct device *dev , unsigned int ena
   priv = (struct mc13xxx_rtc *)tmp;
   }
   {
-  __cil_tmp9 = (unsigned long )priv;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)priv + 16));
   if (! __cil_tmp11) {
     return (-61);
   } else {
@@ -1964,9 +1951,7 @@ static int mc13xxx_rtc_irq_enable_unlocked(struct device *dev , unsigned int ena
     func = & mc13xxx_irq_mask;
   }
   {
-  __cil_tmp12 = (unsigned long )priv;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = *((struct mc13xxx **)__cil_tmp13);
+  __cil_tmp14 = *((struct mc13xxx **)((void *)priv + 8));
   tmp___0 = (*func)(__cil_tmp14, irq);
   }
   return (tmp___0);
@@ -1977,11 +1962,7 @@ static int mc13xxx_rtc_irq_enable(struct device *dev , unsigned int enabled , in
   void *tmp ;
   int ret ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct mc13xxx *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct mc13xxx *__cil_tmp13 ;
 
   {
@@ -1989,14 +1970,10 @@ static int mc13xxx_rtc_irq_enable(struct device *dev , unsigned int enabled , in
   __cil_tmp7 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   priv = (struct mc13xxx_rtc *)tmp;
-  __cil_tmp8 = (unsigned long )priv;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = *((struct mc13xxx **)__cil_tmp9);
+  __cil_tmp10 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_lock(__cil_tmp10);
   ret = mc13xxx_rtc_irq_enable_unlocked(dev, enabled, irq);
-  __cil_tmp11 = (unsigned long )priv;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((struct mc13xxx **)__cil_tmp12);
+  __cil_tmp13 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_unlock(__cil_tmp13);
   }
   return (ret);
@@ -2014,29 +1991,17 @@ static int mc13xxx_rtc_read_time(struct device *dev , struct rtc_time *tm )
   long tmp___1 ;
   int tmp___2 ;
   struct device  const  *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct mc13xxx *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct mc13xxx *__cil_tmp22 ;
   int __cil_tmp23 ;
   int __cil_tmp24 ;
   long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct mc13xxx *__cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
   long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct mc13xxx *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct mc13xxx *__cil_tmp37 ;
   unsigned int *__cil_tmp38 ;
   unsigned int __cil_tmp39 ;
@@ -2065,15 +2030,11 @@ static int mc13xxx_rtc_read_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp13 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp13);
   priv = (struct mc13xxx_rtc *)tmp;
-  __cil_tmp14 = (unsigned long )priv;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((struct mc13xxx **)__cil_tmp15);
+  __cil_tmp16 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_lock(__cil_tmp16);
   }
   {
-  __cil_tmp17 = (unsigned long )priv;
-  __cil_tmp18 = __cil_tmp17 + 16;
-  __cil_tmp19 = *((int *)__cil_tmp18);
+  __cil_tmp19 = *((int *)((void *)priv + 16));
   if (! __cil_tmp19) {
     ret = -61;
     goto out;
@@ -2082,9 +2043,7 @@ static int mc13xxx_rtc_read_time(struct device *dev , struct rtc_time *tm )
   }
   }
   {
-  __cil_tmp20 = (unsigned long )priv;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  __cil_tmp22 = *((struct mc13xxx **)__cil_tmp21);
+  __cil_tmp22 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_reg_read(__cil_tmp22, 22U, & days1);
   __cil_tmp23 = ! ret;
   __cil_tmp24 = ! __cil_tmp23;
@@ -2097,9 +2056,7 @@ static int mc13xxx_rtc_read_time(struct device *dev , struct rtc_time *tm )
 
   }
   {
-  __cil_tmp26 = (unsigned long )priv;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = *((struct mc13xxx **)__cil_tmp27);
+  __cil_tmp28 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_reg_read(__cil_tmp28, 20U, & seconds);
   __cil_tmp29 = ! ret;
   __cil_tmp30 = ! __cil_tmp29;
@@ -2112,16 +2069,12 @@ static int mc13xxx_rtc_read_time(struct device *dev , struct rtc_time *tm )
 
   }
   {
-  __cil_tmp32 = (unsigned long )priv;
-  __cil_tmp33 = __cil_tmp32 + 8;
-  __cil_tmp34 = *((struct mc13xxx **)__cil_tmp33);
+  __cil_tmp34 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_reg_read(__cil_tmp34, 22U, & days2);
   }
   out: 
   {
-  __cil_tmp35 = (unsigned long )priv;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = *((struct mc13xxx **)__cil_tmp36);
+  __cil_tmp37 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_unlock(__cil_tmp37);
   }
   if (ret) {
@@ -2195,66 +2148,44 @@ static int mc13xxx_rtc_set_mmss(struct device *dev , unsigned long secs )
   struct device  const  *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct mc13xxx *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct mc13xxx *__cil_tmp24 ;
   int __cil_tmp25 ;
   int __cil_tmp26 ;
   long __cil_tmp27 ;
   unsigned int *__cil_tmp28 ;
   unsigned int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct mc13xxx *__cil_tmp32 ;
   u32 __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
   long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct mc13xxx *__cil_tmp39 ;
   u32 __cil_tmp40 ;
   int __cil_tmp41 ;
   int __cil_tmp42 ;
   long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct mc13xxx *__cil_tmp46 ;
   int __cil_tmp47 ;
   int __cil_tmp48 ;
   long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct mc13xxx *__cil_tmp52 ;
   int __cil_tmp53 ;
   int __cil_tmp54 ;
   long __cil_tmp55 ;
   unsigned int *__cil_tmp56 ;
   unsigned int __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   struct mc13xxx *__cil_tmp60 ;
   unsigned int *__cil_tmp61 ;
   unsigned int __cil_tmp62 ;
   int __cil_tmp63 ;
   int __cil_tmp64 ;
   long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct mc13xxx *__cil_tmp68 ;
   int __cil_tmp69 ;
   int __cil_tmp70 ;
   long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   struct mc13xxx *__cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct mc13xxx *__cil_tmp79 ;
 
   {
@@ -2266,13 +2197,9 @@ static int mc13xxx_rtc_set_mmss(struct device *dev , unsigned long secs )
   seconds = (unsigned int )__cil_tmp17;
   __cil_tmp18 = secs / 86400UL;
   days = (unsigned int )__cil_tmp18;
-  __cil_tmp19 = (unsigned long )priv;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  __cil_tmp21 = *((struct mc13xxx **)__cil_tmp20);
+  __cil_tmp21 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_lock(__cil_tmp21);
-  __cil_tmp22 = (unsigned long )priv;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  __cil_tmp24 = *((struct mc13xxx **)__cil_tmp23);
+  __cil_tmp24 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_reg_read(__cil_tmp24, 21U, & alarmseconds);
   __cil_tmp25 = ! ret;
   __cil_tmp26 = ! __cil_tmp25;
@@ -2289,9 +2216,7 @@ static int mc13xxx_rtc_set_mmss(struct device *dev , unsigned long secs )
   __cil_tmp29 = *__cil_tmp28;
   if (__cil_tmp29 < 86400U) {
     {
-    __cil_tmp30 = (unsigned long )priv;
-    __cil_tmp31 = __cil_tmp30 + 8;
-    __cil_tmp32 = *((struct mc13xxx **)__cil_tmp31);
+    __cil_tmp32 = *((struct mc13xxx **)((void *)priv + 8));
     __cil_tmp33 = (u32 )131071;
     ret = mc13xxx_reg_write(__cil_tmp32, 21U, __cil_tmp33);
     __cil_tmp34 = ! ret;
@@ -2309,9 +2234,7 @@ static int mc13xxx_rtc_set_mmss(struct device *dev , unsigned long secs )
   }
   }
   {
-  __cil_tmp37 = (unsigned long )priv;
-  __cil_tmp38 = __cil_tmp37 + 8;
-  __cil_tmp39 = *((struct mc13xxx **)__cil_tmp38);
+  __cil_tmp39 = *((struct mc13xxx **)((void *)priv + 8));
   __cil_tmp40 = (u32 )0;
   ret = mc13xxx_reg_write(__cil_tmp39, 20U, __cil_tmp40);
   __cil_tmp41 = ! ret;
@@ -2325,9 +2248,7 @@ static int mc13xxx_rtc_set_mmss(struct device *dev , unsigned long secs )
 
   }
   {
-  __cil_tmp44 = (unsigned long )priv;
-  __cil_tmp45 = __cil_tmp44 + 8;
-  __cil_tmp46 = *((struct mc13xxx **)__cil_tmp45);
+  __cil_tmp46 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_reg_write(__cil_tmp46, 22U, days);
   __cil_tmp47 = ! ret;
   __cil_tmp48 = ! __cil_tmp47;
@@ -2340,9 +2261,7 @@ static int mc13xxx_rtc_set_mmss(struct device *dev , unsigned long secs )
 
   }
   {
-  __cil_tmp50 = (unsigned long )priv;
-  __cil_tmp51 = __cil_tmp50 + 8;
-  __cil_tmp52 = *((struct mc13xxx **)__cil_tmp51);
+  __cil_tmp52 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_reg_write(__cil_tmp52, 20U, seconds);
   __cil_tmp53 = ! ret;
   __cil_tmp54 = ! __cil_tmp53;
@@ -2359,9 +2278,7 @@ static int mc13xxx_rtc_set_mmss(struct device *dev , unsigned long secs )
   __cil_tmp57 = *__cil_tmp56;
   if (__cil_tmp57 < 86400U) {
     {
-    __cil_tmp58 = (unsigned long )priv;
-    __cil_tmp59 = __cil_tmp58 + 8;
-    __cil_tmp60 = *((struct mc13xxx **)__cil_tmp59);
+    __cil_tmp60 = *((struct mc13xxx **)((void *)priv + 8));
     __cil_tmp61 = & alarmseconds;
     __cil_tmp62 = *__cil_tmp61;
     ret = mc13xxx_reg_write(__cil_tmp60, 21U, __cil_tmp62);
@@ -2380,9 +2297,7 @@ static int mc13xxx_rtc_set_mmss(struct device *dev , unsigned long secs )
   }
   }
   {
-  __cil_tmp66 = (unsigned long )priv;
-  __cil_tmp67 = __cil_tmp66 + 8;
-  __cil_tmp68 = *((struct mc13xxx **)__cil_tmp67);
+  __cil_tmp68 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_irq_ack(__cil_tmp68, 31);
   __cil_tmp69 = ! ret;
   __cil_tmp70 = ! __cil_tmp69;
@@ -2395,19 +2310,13 @@ static int mc13xxx_rtc_set_mmss(struct device *dev , unsigned long secs )
 
   }
   {
-  __cil_tmp72 = (unsigned long )priv;
-  __cil_tmp73 = __cil_tmp72 + 8;
-  __cil_tmp74 = *((struct mc13xxx **)__cil_tmp73);
+  __cil_tmp74 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_irq_unmask(__cil_tmp74, 31);
   }
   out: 
   {
-  __cil_tmp75 = (unsigned long )priv;
-  __cil_tmp76 = __cil_tmp75 + 16;
-  *((int *)__cil_tmp76) = ! ret;
-  __cil_tmp77 = (unsigned long )priv;
-  __cil_tmp78 = __cil_tmp77 + 8;
-  __cil_tmp79 = *((struct mc13xxx **)__cil_tmp78);
+  *((int *)((void *)priv + 16)) = ! ret;
+  __cil_tmp79 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_unlock(__cil_tmp79);
   }
   return (ret);
@@ -2430,33 +2339,21 @@ static int mc13xxx_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alarm 
   long tmp___1 ;
   long tmp___2 ;
   struct device  const  *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mc13xxx *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct mc13xxx *__cil_tmp20 ;
   int __cil_tmp21 ;
   int __cil_tmp22 ;
   long __cil_tmp23 ;
   unsigned int *__cil_tmp24 ;
   unsigned int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct mc13xxx *__cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
   long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct mc13xxx *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct mc13xxx *__cil_tmp37 ;
   int *__cil_tmp38 ;
   int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   int *__cil_tmp42 ;
   int __cil_tmp43 ;
   unsigned int *__cil_tmp44 ;
@@ -2465,8 +2362,6 @@ static int mc13xxx_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alarm 
   unsigned int __cil_tmp47 ;
   unsigned int __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct rtc_time *__cil_tmp52 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp53 ;
   unsigned int __cil_tmp54 ;
@@ -2481,13 +2376,9 @@ static int mc13xxx_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alarm 
   __cil_tmp14 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp14);
   priv = (struct mc13xxx_rtc *)tmp;
-  __cil_tmp15 = (unsigned long )priv;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  __cil_tmp17 = *((struct mc13xxx **)__cil_tmp16);
+  __cil_tmp17 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_lock(__cil_tmp17);
-  __cil_tmp18 = (unsigned long )priv;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  __cil_tmp20 = *((struct mc13xxx **)__cil_tmp19);
+  __cil_tmp20 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_reg_read(__cil_tmp20, 21U, & seconds);
   __cil_tmp21 = ! ret;
   __cil_tmp22 = ! __cil_tmp21;
@@ -2510,9 +2401,7 @@ static int mc13xxx_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alarm 
   }
   }
   {
-  __cil_tmp26 = (unsigned long )priv;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = *((struct mc13xxx **)__cil_tmp27);
+  __cil_tmp28 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_reg_read(__cil_tmp28, 22U, & days);
   __cil_tmp29 = ! ret;
   __cil_tmp30 = ! __cil_tmp29;
@@ -2525,16 +2414,12 @@ static int mc13xxx_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alarm 
 
   }
   {
-  __cil_tmp32 = (unsigned long )priv;
-  __cil_tmp33 = __cil_tmp32 + 8;
-  __cil_tmp34 = *((struct mc13xxx **)__cil_tmp33);
+  __cil_tmp34 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_irq_status(__cil_tmp34, 25, & enabled, & pending);
   }
   out: 
   {
-  __cil_tmp35 = (unsigned long )priv;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = *((struct mc13xxx **)__cil_tmp36);
+  __cil_tmp37 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_unlock(__cil_tmp37);
   }
   if (ret) {
@@ -2546,11 +2431,9 @@ static int mc13xxx_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alarm 
   __cil_tmp38 = & enabled;
   __cil_tmp39 = *__cil_tmp38;
   *((unsigned char *)alarm) = (unsigned char )__cil_tmp39;
-  __cil_tmp40 = (unsigned long )alarm;
-  __cil_tmp41 = __cil_tmp40 + 1;
   __cil_tmp42 = & pending;
   __cil_tmp43 = *__cil_tmp42;
-  *((unsigned char *)__cil_tmp41) = (unsigned char )__cil_tmp43;
+  *((unsigned char *)((void *)alarm + 1)) = (unsigned char )__cil_tmp43;
   __cil_tmp44 = & seconds;
   __cil_tmp45 = *__cil_tmp44;
   __cil_tmp46 = & days;
@@ -2558,9 +2441,7 @@ static int mc13xxx_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alarm 
   __cil_tmp48 = __cil_tmp47 * 86400U;
   __cil_tmp49 = __cil_tmp48 + __cil_tmp45;
   s1970 = (unsigned long )__cil_tmp49;
-  __cil_tmp50 = (unsigned long )alarm;
-  __cil_tmp51 = __cil_tmp50 + 4;
-  __cil_tmp52 = (struct rtc_time *)__cil_tmp51;
+  __cil_tmp52 = (struct rtc_time *)((void *)alarm + 4);
   rtc_time_to_tm(s1970, __cil_tmp52);
   }
   {
@@ -2617,24 +2498,16 @@ static int mc13xxx_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   long tmp___5 ;
   long tmp___6 ;
   struct device  const  *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct mc13xxx *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct mc13xxx *__cil_tmp22 ;
   u32 __cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
   long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct mc13xxx *__cil_tmp29 ;
   int __cil_tmp30 ;
   int __cil_tmp31 ;
   long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct rtc_time *__cil_tmp35 ;
   int __cil_tmp36 ;
   int __cil_tmp37 ;
@@ -2659,17 +2532,11 @@ static int mc13xxx_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   unsigned long *__cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct mc13xxx *__cil_tmp61 ;
   int __cil_tmp62 ;
   int __cil_tmp63 ;
   long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   struct mc13xxx *__cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   struct mc13xxx *__cil_tmp70 ;
 
   {
@@ -2677,13 +2544,9 @@ static int mc13xxx_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   __cil_tmp16 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp16);
   priv = (struct mc13xxx_rtc *)tmp;
-  __cil_tmp17 = (unsigned long )priv;
-  __cil_tmp18 = __cil_tmp17 + 8;
-  __cil_tmp19 = *((struct mc13xxx **)__cil_tmp18);
+  __cil_tmp19 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_lock(__cil_tmp19);
-  __cil_tmp20 = (unsigned long )priv;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  __cil_tmp22 = *((struct mc13xxx **)__cil_tmp21);
+  __cil_tmp22 = *((struct mc13xxx **)((void *)priv + 8));
   __cil_tmp23 = (u32 )131071;
   ret = mc13xxx_reg_write(__cil_tmp22, 21U, __cil_tmp23);
   __cil_tmp24 = ! ret;
@@ -2697,9 +2560,7 @@ static int mc13xxx_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
 
   }
   {
-  __cil_tmp27 = (unsigned long )priv;
-  __cil_tmp28 = __cil_tmp27 + 8;
-  __cil_tmp29 = *((struct mc13xxx **)__cil_tmp28);
+  __cil_tmp29 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_irq_ack(__cil_tmp29, 25);
   __cil_tmp30 = ! ret;
   __cil_tmp31 = ! __cil_tmp30;
@@ -2712,9 +2573,7 @@ static int mc13xxx_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
 
   }
   {
-  __cil_tmp33 = (unsigned long )alarm;
-  __cil_tmp34 = __cil_tmp33 + 4;
-  __cil_tmp35 = (struct rtc_time *)__cil_tmp34;
+  __cil_tmp35 = (struct rtc_time *)((void *)alarm + 4);
   ret = rtc_tm_to_time(__cil_tmp35, & s1970);
   __cil_tmp36 = ! ret;
   __cil_tmp37 = ! __cil_tmp36;
@@ -2788,9 +2647,7 @@ static int mc13xxx_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   __cil_tmp57 = *__cil_tmp56;
   __cil_tmp58 = __cil_tmp57 / 86400UL;
   days = (unsigned int )__cil_tmp58;
-  __cil_tmp59 = (unsigned long )priv;
-  __cil_tmp60 = __cil_tmp59 + 8;
-  __cil_tmp61 = *((struct mc13xxx **)__cil_tmp60);
+  __cil_tmp61 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_reg_write(__cil_tmp61, 23U, days);
   __cil_tmp62 = ! ret;
   __cil_tmp63 = ! __cil_tmp62;
@@ -2803,16 +2660,12 @@ static int mc13xxx_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
 
   }
   {
-  __cil_tmp65 = (unsigned long )priv;
-  __cil_tmp66 = __cil_tmp65 + 8;
-  __cil_tmp67 = *((struct mc13xxx **)__cil_tmp66);
+  __cil_tmp67 = *((struct mc13xxx **)((void *)priv + 8));
   ret = mc13xxx_reg_write(__cil_tmp67, 21U, seconds);
   }
   out: 
   {
-  __cil_tmp68 = (unsigned long )priv;
-  __cil_tmp69 = __cil_tmp68 + 8;
-  __cil_tmp70 = *((struct mc13xxx **)__cil_tmp69);
+  __cil_tmp70 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_unlock(__cil_tmp70);
   }
   return (ret);
@@ -2826,8 +2679,6 @@ static irqreturn_t mc13xxx_rtc_alarm_handler(int irq , void *dev )
 { struct mc13xxx_rtc *priv ;
   struct mc13xxx *mc13xxx ;
   long tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
@@ -2841,9 +2692,7 @@ static irqreturn_t mc13xxx_rtc_alarm_handler(int irq , void *dev )
 
   {
   priv = (struct mc13xxx_rtc *)dev;
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  mc13xxx = *((struct mc13xxx **)__cil_tmp7);
+  mc13xxx = *((struct mc13xxx **)((void *)priv + 8));
   {
   while (1) {
     while_continue: /* CIL Label */ ;
@@ -2893,8 +2742,6 @@ static irqreturn_t mc13xxx_rtc_update_handler(int irq , void *dev )
 { struct mc13xxx_rtc *priv ;
   struct mc13xxx *mc13xxx ;
   long tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
@@ -2908,9 +2755,7 @@ static irqreturn_t mc13xxx_rtc_update_handler(int irq , void *dev )
 
   {
   priv = (struct mc13xxx_rtc *)dev;
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  mc13xxx = *((struct mc13xxx **)__cil_tmp7);
+  mc13xxx = *((struct mc13xxx **)((void *)priv + 8));
   {
   while (1) {
     while_continue: /* CIL Label */ ;
@@ -2977,8 +2822,6 @@ static irqreturn_t mc13xxx_rtc_reset_handler(int irq , void *dev )
 { struct mc13xxx_rtc *priv ;
   struct mc13xxx *mc13xxx ;
   long tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
@@ -2988,14 +2831,10 @@ static irqreturn_t mc13xxx_rtc_reset_handler(int irq , void *dev )
   struct rtc_device *__cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device  const  *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
 
   {
   priv = (struct mc13xxx_rtc *)dev;
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  mc13xxx = *((struct mc13xxx **)__cil_tmp7);
+  mc13xxx = *((struct mc13xxx **)((void *)priv + 8));
   {
   while (1) {
     while_continue: /* CIL Label */ ;
@@ -3030,9 +2869,7 @@ static irqreturn_t mc13xxx_rtc_reset_handler(int irq , void *dev )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp17 = (unsigned long )priv;
-  __cil_tmp18 = __cil_tmp17 + 16;
-  *((int *)__cil_tmp18) = 0;
+  *((int *)((void *)priv + 16)) = 0;
   mc13xxx_irq_mask(mc13xxx, irq);
   }
   return ((irqreturn_t )1);
@@ -3049,25 +2886,17 @@ static int mc13xxx_rtc_probe(struct platform_device *pdev )
   void *tmp___0 ;
   long tmp___1 ;
   long tmp___2 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device  const  *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   void *__cil_tmp17 ;
   void *__cil_tmp18 ;
   int *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int *__cil_tmp22 ;
   int __cil_tmp23 ;
   void *__cil_tmp24 ;
   void *__cil_tmp25 ;
   char const   *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct device *__cil_tmp29 ;
   struct rtc_device *__cil_tmp30 ;
   void const   *__cil_tmp31 ;
@@ -3090,15 +2919,11 @@ static int mc13xxx_rtc_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp10 = (unsigned long )pdev;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = *((struct device **)__cil_tmp11);
+  __cil_tmp12 = *((struct device **)((void *)pdev + 16));
   __cil_tmp13 = (struct device  const  *)__cil_tmp12;
   tmp___0 = dev_get_drvdata(__cil_tmp13);
   mc13xxx = (struct mc13xxx *)tmp___0;
-  __cil_tmp14 = (unsigned long )priv;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  *((struct mc13xxx **)__cil_tmp15) = mc13xxx;
+  *((struct mc13xxx **)((void *)priv + 8)) = mc13xxx;
   __cil_tmp16 = (void *)priv;
   platform_set_drvdata(pdev, __cil_tmp16);
   mc13xxx_lock(mc13xxx);
@@ -3122,11 +2947,9 @@ static int mc13xxx_rtc_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp20 = (unsigned long )priv;
-  __cil_tmp21 = __cil_tmp20 + 16;
   __cil_tmp22 = & rtcrst_pending;
   __cil_tmp23 = *__cil_tmp22;
-  *((int *)__cil_tmp21) = ! __cil_tmp23;
+  *((int *)((void *)priv + 16)) = ! __cil_tmp23;
   __cil_tmp24 = (void *)priv;
   ret = mc13xxx_irq_request_nounmask(mc13xxx, 24, & mc13xxx_rtc_update_handler, "mc13xxx-rtc",
                                      __cil_tmp24);
@@ -3149,9 +2972,7 @@ static int mc13xxx_rtc_probe(struct platform_device *pdev )
   {
   mc13xxx_unlock(mc13xxx);
   __cil_tmp26 = *((char const   **)pdev);
-  __cil_tmp27 = (unsigned long )pdev;
-  __cil_tmp28 = __cil_tmp27 + 16;
-  __cil_tmp29 = (struct device *)__cil_tmp28;
+  __cil_tmp29 = (struct device *)((void *)pdev + 16);
   *((struct rtc_device **)priv) = rtc_device_register(__cil_tmp26, __cil_tmp29, & mc13xxx_rtc_ops,
                                                       & __this_module);
   __cil_tmp30 = *((struct rtc_device **)priv);
@@ -3198,24 +3019,14 @@ static int mc13xxx_rtc_remove(struct platform_device *pdev )
 { struct mc13xxx_rtc *priv ;
   void *tmp ;
   struct platform_device  const  *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct mc13xxx *__cil_tmp7 ;
   struct rtc_device *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct mc13xxx *__cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct mc13xxx *__cil_tmp15 ;
   void *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct mc13xxx *__cil_tmp19 ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct mc13xxx *__cil_tmp23 ;
   void *__cil_tmp24 ;
   void const   *__cil_tmp25 ;
@@ -3225,30 +3036,20 @@ static int mc13xxx_rtc_remove(struct platform_device *pdev )
   __cil_tmp4 = (struct platform_device  const  *)pdev;
   tmp = platform_get_drvdata(__cil_tmp4);
   priv = (struct mc13xxx_rtc *)tmp;
-  __cil_tmp5 = (unsigned long )priv;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((struct mc13xxx **)__cil_tmp6);
+  __cil_tmp7 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_lock(__cil_tmp7);
   __cil_tmp8 = *((struct rtc_device **)priv);
   rtc_device_unregister(__cil_tmp8);
-  __cil_tmp9 = (unsigned long )priv;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = *((struct mc13xxx **)__cil_tmp10);
+  __cil_tmp11 = *((struct mc13xxx **)((void *)priv + 8));
   __cil_tmp12 = (void *)priv;
   mc13xxx_irq_free(__cil_tmp11, 25, __cil_tmp12);
-  __cil_tmp13 = (unsigned long )priv;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  __cil_tmp15 = *((struct mc13xxx **)__cil_tmp14);
+  __cil_tmp15 = *((struct mc13xxx **)((void *)priv + 8));
   __cil_tmp16 = (void *)priv;
   mc13xxx_irq_free(__cil_tmp15, 24, __cil_tmp16);
-  __cil_tmp17 = (unsigned long )priv;
-  __cil_tmp18 = __cil_tmp17 + 8;
-  __cil_tmp19 = *((struct mc13xxx **)__cil_tmp18);
+  __cil_tmp19 = *((struct mc13xxx **)((void *)priv + 8));
   __cil_tmp20 = (void *)priv;
   mc13xxx_irq_free(__cil_tmp19, 31, __cil_tmp20);
-  __cil_tmp21 = (unsigned long )priv;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  __cil_tmp23 = *((struct mc13xxx **)__cil_tmp22);
+  __cil_tmp23 = *((struct mc13xxx **)((void *)priv + 8));
   mc13xxx_unlock(__cil_tmp23);
   __cil_tmp24 = (void *)0;
   platform_set_drvdata(pdev, __cil_tmp24);

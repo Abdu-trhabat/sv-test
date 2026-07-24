@@ -5941,15 +5941,11 @@ extern void platform_device_put(struct platform_device *pdev ) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -5981,16 +5977,12 @@ extern int __pm_runtime_resume(struct device *dev , int rpmflags ) ;
 __inline static void pm_runtime_get_noresume(struct device *dev )  __attribute__((__no_instrument_function__)) ;
 __inline static void pm_runtime_get_noresume(struct device *dev ) 
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   atomic_t *__cil_tmp5 ;
 
   {
   {
   __cil_tmp2 = 192 + 272;
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  __cil_tmp5 = (atomic_t *)__cil_tmp4;
+  __cil_tmp5 = (atomic_t *)((void *)dev + __cil_tmp2);
   atomic_inc(__cil_tmp5);
   }
   return;
@@ -5999,16 +5991,12 @@ __inline static void pm_runtime_get_noresume(struct device *dev )
 __inline static void pm_runtime_put_noidle(struct device *dev )  __attribute__((__no_instrument_function__)) ;
 __inline static void pm_runtime_put_noidle(struct device *dev ) 
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   atomic_t *__cil_tmp5 ;
 
   {
   {
   __cil_tmp2 = 192 + 272;
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  __cil_tmp5 = (atomic_t *)__cil_tmp4;
+  __cil_tmp5 = (atomic_t *)((void *)dev + __cil_tmp2);
   atomic_add_unless(__cil_tmp5, -1, 0);
   }
   return;
@@ -6017,17 +6005,13 @@ __inline static void pm_runtime_put_noidle(struct device *dev )
 __inline static bool pm_runtime_enabled(struct device *dev )  __attribute__((__no_instrument_function__)) ;
 __inline static bool pm_runtime_enabled(struct device *dev ) 
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
   int __cil_tmp6 ;
 
   {
   {
   __cil_tmp2 = 192 + 280;
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  __cil_tmp5 = *((unsigned int *)__cil_tmp4);
+  __cil_tmp5 = *((unsigned int *)((void *)dev + __cil_tmp2));
   __cil_tmp6 = ! __cil_tmp5;
   return ((bool )__cil_tmp6);
   }
@@ -6122,8 +6106,6 @@ static void wl1271_sdio_set_block_size(struct device *child , unsigned int blksz
   struct device  const  *__cil_tmp8 ;
   struct device *__cil_tmp9 ;
   struct sdio_func *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
@@ -6138,9 +6120,7 @@ static void wl1271_sdio_set_block_size(struct device *child , unsigned int blksz
   __cil_tmp9 = *((struct device **)glue);
   __mptr = (struct device  const  *)__cil_tmp9;
   __cil_tmp10 = (struct sdio_func *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 8);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
@@ -6176,8 +6156,6 @@ static void wl12xx_sdio_raw_read(struct device *child , int addr , void *buf , s
   struct device  const  *__cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct sdio_func *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   char *__cil_tmp22 ;
@@ -6230,9 +6208,7 @@ static void wl12xx_sdio_raw_read(struct device *child , int addr , void *buf , s
   __cil_tmp16 = *((struct device **)glue);
   __mptr = (struct device  const  *)__cil_tmp16;
   __cil_tmp17 = (struct sdio_func *)0;
-  __cil_tmp18 = (unsigned long )__cil_tmp17;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  __cil_tmp20 = (struct device *)__cil_tmp19;
+  __cil_tmp20 = (struct device *)((void *)__cil_tmp17 + 8);
   __cil_tmp21 = (unsigned int )__cil_tmp20;
   __cil_tmp22 = (char *)__mptr;
   __cil_tmp23 = __cil_tmp22 - __cil_tmp21;
@@ -6382,8 +6358,6 @@ static void wl12xx_sdio_raw_write(struct device *child , int addr , void *buf , 
   struct device  const  *__cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct sdio_func *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   char *__cil_tmp22 ;
@@ -6437,9 +6411,7 @@ static void wl12xx_sdio_raw_write(struct device *child , int addr , void *buf , 
   __cil_tmp16 = *((struct device **)glue);
   __mptr = (struct device  const  *)__cil_tmp16;
   __cil_tmp17 = (struct sdio_func *)0;
-  __cil_tmp18 = (unsigned long )__cil_tmp17;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  __cil_tmp20 = (struct device *)__cil_tmp19;
+  __cil_tmp20 = (struct device *)((void *)__cil_tmp17 + 8);
   __cil_tmp21 = (unsigned int )__cil_tmp20;
   __cil_tmp22 = (char *)__mptr;
   __cil_tmp23 = __cil_tmp22 - __cil_tmp21;
@@ -6573,17 +6545,11 @@ static int wl12xx_sdio_power_on(struct wl12xx_sdio_glue *glue )
   bool tmp___7 ;
   struct device *__cil_tmp6 ;
   struct sdio_func *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   char *__cil_tmp12 ;
   char *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   struct mmc_card *__cil_tmp20 ;
   struct mmc_host *__cil_tmp21 ;
@@ -6593,23 +6559,17 @@ static int wl12xx_sdio_power_on(struct wl12xx_sdio_glue *glue )
   __cil_tmp6 = *((struct device **)glue);
   __mptr = (struct device  const  *)__cil_tmp6;
   __cil_tmp7 = (struct sdio_func *)0;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)__cil_tmp7 + 8);
   __cil_tmp11 = (unsigned int )__cil_tmp10;
   __cil_tmp12 = (char *)__mptr;
   __cil_tmp13 = __cil_tmp12 - __cil_tmp11;
   func = (struct sdio_func *)__cil_tmp13;
-  __cil_tmp14 = (unsigned long )func;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = (struct device *)__cil_tmp15;
+  __cil_tmp16 = (struct device *)((void *)func + 8);
   tmp___7 = pm_runtime_enabled(__cil_tmp16);
   }
   if (tmp___7) {
     {
-    __cil_tmp17 = (unsigned long )func;
-    __cil_tmp18 = __cil_tmp17 + 8;
-    __cil_tmp19 = (struct device *)__cil_tmp18;
+    __cil_tmp19 = (struct device *)((void *)func + 8);
     ret = pm_runtime_get_sync(__cil_tmp19);
     }
     if (ret < 0) {
@@ -6645,19 +6605,13 @@ static int wl12xx_sdio_power_off(struct wl12xx_sdio_glue *glue )
   bool tmp___7 ;
   struct device *__cil_tmp6 ;
   struct sdio_func *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   char *__cil_tmp12 ;
   char *__cil_tmp13 ;
   struct mmc_card *__cil_tmp14 ;
   struct mmc_host *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
 
   {
@@ -6665,9 +6619,7 @@ static int wl12xx_sdio_power_off(struct wl12xx_sdio_glue *glue )
   __cil_tmp6 = *((struct device **)glue);
   __mptr = (struct device  const  *)__cil_tmp6;
   __cil_tmp7 = (struct sdio_func *)0;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)__cil_tmp7 + 8);
   __cil_tmp11 = (unsigned int )__cil_tmp10;
   __cil_tmp12 = (char *)__mptr;
   __cil_tmp13 = __cil_tmp12 - __cil_tmp11;
@@ -6685,16 +6637,12 @@ static int wl12xx_sdio_power_off(struct wl12xx_sdio_glue *glue )
 
   }
   {
-  __cil_tmp16 = (unsigned long )func;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  __cil_tmp18 = (struct device *)__cil_tmp17;
+  __cil_tmp18 = (struct device *)((void *)func + 8);
   tmp___7 = pm_runtime_enabled(__cil_tmp18);
   }
   if (tmp___7) {
     {
-    __cil_tmp19 = (unsigned long )func;
-    __cil_tmp20 = __cil_tmp19 + 8;
-    __cil_tmp21 = (struct device *)__cil_tmp20;
+    __cil_tmp21 = (struct device *)((void *)func + 8);
     ret = pm_runtime_put_sync(__cil_tmp21);
     }
   } else {
@@ -6750,30 +6698,16 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
   long tmp___8 ;
   long tmp___9 ;
   long tmp___10 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   struct device  const  *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct mmc_card *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct mmc_card *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   struct mmc_card *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
   struct mmc_card *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
   void const   *__cil_tmp37 ;
   void const   *__cil_tmp38 ;
@@ -6787,39 +6721,19 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
   long __cil_tmp46 ;
   struct device *__cil_tmp47 ;
   struct device  const  *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct device *__cil_tmp55 ;
   void *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct device *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   struct platform_device *__cil_tmp64 ;
   struct device *__cil_tmp65 ;
   struct device  const  *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct platform_device *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
   struct resource *__cil_tmp76 ;
   void *__cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   int __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
@@ -6827,8 +6741,6 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
   unsigned long __cil_tmp86 ;
   unsigned long __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   struct platform_device *__cil_tmp91 ;
   unsigned long __cil_tmp92 ;
   unsigned long __cil_tmp93 ;
@@ -6839,28 +6751,20 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
   unsigned int __cil_tmp98 ;
   struct device *__cil_tmp99 ;
   struct device  const  *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   struct platform_device *__cil_tmp103 ;
   void const   *__cil_tmp104 ;
   struct device *__cil_tmp105 ;
   struct device  const  *__cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   struct platform_device *__cil_tmp109 ;
   struct device *__cil_tmp110 ;
   struct device  const  *__cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   struct platform_device *__cil_tmp114 ;
   void const   *__cil_tmp115 ;
 
   {
   ret = -12;
   {
-  __cil_tmp12 = (unsigned long )func;
-  __cil_tmp13 = __cil_tmp12 + 784;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)func + 784));
   if (__cil_tmp14 != 2U) {
     return (-19);
   } else {
@@ -6873,9 +6777,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
   }
   if (! glue) {
     {
-    __cil_tmp15 = (unsigned long )func;
-    __cil_tmp16 = __cil_tmp15 + 8;
-    __cil_tmp17 = (struct device *)__cil_tmp16;
+    __cil_tmp17 = (struct device *)((void *)func + 8);
     __cil_tmp18 = (struct device  const  *)__cil_tmp17;
     dev_err(__cil_tmp18, "can\'t allocate glue\n");
     }
@@ -6884,27 +6786,17 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
 
   }
   {
-  __cil_tmp19 = (unsigned long )func;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  *((struct device **)glue) = (struct device *)__cil_tmp20;
+  *((struct device **)glue) = (struct device *)((void *)func + 8);
   __cil_tmp21 = *((struct mmc_card **)func);
-  __cil_tmp22 = (unsigned long )__cil_tmp21;
-  __cil_tmp23 = __cil_tmp22 + 788;
   __cil_tmp24 = *((struct mmc_card **)func);
-  __cil_tmp25 = (unsigned long )__cil_tmp24;
-  __cil_tmp26 = __cil_tmp25 + 788;
-  __cil_tmp27 = *((unsigned int *)__cil_tmp26);
-  *((unsigned int *)__cil_tmp23) = __cil_tmp27 | 1U;
+  __cil_tmp27 = *((unsigned int *)((void *)__cil_tmp24 + 788));
+  *((unsigned int *)((void *)__cil_tmp21 + 788)) = __cil_tmp27 | 1U;
   __cil_tmp28 = *((struct mmc_card **)func);
-  __cil_tmp29 = (unsigned long )__cil_tmp28;
-  __cil_tmp30 = __cil_tmp29 + 788;
   __cil_tmp31 = 1 << 1;
   __cil_tmp32 = (unsigned int )__cil_tmp31;
   __cil_tmp33 = *((struct mmc_card **)func);
-  __cil_tmp34 = (unsigned long )__cil_tmp33;
-  __cil_tmp35 = __cil_tmp34 + 788;
-  __cil_tmp36 = *((unsigned int *)__cil_tmp35);
-  *((unsigned int *)__cil_tmp30) = __cil_tmp36 | __cil_tmp32;
+  __cil_tmp36 = *((unsigned int *)((void *)__cil_tmp33 + 788));
+  *((unsigned int *)((void *)__cil_tmp28 + 788)) = __cil_tmp36 | __cil_tmp32;
   wlan_data = wl12xx_get_platform_data();
   __cil_tmp37 = (void const   *)wlan_data;
   tmp___9 = (long )IS_ERR(__cil_tmp37);
@@ -6959,33 +6851,21 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
   while_break: /* CIL Label */ ;
   }
   if (mmcflags & 1U) {
-    __cil_tmp49 = (unsigned long )wlan_data;
-    __cil_tmp50 = __cil_tmp49 + 32;
-    *((bool *)__cil_tmp50) = (bool )1;
+    *((bool *)((void *)wlan_data + 32)) = (bool )1;
   } else {
 
   }
   {
-  __cil_tmp51 = (unsigned long )wlan_data;
-  __cil_tmp52 = __cil_tmp51 + 40;
-  *((struct wl1271_if_operations **)__cil_tmp52) = & sdio_ops;
-  __cil_tmp53 = (unsigned long )func;
-  __cil_tmp54 = __cil_tmp53 + 8;
-  __cil_tmp55 = (struct device *)__cil_tmp54;
+  *((struct wl1271_if_operations **)((void *)wlan_data + 40)) = & sdio_ops;
+  __cil_tmp55 = (struct device *)((void *)func + 8);
   __cil_tmp56 = (void *)glue;
   dev_set_drvdata(__cil_tmp55, __cil_tmp56);
-  __cil_tmp57 = (unsigned long )func;
-  __cil_tmp58 = __cil_tmp57 + 8;
-  __cil_tmp59 = (struct device *)__cil_tmp58;
+  __cil_tmp59 = (struct device *)((void *)func + 8);
   pm_runtime_put_noidle(__cil_tmp59);
-  __cil_tmp60 = (unsigned long )glue;
-  __cil_tmp61 = __cil_tmp60 + 8;
-  *((struct platform_device **)__cil_tmp61) = platform_device_alloc("wl12xx", -1);
+  *((struct platform_device **)((void *)glue + 8)) = platform_device_alloc("wl12xx", -1);
   }
   {
-  __cil_tmp62 = (unsigned long )glue;
-  __cil_tmp63 = __cil_tmp62 + 8;
-  __cil_tmp64 = *((struct platform_device **)__cil_tmp63);
+  __cil_tmp64 = *((struct platform_device **)((void *)glue + 8));
   if (! __cil_tmp64) {
     {
     __cil_tmp65 = *((struct device **)glue);
@@ -6999,14 +6879,8 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
   }
   }
   {
-  __cil_tmp67 = (unsigned long )glue;
-  __cil_tmp68 = __cil_tmp67 + 8;
-  __cil_tmp69 = *((struct platform_device **)__cil_tmp68);
-  __cil_tmp70 = (unsigned long )__cil_tmp69;
-  __cil_tmp71 = __cil_tmp70 + 16;
-  __cil_tmp72 = (unsigned long )func;
-  __cil_tmp73 = __cil_tmp72 + 8;
-  *((struct device **)__cil_tmp71) = (struct device *)__cil_tmp73;
+  __cil_tmp69 = *((struct platform_device **)((void *)glue + 8));
+  *((struct device **)((void *)__cil_tmp69 + 16)) = (struct device *)((void *)func + 8);
   __cil_tmp74 = 0 * 56UL;
   __cil_tmp75 = (unsigned long )(res) + __cil_tmp74;
   __cil_tmp76 = (struct resource *)__cil_tmp75;
@@ -7014,9 +6888,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
   memset(__cil_tmp77, 0, 56UL);
   __cil_tmp78 = 0 * 56UL;
   __cil_tmp79 = (unsigned long )(res) + __cil_tmp78;
-  __cil_tmp80 = (unsigned long )wlan_data;
-  __cil_tmp81 = __cil_tmp80 + 8;
-  __cil_tmp82 = *((int *)__cil_tmp81);
+  __cil_tmp82 = *((int *)((void *)wlan_data + 8));
   *((resource_size_t *)__cil_tmp79) = (resource_size_t )__cil_tmp82;
   __cil_tmp83 = 0 * 56UL;
   __cil_tmp84 = __cil_tmp83 + 24;
@@ -7026,9 +6898,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
   __cil_tmp87 = __cil_tmp86 + 16;
   __cil_tmp88 = (unsigned long )(res) + __cil_tmp87;
   *((char const   **)__cil_tmp88) = "irq";
-  __cil_tmp89 = (unsigned long )glue;
-  __cil_tmp90 = __cil_tmp89 + 8;
-  __cil_tmp91 = *((struct platform_device **)__cil_tmp90);
+  __cil_tmp91 = *((struct platform_device **)((void *)glue + 8));
   __cil_tmp92 = 0 * 56UL;
   __cil_tmp93 = (unsigned long )(res) + __cil_tmp92;
   __cil_tmp94 = (struct resource *)__cil_tmp93;
@@ -7049,9 +6919,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
 
   }
   {
-  __cil_tmp101 = (unsigned long )glue;
-  __cil_tmp102 = __cil_tmp101 + 8;
-  __cil_tmp103 = *((struct platform_device **)__cil_tmp102);
+  __cil_tmp103 = *((struct platform_device **)((void *)glue + 8));
   __cil_tmp104 = (void const   *)wlan_data;
   ret = platform_device_add_data(__cil_tmp103, __cil_tmp104, 48UL);
   }
@@ -7066,9 +6934,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
 
   }
   {
-  __cil_tmp107 = (unsigned long )glue;
-  __cil_tmp108 = __cil_tmp107 + 8;
-  __cil_tmp109 = *((struct platform_device **)__cil_tmp108);
+  __cil_tmp109 = *((struct platform_device **)((void *)glue + 8));
   ret = platform_device_add(__cil_tmp109);
   }
   if (ret) {
@@ -7084,9 +6950,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id  const  *
   return (0);
   out_dev_put: 
   {
-  __cil_tmp112 = (unsigned long )glue;
-  __cil_tmp113 = __cil_tmp112 + 8;
-  __cil_tmp114 = *((struct platform_device **)__cil_tmp113);
+  __cil_tmp114 = *((struct platform_device **)((void *)glue + 8));
   platform_device_put(__cil_tmp114);
   }
   out_free_glue: 
@@ -7103,40 +6967,24 @@ __no_instrument_function__)) ;
 static void wl1271_remove(struct sdio_func *func ) 
 { struct wl12xx_sdio_glue *glue ;
   void *tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct platform_device *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct platform_device *__cil_tmp16 ;
   void const   *__cil_tmp17 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )func;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)func + 8);
   __cil_tmp7 = (struct device  const  *)__cil_tmp6;
   tmp___7 = dev_get_drvdata(__cil_tmp7);
   glue = (struct wl12xx_sdio_glue *)tmp___7;
-  __cil_tmp8 = (unsigned long )func;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)func + 8);
   pm_runtime_get_noresume(__cil_tmp10);
-  __cil_tmp11 = (unsigned long )glue;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((struct platform_device **)__cil_tmp12);
+  __cil_tmp13 = *((struct platform_device **)((void *)glue + 8));
   platform_device_del(__cil_tmp13);
-  __cil_tmp14 = (unsigned long )glue;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((struct platform_device **)__cil_tmp15);
+  __cil_tmp16 = *((struct platform_device **)((void *)glue + 8));
   platform_device_put(__cil_tmp16);
   __cil_tmp17 = (void const   *)glue;
   kfree(__cil_tmp17);
@@ -7159,18 +7007,12 @@ static int wl1271_suspend(struct device *dev )
   int ret ;
   long tmp___9 ;
   struct sdio_func *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
   char *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device  const  *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct platform_device *__cil_tmp24 ;
   struct platform_device  const  *__cil_tmp25 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp26 ;
@@ -7180,12 +7022,8 @@ static int wl1271_suspend(struct device *dev )
   int __cil_tmp30 ;
   long __cil_tmp31 ;
   struct device  const  *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   bool __cil_tmp35 ;
   int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned int __cil_tmp39 ;
   struct device  const  *__cil_tmp40 ;
   mmc_pm_flag_t __cil_tmp41 ;
@@ -7195,22 +7033,16 @@ static int wl1271_suspend(struct device *dev )
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp11 = (struct sdio_func *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 8);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
   func = (struct sdio_func *)__cil_tmp17;
-  __cil_tmp18 = (unsigned long )func;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  __cil_tmp20 = (struct device *)__cil_tmp19;
+  __cil_tmp20 = (struct device *)((void *)func + 8);
   __cil_tmp21 = (struct device  const  *)__cil_tmp20;
   tmp___7 = dev_get_drvdata(__cil_tmp21);
   glue = (struct wl12xx_sdio_glue *)tmp___7;
-  __cil_tmp22 = (unsigned long )glue;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  __cil_tmp24 = *((struct platform_device **)__cil_tmp23);
+  __cil_tmp24 = *((struct platform_device **)((void *)glue + 8));
   __cil_tmp25 = (struct platform_device  const  *)__cil_tmp24;
   tmp___8 = platform_get_drvdata(__cil_tmp25);
   wl = (struct wl1271 *)tmp___8;
@@ -7234,9 +7066,7 @@ static int wl1271_suspend(struct device *dev )
       if (tmp___9) {
         {
         __cil_tmp32 = (struct device  const  *)dev;
-        __cil_tmp33 = (unsigned long )wl;
-        __cil_tmp34 = __cil_tmp33 + 2428;
-        __cil_tmp35 = *((bool *)__cil_tmp34);
+        __cil_tmp35 = *((bool *)((void *)wl + 2428));
         __cil_tmp36 = (int )__cil_tmp35;
         __dynamic_dev_dbg(& descriptor___4, __cil_tmp32, "wl1271 suspend. wow_enabled: %d\n",
                           __cil_tmp36);
@@ -7253,9 +7083,7 @@ static int wl1271_suspend(struct device *dev )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp37 = (unsigned long )wl;
-  __cil_tmp38 = __cil_tmp37 + 2428;
-  if (*((bool *)__cil_tmp38)) {
+  if (*((bool *)((void *)wl + 2428))) {
     {
     sdio_flags = sdio_get_host_pm_caps(func);
     }

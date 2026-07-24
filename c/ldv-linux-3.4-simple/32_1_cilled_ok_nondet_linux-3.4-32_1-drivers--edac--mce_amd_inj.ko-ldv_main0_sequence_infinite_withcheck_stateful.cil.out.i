@@ -834,7 +834,6 @@ static ssize_t edac_inject_misc_store(struct kobject *kobj , struct edac_mce_att
                                       char const *data , size_t count )
 { int ret ;
   unsigned long value ;
-  unsigned long __cil_tmp7 ;
   unsigned long *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   {
@@ -848,10 +847,9 @@ static ssize_t edac_inject_misc_store(struct kobject *kobj , struct edac_mce_att
     }
   } else {
   }
-  __cil_tmp7 = (unsigned long )(& i_mce) + 8;
   __cil_tmp8 = & value;
   __cil_tmp9 = *__cil_tmp8;
-  *((__u64 *)__cil_tmp7) = (__u64 )__cil_tmp9;
+  *((__u64 *)((void *)(&i_mce) + 8)) = (__u64 )__cil_tmp9;
   return ((ssize_t )count);
 }
 }
@@ -859,7 +857,6 @@ static ssize_t edac_inject_addr_store(struct kobject *kobj , struct edac_mce_att
                                       char const *data , size_t count )
 { int ret ;
   unsigned long value ;
-  unsigned long __cil_tmp7 ;
   unsigned long *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   {
@@ -873,10 +870,9 @@ static ssize_t edac_inject_addr_store(struct kobject *kobj , struct edac_mce_att
     }
   } else {
   }
-  __cil_tmp7 = (unsigned long )(& i_mce) + 16;
   __cil_tmp8 = & value;
   __cil_tmp9 = *__cil_tmp8;
-  *((__u64 *)__cil_tmp7) = (__u64 )__cil_tmp9;
+  *((__u64 *)((void *)(&i_mce) + 16)) = (__u64 )__cil_tmp9;
   return ((ssize_t )count);
 }
 }
@@ -897,12 +893,10 @@ static ssize_t edac_inject_status_show(struct kobject *kobj , struct edac_mce_at
 static ssize_t edac_inject_misc_show(struct kobject *kobj , struct edac_mce_attr *attr ,
                                      char *buf )
 { int tmp ;
-  unsigned long __cil_tmp5 ;
   __u64 __cil_tmp6 ;
   {
   {
-  __cil_tmp5 = (unsigned long )(& i_mce) + 8;
-  __cil_tmp6 = *((__u64 *)__cil_tmp5);
+  __cil_tmp6 = *((__u64 *)((void *)(&i_mce) + 8));
   tmp = sprintf(buf, "0x%016llx\n", __cil_tmp6);
   }
   return ((ssize_t )tmp);
@@ -911,12 +905,10 @@ static ssize_t edac_inject_misc_show(struct kobject *kobj , struct edac_mce_attr
 static ssize_t edac_inject_addr_show(struct kobject *kobj , struct edac_mce_attr *attr ,
                                      char *buf )
 { int tmp ;
-  unsigned long __cil_tmp5 ;
   __u64 __cil_tmp6 ;
   {
   {
-  __cil_tmp5 = (unsigned long )(& i_mce) + 16;
-  __cil_tmp6 = *((__u64 *)__cil_tmp5);
+  __cil_tmp6 = *((__u64 *)((void *)(&i_mce) + 16));
   tmp = sprintf(buf, "0x%016llx\n", __cil_tmp6);
   }
   return ((ssize_t )tmp);
@@ -940,7 +932,6 @@ static ssize_t edac_inject_bank_store(struct kobject *kobj , struct edac_mce_att
   unsigned long __cil_tmp15 ;
   unsigned long *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   void *__cil_tmp21 ;
@@ -993,10 +984,9 @@ static ssize_t edac_inject_bank_store(struct kobject *kobj , struct edac_mce_att
   }
   }
   {
-  __cil_tmp18 = (unsigned long )(& i_mce) + 65;
   __cil_tmp19 = & value;
   __cil_tmp20 = *__cil_tmp19;
-  *((__u8 *)__cil_tmp18) = (__u8 )__cil_tmp20;
+  *((__u8 *)((void *)(&i_mce) + 65)) = (__u8 )__cil_tmp20;
   __cil_tmp21 = (void *)0;
   __cil_tmp22 = (struct notifier_block *)__cil_tmp21;
   __cil_tmp23 = (void *)(& i_mce);
@@ -1008,13 +998,11 @@ static ssize_t edac_inject_bank_store(struct kobject *kobj , struct edac_mce_att
 static ssize_t edac_inject_bank_show(struct kobject *kobj , struct edac_mce_attr *attr ,
                                      char *buf )
 { int tmp ;
-  unsigned long __cil_tmp5 ;
   __u8 __cil_tmp6 ;
   int __cil_tmp7 ;
   {
   {
-  __cil_tmp5 = (unsigned long )(& i_mce) + 65;
-  __cil_tmp6 = *((__u8 *)__cil_tmp5);
+  __cil_tmp6 = *((__u8 *)((void *)(&i_mce) + 65));
   __cil_tmp7 = (int )__cil_tmp6;
   tmp = sprintf(buf, "%d\n", __cil_tmp7);
   }
@@ -1029,11 +1017,7 @@ static int edac_init_mce_inject(void)
   int i ;
   int err ;
   void *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct kobject *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
@@ -1064,12 +1048,8 @@ static int edac_init_mce_inject(void)
   } else {
   }
   {
-  __cil_tmp5 = (unsigned long )edac_subsys___0;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((struct device **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = (struct kobject *)__cil_tmp9;
+  __cil_tmp7 = *((struct device **)((void *)edac_subsys___0 + 16));
+  __cil_tmp10 = (struct kobject *)((void *)__cil_tmp7 + 16);
   mce_kobj = (struct kobject *)kobject_create_and_add("mce", __cil_tmp10);
   }
   if (! mce_kobj) {

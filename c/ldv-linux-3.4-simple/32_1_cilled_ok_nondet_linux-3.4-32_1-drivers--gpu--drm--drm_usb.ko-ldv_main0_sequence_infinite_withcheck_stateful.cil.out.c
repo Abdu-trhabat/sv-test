@@ -4382,29 +4382,22 @@ long ldv__builtin_expect(long val , long res ) ;
 extern int ( /* format attribute */  printk)(char const   *fmt  , ...) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )  __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
 extern void __list_add(struct list_head *new , struct list_head *prev , struct list_head *next ) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head )  __attribute__((__no_instrument_function__)) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )head;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((struct list_head **)__cil_tmp4);
+  __cil_tmp5 = *((struct list_head **)((void *)head + 8));
   __list_add(new, __cil_tmp5, head);
   }
   return;
@@ -4484,15 +4477,12 @@ extern int drm_fill_in_dev(struct drm_device *dev , struct pci_device_id  const 
 extern int drm_get_minor(struct drm_device *dev , struct drm_minor **minor , int type ) ;
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -4501,27 +4491,19 @@ __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf )  __attribute__((__no_instrument_function__)) ;
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf ) 
 { struct device  const  *__mptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct usb_device *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   char *__cil_tmp11 ;
   char *__cil_tmp12 ;
 
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = *((struct device **)__cil_tmp4);
+  __cil_tmp5 = *((struct device **)((void *)intf + 48));
   __mptr = (struct device  const  *)__cil_tmp5;
   {
   __cil_tmp6 = (struct usb_device *)0;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 136;
-  __cil_tmp9 = (struct device *)__cil_tmp8;
+  __cil_tmp9 = (struct device *)((void *)__cil_tmp6 + 136);
   __cil_tmp10 = (unsigned int )__cil_tmp9;
   __cil_tmp11 = (char *)__mptr;
   __cil_tmp12 = __cil_tmp11 - __cil_tmp10;
@@ -4537,62 +4519,26 @@ int drm_get_usb_dev(struct usb_interface *interface , struct usb_device_id  cons
   struct usb_device *usbdev ;
   int ret ;
   void *tmp___7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
   struct pci_device_id  const  *__cil_tmp15 ;
   void *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct drm_minor **__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct drm_minor **__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct drm_driver *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct drm_driver *__cil_tmp28 ;
   int (*__cil_tmp29)(struct drm_device * , unsigned long flags ) ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct drm_minor *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct drm_mode_group *__cil_tmp35 ;
   struct list_head *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct list_head *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   char *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   int __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   int __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   char *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct drm_minor *__cil_tmp57 ;
   int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct drm_minor **__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   struct drm_minor **__cil_tmp64 ;
   void const   *__cil_tmp65 ;
 
@@ -4618,14 +4564,8 @@ int drm_get_usb_dev(struct usb_interface *interface , struct usb_device_id  cons
   }
   {
   usbdev = interface_to_usbdev(interface);
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + 1040;
-  *((struct usb_device **)__cil_tmp9) = usbdev;
-  __cil_tmp10 = (unsigned long )dev;
-  __cil_tmp11 = __cil_tmp10 + 1008;
-  __cil_tmp12 = (unsigned long )usbdev;
-  __cil_tmp13 = __cil_tmp12 + 136;
-  *((struct device **)__cil_tmp11) = (struct device *)__cil_tmp13;
+  *((struct usb_device **)((void *)dev + 1040)) = usbdev;
+  *((struct device **)((void *)dev + 1008)) = (struct device *)((void *)usbdev + 136);
   mutex_lock(& drm_global_mutex);
   __cil_tmp14 = (void *)0;
   __cil_tmp15 = (struct pci_device_id  const  *)__cil_tmp14;
@@ -4642,9 +4582,7 @@ int drm_get_usb_dev(struct usb_interface *interface , struct usb_device_id  cons
   {
   __cil_tmp16 = (void *)dev;
   usb_set_intfdata(interface, __cil_tmp16);
-  __cil_tmp17 = (unsigned long )dev;
-  __cil_tmp18 = __cil_tmp17 + 1136;
-  __cil_tmp19 = (struct drm_minor **)__cil_tmp18;
+  __cil_tmp19 = (struct drm_minor **)((void *)dev + 1136);
   ret = drm_get_minor(dev, __cil_tmp19, 2);
   }
   if (ret) {
@@ -4653,9 +4591,7 @@ int drm_get_usb_dev(struct usb_interface *interface , struct usb_device_id  cons
 
   }
   {
-  __cil_tmp20 = (unsigned long )dev;
-  __cil_tmp21 = __cil_tmp20 + 1144;
-  __cil_tmp22 = (struct drm_minor **)__cil_tmp21;
+  __cil_tmp22 = (struct drm_minor **)((void *)dev + 1144);
   ret = drm_get_minor(dev, __cil_tmp22, 1);
   }
   if (ret) {
@@ -4664,14 +4600,10 @@ int drm_get_usb_dev(struct usb_interface *interface , struct usb_device_id  cons
 
   }
   {
-  __cil_tmp23 = (unsigned long )dev;
-  __cil_tmp24 = __cil_tmp23 + 1112;
-  __cil_tmp25 = *((struct drm_driver **)__cil_tmp24);
+  __cil_tmp25 = *((struct drm_driver **)((void *)dev + 1112));
   if (*((int (**)(struct drm_device * , unsigned long flags ))__cil_tmp25)) {
     {
-    __cil_tmp26 = (unsigned long )dev;
-    __cil_tmp27 = __cil_tmp26 + 1112;
-    __cil_tmp28 = *((struct drm_driver **)__cil_tmp27);
+    __cil_tmp28 = *((struct drm_driver **)((void *)dev + 1112));
     __cil_tmp29 = *((int (**)(struct drm_device * , unsigned long flags ))__cil_tmp28);
     ret = (*__cil_tmp29)(dev, 0UL);
     }
@@ -4685,12 +4617,8 @@ int drm_get_usb_dev(struct usb_interface *interface , struct usb_device_id  cons
   }
   }
   {
-  __cil_tmp30 = (unsigned long )dev;
-  __cil_tmp31 = __cil_tmp30 + 1144;
-  __cil_tmp32 = *((struct drm_minor **)__cil_tmp31);
-  __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = __cil_tmp33 + 960;
-  __cil_tmp35 = (struct drm_mode_group *)__cil_tmp34;
+  __cil_tmp32 = *((struct drm_minor **)((void *)dev + 1144));
+  __cil_tmp35 = (struct drm_mode_group *)((void *)__cil_tmp32 + 960);
   ret = drm_mode_group_init_legacy_group(dev, __cil_tmp35);
   }
   if (ret) {
@@ -4700,29 +4628,15 @@ int drm_get_usb_dev(struct usb_interface *interface , struct usb_device_id  cons
   }
   {
   __cil_tmp36 = (struct list_head *)dev;
-  __cil_tmp37 = (unsigned long )driver;
-  __cil_tmp38 = __cil_tmp37 + 448;
-  __cil_tmp39 = (struct list_head *)__cil_tmp38;
+  __cil_tmp39 = (struct list_head *)((void *)driver + 448);
   list_add_tail(__cil_tmp36, __cil_tmp39);
   mutex_unlock(& drm_global_mutex);
-  __cil_tmp40 = (unsigned long )driver;
-  __cil_tmp41 = __cil_tmp40 + 376;
-  __cil_tmp42 = *((char **)__cil_tmp41);
-  __cil_tmp43 = (unsigned long )driver;
-  __cil_tmp44 = __cil_tmp43 + 360;
-  __cil_tmp45 = *((int *)__cil_tmp44);
-  __cil_tmp46 = (unsigned long )driver;
-  __cil_tmp47 = __cil_tmp46 + 364;
-  __cil_tmp48 = *((int *)__cil_tmp47);
-  __cil_tmp49 = (unsigned long )driver;
-  __cil_tmp50 = __cil_tmp49 + 368;
-  __cil_tmp51 = *((int *)__cil_tmp50);
-  __cil_tmp52 = (unsigned long )driver;
-  __cil_tmp53 = __cil_tmp52 + 392;
-  __cil_tmp54 = *((char **)__cil_tmp53);
-  __cil_tmp55 = (unsigned long )dev;
-  __cil_tmp56 = __cil_tmp55 + 1144;
-  __cil_tmp57 = *((struct drm_minor **)__cil_tmp56);
+  __cil_tmp42 = *((char **)((void *)driver + 376));
+  __cil_tmp45 = *((int *)((void *)driver + 360));
+  __cil_tmp48 = *((int *)((void *)driver + 364));
+  __cil_tmp51 = *((int *)((void *)driver + 368));
+  __cil_tmp54 = *((char **)((void *)driver + 392));
+  __cil_tmp57 = *((struct drm_minor **)((void *)dev + 1144));
   __cil_tmp58 = *((int *)__cil_tmp57);
   printk("<6>[drm] Initialized %s %d.%d.%d %s on minor %d\n", __cil_tmp42, __cil_tmp45,
          __cil_tmp48, __cil_tmp51, __cil_tmp54, __cil_tmp58);
@@ -4730,16 +4644,12 @@ int drm_get_usb_dev(struct usb_interface *interface , struct usb_device_id  cons
   return (0);
   err_g3: 
   {
-  __cil_tmp59 = (unsigned long )dev;
-  __cil_tmp60 = __cil_tmp59 + 1144;
-  __cil_tmp61 = (struct drm_minor **)__cil_tmp60;
+  __cil_tmp61 = (struct drm_minor **)((void *)dev + 1144);
   drm_put_minor(__cil_tmp61);
   }
   err_g2: 
   {
-  __cil_tmp62 = (unsigned long )dev;
-  __cil_tmp63 = __cil_tmp62 + 1136;
-  __cil_tmp64 = (struct drm_minor **)__cil_tmp63;
+  __cil_tmp64 = (struct drm_minor **)((void *)dev + 1136);
   drm_put_minor(__cil_tmp64);
   }
   err_g1: 
@@ -4789,13 +4699,7 @@ static struct drm_bus drm_usb_bus  =    {3, & drm_usb_get_irq, & drm_usb_get_nam
     (int (*)(struct drm_device *dev , struct drm_irq_busid *p ))0, (int (*)(struct drm_device *dev ))0};
 int drm_usb_init(struct drm_driver *driver , struct usb_driver *udriver ) 
 { int res ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct list_head *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
 
   {
   {
@@ -4809,16 +4713,10 @@ int drm_usb_init(struct drm_driver *driver , struct usb_driver *udriver )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp4 = (unsigned long )driver;
-  __cil_tmp5 = __cil_tmp4 + 448;
-  __cil_tmp6 = (struct list_head *)__cil_tmp5;
+  __cil_tmp6 = (struct list_head *)((void *)driver + 448);
   INIT_LIST_HEAD(__cil_tmp6);
-  __cil_tmp7 = (unsigned long )driver;
-  __cil_tmp8 = __cil_tmp7 + 432;
-  *((struct usb_driver **)__cil_tmp8) = udriver;
-  __cil_tmp9 = (unsigned long )driver;
-  __cil_tmp10 = __cil_tmp9 + 440;
-  *((struct drm_bus **)__cil_tmp10) = & drm_usb_bus;
+  *((struct usb_driver **)((void *)driver + 432)) = udriver;
+  *((struct drm_bus **)((void *)driver + 440)) = & drm_usb_bus;
   res = usb_register_driver(udriver, & __this_module, "drm_usb");
   }
   return (res);

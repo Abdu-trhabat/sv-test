@@ -4449,8 +4449,6 @@ static void com20020_copy_from_card(struct net_device *dev , int bufnum , int of
                                     void *buf , int count )
 { int ioaddr ;
   int ofs ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -4469,9 +4467,7 @@ static void com20020_copy_from_card(struct net_device *dev , int bufnum , int of
   unsigned long __cil_tmp29 ;
   {
   {
-  __cil_tmp12 = (unsigned long )dev;
-  __cil_tmp13 = __cil_tmp12 + 312;
-  __cil_tmp14 = *((unsigned long *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp14;
   __cil_tmp15 = bufnum * 512;
   ofs = __cil_tmp15 + offset;
@@ -4500,8 +4496,6 @@ static void com20020_copy_to_card(struct net_device *dev , int bufnum , int offs
                                   void *buf , int count )
 { int ioaddr ;
   int ofs ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -4521,9 +4515,7 @@ static void com20020_copy_to_card(struct net_device *dev , int bufnum , int offs
   unsigned long __cil_tmp30 ;
   {
   {
-  __cil_tmp12 = (unsigned long )dev;
-  __cil_tmp13 = __cil_tmp12 + 312;
-  __cil_tmp14 = *((unsigned long *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp14;
   __cil_tmp15 = bufnum * 512;
   ofs = __cil_tmp15 + offset;
@@ -4562,39 +4554,21 @@ int com20020_check(struct net_device *dev )
   unsigned char tmp___3 ;
   unsigned char tmp___4 ;
   unsigned char tmp___5 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   struct net_device const *__cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   uint8_t __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   uint8_t __cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   uint8_t __cil_tmp37 ;
   int __cil_tmp38 ;
   int __cil_tmp39 ;
   signed char __cil_tmp40 ;
   int __cil_tmp41 ;
   int __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   uint8_t __cil_tmp47 ;
   unsigned int __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
@@ -4607,33 +4581,23 @@ int com20020_check(struct net_device *dev )
   int __cil_tmp56 ;
   unsigned char __cil_tmp57 ;
   int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   uint8_t __cil_tmp61 ;
   int __cil_tmp62 ;
   unsigned char __cil_tmp63 ;
   int __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   uint8_t __cil_tmp67 ;
   unsigned int __cil_tmp68 ;
   int __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   uint8_t __cil_tmp72 ;
   int __cil_tmp73 ;
   unsigned char __cil_tmp74 ;
   int __cil_tmp75 ;
   int __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   uint8_t __cil_tmp79 ;
   int __cil_tmp80 ;
   int __cil_tmp81 ;
   signed char __cil_tmp82 ;
   int __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   uint8_t __cil_tmp86 ;
   int __cil_tmp87 ;
   int __cil_tmp88 ;
@@ -4672,9 +4636,7 @@ int com20020_check(struct net_device *dev )
   char *__cil_tmp121 ;
   {
   {
-  __cil_tmp14 = (unsigned long )dev;
-  __cil_tmp15 = __cil_tmp14 + 312;
-  __cil_tmp16 = *((unsigned long *)__cil_tmp15);
+  __cil_tmp16 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp16;
   __cil_tmp17 = (struct net_device const *)dev;
   tmp = netdev_priv(__cil_tmp17);
@@ -4701,45 +4663,29 @@ int com20020_check(struct net_device *dev )
   }
   ldv_34742: ;
   {
-  __cil_tmp20 = (unsigned long )lp;
-  __cil_tmp21 = __cil_tmp20 + 4;
-  __cil_tmp22 = *((uint8_t *)__cil_tmp21);
+  __cil_tmp22 = *((uint8_t *)((void *)lp + 4));
   __cil_tmp23 = (unsigned int )__cil_tmp22;
   if (__cil_tmp23 == 0U) {
-    __cil_tmp24 = (unsigned long )lp;
-    __cil_tmp25 = __cil_tmp24 + 5;
-    __cil_tmp26 = (unsigned long )lp;
-    __cil_tmp27 = __cil_tmp26 + 3;
-    __cil_tmp28 = *((uint8_t *)__cil_tmp27);
+    __cil_tmp28 = *((uint8_t *)((void *)lp + 3));
     __cil_tmp29 = (int )__cil_tmp28;
     __cil_tmp30 = __cil_tmp29 << 1U;
-    *((uint8_t *)__cil_tmp25) = (uint8_t )__cil_tmp30;
+    *((uint8_t *)((void *)lp + 5)) = (uint8_t )__cil_tmp30;
   } else {
-    __cil_tmp31 = (unsigned long )lp;
-    __cil_tmp32 = __cil_tmp31 + 5;
-    *((uint8_t *)__cil_tmp32) = (uint8_t )0U;
+    *((uint8_t *)((void *)lp + 5)) = (uint8_t )0U;
   }
   }
   {
-  __cil_tmp33 = (unsigned long )lp;
-  __cil_tmp34 = __cil_tmp33 + 6;
-  __cil_tmp35 = (unsigned long )lp;
-  __cil_tmp36 = __cil_tmp35 + 4;
-  __cil_tmp37 = *((uint8_t *)__cil_tmp36);
+  __cil_tmp37 = *((uint8_t *)((void *)lp + 4));
   __cil_tmp38 = (int )__cil_tmp37;
   __cil_tmp39 = __cil_tmp38 << 4;
   __cil_tmp40 = (signed char )__cil_tmp39;
   __cil_tmp41 = (int )__cil_tmp40;
   __cil_tmp42 = __cil_tmp41 | 8;
-  *((uint8_t *)__cil_tmp34) = (uint8_t )__cil_tmp42;
-  __cil_tmp43 = (unsigned long )lp;
-  __cil_tmp44 = __cil_tmp43 + 5;
-  __cil_tmp45 = (unsigned long )lp;
-  __cil_tmp46 = __cil_tmp45 + 5;
-  __cil_tmp47 = *((uint8_t *)__cil_tmp46);
+  *((uint8_t *)((void *)lp + 6)) = (uint8_t )__cil_tmp42;
+  __cil_tmp47 = *((uint8_t *)((void *)lp + 5));
   __cil_tmp48 = (unsigned int )__cil_tmp47;
   __cil_tmp49 = __cil_tmp48 | 128U;
-  *((uint8_t *)__cil_tmp44) = (uint8_t )__cil_tmp49;
+  *((uint8_t *)((void *)lp + 5)) = (uint8_t )__cil_tmp49;
   __cil_tmp50 = *((uint8_t *)lp);
   __cil_tmp51 = (signed char )__cil_tmp50;
   __cil_tmp52 = (int )__cil_tmp51;
@@ -4751,26 +4697,20 @@ int com20020_check(struct net_device *dev )
   __cil_tmp57 = (unsigned char )__cil_tmp56;
   __cil_tmp58 = ioaddr + 6;
   outb(__cil_tmp57, __cil_tmp58);
-  __cil_tmp59 = (unsigned long )lp;
-  __cil_tmp60 = __cil_tmp59 + 5;
-  __cil_tmp61 = *((uint8_t *)__cil_tmp60);
+  __cil_tmp61 = *((uint8_t *)((void *)lp + 5));
   __cil_tmp62 = (int )__cil_tmp61;
   __cil_tmp63 = (unsigned char )__cil_tmp62;
   __cil_tmp64 = ioaddr + 7;
   outb(__cil_tmp63, __cil_tmp64);
   }
   {
-  __cil_tmp65 = (unsigned long )lp;
-  __cil_tmp66 = __cil_tmp65 + 4;
-  __cil_tmp67 = *((uint8_t *)__cil_tmp66);
+  __cil_tmp67 = *((uint8_t *)((void *)lp + 4));
   __cil_tmp68 = (unsigned int )__cil_tmp67;
   if (__cil_tmp68 != 0U) {
     {
     __cil_tmp69 = ioaddr + 5;
     outb((unsigned char)4, __cil_tmp69);
-    __cil_tmp70 = (unsigned long )lp;
-    __cil_tmp71 = __cil_tmp70 + 6;
-    __cil_tmp72 = *((uint8_t *)__cil_tmp71);
+    __cil_tmp72 = *((uint8_t *)((void *)lp + 6));
     __cil_tmp73 = (int )__cil_tmp72;
     __cil_tmp74 = (unsigned char )__cil_tmp73;
     __cil_tmp75 = ioaddr + 7;
@@ -4805,16 +4745,12 @@ int com20020_check(struct net_device *dev )
   }
   }
   {
-  __cil_tmp77 = (unsigned long )lp;
-  __cil_tmp78 = __cil_tmp77 + 2;
-  __cil_tmp79 = *((uint8_t *)__cil_tmp78);
+  __cil_tmp79 = *((uint8_t *)((void *)lp + 2));
   __cil_tmp80 = (int )__cil_tmp79;
   __cil_tmp81 = __cil_tmp80 << 2;
   __cil_tmp82 = (signed char )__cil_tmp81;
   __cil_tmp83 = (int )__cil_tmp82;
-  __cil_tmp84 = (unsigned long )lp;
-  __cil_tmp85 = __cil_tmp84 + 1;
-  __cil_tmp86 = *((uint8_t *)__cil_tmp85);
+  __cil_tmp86 = *((uint8_t *)((void *)lp + 1));
   __cil_tmp87 = (int )__cil_tmp86;
   __cil_tmp88 = __cil_tmp87 << 3;
   __cil_tmp89 = (signed char )__cil_tmp88;
@@ -4956,40 +4892,18 @@ int com20020_found(struct net_device *dev , int shared )
   unsigned long tmp___0 ;
   int tmp___1 ;
   int tmp___2 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   struct net_device const *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned char *__cil_tmp39 ;
   unsigned char __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned char *__cil_tmp44 ;
   int __cil_tmp45 ;
   uint8_t __cil_tmp46 ;
@@ -5001,33 +4915,23 @@ int com20020_found(struct net_device *dev , int shared )
   int __cil_tmp52 ;
   unsigned char __cil_tmp53 ;
   int __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   uint8_t __cil_tmp57 ;
   int __cil_tmp58 ;
   unsigned char __cil_tmp59 ;
   int __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   int __cil_tmp63 ;
   int __cil_tmp64 ;
   int __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   uint8_t __cil_tmp68 ;
   int __cil_tmp69 ;
   unsigned char __cil_tmp70 ;
   int __cil_tmp71 ;
   int __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   uint8_t __cil_tmp75 ;
   int __cil_tmp76 ;
   int __cil_tmp77 ;
   signed char __cil_tmp78 ;
   int __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   uint8_t __cil_tmp82 ;
   int __cil_tmp83 ;
   int __cil_tmp84 ;
@@ -5040,77 +4944,49 @@ int com20020_found(struct net_device *dev , int shared )
   int __cil_tmp91 ;
   unsigned char __cil_tmp92 ;
   int __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   unsigned char *__cil_tmp96 ;
   unsigned char __cil_tmp97 ;
   int __cil_tmp98 ;
   unsigned char __cil_tmp99 ;
   int __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   unsigned int __cil_tmp103 ;
   unsigned long __cil_tmp104 ;
   void *__cil_tmp105 ;
   char *__cil_tmp106 ;
   char (*__cil_tmp107)[16U] ;
   char *__cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   unsigned int __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   char *__cil_tmp114 ;
   char (*__cil_tmp115)[16U] ;
   char *__cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   char *__cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   unsigned char *__cil_tmp122 ;
   unsigned char __cil_tmp123 ;
   int __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
   unsigned int __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
   uint8_t __cil_tmp133 ;
   unsigned int __cil_tmp134 ;
   char *__cil_tmp135 ;
   char (*__cil_tmp136)[16U] ;
   char *__cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
   uint8_t __cil_tmp140 ;
   unsigned int __cil_tmp141 ;
   char *__cil_tmp142 ;
   char (*__cil_tmp143)[16U] ;
   char *__cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
   uint8_t __cil_tmp147 ;
   int __cil_tmp148 ;
   char *__cil_tmp149 ;
   char (*__cil_tmp150)[16U] ;
   char *__cil_tmp151 ;
-  unsigned long __cil_tmp152 ;
-  unsigned long __cil_tmp153 ;
   uint8_t __cil_tmp154 ;
   int __cil_tmp155 ;
   int __cil_tmp156 ;
-  unsigned long __cil_tmp157 ;
-  unsigned long __cil_tmp158 ;
   uint8_t __cil_tmp159 ;
   int __cil_tmp160 ;
   int __cil_tmp161 ;
   int __cil_tmp162 ;
-  unsigned long __cil_tmp163 ;
-  unsigned long __cil_tmp164 ;
   uint8_t __cil_tmp165 ;
   int __cil_tmp166 ;
   int __cil_tmp167 ;
@@ -5119,62 +4995,38 @@ int com20020_found(struct net_device *dev , int shared )
   unsigned long __cil_tmp170 ;
   unsigned long __cil_tmp171 ;
   char *__cil_tmp172 ;
-  unsigned long __cil_tmp173 ;
-  unsigned long __cil_tmp174 ;
   unsigned int __cil_tmp175 ;
   void *__cil_tmp176 ;
   {
   {
-  __cil_tmp10 = (unsigned long )dev;
-  __cil_tmp11 = __cil_tmp10 + 312;
-  __cil_tmp12 = *((unsigned long *)__cil_tmp11);
+  __cil_tmp12 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp12;
   __cil_tmp13 = (struct net_device const *)dev;
   tmp = netdev_priv(__cil_tmp13);
   lp = (struct arcnet_local *)tmp;
-  __cil_tmp14 = (unsigned long )lp;
-  __cil_tmp15 = __cil_tmp14 + 4584;
-  *((struct module **)__cil_tmp15) = & __this_module;
+  *((struct module **)((void *)lp + 4584)) = & __this_module;
   __cil_tmp16 = 4584 + 8;
-  __cil_tmp17 = (unsigned long )lp;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  *((void (**)(struct net_device * , int ))__cil_tmp18) = & com20020_command;
+  *((void (**)(struct net_device * , int ))((void *)lp + __cil_tmp16)) = & com20020_command;
   __cil_tmp19 = 4584 + 16;
-  __cil_tmp20 = (unsigned long )lp;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  *((int (**)(struct net_device * ))__cil_tmp21) = & com20020_status;
+  *((int (**)(struct net_device * ))((void *)lp + __cil_tmp19)) = & com20020_status;
   __cil_tmp22 = 4584 + 24;
-  __cil_tmp23 = (unsigned long )lp;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  *((void (**)(struct net_device * , int ))__cil_tmp24) = & com20020_setmask;
+  *((void (**)(struct net_device * , int ))((void *)lp + __cil_tmp22)) = & com20020_setmask;
   __cil_tmp25 = 4584 + 32;
-  __cil_tmp26 = (unsigned long )lp;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  *((int (**)(struct net_device * , int ))__cil_tmp27) = & com20020_reset;
+  *((int (**)(struct net_device * , int ))((void *)lp + __cil_tmp25)) = & com20020_reset;
   __cil_tmp28 = 4584 + 56;
-  __cil_tmp29 = (unsigned long )lp;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  *((void (**)(struct net_device * , int , int , void * , int ))__cil_tmp30) = & com20020_copy_to_card;
+  *((void (**)(struct net_device * , int , int , void * , int ))((void *)lp + __cil_tmp28)) = & com20020_copy_to_card;
   __cil_tmp31 = 4584 + 64;
-  __cil_tmp32 = (unsigned long )lp;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  *((void (**)(struct net_device * , int , int , void * , int ))__cil_tmp33) = & com20020_copy_from_card;
+  *((void (**)(struct net_device * , int , int , void * , int ))((void *)lp + __cil_tmp31)) = & com20020_copy_from_card;
   __cil_tmp34 = 4584 + 48;
-  __cil_tmp35 = (unsigned long )lp;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  *((void (**)(struct net_device * ))__cil_tmp36) = & com20020_close;
+  *((void (**)(struct net_device * ))((void *)lp + __cil_tmp34)) = & com20020_close;
   }
   {
-  __cil_tmp37 = (unsigned long )dev;
-  __cil_tmp38 = __cil_tmp37 + 952;
-  __cil_tmp39 = *((unsigned char **)__cil_tmp38);
+  __cil_tmp39 = *((unsigned char **)((void *)dev + 952));
   __cil_tmp40 = *__cil_tmp39;
   __cil_tmp41 = (unsigned int )__cil_tmp40;
   if (__cil_tmp41 == 0U) {
     {
-    __cil_tmp42 = (unsigned long )dev;
-    __cil_tmp43 = __cil_tmp42 + 952;
-    __cil_tmp44 = *((unsigned char **)__cil_tmp43);
+    __cil_tmp44 = *((unsigned char **)((void *)dev + 952));
     __cil_tmp45 = ioaddr + 8;
     *__cil_tmp44 = inb(__cil_tmp45);
     }
@@ -5193,26 +5045,20 @@ int com20020_found(struct net_device *dev , int shared )
   __cil_tmp53 = (unsigned char )__cil_tmp52;
   __cil_tmp54 = ioaddr + 6;
   outb(__cil_tmp53, __cil_tmp54);
-  __cil_tmp55 = (unsigned long )lp;
-  __cil_tmp56 = __cil_tmp55 + 5;
-  __cil_tmp57 = *((uint8_t *)__cil_tmp56);
+  __cil_tmp57 = *((uint8_t *)((void *)lp + 5));
   __cil_tmp58 = (int )__cil_tmp57;
   __cil_tmp59 = (unsigned char )__cil_tmp58;
   __cil_tmp60 = ioaddr + 7;
   outb(__cil_tmp59, __cil_tmp60);
   }
   {
-  __cil_tmp61 = (unsigned long )lp;
-  __cil_tmp62 = __cil_tmp61 + 304;
-  __cil_tmp63 = *((int *)__cil_tmp62);
+  __cil_tmp63 = *((int *)((void *)lp + 304));
   __cil_tmp64 = __cil_tmp63 & 2;
   if (__cil_tmp64 != 0) {
     {
     __cil_tmp65 = ioaddr + 5;
     outb((unsigned char)4, __cil_tmp65);
-    __cil_tmp66 = (unsigned long )lp;
-    __cil_tmp67 = __cil_tmp66 + 6;
-    __cil_tmp68 = *((uint8_t *)__cil_tmp67);
+    __cil_tmp68 = *((uint8_t *)((void *)lp + 6));
     __cil_tmp69 = (int )__cil_tmp68;
     __cil_tmp70 = (unsigned char )__cil_tmp69;
     __cil_tmp71 = ioaddr + 7;
@@ -5247,16 +5093,12 @@ int com20020_found(struct net_device *dev , int shared )
   }
   }
   {
-  __cil_tmp73 = (unsigned long )lp;
-  __cil_tmp74 = __cil_tmp73 + 2;
-  __cil_tmp75 = *((uint8_t *)__cil_tmp74);
+  __cil_tmp75 = *((uint8_t *)((void *)lp + 2));
   __cil_tmp76 = (int )__cil_tmp75;
   __cil_tmp77 = __cil_tmp76 << 2;
   __cil_tmp78 = (signed char )__cil_tmp77;
   __cil_tmp79 = (int )__cil_tmp78;
-  __cil_tmp80 = (unsigned long )lp;
-  __cil_tmp81 = __cil_tmp80 + 1;
-  __cil_tmp82 = *((uint8_t *)__cil_tmp81);
+  __cil_tmp82 = *((uint8_t *)((void *)lp + 1));
   __cil_tmp83 = (int )__cil_tmp82;
   __cil_tmp84 = __cil_tmp83 << 3;
   __cil_tmp85 = (signed char )__cil_tmp84;
@@ -5270,17 +5112,13 @@ int com20020_found(struct net_device *dev , int shared )
   __cil_tmp92 = (unsigned char )__cil_tmp91;
   __cil_tmp93 = ioaddr + 6;
   outb(__cil_tmp92, __cil_tmp93);
-  __cil_tmp94 = (unsigned long )dev;
-  __cil_tmp95 = __cil_tmp94 + 952;
-  __cil_tmp96 = *((unsigned char **)__cil_tmp95);
+  __cil_tmp96 = *((unsigned char **)((void *)dev + 952));
   __cil_tmp97 = *__cil_tmp96;
   __cil_tmp98 = (int )__cil_tmp97;
   __cil_tmp99 = (unsigned char )__cil_tmp98;
   __cil_tmp100 = ioaddr + 7;
   outb(__cil_tmp99, __cil_tmp100);
-  __cil_tmp101 = (unsigned long )dev;
-  __cil_tmp102 = __cil_tmp101 + 320;
-  __cil_tmp103 = *((unsigned int *)__cil_tmp102);
+  __cil_tmp103 = *((unsigned int *)((void *)dev + 320));
   __cil_tmp104 = (unsigned long )shared;
   __cil_tmp105 = (void *)dev;
   tmp___1 = request_irq(__cil_tmp103, & arcnet_interrupt, __cil_tmp104, "arcnet (COM20020)",
@@ -5292,9 +5130,7 @@ int com20020_found(struct net_device *dev , int shared )
       __cil_tmp106 = (char *)"<4>";
       __cil_tmp107 = (char (*)[16U])dev;
       __cil_tmp108 = (char *)__cil_tmp107;
-      __cil_tmp109 = (unsigned long )dev;
-      __cil_tmp110 = __cil_tmp109 + 320;
-      __cil_tmp111 = *((unsigned int *)__cil_tmp110);
+      __cil_tmp111 = *((unsigned int *)((void *)dev + 320));
       printk("%s%6s: Can\'t get IRQ %d!\n", __cil_tmp106, __cil_tmp108, __cil_tmp111);
       }
     } else {
@@ -5302,37 +5138,25 @@ int com20020_found(struct net_device *dev , int shared )
     return (-19);
   } else {
   }
-  __cil_tmp112 = (unsigned long )dev;
-  __cil_tmp113 = __cil_tmp112 + 312;
-  *((unsigned long *)__cil_tmp113) = (unsigned long )ioaddr;
+  *((unsigned long *)((void *)dev + 312)) = (unsigned long )ioaddr;
   if (arcnet_debug & 1) {
     {
     __cil_tmp114 = (char *)"<4>";
     __cil_tmp115 = (char (*)[16U])dev;
     __cil_tmp116 = (char *)__cil_tmp115;
-    __cil_tmp117 = (unsigned long )lp;
-    __cil_tmp118 = __cil_tmp117 + 296;
-    __cil_tmp119 = *((char **)__cil_tmp118);
-    __cil_tmp120 = (unsigned long )dev;
-    __cil_tmp121 = __cil_tmp120 + 952;
-    __cil_tmp122 = *((unsigned char **)__cil_tmp121);
+    __cil_tmp119 = *((char **)((void *)lp + 296));
+    __cil_tmp122 = *((unsigned char **)((void *)dev + 952));
     __cil_tmp123 = *__cil_tmp122;
     __cil_tmp124 = (int )__cil_tmp123;
-    __cil_tmp125 = (unsigned long )dev;
-    __cil_tmp126 = __cil_tmp125 + 312;
-    __cil_tmp127 = *((unsigned long *)__cil_tmp126);
-    __cil_tmp128 = (unsigned long )dev;
-    __cil_tmp129 = __cil_tmp128 + 320;
-    __cil_tmp130 = *((unsigned int *)__cil_tmp129);
+    __cil_tmp127 = *((unsigned long *)((void *)dev + 312));
+    __cil_tmp130 = *((unsigned int *)((void *)dev + 320));
     printk("%s%6s: %s: station %02Xh found at %03lXh, IRQ %d.\n", __cil_tmp114, __cil_tmp116,
            __cil_tmp119, __cil_tmp124, __cil_tmp127, __cil_tmp130);
     }
   } else {
   }
   {
-  __cil_tmp131 = (unsigned long )lp;
-  __cil_tmp132 = __cil_tmp131 + 2;
-  __cil_tmp133 = *((uint8_t *)__cil_tmp132);
+  __cil_tmp133 = *((uint8_t *)((void *)lp + 2));
   __cil_tmp134 = (unsigned int )__cil_tmp133;
   if (__cil_tmp134 != 0U) {
     if (arcnet_debug & 1) {
@@ -5348,9 +5172,7 @@ int com20020_found(struct net_device *dev , int shared )
   }
   }
   {
-  __cil_tmp138 = (unsigned long )lp;
-  __cil_tmp139 = __cil_tmp138 + 1;
-  __cil_tmp140 = *((uint8_t *)__cil_tmp139);
+  __cil_tmp140 = *((uint8_t *)((void *)lp + 1));
   __cil_tmp141 = (unsigned int )__cil_tmp140;
   if (__cil_tmp141 != 3U) {
     if (arcnet_debug & 1) {
@@ -5358,9 +5180,7 @@ int com20020_found(struct net_device *dev , int shared )
       __cil_tmp142 = (char *)"<4>";
       __cil_tmp143 = (char (*)[16U])dev;
       __cil_tmp144 = (char *)__cil_tmp143;
-      __cil_tmp145 = (unsigned long )lp;
-      __cil_tmp146 = __cil_tmp145 + 1;
-      __cil_tmp147 = *((uint8_t *)__cil_tmp146);
+      __cil_tmp147 = *((uint8_t *)((void *)lp + 1));
       __cil_tmp148 = (int )__cil_tmp147;
       printk("%s%6s: Using extended timeout value of %d.\n", __cil_tmp142, __cil_tmp144,
              __cil_tmp148);
@@ -5375,20 +5195,14 @@ int com20020_found(struct net_device *dev , int shared )
     __cil_tmp149 = (char *)"<4>";
     __cil_tmp150 = (char (*)[16U])dev;
     __cil_tmp151 = (char *)__cil_tmp150;
-    __cil_tmp152 = (unsigned long )lp;
-    __cil_tmp153 = __cil_tmp152 + 5;
-    __cil_tmp154 = *((uint8_t *)__cil_tmp153);
+    __cil_tmp154 = *((uint8_t *)((void *)lp + 5));
     __cil_tmp155 = (int )__cil_tmp154;
     __cil_tmp156 = __cil_tmp155 >> 1;
-    __cil_tmp157 = (unsigned long )lp;
-    __cil_tmp158 = __cil_tmp157 + 5;
-    __cil_tmp159 = *((uint8_t *)__cil_tmp158);
+    __cil_tmp159 = *((uint8_t *)((void *)lp + 5));
     __cil_tmp160 = (int )__cil_tmp159;
     __cil_tmp161 = __cil_tmp160 & 15;
     __cil_tmp162 = __cil_tmp161 >> 1;
-    __cil_tmp163 = (unsigned long )lp;
-    __cil_tmp164 = __cil_tmp163 + 6;
-    __cil_tmp165 = *((uint8_t *)__cil_tmp164);
+    __cil_tmp165 = *((uint8_t *)((void *)lp + 6));
     __cil_tmp166 = (int )__cil_tmp165;
     __cil_tmp167 = __cil_tmp166 >> 4;
     __cil_tmp168 = 3 - __cil_tmp167;
@@ -5406,9 +5220,7 @@ int com20020_found(struct net_device *dev , int shared )
   }
   if (tmp___2 != 0) {
     {
-    __cil_tmp173 = (unsigned long )dev;
-    __cil_tmp174 = __cil_tmp173 + 320;
-    __cil_tmp175 = *((unsigned int *)__cil_tmp174);
+    __cil_tmp175 = *((unsigned int *)((void *)dev + 320));
     __cil_tmp176 = (void *)dev;
     free_irq(__cil_tmp175, __cil_tmp176);
     }
@@ -5427,8 +5239,6 @@ static int com20020_reset(struct net_device *dev , int really_reset )
   unsigned long __ms ;
   unsigned long tmp___1 ;
   struct net_device const *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
@@ -5438,15 +5248,11 @@ static int com20020_reset(struct net_device *dev , int really_reset )
   char (*__cil_tmp19)[16U] ;
   char *__cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   uint8_t __cil_tmp24 ;
   int __cil_tmp25 ;
   int __cil_tmp26 ;
   signed char __cil_tmp27 ;
   int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   uint8_t __cil_tmp31 ;
   int __cil_tmp32 ;
   int __cil_tmp33 ;
@@ -5487,9 +5293,7 @@ static int com20020_reset(struct net_device *dev , int really_reset )
   __cil_tmp10 = (struct net_device const *)dev;
   tmp = netdev_priv(__cil_tmp10);
   lp = (struct arcnet_local *)tmp;
-  __cil_tmp11 = (unsigned long )dev;
-  __cil_tmp12 = __cil_tmp11 + 312;
-  __cil_tmp13 = *((unsigned long *)__cil_tmp12);
+  __cil_tmp13 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (u_int )__cil_tmp13;
   }
   {
@@ -5511,16 +5315,12 @@ static int com20020_reset(struct net_device *dev , int really_reset )
   }
   }
   {
-  __cil_tmp22 = (unsigned long )lp;
-  __cil_tmp23 = __cil_tmp22 + 2;
-  __cil_tmp24 = *((uint8_t *)__cil_tmp23);
+  __cil_tmp24 = *((uint8_t *)((void *)lp + 2));
   __cil_tmp25 = (int )__cil_tmp24;
   __cil_tmp26 = __cil_tmp25 << 2;
   __cil_tmp27 = (signed char )__cil_tmp26;
   __cil_tmp28 = (int )__cil_tmp27;
-  __cil_tmp29 = (unsigned long )lp;
-  __cil_tmp30 = __cil_tmp29 + 1;
-  __cil_tmp31 = *((uint8_t *)__cil_tmp30);
+  __cil_tmp31 = *((uint8_t *)((void *)lp + 1));
   __cil_tmp32 = (int )__cil_tmp31;
   __cil_tmp33 = __cil_tmp32 << 3;
   __cil_tmp34 = (signed char )__cil_tmp33;
@@ -5605,8 +5405,6 @@ static int com20020_reset(struct net_device *dev , int really_reset )
 }
 static void com20020_setmask(struct net_device *dev , int mask )
 { u_int ioaddr ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned char __cil_tmp7 ;
   int __cil_tmp8 ;
@@ -5614,9 +5412,7 @@ static void com20020_setmask(struct net_device *dev , int mask )
   int __cil_tmp10 ;
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 312;
-  __cil_tmp6 = *((unsigned long *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (u_int )__cil_tmp6;
   __cil_tmp7 = (unsigned char )mask;
   __cil_tmp8 = (int )__cil_tmp7;
@@ -5629,8 +5425,6 @@ static void com20020_setmask(struct net_device *dev , int mask )
 }
 static void com20020_command(struct net_device *dev , int cmd )
 { u_int ioaddr ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned char __cil_tmp7 ;
   int __cil_tmp8 ;
@@ -5639,9 +5433,7 @@ static void com20020_command(struct net_device *dev , int cmd )
   int __cil_tmp11 ;
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 312;
-  __cil_tmp6 = *((unsigned long *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (u_int )__cil_tmp6;
   __cil_tmp7 = (unsigned char )cmd;
   __cil_tmp8 = (int )__cil_tmp7;
@@ -5657,8 +5449,6 @@ static int com20020_status(struct net_device *dev )
 { u_int ioaddr ;
   unsigned char tmp ;
   unsigned char tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
   u_int __cil_tmp9 ;
@@ -5668,9 +5458,7 @@ static int com20020_status(struct net_device *dev )
   int __cil_tmp13 ;
   {
   {
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + 312;
-  __cil_tmp7 = *((unsigned long *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (u_int )__cil_tmp7;
   __cil_tmp8 = (int )ioaddr;
   tmp = inb(__cil_tmp8);
@@ -5691,8 +5479,6 @@ static void com20020_close(struct net_device *dev )
   void *tmp ;
   int ioaddr ;
   struct net_device const *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   uint8_t __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
@@ -5706,9 +5492,7 @@ static void com20020_close(struct net_device *dev )
   __cil_tmp5 = (struct net_device const *)dev;
   tmp = netdev_priv(__cil_tmp5);
   lp = (struct arcnet_local *)tmp;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 312;
-  __cil_tmp8 = *((unsigned long *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp8;
   __cil_tmp9 = *((uint8_t *)lp);
   __cil_tmp10 = (unsigned int )__cil_tmp9;
@@ -5728,19 +5512,11 @@ static void com20020_set_mc_list(struct net_device *dev )
   void *tmp ;
   int ioaddr ;
   struct net_device const *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   uint8_t __cil_tmp19 ;
   int __cil_tmp20 ;
   int __cil_tmp21 ;
@@ -5756,21 +5532,13 @@ static void com20020_set_mc_list(struct net_device *dev )
   int __cil_tmp31 ;
   unsigned char __cil_tmp32 ;
   int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   uint8_t __cil_tmp38 ;
   unsigned int __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   uint8_t __cil_tmp43 ;
   int __cil_tmp44 ;
   unsigned char __cil_tmp45 ;
   int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   uint8_t __cil_tmp49 ;
   int __cil_tmp50 ;
   int __cil_tmp51 ;
@@ -5786,15 +5554,9 @@ static void com20020_set_mc_list(struct net_device *dev )
   int __cil_tmp61 ;
   unsigned char __cil_tmp62 ;
   int __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   uint8_t __cil_tmp68 ;
   unsigned int __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   uint8_t __cil_tmp73 ;
   int __cil_tmp74 ;
   unsigned char __cil_tmp75 ;
@@ -5804,27 +5566,19 @@ static void com20020_set_mc_list(struct net_device *dev )
   __cil_tmp5 = (struct net_device const *)dev;
   tmp = netdev_priv(__cil_tmp5);
   lp = (struct arcnet_local *)tmp;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 312;
-  __cil_tmp8 = *((unsigned long *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp8;
   }
   {
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 656;
-  __cil_tmp11 = *((unsigned int *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned int *)((void *)dev + 656));
   __cil_tmp12 = __cil_tmp11 & 256U;
   if (__cil_tmp12 != 0U) {
     {
-    __cil_tmp13 = (unsigned long )dev;
-    __cil_tmp14 = __cil_tmp13 + 656;
-    __cil_tmp15 = *((unsigned int *)__cil_tmp14);
+    __cil_tmp15 = *((unsigned int *)((void *)dev + 656));
     __cil_tmp16 = (int )__cil_tmp15;
     if (__cil_tmp16 & 1) {
       {
-      __cil_tmp17 = (unsigned long )lp;
-      __cil_tmp18 = __cil_tmp17 + 5;
-      __cil_tmp19 = *((uint8_t *)__cil_tmp18);
+      __cil_tmp19 = *((uint8_t *)((void *)lp + 5));
       __cil_tmp20 = (int )__cil_tmp19;
       __cil_tmp21 = __cil_tmp20 & 16;
       if (__cil_tmp21 == 0) {
@@ -5852,17 +5606,11 @@ static void com20020_set_mc_list(struct net_device *dev )
       __cil_tmp32 = (unsigned char )__cil_tmp31;
       __cil_tmp33 = ioaddr + 6;
       outb(__cil_tmp32, __cil_tmp33);
-      __cil_tmp34 = (unsigned long )lp;
-      __cil_tmp35 = __cil_tmp34 + 5;
-      __cil_tmp36 = (unsigned long )lp;
-      __cil_tmp37 = __cil_tmp36 + 5;
-      __cil_tmp38 = *((uint8_t *)__cil_tmp37);
+      __cil_tmp38 = *((uint8_t *)((void *)lp + 5));
       __cil_tmp39 = (unsigned int )__cil_tmp38;
       __cil_tmp40 = __cil_tmp39 | 16U;
-      *((uint8_t *)__cil_tmp35) = (uint8_t )__cil_tmp40;
-      __cil_tmp41 = (unsigned long )lp;
-      __cil_tmp42 = __cil_tmp41 + 5;
-      __cil_tmp43 = *((uint8_t *)__cil_tmp42);
+      *((uint8_t *)((void *)lp + 5)) = (uint8_t )__cil_tmp40;
+      __cil_tmp43 = *((uint8_t *)((void *)lp + 5));
       __cil_tmp44 = (int )__cil_tmp43;
       __cil_tmp45 = (unsigned char )__cil_tmp44;
       __cil_tmp46 = ioaddr + 7;
@@ -5875,9 +5623,7 @@ static void com20020_set_mc_list(struct net_device *dev )
   } else {
     _L:
     {
-    __cil_tmp47 = (unsigned long )lp;
-    __cil_tmp48 = __cil_tmp47 + 5;
-    __cil_tmp49 = *((uint8_t *)__cil_tmp48);
+    __cil_tmp49 = *((uint8_t *)((void *)lp + 5));
     __cil_tmp50 = (int )__cil_tmp49;
     __cil_tmp51 = __cil_tmp50 & 16;
     if (__cil_tmp51 != 0) {
@@ -5905,17 +5651,11 @@ static void com20020_set_mc_list(struct net_device *dev )
     __cil_tmp62 = (unsigned char )__cil_tmp61;
     __cil_tmp63 = ioaddr + 6;
     outb(__cil_tmp62, __cil_tmp63);
-    __cil_tmp64 = (unsigned long )lp;
-    __cil_tmp65 = __cil_tmp64 + 5;
-    __cil_tmp66 = (unsigned long )lp;
-    __cil_tmp67 = __cil_tmp66 + 5;
-    __cil_tmp68 = *((uint8_t *)__cil_tmp67);
+    __cil_tmp68 = *((uint8_t *)((void *)lp + 5));
     __cil_tmp69 = (unsigned int )__cil_tmp68;
     __cil_tmp70 = __cil_tmp69 & 239U;
-    *((uint8_t *)__cil_tmp65) = (uint8_t )__cil_tmp70;
-    __cil_tmp71 = (unsigned long )lp;
-    __cil_tmp72 = __cil_tmp71 + 5;
-    __cil_tmp73 = *((uint8_t *)__cil_tmp72);
+    *((uint8_t *)((void *)lp + 5)) = (uint8_t )__cil_tmp70;
+    __cil_tmp73 = *((uint8_t *)((void *)lp + 5));
     __cil_tmp74 = (int )__cil_tmp73;
     __cil_tmp75 = (unsigned char )__cil_tmp74;
     __cil_tmp76 = ioaddr + 7;

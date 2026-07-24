@@ -3053,13 +3053,9 @@ __inline static void __iio_update_buffer(struct iio_buffer *buffer , int bytes_p
                                          int length )  __attribute__((__no_instrument_function__)) ;
 __inline static void __iio_update_buffer(struct iio_buffer *buffer , int bytes_per_datum ,
                                          int length ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-
+{
   {
-  __cil_tmp4 = (unsigned long )buffer;
-  __cil_tmp5 = __cil_tmp4 + 4;
-  *((int *)__cil_tmp5) = bytes_per_datum;
+  *((int *)((void *)buffer + 4)) = bytes_per_datum;
   *((int *)buffer) = length;
   return;
 }
@@ -3082,24 +3078,12 @@ __inline static int __iio_allocate_sw_ring_buffer(struct iio_sw_ring_buffer *rin
   int tmp___8 ;
   struct iio_buffer *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   int __cil_tmp11 ;
   size_t __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   void *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
 
   {
   if (length == 0) {
@@ -3114,32 +3098,20 @@ __inline static int __iio_allocate_sw_ring_buffer(struct iio_sw_ring_buffer *rin
   __cil_tmp6 = (struct iio_buffer *)ring;
   __iio_update_buffer(__cil_tmp6, bytes_per_datum, length);
   __cil_tmp7 = 0 + 4;
-  __cil_tmp8 = (unsigned long )ring;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)ring + __cil_tmp7));
   __cil_tmp11 = length * __cil_tmp10;
   __cil_tmp12 = (size_t )__cil_tmp11;
   tmp___7 = kmalloc(__cil_tmp12, 32U);
-  __cil_tmp13 = (unsigned long )ring;
-  __cil_tmp14 = __cil_tmp13 + 160;
-  *((unsigned char **)__cil_tmp14) = (unsigned char *)tmp___7;
-  __cil_tmp15 = (unsigned long )ring;
-  __cil_tmp16 = __cil_tmp15 + 168;
+  *((unsigned char **)((void *)ring + 160)) = (unsigned char *)tmp___7;
   __cil_tmp17 = (void *)0;
-  *((unsigned char **)__cil_tmp16) = (unsigned char *)__cil_tmp17;
-  __cil_tmp18 = (unsigned long )ring;
-  __cil_tmp19 = __cil_tmp18 + 176;
+  *((unsigned char **)((void *)ring + 168)) = (unsigned char *)__cil_tmp17;
   __cil_tmp20 = (void *)0;
-  *((unsigned char **)__cil_tmp19) = (unsigned char *)__cil_tmp20;
-  __cil_tmp21 = (unsigned long )ring;
-  __cil_tmp22 = __cil_tmp21 + 184;
+  *((unsigned char **)((void *)ring + 176)) = (unsigned char *)__cil_tmp20;
   __cil_tmp23 = (void *)0;
-  *((unsigned char **)__cil_tmp22) = (unsigned char *)__cil_tmp23;
+  *((unsigned char **)((void *)ring + 184)) = (unsigned char *)__cil_tmp23;
   }
   {
-  __cil_tmp24 = (unsigned long )ring;
-  __cil_tmp25 = __cil_tmp24 + 160;
-  if (*((unsigned char **)__cil_tmp25)) {
+  if (*((unsigned char **)((void *)ring + 160))) {
     tmp___8 = 0;
   } else {
     tmp___8 = -12;
@@ -3150,16 +3122,13 @@ __inline static int __iio_allocate_sw_ring_buffer(struct iio_sw_ring_buffer *rin
 }
 __inline static void __iio_free_sw_ring_buffer(struct iio_sw_ring_buffer *ring )  __attribute__((__no_instrument_function__)) ;
 __inline static void __iio_free_sw_ring_buffer(struct iio_sw_ring_buffer *ring ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   unsigned char *__cil_tmp4 ;
   void const   *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )ring;
-  __cil_tmp3 = __cil_tmp2 + 160;
-  __cil_tmp4 = *((unsigned char **)__cil_tmp3);
+  __cil_tmp4 = *((unsigned char **)((void *)ring + 160));
   __cil_tmp5 = (void const   *)__cil_tmp4;
   kfree(__cil_tmp5);
   }
@@ -3177,149 +3146,73 @@ static int iio_store_to_sw_ring(struct iio_sw_ring_buffer *ring , unsigned char 
   void *__ret ;
   void *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned char *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
   long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
   int __cil_tmp31 ;
   int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned char *__cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned char *__cil_tmp42 ;
   void *__cil_tmp43 ;
   void const   *__cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned char *__cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   int __cil_tmp55 ;
   int __cil_tmp56 ;
   int __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   unsigned char *__cil_tmp60 ;
   unsigned char *__cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   void *__cil_tmp68 ;
   unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   unsigned char *__cil_tmp72 ;
   unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   unsigned char *__cil_tmp80 ;
   unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   unsigned char *__cil_tmp84 ;
   unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   int __cil_tmp91 ;
   unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   int __cil_tmp95 ;
   int __cil_tmp96 ;
   int __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   unsigned char *__cil_tmp100 ;
   unsigned char *__cil_tmp101 ;
   unsigned long __cil_tmp102 ;
   unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   unsigned char *__cil_tmp108 ;
   unsigned long __cil_tmp109 ;
   unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   unsigned long __cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
   int __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   unsigned char *__cil_tmp121 ;
   unsigned long __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
   int __cil_tmp125 ;
   int __cil_tmp126 ;
   int __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
   unsigned char *__cil_tmp130 ;
   unsigned char *__cil_tmp131 ;
   unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
   unsigned char *__cil_tmp135 ;
   unsigned long __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
   unsigned char *__cil_tmp143 ;
   unsigned long __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
   unsigned char *__cil_tmp147 ;
   unsigned long __cil_tmp148 ;
   unsigned long __cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
-  unsigned long __cil_tmp151 ;
   unsigned long __cil_tmp152 ;
-  unsigned long __cil_tmp153 ;
-  unsigned long __cil_tmp154 ;
   wait_queue_head_t *__cil_tmp155 ;
   void *__cil_tmp156 ;
 
@@ -3328,9 +3221,7 @@ static int iio_store_to_sw_ring(struct iio_sw_ring_buffer *ring , unsigned char 
   ret = 0;
   __cil_tmp10 = (void *)0;
   __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = (unsigned long )ring;
-  __cil_tmp13 = __cil_tmp12 + 176;
-  __cil_tmp14 = *((unsigned char **)__cil_tmp13);
+  __cil_tmp14 = *((unsigned char **)((void *)ring + 176));
   __cil_tmp15 = (unsigned long )__cil_tmp14;
   __cil_tmp16 = __cil_tmp15 == __cil_tmp11;
   __cil_tmp17 = ! __cil_tmp16;
@@ -3339,137 +3230,87 @@ static int iio_store_to_sw_ring(struct iio_sw_ring_buffer *ring , unsigned char 
   tmp___7 = ldv__builtin_expect(__cil_tmp19, 0L);
   }
   if (tmp___7) {
-    __cil_tmp20 = (unsigned long )ring;
-    __cil_tmp21 = __cil_tmp20 + 176;
-    __cil_tmp22 = (unsigned long )ring;
-    __cil_tmp23 = __cil_tmp22 + 160;
-    *((unsigned char **)__cil_tmp21) = *((unsigned char **)__cil_tmp23);
-    __cil_tmp24 = (unsigned long )ring;
-    __cil_tmp25 = __cil_tmp24 + 184;
+    *((unsigned char **)((void *)ring + 176)) = *((unsigned char **)((void *)ring + 160));
     __cil_tmp26 = 0 + 4;
-    __cil_tmp27 = (unsigned long )ring;
-    __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-    __cil_tmp29 = *((int *)__cil_tmp28);
+    __cil_tmp29 = *((int *)((void *)ring + __cil_tmp26));
     __cil_tmp30 = *((int *)ring);
     __cil_tmp31 = __cil_tmp30 * __cil_tmp29;
     __cil_tmp32 = __cil_tmp31 / 2;
-    __cil_tmp33 = (unsigned long )ring;
-    __cil_tmp34 = __cil_tmp33 + 160;
-    __cil_tmp35 = *((unsigned char **)__cil_tmp34);
-    *((unsigned char **)__cil_tmp25) = __cil_tmp35 - __cil_tmp32;
+    __cil_tmp35 = *((unsigned char **)((void *)ring + 160));
+    *((unsigned char **)((void *)ring + 184)) = __cil_tmp35 - __cil_tmp32;
   } else {
 
   }
   {
   __cil_tmp36 = 0 + 4;
-  __cil_tmp37 = (unsigned long )ring;
-  __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-  __cil_tmp39 = *((int *)__cil_tmp38);
+  __cil_tmp39 = *((int *)((void *)ring + __cil_tmp36));
   __len = (size_t )__cil_tmp39;
-  __cil_tmp40 = (unsigned long )ring;
-  __cil_tmp41 = __cil_tmp40 + 176;
-  __cil_tmp42 = *((unsigned char **)__cil_tmp41);
+  __cil_tmp42 = *((unsigned char **)((void *)ring + 176));
   __cil_tmp43 = (void *)__cil_tmp42;
   __cil_tmp44 = (void const   *)data;
   __ret = memcpy(__cil_tmp43, __cil_tmp44, __len);
   __asm__  volatile   ("": : : "memory");
   __asm__  volatile   ("": : : "memory");
   __cil_tmp45 = 0 + 4;
-  __cil_tmp46 = (unsigned long )ring;
-  __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-  __cil_tmp48 = *((int *)__cil_tmp47);
-  __cil_tmp49 = (unsigned long )ring;
-  __cil_tmp50 = __cil_tmp49 + 176;
-  __cil_tmp51 = *((unsigned char **)__cil_tmp50);
+  __cil_tmp48 = *((int *)((void *)ring + __cil_tmp45));
+  __cil_tmp51 = *((unsigned char **)((void *)ring + 176));
   temp_ptr = __cil_tmp51 + __cil_tmp48;
   }
   {
   __cil_tmp52 = 0 + 4;
-  __cil_tmp53 = (unsigned long )ring;
-  __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-  __cil_tmp55 = *((int *)__cil_tmp54);
+  __cil_tmp55 = *((int *)((void *)ring + __cil_tmp52));
   __cil_tmp56 = *((int *)ring);
   __cil_tmp57 = __cil_tmp56 * __cil_tmp55;
-  __cil_tmp58 = (unsigned long )ring;
-  __cil_tmp59 = __cil_tmp58 + 160;
-  __cil_tmp60 = *((unsigned char **)__cil_tmp59);
+  __cil_tmp60 = *((unsigned char **)((void *)ring + 160));
   __cil_tmp61 = __cil_tmp60 + __cil_tmp57;
   __cil_tmp62 = (unsigned long )__cil_tmp61;
   __cil_tmp63 = (unsigned long )temp_ptr;
   if (__cil_tmp63 == __cil_tmp62) {
-    __cil_tmp64 = (unsigned long )ring;
-    __cil_tmp65 = __cil_tmp64 + 160;
-    temp_ptr = *((unsigned char **)__cil_tmp65);
+    temp_ptr = *((unsigned char **)((void *)ring + 160));
   } else {
 
   }
   }
-  __cil_tmp66 = (unsigned long )ring;
-  __cil_tmp67 = __cil_tmp66 + 176;
-  *((unsigned char **)__cil_tmp67) = temp_ptr;
+  *((unsigned char **)((void *)ring + 176)) = temp_ptr;
   {
   __cil_tmp68 = (void *)0;
   __cil_tmp69 = (unsigned long )__cil_tmp68;
-  __cil_tmp70 = (unsigned long )ring;
-  __cil_tmp71 = __cil_tmp70 + 168;
-  __cil_tmp72 = *((unsigned char **)__cil_tmp71);
+  __cil_tmp72 = *((unsigned char **)((void *)ring + 168));
   __cil_tmp73 = (unsigned long )__cil_tmp72;
   if (__cil_tmp73 == __cil_tmp69) {
-    __cil_tmp74 = (unsigned long )ring;
-    __cil_tmp75 = __cil_tmp74 + 168;
-    __cil_tmp76 = (unsigned long )ring;
-    __cil_tmp77 = __cil_tmp76 + 160;
-    *((unsigned char **)__cil_tmp75) = *((unsigned char **)__cil_tmp77);
+    *((unsigned char **)((void *)ring + 168)) = *((unsigned char **)((void *)ring + 160));
   } else {
     {
-    __cil_tmp78 = (unsigned long )ring;
-    __cil_tmp79 = __cil_tmp78 + 168;
-    __cil_tmp80 = *((unsigned char **)__cil_tmp79);
+    __cil_tmp80 = *((unsigned char **)((void *)ring + 168));
     __cil_tmp81 = (unsigned long )__cil_tmp80;
-    __cil_tmp82 = (unsigned long )ring;
-    __cil_tmp83 = __cil_tmp82 + 176;
-    __cil_tmp84 = *((unsigned char **)__cil_tmp83);
+    __cil_tmp84 = *((unsigned char **)((void *)ring + 176));
     __cil_tmp85 = (unsigned long )__cil_tmp84;
     if (__cil_tmp85 == __cil_tmp81) {
-      __cil_tmp86 = (unsigned long )ring;
-      __cil_tmp87 = __cil_tmp86 + 168;
-      change_test_ptr = *((unsigned char **)__cil_tmp87);
+      change_test_ptr = *((unsigned char **)((void *)ring + 168));
       __cil_tmp88 = 0 + 4;
-      __cil_tmp89 = (unsigned long )ring;
-      __cil_tmp90 = __cil_tmp89 + __cil_tmp88;
-      __cil_tmp91 = *((int *)__cil_tmp90);
+      __cil_tmp91 = *((int *)((void *)ring + __cil_tmp88));
       temp_ptr = change_test_ptr + __cil_tmp91;
       {
       __cil_tmp92 = 0 + 4;
-      __cil_tmp93 = (unsigned long )ring;
-      __cil_tmp94 = __cil_tmp93 + __cil_tmp92;
-      __cil_tmp95 = *((int *)__cil_tmp94);
+      __cil_tmp95 = *((int *)((void *)ring + __cil_tmp92));
       __cil_tmp96 = *((int *)ring);
       __cil_tmp97 = __cil_tmp96 * __cil_tmp95;
-      __cil_tmp98 = (unsigned long )ring;
-      __cil_tmp99 = __cil_tmp98 + 160;
-      __cil_tmp100 = *((unsigned char **)__cil_tmp99);
+      __cil_tmp100 = *((unsigned char **)((void *)ring + 160));
       __cil_tmp101 = __cil_tmp100 + __cil_tmp97;
       __cil_tmp102 = (unsigned long )__cil_tmp101;
       __cil_tmp103 = (unsigned long )temp_ptr;
       if (__cil_tmp103 == __cil_tmp102) {
-        __cil_tmp104 = (unsigned long )ring;
-        __cil_tmp105 = __cil_tmp104 + 160;
-        temp_ptr = *((unsigned char **)__cil_tmp105);
+        temp_ptr = *((unsigned char **)((void *)ring + 160));
       } else {
 
       }
       }
       {
-      __cil_tmp106 = (unsigned long )ring;
-      __cil_tmp107 = __cil_tmp106 + 168;
-      __cil_tmp108 = *((unsigned char **)__cil_tmp107);
+      __cil_tmp108 = *((unsigned char **)((void *)ring + 168));
       __cil_tmp109 = (unsigned long )__cil_tmp108;
       __cil_tmp110 = (unsigned long )change_test_ptr;
       if (__cil_tmp110 == __cil_tmp109) {
-        __cil_tmp111 = (unsigned long )ring;
-        __cil_tmp112 = __cil_tmp111 + 168;
-        *((unsigned char **)__cil_tmp112) = temp_ptr;
+        *((unsigned char **)((void *)ring + 168)) = temp_ptr;
       } else {
 
       }
@@ -3480,61 +3321,37 @@ static int iio_store_to_sw_ring(struct iio_sw_ring_buffer *ring , unsigned char 
     }
   }
   }
-  __cil_tmp113 = (unsigned long )ring;
-  __cil_tmp114 = __cil_tmp113 + 184;
   __cil_tmp115 = 0 + 4;
-  __cil_tmp116 = (unsigned long )ring;
-  __cil_tmp117 = __cil_tmp116 + __cil_tmp115;
-  __cil_tmp118 = *((int *)__cil_tmp117);
-  __cil_tmp119 = (unsigned long )ring;
-  __cil_tmp120 = __cil_tmp119 + 184;
-  __cil_tmp121 = *((unsigned char **)__cil_tmp120);
-  *((unsigned char **)__cil_tmp114) = __cil_tmp121 + __cil_tmp118;
+  __cil_tmp118 = *((int *)((void *)ring + __cil_tmp115));
+  __cil_tmp121 = *((unsigned char **)((void *)ring + 184));
+  *((unsigned char **)((void *)ring + 184)) = __cil_tmp121 + __cil_tmp118;
   {
   __cil_tmp122 = 0 + 4;
-  __cil_tmp123 = (unsigned long )ring;
-  __cil_tmp124 = __cil_tmp123 + __cil_tmp122;
-  __cil_tmp125 = *((int *)__cil_tmp124);
+  __cil_tmp125 = *((int *)((void *)ring + __cil_tmp122));
   __cil_tmp126 = *((int *)ring);
   __cil_tmp127 = __cil_tmp126 * __cil_tmp125;
-  __cil_tmp128 = (unsigned long )ring;
-  __cil_tmp129 = __cil_tmp128 + 160;
-  __cil_tmp130 = *((unsigned char **)__cil_tmp129);
+  __cil_tmp130 = *((unsigned char **)((void *)ring + 160));
   __cil_tmp131 = __cil_tmp130 + __cil_tmp127;
   __cil_tmp132 = (unsigned long )__cil_tmp131;
-  __cil_tmp133 = (unsigned long )ring;
-  __cil_tmp134 = __cil_tmp133 + 184;
-  __cil_tmp135 = *((unsigned char **)__cil_tmp134);
+  __cil_tmp135 = *((unsigned char **)((void *)ring + 184));
   __cil_tmp136 = (unsigned long )__cil_tmp135;
   if (__cil_tmp136 == __cil_tmp132) {
-    __cil_tmp137 = (unsigned long )ring;
-    __cil_tmp138 = __cil_tmp137 + 184;
-    __cil_tmp139 = (unsigned long )ring;
-    __cil_tmp140 = __cil_tmp139 + 160;
-    *((unsigned char **)__cil_tmp138) = *((unsigned char **)__cil_tmp140);
+    *((unsigned char **)((void *)ring + 184)) = *((unsigned char **)((void *)ring + 160));
   } else {
 
   }
   }
   {
-  __cil_tmp141 = (unsigned long )ring;
-  __cil_tmp142 = __cil_tmp141 + 168;
-  __cil_tmp143 = *((unsigned char **)__cil_tmp142);
+  __cil_tmp143 = *((unsigned char **)((void *)ring + 168));
   __cil_tmp144 = (unsigned long )__cil_tmp143;
-  __cil_tmp145 = (unsigned long )ring;
-  __cil_tmp146 = __cil_tmp145 + 184;
-  __cil_tmp147 = *((unsigned char **)__cil_tmp146);
+  __cil_tmp147 = *((unsigned char **)((void *)ring + 184));
   __cil_tmp148 = (unsigned long )__cil_tmp147;
   if (__cil_tmp148 == __cil_tmp144) {
     {
     __cil_tmp149 = 0 + 120;
-    __cil_tmp150 = (unsigned long )ring;
-    __cil_tmp151 = __cil_tmp150 + __cil_tmp149;
-    *((bool *)__cil_tmp151) = (bool )1;
+    *((bool *)((void *)ring + __cil_tmp149)) = (bool )1;
     __cil_tmp152 = 0 + 80;
-    __cil_tmp153 = (unsigned long )ring;
-    __cil_tmp154 = __cil_tmp153 + __cil_tmp152;
-    __cil_tmp155 = (wait_queue_head_t *)__cil_tmp154;
+    __cil_tmp155 = (wait_queue_head_t *)((void *)ring + __cil_tmp152);
     __cil_tmp156 = (void *)0;
     __wake_up(__cil_tmp155, 1U, 1, __cil_tmp156);
     }
@@ -3577,26 +3394,18 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   char *__cil_tmp32 ;
   char *__cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   int __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   int __cil_tmp42 ;
   int __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   int __cil_tmp47 ;
   int __cil_tmp48 ;
   size_t __cil_tmp49 ;
   void *__cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   void *__cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
@@ -3604,22 +3413,12 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   int __cil_tmp59 ;
   int __cil_tmp60 ;
   long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned char *__cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned char *__cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
@@ -3628,15 +3427,11 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   int __cil_tmp83 ;
   size_t __cil_tmp84 ;
   size_t __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   unsigned char *__cil_tmp88 ;
   unsigned char *__cil_tmp89 ;
   unsigned long __cil_tmp90 ;
   u8 *__cil_tmp91 ;
   unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   unsigned char *__cil_tmp95 ;
   unsigned char *__cil_tmp96 ;
   void *__cil_tmp97 ;
@@ -3644,18 +3439,12 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   int __cil_tmp99 ;
   u8 *__cil_tmp100 ;
   void *__cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   unsigned char *__cil_tmp104 ;
   void const   *__cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   unsigned char *__cil_tmp108 ;
   unsigned char *__cil_tmp109 ;
   void *__cil_tmp110 ;
   void const   *__cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   unsigned long __cil_tmp114 ;
   unsigned long __cil_tmp115 ;
   int __cil_tmp116 ;
@@ -3663,26 +3452,18 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   size_t __cil_tmp118 ;
   int __cil_tmp119 ;
   unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   unsigned char *__cil_tmp123 ;
   unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   void *__cil_tmp127 ;
   u8 *__cil_tmp128 ;
   void const   *__cil_tmp129 ;
   unsigned int __cil_tmp130 ;
   unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
   int __cil_tmp134 ;
   int __cil_tmp135 ;
   int __cil_tmp136 ;
   int __cil_tmp137 ;
   unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
   void const   *__cil_tmp141 ;
 
   {
@@ -3695,17 +3476,13 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   ring = (struct iio_sw_ring_buffer *)__cil_tmp33;
   {
   __cil_tmp34 = 0 + 4;
-  __cil_tmp35 = (unsigned long )ring;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  __cil_tmp37 = *((int *)__cil_tmp36);
+  __cil_tmp37 = *((int *)((void *)ring + __cil_tmp34));
   __cil_tmp38 = (unsigned long )__cil_tmp37;
   if (n % __cil_tmp38) {
     {
     ret = -22;
     __cil_tmp39 = 0 + 4;
-    __cil_tmp40 = (unsigned long )ring;
-    __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-    __cil_tmp42 = *((int *)__cil_tmp41);
+    __cil_tmp42 = *((int *)((void *)ring + __cil_tmp39));
     printk("<6>Ring buffer read request not whole number ofsamples: Request bytes %zd, Current bytes per datum %d\n",
            n, __cil_tmp42);
     }
@@ -3716,9 +3493,7 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   }
   __cil_tmp43 = *((int *)ring);
   __cil_tmp44 = 0 + 4;
-  __cil_tmp45 = (unsigned long )ring;
-  __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
-  __cil_tmp47 = *((int *)__cil_tmp46);
+  __cil_tmp47 = *((int *)((void *)ring + __cil_tmp44));
   __cil_tmp48 = __cil_tmp47 * __cil_tmp43;
   buffer_size = (size_t )__cil_tmp48;
   __min1 = buffer_size;
@@ -3746,9 +3521,7 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   }
   }
   {
-  __cil_tmp53 = (unsigned long )ring;
-  __cil_tmp54 = __cil_tmp53 + 168;
-  initial_read_p = *((unsigned char **)__cil_tmp54);
+  initial_read_p = *((unsigned char **)((void *)ring + 168));
   __cil_tmp55 = (void *)0;
   __cil_tmp56 = (unsigned long )__cil_tmp55;
   __cil_tmp57 = (unsigned long )initial_read_p;
@@ -3764,25 +3537,19 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   } else {
 
   }
-  __cil_tmp62 = (unsigned long )ring;
-  __cil_tmp63 = __cil_tmp62 + 176;
-  initial_write_p = *((unsigned char **)__cil_tmp63);
+  initial_write_p = *((unsigned char **)((void *)ring + 176));
   {
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp64 = (unsigned long )ring;
-    __cil_tmp65 = __cil_tmp64 + 168;
-    __cil_tmp66 = *((unsigned char **)__cil_tmp65);
+    __cil_tmp66 = *((unsigned char **)((void *)ring + 168));
     __cil_tmp67 = (unsigned long )__cil_tmp66;
     __cil_tmp68 = (unsigned long )initial_read_p;
     if (__cil_tmp68 != __cil_tmp67) {
 
     } else {
       {
-      __cil_tmp69 = (unsigned long )ring;
-      __cil_tmp70 = __cil_tmp69 + 176;
-      __cil_tmp71 = *((unsigned char **)__cil_tmp70);
+      __cil_tmp71 = *((unsigned char **)((void *)ring + 176));
       __cil_tmp72 = (unsigned long )__cil_tmp71;
       __cil_tmp73 = (unsigned long )initial_write_p;
       if (__cil_tmp73 != __cil_tmp72) {
@@ -3793,12 +3560,8 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
       }
     }
     }
-    __cil_tmp74 = (unsigned long )ring;
-    __cil_tmp75 = __cil_tmp74 + 168;
-    initial_read_p = *((unsigned char **)__cil_tmp75);
-    __cil_tmp76 = (unsigned long )ring;
-    __cil_tmp77 = __cil_tmp76 + 176;
-    initial_write_p = *((unsigned char **)__cil_tmp77);
+    initial_read_p = *((unsigned char **)((void *)ring + 168));
+    initial_write_p = *((unsigned char **)((void *)ring + 176));
   }
   while_break: /* CIL Label */ ;
   }
@@ -3833,18 +3596,14 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   }
   }
   {
-  __cil_tmp86 = (unsigned long )ring;
-  __cil_tmp87 = __cil_tmp86 + 160;
-  __cil_tmp88 = *((unsigned char **)__cil_tmp87);
+  __cil_tmp88 = *((unsigned char **)((void *)ring + 160));
   __cil_tmp89 = __cil_tmp88 + buffer_size;
   __cil_tmp90 = (unsigned long )__cil_tmp89;
   __cil_tmp91 = initial_read_p + bytes_to_rip;
   __cil_tmp92 = (unsigned long )__cil_tmp91;
   if (__cil_tmp92 >= __cil_tmp90) {
     {
-    __cil_tmp93 = (unsigned long )ring;
-    __cil_tmp94 = __cil_tmp93 + 160;
-    __cil_tmp95 = *((unsigned char **)__cil_tmp94);
+    __cil_tmp95 = *((unsigned char **)((void *)ring + 160));
     __cil_tmp96 = __cil_tmp95 + buffer_size;
     max_copied = __cil_tmp96 - initial_read_p;
     __len = (size_t )max_copied;
@@ -3855,14 +3614,10 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
     __len___0 = (size_t )__cil_tmp99;
     __cil_tmp100 = data + max_copied;
     __cil_tmp101 = (void *)__cil_tmp100;
-    __cil_tmp102 = (unsigned long )ring;
-    __cil_tmp103 = __cil_tmp102 + 160;
-    __cil_tmp104 = *((unsigned char **)__cil_tmp103);
+    __cil_tmp104 = *((unsigned char **)((void *)ring + 160));
     __cil_tmp105 = (void const   *)__cil_tmp104;
     __ret___0 = memcpy(__cil_tmp101, __cil_tmp105, __len___0);
-    __cil_tmp106 = (unsigned long )ring;
-    __cil_tmp107 = __cil_tmp106 + 160;
-    __cil_tmp108 = *((unsigned char **)__cil_tmp107);
+    __cil_tmp108 = *((unsigned char **)((void *)ring + 160));
     __cil_tmp109 = __cil_tmp108 + bytes_to_rip;
     end_read_p = __cil_tmp109 - max_copied;
     }
@@ -3876,9 +3631,7 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
     }
   }
   }
-  __cil_tmp112 = (unsigned long )ring;
-  __cil_tmp113 = __cil_tmp112 + 168;
-  current_read_p = *((unsigned char **)__cil_tmp113);
+  current_read_p = *((unsigned char **)((void *)ring + 168));
   {
   __cil_tmp114 = (unsigned long )current_read_p;
   __cil_tmp115 = (unsigned long )initial_read_p;
@@ -3905,9 +3658,7 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
     while_continue___0: /* CIL Label */ ;
     {
     __cil_tmp120 = (unsigned long )end_read_p;
-    __cil_tmp121 = (unsigned long )ring;
-    __cil_tmp122 = __cil_tmp121 + 168;
-    __cil_tmp123 = *((unsigned char **)__cil_tmp122);
+    __cil_tmp123 = *((unsigned char **)((void *)ring + 168));
     __cil_tmp124 = (unsigned long )__cil_tmp123;
     if (__cil_tmp124 != __cil_tmp120) {
 
@@ -3915,9 +3666,7 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
       goto while_break___0;
     }
     }
-    __cil_tmp125 = (unsigned long )ring;
-    __cil_tmp126 = __cil_tmp125 + 168;
-    *((unsigned char **)__cil_tmp126) = end_read_p;
+    *((unsigned char **)((void *)ring + 168)) = end_read_p;
   }
   while_break___0: /* CIL Label */ ;
   }
@@ -3937,17 +3686,13 @@ static int iio_read_first_n_sw_rb(struct iio_buffer *r , size_t n , char *buf )
   }
   {
   __cil_tmp131 = 0 + 4;
-  __cil_tmp132 = (unsigned long )ring;
-  __cil_tmp133 = __cil_tmp132 + __cil_tmp131;
-  __cil_tmp134 = *((int *)__cil_tmp133);
+  __cil_tmp134 = *((int *)((void *)ring + __cil_tmp131));
   __cil_tmp135 = *((int *)ring);
   __cil_tmp136 = __cil_tmp135 * __cil_tmp134;
   __cil_tmp137 = __cil_tmp136 / 2;
   if (bytes_to_rip >= __cil_tmp137) {
     __cil_tmp138 = 0 + 120;
-    __cil_tmp139 = (unsigned long )ring;
-    __cil_tmp140 = __cil_tmp139 + __cil_tmp138;
-    *((bool *)__cil_tmp140) = (bool )0;
+    *((bool *)((void *)ring + __cil_tmp138)) = (bool )0;
   } else {
 
   }
@@ -3994,14 +3739,8 @@ static int iio_request_update_sw_rb(struct iio_buffer *r )
   unsigned int __cil_tmp7 ;
   char *__cil_tmp8 ;
   char *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
 
@@ -4014,13 +3753,9 @@ static int iio_request_update_sw_rb(struct iio_buffer *r )
   __cil_tmp8 = (char *)__mptr;
   __cil_tmp9 = __cil_tmp8 - __cil_tmp7;
   ring = (struct iio_sw_ring_buffer *)__cil_tmp9;
-  __cil_tmp10 = (unsigned long )r;
-  __cil_tmp11 = __cil_tmp10 + 120;
-  *((bool *)__cil_tmp11) = (bool )0;
+  *((bool *)((void *)r + 120)) = (bool )0;
   {
-  __cil_tmp12 = (unsigned long )ring;
-  __cil_tmp13 = __cil_tmp12 + 192;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)ring + 192));
   if (! __cil_tmp14) {
     goto error_ret;
   } else {
@@ -4030,9 +3765,7 @@ static int iio_request_update_sw_rb(struct iio_buffer *r )
   {
   __iio_free_sw_ring_buffer(ring);
   __cil_tmp15 = 0 + 4;
-  __cil_tmp16 = (unsigned long )ring;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = *((int *)__cil_tmp17);
+  __cil_tmp18 = *((int *)((void *)ring + __cil_tmp15));
   __cil_tmp19 = *((int *)ring);
   ret = __iio_allocate_sw_ring_buffer(ring, __cil_tmp18, __cil_tmp19);
   }
@@ -4049,8 +3782,6 @@ static int iio_get_bytes_per_datum_sw_rb(struct iio_buffer *r )
   char *__cil_tmp7 ;
   char *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
 
   {
   __mptr = (struct iio_buffer  const  *)r;
@@ -4062,9 +3793,7 @@ static int iio_get_bytes_per_datum_sw_rb(struct iio_buffer *r )
   ring = (struct iio_sw_ring_buffer *)__cil_tmp8;
   {
   __cil_tmp9 = 0 + 4;
-  __cil_tmp10 = (unsigned long )ring;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  return (*((int *)__cil_tmp11));
+  return (*((int *)((void *)ring + __cil_tmp9)));
   }
 }
 }
@@ -4076,8 +3805,6 @@ static int iio_mark_update_needed_sw_rb(struct iio_buffer *r )
   unsigned int __cil_tmp6 ;
   char *__cil_tmp7 ;
   char *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
 
   {
   __mptr = (struct iio_buffer  const  *)r;
@@ -4087,31 +3814,22 @@ static int iio_mark_update_needed_sw_rb(struct iio_buffer *r )
   __cil_tmp7 = (char *)__mptr;
   __cil_tmp8 = __cil_tmp7 - __cil_tmp6;
   ring = (struct iio_sw_ring_buffer *)__cil_tmp8;
-  __cil_tmp9 = (unsigned long )ring;
-  __cil_tmp10 = __cil_tmp9 + 192;
-  *((int *)__cil_tmp10) = 1;
+  *((int *)((void *)ring + 192)) = 1;
   return (0);
 }
 }
 static int iio_set_bytes_per_datum_sw_rb(struct iio_buffer *r , size_t bpd ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   int __cil_tmp5 ;
   size_t __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )r;
-  __cil_tmp4 = __cil_tmp3 + 4;
-  __cil_tmp5 = *((int *)__cil_tmp4);
+  __cil_tmp5 = *((int *)((void *)r + 4));
   __cil_tmp6 = (size_t )__cil_tmp5;
   if (__cil_tmp6 != bpd) {
     {
-    __cil_tmp7 = (unsigned long )r;
-    __cil_tmp8 = __cil_tmp7 + 4;
-    *((int *)__cil_tmp8) = (int )bpd;
+    *((int *)((void *)r + 4)) = (int )bpd;
     iio_mark_update_needed_sw_rb(r);
     }
   } else {
@@ -4157,12 +3875,6 @@ struct iio_buffer *iio_sw_rb_allocate(struct iio_dev *indio_dev )
   struct iio_sw_ring_buffer *ring ;
   void *tmp___7 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
 
   {
   {
@@ -4178,17 +3890,11 @@ struct iio_buffer *iio_sw_rb_allocate(struct iio_dev *indio_dev )
 
   }
   {
-  __cil_tmp6 = (unsigned long )ring;
-  __cil_tmp7 = __cil_tmp6 + 192;
-  *((int *)__cil_tmp7) = 1;
+  *((int *)((void *)ring + 192)) = 1;
   buf = (struct iio_buffer *)ring;
   iio_buffer_init(buf);
-  __cil_tmp8 = (unsigned long )buf;
-  __cil_tmp9 = __cil_tmp8 + 128;
-  *((struct attribute_group  const  **)__cil_tmp9) = (struct attribute_group  const  *)(& iio_ring_attribute_group);
-  __cil_tmp10 = (unsigned long )buf;
-  __cil_tmp11 = __cil_tmp10 + 32;
-  *((struct iio_buffer_access_funcs  const  **)__cil_tmp11) = & ring_sw_access_funcs;
+  *((struct attribute_group  const  **)((void *)buf + 128)) = (struct attribute_group  const  *)(& iio_ring_attribute_group);
+  *((struct iio_buffer_access_funcs  const  **)((void *)buf + 32)) = & ring_sw_access_funcs;
   }
   return (buf);
 }

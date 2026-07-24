@@ -376,8 +376,6 @@ static int synth_probe(struct spk_synth *synth___0 )
 { int failed ;
   unsigned long __ms ;
   unsigned long tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   {
   {
   failed = serial_synth_probe(synth___0);
@@ -404,9 +402,7 @@ static int synth_probe(struct spk_synth *synth___0 )
     }
   } else {
   }
-  __cil_tmp5 = (unsigned long )synth___0;
-  __cil_tmp6 = __cil_tmp5 + 176;
-  *((int *)__cil_tmp6) = ! failed;
+  *((int *)((void *)synth___0 + 176)) = ! failed;
   return (failed);
 }
 }

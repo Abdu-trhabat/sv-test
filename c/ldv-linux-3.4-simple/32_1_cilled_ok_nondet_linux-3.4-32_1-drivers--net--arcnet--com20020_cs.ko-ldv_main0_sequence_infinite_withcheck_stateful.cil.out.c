@@ -5048,64 +5048,32 @@ static int com20020_probe(struct pcmcia_device *p_dev )
   int __cil_tmp12 ;
   int __cil_tmp13 ;
   long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   struct device  const  *__cil_tmp18 ;
   struct net_device  const  *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int *__cil_tmp22 ;
   int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int *__cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int *__cil_tmp30 ;
   int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   int *__cil_tmp34 ;
   int __cil_tmp35 ;
   int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned char *__cil_tmp41 ;
   unsigned char *__cil_tmp42 ;
   int *__cil_tmp43 ;
   int __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct resource *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct resource *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   struct resource *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   void const   *__cil_tmp73 ;
 
   {
@@ -5126,9 +5094,7 @@ static int com20020_probe(struct pcmcia_device *p_dev )
       }
       if (tmp___7) {
         {
-        __cil_tmp15 = (unsigned long )p_dev;
-        __cil_tmp16 = __cil_tmp15 + 184;
-        __cil_tmp17 = (struct device *)__cil_tmp16;
+        __cil_tmp17 = (struct device *)((void *)p_dev + 184);
         __cil_tmp18 = (struct device  const  *)__cil_tmp17;
         __dynamic_dev_dbg(& descriptor, __cil_tmp18, "com20020_attach()\n");
         }
@@ -5164,70 +5130,40 @@ static int com20020_probe(struct pcmcia_device *p_dev )
   __cil_tmp19 = (struct net_device  const  *)dev;
   tmp___9 = netdev_priv(__cil_tmp19);
   lp = (struct arcnet_local *)tmp___9;
-  __cil_tmp20 = (unsigned long )lp;
-  __cil_tmp21 = __cil_tmp20 + 1;
   __cil_tmp22 = & timeout;
   __cil_tmp23 = *__cil_tmp22;
-  *((uint8_t *)__cil_tmp21) = (uint8_t )__cil_tmp23;
-  __cil_tmp24 = (unsigned long )lp;
-  __cil_tmp25 = __cil_tmp24 + 2;
+  *((uint8_t *)((void *)lp + 1)) = (uint8_t )__cil_tmp23;
   __cil_tmp26 = & backplane;
   __cil_tmp27 = *__cil_tmp26;
-  *((uint8_t *)__cil_tmp25) = (uint8_t )__cil_tmp27;
-  __cil_tmp28 = (unsigned long )lp;
-  __cil_tmp29 = __cil_tmp28 + 3;
+  *((uint8_t *)((void *)lp + 2)) = (uint8_t )__cil_tmp27;
   __cil_tmp30 = & clockp;
   __cil_tmp31 = *__cil_tmp30;
-  *((uint8_t *)__cil_tmp29) = (uint8_t )__cil_tmp31;
-  __cil_tmp32 = (unsigned long )lp;
-  __cil_tmp33 = __cil_tmp32 + 4;
+  *((uint8_t *)((void *)lp + 3)) = (uint8_t )__cil_tmp31;
   __cil_tmp34 = & clockm;
   __cil_tmp35 = *__cil_tmp34;
   __cil_tmp36 = __cil_tmp35 & 3;
-  *((uint8_t *)__cil_tmp33) = (uint8_t )__cil_tmp36;
-  __cil_tmp37 = (unsigned long )lp;
-  __cil_tmp38 = __cil_tmp37 + 4536;
-  *((struct module **)__cil_tmp38) = & __this_module;
-  __cil_tmp39 = (unsigned long )dev;
-  __cil_tmp40 = __cil_tmp39 + 808;
-  __cil_tmp41 = *((unsigned char **)__cil_tmp40);
+  *((uint8_t *)((void *)lp + 4)) = (uint8_t )__cil_tmp36;
+  *((struct module **)((void *)lp + 4536)) = & __this_module;
+  __cil_tmp41 = *((unsigned char **)((void *)dev + 808));
   __cil_tmp42 = __cil_tmp41 + 0;
   __cil_tmp43 = & node;
   __cil_tmp44 = *__cil_tmp43;
   *__cil_tmp42 = (unsigned char )__cil_tmp44;
   __cil_tmp45 = 0 * 8UL;
   __cil_tmp46 = 56 + __cil_tmp45;
-  __cil_tmp47 = (unsigned long )p_dev;
-  __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-  __cil_tmp49 = *((struct resource **)__cil_tmp48);
-  __cil_tmp50 = (unsigned long )__cil_tmp49;
-  __cil_tmp51 = __cil_tmp50 + 24;
+  __cil_tmp49 = *((struct resource **)((void *)p_dev + __cil_tmp46));
   __cil_tmp52 = 0 * 8UL;
   __cil_tmp53 = 56 + __cil_tmp52;
-  __cil_tmp54 = (unsigned long )p_dev;
-  __cil_tmp55 = __cil_tmp54 + __cil_tmp53;
-  __cil_tmp56 = *((struct resource **)__cil_tmp55);
-  __cil_tmp57 = (unsigned long )__cil_tmp56;
-  __cil_tmp58 = __cil_tmp57 + 24;
-  *((unsigned long *)__cil_tmp51) = *((unsigned long *)__cil_tmp58);
+  __cil_tmp56 = *((struct resource **)((void *)p_dev + __cil_tmp53));
+  *((unsigned long *)((void *)__cil_tmp49 + 24)) = *((unsigned long *)((void *)__cil_tmp56 + 24));
   __cil_tmp59 = 0 * 8UL;
   __cil_tmp60 = 56 + __cil_tmp59;
-  __cil_tmp61 = (unsigned long )p_dev;
-  __cil_tmp62 = __cil_tmp61 + __cil_tmp60;
-  __cil_tmp63 = *((struct resource **)__cil_tmp62);
-  __cil_tmp64 = (unsigned long )__cil_tmp63;
-  __cil_tmp65 = __cil_tmp64 + 8;
-  *((resource_size_t *)__cil_tmp65) = (resource_size_t )16;
-  __cil_tmp66 = (unsigned long )p_dev;
-  __cil_tmp67 = __cil_tmp66 + 116;
-  __cil_tmp68 = (unsigned long )p_dev;
-  __cil_tmp69 = __cil_tmp68 + 116;
-  __cil_tmp70 = *((unsigned int *)__cil_tmp69);
-  *((unsigned int *)__cil_tmp67) = __cil_tmp70 | 1U;
+  __cil_tmp63 = *((struct resource **)((void *)p_dev + __cil_tmp60));
+  *((resource_size_t *)((void *)__cil_tmp63 + 8)) = (resource_size_t )16;
+  __cil_tmp70 = *((unsigned int *)((void *)p_dev + 116));
+  *((unsigned int *)((void *)p_dev + 116)) = __cil_tmp70 | 1U;
   *((struct net_device **)info) = dev;
-  __cil_tmp71 = (unsigned long )p_dev;
-  __cil_tmp72 = __cil_tmp71 + 952;
-  *((void **)__cil_tmp72) = (void *)info;
+  *((void **)((void *)p_dev + 952)) = (void *)info;
   tmp___10 = com20020_config(p_dev);
   }
   return (tmp___10);
@@ -5273,8 +5209,6 @@ static void com20020_detach(struct pcmcia_device *link )
   long tmp___10 ;
   long tmp___11 ;
   long tmp___12 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
@@ -5282,8 +5216,6 @@ static void com20020_detach(struct pcmcia_device *link )
   int __cil_tmp16 ;
   int __cil_tmp17 ;
   long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device  const  *__cil_tmp22 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp23 ;
@@ -5292,8 +5224,6 @@ static void com20020_detach(struct pcmcia_device *link )
   int __cil_tmp26 ;
   int __cil_tmp27 ;
   long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct device *__cil_tmp31 ;
   struct device  const  *__cil_tmp32 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp33 ;
@@ -5302,14 +5232,8 @@ static void com20020_detach(struct pcmcia_device *link )
   int __cil_tmp36 ;
   int __cil_tmp37 ;
   long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct device *__cil_tmp41 ;
   struct device  const  *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned int __cil_tmp47 ;
   void *__cil_tmp48 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp49 ;
@@ -5318,20 +5242,14 @@ static void com20020_detach(struct pcmcia_device *link )
   int __cil_tmp52 ;
   int __cil_tmp53 ;
   long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct device *__cil_tmp57 ;
   struct device  const  *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp61 ;
   unsigned int __cil_tmp62 ;
   unsigned int __cil_tmp63 ;
   int __cil_tmp64 ;
   int __cil_tmp65 ;
   long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct device *__cil_tmp69 ;
   struct device  const  *__cil_tmp70 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp71 ;
@@ -5340,16 +5258,12 @@ static void com20020_detach(struct pcmcia_device *link )
   int __cil_tmp74 ;
   int __cil_tmp75 ;
   long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct device *__cil_tmp79 ;
   struct device  const  *__cil_tmp80 ;
   void const   *__cil_tmp81 ;
 
   {
-  __cil_tmp10 = (unsigned long )link;
-  __cil_tmp11 = __cil_tmp10 + 952;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)link + 952));
   info = (struct com20020_dev_t *)__cil_tmp12;
   dev = *((struct net_device **)info);
   {
@@ -5369,9 +5283,7 @@ static void com20020_detach(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp19 = (unsigned long )link;
-        __cil_tmp20 = __cil_tmp19 + 184;
-        __cil_tmp21 = (struct device *)__cil_tmp20;
+        __cil_tmp21 = (struct device *)((void *)link + 184);
         __cil_tmp22 = (struct device  const  *)__cil_tmp21;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp22, "detach...\n");
         }
@@ -5403,9 +5315,7 @@ static void com20020_detach(struct pcmcia_device *link )
       }
       if (tmp___8) {
         {
-        __cil_tmp29 = (unsigned long )link;
-        __cil_tmp30 = __cil_tmp29 + 184;
-        __cil_tmp31 = (struct device *)__cil_tmp30;
+        __cil_tmp31 = (struct device *)((void *)link + 184);
         __cil_tmp32 = (struct device  const  *)__cil_tmp31;
         __dynamic_dev_dbg(& descriptor___1, __cil_tmp32, "com20020_detach\n");
         }
@@ -5437,9 +5347,7 @@ static void com20020_detach(struct pcmcia_device *link )
       }
       if (tmp___9) {
         {
-        __cil_tmp39 = (unsigned long )link;
-        __cil_tmp40 = __cil_tmp39 + 184;
-        __cil_tmp41 = (struct device *)__cil_tmp40;
+        __cil_tmp41 = (struct device *)((void *)link + 184);
         __cil_tmp42 = (struct device  const  *)__cil_tmp41;
         __dynamic_dev_dbg(& descriptor___2, __cil_tmp42, "unregister...\n");
         }
@@ -5458,13 +5366,9 @@ static void com20020_detach(struct pcmcia_device *link )
   unregister_netdev(dev);
   }
   {
-  __cil_tmp43 = (unsigned long )dev;
-  __cil_tmp44 = __cil_tmp43 + 224;
-  if (*((unsigned int *)__cil_tmp44)) {
+  if (*((unsigned int *)((void *)dev + 224))) {
     {
-    __cil_tmp45 = (unsigned long )dev;
-    __cil_tmp46 = __cil_tmp45 + 224;
-    __cil_tmp47 = *((unsigned int *)__cil_tmp46);
+    __cil_tmp47 = *((unsigned int *)((void *)dev + 224));
     __cil_tmp48 = (void *)dev;
     free_irq(__cil_tmp47, __cil_tmp48);
     }
@@ -5492,9 +5396,7 @@ static void com20020_detach(struct pcmcia_device *link )
       }
       if (tmp___10) {
         {
-        __cil_tmp55 = (unsigned long )link;
-        __cil_tmp56 = __cil_tmp55 + 184;
-        __cil_tmp57 = (struct device *)__cil_tmp56;
+        __cil_tmp57 = (struct device *)((void *)link + 184);
         __cil_tmp58 = (struct device  const  *)__cil_tmp57;
         __dynamic_dev_dbg(& descriptor___3, __cil_tmp58, "unlinking...\n");
         }
@@ -5510,9 +5412,7 @@ static void com20020_detach(struct pcmcia_device *link )
   while_break___5: /* CIL Label */ ;
   }
   {
-  __cil_tmp59 = (unsigned long )link;
-  __cil_tmp60 = __cil_tmp59 + 952;
-  if (*((void **)__cil_tmp60)) {
+  if (*((void **)((void *)link + 952))) {
     dev = *((struct net_device **)info);
     if (dev) {
       {
@@ -5532,9 +5432,7 @@ static void com20020_detach(struct pcmcia_device *link )
           }
           if (tmp___11) {
             {
-            __cil_tmp67 = (unsigned long )link;
-            __cil_tmp68 = __cil_tmp67 + 184;
-            __cil_tmp69 = (struct device *)__cil_tmp68;
+            __cil_tmp69 = (struct device *)((void *)link + 184);
             __cil_tmp70 = (struct device  const  *)__cil_tmp69;
             __dynamic_dev_dbg(& descriptor___4, __cil_tmp70, "kfree...\n");
             }
@@ -5572,9 +5470,7 @@ static void com20020_detach(struct pcmcia_device *link )
         }
         if (tmp___12) {
           {
-          __cil_tmp77 = (unsigned long )link;
-          __cil_tmp78 = __cil_tmp77 + 184;
-          __cil_tmp79 = (struct device *)__cil_tmp78;
+          __cil_tmp79 = (struct device *)((void *)link + 184);
           __cil_tmp80 = (struct device  const  *)__cil_tmp79;
           __dynamic_dev_dbg(& descriptor___5, __cil_tmp80, "kfree2...\n");
           }
@@ -5655,8 +5551,6 @@ static int com20020_config(struct pcmcia_device *link )
   void *tmp___16 ;
   long tmp___17 ;
   long tmp___18 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp23 ;
   unsigned int __cil_tmp24 ;
@@ -5664,8 +5558,6 @@ static int com20020_config(struct pcmcia_device *link )
   int __cil_tmp26 ;
   int __cil_tmp27 ;
   long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct device *__cil_tmp31 ;
   struct device  const  *__cil_tmp32 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp33 ;
@@ -5674,8 +5566,6 @@ static int com20020_config(struct pcmcia_device *link )
   int __cil_tmp36 ;
   int __cil_tmp37 ;
   long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct device *__cil_tmp41 ;
   struct device  const  *__cil_tmp42 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp43 ;
@@ -5684,29 +5574,19 @@ static int com20020_config(struct pcmcia_device *link )
   int __cil_tmp46 ;
   int __cil_tmp47 ;
   long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct device *__cil_tmp51 ;
   struct device  const  *__cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct resource *__cil_tmp57 ;
   resource_size_t __cil_tmp58 ;
   unsigned int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct resource *__cil_tmp66 ;
   resource_size_t __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct resource *__cil_tmp72 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp73 ;
   unsigned int __cil_tmp74 ;
@@ -5714,26 +5594,18 @@ static int com20020_config(struct pcmcia_device *link )
   int __cil_tmp76 ;
   int __cil_tmp77 ;
   long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   struct device *__cil_tmp81 ;
   struct device  const  *__cil_tmp82 ;
   unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   struct resource *__cil_tmp87 ;
   resource_size_t __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp91 ;
   unsigned int __cil_tmp92 ;
   unsigned int __cil_tmp93 ;
   int __cil_tmp94 ;
   int __cil_tmp95 ;
   long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   struct device *__cil_tmp99 ;
   struct device  const  *__cil_tmp100 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp101 ;
@@ -5742,15 +5614,9 @@ static int com20020_config(struct pcmcia_device *link )
   int __cil_tmp104 ;
   int __cil_tmp105 ;
   long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   struct device *__cil_tmp109 ;
   struct device  const  *__cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   unsigned int __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
   unsigned int __cil_tmp116 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp117 ;
   unsigned int __cil_tmp118 ;
@@ -5758,25 +5624,9 @@ static int com20020_config(struct pcmcia_device *link )
   int __cil_tmp120 ;
   int __cil_tmp121 ;
   long __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
   struct device *__cil_tmp125 ;
   struct device  const  *__cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
   struct net_device  const  *__cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
   struct device *__cil_tmp142 ;
   struct device  const  *__cil_tmp143 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp144 ;
@@ -5786,11 +5636,7 @@ static int com20020_config(struct pcmcia_device *link )
   int __cil_tmp148 ;
   long __cil_tmp149 ;
   struct net_device  const  *__cil_tmp150 ;
-  unsigned long __cil_tmp151 ;
-  unsigned long __cil_tmp152 ;
   unsigned long __cil_tmp153 ;
-  unsigned long __cil_tmp154 ;
-  unsigned long __cil_tmp155 ;
   unsigned int __cil_tmp156 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp157 ;
   unsigned int __cil_tmp158 ;
@@ -5798,15 +5644,11 @@ static int com20020_config(struct pcmcia_device *link )
   int __cil_tmp160 ;
   int __cil_tmp161 ;
   long __cil_tmp162 ;
-  unsigned long __cil_tmp163 ;
-  unsigned long __cil_tmp164 ;
   struct device *__cil_tmp165 ;
   struct device  const  *__cil_tmp166 ;
 
   {
-  __cil_tmp20 = (unsigned long )link;
-  __cil_tmp21 = __cil_tmp20 + 952;
-  __cil_tmp22 = *((void **)__cil_tmp21);
+  __cil_tmp22 = *((void **)((void *)link + 952));
   info = (com20020_dev_t *)__cil_tmp22;
   dev = *((struct net_device **)info);
   {
@@ -5826,9 +5668,7 @@ static int com20020_config(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp29 = (unsigned long )link;
-        __cil_tmp30 = __cil_tmp29 + 184;
-        __cil_tmp31 = (struct device *)__cil_tmp30;
+        __cil_tmp31 = (struct device *)((void *)link + 184);
         __cil_tmp32 = (struct device  const  *)__cil_tmp31;
         __dynamic_dev_dbg(& descriptor___6, __cil_tmp32, "config...\n");
         }
@@ -5860,9 +5700,7 @@ static int com20020_config(struct pcmcia_device *link )
       }
       if (tmp___8) {
         {
-        __cil_tmp39 = (unsigned long )link;
-        __cil_tmp40 = __cil_tmp39 + 184;
-        __cil_tmp41 = (struct device *)__cil_tmp40;
+        __cil_tmp41 = (struct device *)((void *)link + 184);
         __cil_tmp42 = (struct device  const  *)__cil_tmp41;
         __dynamic_dev_dbg(& descriptor___7, __cil_tmp42, "com20020_config\n");
         }
@@ -5894,15 +5732,11 @@ static int com20020_config(struct pcmcia_device *link )
       }
       if (tmp___9) {
         {
-        __cil_tmp49 = (unsigned long )link;
-        __cil_tmp50 = __cil_tmp49 + 184;
-        __cil_tmp51 = (struct device *)__cil_tmp50;
+        __cil_tmp51 = (struct device *)((void *)link + 184);
         __cil_tmp52 = (struct device  const  *)__cil_tmp51;
         __cil_tmp53 = 0 * 8UL;
         __cil_tmp54 = 56 + __cil_tmp53;
-        __cil_tmp55 = (unsigned long )link;
-        __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-        __cil_tmp57 = *((struct resource **)__cil_tmp56);
+        __cil_tmp57 = *((struct resource **)((void *)link + __cil_tmp54));
         __cil_tmp58 = *((resource_size_t *)__cil_tmp57);
         __cil_tmp59 = (unsigned int )__cil_tmp58;
         __dynamic_dev_dbg(& descriptor___8, __cil_tmp52, "baseport1 is %Xh\n", __cil_tmp59);
@@ -5919,15 +5753,11 @@ static int com20020_config(struct pcmcia_device *link )
   while_break___3: /* CIL Label */ ;
   }
   i = -19;
-  __cil_tmp60 = (unsigned long )link;
-  __cil_tmp61 = __cil_tmp60 + 132;
-  *((unsigned int *)__cil_tmp61) = 16U;
+  *((unsigned int *)((void *)link + 132)) = 16U;
   {
   __cil_tmp62 = 0 * 8UL;
   __cil_tmp63 = 56 + __cil_tmp62;
-  __cil_tmp64 = (unsigned long )link;
-  __cil_tmp65 = __cil_tmp64 + __cil_tmp63;
-  __cil_tmp66 = *((struct resource **)__cil_tmp65);
+  __cil_tmp66 = *((struct resource **)((void *)link + __cil_tmp63));
   __cil_tmp67 = *((resource_size_t *)__cil_tmp66);
   if (! __cil_tmp67) {
     ioaddr = 256;
@@ -5942,9 +5772,7 @@ static int com20020_config(struct pcmcia_device *link )
       {
       __cil_tmp68 = 0 * 8UL;
       __cil_tmp69 = 56 + __cil_tmp68;
-      __cil_tmp70 = (unsigned long )link;
-      __cil_tmp71 = __cil_tmp70 + __cil_tmp69;
-      __cil_tmp72 = *((struct resource **)__cil_tmp71);
+      __cil_tmp72 = *((struct resource **)((void *)link + __cil_tmp69));
       *((resource_size_t *)__cil_tmp72) = (resource_size_t )ioaddr;
       i = pcmcia_request_io(link);
       }
@@ -5981,9 +5809,7 @@ static int com20020_config(struct pcmcia_device *link )
         }
         if (tmp___10) {
           {
-          __cil_tmp79 = (unsigned long )link;
-          __cil_tmp80 = __cil_tmp79 + 184;
-          __cil_tmp81 = (struct device *)__cil_tmp80;
+          __cil_tmp81 = (struct device *)((void *)link + 184);
           __cil_tmp82 = (struct device  const  *)__cil_tmp81;
           __dynamic_dev_dbg(& descriptor___9, __cil_tmp82, "requestIO failed totally!\n");
           }
@@ -6004,14 +5830,10 @@ static int com20020_config(struct pcmcia_device *link )
   }
   __cil_tmp83 = 0 * 8UL;
   __cil_tmp84 = 56 + __cil_tmp83;
-  __cil_tmp85 = (unsigned long )link;
-  __cil_tmp86 = __cil_tmp85 + __cil_tmp84;
-  __cil_tmp87 = *((struct resource **)__cil_tmp86);
+  __cil_tmp87 = *((struct resource **)((void *)link + __cil_tmp84));
   __cil_tmp88 = *((resource_size_t *)__cil_tmp87);
   tmp___11 = (unsigned long )__cil_tmp88;
-  __cil_tmp89 = (unsigned long )dev;
-  __cil_tmp90 = __cil_tmp89 + 216;
-  *((unsigned long *)__cil_tmp90) = tmp___11;
+  *((unsigned long *)((void *)dev + 216)) = tmp___11;
   ioaddr = (int )tmp___11;
   {
   while (1) {
@@ -6030,9 +5852,7 @@ static int com20020_config(struct pcmcia_device *link )
       }
       if (tmp___12) {
         {
-        __cil_tmp97 = (unsigned long )link;
-        __cil_tmp98 = __cil_tmp97 + 184;
-        __cil_tmp99 = (struct device *)__cil_tmp98;
+        __cil_tmp99 = (struct device *)((void *)link + 184);
         __cil_tmp100 = (struct device  const  *)__cil_tmp99;
         __dynamic_dev_dbg(& descriptor___10, __cil_tmp100, "got ioaddr %Xh\n", ioaddr);
         }
@@ -6064,13 +5884,9 @@ static int com20020_config(struct pcmcia_device *link )
       }
       if (tmp___13) {
         {
-        __cil_tmp107 = (unsigned long )link;
-        __cil_tmp108 = __cil_tmp107 + 184;
-        __cil_tmp109 = (struct device *)__cil_tmp108;
+        __cil_tmp109 = (struct device *)((void *)link + 184);
         __cil_tmp110 = (struct device  const  *)__cil_tmp109;
-        __cil_tmp111 = (unsigned long )link;
-        __cil_tmp112 = __cil_tmp111 + 48;
-        __cil_tmp113 = *((unsigned int *)__cil_tmp112);
+        __cil_tmp113 = *((unsigned int *)((void *)link + 48));
         __dynamic_dev_dbg(& descriptor___11, __cil_tmp110, "request IRQ %d\n", __cil_tmp113);
         }
       } else {
@@ -6085,9 +5901,7 @@ static int com20020_config(struct pcmcia_device *link )
   while_break___10: /* CIL Label */ ;
   }
   {
-  __cil_tmp114 = (unsigned long )link;
-  __cil_tmp115 = __cil_tmp114 + 48;
-  __cil_tmp116 = *((unsigned int *)__cil_tmp115);
+  __cil_tmp116 = *((unsigned int *)((void *)link + 48));
   if (! __cil_tmp116) {
     {
     while (1) {
@@ -6106,9 +5920,7 @@ static int com20020_config(struct pcmcia_device *link )
         }
         if (tmp___14) {
           {
-          __cil_tmp123 = (unsigned long )link;
-          __cil_tmp124 = __cil_tmp123 + 184;
-          __cil_tmp125 = (struct device *)__cil_tmp124;
+          __cil_tmp125 = (struct device *)((void *)link + 184);
           __cil_tmp126 = (struct device  const  *)__cil_tmp125;
           __dynamic_dev_dbg(& descriptor___12, __cil_tmp126, "requestIRQ failed totally!\n");
           }
@@ -6129,11 +5941,7 @@ static int com20020_config(struct pcmcia_device *link )
   }
   }
   {
-  __cil_tmp127 = (unsigned long )dev;
-  __cil_tmp128 = __cil_tmp127 + 224;
-  __cil_tmp129 = (unsigned long )link;
-  __cil_tmp130 = __cil_tmp129 + 48;
-  *((unsigned int *)__cil_tmp128) = *((unsigned int *)__cil_tmp130);
+  *((unsigned int *)((void *)dev + 224)) = *((unsigned int *)((void *)link + 48));
   ret = pcmcia_enable_device(link);
   }
   if (ret) {
@@ -6156,24 +5964,14 @@ static int com20020_config(struct pcmcia_device *link )
   __cil_tmp131 = (struct net_device  const  *)dev;
   tmp___16 = netdev_priv(__cil_tmp131);
   lp = (struct arcnet_local *)tmp___16;
-  __cil_tmp132 = (unsigned long )lp;
-  __cil_tmp133 = __cil_tmp132 + 296;
-  *((char **)__cil_tmp133) = (char *)"PCMCIA COM20020";
-  __cil_tmp134 = (unsigned long )lp;
-  __cil_tmp135 = __cil_tmp134 + 304;
-  *((int *)__cil_tmp135) = 2;
-  __cil_tmp136 = (unsigned long )dev;
-  __cil_tmp137 = __cil_tmp136 + 1192;
-  __cil_tmp138 = (unsigned long )link;
-  __cil_tmp139 = __cil_tmp138 + 184;
-  *((struct device **)__cil_tmp137) = (struct device *)__cil_tmp139;
+  *((char **)((void *)lp + 296)) = (char *)"PCMCIA COM20020";
+  *((int *)((void *)lp + 304)) = 2;
+  *((struct device **)((void *)dev + 1192)) = (struct device *)((void *)link + 184);
   i = com20020_found(dev, 0);
   }
   if (i != 0) {
     {
-    __cil_tmp140 = (unsigned long )link;
-    __cil_tmp141 = __cil_tmp140 + 184;
-    __cil_tmp142 = (struct device *)__cil_tmp141;
+    __cil_tmp142 = (struct device *)((void *)link + 184);
     __cil_tmp143 = (struct device  const  *)__cil_tmp142;
     dev_notice(__cil_tmp143, "com20020_found() failed\n");
     }
@@ -6199,12 +5997,8 @@ static int com20020_config(struct pcmcia_device *link )
       if (tmp___17) {
         {
         __cil_tmp150 = (struct net_device  const  *)dev;
-        __cil_tmp151 = (unsigned long )dev;
-        __cil_tmp152 = __cil_tmp151 + 216;
-        __cil_tmp153 = *((unsigned long *)__cil_tmp152);
-        __cil_tmp154 = (unsigned long )dev;
-        __cil_tmp155 = __cil_tmp154 + 224;
-        __cil_tmp156 = *((unsigned int *)__cil_tmp155);
+        __cil_tmp153 = *((unsigned long *)((void *)dev + 216));
+        __cil_tmp156 = *((unsigned int *)((void *)dev + 224));
         __dynamic_netdev_dbg(& descriptor___13, __cil_tmp150, "port %#3lx, irq %d\n",
                              __cil_tmp153, __cil_tmp156);
         }
@@ -6238,9 +6032,7 @@ static int com20020_config(struct pcmcia_device *link )
       }
       if (tmp___18) {
         {
-        __cil_tmp163 = (unsigned long )link;
-        __cil_tmp164 = __cil_tmp163 + 184;
-        __cil_tmp165 = (struct device *)__cil_tmp164;
+        __cil_tmp165 = (struct device *)((void *)link + 184);
         __cil_tmp166 = (struct device  const  *)__cil_tmp165;
         __dynamic_dev_dbg(& descriptor___14, __cil_tmp166, "com20020_config failed...\n");
         }
@@ -6273,8 +6065,6 @@ static void com20020_release(struct pcmcia_device *link )
   int __cil_tmp6 ;
   int __cil_tmp7 ;
   long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device  const  *__cil_tmp12 ;
 
@@ -6296,9 +6086,7 @@ static void com20020_release(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp9 = (unsigned long )link;
-        __cil_tmp10 = __cil_tmp9 + 184;
-        __cil_tmp11 = (struct device *)__cil_tmp10;
+        __cil_tmp11 = (struct device *)((void *)link + 184);
         __cil_tmp12 = (struct device  const  *)__cil_tmp11;
         __dynamic_dev_dbg(& descriptor___15, __cil_tmp12, "com20020_release\n");
         }
@@ -6322,22 +6110,14 @@ static void com20020_release(struct pcmcia_device *link )
 static int com20020_suspend(struct pcmcia_device *link ) 
 { com20020_dev_t *info ;
   struct net_device *dev ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
 
   {
-  __cil_tmp4 = (unsigned long )link;
-  __cil_tmp5 = __cil_tmp4 + 952;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)link + 952));
   info = (com20020_dev_t *)__cil_tmp6;
   dev = *((struct net_device **)info);
   {
-  __cil_tmp7 = (unsigned long )link;
-  __cil_tmp8 = __cil_tmp7 + 960;
-  if (*((unsigned int *)__cil_tmp8)) {
+  if (*((unsigned int *)((void *)link + 960))) {
     {
     netif_device_detach(dev);
     }
@@ -6354,13 +6134,7 @@ static int com20020_resume(struct pcmcia_device *link )
   int ioaddr ;
   struct arcnet_local *lp ;
   void *tmp___7 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   struct net_device  const  *__cil_tmp15 ;
   uint8_t __cil_tmp16 ;
@@ -6372,19 +6146,13 @@ static int com20020_resume(struct pcmcia_device *link )
   int __cil_tmp22 ;
 
   {
-  __cil_tmp7 = (unsigned long )link;
-  __cil_tmp8 = __cil_tmp7 + 952;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)link + 952));
   info = (com20020_dev_t *)__cil_tmp9;
   dev = *((struct net_device **)info);
   {
-  __cil_tmp10 = (unsigned long )link;
-  __cil_tmp11 = __cil_tmp10 + 960;
-  if (*((unsigned int *)__cil_tmp11)) {
+  if (*((unsigned int *)((void *)link + 960))) {
     {
-    __cil_tmp12 = (unsigned long )dev;
-    __cil_tmp13 = __cil_tmp12 + 216;
-    __cil_tmp14 = *((unsigned long *)__cil_tmp13);
+    __cil_tmp14 = *((unsigned long *)((void *)dev + 216));
     ioaddr = (int )__cil_tmp14;
     __cil_tmp15 = (struct net_device  const  *)dev;
     tmp___7 = netdev_priv(__cil_tmp15);

@@ -1863,28 +1863,21 @@ extern int dev_set_drvdata(struct device * , void * ) ;
 extern int _dev_info(struct device const * , char const * , ...) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1921,19 +1914,10 @@ __inline static void gpio_set_value(unsigned int gpio , int value )
 }
 }
 static int v3020_mmio_map(struct v3020 *chip , struct platform_device *pdev , struct v3020_platform_data *pdata )
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   u32 __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct resource *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct resource *__cil_tmp17 ;
   resource_size_t __cil_tmp18 ;
   void *__cil_tmp19 ;
@@ -1942,33 +1926,23 @@ static int v3020_mmio_map(struct v3020 *chip , struct platform_device *pdev , st
   unsigned long __cil_tmp22 ;
   {
   {
-  __cil_tmp4 = (unsigned long )pdev;
-  __cil_tmp5 = __cil_tmp4 + 1168;
-  __cil_tmp6 = *((u32 *)__cil_tmp5);
+  __cil_tmp6 = *((u32 *)((void *)pdev + 1168));
   if (__cil_tmp6 != 1U) {
     return (-16);
   } else {
   }
   }
   {
-  __cil_tmp7 = (unsigned long )pdev;
-  __cil_tmp8 = __cil_tmp7 + 1176;
-  __cil_tmp9 = *((struct resource **)__cil_tmp8);
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  __cil_tmp12 = *((unsigned long *)__cil_tmp11);
+  __cil_tmp9 = *((struct resource **)((void *)pdev + 1176));
+  __cil_tmp12 = *((unsigned long *)((void *)__cil_tmp9 + 24));
   if (__cil_tmp12 != 512UL) {
     return (-16);
   } else {
   }
   }
   {
-  __cil_tmp13 = (unsigned long )chip;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  *((int *)__cil_tmp14) = *((int *)pdata);
-  __cil_tmp15 = (unsigned long )pdev;
-  __cil_tmp16 = __cil_tmp15 + 1176;
-  __cil_tmp17 = *((struct resource **)__cil_tmp16);
+  *((int *)((void *)chip + 8)) = *((int *)pdata);
+  __cil_tmp17 = *((struct resource **)((void *)pdev + 1176));
   __cil_tmp18 = *((resource_size_t *)__cil_tmp17);
   *((void **)chip) = ioremap(__cil_tmp18, 1UL);
   }
@@ -1998,8 +1972,7 @@ static void v3020_mmio_unmap(struct v3020 *chip )
 }
 }
 static void v3020_mmio_write_bit(struct v3020 *chip , unsigned char bit )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   int __cil_tmp5 ;
   int __cil_tmp6 ;
   int __cil_tmp7 ;
@@ -2008,9 +1981,7 @@ static void v3020_mmio_write_bit(struct v3020 *chip , unsigned char bit )
   void volatile *__cil_tmp10 ;
   {
   {
-  __cil_tmp3 = (unsigned long )chip;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((int *)__cil_tmp4);
+  __cil_tmp5 = *((int *)((void *)chip + 8));
   __cil_tmp6 = (int )bit;
   __cil_tmp7 = __cil_tmp6 << __cil_tmp5;
   __cil_tmp8 = (unsigned int )__cil_tmp7;
@@ -2025,8 +1996,6 @@ static unsigned char v3020_mmio_read_bit(struct v3020 *chip )
 { unsigned int tmp ;
   void *__cil_tmp3 ;
   void const volatile *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
@@ -2039,9 +2008,7 @@ static unsigned char v3020_mmio_read_bit(struct v3020 *chip )
   tmp = readl(__cil_tmp4);
   }
   {
-  __cil_tmp5 = (unsigned long )chip;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((int *)__cil_tmp6);
+  __cil_tmp7 = *((int *)((void *)chip + 8));
   __cil_tmp8 = 1 << __cil_tmp7;
   __cil_tmp9 = (unsigned int )__cil_tmp8;
   __cil_tmp10 = tmp & __cil_tmp9;
@@ -2061,23 +2028,15 @@ static int v3020_gpio_map(struct v3020 *chip , struct platform_device *pdev , st
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
@@ -2090,8 +2049,6 @@ static int v3020_gpio_map(struct v3020 *chip , struct platform_device *pdev , st
   unsigned long __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
@@ -2100,27 +2057,19 @@ static int v3020_gpio_map(struct v3020 *chip , struct platform_device *pdev , st
   __cil_tmp6 = 0 * 16UL;
   __cil_tmp7 = __cil_tmp6 + 8;
   __cil_tmp8 = (unsigned long )(v3020_gpio) + __cil_tmp7;
-  __cil_tmp9 = (unsigned long )pdata;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  *((unsigned int *)__cil_tmp8) = *((unsigned int *)__cil_tmp10);
+  *((unsigned int *)__cil_tmp8) = *((unsigned int *)((void *)pdata + 8));
   __cil_tmp11 = 1 * 16UL;
   __cil_tmp12 = __cil_tmp11 + 8;
   __cil_tmp13 = (unsigned long )(v3020_gpio) + __cil_tmp12;
-  __cil_tmp14 = (unsigned long )pdata;
-  __cil_tmp15 = __cil_tmp14 + 12;
-  *((unsigned int *)__cil_tmp13) = *((unsigned int *)__cil_tmp15);
+  *((unsigned int *)__cil_tmp13) = *((unsigned int *)((void *)pdata + 12));
   __cil_tmp16 = 2 * 16UL;
   __cil_tmp17 = __cil_tmp16 + 8;
   __cil_tmp18 = (unsigned long )(v3020_gpio) + __cil_tmp17;
-  __cil_tmp19 = (unsigned long )pdata;
-  __cil_tmp20 = __cil_tmp19 + 16;
-  *((unsigned int *)__cil_tmp18) = *((unsigned int *)__cil_tmp20);
+  *((unsigned int *)__cil_tmp18) = *((unsigned int *)((void *)pdata + 16));
   __cil_tmp21 = 3 * 16UL;
   __cil_tmp22 = __cil_tmp21 + 8;
   __cil_tmp23 = (unsigned long )(v3020_gpio) + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )pdata;
-  __cil_tmp25 = __cil_tmp24 + 20;
-  *((unsigned int *)__cil_tmp23) = *((unsigned int *)__cil_tmp25);
+  *((unsigned int *)__cil_tmp23) = *((unsigned int *)((void *)pdata + 20));
   i = 0;
   goto ldv_21245;
   ldv_21244:
@@ -2156,9 +2105,7 @@ static int v3020_gpio_map(struct v3020 *chip , struct platform_device *pdev , st
   }
   }
   ldv_21246:
-  __cil_tmp38 = (unsigned long )chip;
-  __cil_tmp39 = __cil_tmp38 + 16;
-  *((struct v3020_gpio **)__cil_tmp39) = (struct v3020_gpio *)(& v3020_gpio);
+  *((struct v3020_gpio **)((void *)chip + 16)) = (struct v3020_gpio *)(& v3020_gpio);
   return (0);
   err_request: ;
   goto ldv_21248;
@@ -2214,81 +2161,42 @@ static void v3020_gpio_unmap(struct v3020 *chip )
 }
 }
 static void v3020_gpio_write_bit(struct v3020 *chip , unsigned char bit )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct v3020_gpio *__cil_tmp5 ;
   struct v3020_gpio *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct v3020_gpio *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct v3020_gpio *__cil_tmp19 ;
   struct v3020_gpio *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct v3020_gpio *__cil_tmp26 ;
   struct v3020_gpio *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct v3020_gpio *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
   {
   {
-  __cil_tmp3 = (unsigned long )chip;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = *((struct v3020_gpio **)__cil_tmp4);
+  __cil_tmp5 = *((struct v3020_gpio **)((void *)chip + 16));
   __cil_tmp6 = __cil_tmp5 + 3UL;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = *((unsigned int *)__cil_tmp8);
+  __cil_tmp9 = *((unsigned int *)((void *)__cil_tmp6 + 8));
   __cil_tmp10 = (int )bit;
   gpio_direction_output(__cil_tmp9, __cil_tmp10);
-  __cil_tmp11 = (unsigned long )chip;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = *((struct v3020_gpio **)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((unsigned int *)__cil_tmp15);
+  __cil_tmp13 = *((struct v3020_gpio **)((void *)chip + 16));
+  __cil_tmp16 = *((unsigned int *)((void *)__cil_tmp13 + 8));
   gpio_set_value(__cil_tmp16, 0);
-  __cil_tmp17 = (unsigned long )chip;
-  __cil_tmp18 = __cil_tmp17 + 16;
-  __cil_tmp19 = *((struct v3020_gpio **)__cil_tmp18);
+  __cil_tmp19 = *((struct v3020_gpio **)((void *)chip + 16));
   __cil_tmp20 = __cil_tmp19 + 1UL;
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  __cil_tmp23 = *((unsigned int *)__cil_tmp22);
+  __cil_tmp23 = *((unsigned int *)((void *)__cil_tmp20 + 8));
   gpio_set_value(__cil_tmp23, 0);
   __const_udelay(4295UL);
-  __cil_tmp24 = (unsigned long )chip;
-  __cil_tmp25 = __cil_tmp24 + 16;
-  __cil_tmp26 = *((struct v3020_gpio **)__cil_tmp25);
+  __cil_tmp26 = *((struct v3020_gpio **)((void *)chip + 16));
   __cil_tmp27 = __cil_tmp26 + 1UL;
-  __cil_tmp28 = (unsigned long )__cil_tmp27;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  __cil_tmp30 = *((unsigned int *)__cil_tmp29);
+  __cil_tmp30 = *((unsigned int *)((void *)__cil_tmp27 + 8));
   gpio_set_value(__cil_tmp30, 1);
-  __cil_tmp31 = (unsigned long )chip;
-  __cil_tmp32 = __cil_tmp31 + 16;
-  __cil_tmp33 = *((struct v3020_gpio **)__cil_tmp32);
-  __cil_tmp34 = (unsigned long )__cil_tmp33;
-  __cil_tmp35 = __cil_tmp34 + 8;
-  __cil_tmp36 = *((unsigned int *)__cil_tmp35);
+  __cil_tmp33 = *((struct v3020_gpio **)((void *)chip + 16));
+  __cil_tmp36 = *((unsigned int *)((void *)__cil_tmp33 + 8));
   gpio_set_value(__cil_tmp36, 1);
   }
   return;
@@ -2297,96 +2205,48 @@ static void v3020_gpio_write_bit(struct v3020 *chip , unsigned char bit )
 static unsigned char v3020_gpio_read_bit(struct v3020 *chip )
 { int bit ;
   int tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct v3020_gpio *__cil_tmp6 ;
   struct v3020_gpio *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct v3020_gpio *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct v3020_gpio *__cil_tmp19 ;
   struct v3020_gpio *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct v3020_gpio *__cil_tmp26 ;
   struct v3020_gpio *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct v3020_gpio *__cil_tmp33 ;
   struct v3020_gpio *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct v3020_gpio *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
   {
   {
-  __cil_tmp4 = (unsigned long )chip;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  __cil_tmp6 = *((struct v3020_gpio **)__cil_tmp5);
+  __cil_tmp6 = *((struct v3020_gpio **)((void *)chip + 16));
   __cil_tmp7 = __cil_tmp6 + 3UL;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = *((unsigned int *)__cil_tmp9);
+  __cil_tmp10 = *((unsigned int *)((void *)__cil_tmp7 + 8));
   gpio_direction_input(__cil_tmp10);
-  __cil_tmp11 = (unsigned long )chip;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = *((struct v3020_gpio **)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((unsigned int *)__cil_tmp15);
+  __cil_tmp13 = *((struct v3020_gpio **)((void *)chip + 16));
+  __cil_tmp16 = *((unsigned int *)((void *)__cil_tmp13 + 8));
   gpio_set_value(__cil_tmp16, 0);
-  __cil_tmp17 = (unsigned long )chip;
-  __cil_tmp18 = __cil_tmp17 + 16;
-  __cil_tmp19 = *((struct v3020_gpio **)__cil_tmp18);
+  __cil_tmp19 = *((struct v3020_gpio **)((void *)chip + 16));
   __cil_tmp20 = __cil_tmp19 + 2UL;
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  __cil_tmp23 = *((unsigned int *)__cil_tmp22);
+  __cil_tmp23 = *((unsigned int *)((void *)__cil_tmp20 + 8));
   gpio_set_value(__cil_tmp23, 0);
   __const_udelay(4295UL);
-  __cil_tmp24 = (unsigned long )chip;
-  __cil_tmp25 = __cil_tmp24 + 16;
-  __cil_tmp26 = *((struct v3020_gpio **)__cil_tmp25);
+  __cil_tmp26 = *((struct v3020_gpio **)((void *)chip + 16));
   __cil_tmp27 = __cil_tmp26 + 3UL;
-  __cil_tmp28 = (unsigned long )__cil_tmp27;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  __cil_tmp30 = *((unsigned int *)__cil_tmp29);
+  __cil_tmp30 = *((unsigned int *)((void *)__cil_tmp27 + 8));
   tmp = gpio_get_value(__cil_tmp30);
   bit = tmp != 0;
   __const_udelay(4295UL);
-  __cil_tmp31 = (unsigned long )chip;
-  __cil_tmp32 = __cil_tmp31 + 16;
-  __cil_tmp33 = *((struct v3020_gpio **)__cil_tmp32);
+  __cil_tmp33 = *((struct v3020_gpio **)((void *)chip + 16));
   __cil_tmp34 = __cil_tmp33 + 2UL;
-  __cil_tmp35 = (unsigned long )__cil_tmp34;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = *((unsigned int *)__cil_tmp36);
+  __cil_tmp37 = *((unsigned int *)((void *)__cil_tmp34 + 8));
   gpio_set_value(__cil_tmp37, 1);
-  __cil_tmp38 = (unsigned long )chip;
-  __cil_tmp39 = __cil_tmp38 + 16;
-  __cil_tmp40 = *((struct v3020_gpio **)__cil_tmp39);
-  __cil_tmp41 = (unsigned long )__cil_tmp40;
-  __cil_tmp42 = __cil_tmp41 + 8;
-  __cil_tmp43 = *((unsigned int *)__cil_tmp42);
+  __cil_tmp40 = *((struct v3020_gpio **)((void *)chip + 16));
+  __cil_tmp43 = *((unsigned int *)((void *)__cil_tmp40 + 8));
   gpio_set_value(__cil_tmp43, 1);
   }
   return ((unsigned char )bit);
@@ -2396,11 +2256,7 @@ static struct v3020_chip_ops v3020_gpio_ops = {& v3020_gpio_map, & v3020_gpio_un
 static void v3020_set_reg(struct v3020 *chip , unsigned char address , unsigned char data )
 { int i ;
   unsigned char tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct v3020_chip_ops *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void (*__cil_tmp11)(struct v3020 * , unsigned char ) ;
   int __cil_tmp12 ;
   int __cil_tmp13 ;
@@ -2408,11 +2264,7 @@ static void v3020_set_reg(struct v3020 *chip , unsigned char address , unsigned 
   int __cil_tmp15 ;
   int __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct v3020_chip_ops *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   void (*__cil_tmp23)(struct v3020 * , unsigned char ) ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
@@ -2425,12 +2277,8 @@ static void v3020_set_reg(struct v3020 *chip , unsigned char address , unsigned 
   goto ldv_21276;
   ldv_21275:
   {
-  __cil_tmp6 = (unsigned long )chip;
-  __cil_tmp7 = __cil_tmp6 + 24;
-  __cil_tmp8 = *((struct v3020_chip_ops **)__cil_tmp7);
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 24;
-  __cil_tmp11 = *((void (**)(struct v3020 * , unsigned char ))__cil_tmp10);
+  __cil_tmp8 = *((struct v3020_chip_ops **)((void *)chip + 24));
+  __cil_tmp11 = *((void (**)(struct v3020 * , unsigned char ))((void *)__cil_tmp8 + 24));
   __cil_tmp12 = (int )tmp;
   __cil_tmp13 = __cil_tmp12 & 1;
   __cil_tmp14 = (unsigned char )__cil_tmp13;
@@ -2455,12 +2303,8 @@ static void v3020_set_reg(struct v3020 *chip , unsigned char address , unsigned 
     goto ldv_21279;
     ldv_21278:
     {
-    __cil_tmp18 = (unsigned long )chip;
-    __cil_tmp19 = __cil_tmp18 + 24;
-    __cil_tmp20 = *((struct v3020_chip_ops **)__cil_tmp19);
-    __cil_tmp21 = (unsigned long )__cil_tmp20;
-    __cil_tmp22 = __cil_tmp21 + 24;
-    __cil_tmp23 = *((void (**)(struct v3020 * , unsigned char ))__cil_tmp22);
+    __cil_tmp20 = *((struct v3020_chip_ops **)((void *)chip + 24));
+    __cil_tmp23 = *((void (**)(struct v3020 * , unsigned char ))((void *)__cil_tmp20 + 24));
     __cil_tmp24 = (int )data;
     __cil_tmp25 = __cil_tmp24 & 1;
     __cil_tmp26 = (unsigned char )__cil_tmp25;
@@ -2488,22 +2332,14 @@ static unsigned char v3020_get_reg(struct v3020 *chip , unsigned char address )
 { unsigned int data ;
   int i ;
   unsigned char tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct v3020_chip_ops *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void (*__cil_tmp11)(struct v3020 * , unsigned char ) ;
   int __cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned char __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct v3020_chip_ops *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned char (*__cil_tmp22)(struct v3020 * ) ;
   unsigned int __cil_tmp23 ;
   {
@@ -2512,12 +2348,8 @@ static unsigned char v3020_get_reg(struct v3020 *chip , unsigned char address )
   goto ldv_21288;
   ldv_21287:
   {
-  __cil_tmp6 = (unsigned long )chip;
-  __cil_tmp7 = __cil_tmp6 + 24;
-  __cil_tmp8 = *((struct v3020_chip_ops **)__cil_tmp7);
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 24;
-  __cil_tmp11 = *((void (**)(struct v3020 * , unsigned char ))__cil_tmp10);
+  __cil_tmp8 = *((struct v3020_chip_ops **)((void *)chip + 24));
+  __cil_tmp11 = *((void (**)(struct v3020 * , unsigned char ))((void *)__cil_tmp8 + 24));
   __cil_tmp12 = (int )address;
   __cil_tmp13 = __cil_tmp12 & 1;
   __cil_tmp14 = (unsigned char )__cil_tmp13;
@@ -2540,12 +2372,8 @@ static unsigned char v3020_get_reg(struct v3020 *chip , unsigned char address )
   ldv_21290:
   {
   data = data >> 1;
-  __cil_tmp17 = (unsigned long )chip;
-  __cil_tmp18 = __cil_tmp17 + 24;
-  __cil_tmp19 = *((struct v3020_chip_ops **)__cil_tmp18);
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 16;
-  __cil_tmp22 = *((unsigned char (**)(struct v3020 * ))__cil_tmp21);
+  __cil_tmp19 = *((struct v3020_chip_ops **)((void *)chip + 24));
+  __cil_tmp22 = *((unsigned char (**)(struct v3020 * ))((void *)__cil_tmp19 + 16));
   tmp = (*__cil_tmp22)(chip);
   }
   {
@@ -2610,141 +2438,69 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   unsigned char __cil_tmp40 ;
   int __cil_tmp41 ;
   unsigned char __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char __cil_tmp45 ;
   int __cil_tmp46 ;
   unsigned char __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned char __cil_tmp50 ;
   int __cil_tmp51 ;
   unsigned char __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned char __cil_tmp55 ;
   int __cil_tmp56 ;
   unsigned char __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   unsigned int __cil_tmp60 ;
   unsigned char __cil_tmp61 ;
   int __cil_tmp62 ;
   unsigned char __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned char __cil_tmp66 ;
   int __cil_tmp67 ;
   unsigned char __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned int __cil_tmp71 ;
   struct _ddebug *__cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   unsigned char __cil_tmp79 ;
   long __cil_tmp80 ;
   long __cil_tmp81 ;
   struct device const *__cil_tmp82 ;
   struct _ddebug *__cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   unsigned char __cil_tmp90 ;
   long __cil_tmp91 ;
   long __cil_tmp92 ;
   struct device const *__cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   int __cil_tmp96 ;
   struct _ddebug *__cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   unsigned char __cil_tmp104 ;
   long __cil_tmp105 ;
   long __cil_tmp106 ;
   struct device const *__cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
   int __cil_tmp110 ;
   struct _ddebug *__cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
   unsigned char __cil_tmp118 ;
   long __cil_tmp119 ;
   long __cil_tmp120 ;
   struct device const *__cil_tmp121 ;
   int __cil_tmp122 ;
   struct _ddebug *__cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
   unsigned char __cil_tmp130 ;
   long __cil_tmp131 ;
   long __cil_tmp132 ;
   struct device const *__cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
   int __cil_tmp136 ;
   struct _ddebug *__cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
   unsigned char __cil_tmp144 ;
   long __cil_tmp145 ;
   long __cil_tmp146 ;
   struct device const *__cil_tmp147 ;
-  unsigned long __cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
   int __cil_tmp150 ;
   struct _ddebug *__cil_tmp151 ;
-  unsigned long __cil_tmp152 ;
-  unsigned long __cil_tmp153 ;
-  unsigned long __cil_tmp154 ;
-  unsigned long __cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
-  unsigned long __cil_tmp157 ;
   unsigned char __cil_tmp158 ;
   long __cil_tmp159 ;
   long __cil_tmp160 ;
   struct device const *__cil_tmp161 ;
-  unsigned long __cil_tmp162 ;
-  unsigned long __cil_tmp163 ;
   int __cil_tmp164 ;
   struct _ddebug *__cil_tmp165 ;
-  unsigned long __cil_tmp166 ;
-  unsigned long __cil_tmp167 ;
-  unsigned long __cil_tmp168 ;
-  unsigned long __cil_tmp169 ;
-  unsigned long __cil_tmp170 ;
-  unsigned long __cil_tmp171 ;
   unsigned char __cil_tmp172 ;
   long __cil_tmp173 ;
   long __cil_tmp174 ;
   struct device const *__cil_tmp175 ;
-  unsigned long __cil_tmp176 ;
-  unsigned long __cil_tmp177 ;
   int __cil_tmp178 ;
   {
   {
@@ -2765,70 +2521,52 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   __cil_tmp41 = (int )__cil_tmp40;
   __cil_tmp42 = (unsigned char )__cil_tmp41;
   tmp___4 = bcd2bin(__cil_tmp42);
-  __cil_tmp43 = (unsigned long )dt;
-  __cil_tmp44 = __cil_tmp43 + 4;
-  *((int *)__cil_tmp44) = (int )tmp___4;
+  *((int *)((void *)dt + 4)) = (int )tmp___4;
   tmp___5 = v3020_get_reg(chip, (unsigned char)4);
   tmp___0 = (int )tmp___5;
   __cil_tmp45 = (unsigned char )tmp___0;
   __cil_tmp46 = (int )__cil_tmp45;
   __cil_tmp47 = (unsigned char )__cil_tmp46;
   tmp___6 = bcd2bin(__cil_tmp47);
-  __cil_tmp48 = (unsigned long )dt;
-  __cil_tmp49 = __cil_tmp48 + 8;
-  *((int *)__cil_tmp49) = (int )tmp___6;
+  *((int *)((void *)dt + 8)) = (int )tmp___6;
   tmp___7 = v3020_get_reg(chip, (unsigned char)5);
   tmp___0 = (int )tmp___7;
   __cil_tmp50 = (unsigned char )tmp___0;
   __cil_tmp51 = (int )__cil_tmp50;
   __cil_tmp52 = (unsigned char )__cil_tmp51;
   tmp___8 = bcd2bin(__cil_tmp52);
-  __cil_tmp53 = (unsigned long )dt;
-  __cil_tmp54 = __cil_tmp53 + 12;
-  *((int *)__cil_tmp54) = (int )tmp___8;
+  *((int *)((void *)dt + 12)) = (int )tmp___8;
   tmp___9 = v3020_get_reg(chip, (unsigned char)6);
   tmp___0 = (int )tmp___9;
   __cil_tmp55 = (unsigned char )tmp___0;
   __cil_tmp56 = (int )__cil_tmp55;
   __cil_tmp57 = (unsigned char )__cil_tmp56;
   tmp___10 = bcd2bin(__cil_tmp57);
-  __cil_tmp58 = (unsigned long )dt;
-  __cil_tmp59 = __cil_tmp58 + 16;
   __cil_tmp60 = tmp___10 - 1U;
-  *((int *)__cil_tmp59) = (int )__cil_tmp60;
+  *((int *)((void *)dt + 16)) = (int )__cil_tmp60;
   tmp___11 = v3020_get_reg(chip, (unsigned char)8);
   tmp___0 = (int )tmp___11;
   __cil_tmp61 = (unsigned char )tmp___0;
   __cil_tmp62 = (int )__cil_tmp61;
   __cil_tmp63 = (unsigned char )__cil_tmp62;
   tmp___12 = bcd2bin(__cil_tmp63);
-  __cil_tmp64 = (unsigned long )dt;
-  __cil_tmp65 = __cil_tmp64 + 24;
-  *((int *)__cil_tmp65) = (int )tmp___12;
+  *((int *)((void *)dt + 24)) = (int )tmp___12;
   tmp___13 = v3020_get_reg(chip, (unsigned char)7);
   tmp___0 = (int )tmp___13;
   __cil_tmp66 = (unsigned char )tmp___0;
   __cil_tmp67 = (int )__cil_tmp66;
   __cil_tmp68 = (unsigned char )__cil_tmp67;
   tmp___14 = bcd2bin(__cil_tmp68);
-  __cil_tmp69 = (unsigned long )dt;
-  __cil_tmp70 = __cil_tmp69 + 20;
   __cil_tmp71 = tmp___14 + 100U;
-  *((int *)__cil_tmp70) = (int )__cil_tmp71;
+  *((int *)((void *)dt + 20)) = (int )__cil_tmp71;
   __cil_tmp72 = & descriptor;
   *((char const **)__cil_tmp72) = "rtc_v3020";
-  __cil_tmp73 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp73) = "v3020_read_time";
-  __cil_tmp74 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp74) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp75 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp75) = "\n%s : Read RTC values\n";
-  __cil_tmp76 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp76) = 270U;
-  __cil_tmp77 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp77) = (unsigned char)1;
-  __cil_tmp78 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp79 = *((unsigned char *)__cil_tmp78);
+  *((char const **)((void *)(&descriptor) + 8)) = "v3020_read_time";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "\n%s : Read RTC values\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 270U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+  __cil_tmp79 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp80 = (long )__cil_tmp79;
   __cil_tmp81 = __cil_tmp80 & 1L;
   tmp___15 = __builtin_expect(__cil_tmp81, 0L);
@@ -2843,18 +2581,12 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp83 = & descriptor___0;
   *((char const **)__cil_tmp83) = "rtc_v3020";
-  __cil_tmp84 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp84) = "v3020_read_time";
-  __cil_tmp85 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp85) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp86 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp86) = "tm_hour: %i\n";
-  __cil_tmp87 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp87) = 271U;
-  __cil_tmp88 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp88) = (unsigned char)1;
-  __cil_tmp89 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp90 = *((unsigned char *)__cil_tmp89);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "v3020_read_time";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "tm_hour: %i\n";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 271U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)1;
+  __cil_tmp90 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp91 = (long )__cil_tmp90;
   __cil_tmp92 = __cil_tmp91 & 1L;
   tmp___16 = __builtin_expect(__cil_tmp92, 0L);
@@ -2862,9 +2594,7 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   if (tmp___16 != 0L) {
     {
     __cil_tmp93 = (struct device const *)dev;
-    __cil_tmp94 = (unsigned long )dt;
-    __cil_tmp95 = __cil_tmp94 + 8;
-    __cil_tmp96 = *((int *)__cil_tmp95);
+    __cil_tmp96 = *((int *)((void *)dt + 8));
     __dynamic_dev_dbg(& descriptor___0, __cil_tmp93, "tm_hour: %i\n", __cil_tmp96);
     }
   } else {
@@ -2872,18 +2602,12 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp97 = & descriptor___1;
   *((char const **)__cil_tmp97) = "rtc_v3020";
-  __cil_tmp98 = (unsigned long )(& descriptor___1) + 8;
-  *((char const **)__cil_tmp98) = "v3020_read_time";
-  __cil_tmp99 = (unsigned long )(& descriptor___1) + 16;
-  *((char const **)__cil_tmp99) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp100 = (unsigned long )(& descriptor___1) + 24;
-  *((char const **)__cil_tmp100) = "tm_min : %i\n";
-  __cil_tmp101 = (unsigned long )(& descriptor___1) + 32;
-  *((unsigned int *)__cil_tmp101) = 272U;
-  __cil_tmp102 = (unsigned long )(& descriptor___1) + 35;
-  *((unsigned char *)__cil_tmp102) = (unsigned char)1;
-  __cil_tmp103 = (unsigned long )(& descriptor___1) + 35;
-  __cil_tmp104 = *((unsigned char *)__cil_tmp103);
+  *((char const **)((void *)(&descriptor___1) + 8)) = "v3020_read_time";
+  *((char const **)((void *)(&descriptor___1) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___1) + 24)) = "tm_min : %i\n";
+  *((unsigned int *)((void *)(&descriptor___1) + 32)) = 272U;
+  *((unsigned char *)((void *)(&descriptor___1) + 35)) = (unsigned char)1;
+  __cil_tmp104 = *((unsigned char *)((void *)(&descriptor___1) + 35));
   __cil_tmp105 = (long )__cil_tmp104;
   __cil_tmp106 = __cil_tmp105 & 1L;
   tmp___17 = __builtin_expect(__cil_tmp106, 0L);
@@ -2891,9 +2615,7 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   if (tmp___17 != 0L) {
     {
     __cil_tmp107 = (struct device const *)dev;
-    __cil_tmp108 = (unsigned long )dt;
-    __cil_tmp109 = __cil_tmp108 + 4;
-    __cil_tmp110 = *((int *)__cil_tmp109);
+    __cil_tmp110 = *((int *)((void *)dt + 4));
     __dynamic_dev_dbg(& descriptor___1, __cil_tmp107, "tm_min : %i\n", __cil_tmp110);
     }
   } else {
@@ -2901,18 +2623,12 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp111 = & descriptor___2;
   *((char const **)__cil_tmp111) = "rtc_v3020";
-  __cil_tmp112 = (unsigned long )(& descriptor___2) + 8;
-  *((char const **)__cil_tmp112) = "v3020_read_time";
-  __cil_tmp113 = (unsigned long )(& descriptor___2) + 16;
-  *((char const **)__cil_tmp113) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp114 = (unsigned long )(& descriptor___2) + 24;
-  *((char const **)__cil_tmp114) = "tm_sec : %i\n";
-  __cil_tmp115 = (unsigned long )(& descriptor___2) + 32;
-  *((unsigned int *)__cil_tmp115) = 273U;
-  __cil_tmp116 = (unsigned long )(& descriptor___2) + 35;
-  *((unsigned char *)__cil_tmp116) = (unsigned char)1;
-  __cil_tmp117 = (unsigned long )(& descriptor___2) + 35;
-  __cil_tmp118 = *((unsigned char *)__cil_tmp117);
+  *((char const **)((void *)(&descriptor___2) + 8)) = "v3020_read_time";
+  *((char const **)((void *)(&descriptor___2) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___2) + 24)) = "tm_sec : %i\n";
+  *((unsigned int *)((void *)(&descriptor___2) + 32)) = 273U;
+  *((unsigned char *)((void *)(&descriptor___2) + 35)) = (unsigned char)1;
+  __cil_tmp118 = *((unsigned char *)((void *)(&descriptor___2) + 35));
   __cil_tmp119 = (long )__cil_tmp118;
   __cil_tmp120 = __cil_tmp119 & 1L;
   tmp___18 = __builtin_expect(__cil_tmp120, 0L);
@@ -2928,18 +2644,12 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp123 = & descriptor___3;
   *((char const **)__cil_tmp123) = "rtc_v3020";
-  __cil_tmp124 = (unsigned long )(& descriptor___3) + 8;
-  *((char const **)__cil_tmp124) = "v3020_read_time";
-  __cil_tmp125 = (unsigned long )(& descriptor___3) + 16;
-  *((char const **)__cil_tmp125) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp126 = (unsigned long )(& descriptor___3) + 24;
-  *((char const **)__cil_tmp126) = "tm_year: %i\n";
-  __cil_tmp127 = (unsigned long )(& descriptor___3) + 32;
-  *((unsigned int *)__cil_tmp127) = 274U;
-  __cil_tmp128 = (unsigned long )(& descriptor___3) + 35;
-  *((unsigned char *)__cil_tmp128) = (unsigned char)1;
-  __cil_tmp129 = (unsigned long )(& descriptor___3) + 35;
-  __cil_tmp130 = *((unsigned char *)__cil_tmp129);
+  *((char const **)((void *)(&descriptor___3) + 8)) = "v3020_read_time";
+  *((char const **)((void *)(&descriptor___3) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___3) + 24)) = "tm_year: %i\n";
+  *((unsigned int *)((void *)(&descriptor___3) + 32)) = 274U;
+  *((unsigned char *)((void *)(&descriptor___3) + 35)) = (unsigned char)1;
+  __cil_tmp130 = *((unsigned char *)((void *)(&descriptor___3) + 35));
   __cil_tmp131 = (long )__cil_tmp130;
   __cil_tmp132 = __cil_tmp131 & 1L;
   tmp___19 = __builtin_expect(__cil_tmp132, 0L);
@@ -2947,9 +2657,7 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   if (tmp___19 != 0L) {
     {
     __cil_tmp133 = (struct device const *)dev;
-    __cil_tmp134 = (unsigned long )dt;
-    __cil_tmp135 = __cil_tmp134 + 20;
-    __cil_tmp136 = *((int *)__cil_tmp135);
+    __cil_tmp136 = *((int *)((void *)dt + 20));
     __dynamic_dev_dbg(& descriptor___3, __cil_tmp133, "tm_year: %i\n", __cil_tmp136);
     }
   } else {
@@ -2957,18 +2665,12 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp137 = & descriptor___4;
   *((char const **)__cil_tmp137) = "rtc_v3020";
-  __cil_tmp138 = (unsigned long )(& descriptor___4) + 8;
-  *((char const **)__cil_tmp138) = "v3020_read_time";
-  __cil_tmp139 = (unsigned long )(& descriptor___4) + 16;
-  *((char const **)__cil_tmp139) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp140 = (unsigned long )(& descriptor___4) + 24;
-  *((char const **)__cil_tmp140) = "tm_mon : %i\n";
-  __cil_tmp141 = (unsigned long )(& descriptor___4) + 32;
-  *((unsigned int *)__cil_tmp141) = 275U;
-  __cil_tmp142 = (unsigned long )(& descriptor___4) + 35;
-  *((unsigned char *)__cil_tmp142) = (unsigned char)1;
-  __cil_tmp143 = (unsigned long )(& descriptor___4) + 35;
-  __cil_tmp144 = *((unsigned char *)__cil_tmp143);
+  *((char const **)((void *)(&descriptor___4) + 8)) = "v3020_read_time";
+  *((char const **)((void *)(&descriptor___4) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___4) + 24)) = "tm_mon : %i\n";
+  *((unsigned int *)((void *)(&descriptor___4) + 32)) = 275U;
+  *((unsigned char *)((void *)(&descriptor___4) + 35)) = (unsigned char)1;
+  __cil_tmp144 = *((unsigned char *)((void *)(&descriptor___4) + 35));
   __cil_tmp145 = (long )__cil_tmp144;
   __cil_tmp146 = __cil_tmp145 & 1L;
   tmp___20 = __builtin_expect(__cil_tmp146, 0L);
@@ -2976,9 +2678,7 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   if (tmp___20 != 0L) {
     {
     __cil_tmp147 = (struct device const *)dev;
-    __cil_tmp148 = (unsigned long )dt;
-    __cil_tmp149 = __cil_tmp148 + 16;
-    __cil_tmp150 = *((int *)__cil_tmp149);
+    __cil_tmp150 = *((int *)((void *)dt + 16));
     __dynamic_dev_dbg(& descriptor___4, __cil_tmp147, "tm_mon : %i\n", __cil_tmp150);
     }
   } else {
@@ -2986,18 +2686,12 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp151 = & descriptor___5;
   *((char const **)__cil_tmp151) = "rtc_v3020";
-  __cil_tmp152 = (unsigned long )(& descriptor___5) + 8;
-  *((char const **)__cil_tmp152) = "v3020_read_time";
-  __cil_tmp153 = (unsigned long )(& descriptor___5) + 16;
-  *((char const **)__cil_tmp153) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp154 = (unsigned long )(& descriptor___5) + 24;
-  *((char const **)__cil_tmp154) = "tm_mday: %i\n";
-  __cil_tmp155 = (unsigned long )(& descriptor___5) + 32;
-  *((unsigned int *)__cil_tmp155) = 276U;
-  __cil_tmp156 = (unsigned long )(& descriptor___5) + 35;
-  *((unsigned char *)__cil_tmp156) = (unsigned char)1;
-  __cil_tmp157 = (unsigned long )(& descriptor___5) + 35;
-  __cil_tmp158 = *((unsigned char *)__cil_tmp157);
+  *((char const **)((void *)(&descriptor___5) + 8)) = "v3020_read_time";
+  *((char const **)((void *)(&descriptor___5) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___5) + 24)) = "tm_mday: %i\n";
+  *((unsigned int *)((void *)(&descriptor___5) + 32)) = 276U;
+  *((unsigned char *)((void *)(&descriptor___5) + 35)) = (unsigned char)1;
+  __cil_tmp158 = *((unsigned char *)((void *)(&descriptor___5) + 35));
   __cil_tmp159 = (long )__cil_tmp158;
   __cil_tmp160 = __cil_tmp159 & 1L;
   tmp___21 = __builtin_expect(__cil_tmp160, 0L);
@@ -3005,9 +2699,7 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   if (tmp___21 != 0L) {
     {
     __cil_tmp161 = (struct device const *)dev;
-    __cil_tmp162 = (unsigned long )dt;
-    __cil_tmp163 = __cil_tmp162 + 12;
-    __cil_tmp164 = *((int *)__cil_tmp163);
+    __cil_tmp164 = *((int *)((void *)dt + 12));
     __dynamic_dev_dbg(& descriptor___5, __cil_tmp161, "tm_mday: %i\n", __cil_tmp164);
     }
   } else {
@@ -3015,18 +2707,12 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp165 = & descriptor___6;
   *((char const **)__cil_tmp165) = "rtc_v3020";
-  __cil_tmp166 = (unsigned long )(& descriptor___6) + 8;
-  *((char const **)__cil_tmp166) = "v3020_read_time";
-  __cil_tmp167 = (unsigned long )(& descriptor___6) + 16;
-  *((char const **)__cil_tmp167) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp168 = (unsigned long )(& descriptor___6) + 24;
-  *((char const **)__cil_tmp168) = "tm_wday: %i\n";
-  __cil_tmp169 = (unsigned long )(& descriptor___6) + 32;
-  *((unsigned int *)__cil_tmp169) = 277U;
-  __cil_tmp170 = (unsigned long )(& descriptor___6) + 35;
-  *((unsigned char *)__cil_tmp170) = (unsigned char)1;
-  __cil_tmp171 = (unsigned long )(& descriptor___6) + 35;
-  __cil_tmp172 = *((unsigned char *)__cil_tmp171);
+  *((char const **)((void *)(&descriptor___6) + 8)) = "v3020_read_time";
+  *((char const **)((void *)(&descriptor___6) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___6) + 24)) = "tm_wday: %i\n";
+  *((unsigned int *)((void *)(&descriptor___6) + 32)) = 277U;
+  *((unsigned char *)((void *)(&descriptor___6) + 35)) = (unsigned char)1;
+  __cil_tmp172 = *((unsigned char *)((void *)(&descriptor___6) + 35));
   __cil_tmp173 = (long )__cil_tmp172;
   __cil_tmp174 = __cil_tmp173 & 1L;
   tmp___22 = __builtin_expect(__cil_tmp174, 0L);
@@ -3034,9 +2720,7 @@ static int v3020_read_time(struct device *dev , struct rtc_time *dt )
   if (tmp___22 != 0L) {
     {
     __cil_tmp175 = (struct device const *)dev;
-    __cil_tmp176 = (unsigned long )dt;
-    __cil_tmp177 = __cil_tmp176 + 24;
-    __cil_tmp178 = *((int *)__cil_tmp177);
+    __cil_tmp178 = *((int *)((void *)dt + 24));
     __dynamic_dev_dbg(& descriptor___6, __cil_tmp175, "tm_wday: %i\n", __cil_tmp178);
     }
   } else {
@@ -3070,135 +2754,71 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   unsigned char tmp___13 ;
   struct device const *__cil_tmp26 ;
   struct _ddebug *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned char __cil_tmp34 ;
   long __cil_tmp35 ;
   long __cil_tmp36 ;
   struct device const *__cil_tmp37 ;
   struct _ddebug *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char __cil_tmp45 ;
   long __cil_tmp46 ;
   long __cil_tmp47 ;
   struct device const *__cil_tmp48 ;
   int __cil_tmp49 ;
   struct _ddebug *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned char __cil_tmp57 ;
   long __cil_tmp58 ;
   long __cil_tmp59 ;
   struct device const *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   int __cil_tmp63 ;
   struct _ddebug *__cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned char __cil_tmp71 ;
   long __cil_tmp72 ;
   long __cil_tmp73 ;
   struct device const *__cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   int __cil_tmp77 ;
   struct _ddebug *__cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   unsigned char __cil_tmp85 ;
   long __cil_tmp86 ;
   long __cil_tmp87 ;
   struct device const *__cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   int __cil_tmp91 ;
   struct _ddebug *__cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   unsigned char __cil_tmp99 ;
   long __cil_tmp100 ;
   long __cil_tmp101 ;
   struct device const *__cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   int __cil_tmp105 ;
   struct _ddebug *__cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   unsigned char __cil_tmp113 ;
   long __cil_tmp114 ;
   long __cil_tmp115 ;
   struct device const *__cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   int __cil_tmp119 ;
   int __cil_tmp120 ;
   unsigned int __cil_tmp121 ;
   int __cil_tmp122 ;
   unsigned char __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
   int __cil_tmp126 ;
   unsigned int __cil_tmp127 ;
   int __cil_tmp128 ;
   unsigned char __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
   int __cil_tmp132 ;
   unsigned int __cil_tmp133 ;
   int __cil_tmp134 ;
   unsigned char __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
   int __cil_tmp138 ;
   unsigned int __cil_tmp139 ;
   int __cil_tmp140 ;
   unsigned char __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
   int __cil_tmp144 ;
   int __cil_tmp145 ;
   unsigned int __cil_tmp146 ;
   int __cil_tmp147 ;
   unsigned char __cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
   int __cil_tmp151 ;
   unsigned int __cil_tmp152 ;
   int __cil_tmp153 ;
   unsigned char __cil_tmp154 ;
-  unsigned long __cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
   int __cil_tmp157 ;
   int __cil_tmp158 ;
   unsigned int __cil_tmp159 ;
@@ -3211,18 +2831,12 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   chip = (struct v3020 *)tmp;
   __cil_tmp27 = & descriptor;
   *((char const **)__cil_tmp27) = "rtc_v3020";
-  __cil_tmp28 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp28) = "v3020_set_time";
-  __cil_tmp29 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp29) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp30 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp30) = "\n%s : Setting RTC values\n";
-  __cil_tmp31 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp31) = 287U;
-  __cil_tmp32 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp32) = (unsigned char)1;
-  __cil_tmp33 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp34 = *((unsigned char *)__cil_tmp33);
+  *((char const **)((void *)(&descriptor) + 8)) = "v3020_set_time";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "\n%s : Setting RTC values\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 287U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+  __cil_tmp34 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp35 = (long )__cil_tmp34;
   __cil_tmp36 = __cil_tmp35 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp36, 0L);
@@ -3237,18 +2851,12 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp38 = & descriptor___0;
   *((char const **)__cil_tmp38) = "rtc_v3020";
-  __cil_tmp39 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp39) = "v3020_set_time";
-  __cil_tmp40 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp40) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp41 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp41) = "tm_sec : %i\n";
-  __cil_tmp42 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp42) = 288U;
-  __cil_tmp43 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp43) = (unsigned char)1;
-  __cil_tmp44 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp45 = *((unsigned char *)__cil_tmp44);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "v3020_set_time";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "tm_sec : %i\n";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 288U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)1;
+  __cil_tmp45 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp46 = (long )__cil_tmp45;
   __cil_tmp47 = __cil_tmp46 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp47, 0L);
@@ -3264,18 +2872,12 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp50 = & descriptor___1;
   *((char const **)__cil_tmp50) = "rtc_v3020";
-  __cil_tmp51 = (unsigned long )(& descriptor___1) + 8;
-  *((char const **)__cil_tmp51) = "v3020_set_time";
-  __cil_tmp52 = (unsigned long )(& descriptor___1) + 16;
-  *((char const **)__cil_tmp52) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp53 = (unsigned long )(& descriptor___1) + 24;
-  *((char const **)__cil_tmp53) = "tm_min : %i\n";
-  __cil_tmp54 = (unsigned long )(& descriptor___1) + 32;
-  *((unsigned int *)__cil_tmp54) = 289U;
-  __cil_tmp55 = (unsigned long )(& descriptor___1) + 35;
-  *((unsigned char *)__cil_tmp55) = (unsigned char)1;
-  __cil_tmp56 = (unsigned long )(& descriptor___1) + 35;
-  __cil_tmp57 = *((unsigned char *)__cil_tmp56);
+  *((char const **)((void *)(&descriptor___1) + 8)) = "v3020_set_time";
+  *((char const **)((void *)(&descriptor___1) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___1) + 24)) = "tm_min : %i\n";
+  *((unsigned int *)((void *)(&descriptor___1) + 32)) = 289U;
+  *((unsigned char *)((void *)(&descriptor___1) + 35)) = (unsigned char)1;
+  __cil_tmp57 = *((unsigned char *)((void *)(&descriptor___1) + 35));
   __cil_tmp58 = (long )__cil_tmp57;
   __cil_tmp59 = __cil_tmp58 & 1L;
   tmp___2 = __builtin_expect(__cil_tmp59, 0L);
@@ -3283,9 +2885,7 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   if (tmp___2 != 0L) {
     {
     __cil_tmp60 = (struct device const *)dev;
-    __cil_tmp61 = (unsigned long )dt;
-    __cil_tmp62 = __cil_tmp61 + 4;
-    __cil_tmp63 = *((int *)__cil_tmp62);
+    __cil_tmp63 = *((int *)((void *)dt + 4));
     __dynamic_dev_dbg(& descriptor___1, __cil_tmp60, "tm_min : %i\n", __cil_tmp63);
     }
   } else {
@@ -3293,18 +2893,12 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp64 = & descriptor___2;
   *((char const **)__cil_tmp64) = "rtc_v3020";
-  __cil_tmp65 = (unsigned long )(& descriptor___2) + 8;
-  *((char const **)__cil_tmp65) = "v3020_set_time";
-  __cil_tmp66 = (unsigned long )(& descriptor___2) + 16;
-  *((char const **)__cil_tmp66) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp67 = (unsigned long )(& descriptor___2) + 24;
-  *((char const **)__cil_tmp67) = "tm_hour: %i\n";
-  __cil_tmp68 = (unsigned long )(& descriptor___2) + 32;
-  *((unsigned int *)__cil_tmp68) = 290U;
-  __cil_tmp69 = (unsigned long )(& descriptor___2) + 35;
-  *((unsigned char *)__cil_tmp69) = (unsigned char)1;
-  __cil_tmp70 = (unsigned long )(& descriptor___2) + 35;
-  __cil_tmp71 = *((unsigned char *)__cil_tmp70);
+  *((char const **)((void *)(&descriptor___2) + 8)) = "v3020_set_time";
+  *((char const **)((void *)(&descriptor___2) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___2) + 24)) = "tm_hour: %i\n";
+  *((unsigned int *)((void *)(&descriptor___2) + 32)) = 290U;
+  *((unsigned char *)((void *)(&descriptor___2) + 35)) = (unsigned char)1;
+  __cil_tmp71 = *((unsigned char *)((void *)(&descriptor___2) + 35));
   __cil_tmp72 = (long )__cil_tmp71;
   __cil_tmp73 = __cil_tmp72 & 1L;
   tmp___3 = __builtin_expect(__cil_tmp73, 0L);
@@ -3312,9 +2906,7 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   if (tmp___3 != 0L) {
     {
     __cil_tmp74 = (struct device const *)dev;
-    __cil_tmp75 = (unsigned long )dt;
-    __cil_tmp76 = __cil_tmp75 + 8;
-    __cil_tmp77 = *((int *)__cil_tmp76);
+    __cil_tmp77 = *((int *)((void *)dt + 8));
     __dynamic_dev_dbg(& descriptor___2, __cil_tmp74, "tm_hour: %i\n", __cil_tmp77);
     }
   } else {
@@ -3322,18 +2914,12 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp78 = & descriptor___3;
   *((char const **)__cil_tmp78) = "rtc_v3020";
-  __cil_tmp79 = (unsigned long )(& descriptor___3) + 8;
-  *((char const **)__cil_tmp79) = "v3020_set_time";
-  __cil_tmp80 = (unsigned long )(& descriptor___3) + 16;
-  *((char const **)__cil_tmp80) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp81 = (unsigned long )(& descriptor___3) + 24;
-  *((char const **)__cil_tmp81) = "tm_mday: %i\n";
-  __cil_tmp82 = (unsigned long )(& descriptor___3) + 32;
-  *((unsigned int *)__cil_tmp82) = 291U;
-  __cil_tmp83 = (unsigned long )(& descriptor___3) + 35;
-  *((unsigned char *)__cil_tmp83) = (unsigned char)1;
-  __cil_tmp84 = (unsigned long )(& descriptor___3) + 35;
-  __cil_tmp85 = *((unsigned char *)__cil_tmp84);
+  *((char const **)((void *)(&descriptor___3) + 8)) = "v3020_set_time";
+  *((char const **)((void *)(&descriptor___3) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___3) + 24)) = "tm_mday: %i\n";
+  *((unsigned int *)((void *)(&descriptor___3) + 32)) = 291U;
+  *((unsigned char *)((void *)(&descriptor___3) + 35)) = (unsigned char)1;
+  __cil_tmp85 = *((unsigned char *)((void *)(&descriptor___3) + 35));
   __cil_tmp86 = (long )__cil_tmp85;
   __cil_tmp87 = __cil_tmp86 & 1L;
   tmp___4 = __builtin_expect(__cil_tmp87, 0L);
@@ -3341,9 +2927,7 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   if (tmp___4 != 0L) {
     {
     __cil_tmp88 = (struct device const *)dev;
-    __cil_tmp89 = (unsigned long )dt;
-    __cil_tmp90 = __cil_tmp89 + 12;
-    __cil_tmp91 = *((int *)__cil_tmp90);
+    __cil_tmp91 = *((int *)((void *)dt + 12));
     __dynamic_dev_dbg(& descriptor___3, __cil_tmp88, "tm_mday: %i\n", __cil_tmp91);
     }
   } else {
@@ -3351,18 +2935,12 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp92 = & descriptor___4;
   *((char const **)__cil_tmp92) = "rtc_v3020";
-  __cil_tmp93 = (unsigned long )(& descriptor___4) + 8;
-  *((char const **)__cil_tmp93) = "v3020_set_time";
-  __cil_tmp94 = (unsigned long )(& descriptor___4) + 16;
-  *((char const **)__cil_tmp94) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp95 = (unsigned long )(& descriptor___4) + 24;
-  *((char const **)__cil_tmp95) = "tm_wday: %i\n";
-  __cil_tmp96 = (unsigned long )(& descriptor___4) + 32;
-  *((unsigned int *)__cil_tmp96) = 292U;
-  __cil_tmp97 = (unsigned long )(& descriptor___4) + 35;
-  *((unsigned char *)__cil_tmp97) = (unsigned char)1;
-  __cil_tmp98 = (unsigned long )(& descriptor___4) + 35;
-  __cil_tmp99 = *((unsigned char *)__cil_tmp98);
+  *((char const **)((void *)(&descriptor___4) + 8)) = "v3020_set_time";
+  *((char const **)((void *)(&descriptor___4) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___4) + 24)) = "tm_wday: %i\n";
+  *((unsigned int *)((void *)(&descriptor___4) + 32)) = 292U;
+  *((unsigned char *)((void *)(&descriptor___4) + 35)) = (unsigned char)1;
+  __cil_tmp99 = *((unsigned char *)((void *)(&descriptor___4) + 35));
   __cil_tmp100 = (long )__cil_tmp99;
   __cil_tmp101 = __cil_tmp100 & 1L;
   tmp___5 = __builtin_expect(__cil_tmp101, 0L);
@@ -3370,9 +2948,7 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   if (tmp___5 != 0L) {
     {
     __cil_tmp102 = (struct device const *)dev;
-    __cil_tmp103 = (unsigned long )dt;
-    __cil_tmp104 = __cil_tmp103 + 24;
-    __cil_tmp105 = *((int *)__cil_tmp104);
+    __cil_tmp105 = *((int *)((void *)dt + 24));
     __dynamic_dev_dbg(& descriptor___4, __cil_tmp102, "tm_wday: %i\n", __cil_tmp105);
     }
   } else {
@@ -3380,18 +2956,12 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   {
   __cil_tmp106 = & descriptor___5;
   *((char const **)__cil_tmp106) = "rtc_v3020";
-  __cil_tmp107 = (unsigned long )(& descriptor___5) + 8;
-  *((char const **)__cil_tmp107) = "v3020_set_time";
-  __cil_tmp108 = (unsigned long )(& descriptor___5) + 16;
-  *((char const **)__cil_tmp108) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
-  __cil_tmp109 = (unsigned long )(& descriptor___5) + 24;
-  *((char const **)__cil_tmp109) = "tm_year: %i\n";
-  __cil_tmp110 = (unsigned long )(& descriptor___5) + 32;
-  *((unsigned int *)__cil_tmp110) = 293U;
-  __cil_tmp111 = (unsigned long )(& descriptor___5) + 35;
-  *((unsigned char *)__cil_tmp111) = (unsigned char)1;
-  __cil_tmp112 = (unsigned long )(& descriptor___5) + 35;
-  __cil_tmp113 = *((unsigned char *)__cil_tmp112);
+  *((char const **)((void *)(&descriptor___5) + 8)) = "v3020_set_time";
+  *((char const **)((void *)(&descriptor___5) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2673/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-v3020.c.p";
+  *((char const **)((void *)(&descriptor___5) + 24)) = "tm_year: %i\n";
+  *((unsigned int *)((void *)(&descriptor___5) + 32)) = 293U;
+  *((unsigned char *)((void *)(&descriptor___5) + 35)) = (unsigned char)1;
+  __cil_tmp113 = *((unsigned char *)((void *)(&descriptor___5) + 35));
   __cil_tmp114 = (long )__cil_tmp113;
   __cil_tmp115 = __cil_tmp114 & 1L;
   tmp___6 = __builtin_expect(__cil_tmp115, 0L);
@@ -3399,9 +2969,7 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   if (tmp___6 != 0L) {
     {
     __cil_tmp116 = (struct device const *)dev;
-    __cil_tmp117 = (unsigned long )dt;
-    __cil_tmp118 = __cil_tmp117 + 20;
-    __cil_tmp119 = *((int *)__cil_tmp118);
+    __cil_tmp119 = *((int *)((void *)dt + 20));
     __dynamic_dev_dbg(& descriptor___5, __cil_tmp116, "tm_year: %i\n", __cil_tmp119);
     }
   } else {
@@ -3413,50 +2981,38 @@ static int v3020_set_time(struct device *dev , struct rtc_time *dt )
   __cil_tmp122 = (int )tmp___7;
   __cil_tmp123 = (unsigned char )__cil_tmp122;
   v3020_set_reg(chip, (unsigned char)2, __cil_tmp123);
-  __cil_tmp124 = (unsigned long )dt;
-  __cil_tmp125 = __cil_tmp124 + 4;
-  __cil_tmp126 = *((int *)__cil_tmp125);
+  __cil_tmp126 = *((int *)((void *)dt + 4));
   __cil_tmp127 = (unsigned int )__cil_tmp126;
   tmp___8 = bin2bcd(__cil_tmp127);
   __cil_tmp128 = (int )tmp___8;
   __cil_tmp129 = (unsigned char )__cil_tmp128;
   v3020_set_reg(chip, (unsigned char)3, __cil_tmp129);
-  __cil_tmp130 = (unsigned long )dt;
-  __cil_tmp131 = __cil_tmp130 + 8;
-  __cil_tmp132 = *((int *)__cil_tmp131);
+  __cil_tmp132 = *((int *)((void *)dt + 8));
   __cil_tmp133 = (unsigned int )__cil_tmp132;
   tmp___9 = bin2bcd(__cil_tmp133);
   __cil_tmp134 = (int )tmp___9;
   __cil_tmp135 = (unsigned char )__cil_tmp134;
   v3020_set_reg(chip, (unsigned char)4, __cil_tmp135);
-  __cil_tmp136 = (unsigned long )dt;
-  __cil_tmp137 = __cil_tmp136 + 12;
-  __cil_tmp138 = *((int *)__cil_tmp137);
+  __cil_tmp138 = *((int *)((void *)dt + 12));
   __cil_tmp139 = (unsigned int )__cil_tmp138;
   tmp___10 = bin2bcd(__cil_tmp139);
   __cil_tmp140 = (int )tmp___10;
   __cil_tmp141 = (unsigned char )__cil_tmp140;
   v3020_set_reg(chip, (unsigned char)5, __cil_tmp141);
-  __cil_tmp142 = (unsigned long )dt;
-  __cil_tmp143 = __cil_tmp142 + 16;
-  __cil_tmp144 = *((int *)__cil_tmp143);
+  __cil_tmp144 = *((int *)((void *)dt + 16));
   __cil_tmp145 = __cil_tmp144 + 1;
   __cil_tmp146 = (unsigned int )__cil_tmp145;
   tmp___11 = bin2bcd(__cil_tmp146);
   __cil_tmp147 = (int )tmp___11;
   __cil_tmp148 = (unsigned char )__cil_tmp147;
   v3020_set_reg(chip, (unsigned char)6, __cil_tmp148);
-  __cil_tmp149 = (unsigned long )dt;
-  __cil_tmp150 = __cil_tmp149 + 24;
-  __cil_tmp151 = *((int *)__cil_tmp150);
+  __cil_tmp151 = *((int *)((void *)dt + 24));
   __cil_tmp152 = (unsigned int )__cil_tmp151;
   tmp___12 = bin2bcd(__cil_tmp152);
   __cil_tmp153 = (int )tmp___12;
   __cil_tmp154 = (unsigned char )__cil_tmp153;
   v3020_set_reg(chip, (unsigned char)8, __cil_tmp154);
-  __cil_tmp155 = (unsigned long )dt;
-  __cil_tmp156 = __cil_tmp155 + 20;
-  __cil_tmp157 = *((int *)__cil_tmp156);
+  __cil_tmp157 = *((int *)((void *)dt + 20));
   __cil_tmp158 = __cil_tmp157 % 100;
   __cil_tmp159 = (unsigned int )__cil_tmp158;
   tmp___13 = bin2bcd(__cil_tmp159);
@@ -3489,8 +3045,6 @@ static int rtc_probe(struct platform_device *pdev )
   long tmp___2 ;
   long tmp___3 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   struct v3020 *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
@@ -3499,94 +3053,46 @@ static int rtc_probe(struct platform_device *pdev )
   unsigned char *__cil_tmp20 ;
   unsigned char __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct v3020_chip_ops *__cil_tmp29 ;
   int (*__cil_tmp30)(struct v3020 * , struct platform_device * , struct v3020_platform_data * ) ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct v3020_chip_ops *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned char (*__cil_tmp36)(struct v3020 * ) ;
   unsigned int __cil_tmp37 ;
   unsigned char *__cil_tmp38 ;
   unsigned char *__cil_tmp39 ;
   unsigned char __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
   struct device const *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct v3020_gpio *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned int __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct v3020_gpio *__cil_tmp54 ;
   struct v3020_gpio *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct v3020_gpio *__cil_tmp61 ;
   struct v3020_gpio *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned int __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct v3020_gpio *__cil_tmp68 ;
   struct v3020_gpio *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   unsigned int __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   struct device *__cil_tmp75 ;
   struct device const *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct resource *__cil_tmp79 ;
   resource_size_t __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   int __cil_tmp83 ;
   void *__cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   struct device *__cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   struct rtc_device *__cil_tmp92 ;
   void const *__cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   struct rtc_device *__cil_tmp96 ;
   void const *__cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   struct v3020_chip_ops *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   void (*__cil_tmp103)(struct v3020 * ) ;
   void const *__cil_tmp104 ;
   {
   {
   __cil_tmp12 = 16 + 280;
-  __cil_tmp13 = (unsigned long )pdev;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)pdev + __cil_tmp12));
   pdata = (struct v3020_platform_data *)__cil_tmp15;
   retval = -16;
   tmp = kzalloc(40UL, 208U);
@@ -3607,19 +3113,13 @@ static int rtc_probe(struct platform_device *pdev )
   __cil_tmp21 = *__cil_tmp20;
   __cil_tmp22 = (unsigned int )__cil_tmp21;
   if (__cil_tmp22 != 0U) {
-    __cil_tmp23 = (unsigned long )chip;
-    __cil_tmp24 = __cil_tmp23 + 24;
-    *((struct v3020_chip_ops **)__cil_tmp24) = & v3020_gpio_ops;
+    *((struct v3020_chip_ops **)((void *)chip + 24)) = & v3020_gpio_ops;
   } else {
-    __cil_tmp25 = (unsigned long )chip;
-    __cil_tmp26 = __cil_tmp25 + 24;
-    *((struct v3020_chip_ops **)__cil_tmp26) = & v3020_mmio_ops;
+    *((struct v3020_chip_ops **)((void *)chip + 24)) = & v3020_mmio_ops;
   }
   }
   {
-  __cil_tmp27 = (unsigned long )chip;
-  __cil_tmp28 = __cil_tmp27 + 24;
-  __cil_tmp29 = *((struct v3020_chip_ops **)__cil_tmp28);
+  __cil_tmp29 = *((struct v3020_chip_ops **)((void *)chip + 24));
   __cil_tmp30 = *((int (**)(struct v3020 * , struct platform_device * , struct v3020_platform_data * ))__cil_tmp29);
   retval = (*__cil_tmp30)(chip, pdev, pdata);
   }
@@ -3631,12 +3131,8 @@ static int rtc_probe(struct platform_device *pdev )
   goto ldv_21332;
   ldv_21331:
   {
-  __cil_tmp31 = (unsigned long )chip;
-  __cil_tmp32 = __cil_tmp31 + 24;
-  __cil_tmp33 = *((struct v3020_chip_ops **)__cil_tmp32);
-  __cil_tmp34 = (unsigned long )__cil_tmp33;
-  __cil_tmp35 = __cil_tmp34 + 16;
-  __cil_tmp36 = *((unsigned char (**)(struct v3020 * ))__cil_tmp35);
+  __cil_tmp33 = *((struct v3020_chip_ops **)((void *)chip + 24));
+  __cil_tmp36 = *((unsigned char (**)(struct v3020 * ))((void *)__cil_tmp33 + 16));
   tmp___0 = (*__cil_tmp36)(chip);
   temp = (int )tmp___0;
   i = i + 1;
@@ -3670,53 +3166,29 @@ static int rtc_probe(struct platform_device *pdev )
   __cil_tmp41 = (unsigned int )__cil_tmp40;
   if (__cil_tmp41 != 0U) {
     {
-    __cil_tmp42 = (unsigned long )pdev;
-    __cil_tmp43 = __cil_tmp42 + 16;
-    __cil_tmp44 = (struct device *)__cil_tmp43;
+    __cil_tmp44 = (struct device *)((void *)pdev + 16);
     __cil_tmp45 = (struct device const *)__cil_tmp44;
-    __cil_tmp46 = (unsigned long )chip;
-    __cil_tmp47 = __cil_tmp46 + 16;
-    __cil_tmp48 = *((struct v3020_gpio **)__cil_tmp47);
-    __cil_tmp49 = (unsigned long )__cil_tmp48;
-    __cil_tmp50 = __cil_tmp49 + 8;
-    __cil_tmp51 = *((unsigned int *)__cil_tmp50);
-    __cil_tmp52 = (unsigned long )chip;
-    __cil_tmp53 = __cil_tmp52 + 16;
-    __cil_tmp54 = *((struct v3020_gpio **)__cil_tmp53);
+    __cil_tmp48 = *((struct v3020_gpio **)((void *)chip + 16));
+    __cil_tmp51 = *((unsigned int *)((void *)__cil_tmp48 + 8));
+    __cil_tmp54 = *((struct v3020_gpio **)((void *)chip + 16));
     __cil_tmp55 = __cil_tmp54 + 1UL;
-    __cil_tmp56 = (unsigned long )__cil_tmp55;
-    __cil_tmp57 = __cil_tmp56 + 8;
-    __cil_tmp58 = *((unsigned int *)__cil_tmp57);
-    __cil_tmp59 = (unsigned long )chip;
-    __cil_tmp60 = __cil_tmp59 + 16;
-    __cil_tmp61 = *((struct v3020_gpio **)__cil_tmp60);
+    __cil_tmp58 = *((unsigned int *)((void *)__cil_tmp55 + 8));
+    __cil_tmp61 = *((struct v3020_gpio **)((void *)chip + 16));
     __cil_tmp62 = __cil_tmp61 + 2UL;
-    __cil_tmp63 = (unsigned long )__cil_tmp62;
-    __cil_tmp64 = __cil_tmp63 + 8;
-    __cil_tmp65 = *((unsigned int *)__cil_tmp64);
-    __cil_tmp66 = (unsigned long )chip;
-    __cil_tmp67 = __cil_tmp66 + 16;
-    __cil_tmp68 = *((struct v3020_gpio **)__cil_tmp67);
+    __cil_tmp65 = *((unsigned int *)((void *)__cil_tmp62 + 8));
+    __cil_tmp68 = *((struct v3020_gpio **)((void *)chip + 16));
     __cil_tmp69 = __cil_tmp68 + 3UL;
-    __cil_tmp70 = (unsigned long )__cil_tmp69;
-    __cil_tmp71 = __cil_tmp70 + 8;
-    __cil_tmp72 = *((unsigned int *)__cil_tmp71);
+    __cil_tmp72 = *((unsigned int *)((void *)__cil_tmp69 + 8));
     _dev_info(__cil_tmp45, "Chip available at GPIOs %d, %d, %d, %d\n", __cil_tmp51,
               __cil_tmp58, __cil_tmp65, __cil_tmp72);
     }
   } else {
     {
-    __cil_tmp73 = (unsigned long )pdev;
-    __cil_tmp74 = __cil_tmp73 + 16;
-    __cil_tmp75 = (struct device *)__cil_tmp74;
+    __cil_tmp75 = (struct device *)((void *)pdev + 16);
     __cil_tmp76 = (struct device const *)__cil_tmp75;
-    __cil_tmp77 = (unsigned long )pdev;
-    __cil_tmp78 = __cil_tmp77 + 1176;
-    __cil_tmp79 = *((struct resource **)__cil_tmp78);
+    __cil_tmp79 = *((struct resource **)((void *)pdev + 1176));
     __cil_tmp80 = *((resource_size_t *)__cil_tmp79);
-    __cil_tmp81 = (unsigned long )chip;
-    __cil_tmp82 = __cil_tmp81 + 8;
-    __cil_tmp83 = *((int *)__cil_tmp82);
+    __cil_tmp83 = *((int *)((void *)chip + 8));
     _dev_info(__cil_tmp76, "Chip available at physical address 0x%llx,data connected to D%d\n",
               __cil_tmp80, __cil_tmp83);
     }
@@ -3725,24 +3197,16 @@ static int rtc_probe(struct platform_device *pdev )
   {
   __cil_tmp84 = (void *)chip;
   platform_set_drvdata(pdev, __cil_tmp84);
-  __cil_tmp85 = (unsigned long )chip;
-  __cil_tmp86 = __cil_tmp85 + 32;
-  __cil_tmp87 = (unsigned long )pdev;
-  __cil_tmp88 = __cil_tmp87 + 16;
-  __cil_tmp89 = (struct device *)__cil_tmp88;
-  *((struct rtc_device **)__cil_tmp86) = rtc_device_register("v3020", __cil_tmp89,
+  __cil_tmp89 = (struct device *)((void *)pdev + 16);
+  *((struct rtc_device **)((void *)chip + 32)) = rtc_device_register("v3020", __cil_tmp89,
                                                              & v3020_rtc_ops, & __this_module);
-  __cil_tmp90 = (unsigned long )chip;
-  __cil_tmp91 = __cil_tmp90 + 32;
-  __cil_tmp92 = *((struct rtc_device **)__cil_tmp91);
+  __cil_tmp92 = *((struct rtc_device **)((void *)chip + 32));
   __cil_tmp93 = (void const *)__cil_tmp92;
   tmp___3 = IS_ERR(__cil_tmp93);
   }
   if (tmp___3 != 0L) {
     {
-    __cil_tmp94 = (unsigned long )chip;
-    __cil_tmp95 = __cil_tmp94 + 32;
-    __cil_tmp96 = *((struct rtc_device **)__cil_tmp95);
+    __cil_tmp96 = *((struct rtc_device **)((void *)chip + 32));
     __cil_tmp97 = (void const *)__cil_tmp96;
     tmp___2 = PTR_ERR(__cil_tmp97);
     retval = (int )tmp___2;
@@ -3753,12 +3217,8 @@ static int rtc_probe(struct platform_device *pdev )
   return (0);
   err_io:
   {
-  __cil_tmp98 = (unsigned long )chip;
-  __cil_tmp99 = __cil_tmp98 + 24;
-  __cil_tmp100 = *((struct v3020_chip_ops **)__cil_tmp99);
-  __cil_tmp101 = (unsigned long )__cil_tmp100;
-  __cil_tmp102 = __cil_tmp101 + 8;
-  __cil_tmp103 = *((void (**)(struct v3020 * ))__cil_tmp102);
+  __cil_tmp100 = *((struct v3020_chip_ops **)((void *)chip + 24));
+  __cil_tmp103 = *((void (**)(struct v3020 * ))((void *)__cil_tmp100 + 8));
   (*__cil_tmp103)(chip);
   }
   err_chip:
@@ -3774,16 +3234,10 @@ static int rtc_remove(struct platform_device *dev )
   void *tmp ;
   struct rtc_device *rtc ;
   struct platform_device const *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct rtc_device *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct v3020_chip_ops *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void (*__cil_tmp16)(struct v3020 * ) ;
   void const *__cil_tmp17 ;
   {
@@ -3791,9 +3245,7 @@ static int rtc_remove(struct platform_device *dev )
   __cil_tmp5 = (struct platform_device const *)dev;
   tmp = platform_get_drvdata(__cil_tmp5);
   chip = (struct v3020 *)tmp;
-  __cil_tmp6 = (unsigned long )chip;
-  __cil_tmp7 = __cil_tmp6 + 32;
-  rtc = *((struct rtc_device **)__cil_tmp7);
+  rtc = *((struct rtc_device **)((void *)chip + 32));
   }
   {
   __cil_tmp8 = (struct rtc_device *)0;
@@ -3807,12 +3259,8 @@ static int rtc_remove(struct platform_device *dev )
   }
   }
   {
-  __cil_tmp11 = (unsigned long )chip;
-  __cil_tmp12 = __cil_tmp11 + 24;
-  __cil_tmp13 = *((struct v3020_chip_ops **)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((void (**)(struct v3020 * ))__cil_tmp15);
+  __cil_tmp13 = *((struct v3020_chip_ops **)((void *)chip + 24));
+  __cil_tmp16 = *((void (**)(struct v3020 * ))((void *)__cil_tmp13 + 8));
   (*__cil_tmp16)(chip);
   __cil_tmp17 = (void const *)chip;
   kfree(__cil_tmp17);

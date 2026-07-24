@@ -911,30 +911,23 @@ extern int platform_driver_register(struct platform_driver * ) ;
 extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1097,40 +1090,20 @@ static int tps65912_gpio_probe(struct platform_device *pdev )
   struct tps65912_gpio_data *tps65912_gpio ;
   int ret ;
   void *tmp___0 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device  const  *__cil_tmp11 ;
   struct device *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   struct tps65912_gpio_data *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct tps65912_board *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct gpio_chip *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct device *__cil_tmp42 ;
   struct device  const  *__cil_tmp43 ;
   void *__cil_tmp44 ;
@@ -1138,16 +1111,12 @@ static int tps65912_gpio_probe(struct platform_device *pdev )
 
   {
   {
-  __cil_tmp8 = (unsigned long )pdev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((struct device **)__cil_tmp9);
+  __cil_tmp10 = *((struct device **)((void *)pdev + 16));
   __cil_tmp11 = (struct device  const  *)__cil_tmp10;
   tmp = dev_get_drvdata(__cil_tmp11);
   tps65912 = (struct tps65912 *)tmp;
   __cil_tmp12 = *((struct device **)tps65912);
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + 280;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)__cil_tmp12 + 280));
   pdata = (struct tps65912_board *)__cil_tmp15;
   tmp___0 = kzalloc(128UL, 208U);
   tps65912_gpio = (struct tps65912_gpio_data *)tmp___0;
@@ -1163,31 +1132,19 @@ static int tps65912_gpio_probe(struct platform_device *pdev )
   }
   }
   *((struct tps65912 **)tps65912_gpio) = tps65912;
-  __cil_tmp19 = (unsigned long )tps65912_gpio;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  *((struct gpio_chip *)__cil_tmp20) = template_chip;
+  *((struct gpio_chip *)((void *)tps65912_gpio + 8)) = template_chip;
   __cil_tmp21 = 8 + 8;
-  __cil_tmp22 = (unsigned long )tps65912_gpio;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  __cil_tmp24 = (unsigned long )pdev;
-  __cil_tmp25 = __cil_tmp24 + 16;
-  *((struct device **)__cil_tmp23) = (struct device *)__cil_tmp25;
+  *((struct device **)((void *)tps65912_gpio + __cil_tmp21)) = (struct device *)((void *)pdev + 16);
   {
   __cil_tmp26 = (struct tps65912_board *)0;
   __cil_tmp27 = (unsigned long )__cil_tmp26;
   __cil_tmp28 = (unsigned long )pdata;
   if (__cil_tmp28 != __cil_tmp27) {
     {
-    __cil_tmp29 = (unsigned long )pdata;
-    __cil_tmp30 = __cil_tmp29 + 24;
-    __cil_tmp31 = *((int *)__cil_tmp30);
+    __cil_tmp31 = *((int *)((void *)pdata + 24));
     if (__cil_tmp31 != 0) {
       __cil_tmp32 = 8 + 96;
-      __cil_tmp33 = (unsigned long )tps65912_gpio;
-      __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-      __cil_tmp35 = (unsigned long )pdata;
-      __cil_tmp36 = __cil_tmp35 + 24;
-      *((int *)__cil_tmp34) = *((int *)__cil_tmp36);
+      *((int *)((void *)tps65912_gpio + __cil_tmp32)) = *((int *)((void *)pdata + 24));
     } else {
 
     }
@@ -1197,16 +1154,12 @@ static int tps65912_gpio_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp37 = (unsigned long )tps65912_gpio;
-  __cil_tmp38 = __cil_tmp37 + 8;
-  __cil_tmp39 = (struct gpio_chip *)__cil_tmp38;
+  __cil_tmp39 = (struct gpio_chip *)((void *)tps65912_gpio + 8);
   ret = gpiochip_add(__cil_tmp39);
   }
   if (ret < 0) {
     {
-    __cil_tmp40 = (unsigned long )pdev;
-    __cil_tmp41 = __cil_tmp40 + 16;
-    __cil_tmp42 = (struct device *)__cil_tmp41;
+    __cil_tmp42 = (struct device *)((void *)pdev + 16);
     __cil_tmp43 = (struct device  const  *)__cil_tmp42;
     dev_err(__cil_tmp43, "Failed to register gpiochip, %d\n", ret);
     }
@@ -1232,8 +1185,6 @@ static int tps65912_gpio_remove(struct platform_device *pdev )
   void *tmp ;
   int ret ;
   struct platform_device  const  *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct gpio_chip *__cil_tmp8 ;
   void const   *__cil_tmp9 ;
 
@@ -1242,9 +1193,7 @@ static int tps65912_gpio_remove(struct platform_device *pdev )
   __cil_tmp5 = (struct platform_device  const  *)pdev;
   tmp = platform_get_drvdata(__cil_tmp5);
   tps65912_gpio = (struct tps65912_gpio_data *)tmp;
-  __cil_tmp6 = (unsigned long )tps65912_gpio;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = (struct gpio_chip *)__cil_tmp7;
+  __cil_tmp8 = (struct gpio_chip *)((void *)tps65912_gpio + 8);
   ret = gpiochip_remove(__cil_tmp8);
   }
   if (ret == 0) {

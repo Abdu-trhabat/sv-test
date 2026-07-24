@@ -829,14 +829,10 @@ static int map_get_value(struct battery_property_map *map , char const   *key , 
   int __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   char const   *__cil_tmp23 ;
   char const   *__cil_tmp24 ;
   char const   *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   char const   *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
 
@@ -870,9 +866,7 @@ static int map_get_value(struct battery_property_map *map , char const   *key , 
   goto ldv_14576;
   ldv_14575: 
   {
-  __cil_tmp21 = (unsigned long )map;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  __cil_tmp23 = *((char const   **)__cil_tmp22);
+  __cil_tmp23 = *((char const   **)((void *)map + 8));
   __cil_tmp24 = (char const   *)(& buf);
   tmp___0 = strncasecmp(__cil_tmp23, __cil_tmp24, 256UL);
   }
@@ -886,9 +880,7 @@ static int map_get_value(struct battery_property_map *map , char const   *key , 
   {
   __cil_tmp25 = (char const   *)0;
   __cil_tmp26 = (unsigned long )__cil_tmp25;
-  __cil_tmp27 = (unsigned long )map;
-  __cil_tmp28 = __cil_tmp27 + 8;
-  __cil_tmp29 = *((char const   **)__cil_tmp28);
+  __cil_tmp29 = *((char const   **)((void *)map + 8));
   __cil_tmp30 = (unsigned long )__cil_tmp29;
   if (__cil_tmp30 != __cil_tmp26) {
     goto ldv_14575;
@@ -902,12 +894,8 @@ static int map_get_value(struct battery_property_map *map , char const   *key , 
 }
 static char const   *map_get_key(struct battery_property_map *map , int value , char const   *def_key ) 
 { int __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   char const   *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   char const   *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
 
@@ -918,9 +906,7 @@ static char const   *map_get_key(struct battery_property_map *map , int value , 
   __cil_tmp4 = *((int *)map);
   if (__cil_tmp4 == value) {
     {
-    __cil_tmp5 = (unsigned long )map;
-    __cil_tmp6 = __cil_tmp5 + 8;
-    return (*((char const   **)__cil_tmp6));
+    return (*((char const   **)((void *)map + 8)));
     }
   } else {
 
@@ -931,9 +917,7 @@ static char const   *map_get_key(struct battery_property_map *map , int value , 
   {
   __cil_tmp7 = (char const   *)0;
   __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = (unsigned long )map;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = *((char const   **)__cil_tmp10);
+  __cil_tmp11 = *((char const   **)((void *)map + 8));
   __cil_tmp12 = (unsigned long )__cil_tmp11;
   if (__cil_tmp12 != __cil_tmp8) {
     goto ldv_14583;

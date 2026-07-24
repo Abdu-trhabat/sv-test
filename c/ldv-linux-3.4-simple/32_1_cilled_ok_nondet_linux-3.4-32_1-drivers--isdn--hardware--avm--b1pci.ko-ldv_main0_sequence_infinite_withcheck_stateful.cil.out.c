@@ -1578,16 +1578,12 @@ extern void pci_unregister_driver(struct pci_driver *dev ) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1596,15 +1592,12 @@ __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1771,63 +1764,29 @@ static char *b1pci_procinfo(struct capi_ctr *ctrl )
   unsigned int tmp___1 ;
   char const   *tmp___2 ;
   char const   *tmp___3 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct avmcard *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned char __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct avmcard *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct avmcard *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   char *__cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   char *__cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   char *__cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
 
   {
-  __cil_tmp8 = (unsigned long )ctrl;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)ctrl + 8));
   cinfo = (avmctrl_info *)__cil_tmp10;
   if (! cinfo) {
     return ((char *)"");
@@ -1835,44 +1794,26 @@ static char *b1pci_procinfo(struct capi_ctr *ctrl )
 
   }
   {
-  __cil_tmp11 = (unsigned long )cinfo;
-  __cil_tmp12 = __cil_tmp11 + 1256;
-  if (*((struct avmcard **)__cil_tmp12)) {
-    __cil_tmp13 = (unsigned long )cinfo;
-    __cil_tmp14 = __cil_tmp13 + 1256;
-    __cil_tmp15 = *((struct avmcard **)__cil_tmp14);
-    __cil_tmp16 = (unsigned long )__cil_tmp15;
-    __cil_tmp17 = __cil_tmp16 + 76;
-    __cil_tmp18 = *((unsigned char *)__cil_tmp17);
+  if (*((struct avmcard **)((void *)cinfo + 1256))) {
+    __cil_tmp15 = *((struct avmcard **)((void *)cinfo + 1256));
+    __cil_tmp18 = *((unsigned char *)((void *)__cil_tmp15 + 76));
     tmp = (int )__cil_tmp18;
   } else {
     tmp = 0;
   }
   }
   {
-  __cil_tmp19 = (unsigned long )cinfo;
-  __cil_tmp20 = __cil_tmp19 + 1256;
-  if (*((struct avmcard **)__cil_tmp20)) {
-    __cil_tmp21 = (unsigned long )cinfo;
-    __cil_tmp22 = __cil_tmp21 + 1256;
-    __cil_tmp23 = *((struct avmcard **)__cil_tmp22);
-    __cil_tmp24 = (unsigned long )__cil_tmp23;
-    __cil_tmp25 = __cil_tmp24 + 60;
-    tmp___0 = *((unsigned int *)__cil_tmp25);
+  if (*((struct avmcard **)((void *)cinfo + 1256))) {
+    __cil_tmp23 = *((struct avmcard **)((void *)cinfo + 1256));
+    tmp___0 = *((unsigned int *)((void *)__cil_tmp23 + 60));
   } else {
     tmp___0 = 0U;
   }
   }
   {
-  __cil_tmp26 = (unsigned long )cinfo;
-  __cil_tmp27 = __cil_tmp26 + 1256;
-  if (*((struct avmcard **)__cil_tmp27)) {
-    __cil_tmp28 = (unsigned long )cinfo;
-    __cil_tmp29 = __cil_tmp28 + 1256;
-    __cil_tmp30 = *((struct avmcard **)__cil_tmp29);
-    __cil_tmp31 = (unsigned long )__cil_tmp30;
-    __cil_tmp32 = __cil_tmp31 + 56;
-    tmp___1 = *((unsigned int *)__cil_tmp32);
+  if (*((struct avmcard **)((void *)cinfo + 1256))) {
+    __cil_tmp30 = *((struct avmcard **)((void *)cinfo + 1256));
+    tmp___1 = *((unsigned int *)((void *)__cil_tmp30 + 56));
   } else {
     tmp___1 = 0U;
   }
@@ -1880,14 +1821,10 @@ static char *b1pci_procinfo(struct capi_ctr *ctrl )
   {
   __cil_tmp33 = 0 * 8UL;
   __cil_tmp34 = 1064 + __cil_tmp33;
-  __cil_tmp35 = (unsigned long )cinfo;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  if (*((char **)__cil_tmp36)) {
+  if (*((char **)((void *)cinfo + __cil_tmp34))) {
     __cil_tmp37 = 0 * 8UL;
     __cil_tmp38 = 1064 + __cil_tmp37;
-    __cil_tmp39 = (unsigned long )cinfo;
-    __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-    __cil_tmp41 = *((char **)__cil_tmp40);
+    __cil_tmp41 = *((char **)((void *)cinfo + __cil_tmp38));
     tmp___2 = (char const   *)__cil_tmp41;
   } else {
     tmp___2 = "-";
@@ -1896,14 +1833,10 @@ static char *b1pci_procinfo(struct capi_ctr *ctrl )
   {
   __cil_tmp42 = 0 * 1UL;
   __cil_tmp43 = 0 + __cil_tmp42;
-  __cil_tmp44 = (unsigned long )cinfo;
-  __cil_tmp45 = __cil_tmp44 + __cil_tmp43;
-  if (*((char *)__cil_tmp45)) {
+  if (*((char *)((void *)cinfo + __cil_tmp43))) {
     __cil_tmp46 = 0 * 1UL;
     __cil_tmp47 = 0 + __cil_tmp46;
-    __cil_tmp48 = (unsigned long )cinfo;
-    __cil_tmp49 = __cil_tmp48 + __cil_tmp47;
-    __cil_tmp50 = (char *)__cil_tmp49;
+    __cil_tmp50 = (char *)((void *)cinfo + __cil_tmp47);
     tmp___3 = (char const   *)__cil_tmp50;
   } else {
     tmp___3 = "-";
@@ -1912,17 +1845,13 @@ static char *b1pci_procinfo(struct capi_ctr *ctrl )
   {
   __cil_tmp51 = 0 * 1UL;
   __cil_tmp52 = 1128 + __cil_tmp51;
-  __cil_tmp53 = (unsigned long )cinfo;
-  __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-  __cil_tmp55 = (char *)__cil_tmp54;
+  __cil_tmp55 = (char *)((void *)cinfo + __cil_tmp52);
   sprintf(__cil_tmp55, "%s %s 0x%x %d r%d", tmp___3, tmp___2, tmp___1, tmp___0, tmp);
   }
   {
   __cil_tmp56 = 0 * 1UL;
   __cil_tmp57 = 1128 + __cil_tmp56;
-  __cil_tmp58 = (unsigned long )cinfo;
-  __cil_tmp59 = __cil_tmp58 + __cil_tmp57;
-  return ((char *)__cil_tmp59);
+  return ((char *)((void *)cinfo + __cil_tmp57));
   }
 }
 }
@@ -1931,143 +1860,63 @@ static int b1pci_probe(struct capicardparams *p , struct pci_dev *pdev )
   avmctrl_info *cinfo ;
   int retval ;
   struct resource *tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   char *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
   resource_size_t __cil_tmp26 ;
   resource_size_t __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   char *__cil_tmp32 ;
   char const   *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned int __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   enum avmcardtype __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   char *__cil_tmp63 ;
   char const   *__cil_tmp64 ;
   void *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   unsigned int __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   unsigned long __cil_tmp96 ;
   unsigned long __cil_tmp97 ;
   unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
   char *__cil_tmp101 ;
   unsigned long __cil_tmp102 ;
   unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
   char *__cil_tmp106 ;
   char const   *__cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   struct capi_ctr *__cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   unsigned char __cil_tmp115 ;
   int __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   unsigned int __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   unsigned int __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
   unsigned char __cil_tmp125 ;
   int __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
   unsigned int __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
   unsigned int __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
   unsigned char __cil_tmp135 ;
   int __cil_tmp136 ;
   void *__cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
   unsigned int __cil_tmp140 ;
   void *__cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
   unsigned int __cil_tmp144 ;
   resource_size_t __cil_tmp145 ;
   resource_size_t __cil_tmp146 ;
@@ -2086,37 +1935,21 @@ static int b1pci_probe(struct capicardparams *p , struct pci_dev *pdev )
 
   }
   {
-  __cil_tmp7 = (unsigned long )card;
-  __cil_tmp8 = __cil_tmp7 + 2288;
-  cinfo = *((struct avmctrl_info **)__cil_tmp8);
+  cinfo = *((struct avmctrl_info **)((void *)card + 2288));
   __cil_tmp9 = 0 * 1UL;
   __cil_tmp10 = 0 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )card;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = (char *)__cil_tmp12;
+  __cil_tmp13 = (char *)((void *)card + __cil_tmp10);
   __cil_tmp14 = *((unsigned int *)p);
   sprintf(__cil_tmp13, "b1pci-%x", __cil_tmp14);
-  __cil_tmp15 = (unsigned long )card;
-  __cil_tmp16 = __cil_tmp15 + 56;
-  *((unsigned int *)__cil_tmp16) = *((unsigned int *)p);
-  __cil_tmp17 = (unsigned long )card;
-  __cil_tmp18 = __cil_tmp17 + 60;
-  __cil_tmp19 = (unsigned long )p;
-  __cil_tmp20 = __cil_tmp19 + 4;
-  *((unsigned int *)__cil_tmp18) = *((unsigned int *)__cil_tmp20);
-  __cil_tmp21 = (unsigned long )card;
-  __cil_tmp22 = __cil_tmp21 + 72;
-  *((enum avmcardtype *)__cil_tmp22) = (enum avmcardtype )1;
-  __cil_tmp23 = (unsigned long )card;
-  __cil_tmp24 = __cil_tmp23 + 56;
-  __cil_tmp25 = *((unsigned int *)__cil_tmp24);
+  *((unsigned int *)((void *)card + 56)) = *((unsigned int *)p);
+  *((unsigned int *)((void *)card + 60)) = *((unsigned int *)((void *)p + 4));
+  *((enum avmcardtype *)((void *)card + 72)) = (enum avmcardtype )1;
+  __cil_tmp25 = *((unsigned int *)((void *)card + 56));
   __cil_tmp26 = (resource_size_t )__cil_tmp25;
   __cil_tmp27 = (resource_size_t )31;
   __cil_tmp28 = 0 * 1UL;
   __cil_tmp29 = 0 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )card;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = (char *)__cil_tmp31;
+  __cil_tmp32 = (char *)((void *)card + __cil_tmp29);
   __cil_tmp33 = (char const   *)__cil_tmp32;
   tmp = __request_region(& ioport_resource, __cil_tmp26, __cil_tmp27, __cil_tmp33,
                          0);
@@ -2125,12 +1958,8 @@ static int b1pci_probe(struct capicardparams *p , struct pci_dev *pdev )
 
   } else {
     {
-    __cil_tmp34 = (unsigned long )card;
-    __cil_tmp35 = __cil_tmp34 + 56;
-    __cil_tmp36 = *((unsigned int *)__cil_tmp35);
-    __cil_tmp37 = (unsigned long )card;
-    __cil_tmp38 = __cil_tmp37 + 56;
-    __cil_tmp39 = *((unsigned int *)__cil_tmp38);
+    __cil_tmp36 = *((unsigned int *)((void *)card + 56));
+    __cil_tmp39 = *((unsigned int *)((void *)card + 56));
     __cil_tmp40 = __cil_tmp39 + 31U;
     printk("<4>b1pci: ports 0x%03x-0x%03x in use.\n", __cil_tmp36, __cil_tmp40);
     retval = -16;
@@ -2138,23 +1967,15 @@ static int b1pci_probe(struct capicardparams *p , struct pci_dev *pdev )
     goto err_free;
   }
   {
-  __cil_tmp41 = (unsigned long )card;
-  __cil_tmp42 = __cil_tmp41 + 56;
-  __cil_tmp43 = *((unsigned int *)__cil_tmp42);
+  __cil_tmp43 = *((unsigned int *)((void *)card + 56));
   b1_reset(__cil_tmp43);
-  __cil_tmp44 = (unsigned long )card;
-  __cil_tmp45 = __cil_tmp44 + 56;
-  __cil_tmp46 = *((unsigned int *)__cil_tmp45);
-  __cil_tmp47 = (unsigned long )card;
-  __cil_tmp48 = __cil_tmp47 + 72;
-  __cil_tmp49 = *((enum avmcardtype *)__cil_tmp48);
+  __cil_tmp46 = *((unsigned int *)((void *)card + 56));
+  __cil_tmp49 = *((enum avmcardtype *)((void *)card + 72));
   retval = b1_detect(__cil_tmp46, __cil_tmp49);
   }
   if (retval) {
     {
-    __cil_tmp50 = (unsigned long )card;
-    __cil_tmp51 = __cil_tmp50 + 56;
-    __cil_tmp52 = *((unsigned int *)__cil_tmp51);
+    __cil_tmp52 = *((unsigned int *)((void *)card + 56));
     printk("<5>b1pci: NO card at 0x%x (%d)\n", __cil_tmp52, retval);
     retval = -19;
     }
@@ -2163,28 +1984,20 @@ static int b1pci_probe(struct capicardparams *p , struct pci_dev *pdev )
 
   }
   {
-  __cil_tmp53 = (unsigned long )card;
-  __cil_tmp54 = __cil_tmp53 + 56;
-  __cil_tmp55 = *((unsigned int *)__cil_tmp54);
+  __cil_tmp55 = *((unsigned int *)((void *)card + 56));
   b1_reset(__cil_tmp55);
   b1_getrevision(card);
-  __cil_tmp56 = (unsigned long )card;
-  __cil_tmp57 = __cil_tmp56 + 60;
-  __cil_tmp58 = *((unsigned int *)__cil_tmp57);
+  __cil_tmp58 = *((unsigned int *)((void *)card + 60));
   __cil_tmp59 = 0 * 1UL;
   __cil_tmp60 = 0 + __cil_tmp59;
-  __cil_tmp61 = (unsigned long )card;
-  __cil_tmp62 = __cil_tmp61 + __cil_tmp60;
-  __cil_tmp63 = (char *)__cil_tmp62;
+  __cil_tmp63 = (char *)((void *)card + __cil_tmp60);
   __cil_tmp64 = (char const   *)__cil_tmp63;
   __cil_tmp65 = (void *)card;
   retval = (int )request_irq(__cil_tmp58, & b1_interrupt, 128UL, __cil_tmp64, __cil_tmp65);
   }
   if (retval) {
     {
-    __cil_tmp66 = (unsigned long )card;
-    __cil_tmp67 = __cil_tmp66 + 60;
-    __cil_tmp68 = *((unsigned int *)__cil_tmp67);
+    __cil_tmp68 = *((unsigned int *)((void *)card + 60));
     printk("<3>b1pci: unable to get IRQ %d.\n", __cil_tmp68);
     retval = -16;
     }
@@ -2194,60 +2007,34 @@ static int b1pci_probe(struct capicardparams *p , struct pci_dev *pdev )
   }
   {
   __cil_tmp69 = 1264 + 48;
-  __cil_tmp70 = (unsigned long )cinfo;
-  __cil_tmp71 = __cil_tmp70 + __cil_tmp69;
-  *((char **)__cil_tmp71) = (char *)"b1pci";
+  *((char **)((void *)cinfo + __cil_tmp69)) = (char *)"b1pci";
   __cil_tmp72 = 1264 + 8;
-  __cil_tmp73 = (unsigned long )cinfo;
-  __cil_tmp74 = __cil_tmp73 + __cil_tmp72;
-  *((void **)__cil_tmp74) = (void *)cinfo;
+  *((void **)((void *)cinfo + __cil_tmp72)) = (void *)cinfo;
   __cil_tmp75 = 1264 + 72;
-  __cil_tmp76 = (unsigned long )cinfo;
-  __cil_tmp77 = __cil_tmp76 + __cil_tmp75;
-  *((void (**)(struct capi_ctr * , u16 appl , capi_register_params * ))__cil_tmp77) = & b1_register_appl;
+  *((void (**)(struct capi_ctr * , u16 appl , capi_register_params * ))((void *)cinfo + __cil_tmp75)) = & b1_register_appl;
   __cil_tmp78 = 1264 + 80;
-  __cil_tmp79 = (unsigned long )cinfo;
-  __cil_tmp80 = __cil_tmp79 + __cil_tmp78;
-  *((void (**)(struct capi_ctr * , u16 appl ))__cil_tmp80) = & b1_release_appl;
+  *((void (**)(struct capi_ctr * , u16 appl ))((void *)cinfo + __cil_tmp78)) = & b1_release_appl;
   __cil_tmp81 = 1264 + 88;
-  __cil_tmp82 = (unsigned long )cinfo;
-  __cil_tmp83 = __cil_tmp82 + __cil_tmp81;
-  *((u16 (**)(struct capi_ctr * , struct sk_buff *skb ))__cil_tmp83) = & b1_send_message;
+  *((u16 (**)(struct capi_ctr * , struct sk_buff *skb ))((void *)cinfo + __cil_tmp81)) = & b1_send_message;
   __cil_tmp84 = 1264 + 56;
-  __cil_tmp85 = (unsigned long )cinfo;
-  __cil_tmp86 = __cil_tmp85 + __cil_tmp84;
-  *((int (**)(struct capi_ctr * , capiloaddata * ))__cil_tmp86) = & b1_load_firmware;
+  *((int (**)(struct capi_ctr * , capiloaddata * ))((void *)cinfo + __cil_tmp84)) = & b1_load_firmware;
   __cil_tmp87 = 1264 + 64;
-  __cil_tmp88 = (unsigned long )cinfo;
-  __cil_tmp89 = __cil_tmp88 + __cil_tmp87;
-  *((void (**)(struct capi_ctr * ))__cil_tmp89) = & b1_reset_ctr;
+  *((void (**)(struct capi_ctr * ))((void *)cinfo + __cil_tmp87)) = & b1_reset_ctr;
   __cil_tmp90 = 1264 + 96;
-  __cil_tmp91 = (unsigned long )cinfo;
-  __cil_tmp92 = __cil_tmp91 + __cil_tmp90;
-  *((char *(**)(struct capi_ctr * ))__cil_tmp92) = & b1pci_procinfo;
+  *((char *(**)(struct capi_ctr * ))((void *)cinfo + __cil_tmp90)) = & b1pci_procinfo;
   __cil_tmp93 = 1264 + 104;
-  __cil_tmp94 = (unsigned long )cinfo;
-  __cil_tmp95 = __cil_tmp94 + __cil_tmp93;
-  *((struct file_operations  const  **)__cil_tmp95) = & b1ctl_proc_fops;
+  *((struct file_operations  const  **)((void *)cinfo + __cil_tmp93)) = & b1ctl_proc_fops;
   __cil_tmp96 = 0 * 1UL;
   __cil_tmp97 = 16 + __cil_tmp96;
   __cil_tmp98 = 1264 + __cil_tmp97;
-  __cil_tmp99 = (unsigned long )cinfo;
-  __cil_tmp100 = __cil_tmp99 + __cil_tmp98;
-  __cil_tmp101 = (char *)__cil_tmp100;
+  __cil_tmp101 = (char *)((void *)cinfo + __cil_tmp98);
   __cil_tmp102 = 0 * 1UL;
   __cil_tmp103 = 0 + __cil_tmp102;
-  __cil_tmp104 = (unsigned long )card;
-  __cil_tmp105 = __cil_tmp104 + __cil_tmp103;
-  __cil_tmp106 = (char *)__cil_tmp105;
+  __cil_tmp106 = (char *)((void *)card + __cil_tmp103);
   __cil_tmp107 = (char const   *)__cil_tmp106;
   strcpy(__cil_tmp101, __cil_tmp107);
-  __cil_tmp108 = (unsigned long )cinfo;
-  __cil_tmp109 = __cil_tmp108 + 1264;
-  *((struct module **)__cil_tmp109) = & __this_module;
-  __cil_tmp110 = (unsigned long )cinfo;
-  __cil_tmp111 = __cil_tmp110 + 1264;
-  __cil_tmp112 = (struct capi_ctr *)__cil_tmp111;
+  *((struct module **)((void *)cinfo + 1264)) = & __this_module;
+  __cil_tmp112 = (struct capi_ctr *)((void *)cinfo + 1264);
   retval = attach_capi_ctr(__cil_tmp112);
   }
   if (retval) {
@@ -2259,36 +2046,22 @@ static int b1pci_probe(struct capicardparams *p , struct pci_dev *pdev )
 
   }
   {
-  __cil_tmp113 = (unsigned long )card;
-  __cil_tmp114 = __cil_tmp113 + 76;
-  __cil_tmp115 = *((unsigned char *)__cil_tmp114);
+  __cil_tmp115 = *((unsigned char *)((void *)card + 76));
   __cil_tmp116 = (int )__cil_tmp115;
   if (__cil_tmp116 >= 4) {
     {
-    __cil_tmp117 = (unsigned long )card;
-    __cil_tmp118 = __cil_tmp117 + 56;
-    __cil_tmp119 = *((unsigned int *)__cil_tmp118);
-    __cil_tmp120 = (unsigned long )card;
-    __cil_tmp121 = __cil_tmp120 + 60;
-    __cil_tmp122 = *((unsigned int *)__cil_tmp121);
-    __cil_tmp123 = (unsigned long )card;
-    __cil_tmp124 = __cil_tmp123 + 76;
-    __cil_tmp125 = *((unsigned char *)__cil_tmp124);
+    __cil_tmp119 = *((unsigned int *)((void *)card + 56));
+    __cil_tmp122 = *((unsigned int *)((void *)card + 60));
+    __cil_tmp125 = *((unsigned char *)((void *)card + 76));
     __cil_tmp126 = (int )__cil_tmp125;
     printk("<6>b1pci: AVM B1 PCI V4 at i/o %#x, irq %d, revision %d (no dma)\n", __cil_tmp119,
            __cil_tmp122, __cil_tmp126);
     }
   } else {
     {
-    __cil_tmp127 = (unsigned long )card;
-    __cil_tmp128 = __cil_tmp127 + 56;
-    __cil_tmp129 = *((unsigned int *)__cil_tmp128);
-    __cil_tmp130 = (unsigned long )card;
-    __cil_tmp131 = __cil_tmp130 + 60;
-    __cil_tmp132 = *((unsigned int *)__cil_tmp131);
-    __cil_tmp133 = (unsigned long )card;
-    __cil_tmp134 = __cil_tmp133 + 76;
-    __cil_tmp135 = *((unsigned char *)__cil_tmp134);
+    __cil_tmp129 = *((unsigned int *)((void *)card + 56));
+    __cil_tmp132 = *((unsigned int *)((void *)card + 60));
+    __cil_tmp135 = *((unsigned char *)((void *)card + 76));
     __cil_tmp136 = (int )__cil_tmp135;
     printk("<6>b1pci: AVM B1 PCI at i/o %#x, irq %d, revision %d\n", __cil_tmp129,
            __cil_tmp132, __cil_tmp136);
@@ -2302,17 +2075,13 @@ static int b1pci_probe(struct capicardparams *p , struct pci_dev *pdev )
   return (0);
   err_free_irq: 
   {
-  __cil_tmp138 = (unsigned long )card;
-  __cil_tmp139 = __cil_tmp138 + 60;
-  __cil_tmp140 = *((unsigned int *)__cil_tmp139);
+  __cil_tmp140 = *((unsigned int *)((void *)card + 60));
   __cil_tmp141 = (void *)card;
   free_irq(__cil_tmp140, __cil_tmp141);
   }
   err_release_region: 
   {
-  __cil_tmp142 = (unsigned long )card;
-  __cil_tmp143 = __cil_tmp142 + 56;
-  __cil_tmp144 = *((unsigned int *)__cil_tmp143);
+  __cil_tmp144 = *((unsigned int *)((void *)card + 56));
   __cil_tmp145 = (resource_size_t )__cil_tmp144;
   __cil_tmp146 = (resource_size_t )31;
   __release_region(& ioport_resource, __cil_tmp145, __cil_tmp146);
@@ -2330,19 +2099,9 @@ static void b1pci_remove(struct pci_dev *pdev )
   void *tmp ;
   avmctrl_info *cinfo ;
   unsigned int port ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct capi_ctr *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   void *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   resource_size_t __cil_tmp20 ;
   resource_size_t __cil_tmp21 ;
@@ -2351,26 +2110,16 @@ static void b1pci_remove(struct pci_dev *pdev )
   {
   tmp = pci_get_drvdata(pdev);
   card = (avmcard *)tmp;
-  __cil_tmp6 = (unsigned long )card;
-  __cil_tmp7 = __cil_tmp6 + 2288;
-  cinfo = *((struct avmctrl_info **)__cil_tmp7);
-  __cil_tmp8 = (unsigned long )card;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  port = *((unsigned int *)__cil_tmp9);
+  cinfo = *((struct avmctrl_info **)((void *)card + 2288));
+  port = *((unsigned int *)((void *)card + 56));
   b1_reset(port);
   b1_reset(port);
-  __cil_tmp10 = (unsigned long )cinfo;
-  __cil_tmp11 = __cil_tmp10 + 1264;
-  __cil_tmp12 = (struct capi_ctr *)__cil_tmp11;
+  __cil_tmp12 = (struct capi_ctr *)((void *)cinfo + 1264);
   detach_capi_ctr(__cil_tmp12);
-  __cil_tmp13 = (unsigned long )card;
-  __cil_tmp14 = __cil_tmp13 + 60;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
+  __cil_tmp15 = *((unsigned int *)((void *)card + 60));
   __cil_tmp16 = (void *)card;
   free_irq(__cil_tmp15, __cil_tmp16);
-  __cil_tmp17 = (unsigned long )card;
-  __cil_tmp18 = __cil_tmp17 + 56;
-  __cil_tmp19 = *((unsigned int *)__cil_tmp18);
+  __cil_tmp19 = *((unsigned int *)((void *)card + 56));
   __cil_tmp20 = (resource_size_t )__cil_tmp19;
   __cil_tmp21 = (resource_size_t )31;
   __release_region(& ioport_resource, __cil_tmp20, __cil_tmp21);
@@ -2387,70 +2136,30 @@ static char *b1pciv4_procinfo(struct capi_ctr *ctrl )
   unsigned int tmp___2 ;
   char const   *tmp___3 ;
   char const   *tmp___4 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct avmcard *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned char __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct avmcard *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct avmcard *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct avmcard *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   char *__cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   char *__cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   char *__cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
 
   {
-  __cil_tmp9 = (unsigned long )ctrl;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)ctrl + 8));
   cinfo = (avmctrl_info *)__cil_tmp11;
   if (! cinfo) {
     return ((char *)"");
@@ -2458,58 +2167,34 @@ static char *b1pciv4_procinfo(struct capi_ctr *ctrl )
 
   }
   {
-  __cil_tmp12 = (unsigned long )cinfo;
-  __cil_tmp13 = __cil_tmp12 + 1256;
-  if (*((struct avmcard **)__cil_tmp13)) {
-    __cil_tmp14 = (unsigned long )cinfo;
-    __cil_tmp15 = __cil_tmp14 + 1256;
-    __cil_tmp16 = *((struct avmcard **)__cil_tmp15);
-    __cil_tmp17 = (unsigned long )__cil_tmp16;
-    __cil_tmp18 = __cil_tmp17 + 76;
-    __cil_tmp19 = *((unsigned char *)__cil_tmp18);
+  if (*((struct avmcard **)((void *)cinfo + 1256))) {
+    __cil_tmp16 = *((struct avmcard **)((void *)cinfo + 1256));
+    __cil_tmp19 = *((unsigned char *)((void *)__cil_tmp16 + 76));
     tmp = (int )__cil_tmp19;
   } else {
     tmp = 0;
   }
   }
   {
-  __cil_tmp20 = (unsigned long )cinfo;
-  __cil_tmp21 = __cil_tmp20 + 1256;
-  if (*((struct avmcard **)__cil_tmp21)) {
-    __cil_tmp22 = (unsigned long )cinfo;
-    __cil_tmp23 = __cil_tmp22 + 1256;
-    __cil_tmp24 = *((struct avmcard **)__cil_tmp23);
-    __cil_tmp25 = (unsigned long )__cil_tmp24;
-    __cil_tmp26 = __cil_tmp25 + 64;
-    tmp___0 = *((unsigned long *)__cil_tmp26);
+  if (*((struct avmcard **)((void *)cinfo + 1256))) {
+    __cil_tmp24 = *((struct avmcard **)((void *)cinfo + 1256));
+    tmp___0 = *((unsigned long *)((void *)__cil_tmp24 + 64));
   } else {
     tmp___0 = 0UL;
   }
   }
   {
-  __cil_tmp27 = (unsigned long )cinfo;
-  __cil_tmp28 = __cil_tmp27 + 1256;
-  if (*((struct avmcard **)__cil_tmp28)) {
-    __cil_tmp29 = (unsigned long )cinfo;
-    __cil_tmp30 = __cil_tmp29 + 1256;
-    __cil_tmp31 = *((struct avmcard **)__cil_tmp30);
-    __cil_tmp32 = (unsigned long )__cil_tmp31;
-    __cil_tmp33 = __cil_tmp32 + 60;
-    tmp___1 = *((unsigned int *)__cil_tmp33);
+  if (*((struct avmcard **)((void *)cinfo + 1256))) {
+    __cil_tmp31 = *((struct avmcard **)((void *)cinfo + 1256));
+    tmp___1 = *((unsigned int *)((void *)__cil_tmp31 + 60));
   } else {
     tmp___1 = 0U;
   }
   }
   {
-  __cil_tmp34 = (unsigned long )cinfo;
-  __cil_tmp35 = __cil_tmp34 + 1256;
-  if (*((struct avmcard **)__cil_tmp35)) {
-    __cil_tmp36 = (unsigned long )cinfo;
-    __cil_tmp37 = __cil_tmp36 + 1256;
-    __cil_tmp38 = *((struct avmcard **)__cil_tmp37);
-    __cil_tmp39 = (unsigned long )__cil_tmp38;
-    __cil_tmp40 = __cil_tmp39 + 56;
-    tmp___2 = *((unsigned int *)__cil_tmp40);
+  if (*((struct avmcard **)((void *)cinfo + 1256))) {
+    __cil_tmp38 = *((struct avmcard **)((void *)cinfo + 1256));
+    tmp___2 = *((unsigned int *)((void *)__cil_tmp38 + 56));
   } else {
     tmp___2 = 0U;
   }
@@ -2517,14 +2202,10 @@ static char *b1pciv4_procinfo(struct capi_ctr *ctrl )
   {
   __cil_tmp41 = 0 * 8UL;
   __cil_tmp42 = 1064 + __cil_tmp41;
-  __cil_tmp43 = (unsigned long )cinfo;
-  __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
-  if (*((char **)__cil_tmp44)) {
+  if (*((char **)((void *)cinfo + __cil_tmp42))) {
     __cil_tmp45 = 0 * 8UL;
     __cil_tmp46 = 1064 + __cil_tmp45;
-    __cil_tmp47 = (unsigned long )cinfo;
-    __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-    __cil_tmp49 = *((char **)__cil_tmp48);
+    __cil_tmp49 = *((char **)((void *)cinfo + __cil_tmp46));
     tmp___3 = (char const   *)__cil_tmp49;
   } else {
     tmp___3 = "-";
@@ -2533,14 +2214,10 @@ static char *b1pciv4_procinfo(struct capi_ctr *ctrl )
   {
   __cil_tmp50 = 0 * 1UL;
   __cil_tmp51 = 0 + __cil_tmp50;
-  __cil_tmp52 = (unsigned long )cinfo;
-  __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-  if (*((char *)__cil_tmp53)) {
+  if (*((char *)((void *)cinfo + __cil_tmp51))) {
     __cil_tmp54 = 0 * 1UL;
     __cil_tmp55 = 0 + __cil_tmp54;
-    __cil_tmp56 = (unsigned long )cinfo;
-    __cil_tmp57 = __cil_tmp56 + __cil_tmp55;
-    __cil_tmp58 = (char *)__cil_tmp57;
+    __cil_tmp58 = (char *)((void *)cinfo + __cil_tmp55);
     tmp___4 = (char const   *)__cil_tmp58;
   } else {
     tmp___4 = "-";
@@ -2549,18 +2226,14 @@ static char *b1pciv4_procinfo(struct capi_ctr *ctrl )
   {
   __cil_tmp59 = 0 * 1UL;
   __cil_tmp60 = 1128 + __cil_tmp59;
-  __cil_tmp61 = (unsigned long )cinfo;
-  __cil_tmp62 = __cil_tmp61 + __cil_tmp60;
-  __cil_tmp63 = (char *)__cil_tmp62;
+  __cil_tmp63 = (char *)((void *)cinfo + __cil_tmp60);
   sprintf(__cil_tmp63, "%s %s 0x%x %d 0x%lx r%d", tmp___4, tmp___3, tmp___2, tmp___1,
           tmp___0, tmp);
   }
   {
   __cil_tmp64 = 0 * 1UL;
   __cil_tmp65 = 1128 + __cil_tmp64;
-  __cil_tmp66 = (unsigned long )cinfo;
-  __cil_tmp67 = __cil_tmp66 + __cil_tmp65;
-  return ((char *)__cil_tmp67);
+  return ((char *)((void *)cinfo + __cil_tmp65));
   }
 }
 }
@@ -2569,157 +2242,67 @@ static int b1pciv4_probe(struct capicardparams *p , struct pci_dev *pdev )
   avmctrl_info *cinfo ;
   int retval ;
   struct resource *tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   char *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   avmcard_dmainfo *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   char *__cil_tmp19 ;
   unsigned int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
   resource_size_t __cil_tmp37 ;
   resource_size_t __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   char *__cil_tmp43 ;
   char const   *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned int __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
   unsigned int __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   resource_size_t __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   void *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned int __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   unsigned int __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   char *__cil_tmp74 ;
   char const   *__cil_tmp75 ;
   void *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   unsigned int __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
   unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   unsigned long __cil_tmp109 ;
   unsigned long __cil_tmp110 ;
   unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   char *__cil_tmp114 ;
   unsigned long __cil_tmp115 ;
   unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   char *__cil_tmp119 ;
   char const   *__cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   struct capi_ctr *__cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
   unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
   unsigned int __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
   unsigned int __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
   unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
   unsigned char __cil_tmp140 ;
   int __cil_tmp141 ;
   void *__cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
-  unsigned long __cil_tmp144 ;
   unsigned int __cil_tmp145 ;
   void *__cil_tmp146 ;
-  unsigned long __cil_tmp147 ;
-  unsigned long __cil_tmp148 ;
   void *__cil_tmp149 ;
   void volatile   *__cil_tmp150 ;
-  unsigned long __cil_tmp151 ;
-  unsigned long __cil_tmp152 ;
   unsigned int __cil_tmp153 ;
   resource_size_t __cil_tmp154 ;
   resource_size_t __cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
-  unsigned long __cil_tmp157 ;
   avmcard_dmainfo *__cil_tmp158 ;
 
   {
@@ -2736,15 +2319,11 @@ static int b1pciv4_probe(struct capicardparams *p , struct pci_dev *pdev )
 
   }
   {
-  __cil_tmp7 = (unsigned long )card;
-  __cil_tmp8 = __cil_tmp7 + 2280;
   __cil_tmp9 = (char *)"b1pci";
-  *((avmcard_dmainfo **)__cil_tmp8) = avmcard_dma_alloc(__cil_tmp9, pdev, 2176L, 2176L);
+  *((avmcard_dmainfo **)((void *)card + 2280)) = avmcard_dma_alloc(__cil_tmp9, pdev, 2176L, 2176L);
   }
   {
-  __cil_tmp10 = (unsigned long )card;
-  __cil_tmp11 = __cil_tmp10 + 2280;
-  __cil_tmp12 = *((avmcard_dmainfo **)__cil_tmp11);
+  __cil_tmp12 = *((avmcard_dmainfo **)((void *)card + 2280));
   if (! __cil_tmp12) {
     {
     printk("<4>b1pci: dma alloc.\n");
@@ -2756,43 +2335,23 @@ static int b1pciv4_probe(struct capicardparams *p , struct pci_dev *pdev )
   }
   }
   {
-  __cil_tmp13 = (unsigned long )card;
-  __cil_tmp14 = __cil_tmp13 + 2288;
-  cinfo = *((struct avmctrl_info **)__cil_tmp14);
+  cinfo = *((struct avmctrl_info **)((void *)card + 2288));
   __cil_tmp15 = 0 * 1UL;
   __cil_tmp16 = 0 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )card;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = (char *)__cil_tmp18;
+  __cil_tmp19 = (char *)((void *)card + __cil_tmp16);
   __cil_tmp20 = *((unsigned int *)p);
   sprintf(__cil_tmp19, "b1pciv4-%x", __cil_tmp20);
-  __cil_tmp21 = (unsigned long )card;
-  __cil_tmp22 = __cil_tmp21 + 56;
-  *((unsigned int *)__cil_tmp22) = *((unsigned int *)p);
-  __cil_tmp23 = (unsigned long )card;
-  __cil_tmp24 = __cil_tmp23 + 60;
-  __cil_tmp25 = (unsigned long )p;
-  __cil_tmp26 = __cil_tmp25 + 4;
-  *((unsigned int *)__cil_tmp24) = *((unsigned int *)__cil_tmp26);
-  __cil_tmp27 = (unsigned long )card;
-  __cil_tmp28 = __cil_tmp27 + 64;
-  __cil_tmp29 = (unsigned long )p;
-  __cil_tmp30 = __cil_tmp29 + 16;
-  __cil_tmp31 = *((unsigned int *)__cil_tmp30);
-  *((unsigned long *)__cil_tmp28) = (unsigned long )__cil_tmp31;
-  __cil_tmp32 = (unsigned long )card;
-  __cil_tmp33 = __cil_tmp32 + 72;
-  *((enum avmcardtype *)__cil_tmp33) = (enum avmcardtype )1;
-  __cil_tmp34 = (unsigned long )card;
-  __cil_tmp35 = __cil_tmp34 + 56;
-  __cil_tmp36 = *((unsigned int *)__cil_tmp35);
+  *((unsigned int *)((void *)card + 56)) = *((unsigned int *)p);
+  *((unsigned int *)((void *)card + 60)) = *((unsigned int *)((void *)p + 4));
+  __cil_tmp31 = *((unsigned int *)((void *)p + 16));
+  *((unsigned long *)((void *)card + 64)) = (unsigned long )__cil_tmp31;
+  *((enum avmcardtype *)((void *)card + 72)) = (enum avmcardtype )1;
+  __cil_tmp36 = *((unsigned int *)((void *)card + 56));
   __cil_tmp37 = (resource_size_t )__cil_tmp36;
   __cil_tmp38 = (resource_size_t )31;
   __cil_tmp39 = 0 * 1UL;
   __cil_tmp40 = 0 + __cil_tmp39;
-  __cil_tmp41 = (unsigned long )card;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-  __cil_tmp43 = (char *)__cil_tmp42;
+  __cil_tmp43 = (char *)((void *)card + __cil_tmp40);
   __cil_tmp44 = (char const   *)__cil_tmp43;
   tmp = __request_region(& ioport_resource, __cil_tmp37, __cil_tmp38, __cil_tmp44,
                          0);
@@ -2801,12 +2360,8 @@ static int b1pciv4_probe(struct capicardparams *p , struct pci_dev *pdev )
 
   } else {
     {
-    __cil_tmp45 = (unsigned long )card;
-    __cil_tmp46 = __cil_tmp45 + 56;
-    __cil_tmp47 = *((unsigned int *)__cil_tmp46);
-    __cil_tmp48 = (unsigned long )card;
-    __cil_tmp49 = __cil_tmp48 + 56;
-    __cil_tmp50 = *((unsigned int *)__cil_tmp49);
+    __cil_tmp47 = *((unsigned int *)((void *)card + 56));
+    __cil_tmp50 = *((unsigned int *)((void *)card + 56));
     __cil_tmp51 = __cil_tmp50 + 31U;
     printk("<4>b1pci: ports 0x%03x-0x%03x in use.\n", __cil_tmp47, __cil_tmp51);
     retval = -16;
@@ -2814,23 +2369,15 @@ static int b1pciv4_probe(struct capicardparams *p , struct pci_dev *pdev )
     goto err_free_dma;
   }
   {
-  __cil_tmp52 = (unsigned long )card;
-  __cil_tmp53 = __cil_tmp52 + 2264;
-  __cil_tmp54 = (unsigned long )card;
-  __cil_tmp55 = __cil_tmp54 + 64;
-  __cil_tmp56 = *((unsigned long *)__cil_tmp55);
+  __cil_tmp56 = *((unsigned long *)((void *)card + 64));
   __cil_tmp57 = (resource_size_t )__cil_tmp56;
-  *((void **)__cil_tmp53) = ioremap(__cil_tmp57, 64UL);
+  *((void **)((void *)card + 2264)) = ioremap(__cil_tmp57, 64UL);
   }
   {
-  __cil_tmp58 = (unsigned long )card;
-  __cil_tmp59 = __cil_tmp58 + 2264;
-  __cil_tmp60 = *((void **)__cil_tmp59);
+  __cil_tmp60 = *((void **)((void *)card + 2264));
   if (! __cil_tmp60) {
     {
-    __cil_tmp61 = (unsigned long )card;
-    __cil_tmp62 = __cil_tmp61 + 64;
-    __cil_tmp63 = *((unsigned long *)__cil_tmp62);
+    __cil_tmp63 = *((unsigned long *)((void *)card + 64));
     printk("<5>b1pci: can\'t remap memory at 0x%lx\n", __cil_tmp63);
     retval = -12;
     }
@@ -2845,9 +2392,7 @@ static int b1pciv4_probe(struct capicardparams *p , struct pci_dev *pdev )
   }
   if (retval) {
     {
-    __cil_tmp64 = (unsigned long )card;
-    __cil_tmp65 = __cil_tmp64 + 56;
-    __cil_tmp66 = *((unsigned int *)__cil_tmp65);
+    __cil_tmp66 = *((unsigned int *)((void *)card + 56));
     printk("<5>b1pci: NO card at 0x%x (%d)\n", __cil_tmp66, retval);
     retval = -19;
     }
@@ -2858,23 +2403,17 @@ static int b1pciv4_probe(struct capicardparams *p , struct pci_dev *pdev )
   {
   b1dma_reset(card);
   b1_getrevision(card);
-  __cil_tmp67 = (unsigned long )card;
-  __cil_tmp68 = __cil_tmp67 + 60;
-  __cil_tmp69 = *((unsigned int *)__cil_tmp68);
+  __cil_tmp69 = *((unsigned int *)((void *)card + 60));
   __cil_tmp70 = 0 * 1UL;
   __cil_tmp71 = 0 + __cil_tmp70;
-  __cil_tmp72 = (unsigned long )card;
-  __cil_tmp73 = __cil_tmp72 + __cil_tmp71;
-  __cil_tmp74 = (char *)__cil_tmp73;
+  __cil_tmp74 = (char *)((void *)card + __cil_tmp71);
   __cil_tmp75 = (char const   *)__cil_tmp74;
   __cil_tmp76 = (void *)card;
   retval = (int )request_irq(__cil_tmp69, & b1dma_interrupt, 128UL, __cil_tmp75, __cil_tmp76);
   }
   if (retval) {
     {
-    __cil_tmp77 = (unsigned long )card;
-    __cil_tmp78 = __cil_tmp77 + 60;
-    __cil_tmp79 = *((unsigned int *)__cil_tmp78);
+    __cil_tmp79 = *((unsigned int *)((void *)card + 60));
     printk("<3>b1pci: unable to get IRQ %d.\n", __cil_tmp79);
     retval = -16;
     }
@@ -2883,61 +2422,35 @@ static int b1pciv4_probe(struct capicardparams *p , struct pci_dev *pdev )
 
   }
   {
-  __cil_tmp80 = (unsigned long )cinfo;
-  __cil_tmp81 = __cil_tmp80 + 1264;
-  *((struct module **)__cil_tmp81) = & __this_module;
+  *((struct module **)((void *)cinfo + 1264)) = & __this_module;
   __cil_tmp82 = 1264 + 48;
-  __cil_tmp83 = (unsigned long )cinfo;
-  __cil_tmp84 = __cil_tmp83 + __cil_tmp82;
-  *((char **)__cil_tmp84) = (char *)"b1pciv4";
+  *((char **)((void *)cinfo + __cil_tmp82)) = (char *)"b1pciv4";
   __cil_tmp85 = 1264 + 8;
-  __cil_tmp86 = (unsigned long )cinfo;
-  __cil_tmp87 = __cil_tmp86 + __cil_tmp85;
-  *((void **)__cil_tmp87) = (void *)cinfo;
+  *((void **)((void *)cinfo + __cil_tmp85)) = (void *)cinfo;
   __cil_tmp88 = 1264 + 72;
-  __cil_tmp89 = (unsigned long )cinfo;
-  __cil_tmp90 = __cil_tmp89 + __cil_tmp88;
-  *((void (**)(struct capi_ctr * , u16 appl , capi_register_params * ))__cil_tmp90) = & b1dma_register_appl;
+  *((void (**)(struct capi_ctr * , u16 appl , capi_register_params * ))((void *)cinfo + __cil_tmp88)) = & b1dma_register_appl;
   __cil_tmp91 = 1264 + 80;
-  __cil_tmp92 = (unsigned long )cinfo;
-  __cil_tmp93 = __cil_tmp92 + __cil_tmp91;
-  *((void (**)(struct capi_ctr * , u16 appl ))__cil_tmp93) = & b1dma_release_appl;
+  *((void (**)(struct capi_ctr * , u16 appl ))((void *)cinfo + __cil_tmp91)) = & b1dma_release_appl;
   __cil_tmp94 = 1264 + 88;
-  __cil_tmp95 = (unsigned long )cinfo;
-  __cil_tmp96 = __cil_tmp95 + __cil_tmp94;
-  *((u16 (**)(struct capi_ctr * , struct sk_buff *skb ))__cil_tmp96) = & b1dma_send_message;
+  *((u16 (**)(struct capi_ctr * , struct sk_buff *skb ))((void *)cinfo + __cil_tmp94)) = & b1dma_send_message;
   __cil_tmp97 = 1264 + 56;
-  __cil_tmp98 = (unsigned long )cinfo;
-  __cil_tmp99 = __cil_tmp98 + __cil_tmp97;
-  *((int (**)(struct capi_ctr * , capiloaddata * ))__cil_tmp99) = & b1dma_load_firmware;
+  *((int (**)(struct capi_ctr * , capiloaddata * ))((void *)cinfo + __cil_tmp97)) = & b1dma_load_firmware;
   __cil_tmp100 = 1264 + 64;
-  __cil_tmp101 = (unsigned long )cinfo;
-  __cil_tmp102 = __cil_tmp101 + __cil_tmp100;
-  *((void (**)(struct capi_ctr * ))__cil_tmp102) = & b1dma_reset_ctr;
+  *((void (**)(struct capi_ctr * ))((void *)cinfo + __cil_tmp100)) = & b1dma_reset_ctr;
   __cil_tmp103 = 1264 + 96;
-  __cil_tmp104 = (unsigned long )cinfo;
-  __cil_tmp105 = __cil_tmp104 + __cil_tmp103;
-  *((char *(**)(struct capi_ctr * ))__cil_tmp105) = & b1pciv4_procinfo;
+  *((char *(**)(struct capi_ctr * ))((void *)cinfo + __cil_tmp103)) = & b1pciv4_procinfo;
   __cil_tmp106 = 1264 + 104;
-  __cil_tmp107 = (unsigned long )cinfo;
-  __cil_tmp108 = __cil_tmp107 + __cil_tmp106;
-  *((struct file_operations  const  **)__cil_tmp108) = & b1dmactl_proc_fops;
+  *((struct file_operations  const  **)((void *)cinfo + __cil_tmp106)) = & b1dmactl_proc_fops;
   __cil_tmp109 = 0 * 1UL;
   __cil_tmp110 = 16 + __cil_tmp109;
   __cil_tmp111 = 1264 + __cil_tmp110;
-  __cil_tmp112 = (unsigned long )cinfo;
-  __cil_tmp113 = __cil_tmp112 + __cil_tmp111;
-  __cil_tmp114 = (char *)__cil_tmp113;
+  __cil_tmp114 = (char *)((void *)cinfo + __cil_tmp111);
   __cil_tmp115 = 0 * 1UL;
   __cil_tmp116 = 0 + __cil_tmp115;
-  __cil_tmp117 = (unsigned long )card;
-  __cil_tmp118 = __cil_tmp117 + __cil_tmp116;
-  __cil_tmp119 = (char *)__cil_tmp118;
+  __cil_tmp119 = (char *)((void *)card + __cil_tmp116);
   __cil_tmp120 = (char const   *)__cil_tmp119;
   strcpy(__cil_tmp114, __cil_tmp120);
-  __cil_tmp121 = (unsigned long )cinfo;
-  __cil_tmp122 = __cil_tmp121 + 1264;
-  __cil_tmp123 = (struct capi_ctr *)__cil_tmp122;
+  __cil_tmp123 = (struct capi_ctr *)((void *)cinfo + 1264);
   retval = attach_capi_ctr(__cil_tmp123);
   }
   if (retval) {
@@ -2949,24 +2462,12 @@ static int b1pciv4_probe(struct capicardparams *p , struct pci_dev *pdev )
 
   }
   {
-  __cil_tmp124 = (unsigned long )card;
-  __cil_tmp125 = __cil_tmp124 + 80;
   __cil_tmp126 = 1264 + 296;
-  __cil_tmp127 = (unsigned long )cinfo;
-  __cil_tmp128 = __cil_tmp127 + __cil_tmp126;
-  *((int *)__cil_tmp125) = *((int *)__cil_tmp128);
-  __cil_tmp129 = (unsigned long )card;
-  __cil_tmp130 = __cil_tmp129 + 56;
-  __cil_tmp131 = *((unsigned int *)__cil_tmp130);
-  __cil_tmp132 = (unsigned long )card;
-  __cil_tmp133 = __cil_tmp132 + 60;
-  __cil_tmp134 = *((unsigned int *)__cil_tmp133);
-  __cil_tmp135 = (unsigned long )card;
-  __cil_tmp136 = __cil_tmp135 + 64;
-  __cil_tmp137 = *((unsigned long *)__cil_tmp136);
-  __cil_tmp138 = (unsigned long )card;
-  __cil_tmp139 = __cil_tmp138 + 76;
-  __cil_tmp140 = *((unsigned char *)__cil_tmp139);
+  *((int *)((void *)card + 80)) = *((int *)((void *)cinfo + __cil_tmp126));
+  __cil_tmp131 = *((unsigned int *)((void *)card + 56));
+  __cil_tmp134 = *((unsigned int *)((void *)card + 60));
+  __cil_tmp137 = *((unsigned long *)((void *)card + 64));
+  __cil_tmp140 = *((unsigned char *)((void *)card + 76));
   __cil_tmp141 = (int )__cil_tmp140;
   printk("<6>b1pci: AVM B1 PCI V4 at i/o %#x, irq %d, mem %#lx, revision %d (dma)\n",
          __cil_tmp131, __cil_tmp134, __cil_tmp137, __cil_tmp141);
@@ -2976,34 +2477,26 @@ static int b1pciv4_probe(struct capicardparams *p , struct pci_dev *pdev )
   return (0);
   err_free_irq: 
   {
-  __cil_tmp143 = (unsigned long )card;
-  __cil_tmp144 = __cil_tmp143 + 60;
-  __cil_tmp145 = *((unsigned int *)__cil_tmp144);
+  __cil_tmp145 = *((unsigned int *)((void *)card + 60));
   __cil_tmp146 = (void *)card;
   free_irq(__cil_tmp145, __cil_tmp146);
   }
   err_unmap: 
   {
-  __cil_tmp147 = (unsigned long )card;
-  __cil_tmp148 = __cil_tmp147 + 2264;
-  __cil_tmp149 = *((void **)__cil_tmp148);
+  __cil_tmp149 = *((void **)((void *)card + 2264));
   __cil_tmp150 = (void volatile   *)__cil_tmp149;
   iounmap(__cil_tmp150);
   }
   err_release_region: 
   {
-  __cil_tmp151 = (unsigned long )card;
-  __cil_tmp152 = __cil_tmp151 + 56;
-  __cil_tmp153 = *((unsigned int *)__cil_tmp152);
+  __cil_tmp153 = *((unsigned int *)((void *)card + 56));
   __cil_tmp154 = (resource_size_t )__cil_tmp153;
   __cil_tmp155 = (resource_size_t )31;
   __release_region(& ioport_resource, __cil_tmp154, __cil_tmp155);
   }
   err_free_dma: 
   {
-  __cil_tmp156 = (unsigned long )card;
-  __cil_tmp157 = __cil_tmp156 + 2280;
-  __cil_tmp158 = *((avmcard_dmainfo **)__cil_tmp157);
+  __cil_tmp158 = *((avmcard_dmainfo **)((void *)card + 2280));
   avmcard_dma_free(__cil_tmp158);
   }
   err_free: 
@@ -3018,59 +2511,35 @@ static void b1pciv4_remove(struct pci_dev *pdev )
 { avmcard *card ;
   void *tmp ;
   avmctrl_info *cinfo ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct capi_ctr *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   void volatile   *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   resource_size_t __cil_tmp21 ;
   resource_size_t __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   avmcard_dmainfo *__cil_tmp25 ;
 
   {
   {
   tmp = pci_get_drvdata(pdev);
   card = (avmcard *)tmp;
-  __cil_tmp5 = (unsigned long )card;
-  __cil_tmp6 = __cil_tmp5 + 2288;
-  cinfo = *((struct avmctrl_info **)__cil_tmp6);
+  cinfo = *((struct avmctrl_info **)((void *)card + 2288));
   b1dma_reset(card);
-  __cil_tmp7 = (unsigned long )cinfo;
-  __cil_tmp8 = __cil_tmp7 + 1264;
-  __cil_tmp9 = (struct capi_ctr *)__cil_tmp8;
+  __cil_tmp9 = (struct capi_ctr *)((void *)cinfo + 1264);
   detach_capi_ctr(__cil_tmp9);
-  __cil_tmp10 = (unsigned long )card;
-  __cil_tmp11 = __cil_tmp10 + 60;
-  __cil_tmp12 = *((unsigned int *)__cil_tmp11);
+  __cil_tmp12 = *((unsigned int *)((void *)card + 60));
   __cil_tmp13 = (void *)card;
   free_irq(__cil_tmp12, __cil_tmp13);
-  __cil_tmp14 = (unsigned long )card;
-  __cil_tmp15 = __cil_tmp14 + 2264;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp16 = *((void **)((void *)card + 2264));
   __cil_tmp17 = (void volatile   *)__cil_tmp16;
   iounmap(__cil_tmp17);
-  __cil_tmp18 = (unsigned long )card;
-  __cil_tmp19 = __cil_tmp18 + 56;
-  __cil_tmp20 = *((unsigned int *)__cil_tmp19);
+  __cil_tmp20 = *((unsigned int *)((void *)card + 56));
   __cil_tmp21 = (resource_size_t )__cil_tmp20;
   __cil_tmp22 = (resource_size_t )31;
   __release_region(& ioport_resource, __cil_tmp21, __cil_tmp22);
-  __cil_tmp23 = (unsigned long )card;
-  __cil_tmp24 = __cil_tmp23 + 2280;
-  __cil_tmp25 = *((avmcard_dmainfo **)__cil_tmp24);
+  __cil_tmp25 = *((avmcard_dmainfo **)((void *)card + 2280));
   avmcard_dma_free(__cil_tmp25);
   b1_free_card(card);
   }
@@ -3083,51 +2552,32 @@ static int b1pci_pci_probe(struct pci_dev *pdev , struct pci_device_id  const  *
 { struct capicardparams param ;
   int retval ;
   int tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   resource_size_t __cil_tmp18 ;
   struct capicardparams *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   resource_size_t __cil_tmp24 ;
   struct capicardparams *__cil_tmp25 ;
   unsigned int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   struct capicardparams *__cil_tmp31 ;
   unsigned int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct capicardparams *__cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   resource_size_t __cil_tmp43 ;
   struct capicardparams *__cil_tmp44 ;
   unsigned int __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned int __cil_tmp47 ;
   struct capicardparams *__cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned int __cil_tmp51 ;
 
   {
@@ -3142,38 +2592,26 @@ static int b1pci_pci_probe(struct pci_dev *pdev , struct pci_device_id  const  *
   } else {
 
   }
-  __cil_tmp6 = (unsigned long )(& param) + 4;
-  __cil_tmp7 = (unsigned long )pdev;
-  __cil_tmp8 = __cil_tmp7 + 916;
-  *((unsigned int *)__cil_tmp6) = *((unsigned int *)__cil_tmp8);
+  *((unsigned int *)((void *)(&param) + 4)) = *((unsigned int *)((void *)pdev + 916));
   {
   __cil_tmp9 = 2 * 56UL;
   __cil_tmp10 = 920 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )pdev;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  if (*((resource_size_t *)__cil_tmp12)) {
+  if (*((resource_size_t *)((void *)pdev + __cil_tmp10))) {
     {
     pci_set_master(pdev);
-    __cil_tmp13 = (unsigned long )(& param) + 16;
     __cil_tmp14 = 0 * 56UL;
     __cil_tmp15 = 920 + __cil_tmp14;
-    __cil_tmp16 = (unsigned long )pdev;
-    __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-    __cil_tmp18 = *((resource_size_t *)__cil_tmp17);
-    *((unsigned int *)__cil_tmp13) = (unsigned int )__cil_tmp18;
+    __cil_tmp18 = *((resource_size_t *)((void *)pdev + __cil_tmp15));
+    *((unsigned int *)((void *)(&param) + 16)) = (unsigned int )__cil_tmp18;
     __cil_tmp19 = & param;
     __cil_tmp20 = 2 * 56UL;
     __cil_tmp21 = 920 + __cil_tmp20;
-    __cil_tmp22 = (unsigned long )pdev;
-    __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-    __cil_tmp24 = *((resource_size_t *)__cil_tmp23);
+    __cil_tmp24 = *((resource_size_t *)((void *)pdev + __cil_tmp21));
     *((unsigned int *)__cil_tmp19) = (unsigned int )__cil_tmp24;
     __cil_tmp25 = & param;
     __cil_tmp26 = *((unsigned int *)__cil_tmp25);
-    __cil_tmp27 = (unsigned long )(& param) + 4;
-    __cil_tmp28 = *((unsigned int *)__cil_tmp27);
-    __cil_tmp29 = (unsigned long )(& param) + 16;
-    __cil_tmp30 = *((unsigned int *)__cil_tmp29);
+    __cil_tmp28 = *((unsigned int *)((void *)(&param) + 4));
+    __cil_tmp30 = *((unsigned int *)((void *)(&param) + 16));
     printk("<6>b1pci: PCI BIOS reports AVM-B1 V4 at i/o %#x, irq %d, mem %#x\n", __cil_tmp26,
            __cil_tmp28, __cil_tmp30);
     retval = b1pciv4_probe(& param, pdev);
@@ -3182,10 +2620,8 @@ static int b1pci_pci_probe(struct pci_dev *pdev , struct pci_device_id  const  *
       {
       __cil_tmp31 = & param;
       __cil_tmp32 = *((unsigned int *)__cil_tmp31);
-      __cil_tmp33 = (unsigned long )(& param) + 4;
-      __cil_tmp34 = *((unsigned int *)__cil_tmp33);
-      __cil_tmp35 = (unsigned long )(& param) + 16;
-      __cil_tmp36 = *((unsigned int *)__cil_tmp35);
+      __cil_tmp34 = *((unsigned int *)((void *)(&param) + 4));
+      __cil_tmp36 = *((unsigned int *)((void *)(&param) + 16));
       printk("<3>b1pci: no AVM-B1 V4 at i/o %#x, irq %d, mem %#x detected\n", __cil_tmp32,
              __cil_tmp34, __cil_tmp36);
       }
@@ -3194,19 +2630,15 @@ static int b1pci_pci_probe(struct pci_dev *pdev , struct pci_device_id  const  *
     }
   } else {
     {
-    __cil_tmp37 = (unsigned long )(& param) + 16;
-    *((unsigned int *)__cil_tmp37) = 0U;
+    *((unsigned int *)((void *)(&param) + 16)) = 0U;
     __cil_tmp38 = & param;
     __cil_tmp39 = 1 * 56UL;
     __cil_tmp40 = 920 + __cil_tmp39;
-    __cil_tmp41 = (unsigned long )pdev;
-    __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-    __cil_tmp43 = *((resource_size_t *)__cil_tmp42);
+    __cil_tmp43 = *((resource_size_t *)((void *)pdev + __cil_tmp40));
     *((unsigned int *)__cil_tmp38) = (unsigned int )__cil_tmp43;
     __cil_tmp44 = & param;
     __cil_tmp45 = *((unsigned int *)__cil_tmp44);
-    __cil_tmp46 = (unsigned long )(& param) + 4;
-    __cil_tmp47 = *((unsigned int *)__cil_tmp46);
+    __cil_tmp47 = *((unsigned int *)((void *)(&param) + 4));
     printk("<6>b1pci: PCI BIOS reports AVM-B1 at i/o %#x, irq %d\n", __cil_tmp45,
            __cil_tmp47);
     retval = b1pci_probe(& param, pdev);
@@ -3215,8 +2647,7 @@ static int b1pci_pci_probe(struct pci_dev *pdev , struct pci_device_id  const  *
       {
       __cil_tmp48 = & param;
       __cil_tmp49 = *((unsigned int *)__cil_tmp48);
-      __cil_tmp50 = (unsigned long )(& param) + 4;
-      __cil_tmp51 = *((unsigned int *)__cil_tmp50);
+      __cil_tmp51 = *((unsigned int *)((void *)(&param) + 4));
       printk("<3>b1pci: no AVM-B1 at i/o %#x, irq %d detected\n", __cil_tmp49, __cil_tmp51);
       }
     } else {
@@ -3232,8 +2663,6 @@ __no_instrument_function__)) ;
 static void b1pci_pci_remove(struct pci_dev *pdev ) 
 { avmcard *card ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
 
   {
   {
@@ -3241,9 +2670,7 @@ static void b1pci_pci_remove(struct pci_dev *pdev )
   card = (avmcard *)tmp;
   }
   {
-  __cil_tmp4 = (unsigned long )card;
-  __cil_tmp5 = __cil_tmp4 + 2280;
-  if (*((avmcard_dmainfo **)__cil_tmp5)) {
+  if (*((avmcard_dmainfo **)((void *)card + 2280))) {
     {
     b1pciv4_remove(pdev);
     }
@@ -3315,7 +2742,6 @@ static int b1pci_init(void)
   char *__cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   char *__cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
@@ -3324,7 +2750,6 @@ static int b1pci_init(void)
   size_t __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   char *__cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
@@ -3409,8 +2834,7 @@ static int b1pci_init(void)
     {
     __cil_tmp34 = 0 * 1UL;
     __cil_tmp35 = 32 + __cil_tmp34;
-    __cil_tmp36 = (unsigned long )(& capi_driver_b1pci) + __cil_tmp35;
-    __cil_tmp37 = (char *)__cil_tmp36;
+    __cil_tmp37 = (char *)((void *)(&capi_driver_b1pci) + __cil_tmp35);
     __cil_tmp38 = 0 * 1UL;
     __cil_tmp39 = (unsigned long )(rev) + __cil_tmp38;
     __cil_tmp40 = (char *)__cil_tmp39;
@@ -3420,8 +2844,7 @@ static int b1pci_init(void)
     register_capi_driver(& capi_driver_b1pci);
     __cil_tmp43 = 0 * 1UL;
     __cil_tmp44 = 32 + __cil_tmp43;
-    __cil_tmp45 = (unsigned long )(& capi_driver_b1pciv4) + __cil_tmp44;
-    __cil_tmp46 = (char *)__cil_tmp45;
+    __cil_tmp46 = (char *)((void *)(&capi_driver_b1pciv4) + __cil_tmp44);
     __cil_tmp47 = 0 * 1UL;
     __cil_tmp48 = (unsigned long )(rev) + __cil_tmp47;
     __cil_tmp49 = (char *)__cil_tmp48;

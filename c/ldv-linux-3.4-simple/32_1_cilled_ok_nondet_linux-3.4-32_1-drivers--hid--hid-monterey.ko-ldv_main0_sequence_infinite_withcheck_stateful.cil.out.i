@@ -1885,38 +1885,18 @@ __inline static void hid_map_usage(struct hid_input *hidinput , struct hid_usage
 __inline static void hid_map_usage(struct hid_input *hidinput , struct hid_usage *usage ,
                                    unsigned long **bit , int *max , __u8 type , __u16 c )
 { struct input_dev *input ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   {
-  __cil_tmp8 = (unsigned long )hidinput;
-  __cil_tmp9 = __cil_tmp8 + 24;
-  input = *((struct input_dev **)__cil_tmp9);
-  __cil_tmp10 = (unsigned long )usage;
-  __cil_tmp11 = __cil_tmp10 + 10;
-  *((__u8 *)__cil_tmp11) = type;
-  __cil_tmp12 = (unsigned long )usage;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  *((__u16 *)__cil_tmp13) = c;
+  input = *((struct input_dev **)((void *)hidinput + 24));
+  *((__u8 *)((void *)usage + 10)) = type;
+  *((__u16 *)((void *)usage + 8)) = c;
   if ((int )type == 3) {
     goto case_3;
   } else
@@ -1933,33 +1913,25 @@ __inline static void hid_map_usage(struct hid_input *hidinput , struct hid_usage
     case_3:
     __cil_tmp14 = 0 * 8UL;
     __cil_tmp15 = 152 + __cil_tmp14;
-    __cil_tmp16 = (unsigned long )input;
-    __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-    *bit = (unsigned long *)__cil_tmp17;
+    *bit = (unsigned long *)((void *)input + __cil_tmp15);
     *max = 63;
     goto switch_break;
     case_2:
     __cil_tmp18 = 0 * 8UL;
     __cil_tmp19 = 144 + __cil_tmp18;
-    __cil_tmp20 = (unsigned long )input;
-    __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-    *bit = (unsigned long *)__cil_tmp21;
+    *bit = (unsigned long *)((void *)input + __cil_tmp19);
     *max = 15;
     goto switch_break;
     case_1:
     __cil_tmp22 = 0 * 8UL;
     __cil_tmp23 = 48 + __cil_tmp22;
-    __cil_tmp24 = (unsigned long )input;
-    __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-    *bit = (unsigned long *)__cil_tmp25;
+    *bit = (unsigned long *)((void *)input + __cil_tmp23);
     *max = 767;
     goto switch_break;
     case_17:
     __cil_tmp26 = 0 * 8UL;
     __cil_tmp27 = 168 + __cil_tmp26;
-    __cil_tmp28 = (unsigned long )input;
-    __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-    *bit = (unsigned long *)__cil_tmp29;
+    *bit = (unsigned long *)((void *)input + __cil_tmp27);
     *max = 15;
     goto switch_break;
   } else {
@@ -1999,8 +1971,6 @@ static __u8 *mr_report_fixup(struct hid_device *hdev , __u8 *rdesc , unsigned in
   __u8 *__cil_tmp8 ;
   __u8 __cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device const *__cil_tmp14 ;
   __u8 *__cil_tmp15 ;
@@ -2019,9 +1989,7 @@ static __u8 *mr_report_fixup(struct hid_device *hdev , __u8 *rdesc , unsigned in
       __cil_tmp10 = (int )__cil_tmp9;
       if (__cil_tmp10 == 9) {
         {
-        __cil_tmp11 = (unsigned long )hdev;
-        __cil_tmp12 = __cil_tmp11 + 6328;
-        __cil_tmp13 = (struct device *)__cil_tmp12;
+        __cil_tmp13 = (struct device *)((void *)hdev + 6328);
         __cil_tmp14 = (struct device const *)__cil_tmp13;
         _dev_info(__cil_tmp14, "fixing up button/consumer in HID report descriptor\n");
         __cil_tmp15 = rdesc + 30;

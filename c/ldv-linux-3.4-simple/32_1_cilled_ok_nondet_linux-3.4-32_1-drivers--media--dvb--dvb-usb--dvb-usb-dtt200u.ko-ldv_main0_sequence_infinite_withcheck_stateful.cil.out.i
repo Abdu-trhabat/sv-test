@@ -6023,17 +6023,13 @@ static int dtt200u_rc_query(struct dvb_usb_device *d , u32 *event , int *state )
 static int dtt200u_frontend_attach(struct dvb_usb_adapter *adap )
 { unsigned long __cil_tmp2 ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct dvb_usb_device *__cil_tmp6 ;
   {
   {
   __cil_tmp2 = 0 * 360UL;
   __cil_tmp3 = 1600 + __cil_tmp2;
-  __cil_tmp4 = (unsigned long )adap;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
   __cil_tmp6 = *((struct dvb_usb_device **)adap);
-  *((struct dvb_frontend **)__cil_tmp5) = dtt200u_fe_attach(__cil_tmp6);
+  *((struct dvb_frontend **)((void *)adap + __cil_tmp3)) = dtt200u_fe_attach(__cil_tmp6);
   }
   return (0);
 }
@@ -8517,8 +8513,6 @@ static int dtt200u_fe_read_status(struct dvb_frontend *fe , fe_status_t *stat )
 { struct dtt200u_fe_state *state ;
   u8 st ;
   u8 b[3] ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 *__cil_tmp9 ;
   struct dvb_usb_device *__cil_tmp10 ;
@@ -8532,9 +8526,7 @@ static int dtt200u_fe_read_status(struct dvb_frontend *fe , fe_status_t *stat )
   u8 __cil_tmp18 ;
   {
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 760;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)fe + 760));
   state = (struct dtt200u_fe_state *)__cil_tmp8;
   __cil_tmp9 = & st;
   *__cil_tmp9 = (u8 )129;
@@ -8581,8 +8573,6 @@ static int dtt200u_fe_read_ber(struct dvb_frontend *fe , u32 *ber )
 { struct dtt200u_fe_state *state ;
   u8 bw ;
   u8 b[3] ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 *__cil_tmp9 ;
   struct dvb_usb_device *__cil_tmp10 ;
@@ -8609,9 +8599,7 @@ static int dtt200u_fe_read_ber(struct dvb_frontend *fe , u32 *ber )
   int __cil_tmp31 ;
   {
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 760;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)fe + 760));
   state = (struct dtt200u_fe_state *)__cil_tmp8;
   __cil_tmp9 = & bw;
   *__cil_tmp9 = (u8 )140;
@@ -8647,8 +8635,6 @@ static int dtt200u_fe_read_unc_blocks(struct dvb_frontend *fe , u32 *unc )
 { struct dtt200u_fe_state *state ;
   u8 bw ;
   u8 b[2] ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 *__cil_tmp9 ;
   struct dvb_usb_device *__cil_tmp10 ;
@@ -8669,9 +8655,7 @@ static int dtt200u_fe_read_unc_blocks(struct dvb_frontend *fe , u32 *unc )
   int __cil_tmp25 ;
   {
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 760;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)fe + 760));
   state = (struct dtt200u_fe_state *)__cil_tmp8;
   __cil_tmp9 = & bw;
   *__cil_tmp9 = (u8 )142;
@@ -8701,8 +8685,6 @@ static int dtt200u_fe_read_signal_strength(struct dvb_frontend *fe , u16 *streng
 { struct dtt200u_fe_state *state ;
   u8 bw ;
   u8 b ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 *__cil_tmp9 ;
   struct dvb_usb_device *__cil_tmp10 ;
@@ -8718,9 +8700,7 @@ static int dtt200u_fe_read_signal_strength(struct dvb_frontend *fe , u16 *streng
   int __cil_tmp20 ;
   {
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 760;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)fe + 760));
   state = (struct dtt200u_fe_state *)__cil_tmp8;
   __cil_tmp9 = & bw;
   *__cil_tmp9 = (u8 )137;
@@ -8745,8 +8725,6 @@ static int dtt200u_fe_read_snr(struct dvb_frontend *fe , u16 *snr )
 { struct dtt200u_fe_state *state ;
   u8 bw ;
   u8 br ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 *__cil_tmp9 ;
   struct dvb_usb_device *__cil_tmp10 ;
@@ -8763,9 +8741,7 @@ static int dtt200u_fe_read_snr(struct dvb_frontend *fe , u16 *snr )
   int __cil_tmp21 ;
   {
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 760;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)fe + 760));
   state = (struct dtt200u_fe_state *)__cil_tmp8;
   __cil_tmp9 = & bw;
   *__cil_tmp9 = (u8 )138;
@@ -8791,17 +8767,13 @@ static int dtt200u_fe_init(struct dvb_frontend *fe )
 { struct dtt200u_fe_state *state ;
   u8 b ;
   int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   u8 *__cil_tmp8 ;
   struct dvb_usb_device *__cil_tmp9 ;
   u16 __cil_tmp10 ;
   {
   {
-  __cil_tmp5 = (unsigned long )fe;
-  __cil_tmp6 = __cil_tmp5 + 760;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)fe + 760));
   state = (struct dtt200u_fe_state *)__cil_tmp7;
   __cil_tmp8 = & b;
   *__cil_tmp8 = (u8 )1;
@@ -8822,18 +8794,11 @@ static int dtt200u_fe_sleep(struct dvb_frontend *fe )
 }
 }
 static int dtt200u_fe_get_tune_settings(struct dvb_frontend *fe , struct dvb_frontend_tune_settings *tune )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
+{
   {
   *((int *)tune) = 1500;
-  __cil_tmp3 = (unsigned long )tune;
-  __cil_tmp4 = __cil_tmp3 + 4;
-  *((int *)__cil_tmp4) = 0;
-  __cil_tmp5 = (unsigned long )tune;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  *((int *)__cil_tmp6) = 0;
+  *((int *)((void *)tune + 4)) = 0;
+  *((int *)((void *)tune + 8)) = 0;
   return (0);
 }
 }
@@ -8845,13 +8810,7 @@ static int dtt200u_fe_set_frontend(struct dvb_frontend *fe )
   u16 freq ;
   u8 bwbuf[2] ;
   u8 freqbuf[3] ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   u32 __cil_tmp16 ;
   u32 __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
@@ -8864,8 +8823,6 @@ static int dtt200u_fe_set_frontend(struct dvb_frontend *fe )
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   u32 __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
@@ -8896,16 +8853,10 @@ static int dtt200u_fe_set_frontend(struct dvb_frontend *fe )
   fe_status_t __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
   {
-  __cil_tmp9 = (unsigned long )fe;
-  __cil_tmp10 = __cil_tmp9 + 800;
-  fep = (struct dtv_frontend_properties *)__cil_tmp10;
-  __cil_tmp11 = (unsigned long )fe;
-  __cil_tmp12 = __cil_tmp11 + 760;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  fep = (struct dtv_frontend_properties *)((void *)fe + 800);
+  __cil_tmp13 = *((void **)((void *)fe + 760));
   state = (struct dtt200u_fe_state *)__cil_tmp13;
-  __cil_tmp14 = (unsigned long )fep;
-  __cil_tmp15 = __cil_tmp14 + 4;
-  __cil_tmp16 = *((u32 *)__cil_tmp15);
+  __cil_tmp16 = *((u32 *)((void *)fep + 4));
   __cil_tmp17 = __cil_tmp16 / 250000U;
   freq = (u16 )__cil_tmp17;
   __cil_tmp18 = 0 * 1UL;
@@ -8924,9 +8875,7 @@ static int dtt200u_fe_set_frontend(struct dvb_frontend *fe )
   __cil_tmp27 = (unsigned long )(freqbuf) + __cil_tmp26;
   *((u8 *)__cil_tmp27) = (u8 )0;
   {
-  __cil_tmp28 = (unsigned long )fep;
-  __cil_tmp29 = __cil_tmp28 + 32;
-  __cil_tmp30 = *((u32 *)__cil_tmp29);
+  __cil_tmp30 = *((u32 *)((void *)fep + 32));
   if ((int )__cil_tmp30 == 8000000) {
     goto case_8000000;
   } else
@@ -9021,45 +8970,29 @@ static int dtt200u_fe_get_frontend(struct dvb_frontend *fe )
   struct dtt200u_fe_state *state ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct dtv_frontend_properties *__cil_tmp14 ;
   void const *__cil_tmp15 ;
   void *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct dtv_frontend_properties *__cil_tmp19 ;
   void const *__cil_tmp20 ;
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 800;
-  fep = (struct dtv_frontend_properties *)__cil_tmp7;
-  __cil_tmp8 = (unsigned long )fe;
-  __cil_tmp9 = __cil_tmp8 + 760;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  fep = (struct dtv_frontend_properties *)((void *)fe + 800);
+  __cil_tmp10 = *((void **)((void *)fe + 760));
   state = (struct dtt200u_fe_state *)__cil_tmp10;
   __len = 140UL;
   if (__len >= 64UL) {
     {
     __cil_tmp11 = (void *)fep;
-    __cil_tmp12 = (unsigned long )state;
-    __cil_tmp13 = __cil_tmp12 + 12;
-    __cil_tmp14 = (struct dtv_frontend_properties *)__cil_tmp13;
+    __cil_tmp14 = (struct dtv_frontend_properties *)((void *)state + 12);
     __cil_tmp15 = (void const *)__cil_tmp14;
     __ret = memcpy(__cil_tmp11, __cil_tmp15, __len);
     }
   } else {
     {
     __cil_tmp16 = (void *)fep;
-    __cil_tmp17 = (unsigned long )state;
-    __cil_tmp18 = __cil_tmp17 + 12;
-    __cil_tmp19 = (struct dtv_frontend_properties *)__cil_tmp18;
+    __cil_tmp19 = (struct dtv_frontend_properties *)((void *)state + 12);
     __cil_tmp20 = (void const *)__cil_tmp19;
     __ret = memcpy(__cil_tmp16, __cil_tmp20, __len);
     }
@@ -9069,15 +9002,11 @@ static int dtt200u_fe_get_frontend(struct dvb_frontend *fe )
 }
 static void dtt200u_fe_release(struct dvb_frontend *fe )
 { struct dtt200u_fe_state *state ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   void const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )fe;
-  __cil_tmp4 = __cil_tmp3 + 760;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)fe + 760));
   state = (struct dtt200u_fe_state *)__cil_tmp5;
   __cil_tmp6 = (void const *)state;
   kfree(__cil_tmp6);
@@ -9097,21 +9026,13 @@ struct dvb_frontend *dtt200u_fe_attach(struct dvb_usb_device *d )
   unsigned long __cil_tmp9 ;
   int *__cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct dvb_frontend_ops *__cil_tmp14 ;
   void *__cil_tmp15 ;
   void const *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct dvb_frontend_ops *__cil_tmp19 ;
   void *__cil_tmp20 ;
   void const *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   void *__cil_tmp27 ;
   {
   {
@@ -9150,31 +9071,23 @@ struct dvb_frontend *dtt200u_fe_attach(struct dvb_usb_device *d )
   __len = 752UL;
   if (__len >= 64UL) {
     {
-    __cil_tmp12 = (unsigned long )state;
-    __cil_tmp13 = __cil_tmp12 + 152;
-    __cil_tmp14 = (struct dvb_frontend_ops *)__cil_tmp13;
+    __cil_tmp14 = (struct dvb_frontend_ops *)((void *)state + 152);
     __cil_tmp15 = (void *)__cil_tmp14;
     __cil_tmp16 = (void const *)(& dtt200u_fe_ops);
     __ret = memcpy(__cil_tmp15, __cil_tmp16, __len);
     }
   } else {
     {
-    __cil_tmp17 = (unsigned long )state;
-    __cil_tmp18 = __cil_tmp17 + 152;
-    __cil_tmp19 = (struct dvb_frontend_ops *)__cil_tmp18;
+    __cil_tmp19 = (struct dvb_frontend_ops *)((void *)state + 152);
     __cil_tmp20 = (void *)__cil_tmp19;
     __cil_tmp21 = (void const *)(& dtt200u_fe_ops);
     __ret = memcpy(__cil_tmp20, __cil_tmp21, __len);
     }
   }
   __cil_tmp22 = 152 + 760;
-  __cil_tmp23 = (unsigned long )state;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  *((void **)__cil_tmp24) = (void *)state;
+  *((void **)((void *)state + __cil_tmp22)) = (void *)state;
   {
-  __cil_tmp25 = (unsigned long )state;
-  __cil_tmp26 = __cil_tmp25 + 152;
-  return ((struct dvb_frontend *)__cil_tmp26);
+  return ((struct dvb_frontend *)((void *)state + 152));
   }
   error:
   {

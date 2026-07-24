@@ -3113,15 +3113,11 @@ extern int ( _dev_info)(struct device const *dev , char const *fmt
 __inline static void *usb_get_intfdata(struct usb_interface *intf ) __attribute__((__no_instrument_function__)) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp___7 = dev_get_drvdata(__cil_tmp6);
   }
@@ -3130,14 +3126,11 @@ __inline static void *usb_get_intfdata(struct usb_interface *intf )
 }
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3146,26 +3139,18 @@ __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf ) __attribute__((__no_instrument_function__)) ;
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf )
 { struct device const *__mptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct usb_device *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   char *__cil_tmp11 ;
   char *__cil_tmp12 ;
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = *((struct device **)__cil_tmp4);
+  __cil_tmp5 = *((struct device **)((void *)intf + 48));
   __mptr = (struct device const *)__cil_tmp5;
   {
   __cil_tmp6 = (struct usb_device *)0;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 136;
-  __cil_tmp9 = (struct device *)__cil_tmp8;
+  __cil_tmp9 = (struct device *)((void *)__cil_tmp6 + 136);
   __cil_tmp10 = (unsigned int )__cil_tmp9;
   __cil_tmp11 = (char *)__mptr;
   __cil_tmp12 = __cil_tmp11 - __cil_tmp10;
@@ -3228,8 +3213,6 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   long tmp___11 ;
   size_t __cil_tmp13 ;
   struct usb_device *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   struct device const *__cil_tmp18 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp19 ;
@@ -3239,8 +3222,6 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   int __cil_tmp23 ;
   long __cil_tmp24 ;
   struct usb_device *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct device *__cil_tmp28 ;
   struct device const *__cil_tmp29 ;
   int __cil_tmp30 ;
@@ -3260,8 +3241,6 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   int __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned char *__cil_tmp49 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp50 ;
   unsigned int __cil_tmp51 ;
@@ -3270,21 +3249,15 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   int __cil_tmp54 ;
   long __cil_tmp55 ;
   struct usb_device *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct device *__cil_tmp59 ;
   struct device const *__cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned char __cil_tmp65 ;
   int __cil_tmp66 ;
   int __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   unsigned char *__cil_tmp72 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp73 ;
   unsigned int __cil_tmp74 ;
@@ -3293,14 +3266,10 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   int __cil_tmp77 ;
   long __cil_tmp78 ;
   struct usb_device *__cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   struct device *__cil_tmp82 ;
   struct device const *__cil_tmp83 ;
   unsigned long __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   unsigned char __cil_tmp88 ;
   int __cil_tmp89 ;
   void const *__cil_tmp90 ;
@@ -3314,9 +3283,7 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   if (! iobuf) {
     {
     __cil_tmp14 = *((struct usb_device **)dev);
-    __cil_tmp15 = (unsigned long )__cil_tmp14;
-    __cil_tmp16 = __cil_tmp15 + 136;
-    __cil_tmp17 = (struct device *)__cil_tmp16;
+    __cil_tmp17 = (struct device *)((void *)__cil_tmp14 + 136);
     __cil_tmp18 = (struct device const *)__cil_tmp17;
     dev_err(__cil_tmp18, "Out of memory!\n");
     retval = -12;
@@ -3342,9 +3309,7 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
       if (tmp___8) {
         {
         __cil_tmp25 = *((struct usb_device **)dev);
-        __cil_tmp26 = (unsigned long )__cil_tmp25;
-        __cil_tmp27 = __cil_tmp26 + 136;
-        __cil_tmp28 = (struct device *)__cil_tmp27;
+        __cil_tmp28 = (struct device *)((void *)__cil_tmp25 + 136);
         __cil_tmp29 = (struct device const *)__cil_tmp28;
         __cil_tmp30 = (int )data;
         __dynamic_dev_dbg(& descriptor, __cil_tmp29, "Sending usb_control_msg (data: %d)\n",
@@ -3389,10 +3354,8 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
     if (__cil_tmp44 == 0) {
       __cil_tmp45 = 0 * 1UL;
       __cil_tmp46 = 8 + __cil_tmp45;
-      __cil_tmp47 = (unsigned long )dev;
-      __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
       __cil_tmp49 = iobuf + 1;
-      *((unsigned char *)__cil_tmp48) = *__cil_tmp49;
+      *((unsigned char *)((void *)dev + __cil_tmp46)) = *__cil_tmp49;
       {
       while (1) {
         while_continue___1: ;
@@ -3411,15 +3374,11 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
           if (tmp___10) {
             {
             __cil_tmp56 = *((struct usb_device **)dev);
-            __cil_tmp57 = (unsigned long )__cil_tmp56;
-            __cil_tmp58 = __cil_tmp57 + 136;
-            __cil_tmp59 = (struct device *)__cil_tmp58;
+            __cil_tmp59 = (struct device *)((void *)__cil_tmp56 + 136);
             __cil_tmp60 = (struct device const *)__cil_tmp59;
             __cil_tmp61 = 0 * 1UL;
             __cil_tmp62 = 8 + __cil_tmp61;
-            __cil_tmp63 = (unsigned long )dev;
-            __cil_tmp64 = __cil_tmp63 + __cil_tmp62;
-            __cil_tmp65 = *((unsigned char *)__cil_tmp64);
+            __cil_tmp65 = *((unsigned char *)((void *)dev + __cil_tmp62));
             __cil_tmp66 = (int )__cil_tmp65;
             __dynamic_dev_dbg(& descriptor___0, __cil_tmp60, "READ_PORT0 returned: %d\n",
                               __cil_tmp66);
@@ -3440,10 +3399,8 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
       if (__cil_tmp67 == 2) {
         __cil_tmp68 = 1 * 1UL;
         __cil_tmp69 = 8 + __cil_tmp68;
-        __cil_tmp70 = (unsigned long )dev;
-        __cil_tmp71 = __cil_tmp70 + __cil_tmp69;
         __cil_tmp72 = iobuf + 1;
-        *((unsigned char *)__cil_tmp71) = *__cil_tmp72;
+        *((unsigned char *)((void *)dev + __cil_tmp69)) = *__cil_tmp72;
         {
         while (1) {
           while_continue___3: ;
@@ -3462,15 +3419,11 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
             if (tmp___11) {
               {
               __cil_tmp79 = *((struct usb_device **)dev);
-              __cil_tmp80 = (unsigned long )__cil_tmp79;
-              __cil_tmp81 = __cil_tmp80 + 136;
-              __cil_tmp82 = (struct device *)__cil_tmp81;
+              __cil_tmp82 = (struct device *)((void *)__cil_tmp79 + 136);
               __cil_tmp83 = (struct device const *)__cil_tmp82;
               __cil_tmp84 = 1 * 1UL;
               __cil_tmp85 = 8 + __cil_tmp84;
-              __cil_tmp86 = (unsigned long )dev;
-              __cil_tmp87 = __cil_tmp86 + __cil_tmp85;
-              __cil_tmp88 = *((unsigned char *)__cil_tmp87);
+              __cil_tmp88 = *((unsigned char *)((void *)dev + __cil_tmp85));
               __cil_tmp89 = (int )__cil_tmp88;
               __dynamic_dev_dbg(& descriptor___1, __cil_tmp83, "READ_PORT1 returned: %d\n",
                                 __cil_tmp89);
@@ -3526,8 +3479,6 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
   size_t tmp___11 ;
   int *__cil_tmp17 ;
   struct usb_interface *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   char *__cil_tmp23 ;
@@ -3539,8 +3490,6 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
   int __cil_tmp29 ;
   long __cil_tmp30 ;
   struct usb_device *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   struct device const *__cil_tmp35 ;
   int *__cil_tmp36 ;
@@ -3558,8 +3507,6 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
   int __cil_tmp48 ;
   long __cil_tmp49 ;
   struct usb_device *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct device *__cil_tmp53 ;
   struct device const *__cil_tmp54 ;
   {
@@ -3569,9 +3516,7 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
   result = 0;
   __mptr = (struct device const *)dev;
   __cil_tmp18 = (struct usb_interface *)0;
-  __cil_tmp19 = (unsigned long )__cil_tmp18;
-  __cil_tmp20 = __cil_tmp19 + 48;
-  __cil_tmp21 = (struct device *)__cil_tmp20;
+  __cil_tmp21 = (struct device *)((void *)__cil_tmp18 + 48);
   __cil_tmp22 = (unsigned int )__cil_tmp21;
   __cil_tmp23 = (char *)__mptr;
   __cil_tmp24 = __cil_tmp23 - __cil_tmp22;
@@ -3597,9 +3542,7 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
       if (tmp___8) {
         {
         __cil_tmp31 = *((struct usb_device **)cyp);
-        __cil_tmp32 = (unsigned long )__cil_tmp31;
-        __cil_tmp33 = __cil_tmp32 + 136;
-        __cil_tmp34 = (struct device *)__cil_tmp33;
+        __cil_tmp34 = (struct device *)((void *)__cil_tmp31 + 136);
         __cil_tmp35 = (struct device const *)__cil_tmp34;
         __dynamic_dev_dbg(& descriptor___2, __cil_tmp35, "WRITE_PORT%d called\n",
                           port_num);
@@ -3665,9 +3608,7 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
       if (tmp___10) {
         {
         __cil_tmp50 = *((struct usb_device **)cyp);
-        __cil_tmp51 = (unsigned long )__cil_tmp50;
-        __cil_tmp52 = __cil_tmp51 + 136;
-        __cil_tmp53 = (struct device *)__cil_tmp52;
+        __cil_tmp53 = (struct device *)((void *)__cil_tmp50 + 136);
         __cil_tmp54 = (struct device const *)__cil_tmp53;
         __dynamic_dev_dbg(& descriptor___3, __cil_tmp54, "Result of vendor_command: %d\n\n",
                           result);
@@ -3732,8 +3673,6 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   long tmp___9 ;
   int tmp___10 ;
   struct usb_interface *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   char *__cil_tmp19 ;
@@ -3745,8 +3684,6 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   int __cil_tmp25 ;
   long __cil_tmp26 ;
   struct usb_device *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct device *__cil_tmp30 ;
   struct device const *__cil_tmp31 ;
   unsigned char __cil_tmp32 ;
@@ -3757,14 +3694,10 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   int __cil_tmp37 ;
   long __cil_tmp38 ;
   struct usb_device *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct device *__cil_tmp42 ;
   struct device const *__cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned char __cil_tmp48 ;
   int __cil_tmp49 ;
   {
@@ -3772,9 +3705,7 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   result = 0;
   __mptr = (struct device const *)dev;
   __cil_tmp14 = (struct usb_interface *)0;
-  __cil_tmp15 = (unsigned long )__cil_tmp14;
-  __cil_tmp16 = __cil_tmp15 + 48;
-  __cil_tmp17 = (struct device *)__cil_tmp16;
+  __cil_tmp17 = (struct device *)((void *)__cil_tmp14 + 48);
   __cil_tmp18 = (unsigned int )__cil_tmp17;
   __cil_tmp19 = (char *)__mptr;
   __cil_tmp20 = __cil_tmp19 - __cil_tmp18;
@@ -3800,9 +3731,7 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
       if (tmp___8) {
         {
         __cil_tmp27 = *((struct usb_device **)cyp);
-        __cil_tmp28 = (unsigned long )__cil_tmp27;
-        __cil_tmp29 = __cil_tmp28 + 136;
-        __cil_tmp30 = (struct device *)__cil_tmp29;
+        __cil_tmp30 = (struct device *)((void *)__cil_tmp27 + 136);
         __cil_tmp31 = (struct device const *)__cil_tmp30;
         __dynamic_dev_dbg(& descriptor___4, __cil_tmp31, "READ_PORT%d called\n", port_num);
         }
@@ -3838,9 +3767,7 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
       if (tmp___9) {
         {
         __cil_tmp39 = *((struct usb_device **)cyp);
-        __cil_tmp40 = (unsigned long )__cil_tmp39;
-        __cil_tmp41 = __cil_tmp40 + 136;
-        __cil_tmp42 = (struct device *)__cil_tmp41;
+        __cil_tmp42 = (struct device *)((void *)__cil_tmp39 + 136);
         __cil_tmp43 = (struct device const *)__cil_tmp42;
         __dynamic_dev_dbg(& descriptor___5, __cil_tmp43, "Result of vendor_command: %d\n\n",
                           result);
@@ -3858,9 +3785,7 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   {
   __cil_tmp44 = port_num * 1UL;
   __cil_tmp45 = 8 + __cil_tmp44;
-  __cil_tmp46 = (unsigned long )cyp;
-  __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-  __cil_tmp48 = *((unsigned char *)__cil_tmp47);
+  __cil_tmp48 = *((unsigned char *)((void *)cyp + __cil_tmp45));
   __cil_tmp49 = (int )__cil_tmp48;
   tmp___10 = sprintf(buf, "%d", __cil_tmp49);
   }
@@ -3898,29 +3823,17 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
   void *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device const *__cil_tmp14 ;
   void *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device_attribute const *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device_attribute const *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct device *__cil_tmp26 ;
   struct device const *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct device *__cil_tmp30 ;
   struct device_attribute const *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   struct device_attribute const *__cil_tmp35 ;
   void *__cil_tmp36 ;
@@ -3940,9 +3853,7 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
   __cil_tmp10 = (unsigned long )dev;
   if (__cil_tmp10 == __cil_tmp9) {
     {
-    __cil_tmp11 = (unsigned long )interface;
-    __cil_tmp12 = __cil_tmp11 + 48;
-    __cil_tmp13 = (struct device *)__cil_tmp12;
+    __cil_tmp13 = (struct device *)((void *)interface + 48);
     __cil_tmp14 = (struct device const *)__cil_tmp13;
     dev_err(__cil_tmp14, "Out of memory!\n");
     }
@@ -3955,9 +3866,7 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
   *((struct usb_device **)dev) = usb_get_dev(tmp___8);
   __cil_tmp15 = (void *)dev;
   usb_set_intfdata(interface, __cil_tmp15);
-  __cil_tmp16 = (unsigned long )interface;
-  __cil_tmp17 = __cil_tmp16 + 48;
-  __cil_tmp18 = (struct device *)__cil_tmp17;
+  __cil_tmp18 = (struct device *)((void *)interface + 48);
   __cil_tmp19 = (struct device_attribute const *)(& dev_attr_port0);
   retval = device_create_file(__cil_tmp18, __cil_tmp19);
   }
@@ -3966,9 +3875,7 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
   } else {
   }
   {
-  __cil_tmp20 = (unsigned long )interface;
-  __cil_tmp21 = __cil_tmp20 + 48;
-  __cil_tmp22 = (struct device *)__cil_tmp21;
+  __cil_tmp22 = (struct device *)((void *)interface + 48);
   __cil_tmp23 = (struct device_attribute const *)(& dev_attr_port1);
   retval = device_create_file(__cil_tmp22, __cil_tmp23);
   }
@@ -3977,23 +3884,17 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
   } else {
   }
   {
-  __cil_tmp24 = (unsigned long )interface;
-  __cil_tmp25 = __cil_tmp24 + 48;
-  __cil_tmp26 = (struct device *)__cil_tmp25;
+  __cil_tmp26 = (struct device *)((void *)interface + 48);
   __cil_tmp27 = (struct device const *)__cil_tmp26;
   _dev_info(__cil_tmp27, "Cypress CY7C63xxx device now attached\n");
   }
   return (0);
   error:
   {
-  __cil_tmp28 = (unsigned long )interface;
-  __cil_tmp29 = __cil_tmp28 + 48;
-  __cil_tmp30 = (struct device *)__cil_tmp29;
+  __cil_tmp30 = (struct device *)((void *)interface + 48);
   __cil_tmp31 = (struct device_attribute const *)(& dev_attr_port0);
   device_remove_file(__cil_tmp30, __cil_tmp31);
-  __cil_tmp32 = (unsigned long )interface;
-  __cil_tmp33 = __cil_tmp32 + 48;
-  __cil_tmp34 = (struct device *)__cil_tmp33;
+  __cil_tmp34 = (struct device *)((void *)interface + 48);
   __cil_tmp35 = (struct device_attribute const *)(& dev_attr_port1);
   device_remove_file(__cil_tmp34, __cil_tmp35);
   __cil_tmp36 = (void *)0;
@@ -4010,18 +3911,12 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
 static void cypress_disconnect(struct usb_interface *interface )
 { struct cypress *dev ;
   void *tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device_attribute const *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device_attribute const *__cil_tmp11 ;
   void *__cil_tmp12 ;
   struct usb_device *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
   void const *__cil_tmp18 ;
@@ -4029,23 +3924,17 @@ static void cypress_disconnect(struct usb_interface *interface )
   {
   tmp___7 = usb_get_intfdata(interface);
   dev = (struct cypress *)tmp___7;
-  __cil_tmp4 = (unsigned long )interface;
-  __cil_tmp5 = __cil_tmp4 + 48;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)interface + 48);
   __cil_tmp7 = (struct device_attribute const *)(& dev_attr_port0);
   device_remove_file(__cil_tmp6, __cil_tmp7);
-  __cil_tmp8 = (unsigned long )interface;
-  __cil_tmp9 = __cil_tmp8 + 48;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)interface + 48);
   __cil_tmp11 = (struct device_attribute const *)(& dev_attr_port1);
   device_remove_file(__cil_tmp10, __cil_tmp11);
   __cil_tmp12 = (void *)0;
   usb_set_intfdata(interface, __cil_tmp12);
   __cil_tmp13 = *((struct usb_device **)dev);
   usb_put_dev(__cil_tmp13);
-  __cil_tmp14 = (unsigned long )interface;
-  __cil_tmp15 = __cil_tmp14 + 48;
-  __cil_tmp16 = (struct device *)__cil_tmp15;
+  __cil_tmp16 = (struct device *)((void *)interface + 48);
   __cil_tmp17 = (struct device const *)__cil_tmp16;
   _dev_info(__cil_tmp17, "Cypress CY7C63xxx device now disconnected\n");
   __cil_tmp18 = (void const *)dev;

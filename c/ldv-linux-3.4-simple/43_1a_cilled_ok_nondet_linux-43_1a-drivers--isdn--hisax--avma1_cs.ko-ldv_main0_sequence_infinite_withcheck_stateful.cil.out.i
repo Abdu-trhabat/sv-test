@@ -2366,71 +2366,39 @@ static int avma1cs_probe(struct pcmcia_device *p_dev )
   long tmp ;
   int tmp___0 ;
   struct _ddebug *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned char __cil_tmp12 ;
   long __cil_tmp13 ;
   long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   struct device const *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   {
   {
   __cil_tmp5 = & descriptor;
   *((char const **)__cil_tmp5) = "avma1_cs";
-  __cil_tmp6 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp6) = "avma1cs_probe";
-  __cil_tmp7 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp7) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4081/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/avma1_cs.c.p";
-  __cil_tmp8 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp8) = "avma1cs_attach()\n";
-  __cil_tmp9 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp9) = 62U;
-  __cil_tmp10 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp10) = (unsigned char)0;
-  __cil_tmp11 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp12 = *((unsigned char *)__cil_tmp11);
+  *((char const **)((void *)(&descriptor) + 8)) = "avma1cs_probe";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4081/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/avma1_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "avma1cs_attach()\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 62U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp12 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp13 = (long )__cil_tmp12;
   __cil_tmp14 = __cil_tmp13 & 1L;
   tmp = __builtin_expect(__cil_tmp14, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp15 = (unsigned long )p_dev;
-    __cil_tmp16 = __cil_tmp15 + 184;
-    __cil_tmp17 = (struct device *)__cil_tmp16;
+    __cil_tmp17 = (struct device *)((void *)p_dev + 184);
     __cil_tmp18 = (struct device const *)__cil_tmp17;
     __dynamic_dev_dbg(& descriptor, __cil_tmp18, "avma1cs_attach()\n");
     }
   } else {
   }
   {
-  __cil_tmp19 = (unsigned long )p_dev;
-  __cil_tmp20 = __cil_tmp19 + 116;
-  __cil_tmp21 = (unsigned long )p_dev;
-  __cil_tmp22 = __cil_tmp21 + 116;
-  __cil_tmp23 = *((unsigned int *)__cil_tmp22);
-  *((unsigned int *)__cil_tmp20) = __cil_tmp23 | 2049U;
-  __cil_tmp24 = (unsigned long )p_dev;
-  __cil_tmp25 = __cil_tmp24 + 124;
-  *((unsigned int *)__cil_tmp25) = 1U;
-  __cil_tmp26 = (unsigned long )p_dev;
-  __cil_tmp27 = __cil_tmp26 + 128;
-  *((unsigned int *)__cil_tmp27) = 1U;
+  __cil_tmp23 = *((unsigned int *)((void *)p_dev + 116));
+  *((unsigned int *)((void *)p_dev + 116)) = __cil_tmp23 | 2049U;
+  *((unsigned int *)((void *)p_dev + 124)) = 1U;
+  *((unsigned int *)((void *)p_dev + 128)) = 1U;
   tmp___0 = avma1cs_config(p_dev);
   }
   return (tmp___0);
@@ -2440,48 +2408,30 @@ static void avma1cs_detach(struct pcmcia_device *link )
 { struct _ddebug descriptor ;
   long tmp ;
   struct _ddebug *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned char __cil_tmp11 ;
   long __cil_tmp12 ;
   long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
   void const *__cil_tmp21 ;
   {
   {
   __cil_tmp4 = & descriptor;
   *((char const **)__cil_tmp4) = "avma1_cs";
-  __cil_tmp5 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp5) = "avma1cs_detach";
-  __cil_tmp6 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp6) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4081/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/avma1_cs.c.p";
-  __cil_tmp7 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp7) = "avma1cs_detach(0x%p)\n";
-  __cil_tmp8 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp8) = 74U;
-  __cil_tmp9 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp9) = (unsigned char)0;
-  __cil_tmp10 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp11 = *((unsigned char *)__cil_tmp10);
+  *((char const **)((void *)(&descriptor) + 8)) = "avma1cs_detach";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4081/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/avma1_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "avma1cs_detach(0x%p)\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 74U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp11 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp12 = (long )__cil_tmp11;
   __cil_tmp13 = __cil_tmp12 & 1L;
   tmp = __builtin_expect(__cil_tmp13, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp14 = (unsigned long )link;
-    __cil_tmp15 = __cil_tmp14 + 184;
-    __cil_tmp16 = (struct device *)__cil_tmp15;
+    __cil_tmp16 = (struct device *)((void *)link + 184);
     __cil_tmp17 = (struct device const *)__cil_tmp16;
     __dynamic_dev_dbg(& descriptor, __cil_tmp17, "avma1cs_detach(0x%p)\n", link);
     }
@@ -2489,9 +2439,7 @@ static void avma1cs_detach(struct pcmcia_device *link )
   }
   {
   avma1cs_release(link);
-  __cil_tmp18 = (unsigned long )link;
-  __cil_tmp19 = __cil_tmp18 + 1336;
-  __cil_tmp20 = *((void **)__cil_tmp19);
+  __cil_tmp20 = *((void **)((void *)link + 1336));
   __cil_tmp21 = (void const *)__cil_tmp20;
   kfree(__cil_tmp21);
   }
@@ -2502,86 +2450,42 @@ static int avma1cs_configcheck(struct pcmcia_device *p_dev , void *priv_data )
 { int tmp ;
   unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct resource *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct resource *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct resource *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct resource *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct resource *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   {
   {
   __cil_tmp4 = 0 * 8UL;
   __cil_tmp5 = 56 + __cil_tmp4;
-  __cil_tmp6 = (unsigned long )p_dev;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  __cil_tmp8 = *((struct resource **)__cil_tmp7);
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  *((resource_size_t *)__cil_tmp10) = 16ULL;
+  __cil_tmp8 = *((struct resource **)((void *)p_dev + __cil_tmp5));
+  *((resource_size_t *)((void *)__cil_tmp8 + 8)) = 16ULL;
   __cil_tmp11 = 0 * 8UL;
   __cil_tmp12 = 56 + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )p_dev;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((struct resource **)__cil_tmp14);
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + 24;
+  __cil_tmp15 = *((struct resource **)((void *)p_dev + __cil_tmp12));
   __cil_tmp18 = 0 * 8UL;
   __cil_tmp19 = 56 + __cil_tmp18;
-  __cil_tmp20 = (unsigned long )p_dev;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  __cil_tmp22 = *((struct resource **)__cil_tmp21);
-  __cil_tmp23 = (unsigned long )__cil_tmp22;
-  __cil_tmp24 = __cil_tmp23 + 24;
-  __cil_tmp25 = *((unsigned long *)__cil_tmp24);
-  *((unsigned long *)__cil_tmp17) = __cil_tmp25 & 0xffffffffffffffe7UL;
+  __cil_tmp22 = *((struct resource **)((void *)p_dev + __cil_tmp19));
+  __cil_tmp25 = *((unsigned long *)((void *)__cil_tmp22 + 24));
+  *((unsigned long *)((void *)__cil_tmp15 + 24)) = __cil_tmp25 & 0xffffffffffffffe7UL;
   __cil_tmp26 = 0 * 8UL;
   __cil_tmp27 = 56 + __cil_tmp26;
-  __cil_tmp28 = (unsigned long )p_dev;
-  __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-  __cil_tmp30 = *((struct resource **)__cil_tmp29);
-  __cil_tmp31 = (unsigned long )__cil_tmp30;
-  __cil_tmp32 = __cil_tmp31 + 24;
+  __cil_tmp30 = *((struct resource **)((void *)p_dev + __cil_tmp27));
   __cil_tmp33 = 0 * 8UL;
   __cil_tmp34 = 56 + __cil_tmp33;
-  __cil_tmp35 = (unsigned long )p_dev;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  __cil_tmp37 = *((struct resource **)__cil_tmp36);
-  __cil_tmp38 = (unsigned long )__cil_tmp37;
-  __cil_tmp39 = __cil_tmp38 + 24;
-  *((unsigned long *)__cil_tmp32) = *((unsigned long *)__cil_tmp39);
-  __cil_tmp40 = (unsigned long )p_dev;
-  __cil_tmp41 = __cil_tmp40 + 132;
-  *((unsigned int *)__cil_tmp41) = 5U;
+  __cil_tmp37 = *((struct resource **)((void *)p_dev + __cil_tmp34));
+  *((unsigned long *)((void *)__cil_tmp30 + 24)) = *((unsigned long *)((void *)__cil_tmp37 + 24));
+  *((unsigned int *)((void *)p_dev + 132)) = 5U;
   tmp = pcmcia_request_io(p_dev);
   }
   return (tmp);
@@ -2597,17 +2501,9 @@ static int avma1cs_config(struct pcmcia_device *link )
   int tmp___0 ;
   int *__cil_tmp9 ;
   struct _ddebug *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned char __cil_tmp17 ;
   long __cil_tmp18 ;
   long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device const *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
@@ -2616,49 +2512,32 @@ static int avma1cs_config(struct pcmcia_device *link )
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   char *__cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   char *__cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   char *__cil_tmp39 ;
   char const *__cil_tmp40 ;
   void *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct resource *__cil_tmp58 ;
   resource_size_t __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   int *__cil_tmp61 ;
   IsdnCard_t *__cil_tmp62 ;
   void *__cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct resource *__cil_tmp68 ;
   resource_size_t __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   {
   {
@@ -2667,27 +2546,19 @@ static int avma1cs_config(struct pcmcia_device *link )
   *__cil_tmp9 = 0;
   __cil_tmp10 = & descriptor;
   *((char const **)__cil_tmp10) = "avma1_cs";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp11) = "avma1cs_config";
-  __cil_tmp12 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp12) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4081/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/avma1_cs.c.p";
-  __cil_tmp13 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp13) = "avma1cs_config(0x%p)\n";
-  __cil_tmp14 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp14) = 97U;
-  __cil_tmp15 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp15) = (unsigned char)0;
-  __cil_tmp16 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp17 = *((unsigned char *)__cil_tmp16);
+  *((char const **)((void *)(&descriptor) + 8)) = "avma1cs_config";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4081/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/avma1_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "avma1cs_config(0x%p)\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 97U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp17 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp18 = (long )__cil_tmp17;
   __cil_tmp19 = __cil_tmp18 & 1L;
   tmp = __builtin_expect(__cil_tmp19, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp20 = (unsigned long )link;
-    __cil_tmp21 = __cil_tmp20 + 184;
-    __cil_tmp22 = (struct device *)__cil_tmp21;
+    __cil_tmp22 = (struct device *)((void *)link + 184);
     __cil_tmp23 = (struct device const *)__cil_tmp22;
     __dynamic_dev_dbg(& descriptor, __cil_tmp23, "avma1cs_config(0x%p)\n", link);
     }
@@ -2701,18 +2572,14 @@ static int avma1cs_config(struct pcmcia_device *link )
   __cil_tmp27 = (unsigned long )__cil_tmp26;
   __cil_tmp28 = 1 * 8UL;
   __cil_tmp29 = 144 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )link;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = *((char **)__cil_tmp31);
+  __cil_tmp32 = *((char **)((void *)link + __cil_tmp29));
   __cil_tmp33 = (unsigned long )__cil_tmp32;
   if (__cil_tmp33 != __cil_tmp27) {
     {
     __cil_tmp34 = (char *)(& devname);
     __cil_tmp35 = 1 * 8UL;
     __cil_tmp36 = 144 + __cil_tmp35;
-    __cil_tmp37 = (unsigned long )link;
-    __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-    __cil_tmp39 = *((char **)__cil_tmp38);
+    __cil_tmp39 = *((char **)((void *)link + __cil_tmp36));
     __cil_tmp40 = (char const *)__cil_tmp39;
     strlcpy(__cil_tmp34, __cil_tmp40, 128UL);
     }
@@ -2728,9 +2595,7 @@ static int avma1cs_config(struct pcmcia_device *link )
   } else {
   }
   {
-  __cil_tmp42 = (unsigned long )link;
-  __cil_tmp43 = __cil_tmp42 + 48;
-  __cil_tmp44 = *((unsigned int *)__cil_tmp43);
+  __cil_tmp44 = *((unsigned int *)((void *)link + 48));
   if (__cil_tmp44 == 0U) {
     {
     pcmcia_disable_device(link);
@@ -2760,24 +2625,17 @@ static int avma1cs_config(struct pcmcia_device *link )
   {
   __cil_tmp45 = 0 * 8UL;
   __cil_tmp46 = 8 + __cil_tmp45;
-  __cil_tmp47 = (unsigned long )(& icard) + __cil_tmp46;
-  __cil_tmp48 = (unsigned long )link;
-  __cil_tmp49 = __cil_tmp48 + 48;
-  __cil_tmp50 = *((unsigned int *)__cil_tmp49);
-  *((unsigned long *)__cil_tmp47) = (unsigned long )__cil_tmp50;
+  __cil_tmp50 = *((unsigned int *)((void *)link + 48));
+  *((unsigned long *)((void *)(&icard) + __cil_tmp46)) = (unsigned long )__cil_tmp50;
   __cil_tmp51 = 1 * 8UL;
   __cil_tmp52 = 8 + __cil_tmp51;
-  __cil_tmp53 = (unsigned long )(& icard) + __cil_tmp52;
   __cil_tmp54 = 0 * 8UL;
   __cil_tmp55 = 56 + __cil_tmp54;
-  __cil_tmp56 = (unsigned long )link;
-  __cil_tmp57 = __cil_tmp56 + __cil_tmp55;
-  __cil_tmp58 = *((struct resource **)__cil_tmp57);
+  __cil_tmp58 = *((struct resource **)((void *)link + __cil_tmp55));
   __cil_tmp59 = *((resource_size_t *)__cil_tmp58);
-  *((unsigned long *)__cil_tmp53) = (unsigned long )__cil_tmp59;
-  __cil_tmp60 = (unsigned long )(& icard) + 4;
+  *((unsigned long *)((void *)(&icard) + __cil_tmp52)) = (unsigned long )__cil_tmp59;
   __cil_tmp61 = & isdnprot;
-  *((int *)__cil_tmp60) = *__cil_tmp61;
+  *((int *)((void *)(&icard) + 4)) = *__cil_tmp61;
   __cil_tmp62 = & icard;
   *((int *)__cil_tmp62) = 26;
   __cil_tmp63 = (void *)link;
@@ -2787,9 +2645,7 @@ static int avma1cs_config(struct pcmcia_device *link )
     {
     __cil_tmp64 = 0 * 8UL;
     __cil_tmp65 = 56 + __cil_tmp64;
-    __cil_tmp66 = (unsigned long )link;
-    __cil_tmp67 = __cil_tmp66 + __cil_tmp65;
-    __cil_tmp68 = *((struct resource **)__cil_tmp67);
+    __cil_tmp68 = *((struct resource **)((void *)link + __cil_tmp65));
     __cil_tmp69 = *((resource_size_t *)__cil_tmp68);
     __cil_tmp70 = (unsigned int )__cil_tmp69;
     printk("<3>avma1_cs: failed to initialize AVM A1 PCMCIA %d at i/o %#x\n", i, __cil_tmp70);
@@ -2798,10 +2654,8 @@ static int avma1cs_config(struct pcmcia_device *link )
     return (-19);
   } else {
   }
-  __cil_tmp71 = (unsigned long )link;
-  __cil_tmp72 = __cil_tmp71 + 1336;
   __cil_tmp73 = (unsigned long )i;
-  *((void **)__cil_tmp72) = (void *)__cil_tmp73;
+  *((void **)((void *)link + 1336)) = (void *)__cil_tmp73;
   return (0);
 }
 }
@@ -2809,53 +2663,33 @@ static void avma1cs_release(struct pcmcia_device *link )
 { unsigned long minor ;
   struct _ddebug descriptor ;
   long tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   struct _ddebug *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned char __cil_tmp15 ;
   long __cil_tmp16 ;
   long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device const *__cil_tmp21 ;
   int __cil_tmp22 ;
   {
   {
-  __cil_tmp5 = (unsigned long )link;
-  __cil_tmp6 = __cil_tmp5 + 1336;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)link + 1336));
   minor = (unsigned long )__cil_tmp7;
   __cil_tmp8 = & descriptor;
   *((char const **)__cil_tmp8) = "avma1_cs";
-  __cil_tmp9 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp9) = "avma1cs_release";
-  __cil_tmp10 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp10) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4081/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/avma1_cs.c.p";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp11) = "avma1cs_release(0x%p)\n";
-  __cil_tmp12 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp12) = 155U;
-  __cil_tmp13 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp13) = (unsigned char)0;
-  __cil_tmp14 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp15 = *((unsigned char *)__cil_tmp14);
+  *((char const **)((void *)(&descriptor) + 8)) = "avma1cs_release";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4081/dscv_tempdir/dscv/ri/43_1a/drivers/isdn/hisax/avma1_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "avma1cs_release(0x%p)\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 155U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp15 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp16 = (long )__cil_tmp15;
   __cil_tmp17 = __cil_tmp16 & 1L;
   tmp = __builtin_expect(__cil_tmp17, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp18 = (unsigned long )link;
-    __cil_tmp19 = __cil_tmp18 + 184;
-    __cil_tmp20 = (struct device *)__cil_tmp19;
+    __cil_tmp20 = (struct device *)((void *)link + 184);
     __cil_tmp21 = (struct device const *)__cil_tmp20;
     __dynamic_dev_dbg(& descriptor, __cil_tmp21, "avma1cs_release(0x%p)\n", link);
     }

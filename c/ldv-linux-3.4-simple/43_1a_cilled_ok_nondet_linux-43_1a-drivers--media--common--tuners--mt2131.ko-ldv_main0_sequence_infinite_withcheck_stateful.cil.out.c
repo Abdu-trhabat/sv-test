@@ -3245,8 +3245,6 @@ static int mt2131_readreg(struct mt2131_priv *priv , u8 reg , u8 *val )
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct i2c_adapter *__cil_tmp34 ;
   struct i2c_msg *__cil_tmp35 ;
 
@@ -3286,9 +3284,7 @@ static int mt2131_readreg(struct mt2131_priv *priv , u8 reg , u8 *val )
   __cil_tmp30 = __cil_tmp29 + 8;
   __cil_tmp31 = (unsigned long )(msg) + __cil_tmp30;
   *((__u8 **)__cil_tmp31) = val;
-  __cil_tmp32 = (unsigned long )priv;
-  __cil_tmp33 = __cil_tmp32 + 8;
-  __cil_tmp34 = *((struct i2c_adapter **)__cil_tmp33);
+  __cil_tmp34 = *((struct i2c_adapter **)((void *)priv + 8));
   __cil_tmp35 = (struct i2c_msg *)(& msg);
   tmp = i2c_transfer(__cil_tmp34, __cil_tmp35, 2);
   }
@@ -3314,11 +3310,6 @@ static int mt2131_writereg(struct mt2131_priv *priv , u8 reg , u8 val )
   struct i2c_msg *__cil_tmp11 ;
   struct mt2131_config *__cil_tmp12 ;
   u8 __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct i2c_adapter *__cil_tmp19 ;
 
   {
@@ -3333,15 +3324,10 @@ static int mt2131_writereg(struct mt2131_priv *priv , u8 reg , u8 val )
   __cil_tmp12 = *((struct mt2131_config **)priv);
   __cil_tmp13 = *((u8 *)__cil_tmp12);
   *((__u16 *)__cil_tmp11) = (unsigned short )__cil_tmp13;
-  __cil_tmp14 = (unsigned long )(& msg) + 2;
-  *((__u16 *)__cil_tmp14) = (__u16 )0U;
-  __cil_tmp15 = (unsigned long )(& msg) + 4;
-  *((__u16 *)__cil_tmp15) = (__u16 )2U;
-  __cil_tmp16 = (unsigned long )(& msg) + 8;
-  *((__u8 **)__cil_tmp16) = (__u8 *)(& buf);
-  __cil_tmp17 = (unsigned long )priv;
-  __cil_tmp18 = __cil_tmp17 + 8;
-  __cil_tmp19 = *((struct i2c_adapter **)__cil_tmp18);
+  *((__u16 *)((void *)(&msg) + 2)) = (__u16 )0U;
+  *((__u16 *)((void *)(&msg) + 4)) = (__u16 )2U;
+  *((__u8 **)((void *)(&msg) + 8)) = (__u8 *)(& buf);
+  __cil_tmp19 = *((struct i2c_adapter **)((void *)priv + 8));
   tmp = i2c_transfer(__cil_tmp19, & msg, 1);
   }
   if (tmp != 1) {
@@ -3361,11 +3347,6 @@ static int mt2131_writeregs(struct mt2131_priv *priv , u8 *buf , u8 len )
   struct i2c_msg *__cil_tmp6 ;
   struct mt2131_config *__cil_tmp7 ;
   u8 __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct i2c_adapter *__cil_tmp14 ;
   int __cil_tmp15 ;
 
@@ -3375,15 +3356,10 @@ static int mt2131_writeregs(struct mt2131_priv *priv , u8 *buf , u8 len )
   __cil_tmp7 = *((struct mt2131_config **)priv);
   __cil_tmp8 = *((u8 *)__cil_tmp7);
   *((__u16 *)__cil_tmp6) = (unsigned short )__cil_tmp8;
-  __cil_tmp9 = (unsigned long )(& msg) + 2;
-  *((__u16 *)__cil_tmp9) = (__u16 )0U;
-  __cil_tmp10 = (unsigned long )(& msg) + 4;
-  *((__u16 *)__cil_tmp10) = (unsigned short )len;
-  __cil_tmp11 = (unsigned long )(& msg) + 8;
-  *((__u8 **)__cil_tmp11) = buf;
-  __cil_tmp12 = (unsigned long )priv;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = *((struct i2c_adapter **)__cil_tmp13);
+  *((__u16 *)((void *)(&msg) + 2)) = (__u16 )0U;
+  *((__u16 *)((void *)(&msg) + 4)) = (unsigned short )len;
+  *((__u8 **)((void *)(&msg) + 8)) = buf;
+  __cil_tmp14 = *((struct i2c_adapter **)((void *)priv + 8));
   tmp = i2c_transfer(__cil_tmp14, & msg, 1);
   }
   if (tmp != 1) {
@@ -3413,22 +3389,14 @@ static int mt2131_set_params(struct dvb_frontend *fe )
   u32 num2 ;
   u8 b[8U] ;
   u8 lockval ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u8 *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   void *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   u32 __cil_tmp24 ;
   int *__cil_tmp25 ;
   int __cil_tmp26 ;
   char *__cil_tmp27 ;
   u32 __cil_tmp28 ;
   u32 __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   u32 __cil_tmp32 ;
   u32 __cil_tmp33 ;
   u32 __cil_tmp34 ;
@@ -3514,19 +3482,13 @@ static int mt2131_set_params(struct dvb_frontend *fe )
   int __cil_tmp114 ;
 
   {
-  __cil_tmp16 = (unsigned long )fe;
-  __cil_tmp17 = __cil_tmp16 + 800;
-  c = (struct dtv_frontend_properties *)__cil_tmp17;
+  c = (struct dtv_frontend_properties *)((void *)fe + 800);
   ret = 0;
   __cil_tmp18 = & lockval;
   *__cil_tmp18 = (u8 )0U;
-  __cil_tmp19 = (unsigned long )fe;
-  __cil_tmp20 = __cil_tmp19 + 768;
-  __cil_tmp21 = *((void **)__cil_tmp20);
+  __cil_tmp21 = *((void **)((void *)fe + 768));
   priv = (struct mt2131_priv *)__cil_tmp21;
-  __cil_tmp22 = (unsigned long )c;
-  __cil_tmp23 = __cil_tmp22 + 4;
-  __cil_tmp24 = *((u32 *)__cil_tmp23);
+  __cil_tmp24 = *((u32 *)((void *)c + 4));
   freq = __cil_tmp24 / 1000U;
   {
   __cil_tmp25 = & debug;
@@ -3545,11 +3507,9 @@ static int mt2131_set_params(struct dvb_frontend *fe )
   f_lo1 = __cil_tmp28 * 250U;
   __cil_tmp29 = f_lo1 - freq;
   f_lo2 = __cil_tmp29 - 44000U;
-  __cil_tmp30 = (unsigned long )priv;
-  __cil_tmp31 = __cil_tmp30 + 16;
   __cil_tmp32 = f_lo1 - f_lo2;
   __cil_tmp33 = __cil_tmp32 * 1000U;
-  *((u32 *)__cil_tmp31) = __cil_tmp33 + 4250967296U;
+  *((u32 *)((void *)priv + 16)) = __cil_tmp33 + 4250967296U;
   __cil_tmp34 = f_lo1 * 64U;
   num1 = __cil_tmp34 / 125U;
   div1 = num1 / 8192U;
@@ -3788,19 +3748,13 @@ static int mt2131_set_params(struct dvb_frontend *fe )
 }
 static int mt2131_get_frequency(struct dvb_frontend *fe , u32 *frequency ) 
 { struct mt2131_priv *priv ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   int *__cil_tmp7 ;
   int __cil_tmp8 ;
   char *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
 
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 768;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)fe + 768));
   priv = (struct mt2131_priv *)__cil_tmp6;
   {
   __cil_tmp7 = & debug;
@@ -3814,9 +3768,7 @@ static int mt2131_get_frequency(struct dvb_frontend *fe , u32 *frequency )
 
   }
   }
-  __cil_tmp10 = (unsigned long )priv;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  *frequency = *((u32 *)__cil_tmp11);
+  *frequency = *((u32 *)((void *)priv + 16));
   return (0);
 }
 }
@@ -3824,8 +3776,6 @@ static int mt2131_get_status(struct dvb_frontend *fe , u32 *status )
 { struct mt2131_priv *priv ;
   u8 lock_status ;
   u8 afc_status ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 *__cil_tmp9 ;
   u8 *__cil_tmp10 ;
@@ -3847,9 +3797,7 @@ static int mt2131_get_status(struct dvb_frontend *fe , u32 *status )
 
   {
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 768;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)fe + 768));
   priv = (struct mt2131_priv *)__cil_tmp8;
   __cil_tmp9 = & lock_status;
   *__cil_tmp9 = (u8 )0U;
@@ -3899,8 +3847,6 @@ static int mt2131_get_status(struct dvb_frontend *fe , u32 *status )
 static int mt2131_init(struct dvb_frontend *fe ) 
 { struct mt2131_priv *priv ;
   int ret ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   int *__cil_tmp7 ;
   int __cil_tmp8 ;
@@ -3919,9 +3865,7 @@ static int mt2131_init(struct dvb_frontend *fe )
   u8 __cil_tmp21 ;
 
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 768;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)fe + 768));
   priv = (struct mt2131_priv *)__cil_tmp6;
   {
   __cil_tmp7 = & debug;
@@ -3974,12 +3918,8 @@ static int mt2131_release(struct dvb_frontend *fe )
 { int *__cil_tmp2 ;
   int __cil_tmp3 ;
   char *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   void const   *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
 
   {
   {
@@ -3995,14 +3935,10 @@ static int mt2131_release(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp5 = (unsigned long )fe;
-  __cil_tmp6 = __cil_tmp5 + 768;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)fe + 768));
   __cil_tmp8 = (void const   *)__cil_tmp7;
   kfree(__cil_tmp8);
-  __cil_tmp9 = (unsigned long )fe;
-  __cil_tmp10 = __cil_tmp9 + 768;
-  *((void **)__cil_tmp10) = (void *)0;
+  *((void **)((void *)fe + 768)) = (void *)0;
   }
   return (0);
 }
@@ -4037,8 +3973,6 @@ struct dvb_frontend *mt2131_attach(struct dvb_frontend *fe , struct i2c_adapter 
   struct mt2131_priv *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u8 __cil_tmp20 ;
   void const   *__cil_tmp21 ;
   u8 *__cil_tmp22 ;
@@ -4053,19 +3987,13 @@ struct dvb_frontend *mt2131_attach(struct dvb_frontend *fe , struct i2c_adapter 
   u8 __cil_tmp31 ;
   int __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct dvb_tuner_ops *__cil_tmp36 ;
   void *__cil_tmp37 ;
   void const   *__cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct dvb_tuner_ops *__cil_tmp42 ;
   void *__cil_tmp43 ;
   void const   *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
 
   {
   priv = (struct mt2131_priv *)0;
@@ -4099,9 +4027,7 @@ struct dvb_frontend *mt2131_attach(struct dvb_frontend *fe , struct i2c_adapter 
   }
   {
   *((struct mt2131_config **)priv) = cfg;
-  __cil_tmp18 = (unsigned long )priv;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  *((struct i2c_adapter **)__cil_tmp19) = i2c;
+  *((struct i2c_adapter **)((void *)priv + 8)) = i2c;
   __cil_tmp20 = (u8 )0;
   tmp___0 = mt2131_readreg(priv, __cil_tmp20, & id);
   }
@@ -4149,9 +4075,7 @@ struct dvb_frontend *mt2131_attach(struct dvb_frontend *fe , struct i2c_adapter 
   if (__len > 63UL) {
     {
     __cil_tmp33 = 0 + 384;
-    __cil_tmp34 = (unsigned long )fe;
-    __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-    __cil_tmp36 = (struct dvb_tuner_ops *)__cil_tmp35;
+    __cil_tmp36 = (struct dvb_tuner_ops *)((void *)fe + __cil_tmp33);
     __cil_tmp37 = (void *)__cil_tmp36;
     __cil_tmp38 = (void const   *)(& mt2131_tuner_ops);
     __ret = memcpy(__cil_tmp37, __cil_tmp38, __len);
@@ -4159,17 +4083,13 @@ struct dvb_frontend *mt2131_attach(struct dvb_frontend *fe , struct i2c_adapter 
   } else {
     {
     __cil_tmp39 = 0 + 384;
-    __cil_tmp40 = (unsigned long )fe;
-    __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-    __cil_tmp42 = (struct dvb_tuner_ops *)__cil_tmp41;
+    __cil_tmp42 = (struct dvb_tuner_ops *)((void *)fe + __cil_tmp39);
     __cil_tmp43 = (void *)__cil_tmp42;
     __cil_tmp44 = (void const   *)(& mt2131_tuner_ops);
     __ret = memcpy(__cil_tmp43, __cil_tmp44, __len);
     }
   }
-  __cil_tmp45 = (unsigned long )fe;
-  __cil_tmp46 = __cil_tmp45 + 768;
-  *((void **)__cil_tmp46) = (void *)priv;
+  *((void **)((void *)fe + 768)) = (void *)priv;
   return (fe);
 }
 }

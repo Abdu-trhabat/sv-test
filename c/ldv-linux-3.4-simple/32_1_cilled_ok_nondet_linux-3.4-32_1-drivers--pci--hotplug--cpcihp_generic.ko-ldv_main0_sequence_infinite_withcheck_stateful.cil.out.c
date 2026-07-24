@@ -3161,13 +3161,12 @@ extern struct pv_cpu_ops pv_cpu_ops ;
 extern void *memset(void *s , int c , size_t n ) ;
 __inline static void slow_down_io(void)  __attribute__((__no_instrument_function__)) ;
 __inline static void slow_down_io(void) 
-{ unsigned long __cil_tmp1 ;
+{
   void (*__cil_tmp2)(void) ;
 
   {
   {
-  __cil_tmp1 = (unsigned long )(& pv_cpu_ops) + 216;
-  __cil_tmp2 = *((void (**)(void))__cil_tmp1);
+  __cil_tmp2 = *((void (**)(void))((void *)(&pv_cpu_ops) + 216));
   (*__cil_tmp2)();
   }
   return;
@@ -3249,7 +3248,6 @@ static int validate_parameters(void)
   char *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   char *__cil_tmp9 ;
   char **__cil_tmp10 ;
   char __cil_tmp11 ;
@@ -3260,16 +3258,13 @@ static int validate_parameters(void)
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   char *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   char *__cil_tmp24 ;
   bool *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   char *__cil_tmp29 ;
   int __cil_tmp30 ;
   char **__cil_tmp31 ;
@@ -3278,7 +3273,6 @@ static int validate_parameters(void)
   int __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   char *__cil_tmp38 ;
   char **__cil_tmp39 ;
   char *__cil_tmp40 ;
@@ -3289,22 +3283,18 @@ static int validate_parameters(void)
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   char *__cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   char *__cil_tmp53 ;
   bool *__cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   char *__cil_tmp58 ;
   int __cil_tmp59 ;
   bool *__cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   char *__cil_tmp64 ;
   u8 *__cil_tmp65 ;
   u8 __cil_tmp66 ;
@@ -3312,7 +3302,6 @@ static int validate_parameters(void)
   bool *__cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   char *__cil_tmp72 ;
   u8 *__cil_tmp73 ;
   u8 __cil_tmp74 ;
@@ -3321,11 +3310,9 @@ static int validate_parameters(void)
   u8 *__cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   char *__cil_tmp81 ;
   unsigned long __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   char *__cil_tmp85 ;
   u8 *__cil_tmp86 ;
   u8 __cil_tmp87 ;
@@ -3335,12 +3322,10 @@ static int validate_parameters(void)
   int __cil_tmp91 ;
   unsigned long __cil_tmp92 ;
   unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   char *__cil_tmp95 ;
   bool *__cil_tmp96 ;
   unsigned long __cil_tmp97 ;
   unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   char *__cil_tmp100 ;
   u16 *__cil_tmp101 ;
   u16 __cil_tmp102 ;
@@ -3348,7 +3333,6 @@ static int validate_parameters(void)
   bool *__cil_tmp104 ;
   unsigned long __cil_tmp105 ;
   unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   char *__cil_tmp108 ;
   unsigned int *__cil_tmp109 ;
   unsigned int __cil_tmp110 ;
@@ -3356,7 +3340,6 @@ static int validate_parameters(void)
   unsigned int __cil_tmp112 ;
   unsigned long __cil_tmp113 ;
   unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
   char *__cil_tmp116 ;
   unsigned int *__cil_tmp117 ;
   unsigned int __cil_tmp118 ;
@@ -3370,8 +3353,7 @@ static int validate_parameters(void)
     {
     __cil_tmp6 = 0 * 1UL;
     __cil_tmp7 = 24 + __cil_tmp6;
-    __cil_tmp8 = (unsigned long )(& __this_module) + __cil_tmp7;
-    __cil_tmp9 = (char *)__cil_tmp8;
+    __cil_tmp9 = (char *)((void *)(&__this_module) + __cil_tmp7);
     printk("<6>%s: not configured, disabling.\n", __cil_tmp9);
     }
     return (-22);
@@ -3402,8 +3384,7 @@ static int validate_parameters(void)
     {
     __cil_tmp17 = 0 * 1UL;
     __cil_tmp18 = 24 + __cil_tmp17;
-    __cil_tmp19 = (unsigned long )(& __this_module) + __cil_tmp18;
-    __cil_tmp20 = (char *)__cil_tmp19;
+    __cil_tmp20 = (char *)((void *)(&__this_module) + __cil_tmp18);
     printk("<3>%s: Invalid hotplug bus bridge device bus number\n", __cil_tmp20);
     }
     return (-22);
@@ -3412,8 +3393,7 @@ static int validate_parameters(void)
     {
     __cil_tmp21 = 0 * 1UL;
     __cil_tmp22 = 24 + __cil_tmp21;
-    __cil_tmp23 = (unsigned long )(& __this_module) + __cil_tmp22;
-    __cil_tmp24 = (char *)__cil_tmp23;
+    __cil_tmp24 = (char *)((void *)(&__this_module) + __cil_tmp22);
     printk("<3>%s: Invalid hotplug bus bridge device bus number\n", __cil_tmp24);
     }
     return (-22);
@@ -3431,8 +3411,7 @@ static int validate_parameters(void)
       {
       __cil_tmp26 = 0 * 1UL;
       __cil_tmp27 = 24 + __cil_tmp26;
-      __cil_tmp28 = (unsigned long )(& __this_module) + __cil_tmp27;
-      __cil_tmp29 = (char *)__cil_tmp28;
+      __cil_tmp29 = (char *)((void *)(&__this_module) + __cil_tmp27);
       __cil_tmp30 = (int )bridge_busnr;
       printk("<7>%s: bridge_busnr = 0x%02x\n", __cil_tmp29, __cil_tmp30);
       }
@@ -3453,8 +3432,7 @@ static int validate_parameters(void)
     {
     __cil_tmp35 = 0 * 1UL;
     __cil_tmp36 = 24 + __cil_tmp35;
-    __cil_tmp37 = (unsigned long )(& __this_module) + __cil_tmp36;
-    __cil_tmp38 = (char *)__cil_tmp37;
+    __cil_tmp38 = (char *)((void *)(&__this_module) + __cil_tmp36);
     printk("<3>%s: Invalid hotplug bus bridge device\n", __cil_tmp38);
     }
     return (-22);
@@ -3478,8 +3456,7 @@ static int validate_parameters(void)
     {
     __cil_tmp46 = 0 * 1UL;
     __cil_tmp47 = 24 + __cil_tmp46;
-    __cil_tmp48 = (unsigned long )(& __this_module) + __cil_tmp47;
-    __cil_tmp49 = (char *)__cil_tmp48;
+    __cil_tmp49 = (char *)((void *)(&__this_module) + __cil_tmp47);
     printk("<3>%s: Invalid hotplug bus bridge device slot number\n", __cil_tmp49);
     }
     return (-22);
@@ -3488,8 +3465,7 @@ static int validate_parameters(void)
     {
     __cil_tmp50 = 0 * 1UL;
     __cil_tmp51 = 24 + __cil_tmp50;
-    __cil_tmp52 = (unsigned long )(& __this_module) + __cil_tmp51;
-    __cil_tmp53 = (char *)__cil_tmp52;
+    __cil_tmp53 = (char *)((void *)(&__this_module) + __cil_tmp51);
     printk("<3>%s: Invalid hotplug bus bridge device slot number\n", __cil_tmp53);
     }
     return (-22);
@@ -3507,8 +3483,7 @@ static int validate_parameters(void)
       {
       __cil_tmp55 = 0 * 1UL;
       __cil_tmp56 = 24 + __cil_tmp55;
-      __cil_tmp57 = (unsigned long )(& __this_module) + __cil_tmp56;
-      __cil_tmp58 = (char *)__cil_tmp57;
+      __cil_tmp58 = (char *)((void *)(&__this_module) + __cil_tmp56);
       __cil_tmp59 = (int )bridge_slot;
       printk("<7>%s: bridge_slot = 0x%02x\n", __cil_tmp58, __cil_tmp59);
       }
@@ -3529,8 +3504,7 @@ static int validate_parameters(void)
       {
       __cil_tmp61 = 0 * 1UL;
       __cil_tmp62 = 24 + __cil_tmp61;
-      __cil_tmp63 = (unsigned long )(& __this_module) + __cil_tmp62;
-      __cil_tmp64 = (char *)__cil_tmp63;
+      __cil_tmp64 = (char *)((void *)(&__this_module) + __cil_tmp62);
       __cil_tmp65 = & first_slot;
       __cil_tmp66 = *__cil_tmp65;
       __cil_tmp67 = (int )__cil_tmp66;
@@ -3553,8 +3527,7 @@ static int validate_parameters(void)
       {
       __cil_tmp69 = 0 * 1UL;
       __cil_tmp70 = 24 + __cil_tmp69;
-      __cil_tmp71 = (unsigned long )(& __this_module) + __cil_tmp70;
-      __cil_tmp72 = (char *)__cil_tmp71;
+      __cil_tmp72 = (char *)((void *)(&__this_module) + __cil_tmp70);
       __cil_tmp73 = & last_slot;
       __cil_tmp74 = *__cil_tmp73;
       __cil_tmp75 = (int )__cil_tmp74;
@@ -3579,8 +3552,7 @@ static int validate_parameters(void)
       {
       __cil_tmp78 = 0 * 1UL;
       __cil_tmp79 = 24 + __cil_tmp78;
-      __cil_tmp80 = (unsigned long )(& __this_module) + __cil_tmp79;
-      __cil_tmp81 = (char *)__cil_tmp80;
+      __cil_tmp81 = (char *)((void *)(&__this_module) + __cil_tmp79);
       printk("<3>%s: Need to specify first_slot and last_slot\n", __cil_tmp81);
       }
       return (-22);
@@ -3590,8 +3562,7 @@ static int validate_parameters(void)
     {
     __cil_tmp82 = 0 * 1UL;
     __cil_tmp83 = 24 + __cil_tmp82;
-    __cil_tmp84 = (unsigned long )(& __this_module) + __cil_tmp83;
-    __cil_tmp85 = (char *)__cil_tmp84;
+    __cil_tmp85 = (char *)((void *)(&__this_module) + __cil_tmp83);
     printk("<3>%s: Need to specify first_slot and last_slot\n", __cil_tmp85);
     }
     return (-22);
@@ -3608,8 +3579,7 @@ static int validate_parameters(void)
     {
     __cil_tmp92 = 0 * 1UL;
     __cil_tmp93 = 24 + __cil_tmp92;
-    __cil_tmp94 = (unsigned long )(& __this_module) + __cil_tmp93;
-    __cil_tmp95 = (char *)__cil_tmp94;
+    __cil_tmp95 = (char *)((void *)(&__this_module) + __cil_tmp93);
     printk("<3>%s: first_slot must be less than last_slot\n", __cil_tmp95);
     }
     return (-22);
@@ -3626,8 +3596,7 @@ static int validate_parameters(void)
       {
       __cil_tmp97 = 0 * 1UL;
       __cil_tmp98 = 24 + __cil_tmp97;
-      __cil_tmp99 = (unsigned long )(& __this_module) + __cil_tmp98;
-      __cil_tmp100 = (char *)__cil_tmp99;
+      __cil_tmp100 = (char *)((void *)(&__this_module) + __cil_tmp98);
       __cil_tmp101 = & port;
       __cil_tmp102 = *__cil_tmp101;
       __cil_tmp103 = (int )__cil_tmp102;
@@ -3650,8 +3619,7 @@ static int validate_parameters(void)
       {
       __cil_tmp105 = 0 * 1UL;
       __cil_tmp106 = 24 + __cil_tmp105;
-      __cil_tmp107 = (unsigned long )(& __this_module) + __cil_tmp106;
-      __cil_tmp108 = (char *)__cil_tmp107;
+      __cil_tmp108 = (char *)((void *)(&__this_module) + __cil_tmp106);
       __cil_tmp109 = & enum_bit;
       __cil_tmp110 = *__cil_tmp109;
       printk("<7>%s: enum_bit = 0x%02x\n", __cil_tmp108, __cil_tmp110);
@@ -3671,8 +3639,7 @@ static int validate_parameters(void)
     {
     __cil_tmp113 = 0 * 1UL;
     __cil_tmp114 = 24 + __cil_tmp113;
-    __cil_tmp115 = (unsigned long )(& __this_module) + __cil_tmp114;
-    __cil_tmp116 = (char *)__cil_tmp115;
+    __cil_tmp116 = (char *)((void *)(&__this_module) + __cil_tmp114);
     printk("<3>%s: Invalid #ENUM bit\n", __cil_tmp116);
     }
     return (-22);
@@ -3720,7 +3687,6 @@ static int cpcihp_generic_init(void)
   struct pci_dev *dev ;
   unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   char *__cil_tmp7 ;
   u16 *__cil_tmp8 ;
   u16 __cil_tmp9 ;
@@ -3729,7 +3695,6 @@ static int cpcihp_generic_init(void)
   int __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   char *__cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
@@ -3738,33 +3703,24 @@ static int cpcihp_generic_init(void)
   unsigned int __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   char *__cil_tmp25 ;
   char **__cil_tmp26 ;
   char *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   u8 __cil_tmp30 ;
   int __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   char *__cil_tmp35 ;
   char **__cil_tmp36 ;
   char *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   void *__cil_tmp40 ;
   struct cpci_hp_controller_ops *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   char *__cil_tmp46 ;
   bool *__cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   char *__cil_tmp51 ;
   u8 *__cil_tmp52 ;
   u8 __cil_tmp53 ;
@@ -3772,33 +3728,27 @@ static int cpcihp_generic_init(void)
   u8 __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   char *__cil_tmp59 ;
   bool *__cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   char *__cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   char *__cil_tmp68 ;
   bool *__cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   char *__cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   char *__cil_tmp77 ;
 
   {
   {
   __cil_tmp4 = 0 * 1UL;
   __cil_tmp5 = 24 + __cil_tmp4;
-  __cil_tmp6 = (unsigned long )(& __this_module) + __cil_tmp5;
-  __cil_tmp7 = (char *)__cil_tmp6;
+  __cil_tmp7 = (char *)((void *)(&__this_module) + __cil_tmp5);
   printk("<6>%s: Generic port I/O CompactPCI Hot Plug Driver version: 0.1\n", __cil_tmp7);
   status = validate_parameters();
   }
@@ -3828,8 +3778,7 @@ static int cpcihp_generic_init(void)
     {
     __cil_tmp13 = 0 * 1UL;
     __cil_tmp14 = 24 + __cil_tmp13;
-    __cil_tmp15 = (unsigned long )(& __this_module) + __cil_tmp14;
-    __cil_tmp16 = (char *)__cil_tmp15;
+    __cil_tmp16 = (char *)((void *)(&__this_module) + __cil_tmp14);
     __cil_tmp17 = (int )bridge_busnr;
     printk("<3>%s: Invalid bus number %d\n", __cil_tmp16, __cil_tmp17);
     }
@@ -3848,8 +3797,7 @@ static int cpcihp_generic_init(void)
     {
     __cil_tmp22 = 0 * 1UL;
     __cil_tmp23 = 24 + __cil_tmp22;
-    __cil_tmp24 = (unsigned long )(& __this_module) + __cil_tmp23;
-    __cil_tmp25 = (char *)__cil_tmp24;
+    __cil_tmp25 = (char *)((void *)(&__this_module) + __cil_tmp23);
     __cil_tmp26 = & bridge;
     __cil_tmp27 = *__cil_tmp26;
     printk("<3>%s: Invalid bridge device %s\n", __cil_tmp25, __cil_tmp27);
@@ -3858,16 +3806,13 @@ static int cpcihp_generic_init(void)
     return (-22);
   } else {
     {
-    __cil_tmp28 = (unsigned long )dev;
-    __cil_tmp29 = __cil_tmp28 + 73;
-    __cil_tmp30 = *((u8 *)__cil_tmp29);
+    __cil_tmp30 = *((u8 *)((void *)dev + 73));
     __cil_tmp31 = (int )__cil_tmp30;
     if (__cil_tmp31 != 1) {
       {
       __cil_tmp32 = 0 * 1UL;
       __cil_tmp33 = 24 + __cil_tmp32;
-      __cil_tmp34 = (unsigned long )(& __this_module) + __cil_tmp33;
-      __cil_tmp35 = (char *)__cil_tmp34;
+      __cil_tmp35 = (char *)((void *)(&__this_module) + __cil_tmp33);
       __cil_tmp36 = & bridge;
       __cil_tmp37 = *__cil_tmp36;
       printk("<3>%s: Invalid bridge device %s\n", __cil_tmp35, __cil_tmp37);
@@ -3880,24 +3825,20 @@ static int cpcihp_generic_init(void)
     }
   }
   {
-  __cil_tmp38 = (unsigned long )dev;
-  __cil_tmp39 = __cil_tmp38 + 24;
-  bus = *((struct pci_bus **)__cil_tmp39);
+  bus = *((struct pci_bus **)((void *)dev + 24));
   pci_dev_put(dev);
   __cil_tmp40 = (void *)(& generic_hpc);
   memset(__cil_tmp40, 0, 48UL);
   __cil_tmp41 = & generic_hpc_ops;
   *((int (**)(void))__cil_tmp41) = & query_enum;
-  __cil_tmp42 = (unsigned long )(& generic_hpc) + 40;
-  *((struct cpci_hp_controller_ops **)__cil_tmp42) = & generic_hpc_ops;
+  *((struct cpci_hp_controller_ops **)((void *)(&generic_hpc) + 40)) = & generic_hpc_ops;
   status = cpci_hp_register_controller(& generic_hpc);
   }
   if (status != 0) {
     {
     __cil_tmp43 = 0 * 1UL;
     __cil_tmp44 = 24 + __cil_tmp43;
-    __cil_tmp45 = (unsigned long )(& __this_module) + __cil_tmp44;
-    __cil_tmp46 = (char *)__cil_tmp45;
+    __cil_tmp46 = (char *)((void *)(&__this_module) + __cil_tmp44);
     printk("<3>%s: Could not register cPCI hotplug controller\n", __cil_tmp46);
     }
     return (-19);
@@ -3913,8 +3854,7 @@ static int cpcihp_generic_init(void)
       {
       __cil_tmp48 = 0 * 1UL;
       __cil_tmp49 = 24 + __cil_tmp48;
-      __cil_tmp50 = (unsigned long )(& __this_module) + __cil_tmp49;
-      __cil_tmp51 = (char *)__cil_tmp50;
+      __cil_tmp51 = (char *)((void *)(&__this_module) + __cil_tmp49);
       printk("<7>%s: registered controller\n", __cil_tmp51);
       }
     } else {
@@ -3936,8 +3876,7 @@ static int cpcihp_generic_init(void)
     {
     __cil_tmp56 = 0 * 1UL;
     __cil_tmp57 = 24 + __cil_tmp56;
-    __cil_tmp58 = (unsigned long )(& __this_module) + __cil_tmp57;
-    __cil_tmp59 = (char *)__cil_tmp58;
+    __cil_tmp59 = (char *)((void *)(&__this_module) + __cil_tmp57);
     printk("<3>%s: Could not register cPCI hotplug bus\n", __cil_tmp59);
     }
     goto init_bus_register_error;
@@ -3953,8 +3892,7 @@ static int cpcihp_generic_init(void)
       {
       __cil_tmp61 = 0 * 1UL;
       __cil_tmp62 = 24 + __cil_tmp61;
-      __cil_tmp63 = (unsigned long )(& __this_module) + __cil_tmp62;
-      __cil_tmp64 = (char *)__cil_tmp63;
+      __cil_tmp64 = (char *)((void *)(&__this_module) + __cil_tmp62);
       printk("<7>%s: registered bus\n", __cil_tmp64);
       }
     } else {
@@ -3972,8 +3910,7 @@ static int cpcihp_generic_init(void)
     {
     __cil_tmp65 = 0 * 1UL;
     __cil_tmp66 = 24 + __cil_tmp65;
-    __cil_tmp67 = (unsigned long )(& __this_module) + __cil_tmp66;
-    __cil_tmp68 = (char *)__cil_tmp67;
+    __cil_tmp68 = (char *)((void *)(&__this_module) + __cil_tmp66);
     printk("<3>%s: Could not started cPCI hotplug system\n", __cil_tmp68);
     }
     goto init_start_error;
@@ -3989,8 +3926,7 @@ static int cpcihp_generic_init(void)
       {
       __cil_tmp70 = 0 * 1UL;
       __cil_tmp71 = 24 + __cil_tmp70;
-      __cil_tmp72 = (unsigned long )(& __this_module) + __cil_tmp71;
-      __cil_tmp73 = (char *)__cil_tmp72;
+      __cil_tmp73 = (char *)((void *)(&__this_module) + __cil_tmp71);
       printk("<7>%s: started cpci hp system\n", __cil_tmp73);
       }
     } else {
@@ -4011,8 +3947,7 @@ static int cpcihp_generic_init(void)
   cpci_hp_unregister_controller(& generic_hpc);
   __cil_tmp74 = 0 * 1UL;
   __cil_tmp75 = 24 + __cil_tmp74;
-  __cil_tmp76 = (unsigned long )(& __this_module) + __cil_tmp75;
-  __cil_tmp77 = (char *)__cil_tmp76;
+  __cil_tmp77 = (char *)((void *)(&__this_module) + __cil_tmp75);
   printk("<3>%s: status = %d\n", __cil_tmp77, status);
   }
   return (status);

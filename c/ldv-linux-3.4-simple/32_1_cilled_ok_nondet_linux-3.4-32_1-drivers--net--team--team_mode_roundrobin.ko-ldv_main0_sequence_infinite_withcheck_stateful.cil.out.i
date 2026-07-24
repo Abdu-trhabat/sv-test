@@ -4417,8 +4417,6 @@ __inline static struct hlist_head *team_port_index_hash(struct team *team , int 
   int __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   {
   {
   __cil_tmp3 = 1 << 4;
@@ -4426,9 +4424,7 @@ __inline static struct hlist_head *team_port_index_hash(struct team *team , int 
   __cil_tmp5 = port_index & __cil_tmp4;
   __cil_tmp6 = __cil_tmp5 * 8UL;
   __cil_tmp7 = 96 + __cil_tmp6;
-  __cil_tmp8 = (unsigned long )team;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  return ((struct hlist_head *)__cil_tmp9);
+  return ((struct hlist_head *)((void *)team + __cil_tmp7));
   }
 }
 }
@@ -4445,14 +4441,10 @@ __inline static struct team_port *team_get_port_by_index_rcu(struct team *team ,
   struct hlist_node * volatile *__cil_tmp11 ;
   struct hlist_node * volatile __cil_tmp12 ;
   struct team_port *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct hlist_node *__cil_tmp16 ;
   unsigned int __cil_tmp17 ;
   char *__cil_tmp18 ;
   char *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   struct hlist_node **__cil_tmp23 ;
   struct hlist_node * volatile *__cil_tmp24 ;
@@ -4488,9 +4480,7 @@ __inline static struct team_port *team_get_port_by_index_rcu(struct team *team ,
     if (p) {
       __mptr = (struct hlist_node const *)p;
       __cil_tmp13 = (struct team_port *)0;
-      __cil_tmp14 = (unsigned long )__cil_tmp13;
-      __cil_tmp15 = __cil_tmp14 + 8;
-      __cil_tmp16 = (struct hlist_node *)__cil_tmp15;
+      __cil_tmp16 = (struct hlist_node *)((void *)__cil_tmp13 + 8);
       __cil_tmp17 = (unsigned int )__cil_tmp16;
       __cil_tmp18 = (char *)__mptr;
       __cil_tmp19 = __cil_tmp18 - __cil_tmp17;
@@ -4499,9 +4489,7 @@ __inline static struct team_port *team_get_port_by_index_rcu(struct team *team ,
       goto while_break___1;
     }
     {
-    __cil_tmp20 = (unsigned long )port;
-    __cil_tmp21 = __cil_tmp20 + 48;
-    __cil_tmp22 = *((int *)__cil_tmp21);
+    __cil_tmp22 = *((int *)((void *)port + 48));
     if (__cil_tmp22 == port_index) {
       return (port);
     } else {
@@ -4539,14 +4527,11 @@ extern int team_port_set_team_mac(struct team_port *port ) ;
 extern int team_mode_register(struct team_mode *mode ) ;
 extern int team_mode_unregister(struct team_mode *mode ) ;
 static struct rr_priv *rr_priv(struct team *team )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   long (*__cil_tmp4)[4] ;
   {
   {
-  __cil_tmp2 = (unsigned long )team;
-  __cil_tmp3 = __cil_tmp2 + 320;
-  __cil_tmp4 = (long (*)[4])__cil_tmp3;
+  __cil_tmp4 = (long (*)[4])((void *)team + 320);
   return ((struct rr_priv *)__cil_tmp4);
   }
 }
@@ -4565,74 +4550,44 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
   struct list_head *__ptr___2 ;
   struct list_head const *__mptr___2 ;
   struct list_head *_________p1___2 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct list_head **__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct list_head * volatile *__cil_tmp21 ;
   struct list_head * volatile __cil_tmp22 ;
   struct team_port *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct list_head *__cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   char *__cil_tmp28 ;
   char *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct list_head *__cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct list_head *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct list_head **__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct list_head * volatile *__cil_tmp43 ;
   struct list_head * volatile __cil_tmp44 ;
   struct team_port *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct list_head *__cil_tmp48 ;
   unsigned int __cil_tmp49 ;
   char *__cil_tmp50 ;
   char *__cil_tmp51 ;
   struct list_head **__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct list_head * volatile *__cil_tmp55 ;
   struct list_head * volatile __cil_tmp56 ;
   struct team_port *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   struct list_head *__cil_tmp60 ;
   unsigned int __cil_tmp61 ;
   char *__cil_tmp62 ;
   char *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct list_head *__cil_tmp66 ;
   unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   struct list_head *__cil_tmp70 ;
   unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   struct list_head **__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct list_head * volatile *__cil_tmp79 ;
   struct list_head * volatile __cil_tmp80 ;
   struct team_port *__cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   struct list_head *__cil_tmp84 ;
   unsigned int __cil_tmp85 ;
   char *__cil_tmp86 ;
@@ -4640,18 +4595,14 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
   void *__cil_tmp88 ;
   {
   {
-  __cil_tmp16 = (unsigned long )port;
-  __cil_tmp17 = __cil_tmp16 + 88;
-  if (*((bool *)__cil_tmp17)) {
+  if (*((bool *)((void *)port + 88))) {
     return (port);
   } else {
   }
   }
   cur = port;
   __cil_tmp18 = & __ptr;
-  __cil_tmp19 = (unsigned long )cur;
-  __cil_tmp20 = __cil_tmp19 + 24;
-  *__cil_tmp18 = *((struct list_head **)__cil_tmp20);
+  *__cil_tmp18 = *((struct list_head **)((void *)cur + 24));
   __cil_tmp21 = (struct list_head * volatile *)(& __ptr);
   __cil_tmp22 = *__cil_tmp21;
   _________p1 = (struct list_head *)__cil_tmp22;
@@ -4671,9 +4622,7 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
   }
   __mptr = (struct list_head const *)_________p1;
   __cil_tmp23 = (struct team_port *)0;
-  __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = __cil_tmp24 + 24;
-  __cil_tmp26 = (struct list_head *)__cil_tmp25;
+  __cil_tmp26 = (struct list_head *)((void *)__cil_tmp23 + 24);
   __cil_tmp27 = (unsigned int )__cil_tmp26;
   __cil_tmp28 = (char *)__mptr;
   __cil_tmp29 = __cil_tmp28 - __cil_tmp27;
@@ -4682,13 +4631,9 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
   while (1) {
     while_continue___1: ;
     {
-    __cil_tmp30 = (unsigned long )team;
-    __cil_tmp31 = __cil_tmp30 + 224;
-    __cil_tmp32 = (struct list_head *)__cil_tmp31;
+    __cil_tmp32 = (struct list_head *)((void *)team + 224);
     __cil_tmp33 = (unsigned long )__cil_tmp32;
-    __cil_tmp34 = (unsigned long )cur;
-    __cil_tmp35 = __cil_tmp34 + 24;
-    __cil_tmp36 = (struct list_head *)__cil_tmp35;
+    __cil_tmp36 = (struct list_head *)((void *)cur + 24);
     __cil_tmp37 = (unsigned long )__cil_tmp36;
     if (__cil_tmp37 != __cil_tmp33) {
     } else {
@@ -4696,17 +4641,13 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
     }
     }
     {
-    __cil_tmp38 = (unsigned long )cur;
-    __cil_tmp39 = __cil_tmp38 + 88;
-    if (*((bool *)__cil_tmp39)) {
+    if (*((bool *)((void *)cur + 88))) {
       return (cur);
     } else {
     }
     }
     __cil_tmp40 = & __ptr___0;
-    __cil_tmp41 = (unsigned long )cur;
-    __cil_tmp42 = __cil_tmp41 + 24;
-    *__cil_tmp40 = *((struct list_head **)__cil_tmp42);
+    *__cil_tmp40 = *((struct list_head **)((void *)cur + 24));
     __cil_tmp43 = (struct list_head * volatile *)(& __ptr___0);
     __cil_tmp44 = *__cil_tmp43;
     _________p1___0 = (struct list_head *)__cil_tmp44;
@@ -4726,9 +4667,7 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
     }
     __mptr___0 = (struct list_head const *)_________p1___0;
     __cil_tmp45 = (struct team_port *)0;
-    __cil_tmp46 = (unsigned long )__cil_tmp45;
-    __cil_tmp47 = __cil_tmp46 + 24;
-    __cil_tmp48 = (struct list_head *)__cil_tmp47;
+    __cil_tmp48 = (struct list_head *)((void *)__cil_tmp45 + 24);
     __cil_tmp49 = (unsigned int )__cil_tmp48;
     __cil_tmp50 = (char *)__mptr___0;
     __cil_tmp51 = __cil_tmp50 - __cil_tmp49;
@@ -4737,9 +4676,7 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
   while_break___1: ;
   }
   __cil_tmp52 = & __ptr___1;
-  __cil_tmp53 = (unsigned long )team;
-  __cil_tmp54 = __cil_tmp53 + 224;
-  *__cil_tmp52 = *((struct list_head **)__cil_tmp54);
+  *__cil_tmp52 = *((struct list_head **)((void *)team + 224));
   __cil_tmp55 = (struct list_head * volatile *)(& __ptr___1);
   __cil_tmp56 = *__cil_tmp55;
   _________p1___1 = (struct list_head *)__cil_tmp56;
@@ -4759,9 +4696,7 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
   }
   __mptr___1 = (struct list_head const *)_________p1___1;
   __cil_tmp57 = (struct team_port *)0;
-  __cil_tmp58 = (unsigned long )__cil_tmp57;
-  __cil_tmp59 = __cil_tmp58 + 24;
-  __cil_tmp60 = (struct list_head *)__cil_tmp59;
+  __cil_tmp60 = (struct list_head *)((void *)__cil_tmp57 + 24);
   __cil_tmp61 = (unsigned int )__cil_tmp60;
   __cil_tmp62 = (char *)__mptr___1;
   __cil_tmp63 = __cil_tmp62 - __cil_tmp61;
@@ -4770,13 +4705,9 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
   while (1) {
     while_continue___6: ;
     {
-    __cil_tmp64 = (unsigned long )team;
-    __cil_tmp65 = __cil_tmp64 + 224;
-    __cil_tmp66 = (struct list_head *)__cil_tmp65;
+    __cil_tmp66 = (struct list_head *)((void *)team + 224);
     __cil_tmp67 = (unsigned long )__cil_tmp66;
-    __cil_tmp68 = (unsigned long )cur;
-    __cil_tmp69 = __cil_tmp68 + 24;
-    __cil_tmp70 = (struct list_head *)__cil_tmp69;
+    __cil_tmp70 = (struct list_head *)((void *)cur + 24);
     __cil_tmp71 = (unsigned long )__cil_tmp70;
     if (__cil_tmp71 != __cil_tmp67) {
     } else {
@@ -4792,17 +4723,13 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
     }
     }
     {
-    __cil_tmp74 = (unsigned long )cur;
-    __cil_tmp75 = __cil_tmp74 + 88;
-    if (*((bool *)__cil_tmp75)) {
+    if (*((bool *)((void *)cur + 88))) {
       return (cur);
     } else {
     }
     }
     __cil_tmp76 = & __ptr___2;
-    __cil_tmp77 = (unsigned long )cur;
-    __cil_tmp78 = __cil_tmp77 + 24;
-    *__cil_tmp76 = *((struct list_head **)__cil_tmp78);
+    *__cil_tmp76 = *((struct list_head **)((void *)cur + 24));
     __cil_tmp79 = (struct list_head * volatile *)(& __ptr___2);
     __cil_tmp80 = *__cil_tmp79;
     _________p1___2 = (struct list_head *)__cil_tmp80;
@@ -4822,9 +4749,7 @@ static struct team_port *__get_first_port_up(struct team *team , struct team_por
     }
     __mptr___2 = (struct list_head const *)_________p1___2;
     __cil_tmp81 = (struct team_port *)0;
-    __cil_tmp82 = (unsigned long )__cil_tmp81;
-    __cil_tmp83 = __cil_tmp82 + 24;
-    __cil_tmp84 = (struct list_head *)__cil_tmp83;
+    __cil_tmp84 = (struct list_head *)((void *)__cil_tmp81 + 24);
     __cil_tmp85 = (unsigned int )__cil_tmp84;
     __cil_tmp86 = (char *)__mptr___2;
     __cil_tmp87 = __cil_tmp86 - __cil_tmp85;
@@ -4846,8 +4771,6 @@ static bool rr_transmit(struct team *team , struct sk_buff *skb )
   long tmp___9 ;
   int tmp___10 ;
   unsigned int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
@@ -4855,17 +4778,13 @@ static bool rr_transmit(struct team *team , struct sk_buff *skb )
   int __cil_tmp16 ;
   int __cil_tmp17 ;
   long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   {
   {
   tmp___7 = rr_priv(team);
   tmp___8 = *((unsigned int *)tmp___7);
   __cil_tmp9 = *((unsigned int *)tmp___7);
   *((unsigned int *)tmp___7) = __cil_tmp9 + 1U;
-  __cil_tmp10 = (unsigned long )team;
-  __cil_tmp11 = __cil_tmp10 + 88;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp12 = *((int *)((void *)team + 88));
   __cil_tmp13 = (unsigned int )__cil_tmp12;
   __cil_tmp14 = tmp___8 % __cil_tmp13;
   port_index = (int )__cil_tmp14;
@@ -4882,9 +4801,7 @@ static bool rr_transmit(struct team *team , struct sk_buff *skb )
   } else {
   }
   {
-  __cil_tmp19 = (unsigned long )skb;
-  __cil_tmp20 = __cil_tmp19 + 32;
-  *((struct net_device **)__cil_tmp20) = *((struct net_device **)port);
+  *((struct net_device **)((void *)skb + 32)) = *((struct net_device **)port);
   tmp___10 = dev_queue_xmit(skb);
   }
   if (tmp___10) {

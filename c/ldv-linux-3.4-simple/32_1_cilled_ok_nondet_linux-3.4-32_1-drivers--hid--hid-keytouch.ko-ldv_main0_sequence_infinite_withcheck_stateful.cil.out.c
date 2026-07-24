@@ -1884,8 +1884,7 @@ static __u8 keytouch_fixed_rdesc[65]  =
         (__u8 )255,      (__u8 )0,      (__u8 )129,      (__u8 )0, 
         (__u8 )192};
 static __u8 *keytouch_report_fixup(struct hid_device *hdev , __u8 *rdesc , unsigned int *rsize ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   struct device *__cil_tmp6 ;
   struct device  const  *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
@@ -1893,9 +1892,7 @@ static __u8 *keytouch_report_fixup(struct hid_device *hdev , __u8 *rdesc , unsig
 
   {
   {
-  __cil_tmp4 = (unsigned long )hdev;
-  __cil_tmp5 = __cil_tmp4 + 6328;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)hdev + 6328);
   __cil_tmp7 = (struct device  const  *)__cil_tmp6;
   _dev_info(__cil_tmp7, "fixing up Keytouch IEC report descriptor\n");
   __cil_tmp8 = 0 * 1UL;

@@ -2045,25 +2045,17 @@ static int vmic_probe(struct pci_dev *pdev , struct pci_device_id const *id )
   u32 data ;
   unsigned int tmp ;
   unsigned int tmp___0 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   struct device const *__cil_tmp10 ;
   char const *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device const *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   resource_size_t __cil_tmp20 ;
   void *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct device *__cil_tmp26 ;
   struct device const *__cil_tmp27 ;
   {
@@ -2072,9 +2064,7 @@ static int vmic_probe(struct pci_dev *pdev , struct pci_device_id const *id )
   }
   if (retval != 0) {
     {
-    __cil_tmp7 = (unsigned long )pdev;
-    __cil_tmp8 = __cil_tmp7 + 144;
-    __cil_tmp9 = (struct device *)__cil_tmp8;
+    __cil_tmp9 = (struct device *)((void *)pdev + 144);
     __cil_tmp10 = (struct device const *)__cil_tmp9;
     dev_err(__cil_tmp10, "Unable to enable device\n");
     }
@@ -2087,9 +2077,7 @@ static int vmic_probe(struct pci_dev *pdev , struct pci_device_id const *id )
   }
   if (retval != 0) {
     {
-    __cil_tmp12 = (unsigned long )pdev;
-    __cil_tmp13 = __cil_tmp12 + 144;
-    __cil_tmp14 = (struct device *)__cil_tmp13;
+    __cil_tmp14 = (struct device *)((void *)pdev + 144);
     __cil_tmp15 = (struct device const *)__cil_tmp14;
     dev_err(__cil_tmp15, "Unable to reserve resources\n");
     }
@@ -2099,9 +2087,7 @@ static int vmic_probe(struct pci_dev *pdev , struct pci_device_id const *id )
   {
   __cil_tmp16 = 0 * 56UL;
   __cil_tmp17 = 1304 + __cil_tmp16;
-  __cil_tmp18 = (unsigned long )pdev;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = *((resource_size_t *)__cil_tmp19);
+  __cil_tmp20 = *((resource_size_t *)((void *)pdev + __cil_tmp17));
   vmic_base = ioremap_nocache(__cil_tmp20, 16UL);
   }
   {
@@ -2110,9 +2096,7 @@ static int vmic_probe(struct pci_dev *pdev , struct pci_device_id const *id )
   __cil_tmp23 = (unsigned long )vmic_base;
   if (__cil_tmp23 == __cil_tmp22) {
     {
-    __cil_tmp24 = (unsigned long )pdev;
-    __cil_tmp25 = __cil_tmp24 + 144;
-    __cil_tmp26 = (struct device *)__cil_tmp25;
+    __cil_tmp26 = (struct device *)((void *)pdev + 144);
     __cil_tmp27 = (struct device const *)__cil_tmp26;
     dev_err(__cil_tmp27, "Unable to remap CRG region\n");
     retval = -5;

@@ -3398,52 +3398,32 @@ extern int led_trigger_register(struct led_trigger * ) ;
 extern void led_trigger_unregister(struct led_trigger * ) ;
 __inline static void led_set_brightness(struct led_classdev *led_cdev , enum led_brightness value ) 
 { unsigned int __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void (*__cil_tmp19)(struct led_classdev * , enum led_brightness  ) ;
 
   {
   {
   __cil_tmp3 = (unsigned int )value;
-  __cil_tmp4 = (unsigned long )led_cdev;
-  __cil_tmp5 = __cil_tmp4 + 12;
-  __cil_tmp6 = *((int *)__cil_tmp5);
+  __cil_tmp6 = *((int *)((void *)led_cdev + 12));
   __cil_tmp7 = (unsigned int )__cil_tmp6;
   if (__cil_tmp7 < __cil_tmp3) {
-    __cil_tmp8 = (unsigned long )led_cdev;
-    __cil_tmp9 = __cil_tmp8 + 12;
-    __cil_tmp10 = *((int *)__cil_tmp9);
+    __cil_tmp10 = *((int *)((void *)led_cdev + 12));
     value = (enum led_brightness )__cil_tmp10;
   } else {
 
   }
   }
-  __cil_tmp11 = (unsigned long )led_cdev;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  *((int *)__cil_tmp12) = (int )value;
+  *((int *)((void *)led_cdev + 8)) = (int )value;
   {
-  __cil_tmp13 = (unsigned long )led_cdev;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((int *)__cil_tmp14);
+  __cil_tmp15 = *((int *)((void *)led_cdev + 16));
   __cil_tmp16 = __cil_tmp15 & 1;
   if (__cil_tmp16 == 0) {
     {
-    __cil_tmp17 = (unsigned long )led_cdev;
-    __cil_tmp18 = __cil_tmp17 + 24;
-    __cil_tmp19 = *((void (**)(struct led_classdev * , enum led_brightness  ))__cil_tmp18);
+    __cil_tmp19 = *((void (**)(struct led_classdev * , enum led_brightness  ))((void *)led_cdev + 24));
     (*__cil_tmp19)(led_cdev, value);
     }
   } else {
@@ -3461,32 +3441,16 @@ static int fb_notifier_callback(struct notifier_block *p , unsigned long event ,
   int *blank ;
   int new_status ;
   struct bl_trig_notifier *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   int __cil_tmp23 ;
   int __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   enum led_brightness __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   int __cil_tmp33 ;
   enum led_brightness __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
 
   {
   __mptr = (struct notifier_block  const  *)p;
@@ -3494,9 +3458,7 @@ static int fb_notifier_callback(struct notifier_block *p , unsigned long event ,
   n = __cil_tmp10 + 0xfffffffffffffff0UL;
   led = *((struct led_classdev **)n);
   fb_event = (struct fb_event *)data;
-  __cil_tmp11 = (unsigned long )fb_event;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)fb_event + 8));
   blank = (int *)__cil_tmp13;
   __cil_tmp14 = *blank;
   new_status = __cil_tmp14 != 0;
@@ -3506,9 +3468,7 @@ static int fb_notifier_callback(struct notifier_block *p , unsigned long event ,
   if (0) {
     case_9: /* CIL Label */ ;
     {
-    __cil_tmp15 = (unsigned long )n;
-    __cil_tmp16 = __cil_tmp15 + 12;
-    __cil_tmp17 = *((int *)__cil_tmp16);
+    __cil_tmp17 = *((int *)((void *)n + 12));
     if (__cil_tmp17 == new_status) {
       goto ldv_25746;
     } else {
@@ -3516,37 +3476,25 @@ static int fb_notifier_callback(struct notifier_block *p , unsigned long event ,
     }
     }
     {
-    __cil_tmp18 = (unsigned long )n;
-    __cil_tmp19 = __cil_tmp18 + 40;
-    __cil_tmp20 = *((unsigned int *)__cil_tmp19);
-    __cil_tmp21 = (unsigned long )n;
-    __cil_tmp22 = __cil_tmp21 + 12;
-    __cil_tmp23 = *((int *)__cil_tmp22);
+    __cil_tmp20 = *((unsigned int *)((void *)n + 40));
+    __cil_tmp23 = *((int *)((void *)n + 12));
     __cil_tmp24 = __cil_tmp23 == 0;
     __cil_tmp25 = (unsigned int )__cil_tmp24;
     if (__cil_tmp25 != __cil_tmp20) {
       {
-      __cil_tmp26 = (unsigned long )n;
-      __cil_tmp27 = __cil_tmp26 + 8;
-      __cil_tmp28 = (unsigned long )led;
-      __cil_tmp29 = __cil_tmp28 + 8;
-      *((int *)__cil_tmp27) = *((int *)__cil_tmp29);
+      *((int *)((void *)n + 8)) = *((int *)((void *)led + 8));
       __cil_tmp30 = (enum led_brightness )0;
       led_set_brightness(led, __cil_tmp30);
       }
     } else {
       {
-      __cil_tmp31 = (unsigned long )n;
-      __cil_tmp32 = __cil_tmp31 + 8;
-      __cil_tmp33 = *((int *)__cil_tmp32);
+      __cil_tmp33 = *((int *)((void *)n + 8));
       __cil_tmp34 = (enum led_brightness )__cil_tmp33;
       led_set_brightness(led, __cil_tmp34);
       }
     }
     }
-    __cil_tmp35 = (unsigned long )n;
-    __cil_tmp36 = __cil_tmp35 + 12;
-    *((int *)__cil_tmp36) = new_status;
+    *((int *)((void *)n + 12)) = new_status;
     goto ldv_25746;
   } else {
     switch_break: /* CIL Label */ ;
@@ -3562,11 +3510,7 @@ static ssize_t bl_trig_invert_show(struct device *dev , struct device_attribute 
   struct bl_trig_notifier *n ;
   int tmp___0 ;
   struct device  const  *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
 
   {
@@ -3574,13 +3518,9 @@ static ssize_t bl_trig_invert_show(struct device *dev , struct device_attribute 
   __cil_tmp8 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp8);
   led = (struct led_classdev *)tmp;
-  __cil_tmp9 = (unsigned long )led;
-  __cil_tmp10 = __cil_tmp9 + 400;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)led + 400));
   n = (struct bl_trig_notifier *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )n;
-  __cil_tmp13 = __cil_tmp12 + 40;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)n + 40));
   tmp___0 = sprintf(buf, "%u\n", __cil_tmp14);
   }
   return ((ssize_t )tmp___0);
@@ -3594,26 +3534,16 @@ static ssize_t bl_trig_invert_store(struct device *dev , struct device_attribute
   unsigned long invert ;
   int ret ;
   struct device  const  *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   unsigned long *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
   int __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   enum led_brightness __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
   enum led_brightness __cil_tmp32 ;
 
@@ -3622,9 +3552,7 @@ static ssize_t bl_trig_invert_store(struct device *dev , struct device_attribute
   __cil_tmp10 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp10);
   led = (struct led_classdev *)tmp;
-  __cil_tmp11 = (unsigned long )led;
-  __cil_tmp12 = __cil_tmp11 + 400;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)led + 400));
   n = (struct bl_trig_notifier *)__cil_tmp13;
   ret = kstrtoul(buf, 10U, & invert);
   }
@@ -3642,18 +3570,12 @@ static ssize_t bl_trig_invert_store(struct device *dev , struct device_attribute
 
   }
   }
-  __cil_tmp16 = (unsigned long )n;
-  __cil_tmp17 = __cil_tmp16 + 40;
   __cil_tmp18 = & invert;
   __cil_tmp19 = *__cil_tmp18;
-  *((unsigned int *)__cil_tmp17) = (unsigned int )__cil_tmp19;
+  *((unsigned int *)((void *)n + 40)) = (unsigned int )__cil_tmp19;
   {
-  __cil_tmp20 = (unsigned long )n;
-  __cil_tmp21 = __cil_tmp20 + 40;
-  __cil_tmp22 = *((unsigned int *)__cil_tmp21);
-  __cil_tmp23 = (unsigned long )n;
-  __cil_tmp24 = __cil_tmp23 + 12;
-  __cil_tmp25 = *((int *)__cil_tmp24);
+  __cil_tmp22 = *((unsigned int *)((void *)n + 40));
+  __cil_tmp25 = *((int *)((void *)n + 12));
   __cil_tmp26 = __cil_tmp25 == 1;
   __cil_tmp27 = (unsigned int )__cil_tmp26;
   if (__cil_tmp27 != __cil_tmp22) {
@@ -3663,9 +3585,7 @@ static ssize_t bl_trig_invert_store(struct device *dev , struct device_attribute
     }
   } else {
     {
-    __cil_tmp29 = (unsigned long )n;
-    __cil_tmp30 = __cil_tmp29 + 8;
-    __cil_tmp31 = *((int *)__cil_tmp30);
+    __cil_tmp31 = *((int *)((void *)n + 8));
     __cil_tmp32 = (enum led_brightness )__cil_tmp31;
     led_set_brightness(led, __cil_tmp32);
     }
@@ -3683,45 +3603,23 @@ static void bl_trig_activate(struct led_classdev *led )
 { int ret ;
   struct bl_trig_notifier *n ;
   void *tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct bl_trig_notifier *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device  const  *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device_attribute  const  *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct notifier_block *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct device *__cil_tmp31 ;
   struct device  const  *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   void const   *__cil_tmp35 ;
 
   {
   {
   tmp = kzalloc(48UL, 208U);
   n = (struct bl_trig_notifier *)tmp;
-  __cil_tmp5 = (unsigned long )led;
-  __cil_tmp6 = __cil_tmp5 + 400;
-  *((void **)__cil_tmp6) = (void *)n;
+  *((void **)((void *)led + 400)) = (void *)n;
   }
   {
   __cil_tmp7 = (struct bl_trig_notifier *)0;
@@ -3729,9 +3627,7 @@ static void bl_trig_activate(struct led_classdev *led )
   __cil_tmp9 = (unsigned long )n;
   if (__cil_tmp9 == __cil_tmp8) {
     {
-    __cil_tmp10 = (unsigned long )led;
-    __cil_tmp11 = __cil_tmp10 + 48;
-    __cil_tmp12 = *((struct device **)__cil_tmp11);
+    __cil_tmp12 = *((struct device **)((void *)led + 48));
     __cil_tmp13 = (struct device  const  *)__cil_tmp12;
     dev_err(__cil_tmp13, "unable to allocate backlight trigger\n");
     }
@@ -3741,9 +3637,7 @@ static void bl_trig_activate(struct led_classdev *led )
   }
   }
   {
-  __cil_tmp14 = (unsigned long )led;
-  __cil_tmp15 = __cil_tmp14 + 48;
-  __cil_tmp16 = *((struct device **)__cil_tmp15);
+  __cil_tmp16 = *((struct device **)((void *)led + 48));
   __cil_tmp17 = (struct device_attribute  const  *)(& dev_attr_inverted);
   ret = device_create_file(__cil_tmp16, __cil_tmp17);
   }
@@ -3754,27 +3648,15 @@ static void bl_trig_activate(struct led_classdev *led )
   }
   {
   *((struct led_classdev **)n) = led;
-  __cil_tmp18 = (unsigned long )n;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  __cil_tmp20 = (unsigned long )led;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  *((int *)__cil_tmp19) = *((int *)__cil_tmp21);
-  __cil_tmp22 = (unsigned long )n;
-  __cil_tmp23 = __cil_tmp22 + 12;
-  *((int *)__cil_tmp23) = 0;
-  __cil_tmp24 = (unsigned long )n;
-  __cil_tmp25 = __cil_tmp24 + 16;
-  *((int (**)(struct notifier_block * , unsigned long  , void * ))__cil_tmp25) = & fb_notifier_callback;
-  __cil_tmp26 = (unsigned long )n;
-  __cil_tmp27 = __cil_tmp26 + 16;
-  __cil_tmp28 = (struct notifier_block *)__cil_tmp27;
+  *((int *)((void *)n + 8)) = *((int *)((void *)led + 8));
+  *((int *)((void *)n + 12)) = 0;
+  *((int (**)(struct notifier_block * , unsigned long  , void * ))((void *)n + 16)) = & fb_notifier_callback;
+  __cil_tmp28 = (struct notifier_block *)((void *)n + 16);
   ret = fb_register_client(__cil_tmp28);
   }
   if (ret != 0) {
     {
-    __cil_tmp29 = (unsigned long )led;
-    __cil_tmp30 = __cil_tmp29 + 48;
-    __cil_tmp31 = *((struct device **)__cil_tmp30);
+    __cil_tmp31 = *((struct device **)((void *)led + 48));
     __cil_tmp32 = (struct device  const  *)__cil_tmp31;
     dev_err(__cil_tmp32, "unable to register backlight trigger\n");
     }
@@ -3784,9 +3666,7 @@ static void bl_trig_activate(struct led_classdev *led )
   return;
   err_invert: 
   {
-  __cil_tmp33 = (unsigned long )led;
-  __cil_tmp34 = __cil_tmp33 + 400;
-  *((void **)__cil_tmp34) = (void *)0;
+  *((void **)((void *)led + 400)) = (void *)0;
   __cil_tmp35 = (void const   *)n;
   kfree(__cil_tmp35);
   }
@@ -3795,25 +3675,17 @@ static void bl_trig_activate(struct led_classdev *led )
 }
 static void bl_trig_deactivate(struct led_classdev *led ) 
 { struct bl_trig_notifier *n ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   struct bl_trig_notifier *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device_attribute  const  *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct notifier_block *__cil_tmp15 ;
   void const   *__cil_tmp16 ;
 
   {
-  __cil_tmp3 = (unsigned long )led;
-  __cil_tmp4 = __cil_tmp3 + 400;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)led + 400));
   n = (struct bl_trig_notifier *)__cil_tmp5;
   {
   __cil_tmp6 = (struct bl_trig_notifier *)0;
@@ -3821,14 +3693,10 @@ static void bl_trig_deactivate(struct led_classdev *led )
   __cil_tmp8 = (unsigned long )n;
   if (__cil_tmp8 != __cil_tmp7) {
     {
-    __cil_tmp9 = (unsigned long )led;
-    __cil_tmp10 = __cil_tmp9 + 48;
-    __cil_tmp11 = *((struct device **)__cil_tmp10);
+    __cil_tmp11 = *((struct device **)((void *)led + 48));
     __cil_tmp12 = (struct device_attribute  const  *)(& dev_attr_inverted);
     device_remove_file(__cil_tmp11, __cil_tmp12);
-    __cil_tmp13 = (unsigned long )n;
-    __cil_tmp14 = __cil_tmp13 + 16;
-    __cil_tmp15 = (struct notifier_block *)__cil_tmp14;
+    __cil_tmp15 = (struct notifier_block *)((void *)n + 16);
     fb_unregister_client(__cil_tmp15);
     __cil_tmp16 = (void const   *)n;
     kfree(__cil_tmp16);

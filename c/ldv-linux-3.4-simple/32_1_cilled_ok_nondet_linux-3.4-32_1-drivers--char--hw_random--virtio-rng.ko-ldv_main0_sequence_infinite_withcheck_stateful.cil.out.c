@@ -1047,8 +1047,7 @@ int atomic_dec_and_mutex_lock(atomic_t *cnt , struct mutex *lock ) ;
 static struct lock_class_key __key  ;
 __inline static void init_completion(struct completion *x )  __attribute__((__no_instrument_function__)) ;
 __inline static void init_completion(struct completion *x ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   wait_queue_head_t *__cil_tmp4 ;
 
   {
@@ -1057,9 +1056,7 @@ __inline static void init_completion(struct completion *x )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp2 = (unsigned long )x;
-    __cil_tmp3 = __cil_tmp2 + 8;
-    __cil_tmp4 = (wait_queue_head_t *)__cil_tmp3;
+    __cil_tmp4 = (wait_queue_head_t *)((void *)x + 8);
     __init_waitqueue_head(__cil_tmp4, "&x->wait", & __key);
     }
     goto while_break;
@@ -1092,11 +1089,7 @@ __inline static struct virtqueue *virtio_find_single_vq(struct virtio_device *vd
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct virtio_config_ops *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int (*__cil_tmp19)(struct virtio_device * , unsigned int nvqs , struct virtqueue **vqs ,
                      vq_callback_t **callbacks , char const   **names ) ;
   unsigned long __cil_tmp20 ;
@@ -1116,13 +1109,9 @@ __inline static struct virtqueue *virtio_find_single_vq(struct virtio_device *vd
   __cil_tmp12 = 0 * 8UL;
   __cil_tmp13 = (unsigned long )(names) + __cil_tmp12;
   *((char const   **)__cil_tmp13) = n;
-  __cil_tmp14 = (unsigned long )vdev;
-  __cil_tmp15 = __cil_tmp14 + 784;
-  __cil_tmp16 = *((struct virtio_config_ops **)__cil_tmp15);
-  __cil_tmp17 = (unsigned long )__cil_tmp16;
-  __cil_tmp18 = __cil_tmp17 + 40;
+  __cil_tmp16 = *((struct virtio_config_ops **)((void *)vdev + 784));
   __cil_tmp19 = *((int (**)(struct virtio_device * , unsigned int nvqs , struct virtqueue **vqs ,
-                            vq_callback_t **callbacks , char const   **names ))__cil_tmp18);
+                            vq_callback_t **callbacks , char const   **names ))((void *)__cil_tmp16 + 40));
   __cil_tmp20 = 0 * 8UL;
   __cil_tmp21 = (unsigned long )(callbacks) + __cil_tmp20;
   __cil_tmp22 = (vq_callback_t **)__cil_tmp21;
@@ -1275,11 +1264,7 @@ static int virtrng_probe(struct virtio_device *vdev )
   long tmp___0 ;
   void const   *__cil_tmp5 ;
   void const   *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct virtio_config_ops *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void (*__cil_tmp12)(struct virtio_device * ) ;
 
   {
@@ -1302,12 +1287,8 @@ static int virtrng_probe(struct virtio_device *vdev )
   }
   if (err) {
     {
-    __cil_tmp7 = (unsigned long )vdev;
-    __cil_tmp8 = __cil_tmp7 + 784;
-    __cil_tmp9 = *((struct virtio_config_ops **)__cil_tmp8);
-    __cil_tmp10 = (unsigned long )__cil_tmp9;
-    __cil_tmp11 = __cil_tmp10 + 48;
-    __cil_tmp12 = *((void (**)(struct virtio_device * ))__cil_tmp11);
+    __cil_tmp9 = *((struct virtio_config_ops **)((void *)vdev + 784));
+    __cil_tmp12 = *((void (**)(struct virtio_device * ))((void *)__cil_tmp9 + 48));
     (*__cil_tmp12)(vdev);
     }
     return (err);
@@ -1320,35 +1301,20 @@ static int virtrng_probe(struct virtio_device *vdev )
 static void virtrng_remove(struct virtio_device *vdev )  __attribute__((__section__(".devexit.text"),
 __no_instrument_function__)) ;
 static void virtrng_remove(struct virtio_device *vdev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct virtio_config_ops *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void (*__cil_tmp7)(struct virtio_device *vdev ) ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct virtio_config_ops *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void (*__cil_tmp13)(struct virtio_device * ) ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )vdev;
-  __cil_tmp3 = __cil_tmp2 + 784;
-  __cil_tmp4 = *((struct virtio_config_ops **)__cil_tmp3);
-  __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = __cil_tmp5 + 32;
-  __cil_tmp7 = *((void (**)(struct virtio_device *vdev ))__cil_tmp6);
+  __cil_tmp4 = *((struct virtio_config_ops **)((void *)vdev + 784));
+  __cil_tmp7 = *((void (**)(struct virtio_device *vdev ))((void *)__cil_tmp4 + 32));
   (*__cil_tmp7)(vdev);
   hwrng_unregister(& virtio_hwrng);
-  __cil_tmp8 = (unsigned long )vdev;
-  __cil_tmp9 = __cil_tmp8 + 784;
-  __cil_tmp10 = *((struct virtio_config_ops **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 48;
-  __cil_tmp13 = *((void (**)(struct virtio_device * ))__cil_tmp12);
+  __cil_tmp10 = *((struct virtio_config_ops **)((void *)vdev + 784));
+  __cil_tmp13 = *((void (**)(struct virtio_device * ))((void *)__cil_tmp10 + 48));
   (*__cil_tmp13)(vdev);
   }
   return;

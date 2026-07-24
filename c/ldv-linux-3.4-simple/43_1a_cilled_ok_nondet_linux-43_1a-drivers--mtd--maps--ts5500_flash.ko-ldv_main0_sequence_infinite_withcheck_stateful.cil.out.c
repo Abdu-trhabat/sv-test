@@ -945,14 +945,10 @@ static struct mtd_partition ts5500_partitions[3U]  = {      {(char *)"Drive A", 
 static struct mtd_info *mymtd  ;
 static int init_ts5500_map(void) 
 { int rc ;
-  unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
   resource_size_t __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   struct mtd_info *__cil_tmp12 ;
@@ -961,30 +957,23 @@ static int init_ts5500_map(void)
   struct mtd_info *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   char const   **__cil_tmp20 ;
   struct mtd_part_parser_data *__cil_tmp21 ;
   struct mtd_partition  const  *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   void *__cil_tmp24 ;
   void volatile   *__cil_tmp25 ;
 
   {
   {
   rc = 0;
-  __cil_tmp2 = (unsigned long )(& ts5500_map) + 24;
-  __cil_tmp3 = (unsigned long )(& ts5500_map) + 16;
-  __cil_tmp4 = *((resource_size_t *)__cil_tmp3);
-  __cil_tmp5 = (unsigned long )(& ts5500_map) + 8;
-  __cil_tmp6 = *((unsigned long *)__cil_tmp5);
-  *((void **)__cil_tmp2) = ioremap_nocache(__cil_tmp4, __cil_tmp6);
+  __cil_tmp4 = *((resource_size_t *)((void *)(&ts5500_map) + 16));
+  __cil_tmp6 = *((unsigned long *)((void *)(&ts5500_map) + 8));
+  *((void **)((void *)(&ts5500_map) + 24)) = ioremap_nocache(__cil_tmp4, __cil_tmp6);
   }
   {
   __cil_tmp7 = (void *)0;
   __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = (unsigned long )(& ts5500_map) + 24;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)(&ts5500_map) + 24));
   __cil_tmp11 = (unsigned long )__cil_tmp10;
   if (__cil_tmp11 == __cil_tmp8) {
     {
@@ -1024,9 +1013,7 @@ static int init_ts5500_map(void)
   }
   }
   {
-  __cil_tmp18 = (unsigned long )mymtd;
-  __cil_tmp19 = __cil_tmp18 + 368;
-  *((struct module **)__cil_tmp19) = & __this_module;
+  *((struct module **)((void *)mymtd + 368)) = & __this_module;
   __cil_tmp20 = (char const   **)0;
   __cil_tmp21 = (struct mtd_part_parser_data *)0;
   __cil_tmp22 = (struct mtd_partition  const  *)(& ts5500_partitions);
@@ -1035,8 +1022,7 @@ static int init_ts5500_map(void)
   return (0);
   err1: 
   {
-  __cil_tmp23 = (unsigned long )(& ts5500_map) + 24;
-  __cil_tmp24 = *((void **)__cil_tmp23);
+  __cil_tmp24 = *((void **)((void *)(&ts5500_map) + 24));
   __cil_tmp25 = (void volatile   *)__cil_tmp24;
   iounmap(__cil_tmp25);
   }
@@ -1050,13 +1036,10 @@ static void cleanup_ts5500_map(void)
   unsigned long __cil_tmp3 ;
   void *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   void volatile   *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
 
   {
   {
@@ -1075,17 +1058,14 @@ static void cleanup_ts5500_map(void)
   {
   __cil_tmp4 = (void *)0;
   __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = (unsigned long )(& ts5500_map) + 24;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)(&ts5500_map) + 24));
   __cil_tmp8 = (unsigned long )__cil_tmp7;
   if (__cil_tmp8 != __cil_tmp5) {
     {
-    __cil_tmp9 = (unsigned long )(& ts5500_map) + 24;
-    __cil_tmp10 = *((void **)__cil_tmp9);
+    __cil_tmp10 = *((void **)((void *)(&ts5500_map) + 24));
     __cil_tmp11 = (void volatile   *)__cil_tmp10;
     iounmap(__cil_tmp11);
-    __cil_tmp12 = (unsigned long )(& ts5500_map) + 24;
-    *((void **)__cil_tmp12) = (void *)0;
+    *((void **)((void *)(&ts5500_map) + 24)) = (void *)0;
     }
   } else {
 

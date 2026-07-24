@@ -2072,26 +2072,20 @@ extern int printk(char const * , ...) ;
 extern int __dynamic_dev_dbg(struct _ddebug * , struct device const * , char const *
                              , ...) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
 extern void __list_add(struct list_head * , struct list_head * , struct list_head * ) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )head;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((struct list_head **)__cil_tmp4);
+  __cil_tmp5 = *((struct list_head **)((void *)head + 8));
   __list_add(new, __cil_tmp5, head);
   }
   return;
@@ -2119,8 +2113,6 @@ __inline static void spi_unregister_driver(struct spi_driver *sdrv )
 { struct spi_driver *__cil_tmp2 ;
   unsigned long __cil_tmp3 ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device_driver *__cil_tmp7 ;
   {
   {
@@ -2129,9 +2121,7 @@ __inline static void spi_unregister_driver(struct spi_driver *sdrv )
   __cil_tmp4 = (unsigned long )sdrv;
   if (__cil_tmp4 != __cil_tmp3) {
     {
-    __cil_tmp5 = (unsigned long )sdrv;
-    __cil_tmp6 = __cil_tmp5 + 48;
-    __cil_tmp7 = (struct device_driver *)__cil_tmp6;
+    __cil_tmp7 = (struct device_driver *)((void *)sdrv + 48);
     driver_unregister(__cil_tmp7);
     }
   } else {
@@ -2154,15 +2144,12 @@ __inline static void spi_message_init(struct spi_message *m )
 }
 }
 __inline static void spi_message_add_tail(struct spi_transfer *t , struct spi_message *m )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   struct list_head *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )t;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct list_head *)__cil_tmp4;
+  __cil_tmp5 = (struct list_head *)((void *)t + 48);
   __cil_tmp6 = (struct list_head *)m;
   list_add_tail(__cil_tmp5, __cil_tmp6);
   }
@@ -2176,42 +2163,22 @@ __inline static int spi_write(struct spi_device *spi , void const *buf , size_t 
   struct spi_message m ;
   int tmp ;
   struct spi_transfer *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   {
   {
   __cil_tmp7 = & t;
   *((void const **)__cil_tmp7) = buf;
-  __cil_tmp8 = (unsigned long )(& t) + 8;
-  *((void **)__cil_tmp8) = (void *)0;
-  __cil_tmp9 = (unsigned long )(& t) + 16;
-  *((unsigned int *)__cil_tmp9) = (unsigned int )len;
-  __cil_tmp10 = (unsigned long )(& t) + 24;
-  *((dma_addr_t *)__cil_tmp10) = 0ULL;
-  __cil_tmp11 = (unsigned long )(& t) + 32;
-  *((dma_addr_t *)__cil_tmp11) = 0ULL;
-  __cil_tmp12 = (unsigned long )(& t) + 40;
-  *((unsigned char *)__cil_tmp12) = (unsigned char)0;
-  __cil_tmp13 = (unsigned long )(& t) + 41;
-  *((u8 *)__cil_tmp13) = (unsigned char)0;
-  __cil_tmp14 = (unsigned long )(& t) + 42;
-  *((u16 *)__cil_tmp14) = (unsigned short)0;
-  __cil_tmp15 = (unsigned long )(& t) + 44;
-  *((u32 *)__cil_tmp15) = 0U;
-  __cil_tmp16 = (unsigned long )(& t) + 48;
-  *((struct list_head **)__cil_tmp16) = (struct list_head *)0;
+  *((void **)((void *)(&t) + 8)) = (void *)0;
+  *((unsigned int *)((void *)(&t) + 16)) = (unsigned int )len;
+  *((dma_addr_t *)((void *)(&t) + 24)) = 0ULL;
+  *((dma_addr_t *)((void *)(&t) + 32)) = 0ULL;
+  *((unsigned char *)((void *)(&t) + 40)) = (unsigned char)0;
+  *((u8 *)((void *)(&t) + 41)) = (unsigned char)0;
+  *((u16 *)((void *)(&t) + 42)) = (unsigned short)0;
+  *((u32 *)((void *)(&t) + 44)) = 0U;
+  *((struct list_head **)((void *)(&t) + 48)) = (struct list_head *)0;
   __cil_tmp17 = 48 + 8;
-  __cil_tmp18 = (unsigned long )(& t) + __cil_tmp17;
-  *((struct list_head **)__cil_tmp18) = (struct list_head *)0;
+  *((struct list_head **)((void *)(&t) + __cil_tmp17)) = (struct list_head *)0;
   spi_message_init(& m);
   spi_message_add_tail(& t, & m);
   tmp = spi_sync(spi, & m);
@@ -2223,21 +2190,13 @@ extern int gpiochip_add(struct gpio_chip * ) ;
 extern int gpiochip_remove(struct gpio_chip * ) ;
 static int mc33880_write_config(struct mc33880 *mc )
 { int tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct spi_device *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   u8 *__cil_tmp8 ;
   void const *__cil_tmp9 ;
   {
   {
-  __cil_tmp3 = (unsigned long )mc;
-  __cil_tmp4 = __cil_tmp3 + 296;
-  __cil_tmp5 = *((struct spi_device **)__cil_tmp4);
-  __cil_tmp6 = (unsigned long )mc;
-  __cil_tmp7 = __cil_tmp6 + 168;
-  __cil_tmp8 = (u8 *)__cil_tmp7;
+  __cil_tmp5 = *((struct spi_device **)((void *)mc + 296));
+  __cil_tmp8 = (u8 *)((void *)mc + 168);
   __cil_tmp9 = (void const *)__cil_tmp8;
   tmp = spi_write(__cil_tmp5, __cil_tmp9, 1UL);
   }
@@ -2246,61 +2205,45 @@ static int mc33880_write_config(struct mc33880 *mc )
 }
 static int __mc33880_set(struct mc33880 *mc , unsigned int offset , int value )
 { int tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
   signed char __cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u8 __cil_tmp13 ;
   signed char __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
   int __cil_tmp20 ;
   signed char __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   u8 __cil_tmp26 ;
   signed char __cil_tmp27 ;
   int __cil_tmp28 ;
   int __cil_tmp29 ;
   {
   if (value != 0) {
-    __cil_tmp5 = (unsigned long )mc;
-    __cil_tmp6 = __cil_tmp5 + 168;
     __cil_tmp7 = (int )offset;
     __cil_tmp8 = 1 << __cil_tmp7;
     __cil_tmp9 = (signed char )__cil_tmp8;
     __cil_tmp10 = (int )__cil_tmp9;
-    __cil_tmp11 = (unsigned long )mc;
-    __cil_tmp12 = __cil_tmp11 + 168;
-    __cil_tmp13 = *((u8 *)__cil_tmp12);
+    __cil_tmp13 = *((u8 *)((void *)mc + 168));
     __cil_tmp14 = (signed char )__cil_tmp13;
     __cil_tmp15 = (int )__cil_tmp14;
     __cil_tmp16 = __cil_tmp15 | __cil_tmp10;
-    *((u8 *)__cil_tmp6) = (u8 )__cil_tmp16;
+    *((u8 *)((void *)mc + 168)) = (u8 )__cil_tmp16;
   } else {
-    __cil_tmp17 = (unsigned long )mc;
-    __cil_tmp18 = __cil_tmp17 + 168;
     __cil_tmp19 = (int )offset;
     __cil_tmp20 = 1 << __cil_tmp19;
     __cil_tmp21 = (signed char )__cil_tmp20;
     __cil_tmp22 = (int )__cil_tmp21;
     __cil_tmp23 = ~ __cil_tmp22;
-    __cil_tmp24 = (unsigned long )mc;
-    __cil_tmp25 = __cil_tmp24 + 168;
-    __cil_tmp26 = *((u8 *)__cil_tmp25);
+    __cil_tmp26 = *((u8 *)((void *)mc + 168));
     __cil_tmp27 = (signed char )__cil_tmp26;
     __cil_tmp28 = (int )__cil_tmp27;
     __cil_tmp29 = __cil_tmp28 & __cil_tmp23;
-    *((u8 *)__cil_tmp18) = (u8 )__cil_tmp29;
+    *((u8 *)((void *)mc + 168)) = (u8 )__cil_tmp29;
   }
   {
   tmp = mc33880_write_config(mc);
@@ -2337,62 +2280,30 @@ static int mc33880_probe(struct spi_device *spi )
   void *tmp___0 ;
   struct lock_class_key __key ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   struct mc33880_platform_data *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   struct _ddebug *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned char __cil_tmp24 ;
   long __cil_tmp25 ;
   long __cil_tmp26 ;
   struct device *__cil_tmp27 ;
   struct device const *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct mc33880 *__cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   struct mutex *__cil_tmp34 ;
   struct device *__cil_tmp35 ;
   void *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned int __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct gpio_chip *__cil_tmp66 ;
   struct device *__cil_tmp67 ;
   void *__cil_tmp68 ;
@@ -2400,9 +2311,7 @@ static int mc33880_probe(struct spi_device *spi )
   void const *__cil_tmp70 ;
   {
   __cil_tmp9 = 0 + 280;
-  __cil_tmp10 = (unsigned long )spi;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)spi + __cil_tmp9));
   pdata = (struct mc33880_platform_data *)__cil_tmp12;
   {
   __cil_tmp13 = (struct mc33880_platform_data *)0;
@@ -2418,18 +2327,12 @@ static int mc33880_probe(struct spi_device *spi )
       {
       __cil_tmp17 = & descriptor;
       *((char const **)__cil_tmp17) = "gpio_mc33880";
-      __cil_tmp18 = (unsigned long )(& descriptor) + 8;
-      *((char const **)__cil_tmp18) = "mc33880_probe";
-      __cil_tmp19 = (unsigned long )(& descriptor) + 16;
-      *((char const **)__cil_tmp19) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2757/dscv_tempdir/dscv/ri/43_1a/drivers/gpio/gpio-mc33880.c.p";
-      __cil_tmp20 = (unsigned long )(& descriptor) + 24;
-      *((char const **)__cil_tmp20) = "incorrect or missing platform data\n";
-      __cil_tmp21 = (unsigned long )(& descriptor) + 32;
-      *((unsigned int *)__cil_tmp21) = 106U;
-      __cil_tmp22 = (unsigned long )(& descriptor) + 35;
-      *((unsigned char *)__cil_tmp22) = (unsigned char)1;
-      __cil_tmp23 = (unsigned long )(& descriptor) + 35;
-      __cil_tmp24 = *((unsigned char *)__cil_tmp23);
+      *((char const **)((void *)(&descriptor) + 8)) = "mc33880_probe";
+      *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2757/dscv_tempdir/dscv/ri/43_1a/drivers/gpio/gpio-mc33880.c.p";
+      *((char const **)((void *)(&descriptor) + 24)) = "incorrect or missing platform data\n";
+      *((unsigned int *)((void *)(&descriptor) + 32)) = 106U;
+      *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+      __cil_tmp24 = *((unsigned char *)((void *)(&descriptor) + 35));
       __cil_tmp25 = (long )__cil_tmp24;
       __cil_tmp26 = __cil_tmp25 & 1L;
       tmp = __builtin_expect(__cil_tmp26, 0L);
@@ -2449,9 +2352,7 @@ static int mc33880_probe(struct spi_device *spi )
   }
   }
   {
-  __cil_tmp29 = (unsigned long )spi;
-  __cil_tmp30 = __cil_tmp29 + 1166;
-  *((u8 *)__cil_tmp30) = (u8 )8U;
+  *((u8 *)((void *)spi + 1166)) = (u8 )8U;
   ret = spi_setup(spi);
   }
   if (ret < 0) {
@@ -2477,44 +2378,24 @@ static int mc33880_probe(struct spi_device *spi )
   __cil_tmp35 = (struct device *)spi;
   __cil_tmp36 = (void *)mc;
   dev_set_drvdata(__cil_tmp35, __cil_tmp36);
-  __cil_tmp37 = (unsigned long )mc;
-  __cil_tmp38 = __cil_tmp37 + 296;
-  *((struct spi_device **)__cil_tmp38) = spi;
-  __cil_tmp39 = (unsigned long )mc;
-  __cil_tmp40 = __cil_tmp39 + 176;
-  *((char const **)__cil_tmp40) = "mc33880";
+  *((struct spi_device **)((void *)mc + 296)) = spi;
+  *((char const **)((void *)mc + 176)) = "mc33880";
   __cil_tmp41 = 176 + 72;
-  __cil_tmp42 = (unsigned long )mc;
-  __cil_tmp43 = __cil_tmp42 + __cil_tmp41;
-  *((void (**)(struct gpio_chip * , unsigned int , int ))__cil_tmp43) = & mc33880_set;
+  *((void (**)(struct gpio_chip * , unsigned int , int ))((void *)mc + __cil_tmp41)) = & mc33880_set;
   __cil_tmp44 = 176 + 96;
-  __cil_tmp45 = (unsigned long )mc;
-  __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
   __cil_tmp47 = *((unsigned int *)pdata);
-  *((int *)__cil_tmp46) = (int )__cil_tmp47;
+  *((int *)((void *)mc + __cil_tmp44)) = (int )__cil_tmp47;
   __cil_tmp48 = 176 + 100;
-  __cil_tmp49 = (unsigned long )mc;
-  __cil_tmp50 = __cil_tmp49 + __cil_tmp48;
-  *((u16 *)__cil_tmp50) = (u16 )8U;
+  *((u16 *)((void *)mc + __cil_tmp48)) = (u16 )8U;
   __cil_tmp51 = 176 + 112;
-  __cil_tmp52 = (unsigned long )mc;
-  __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-  *((unsigned char *)__cil_tmp53) = (unsigned char)1;
+  *((unsigned char *)((void *)mc + __cil_tmp51)) = (unsigned char)1;
   __cil_tmp54 = 176 + 8;
-  __cil_tmp55 = (unsigned long )mc;
-  __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-  *((struct device **)__cil_tmp56) = (struct device *)spi;
+  *((struct device **)((void *)mc + __cil_tmp54)) = (struct device *)spi;
   __cil_tmp57 = 176 + 16;
-  __cil_tmp58 = (unsigned long )mc;
-  __cil_tmp59 = __cil_tmp58 + __cil_tmp57;
-  *((struct module **)__cil_tmp59) = & __this_module;
-  __cil_tmp60 = (unsigned long )mc;
-  __cil_tmp61 = __cil_tmp60 + 168;
-  *((u8 *)__cil_tmp61) = (u8 )0U;
+  *((struct module **)((void *)mc + __cil_tmp57)) = & __this_module;
+  *((u8 *)((void *)mc + 168)) = (u8 )0U;
   ret = mc33880_write_config(mc);
-  __cil_tmp62 = (unsigned long )mc;
-  __cil_tmp63 = __cil_tmp62 + 168;
-  *((u8 *)__cil_tmp63) = (u8 )0U;
+  *((u8 *)((void *)mc + 168)) = (u8 )0U;
   }
   if (ret == 0) {
     {
@@ -2530,9 +2411,7 @@ static int mc33880_probe(struct spi_device *spi )
   } else {
   }
   {
-  __cil_tmp64 = (unsigned long )mc;
-  __cil_tmp65 = __cil_tmp64 + 176;
-  __cil_tmp66 = (struct gpio_chip *)__cil_tmp65;
+  __cil_tmp66 = (struct gpio_chip *)((void *)mc + 176);
   ret = gpiochip_add(__cil_tmp66);
   }
   if (ret != 0) {
@@ -2564,8 +2443,6 @@ static int mc33880_remove(struct spi_device *spi )
   unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct gpio_chip *__cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
   void const *__cil_tmp16 ;
@@ -2591,9 +2468,7 @@ static int mc33880_remove(struct spi_device *spi )
   __cil_tmp10 = (struct device *)spi;
   __cil_tmp11 = (void *)0;
   dev_set_drvdata(__cil_tmp10, __cil_tmp11);
-  __cil_tmp12 = (unsigned long )mc;
-  __cil_tmp13 = __cil_tmp12 + 176;
-  __cil_tmp14 = (struct gpio_chip *)__cil_tmp13;
+  __cil_tmp14 = (struct gpio_chip *)((void *)mc + 176);
   ret = gpiochip_remove(__cil_tmp14);
   }
   if (ret == 0) {

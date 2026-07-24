@@ -4806,24 +4806,14 @@ static void old_belkin_sir_cleanup(void)
 }
 static int old_belkin_open(struct sir_dev *dev )
 { struct qos_info *qos ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   __u16 __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  qos = (struct qos_info *)__cil_tmp4;
+  qos = (struct qos_info *)((void *)dev + 16);
   if (irda_debug > 1U) {
     {
     printk("<7>%s()\n", "old_belkin_open");
@@ -4833,19 +4823,13 @@ static int old_belkin_open(struct sir_dev *dev )
   {
   sirdev_set_dtr_rts(dev, 1, 1);
   __cil_tmp5 = 4 + 4;
-  __cil_tmp6 = (unsigned long )qos;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
   __cil_tmp8 = 4 + 4;
-  __cil_tmp9 = (unsigned long )qos;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = *((__u16 *)__cil_tmp10);
+  __cil_tmp11 = *((__u16 *)((void *)qos + __cil_tmp8));
   __cil_tmp12 = (unsigned int )__cil_tmp11;
   __cil_tmp13 = __cil_tmp12 & 2U;
-  *((__u16 *)__cil_tmp7) = (__u16 )__cil_tmp13;
+  *((__u16 *)((void *)qos + __cil_tmp5)) = (__u16 )__cil_tmp13;
   __cil_tmp14 = 44 + 4;
-  __cil_tmp15 = (unsigned long )qos;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((__u16 *)__cil_tmp16) = (__u16 )1U;
+  *((__u16 *)((void *)qos + __cil_tmp14)) = (__u16 )1U;
   irda_qos_bits_to_value(qos);
   }
   return (0);
@@ -4868,10 +4852,6 @@ static int old_belkin_close(struct sir_dev *dev )
 }
 static int old_belkin_change_speed(struct sir_dev *dev , unsigned int speed )
 { int tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   {
   if (irda_debug > 1U) {
@@ -4880,13 +4860,9 @@ static int old_belkin_change_speed(struct sir_dev *dev , unsigned int speed )
     }
   } else {
   }
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 528;
-  *((unsigned int *)__cil_tmp5) = 9600U;
+  *((unsigned int *)((void *)dev + 528)) = 9600U;
   {
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 528;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)dev + 528));
   if (__cil_tmp8 == speed) {
     tmp = 0;
   } else {
@@ -4897,8 +4873,7 @@ static int old_belkin_change_speed(struct sir_dev *dev , unsigned int speed )
 }
 }
 static int old_belkin_reset(struct sir_dev *dev )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   if (irda_debug > 1U) {
     {
@@ -4906,9 +4881,7 @@ static int old_belkin_reset(struct sir_dev *dev )
     }
   } else {
   }
-  __cil_tmp2 = (unsigned long )dev;
-  __cil_tmp3 = __cil_tmp2 + 528;
-  *((unsigned int *)__cil_tmp3) = 9600U;
+  *((unsigned int *)((void *)dev + 528)) = 9600U;
   return (0);
 }
 }

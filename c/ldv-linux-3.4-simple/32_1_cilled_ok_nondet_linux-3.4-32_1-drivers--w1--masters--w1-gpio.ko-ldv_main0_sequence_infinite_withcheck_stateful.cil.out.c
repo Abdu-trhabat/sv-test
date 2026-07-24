@@ -855,15 +855,11 @@ extern int platform_driver_probe(struct platform_driver *driver , int (*probe)(s
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -871,15 +867,12 @@ __inline static void *platform_get_drvdata(struct platform_device  const  *pdev 
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1033,24 +1026,10 @@ static int w1_gpio_probe(struct platform_device *pdev )
   int err ;
   void *tmp ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   void (*__cil_tmp25)(int enable ) ;
   void *__cil_tmp26 ;
   unsigned int __cil_tmp27 ;
@@ -1058,9 +1037,7 @@ static int w1_gpio_probe(struct platform_device *pdev )
 
   {
   __cil_tmp6 = 16 + 184;
-  __cil_tmp7 = (unsigned long )pdev;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp6;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)pdev + __cil_tmp6));
   pdata = (struct w1_gpio_platform_data *)__cil_tmp9;
   if (! pdata) {
     return (-6);
@@ -1086,27 +1063,19 @@ static int w1_gpio_probe(struct platform_device *pdev )
 
   }
   *((void **)master) = (void *)pdata;
-  __cil_tmp11 = (unsigned long )master;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  *((u8 (**)(void * ))__cil_tmp12) = & w1_gpio_read_bit;
+  *((u8 (**)(void * ))((void *)master + 8)) = & w1_gpio_read_bit;
   {
-  __cil_tmp13 = (unsigned long )pdata;
-  __cil_tmp14 = __cil_tmp13 + 4;
-  if (*((unsigned int *)__cil_tmp14)) {
+  if (*((unsigned int *)((void *)pdata + 4))) {
     {
     __cil_tmp15 = *((unsigned int *)pdata);
     gpio_direction_output(__cil_tmp15, 1);
-    __cil_tmp16 = (unsigned long )master;
-    __cil_tmp17 = __cil_tmp16 + 16;
-    *((void (**)(void * , u8  ))__cil_tmp17) = & w1_gpio_write_bit_val;
+    *((void (**)(void * , u8  ))((void *)master + 16)) = & w1_gpio_write_bit_val;
     }
   } else {
     {
     __cil_tmp18 = *((unsigned int *)pdata);
     gpio_direction_input(__cil_tmp18);
-    __cil_tmp19 = (unsigned long )master;
-    __cil_tmp20 = __cil_tmp19 + 16;
-    *((void (**)(void * , u8  ))__cil_tmp20) = & w1_gpio_write_bit_dir;
+    *((void (**)(void * , u8  ))((void *)master + 16)) = & w1_gpio_write_bit_dir;
     }
   }
   }
@@ -1119,13 +1088,9 @@ static int w1_gpio_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp21 = (unsigned long )pdata;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  if (*((void (**)(int enable ))__cil_tmp22)) {
+  if (*((void (**)(int enable ))((void *)pdata + 8))) {
     {
-    __cil_tmp23 = (unsigned long )pdata;
-    __cil_tmp24 = __cil_tmp23 + 8;
-    __cil_tmp25 = *((void (**)(int enable ))__cil_tmp24);
+    __cil_tmp25 = *((void (**)(int enable ))((void *)pdata + 8));
     (*__cil_tmp25)(1);
     }
   } else {
@@ -1158,13 +1123,7 @@ static int w1_gpio_remove(struct platform_device *pdev )
   struct w1_gpio_platform_data *pdata ;
   struct platform_device  const  *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void (*__cil_tmp14)(int enable ) ;
   unsigned int __cil_tmp15 ;
   void const   *__cil_tmp16 ;
@@ -1175,19 +1134,13 @@ static int w1_gpio_remove(struct platform_device *pdev )
   tmp = platform_get_drvdata(__cil_tmp5);
   master = (struct w1_bus_master *)tmp;
   __cil_tmp6 = 16 + 184;
-  __cil_tmp7 = (unsigned long )pdev;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp6;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)pdev + __cil_tmp6));
   pdata = (struct w1_gpio_platform_data *)__cil_tmp9;
   }
   {
-  __cil_tmp10 = (unsigned long )pdata;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  if (*((void (**)(int enable ))__cil_tmp11)) {
+  if (*((void (**)(int enable ))((void *)pdata + 8))) {
     {
-    __cil_tmp12 = (unsigned long )pdata;
-    __cil_tmp13 = __cil_tmp12 + 8;
-    __cil_tmp14 = *((void (**)(int enable ))__cil_tmp13);
+    __cil_tmp14 = *((void (**)(int enable ))((void *)pdata + 8));
     (*__cil_tmp14)(0);
     }
   } else {
@@ -1207,29 +1160,17 @@ static int w1_gpio_remove(struct platform_device *pdev )
 static int w1_gpio_suspend(struct platform_device *pdev , int state_event13 ) 
 { struct w1_gpio_platform_data *pdata ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void (*__cil_tmp12)(int enable ) ;
 
   {
   __cil_tmp4 = 16 + 184;
-  __cil_tmp5 = (unsigned long )pdev;
-  __cil_tmp6 = __cil_tmp5 + __cil_tmp4;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)pdev + __cil_tmp4));
   pdata = (struct w1_gpio_platform_data *)__cil_tmp7;
   {
-  __cil_tmp8 = (unsigned long )pdata;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  if (*((void (**)(int enable ))__cil_tmp9)) {
+  if (*((void (**)(int enable ))((void *)pdata + 8))) {
     {
-    __cil_tmp10 = (unsigned long )pdata;
-    __cil_tmp11 = __cil_tmp10 + 8;
-    __cil_tmp12 = *((void (**)(int enable ))__cil_tmp11);
+    __cil_tmp12 = *((void (**)(int enable ))((void *)pdata + 8));
     (*__cil_tmp12)(0);
     }
   } else {
@@ -1242,29 +1183,17 @@ static int w1_gpio_suspend(struct platform_device *pdev , int state_event13 )
 static int w1_gpio_resume(struct platform_device *pdev ) 
 { struct w1_gpio_platform_data *pdata ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void (*__cil_tmp11)(int enable ) ;
 
   {
   __cil_tmp3 = 16 + 184;
-  __cil_tmp4 = (unsigned long )pdev;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)pdev + __cil_tmp3));
   pdata = (struct w1_gpio_platform_data *)__cil_tmp6;
   {
-  __cil_tmp7 = (unsigned long )pdata;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  if (*((void (**)(int enable ))__cil_tmp8)) {
+  if (*((void (**)(int enable ))((void *)pdata + 8))) {
     {
-    __cil_tmp9 = (unsigned long )pdata;
-    __cil_tmp10 = __cil_tmp9 + 8;
-    __cil_tmp11 = *((void (**)(int enable ))__cil_tmp10);
+    __cil_tmp11 = *((void (**)(int enable ))((void *)pdata + 8));
     (*__cil_tmp11)(1);
     }
   } else {

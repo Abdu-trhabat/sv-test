@@ -747,19 +747,11 @@ __inline static void setup_timer_key(struct timer_list *timer , char const   *na
 __inline static void setup_timer_key(struct timer_list *timer , char const   *name ,
                                      struct lock_class_key *key , void (*function)(unsigned long  ) ,
                                      unsigned long data ) 
-{ unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-
+{
   {
   {
-  __cil_tmp6 = (unsigned long )timer;
-  __cil_tmp7 = __cil_tmp6 + 32;
-  *((void (**)(unsigned long  ))__cil_tmp7) = function;
-  __cil_tmp8 = (unsigned long )timer;
-  __cil_tmp9 = __cil_tmp8 + 40;
-  *((unsigned long *)__cil_tmp9) = data;
+  *((void (**)(unsigned long  ))((void *)timer + 32)) = function;
+  *((unsigned long *)((void *)timer + 40)) = data;
   init_timer_key(timer, name, key);
   }
   return;
@@ -815,16 +807,13 @@ static struct pps_source_info pps_ktimer_info  =    {{(char )'k', (char )'t', (c
     & __this_module, (struct device *)0};
 static void pps_ktimer_exit(void)  __attribute__((__section__(".exit.text"), __no_instrument_function__)) ;
 static void pps_ktimer_exit(void) 
-{ unsigned long __cil_tmp1 ;
-  unsigned long __cil_tmp2 ;
+{
   struct device *__cil_tmp3 ;
   struct device  const  *__cil_tmp4 ;
 
   {
   {
-  __cil_tmp1 = (unsigned long )pps;
-  __cil_tmp2 = __cil_tmp1 + 336;
-  __cil_tmp3 = *((struct device **)__cil_tmp2);
+  __cil_tmp3 = *((struct device **)((void *)pps + 336));
   __cil_tmp4 = (struct device  const  *)__cil_tmp3;
   _dev_info(__cil_tmp4, "ktimer PPS source unregistered\n");
   del_timer_sync(& ktimer);
@@ -845,8 +834,6 @@ static int pps_ktimer_init(void)
   unsigned long volatile   __cil_tmp8 ;
   unsigned long volatile   __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device  const  *__cil_tmp14 ;
 
@@ -877,9 +864,7 @@ static int pps_ktimer_init(void)
   __cil_tmp9 = jiffies + __cil_tmp8;
   __cil_tmp10 = (unsigned long )__cil_tmp9;
   mod_timer(& ktimer, __cil_tmp10);
-  __cil_tmp11 = (unsigned long )pps;
-  __cil_tmp12 = __cil_tmp11 + 336;
-  __cil_tmp13 = *((struct device **)__cil_tmp12);
+  __cil_tmp13 = *((struct device **)((void *)pps + 336));
   __cil_tmp14 = (struct device  const  *)__cil_tmp13;
   _dev_info(__cil_tmp14, "ktimer PPS source registered\n");
   }

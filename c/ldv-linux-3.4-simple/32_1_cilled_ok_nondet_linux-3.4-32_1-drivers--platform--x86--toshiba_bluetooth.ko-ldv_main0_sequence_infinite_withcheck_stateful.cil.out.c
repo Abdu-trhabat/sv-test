@@ -3111,15 +3111,12 @@ static int toshiba_bluetooth_enable(acpi_handle handle )
 }
 }
 static void toshiba_bt_rfkill_notify(struct acpi_device *device , u32 event ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   acpi_handle __cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )device;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((acpi_handle *)__cil_tmp4);
+  __cil_tmp5 = *((acpi_handle *)((void *)device + 8));
   toshiba_bluetooth_enable(__cil_tmp5);
   }
   return;
@@ -3127,15 +3124,11 @@ static void toshiba_bt_rfkill_notify(struct acpi_device *device , u32 event )
 }
 static int toshiba_bt_resume(struct acpi_device *device ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   acpi_handle __cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )device;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((acpi_handle *)__cil_tmp4);
+  __cil_tmp5 = *((acpi_handle *)((void *)device + 8));
   tmp___7 = toshiba_bluetooth_enable(__cil_tmp5);
   }
   return (tmp___7);
@@ -3145,23 +3138,17 @@ static int toshiba_bt_rfkill_add(struct acpi_device *device )
 { acpi_status status ;
   u64 bt_present ;
   int result ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   acpi_handle __cil_tmp7 ;
   acpi_string __cil_tmp8 ;
   void *__cil_tmp9 ;
   struct acpi_object_list *__cil_tmp10 ;
   u64 *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   acpi_handle __cil_tmp14 ;
 
   {
   {
   result = -19;
-  __cil_tmp5 = (unsigned long )device;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((acpi_handle *)__cil_tmp6);
+  __cil_tmp7 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp8 = (acpi_string )"_STA";
   __cil_tmp9 = (void *)0;
   __cil_tmp10 = (struct acpi_object_list *)__cil_tmp9;
@@ -3173,9 +3160,7 @@ static int toshiba_bt_rfkill_add(struct acpi_device *device )
     if (*__cil_tmp11) {
       {
       printk("<6>toshiba_bluetooth: Detected Toshiba ACPI Bluetooth device - installing RFKill handler\n");
-      __cil_tmp12 = (unsigned long )device;
-      __cil_tmp13 = __cil_tmp12 + 8;
-      __cil_tmp14 = *((acpi_handle *)__cil_tmp13);
+      __cil_tmp14 = *((acpi_handle *)((void *)device + 8));
       result = toshiba_bluetooth_enable(__cil_tmp14);
       }
     } else {

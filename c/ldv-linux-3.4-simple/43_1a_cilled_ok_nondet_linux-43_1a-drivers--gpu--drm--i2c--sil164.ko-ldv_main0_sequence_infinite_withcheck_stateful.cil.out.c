@@ -4409,17 +4409,13 @@ extern unsigned int drm_debug ;
 __inline static struct i2c_client *drm_i2c_encoder_get_client(struct drm_encoder *encoder ) 
 { struct drm_encoder  const  *__mptr ;
   struct drm_encoder_slave *__cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
 
   {
   __mptr = (struct drm_encoder  const  *)encoder;
   {
   __cil_tmp3 = (struct drm_encoder_slave *)__mptr;
-  __cil_tmp4 = (unsigned long )__cil_tmp3;
-  __cil_tmp5 = __cil_tmp4 + 88;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)__cil_tmp3 + 88));
   return ((struct i2c_client *)__cil_tmp6);
   }
 }
@@ -4457,8 +4453,6 @@ static void sil164_write(struct i2c_client *client , uint8_t addr , uint8_t val 
   unsigned long __cil_tmp9 ;
   struct i2c_client  const  *__cil_tmp10 ;
   char const   *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device  const  *__cil_tmp15 ;
   int __cil_tmp16 ;
@@ -4477,9 +4471,7 @@ static void sil164_write(struct i2c_client *client , uint8_t addr , uint8_t val 
   }
   if (ret < 0) {
     {
-    __cil_tmp12 = (unsigned long )client;
-    __cil_tmp13 = __cil_tmp12 + 40;
-    __cil_tmp14 = (struct device *)__cil_tmp13;
+    __cil_tmp14 = (struct device *)((void *)client + 40);
     __cil_tmp15 = (struct device  const  *)__cil_tmp14;
     __cil_tmp16 = (int )addr;
     dev_err(__cil_tmp15, "Error %d writing to subaddress 0x%x\n", ret, __cil_tmp16);
@@ -4498,8 +4490,6 @@ static uint8_t sil164_read(struct i2c_client *client , uint8_t addr )
   struct i2c_client  const  *__cil_tmp7 ;
   char *__cil_tmp8 ;
   uint8_t *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device  const  *__cil_tmp13 ;
   uint8_t *__cil_tmp14 ;
@@ -4533,9 +4523,7 @@ static uint8_t sil164_read(struct i2c_client *client , uint8_t addr )
   }
   fail: 
   {
-  __cil_tmp10 = (unsigned long )client;
-  __cil_tmp11 = __cil_tmp10 + 40;
-  __cil_tmp12 = (struct device *)__cil_tmp11;
+  __cil_tmp12 = (struct device *)((void *)client + 40);
   __cil_tmp13 = (struct device  const  *)__cil_tmp12;
   __cil_tmp14 = & addr;
   __cil_tmp15 = *__cil_tmp14;
@@ -4658,12 +4646,8 @@ static void sil164_init_state(struct i2c_client *client , struct sil164_encoder_
   int tmp___3 ;
   enum ldv_25619 __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   enum ldv_25620 __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   enum ldv_25621 __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   uint8_t __cil_tmp19 ;
@@ -4674,12 +4658,8 @@ static void sil164_init_state(struct i2c_client *client , struct sil164_encoder_
   uint8_t __cil_tmp24 ;
   uint8_t __cil_tmp25 ;
   uint8_t __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
   uint8_t __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   int __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
@@ -4689,8 +4669,6 @@ static void sil164_init_state(struct i2c_client *client , struct sil164_encoder_
   uint8_t __cil_tmp39 ;
   int __cil_tmp40 ;
   uint8_t __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   enum ldv_25622 __cil_tmp44 ;
   unsigned int __cil_tmp45 ;
   uint8_t __cil_tmp46 ;
@@ -4698,8 +4676,6 @@ static void sil164_init_state(struct i2c_client *client , struct sil164_encoder_
   uint8_t __cil_tmp48 ;
   uint8_t __cil_tmp49 ;
   uint8_t __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   int __cil_tmp53 ;
   int __cil_tmp54 ;
   int __cil_tmp55 ;
@@ -4723,9 +4699,7 @@ static void sil164_init_state(struct i2c_client *client , struct sil164_encoder_
   }
   }
   {
-  __cil_tmp11 = (unsigned long )config;
-  __cil_tmp12 = __cil_tmp11 + 4;
-  __cil_tmp13 = *((enum ldv_25620 *)__cil_tmp12);
+  __cil_tmp13 = *((enum ldv_25620 *)((void *)config + 4));
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   if (__cil_tmp14 != 0U) {
     tmp___0 = 4;
@@ -4734,9 +4708,7 @@ static void sil164_init_state(struct i2c_client *client , struct sil164_encoder_
   }
   }
   {
-  __cil_tmp15 = (unsigned long )config;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  __cil_tmp17 = *((enum ldv_25621 *)__cil_tmp16);
+  __cil_tmp17 = *((enum ldv_25621 *)((void *)config + 8));
   __cil_tmp18 = (unsigned int )__cil_tmp17;
   if (__cil_tmp18 != 0U) {
     tmp___1 = 8;
@@ -4757,9 +4729,7 @@ static void sil164_init_state(struct i2c_client *client , struct sil164_encoder_
   sil164_write(client, __cil_tmp25, __cil_tmp26);
   }
   {
-  __cil_tmp27 = (unsigned long )config;
-  __cil_tmp28 = __cil_tmp27 + 16;
-  __cil_tmp29 = *((int *)__cil_tmp28);
+  __cil_tmp29 = *((int *)((void *)config + 16));
   if (__cil_tmp29 != 0) {
     tmp___2 = 16;
   } else {
@@ -4768,9 +4738,7 @@ static void sil164_init_state(struct i2c_client *client , struct sil164_encoder_
   }
   {
   __cil_tmp30 = (uint8_t )10;
-  __cil_tmp31 = (unsigned long )config;
-  __cil_tmp32 = __cil_tmp31 + 16;
-  __cil_tmp33 = *((int *)__cil_tmp32);
+  __cil_tmp33 = *((int *)((void *)config + 16));
   __cil_tmp34 = __cil_tmp33 + 4;
   __cil_tmp35 = __cil_tmp34 << 5;
   __cil_tmp36 = (signed char )__cil_tmp35;
@@ -4782,9 +4750,7 @@ static void sil164_init_state(struct i2c_client *client , struct sil164_encoder_
   sil164_write(client, __cil_tmp30, __cil_tmp41);
   }
   {
-  __cil_tmp42 = (unsigned long )config;
-  __cil_tmp43 = __cil_tmp42 + 12;
-  __cil_tmp44 = *((enum ldv_25622 *)__cil_tmp43);
+  __cil_tmp44 = *((enum ldv_25622 *)((void *)config + 12));
   __cil_tmp45 = (unsigned int )__cil_tmp44;
   if (__cil_tmp45 == 0U) {
     tmp___3 = 137;
@@ -4803,9 +4769,7 @@ static void sil164_init_state(struct i2c_client *client , struct sil164_encoder_
   if ((int )duallink) {
     {
     __cil_tmp50 = (uint8_t )13;
-    __cil_tmp51 = (unsigned long )config;
-    __cil_tmp52 = __cil_tmp51 + 20;
-    __cil_tmp53 = *((int *)__cil_tmp52);
+    __cil_tmp53 = *((int *)((void *)config + 20));
     __cil_tmp54 = __cil_tmp53 + 4;
     __cil_tmp55 = __cil_tmp54 << 5;
     __cil_tmp56 = (signed char )__cil_tmp55;
@@ -4830,17 +4794,13 @@ static void sil164_encoder_set_config(struct drm_encoder *encoder , void *params
 { struct sil164_priv *priv ;
   struct drm_encoder  const  *__mptr ;
   struct drm_encoder_slave *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   struct sil164_encoder_params *__cil_tmp9 ;
 
   {
   __mptr = (struct drm_encoder  const  *)encoder;
   __cil_tmp5 = (struct drm_encoder_slave *)__mptr;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 80;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)__cil_tmp5 + 80));
   priv = (struct sil164_priv *)__cil_tmp8;
   __cil_tmp9 = (struct sil164_encoder_params *)params;
   *((struct sil164_encoder_params *)priv) = *__cil_tmp9;
@@ -4855,27 +4815,17 @@ static void sil164_encoder_dpms(struct drm_encoder *encoder , int mode )
   int tmp ;
   struct i2c_client *tmp___0 ;
   struct drm_encoder_slave *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct drm_crtc *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   int __cil_tmp21 ;
   bool __cil_tmp22 ;
   struct i2c_client *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct i2c_client *__cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct i2c_client *__cil_tmp31 ;
   int __cil_tmp32 ;
   bool __cil_tmp33 ;
@@ -4883,21 +4833,15 @@ static void sil164_encoder_dpms(struct drm_encoder *encoder , int mode )
   {
   __mptr = (struct drm_encoder  const  *)encoder;
   __cil_tmp9 = (struct drm_encoder_slave *)__mptr;
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 80;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)__cil_tmp9 + 80));
   priv = (struct sil164_priv *)__cil_tmp12;
   __cil_tmp13 = mode == 0;
   on = (bool )__cil_tmp13;
   if ((int )on) {
     {
     __cil_tmp14 = 48 + 64;
-    __cil_tmp15 = (unsigned long )encoder;
-    __cil_tmp16 = __cil_tmp15 + 48;
-    __cil_tmp17 = *((struct drm_crtc **)__cil_tmp16);
-    __cil_tmp18 = (unsigned long )__cil_tmp17;
-    __cil_tmp19 = __cil_tmp18 + __cil_tmp14;
-    __cil_tmp20 = *((int *)__cil_tmp19);
+    __cil_tmp17 = *((struct drm_crtc **)((void *)encoder + 48));
+    __cil_tmp20 = *((int *)((void *)__cil_tmp17 + __cil_tmp14));
     if (__cil_tmp20 > 165000) {
       tmp = 1;
     } else {
@@ -4917,15 +4861,11 @@ static void sil164_encoder_dpms(struct drm_encoder *encoder , int mode )
   {
   __cil_tmp23 = (struct i2c_client *)0;
   __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = (unsigned long )priv;
-  __cil_tmp26 = __cil_tmp25 + 24;
-  __cil_tmp27 = *((struct i2c_client **)__cil_tmp26);
+  __cil_tmp27 = *((struct i2c_client **)((void *)priv + 24));
   __cil_tmp28 = (unsigned long )__cil_tmp27;
   if (__cil_tmp28 != __cil_tmp24) {
     {
-    __cil_tmp29 = (unsigned long )priv;
-    __cil_tmp30 = __cil_tmp29 + 24;
-    __cil_tmp31 = *((struct i2c_client **)__cil_tmp30);
+    __cil_tmp31 = *((struct i2c_client **)((void *)priv + 24));
     __cil_tmp32 = (int )duallink;
     __cil_tmp33 = (bool )__cil_tmp32;
     sil164_set_power_state(__cil_tmp31, __cil_tmp33);
@@ -4942,24 +4882,14 @@ static void sil164_encoder_save(struct drm_encoder *encoder )
   struct drm_encoder  const  *__mptr ;
   struct i2c_client *tmp ;
   struct drm_encoder_slave *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   uint8_t (*__cil_tmp11)[16U] ;
   uint8_t *__cil_tmp12 ;
   struct i2c_client *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct i2c_client *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct i2c_client *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   uint8_t (*__cil_tmp24)[16U] ;
   uint8_t *__cil_tmp25 ;
 
@@ -4967,32 +4897,22 @@ static void sil164_encoder_save(struct drm_encoder *encoder )
   {
   __mptr = (struct drm_encoder  const  *)encoder;
   __cil_tmp5 = (struct drm_encoder_slave *)__mptr;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 80;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)__cil_tmp5 + 80));
   priv = (struct sil164_priv *)__cil_tmp8;
   tmp = drm_i2c_encoder_get_client(encoder);
-  __cil_tmp9 = (unsigned long )priv;
-  __cil_tmp10 = __cil_tmp9 + 32;
-  __cil_tmp11 = (uint8_t (*)[16U])__cil_tmp10;
+  __cil_tmp11 = (uint8_t (*)[16U])((void *)priv + 32);
   __cil_tmp12 = (uint8_t *)__cil_tmp11;
   sil164_save_state(tmp, __cil_tmp12);
   }
   {
   __cil_tmp13 = (struct i2c_client *)0;
   __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = (unsigned long )priv;
-  __cil_tmp16 = __cil_tmp15 + 24;
-  __cil_tmp17 = *((struct i2c_client **)__cil_tmp16);
+  __cil_tmp17 = *((struct i2c_client **)((void *)priv + 24));
   __cil_tmp18 = (unsigned long )__cil_tmp17;
   if (__cil_tmp18 != __cil_tmp14) {
     {
-    __cil_tmp19 = (unsigned long )priv;
-    __cil_tmp20 = __cil_tmp19 + 24;
-    __cil_tmp21 = *((struct i2c_client **)__cil_tmp20);
-    __cil_tmp22 = (unsigned long )priv;
-    __cil_tmp23 = __cil_tmp22 + 48;
-    __cil_tmp24 = (uint8_t (*)[16U])__cil_tmp23;
+    __cil_tmp21 = *((struct i2c_client **)((void *)priv + 24));
+    __cil_tmp24 = (uint8_t (*)[16U])((void *)priv + 48);
     __cil_tmp25 = (uint8_t *)__cil_tmp24;
     sil164_save_state(__cil_tmp21, __cil_tmp25);
     }
@@ -5008,24 +4928,14 @@ static void sil164_encoder_restore(struct drm_encoder *encoder )
   struct drm_encoder  const  *__mptr ;
   struct i2c_client *tmp ;
   struct drm_encoder_slave *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   uint8_t (*__cil_tmp11)[16U] ;
   uint8_t *__cil_tmp12 ;
   struct i2c_client *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct i2c_client *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct i2c_client *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   uint8_t (*__cil_tmp24)[16U] ;
   uint8_t *__cil_tmp25 ;
 
@@ -5033,32 +4943,22 @@ static void sil164_encoder_restore(struct drm_encoder *encoder )
   {
   __mptr = (struct drm_encoder  const  *)encoder;
   __cil_tmp5 = (struct drm_encoder_slave *)__mptr;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 80;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)__cil_tmp5 + 80));
   priv = (struct sil164_priv *)__cil_tmp8;
   tmp = drm_i2c_encoder_get_client(encoder);
-  __cil_tmp9 = (unsigned long )priv;
-  __cil_tmp10 = __cil_tmp9 + 32;
-  __cil_tmp11 = (uint8_t (*)[16U])__cil_tmp10;
+  __cil_tmp11 = (uint8_t (*)[16U])((void *)priv + 32);
   __cil_tmp12 = (uint8_t *)__cil_tmp11;
   sil164_restore_state(tmp, __cil_tmp12);
   }
   {
   __cil_tmp13 = (struct i2c_client *)0;
   __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = (unsigned long )priv;
-  __cil_tmp16 = __cil_tmp15 + 24;
-  __cil_tmp17 = *((struct i2c_client **)__cil_tmp16);
+  __cil_tmp17 = *((struct i2c_client **)((void *)priv + 24));
   __cil_tmp18 = (unsigned long )__cil_tmp17;
   if (__cil_tmp18 != __cil_tmp14) {
     {
-    __cil_tmp19 = (unsigned long )priv;
-    __cil_tmp20 = __cil_tmp19 + 24;
-    __cil_tmp21 = *((struct i2c_client **)__cil_tmp20);
-    __cil_tmp22 = (unsigned long )priv;
-    __cil_tmp23 = __cil_tmp22 + 48;
-    __cil_tmp24 = (uint8_t (*)[16U])__cil_tmp23;
+    __cil_tmp21 = *((struct i2c_client **)((void *)priv + 24));
+    __cil_tmp24 = (uint8_t (*)[16U])((void *)priv + 48);
     __cil_tmp25 = (uint8_t *)__cil_tmp24;
     sil164_restore_state(__cil_tmp21, __cil_tmp25);
     }
@@ -5081,36 +4981,22 @@ static int sil164_encoder_mode_valid(struct drm_encoder *encoder , struct drm_di
 { struct sil164_priv *priv ;
   struct drm_encoder  const  *__mptr ;
   struct drm_encoder_slave *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   struct i2c_client *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct i2c_client *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
 
   {
   __mptr = (struct drm_encoder  const  *)encoder;
   __cil_tmp5 = (struct drm_encoder_slave *)__mptr;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 80;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)__cil_tmp5 + 80));
   priv = (struct sil164_priv *)__cil_tmp8;
   {
-  __cil_tmp9 = (unsigned long )mode;
-  __cil_tmp10 = __cil_tmp9 + 64;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)mode + 64));
   if (__cil_tmp11 <= 31999) {
     return (16);
   } else {
@@ -5118,23 +5004,17 @@ static int sil164_encoder_mode_valid(struct drm_encoder *encoder , struct drm_di
   }
   }
   {
-  __cil_tmp12 = (unsigned long )mode;
-  __cil_tmp13 = __cil_tmp12 + 64;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)mode + 64));
   if (__cil_tmp14 > 330000) {
     return (15);
   } else {
     {
-    __cil_tmp15 = (unsigned long )mode;
-    __cil_tmp16 = __cil_tmp15 + 64;
-    __cil_tmp17 = *((int *)__cil_tmp16);
+    __cil_tmp17 = *((int *)((void *)mode + 64));
     if (__cil_tmp17 > 165000) {
       {
       __cil_tmp18 = (struct i2c_client *)0;
       __cil_tmp19 = (unsigned long )__cil_tmp18;
-      __cil_tmp20 = (unsigned long )priv;
-      __cil_tmp21 = __cil_tmp20 + 24;
-      __cil_tmp22 = *((struct i2c_client **)__cil_tmp21);
+      __cil_tmp22 = *((struct i2c_client **)((void *)priv + 24));
       __cil_tmp23 = (unsigned long )__cil_tmp22;
       if (__cil_tmp23 == __cil_tmp19) {
         return (15);
@@ -5158,11 +5038,7 @@ static void sil164_encoder_mode_set(struct drm_encoder *encoder , struct drm_dis
   bool duallink ;
   struct i2c_client *tmp ;
   struct drm_encoder_slave *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   struct sil164_encoder_params *__cil_tmp16 ;
@@ -5170,12 +5046,8 @@ static void sil164_encoder_mode_set(struct drm_encoder *encoder , struct drm_dis
   bool __cil_tmp18 ;
   struct i2c_client *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct i2c_client *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct i2c_client *__cil_tmp27 ;
   struct sil164_encoder_params *__cil_tmp28 ;
   int __cil_tmp29 ;
@@ -5185,13 +5057,9 @@ static void sil164_encoder_mode_set(struct drm_encoder *encoder , struct drm_dis
   {
   __mptr = (struct drm_encoder  const  *)encoder;
   __cil_tmp8 = (struct drm_encoder_slave *)__mptr;
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 80;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)__cil_tmp8 + 80));
   priv = (struct sil164_priv *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )adjusted_mode;
-  __cil_tmp13 = __cil_tmp12 + 64;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)adjusted_mode + 64));
   __cil_tmp15 = __cil_tmp14 > 165000;
   duallink = (bool )__cil_tmp15;
   tmp = drm_i2c_encoder_get_client(encoder);
@@ -5203,15 +5071,11 @@ static void sil164_encoder_mode_set(struct drm_encoder *encoder , struct drm_dis
   {
   __cil_tmp19 = (struct i2c_client *)0;
   __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = (unsigned long )priv;
-  __cil_tmp22 = __cil_tmp21 + 24;
-  __cil_tmp23 = *((struct i2c_client **)__cil_tmp22);
+  __cil_tmp23 = *((struct i2c_client **)((void *)priv + 24));
   __cil_tmp24 = (unsigned long )__cil_tmp23;
   if (__cil_tmp24 != __cil_tmp20) {
     {
-    __cil_tmp25 = (unsigned long )priv;
-    __cil_tmp26 = __cil_tmp25 + 24;
-    __cil_tmp27 = *((struct i2c_client **)__cil_tmp26);
+    __cil_tmp27 = *((struct i2c_client **)((void *)priv + 24));
     __cil_tmp28 = (struct sil164_encoder_params *)priv;
     __cil_tmp29 = (int )duallink;
     __cil_tmp30 = (bool )__cil_tmp29;
@@ -5280,39 +5144,27 @@ static void sil164_encoder_destroy(struct drm_encoder *encoder )
 { struct sil164_priv *priv ;
   struct drm_encoder  const  *__mptr ;
   struct drm_encoder_slave *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   struct i2c_client *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct i2c_client *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct i2c_client *__cil_tmp16 ;
   void const   *__cil_tmp17 ;
 
   {
   __mptr = (struct drm_encoder  const  *)encoder;
   __cil_tmp4 = (struct drm_encoder_slave *)__mptr;
-  __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = __cil_tmp5 + 80;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)__cil_tmp4 + 80));
   priv = (struct sil164_priv *)__cil_tmp7;
   {
   __cil_tmp8 = (struct i2c_client *)0;
   __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = (unsigned long )priv;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  __cil_tmp12 = *((struct i2c_client **)__cil_tmp11);
+  __cil_tmp12 = *((struct i2c_client **)((void *)priv + 24));
   __cil_tmp13 = (unsigned long )__cil_tmp12;
   if (__cil_tmp13 != __cil_tmp9) {
     {
-    __cil_tmp14 = (unsigned long )priv;
-    __cil_tmp15 = __cil_tmp14 + 24;
-    __cil_tmp16 = *((struct i2c_client **)__cil_tmp15);
+    __cil_tmp16 = *((struct i2c_client **)((void *)priv + 24));
     i2c_unregister_device(__cil_tmp16);
     }
   } else {
@@ -5353,12 +5205,8 @@ static int sil164_probe(struct i2c_client *client , struct i2c_device_id  const 
   int __cil_tmp20 ;
   uint8_t __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct device *__cil_tmp25 ;
   struct device  const  *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct device *__cil_tmp29 ;
   struct device  const  *__cil_tmp30 ;
 
@@ -5393,9 +5241,7 @@ static int sil164_probe(struct i2c_client *client , struct i2c_device_id  const 
     __cil_tmp22 = drm_debug & 4U;
     if (__cil_tmp22 != 0U) {
       {
-      __cil_tmp23 = (unsigned long )client;
-      __cil_tmp24 = __cil_tmp23 + 40;
-      __cil_tmp25 = (struct device *)__cil_tmp24;
+      __cil_tmp25 = (struct device *)((void *)client + 40);
       __cil_tmp26 = (struct device  const  *)__cil_tmp25;
       dev_printk("<7>", __cil_tmp26, "%s: Unknown device %x:%x.%x\n", "sil164_probe",
                  vendor, device, rev);
@@ -5409,9 +5255,7 @@ static int sil164_probe(struct i2c_client *client , struct i2c_device_id  const 
 
   }
   {
-  __cil_tmp27 = (unsigned long )client;
-  __cil_tmp28 = __cil_tmp27 + 40;
-  __cil_tmp29 = (struct device *)__cil_tmp28;
+  __cil_tmp29 = (struct device *)((void *)client + 40);
   __cil_tmp30 = (struct device  const  *)__cil_tmp29;
   _dev_info(__cil_tmp30, "Detected device %x:%x.%x\n", vendor, device, rev);
   }
@@ -5431,190 +5275,126 @@ static struct i2c_client *sil164_detect_slave(struct i2c_client *client )
   struct i2c_board_info info ;
   int tmp ;
   struct i2c_client *tmp___0 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct i2c_msg *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   unsigned int __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   struct device *__cil_tmp82 ;
   struct device  const  *__cil_tmp83 ;
   struct i2c_board_info  const  *__cil_tmp84 ;
 
   {
   {
-  __cil_tmp7 = (unsigned long )client;
-  __cil_tmp8 = __cil_tmp7 + 24;
-  adap = *((struct i2c_adapter **)__cil_tmp8);
+  adap = *((struct i2c_adapter **)((void *)client + 24));
   __cil_tmp9 = & msg;
   *((__u16 *)__cil_tmp9) = (__u16 )57U;
-  __cil_tmp10 = (unsigned long )(& msg) + 2;
-  *((__u16 *)__cil_tmp10) = (unsigned short)0;
-  __cil_tmp11 = (unsigned long )(& msg) + 4;
-  *((__u16 *)__cil_tmp11) = (__u16 )0U;
-  __cil_tmp12 = (unsigned long )(& msg) + 8;
-  *((__u8 **)__cil_tmp12) = (__u8 *)0;
+  *((__u16 *)((void *)(&msg) + 2)) = (unsigned short)0;
+  *((__u16 *)((void *)(&msg) + 4)) = (__u16 )0U;
+  *((__u8 **)((void *)(&msg) + 8)) = (__u8 *)0;
   __cil_tmp13 = 0 * 1UL;
   __cil_tmp14 = 0 + __cil_tmp13;
-  __cil_tmp15 = (unsigned long )(& info) + __cil_tmp14;
-  *((char *)__cil_tmp15) = (char )'s';
+  *((char *)((void *)(&info) + __cil_tmp14)) = (char )'s';
   __cil_tmp16 = 1 * 1UL;
   __cil_tmp17 = 0 + __cil_tmp16;
-  __cil_tmp18 = (unsigned long )(& info) + __cil_tmp17;
-  *((char *)__cil_tmp18) = (char )'i';
+  *((char *)((void *)(&info) + __cil_tmp17)) = (char )'i';
   __cil_tmp19 = 2 * 1UL;
   __cil_tmp20 = 0 + __cil_tmp19;
-  __cil_tmp21 = (unsigned long )(& info) + __cil_tmp20;
-  *((char *)__cil_tmp21) = (char )'l';
+  *((char *)((void *)(&info) + __cil_tmp20)) = (char )'l';
   __cil_tmp22 = 3 * 1UL;
   __cil_tmp23 = 0 + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )(& info) + __cil_tmp23;
-  *((char *)__cil_tmp24) = (char )'1';
+  *((char *)((void *)(&info) + __cil_tmp23)) = (char )'1';
   __cil_tmp25 = 4 * 1UL;
   __cil_tmp26 = 0 + __cil_tmp25;
-  __cil_tmp27 = (unsigned long )(& info) + __cil_tmp26;
-  *((char *)__cil_tmp27) = (char )'6';
+  *((char *)((void *)(&info) + __cil_tmp26)) = (char )'6';
   __cil_tmp28 = 5 * 1UL;
   __cil_tmp29 = 0 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )(& info) + __cil_tmp29;
-  *((char *)__cil_tmp30) = (char )'4';
+  *((char *)((void *)(&info) + __cil_tmp29)) = (char )'4';
   __cil_tmp31 = 6 * 1UL;
   __cil_tmp32 = 0 + __cil_tmp31;
-  __cil_tmp33 = (unsigned long )(& info) + __cil_tmp32;
-  *((char *)__cil_tmp33) = (char )'\000';
+  *((char *)((void *)(&info) + __cil_tmp32)) = (char )'\000';
   __cil_tmp34 = 7 * 1UL;
   __cil_tmp35 = 0 + __cil_tmp34;
-  __cil_tmp36 = (unsigned long )(& info) + __cil_tmp35;
-  *((char *)__cil_tmp36) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp35)) = (char)0;
   __cil_tmp37 = 8 * 1UL;
   __cil_tmp38 = 0 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )(& info) + __cil_tmp38;
-  *((char *)__cil_tmp39) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp38)) = (char)0;
   __cil_tmp40 = 9 * 1UL;
   __cil_tmp41 = 0 + __cil_tmp40;
-  __cil_tmp42 = (unsigned long )(& info) + __cil_tmp41;
-  *((char *)__cil_tmp42) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp41)) = (char)0;
   __cil_tmp43 = 10 * 1UL;
   __cil_tmp44 = 0 + __cil_tmp43;
-  __cil_tmp45 = (unsigned long )(& info) + __cil_tmp44;
-  *((char *)__cil_tmp45) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp44)) = (char)0;
   __cil_tmp46 = 11 * 1UL;
   __cil_tmp47 = 0 + __cil_tmp46;
-  __cil_tmp48 = (unsigned long )(& info) + __cil_tmp47;
-  *((char *)__cil_tmp48) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp47)) = (char)0;
   __cil_tmp49 = 12 * 1UL;
   __cil_tmp50 = 0 + __cil_tmp49;
-  __cil_tmp51 = (unsigned long )(& info) + __cil_tmp50;
-  *((char *)__cil_tmp51) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp50)) = (char)0;
   __cil_tmp52 = 13 * 1UL;
   __cil_tmp53 = 0 + __cil_tmp52;
-  __cil_tmp54 = (unsigned long )(& info) + __cil_tmp53;
-  *((char *)__cil_tmp54) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp53)) = (char)0;
   __cil_tmp55 = 14 * 1UL;
   __cil_tmp56 = 0 + __cil_tmp55;
-  __cil_tmp57 = (unsigned long )(& info) + __cil_tmp56;
-  *((char *)__cil_tmp57) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp56)) = (char)0;
   __cil_tmp58 = 15 * 1UL;
   __cil_tmp59 = 0 + __cil_tmp58;
-  __cil_tmp60 = (unsigned long )(& info) + __cil_tmp59;
-  *((char *)__cil_tmp60) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp59)) = (char)0;
   __cil_tmp61 = 16 * 1UL;
   __cil_tmp62 = 0 + __cil_tmp61;
-  __cil_tmp63 = (unsigned long )(& info) + __cil_tmp62;
-  *((char *)__cil_tmp63) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp62)) = (char)0;
   __cil_tmp64 = 17 * 1UL;
   __cil_tmp65 = 0 + __cil_tmp64;
-  __cil_tmp66 = (unsigned long )(& info) + __cil_tmp65;
-  *((char *)__cil_tmp66) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp65)) = (char)0;
   __cil_tmp67 = 18 * 1UL;
   __cil_tmp68 = 0 + __cil_tmp67;
-  __cil_tmp69 = (unsigned long )(& info) + __cil_tmp68;
-  *((char *)__cil_tmp69) = (char)0;
+  *((char *)((void *)(&info) + __cil_tmp68)) = (char)0;
   __cil_tmp70 = 19 * 1UL;
   __cil_tmp71 = 0 + __cil_tmp70;
-  __cil_tmp72 = (unsigned long )(& info) + __cil_tmp71;
-  *((char *)__cil_tmp72) = (char)0;
-  __cil_tmp73 = (unsigned long )(& info) + 20;
-  *((unsigned short *)__cil_tmp73) = (unsigned short)0;
-  __cil_tmp74 = (unsigned long )(& info) + 22;
-  *((unsigned short *)__cil_tmp74) = (unsigned short)57;
-  __cil_tmp75 = (unsigned long )(& info) + 24;
-  *((void **)__cil_tmp75) = (void *)0;
-  __cil_tmp76 = (unsigned long )(& info) + 32;
-  *((struct dev_archdata **)__cil_tmp76) = (struct dev_archdata *)0;
-  __cil_tmp77 = (unsigned long )(& info) + 40;
-  *((struct device_node **)__cil_tmp77) = (struct device_node *)0;
-  __cil_tmp78 = (unsigned long )(& info) + 48;
-  *((int *)__cil_tmp78) = 0;
+  *((char *)((void *)(&info) + __cil_tmp71)) = (char)0;
+  *((unsigned short *)((void *)(&info) + 20)) = (unsigned short)0;
+  *((unsigned short *)((void *)(&info) + 22)) = (unsigned short)57;
+  *((void **)((void *)(&info) + 24)) = (void *)0;
+  *((struct dev_archdata **)((void *)(&info) + 32)) = (struct dev_archdata *)0;
+  *((struct device_node **)((void *)(&info) + 40)) = (struct device_node *)0;
+  *((int *)((void *)(&info) + 48)) = 0;
   tmp = i2c_transfer(adap, & msg, 1);
   }
   if (tmp != 1) {
@@ -5622,9 +5402,7 @@ static struct i2c_client *sil164_detect_slave(struct i2c_client *client )
     __cil_tmp79 = drm_debug & 4U;
     if (__cil_tmp79 != 0U) {
       {
-      __cil_tmp80 = (unsigned long )adap;
-      __cil_tmp81 = __cil_tmp80 + 176;
-      __cil_tmp82 = (struct device *)__cil_tmp81;
+      __cil_tmp82 = (struct device *)((void *)adap + 176);
       __cil_tmp83 = (struct device  const  *)__cil_tmp82;
       dev_printk("<7>", __cil_tmp83, "%s: No dual-link slave found.", "sil164_detect_slave");
       }
@@ -5650,12 +5428,6 @@ static int sil164_encoder_init(struct i2c_client *client , struct drm_device *de
   struct sil164_priv *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
 
   {
   {
@@ -5673,15 +5445,9 @@ static int sil164_encoder_init(struct i2c_client *client , struct drm_device *de
   }
   }
   {
-  __cil_tmp9 = (unsigned long )encoder;
-  __cil_tmp10 = __cil_tmp9 + 80;
-  *((void **)__cil_tmp10) = (void *)priv;
-  __cil_tmp11 = (unsigned long )encoder;
-  __cil_tmp12 = __cil_tmp11 + 72;
-  *((struct drm_encoder_slave_funcs **)__cil_tmp12) = & sil164_encoder_funcs;
-  __cil_tmp13 = (unsigned long )priv;
-  __cil_tmp14 = __cil_tmp13 + 24;
-  *((struct i2c_client **)__cil_tmp14) = sil164_detect_slave(client);
+  *((void **)((void *)encoder + 80)) = (void *)priv;
+  *((struct drm_encoder_slave_funcs **)((void *)encoder + 72)) = & sil164_encoder_funcs;
+  *((struct i2c_client **)((void *)priv + 24)) = sil164_detect_slave(client);
   }
   return (0);
 }

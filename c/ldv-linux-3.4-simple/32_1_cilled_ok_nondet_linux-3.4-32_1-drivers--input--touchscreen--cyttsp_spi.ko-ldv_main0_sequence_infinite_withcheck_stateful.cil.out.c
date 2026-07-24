@@ -3134,29 +3134,22 @@ __inline static long __attribute__((__warn_unused_result__))  IS_ERR(void const 
 }
 __inline static void INIT_LIST_HEAD(struct list_head *list )  __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
 extern void __list_add(struct list_head *new , struct list_head *prev , struct list_head *next ) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head )  __attribute__((__no_instrument_function__)) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )head;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((struct list_head **)__cil_tmp4);
+  __cil_tmp5 = *((struct list_head **)((void *)head + 8));
   __list_add(new, __cil_tmp5, head);
   }
   return;
@@ -3238,16 +3231,13 @@ __inline static void *spi_get_drvdata(struct spi_device *spi )
 extern int spi_register_driver(struct spi_driver *sdrv ) ;
 __inline static void spi_unregister_driver(struct spi_driver *sdrv )  __attribute__((__no_instrument_function__)) ;
 __inline static void spi_unregister_driver(struct spi_driver *sdrv ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device_driver *__cil_tmp4 ;
 
   {
   if (sdrv) {
     {
-    __cil_tmp2 = (unsigned long )sdrv;
-    __cil_tmp3 = __cil_tmp2 + 48;
-    __cil_tmp4 = (struct device_driver *)__cil_tmp3;
+    __cil_tmp4 = (struct device_driver *)((void *)sdrv + 48);
     driver_unregister(__cil_tmp4);
     }
   } else {
@@ -3273,16 +3263,13 @@ __inline static void spi_message_init(struct spi_message *m )
 }
 __inline static void spi_message_add_tail(struct spi_transfer *t , struct spi_message *m )  __attribute__((__no_instrument_function__)) ;
 __inline static void spi_message_add_tail(struct spi_transfer *t , struct spi_message *m ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   struct list_head *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )t;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct list_head *)__cil_tmp4;
+  __cil_tmp5 = (struct list_head *)((void *)t + 48);
   __cil_tmp6 = (struct list_head *)m;
   list_add_tail(__cil_tmp5, __cil_tmp6);
   }
@@ -3326,12 +3313,8 @@ static int cyttsp_spi_xfer(struct cyttsp *ts , u8 op , u8 reg , u8 *buf , int le
   struct device *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct device *__cil_tmp29 ;
   struct device  const  *__cil_tmp30 ;
   void *__cil_tmp31 ;
@@ -3438,14 +3421,10 @@ static int cyttsp_spi_xfer(struct cyttsp *ts , u8 op , u8 reg , u8 *buf , int le
   spi = tmp___7;
   __cil_tmp21 = 0 * 1UL;
   __cil_tmp22 = 205 + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )ts;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  wr_buf = (u8 *)__cil_tmp24;
+  wr_buf = (u8 *)((void *)ts + __cil_tmp22);
   __cil_tmp25 = 132 * 1UL;
   __cil_tmp26 = 205 + __cil_tmp25;
-  __cil_tmp27 = (unsigned long )ts;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-  rd_buf = (u8 *)__cil_tmp28;
+  rd_buf = (u8 *)((void *)ts + __cil_tmp26);
   }
   if (length > 128) {
     {
@@ -3803,15 +3782,9 @@ static int cyttsp_spi_probe(struct spi_device *spi )
   int error ;
   long tmp___7 ;
   long tmp___8 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device  const  *__cil_tmp11 ;
   struct device *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   size_t __cil_tmp16 ;
   void const   *__cil_tmp17 ;
@@ -3820,12 +3793,8 @@ static int cyttsp_spi_probe(struct spi_device *spi )
 
   {
   {
-  __cil_tmp6 = (unsigned long )spi;
-  __cil_tmp7 = __cil_tmp6 + 782;
-  *((u8 *)__cil_tmp7) = (u8 )8;
-  __cil_tmp8 = (unsigned long )spi;
-  __cil_tmp9 = __cil_tmp8 + 781;
-  *((u8 *)__cil_tmp9) = (u8 )0;
+  *((u8 *)((void *)spi + 782)) = (u8 )8;
+  *((u8 *)((void *)spi + 781)) = (u8 )0;
   error = spi_setup(spi);
   }
   if (error < 0) {
@@ -3840,9 +3809,7 @@ static int cyttsp_spi_probe(struct spi_device *spi )
   }
   {
   __cil_tmp12 = (struct device *)spi;
-  __cil_tmp13 = (unsigned long )spi;
-  __cil_tmp14 = __cil_tmp13 + 784;
-  __cil_tmp15 = *((int *)__cil_tmp14);
+  __cil_tmp15 = *((int *)((void *)spi + 784));
   __cil_tmp16 = (size_t )264;
   ts = cyttsp_probe(& cyttsp_spi_bus_ops, __cil_tmp12, __cil_tmp15, __cil_tmp16);
   __cil_tmp17 = (void const   *)ts;

@@ -3941,44 +3941,32 @@ __inline static unsigned int scsi_sg_count(struct scsi_cmnd *cmd )  __attribute_
 __inline static unsigned int scsi_sg_count(struct scsi_cmnd *cmd ) 
 { unsigned long __cil_tmp2 ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
 
   {
   {
   __cil_tmp2 = 0 + 8;
   __cil_tmp3 = 88 + __cil_tmp2;
-  __cil_tmp4 = (unsigned long )cmd;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  return (*((unsigned int *)__cil_tmp5));
+  return (*((unsigned int *)((void *)cmd + __cil_tmp3)));
   }
 }
 }
 __inline static struct scatterlist *scsi_sglist(struct scsi_cmnd *cmd )  __attribute__((__no_instrument_function__)) ;
 __inline static struct scatterlist *scsi_sglist(struct scsi_cmnd *cmd ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )cmd;
-  __cil_tmp3 = __cil_tmp2 + 88;
-  return (*((struct scatterlist **)__cil_tmp3));
+  return (*((struct scatterlist **)((void *)cmd + 88)));
   }
 }
 }
 __inline static unsigned int scsi_bufflen(struct scsi_cmnd *cmd )  __attribute__((__no_instrument_function__)) ;
 __inline static unsigned int scsi_bufflen(struct scsi_cmnd *cmd ) 
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
 
   {
   {
   __cil_tmp2 = 88 + 16;
-  __cil_tmp3 = (unsigned long )cmd;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  return (*((unsigned int *)__cil_tmp4));
+  return (*((unsigned int *)((void *)cmd + __cil_tmp2)));
   }
 }
 }
@@ -4122,16 +4110,13 @@ static void usbat_pack_ata_sector_cmd(unsigned char *buf , unsigned char thistim
 }
 }
 static int usbat_get_device_type(struct us_data *us ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   void *__cil_tmp4 ;
   struct usbat_info *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )us;
-  __cil_tmp3 = __cil_tmp2 + 648;
-  __cil_tmp4 = *((void **)__cil_tmp3);
+  __cil_tmp4 = *((void **)((void *)us + 648));
   __cil_tmp5 = (struct usbat_info *)__cil_tmp4;
   return (*((int *)__cil_tmp5));
   }
@@ -4140,8 +4125,6 @@ static int usbat_get_device_type(struct us_data *us )
 static int usbat_read(struct us_data *us , unsigned char access , unsigned char reg ,
                       unsigned char *content ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   int __cil_tmp9 ;
   u8 __cil_tmp10 ;
@@ -4153,9 +4136,7 @@ static int usbat_read(struct us_data *us , unsigned char access , unsigned char 
 
   {
   {
-  __cil_tmp6 = (unsigned long )us;
-  __cil_tmp7 = __cil_tmp6 + 124;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)us + 124));
   __cil_tmp9 = (int )access;
   __cil_tmp10 = (u8 )__cil_tmp9;
   __cil_tmp11 = (u8 )192;
@@ -4172,8 +4153,6 @@ static int usbat_read(struct us_data *us , unsigned char access , unsigned char 
 static int usbat_write(struct us_data *us , unsigned char access , unsigned char reg ,
                        unsigned char content ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   int __cil_tmp9 ;
   int __cil_tmp10 ;
@@ -4192,9 +4171,7 @@ static int usbat_write(struct us_data *us , unsigned char access , unsigned char
 
   {
   {
-  __cil_tmp6 = (unsigned long )us;
-  __cil_tmp7 = __cil_tmp6 + 120;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)us + 120));
   __cil_tmp9 = (int )access;
   __cil_tmp10 = __cil_tmp9 | 1;
   __cil_tmp11 = (u8 )__cil_tmp10;
@@ -4217,8 +4194,6 @@ static int usbat_write(struct us_data *us , unsigned char access , unsigned char
 }
 static int usbat_bulk_read(struct us_data *us , void *buf , unsigned int len , int use_sg ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   void *__cil_tmp9 ;
   int *__cil_tmp10 ;
@@ -4231,9 +4206,7 @@ static int usbat_bulk_read(struct us_data *us , void *buf , unsigned int len , i
   }
   {
   printk("<7>usb-storage: usbat_bulk_read: len = %d\n", len);
-  __cil_tmp6 = (unsigned long )us;
-  __cil_tmp7 = __cil_tmp6 + 116;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)us + 116));
   __cil_tmp9 = (void *)0;
   __cil_tmp10 = (int *)__cil_tmp9;
   tmp___7 = usb_stor_bulk_transfer_sg(us, __cil_tmp8, buf, len, use_sg, __cil_tmp10);
@@ -4243,8 +4216,6 @@ static int usbat_bulk_read(struct us_data *us , void *buf , unsigned int len , i
 }
 static int usbat_bulk_write(struct us_data *us , void *buf , unsigned int len , int use_sg ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   void *__cil_tmp9 ;
   int *__cil_tmp10 ;
@@ -4257,9 +4228,7 @@ static int usbat_bulk_write(struct us_data *us , void *buf , unsigned int len , 
   }
   {
   printk("<7>usb-storage: usbat_bulk_write:  len = %d\n", len);
-  __cil_tmp6 = (unsigned long )us;
-  __cil_tmp7 = __cil_tmp6 + 112;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)us + 112));
   __cil_tmp9 = (void *)0;
   __cil_tmp10 = (int *)__cil_tmp9;
   tmp___7 = usb_stor_bulk_transfer_sg(us, __cil_tmp8, buf, len, use_sg, __cil_tmp10);
@@ -4269,8 +4238,6 @@ static int usbat_bulk_write(struct us_data *us , void *buf , unsigned int len , 
 }
 static int usbat_execute_command(struct us_data *us , unsigned char *commands , unsigned int len ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   u8 __cil_tmp8 ;
   u8 __cil_tmp9 ;
@@ -4281,9 +4248,7 @@ static int usbat_execute_command(struct us_data *us , unsigned char *commands , 
 
   {
   {
-  __cil_tmp5 = (unsigned long )us;
-  __cil_tmp6 = __cil_tmp5 + 120;
-  __cil_tmp7 = *((unsigned int *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned int *)((void *)us + 120));
   __cil_tmp8 = (u8 )128;
   __cil_tmp9 = (u8 )64;
   __cil_tmp10 = (u16 )0;
@@ -4316,8 +4281,6 @@ static int usbat_get_status(struct us_data *us , unsigned char *status )
 static int usbat_check_status(struct us_data *us ) 
 { unsigned char *reply ;
   int rc ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned char __cil_tmp6 ;
   int __cil_tmp7 ;
   unsigned char __cil_tmp8 ;
@@ -4327,9 +4290,7 @@ static int usbat_check_status(struct us_data *us )
 
   {
   {
-  __cil_tmp4 = (unsigned long )us;
-  __cil_tmp5 = __cil_tmp4 + 376;
-  reply = *((unsigned char **)__cil_tmp5);
+  reply = *((unsigned char **)((void *)us + 376));
   rc = usbat_get_status(us, reply);
   }
   if (rc != 0) {
@@ -4372,8 +4333,6 @@ static int usbat_set_shuttle_features(struct us_data *us , unsigned char externa
                                       unsigned char subcountL ) 
 { unsigned char *command ;
   int tmp___7 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned char *__cil_tmp12 ;
   unsigned char *__cil_tmp13 ;
   unsigned char *__cil_tmp14 ;
@@ -4385,9 +4344,7 @@ static int usbat_set_shuttle_features(struct us_data *us , unsigned char externa
 
   {
   {
-  __cil_tmp10 = (unsigned long )us;
-  __cil_tmp11 = __cil_tmp10 + 376;
-  command = *((unsigned char **)__cil_tmp11);
+  command = *((unsigned char **)((void *)us + 376));
   __cil_tmp12 = command + 0;
   *__cil_tmp12 = (unsigned char)64;
   __cil_tmp13 = command + 1;
@@ -4413,8 +4370,6 @@ static int usbat_wait_not_busy(struct us_data *us , int minutes )
 { int i ;
   int result ;
   unsigned char *status ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
   int __cil_tmp9 ;
   unsigned char __cil_tmp10 ;
@@ -4426,9 +4381,7 @@ static int usbat_wait_not_busy(struct us_data *us , int minutes )
   int __cil_tmp16 ;
 
   {
-  __cil_tmp6 = (unsigned long )us;
-  __cil_tmp7 = __cil_tmp6 + 376;
-  status = *((unsigned char **)__cil_tmp7);
+  status = *((unsigned char **)((void *)us + 376));
   i = 0;
   {
   while (1) {
@@ -4518,8 +4471,6 @@ static int usbat_read_block(struct us_data *us , void *buf , unsigned short len 
 { int result ;
   unsigned char *command ;
   int tmp___7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned char *__cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
   unsigned char *__cil_tmp12 ;
@@ -4535,9 +4486,7 @@ static int usbat_read_block(struct us_data *us , void *buf , unsigned short len 
   unsigned int __cil_tmp22 ;
 
   {
-  __cil_tmp8 = (unsigned long )us;
-  __cil_tmp9 = __cil_tmp8 + 376;
-  command = *((unsigned char **)__cil_tmp9);
+  command = *((unsigned char **)((void *)us + 376));
   if (! len) {
     return (0);
   } else {
@@ -4588,8 +4537,6 @@ static int usbat_write_block(struct us_data *us , unsigned char access , void *b
 { int result ;
   unsigned char *command ;
   int tmp___7 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned char *__cil_tmp12 ;
   unsigned char *__cil_tmp13 ;
   int __cil_tmp14 ;
@@ -4607,9 +4554,7 @@ static int usbat_write_block(struct us_data *us , unsigned char access , void *b
   unsigned int __cil_tmp26 ;
 
   {
-  __cil_tmp10 = (unsigned long )us;
-  __cil_tmp11 = __cil_tmp10 + 376;
-  command = *((unsigned char **)__cil_tmp11);
+  command = *((unsigned char **)((void *)us + 376));
   if (! len) {
     return (0);
   } else {
@@ -4682,16 +4627,6 @@ static int usbat_hp8200e_rw_block_test(struct us_data *us , unsigned char access
   char const   *tmp___12 ;
   int tmp___13 ;
   char const   *tmp___14 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   int __cil_tmp41 ;
   int __cil_tmp42 ;
   int __cil_tmp43 ;
@@ -4753,8 +4688,6 @@ static int usbat_hp8200e_rw_block_test(struct us_data *us , unsigned char access
   unsigned int __cil_tmp99 ;
   void *__cil_tmp100 ;
   int *__cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   unsigned int __cil_tmp104 ;
   unsigned char __cil_tmp105 ;
   unsigned char __cil_tmp106 ;
@@ -4764,24 +4697,14 @@ static int usbat_hp8200e_rw_block_test(struct us_data *us , unsigned char access
 
   {
   if (direction == 2) {
-    __cil_tmp31 = (unsigned long )us;
-    __cil_tmp32 = __cil_tmp31 + 116;
-    tmp___7 = *((unsigned int *)__cil_tmp32);
+    tmp___7 = *((unsigned int *)((void *)us + 116));
   } else {
-    __cil_tmp33 = (unsigned long )us;
-    __cil_tmp34 = __cil_tmp33 + 112;
-    tmp___7 = *((unsigned int *)__cil_tmp34);
+    tmp___7 = *((unsigned int *)((void *)us + 112));
   }
   pipe = tmp___7;
-  __cil_tmp35 = (unsigned long )us;
-  __cil_tmp36 = __cil_tmp35 + 376;
-  command = *((unsigned char **)__cil_tmp36);
-  __cil_tmp37 = (unsigned long )us;
-  __cil_tmp38 = __cil_tmp37 + 376;
-  data = *((unsigned char **)__cil_tmp38);
-  __cil_tmp39 = (unsigned long )us;
-  __cil_tmp40 = __cil_tmp39 + 376;
-  status = *((unsigned char **)__cil_tmp40);
+  command = *((unsigned char **)((void *)us + 376));
+  data = *((unsigned char **)((void *)us + 376));
+  status = *((unsigned char **)((void *)us + 376));
   {
   while (1) {
     while_continue: /* CIL Label */ ;
@@ -4964,9 +4887,7 @@ static int usbat_hp8200e_rw_block_test(struct us_data *us , unsigned char access
       if (direction == 2) {
         if (i == 0) {
           {
-          __cil_tmp102 = (unsigned long )us;
-          __cil_tmp103 = __cil_tmp102 + 112;
-          __cil_tmp104 = *((unsigned int *)__cil_tmp103);
+          __cil_tmp104 = *((unsigned int *)((void *)us + 112));
           tmp___10 = usb_stor_clear_halt(us, __cil_tmp104);
           }
           if (tmp___10 < 0) {
@@ -5053,10 +4974,6 @@ static int usbat_multiple_write(struct us_data *us , unsigned char *registers , 
   long tmp___7 ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
@@ -5090,12 +5007,8 @@ static int usbat_multiple_write(struct us_data *us , unsigned char *registers , 
   unsigned int __cil_tmp46 ;
 
   {
-  __cil_tmp12 = (unsigned long )us;
-  __cil_tmp13 = __cil_tmp12 + 376;
-  data = *((unsigned char **)__cil_tmp13);
-  __cil_tmp14 = (unsigned long )us;
-  __cil_tmp15 = __cil_tmp14 + 376;
-  command = *((unsigned char **)__cil_tmp15);
+  data = *((unsigned char **)((void *)us + 376));
+  command = *((unsigned char **)((void *)us + 376));
   {
   while (1) {
     while_continue: /* CIL Label */ ;
@@ -5218,8 +5131,6 @@ static int usbat_multiple_write(struct us_data *us , unsigned char *registers , 
 static int usbat_read_blocks(struct us_data *us , void *buffer , int len , int use_sg ) 
 { int result ;
   unsigned char *command ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned char *__cil_tmp9 ;
   unsigned char *__cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
@@ -5234,9 +5145,7 @@ static int usbat_read_blocks(struct us_data *us , void *buffer , int len , int u
 
   {
   {
-  __cil_tmp7 = (unsigned long )us;
-  __cil_tmp8 = __cil_tmp7 + 376;
-  command = *((unsigned char **)__cil_tmp8);
+  command = *((unsigned char **)((void *)us + 376));
   __cil_tmp9 = command + 0;
   *__cil_tmp9 = (unsigned char)192;
   __cil_tmp10 = command + 1;
@@ -5277,8 +5186,6 @@ static int usbat_read_blocks(struct us_data *us , void *buffer , int len , int u
 static int usbat_write_blocks(struct us_data *us , void *buffer , int len , int use_sg ) 
 { int result ;
   unsigned char *command ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned char *__cil_tmp9 ;
   unsigned char *__cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
@@ -5293,9 +5200,7 @@ static int usbat_write_blocks(struct us_data *us , void *buffer , int len , int 
 
   {
   {
-  __cil_tmp7 = (unsigned long )us;
-  __cil_tmp8 = __cil_tmp7 + 376;
-  command = *((unsigned char **)__cil_tmp8);
+  command = *((unsigned char **)((void *)us + 376));
   __cil_tmp9 = command + 0;
   *__cil_tmp9 = (unsigned char)64;
   __cil_tmp10 = command + 1;
@@ -5335,8 +5240,6 @@ static int usbat_write_blocks(struct us_data *us , void *buffer , int len , int 
 }
 static int usbat_read_user_io(struct us_data *us , unsigned char *data_flags ) 
 { int result ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
   u8 __cil_tmp7 ;
   u8 __cil_tmp8 ;
@@ -5350,9 +5253,7 @@ static int usbat_read_user_io(struct us_data *us , unsigned char *data_flags )
 
   {
   {
-  __cil_tmp4 = (unsigned long )us;
-  __cil_tmp5 = __cil_tmp4 + 124;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned int *)((void *)us + 124));
   __cil_tmp7 = (u8 )130;
   __cil_tmp8 = (u8 )192;
   __cil_tmp9 = (u16 )0;
@@ -5371,8 +5272,6 @@ static int usbat_read_user_io(struct us_data *us , unsigned char *data_flags )
 }
 static int usbat_write_user_io(struct us_data *us , unsigned char enable_flags , unsigned char data_flags ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   u8 __cil_tmp8 ;
   u8 __cil_tmp9 ;
@@ -5389,9 +5288,7 @@ static int usbat_write_user_io(struct us_data *us , unsigned char enable_flags ,
 
   {
   {
-  __cil_tmp5 = (unsigned long )us;
-  __cil_tmp6 = __cil_tmp5 + 120;
-  __cil_tmp7 = *((unsigned int *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned int *)((void *)us + 120));
   __cil_tmp8 = (u8 )130;
   __cil_tmp9 = (u8 )64;
   __cil_tmp10 = (u16 )data_flags;
@@ -5491,26 +5388,10 @@ static int usbat_flash_check_media_changed(unsigned char *uio )
 static int usbat_flash_check_media(struct us_data *us , struct usbat_info *info ) 
 { int rc ;
   unsigned char *uio ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )us;
-  __cil_tmp6 = __cil_tmp5 + 376;
-  uio = *((unsigned char **)__cil_tmp6);
+  uio = *((unsigned char **)((void *)us + 376));
   rc = usbat_read_user_io(us, uio);
   }
   if (rc != 0) {
@@ -5522,15 +5403,9 @@ static int usbat_flash_check_media(struct us_data *us , struct usbat_info *info 
   rc = usbat_flash_check_media_present(uio);
   }
   if (rc == 0) {
-    __cil_tmp7 = (unsigned long )info;
-    __cil_tmp8 = __cil_tmp7 + 24;
-    *((unsigned char *)__cil_tmp8) = (unsigned char)2;
-    __cil_tmp9 = (unsigned long )info;
-    __cil_tmp10 = __cil_tmp9 + 32;
-    *((unsigned long *)__cil_tmp10) = 58UL;
-    __cil_tmp11 = (unsigned long )info;
-    __cil_tmp12 = __cil_tmp11 + 40;
-    *((unsigned long *)__cil_tmp12) = 0UL;
+    *((unsigned char *)((void *)info + 24)) = (unsigned char)2;
+    *((unsigned long *)((void *)info + 32)) = 58UL;
+    *((unsigned long *)((void *)info + 40)) = 0UL;
     return (1);
   } else {
 
@@ -5564,15 +5439,9 @@ static int usbat_flash_check_media(struct us_data *us , struct usbat_info *info 
     } else {
 
     }
-    __cil_tmp13 = (unsigned long )info;
-    __cil_tmp14 = __cil_tmp13 + 24;
-    *((unsigned char *)__cil_tmp14) = (unsigned char)6;
-    __cil_tmp15 = (unsigned long )info;
-    __cil_tmp16 = __cil_tmp15 + 32;
-    *((unsigned long *)__cil_tmp16) = 40UL;
-    __cil_tmp17 = (unsigned long )info;
-    __cil_tmp18 = __cil_tmp17 + 40;
-    *((unsigned long *)__cil_tmp18) = 0UL;
+    *((unsigned char *)((void *)info + 24)) = (unsigned char)6;
+    *((unsigned long *)((void *)info + 32)) = 40UL;
+    *((unsigned long *)((void *)info + 40)) = 0UL;
     return (1);
   } else {
 
@@ -5660,10 +5529,6 @@ static int usbat_identify_device(struct us_data *us , struct usbat_info *info )
 static int usbat_set_transport(struct us_data *us , struct usbat_info *info , int devicetype ) 
 { int __cil_tmp4 ;
   int __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
 
   {
   {
@@ -5696,14 +5561,10 @@ static int usbat_set_transport(struct us_data *us , struct usbat_info *info , in
       switch_default: /* CIL Label */ 
       return (3);
       case_1: /* CIL Label */ 
-      __cil_tmp6 = (unsigned long )us;
-      __cil_tmp7 = __cil_tmp6 + 168;
-      *((int (**)(struct scsi_cmnd * , struct us_data * ))__cil_tmp7) = & usbat_hp8200e_transport;
+      *((int (**)(struct scsi_cmnd * , struct us_data * ))((void *)us + 168)) = & usbat_hp8200e_transport;
       goto switch_break;
       case_2: /* CIL Label */ 
-      __cil_tmp8 = (unsigned long )us;
-      __cil_tmp9 = __cil_tmp8 + 168;
-      *((int (**)(struct scsi_cmnd * , struct us_data * ))__cil_tmp9) = & usbat_flash_transport;
+      *((int (**)(struct scsi_cmnd * , struct us_data * ))((void *)us + 168)) = & usbat_flash_transport;
       goto switch_break;
     } else {
       switch_break: /* CIL Label */ ;
@@ -5741,8 +5602,6 @@ static int usbat_flash_get_sector_count(struct us_data *us , struct usbat_info *
   unsigned long __cil_tmp27 ;
   unsigned char *__cil_tmp28 ;
   void *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned char *__cil_tmp32 ;
   unsigned char __cil_tmp33 ;
   u32 __cil_tmp34 ;
@@ -5837,8 +5696,6 @@ static int usbat_flash_get_sector_count(struct us_data *us , struct usbat_info *
   } else {
 
   }
-  __cil_tmp30 = (unsigned long )info;
-  __cil_tmp31 = __cil_tmp30 + 8;
   __cil_tmp32 = reply + 114;
   __cil_tmp33 = *__cil_tmp32;
   __cil_tmp34 = (u32 )__cil_tmp33;
@@ -5857,7 +5714,7 @@ static int usbat_flash_get_sector_count(struct us_data *us , struct usbat_info *
   __cil_tmp47 = __cil_tmp46 | __cil_tmp42;
   __cil_tmp48 = __cil_tmp47 | __cil_tmp38;
   __cil_tmp49 = __cil_tmp48 | __cil_tmp34;
-  *((unsigned long *)__cil_tmp31) = (unsigned long )__cil_tmp49;
+  *((unsigned long *)((void *)info + 8)) = (unsigned long )__cil_tmp49;
   rc = 0;
   leave: 
   {
@@ -5903,8 +5760,6 @@ static int usbat_flash_read_data(struct us_data *us , struct usbat_info *info , 
   unsigned int *__cil_tmp36 ;
   struct scatterlist **__cil_tmp37 ;
   void *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
@@ -5928,8 +5783,6 @@ static int usbat_flash_read_data(struct us_data *us , struct usbat_info *info , 
   unsigned int __cil_tmp61 ;
   unsigned int *__cil_tmp62 ;
   unsigned int *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
@@ -5945,8 +5798,6 @@ static int usbat_flash_read_data(struct us_data *us , struct usbat_info *info , 
   unsigned char *__cil_tmp78 ;
   void *__cil_tmp79 ;
   unsigned int __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   struct scsi_cmnd *__cil_tmp83 ;
   enum xfer_buf_dir __cil_tmp84 ;
   u32 __cil_tmp85 ;
@@ -5994,9 +5845,7 @@ static int usbat_flash_read_data(struct us_data *us , struct usbat_info *info , 
   } else {
 
   }
-  __cil_tmp39 = (unsigned long )info;
-  __cil_tmp40 = __cil_tmp39 + 16;
-  __cil_tmp41 = *((unsigned long *)__cil_tmp40);
+  __cil_tmp41 = *((unsigned long *)((void *)info + 16));
   __cil_tmp42 = (unsigned long )sectors;
   __cil_tmp43 = __cil_tmp42 * __cil_tmp41;
   totallen = (unsigned int )__cil_tmp43;
@@ -6055,9 +5904,7 @@ static int usbat_flash_read_data(struct us_data *us , struct usbat_info *info , 
     }
     {
     len = (int )tmp___9;
-    __cil_tmp64 = (unsigned long )info;
-    __cil_tmp65 = __cil_tmp64 + 16;
-    __cil_tmp66 = *((unsigned long *)__cil_tmp65);
+    __cil_tmp66 = *((unsigned long *)((void *)info + 16));
     __cil_tmp67 = (unsigned long )len;
     __cil_tmp68 = __cil_tmp67 / __cil_tmp66;
     __cil_tmp69 = __cil_tmp68 & 255UL;
@@ -6091,9 +5938,7 @@ static int usbat_flash_read_data(struct us_data *us , struct usbat_info *info , 
     {
     printk("<7>usb-storage: usbat_flash_read_data:  %d bytes\n", len);
     __cil_tmp80 = (unsigned int )len;
-    __cil_tmp81 = (unsigned long )us;
-    __cil_tmp82 = __cil_tmp81 + 192;
-    __cil_tmp83 = *((struct scsi_cmnd **)__cil_tmp82);
+    __cil_tmp83 = *((struct scsi_cmnd **)((void *)us + 192));
     __cil_tmp84 = (enum xfer_buf_dir )0;
     usb_stor_access_xfer_buf(buffer, __cil_tmp80, __cil_tmp83, & sg, & sg_offset,
                              __cil_tmp84);
@@ -6159,8 +6004,6 @@ static int usbat_flash_write_data(struct us_data *us , struct usbat_info *info ,
   unsigned int *__cil_tmp36 ;
   struct scatterlist **__cil_tmp37 ;
   void *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
@@ -6184,15 +6027,11 @@ static int usbat_flash_write_data(struct us_data *us , struct usbat_info *info ,
   unsigned int __cil_tmp61 ;
   unsigned int *__cil_tmp62 ;
   unsigned int *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   struct scsi_cmnd *__cil_tmp73 ;
   enum xfer_buf_dir __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
@@ -6250,9 +6089,7 @@ static int usbat_flash_write_data(struct us_data *us , struct usbat_info *info ,
   } else {
 
   }
-  __cil_tmp39 = (unsigned long )info;
-  __cil_tmp40 = __cil_tmp39 + 16;
-  __cil_tmp41 = *((unsigned long *)__cil_tmp40);
+  __cil_tmp41 = *((unsigned long *)((void *)info + 16));
   __cil_tmp42 = (unsigned long )sectors;
   __cil_tmp43 = __cil_tmp42 * __cil_tmp41;
   totallen = (unsigned int )__cil_tmp43;
@@ -6311,17 +6148,13 @@ static int usbat_flash_write_data(struct us_data *us , struct usbat_info *info ,
     }
     {
     len = (int )tmp___9;
-    __cil_tmp64 = (unsigned long )info;
-    __cil_tmp65 = __cil_tmp64 + 16;
-    __cil_tmp66 = *((unsigned long *)__cil_tmp65);
+    __cil_tmp66 = *((unsigned long *)((void *)info + 16));
     __cil_tmp67 = (unsigned long )len;
     __cil_tmp68 = __cil_tmp67 / __cil_tmp66;
     __cil_tmp69 = __cil_tmp68 & 255UL;
     thistime = (unsigned char )__cil_tmp69;
     __cil_tmp70 = (unsigned int )len;
-    __cil_tmp71 = (unsigned long )us;
-    __cil_tmp72 = __cil_tmp71 + 192;
-    __cil_tmp73 = *((struct scsi_cmnd **)__cil_tmp72);
+    __cil_tmp73 = *((struct scsi_cmnd **)((void *)us + 192));
     __cil_tmp74 = (enum xfer_buf_dir )1;
     usb_stor_access_xfer_buf(buffer, __cil_tmp70, __cil_tmp73, & sg, & sg_offset,
                              __cil_tmp74);
@@ -6400,8 +6233,6 @@ static int usbat_hp8200e_handle_read10(struct us_data *us , unsigned char *regis
   unsigned int *__cil_tmp24 ;
   struct scatterlist **__cil_tmp25 ;
   void *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
   void *__cil_tmp30 ;
   unsigned short __cil_tmp31 ;
@@ -6422,21 +6253,9 @@ static int usbat_hp8200e_handle_read10(struct us_data *us , unsigned char *regis
   unsigned char *__cil_tmp46 ;
   unsigned char __cil_tmp47 ;
   unsigned int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned int __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned int __cil_tmp64 ;
   unsigned int __cil_tmp65 ;
   unsigned int *__cil_tmp66 ;
@@ -6498,14 +6317,10 @@ static int usbat_hp8200e_handle_read10(struct us_data *us , unsigned char *regis
   int __cil_tmp122 ;
   unsigned char *__cil_tmp123 ;
   unsigned char *__cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   unsigned int __cil_tmp127 ;
   unsigned int __cil_tmp128 ;
   unsigned int __cil_tmp129 ;
   unsigned char *__cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
   unsigned int __cil_tmp133 ;
   unsigned int __cil_tmp134 ;
   unsigned int __cil_tmp135 ;
@@ -6514,8 +6329,6 @@ static int usbat_hp8200e_handle_read10(struct us_data *us , unsigned char *regis
   enum xfer_buf_dir __cil_tmp138 ;
   unsigned int __cil_tmp139 ;
   unsigned int __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
   unsigned int __cil_tmp143 ;
   unsigned int __cil_tmp144 ;
   void const   *__cil_tmp145 ;
@@ -6528,9 +6341,7 @@ static int usbat_hp8200e_handle_read10(struct us_data *us , unsigned char *regis
   __cil_tmp25 = & sg;
   __cil_tmp26 = (void *)0;
   *__cil_tmp25 = (struct scatterlist *)__cil_tmp26;
-  __cil_tmp27 = (unsigned long )srb;
-  __cil_tmp28 = __cil_tmp27 + 124;
-  __cil_tmp29 = *((unsigned int *)__cil_tmp28);
+  __cil_tmp29 = *((unsigned int *)((void *)srb + 124));
   printk("<7>usb-storage: handle_read10: transfersize %d\n", __cil_tmp29);
   tmp___10 = scsi_bufflen(srb);
   }
@@ -6575,26 +6386,18 @@ static int usbat_hp8200e_handle_read10(struct us_data *us , unsigned char *regis
     len = len | __cil_tmp48;
     printk("<7>usb-storage: handle_read10: GPCMD_READ_CD: len %d\n", len);
     tmp___11 = scsi_bufflen(srb);
-    __cil_tmp49 = (unsigned long )srb;
-    __cil_tmp50 = __cil_tmp49 + 124;
-    *((unsigned int *)__cil_tmp50) = tmp___11 / len;
+    *((unsigned int *)((void *)srb + 124)) = tmp___11 / len;
     }
   } else {
 
   }
   }
   {
-  __cil_tmp51 = (unsigned long )srb;
-  __cil_tmp52 = __cil_tmp51 + 124;
-  __cil_tmp53 = *((unsigned int *)__cil_tmp52);
+  __cil_tmp53 = *((unsigned int *)((void *)srb + 124));
   if (! __cil_tmp53) {
     {
-    __cil_tmp54 = (unsigned long )srb;
-    __cil_tmp55 = __cil_tmp54 + 124;
-    *((unsigned int *)__cil_tmp55) = 2048U;
-    __cil_tmp56 = (unsigned long )srb;
-    __cil_tmp57 = __cil_tmp56 + 124;
-    __cil_tmp58 = *((unsigned int *)__cil_tmp57);
+    *((unsigned int *)((void *)srb + 124)) = 2048U;
+    __cil_tmp58 = *((unsigned int *)((void *)srb + 124));
     printk("<7>usb-storage: handle_read10: transfersize 0, forcing %d\n", __cil_tmp58);
     }
   } else {
@@ -6602,12 +6405,8 @@ static int usbat_hp8200e_handle_read10(struct us_data *us , unsigned char *regis
   }
   }
   {
-  __cil_tmp59 = (unsigned long )srb;
-  __cil_tmp60 = __cil_tmp59 + 124;
-  __cil_tmp61 = *((unsigned int *)__cil_tmp60);
-  __cil_tmp62 = (unsigned long )srb;
-  __cil_tmp63 = __cil_tmp62 + 124;
-  __cil_tmp64 = *((unsigned int *)__cil_tmp63);
+  __cil_tmp61 = *((unsigned int *)((void *)srb + 124));
+  __cil_tmp64 = *((unsigned int *)((void *)srb + 124));
   __cil_tmp65 = 65535U / __cil_tmp64;
   len = __cil_tmp65 * __cil_tmp61;
   printk("<7>usb-storage: Max read is %d bytes\n", len);
@@ -6737,16 +6536,12 @@ static int usbat_hp8200e_handle_read10(struct us_data *us , unsigned char *regis
     }
     {
     __cil_tmp124 = data + 14;
-    __cil_tmp125 = (unsigned long )srb;
-    __cil_tmp126 = __cil_tmp125 + 124;
-    __cil_tmp127 = *((unsigned int *)__cil_tmp126);
+    __cil_tmp127 = *((unsigned int *)((void *)srb + 124));
     __cil_tmp128 = len / __cil_tmp127;
     __cil_tmp129 = __cil_tmp128 >> 8;
     *__cil_tmp124 = (unsigned char )__cil_tmp129;
     __cil_tmp130 = data + 15;
-    __cil_tmp131 = (unsigned long )srb;
-    __cil_tmp132 = __cil_tmp131 + 124;
-    __cil_tmp133 = *((unsigned int *)__cil_tmp132);
+    __cil_tmp133 = *((unsigned int *)((void *)srb + 124));
     __cil_tmp134 = len / __cil_tmp133;
     __cil_tmp135 = __cil_tmp134 & 255U;
     *__cil_tmp130 = (unsigned char )__cil_tmp135;
@@ -6768,9 +6563,7 @@ static int usbat_hp8200e_handle_read10(struct us_data *us , unsigned char *regis
     __cil_tmp139 = (unsigned int )transferred;
     __cil_tmp140 = __cil_tmp139 + len;
     transferred = (int )__cil_tmp140;
-    __cil_tmp141 = (unsigned long )srb;
-    __cil_tmp142 = __cil_tmp141 + 124;
-    __cil_tmp143 = *((unsigned int *)__cil_tmp142);
+    __cil_tmp143 = *((unsigned int *)((void *)srb + 124));
     __cil_tmp144 = len / __cil_tmp143;
     sector = sector + __cil_tmp144;
     }
@@ -6796,14 +6589,10 @@ static int usbat_select_and_test_registers(struct us_data *us )
   int tmp___13 ;
   int tmp___14 ;
   int tmp___15 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned char __cil_tmp15 ;
 
   {
-  __cil_tmp13 = (unsigned long )us;
-  __cil_tmp14 = __cil_tmp13 + 376;
-  status = *((unsigned char **)__cil_tmp14);
+  status = *((unsigned char **)((void *)us + 376));
   selector = 160;
   {
   while (1) {
@@ -6901,32 +6690,18 @@ static int init_usbat(struct us_data *us , int devicetype )
   unsigned char *status ;
   int tmp___7 ;
   int tmp___8 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void *__cil_tmp19 ;
 
   {
   {
   subcountH = (unsigned char)21;
   subcountL = (unsigned char)20;
-  __cil_tmp10 = (unsigned long )us;
-  __cil_tmp11 = __cil_tmp10 + 376;
-  status = *((unsigned char **)__cil_tmp11);
-  __cil_tmp12 = (unsigned long )us;
-  __cil_tmp13 = __cil_tmp12 + 648;
-  *((void **)__cil_tmp13) = kzalloc(48UL, 16U);
+  status = *((unsigned char **)((void *)us + 376));
+  *((void **)((void *)us + 648)) = kzalloc(48UL, 16U);
   }
   {
-  __cil_tmp14 = (unsigned long )us;
-  __cil_tmp15 = __cil_tmp14 + 648;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp16 = *((void **)((void *)us + 648));
   if (! __cil_tmp16) {
     {
     printk("<7>usb-storage: init_usbat: Gah! Can\'t allocate storage for usbat info struct!\n");
@@ -6937,9 +6712,7 @@ static int init_usbat(struct us_data *us , int devicetype )
   }
   }
   {
-  __cil_tmp17 = (unsigned long )us;
-  __cil_tmp18 = __cil_tmp17 + 648;
-  __cil_tmp19 = *((void **)__cil_tmp18);
+  __cil_tmp19 = *((void **)((void *)us + 648));
   info = (struct usbat_info *)__cil_tmp19;
   rc = usbat_write_user_io(us, (unsigned char)48, (unsigned char)160);
   }
@@ -7079,8 +6852,6 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
   int tmp___12 ;
   unsigned int tmp___13 ;
   struct scatterlist *tmp___14 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
@@ -7114,8 +6885,6 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned short __cil_tmp54 ;
   int __cil_tmp55 ;
   int __cil_tmp56 ;
@@ -7124,20 +6893,14 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned char *__cil_tmp64 ;
   unsigned char *__cil_tmp65 ;
   unsigned char __cil_tmp66 ;
   int __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned char *__cil_tmp70 ;
   unsigned char *__cil_tmp71 ;
   unsigned char __cil_tmp72 ;
   int __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   enum dma_data_direction __cil_tmp76 ;
   unsigned int __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
@@ -7151,8 +6914,6 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
   int __cil_tmp86 ;
   unsigned int __cil_tmp87 ;
   unsigned int __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   unsigned char *__cil_tmp91 ;
   unsigned char *__cil_tmp92 ;
   unsigned char __cil_tmp93 ;
@@ -7163,8 +6924,6 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned long __cil_tmp98 ;
   unsigned long __cil_tmp99 ;
   unsigned char *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   unsigned char *__cil_tmp103 ;
   unsigned char *__cil_tmp104 ;
   unsigned char __cil_tmp105 ;
@@ -7181,18 +6940,12 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned long __cil_tmp116 ;
   unsigned long __cil_tmp117 ;
   unsigned char *__cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   unsigned char *__cil_tmp121 ;
   unsigned char *__cil_tmp122 ;
   unsigned char __cil_tmp123 ;
   int __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   unsigned char *__cil_tmp127 ;
   void *__cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
   enum dma_data_direction __cil_tmp131 ;
   unsigned int __cil_tmp132 ;
   unsigned char __cil_tmp133 ;
@@ -7206,9 +6959,7 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
 
   {
   {
-  __cil_tmp17 = (unsigned long )us;
-  __cil_tmp18 = __cil_tmp17 + 376;
-  status = *((unsigned char **)__cil_tmp18);
+  status = *((unsigned char **)((void *)us + 376));
   len = scsi_bufflen(srb);
   __cil_tmp19 = 0 * 1UL;
   __cil_tmp20 = (unsigned long )(registers) + __cil_tmp19;
@@ -7269,9 +7020,7 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
     __cil_tmp51 = (unsigned long )(registers) + __cil_tmp50;
     *((unsigned char *)__cil_tmp51) = (unsigned char)16;
     {
-    __cil_tmp52 = (unsigned long )srb;
-    __cil_tmp53 = __cil_tmp52 + 74;
-    __cil_tmp54 = *((unsigned short *)__cil_tmp53);
+    __cil_tmp54 = *((unsigned short *)((void *)srb + 74));
     __cil_tmp55 = (int )__cil_tmp54;
     __cil_tmp56 = i - 7;
     if (__cil_tmp56 >= __cil_tmp55) {
@@ -7282,9 +7031,7 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
       __cil_tmp59 = i * 1UL;
       __cil_tmp60 = (unsigned long )(data) + __cil_tmp59;
       __cil_tmp61 = i - 7;
-      __cil_tmp62 = (unsigned long )srb;
-      __cil_tmp63 = __cil_tmp62 + 80;
-      __cil_tmp64 = *((unsigned char **)__cil_tmp63);
+      __cil_tmp64 = *((unsigned char **)((void *)srb + 80));
       __cil_tmp65 = __cil_tmp64 + __cil_tmp61;
       *((unsigned char *)__cil_tmp60) = *__cil_tmp65;
     }
@@ -7305,9 +7052,7 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
 
   }
   {
-  __cil_tmp68 = (unsigned long )srb;
-  __cil_tmp69 = __cil_tmp68 + 80;
-  __cil_tmp70 = *((unsigned char **)__cil_tmp69);
+  __cil_tmp70 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp71 = __cil_tmp70 + 0;
   __cil_tmp72 = *__cil_tmp71;
   __cil_tmp73 = (int )__cil_tmp72;
@@ -7318,9 +7063,7 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp74 = (unsigned long )srb;
-  __cil_tmp75 = __cil_tmp74 + 76;
-  __cil_tmp76 = *((enum dma_data_direction *)__cil_tmp75);
+  __cil_tmp76 = *((enum dma_data_direction *)((void *)srb + 76));
   __cil_tmp77 = (unsigned int )__cil_tmp76;
   if (__cil_tmp77 == 1U) {
     {
@@ -7353,9 +7096,7 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
     return (result);
   } else {
     {
-    __cil_tmp89 = (unsigned long )srb;
-    __cil_tmp90 = __cil_tmp89 + 80;
-    __cil_tmp91 = *((unsigned char **)__cil_tmp90);
+    __cil_tmp91 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp92 = __cil_tmp91 + 0;
     __cil_tmp93 = *__cil_tmp92;
     __cil_tmp94 = (int )__cil_tmp93;
@@ -7372,9 +7113,7 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
       return (tmp___9);
     } else {
       {
-      __cil_tmp101 = (unsigned long )srb;
-      __cil_tmp102 = __cil_tmp101 + 80;
-      __cil_tmp103 = *((unsigned char **)__cil_tmp102);
+      __cil_tmp103 = *((unsigned char **)((void *)srb + 80));
       __cil_tmp104 = __cil_tmp103 + 0;
       __cil_tmp105 = *__cil_tmp104;
       __cil_tmp106 = (int )__cil_tmp105;
@@ -7420,9 +7159,7 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
 
   }
   {
-  __cil_tmp119 = (unsigned long )srb;
-  __cil_tmp120 = __cil_tmp119 + 80;
-  __cil_tmp121 = *((unsigned char **)__cil_tmp120);
+  __cil_tmp121 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp122 = __cil_tmp121 + 0;
   __cil_tmp123 = *__cil_tmp122;
   __cil_tmp124 = (int )__cil_tmp123;
@@ -7433,9 +7170,7 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp125 = (unsigned long )srb;
-  __cil_tmp126 = __cil_tmp125 + 80;
-  __cil_tmp127 = *((unsigned char **)__cil_tmp126);
+  __cil_tmp127 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp128 = (void *)__cil_tmp127;
   result = usbat_write_block(us, (unsigned char)64, __cil_tmp128, (unsigned short)12,
                              tmp___10, 0);
@@ -7447,9 +7182,7 @@ static int usbat_hp8200e_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   if (len != 0U) {
     {
-    __cil_tmp129 = (unsigned long )srb;
-    __cil_tmp130 = __cil_tmp129 + 76;
-    __cil_tmp131 = *((enum dma_data_direction *)__cil_tmp130);
+    __cil_tmp131 = *((enum dma_data_direction *)((void *)srb + 76));
     __cil_tmp132 = (unsigned int )__cil_tmp131;
     if (__cil_tmp132 == 2U) {
       {
@@ -7516,13 +7249,7 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   int tmp___11 ;
   int tmp___12 ;
   int tmp___13 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned char *__cil_tmp24 ;
   unsigned char *__cil_tmp25 ;
   unsigned char __cil_tmp26 ;
@@ -7537,67 +7264,43 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned long __cil_tmp35 ;
   unsigned char *__cil_tmp36 ;
   void const   *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned char *__cil_tmp40 ;
   unsigned char *__cil_tmp41 ;
   unsigned char __cil_tmp42 ;
   int __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   __u32 __cil_tmp56 ;
   __be32 *__cil_tmp57 ;
   __be32 *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   __u32 __cil_tmp62 ;
   __be32 *__cil_tmp63 ;
   __be32 *__cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   unsigned char *__cil_tmp67 ;
   unsigned char *__cil_tmp68 ;
   unsigned char __cil_tmp69 ;
   int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   unsigned char *__cil_tmp73 ;
   unsigned char *__cil_tmp74 ;
   unsigned char __cil_tmp75 ;
   int __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   unsigned char *__cil_tmp79 ;
   unsigned char *__cil_tmp80 ;
   unsigned char __cil_tmp81 ;
   u32 __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   unsigned char *__cil_tmp85 ;
   unsigned char *__cil_tmp86 ;
   unsigned char __cil_tmp87 ;
   u32 __cil_tmp88 ;
   u32 __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   unsigned char *__cil_tmp92 ;
   unsigned char *__cil_tmp93 ;
   unsigned char __cil_tmp94 ;
   u32 __cil_tmp95 ;
   u32 __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   unsigned char *__cil_tmp99 ;
   unsigned char *__cil_tmp100 ;
   unsigned char __cil_tmp101 ;
@@ -7606,14 +7309,10 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned int __cil_tmp104 ;
   unsigned int __cil_tmp105 ;
   unsigned int __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   unsigned char *__cil_tmp109 ;
   unsigned char *__cil_tmp110 ;
   unsigned char __cil_tmp111 ;
   u32 __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   unsigned char *__cil_tmp115 ;
   unsigned char *__cil_tmp116 ;
   unsigned char __cil_tmp117 ;
@@ -7622,34 +7321,24 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned int __cil_tmp120 ;
   u32 __cil_tmp121 ;
   u32 __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
   unsigned char *__cil_tmp125 ;
   unsigned char *__cil_tmp126 ;
   unsigned char __cil_tmp127 ;
   int __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
   unsigned char *__cil_tmp131 ;
   unsigned char *__cil_tmp132 ;
   unsigned char __cil_tmp133 ;
   u32 __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
   unsigned char *__cil_tmp137 ;
   unsigned char *__cil_tmp138 ;
   unsigned char __cil_tmp139 ;
   u32 __cil_tmp140 ;
   u32 __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
   unsigned char *__cil_tmp144 ;
   unsigned char *__cil_tmp145 ;
   unsigned char __cil_tmp146 ;
   u32 __cil_tmp147 ;
   u32 __cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
   unsigned char *__cil_tmp151 ;
   unsigned char *__cil_tmp152 ;
   unsigned char __cil_tmp153 ;
@@ -7658,28 +7347,20 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned int __cil_tmp156 ;
   unsigned int __cil_tmp157 ;
   unsigned int __cil_tmp158 ;
-  unsigned long __cil_tmp159 ;
-  unsigned long __cil_tmp160 ;
   unsigned char *__cil_tmp161 ;
   unsigned char *__cil_tmp162 ;
   unsigned char __cil_tmp163 ;
   u32 __cil_tmp164 ;
-  unsigned long __cil_tmp165 ;
-  unsigned long __cil_tmp166 ;
   unsigned char *__cil_tmp167 ;
   unsigned char *__cil_tmp168 ;
   unsigned char __cil_tmp169 ;
   u32 __cil_tmp170 ;
   u32 __cil_tmp171 ;
-  unsigned long __cil_tmp172 ;
-  unsigned long __cil_tmp173 ;
   unsigned char *__cil_tmp174 ;
   unsigned char *__cil_tmp175 ;
   unsigned char __cil_tmp176 ;
   u32 __cil_tmp177 ;
   u32 __cil_tmp178 ;
-  unsigned long __cil_tmp179 ;
-  unsigned long __cil_tmp180 ;
   unsigned char *__cil_tmp181 ;
   unsigned char *__cil_tmp182 ;
   unsigned char __cil_tmp183 ;
@@ -7690,34 +7371,24 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned int __cil_tmp188 ;
   u32 __cil_tmp189 ;
   u32 __cil_tmp190 ;
-  unsigned long __cil_tmp191 ;
-  unsigned long __cil_tmp192 ;
   unsigned char *__cil_tmp193 ;
   unsigned char *__cil_tmp194 ;
   unsigned char __cil_tmp195 ;
   int __cil_tmp196 ;
-  unsigned long __cil_tmp197 ;
-  unsigned long __cil_tmp198 ;
   unsigned char *__cil_tmp199 ;
   unsigned char *__cil_tmp200 ;
   unsigned char __cil_tmp201 ;
   u32 __cil_tmp202 ;
-  unsigned long __cil_tmp203 ;
-  unsigned long __cil_tmp204 ;
   unsigned char *__cil_tmp205 ;
   unsigned char *__cil_tmp206 ;
   unsigned char __cil_tmp207 ;
   u32 __cil_tmp208 ;
   u32 __cil_tmp209 ;
-  unsigned long __cil_tmp210 ;
-  unsigned long __cil_tmp211 ;
   unsigned char *__cil_tmp212 ;
   unsigned char *__cil_tmp213 ;
   unsigned char __cil_tmp214 ;
   u32 __cil_tmp215 ;
   u32 __cil_tmp216 ;
-  unsigned long __cil_tmp217 ;
-  unsigned long __cil_tmp218 ;
   unsigned char *__cil_tmp219 ;
   unsigned char *__cil_tmp220 ;
   unsigned char __cil_tmp221 ;
@@ -7726,14 +7397,10 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned int __cil_tmp224 ;
   unsigned int __cil_tmp225 ;
   unsigned int __cil_tmp226 ;
-  unsigned long __cil_tmp227 ;
-  unsigned long __cil_tmp228 ;
   unsigned char *__cil_tmp229 ;
   unsigned char *__cil_tmp230 ;
   unsigned char __cil_tmp231 ;
   u32 __cil_tmp232 ;
-  unsigned long __cil_tmp233 ;
-  unsigned long __cil_tmp234 ;
   unsigned char *__cil_tmp235 ;
   unsigned char *__cil_tmp236 ;
   unsigned char __cil_tmp237 ;
@@ -7742,34 +7409,24 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned int __cil_tmp240 ;
   u32 __cil_tmp241 ;
   u32 __cil_tmp242 ;
-  unsigned long __cil_tmp243 ;
-  unsigned long __cil_tmp244 ;
   unsigned char *__cil_tmp245 ;
   unsigned char *__cil_tmp246 ;
   unsigned char __cil_tmp247 ;
   int __cil_tmp248 ;
-  unsigned long __cil_tmp249 ;
-  unsigned long __cil_tmp250 ;
   unsigned char *__cil_tmp251 ;
   unsigned char *__cil_tmp252 ;
   unsigned char __cil_tmp253 ;
   u32 __cil_tmp254 ;
-  unsigned long __cil_tmp255 ;
-  unsigned long __cil_tmp256 ;
   unsigned char *__cil_tmp257 ;
   unsigned char *__cil_tmp258 ;
   unsigned char __cil_tmp259 ;
   u32 __cil_tmp260 ;
   u32 __cil_tmp261 ;
-  unsigned long __cil_tmp262 ;
-  unsigned long __cil_tmp263 ;
   unsigned char *__cil_tmp264 ;
   unsigned char *__cil_tmp265 ;
   unsigned char __cil_tmp266 ;
   u32 __cil_tmp267 ;
   u32 __cil_tmp268 ;
-  unsigned long __cil_tmp269 ;
-  unsigned long __cil_tmp270 ;
   unsigned char *__cil_tmp271 ;
   unsigned char *__cil_tmp272 ;
   unsigned char __cil_tmp273 ;
@@ -7778,28 +7435,20 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned int __cil_tmp276 ;
   unsigned int __cil_tmp277 ;
   unsigned int __cil_tmp278 ;
-  unsigned long __cil_tmp279 ;
-  unsigned long __cil_tmp280 ;
   unsigned char *__cil_tmp281 ;
   unsigned char *__cil_tmp282 ;
   unsigned char __cil_tmp283 ;
   u32 __cil_tmp284 ;
-  unsigned long __cil_tmp285 ;
-  unsigned long __cil_tmp286 ;
   unsigned char *__cil_tmp287 ;
   unsigned char *__cil_tmp288 ;
   unsigned char __cil_tmp289 ;
   u32 __cil_tmp290 ;
   u32 __cil_tmp291 ;
-  unsigned long __cil_tmp292 ;
-  unsigned long __cil_tmp293 ;
   unsigned char *__cil_tmp294 ;
   unsigned char *__cil_tmp295 ;
   unsigned char __cil_tmp296 ;
   u32 __cil_tmp297 ;
   u32 __cil_tmp298 ;
-  unsigned long __cil_tmp299 ;
-  unsigned long __cil_tmp300 ;
   unsigned char *__cil_tmp301 ;
   unsigned char *__cil_tmp302 ;
   unsigned char __cil_tmp303 ;
@@ -7810,14 +7459,10 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   unsigned int __cil_tmp308 ;
   u32 __cil_tmp309 ;
   u32 __cil_tmp310 ;
-  unsigned long __cil_tmp311 ;
-  unsigned long __cil_tmp312 ;
   unsigned char *__cil_tmp313 ;
   unsigned char *__cil_tmp314 ;
   unsigned char __cil_tmp315 ;
   int __cil_tmp316 ;
-  unsigned long __cil_tmp317 ;
-  unsigned long __cil_tmp318 ;
   unsigned char *__cil_tmp319 ;
   unsigned char *__cil_tmp320 ;
   unsigned char __cil_tmp321 ;
@@ -7826,54 +7471,30 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   size_t __cil_tmp324 ;
   unsigned char *__cil_tmp325 ;
   unsigned char *__cil_tmp326 ;
-  unsigned long __cil_tmp327 ;
-  unsigned long __cil_tmp328 ;
   unsigned char *__cil_tmp329 ;
   unsigned char *__cil_tmp330 ;
-  unsigned long __cil_tmp331 ;
-  unsigned long __cil_tmp332 ;
   unsigned long __cil_tmp333 ;
   unsigned char *__cil_tmp334 ;
-  unsigned long __cil_tmp335 ;
-  unsigned long __cil_tmp336 ;
   unsigned long __cil_tmp337 ;
-  unsigned long __cil_tmp338 ;
-  unsigned long __cil_tmp339 ;
   unsigned char *__cil_tmp340 ;
   unsigned char *__cil_tmp341 ;
   unsigned char __cil_tmp342 ;
   int __cil_tmp343 ;
-  unsigned long __cil_tmp344 ;
-  unsigned long __cil_tmp345 ;
   unsigned char *__cil_tmp346 ;
   unsigned char *__cil_tmp347 ;
   unsigned char __cil_tmp348 ;
   int __cil_tmp349 ;
-  unsigned long __cil_tmp350 ;
-  unsigned long __cil_tmp351 ;
   unsigned char *__cil_tmp352 ;
   unsigned char *__cil_tmp353 ;
   unsigned char __cil_tmp354 ;
   int __cil_tmp355 ;
-  unsigned long __cil_tmp356 ;
-  unsigned long __cil_tmp357 ;
-  unsigned long __cil_tmp358 ;
-  unsigned long __cil_tmp359 ;
-  unsigned long __cil_tmp360 ;
-  unsigned long __cil_tmp361 ;
 
   {
-  __cil_tmp17 = (unsigned long )us;
-  __cil_tmp18 = __cil_tmp17 + 648;
-  __cil_tmp19 = *((void **)__cil_tmp18);
+  __cil_tmp19 = *((void **)((void *)us + 648));
   info = (struct usbat_info *)__cil_tmp19;
-  __cil_tmp20 = (unsigned long )us;
-  __cil_tmp21 = __cil_tmp20 + 376;
-  ptr = *((unsigned char **)__cil_tmp21);
+  ptr = *((unsigned char **)((void *)us + 376));
   {
-  __cil_tmp22 = (unsigned long )srb;
-  __cil_tmp23 = __cil_tmp22 + 80;
-  __cil_tmp24 = *((unsigned char **)__cil_tmp23);
+  __cil_tmp24 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp25 = __cil_tmp24 + 0;
   __cil_tmp26 = *__cil_tmp25;
   __cil_tmp27 = (int )__cil_tmp26;
@@ -7910,9 +7531,7 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp38 = (unsigned long )srb;
-  __cil_tmp39 = __cil_tmp38 + 80;
-  __cil_tmp40 = *((unsigned char **)__cil_tmp39);
+  __cil_tmp40 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp41 = __cil_tmp40 + 0;
   __cil_tmp42 = *__cil_tmp41;
   __cil_tmp43 = (int )__cil_tmp42;
@@ -7934,29 +7553,19 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
 
     }
     {
-    __cil_tmp44 = (unsigned long )info;
-    __cil_tmp45 = __cil_tmp44 + 16;
-    *((unsigned long *)__cil_tmp45) = 512UL;
-    __cil_tmp46 = (unsigned long )info;
-    __cil_tmp47 = __cil_tmp46 + 8;
-    __cil_tmp48 = *((unsigned long *)__cil_tmp47);
-    __cil_tmp49 = (unsigned long )info;
-    __cil_tmp50 = __cil_tmp49 + 16;
-    __cil_tmp51 = *((unsigned long *)__cil_tmp50);
+    *((unsigned long *)((void *)info + 16)) = 512UL;
+    __cil_tmp48 = *((unsigned long *)((void *)info + 8));
+    __cil_tmp51 = *((unsigned long *)((void *)info + 16));
     printk("<7>usb-storage: usbat_flash_transport: READ_CAPACITY: %ld sectors, %ld bytes per sector\n",
            __cil_tmp48, __cil_tmp51);
-    __cil_tmp52 = (unsigned long )info;
-    __cil_tmp53 = __cil_tmp52 + 8;
-    __cil_tmp54 = *((unsigned long *)__cil_tmp53);
+    __cil_tmp54 = *((unsigned long *)((void *)info + 8));
     __cil_tmp55 = __cil_tmp54 - 1UL;
     __cil_tmp56 = (__u32 )__cil_tmp55;
     tmp___7 = __fswab32(__cil_tmp56);
     __cil_tmp57 = (__be32 *)ptr;
     __cil_tmp58 = __cil_tmp57 + 0;
     *__cil_tmp58 = tmp___7;
-    __cil_tmp59 = (unsigned long )info;
-    __cil_tmp60 = __cil_tmp59 + 16;
-    __cil_tmp61 = *((unsigned long *)__cil_tmp60);
+    __cil_tmp61 = *((unsigned long *)((void *)info + 16));
     __cil_tmp62 = (__u32 )__cil_tmp61;
     tmp___8 = __fswab32(__cil_tmp62);
     __cil_tmp63 = (__be32 *)ptr;
@@ -7970,9 +7579,7 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp65 = (unsigned long )srb;
-  __cil_tmp66 = __cil_tmp65 + 80;
-  __cil_tmp67 = *((unsigned char **)__cil_tmp66);
+  __cil_tmp67 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp68 = __cil_tmp67 + 0;
   __cil_tmp69 = *__cil_tmp68;
   __cil_tmp70 = (int )__cil_tmp69;
@@ -7986,37 +7593,27 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp71 = (unsigned long )srb;
-  __cil_tmp72 = __cil_tmp71 + 80;
-  __cil_tmp73 = *((unsigned char **)__cil_tmp72);
+  __cil_tmp73 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp74 = __cil_tmp73 + 0;
   __cil_tmp75 = *__cil_tmp74;
   __cil_tmp76 = (int )__cil_tmp75;
   if (__cil_tmp76 == 40) {
     {
-    __cil_tmp77 = (unsigned long )srb;
-    __cil_tmp78 = __cil_tmp77 + 80;
-    __cil_tmp79 = *((unsigned char **)__cil_tmp78);
+    __cil_tmp79 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp80 = __cil_tmp79 + 5;
     __cil_tmp81 = *__cil_tmp80;
     __cil_tmp82 = (u32 )__cil_tmp81;
-    __cil_tmp83 = (unsigned long )srb;
-    __cil_tmp84 = __cil_tmp83 + 80;
-    __cil_tmp85 = *((unsigned char **)__cil_tmp84);
+    __cil_tmp85 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp86 = __cil_tmp85 + 4;
     __cil_tmp87 = *__cil_tmp86;
     __cil_tmp88 = (u32 )__cil_tmp87;
     __cil_tmp89 = __cil_tmp88 << 8;
-    __cil_tmp90 = (unsigned long )srb;
-    __cil_tmp91 = __cil_tmp90 + 80;
-    __cil_tmp92 = *((unsigned char **)__cil_tmp91);
+    __cil_tmp92 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp93 = __cil_tmp92 + 3;
     __cil_tmp94 = *__cil_tmp93;
     __cil_tmp95 = (u32 )__cil_tmp94;
     __cil_tmp96 = __cil_tmp95 << 16;
-    __cil_tmp97 = (unsigned long )srb;
-    __cil_tmp98 = __cil_tmp97 + 80;
-    __cil_tmp99 = *((unsigned char **)__cil_tmp98);
+    __cil_tmp99 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp100 = __cil_tmp99 + 2;
     __cil_tmp101 = *__cil_tmp100;
     __cil_tmp102 = (u32 )__cil_tmp101;
@@ -8025,15 +7622,11 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
     __cil_tmp105 = __cil_tmp104 | __cil_tmp89;
     __cil_tmp106 = __cil_tmp105 | __cil_tmp82;
     block = (unsigned long )__cil_tmp106;
-    __cil_tmp107 = (unsigned long )srb;
-    __cil_tmp108 = __cil_tmp107 + 80;
-    __cil_tmp109 = *((unsigned char **)__cil_tmp108);
+    __cil_tmp109 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp110 = __cil_tmp109 + 8;
     __cil_tmp111 = *__cil_tmp110;
     __cil_tmp112 = (u32 )__cil_tmp111;
-    __cil_tmp113 = (unsigned long )srb;
-    __cil_tmp114 = __cil_tmp113 + 80;
-    __cil_tmp115 = *((unsigned char **)__cil_tmp114);
+    __cil_tmp115 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp116 = __cil_tmp115 + 7;
     __cil_tmp117 = *__cil_tmp116;
     __cil_tmp118 = (u32 )__cil_tmp117;
@@ -8052,37 +7645,27 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp123 = (unsigned long )srb;
-  __cil_tmp124 = __cil_tmp123 + 80;
-  __cil_tmp125 = *((unsigned char **)__cil_tmp124);
+  __cil_tmp125 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp126 = __cil_tmp125 + 0;
   __cil_tmp127 = *__cil_tmp126;
   __cil_tmp128 = (int )__cil_tmp127;
   if (__cil_tmp128 == 168) {
     {
-    __cil_tmp129 = (unsigned long )srb;
-    __cil_tmp130 = __cil_tmp129 + 80;
-    __cil_tmp131 = *((unsigned char **)__cil_tmp130);
+    __cil_tmp131 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp132 = __cil_tmp131 + 5;
     __cil_tmp133 = *__cil_tmp132;
     __cil_tmp134 = (u32 )__cil_tmp133;
-    __cil_tmp135 = (unsigned long )srb;
-    __cil_tmp136 = __cil_tmp135 + 80;
-    __cil_tmp137 = *((unsigned char **)__cil_tmp136);
+    __cil_tmp137 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp138 = __cil_tmp137 + 4;
     __cil_tmp139 = *__cil_tmp138;
     __cil_tmp140 = (u32 )__cil_tmp139;
     __cil_tmp141 = __cil_tmp140 << 8;
-    __cil_tmp142 = (unsigned long )srb;
-    __cil_tmp143 = __cil_tmp142 + 80;
-    __cil_tmp144 = *((unsigned char **)__cil_tmp143);
+    __cil_tmp144 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp145 = __cil_tmp144 + 3;
     __cil_tmp146 = *__cil_tmp145;
     __cil_tmp147 = (u32 )__cil_tmp146;
     __cil_tmp148 = __cil_tmp147 << 16;
-    __cil_tmp149 = (unsigned long )srb;
-    __cil_tmp150 = __cil_tmp149 + 80;
-    __cil_tmp151 = *((unsigned char **)__cil_tmp150);
+    __cil_tmp151 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp152 = __cil_tmp151 + 2;
     __cil_tmp153 = *__cil_tmp152;
     __cil_tmp154 = (u32 )__cil_tmp153;
@@ -8091,29 +7674,21 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
     __cil_tmp157 = __cil_tmp156 | __cil_tmp141;
     __cil_tmp158 = __cil_tmp157 | __cil_tmp134;
     block = (unsigned long )__cil_tmp158;
-    __cil_tmp159 = (unsigned long )srb;
-    __cil_tmp160 = __cil_tmp159 + 80;
-    __cil_tmp161 = *((unsigned char **)__cil_tmp160);
+    __cil_tmp161 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp162 = __cil_tmp161 + 9;
     __cil_tmp163 = *__cil_tmp162;
     __cil_tmp164 = (u32 )__cil_tmp163;
-    __cil_tmp165 = (unsigned long )srb;
-    __cil_tmp166 = __cil_tmp165 + 80;
-    __cil_tmp167 = *((unsigned char **)__cil_tmp166);
+    __cil_tmp167 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp168 = __cil_tmp167 + 8;
     __cil_tmp169 = *__cil_tmp168;
     __cil_tmp170 = (u32 )__cil_tmp169;
     __cil_tmp171 = __cil_tmp170 << 8;
-    __cil_tmp172 = (unsigned long )srb;
-    __cil_tmp173 = __cil_tmp172 + 80;
-    __cil_tmp174 = *((unsigned char **)__cil_tmp173);
+    __cil_tmp174 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp175 = __cil_tmp174 + 7;
     __cil_tmp176 = *__cil_tmp175;
     __cil_tmp177 = (u32 )__cil_tmp176;
     __cil_tmp178 = __cil_tmp177 << 16;
-    __cil_tmp179 = (unsigned long )srb;
-    __cil_tmp180 = __cil_tmp179 + 80;
-    __cil_tmp181 = *((unsigned char **)__cil_tmp180);
+    __cil_tmp181 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp182 = __cil_tmp181 + 6;
     __cil_tmp183 = *__cil_tmp182;
     __cil_tmp184 = (u32 )__cil_tmp183;
@@ -8134,37 +7709,27 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp191 = (unsigned long )srb;
-  __cil_tmp192 = __cil_tmp191 + 80;
-  __cil_tmp193 = *((unsigned char **)__cil_tmp192);
+  __cil_tmp193 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp194 = __cil_tmp193 + 0;
   __cil_tmp195 = *__cil_tmp194;
   __cil_tmp196 = (int )__cil_tmp195;
   if (__cil_tmp196 == 42) {
     {
-    __cil_tmp197 = (unsigned long )srb;
-    __cil_tmp198 = __cil_tmp197 + 80;
-    __cil_tmp199 = *((unsigned char **)__cil_tmp198);
+    __cil_tmp199 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp200 = __cil_tmp199 + 5;
     __cil_tmp201 = *__cil_tmp200;
     __cil_tmp202 = (u32 )__cil_tmp201;
-    __cil_tmp203 = (unsigned long )srb;
-    __cil_tmp204 = __cil_tmp203 + 80;
-    __cil_tmp205 = *((unsigned char **)__cil_tmp204);
+    __cil_tmp205 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp206 = __cil_tmp205 + 4;
     __cil_tmp207 = *__cil_tmp206;
     __cil_tmp208 = (u32 )__cil_tmp207;
     __cil_tmp209 = __cil_tmp208 << 8;
-    __cil_tmp210 = (unsigned long )srb;
-    __cil_tmp211 = __cil_tmp210 + 80;
-    __cil_tmp212 = *((unsigned char **)__cil_tmp211);
+    __cil_tmp212 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp213 = __cil_tmp212 + 3;
     __cil_tmp214 = *__cil_tmp213;
     __cil_tmp215 = (u32 )__cil_tmp214;
     __cil_tmp216 = __cil_tmp215 << 16;
-    __cil_tmp217 = (unsigned long )srb;
-    __cil_tmp218 = __cil_tmp217 + 80;
-    __cil_tmp219 = *((unsigned char **)__cil_tmp218);
+    __cil_tmp219 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp220 = __cil_tmp219 + 2;
     __cil_tmp221 = *__cil_tmp220;
     __cil_tmp222 = (u32 )__cil_tmp221;
@@ -8173,15 +7738,11 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
     __cil_tmp225 = __cil_tmp224 | __cil_tmp209;
     __cil_tmp226 = __cil_tmp225 | __cil_tmp202;
     block = (unsigned long )__cil_tmp226;
-    __cil_tmp227 = (unsigned long )srb;
-    __cil_tmp228 = __cil_tmp227 + 80;
-    __cil_tmp229 = *((unsigned char **)__cil_tmp228);
+    __cil_tmp229 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp230 = __cil_tmp229 + 8;
     __cil_tmp231 = *__cil_tmp230;
     __cil_tmp232 = (u32 )__cil_tmp231;
-    __cil_tmp233 = (unsigned long )srb;
-    __cil_tmp234 = __cil_tmp233 + 80;
-    __cil_tmp235 = *((unsigned char **)__cil_tmp234);
+    __cil_tmp235 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp236 = __cil_tmp235 + 7;
     __cil_tmp237 = *__cil_tmp236;
     __cil_tmp238 = (u32 )__cil_tmp237;
@@ -8200,37 +7761,27 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp243 = (unsigned long )srb;
-  __cil_tmp244 = __cil_tmp243 + 80;
-  __cil_tmp245 = *((unsigned char **)__cil_tmp244);
+  __cil_tmp245 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp246 = __cil_tmp245 + 0;
   __cil_tmp247 = *__cil_tmp246;
   __cil_tmp248 = (int )__cil_tmp247;
   if (__cil_tmp248 == 170) {
     {
-    __cil_tmp249 = (unsigned long )srb;
-    __cil_tmp250 = __cil_tmp249 + 80;
-    __cil_tmp251 = *((unsigned char **)__cil_tmp250);
+    __cil_tmp251 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp252 = __cil_tmp251 + 5;
     __cil_tmp253 = *__cil_tmp252;
     __cil_tmp254 = (u32 )__cil_tmp253;
-    __cil_tmp255 = (unsigned long )srb;
-    __cil_tmp256 = __cil_tmp255 + 80;
-    __cil_tmp257 = *((unsigned char **)__cil_tmp256);
+    __cil_tmp257 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp258 = __cil_tmp257 + 4;
     __cil_tmp259 = *__cil_tmp258;
     __cil_tmp260 = (u32 )__cil_tmp259;
     __cil_tmp261 = __cil_tmp260 << 8;
-    __cil_tmp262 = (unsigned long )srb;
-    __cil_tmp263 = __cil_tmp262 + 80;
-    __cil_tmp264 = *((unsigned char **)__cil_tmp263);
+    __cil_tmp264 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp265 = __cil_tmp264 + 3;
     __cil_tmp266 = *__cil_tmp265;
     __cil_tmp267 = (u32 )__cil_tmp266;
     __cil_tmp268 = __cil_tmp267 << 16;
-    __cil_tmp269 = (unsigned long )srb;
-    __cil_tmp270 = __cil_tmp269 + 80;
-    __cil_tmp271 = *((unsigned char **)__cil_tmp270);
+    __cil_tmp271 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp272 = __cil_tmp271 + 2;
     __cil_tmp273 = *__cil_tmp272;
     __cil_tmp274 = (u32 )__cil_tmp273;
@@ -8239,29 +7790,21 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
     __cil_tmp277 = __cil_tmp276 | __cil_tmp261;
     __cil_tmp278 = __cil_tmp277 | __cil_tmp254;
     block = (unsigned long )__cil_tmp278;
-    __cil_tmp279 = (unsigned long )srb;
-    __cil_tmp280 = __cil_tmp279 + 80;
-    __cil_tmp281 = *((unsigned char **)__cil_tmp280);
+    __cil_tmp281 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp282 = __cil_tmp281 + 9;
     __cil_tmp283 = *__cil_tmp282;
     __cil_tmp284 = (u32 )__cil_tmp283;
-    __cil_tmp285 = (unsigned long )srb;
-    __cil_tmp286 = __cil_tmp285 + 80;
-    __cil_tmp287 = *((unsigned char **)__cil_tmp286);
+    __cil_tmp287 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp288 = __cil_tmp287 + 8;
     __cil_tmp289 = *__cil_tmp288;
     __cil_tmp290 = (u32 )__cil_tmp289;
     __cil_tmp291 = __cil_tmp290 << 8;
-    __cil_tmp292 = (unsigned long )srb;
-    __cil_tmp293 = __cil_tmp292 + 80;
-    __cil_tmp294 = *((unsigned char **)__cil_tmp293);
+    __cil_tmp294 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp295 = __cil_tmp294 + 7;
     __cil_tmp296 = *__cil_tmp295;
     __cil_tmp297 = (u32 )__cil_tmp296;
     __cil_tmp298 = __cil_tmp297 << 16;
-    __cil_tmp299 = (unsigned long )srb;
-    __cil_tmp300 = __cil_tmp299 + 80;
-    __cil_tmp301 = *((unsigned char **)__cil_tmp300);
+    __cil_tmp301 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp302 = __cil_tmp301 + 6;
     __cil_tmp303 = *__cil_tmp302;
     __cil_tmp304 = (u32 )__cil_tmp303;
@@ -8282,9 +7825,7 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp311 = (unsigned long )srb;
-  __cil_tmp312 = __cil_tmp311 + 80;
-  __cil_tmp313 = *((unsigned char **)__cil_tmp312);
+  __cil_tmp313 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp314 = __cil_tmp313 + 0;
   __cil_tmp315 = *__cil_tmp314;
   __cil_tmp316 = (int )__cil_tmp315;
@@ -8307,9 +7848,7 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp317 = (unsigned long )srb;
-  __cil_tmp318 = __cil_tmp317 + 80;
-  __cil_tmp319 = *((unsigned char **)__cil_tmp318);
+  __cil_tmp319 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp320 = __cil_tmp319 + 0;
   __cil_tmp321 = *__cil_tmp320;
   __cil_tmp322 = (int )__cil_tmp321;
@@ -8322,20 +7861,14 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
     __cil_tmp325 = ptr + 0;
     *__cil_tmp325 = (unsigned char)240;
     __cil_tmp326 = ptr + 2;
-    __cil_tmp327 = (unsigned long )info;
-    __cil_tmp328 = __cil_tmp327 + 24;
-    *__cil_tmp326 = *((unsigned char *)__cil_tmp328);
+    *__cil_tmp326 = *((unsigned char *)((void *)info + 24));
     __cil_tmp329 = ptr + 7;
     *__cil_tmp329 = (unsigned char)11;
     __cil_tmp330 = ptr + 12;
-    __cil_tmp331 = (unsigned long )info;
-    __cil_tmp332 = __cil_tmp331 + 32;
-    __cil_tmp333 = *((unsigned long *)__cil_tmp332);
+    __cil_tmp333 = *((unsigned long *)((void *)info + 32));
     *__cil_tmp330 = (unsigned char )__cil_tmp333;
     __cil_tmp334 = ptr + 13;
-    __cil_tmp335 = (unsigned long )info;
-    __cil_tmp336 = __cil_tmp335 + 40;
-    __cil_tmp337 = *((unsigned long *)__cil_tmp336);
+    __cil_tmp337 = *((unsigned long *)((void *)info + 40));
     *__cil_tmp334 = (unsigned char )__cil_tmp337;
     usb_stor_set_xfer_buf(ptr, 18U, srb);
     }
@@ -8345,9 +7878,7 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp338 = (unsigned long )srb;
-  __cil_tmp339 = __cil_tmp338 + 80;
-  __cil_tmp340 = *((unsigned char **)__cil_tmp339);
+  __cil_tmp340 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp341 = __cil_tmp340 + 0;
   __cil_tmp342 = *__cil_tmp341;
   __cil_tmp343 = (int )__cil_tmp342;
@@ -8358,29 +7889,19 @@ static int usbat_flash_transport(struct scsi_cmnd *srb , struct us_data *us )
   }
   }
   {
-  __cil_tmp344 = (unsigned long )srb;
-  __cil_tmp345 = __cil_tmp344 + 80;
-  __cil_tmp346 = *((unsigned char **)__cil_tmp345);
+  __cil_tmp346 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp347 = __cil_tmp346 + 0;
   __cil_tmp348 = *__cil_tmp347;
   __cil_tmp349 = (int )__cil_tmp348;
-  __cil_tmp350 = (unsigned long )srb;
-  __cil_tmp351 = __cil_tmp350 + 80;
-  __cil_tmp352 = *((unsigned char **)__cil_tmp351);
+  __cil_tmp352 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp353 = __cil_tmp352 + 0;
   __cil_tmp354 = *__cil_tmp353;
   __cil_tmp355 = (int )__cil_tmp354;
   printk("<7>usb-storage: usbat_flash_transport: Gah! Unknown command: %d (0x%x)\n",
          __cil_tmp349, __cil_tmp355);
-  __cil_tmp356 = (unsigned long )info;
-  __cil_tmp357 = __cil_tmp356 + 24;
-  *((unsigned char *)__cil_tmp357) = (unsigned char)5;
-  __cil_tmp358 = (unsigned long )info;
-  __cil_tmp359 = __cil_tmp358 + 32;
-  *((unsigned long *)__cil_tmp359) = 32UL;
-  __cil_tmp360 = (unsigned long )info;
-  __cil_tmp361 = __cil_tmp360 + 40;
-  *((unsigned long *)__cil_tmp361) = 0UL;
+  *((unsigned char *)((void *)info + 24)) = (unsigned char)5;
+  *((unsigned long *)((void *)info + 32)) = 32UL;
+  *((unsigned long *)((void *)info + 40)) = 0UL;
   }
   return (1);
 }
@@ -8419,20 +7940,12 @@ static int usbat_probe(struct usb_interface *intf , struct usb_device_id  const 
   struct us_unusual_dev *__cil_tmp13 ;
   struct us_data **__cil_tmp14 ;
   struct us_data *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct us_data **__cil_tmp18 ;
   struct us_data *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct us_data **__cil_tmp22 ;
   struct us_data *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct us_data **__cil_tmp26 ;
   struct us_data *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct us_data **__cil_tmp30 ;
   struct us_data *__cil_tmp31 ;
 
@@ -8457,24 +7970,16 @@ static int usbat_probe(struct usb_interface *intf , struct usb_device_id  const 
   {
   __cil_tmp14 = & us;
   __cil_tmp15 = *__cil_tmp14;
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + 136;
-  *((char **)__cil_tmp17) = (char *)"Shuttle USBAT";
+  *((char **)((void *)__cil_tmp15 + 136)) = (char *)"Shuttle USBAT";
   __cil_tmp18 = & us;
   __cil_tmp19 = *__cil_tmp18;
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 168;
-  *((int (**)(struct scsi_cmnd * , struct us_data * ))__cil_tmp21) = & usbat_flash_transport;
+  *((int (**)(struct scsi_cmnd * , struct us_data * ))((void *)__cil_tmp19 + 168)) = & usbat_flash_transport;
   __cil_tmp22 = & us;
   __cil_tmp23 = *__cil_tmp22;
-  __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = __cil_tmp24 + 176;
-  *((int (**)(struct us_data * ))__cil_tmp25) = & usb_stor_CB_reset;
+  *((int (**)(struct us_data * ))((void *)__cil_tmp23 + 176)) = & usb_stor_CB_reset;
   __cil_tmp26 = & us;
   __cil_tmp27 = *__cil_tmp26;
-  __cil_tmp28 = (unsigned long )__cil_tmp27;
-  __cil_tmp29 = __cil_tmp28 + 158;
-  *((u8 *)__cil_tmp29) = (u8 )1;
+  *((u8 *)((void *)__cil_tmp27 + 158)) = (u8 )1;
   __cil_tmp30 = & us;
   __cil_tmp31 = *__cil_tmp30;
   result = usb_stor_probe2(__cil_tmp31);

@@ -1412,34 +1412,22 @@ static int i2o_bus_scan(struct i2o_device *dev )
 { struct i2o_message *msg ;
   long tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct i2o_controller *__cil_tmp7 ;
   void const *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned short __cil_tmp22 ;
   int __cil_tmp23 ;
   int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct i2o_controller *__cil_tmp27 ;
   {
   {
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + 40;
-  __cil_tmp7 = *((struct i2o_controller **)__cil_tmp6);
+  __cil_tmp7 = *((struct i2o_controller **)((void *)dev + 40));
   msg = i2o_msg_get_wait(__cil_tmp7, 5);
   __cil_tmp8 = (void const *)msg;
   tmp = IS_ERR(__cil_tmp8);
@@ -1452,24 +1440,16 @@ static int i2o_bus_scan(struct i2o_device *dev )
   __cil_tmp9 = 0 * 4UL;
   __cil_tmp10 = 0 + __cil_tmp9;
   __cil_tmp11 = 0 + __cil_tmp10;
-  __cil_tmp12 = (unsigned long )msg;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  *((u32 *)__cil_tmp13) = 327681U;
+  *((u32 *)((void *)msg + __cil_tmp11)) = 327681U;
   __cil_tmp14 = 1 * 4UL;
   __cil_tmp15 = 0 + __cil_tmp14;
   __cil_tmp16 = 0 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )msg;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
   __cil_tmp19 = 0 + 2;
-  __cil_tmp20 = (unsigned long )dev;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  __cil_tmp22 = *((unsigned short *)__cil_tmp21);
+  __cil_tmp22 = *((unsigned short *)((void *)dev + __cil_tmp19));
   __cil_tmp23 = (int )__cil_tmp22;
   __cil_tmp24 = __cil_tmp23 | -1996484608;
-  *((u32 *)__cil_tmp18) = (unsigned int )__cil_tmp24;
-  __cil_tmp25 = (unsigned long )dev;
-  __cil_tmp26 = __cil_tmp25 + 40;
-  __cil_tmp27 = *((struct i2o_controller **)__cil_tmp26);
+  *((u32 *)((void *)msg + __cil_tmp16)) = (unsigned int )__cil_tmp24;
+  __cil_tmp27 = *((struct i2o_controller **)((void *)dev + 40));
   tmp___0 = i2o_msg_post_wait(__cil_tmp27, msg, 60UL);
   }
   return (tmp___0);
@@ -1512,8 +1492,6 @@ static int i2o_bus_probe(struct device *dev )
   struct device_attribute const *__cil_tmp7 ;
   char *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned short __cil_tmp12 ;
   int __cil_tmp13 ;
   {
@@ -1532,9 +1510,7 @@ static int i2o_bus_probe(struct device *dev )
   {
   __cil_tmp8 = (char *)"bus-osm";
   __cil_tmp9 = 0 + 2;
-  __cil_tmp10 = (unsigned long )i2o_dev;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  __cil_tmp12 = *((unsigned short *)__cil_tmp11);
+  __cil_tmp12 = *((unsigned short *)((void *)i2o_dev + __cil_tmp9));
   __cil_tmp13 = (int )__cil_tmp12;
   printk("<6>%s: device added (TID: %03x)\n", __cil_tmp8, __cil_tmp13);
   }
@@ -1553,8 +1529,6 @@ static int i2o_bus_remove(struct device *dev )
   struct device_attribute const *__cil_tmp5 ;
   char *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned short __cil_tmp10 ;
   int __cil_tmp11 ;
   {
@@ -1567,9 +1541,7 @@ static int i2o_bus_remove(struct device *dev )
   put_device(dev);
   __cil_tmp6 = (char *)"bus-osm";
   __cil_tmp7 = 0 + 2;
-  __cil_tmp8 = (unsigned long )i2o_dev;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((unsigned short *)__cil_tmp9);
+  __cil_tmp10 = *((unsigned short *)((void *)i2o_dev + __cil_tmp7));
   __cil_tmp11 = (int )__cil_tmp10;
   printk("<6>%s: device removed (TID: %03x)\n", __cil_tmp6, __cil_tmp11);
   }

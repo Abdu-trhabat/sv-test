@@ -2872,12 +2872,11 @@ extern int ( sprintf)(char *buf , char const *fmt , ...) ;
 extern struct pv_cpu_ops pv_cpu_ops ;
 __inline static void slow_down_io(void) __attribute__((__no_instrument_function__)) ;
 __inline static void slow_down_io(void)
-{ unsigned long __cil_tmp1 ;
+{
   void (*__cil_tmp2)(void) ;
   {
   {
-  __cil_tmp1 = (unsigned long )(& pv_cpu_ops) + 216;
-  __cil_tmp2 = *((void (**)(void))__cil_tmp1);
+  __cil_tmp2 = *((void (**)(void))((void *)(&pv_cpu_ops) + 216));
   (*__cil_tmp2)();
   }
   return;
@@ -3034,14 +3033,10 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -3049,14 +3044,11 @@ __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3158,22 +3150,16 @@ static u8 smsc47b397_reg_temp[4] = { (u8 )37, (u8 )38, (u8 )39, (u8 )128};
 static int smsc47b397_read_value(struct smsc47b397_data *data , u8 reg )
 { int res ;
   unsigned char tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct mutex *__cil_tmp7 ;
   unsigned short __cil_tmp8 ;
   int __cil_tmp9 ;
   unsigned short __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
   {
   {
-  __cil_tmp5 = (unsigned long )data;
-  __cil_tmp6 = __cil_tmp5 + 24;
-  __cil_tmp7 = (struct mutex *)__cil_tmp6;
+  __cil_tmp7 = (struct mutex *)((void *)data + 24);
   mutex_lock(__cil_tmp7);
   __cil_tmp8 = *((unsigned short *)data);
   __cil_tmp9 = (int )__cil_tmp8;
@@ -3183,9 +3169,7 @@ static int smsc47b397_read_value(struct smsc47b397_data *data , u8 reg )
   __cil_tmp12 = __cil_tmp11 + 1;
   tmp___7 = inb_p(__cil_tmp12);
   res = (int )tmp___7;
-  __cil_tmp13 = (unsigned long )data;
-  __cil_tmp14 = __cil_tmp13 + 24;
-  __cil_tmp15 = (struct mutex *)__cil_tmp14;
+  __cil_tmp15 = (struct mutex *)((void *)data + 24);
   mutex_unlock(__cil_tmp15);
   }
   return (res);
@@ -3209,18 +3193,12 @@ static struct smsc47b397_data *smsc47b397_update_device(struct device *dev )
   int tmp___11 ;
   long tmp___12 ;
   struct device const *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mutex *__cil_tmp17 ;
   long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   long __cil_tmp23 ;
   long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp28 ;
   unsigned int __cil_tmp29 ;
@@ -3234,34 +3212,22 @@ static struct smsc47b397_data *smsc47b397_update_device(struct device *dev )
   u8 __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   int __cil_tmp42 ;
   int __cil_tmp43 ;
   u8 __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   int __cil_tmp49 ;
   int __cil_tmp50 ;
   u8 __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   int __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   u16 __cil_tmp61 ;
   int __cil_tmp62 ;
   int __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp68 ;
   unsigned int __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
@@ -3269,24 +3235,18 @@ static struct smsc47b397_data *smsc47b397_update_device(struct device *dev )
   int __cil_tmp72 ;
   long __cil_tmp73 ;
   struct device const *__cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   struct mutex *__cil_tmp77 ;
   {
   {
   __cil_tmp14 = (struct device const *)dev;
   tmp___7 = dev_get_drvdata(__cil_tmp14);
   data = (struct smsc47b397_data *)tmp___7;
-  __cil_tmp15 = (unsigned long )data;
-  __cil_tmp16 = __cil_tmp15 + 96;
-  __cil_tmp17 = (struct mutex *)__cil_tmp16;
+  __cil_tmp17 = (struct mutex *)((void *)data + 96);
   mutex_lock(__cil_tmp17);
   }
   {
   __cil_tmp18 = (long )jiffies;
-  __cil_tmp19 = (unsigned long )data;
-  __cil_tmp20 = __cil_tmp19 + 168;
-  __cil_tmp21 = *((unsigned long *)__cil_tmp20);
+  __cil_tmp21 = *((unsigned long *)((void *)data + 168));
   __cil_tmp22 = __cil_tmp21 + 250UL;
   __cil_tmp23 = (long )__cil_tmp22;
   __cil_tmp24 = __cil_tmp23 - __cil_tmp18;
@@ -3294,9 +3254,7 @@ static struct smsc47b397_data *smsc47b397_update_device(struct device *dev )
     goto _L;
   } else {
     {
-    __cil_tmp25 = (unsigned long )data;
-    __cil_tmp26 = __cil_tmp25 + 176;
-    __cil_tmp27 = *((int *)__cil_tmp26);
+    __cil_tmp27 = *((int *)((void *)data + 176));
     if (! __cil_tmp27) {
       _L:
       {
@@ -3344,46 +3302,34 @@ static struct smsc47b397_data *smsc47b397_update_device(struct device *dev )
         tmp___9 = smsc47b397_read_value(data, __cil_tmp37);
         __cil_tmp38 = i * 1UL;
         __cil_tmp39 = 188 + __cil_tmp38;
-        __cil_tmp40 = (unsigned long )data;
-        __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-        *((u8 *)__cil_tmp41) = (u8 )tmp___9;
+        *((u8 *)((void *)data + __cil_tmp39)) = (u8 )tmp___9;
         __cil_tmp42 = 2 * i;
         __cil_tmp43 = 40 + __cil_tmp42;
         __cil_tmp44 = (u8 )__cil_tmp43;
         tmp___10 = smsc47b397_read_value(data, __cil_tmp44);
         __cil_tmp45 = i * 2UL;
         __cil_tmp46 = 180 + __cil_tmp45;
-        __cil_tmp47 = (unsigned long )data;
-        __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-        *((u16 *)__cil_tmp48) = (u16 )tmp___10;
+        *((u16 *)((void *)data + __cil_tmp46)) = (u16 )tmp___10;
         __cil_tmp49 = 2 * i;
         __cil_tmp50 = 41 + __cil_tmp49;
         __cil_tmp51 = (u8 )__cil_tmp50;
         tmp___11 = smsc47b397_read_value(data, __cil_tmp51);
         __cil_tmp52 = i * 2UL;
         __cil_tmp53 = 180 + __cil_tmp52;
-        __cil_tmp54 = (unsigned long )data;
-        __cil_tmp55 = __cil_tmp54 + __cil_tmp53;
         __cil_tmp56 = tmp___11 << 8;
         __cil_tmp57 = i * 2UL;
         __cil_tmp58 = 180 + __cil_tmp57;
-        __cil_tmp59 = (unsigned long )data;
-        __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
-        __cil_tmp61 = *((u16 *)__cil_tmp60);
+        __cil_tmp61 = *((u16 *)((void *)data + __cil_tmp58));
         __cil_tmp62 = (int )__cil_tmp61;
         __cil_tmp63 = __cil_tmp62 | __cil_tmp56;
-        *((u16 *)__cil_tmp55) = (u16 )__cil_tmp63;
+        *((u16 *)((void *)data + __cil_tmp53)) = (u16 )__cil_tmp63;
         i = i + 1;
         }
       }
       while_break___1: ;
       }
-      __cil_tmp64 = (unsigned long )data;
-      __cil_tmp65 = __cil_tmp64 + 168;
-      *((unsigned long *)__cil_tmp65) = (unsigned long )jiffies;
-      __cil_tmp66 = (unsigned long )data;
-      __cil_tmp67 = __cil_tmp66 + 176;
-      *((int *)__cil_tmp67) = 1;
+      *((unsigned long *)((void *)data + 168)) = (unsigned long )jiffies;
+      *((int *)((void *)data + 176)) = 1;
       {
       while (1) {
         while_continue___2: ;
@@ -3420,9 +3366,7 @@ static struct smsc47b397_data *smsc47b397_update_device(struct device *dev )
   }
   }
   {
-  __cil_tmp75 = (unsigned long )data;
-  __cil_tmp76 = __cil_tmp75 + 96;
-  __cil_tmp77 = (struct mutex *)__cil_tmp76;
+  __cil_tmp77 = (struct mutex *)((void *)data + 96);
   mutex_unlock(__cil_tmp77);
   }
   return (data);
@@ -3451,13 +3395,9 @@ static ssize_t show_temp(struct device *dev , struct device_attribute *devattr ,
   unsigned int __cil_tmp12 ;
   char *__cil_tmp13 ;
   char *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u8 __cil_tmp22 ;
   {
   {
@@ -3470,14 +3410,10 @@ static ssize_t show_temp(struct device *dev , struct device_attribute *devattr ,
   attr = (struct sensor_device_attribute *)__cil_tmp14;
   tmp___7 = smsc47b397_update_device(dev);
   data = tmp___7;
-  __cil_tmp15 = (unsigned long )attr;
-  __cil_tmp16 = __cil_tmp15 + 32;
-  __cil_tmp17 = *((int *)__cil_tmp16);
+  __cil_tmp17 = *((int *)((void *)attr + 32));
   __cil_tmp18 = __cil_tmp17 * 1UL;
   __cil_tmp19 = 188 + __cil_tmp18;
-  __cil_tmp20 = (unsigned long )data;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  __cil_tmp22 = *((u8 *)__cil_tmp21);
+  __cil_tmp22 = *((u8 *)((void *)data + __cil_tmp19));
   tmp___8 = temp_from_reg(__cil_tmp22);
   tmp___9 = sprintf(buf, "%d\n", tmp___8);
   }
@@ -3541,13 +3477,9 @@ static ssize_t show_fan(struct device *dev , struct device_attribute *devattr , 
   unsigned int __cil_tmp12 ;
   char *__cil_tmp13 ;
   char *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u16 __cil_tmp22 ;
   {
   {
@@ -3560,14 +3492,10 @@ static ssize_t show_fan(struct device *dev , struct device_attribute *devattr , 
   attr = (struct sensor_device_attribute *)__cil_tmp14;
   tmp___7 = smsc47b397_update_device(dev);
   data = tmp___7;
-  __cil_tmp15 = (unsigned long )attr;
-  __cil_tmp16 = __cil_tmp15 + 32;
-  __cil_tmp17 = *((int *)__cil_tmp16);
+  __cil_tmp17 = *((int *)((void *)attr + 32));
   __cil_tmp18 = __cil_tmp17 * 2UL;
   __cil_tmp19 = 180 + __cil_tmp18;
-  __cil_tmp20 = (unsigned long )data;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  __cil_tmp22 = *((u16 *)__cil_tmp21);
+  __cil_tmp22 = *((u16 *)((void *)data + __cil_tmp19));
   tmp___8 = fan_from_reg(__cil_tmp22);
   tmp___9 = sprintf(buf, "%d\n", tmp___8);
   }
@@ -3595,17 +3523,13 @@ static ssize_t show_name(struct device *dev , struct device_attribute *devattr ,
   void *tmp___7 ;
   int tmp___8 ;
   struct device const *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   char const *__cil_tmp10 ;
   {
   {
   __cil_tmp7 = (struct device const *)dev;
   tmp___7 = dev_get_drvdata(__cil_tmp7);
   data = (struct smsc47b397_data *)tmp___7;
-  __cil_tmp8 = (unsigned long )data;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = *((char const **)__cil_tmp9);
+  __cil_tmp10 = *((char const **)((void *)data + 8));
   tmp___8 = sprintf(buf, "%s\n", __cil_tmp10);
   }
   return ((ssize_t )tmp___8);
@@ -3626,12 +3550,8 @@ static int smsc47b397_remove(struct platform_device *pdev___0 )
   void *tmp___7 ;
   struct resource *res ;
   struct platform_device const *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct kobject *__cil_tmp12 ;
   resource_size_t __cil_tmp13 ;
   resource_size_t __cil_tmp14 ;
@@ -3641,14 +3561,10 @@ static int smsc47b397_remove(struct platform_device *pdev___0 )
   __cil_tmp5 = (struct platform_device const *)pdev___0;
   tmp___7 = platform_get_drvdata(__cil_tmp5);
   data = (struct smsc47b397_data *)tmp___7;
-  __cil_tmp6 = (unsigned long )data;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = *((struct device **)__cil_tmp7);
+  __cil_tmp8 = *((struct device **)((void *)data + 16));
   hwmon_device_unregister(__cil_tmp8);
   __cil_tmp9 = 16 + 16;
-  __cil_tmp10 = (unsigned long )pdev___0;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  __cil_tmp12 = (struct kobject *)__cil_tmp11;
+  __cil_tmp12 = (struct kobject *)((void *)pdev___0 + __cil_tmp9);
   sysfs_remove_group(__cil_tmp12, & smsc47b397_group);
   res = platform_get_resource(pdev___0, 256U, 0U);
   __cil_tmp13 = *((resource_size_t *)res);
@@ -3682,59 +3598,35 @@ static int smsc47b397_probe(struct platform_device *pdev___0 )
   void *tmp___8 ;
   long tmp___9 ;
   long tmp___10 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   resource_size_t __cil_tmp12 ;
   resource_size_t __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   char const *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
   resource_size_t __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   resource_size_t __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   resource_size_t __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct mutex *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct mutex *__cil_tmp31 ;
   void *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct kobject *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct device *__cil_tmp40 ;
   void const *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
   void const *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct kobject *__cil_tmp48 ;
   void const *__cil_tmp49 ;
   resource_size_t __cil_tmp50 ;
   resource_size_t __cil_tmp51 ;
   {
   {
-  __cil_tmp10 = (unsigned long )pdev___0;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  dev = (struct device *)__cil_tmp11;
+  dev = (struct device *)((void *)pdev___0 + 16);
   err = 0;
   res = platform_get_resource(pdev___0, 256U, 0U);
   __cil_tmp12 = *((resource_size_t *)res);
   __cil_tmp13 = (resource_size_t )2;
-  __cil_tmp14 = (unsigned long )(& smsc47b397_driver) + 40;
-  __cil_tmp15 = *((char const **)__cil_tmp14);
+  __cil_tmp15 = *((char const **)((void *)(&smsc47b397_driver) + 40));
   tmp___7 = __request_region(& ioport_resource, __cil_tmp12, __cil_tmp13, __cil_tmp15,
                              0);
   }
@@ -3745,9 +3637,7 @@ static int smsc47b397_probe(struct platform_device *pdev___0 )
     __cil_tmp17 = *((resource_size_t *)res);
     __cil_tmp18 = (unsigned long )__cil_tmp17;
     __cil_tmp19 = *((resource_size_t *)res);
-    __cil_tmp20 = (unsigned long )__cil_tmp19;
-    __cil_tmp21 = __cil_tmp20 + 2UL;
-    __cil_tmp22 = __cil_tmp21 - 1UL;
+    __cil_tmp22 = ((void *)__cil_tmp19 + 2UL) - 1UL;
     dev_err(__cil_tmp16, "Region 0x%lx-0x%lx already in use!\n", __cil_tmp18, __cil_tmp22);
     }
     return (-16);
@@ -3763,16 +3653,12 @@ static int smsc47b397_probe(struct platform_device *pdev___0 )
   }
   __cil_tmp23 = *((resource_size_t *)res);
   *((unsigned short *)data) = (unsigned short )__cil_tmp23;
-  __cil_tmp24 = (unsigned long )data;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  *((char const **)__cil_tmp25) = "smsc47b397";
+  *((char const **)((void *)data + 8)) = "smsc47b397";
   {
   while (1) {
     while_continue: ;
     {
-    __cil_tmp26 = (unsigned long )data;
-    __cil_tmp27 = __cil_tmp26 + 24;
-    __cil_tmp28 = (struct mutex *)__cil_tmp27;
+    __cil_tmp28 = (struct mutex *)((void *)data + 24);
     __mutex_init(__cil_tmp28, "&data->lock", & __key___4);
     }
     goto while_break;
@@ -3783,9 +3669,7 @@ static int smsc47b397_probe(struct platform_device *pdev___0 )
   while (1) {
     while_continue___0: ;
     {
-    __cil_tmp29 = (unsigned long )data;
-    __cil_tmp30 = __cil_tmp29 + 96;
-    __cil_tmp31 = (struct mutex *)__cil_tmp30;
+    __cil_tmp31 = (struct mutex *)((void *)data + 96);
     __mutex_init(__cil_tmp31, "&data->update_lock", & __key___5);
     }
     goto while_break___0;
@@ -3795,9 +3679,7 @@ static int smsc47b397_probe(struct platform_device *pdev___0 )
   {
   __cil_tmp32 = (void *)data;
   platform_set_drvdata(pdev___0, __cil_tmp32);
-  __cil_tmp33 = (unsigned long )dev;
-  __cil_tmp34 = __cil_tmp33 + 16;
-  __cil_tmp35 = (struct kobject *)__cil_tmp34;
+  __cil_tmp35 = (struct kobject *)((void *)dev + 16);
   err = (int )sysfs_create_group(__cil_tmp35, & smsc47b397_group);
   }
   if (err) {
@@ -3805,20 +3687,14 @@ static int smsc47b397_probe(struct platform_device *pdev___0 )
   } else {
   }
   {
-  __cil_tmp36 = (unsigned long )data;
-  __cil_tmp37 = __cil_tmp36 + 16;
-  *((struct device **)__cil_tmp37) = hwmon_device_register(dev);
-  __cil_tmp38 = (unsigned long )data;
-  __cil_tmp39 = __cil_tmp38 + 16;
-  __cil_tmp40 = *((struct device **)__cil_tmp39);
+  *((struct device **)((void *)data + 16)) = hwmon_device_register(dev);
+  __cil_tmp40 = *((struct device **)((void *)data + 16));
   __cil_tmp41 = (void const *)__cil_tmp40;
   tmp___10 = (long )IS_ERR(__cil_tmp41);
   }
   if (tmp___10) {
     {
-    __cil_tmp42 = (unsigned long )data;
-    __cil_tmp43 = __cil_tmp42 + 16;
-    __cil_tmp44 = *((struct device **)__cil_tmp43);
+    __cil_tmp44 = *((struct device **)((void *)data + 16));
     __cil_tmp45 = (void const *)__cil_tmp44;
     tmp___9 = (long )PTR_ERR(__cil_tmp45);
     err = (int )tmp___9;
@@ -3829,9 +3705,7 @@ static int smsc47b397_probe(struct platform_device *pdev___0 )
   return (0);
   error_remove:
   {
-  __cil_tmp46 = (unsigned long )dev;
-  __cil_tmp47 = __cil_tmp46 + 16;
-  __cil_tmp48 = (struct kobject *)__cil_tmp47;
+  __cil_tmp48 = (struct kobject *)((void *)dev + 16);
   sysfs_remove_group(__cil_tmp48, & smsc47b397_group);
   }
   error_free:
@@ -3854,15 +3728,9 @@ static int smsc47b397_device_add(unsigned short address )
 { struct resource res ;
   int err ;
   struct resource *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct resource const *__cil_tmp14 ;
   int __cil_tmp15 ;
   struct resource const *__cil_tmp16 ;
@@ -3870,21 +3738,15 @@ static int smsc47b397_device_add(unsigned short address )
   {
   __cil_tmp4 = & res;
   *((resource_size_t *)__cil_tmp4) = (resource_size_t )address;
-  __cil_tmp5 = (unsigned long )(& res) + 8;
   __cil_tmp6 = (int )address;
   __cil_tmp7 = __cil_tmp6 + 2;
   __cil_tmp8 = __cil_tmp7 - 1;
-  *((resource_size_t *)__cil_tmp5) = (resource_size_t )__cil_tmp8;
-  __cil_tmp9 = (unsigned long )(& res) + 16;
-  *((char const **)__cil_tmp9) = "smsc47b397";
-  __cil_tmp10 = (unsigned long )(& res) + 24;
-  *((unsigned long *)__cil_tmp10) = 256UL;
-  __cil_tmp11 = (unsigned long )(& res) + 32;
-  *((struct resource **)__cil_tmp11) = (struct resource *)0;
-  __cil_tmp12 = (unsigned long )(& res) + 40;
-  *((struct resource **)__cil_tmp12) = (struct resource *)0;
-  __cil_tmp13 = (unsigned long )(& res) + 48;
-  *((struct resource **)__cil_tmp13) = (struct resource *)0;
+  *((resource_size_t *)((void *)(&res) + 8)) = (resource_size_t )__cil_tmp8;
+  *((char const **)((void *)(&res) + 16)) = "smsc47b397";
+  *((unsigned long *)((void *)(&res) + 24)) = 256UL;
+  *((struct resource **)((void *)(&res) + 32)) = (struct resource *)0;
+  *((struct resource **)((void *)(&res) + 40)) = (struct resource *)0;
+  *((struct resource **)((void *)(&res) + 48)) = (struct resource *)0;
   __cil_tmp14 = (struct resource const *)(& res);
   err = acpi_check_resource_conflict(__cil_tmp14);
   }

@@ -1845,15 +1845,11 @@ extern int __serio_register_driver(struct serio_driver * , struct module * , cha
 extern void serio_unregister_driver(struct serio_driver * ) ;
 __inline static void *serio_get_drvdata(struct serio *serio )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 416);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1861,14 +1857,11 @@ __inline static void *serio_get_drvdata(struct serio *serio )
 }
 }
 __inline static void serio_set_drvdata(struct serio *serio , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 416);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2028,47 +2021,31 @@ static void magellan_process_packet(struct magellan *magellan )
   int t ;
   int tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned char (*__cil_tmp10)[32U] ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned char __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   int __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
   int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned char *__cil_tmp29 ;
   unsigned char __cil_tmp30 ;
   int __cil_tmp31 ;
   int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned char *__cil_tmp35 ;
   unsigned char __cil_tmp36 ;
   int __cil_tmp37 ;
   int __cil_tmp38 ;
   int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned char *__cil_tmp42 ;
   unsigned char __cil_tmp43 ;
   int __cil_tmp44 ;
   int __cil_tmp45 ;
   int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned char *__cil_tmp49 ;
   unsigned char __cil_tmp50 ;
   int __cil_tmp51 ;
@@ -2077,8 +2054,6 @@ static void magellan_process_packet(struct magellan *magellan )
   int __cil_tmp54 ;
   int __cil_tmp55 ;
   int __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
   unsigned char *__cil_tmp60 ;
   unsigned char __cil_tmp61 ;
@@ -2100,14 +2075,10 @@ static void magellan_process_packet(struct magellan *magellan )
   int __cil_tmp77 ;
   {
   dev = *((struct input_dev **)magellan);
-  __cil_tmp8 = (unsigned long )magellan;
-  __cil_tmp9 = __cil_tmp8 + 12;
-  __cil_tmp10 = (unsigned char (*)[32U])__cil_tmp9;
+  __cil_tmp10 = (unsigned char (*)[32U])((void *)magellan + 12);
   data = (unsigned char *)__cil_tmp10;
   {
-  __cil_tmp11 = (unsigned long )magellan;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((int *)__cil_tmp12);
+  __cil_tmp13 = *((int *)((void *)magellan + 8));
   if (__cil_tmp13 == 0) {
     return;
   } else {
@@ -2116,9 +2087,7 @@ static void magellan_process_packet(struct magellan *magellan )
   {
   __cil_tmp14 = 0 * 1UL;
   __cil_tmp15 = 12 + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )magellan;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = *((unsigned char *)__cil_tmp17);
+  __cil_tmp18 = *((unsigned char *)((void *)magellan + __cil_tmp15));
   if ((int )__cil_tmp18 == 100) {
     goto case_100;
   } else
@@ -2128,9 +2097,7 @@ static void magellan_process_packet(struct magellan *magellan )
   if (0) {
     case_100: ;
     {
-    __cil_tmp19 = (unsigned long )magellan;
-    __cil_tmp20 = __cil_tmp19 + 8;
-    __cil_tmp21 = *((int *)__cil_tmp20);
+    __cil_tmp21 = *((int *)((void *)magellan + 8));
     if (__cil_tmp21 != 25) {
       return;
     } else {
@@ -2152,29 +2119,21 @@ static void magellan_process_packet(struct magellan *magellan )
     __cil_tmp24 = *((int *)__cil_tmp23);
     __cil_tmp25 = (unsigned int )__cil_tmp24;
     __cil_tmp26 = i << 2;
-    __cil_tmp27 = (unsigned long )__cil_tmp26;
-    __cil_tmp28 = __cil_tmp27 + 4UL;
-    __cil_tmp29 = data + __cil_tmp28;
+    __cil_tmp29 = data + ((void *)__cil_tmp26 + 4UL);
     __cil_tmp30 = *__cil_tmp29;
     __cil_tmp31 = (int )__cil_tmp30;
     __cil_tmp32 = i << 2;
-    __cil_tmp33 = (unsigned long )__cil_tmp32;
-    __cil_tmp34 = __cil_tmp33 + 3UL;
-    __cil_tmp35 = data + __cil_tmp34;
+    __cil_tmp35 = data + ((void *)__cil_tmp32 + 3UL);
     __cil_tmp36 = *__cil_tmp35;
     __cil_tmp37 = (int )__cil_tmp36;
     __cil_tmp38 = __cil_tmp37 << 4;
     __cil_tmp39 = i << 2;
-    __cil_tmp40 = (unsigned long )__cil_tmp39;
-    __cil_tmp41 = __cil_tmp40 + 2UL;
-    __cil_tmp42 = data + __cil_tmp41;
+    __cil_tmp42 = data + ((void *)__cil_tmp39 + 2UL);
     __cil_tmp43 = *__cil_tmp42;
     __cil_tmp44 = (int )__cil_tmp43;
     __cil_tmp45 = __cil_tmp44 << 8;
     __cil_tmp46 = i << 2;
-    __cil_tmp47 = (unsigned long )__cil_tmp46;
-    __cil_tmp48 = __cil_tmp47 + 1UL;
-    __cil_tmp49 = data + __cil_tmp48;
+    __cil_tmp49 = data + ((void *)__cil_tmp46 + 1UL);
     __cil_tmp50 = *__cil_tmp49;
     __cil_tmp51 = (int )__cil_tmp50;
     __cil_tmp52 = __cil_tmp51 << 12;
@@ -2195,9 +2154,7 @@ static void magellan_process_packet(struct magellan *magellan )
     goto ldv_20741;
     case_107: ;
     {
-    __cil_tmp57 = (unsigned long )magellan;
-    __cil_tmp58 = __cil_tmp57 + 8;
-    __cil_tmp59 = *((int *)__cil_tmp58);
+    __cil_tmp59 = *((int *)((void *)magellan + 8));
     if (__cil_tmp59 != 4) {
       return;
     } else {
@@ -2260,22 +2217,10 @@ static irqreturn_t magellan_interrupt(struct serio *serio , unsigned char data ,
   void *tmp ;
   int tmp___0 ;
   unsigned int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   {
   {
   tmp = serio_get_drvdata(serio);
@@ -2286,30 +2231,18 @@ static irqreturn_t magellan_interrupt(struct serio *serio , unsigned char data ,
   if (__cil_tmp7 == 13U) {
     {
     magellan_process_packet(magellan);
-    __cil_tmp8 = (unsigned long )magellan;
-    __cil_tmp9 = __cil_tmp8 + 8;
-    *((int *)__cil_tmp9) = 0;
+    *((int *)((void *)magellan + 8)) = 0;
     }
   } else {
     {
-    __cil_tmp10 = (unsigned long )magellan;
-    __cil_tmp11 = __cil_tmp10 + 8;
-    __cil_tmp12 = *((int *)__cil_tmp11);
+    __cil_tmp12 = *((int *)((void *)magellan + 8));
     if (__cil_tmp12 <= 31) {
-      __cil_tmp13 = (unsigned long )magellan;
-      __cil_tmp14 = __cil_tmp13 + 8;
-      tmp___0 = *((int *)__cil_tmp14);
-      __cil_tmp15 = (unsigned long )magellan;
-      __cil_tmp16 = __cil_tmp15 + 8;
-      __cil_tmp17 = (unsigned long )magellan;
-      __cil_tmp18 = __cil_tmp17 + 8;
-      __cil_tmp19 = *((int *)__cil_tmp18);
-      *((int *)__cil_tmp16) = __cil_tmp19 + 1;
+      tmp___0 = *((int *)((void *)magellan + 8));
+      __cil_tmp19 = *((int *)((void *)magellan + 8));
+      *((int *)((void *)magellan + 8)) = __cil_tmp19 + 1;
       __cil_tmp20 = tmp___0 * 1UL;
       __cil_tmp21 = 12 + __cil_tmp20;
-      __cil_tmp22 = (unsigned long )magellan;
-      __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-      *((unsigned char *)__cil_tmp23) = data;
+      *((unsigned char *)((void *)magellan + __cil_tmp21)) = data;
     } else {
     }
     }
@@ -2351,44 +2284,20 @@ static int magellan_connect(struct serio *serio , struct serio_driver *drv )
   struct input_dev *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   char (*__cil_tmp16)[32U] ;
   char *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   char (*__cil_tmp20)[32U] ;
   char *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   char (*__cil_tmp26)[32U] ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   int __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long (*__cil_tmp52)[12U] ;
   unsigned long volatile *__cil_tmp53 ;
   unsigned long __cil_tmp54 ;
@@ -2426,47 +2335,25 @@ static int magellan_connect(struct serio *serio , struct serio_driver *drv )
   }
   {
   *((struct input_dev **)magellan) = input_dev;
-  __cil_tmp14 = (unsigned long )magellan;
-  __cil_tmp15 = __cil_tmp14 + 44;
-  __cil_tmp16 = (char (*)[32U])__cil_tmp15;
+  __cil_tmp16 = (char (*)[32U])((void *)magellan + 44);
   __cil_tmp17 = (char *)__cil_tmp16;
-  __cil_tmp18 = (unsigned long )serio;
-  __cil_tmp19 = __cil_tmp18 + 40;
-  __cil_tmp20 = (char (*)[32U])__cil_tmp19;
+  __cil_tmp20 = (char (*)[32U])((void *)serio + 40);
   __cil_tmp21 = (char *)__cil_tmp20;
   snprintf(__cil_tmp17, 32UL, "%s/input0", __cil_tmp21);
   *((char const **)input_dev) = "LogiCad3D Magellan / SpaceMouse";
-  __cil_tmp22 = (unsigned long )input_dev;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  __cil_tmp24 = (unsigned long )magellan;
-  __cil_tmp25 = __cil_tmp24 + 44;
-  __cil_tmp26 = (char (*)[32U])__cil_tmp25;
-  *((char const **)__cil_tmp23) = (char const *)__cil_tmp26;
-  __cil_tmp27 = (unsigned long )input_dev;
-  __cil_tmp28 = __cil_tmp27 + 24;
-  *((__u16 *)__cil_tmp28) = (__u16 )19U;
+  __cil_tmp26 = (char (*)[32U])((void *)magellan + 44);
+  *((char const **)((void *)input_dev + 8)) = (char const *)__cil_tmp26;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )19U;
   __cil_tmp29 = 24 + 2;
-  __cil_tmp30 = (unsigned long )input_dev;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  *((__u16 *)__cil_tmp31) = (__u16 )26U;
+  *((__u16 *)((void *)input_dev + __cil_tmp29)) = (__u16 )26U;
   __cil_tmp32 = 24 + 4;
-  __cil_tmp33 = (unsigned long )input_dev;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  *((__u16 *)__cil_tmp34) = (__u16 )1U;
+  *((__u16 *)((void *)input_dev + __cil_tmp32)) = (__u16 )1U;
   __cil_tmp35 = 24 + 6;
-  __cil_tmp36 = (unsigned long )input_dev;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  *((__u16 *)__cil_tmp37) = (__u16 )256U;
-  __cil_tmp38 = (unsigned long )input_dev;
-  __cil_tmp39 = __cil_tmp38 + 840;
-  __cil_tmp40 = (unsigned long )serio;
-  __cil_tmp41 = __cil_tmp40 + 416;
-  *((struct device **)__cil_tmp39) = (struct device *)__cil_tmp41;
+  *((__u16 *)((void *)input_dev + __cil_tmp35)) = (__u16 )256U;
+  *((struct device **)((void *)input_dev + 840)) = (struct device *)((void *)serio + 416);
   __cil_tmp42 = 0 * 8UL;
   __cil_tmp43 = 40 + __cil_tmp42;
-  __cil_tmp44 = (unsigned long )input_dev;
-  __cil_tmp45 = __cil_tmp44 + __cil_tmp43;
-  *((unsigned long *)__cil_tmp45) = 10UL;
+  *((unsigned long *)((void *)input_dev + __cil_tmp43)) = 10UL;
   i = 0;
   }
   goto ldv_20766;
@@ -2476,9 +2363,7 @@ static int magellan_connect(struct serio *serio , struct serio_driver *drv )
   __cil_tmp47 = (unsigned long )(magellan_buttons) + __cil_tmp46;
   __cil_tmp48 = *((int *)__cil_tmp47);
   __cil_tmp49 = (unsigned int )__cil_tmp48;
-  __cil_tmp50 = (unsigned long )input_dev;
-  __cil_tmp51 = __cil_tmp50 + 48;
-  __cil_tmp52 = (unsigned long (*)[12U])__cil_tmp51;
+  __cil_tmp52 = (unsigned long (*)[12U])((void *)input_dev + 48);
   __cil_tmp53 = (unsigned long volatile *)__cil_tmp52;
   set_bit(__cil_tmp49, __cil_tmp53);
   i = i + 1;

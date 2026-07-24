@@ -2969,13 +2969,10 @@ struct ds3232 {
 long ldv__builtin_expect(long val , long res ) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -3070,14 +3067,10 @@ extern s32 i2c_smbus_write_i2c_block_data(struct i2c_client const *client , u8 c
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)dev + 40);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -3085,14 +3078,11 @@ __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3166,8 +3156,6 @@ static int ds3232_check_rtc_status(struct i2c_client *client )
   s32 tmp___7 ;
   struct i2c_client const *__cil_tmp6 ;
   u8 __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device const *__cil_tmp11 ;
   struct i2c_client const *__cil_tmp12 ;
@@ -3191,9 +3179,7 @@ static int ds3232_check_rtc_status(struct i2c_client *client )
   }
   if (stat & 128) {
     {
-    __cil_tmp8 = (unsigned long )client;
-    __cil_tmp9 = __cil_tmp8 + 40;
-    __cil_tmp10 = (struct device *)__cil_tmp9;
+    __cil_tmp10 = (struct device *)((void *)client + 40);
     __cil_tmp11 = (struct device const *)__cil_tmp10;
     dev_warn(__cil_tmp11, "oscillator discontinuity flagged, time unreliable\n");
     }
@@ -3257,8 +3243,6 @@ static int ds3232_read_time(struct device *dev , struct rtc_time *time )
   unsigned int tmp___15 ;
   int tmp___16 ;
   struct i2c_client *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct device *__cil_tmp31 ;
   unsigned int __cil_tmp32 ;
   char *__cil_tmp33 ;
@@ -3292,43 +3276,25 @@ static int ds3232_read_time(struct device *dev , struct rtc_time *time )
   u8 __cil_tmp61 ;
   unsigned char __cil_tmp62 ;
   unsigned char __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned int __cil_tmp66 ;
   unsigned char __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
   unsigned int __cil_tmp71 ;
   unsigned char __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   unsigned char __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   unsigned char __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   unsigned int __cil_tmp81 ;
   unsigned char __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   unsigned int __cil_tmp85 ;
   unsigned char __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   unsigned int __cil_tmp89 ;
   unsigned char __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   unsigned int __cil_tmp93 ;
   {
   {
   __mptr = (struct device const *)dev;
   __cil_tmp28 = (struct i2c_client *)0;
-  __cil_tmp29 = (unsigned long )__cil_tmp28;
-  __cil_tmp30 = __cil_tmp29 + 40;
-  __cil_tmp31 = (struct device *)__cil_tmp30;
+  __cil_tmp31 = (struct device *)((void *)__cil_tmp28 + 40);
   __cil_tmp32 = (unsigned int )__cil_tmp31;
   __cil_tmp33 = (char *)__mptr;
   __cil_tmp34 = __cil_tmp33 - __cil_tmp32;
@@ -3387,9 +3353,7 @@ static int ds3232_read_time(struct device *dev , struct rtc_time *time )
   *((int *)time) = (int )tmp___7;
   __cil_tmp63 = (unsigned char )minute;
   tmp___8 = bcd2bin(__cil_tmp63);
-  __cil_tmp64 = (unsigned long )time;
-  __cil_tmp65 = __cil_tmp64 + 4;
-  *((int *)__cil_tmp65) = (int )tmp___8;
+  *((int *)((void *)time + 4)) = (int )tmp___8;
   }
   if (twelve_hr) {
     if (am_pm) {
@@ -3397,49 +3361,37 @@ static int ds3232_read_time(struct device *dev , struct rtc_time *time )
       __cil_tmp66 = hour & 31U;
       __cil_tmp67 = (unsigned char )__cil_tmp66;
       tmp___9 = bcd2bin(__cil_tmp67);
-      __cil_tmp68 = (unsigned long )time;
-      __cil_tmp69 = __cil_tmp68 + 8;
       __cil_tmp70 = tmp___9 + 12U;
-      *((int *)__cil_tmp69) = (int )__cil_tmp70;
+      *((int *)((void *)time + 8)) = (int )__cil_tmp70;
       }
     } else {
       {
       __cil_tmp71 = hour & 31U;
       __cil_tmp72 = (unsigned char )__cil_tmp71;
       tmp___10 = bcd2bin(__cil_tmp72);
-      __cil_tmp73 = (unsigned long )time;
-      __cil_tmp74 = __cil_tmp73 + 8;
-      *((int *)__cil_tmp74) = (int )tmp___10;
+      *((int *)((void *)time + 8)) = (int )tmp___10;
       }
     }
   } else {
     {
     __cil_tmp75 = (unsigned char )hour;
     tmp___11 = bcd2bin(__cil_tmp75);
-    __cil_tmp76 = (unsigned long )time;
-    __cil_tmp77 = __cil_tmp76 + 8;
-    *((int *)__cil_tmp77) = (int )tmp___11;
+    *((int *)((void *)time + 8)) = (int )tmp___11;
     }
   }
   {
   __cil_tmp78 = (unsigned char )week;
   tmp___12 = bcd2bin(__cil_tmp78);
-  __cil_tmp79 = (unsigned long )time;
-  __cil_tmp80 = __cil_tmp79 + 24;
   __cil_tmp81 = tmp___12 - 1U;
-  *((int *)__cil_tmp80) = (int )__cil_tmp81;
+  *((int *)((void *)time + 24)) = (int )__cil_tmp81;
   __cil_tmp82 = (unsigned char )day;
   tmp___13 = bcd2bin(__cil_tmp82);
-  __cil_tmp83 = (unsigned long )time;
-  __cil_tmp84 = __cil_tmp83 + 12;
-  *((int *)__cil_tmp84) = (int )tmp___13;
+  *((int *)((void *)time + 12)) = (int )tmp___13;
   __cil_tmp85 = month & 127U;
   __cil_tmp86 = (unsigned char )__cil_tmp85;
   tmp___14 = bcd2bin(__cil_tmp86);
-  __cil_tmp87 = (unsigned long )time;
-  __cil_tmp88 = __cil_tmp87 + 16;
   __cil_tmp89 = tmp___14 - 1U;
-  *((int *)__cil_tmp88) = (int )__cil_tmp89;
+  *((int *)((void *)time + 16)) = (int )__cil_tmp89;
   }
   if (century) {
     add_century = 100U;
@@ -3448,10 +3400,8 @@ static int ds3232_read_time(struct device *dev , struct rtc_time *time )
   {
   __cil_tmp90 = (unsigned char )year;
   tmp___15 = bcd2bin(__cil_tmp90);
-  __cil_tmp91 = (unsigned long )time;
-  __cil_tmp92 = __cil_tmp91 + 20;
   __cil_tmp93 = tmp___15 + add_century;
-  *((int *)__cil_tmp92) = (int )__cil_tmp93;
+  *((int *)((void *)time + 20)) = (int )__cil_tmp93;
   tmp___16 = rtc_valid_tm(time);
   }
   return (tmp___16);
@@ -3463,8 +3413,6 @@ static int ds3232_set_time(struct device *dev , struct rtc_time *time )
   u8 buf[7] ;
   s32 tmp___7 ;
   struct i2c_client *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   char *__cil_tmp12 ;
@@ -3475,38 +3423,26 @@ static int ds3232_set_time(struct device *dev , struct rtc_time *time )
   unsigned int __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   int __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   int __cil_tmp41 ;
   unsigned int __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   int __cil_tmp47 ;
   int __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   int __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
@@ -3517,15 +3453,11 @@ static int ds3232_set_time(struct device *dev , struct rtc_time *time )
   int __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   int __cil_tmp64 ;
   int __cil_tmp65 ;
   unsigned int __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   int __cil_tmp71 ;
   unsigned int __cil_tmp72 ;
   struct i2c_client const *__cil_tmp73 ;
@@ -3539,9 +3471,7 @@ static int ds3232_set_time(struct device *dev , struct rtc_time *time )
   {
   __mptr = (struct device const *)dev;
   __cil_tmp7 = (struct i2c_client *)0;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 40;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)__cil_tmp7 + 40);
   __cil_tmp11 = (unsigned int )__cil_tmp10;
   __cil_tmp12 = (char *)__mptr;
   __cil_tmp13 = __cil_tmp12 - __cil_tmp11;
@@ -3553,46 +3483,34 @@ static int ds3232_set_time(struct device *dev , struct rtc_time *time )
   *((u8 *)__cil_tmp15) = bin2bcd(__cil_tmp17);
   __cil_tmp18 = 1 * 1UL;
   __cil_tmp19 = (unsigned long )(buf) + __cil_tmp18;
-  __cil_tmp20 = (unsigned long )time;
-  __cil_tmp21 = __cil_tmp20 + 4;
-  __cil_tmp22 = *((int *)__cil_tmp21);
+  __cil_tmp22 = *((int *)((void *)time + 4));
   __cil_tmp23 = (unsigned int )__cil_tmp22;
   *((u8 *)__cil_tmp19) = bin2bcd(__cil_tmp23);
   __cil_tmp24 = 2 * 1UL;
   __cil_tmp25 = (unsigned long )(buf) + __cil_tmp24;
-  __cil_tmp26 = (unsigned long )time;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = *((int *)__cil_tmp27);
+  __cil_tmp28 = *((int *)((void *)time + 8));
   __cil_tmp29 = (unsigned int )__cil_tmp28;
   *((u8 *)__cil_tmp25) = bin2bcd(__cil_tmp29);
   __cil_tmp30 = 3 * 1UL;
   __cil_tmp31 = (unsigned long )(buf) + __cil_tmp30;
-  __cil_tmp32 = (unsigned long )time;
-  __cil_tmp33 = __cil_tmp32 + 24;
-  __cil_tmp34 = *((int *)__cil_tmp33);
+  __cil_tmp34 = *((int *)((void *)time + 24));
   __cil_tmp35 = __cil_tmp34 + 1;
   __cil_tmp36 = (unsigned int )__cil_tmp35;
   *((u8 *)__cil_tmp31) = bin2bcd(__cil_tmp36);
   __cil_tmp37 = 4 * 1UL;
   __cil_tmp38 = (unsigned long )(buf) + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )time;
-  __cil_tmp40 = __cil_tmp39 + 12;
-  __cil_tmp41 = *((int *)__cil_tmp40);
+  __cil_tmp41 = *((int *)((void *)time + 12));
   __cil_tmp42 = (unsigned int )__cil_tmp41;
   *((u8 *)__cil_tmp38) = bin2bcd(__cil_tmp42);
   __cil_tmp43 = 5 * 1UL;
   __cil_tmp44 = (unsigned long )(buf) + __cil_tmp43;
-  __cil_tmp45 = (unsigned long )time;
-  __cil_tmp46 = __cil_tmp45 + 16;
-  __cil_tmp47 = *((int *)__cil_tmp46);
+  __cil_tmp47 = *((int *)((void *)time + 16));
   __cil_tmp48 = __cil_tmp47 + 1;
   __cil_tmp49 = (unsigned int )__cil_tmp48;
   *((u8 *)__cil_tmp44) = bin2bcd(__cil_tmp49);
   }
   {
-  __cil_tmp50 = (unsigned long )time;
-  __cil_tmp51 = __cil_tmp50 + 20;
-  __cil_tmp52 = *((int *)__cil_tmp51);
+  __cil_tmp52 = *((int *)((void *)time + 20));
   if (__cil_tmp52 >= 100) {
     {
     __cil_tmp53 = 5 * 1UL;
@@ -3605,9 +3523,7 @@ static int ds3232_set_time(struct device *dev , struct rtc_time *time )
     *((u8 *)__cil_tmp54) = (u8 )__cil_tmp59;
     __cil_tmp60 = 6 * 1UL;
     __cil_tmp61 = (unsigned long )(buf) + __cil_tmp60;
-    __cil_tmp62 = (unsigned long )time;
-    __cil_tmp63 = __cil_tmp62 + 20;
-    __cil_tmp64 = *((int *)__cil_tmp63);
+    __cil_tmp64 = *((int *)((void *)time + 20));
     __cil_tmp65 = __cil_tmp64 - 100;
     __cil_tmp66 = (unsigned int )__cil_tmp65;
     *((u8 *)__cil_tmp61) = bin2bcd(__cil_tmp66);
@@ -3616,9 +3532,7 @@ static int ds3232_set_time(struct device *dev , struct rtc_time *time )
     {
     __cil_tmp67 = 6 * 1UL;
     __cil_tmp68 = (unsigned long )(buf) + __cil_tmp67;
-    __cil_tmp69 = (unsigned long )time;
-    __cil_tmp70 = __cil_tmp69 + 20;
-    __cil_tmp71 = *((int *)__cil_tmp70);
+    __cil_tmp71 = *((int *)((void *)time + 20));
     __cil_tmp72 = (unsigned int )__cil_tmp71;
     *((u8 *)__cil_tmp68) = bin2bcd(__cil_tmp72);
     }
@@ -3652,15 +3566,11 @@ static int ds3232_read_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   unsigned int tmp___10 ;
   unsigned int tmp___11 ;
   struct i2c_client *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   char *__cil_tmp20 ;
   char *__cil_tmp21 ;
   struct i2c_client const *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct mutex *__cil_tmp25 ;
   struct i2c_client const *__cil_tmp26 ;
   u8 __cil_tmp27 ;
@@ -3678,8 +3588,6 @@ static int ds3232_read_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   int __cil_tmp39 ;
   int __cil_tmp40 ;
   unsigned char __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   u8 __cil_tmp46 ;
@@ -3687,8 +3595,6 @@ static int ds3232_read_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   int __cil_tmp48 ;
   unsigned char __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   u8 __cil_tmp55 ;
@@ -3696,8 +3602,6 @@ static int ds3232_read_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   int __cil_tmp57 ;
   unsigned char __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
   u8 __cil_tmp64 ;
@@ -3705,41 +3609,23 @@ static int ds3232_read_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   int __cil_tmp66 ;
   unsigned char __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   int __cil_tmp86 ;
   int __cil_tmp87 ;
   int __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   int __cil_tmp91 ;
   int __cil_tmp92 ;
   int __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   struct mutex *__cil_tmp96 ;
   {
   {
   __mptr = (struct device const *)dev;
   __cil_tmp15 = (struct i2c_client *)0;
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + 40;
-  __cil_tmp18 = (struct device *)__cil_tmp17;
+  __cil_tmp18 = (struct device *)((void *)__cil_tmp15 + 40);
   __cil_tmp19 = (unsigned int )__cil_tmp18;
   __cil_tmp20 = (char *)__mptr;
   __cil_tmp21 = __cil_tmp20 - __cil_tmp19;
@@ -3747,9 +3633,7 @@ static int ds3232_read_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   __cil_tmp22 = (struct i2c_client const *)client;
   tmp___7 = i2c_get_clientdata(__cil_tmp22);
   ds3232 = (struct ds3232 *)tmp___7;
-  __cil_tmp23 = (unsigned long )ds3232;
-  __cil_tmp24 = __cil_tmp23 + 48;
-  __cil_tmp25 = (struct mutex *)__cil_tmp24;
+  __cil_tmp25 = (struct mutex *)((void *)ds3232 + 48);
   mutex_lock(__cil_tmp25);
   __cil_tmp26 = (struct i2c_client const *)client;
   __cil_tmp27 = (u8 )15;
@@ -3791,9 +3675,7 @@ static int ds3232_read_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   __cil_tmp40 = __cil_tmp39 & 127;
   __cil_tmp41 = (unsigned char )__cil_tmp40;
   tmp___8 = bcd2bin(__cil_tmp41);
-  __cil_tmp42 = (unsigned long )alarm;
-  __cil_tmp43 = __cil_tmp42 + 4;
-  *((int *)__cil_tmp43) = (int )tmp___8;
+  *((int *)((void *)alarm + 4)) = (int )tmp___8;
   __cil_tmp44 = 1 * 1UL;
   __cil_tmp45 = (unsigned long )(buf) + __cil_tmp44;
   __cil_tmp46 = *((u8 *)__cil_tmp45);
@@ -3802,9 +3684,7 @@ static int ds3232_read_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   __cil_tmp49 = (unsigned char )__cil_tmp48;
   tmp___9 = bcd2bin(__cil_tmp49);
   __cil_tmp50 = 4 + 4;
-  __cil_tmp51 = (unsigned long )alarm;
-  __cil_tmp52 = __cil_tmp51 + __cil_tmp50;
-  *((int *)__cil_tmp52) = (int )tmp___9;
+  *((int *)((void *)alarm + __cil_tmp50)) = (int )tmp___9;
   __cil_tmp53 = 2 * 1UL;
   __cil_tmp54 = (unsigned long )(buf) + __cil_tmp53;
   __cil_tmp55 = *((u8 *)__cil_tmp54);
@@ -3813,9 +3693,7 @@ static int ds3232_read_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   __cil_tmp58 = (unsigned char )__cil_tmp57;
   tmp___10 = bcd2bin(__cil_tmp58);
   __cil_tmp59 = 4 + 8;
-  __cil_tmp60 = (unsigned long )alarm;
-  __cil_tmp61 = __cil_tmp60 + __cil_tmp59;
-  *((int *)__cil_tmp61) = (int )tmp___10;
+  *((int *)((void *)alarm + __cil_tmp59)) = (int )tmp___10;
   __cil_tmp62 = 3 * 1UL;
   __cil_tmp63 = (unsigned long )(buf) + __cil_tmp62;
   __cil_tmp64 = *((u8 *)__cil_tmp63);
@@ -3824,46 +3702,30 @@ static int ds3232_read_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   __cil_tmp67 = (unsigned char )__cil_tmp66;
   tmp___11 = bcd2bin(__cil_tmp67);
   __cil_tmp68 = 4 + 12;
-  __cil_tmp69 = (unsigned long )alarm;
-  __cil_tmp70 = __cil_tmp69 + __cil_tmp68;
-  *((int *)__cil_tmp70) = (int )tmp___11;
+  *((int *)((void *)alarm + __cil_tmp68)) = (int )tmp___11;
   __cil_tmp71 = 4 + 16;
-  __cil_tmp72 = (unsigned long )alarm;
-  __cil_tmp73 = __cil_tmp72 + __cil_tmp71;
-  *((int *)__cil_tmp73) = -1;
+  *((int *)((void *)alarm + __cil_tmp71)) = -1;
   __cil_tmp74 = 4 + 20;
-  __cil_tmp75 = (unsigned long )alarm;
-  __cil_tmp76 = __cil_tmp75 + __cil_tmp74;
-  *((int *)__cil_tmp76) = -1;
+  *((int *)((void *)alarm + __cil_tmp74)) = -1;
   __cil_tmp77 = 4 + 24;
-  __cil_tmp78 = (unsigned long )alarm;
-  __cil_tmp79 = __cil_tmp78 + __cil_tmp77;
-  *((int *)__cil_tmp79) = -1;
+  *((int *)((void *)alarm + __cil_tmp77)) = -1;
   __cil_tmp80 = 4 + 28;
-  __cil_tmp81 = (unsigned long )alarm;
-  __cil_tmp82 = __cil_tmp81 + __cil_tmp80;
-  *((int *)__cil_tmp82) = -1;
+  *((int *)((void *)alarm + __cil_tmp80)) = -1;
   __cil_tmp83 = 4 + 32;
-  __cil_tmp84 = (unsigned long )alarm;
-  __cil_tmp85 = __cil_tmp84 + __cil_tmp83;
-  *((int *)__cil_tmp85) = -1;
+  *((int *)((void *)alarm + __cil_tmp83)) = -1;
   __cil_tmp86 = control & 1;
   __cil_tmp87 = ! __cil_tmp86;
   __cil_tmp88 = ! __cil_tmp87;
   *((unsigned char *)alarm) = (unsigned char )__cil_tmp88;
-  __cil_tmp89 = (unsigned long )alarm;
-  __cil_tmp90 = __cil_tmp89 + 1;
   __cil_tmp91 = stat & 1;
   __cil_tmp92 = ! __cil_tmp91;
   __cil_tmp93 = ! __cil_tmp92;
-  *((unsigned char *)__cil_tmp90) = (unsigned char )__cil_tmp93;
+  *((unsigned char *)((void *)alarm + 1)) = (unsigned char )__cil_tmp93;
   ret = 0;
   }
   out:
   {
-  __cil_tmp94 = (unsigned long )ds3232;
-  __cil_tmp95 = __cil_tmp94 + 48;
-  __cil_tmp96 = (struct mutex *)__cil_tmp95;
+  __cil_tmp96 = (struct mutex *)((void *)ds3232 + 48);
   mutex_unlock(__cil_tmp96);
   }
   return (ret);
@@ -3879,44 +3741,30 @@ static int ds3232_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   int ret ;
   u8 buf[4] ;
   struct i2c_client *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
   char *__cil_tmp17 ;
   struct i2c_client const *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct mutex *__cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   int __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   int __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   int __cil_tmp50 ;
   unsigned int __cil_tmp51 ;
   struct i2c_client const *__cil_tmp52 ;
@@ -3939,16 +3787,12 @@ static int ds3232_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   struct i2c_client const *__cil_tmp69 ;
   u8 __cil_tmp70 ;
   u8 __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   struct mutex *__cil_tmp74 ;
   {
   {
   __mptr = (struct device const *)dev;
   __cil_tmp11 = (struct i2c_client *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 40;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 40);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
@@ -3958,48 +3802,36 @@ static int ds3232_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   ds3232 = (struct ds3232 *)tmp___7;
   }
   {
-  __cil_tmp19 = (unsigned long )client;
-  __cil_tmp20 = __cil_tmp19 + 808;
-  __cil_tmp21 = *((int *)__cil_tmp20);
+  __cil_tmp21 = *((int *)((void *)client + 808));
   if (__cil_tmp21 <= 0) {
     return (-22);
   } else {
   }
   }
   {
-  __cil_tmp22 = (unsigned long )ds3232;
-  __cil_tmp23 = __cil_tmp22 + 48;
-  __cil_tmp24 = (struct mutex *)__cil_tmp23;
+  __cil_tmp24 = (struct mutex *)((void *)ds3232 + 48);
   mutex_lock(__cil_tmp24);
   __cil_tmp25 = 0 * 1UL;
   __cil_tmp26 = (unsigned long )(buf) + __cil_tmp25;
-  __cil_tmp27 = (unsigned long )alarm;
-  __cil_tmp28 = __cil_tmp27 + 4;
-  __cil_tmp29 = *((int *)__cil_tmp28);
+  __cil_tmp29 = *((int *)((void *)alarm + 4));
   __cil_tmp30 = (unsigned int )__cil_tmp29;
   *((u8 *)__cil_tmp26) = bin2bcd(__cil_tmp30);
   __cil_tmp31 = 1 * 1UL;
   __cil_tmp32 = (unsigned long )(buf) + __cil_tmp31;
   __cil_tmp33 = 4 + 4;
-  __cil_tmp34 = (unsigned long )alarm;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  __cil_tmp36 = *((int *)__cil_tmp35);
+  __cil_tmp36 = *((int *)((void *)alarm + __cil_tmp33));
   __cil_tmp37 = (unsigned int )__cil_tmp36;
   *((u8 *)__cil_tmp32) = bin2bcd(__cil_tmp37);
   __cil_tmp38 = 2 * 1UL;
   __cil_tmp39 = (unsigned long )(buf) + __cil_tmp38;
   __cil_tmp40 = 4 + 8;
-  __cil_tmp41 = (unsigned long )alarm;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-  __cil_tmp43 = *((int *)__cil_tmp42);
+  __cil_tmp43 = *((int *)((void *)alarm + __cil_tmp40));
   __cil_tmp44 = (unsigned int )__cil_tmp43;
   *((u8 *)__cil_tmp39) = bin2bcd(__cil_tmp44);
   __cil_tmp45 = 3 * 1UL;
   __cil_tmp46 = (unsigned long )(buf) + __cil_tmp45;
   __cil_tmp47 = 4 + 12;
-  __cil_tmp48 = (unsigned long )alarm;
-  __cil_tmp49 = __cil_tmp48 + __cil_tmp47;
-  __cil_tmp50 = *((int *)__cil_tmp49);
+  __cil_tmp50 = *((int *)((void *)alarm + __cil_tmp47));
   __cil_tmp51 = (unsigned int )__cil_tmp50;
   *((u8 *)__cil_tmp46) = bin2bcd(__cil_tmp51);
   __cil_tmp52 = (struct i2c_client const *)client;
@@ -4065,9 +3897,7 @@ static int ds3232_set_alarm(struct device *dev , struct rtc_wkalrm *alarm )
   }
   out:
   {
-  __cil_tmp72 = (unsigned long )ds3232;
-  __cil_tmp73 = __cil_tmp72 + 48;
-  __cil_tmp74 = (struct mutex *)__cil_tmp73;
+  __cil_tmp74 = (struct mutex *)((void *)ds3232 + 48);
   mutex_unlock(__cil_tmp74);
   }
   return (ret);
@@ -4084,8 +3914,6 @@ static void ds3232_update_alarm(struct i2c_client *client )
   unsigned int tmp___13 ;
   unsigned int tmp___15 ;
   struct i2c_client const *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct mutex *__cil_tmp18 ;
   struct i2c_client const *__cil_tmp19 ;
   u8 __cil_tmp20 ;
@@ -4098,11 +3926,7 @@ static void ds3232_update_alarm(struct i2c_client *client )
   u8 __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct rtc_device *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
@@ -4115,11 +3939,7 @@ static void ds3232_update_alarm(struct i2c_client *client )
   u8 __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct rtc_device *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
@@ -4132,11 +3952,7 @@ static void ds3232_update_alarm(struct i2c_client *client )
   u8 __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct rtc_device *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
@@ -4149,11 +3965,7 @@ static void ds3232_update_alarm(struct i2c_client *client )
   u8 __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   struct rtc_device *__cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
   unsigned long __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
@@ -4170,26 +3982,18 @@ static void ds3232_update_alarm(struct i2c_client *client )
   u8 const *__cil_tmp99 ;
   struct i2c_client const *__cil_tmp100 ;
   u8 __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   struct rtc_device *__cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   unsigned long __cil_tmp107 ;
   struct i2c_client const *__cil_tmp108 ;
   u8 __cil_tmp109 ;
   u8 __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   struct mutex *__cil_tmp113 ;
   {
   {
   __cil_tmp15 = (struct i2c_client const *)client;
   tmp___7 = i2c_get_clientdata(__cil_tmp15);
   ds3232 = (struct ds3232 *)tmp___7;
-  __cil_tmp16 = (unsigned long )ds3232;
-  __cil_tmp17 = __cil_tmp16 + 48;
-  __cil_tmp18 = (struct mutex *)__cil_tmp17;
+  __cil_tmp18 = (struct mutex *)((void *)ds3232 + 48);
   mutex_lock(__cil_tmp18);
   __cil_tmp19 = (struct i2c_client const *)client;
   __cil_tmp20 = (u8 )7;
@@ -4215,12 +4019,8 @@ static void ds3232_update_alarm(struct i2c_client *client )
     *((u8 *)__cil_tmp29) = (u8 )128;
   } else {
     {
-    __cil_tmp30 = (unsigned long )ds3232;
-    __cil_tmp31 = __cil_tmp30 + 8;
-    __cil_tmp32 = *((struct rtc_device **)__cil_tmp31);
-    __cil_tmp33 = (unsigned long )__cil_tmp32;
-    __cil_tmp34 = __cil_tmp33 + 992;
-    __cil_tmp35 = *((unsigned long *)__cil_tmp34);
+    __cil_tmp32 = *((struct rtc_device **)((void *)ds3232 + 8));
+    __cil_tmp35 = *((unsigned long *)((void *)__cil_tmp32 + 992));
     if (__cil_tmp35 & 16UL) {
       __cil_tmp36 = 0 * 1UL;
       __cil_tmp37 = (unsigned long )(buf) + __cil_tmp36;
@@ -4246,12 +4046,8 @@ static void ds3232_update_alarm(struct i2c_client *client )
     *((u8 *)__cil_tmp46) = (u8 )128;
   } else {
     {
-    __cil_tmp47 = (unsigned long )ds3232;
-    __cil_tmp48 = __cil_tmp47 + 8;
-    __cil_tmp49 = *((struct rtc_device **)__cil_tmp48);
-    __cil_tmp50 = (unsigned long )__cil_tmp49;
-    __cil_tmp51 = __cil_tmp50 + 992;
-    __cil_tmp52 = *((unsigned long *)__cil_tmp51);
+    __cil_tmp49 = *((struct rtc_device **)((void *)ds3232 + 8));
+    __cil_tmp52 = *((unsigned long *)((void *)__cil_tmp49 + 992));
     if (__cil_tmp52 & 16UL) {
       __cil_tmp53 = 1 * 1UL;
       __cil_tmp54 = (unsigned long )(buf) + __cil_tmp53;
@@ -4277,12 +4073,8 @@ static void ds3232_update_alarm(struct i2c_client *client )
     *((u8 *)__cil_tmp63) = (u8 )128;
   } else {
     {
-    __cil_tmp64 = (unsigned long )ds3232;
-    __cil_tmp65 = __cil_tmp64 + 8;
-    __cil_tmp66 = *((struct rtc_device **)__cil_tmp65);
-    __cil_tmp67 = (unsigned long )__cil_tmp66;
-    __cil_tmp68 = __cil_tmp67 + 992;
-    __cil_tmp69 = *((unsigned long *)__cil_tmp68);
+    __cil_tmp66 = *((struct rtc_device **)((void *)ds3232 + 8));
+    __cil_tmp69 = *((unsigned long *)((void *)__cil_tmp66 + 992));
     if (__cil_tmp69 & 16UL) {
       __cil_tmp70 = 2 * 1UL;
       __cil_tmp71 = (unsigned long )(buf) + __cil_tmp70;
@@ -4308,12 +4100,8 @@ static void ds3232_update_alarm(struct i2c_client *client )
     *((u8 *)__cil_tmp80) = (u8 )128;
   } else {
     {
-    __cil_tmp81 = (unsigned long )ds3232;
-    __cil_tmp82 = __cil_tmp81 + 8;
-    __cil_tmp83 = *((struct rtc_device **)__cil_tmp82);
-    __cil_tmp84 = (unsigned long )__cil_tmp83;
-    __cil_tmp85 = __cil_tmp84 + 992;
-    __cil_tmp86 = *((unsigned long *)__cil_tmp85);
+    __cil_tmp83 = *((struct rtc_device **)((void *)ds3232 + 8));
+    __cil_tmp86 = *((unsigned long *)((void *)__cil_tmp83 + 992));
     if (__cil_tmp86 & 16UL) {
       __cil_tmp87 = 3 * 1UL;
       __cil_tmp88 = (unsigned long )(buf) + __cil_tmp87;
@@ -4351,12 +4139,8 @@ static void ds3232_update_alarm(struct i2c_client *client )
   } else {
   }
   {
-  __cil_tmp102 = (unsigned long )ds3232;
-  __cil_tmp103 = __cil_tmp102 + 8;
-  __cil_tmp104 = *((struct rtc_device **)__cil_tmp103);
-  __cil_tmp105 = (unsigned long )__cil_tmp104;
-  __cil_tmp106 = __cil_tmp105 + 992;
-  __cil_tmp107 = *((unsigned long *)__cil_tmp106);
+  __cil_tmp104 = *((struct rtc_device **)((void *)ds3232 + 8));
+  __cil_tmp107 = *((unsigned long *)((void *)__cil_tmp104 + 992));
   if (__cil_tmp107 & 48UL) {
     control = control | 1;
   } else {
@@ -4371,9 +4155,7 @@ static void ds3232_update_alarm(struct i2c_client *client )
   }
   unlock:
   {
-  __cil_tmp111 = (unsigned long )ds3232;
-  __cil_tmp112 = __cil_tmp111 + 48;
-  __cil_tmp113 = (struct mutex *)__cil_tmp112;
+  __cil_tmp113 = (struct mutex *)((void *)ds3232 + 48);
   mutex_unlock(__cil_tmp113);
   }
   return;
@@ -4385,45 +4167,23 @@ static int ds3232_alarm_irq_enable(struct device *dev , unsigned int enabled )
   struct ds3232 *ds3232 ;
   void *tmp___7 ;
   struct i2c_client *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   char *__cil_tmp12 ;
   char *__cil_tmp13 ;
   struct i2c_client const *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct rtc_device *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct rtc_device *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct rtc_device *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct rtc_device *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   {
   {
   __mptr = (struct device const *)dev;
   __cil_tmp7 = (struct i2c_client *)0;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 40;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)__cil_tmp7 + 40);
   __cil_tmp11 = (unsigned int )__cil_tmp10;
   __cil_tmp12 = (char *)__mptr;
   __cil_tmp13 = __cil_tmp12 - __cil_tmp11;
@@ -4433,40 +4193,22 @@ static int ds3232_alarm_irq_enable(struct device *dev , unsigned int enabled )
   ds3232 = (struct ds3232 *)tmp___7;
   }
   {
-  __cil_tmp15 = (unsigned long )client;
-  __cil_tmp16 = __cil_tmp15 + 808;
-  __cil_tmp17 = *((int *)__cil_tmp16);
+  __cil_tmp17 = *((int *)((void *)client + 808));
   if (__cil_tmp17 <= 0) {
     return (-22);
   } else {
   }
   }
   if (enabled) {
-    __cil_tmp18 = (unsigned long )ds3232;
-    __cil_tmp19 = __cil_tmp18 + 8;
-    __cil_tmp20 = *((struct rtc_device **)__cil_tmp19);
-    __cil_tmp21 = (unsigned long )__cil_tmp20;
-    __cil_tmp22 = __cil_tmp21 + 992;
-    __cil_tmp23 = (unsigned long )ds3232;
-    __cil_tmp24 = __cil_tmp23 + 8;
-    __cil_tmp25 = *((struct rtc_device **)__cil_tmp24);
-    __cil_tmp26 = (unsigned long )__cil_tmp25;
-    __cil_tmp27 = __cil_tmp26 + 992;
-    __cil_tmp28 = *((unsigned long *)__cil_tmp27);
-    *((unsigned long *)__cil_tmp22) = __cil_tmp28 | 32UL;
+    __cil_tmp20 = *((struct rtc_device **)((void *)ds3232 + 8));
+    __cil_tmp25 = *((struct rtc_device **)((void *)ds3232 + 8));
+    __cil_tmp28 = *((unsigned long *)((void *)__cil_tmp25 + 992));
+    *((unsigned long *)((void *)__cil_tmp20 + 992)) = __cil_tmp28 | 32UL;
   } else {
-    __cil_tmp29 = (unsigned long )ds3232;
-    __cil_tmp30 = __cil_tmp29 + 8;
-    __cil_tmp31 = *((struct rtc_device **)__cil_tmp30);
-    __cil_tmp32 = (unsigned long )__cil_tmp31;
-    __cil_tmp33 = __cil_tmp32 + 992;
-    __cil_tmp34 = (unsigned long )ds3232;
-    __cil_tmp35 = __cil_tmp34 + 8;
-    __cil_tmp36 = *((struct rtc_device **)__cil_tmp35);
-    __cil_tmp37 = (unsigned long )__cil_tmp36;
-    __cil_tmp38 = __cil_tmp37 + 992;
-    __cil_tmp39 = *((unsigned long *)__cil_tmp38);
-    *((unsigned long *)__cil_tmp33) = __cil_tmp39 & 0xffffffffffffffdfUL;
+    __cil_tmp31 = *((struct rtc_device **)((void *)ds3232 + 8));
+    __cil_tmp36 = *((struct rtc_device **)((void *)ds3232 + 8));
+    __cil_tmp39 = *((unsigned long *)((void *)__cil_tmp36 + 992));
+    *((unsigned long *)((void *)__cil_tmp31 + 992)) = __cil_tmp39 & 0xffffffffffffffdfUL;
   }
   {
   ds3232_update_alarm(client);
@@ -4480,8 +4222,6 @@ static irqreturn_t ds3232_irq(int irq , void *dev_id )
   void *tmp___7 ;
   struct i2c_client const *__cil_tmp6 ;
   unsigned int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct work_struct *__cil_tmp10 ;
   {
   {
@@ -4491,9 +4231,7 @@ static irqreturn_t ds3232_irq(int irq , void *dev_id )
   ds3232 = (struct ds3232 *)tmp___7;
   __cil_tmp7 = (unsigned int )irq;
   disable_irq_nosync(__cil_tmp7);
-  __cil_tmp8 = (unsigned long )ds3232;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = (struct work_struct *)__cil_tmp9;
+  __cil_tmp10 = (struct work_struct *)((void *)ds3232 + 16);
   schedule_work(__cil_tmp10);
   }
   return ((irqreturn_t )1);
@@ -4506,14 +4244,10 @@ static void ds3232_work(struct work_struct *work )
   int stat ;
   int control ;
   struct ds3232 *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct work_struct *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   char *__cil_tmp12 ;
   char *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct mutex *__cil_tmp16 ;
   struct i2c_client const *__cil_tmp17 ;
   u8 __cil_tmp18 ;
@@ -4525,34 +4259,22 @@ static void ds3232_work(struct work_struct *work )
   struct i2c_client const *__cil_tmp24 ;
   u8 __cil_tmp25 ;
   u8 __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct rtc_device *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   int __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct mutex *__cil_tmp39 ;
   {
   {
   __mptr = (struct work_struct const *)work;
   __cil_tmp7 = (struct ds3232 *)0;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = (struct work_struct *)__cil_tmp9;
+  __cil_tmp10 = (struct work_struct *)((void *)__cil_tmp7 + 16);
   __cil_tmp11 = (unsigned int )__cil_tmp10;
   __cil_tmp12 = (char *)__mptr;
   __cil_tmp13 = __cil_tmp12 - __cil_tmp11;
   ds3232 = (struct ds3232 *)__cil_tmp13;
   client = *((struct i2c_client **)ds3232);
-  __cil_tmp14 = (unsigned long )ds3232;
-  __cil_tmp15 = __cil_tmp14 + 48;
-  __cil_tmp16 = (struct mutex *)__cil_tmp15;
+  __cil_tmp16 = (struct mutex *)((void *)ds3232 + 48);
   mutex_lock(__cil_tmp16);
   __cil_tmp17 = (struct i2c_client const *)client;
   __cil_tmp18 = (u8 )15;
@@ -4583,23 +4305,17 @@ static void ds3232_work(struct work_struct *work )
     __cil_tmp25 = (u8 )15;
     __cil_tmp26 = (u8 )stat;
     i2c_smbus_write_byte_data(__cil_tmp24, __cil_tmp25, __cil_tmp26);
-    __cil_tmp27 = (unsigned long )ds3232;
-    __cil_tmp28 = __cil_tmp27 + 8;
-    __cil_tmp29 = *((struct rtc_device **)__cil_tmp28);
+    __cil_tmp29 = *((struct rtc_device **)((void *)ds3232 + 8));
     rtc_update_irq(__cil_tmp29, 1UL, 160UL);
     }
   } else {
   }
   out:
   {
-  __cil_tmp30 = (unsigned long )ds3232;
-  __cil_tmp31 = __cil_tmp30 + 120;
-  __cil_tmp32 = *((int *)__cil_tmp31);
+  __cil_tmp32 = *((int *)((void *)ds3232 + 120));
   if (! __cil_tmp32) {
     {
-    __cil_tmp33 = (unsigned long )client;
-    __cil_tmp34 = __cil_tmp33 + 808;
-    __cil_tmp35 = *((int *)__cil_tmp34);
+    __cil_tmp35 = *((int *)((void *)client + 808));
     __cil_tmp36 = (unsigned int )__cil_tmp35;
     enable_irq(__cil_tmp36);
     }
@@ -4608,9 +4324,7 @@ static void ds3232_work(struct work_struct *work )
   }
   unlock:
   {
-  __cil_tmp37 = (unsigned long )ds3232;
-  __cil_tmp38 = __cil_tmp37 + 48;
-  __cil_tmp39 = (struct mutex *)__cil_tmp38;
+  __cil_tmp39 = (struct mutex *)((void *)ds3232 + 48);
   mutex_unlock(__cil_tmp39);
   }
   return;
@@ -4634,61 +4348,29 @@ static int ds3232_probe(struct i2c_client *client , struct i2c_device_id const *
   long tmp___8 ;
   long tmp___9 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct work_struct *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct list_head *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct mutex *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   char *__cil_tmp31 ;
   char const *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct device *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct rtc_device *__cil_tmp38 ;
   void const *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct rtc_device *__cil_tmp42 ;
   void const *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct device *__cil_tmp46 ;
   struct device const *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   int __cil_tmp53 ;
   unsigned int __cil_tmp54 ;
   void *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct device *__cil_tmp58 ;
   struct device const *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   int __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   int __cil_tmp65 ;
   unsigned int __cil_tmp66 ;
   void *__cil_tmp67 ;
@@ -4715,27 +4397,19 @@ static int ds3232_probe(struct i2c_client *client , struct i2c_device_id const *
     while (1) {
       while_continue___0: ;
       {
-      __cil_tmp10 = (unsigned long )ds3232;
-      __cil_tmp11 = __cil_tmp10 + 16;
-      __cil_tmp12 = (struct work_struct *)__cil_tmp11;
+      __cil_tmp12 = (struct work_struct *)((void *)ds3232 + 16);
       __init_work(__cil_tmp12, 0);
       __constr_expr_0_counter69 = 2097664L;
-      __cil_tmp13 = (unsigned long )ds3232;
-      __cil_tmp14 = __cil_tmp13 + 16;
-      ((atomic_long_t *)__cil_tmp14)->counter = __constr_expr_0_counter69;
+      ((atomic_long_t *)((void *)ds3232 + 16))->counter = __constr_expr_0_counter69;
       __cil_tmp15 = 16 + 8;
-      __cil_tmp16 = (unsigned long )ds3232;
-      __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-      __cil_tmp18 = (struct list_head *)__cil_tmp17;
+      __cil_tmp18 = (struct list_head *)((void *)ds3232 + __cil_tmp15);
       INIT_LIST_HEAD(__cil_tmp18);
       }
       {
       while (1) {
         while_continue___1: ;
         __cil_tmp19 = 16 + 24;
-        __cil_tmp20 = (unsigned long )ds3232;
-        __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-        *((void (**)(struct work_struct *work ))__cil_tmp21) = & ds3232_work;
+        *((void (**)(struct work_struct *work ))((void *)ds3232 + __cil_tmp19)) = & ds3232_work;
         goto while_break___1;
       }
       while_break___1: ;
@@ -4752,9 +4426,7 @@ static int ds3232_probe(struct i2c_client *client , struct i2c_device_id const *
   while (1) {
     while_continue___2: ;
     {
-    __cil_tmp22 = (unsigned long )ds3232;
-    __cil_tmp23 = __cil_tmp22 + 48;
-    __cil_tmp24 = (struct mutex *)__cil_tmp23;
+    __cil_tmp24 = (struct mutex *)((void *)ds3232 + 48);
     __mutex_init(__cil_tmp24, "&ds3232->mutex", & __key___4);
     }
     goto while_break___2;
@@ -4769,36 +4441,24 @@ static int ds3232_probe(struct i2c_client *client , struct i2c_device_id const *
   } else {
   }
   {
-  __cil_tmp25 = (unsigned long )ds3232;
-  __cil_tmp26 = __cil_tmp25 + 8;
   __cil_tmp27 = 0 * 1UL;
   __cil_tmp28 = 4 + __cil_tmp27;
-  __cil_tmp29 = (unsigned long )client;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  __cil_tmp31 = (char *)__cil_tmp30;
+  __cil_tmp31 = (char *)((void *)client + __cil_tmp28);
   __cil_tmp32 = (char const *)__cil_tmp31;
-  __cil_tmp33 = (unsigned long )client;
-  __cil_tmp34 = __cil_tmp33 + 40;
-  __cil_tmp35 = (struct device *)__cil_tmp34;
-  *((struct rtc_device **)__cil_tmp26) = rtc_device_register(__cil_tmp32, __cil_tmp35,
+  __cil_tmp35 = (struct device *)((void *)client + 40);
+  *((struct rtc_device **)((void *)ds3232 + 8)) = rtc_device_register(__cil_tmp32, __cil_tmp35,
                                                              & ds3232_rtc_ops, & __this_module);
-  __cil_tmp36 = (unsigned long )ds3232;
-  __cil_tmp37 = __cil_tmp36 + 8;
-  __cil_tmp38 = *((struct rtc_device **)__cil_tmp37);
+  __cil_tmp38 = *((struct rtc_device **)((void *)ds3232 + 8));
   __cil_tmp39 = (void const *)__cil_tmp38;
   tmp___9 = (long )IS_ERR(__cil_tmp39);
   }
   if (tmp___9) {
     {
-    __cil_tmp40 = (unsigned long )ds3232;
-    __cil_tmp41 = __cil_tmp40 + 8;
-    __cil_tmp42 = *((struct rtc_device **)__cil_tmp41);
+    __cil_tmp42 = *((struct rtc_device **)((void *)ds3232 + 8));
     __cil_tmp43 = (void const *)__cil_tmp42;
     tmp___8 = (long )PTR_ERR(__cil_tmp43);
     ret = (int )tmp___8;
-    __cil_tmp44 = (unsigned long )client;
-    __cil_tmp45 = __cil_tmp44 + 40;
-    __cil_tmp46 = (struct device *)__cil_tmp45;
+    __cil_tmp46 = (struct device *)((void *)client + 40);
     __cil_tmp47 = (struct device const *)__cil_tmp46;
     dev_err(__cil_tmp47, "unable to register the class device\n");
     }
@@ -4806,23 +4466,17 @@ static int ds3232_probe(struct i2c_client *client , struct i2c_device_id const *
   } else {
   }
   {
-  __cil_tmp48 = (unsigned long )client;
-  __cil_tmp49 = __cil_tmp48 + 808;
-  __cil_tmp50 = *((int *)__cil_tmp49);
+  __cil_tmp50 = *((int *)((void *)client + 808));
   if (__cil_tmp50 >= 0) {
     {
-    __cil_tmp51 = (unsigned long )client;
-    __cil_tmp52 = __cil_tmp51 + 808;
-    __cil_tmp53 = *((int *)__cil_tmp52);
+    __cil_tmp53 = *((int *)((void *)client + 808));
     __cil_tmp54 = (unsigned int )__cil_tmp53;
     __cil_tmp55 = (void *)client;
     ret = (int )request_irq(__cil_tmp54, & ds3232_irq, 0UL, "ds3232", __cil_tmp55);
     }
     if (ret) {
       {
-      __cil_tmp56 = (unsigned long )client;
-      __cil_tmp57 = __cil_tmp56 + 40;
-      __cil_tmp58 = (struct device *)__cil_tmp57;
+      __cil_tmp58 = (struct device *)((void *)client + 40);
       __cil_tmp59 = (struct device const *)__cil_tmp58;
       dev_err(__cil_tmp59, "unable to request IRQ\n");
       }
@@ -4835,14 +4489,10 @@ static int ds3232_probe(struct i2c_client *client , struct i2c_device_id const *
   return (0);
   out_irq:
   {
-  __cil_tmp60 = (unsigned long )client;
-  __cil_tmp61 = __cil_tmp60 + 808;
-  __cil_tmp62 = *((int *)__cil_tmp61);
+  __cil_tmp62 = *((int *)((void *)client + 808));
   if (__cil_tmp62 >= 0) {
     {
-    __cil_tmp63 = (unsigned long )client;
-    __cil_tmp64 = __cil_tmp63 + 808;
-    __cil_tmp65 = *((int *)__cil_tmp64);
+    __cil_tmp65 = *((int *)((void *)client + 808));
     __cil_tmp66 = (unsigned int )__cil_tmp65;
     __cil_tmp67 = (void *)client;
     free_irq(__cil_tmp66, __cil_tmp67);
@@ -4864,27 +4514,13 @@ static int ds3232_remove(struct i2c_client *client )
 { struct ds3232 *ds3232 ;
   void *tmp___7 ;
   struct i2c_client const *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct work_struct *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct rtc_device *__cil_tmp26 ;
   void const *__cil_tmp27 ;
   {
@@ -4894,40 +4530,26 @@ static int ds3232_remove(struct i2c_client *client )
   ds3232 = (struct ds3232 *)tmp___7;
   }
   {
-  __cil_tmp5 = (unsigned long )client;
-  __cil_tmp6 = __cil_tmp5 + 808;
-  __cil_tmp7 = *((int *)__cil_tmp6);
+  __cil_tmp7 = *((int *)((void *)client + 808));
   if (__cil_tmp7 >= 0) {
     {
-    __cil_tmp8 = (unsigned long )ds3232;
-    __cil_tmp9 = __cil_tmp8 + 48;
-    __cil_tmp10 = (struct mutex *)__cil_tmp9;
+    __cil_tmp10 = (struct mutex *)((void *)ds3232 + 48);
     mutex_lock(__cil_tmp10);
-    __cil_tmp11 = (unsigned long )ds3232;
-    __cil_tmp12 = __cil_tmp11 + 120;
-    *((int *)__cil_tmp12) = 1;
-    __cil_tmp13 = (unsigned long )ds3232;
-    __cil_tmp14 = __cil_tmp13 + 48;
-    __cil_tmp15 = (struct mutex *)__cil_tmp14;
+    *((int *)((void *)ds3232 + 120)) = 1;
+    __cil_tmp15 = (struct mutex *)((void *)ds3232 + 48);
     mutex_unlock(__cil_tmp15);
-    __cil_tmp16 = (unsigned long )client;
-    __cil_tmp17 = __cil_tmp16 + 808;
-    __cil_tmp18 = *((int *)__cil_tmp17);
+    __cil_tmp18 = *((int *)((void *)client + 808));
     __cil_tmp19 = (unsigned int )__cil_tmp18;
     __cil_tmp20 = (void *)client;
     free_irq(__cil_tmp19, __cil_tmp20);
-    __cil_tmp21 = (unsigned long )ds3232;
-    __cil_tmp22 = __cil_tmp21 + 16;
-    __cil_tmp23 = (struct work_struct *)__cil_tmp22;
+    __cil_tmp23 = (struct work_struct *)((void *)ds3232 + 16);
     cancel_work_sync(__cil_tmp23);
     }
   } else {
   }
   }
   {
-  __cil_tmp24 = (unsigned long )ds3232;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  __cil_tmp26 = *((struct rtc_device **)__cil_tmp25);
+  __cil_tmp26 = *((struct rtc_device **)((void *)ds3232 + 8));
   rtc_device_unregister(__cil_tmp26);
   __cil_tmp27 = (void const *)ds3232;
   kfree(__cil_tmp27);

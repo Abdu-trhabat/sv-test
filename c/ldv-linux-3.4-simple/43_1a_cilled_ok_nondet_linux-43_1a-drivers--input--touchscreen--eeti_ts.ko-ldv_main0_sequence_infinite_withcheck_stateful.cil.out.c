@@ -3030,14 +3030,10 @@ void ldv_spin_lock(void) ;
 void ldv_spin_unlock(void) ;
 int ldv_spin_trylock(void) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -3067,16 +3063,12 @@ struct input_dev *input_allocate_device(void) {
 extern void input_free_device(struct input_dev * ) ;
 __inline static void *input_get_drvdata(struct input_dev *dev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 840;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 840);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -3084,15 +3076,12 @@ __inline static void *input_get_drvdata(struct input_dev *dev )
 }
 }
 __inline static void input_set_drvdata(struct input_dev *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 840;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 840);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3156,15 +3145,12 @@ extern void disable_irq(unsigned int  ) ;
 extern void enable_irq(unsigned int  ) ;
 extern int i2c_master_recv(struct i2c_client  const  * , char * , int  ) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3193,29 +3179,21 @@ static bool flip_y  ;
 __inline static int eeti_ts_irq_active(struct eeti_ts_priv *priv ) 
 { int tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )priv;
-  __cil_tmp5 = __cil_tmp4 + 264;
-  __cil_tmp6 = *((int *)__cil_tmp5);
+  __cil_tmp6 = *((int *)((void *)priv + 264));
   __cil_tmp7 = (unsigned int )__cil_tmp6;
   tmp = irq_to_gpio(__cil_tmp7);
   __cil_tmp8 = (unsigned int )tmp;
   tmp___0 = gpio_get_value(__cil_tmp8);
   }
   {
-  __cil_tmp9 = (unsigned long )priv;
-  __cil_tmp10 = __cil_tmp9 + 268;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)priv + 268));
   return (tmp___0 == __cil_tmp11);
   }
 }
@@ -3231,15 +3209,11 @@ static void eeti_ts_read(struct work_struct *work )
   struct work_struct  const  *__mptr ;
   int tmp ;
   struct eeti_ts_priv *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct mutex *__cil_tmp14 ;
   struct i2c_client *__cil_tmp15 ;
   struct i2c_client  const  *__cil_tmp16 ;
   char *__cil_tmp17 ;
   struct i2c_client *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device  const  *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
@@ -3290,30 +3264,18 @@ static void eeti_ts_read(struct work_struct *work )
   char __cil_tmp68 ;
   int __cil_tmp69 ;
   int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   struct input_dev *__cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
   char __cil_tmp76 ;
   int __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   struct input_dev *__cil_tmp80 ;
   int __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   struct input_dev *__cil_tmp84 ;
   int __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   struct input_dev *__cil_tmp88 ;
   int __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   struct input_dev *__cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   struct mutex *__cil_tmp95 ;
 
   {
@@ -3322,9 +3284,7 @@ static void eeti_ts_read(struct work_struct *work )
   __mptr = (struct work_struct  const  *)work;
   __cil_tmp11 = (struct eeti_ts_priv *)__mptr;
   priv = __cil_tmp11 + 0xfffffffffffffff0UL;
-  __cil_tmp12 = (unsigned long )priv;
-  __cil_tmp13 = __cil_tmp12 + 96;
-  __cil_tmp14 = (struct mutex *)__cil_tmp13;
+  __cil_tmp14 = (struct mutex *)((void *)priv + 96);
   mutex_lock_nested(__cil_tmp14, 0U);
   }
   goto ldv_23835;
@@ -3353,9 +3313,7 @@ static void eeti_ts_read(struct work_struct *work )
   if (to == 0U) {
     {
     __cil_tmp18 = *((struct i2c_client **)priv);
-    __cil_tmp19 = (unsigned long )__cil_tmp18;
-    __cil_tmp20 = __cil_tmp19 + 40;
-    __cil_tmp21 = (struct device *)__cil_tmp20;
+    __cil_tmp21 = (struct device *)((void *)__cil_tmp18 + 40);
     __cil_tmp22 = (struct device  const  *)__cil_tmp21;
     dev_err(__cil_tmp22, "unable to clear IRQ - line stuck?\n");
     }
@@ -3441,9 +3399,7 @@ static void eeti_ts_read(struct work_struct *work )
   __cil_tmp70 = __cil_tmp69 & 64;
   if (__cil_tmp70 != 0) {
     {
-    __cil_tmp71 = (unsigned long )priv;
-    __cil_tmp72 = __cil_tmp71 + 8;
-    __cil_tmp73 = *((struct input_dev **)__cil_tmp72);
+    __cil_tmp73 = *((struct input_dev **)((void *)priv + 8));
     __cil_tmp74 = 5 * 1UL;
     __cil_tmp75 = (unsigned long )(buf) + __cil_tmp74;
     __cil_tmp76 = *((char *)__cil_tmp75);
@@ -3455,31 +3411,21 @@ static void eeti_ts_read(struct work_struct *work )
   }
   }
   {
-  __cil_tmp78 = (unsigned long )priv;
-  __cil_tmp79 = __cil_tmp78 + 8;
-  __cil_tmp80 = *((struct input_dev **)__cil_tmp79);
+  __cil_tmp80 = *((struct input_dev **)((void *)priv + 8));
   __cil_tmp81 = (int )x;
   input_report_abs(__cil_tmp80, 0U, __cil_tmp81);
-  __cil_tmp82 = (unsigned long )priv;
-  __cil_tmp83 = __cil_tmp82 + 8;
-  __cil_tmp84 = *((struct input_dev **)__cil_tmp83);
+  __cil_tmp84 = *((struct input_dev **)((void *)priv + 8));
   __cil_tmp85 = (int )y;
   input_report_abs(__cil_tmp84, 1U, __cil_tmp85);
-  __cil_tmp86 = (unsigned long )priv;
-  __cil_tmp87 = __cil_tmp86 + 8;
-  __cil_tmp88 = *((struct input_dev **)__cil_tmp87);
+  __cil_tmp88 = *((struct input_dev **)((void *)priv + 8));
   __cil_tmp89 = pressed != 0U;
   input_report_key(__cil_tmp88, 330U, __cil_tmp89);
-  __cil_tmp90 = (unsigned long )priv;
-  __cil_tmp91 = __cil_tmp90 + 8;
-  __cil_tmp92 = *((struct input_dev **)__cil_tmp91);
+  __cil_tmp92 = *((struct input_dev **)((void *)priv + 8));
   input_sync(__cil_tmp92);
   }
   out: 
   {
-  __cil_tmp93 = (unsigned long )priv;
-  __cil_tmp94 = __cil_tmp93 + 96;
-  __cil_tmp95 = (struct mutex *)__cil_tmp94;
+  __cil_tmp95 = (struct mutex *)((void *)priv + 96);
   mutex_unlock(__cil_tmp95);
   }
   return;
@@ -3487,64 +3433,46 @@ static void eeti_ts_read(struct work_struct *work )
 }
 static irqreturn_t eeti_ts_isr(int irq , void *dev_id ) 
 { struct eeti_ts_priv *priv ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct work_struct *__cil_tmp6 ;
 
   {
   {
   priv = (struct eeti_ts_priv *)dev_id;
-  __cil_tmp4 = (unsigned long )priv;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  __cil_tmp6 = (struct work_struct *)__cil_tmp5;
+  __cil_tmp6 = (struct work_struct *)((void *)priv + 16);
   schedule_work(__cil_tmp6);
   }
   return ((irqreturn_t )1);
 }
 }
 static void eeti_ts_start(struct eeti_ts_priv *priv ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   int __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct work_struct *__cil_tmp8 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )priv;
-  __cil_tmp3 = __cil_tmp2 + 264;
-  __cil_tmp4 = *((int *)__cil_tmp3);
+  __cil_tmp4 = *((int *)((void *)priv + 264));
   __cil_tmp5 = (unsigned int )__cil_tmp4;
   enable_irq(__cil_tmp5);
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = (struct work_struct *)__cil_tmp7;
+  __cil_tmp8 = (struct work_struct *)((void *)priv + 16);
   eeti_ts_read(__cil_tmp8);
   }
   return;
 }
 }
 static void eeti_ts_stop(struct eeti_ts_priv *priv ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   int __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct work_struct *__cil_tmp8 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )priv;
-  __cil_tmp3 = __cil_tmp2 + 264;
-  __cil_tmp4 = *((int *)__cil_tmp3);
+  __cil_tmp4 = *((int *)((void *)priv + 264));
   __cil_tmp5 = (unsigned int )__cil_tmp4;
   disable_irq(__cil_tmp5);
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = (struct work_struct *)__cil_tmp7;
+  __cil_tmp8 = (struct work_struct *)((void *)priv + 16);
   cancel_work_sync(__cil_tmp8);
   }
   return;
@@ -3589,94 +3517,42 @@ static int eeti_ts_probe(struct i2c_client *client , struct i2c_device_id  const
   struct eeti_ts_priv *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   struct device  const  *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct mutex *__cil_tmp21 ;
   struct input_dev *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct device *__cil_tmp27 ;
   struct device  const  *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   char (*__cil_tmp39)[20U] ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   void *__cil_tmp59 ;
   struct eeti_ts_platform_data *__cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned int __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   int __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   struct work_struct *__cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   struct lockdep_map *__cil_tmp77 ;
   unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   struct list_head *__cil_tmp81 ;
   unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   void *__cil_tmp85 ;
   void *__cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   int __cil_tmp89 ;
   unsigned int __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   char (*__cil_tmp94)[20U] ;
   char const   *__cil_tmp95 ;
   void *__cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   struct device *__cil_tmp99 ;
   struct device  const  *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   struct device *__cil_tmp103 ;
   bool __cil_tmp104 ;
   void const   *__cil_tmp105 ;
@@ -3694,9 +3570,7 @@ static int eeti_ts_probe(struct i2c_client *client , struct i2c_device_id  const
   __cil_tmp14 = (unsigned long )priv;
   if (__cil_tmp14 == __cil_tmp13) {
     {
-    __cil_tmp15 = (unsigned long )client;
-    __cil_tmp16 = __cil_tmp15 + 40;
-    __cil_tmp17 = (struct device *)__cil_tmp16;
+    __cil_tmp17 = (struct device *)((void *)client + 40);
     __cil_tmp18 = (struct device  const  *)__cil_tmp17;
     dev_err(__cil_tmp18, "failed to allocate driver data\n");
     }
@@ -3706,9 +3580,7 @@ static int eeti_ts_probe(struct i2c_client *client , struct i2c_device_id  const
   }
   }
   {
-  __cil_tmp19 = (unsigned long )priv;
-  __cil_tmp20 = __cil_tmp19 + 96;
-  __cil_tmp21 = (struct mutex *)__cil_tmp20;
+  __cil_tmp21 = (struct mutex *)((void *)priv + 96);
   __mutex_init(__cil_tmp21, "&priv->mutex", & __key);
   input = input_allocate_device();
   }
@@ -3718,9 +3590,7 @@ static int eeti_ts_probe(struct i2c_client *client , struct i2c_device_id  const
   __cil_tmp24 = (unsigned long )input;
   if (__cil_tmp24 == __cil_tmp23) {
     {
-    __cil_tmp25 = (unsigned long )client;
-    __cil_tmp26 = __cil_tmp25 + 40;
-    __cil_tmp27 = (struct device *)__cil_tmp26;
+    __cil_tmp27 = (struct device *)((void *)client + 40);
     __cil_tmp28 = (struct device  const  *)__cil_tmp27;
     dev_err(__cil_tmp28, "Failed to allocate input device.\n");
     }
@@ -3732,48 +3602,24 @@ static int eeti_ts_probe(struct i2c_client *client , struct i2c_device_id  const
   {
   __cil_tmp29 = 0 * 8UL;
   __cil_tmp30 = 40 + __cil_tmp29;
-  __cil_tmp31 = (unsigned long )input;
-  __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-  *((unsigned long *)__cil_tmp32) = 10UL;
+  *((unsigned long *)((void *)input + __cil_tmp30)) = 10UL;
   __cil_tmp33 = 5 * 8UL;
   __cil_tmp34 = 48 + __cil_tmp33;
-  __cil_tmp35 = (unsigned long )input;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  *((unsigned long *)__cil_tmp36) = 1024UL;
+  *((unsigned long *)((void *)input + __cil_tmp34)) = 1024UL;
   input_set_abs_params(input, 0U, 0, 4095, 0, 0);
   input_set_abs_params(input, 1U, 0, 4095, 0, 0);
   input_set_abs_params(input, 24U, 0, 255, 0, 0);
-  __cil_tmp37 = (unsigned long )client;
-  __cil_tmp38 = __cil_tmp37 + 4;
-  __cil_tmp39 = (char (*)[20U])__cil_tmp38;
+  __cil_tmp39 = (char (*)[20U])((void *)client + 4);
   *((char const   **)input) = (char const   *)__cil_tmp39;
-  __cil_tmp40 = (unsigned long )input;
-  __cil_tmp41 = __cil_tmp40 + 24;
-  *((__u16 *)__cil_tmp41) = (__u16 )24U;
-  __cil_tmp42 = (unsigned long )input;
-  __cil_tmp43 = __cil_tmp42 + 840;
-  __cil_tmp44 = (unsigned long )client;
-  __cil_tmp45 = __cil_tmp44 + 40;
-  *((struct device **)__cil_tmp43) = (struct device *)__cil_tmp45;
-  __cil_tmp46 = (unsigned long )input;
-  __cil_tmp47 = __cil_tmp46 + 552;
-  *((int (**)(struct input_dev * ))__cil_tmp47) = & eeti_ts_open;
-  __cil_tmp48 = (unsigned long )input;
-  __cil_tmp49 = __cil_tmp48 + 560;
-  *((void (**)(struct input_dev * ))__cil_tmp49) = & eeti_ts_close;
+  *((__u16 *)((void *)input + 24)) = (__u16 )24U;
+  *((struct device **)((void *)input + 840)) = (struct device *)((void *)client + 40);
+  *((int (**)(struct input_dev * ))((void *)input + 552)) = & eeti_ts_open;
+  *((void (**)(struct input_dev * ))((void *)input + 560)) = & eeti_ts_close;
   *((struct i2c_client **)priv) = client;
-  __cil_tmp50 = (unsigned long )priv;
-  __cil_tmp51 = __cil_tmp50 + 8;
-  *((struct input_dev **)__cil_tmp51) = input;
-  __cil_tmp52 = (unsigned long )priv;
-  __cil_tmp53 = __cil_tmp52 + 264;
-  __cil_tmp54 = (unsigned long )client;
-  __cil_tmp55 = __cil_tmp54 + 1192;
-  *((int *)__cil_tmp53) = *((int *)__cil_tmp55);
+  *((struct input_dev **)((void *)priv + 8)) = input;
+  *((int *)((void *)priv + 264)) = *((int *)((void *)client + 1192));
   __cil_tmp56 = 40 + 280;
-  __cil_tmp57 = (unsigned long )client;
-  __cil_tmp58 = __cil_tmp57 + __cil_tmp56;
-  __cil_tmp59 = *((void **)__cil_tmp58);
+  __cil_tmp59 = *((void **)((void *)client + __cil_tmp56));
   pdata = (struct eeti_ts_platform_data *)__cil_tmp59;
   }
   {
@@ -3781,18 +3627,14 @@ static int eeti_ts_probe(struct i2c_client *client , struct i2c_device_id  const
   __cil_tmp61 = (unsigned long )__cil_tmp60;
   __cil_tmp62 = (unsigned long )pdata;
   if (__cil_tmp62 != __cil_tmp61) {
-    __cil_tmp63 = (unsigned long )priv;
-    __cil_tmp64 = __cil_tmp63 + 268;
     __cil_tmp65 = *((unsigned int *)pdata);
-    *((int *)__cil_tmp64) = (int )__cil_tmp65;
+    *((int *)((void *)priv + 268)) = (int )__cil_tmp65;
   } else {
 
   }
   }
   {
-  __cil_tmp66 = (unsigned long )priv;
-  __cil_tmp67 = __cil_tmp66 + 268;
-  __cil_tmp68 = *((int *)__cil_tmp67);
+  __cil_tmp68 = *((int *)((void *)priv + 268));
   if (__cil_tmp68 != 0) {
     irq_flags = 1U;
   } else {
@@ -3800,28 +3642,18 @@ static int eeti_ts_probe(struct i2c_client *client , struct i2c_device_id  const
   }
   }
   {
-  __cil_tmp69 = (unsigned long )priv;
-  __cil_tmp70 = __cil_tmp69 + 16;
-  __cil_tmp71 = (struct work_struct *)__cil_tmp70;
+  __cil_tmp71 = (struct work_struct *)((void *)priv + 16);
   __init_work(__cil_tmp71, 0);
   __constr_expr_0_counter106 = 2097664L;
-  __cil_tmp72 = (unsigned long )priv;
-  __cil_tmp73 = __cil_tmp72 + 16;
-  ((atomic_long_t *)__cil_tmp73)->counter = __constr_expr_0_counter106;
+  ((atomic_long_t *)((void *)priv + 16))->counter = __constr_expr_0_counter106;
   __cil_tmp74 = 16 + 32;
-  __cil_tmp75 = (unsigned long )priv;
-  __cil_tmp76 = __cil_tmp75 + __cil_tmp74;
-  __cil_tmp77 = (struct lockdep_map *)__cil_tmp76;
+  __cil_tmp77 = (struct lockdep_map *)((void *)priv + __cil_tmp74);
   lockdep_init_map(__cil_tmp77, "(&priv->work)", & __key___0, 0);
   __cil_tmp78 = 16 + 8;
-  __cil_tmp79 = (unsigned long )priv;
-  __cil_tmp80 = __cil_tmp79 + __cil_tmp78;
-  __cil_tmp81 = (struct list_head *)__cil_tmp80;
+  __cil_tmp81 = (struct list_head *)((void *)priv + __cil_tmp78);
   INIT_LIST_HEAD(__cil_tmp81);
   __cil_tmp82 = 16 + 24;
-  __cil_tmp83 = (unsigned long )priv;
-  __cil_tmp84 = __cil_tmp83 + __cil_tmp82;
-  *((void (**)(struct work_struct * ))__cil_tmp84) = & eeti_ts_read;
+  *((void (**)(struct work_struct * ))((void *)priv + __cil_tmp82)) = & eeti_ts_read;
   __cil_tmp85 = (void *)priv;
   i2c_set_clientdata(client, __cil_tmp85);
   __cil_tmp86 = (void *)priv;
@@ -3834,23 +3666,17 @@ static int eeti_ts_probe(struct i2c_client *client , struct i2c_device_id  const
 
   }
   {
-  __cil_tmp87 = (unsigned long )priv;
-  __cil_tmp88 = __cil_tmp87 + 264;
-  __cil_tmp89 = *((int *)__cil_tmp88);
+  __cil_tmp89 = *((int *)((void *)priv + 264));
   __cil_tmp90 = (unsigned int )__cil_tmp89;
   __cil_tmp91 = (unsigned long )irq_flags;
-  __cil_tmp92 = (unsigned long )client;
-  __cil_tmp93 = __cil_tmp92 + 4;
-  __cil_tmp94 = (char (*)[20U])__cil_tmp93;
+  __cil_tmp94 = (char (*)[20U])((void *)client + 4);
   __cil_tmp95 = (char const   *)__cil_tmp94;
   __cil_tmp96 = (void *)priv;
   err = request_irq(__cil_tmp90, & eeti_ts_isr, __cil_tmp91, __cil_tmp95, __cil_tmp96);
   }
   if (err != 0) {
     {
-    __cil_tmp97 = (unsigned long )client;
-    __cil_tmp98 = __cil_tmp97 + 40;
-    __cil_tmp99 = (struct device *)__cil_tmp98;
+    __cil_tmp99 = (struct device *)((void *)client + 40);
     __cil_tmp100 = (struct device  const  *)__cil_tmp99;
     dev_err(__cil_tmp100, "Unable to request touchscreen IRQ.\n");
     }
@@ -3860,9 +3686,7 @@ static int eeti_ts_probe(struct i2c_client *client , struct i2c_device_id  const
   }
   {
   eeti_ts_stop(priv);
-  __cil_tmp101 = (unsigned long )client;
-  __cil_tmp102 = __cil_tmp101 + 40;
-  __cil_tmp103 = (struct device *)__cil_tmp102;
+  __cil_tmp103 = (struct device *)((void *)client + 40);
   __cil_tmp104 = (bool )0;
   device_init_wakeup(__cil_tmp103, __cil_tmp104);
   }

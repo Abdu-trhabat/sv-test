@@ -2128,28 +2128,21 @@ extern s32 i2c_smbus_write_i2c_block_data(struct i2c_client const * , u8 , u8 ,
                                           u8 const * ) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)dev + 40);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2170,15 +2163,11 @@ static int wl1273_fm_read_reg(struct wl1273_core *core , u8 reg , u16 *value )
 { struct i2c_client *client ;
   u8 b[2U] ;
   int r ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct i2c_client const *__cil_tmp9 ;
   int __cil_tmp10 ;
   u8 __cil_tmp11 ;
   u8 __cil_tmp12 ;
   u8 *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
   int __cil_tmp18 ;
@@ -2197,9 +2186,7 @@ static int wl1273_fm_read_reg(struct wl1273_core *core , u8 reg , u16 *value )
   int __cil_tmp31 ;
   {
   {
-  __cil_tmp7 = (unsigned long )core;
-  __cil_tmp8 = __cil_tmp7 + 392;
-  client = *((struct i2c_client **)__cil_tmp8);
+  client = *((struct i2c_client **)((void *)core + 392));
   __cil_tmp9 = (struct i2c_client const *)client;
   __cil_tmp10 = (int )reg;
   __cil_tmp11 = (u8 )__cil_tmp10;
@@ -2209,9 +2196,7 @@ static int wl1273_fm_read_reg(struct wl1273_core *core , u8 reg , u16 *value )
   }
   if (r != 2) {
     {
-    __cil_tmp14 = (unsigned long )client;
-    __cil_tmp15 = __cil_tmp14 + 40;
-    __cil_tmp16 = (struct device *)__cil_tmp15;
+    __cil_tmp16 = (struct device *)((void *)client + 40);
     __cil_tmp17 = (struct device const *)__cil_tmp16;
     __cil_tmp18 = (int )reg;
     dev_err(__cil_tmp17, "%s: Read: %d fails.\n", "wl1273_fm_read_reg", __cil_tmp18);
@@ -2240,8 +2225,6 @@ static int wl1273_fm_write_cmd(struct wl1273_core *core , u8 cmd , u16 param )
 { struct i2c_client *client ;
   u8 buf[2U] ;
   int r ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
@@ -2253,16 +2236,12 @@ static int wl1273_fm_write_cmd(struct wl1273_core *core , u8 cmd , u16 param )
   u8 __cil_tmp17 ;
   u8 __cil_tmp18 ;
   u8 const *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device const *__cil_tmp23 ;
   int __cil_tmp24 ;
   {
   {
-  __cil_tmp7 = (unsigned long )core;
-  __cil_tmp8 = __cil_tmp7 + 392;
-  client = *((struct i2c_client **)__cil_tmp8);
+  client = *((struct i2c_client **)((void *)core + 392));
   __cil_tmp9 = 0 * 1UL;
   __cil_tmp10 = (unsigned long )(buf) + __cil_tmp9;
   __cil_tmp11 = (int )param;
@@ -2280,9 +2259,7 @@ static int wl1273_fm_write_cmd(struct wl1273_core *core , u8 cmd , u16 param )
   }
   if (r != 0) {
     {
-    __cil_tmp20 = (unsigned long )client;
-    __cil_tmp21 = __cil_tmp20 + 40;
-    __cil_tmp22 = (struct device *)__cil_tmp21;
+    __cil_tmp22 = (struct device *)((void *)client + 40);
     __cil_tmp23 = (struct device const *)__cil_tmp22;
     __cil_tmp24 = (int )cmd;
     dev_err(__cil_tmp23, "%s: Cmd: %d fails.\n", "wl1273_fm_write_cmd", __cil_tmp24);
@@ -2297,46 +2274,24 @@ static int wl1273_fm_write_data(struct wl1273_core *core , u8 *data , u16 len )
 { struct i2c_client *client ;
   struct i2c_msg msg ;
   int r ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct i2c_msg *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct i2c_adapter *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device const *__cil_tmp21 ;
   {
   {
-  __cil_tmp7 = (unsigned long )core;
-  __cil_tmp8 = __cil_tmp7 + 392;
-  client = *((struct i2c_client **)__cil_tmp8);
+  client = *((struct i2c_client **)((void *)core + 392));
   __cil_tmp9 = & msg;
-  __cil_tmp10 = (unsigned long )client;
-  __cil_tmp11 = __cil_tmp10 + 2;
-  *((__u16 *)__cil_tmp9) = *((unsigned short *)__cil_tmp11);
-  __cil_tmp12 = (unsigned long )(& msg) + 2;
-  *((__u16 *)__cil_tmp12) = (__u16 )0U;
-  __cil_tmp13 = (unsigned long )(& msg) + 8;
-  *((__u8 **)__cil_tmp13) = data;
-  __cil_tmp14 = (unsigned long )(& msg) + 4;
-  *((__u16 *)__cil_tmp14) = len;
-  __cil_tmp15 = (unsigned long )client;
-  __cil_tmp16 = __cil_tmp15 + 24;
-  __cil_tmp17 = *((struct i2c_adapter **)__cil_tmp16);
+  *((__u16 *)__cil_tmp9) = *((unsigned short *)((void *)client + 2));
+  *((__u16 *)((void *)(&msg) + 2)) = (__u16 )0U;
+  *((__u8 **)((void *)(&msg) + 8)) = data;
+  *((__u16 *)((void *)(&msg) + 4)) = len;
+  __cil_tmp17 = *((struct i2c_adapter **)((void *)client + 24));
   r = i2c_transfer(__cil_tmp17, & msg, 1);
   }
   if (r != 1) {
     {
-    __cil_tmp18 = (unsigned long )client;
-    __cil_tmp19 = __cil_tmp18 + 40;
-    __cil_tmp20 = (struct device *)__cil_tmp19;
+    __cil_tmp20 = (struct device *)((void *)client + 40);
     __cil_tmp21 = (struct device const *)__cil_tmp20;
     dev_err(__cil_tmp21, "%s: write error.\n", "wl1273_fm_write_data");
     }
@@ -2348,63 +2303,41 @@ static int wl1273_fm_write_data(struct wl1273_core *core , u8 *data , u16 len )
 }
 static int wl1273_fm_set_audio(struct wl1273_core *core , unsigned int new_mode )
 { int r ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   u8 __cil_tmp13 ;
   u16 __cil_tmp14 ;
   u8 __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   u16 __cil_tmp19 ;
   int __cil_tmp20 ;
   u16 __cil_tmp21 ;
   u8 __cil_tmp22 ;
   u16 __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   u8 __cil_tmp27 ;
   u16 __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
   u8 __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
   u16 __cil_tmp36 ;
   int __cil_tmp37 ;
   u16 __cil_tmp38 ;
   u8 __cil_tmp39 ;
   u16 __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
   u8 __cil_tmp44 ;
   u16 __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   {
   r = 0;
   {
-  __cil_tmp4 = (unsigned long )core;
-  __cil_tmp5 = __cil_tmp4 + 200;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned int *)((void *)core + 200));
   if (__cil_tmp6 == 4U) {
     return (-1);
   } else {
     {
-    __cil_tmp7 = (unsigned long )core;
-    __cil_tmp8 = __cil_tmp7 + 200;
-    __cil_tmp9 = *((unsigned int *)__cil_tmp8);
+    __cil_tmp9 = *((unsigned int *)((void *)core + 200));
     if (__cil_tmp9 == 8U) {
       return (-1);
     } else {
@@ -2413,9 +2346,7 @@ static int wl1273_fm_set_audio(struct wl1273_core *core , unsigned int new_mode 
   }
   }
   {
-  __cil_tmp10 = (unsigned long )core;
-  __cil_tmp11 = __cil_tmp10 + 200;
-  __cil_tmp12 = *((unsigned int *)__cil_tmp11);
+  __cil_tmp12 = *((unsigned int *)((void *)core + 200));
   if (__cil_tmp12 == 1U) {
     if (new_mode == 0U) {
       {
@@ -2429,9 +2360,7 @@ static int wl1273_fm_set_audio(struct wl1273_core *core , unsigned int new_mode 
       }
       {
       __cil_tmp15 = (u8 )31;
-      __cil_tmp16 = (unsigned long )core;
-      __cil_tmp17 = __cil_tmp16 + 204;
-      __cil_tmp18 = *((unsigned int *)__cil_tmp17);
+      __cil_tmp18 = *((unsigned int *)((void *)core + 204));
       __cil_tmp19 = (u16 )__cil_tmp18;
       __cil_tmp20 = (int )__cil_tmp19;
       __cil_tmp21 = (u16 )__cil_tmp20;
@@ -2456,9 +2385,7 @@ static int wl1273_fm_set_audio(struct wl1273_core *core , unsigned int new_mode 
   } else {
     _L___1:
     {
-    __cil_tmp24 = (unsigned long )core;
-    __cil_tmp25 = __cil_tmp24 + 200;
-    __cil_tmp26 = *((unsigned int *)__cil_tmp25);
+    __cil_tmp26 = *((unsigned int *)((void *)core + 200));
     if (__cil_tmp26 == 1U) {
       if (new_mode == 1U) {
         {
@@ -2476,16 +2403,12 @@ static int wl1273_fm_set_audio(struct wl1273_core *core , unsigned int new_mode 
     } else {
       _L___0:
       {
-      __cil_tmp29 = (unsigned long )core;
-      __cil_tmp30 = __cil_tmp29 + 200;
-      __cil_tmp31 = *((unsigned int *)__cil_tmp30);
+      __cil_tmp31 = *((unsigned int *)((void *)core + 200));
       if (__cil_tmp31 == 2U) {
         if (new_mode == 0U) {
           {
           __cil_tmp32 = (u8 )31;
-          __cil_tmp33 = (unsigned long )core;
-          __cil_tmp34 = __cil_tmp33 + 204;
-          __cil_tmp35 = *((unsigned int *)__cil_tmp34);
+          __cil_tmp35 = *((unsigned int *)((void *)core + 204));
           __cil_tmp36 = (u16 )__cil_tmp35;
           __cil_tmp37 = (int )__cil_tmp36;
           __cil_tmp38 = (u16 )__cil_tmp37;
@@ -2510,9 +2433,7 @@ static int wl1273_fm_set_audio(struct wl1273_core *core , unsigned int new_mode 
       } else {
         _L:
         {
-        __cil_tmp41 = (unsigned long )core;
-        __cil_tmp42 = __cil_tmp41 + 200;
-        __cil_tmp43 = *((unsigned int *)__cil_tmp42);
+        __cil_tmp43 = *((unsigned int *)((void *)core + 200));
         if (__cil_tmp43 == 2U) {
           if (new_mode == 1U) {
             {
@@ -2535,33 +2456,25 @@ static int wl1273_fm_set_audio(struct wl1273_core *core , unsigned int new_mode 
     }
   }
   }
-  __cil_tmp46 = (unsigned long )core;
-  __cil_tmp47 = __cil_tmp46 + 212;
-  *((unsigned int *)__cil_tmp47) = new_mode;
+  *((unsigned int *)((void *)core + 212)) = new_mode;
   out: ;
   return (r);
 }
 }
 static int wl1273_fm_set_volume(struct wl1273_core *core , unsigned int volume )
 { int r ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
   u8 __cil_tmp7 ;
   u16 __cil_tmp8 ;
   int __cil_tmp9 ;
   u16 __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   {
   if (volume > 65535U) {
     return (-22);
   } else {
   }
   {
-  __cil_tmp4 = (unsigned long )core;
-  __cil_tmp5 = __cil_tmp4 + 208;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned int *)((void *)core + 208));
   if (__cil_tmp6 == volume) {
     return (0);
   } else {
@@ -2578,9 +2491,7 @@ static int wl1273_fm_set_volume(struct wl1273_core *core , unsigned int volume )
     return (r);
   } else {
   }
-  __cil_tmp11 = (unsigned long )core;
-  __cil_tmp12 = __cil_tmp11 + 208;
-  *((unsigned int *)__cil_tmp12) = volume;
+  *((unsigned int *)((void *)core + 208)) = volume;
   return (0);
 }
 }
@@ -2591,21 +2502,11 @@ static int wl1273_core_remove(struct i2c_client *client )
   long tmp___0 ;
   struct i2c_client const *__cil_tmp6 ;
   struct _ddebug *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned char __cil_tmp14 ;
   long __cil_tmp15 ;
   long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   struct device const *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   void const *__cil_tmp24 ;
   {
@@ -2615,36 +2516,26 @@ static int wl1273_core_remove(struct i2c_client *client )
   core = (struct wl1273_core *)tmp;
   __cil_tmp7 = & descriptor;
   *((char const **)__cil_tmp7) = "wl1273_core";
-  __cil_tmp8 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp8) = "wl1273_core_remove";
-  __cil_tmp9 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp9) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
-  __cil_tmp10 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp10) = "%s\n";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp11) = 192U;
-  __cil_tmp12 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp12) = (unsigned char)0;
-  __cil_tmp13 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp14 = *((unsigned char *)__cil_tmp13);
+  *((char const **)((void *)(&descriptor) + 8)) = "wl1273_core_remove";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 192U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp14 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp15 = (long )__cil_tmp14;
   __cil_tmp16 = __cil_tmp15 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp16, 0L);
   }
   if (tmp___0 != 0L) {
     {
-    __cil_tmp17 = (unsigned long )client;
-    __cil_tmp18 = __cil_tmp17 + 40;
-    __cil_tmp19 = (struct device *)__cil_tmp18;
+    __cil_tmp19 = (struct device *)((void *)client + 40);
     __cil_tmp20 = (struct device const *)__cil_tmp19;
     __dynamic_dev_dbg(& descriptor, __cil_tmp20, "%s\n", "wl1273_core_remove");
     }
   } else {
   }
   {
-  __cil_tmp21 = (unsigned long )client;
-  __cil_tmp22 = __cil_tmp21 + 40;
-  __cil_tmp23 = (struct device *)__cil_tmp22;
+  __cil_tmp23 = (struct device *)((void *)client + 40);
   mfd_remove_devices(__cil_tmp23);
   __cil_tmp24 = (void const *)core;
   kfree(__cil_tmp24);
@@ -2671,37 +2562,21 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   struct _ddebug descriptor___3 ;
   long tmp___4 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   void *__cil_tmp23 ;
   struct _ddebug *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned char __cil_tmp31 ;
   long __cil_tmp32 ;
   long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct device *__cil_tmp36 ;
   struct device const *__cil_tmp37 ;
   struct wl1273_fm_platform_data *__cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct device *__cil_tmp43 ;
   struct device const *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned int __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct device *__cil_tmp52 ;
   struct device const *__cil_tmp53 ;
   struct wl1273_core **__cil_tmp54 ;
@@ -2712,32 +2587,18 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   unsigned long __cil_tmp59 ;
   struct wl1273_core **__cil_tmp60 ;
   struct wl1273_core *__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   struct wl1273_core **__cil_tmp64 ;
   struct wl1273_core *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct wl1273_core **__cil_tmp68 ;
   struct wl1273_core *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct mutex *__cil_tmp72 ;
   struct wl1273_core **__cil_tmp73 ;
   struct wl1273_core *__cil_tmp74 ;
   void *__cil_tmp75 ;
   struct _ddebug *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   unsigned char __cil_tmp83 ;
   long __cil_tmp84 ;
   long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   struct device *__cil_tmp88 ;
   struct device const *__cil_tmp89 ;
   unsigned long __cil_tmp90 ;
@@ -2745,32 +2606,16 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   struct wl1273_core *__cil_tmp92 ;
   struct mfd_cell (*__cil_tmp93)[2U] ;
   struct mfd_cell *__cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   struct wl1273_core **__cil_tmp99 ;
   struct wl1273_core *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   struct wl1273_core **__cil_tmp103 ;
   struct wl1273_core *__cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   struct wl1273_core **__cil_tmp107 ;
   struct wl1273_core *__cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   struct wl1273_core **__cil_tmp111 ;
   struct wl1273_core *__cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   struct wl1273_core **__cil_tmp115 ;
   struct wl1273_core *__cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   unsigned int __cil_tmp121 ;
   unsigned long __cil_tmp122 ;
   unsigned long __cil_tmp123 ;
@@ -2780,97 +2625,55 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   struct mfd_cell (*__cil_tmp127)[2U] ;
   struct mfd_cell *__cil_tmp128 ;
   struct _ddebug *__cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
   unsigned char __cil_tmp136 ;
   long __cil_tmp137 ;
   long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
   struct device *__cil_tmp141 ;
   struct device const *__cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
-  unsigned long __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
   struct _ddebug *__cil_tmp147 ;
-  unsigned long __cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
-  unsigned long __cil_tmp151 ;
-  unsigned long __cil_tmp152 ;
-  unsigned long __cil_tmp153 ;
   unsigned char __cil_tmp154 ;
   long __cil_tmp155 ;
   long __cil_tmp156 ;
-  unsigned long __cil_tmp157 ;
-  unsigned long __cil_tmp158 ;
   struct device *__cil_tmp159 ;
   struct device const *__cil_tmp160 ;
-  unsigned long __cil_tmp161 ;
-  unsigned long __cil_tmp162 ;
   struct device *__cil_tmp163 ;
   struct wl1273_core **__cil_tmp164 ;
   struct wl1273_core *__cil_tmp165 ;
   struct mfd_cell (*__cil_tmp166)[2U] ;
   struct mfd_cell *__cil_tmp167 ;
   struct resource *__cil_tmp168 ;
-  unsigned long __cil_tmp169 ;
-  unsigned long __cil_tmp170 ;
   void (*__cil_tmp171)(void) ;
   struct wl1273_core **__cil_tmp172 ;
   struct wl1273_core *__cil_tmp173 ;
   void const *__cil_tmp174 ;
   struct _ddebug *__cil_tmp175 ;
-  unsigned long __cil_tmp176 ;
-  unsigned long __cil_tmp177 ;
-  unsigned long __cil_tmp178 ;
-  unsigned long __cil_tmp179 ;
-  unsigned long __cil_tmp180 ;
-  unsigned long __cil_tmp181 ;
   unsigned char __cil_tmp182 ;
   long __cil_tmp183 ;
   long __cil_tmp184 ;
-  unsigned long __cil_tmp185 ;
-  unsigned long __cil_tmp186 ;
   struct device *__cil_tmp187 ;
   struct device const *__cil_tmp188 ;
   {
   {
   __cil_tmp20 = 40 + 280;
-  __cil_tmp21 = (unsigned long )client;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  __cil_tmp23 = *((void **)__cil_tmp22);
+  __cil_tmp23 = *((void **)((void *)client + __cil_tmp20));
   pdata = (struct wl1273_fm_platform_data *)__cil_tmp23;
   children = 0;
   r = 0;
   __cil_tmp24 = & descriptor;
   *((char const **)__cil_tmp24) = "wl1273_core";
-  __cil_tmp25 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp25) = "wl1273_core_probe";
-  __cil_tmp26 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp26) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
-  __cil_tmp27 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp27) = "%s\n";
-  __cil_tmp28 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp28) = 209U;
-  __cil_tmp29 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp29) = (unsigned char)0;
-  __cil_tmp30 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp31 = *((unsigned char *)__cil_tmp30);
+  *((char const **)((void *)(&descriptor) + 8)) = "wl1273_core_probe";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 209U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp31 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp32 = (long )__cil_tmp31;
   __cil_tmp33 = __cil_tmp32 & 1L;
   tmp = __builtin_expect(__cil_tmp33, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp34 = (unsigned long )client;
-    __cil_tmp35 = __cil_tmp34 + 40;
-    __cil_tmp36 = (struct device *)__cil_tmp35;
+    __cil_tmp36 = (struct device *)((void *)client + 40);
     __cil_tmp37 = (struct device const *)__cil_tmp36;
     __dynamic_dev_dbg(& descriptor, __cil_tmp37, "%s\n", "wl1273_core_probe");
     }
@@ -2882,9 +2685,7 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   __cil_tmp40 = (unsigned long )pdata;
   if (__cil_tmp40 == __cil_tmp39) {
     {
-    __cil_tmp41 = (unsigned long )client;
-    __cil_tmp42 = __cil_tmp41 + 40;
-    __cil_tmp43 = (struct device *)__cil_tmp42;
+    __cil_tmp43 = (struct device *)((void *)client + 40);
     __cil_tmp44 = (struct device const *)__cil_tmp43;
     dev_err(__cil_tmp44, "No platform data.\n");
     }
@@ -2893,16 +2694,12 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   }
   }
   {
-  __cil_tmp45 = (unsigned long )pdata;
-  __cil_tmp46 = __cil_tmp45 + 36;
-  __cil_tmp47 = *((unsigned int *)__cil_tmp46);
+  __cil_tmp47 = *((unsigned int *)((void *)pdata + 36));
   __cil_tmp48 = (unsigned long )__cil_tmp47;
   __cil_tmp49 = __cil_tmp48 & 1UL;
   if (__cil_tmp49 == 0UL) {
     {
-    __cil_tmp50 = (unsigned long )client;
-    __cil_tmp51 = __cil_tmp50 + 40;
-    __cil_tmp52 = (struct device *)__cil_tmp51;
+    __cil_tmp52 = (struct device *)((void *)client + 40);
     __cil_tmp53 = (struct device const *)__cil_tmp52;
     dev_err(__cil_tmp53, "Cannot function without radio child.\n");
     }
@@ -2929,19 +2726,13 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   {
   __cil_tmp60 = & core;
   __cil_tmp61 = *__cil_tmp60;
-  __cil_tmp62 = (unsigned long )__cil_tmp61;
-  __cil_tmp63 = __cil_tmp62 + 192;
-  *((struct wl1273_fm_platform_data **)__cil_tmp63) = pdata;
+  *((struct wl1273_fm_platform_data **)((void *)__cil_tmp61 + 192)) = pdata;
   __cil_tmp64 = & core;
   __cil_tmp65 = *__cil_tmp64;
-  __cil_tmp66 = (unsigned long )__cil_tmp65;
-  __cil_tmp67 = __cil_tmp66 + 392;
-  *((struct i2c_client **)__cil_tmp67) = client;
+  *((struct i2c_client **)((void *)__cil_tmp65 + 392)) = client;
   __cil_tmp68 = & core;
   __cil_tmp69 = *__cil_tmp68;
-  __cil_tmp70 = (unsigned long )__cil_tmp69;
-  __cil_tmp71 = __cil_tmp70 + 224;
-  __cil_tmp72 = (struct mutex *)__cil_tmp71;
+  __cil_tmp72 = (struct mutex *)((void *)__cil_tmp69 + 224);
   __mutex_init(__cil_tmp72, "&core->lock", & __key);
   __cil_tmp73 = & core;
   __cil_tmp74 = *__cil_tmp73;
@@ -2949,27 +2740,19 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   i2c_set_clientdata(client, __cil_tmp75);
   __cil_tmp76 = & descriptor___0;
   *((char const **)__cil_tmp76) = "wl1273_core";
-  __cil_tmp77 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp77) = "wl1273_core_probe";
-  __cil_tmp78 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp78) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
-  __cil_tmp79 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp79) = "%s: Have V4L2.\n";
-  __cil_tmp80 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp80) = 231U;
-  __cil_tmp81 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp81) = (unsigned char)0;
-  __cil_tmp82 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp83 = *((unsigned char *)__cil_tmp82);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "wl1273_core_probe";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "%s: Have V4L2.\n";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 231U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+  __cil_tmp83 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp84 = (long )__cil_tmp83;
   __cil_tmp85 = __cil_tmp84 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp85, 0L);
   }
   if (tmp___1 != 0L) {
     {
-    __cil_tmp86 = (unsigned long )client;
-    __cil_tmp87 = __cil_tmp86 + 40;
-    __cil_tmp88 = (struct device *)__cil_tmp87;
+    __cil_tmp88 = (struct device *)((void *)client + 40);
     __cil_tmp89 = (struct device const *)__cil_tmp88;
     __dynamic_dev_dbg(& descriptor___0, __cil_tmp89, "%s: Have V4L2.\n", "wl1273_core_probe");
     }
@@ -2982,42 +2765,26 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   __cil_tmp94 = (struct mfd_cell *)__cil_tmp93;
   cell = __cil_tmp94 + __cil_tmp90;
   *((char const **)cell) = "wl1273_fm_radio";
-  __cil_tmp95 = (unsigned long )cell;
-  __cil_tmp96 = __cil_tmp95 + 56;
-  *((void **)__cil_tmp96) = (void *)(& core);
-  __cil_tmp97 = (unsigned long )cell;
-  __cil_tmp98 = __cil_tmp97 + 64;
-  *((size_t *)__cil_tmp98) = 8UL;
+  *((void **)((void *)cell + 56)) = (void *)(& core);
+  *((size_t *)((void *)cell + 64)) = 8UL;
   children = children + 1;
   __cil_tmp99 = & core;
   __cil_tmp100 = *__cil_tmp99;
-  __cil_tmp101 = (unsigned long )__cil_tmp100;
-  __cil_tmp102 = __cil_tmp101 + 400;
-  *((int (**)(struct wl1273_core * , u8 , u16 * ))__cil_tmp102) = & wl1273_fm_read_reg;
+  *((int (**)(struct wl1273_core * , u8 , u16 * ))((void *)__cil_tmp100 + 400)) = & wl1273_fm_read_reg;
   __cil_tmp103 = & core;
   __cil_tmp104 = *__cil_tmp103;
-  __cil_tmp105 = (unsigned long )__cil_tmp104;
-  __cil_tmp106 = __cil_tmp105 + 408;
-  *((int (**)(struct wl1273_core * , u8 , u16 ))__cil_tmp106) = & wl1273_fm_write_cmd;
+  *((int (**)(struct wl1273_core * , u8 , u16 ))((void *)__cil_tmp104 + 408)) = & wl1273_fm_write_cmd;
   __cil_tmp107 = & core;
   __cil_tmp108 = *__cil_tmp107;
-  __cil_tmp109 = (unsigned long )__cil_tmp108;
-  __cil_tmp110 = __cil_tmp109 + 416;
-  *((int (**)(struct wl1273_core * , u8 * , u16 ))__cil_tmp110) = & wl1273_fm_write_data;
+  *((int (**)(struct wl1273_core * , u8 * , u16 ))((void *)__cil_tmp108 + 416)) = & wl1273_fm_write_data;
   __cil_tmp111 = & core;
   __cil_tmp112 = *__cil_tmp111;
-  __cil_tmp113 = (unsigned long )__cil_tmp112;
-  __cil_tmp114 = __cil_tmp113 + 424;
-  *((int (**)(struct wl1273_core * , unsigned int ))__cil_tmp114) = & wl1273_fm_set_audio;
+  *((int (**)(struct wl1273_core * , unsigned int ))((void *)__cil_tmp112 + 424)) = & wl1273_fm_set_audio;
   __cil_tmp115 = & core;
   __cil_tmp116 = *__cil_tmp115;
-  __cil_tmp117 = (unsigned long )__cil_tmp116;
-  __cil_tmp118 = __cil_tmp117 + 432;
-  *((int (**)(struct wl1273_core * , unsigned int ))__cil_tmp118) = & wl1273_fm_set_volume;
+  *((int (**)(struct wl1273_core * , unsigned int ))((void *)__cil_tmp116 + 432)) = & wl1273_fm_set_volume;
   {
-  __cil_tmp119 = (unsigned long )pdata;
-  __cil_tmp120 = __cil_tmp119 + 36;
-  __cil_tmp121 = *((unsigned int *)__cil_tmp120);
+  __cil_tmp121 = *((unsigned int *)((void *)pdata + 36));
   __cil_tmp122 = (unsigned long )__cil_tmp121;
   __cil_tmp123 = __cil_tmp122 & 2UL;
   if (__cil_tmp123 != 0UL) {
@@ -3030,39 +2797,27 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
     cell = __cil_tmp128 + __cil_tmp124;
     __cil_tmp129 = & descriptor___1;
     *((char const **)__cil_tmp129) = "wl1273_core";
-    __cil_tmp130 = (unsigned long )(& descriptor___1) + 8;
-    *((char const **)__cil_tmp130) = "wl1273_core_probe";
-    __cil_tmp131 = (unsigned long )(& descriptor___1) + 16;
-    *((char const **)__cil_tmp131) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
-    __cil_tmp132 = (unsigned long )(& descriptor___1) + 24;
-    *((char const **)__cil_tmp132) = "%s: Have codec.\n";
-    __cil_tmp133 = (unsigned long )(& descriptor___1) + 32;
-    *((unsigned int *)__cil_tmp133) = 248U;
-    __cil_tmp134 = (unsigned long )(& descriptor___1) + 35;
-    *((unsigned char *)__cil_tmp134) = (unsigned char)0;
-    __cil_tmp135 = (unsigned long )(& descriptor___1) + 35;
-    __cil_tmp136 = *((unsigned char *)__cil_tmp135);
+    *((char const **)((void *)(&descriptor___1) + 8)) = "wl1273_core_probe";
+    *((char const **)((void *)(&descriptor___1) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
+    *((char const **)((void *)(&descriptor___1) + 24)) = "%s: Have codec.\n";
+    *((unsigned int *)((void *)(&descriptor___1) + 32)) = 248U;
+    *((unsigned char *)((void *)(&descriptor___1) + 35)) = (unsigned char)0;
+    __cil_tmp136 = *((unsigned char *)((void *)(&descriptor___1) + 35));
     __cil_tmp137 = (long )__cil_tmp136;
     __cil_tmp138 = __cil_tmp137 & 1L;
     tmp___2 = __builtin_expect(__cil_tmp138, 0L);
     }
     if (tmp___2 != 0L) {
       {
-      __cil_tmp139 = (unsigned long )client;
-      __cil_tmp140 = __cil_tmp139 + 40;
-      __cil_tmp141 = (struct device *)__cil_tmp140;
+      __cil_tmp141 = (struct device *)((void *)client + 40);
       __cil_tmp142 = (struct device const *)__cil_tmp141;
       __dynamic_dev_dbg(& descriptor___1, __cil_tmp142, "%s: Have codec.\n", "wl1273_core_probe");
       }
     } else {
     }
     *((char const **)cell) = "wl1273-codec";
-    __cil_tmp143 = (unsigned long )cell;
-    __cil_tmp144 = __cil_tmp143 + 56;
-    *((void **)__cil_tmp144) = (void *)(& core);
-    __cil_tmp145 = (unsigned long )cell;
-    __cil_tmp146 = __cil_tmp145 + 64;
-    *((size_t *)__cil_tmp146) = 8UL;
+    *((void **)((void *)cell + 56)) = (void *)(& core);
+    *((size_t *)((void *)cell + 64)) = 8UL;
     children = children + 1;
   } else {
   }
@@ -3070,27 +2825,19 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   {
   __cil_tmp147 = & descriptor___2;
   *((char const **)__cil_tmp147) = "wl1273_core";
-  __cil_tmp148 = (unsigned long )(& descriptor___2) + 8;
-  *((char const **)__cil_tmp148) = "wl1273_core_probe";
-  __cil_tmp149 = (unsigned long )(& descriptor___2) + 16;
-  *((char const **)__cil_tmp149) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
-  __cil_tmp150 = (unsigned long )(& descriptor___2) + 24;
-  *((char const **)__cil_tmp150) = "%s: number of children: %d.\n";
-  __cil_tmp151 = (unsigned long )(& descriptor___2) + 32;
-  *((unsigned int *)__cil_tmp151) = 256U;
-  __cil_tmp152 = (unsigned long )(& descriptor___2) + 35;
-  *((unsigned char *)__cil_tmp152) = (unsigned char)0;
-  __cil_tmp153 = (unsigned long )(& descriptor___2) + 35;
-  __cil_tmp154 = *((unsigned char *)__cil_tmp153);
+  *((char const **)((void *)(&descriptor___2) + 8)) = "wl1273_core_probe";
+  *((char const **)((void *)(&descriptor___2) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
+  *((char const **)((void *)(&descriptor___2) + 24)) = "%s: number of children: %d.\n";
+  *((unsigned int *)((void *)(&descriptor___2) + 32)) = 256U;
+  *((unsigned char *)((void *)(&descriptor___2) + 35)) = (unsigned char)0;
+  __cil_tmp154 = *((unsigned char *)((void *)(&descriptor___2) + 35));
   __cil_tmp155 = (long )__cil_tmp154;
   __cil_tmp156 = __cil_tmp155 & 1L;
   tmp___3 = __builtin_expect(__cil_tmp156, 0L);
   }
   if (tmp___3 != 0L) {
     {
-    __cil_tmp157 = (unsigned long )client;
-    __cil_tmp158 = __cil_tmp157 + 40;
-    __cil_tmp159 = (struct device *)__cil_tmp158;
+    __cil_tmp159 = (struct device *)((void *)client + 40);
     __cil_tmp160 = (struct device const *)__cil_tmp159;
     __dynamic_dev_dbg(& descriptor___2, __cil_tmp160, "%s: number of children: %d.\n",
                       "wl1273_core_probe", children);
@@ -3098,9 +2845,7 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   } else {
   }
   {
-  __cil_tmp161 = (unsigned long )client;
-  __cil_tmp162 = __cil_tmp161 + 40;
-  __cil_tmp163 = (struct device *)__cil_tmp162;
+  __cil_tmp163 = (struct device *)((void *)client + 40);
   __cil_tmp164 = & core;
   __cil_tmp165 = *__cil_tmp164;
   __cil_tmp166 = (struct mfd_cell (*)[2U])__cil_tmp165;
@@ -3115,9 +2860,7 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   return (0);
   err:
   {
-  __cil_tmp169 = (unsigned long )pdata;
-  __cil_tmp170 = __cil_tmp169 + 8;
-  __cil_tmp171 = *((void (**)(void))__cil_tmp170);
+  __cil_tmp171 = *((void (**)(void))((void *)pdata + 8));
   (*__cil_tmp171)();
   __cil_tmp172 = & core;
   __cil_tmp173 = *__cil_tmp172;
@@ -3125,27 +2868,19 @@ static int wl1273_core_probe(struct i2c_client *client , struct i2c_device_id co
   kfree(__cil_tmp174);
   __cil_tmp175 = & descriptor___3;
   *((char const **)__cil_tmp175) = "wl1273_core";
-  __cil_tmp176 = (unsigned long )(& descriptor___3) + 8;
-  *((char const **)__cil_tmp176) = "wl1273_core_probe";
-  __cil_tmp177 = (unsigned long )(& descriptor___3) + 16;
-  *((char const **)__cil_tmp177) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
-  __cil_tmp178 = (unsigned long )(& descriptor___3) + 24;
-  *((char const **)__cil_tmp178) = "%s\n";
-  __cil_tmp179 = (unsigned long )(& descriptor___3) + 32;
-  *((unsigned int *)__cil_tmp179) = 269U;
-  __cil_tmp180 = (unsigned long )(& descriptor___3) + 35;
-  *((unsigned char *)__cil_tmp180) = (unsigned char)0;
-  __cil_tmp181 = (unsigned long )(& descriptor___3) + 35;
-  __cil_tmp182 = *((unsigned char *)__cil_tmp181);
+  *((char const **)((void *)(&descriptor___3) + 8)) = "wl1273_core_probe";
+  *((char const **)((void *)(&descriptor___3) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5010/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/wl1273-core.c.p";
+  *((char const **)((void *)(&descriptor___3) + 24)) = "%s\n";
+  *((unsigned int *)((void *)(&descriptor___3) + 32)) = 269U;
+  *((unsigned char *)((void *)(&descriptor___3) + 35)) = (unsigned char)0;
+  __cil_tmp182 = *((unsigned char *)((void *)(&descriptor___3) + 35));
   __cil_tmp183 = (long )__cil_tmp182;
   __cil_tmp184 = __cil_tmp183 & 1L;
   tmp___4 = __builtin_expect(__cil_tmp184, 0L);
   }
   if (tmp___4 != 0L) {
     {
-    __cil_tmp185 = (unsigned long )client;
-    __cil_tmp186 = __cil_tmp185 + 40;
-    __cil_tmp187 = (struct device *)__cil_tmp186;
+    __cil_tmp187 = (struct device *)((void *)client + 40);
     __cil_tmp188 = (struct device const *)__cil_tmp187;
     __dynamic_dev_dbg(& descriptor___3, __cil_tmp188, "%s\n", "wl1273_core_probe");
     }

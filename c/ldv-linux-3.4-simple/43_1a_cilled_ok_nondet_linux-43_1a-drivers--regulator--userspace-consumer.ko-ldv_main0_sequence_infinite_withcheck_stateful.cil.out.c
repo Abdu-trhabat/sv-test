@@ -814,30 +814,23 @@ extern int dev_set_drvdata(struct device * , void * ) ;
 extern int dev_err(struct device  const  * , char const   *  , ...) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -873,8 +866,6 @@ static ssize_t reg_show_state(struct device *dev , struct device_attribute *attr
   int tmp___0 ;
   int tmp___1 ;
   struct device  const  *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   bool __cil_tmp11 ;
 
   {
@@ -884,9 +875,7 @@ static ssize_t reg_show_state(struct device *dev , struct device_attribute *attr
   data = (struct userspace_consumer_data *)tmp;
   }
   {
-  __cil_tmp9 = (unsigned long )data;
-  __cil_tmp10 = __cil_tmp9 + 176;
-  __cil_tmp11 = *((bool *)__cil_tmp10);
+  __cil_tmp11 = *((bool *)((void *)data + 176));
   if ((int )__cil_tmp11) {
     {
     tmp___0 = sprintf(buf, "enabled\n");
@@ -914,31 +903,15 @@ static ssize_t reg_set_state(struct device *dev , struct device_attribute *attr 
   bool tmp___3 ;
   struct device  const  *__cil_tmp13 ;
   struct device  const  *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mutex *__cil_tmp17 ;
   int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   bool __cil_tmp21 ;
   int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct regulator_bulk_data *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct regulator_bulk_data *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct device  const  *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct mutex *__cil_tmp40 ;
 
   {
@@ -979,43 +952,29 @@ static ssize_t reg_set_state(struct device *dev , struct device_attribute *attr 
     }
   }
   {
-  __cil_tmp15 = (unsigned long )data;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  __cil_tmp17 = (struct mutex *)__cil_tmp16;
+  __cil_tmp17 = (struct mutex *)((void *)data + 8);
   mutex_lock_nested(__cil_tmp17, 0U);
   }
   {
   __cil_tmp18 = (int )enabled;
-  __cil_tmp19 = (unsigned long )data;
-  __cil_tmp20 = __cil_tmp19 + 176;
-  __cil_tmp21 = *((bool *)__cil_tmp20);
+  __cil_tmp21 = *((bool *)((void *)data + 176));
   __cil_tmp22 = (int )__cil_tmp21;
   if (__cil_tmp22 != __cil_tmp18) {
     if ((int )enabled) {
       {
-      __cil_tmp23 = (unsigned long )data;
-      __cil_tmp24 = __cil_tmp23 + 180;
-      __cil_tmp25 = *((int *)__cil_tmp24);
-      __cil_tmp26 = (unsigned long )data;
-      __cil_tmp27 = __cil_tmp26 + 184;
-      __cil_tmp28 = *((struct regulator_bulk_data **)__cil_tmp27);
+      __cil_tmp25 = *((int *)((void *)data + 180));
+      __cil_tmp28 = *((struct regulator_bulk_data **)((void *)data + 184));
       ret = regulator_bulk_enable(__cil_tmp25, __cil_tmp28);
       }
     } else {
       {
-      __cil_tmp29 = (unsigned long )data;
-      __cil_tmp30 = __cil_tmp29 + 180;
-      __cil_tmp31 = *((int *)__cil_tmp30);
-      __cil_tmp32 = (unsigned long )data;
-      __cil_tmp33 = __cil_tmp32 + 184;
-      __cil_tmp34 = *((struct regulator_bulk_data **)__cil_tmp33);
+      __cil_tmp31 = *((int *)((void *)data + 180));
+      __cil_tmp34 = *((struct regulator_bulk_data **)((void *)data + 184));
       ret = regulator_bulk_disable(__cil_tmp31, __cil_tmp34);
       }
     }
     if (ret == 0) {
-      __cil_tmp35 = (unsigned long )data;
-      __cil_tmp36 = __cil_tmp35 + 176;
-      *((bool *)__cil_tmp36) = enabled;
+      *((bool *)((void *)data + 176)) = enabled;
     } else {
       {
       __cil_tmp37 = (struct device  const  *)dev;
@@ -1027,9 +986,7 @@ static ssize_t reg_set_state(struct device *dev , struct device_attribute *attr 
   }
   }
   {
-  __cil_tmp38 = (unsigned long )data;
-  __cil_tmp39 = __cil_tmp38 + 8;
-  __cil_tmp40 = (struct mutex *)__cil_tmp39;
+  __cil_tmp40 = (struct mutex *)((void *)data + 8);
   mutex_unlock(__cil_tmp40);
   }
   return ((ssize_t )count);
@@ -1055,8 +1012,6 @@ static int regulator_userspace_consumer_probe(struct platform_device *pdev )
   void *tmp ;
   struct lock_class_key __key ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   struct regulator_userspace_consumer_data *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
@@ -1064,69 +1019,29 @@ static int regulator_userspace_consumer_probe(struct platform_device *pdev )
   struct userspace_consumer_data *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct mutex *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct device *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct regulator_bulk_data *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
   struct device  const  *__cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct kobject *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   bool __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct regulator_bulk_data *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct device *__cil_tmp56 ;
   struct device  const  *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   void *__cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct kobject *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   int __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct regulator_bulk_data *__cil_tmp72 ;
   void const   *__cil_tmp73 ;
 
   {
   __cil_tmp7 = 16 + 280;
-  __cil_tmp8 = (unsigned long )pdev;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)pdev + __cil_tmp7));
   pdata = (struct regulator_userspace_consumer_data *)__cil_tmp10;
   {
   __cil_tmp11 = (struct regulator_userspace_consumer_data *)0;
@@ -1154,36 +1069,18 @@ static int regulator_userspace_consumer_probe(struct platform_device *pdev )
   }
   {
   *((char const   **)drvdata) = *((char const   **)pdata);
-  __cil_tmp17 = (unsigned long )drvdata;
-  __cil_tmp18 = __cil_tmp17 + 180;
-  __cil_tmp19 = (unsigned long )pdata;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  *((int *)__cil_tmp18) = *((int *)__cil_tmp20);
-  __cil_tmp21 = (unsigned long )drvdata;
-  __cil_tmp22 = __cil_tmp21 + 184;
-  __cil_tmp23 = (unsigned long )pdata;
-  __cil_tmp24 = __cil_tmp23 + 16;
-  *((struct regulator_bulk_data **)__cil_tmp22) = *((struct regulator_bulk_data **)__cil_tmp24);
-  __cil_tmp25 = (unsigned long )drvdata;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  __cil_tmp27 = (struct mutex *)__cil_tmp26;
+  *((int *)((void *)drvdata + 180)) = *((int *)((void *)pdata + 8));
+  *((struct regulator_bulk_data **)((void *)drvdata + 184)) = *((struct regulator_bulk_data **)((void *)pdata + 16));
+  __cil_tmp27 = (struct mutex *)((void *)drvdata + 8);
   __mutex_init(__cil_tmp27, "&drvdata->lock", & __key);
-  __cil_tmp28 = (unsigned long )pdev;
-  __cil_tmp29 = __cil_tmp28 + 16;
-  __cil_tmp30 = (struct device *)__cil_tmp29;
-  __cil_tmp31 = (unsigned long )drvdata;
-  __cil_tmp32 = __cil_tmp31 + 180;
-  __cil_tmp33 = *((int *)__cil_tmp32);
-  __cil_tmp34 = (unsigned long )drvdata;
-  __cil_tmp35 = __cil_tmp34 + 184;
-  __cil_tmp36 = *((struct regulator_bulk_data **)__cil_tmp35);
+  __cil_tmp30 = (struct device *)((void *)pdev + 16);
+  __cil_tmp33 = *((int *)((void *)drvdata + 180));
+  __cil_tmp36 = *((struct regulator_bulk_data **)((void *)drvdata + 184));
   ret = regulator_bulk_get(__cil_tmp30, __cil_tmp33, __cil_tmp36);
   }
   if (ret != 0) {
     {
-    __cil_tmp37 = (unsigned long )pdev;
-    __cil_tmp38 = __cil_tmp37 + 16;
-    __cil_tmp39 = (struct device *)__cil_tmp38;
+    __cil_tmp39 = (struct device *)((void *)pdev + 16);
     __cil_tmp40 = (struct device  const  *)__cil_tmp39;
     dev_err(__cil_tmp40, "Failed to get supplies: %d\n", ret);
     }
@@ -1193,9 +1090,7 @@ static int regulator_userspace_consumer_probe(struct platform_device *pdev )
   }
   {
   __cil_tmp41 = 16 + 16;
-  __cil_tmp42 = (unsigned long )pdev;
-  __cil_tmp43 = __cil_tmp42 + __cil_tmp41;
-  __cil_tmp44 = (struct kobject *)__cil_tmp43;
+  __cil_tmp44 = (struct kobject *)((void *)pdev + __cil_tmp41);
   ret = sysfs_create_group(__cil_tmp44, & attr_group);
   }
   if (ret != 0) {
@@ -1204,24 +1099,16 @@ static int regulator_userspace_consumer_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp45 = (unsigned long )pdata;
-  __cil_tmp46 = __cil_tmp45 + 24;
-  __cil_tmp47 = *((bool *)__cil_tmp46);
+  __cil_tmp47 = *((bool *)((void *)pdata + 24));
   if ((int )__cil_tmp47) {
     {
-    __cil_tmp48 = (unsigned long )drvdata;
-    __cil_tmp49 = __cil_tmp48 + 180;
-    __cil_tmp50 = *((int *)__cil_tmp49);
-    __cil_tmp51 = (unsigned long )drvdata;
-    __cil_tmp52 = __cil_tmp51 + 184;
-    __cil_tmp53 = *((struct regulator_bulk_data **)__cil_tmp52);
+    __cil_tmp50 = *((int *)((void *)drvdata + 180));
+    __cil_tmp53 = *((struct regulator_bulk_data **)((void *)drvdata + 184));
     ret = regulator_bulk_enable(__cil_tmp50, __cil_tmp53);
     }
     if (ret != 0) {
       {
-      __cil_tmp54 = (unsigned long )pdev;
-      __cil_tmp55 = __cil_tmp54 + 16;
-      __cil_tmp56 = (struct device *)__cil_tmp55;
+      __cil_tmp56 = (struct device *)((void *)pdev + 16);
       __cil_tmp57 = (struct device  const  *)__cil_tmp56;
       dev_err(__cil_tmp57, "Failed to set initial state: %d\n", ret);
       }
@@ -1234,11 +1121,7 @@ static int regulator_userspace_consumer_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp58 = (unsigned long )drvdata;
-  __cil_tmp59 = __cil_tmp58 + 176;
-  __cil_tmp60 = (unsigned long )pdata;
-  __cil_tmp61 = __cil_tmp60 + 24;
-  *((bool *)__cil_tmp59) = *((bool *)__cil_tmp61);
+  *((bool *)((void *)drvdata + 176)) = *((bool *)((void *)pdata + 24));
   __cil_tmp62 = (void *)drvdata;
   platform_set_drvdata(pdev, __cil_tmp62);
   }
@@ -1246,19 +1129,13 @@ static int regulator_userspace_consumer_probe(struct platform_device *pdev )
   err_enable: 
   {
   __cil_tmp63 = 16 + 16;
-  __cil_tmp64 = (unsigned long )pdev;
-  __cil_tmp65 = __cil_tmp64 + __cil_tmp63;
-  __cil_tmp66 = (struct kobject *)__cil_tmp65;
+  __cil_tmp66 = (struct kobject *)((void *)pdev + __cil_tmp63);
   sysfs_remove_group(__cil_tmp66, & attr_group);
   }
   err_create_attrs: 
   {
-  __cil_tmp67 = (unsigned long )drvdata;
-  __cil_tmp68 = __cil_tmp67 + 180;
-  __cil_tmp69 = *((int *)__cil_tmp68);
-  __cil_tmp70 = (unsigned long )drvdata;
-  __cil_tmp71 = __cil_tmp70 + 184;
-  __cil_tmp72 = *((struct regulator_bulk_data **)__cil_tmp71);
+  __cil_tmp69 = *((int *)((void *)drvdata + 180));
+  __cil_tmp72 = *((struct regulator_bulk_data **)((void *)drvdata + 184));
   regulator_bulk_free(__cil_tmp69, __cil_tmp72);
   }
   err_alloc_supplies: 
@@ -1274,23 +1151,11 @@ static int regulator_userspace_consumer_remove(struct platform_device *pdev )
   void *tmp ;
   struct platform_device  const  *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct kobject *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   bool __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct regulator_bulk_data *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct regulator_bulk_data *__cil_tmp23 ;
   void const   *__cil_tmp24 ;
 
@@ -1300,23 +1165,15 @@ static int regulator_userspace_consumer_remove(struct platform_device *pdev )
   tmp = platform_get_drvdata(__cil_tmp4);
   data = (struct userspace_consumer_data *)tmp;
   __cil_tmp5 = 16 + 16;
-  __cil_tmp6 = (unsigned long )pdev;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  __cil_tmp8 = (struct kobject *)__cil_tmp7;
+  __cil_tmp8 = (struct kobject *)((void *)pdev + __cil_tmp5);
   sysfs_remove_group(__cil_tmp8, & attr_group);
   }
   {
-  __cil_tmp9 = (unsigned long )data;
-  __cil_tmp10 = __cil_tmp9 + 176;
-  __cil_tmp11 = *((bool *)__cil_tmp10);
+  __cil_tmp11 = *((bool *)((void *)data + 176));
   if ((int )__cil_tmp11) {
     {
-    __cil_tmp12 = (unsigned long )data;
-    __cil_tmp13 = __cil_tmp12 + 180;
-    __cil_tmp14 = *((int *)__cil_tmp13);
-    __cil_tmp15 = (unsigned long )data;
-    __cil_tmp16 = __cil_tmp15 + 184;
-    __cil_tmp17 = *((struct regulator_bulk_data **)__cil_tmp16);
+    __cil_tmp14 = *((int *)((void *)data + 180));
+    __cil_tmp17 = *((struct regulator_bulk_data **)((void *)data + 184));
     regulator_bulk_disable(__cil_tmp14, __cil_tmp17);
     }
   } else {
@@ -1324,12 +1181,8 @@ static int regulator_userspace_consumer_remove(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp18 = (unsigned long )data;
-  __cil_tmp19 = __cil_tmp18 + 180;
-  __cil_tmp20 = *((int *)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )data;
-  __cil_tmp22 = __cil_tmp21 + 184;
-  __cil_tmp23 = *((struct regulator_bulk_data **)__cil_tmp22);
+  __cil_tmp20 = *((int *)((void *)data + 180));
+  __cil_tmp23 = *((struct regulator_bulk_data **)((void *)data + 184));
   regulator_bulk_free(__cil_tmp20, __cil_tmp23);
   __cil_tmp24 = (void const   *)data;
   kfree(__cil_tmp24);

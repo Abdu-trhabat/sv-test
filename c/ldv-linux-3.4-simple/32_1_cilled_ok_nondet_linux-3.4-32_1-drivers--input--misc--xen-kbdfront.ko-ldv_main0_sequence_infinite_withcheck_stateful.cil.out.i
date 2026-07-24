@@ -2322,103 +2322,57 @@ static irqreturn_t input_handler(int rq , void *dev_id )
   struct input_dev *dev ;
   int tmp___0 ;
   int tmp___2 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   uint32_t __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   char *__cil_tmp19 ;
   char *__cil_tmp20 ;
   union xenkbd_in_event *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   uint8_t __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   int32_t __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int32_t __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   int32_t __cil_tmp39 ;
   int32_t __cil_tmp40 ;
   void *__cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   uint32_t __cil_tmp45 ;
   int __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   struct input_dev *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long *__cil_tmp52 ;
   unsigned long const volatile *__cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   uint32_t __cil_tmp57 ;
   int __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   struct input_dev *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned long *__cil_tmp66 ;
   unsigned long const volatile *__cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   uint32_t __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   uint8_t __cil_tmp77 ;
   int __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   uint32_t __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   int32_t __cil_tmp86 ;
   unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   int32_t __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   int32_t __cil_tmp97 ;
   int32_t __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
   int __cil_tmp101 ;
   {
   info = (struct xenkbd_info *)dev_id;
-  __cil_tmp13 = (unsigned long )info;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  page = *((struct xenkbd_page **)__cil_tmp14);
-  __cil_tmp15 = (unsigned long )page;
-  __cil_tmp16 = __cil_tmp15 + 4;
-  prod = *((uint32_t *)__cil_tmp16);
+  page = *((struct xenkbd_page **)((void *)info + 16));
+  prod = *((uint32_t *)((void *)page + 4));
   {
   __cil_tmp17 = *((uint32_t *)page);
   if (prod == __cil_tmp17) {
@@ -2440,9 +2394,7 @@ static irqreturn_t input_handler(int rq , void *dev_id )
     __cil_tmp20 = __cil_tmp19 + 1024;
     __cil_tmp21 = (union xenkbd_in_event *)__cil_tmp20;
     event = __cil_tmp21 + __cil_tmp18;
-    __cil_tmp22 = (unsigned long )info;
-    __cil_tmp23 = __cil_tmp22 + 8;
-    dev = *((struct input_dev **)__cil_tmp23);
+    dev = *((struct input_dev **)((void *)info + 8));
     {
     __cil_tmp24 = *((uint8_t *)event);
     if ((int )__cil_tmp24 == 1) {
@@ -2458,26 +2410,18 @@ static irqreturn_t input_handler(int rq , void *dev_id )
       case_1:
       {
       __cil_tmp25 = 0 + 4;
-      __cil_tmp26 = (unsigned long )event;
-      __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-      __cil_tmp28 = *((int32_t *)__cil_tmp27);
+      __cil_tmp28 = *((int32_t *)((void *)event + __cil_tmp25));
       input_report_rel(dev, 0U, __cil_tmp28);
       __cil_tmp29 = 0 + 8;
-      __cil_tmp30 = (unsigned long )event;
-      __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-      __cil_tmp32 = *((int32_t *)__cil_tmp31);
+      __cil_tmp32 = *((int32_t *)((void *)event + __cil_tmp29));
       input_report_rel(dev, 1U, __cil_tmp32);
       }
       {
       __cil_tmp33 = 0 + 12;
-      __cil_tmp34 = (unsigned long )event;
-      __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-      if (*((int32_t *)__cil_tmp35)) {
+      if (*((int32_t *)((void *)event + __cil_tmp33))) {
         {
         __cil_tmp36 = 0 + 12;
-        __cil_tmp37 = (unsigned long )event;
-        __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-        __cil_tmp39 = *((int32_t *)__cil_tmp38);
+        __cil_tmp39 = *((int32_t *)((void *)event + __cil_tmp36));
         __cil_tmp40 = - __cil_tmp39;
         input_report_rel(dev, 8U, __cil_tmp40);
         }
@@ -2490,16 +2434,12 @@ static irqreturn_t input_handler(int rq , void *dev_id )
       __cil_tmp41 = (void *)0;
       dev = (struct input_dev *)__cil_tmp41;
       __cil_tmp42 = 0 + 4;
-      __cil_tmp43 = (unsigned long )event;
-      __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
-      __cil_tmp45 = *((uint32_t *)__cil_tmp44);
+      __cil_tmp45 = *((uint32_t *)((void *)event + __cil_tmp42));
       __cil_tmp46 = (int )__cil_tmp45;
       __cil_tmp47 = 0 * 8UL;
       __cil_tmp48 = 48 + __cil_tmp47;
       __cil_tmp49 = *((struct input_dev **)info);
-      __cil_tmp50 = (unsigned long )__cil_tmp49;
-      __cil_tmp51 = __cil_tmp50 + __cil_tmp48;
-      __cil_tmp52 = (unsigned long *)__cil_tmp51;
+      __cil_tmp52 = (unsigned long *)((void *)__cil_tmp49 + __cil_tmp48);
       __cil_tmp53 = (unsigned long const volatile *)__cil_tmp52;
       tmp___0 = variable_test_bit(__cil_tmp46, __cil_tmp53);
       }
@@ -2509,46 +2449,32 @@ static irqreturn_t input_handler(int rq , void *dev_id )
       }
       {
       __cil_tmp54 = 0 + 4;
-      __cil_tmp55 = (unsigned long )event;
-      __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-      __cil_tmp57 = *((uint32_t *)__cil_tmp56);
+      __cil_tmp57 = *((uint32_t *)((void *)event + __cil_tmp54));
       __cil_tmp58 = (int )__cil_tmp57;
       __cil_tmp59 = 0 * 8UL;
       __cil_tmp60 = 48 + __cil_tmp59;
-      __cil_tmp61 = (unsigned long )info;
-      __cil_tmp62 = __cil_tmp61 + 8;
-      __cil_tmp63 = *((struct input_dev **)__cil_tmp62);
-      __cil_tmp64 = (unsigned long )__cil_tmp63;
-      __cil_tmp65 = __cil_tmp64 + __cil_tmp60;
-      __cil_tmp66 = (unsigned long *)__cil_tmp65;
+      __cil_tmp63 = *((struct input_dev **)((void *)info + 8));
+      __cil_tmp66 = (unsigned long *)((void *)__cil_tmp63 + __cil_tmp60);
       __cil_tmp67 = (unsigned long const volatile *)__cil_tmp66;
       tmp___2 = variable_test_bit(__cil_tmp58, __cil_tmp67);
       }
       if (tmp___2) {
-        __cil_tmp68 = (unsigned long )info;
-        __cil_tmp69 = __cil_tmp68 + 8;
-        dev = *((struct input_dev **)__cil_tmp69);
+        dev = *((struct input_dev **)((void *)info + 8));
       } else {
       }
       if (dev) {
         {
         __cil_tmp70 = 0 + 4;
-        __cil_tmp71 = (unsigned long )event;
-        __cil_tmp72 = __cil_tmp71 + __cil_tmp70;
-        __cil_tmp73 = *((uint32_t *)__cil_tmp72);
+        __cil_tmp73 = *((uint32_t *)((void *)event + __cil_tmp70));
         __cil_tmp74 = 0 + 1;
-        __cil_tmp75 = (unsigned long )event;
-        __cil_tmp76 = __cil_tmp75 + __cil_tmp74;
-        __cil_tmp77 = *((uint8_t *)__cil_tmp76);
+        __cil_tmp77 = *((uint8_t *)((void *)event + __cil_tmp74));
         __cil_tmp78 = (int )__cil_tmp77;
         input_report_key(dev, __cil_tmp73, __cil_tmp78);
         }
       } else {
         {
         __cil_tmp79 = 0 + 4;
-        __cil_tmp80 = (unsigned long )event;
-        __cil_tmp81 = __cil_tmp80 + __cil_tmp79;
-        __cil_tmp82 = *((uint32_t *)__cil_tmp81);
+        __cil_tmp82 = *((uint32_t *)((void *)event + __cil_tmp79));
         printk("<4>xen_kbdfront: unhandled keycode 0x%x\n", __cil_tmp82);
         }
       }
@@ -2556,26 +2482,18 @@ static irqreturn_t input_handler(int rq , void *dev_id )
       case_4:
       {
       __cil_tmp83 = 0 + 4;
-      __cil_tmp84 = (unsigned long )event;
-      __cil_tmp85 = __cil_tmp84 + __cil_tmp83;
-      __cil_tmp86 = *((int32_t *)__cil_tmp85);
+      __cil_tmp86 = *((int32_t *)((void *)event + __cil_tmp83));
       input_report_abs(dev, 0U, __cil_tmp86);
       __cil_tmp87 = 0 + 8;
-      __cil_tmp88 = (unsigned long )event;
-      __cil_tmp89 = __cil_tmp88 + __cil_tmp87;
-      __cil_tmp90 = *((int32_t *)__cil_tmp89);
+      __cil_tmp90 = *((int32_t *)((void *)event + __cil_tmp87));
       input_report_abs(dev, 1U, __cil_tmp90);
       }
       {
       __cil_tmp91 = 0 + 12;
-      __cil_tmp92 = (unsigned long )event;
-      __cil_tmp93 = __cil_tmp92 + __cil_tmp91;
-      if (*((int32_t *)__cil_tmp93)) {
+      if (*((int32_t *)((void *)event + __cil_tmp91))) {
         {
         __cil_tmp94 = 0 + 12;
-        __cil_tmp95 = (unsigned long )event;
-        __cil_tmp96 = __cil_tmp95 + __cil_tmp94;
-        __cil_tmp97 = *((int32_t *)__cil_tmp96);
+        __cil_tmp97 = *((int32_t *)((void *)event + __cil_tmp94));
         __cil_tmp98 = - __cil_tmp97;
         input_report_rel(dev, 8U, __cil_tmp98);
         }
@@ -2600,9 +2518,7 @@ static irqreturn_t input_handler(int rq , void *dev_id )
   {
   __asm__ volatile ("mfence": : : "memory");
   *((uint32_t *)page) = cons;
-  __cil_tmp99 = (unsigned long )info;
-  __cil_tmp100 = __cil_tmp99 + 28;
-  __cil_tmp101 = *((int *)__cil_tmp100);
+  __cil_tmp101 = *((int *)((void *)info + 28));
   notify_remote_via_irq(__cil_tmp101);
   }
   return ((irqreturn_t )1);
@@ -2622,107 +2538,53 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
   struct xenbus_transaction __constr_expr_0 ;
   int tmp___1 ;
   struct xenbus_transaction __constr_expr_1 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   void *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   char *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   char const *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   void *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct xenkbd_page *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   char const *__cil_tmp40 ;
   int *__cil_tmp41 ;
   int *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   char const *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   char *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned long *__cil_tmp65 ;
   unsigned long volatile *__cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned long *__cil_tmp71 ;
   unsigned long volatile *__cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   unsigned long *__cil_tmp77 ;
   unsigned long volatile *__cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   char *__cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   int *__cil_tmp94 ;
   unsigned long __cil_tmp95 ;
   unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   unsigned long *__cil_tmp99 ;
   unsigned long volatile *__cil_tmp100 ;
   unsigned long __cil_tmp101 ;
   unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   unsigned long *__cil_tmp105 ;
   unsigned long volatile *__cil_tmp106 ;
   unsigned long __cil_tmp107 ;
   unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   unsigned long *__cil_tmp111 ;
   unsigned long volatile *__cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   u32 __constr_expr_0_id115 ;
   u32 __constr_expr_1_id116 ;
   {
@@ -2738,39 +2600,23 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
   } else {
   }
   {
-  __cil_tmp14 = (unsigned long )dev;
-  __cil_tmp15 = __cil_tmp14 + 64;
-  __cil_tmp16 = (struct device *)__cil_tmp15;
+  __cil_tmp16 = (struct device *)((void *)dev + 64);
   __cil_tmp17 = (void *)info;
   dev_set_drvdata(__cil_tmp16, __cil_tmp17);
-  __cil_tmp18 = (unsigned long )info;
-  __cil_tmp19 = __cil_tmp18 + 32;
-  *((struct xenbus_device **)__cil_tmp19) = dev;
-  __cil_tmp20 = (unsigned long )info;
-  __cil_tmp21 = __cil_tmp20 + 28;
-  *((int *)__cil_tmp21) = -1;
-  __cil_tmp22 = (unsigned long )info;
-  __cil_tmp23 = __cil_tmp22 + 24;
-  *((int *)__cil_tmp23) = -1;
+  *((struct xenbus_device **)((void *)info + 32)) = dev;
+  *((int *)((void *)info + 28)) = -1;
+  *((int *)((void *)info + 24)) = -1;
   __cil_tmp24 = 0 * 1UL;
   __cil_tmp25 = 40 + __cil_tmp24;
-  __cil_tmp26 = (unsigned long )info;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  __cil_tmp28 = (char *)__cil_tmp27;
-  __cil_tmp29 = (unsigned long )dev;
-  __cil_tmp30 = __cil_tmp29 + 8;
-  __cil_tmp31 = *((char const **)__cil_tmp30);
+  __cil_tmp28 = (char *)((void *)info + __cil_tmp25);
+  __cil_tmp31 = *((char const **)((void *)dev + 8));
   snprintf(__cil_tmp28, 32UL, "xenbus/%s", __cil_tmp31);
   tmp___0 = __get_free_pages(32976U, 0U);
-  __cil_tmp32 = (unsigned long )info;
-  __cil_tmp33 = __cil_tmp32 + 16;
   __cil_tmp34 = (void *)tmp___0;
-  *((struct xenkbd_page **)__cil_tmp33) = (struct xenkbd_page *)__cil_tmp34;
+  *((struct xenkbd_page **)((void *)info + 16)) = (struct xenkbd_page *)__cil_tmp34;
   }
   {
-  __cil_tmp35 = (unsigned long )info;
-  __cil_tmp36 = __cil_tmp35 + 16;
-  __cil_tmp37 = *((struct xenkbd_page **)__cil_tmp36);
+  __cil_tmp37 = *((struct xenkbd_page **)((void *)info + 16));
   if (! __cil_tmp37) {
     goto error_nomem;
   } else {
@@ -2778,9 +2624,7 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
   }
   {
   __constr_expr_0_id115 = (u32 )0;
-  __cil_tmp38 = (unsigned long )dev;
-  __cil_tmp39 = __cil_tmp38 + 16;
-  __cil_tmp40 = *((char const **)__cil_tmp39);
+  __cil_tmp40 = *((char const **)((void *)dev + 16));
   tmp___1 = xenbus_scanf(__constr_expr_0_id115, __cil_tmp40, "feature-abs-pointer",
                          "%d", & abs);
   }
@@ -2794,9 +2638,7 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
   if (*__cil_tmp42) {
     {
     __constr_expr_1_id116 = (u32 )0;
-    __cil_tmp43 = (unsigned long )dev;
-    __cil_tmp44 = __cil_tmp43 + 8;
-    __cil_tmp45 = *((char const **)__cil_tmp44);
+    __cil_tmp45 = *((char const **)((void *)dev + 8));
     xenbus_printf(__constr_expr_1_id116, __cil_tmp45, "request-abs-pointer", "1");
     }
   } else {
@@ -2811,30 +2653,18 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
   }
   {
   *((char const **)kbd) = "Xen Virtual Keyboard";
-  __cil_tmp46 = (unsigned long )kbd;
-  __cil_tmp47 = __cil_tmp46 + 8;
   __cil_tmp48 = 0 * 1UL;
   __cil_tmp49 = 40 + __cil_tmp48;
-  __cil_tmp50 = (unsigned long )info;
-  __cil_tmp51 = __cil_tmp50 + __cil_tmp49;
-  __cil_tmp52 = (char *)__cil_tmp51;
-  *((char const **)__cil_tmp47) = (char const *)__cil_tmp52;
-  __cil_tmp53 = (unsigned long )kbd;
-  __cil_tmp54 = __cil_tmp53 + 24;
-  *((__u16 *)__cil_tmp54) = (__u16 )1;
+  __cil_tmp52 = (char *)((void *)info + __cil_tmp49);
+  *((char const **)((void *)kbd + 8)) = (char const *)__cil_tmp52;
+  *((__u16 *)((void *)kbd + 24)) = (__u16 )1;
   __cil_tmp55 = 24 + 2;
-  __cil_tmp56 = (unsigned long )kbd;
-  __cil_tmp57 = __cil_tmp56 + __cil_tmp55;
-  *((__u16 *)__cil_tmp57) = (__u16 )22611;
+  *((__u16 *)((void *)kbd + __cil_tmp55)) = (__u16 )22611;
   __cil_tmp58 = 24 + 4;
-  __cil_tmp59 = (unsigned long )kbd;
-  __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
-  *((__u16 *)__cil_tmp60) = (__u16 )65535;
+  *((__u16 *)((void *)kbd + __cil_tmp58)) = (__u16 )65535;
   __cil_tmp61 = 0 * 8UL;
   __cil_tmp62 = 40 + __cil_tmp61;
-  __cil_tmp63 = (unsigned long )kbd;
-  __cil_tmp64 = __cil_tmp63 + __cil_tmp62;
-  __cil_tmp65 = (unsigned long *)__cil_tmp64;
+  __cil_tmp65 = (unsigned long *)((void *)kbd + __cil_tmp62);
   __cil_tmp66 = (unsigned long volatile *)__cil_tmp65;
   __set_bit(1, __cil_tmp66);
   i = 1;
@@ -2849,9 +2679,7 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
     {
     __cil_tmp67 = 0 * 8UL;
     __cil_tmp68 = 48 + __cil_tmp67;
-    __cil_tmp69 = (unsigned long )kbd;
-    __cil_tmp70 = __cil_tmp69 + __cil_tmp68;
-    __cil_tmp71 = (unsigned long *)__cil_tmp70;
+    __cil_tmp71 = (unsigned long *)((void *)kbd + __cil_tmp68);
     __cil_tmp72 = (unsigned long volatile *)__cil_tmp71;
     __set_bit(i, __cil_tmp72);
     i = i + 1;
@@ -2870,9 +2698,7 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
     {
     __cil_tmp73 = 0 * 8UL;
     __cil_tmp74 = 48 + __cil_tmp73;
-    __cil_tmp75 = (unsigned long )kbd;
-    __cil_tmp76 = __cil_tmp75 + __cil_tmp74;
-    __cil_tmp77 = (unsigned long *)__cil_tmp76;
+    __cil_tmp77 = (unsigned long *)((void *)kbd + __cil_tmp74);
     __cil_tmp78 = (unsigned long volatile *)__cil_tmp77;
     __set_bit(i, __cil_tmp78);
     i = i + 1;
@@ -2900,34 +2726,22 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
   } else {
   }
   *((char const **)ptr) = "Xen Virtual Pointer";
-  __cil_tmp79 = (unsigned long )ptr;
-  __cil_tmp80 = __cil_tmp79 + 8;
   __cil_tmp81 = 0 * 1UL;
   __cil_tmp82 = 40 + __cil_tmp81;
-  __cil_tmp83 = (unsigned long )info;
-  __cil_tmp84 = __cil_tmp83 + __cil_tmp82;
-  __cil_tmp85 = (char *)__cil_tmp84;
-  *((char const **)__cil_tmp80) = (char const *)__cil_tmp85;
-  __cil_tmp86 = (unsigned long )ptr;
-  __cil_tmp87 = __cil_tmp86 + 24;
-  *((__u16 *)__cil_tmp87) = (__u16 )1;
+  __cil_tmp85 = (char *)((void *)info + __cil_tmp82);
+  *((char const **)((void *)ptr + 8)) = (char const *)__cil_tmp85;
+  *((__u16 *)((void *)ptr + 24)) = (__u16 )1;
   __cil_tmp88 = 24 + 2;
-  __cil_tmp89 = (unsigned long )ptr;
-  __cil_tmp90 = __cil_tmp89 + __cil_tmp88;
-  *((__u16 *)__cil_tmp90) = (__u16 )22611;
+  *((__u16 *)((void *)ptr + __cil_tmp88)) = (__u16 )22611;
   __cil_tmp91 = 24 + 4;
-  __cil_tmp92 = (unsigned long )ptr;
-  __cil_tmp93 = __cil_tmp92 + __cil_tmp91;
-  *((__u16 *)__cil_tmp93) = (__u16 )65534;
+  *((__u16 *)((void *)ptr + __cil_tmp91)) = (__u16 )65534;
   {
   __cil_tmp94 = & abs;
   if (*__cil_tmp94) {
     {
     __cil_tmp95 = 0 * 8UL;
     __cil_tmp96 = 40 + __cil_tmp95;
-    __cil_tmp97 = (unsigned long )ptr;
-    __cil_tmp98 = __cil_tmp97 + __cil_tmp96;
-    __cil_tmp99 = (unsigned long *)__cil_tmp98;
+    __cil_tmp99 = (unsigned long *)((void *)ptr + __cil_tmp96);
     __cil_tmp100 = (unsigned long volatile *)__cil_tmp99;
     __set_bit(3, __cil_tmp100);
     input_set_abs_params(ptr, 0U, 0, 800, 0, 0);
@@ -2944,9 +2758,7 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
   input_set_capability(ptr, 2U, 8U);
   __cil_tmp101 = 0 * 8UL;
   __cil_tmp102 = 40 + __cil_tmp101;
-  __cil_tmp103 = (unsigned long )ptr;
-  __cil_tmp104 = __cil_tmp103 + __cil_tmp102;
-  __cil_tmp105 = (unsigned long *)__cil_tmp104;
+  __cil_tmp105 = (unsigned long *)((void *)ptr + __cil_tmp102);
   __cil_tmp106 = (unsigned long volatile *)__cil_tmp105;
   __set_bit(1, __cil_tmp106);
   i = 272;
@@ -2961,9 +2773,7 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
     {
     __cil_tmp107 = 0 * 8UL;
     __cil_tmp108 = 48 + __cil_tmp107;
-    __cil_tmp109 = (unsigned long )ptr;
-    __cil_tmp110 = __cil_tmp109 + __cil_tmp108;
-    __cil_tmp111 = (unsigned long *)__cil_tmp110;
+    __cil_tmp111 = (unsigned long *)((void *)ptr + __cil_tmp108);
     __cil_tmp112 = (unsigned long volatile *)__cil_tmp111;
     __set_bit(i, __cil_tmp112);
     i = i + 1;
@@ -2983,9 +2793,7 @@ static int xenkbd_probe(struct xenbus_device *dev , struct xenbus_device_id cons
   } else {
   }
   {
-  __cil_tmp113 = (unsigned long )info;
-  __cil_tmp114 = __cil_tmp113 + 8;
-  *((struct input_dev **)__cil_tmp114) = ptr;
+  *((struct input_dev **)((void *)info + 8)) = ptr;
   ret = xenkbd_connect_backend(dev, info);
   }
   if (ret < 0) {
@@ -3009,27 +2817,19 @@ static int xenkbd_resume(struct xenbus_device *dev )
 { struct xenkbd_info *info ;
   void *tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct device const *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct xenkbd_page *__cil_tmp11 ;
   void *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   {
   {
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + 64;
-  __cil_tmp7 = (struct device *)__cil_tmp6;
+  __cil_tmp7 = (struct device *)((void *)dev + 64);
   __cil_tmp8 = (struct device const *)__cil_tmp7;
   tmp = dev_get_drvdata(__cil_tmp8);
   info = (struct xenkbd_info *)tmp;
   xenkbd_disconnect_backend(info);
-  __cil_tmp9 = (unsigned long )info;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = *((struct xenkbd_page **)__cil_tmp10);
+  __cil_tmp11 = *((struct xenkbd_page **)((void *)info + 16));
   __cil_tmp12 = (void *)__cil_tmp11;
   __cil_tmp13 = 1UL << 12;
   memset(__cil_tmp12, 0, __cil_tmp13);
@@ -3041,26 +2841,16 @@ static int xenkbd_resume(struct xenbus_device *dev )
 static int xenkbd_remove(struct xenbus_device *dev )
 { struct xenkbd_info *info ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device const *__cil_tmp7 ;
   struct input_dev *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct input_dev *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct xenkbd_page *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   void const *__cil_tmp18 ;
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 64;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)dev + 64);
   __cil_tmp7 = (struct device const *)__cil_tmp6;
   tmp = dev_get_drvdata(__cil_tmp7);
   info = (struct xenkbd_info *)tmp;
@@ -3074,22 +2864,16 @@ static int xenkbd_remove(struct xenbus_device *dev )
   } else {
   }
   {
-  __cil_tmp9 = (unsigned long )info;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  if (*((struct input_dev **)__cil_tmp10)) {
+  if (*((struct input_dev **)((void *)info + 8))) {
     {
-    __cil_tmp11 = (unsigned long )info;
-    __cil_tmp12 = __cil_tmp11 + 8;
-    __cil_tmp13 = *((struct input_dev **)__cil_tmp12);
+    __cil_tmp13 = *((struct input_dev **)((void *)info + 8));
     input_unregister_device(__cil_tmp13);
     }
   } else {
   }
   }
   {
-  __cil_tmp14 = (unsigned long )info;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((struct xenkbd_page **)__cil_tmp15);
+  __cil_tmp16 = *((struct xenkbd_page **)((void *)info + 16));
   __cil_tmp17 = (unsigned long )__cil_tmp16;
   free_pages(__cil_tmp17, 0U);
   __cil_tmp18 = (void const *)info;
@@ -3106,46 +2890,28 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
   unsigned long tmp___0 ;
   unsigned long tmp___1 ;
   unsigned long tmp___2 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct xenkbd_page *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   domid_t __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int *__cil_tmp21 ;
   int __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   char const *__cil_tmp24 ;
   void *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct xenkbd_page *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   struct xenbus_transaction *__cil_tmp33 ;
   struct xenbus_transaction __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   char const *__cil_tmp37 ;
   struct xenbus_transaction *__cil_tmp38 ;
   struct xenbus_transaction __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   char const *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   int __cil_tmp45 ;
   struct xenbus_transaction *__cil_tmp46 ;
   struct xenbus_transaction __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   char const *__cil_tmp50 ;
   int *__cil_tmp51 ;
   int __cil_tmp52 ;
@@ -3154,21 +2920,13 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
   enum xenbus_state __cil_tmp55 ;
   struct xenbus_transaction *__cil_tmp56 ;
   struct xenbus_transaction __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   int __cil_tmp60 ;
   unsigned int __cil_tmp61 ;
   void *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   int *__cil_tmp65 ;
   int __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   int __cil_tmp69 ;
   grant_ref_t __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   u32 __cil_tmp34_id73 ;
   u32 __cil_tmp39_id74 ;
   u32 __cil_tmp47_id75 ;
@@ -3181,16 +2939,12 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
   u32 __cil_tmp82 ;
   {
   {
-  __cil_tmp10 = (unsigned long )info;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = *((struct xenkbd_page **)__cil_tmp11);
+  __cil_tmp12 = *((struct xenkbd_page **)((void *)info + 16));
   __cil_tmp13 = (unsigned long )__cil_tmp12;
   tmp = __phys_addr(__cil_tmp13);
   __cil_tmp14 = tmp >> 12;
   tmp___0 = pfn_to_mfn(__cil_tmp14);
-  __cil_tmp15 = (unsigned long )dev;
-  __cil_tmp16 = __cil_tmp15 + 24;
-  __cil_tmp17 = *((int *)__cil_tmp16);
+  __cil_tmp17 = *((int *)((void *)dev + 24));
   __cil_tmp18 = (domid_t )__cil_tmp17;
   ret = gnttab_grant_foreign_access(__cil_tmp18, tmp___0, 0);
   }
@@ -3199,9 +2953,7 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
   } else {
   }
   {
-  __cil_tmp19 = (unsigned long )info;
-  __cil_tmp20 = __cil_tmp19 + 24;
-  *((int *)__cil_tmp20) = ret;
+  *((int *)((void *)info + 24)) = ret;
   ret = xenbus_alloc_evtchn(dev, & evtchn);
   }
   if (ret) {
@@ -3224,9 +2976,7 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
     goto error_evtchan;
   } else {
   }
-  __cil_tmp26 = (unsigned long )info;
-  __cil_tmp27 = __cil_tmp26 + 28;
-  *((int *)__cil_tmp27) = ret;
+  *((int *)((void *)info + 28)) = ret;
   again:
   {
   ret = xenbus_transaction_start(& xbt);
@@ -3239,9 +2989,7 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
   } else {
   }
   {
-  __cil_tmp28 = (unsigned long )info;
-  __cil_tmp29 = __cil_tmp28 + 16;
-  __cil_tmp30 = *((struct xenkbd_page **)__cil_tmp29);
+  __cil_tmp30 = *((struct xenkbd_page **)((void *)info + 16));
   __cil_tmp31 = (unsigned long )__cil_tmp30;
   tmp___1 = __phys_addr(__cil_tmp31);
   __cil_tmp32 = tmp___1 >> 12;
@@ -3249,9 +2997,7 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
   __cil_tmp33 = & xbt;
   __cil_tmp78 = __cil_tmp33->id;
   __cil_tmp34_id73 = __cil_tmp78;
-  __cil_tmp35 = (unsigned long )dev;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = *((char const **)__cil_tmp36);
+  __cil_tmp37 = *((char const **)((void *)dev + 8));
   ret = xenbus_printf(__cil_tmp34_id73, __cil_tmp37, "page-ref", "%lu", tmp___2);
   }
   if (ret) {
@@ -3262,12 +3008,8 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
   __cil_tmp38 = & xbt;
   __cil_tmp79 = __cil_tmp38->id;
   __cil_tmp39_id74 = __cil_tmp79;
-  __cil_tmp40 = (unsigned long )dev;
-  __cil_tmp41 = __cil_tmp40 + 8;
-  __cil_tmp42 = *((char const **)__cil_tmp41);
-  __cil_tmp43 = (unsigned long )info;
-  __cil_tmp44 = __cil_tmp43 + 24;
-  __cil_tmp45 = *((int *)__cil_tmp44);
+  __cil_tmp42 = *((char const **)((void *)dev + 8));
+  __cil_tmp45 = *((int *)((void *)info + 24));
   ret = xenbus_printf(__cil_tmp39_id74, __cil_tmp42, "page-gref", "%u", __cil_tmp45);
   }
   if (ret) {
@@ -3278,9 +3020,7 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
   __cil_tmp46 = & xbt;
   __cil_tmp80 = __cil_tmp46->id;
   __cil_tmp47_id75 = __cil_tmp80;
-  __cil_tmp48 = (unsigned long )dev;
-  __cil_tmp49 = __cil_tmp48 + 8;
-  __cil_tmp50 = *((char const **)__cil_tmp49);
+  __cil_tmp50 = *((char const **)((void *)dev + 8));
   __cil_tmp51 = & evtchn;
   __cil_tmp52 = *__cil_tmp51;
   ret = xenbus_printf(__cil_tmp47_id75, __cil_tmp50, "event-channel", "%u", __cil_tmp52);
@@ -3321,15 +3061,11 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
   }
   error_irqh:
   {
-  __cil_tmp58 = (unsigned long )info;
-  __cil_tmp59 = __cil_tmp58 + 28;
-  __cil_tmp60 = *((int *)__cil_tmp59);
+  __cil_tmp60 = *((int *)((void *)info + 28));
   __cil_tmp61 = (unsigned int )__cil_tmp60;
   __cil_tmp62 = (void *)info;
   unbind_from_irqhandler(__cil_tmp61, __cil_tmp62);
-  __cil_tmp63 = (unsigned long )info;
-  __cil_tmp64 = __cil_tmp63 + 28;
-  *((int *)__cil_tmp64) = -1;
+  *((int *)((void *)info + 28)) = -1;
   }
   error_evtchan:
   {
@@ -3339,48 +3075,29 @@ static int xenkbd_connect_backend(struct xenbus_device *dev , struct xenkbd_info
   }
   error_grant:
   {
-  __cil_tmp67 = (unsigned long )info;
-  __cil_tmp68 = __cil_tmp67 + 24;
-  __cil_tmp69 = *((int *)__cil_tmp68);
+  __cil_tmp69 = *((int *)((void *)info + 24));
   __cil_tmp70 = (grant_ref_t )__cil_tmp69;
   gnttab_end_foreign_access_ref(__cil_tmp70, 0);
-  __cil_tmp71 = (unsigned long )info;
-  __cil_tmp72 = __cil_tmp71 + 24;
-  *((int *)__cil_tmp72) = -1;
+  *((int *)((void *)info + 24)) = -1;
   }
   return (ret);
 }
 }
 static void xenkbd_disconnect_backend(struct xenkbd_info *info )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   int __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   grant_ref_t __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   {
   {
-  __cil_tmp2 = (unsigned long )info;
-  __cil_tmp3 = __cil_tmp2 + 28;
-  __cil_tmp4 = *((int *)__cil_tmp3);
+  __cil_tmp4 = *((int *)((void *)info + 28));
   if (__cil_tmp4 >= 0) {
     {
-    __cil_tmp5 = (unsigned long )info;
-    __cil_tmp6 = __cil_tmp5 + 28;
-    __cil_tmp7 = *((int *)__cil_tmp6);
+    __cil_tmp7 = *((int *)((void *)info + 28));
     __cil_tmp8 = (unsigned int )__cil_tmp7;
     __cil_tmp9 = (void *)info;
     unbind_from_irqhandler(__cil_tmp8, __cil_tmp9);
@@ -3388,27 +3105,19 @@ static void xenkbd_disconnect_backend(struct xenkbd_info *info )
   } else {
   }
   }
-  __cil_tmp10 = (unsigned long )info;
-  __cil_tmp11 = __cil_tmp10 + 28;
-  *((int *)__cil_tmp11) = -1;
+  *((int *)((void *)info + 28)) = -1;
   {
-  __cil_tmp12 = (unsigned long )info;
-  __cil_tmp13 = __cil_tmp12 + 24;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)info + 24));
   if (__cil_tmp14 >= 0) {
     {
-    __cil_tmp15 = (unsigned long )info;
-    __cil_tmp16 = __cil_tmp15 + 24;
-    __cil_tmp17 = *((int *)__cil_tmp16);
+    __cil_tmp17 = *((int *)((void *)info + 24));
     __cil_tmp18 = (grant_ref_t )__cil_tmp17;
     gnttab_end_foreign_access_ref(__cil_tmp18, 0);
     }
   } else {
   }
   }
-  __cil_tmp19 = (unsigned long )info;
-  __cil_tmp20 = __cil_tmp19 + 24;
-  *((int *)__cil_tmp20) = -1;
+  *((int *)((void *)info + 24)) = -1;
   return;
 }
 }
@@ -3423,48 +3132,24 @@ static void xenkbd_backend_changed(struct xenbus_device *dev , enum xenbus_state
   int tmp___0 ;
   struct xenbus_transaction __constr_expr_3 ;
   int tmp___1 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct xenbus_device *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   char const *__cil_tmp22 ;
   int *__cil_tmp23 ;
   int *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct xenbus_device *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   char const *__cil_tmp30 ;
   enum xenbus_state __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   enum xenbus_state __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct xenbus_device *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   char const *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct input_dev *__cil_tmp44 ;
   int *__cil_tmp45 ;
   int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct xenbus_device *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   char const *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct input_dev *__cil_tmp55 ;
   int *__cil_tmp56 ;
   int __cil_tmp57 ;
@@ -3474,9 +3159,7 @@ static void xenkbd_backend_changed(struct xenbus_device *dev , enum xenbus_state
   u32 __constr_expr_3_id61 ;
   {
   {
-  __cil_tmp13 = (unsigned long )dev;
-  __cil_tmp14 = __cil_tmp13 + 64;
-  __cil_tmp15 = (struct device *)__cil_tmp14;
+  __cil_tmp15 = (struct device *)((void *)dev + 64);
   __cil_tmp16 = (struct device const *)__cil_tmp15;
   tmp = dev_get_drvdata(__cil_tmp16);
   info = (struct xenkbd_info *)tmp;
@@ -3520,12 +3203,8 @@ static void xenkbd_backend_changed(struct xenbus_device *dev , enum xenbus_state
     case_2:
     {
     __constr_expr_0_id58 = (u32 )0;
-    __cil_tmp17 = (unsigned long )info;
-    __cil_tmp18 = __cil_tmp17 + 32;
-    __cil_tmp19 = *((struct xenbus_device **)__cil_tmp18);
-    __cil_tmp20 = (unsigned long )__cil_tmp19;
-    __cil_tmp21 = __cil_tmp20 + 16;
-    __cil_tmp22 = *((char const **)__cil_tmp21);
+    __cil_tmp19 = *((struct xenbus_device **)((void *)info + 32));
+    __cil_tmp22 = *((char const **)((void *)__cil_tmp19 + 16));
     ret = xenbus_scanf(__constr_expr_0_id58, __cil_tmp22, "feature-abs-pointer", "%d",
                        & val);
     }
@@ -3539,12 +3218,8 @@ static void xenkbd_backend_changed(struct xenbus_device *dev , enum xenbus_state
     if (*__cil_tmp24) {
       {
       __constr_expr_1_id59 = (u32 )0;
-      __cil_tmp25 = (unsigned long )info;
-      __cil_tmp26 = __cil_tmp25 + 32;
-      __cil_tmp27 = *((struct xenbus_device **)__cil_tmp26);
-      __cil_tmp28 = (unsigned long )__cil_tmp27;
-      __cil_tmp29 = __cil_tmp28 + 8;
-      __cil_tmp30 = *((char const **)__cil_tmp29);
+      __cil_tmp27 = *((struct xenbus_device **)((void *)info + 32));
+      __cil_tmp30 = *((char const **)((void *)__cil_tmp27 + 8));
       ret = xenbus_printf(__constr_expr_1_id59, __cil_tmp30, "request-abs-pointer",
                           "1");
       }
@@ -3564,9 +3239,7 @@ static void xenkbd_backend_changed(struct xenbus_device *dev , enum xenbus_state
     goto switch_break;
     case_4:
     {
-    __cil_tmp32 = (unsigned long )dev;
-    __cil_tmp33 = __cil_tmp32 + 832;
-    __cil_tmp34 = *((enum xenbus_state *)__cil_tmp33);
+    __cil_tmp34 = *((enum xenbus_state *)((void *)dev + 832));
     __cil_tmp35 = (unsigned int )__cil_tmp34;
     if (__cil_tmp35 != 4U) {
       goto InitWait;
@@ -3575,19 +3248,13 @@ static void xenkbd_backend_changed(struct xenbus_device *dev , enum xenbus_state
     }
     {
     __constr_expr_2_id60 = (u32 )0;
-    __cil_tmp36 = (unsigned long )info;
-    __cil_tmp37 = __cil_tmp36 + 32;
-    __cil_tmp38 = *((struct xenbus_device **)__cil_tmp37);
-    __cil_tmp39 = (unsigned long )__cil_tmp38;
-    __cil_tmp40 = __cil_tmp39 + 16;
-    __cil_tmp41 = *((char const **)__cil_tmp40);
+    __cil_tmp38 = *((struct xenbus_device **)((void *)info + 32));
+    __cil_tmp41 = *((char const **)((void *)__cil_tmp38 + 16));
     tmp___0 = xenbus_scanf(__constr_expr_2_id60, __cil_tmp41, "width", "%d", & val);
     }
     if (tmp___0 > 0) {
       {
-      __cil_tmp42 = (unsigned long )info;
-      __cil_tmp43 = __cil_tmp42 + 8;
-      __cil_tmp44 = *((struct input_dev **)__cil_tmp43);
+      __cil_tmp44 = *((struct input_dev **)((void *)info + 8));
       __cil_tmp45 = & val;
       __cil_tmp46 = *__cil_tmp45;
       input_set_abs_params(__cil_tmp44, 0U, 0, __cil_tmp46, 0, 0);
@@ -3596,19 +3263,13 @@ static void xenkbd_backend_changed(struct xenbus_device *dev , enum xenbus_state
     }
     {
     __constr_expr_3_id61 = (u32 )0;
-    __cil_tmp47 = (unsigned long )info;
-    __cil_tmp48 = __cil_tmp47 + 32;
-    __cil_tmp49 = *((struct xenbus_device **)__cil_tmp48);
-    __cil_tmp50 = (unsigned long )__cil_tmp49;
-    __cil_tmp51 = __cil_tmp50 + 16;
-    __cil_tmp52 = *((char const **)__cil_tmp51);
+    __cil_tmp49 = *((struct xenbus_device **)((void *)info + 32));
+    __cil_tmp52 = *((char const **)((void *)__cil_tmp49 + 16));
     tmp___1 = xenbus_scanf(__constr_expr_3_id61, __cil_tmp52, "height", "%d", & val);
     }
     if (tmp___1 > 0) {
       {
-      __cil_tmp53 = (unsigned long )info;
-      __cil_tmp54 = __cil_tmp53 + 8;
-      __cil_tmp55 = *((struct input_dev **)__cil_tmp54);
+      __cil_tmp55 = *((struct input_dev **)((void *)info + 8));
       __cil_tmp56 = & val;
       __cil_tmp57 = *__cil_tmp56;
       input_set_abs_params(__cil_tmp55, 1U, 0, __cil_tmp57, 0, 0);
@@ -3647,8 +3308,6 @@ static int xenkbd_init(void)
   unsigned int __cil_tmp5 ;
   int __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   uint32_t __cil_tmp10 ;
   {
   {
@@ -3668,9 +3327,7 @@ static int xenkbd_init(void)
       {
       __cil_tmp6 = 1 << 1;
       __cil_tmp7 = (unsigned int )__cil_tmp6;
-      __cil_tmp8 = (unsigned long )xen_start_info;
-      __cil_tmp9 = __cil_tmp8 + 48;
-      __cil_tmp10 = *((uint32_t *)__cil_tmp9);
+      __cil_tmp10 = *((uint32_t *)((void *)xen_start_info + 48));
       if (__cil_tmp10 & __cil_tmp7) {
         return (-19);
       } else {

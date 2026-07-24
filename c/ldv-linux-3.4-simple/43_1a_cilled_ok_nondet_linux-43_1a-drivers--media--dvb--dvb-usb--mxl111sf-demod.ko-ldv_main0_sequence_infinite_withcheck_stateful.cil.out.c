@@ -5875,13 +5875,9 @@ static int mxl111sf_demod_read_reg(struct mxl111sf_demod_state *state , u8 addr 
   int tmp___0 ;
   int (*__cil_tmp6)(struct mxl111sf_state * , u8  , u8 * ) ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct mxl111sf_demod_config *__cil_tmp10 ;
   int (*__cil_tmp11)(struct mxl111sf_state * , u8  , u8 * ) ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct mxl111sf_demod_config *__cil_tmp15 ;
   int (*__cil_tmp16)(struct mxl111sf_state * , u8  , u8 * ) ;
   struct mxl111sf_state *__cil_tmp17 ;
@@ -5892,16 +5888,12 @@ static int mxl111sf_demod_read_reg(struct mxl111sf_demod_state *state , u8 addr 
   {
   __cil_tmp6 = (int (*)(struct mxl111sf_state * , u8  , u8 * ))0;
   __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = (unsigned long )state;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = *((struct mxl111sf_demod_config **)__cil_tmp9);
+  __cil_tmp10 = *((struct mxl111sf_demod_config **)((void *)state + 8));
   __cil_tmp11 = *((int (**)(struct mxl111sf_state * , u8  , u8 * ))__cil_tmp10);
   __cil_tmp12 = (unsigned long )__cil_tmp11;
   if (__cil_tmp12 != __cil_tmp7) {
     {
-    __cil_tmp13 = (unsigned long )state;
-    __cil_tmp14 = __cil_tmp13 + 8;
-    __cil_tmp15 = *((struct mxl111sf_demod_config **)__cil_tmp14);
+    __cil_tmp15 = *((struct mxl111sf_demod_config **)((void *)state + 8));
     __cil_tmp16 = *((int (**)(struct mxl111sf_state * , u8  , u8 * ))__cil_tmp15);
     __cil_tmp17 = *((struct mxl111sf_state **)state);
     __cil_tmp18 = (int )addr;
@@ -5922,18 +5914,10 @@ static int mxl111sf_demod_write_reg(struct mxl111sf_demod_state *state , u8 addr
   int tmp___0 ;
   int (*__cil_tmp6)(struct mxl111sf_state * , u8  , u8  ) ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct mxl111sf_demod_config *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int (*__cil_tmp13)(struct mxl111sf_state * , u8  , u8  ) ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mxl111sf_demod_config *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int (*__cil_tmp20)(struct mxl111sf_state * , u8  , u8  ) ;
   struct mxl111sf_state *__cil_tmp21 ;
   int __cil_tmp22 ;
@@ -5945,21 +5929,13 @@ static int mxl111sf_demod_write_reg(struct mxl111sf_demod_state *state , u8 addr
   {
   __cil_tmp6 = (int (*)(struct mxl111sf_state * , u8  , u8  ))0;
   __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = (unsigned long )state;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = *((struct mxl111sf_demod_config **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((int (**)(struct mxl111sf_state * , u8  , u8  ))__cil_tmp12);
+  __cil_tmp10 = *((struct mxl111sf_demod_config **)((void *)state + 8));
+  __cil_tmp13 = *((int (**)(struct mxl111sf_state * , u8  , u8  ))((void *)__cil_tmp10 + 8));
   __cil_tmp14 = (unsigned long )__cil_tmp13;
   if (__cil_tmp14 != __cil_tmp7) {
     {
-    __cil_tmp15 = (unsigned long )state;
-    __cil_tmp16 = __cil_tmp15 + 8;
-    __cil_tmp17 = *((struct mxl111sf_demod_config **)__cil_tmp16);
-    __cil_tmp18 = (unsigned long )__cil_tmp17;
-    __cil_tmp19 = __cil_tmp18 + 8;
-    __cil_tmp20 = *((int (**)(struct mxl111sf_state * , u8  , u8  ))__cil_tmp19);
+    __cil_tmp17 = *((struct mxl111sf_demod_config **)((void *)state + 8));
+    __cil_tmp20 = *((int (**)(struct mxl111sf_state * , u8  , u8  ))((void *)__cil_tmp17 + 8));
     __cil_tmp21 = *((struct mxl111sf_state **)state);
     __cil_tmp22 = (int )addr;
     __cil_tmp23 = (u8 )__cil_tmp22;
@@ -5980,18 +5956,10 @@ static int mxl111sf_demod_program_regs(struct mxl111sf_demod_state *state , stru
   int tmp___0 ;
   int (*__cil_tmp5)(struct mxl111sf_state * , struct mxl111sf_reg_ctrl_info * ) ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct mxl111sf_demod_config *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int (*__cil_tmp12)(struct mxl111sf_state * , struct mxl111sf_reg_ctrl_info * ) ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct mxl111sf_demod_config *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int (*__cil_tmp19)(struct mxl111sf_state * , struct mxl111sf_reg_ctrl_info * ) ;
   struct mxl111sf_state *__cil_tmp20 ;
 
@@ -5999,21 +5967,13 @@ static int mxl111sf_demod_program_regs(struct mxl111sf_demod_state *state , stru
   {
   __cil_tmp5 = (int (*)(struct mxl111sf_state * , struct mxl111sf_reg_ctrl_info * ))0;
   __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = (unsigned long )state;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = *((struct mxl111sf_demod_config **)__cil_tmp8);
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = *((int (**)(struct mxl111sf_state * , struct mxl111sf_reg_ctrl_info * ))__cil_tmp11);
+  __cil_tmp9 = *((struct mxl111sf_demod_config **)((void *)state + 8));
+  __cil_tmp12 = *((int (**)(struct mxl111sf_state * , struct mxl111sf_reg_ctrl_info * ))((void *)__cil_tmp9 + 16));
   __cil_tmp13 = (unsigned long )__cil_tmp12;
   if (__cil_tmp13 != __cil_tmp6) {
     {
-    __cil_tmp14 = (unsigned long )state;
-    __cil_tmp15 = __cil_tmp14 + 8;
-    __cil_tmp16 = *((struct mxl111sf_demod_config **)__cil_tmp15);
-    __cil_tmp17 = (unsigned long )__cil_tmp16;
-    __cil_tmp18 = __cil_tmp17 + 16;
-    __cil_tmp19 = *((int (**)(struct mxl111sf_state * , struct mxl111sf_reg_ctrl_info * ))__cil_tmp18);
+    __cil_tmp16 = *((struct mxl111sf_demod_config **)((void *)state + 8));
+    __cil_tmp19 = *((int (**)(struct mxl111sf_state * , struct mxl111sf_reg_ctrl_info * ))((void *)__cil_tmp16 + 16));
     __cil_tmp20 = *((struct mxl111sf_state **)state);
     tmp = (*__cil_tmp19)(__cil_tmp20, ctrl_reg_info);
     tmp___0 = tmp;
@@ -6567,8 +6527,6 @@ static int mxl111sf_demod_set_frontend(struct dvb_frontend *fe )
   int __ret ;
   int __ret___0 ;
   int __ret___1 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
@@ -6632,21 +6590,15 @@ static int mxl111sf_demod_set_frontend(struct dvb_frontend *fe )
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   int (*__cil_tmp75)(struct dvb_frontend * ) ;
   unsigned long __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   int (*__cil_tmp81)(struct dvb_frontend * ) ;
   struct mxl111sf_reg_ctrl_info *__cil_tmp82 ;
 
   {
-  __cil_tmp8 = (unsigned long )fe;
-  __cil_tmp9 = __cil_tmp8 + 760;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)fe + 760));
   state = (struct mxl111sf_demod_state *)__cil_tmp10;
   ret = 0;
   __cil_tmp11 = 0 * 3UL;
@@ -6742,17 +6694,13 @@ static int mxl111sf_demod_set_frontend(struct dvb_frontend *fe )
   __cil_tmp70 = (unsigned long )__cil_tmp69;
   __cil_tmp71 = 384 + 176;
   __cil_tmp72 = 0 + __cil_tmp71;
-  __cil_tmp73 = (unsigned long )fe;
-  __cil_tmp74 = __cil_tmp73 + __cil_tmp72;
-  __cil_tmp75 = *((int (**)(struct dvb_frontend * ))__cil_tmp74);
+  __cil_tmp75 = *((int (**)(struct dvb_frontend * ))((void *)fe + __cil_tmp72));
   __cil_tmp76 = (unsigned long )__cil_tmp75;
   if (__cil_tmp76 != __cil_tmp70) {
     {
     __cil_tmp77 = 384 + 176;
     __cil_tmp78 = 0 + __cil_tmp77;
-    __cil_tmp79 = (unsigned long )fe;
-    __cil_tmp80 = __cil_tmp79 + __cil_tmp78;
-    __cil_tmp81 = *((int (**)(struct dvb_frontend * ))__cil_tmp80);
+    __cil_tmp81 = *((int (**)(struct dvb_frontend * ))((void *)fe + __cil_tmp78));
     ret = (*__cil_tmp81)(fe);
     __ret = ret < 0;
     }
@@ -6814,8 +6762,6 @@ static int mxl111sf_demod_read_ucblocks(struct dvb_frontend *fe , u32 *ucblocks 
   int ret ;
   int __ret ;
   int __ret___0 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   u8 __cil_tmp13 ;
   u8 *__cil_tmp14 ;
@@ -6838,9 +6784,7 @@ static int mxl111sf_demod_read_ucblocks(struct dvb_frontend *fe , u32 *ucblocks 
 
   {
   {
-  __cil_tmp10 = (unsigned long )fe;
-  __cil_tmp11 = __cil_tmp10 + 760;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)fe + 760));
   state = (struct mxl111sf_demod_state *)__cil_tmp12;
   *ucblocks = 0U;
   __cil_tmp13 = (u8 )46;
@@ -6911,8 +6855,6 @@ static int mxl111sf_demod_read_ber(struct dvb_frontend *fe , u32 *ber )
   int __ret ;
   int __ret___0 ;
   int __ret___1 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   u8 __cil_tmp14 ;
   u8 __cil_tmp15 ;
@@ -6920,9 +6862,7 @@ static int mxl111sf_demod_read_ber(struct dvb_frontend *fe , u32 *ber )
 
   {
   {
-  __cil_tmp11 = (unsigned long )fe;
-  __cil_tmp12 = __cil_tmp11 + 760;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)fe + 760));
   state = (struct mxl111sf_demod_state *)__cil_tmp13;
   *ber = 0U;
   __cil_tmp14 = (u8 )44;
@@ -7035,8 +6975,6 @@ static int mxl111sf_demod_read_snr(struct dvb_frontend *fe , u16 *snr )
   int ret ;
   int tmp ;
   int __ret ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   u16 __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
@@ -7044,9 +6982,7 @@ static int mxl111sf_demod_read_snr(struct dvb_frontend *fe , u16 *snr )
 
   {
   {
-  __cil_tmp7 = (unsigned long )fe;
-  __cil_tmp8 = __cil_tmp7 + 760;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)fe + 760));
   state = (struct mxl111sf_demod_state *)__cil_tmp9;
   tmp = mxl111sf_demod_calc_snr(state, snr);
   ret = tmp;
@@ -7083,8 +7019,6 @@ static int mxl111sf_demod_read_status(struct dvb_frontend *fe , fe_status_t *sta
   int __ret___0 ;
   int __ret___1 ;
   int __ret___2 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   int *__cil_tmp16 ;
   int __cil_tmp17 ;
@@ -7118,9 +7052,7 @@ static int mxl111sf_demod_read_status(struct dvb_frontend *fe , fe_status_t *sta
 
   {
   {
-  __cil_tmp13 = (unsigned long )fe;
-  __cil_tmp14 = __cil_tmp13 + 760;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)fe + 760));
   state = (struct mxl111sf_demod_state *)__cil_tmp15;
   *status = (fe_status_t )0;
   ret = mxl1x1sf_demod_get_rs_lock_status(state, & locked);
@@ -7279,8 +7211,6 @@ static int mxl111sf_demod_read_signal_strength(struct dvb_frontend *fe , u16 *si
   int _min1___1 ;
   int _min2___1 ;
   int tmp___1 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void *__cil_tmp17 ;
   fe_modulation_t *__cil_tmp18 ;
   fe_modulation_t __cil_tmp19 ;
@@ -7318,9 +7248,7 @@ static int mxl111sf_demod_read_signal_strength(struct dvb_frontend *fe , u16 *si
 
   {
   {
-  __cil_tmp15 = (unsigned long )fe;
-  __cil_tmp16 = __cil_tmp15 + 760;
-  __cil_tmp17 = *((void **)__cil_tmp16);
+  __cil_tmp17 = *((void **)((void *)fe + 760));
   state = (struct mxl111sf_demod_state *)__cil_tmp17;
   mxl111sf_demod_calc_snr(state, & snr);
   mxl1x1sf_demod_get_tps_modulation(state, & modulation);
@@ -7435,10 +7363,6 @@ static int mxl111sf_demod_read_signal_strength(struct dvb_frontend *fe , u16 *si
 static int mxl111sf_demod_get_frontend(struct dvb_frontend *fe ) 
 { struct dtv_frontend_properties *p ;
   struct mxl111sf_demod_state *state ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   int *__cil_tmp9 ;
   int __cil_tmp10 ;
@@ -7446,60 +7370,32 @@ static int mxl111sf_demod_get_frontend(struct dvb_frontend *fe )
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int (*__cil_tmp17)(struct dvb_frontend * , u32 * ) ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   int (*__cil_tmp23)(struct dvb_frontend * , u32 * ) ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   u32 *__cil_tmp26 ;
   int (*__cil_tmp27)(struct dvb_frontend * , u32 * ) ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   int (*__cil_tmp33)(struct dvb_frontend * , u32 * ) ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   int (*__cil_tmp39)(struct dvb_frontend * , u32 * ) ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   u32 *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   fe_code_rate_t *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   fe_code_rate_t *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   fe_modulation_t *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   fe_transmit_mode_t *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   fe_guard_interval_t *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   fe_hierarchy_t *__cil_tmp60 ;
 
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 800;
-  p = (struct dtv_frontend_properties *)__cil_tmp5;
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 760;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  p = (struct dtv_frontend_properties *)((void *)fe + 800);
+  __cil_tmp8 = *((void **)((void *)fe + 760));
   state = (struct mxl111sf_demod_state *)__cil_tmp8;
   {
   __cil_tmp9 = & mxl111sf_demod_debug;
@@ -7517,20 +7413,14 @@ static int mxl111sf_demod_get_frontend(struct dvb_frontend *fe )
   __cil_tmp12 = (unsigned long )__cil_tmp11;
   __cil_tmp13 = 384 + 216;
   __cil_tmp14 = 0 + __cil_tmp13;
-  __cil_tmp15 = (unsigned long )fe;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  __cil_tmp17 = *((int (**)(struct dvb_frontend * , u32 * ))__cil_tmp16);
+  __cil_tmp17 = *((int (**)(struct dvb_frontend * , u32 * ))((void *)fe + __cil_tmp14));
   __cil_tmp18 = (unsigned long )__cil_tmp17;
   if (__cil_tmp18 != __cil_tmp12) {
     {
     __cil_tmp19 = 384 + 216;
     __cil_tmp20 = 0 + __cil_tmp19;
-    __cil_tmp21 = (unsigned long )fe;
-    __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-    __cil_tmp23 = *((int (**)(struct dvb_frontend * , u32 * ))__cil_tmp22);
-    __cil_tmp24 = (unsigned long )p;
-    __cil_tmp25 = __cil_tmp24 + 32;
-    __cil_tmp26 = (u32 *)__cil_tmp25;
+    __cil_tmp23 = *((int (**)(struct dvb_frontend * , u32 * ))((void *)fe + __cil_tmp20));
+    __cil_tmp26 = (u32 *)((void *)p + 32);
     (*__cil_tmp23)(fe, __cil_tmp26);
     }
   } else {
@@ -7542,20 +7432,14 @@ static int mxl111sf_demod_get_frontend(struct dvb_frontend *fe )
   __cil_tmp28 = (unsigned long )__cil_tmp27;
   __cil_tmp29 = 384 + 208;
   __cil_tmp30 = 0 + __cil_tmp29;
-  __cil_tmp31 = (unsigned long )fe;
-  __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-  __cil_tmp33 = *((int (**)(struct dvb_frontend * , u32 * ))__cil_tmp32);
+  __cil_tmp33 = *((int (**)(struct dvb_frontend * , u32 * ))((void *)fe + __cil_tmp30));
   __cil_tmp34 = (unsigned long )__cil_tmp33;
   if (__cil_tmp34 != __cil_tmp28) {
     {
     __cil_tmp35 = 384 + 208;
     __cil_tmp36 = 0 + __cil_tmp35;
-    __cil_tmp37 = (unsigned long )fe;
-    __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-    __cil_tmp39 = *((int (**)(struct dvb_frontend * , u32 * ))__cil_tmp38);
-    __cil_tmp40 = (unsigned long )p;
-    __cil_tmp41 = __cil_tmp40 + 4;
-    __cil_tmp42 = (u32 *)__cil_tmp41;
+    __cil_tmp39 = *((int (**)(struct dvb_frontend * , u32 * ))((void *)fe + __cil_tmp36));
+    __cil_tmp42 = (u32 *)((void *)p + 4);
     (*__cil_tmp39)(fe, __cil_tmp42);
     }
   } else {
@@ -7563,29 +7447,17 @@ static int mxl111sf_demod_get_frontend(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp43 = (unsigned long )p;
-  __cil_tmp44 = __cil_tmp43 + 48;
-  __cil_tmp45 = (fe_code_rate_t *)__cil_tmp44;
+  __cil_tmp45 = (fe_code_rate_t *)((void *)p + 48);
   mxl1x1sf_demod_get_tps_code_rate(state, __cil_tmp45);
-  __cil_tmp46 = (unsigned long )p;
-  __cil_tmp47 = __cil_tmp46 + 52;
-  __cil_tmp48 = (fe_code_rate_t *)__cil_tmp47;
+  __cil_tmp48 = (fe_code_rate_t *)((void *)p + 52);
   mxl1x1sf_demod_get_tps_code_rate(state, __cil_tmp48);
-  __cil_tmp49 = (unsigned long )p;
-  __cil_tmp50 = __cil_tmp49 + 8;
-  __cil_tmp51 = (fe_modulation_t *)__cil_tmp50;
+  __cil_tmp51 = (fe_modulation_t *)((void *)p + 8);
   mxl1x1sf_demod_get_tps_modulation(state, __cil_tmp51);
-  __cil_tmp52 = (unsigned long )p;
-  __cil_tmp53 = __cil_tmp52 + 28;
-  __cil_tmp54 = (fe_transmit_mode_t *)__cil_tmp53;
+  __cil_tmp54 = (fe_transmit_mode_t *)((void *)p + 28);
   mxl1x1sf_demod_get_tps_guard_fft_mode(state, __cil_tmp54);
-  __cil_tmp55 = (unsigned long )p;
-  __cil_tmp56 = __cil_tmp55 + 36;
-  __cil_tmp57 = (fe_guard_interval_t *)__cil_tmp56;
+  __cil_tmp57 = (fe_guard_interval_t *)((void *)p + 36);
   mxl1x1sf_demod_get_tps_guard_interval(state, __cil_tmp57);
-  __cil_tmp58 = (unsigned long )p;
-  __cil_tmp59 = __cil_tmp58 + 40;
-  __cil_tmp60 = (fe_hierarchy_t *)__cil_tmp59;
+  __cil_tmp60 = (fe_hierarchy_t *)((void *)p + 40);
   mxl1x1sf_demod_get_tps_hierarchy(state, __cil_tmp60);
   }
   return (0);
@@ -7601,19 +7473,13 @@ static int mxl111sf_demod_get_tune_settings(struct dvb_frontend *fe , struct dvb
 }
 static void mxl111sf_demod_release(struct dvb_frontend *fe ) 
 { struct mxl111sf_demod_state *state ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   int *__cil_tmp6 ;
   int __cil_tmp7 ;
   void const   *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
 
   {
-  __cil_tmp3 = (unsigned long )fe;
-  __cil_tmp4 = __cil_tmp3 + 760;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)fe + 760));
   state = (struct mxl111sf_demod_state *)__cil_tmp5;
   {
   __cil_tmp6 = & mxl111sf_demod_debug;
@@ -7629,9 +7495,7 @@ static void mxl111sf_demod_release(struct dvb_frontend *fe )
   {
   __cil_tmp8 = (void const   *)state;
   kfree(__cil_tmp8);
-  __cil_tmp9 = (unsigned long )fe;
-  __cil_tmp10 = __cil_tmp9 + 760;
-  *((void **)__cil_tmp10) = (void *)0;
+  *((void **)((void *)fe + 760)) = (void *)0;
   }
   return;
 }
@@ -7747,23 +7611,13 @@ struct dvb_frontend *mxl111sf_demod_attach(struct mxl111sf_state *mxl_state , st
   struct mxl111sf_demod_state *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct dvb_frontend_ops *__cil_tmp16 ;
   void *__cil_tmp17 ;
   void const   *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct dvb_frontend_ops *__cil_tmp21 ;
   void *__cil_tmp22 ;
   void const   *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
 
   {
   state = (struct mxl111sf_demod_state *)0;
@@ -7793,37 +7647,27 @@ struct dvb_frontend *mxl111sf_demod_attach(struct mxl111sf_state *mxl_state , st
   }
   }
   *((struct mxl111sf_state **)state) = mxl_state;
-  __cil_tmp12 = (unsigned long )state;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  *((struct mxl111sf_demod_config **)__cil_tmp13) = cfg;
+  *((struct mxl111sf_demod_config **)((void *)state + 8)) = cfg;
   __len = 752UL;
   if (__len > 63UL) {
     {
-    __cil_tmp14 = (unsigned long )state;
-    __cil_tmp15 = __cil_tmp14 + 16;
-    __cil_tmp16 = (struct dvb_frontend_ops *)__cil_tmp15;
+    __cil_tmp16 = (struct dvb_frontend_ops *)((void *)state + 16);
     __cil_tmp17 = (void *)__cil_tmp16;
     __cil_tmp18 = (void const   *)(& mxl111sf_demod_ops);
     __ret = memcpy(__cil_tmp17, __cil_tmp18, __len);
     }
   } else {
     {
-    __cil_tmp19 = (unsigned long )state;
-    __cil_tmp20 = __cil_tmp19 + 16;
-    __cil_tmp21 = (struct dvb_frontend_ops *)__cil_tmp20;
+    __cil_tmp21 = (struct dvb_frontend_ops *)((void *)state + 16);
     __cil_tmp22 = (void *)__cil_tmp21;
     __cil_tmp23 = (void const   *)(& mxl111sf_demod_ops);
     __ret = memcpy(__cil_tmp22, __cil_tmp23, __len);
     }
   }
   __cil_tmp24 = 16 + 760;
-  __cil_tmp25 = (unsigned long )state;
-  __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-  *((void **)__cil_tmp26) = (void *)state;
+  *((void **)((void *)state + __cil_tmp24)) = (void *)state;
   {
-  __cil_tmp27 = (unsigned long )state;
-  __cil_tmp28 = __cil_tmp27 + 16;
-  return ((struct dvb_frontend *)__cil_tmp28);
+  return ((struct dvb_frontend *)((void *)state + 16));
   }
 }
 }

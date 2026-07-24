@@ -1724,32 +1724,18 @@ __inline static struct platform_device *platform_device_register_resndata(struct
 { struct platform_device_info pdevinfo ;
   struct platform_device *tmp ;
   struct platform_device_info *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct platform_device_info const *__cil_tmp18 ;
   {
   {
   __cil_tmp10 = & pdevinfo;
   *((struct device **)__cil_tmp10) = parent;
-  __cil_tmp11 = (unsigned long )(& pdevinfo) + 8;
-  *((char const **)__cil_tmp11) = name;
-  __cil_tmp12 = (unsigned long )(& pdevinfo) + 16;
-  *((int *)__cil_tmp12) = id;
-  __cil_tmp13 = (unsigned long )(& pdevinfo) + 24;
-  *((struct resource const **)__cil_tmp13) = res;
-  __cil_tmp14 = (unsigned long )(& pdevinfo) + 32;
-  *((unsigned int *)__cil_tmp14) = num;
-  __cil_tmp15 = (unsigned long )(& pdevinfo) + 40;
-  *((void const **)__cil_tmp15) = data;
-  __cil_tmp16 = (unsigned long )(& pdevinfo) + 48;
-  *((size_t *)__cil_tmp16) = size;
-  __cil_tmp17 = (unsigned long )(& pdevinfo) + 56;
-  *((u64 *)__cil_tmp17) = 0ULL;
+  *((char const **)((void *)(&pdevinfo) + 8)) = name;
+  *((int *)((void *)(&pdevinfo) + 16)) = id;
+  *((struct resource const **)((void *)(&pdevinfo) + 24)) = res;
+  *((unsigned int *)((void *)(&pdevinfo) + 32)) = num;
+  *((void const **)((void *)(&pdevinfo) + 40)) = data;
+  *((size_t *)((void *)(&pdevinfo) + 48)) = size;
+  *((u64 *)((void *)(&pdevinfo) + 56)) = 0ULL;
   __cil_tmp18 = (struct platform_device_info const *)(& pdevinfo);
   tmp = platform_device_register_full(__cil_tmp18);
   }
@@ -1897,7 +1883,7 @@ static void sch311x_wdt_set_timeout(int t )
 }
 }
 static void sch311x_wdt_start(void)
-{ unsigned long __cil_tmp1 ;
+{
   spinlock_t *__cil_tmp2 ;
   int *__cil_tmp3 ;
   int __cil_tmp4 ;
@@ -1905,12 +1891,10 @@ static void sch311x_wdt_start(void)
   unsigned short __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   spinlock_t *__cil_tmp10 ;
   {
   {
-  __cil_tmp1 = (unsigned long )(& sch311x_wdt_data) + 8;
-  __cil_tmp2 = (spinlock_t *)__cil_tmp1;
+  __cil_tmp2 = (spinlock_t *)((void *)(&sch311x_wdt_data) + 8);
   spin_lock(__cil_tmp2);
   __cil_tmp3 = & timeout;
   __cil_tmp4 = *__cil_tmp3;
@@ -1920,26 +1904,23 @@ static void sch311x_wdt_start(void)
   __cil_tmp7 = (int )__cil_tmp6;
   __cil_tmp8 = __cil_tmp7 + 71;
   outb((unsigned char)14, __cil_tmp8);
-  __cil_tmp9 = (unsigned long )(& sch311x_wdt_data) + 8;
-  __cil_tmp10 = (spinlock_t *)__cil_tmp9;
+  __cil_tmp10 = (spinlock_t *)((void *)(&sch311x_wdt_data) + 8);
   spin_unlock(__cil_tmp10);
   }
   return;
 }
 }
 static void sch311x_wdt_stop(void)
-{ unsigned long __cil_tmp1 ;
+{
   spinlock_t *__cil_tmp2 ;
   struct __anonstruct_sch311x_wdt_data_146 *__cil_tmp3 ;
   unsigned short __cil_tmp4 ;
   int __cil_tmp5 ;
   int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   spinlock_t *__cil_tmp8 ;
   {
   {
-  __cil_tmp1 = (unsigned long )(& sch311x_wdt_data) + 8;
-  __cil_tmp2 = (spinlock_t *)__cil_tmp1;
+  __cil_tmp2 = (spinlock_t *)((void *)(&sch311x_wdt_data) + 8);
   spin_lock(__cil_tmp2);
   __cil_tmp3 = & sch311x_wdt_data;
   __cil_tmp4 = *((unsigned short *)__cil_tmp3);
@@ -1947,30 +1928,26 @@ static void sch311x_wdt_stop(void)
   __cil_tmp6 = __cil_tmp5 + 71;
   outb((unsigned char)1, __cil_tmp6);
   sch311x_wdt_set_timeout(0);
-  __cil_tmp7 = (unsigned long )(& sch311x_wdt_data) + 8;
-  __cil_tmp8 = (spinlock_t *)__cil_tmp7;
+  __cil_tmp8 = (spinlock_t *)((void *)(&sch311x_wdt_data) + 8);
   spin_unlock(__cil_tmp8);
   }
   return;
 }
 }
 static void sch311x_wdt_keepalive(void)
-{ unsigned long __cil_tmp1 ;
+{
   spinlock_t *__cil_tmp2 ;
   int *__cil_tmp3 ;
   int __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   spinlock_t *__cil_tmp6 ;
   {
   {
-  __cil_tmp1 = (unsigned long )(& sch311x_wdt_data) + 8;
-  __cil_tmp2 = (spinlock_t *)__cil_tmp1;
+  __cil_tmp2 = (spinlock_t *)((void *)(&sch311x_wdt_data) + 8);
   spin_lock(__cil_tmp2);
   __cil_tmp3 = & timeout;
   __cil_tmp4 = *__cil_tmp3;
   sch311x_wdt_set_timeout(__cil_tmp4);
-  __cil_tmp5 = (unsigned long )(& sch311x_wdt_data) + 8;
-  __cil_tmp6 = (spinlock_t *)__cil_tmp5;
+  __cil_tmp6 = (spinlock_t *)((void *)(&sch311x_wdt_data) + 8);
   spin_unlock(__cil_tmp6);
   }
   return;
@@ -2003,7 +1980,6 @@ static int sch311x_wdt_set_heartbeat(int t )
 }
 static void sch311x_wdt_get_status(int *status )
 { unsigned char new_status ;
-  unsigned long __cil_tmp3 ;
   spinlock_t *__cil_tmp4 ;
   struct __anonstruct_sch311x_wdt_data_146 *__cil_tmp5 ;
   unsigned short __cil_tmp6 ;
@@ -2011,13 +1987,11 @@ static void sch311x_wdt_get_status(int *status )
   int __cil_tmp8 ;
   int __cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   spinlock_t *__cil_tmp12 ;
   {
   {
   *status = 0;
-  __cil_tmp3 = (unsigned long )(& sch311x_wdt_data) + 8;
-  __cil_tmp4 = (spinlock_t *)__cil_tmp3;
+  __cil_tmp4 = (spinlock_t *)((void *)(&sch311x_wdt_data) + 8);
   spin_lock(__cil_tmp4);
   __cil_tmp5 = & sch311x_wdt_data;
   __cil_tmp6 = *((unsigned short *)__cil_tmp5);
@@ -2034,8 +2008,7 @@ static void sch311x_wdt_get_status(int *status )
   }
   }
   {
-  __cil_tmp11 = (unsigned long )(& sch311x_wdt_data) + 8;
-  __cil_tmp12 = (spinlock_t *)__cil_tmp11;
+  __cil_tmp12 = (spinlock_t *)((void *)(&sch311x_wdt_data) + 8);
   spin_unlock(__cil_tmp12);
   }
   return;
@@ -2153,46 +2126,32 @@ static long sch311x_wdt_ioctl(struct file *file , unsigned int cmd , unsigned lo
   int __ret_pu___1 ;
   int __pu_val___1 ;
   struct watchdog_info *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   void const *__cil_tmp61 ;
   int *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   int __cil_tmp64 ;
   int *__cil_tmp65 ;
   {
@@ -2200,56 +2159,43 @@ static long sch311x_wdt_ioctl(struct file *file , unsigned int cmd , unsigned lo
   p = (int *)argp;
   __cil_tmp23 = & ident;
   *((__u32 *)__cil_tmp23) = 33152U;
-  __cil_tmp24 = (unsigned long )(& ident) + 4;
-  *((__u32 *)__cil_tmp24) = 1U;
+  *((__u32 *)((void *)(&ident) + 4)) = 1U;
   __cil_tmp25 = 0 * 1UL;
   __cil_tmp26 = 8 + __cil_tmp25;
-  __cil_tmp27 = (unsigned long )(& ident) + __cil_tmp26;
-  *((__u8 *)__cil_tmp27) = (__u8 )'s';
+  *((__u8 *)((void *)(&ident) + __cil_tmp26)) = (__u8 )'s';
   __cil_tmp28 = 1 * 1UL;
   __cil_tmp29 = 8 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )(& ident) + __cil_tmp29;
-  *((__u8 *)__cil_tmp30) = (__u8 )'c';
+  *((__u8 *)((void *)(&ident) + __cil_tmp29)) = (__u8 )'c';
   __cil_tmp31 = 2 * 1UL;
   __cil_tmp32 = 8 + __cil_tmp31;
-  __cil_tmp33 = (unsigned long )(& ident) + __cil_tmp32;
-  *((__u8 *)__cil_tmp33) = (__u8 )'h';
+  *((__u8 *)((void *)(&ident) + __cil_tmp32)) = (__u8 )'h';
   __cil_tmp34 = 3 * 1UL;
   __cil_tmp35 = 8 + __cil_tmp34;
-  __cil_tmp36 = (unsigned long )(& ident) + __cil_tmp35;
-  *((__u8 *)__cil_tmp36) = (__u8 )'3';
+  *((__u8 *)((void *)(&ident) + __cil_tmp35)) = (__u8 )'3';
   __cil_tmp37 = 4 * 1UL;
   __cil_tmp38 = 8 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )(& ident) + __cil_tmp38;
-  *((__u8 *)__cil_tmp39) = (__u8 )'1';
+  *((__u8 *)((void *)(&ident) + __cil_tmp38)) = (__u8 )'1';
   __cil_tmp40 = 5 * 1UL;
   __cil_tmp41 = 8 + __cil_tmp40;
-  __cil_tmp42 = (unsigned long )(& ident) + __cil_tmp41;
-  *((__u8 *)__cil_tmp42) = (__u8 )'1';
+  *((__u8 *)((void *)(&ident) + __cil_tmp41)) = (__u8 )'1';
   __cil_tmp43 = 6 * 1UL;
   __cil_tmp44 = 8 + __cil_tmp43;
-  __cil_tmp45 = (unsigned long )(& ident) + __cil_tmp44;
-  *((__u8 *)__cil_tmp45) = (__u8 )'x';
+  *((__u8 *)((void *)(&ident) + __cil_tmp44)) = (__u8 )'x';
   __cil_tmp46 = 7 * 1UL;
   __cil_tmp47 = 8 + __cil_tmp46;
-  __cil_tmp48 = (unsigned long )(& ident) + __cil_tmp47;
-  *((__u8 *)__cil_tmp48) = (__u8 )'_';
+  *((__u8 *)((void *)(&ident) + __cil_tmp47)) = (__u8 )'_';
   __cil_tmp49 = 8 * 1UL;
   __cil_tmp50 = 8 + __cil_tmp49;
-  __cil_tmp51 = (unsigned long )(& ident) + __cil_tmp50;
-  *((__u8 *)__cil_tmp51) = (__u8 )'w';
+  *((__u8 *)((void *)(&ident) + __cil_tmp50)) = (__u8 )'w';
   __cil_tmp52 = 9 * 1UL;
   __cil_tmp53 = 8 + __cil_tmp52;
-  __cil_tmp54 = (unsigned long )(& ident) + __cil_tmp53;
-  *((__u8 *)__cil_tmp54) = (__u8 )'d';
+  *((__u8 *)((void *)(&ident) + __cil_tmp53)) = (__u8 )'d';
   __cil_tmp55 = 10 * 1UL;
   __cil_tmp56 = 8 + __cil_tmp55;
-  __cil_tmp57 = (unsigned long )(& ident) + __cil_tmp56;
-  *((__u8 *)__cil_tmp57) = (__u8 )'t';
+  *((__u8 *)((void *)(&ident) + __cil_tmp56)) = (__u8 )'t';
   __cil_tmp58 = 11 * 1UL;
   __cil_tmp59 = 8 + __cil_tmp58;
-  __cil_tmp60 = (unsigned long )(& ident) + __cil_tmp59;
-  *((__u8 *)__cil_tmp60) = (__u8 )'\000';
+  *((__u8 *)((void *)(&ident) + __cil_tmp59)) = (__u8 )'\000';
   if ((int )cmd == -2144839936) {
     goto case_neg_2144839936;
   } else
@@ -2336,8 +2282,7 @@ static long sch311x_wdt_ioctl(struct file *file , unsigned int cmd , unsigned lo
       case_neg_2147199230:
       {
       might_fault();
-      __cil_tmp63 = (unsigned long )(& sch311x_wdt_data) + 4;
-      __pu_val___0 = *((int *)__cil_tmp63);
+      __pu_val___0 = *((int *)((void *)(&sch311x_wdt_data) + 4));
       }
       if (4 == 1) {
         goto case_1___0;
@@ -2646,11 +2591,7 @@ static int sch311x_wdt_probe(struct platform_device *pdev )
   struct resource *tmp___0 ;
   struct resource *tmp___1 ;
   int tmp___2 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   spinlock_t *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct raw_spinlock *__cil_tmp15 ;
   struct __anonstruct_sch311x_wdt_data_146 *__cil_tmp16 ;
   unsigned short __cil_tmp17 ;
@@ -2712,7 +2653,6 @@ static int sch311x_wdt_probe(struct platform_device *pdev )
   struct device const *__cil_tmp73 ;
   int *__cil_tmp74 ;
   int __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   int *__cil_tmp77 ;
   struct __anonstruct_sch311x_wdt_data_146 *__cil_tmp78 ;
   unsigned short __cil_tmp79 ;
@@ -2727,7 +2667,6 @@ static int sch311x_wdt_probe(struct platform_device *pdev )
   unsigned short __cil_tmp88 ;
   int __cil_tmp89 ;
   int __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   struct device const *__cil_tmp92 ;
   struct device const *__cil_tmp93 ;
   int *__cil_tmp94 ;
@@ -2753,14 +2692,10 @@ static int sch311x_wdt_probe(struct platform_device *pdev )
   struct __anonstruct_sch311x_wdt_data_146 *__cil_tmp114 ;
   {
   {
-  __cil_tmp10 = (unsigned long )pdev;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  dev = (struct device *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )(& sch311x_wdt_data) + 8;
-  __cil_tmp13 = (spinlock_t *)__cil_tmp12;
+  dev = (struct device *)((void *)pdev + 16);
+  __cil_tmp13 = (spinlock_t *)((void *)(&sch311x_wdt_data) + 8);
   spinlock_check(__cil_tmp13);
-  __cil_tmp14 = (unsigned long )(& sch311x_wdt_data) + 8;
-  __cil_tmp15 = (struct raw_spinlock *)__cil_tmp14;
+  __cil_tmp15 = (struct raw_spinlock *)((void *)(&sch311x_wdt_data) + 8);
   __raw_spin_lock_init(__cil_tmp15, "&(&sch311x_wdt_data.io_lock)->rlock", & __key);
   __cil_tmp16 = & sch311x_wdt_data;
   __cil_tmp17 = *((unsigned short *)__cil_tmp16);
@@ -2878,8 +2813,7 @@ static int sch311x_wdt_probe(struct platform_device *pdev )
   } else {
   }
   {
-  __cil_tmp76 = (unsigned long )(& sch311x_wdt_data) + 4;
-  __cil_tmp77 = (int *)__cil_tmp76;
+  __cil_tmp77 = (int *)((void *)(&sch311x_wdt_data) + 4);
   sch311x_wdt_get_status(__cil_tmp77);
   __cil_tmp78 = & sch311x_wdt_data;
   __cil_tmp79 = *((unsigned short *)__cil_tmp78);
@@ -2905,8 +2839,7 @@ static int sch311x_wdt_probe(struct platform_device *pdev )
   __cil_tmp89 = (int )__cil_tmp88;
   __cil_tmp90 = __cil_tmp89 + 29;
   outb(__cil_tmp86, __cil_tmp90);
-  __cil_tmp91 = (unsigned long )(& sch311x_wdt_miscdev) + 40;
-  *((struct device **)__cil_tmp91) = dev;
+  *((struct device **)((void *)(&sch311x_wdt_miscdev) + 40)) = dev;
   err = misc_register(& sch311x_wdt_miscdev);
   }
   if (err != 0) {

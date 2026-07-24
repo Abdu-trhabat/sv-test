@@ -3297,16 +3297,12 @@ extern void backlight_device_unregister(struct backlight_device *bd ) ;
 __inline static void *bl_get_data(struct backlight_device *bl_dev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *bl_get_data(struct backlight_device *bl_dev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )bl_dev;
-  __cil_tmp4 = __cil_tmp3 + 200;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)bl_dev + 200);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -3374,14 +3370,10 @@ extern acpi_status acpi_evaluate_integer(acpi_handle handle , acpi_string pathna
                                          struct acpi_object_list *arguments , unsigned long long *data ) ;
 __inline static void *acpi_driver_data(struct acpi_device *d )  __attribute__((__no_instrument_function__)) ;
 __inline static void *acpi_driver_data(struct acpi_device *d ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )d;
-  __cil_tmp3 = __cil_tmp2 + 936;
-  return (*((void **)__cil_tmp3));
+  return (*((void **)((void *)d + 936)));
   }
 }
 }
@@ -3513,7 +3505,6 @@ static int acpi_pcc_write_sset(struct pcc_acpi *pcc , int func , int val )
   struct acpi_object_list *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   acpi_handle __cil_tmp26 ;
@@ -3543,10 +3534,9 @@ static int acpi_pcc_write_sset(struct pcc_acpi *pcc , int func , int val )
   __cil_tmp21 = 48UL / 24UL;
   __cil_tmp22 = __cil_tmp21 + 0UL;
   *((u32 *)__cil_tmp20) = (u32 )__cil_tmp22;
-  __cil_tmp23 = (unsigned long )(& params) + 8;
   __cil_tmp24 = 0 * 24UL;
   __cil_tmp25 = (unsigned long )(in_objs) + __cil_tmp24;
-  *((union acpi_object **)__cil_tmp23) = (union acpi_object *)__cil_tmp25;
+  *((union acpi_object **)((void *)(&params) + 8)) = (union acpi_object *)__cil_tmp25;
   status = (acpi_status )0;
   __cil_tmp26 = *((acpi_handle *)pcc);
   __cil_tmp27 = (acpi_string )"SSET";
@@ -3566,8 +3556,6 @@ __inline static int acpi_pcc_get_sqty(struct acpi_device *device )  __attribute_
 __inline static int acpi_pcc_get_sqty(struct acpi_device *device ) 
 { unsigned long long s ;
   acpi_status status ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   acpi_handle __cil_tmp6 ;
   acpi_string __cil_tmp7 ;
   void *__cil_tmp8 ;
@@ -3577,9 +3565,7 @@ __inline static int acpi_pcc_get_sqty(struct acpi_device *device )
 
   {
   {
-  __cil_tmp4 = (unsigned long )device;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((acpi_handle *)__cil_tmp5);
+  __cil_tmp6 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp7 = (acpi_string )"SQTY";
   __cil_tmp8 = (void *)0;
   __cil_tmp9 = (struct acpi_object_list *)__cil_tmp8;
@@ -3604,54 +3590,35 @@ static int acpi_pcc_retrieve_biosdata(struct pcc_acpi *pcc )
   union acpi_object *element ;
   long tmp___7 ;
   struct acpi_buffer *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   acpi_handle __cil_tmp11 ;
   acpi_string __cil_tmp12 ;
   void *__cil_tmp13 ;
   struct acpi_object_list *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   acpi_object_type __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   u32 __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   u32 __cil_tmp29 ;
   u32 __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   union acpi_object *__cil_tmp34 ;
   acpi_object_type __cil_tmp35 ;
   int __cil_tmp36 ;
   int __cil_tmp37 ;
   int __cil_tmp38 ;
   long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   u32 *__cil_tmp42 ;
   u32 *__cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   u64 __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   u32 __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   u32 *__cil_tmp54 ;
   u32 *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   void *__cil_tmp57 ;
   void const   *__cil_tmp58 ;
 
@@ -3659,8 +3626,7 @@ static int acpi_pcc_retrieve_biosdata(struct pcc_acpi *pcc )
   {
   __cil_tmp8 = & buffer;
   *((acpi_size *)__cil_tmp8) = (acpi_size )-1;
-  __cil_tmp9 = (unsigned long )(& buffer) + 8;
-  *((void **)__cil_tmp9) = (void *)0;
+  *((void **)((void *)(&buffer) + 8)) = (void *)0;
   __cil_tmp10 = (void *)0;
   hkey = (union acpi_object *)__cil_tmp10;
   __cil_tmp11 = *((acpi_handle *)pcc);
@@ -3674,8 +3640,7 @@ static int acpi_pcc_retrieve_biosdata(struct pcc_acpi *pcc )
   } else {
 
   }
-  __cil_tmp15 = (unsigned long )(& buffer) + 8;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp16 = *((void **)((void *)(&buffer) + 8));
   hkey = (union acpi_object *)__cil_tmp16;
   if (! hkey) {
     status = (acpi_status )1;
@@ -3693,13 +3658,9 @@ static int acpi_pcc_retrieve_biosdata(struct pcc_acpi *pcc )
   }
   {
   __cil_tmp18 = 0 + 4;
-  __cil_tmp19 = (unsigned long )hkey;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-  __cil_tmp21 = *((u32 *)__cil_tmp20);
+  __cil_tmp21 = *((u32 *)((void *)hkey + __cil_tmp18));
   __cil_tmp22 = (unsigned long )__cil_tmp21;
-  __cil_tmp23 = (unsigned long )pcc;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  __cil_tmp25 = *((unsigned long *)__cil_tmp24);
+  __cil_tmp25 = *((unsigned long *)((void *)pcc + 8));
   if (__cil_tmp25 < __cil_tmp22) {
     status = (acpi_status )1;
     goto end;
@@ -3713,9 +3674,7 @@ static int acpi_pcc_retrieve_biosdata(struct pcc_acpi *pcc )
     while_continue: /* CIL Label */ ;
     {
     __cil_tmp26 = 0 + 4;
-    __cil_tmp27 = (unsigned long )hkey;
-    __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-    __cil_tmp29 = *((u32 *)__cil_tmp28);
+    __cil_tmp29 = *((u32 *)((void *)hkey + __cil_tmp26));
     __cil_tmp30 = (u32 )i;
     if (__cil_tmp30 < __cil_tmp29) {
 
@@ -3725,9 +3684,7 @@ static int acpi_pcc_retrieve_biosdata(struct pcc_acpi *pcc )
     }
     {
     __cil_tmp31 = 0 + 8;
-    __cil_tmp32 = (unsigned long )hkey;
-    __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-    __cil_tmp34 = *((union acpi_object **)__cil_tmp33);
+    __cil_tmp34 = *((union acpi_object **)((void *)hkey + __cil_tmp31));
     element = __cil_tmp34 + i;
     __cil_tmp35 = *((acpi_object_type *)element);
     __cil_tmp36 = __cil_tmp35 == 1U;
@@ -3737,14 +3694,10 @@ static int acpi_pcc_retrieve_biosdata(struct pcc_acpi *pcc )
     tmp___7 = ldv__builtin_expect(__cil_tmp39, 1L);
     }
     if (tmp___7) {
-      __cil_tmp40 = (unsigned long )pcc;
-      __cil_tmp41 = __cil_tmp40 + 24;
-      __cil_tmp42 = *((u32 **)__cil_tmp41);
+      __cil_tmp42 = *((u32 **)((void *)pcc + 24));
       __cil_tmp43 = __cil_tmp42 + i;
       __cil_tmp44 = 0 + 8;
-      __cil_tmp45 = (unsigned long )element;
-      __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
-      __cil_tmp47 = *((u64 *)__cil_tmp46);
+      __cil_tmp47 = *((u64 *)((void *)element + __cil_tmp44));
       *__cil_tmp43 = (u32 )__cil_tmp47;
     } else {
 
@@ -3754,18 +3707,13 @@ static int acpi_pcc_retrieve_biosdata(struct pcc_acpi *pcc )
   while_break: /* CIL Label */ ;
   }
   __cil_tmp48 = 0 + 4;
-  __cil_tmp49 = (unsigned long )hkey;
-  __cil_tmp50 = __cil_tmp49 + __cil_tmp48;
-  __cil_tmp51 = *((u32 *)__cil_tmp50);
-  __cil_tmp52 = (unsigned long )pcc;
-  __cil_tmp53 = __cil_tmp52 + 24;
-  __cil_tmp54 = *((u32 **)__cil_tmp53);
+  __cil_tmp51 = *((u32 *)((void *)hkey + __cil_tmp48));
+  __cil_tmp54 = *((u32 **)((void *)pcc + 24));
   __cil_tmp55 = __cil_tmp54 + __cil_tmp51;
   *__cil_tmp55 = (u32 )-1;
   end: 
   {
-  __cil_tmp56 = (unsigned long )(& buffer) + 8;
-  __cil_tmp57 = *((void **)__cil_tmp56);
+  __cil_tmp57 = *((void **)((void *)(&buffer) + 8));
   __cil_tmp58 = (void const   *)__cil_tmp57;
   kfree(__cil_tmp58);
   }
@@ -3776,8 +3724,6 @@ static int bl_get(struct backlight_device *bd )
 { struct pcc_acpi *pcc ;
   void *tmp___7 ;
   int tmp___8 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   u32 *__cil_tmp7 ;
   u32 *__cil_tmp8 ;
   u32 __cil_tmp9 ;
@@ -3794,9 +3740,7 @@ static int bl_get(struct backlight_device *bd )
     return (-5);
   }
   {
-  __cil_tmp5 = (unsigned long )pcc;
-  __cil_tmp6 = __cil_tmp5 + 24;
-  __cil_tmp7 = *((u32 **)__cil_tmp6);
+  __cil_tmp7 = *((u32 **)((void *)pcc + 24));
   __cil_tmp8 = __cil_tmp7 + 4;
   __cil_tmp9 = *__cil_tmp8;
   return ((int )__cil_tmp9);
@@ -3810,36 +3754,24 @@ static int bl_set_status(struct backlight_device *bd )
   int rc ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u32 *__cil_tmp10 ;
   u32 *__cil_tmp11 ;
   u32 __cil_tmp12 ;
   u32 __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   u32 *__cil_tmp16 ;
   u32 *__cil_tmp17 ;
   u32 __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   u32 *__cil_tmp21 ;
   u32 *__cil_tmp22 ;
   u32 __cil_tmp23 ;
   u32 __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u32 *__cil_tmp27 ;
   u32 *__cil_tmp28 ;
   u32 __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   u32 *__cil_tmp32 ;
   u32 *__cil_tmp33 ;
   u32 __cil_tmp34 ;
   u32 __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   u32 *__cil_tmp38 ;
   u32 *__cil_tmp39 ;
   u32 __cil_tmp40 ;
@@ -3858,16 +3790,12 @@ static int bl_set_status(struct backlight_device *bd )
     return (-5);
   }
   {
-  __cil_tmp8 = (unsigned long )pcc;
-  __cil_tmp9 = __cil_tmp8 + 24;
-  __cil_tmp10 = *((u32 **)__cil_tmp9);
+  __cil_tmp10 = *((u32 **)((void *)pcc + 24));
   __cil_tmp11 = __cil_tmp10 + 3;
   __cil_tmp12 = *__cil_tmp11;
   __cil_tmp13 = (u32 )bright;
   if (__cil_tmp13 < __cil_tmp12) {
-    __cil_tmp14 = (unsigned long )pcc;
-    __cil_tmp15 = __cil_tmp14 + 24;
-    __cil_tmp16 = *((u32 **)__cil_tmp15);
+    __cil_tmp16 = *((u32 **)((void *)pcc + 24));
     __cil_tmp17 = __cil_tmp16 + 3;
     __cil_tmp18 = *__cil_tmp17;
     bright = (int )__cil_tmp18;
@@ -3876,16 +3804,12 @@ static int bl_set_status(struct backlight_device *bd )
   }
   }
   {
-  __cil_tmp19 = (unsigned long )pcc;
-  __cil_tmp20 = __cil_tmp19 + 24;
-  __cil_tmp21 = *((u32 **)__cil_tmp20);
+  __cil_tmp21 = *((u32 **)((void *)pcc + 24));
   __cil_tmp22 = __cil_tmp21 + 6;
   __cil_tmp23 = *__cil_tmp22;
   __cil_tmp24 = (u32 )bright;
   if (__cil_tmp24 < __cil_tmp23) {
-    __cil_tmp25 = (unsigned long )pcc;
-    __cil_tmp26 = __cil_tmp25 + 24;
-    __cil_tmp27 = *((u32 **)__cil_tmp26);
+    __cil_tmp27 = *((u32 **)((void *)pcc + 24));
     __cil_tmp28 = __cil_tmp27 + 6;
     __cil_tmp29 = *__cil_tmp28;
     bright = (int )__cil_tmp29;
@@ -3894,9 +3818,7 @@ static int bl_set_status(struct backlight_device *bd )
   }
   }
   {
-  __cil_tmp30 = (unsigned long )pcc;
-  __cil_tmp31 = __cil_tmp30 + 24;
-  __cil_tmp32 = *((u32 **)__cil_tmp31);
+  __cil_tmp32 = *((u32 **)((void *)pcc + 24));
   __cil_tmp33 = __cil_tmp32 + 3;
   __cil_tmp34 = *__cil_tmp33;
   __cil_tmp35 = (u32 )bright;
@@ -3904,9 +3826,7 @@ static int bl_set_status(struct backlight_device *bd )
     return (-22);
   } else {
     {
-    __cil_tmp36 = (unsigned long )pcc;
-    __cil_tmp37 = __cil_tmp36 + 24;
-    __cil_tmp38 = *((u32 **)__cil_tmp37);
+    __cil_tmp38 = *((u32 **)((void *)pcc + 24));
     __cil_tmp39 = __cil_tmp38 + 2;
     __cil_tmp40 = *__cil_tmp39;
     __cil_tmp41 = (u32 )bright;
@@ -3941,15 +3861,11 @@ static ssize_t show_numbatt(struct device *dev , struct device_attribute *attr ,
   int tmp___8 ;
   int tmp___9 ;
   struct acpi_device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
   char *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u32 *__cil_tmp20 ;
   u32 *__cil_tmp21 ;
   u32 __cil_tmp22 ;
@@ -3958,9 +3874,7 @@ static ssize_t show_numbatt(struct device *dev , struct device_attribute *attr ,
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp10 = (struct acpi_device *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 944;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 944);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
@@ -3976,9 +3890,7 @@ static ssize_t show_numbatt(struct device *dev , struct device_attribute *attr ,
   }
   {
   __cil_tmp17 = 1UL << 12;
-  __cil_tmp18 = (unsigned long )pcc;
-  __cil_tmp19 = __cil_tmp18 + 24;
-  __cil_tmp20 = *((u32 **)__cil_tmp19);
+  __cil_tmp20 = *((u32 **)((void *)pcc + 24));
   __cil_tmp21 = __cil_tmp20 + 0;
   __cil_tmp22 = *__cil_tmp21;
   tmp___9 = snprintf(buf, __cil_tmp17, "%u\n", __cil_tmp22);
@@ -3994,15 +3906,11 @@ static ssize_t show_lcdtype(struct device *dev , struct device_attribute *attr ,
   int tmp___8 ;
   int tmp___9 ;
   struct acpi_device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
   char *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u32 *__cil_tmp20 ;
   u32 *__cil_tmp21 ;
   u32 __cil_tmp22 ;
@@ -4011,9 +3919,7 @@ static ssize_t show_lcdtype(struct device *dev , struct device_attribute *attr ,
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp10 = (struct acpi_device *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 944;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 944);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
@@ -4029,9 +3935,7 @@ static ssize_t show_lcdtype(struct device *dev , struct device_attribute *attr ,
   }
   {
   __cil_tmp17 = 1UL << 12;
-  __cil_tmp18 = (unsigned long )pcc;
-  __cil_tmp19 = __cil_tmp18 + 24;
-  __cil_tmp20 = *((u32 **)__cil_tmp19);
+  __cil_tmp20 = *((u32 **)((void *)pcc + 24));
   __cil_tmp21 = __cil_tmp20 + 1;
   __cil_tmp22 = *__cil_tmp21;
   tmp___9 = snprintf(buf, __cil_tmp17, "%u\n", __cil_tmp22);
@@ -4047,15 +3951,11 @@ static ssize_t show_mute(struct device *dev , struct device_attribute *attr , ch
   int tmp___8 ;
   int tmp___9 ;
   struct acpi_device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
   char *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u32 *__cil_tmp20 ;
   u32 *__cil_tmp21 ;
   u32 __cil_tmp22 ;
@@ -4064,9 +3964,7 @@ static ssize_t show_mute(struct device *dev , struct device_attribute *attr , ch
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp10 = (struct acpi_device *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 944;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 944);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
@@ -4082,9 +3980,7 @@ static ssize_t show_mute(struct device *dev , struct device_attribute *attr , ch
   }
   {
   __cil_tmp17 = 1UL << 12;
-  __cil_tmp18 = (unsigned long )pcc;
-  __cil_tmp19 = __cil_tmp18 + 24;
-  __cil_tmp20 = *((u32 **)__cil_tmp19);
+  __cil_tmp20 = *((u32 **)((void *)pcc + 24));
   __cil_tmp21 = __cil_tmp20 + 8;
   __cil_tmp22 = *__cil_tmp21;
   tmp___9 = snprintf(buf, __cil_tmp17, "%u\n", __cil_tmp22);
@@ -4100,15 +3996,11 @@ static ssize_t show_sticky(struct device *dev , struct device_attribute *attr , 
   int tmp___8 ;
   int tmp___9 ;
   struct acpi_device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
   char *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u32 *__cil_tmp20 ;
   u32 *__cil_tmp21 ;
   u32 __cil_tmp22 ;
@@ -4117,9 +4009,7 @@ static ssize_t show_sticky(struct device *dev , struct device_attribute *attr , 
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp10 = (struct acpi_device *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 944;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 944);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
@@ -4135,9 +4025,7 @@ static ssize_t show_sticky(struct device *dev , struct device_attribute *attr , 
   }
   {
   __cil_tmp17 = 1UL << 12;
-  __cil_tmp18 = (unsigned long )pcc;
-  __cil_tmp19 = __cil_tmp18 + 24;
-  __cil_tmp20 = *((u32 **)__cil_tmp19);
+  __cil_tmp20 = *((u32 **)((void *)pcc + 24));
   __cil_tmp21 = __cil_tmp20 + 128;
   __cil_tmp22 = *__cil_tmp21;
   tmp___9 = snprintf(buf, __cil_tmp17, "%u\n", __cil_tmp22);
@@ -4154,8 +4042,6 @@ static ssize_t set_sticky(struct device *dev , struct device_attribute *attr , c
   int val ;
   int tmp___8 ;
   struct acpi_device *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
@@ -4164,24 +4050,18 @@ static ssize_t set_sticky(struct device *dev , struct device_attribute *attr , c
   int __cil_tmp19 ;
   int *__cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   int *__cil_tmp24 ;
   int *__cil_tmp25 ;
   int __cil_tmp26 ;
   int *__cil_tmp27 ;
   int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int *__cil_tmp31 ;
 
   {
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp11 = (struct acpi_device *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 944;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 944);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
@@ -4202,10 +4082,8 @@ static ssize_t set_sticky(struct device *dev , struct device_attribute *attr , c
         __cil_tmp20 = & val;
         __cil_tmp21 = *__cil_tmp20;
         acpi_pcc_write_sset(pcc, 128, __cil_tmp21);
-        __cil_tmp22 = (unsigned long )pcc;
-        __cil_tmp23 = __cil_tmp22 + 16;
         __cil_tmp24 = & val;
-        *((int *)__cil_tmp23) = *__cil_tmp24;
+        *((int *)((void *)pcc + 16)) = *__cil_tmp24;
         }
       } else {
         {
@@ -4216,10 +4094,8 @@ static ssize_t set_sticky(struct device *dev , struct device_attribute *attr , c
           __cil_tmp27 = & val;
           __cil_tmp28 = *__cil_tmp27;
           acpi_pcc_write_sset(pcc, 128, __cil_tmp28);
-          __cil_tmp29 = (unsigned long )pcc;
-          __cil_tmp30 = __cil_tmp29 + 16;
           __cil_tmp31 = & val;
-          *((int *)__cil_tmp30) = *__cil_tmp31;
+          *((int *)((void *)pcc + 16)) = *__cil_tmp31;
           }
         } else {
 
@@ -4256,15 +4132,11 @@ static void acpi_pcc_generate_keyinput(struct pcc_acpi *pcc )
   acpi_status tmp___7 ;
   bool tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   acpi_handle __cil_tmp10 ;
   acpi_string __cil_tmp11 ;
   void *__cil_tmp12 ;
   struct acpi_object_list *__cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct acpi_device *__cil_tmp17 ;
   u8 __cil_tmp18 ;
   unsigned long long *__cil_tmp19 ;
@@ -4282,9 +4154,7 @@ static void acpi_pcc_generate_keyinput(struct pcc_acpi *pcc )
 
   {
   {
-  __cil_tmp8 = (unsigned long )pcc;
-  __cil_tmp9 = __cil_tmp8 + 40;
-  hotk_input_dev = *((struct input_dev **)__cil_tmp9);
+  hotk_input_dev = *((struct input_dev **)((void *)pcc + 40));
   __cil_tmp10 = *((acpi_handle *)pcc);
   __cil_tmp11 = (acpi_string )"HINF";
   __cil_tmp12 = (void *)0;
@@ -4301,9 +4171,7 @@ static void acpi_pcc_generate_keyinput(struct pcc_acpi *pcc )
   }
   }
   {
-  __cil_tmp15 = (unsigned long )pcc;
-  __cil_tmp16 = __cil_tmp15 + 32;
-  __cil_tmp17 = *((struct acpi_device **)__cil_tmp16);
+  __cil_tmp17 = *((struct acpi_device **)((void *)pcc + 32));
   __cil_tmp18 = (u8 )128;
   __cil_tmp19 = & result;
   __cil_tmp20 = *__cil_tmp19;
@@ -4361,26 +4229,14 @@ static void acpi_pcc_hotkey_notify(struct acpi_device *device , u32 event )
 static int acpi_pcc_init_input(struct pcc_acpi *pcc ) 
 { struct input_dev *input_dev ;
   int error ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   struct key_entry  const  *__cil_tmp19 ;
   void *__cil_tmp20 ;
   int (*__cil_tmp21)(struct input_dev * , struct key_entry * ) ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
 
   {
   {
@@ -4393,24 +4249,14 @@ static int acpi_pcc_init_input(struct pcc_acpi *pcc )
   }
   {
   *((char const   **)input_dev) = "Panasonic Laptop Support";
-  __cil_tmp4 = (unsigned long )input_dev;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  *((char const   **)__cil_tmp5) = "panasonic/hkey0";
-  __cil_tmp6 = (unsigned long )input_dev;
-  __cil_tmp7 = __cil_tmp6 + 24;
-  *((__u16 *)__cil_tmp7) = (__u16 )25;
+  *((char const   **)((void *)input_dev + 8)) = "panasonic/hkey0";
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )25;
   __cil_tmp8 = 24 + 2;
-  __cil_tmp9 = (unsigned long )input_dev;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  *((__u16 *)__cil_tmp10) = (__u16 )1;
+  *((__u16 *)((void *)input_dev + __cil_tmp8)) = (__u16 )1;
   __cil_tmp11 = 24 + 4;
-  __cil_tmp12 = (unsigned long )input_dev;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  *((__u16 *)__cil_tmp13) = (__u16 )1;
+  *((__u16 *)((void *)input_dev + __cil_tmp11)) = (__u16 )1;
   __cil_tmp14 = 24 + 6;
-  __cil_tmp15 = (unsigned long )input_dev;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((__u16 *)__cil_tmp16) = (__u16 )256;
+  *((__u16 *)((void *)input_dev + __cil_tmp14)) = (__u16 )256;
   __cil_tmp17 = 0 * 12UL;
   __cil_tmp18 = (unsigned long )(panasonic_keymap) + __cil_tmp17;
   __cil_tmp19 = (struct key_entry  const  *)__cil_tmp18;
@@ -4431,9 +4277,7 @@ static int acpi_pcc_init_input(struct pcc_acpi *pcc )
   } else {
 
   }
-  __cil_tmp22 = (unsigned long )pcc;
-  __cil_tmp23 = __cil_tmp22 + 40;
-  *((struct input_dev **)__cil_tmp23) = input_dev;
+  *((struct input_dev **)((void *)pcc + 40)) = input_dev;
   return (0);
   err_free_keymap: 
   {
@@ -4447,22 +4291,15 @@ static int acpi_pcc_init_input(struct pcc_acpi *pcc )
 }
 }
 static void acpi_pcc_destroy_input(struct pcc_acpi *pcc ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct input_dev *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct input_dev *__cil_tmp7 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )pcc;
-  __cil_tmp3 = __cil_tmp2 + 40;
-  __cil_tmp4 = *((struct input_dev **)__cil_tmp3);
+  __cil_tmp4 = *((struct input_dev **)((void *)pcc + 40));
   sparse_keymap_free(__cil_tmp4);
-  __cil_tmp5 = (unsigned long )pcc;
-  __cil_tmp6 = __cil_tmp5 + 40;
-  __cil_tmp7 = *((struct input_dev **)__cil_tmp6);
+  __cil_tmp7 = *((struct input_dev **)((void *)pcc + 40));
   input_unregister_device(__cil_tmp7);
   }
   return;
@@ -4478,8 +4315,6 @@ static int acpi_pcc_hotkey_resume(struct acpi_device *device )
   void *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
 
   {
@@ -4507,9 +4342,7 @@ static int acpi_pcc_hotkey_resume(struct acpi_device *device )
   }
   }
   {
-  __cil_tmp11 = (unsigned long )pcc;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = *((int *)__cil_tmp12);
+  __cil_tmp13 = *((int *)((void *)pcc + 16));
   tmp___8 = acpi_pcc_write_sset(pcc, 128, __cil_tmp13);
   }
   return (tmp___8);
@@ -4528,78 +4361,38 @@ static int acpi_pcc_hotkey_add(struct acpi_device *device )
   int __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u32 *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   char *__cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   char *__cil_tmp38 ;
   void *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   u32 *__cil_tmp44 ;
   u32 *__cil_tmp45 ;
   u32 __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   void *__cil_tmp49 ;
   struct device *__cil_tmp50 ;
   void *__cil_tmp51 ;
   struct backlight_properties  const  *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct backlight_device *__cil_tmp55 ;
   void const   *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct backlight_device *__cil_tmp59 ;
   void const   *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   struct backlight_device *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   u32 *__cil_tmp66 ;
   u32 *__cil_tmp67 ;
   u32 __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   u32 *__cil_tmp73 ;
   u32 *__cil_tmp74 ;
   u32 __cil_tmp75 ;
   unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct kobject *__cil_tmp79 ;
   struct attribute_group  const  *__cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   struct backlight_device *__cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   u32 *__cil_tmp86 ;
   void const   *__cil_tmp87 ;
   void const   *__cil_tmp88 ;
@@ -4635,14 +4428,10 @@ static int acpi_pcc_hotkey_add(struct acpi_device *device )
   __cil_tmp12 = (unsigned long )__cil_tmp11;
   __cil_tmp13 = 4UL * __cil_tmp12;
   tmp___8 = kzalloc(__cil_tmp13, 208U);
-  __cil_tmp14 = (unsigned long )pcc;
-  __cil_tmp15 = __cil_tmp14 + 24;
-  *((u32 **)__cil_tmp15) = (u32 *)tmp___8;
+  *((u32 **)((void *)pcc + 24)) = (u32 *)tmp___8;
   }
   {
-  __cil_tmp16 = (unsigned long )pcc;
-  __cil_tmp17 = __cil_tmp16 + 24;
-  __cil_tmp18 = *((u32 **)__cil_tmp17);
+  __cil_tmp18 = *((u32 **)((void *)pcc + 24));
   if (! __cil_tmp18) {
     result = -12;
     goto out_hotkey;
@@ -4651,31 +4440,19 @@ static int acpi_pcc_hotkey_add(struct acpi_device *device )
   }
   }
   {
-  __cil_tmp19 = (unsigned long )pcc;
-  __cil_tmp20 = __cil_tmp19 + 32;
-  *((struct acpi_device **)__cil_tmp20) = device;
-  __cil_tmp21 = (unsigned long )device;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  *((acpi_handle *)pcc) = *((acpi_handle *)__cil_tmp22);
-  __cil_tmp23 = (unsigned long )pcc;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  *((unsigned long *)__cil_tmp24) = (unsigned long )num_sifr;
-  __cil_tmp25 = (unsigned long )device;
-  __cil_tmp26 = __cil_tmp25 + 936;
-  *((void **)__cil_tmp26) = (void *)pcc;
+  *((struct acpi_device **)((void *)pcc + 32)) = device;
+  *((acpi_handle *)pcc) = *((acpi_handle *)((void *)device + 8));
+  *((unsigned long *)((void *)pcc + 8)) = (unsigned long )num_sifr;
+  *((void **)((void *)device + 936)) = (void *)pcc;
   __cil_tmp27 = 0 * 1UL;
   __cil_tmp28 = 40 + __cil_tmp27;
   __cil_tmp29 = 80 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )device;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = (char *)__cil_tmp31;
+  __cil_tmp32 = (char *)((void *)device + __cil_tmp29);
   strcpy(__cil_tmp32, "Hotkey");
   __cil_tmp33 = 0 * 1UL;
   __cil_tmp34 = 80 + __cil_tmp33;
   __cil_tmp35 = 80 + __cil_tmp34;
-  __cil_tmp36 = (unsigned long )device;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  __cil_tmp38 = (char *)__cil_tmp37;
+  __cil_tmp38 = (char *)((void *)device + __cil_tmp35);
   strcpy(__cil_tmp38, "pcc");
   result = acpi_pcc_init_input(pcc);
   }
@@ -4696,37 +4473,27 @@ static int acpi_pcc_hotkey_add(struct acpi_device *device )
   {
   __cil_tmp39 = (void *)(& props);
   memset(__cil_tmp39, 0, 24UL);
-  __cil_tmp40 = (unsigned long )(& props) + 16;
-  *((enum backlight_type *)__cil_tmp40) = (enum backlight_type )2;
-  __cil_tmp41 = (unsigned long )(& props) + 4;
-  __cil_tmp42 = (unsigned long )pcc;
-  __cil_tmp43 = __cil_tmp42 + 24;
-  __cil_tmp44 = *((u32 **)__cil_tmp43);
+  *((enum backlight_type *)((void *)(&props) + 16)) = (enum backlight_type )2;
+  __cil_tmp44 = *((u32 **)((void *)pcc + 24));
   __cil_tmp45 = __cil_tmp44 + 2;
   __cil_tmp46 = *__cil_tmp45;
-  *((int *)__cil_tmp41) = (int )__cil_tmp46;
-  __cil_tmp47 = (unsigned long )pcc;
-  __cil_tmp48 = __cil_tmp47 + 48;
+  *((int *)((void *)(&props) + 4)) = (int )__cil_tmp46;
   __cil_tmp49 = (void *)0;
   __cil_tmp50 = (struct device *)__cil_tmp49;
   __cil_tmp51 = (void *)pcc;
   __cil_tmp52 = (struct backlight_properties  const  *)(& props);
-  *((struct backlight_device **)__cil_tmp48) = backlight_device_register("panasonic",
+  *((struct backlight_device **)((void *)pcc + 48)) = backlight_device_register("panasonic",
                                                                          __cil_tmp50,
                                                                          __cil_tmp51,
                                                                          & pcc_backlight_ops,
                                                                          __cil_tmp52);
-  __cil_tmp53 = (unsigned long )pcc;
-  __cil_tmp54 = __cil_tmp53 + 48;
-  __cil_tmp55 = *((struct backlight_device **)__cil_tmp54);
+  __cil_tmp55 = *((struct backlight_device **)((void *)pcc + 48));
   __cil_tmp56 = (void const   *)__cil_tmp55;
   tmp___11 = (long )IS_ERR(__cil_tmp56);
   }
   if (tmp___11) {
     {
-    __cil_tmp57 = (unsigned long )pcc;
-    __cil_tmp58 = __cil_tmp57 + 48;
-    __cil_tmp59 = *((struct backlight_device **)__cil_tmp58);
+    __cil_tmp59 = *((struct backlight_device **)((void *)pcc + 48));
     __cil_tmp60 = (void const   *)__cil_tmp59;
     tmp___10 = (long )PTR_ERR(__cil_tmp60);
     result = (int )tmp___10;
@@ -4736,27 +4503,17 @@ static int acpi_pcc_hotkey_add(struct acpi_device *device )
 
   }
   {
-  __cil_tmp61 = (unsigned long )pcc;
-  __cil_tmp62 = __cil_tmp61 + 48;
-  __cil_tmp63 = *((struct backlight_device **)__cil_tmp62);
-  __cil_tmp64 = (unsigned long )pcc;
-  __cil_tmp65 = __cil_tmp64 + 24;
-  __cil_tmp66 = *((u32 **)__cil_tmp65);
+  __cil_tmp63 = *((struct backlight_device **)((void *)pcc + 48));
+  __cil_tmp66 = *((u32 **)((void *)pcc + 24));
   __cil_tmp67 = __cil_tmp66 + 4;
   __cil_tmp68 = *__cil_tmp67;
   *((int *)__cil_tmp63) = (int )__cil_tmp68;
-  __cil_tmp69 = (unsigned long )pcc;
-  __cil_tmp70 = __cil_tmp69 + 16;
-  __cil_tmp71 = (unsigned long )pcc;
-  __cil_tmp72 = __cil_tmp71 + 24;
-  __cil_tmp73 = *((u32 **)__cil_tmp72);
+  __cil_tmp73 = *((u32 **)((void *)pcc + 24));
   __cil_tmp74 = __cil_tmp73 + 128;
   __cil_tmp75 = *__cil_tmp74;
-  *((int *)__cil_tmp70) = (int )__cil_tmp75;
+  *((int *)((void *)pcc + 16)) = (int )__cil_tmp75;
   __cil_tmp76 = 944 + 16;
-  __cil_tmp77 = (unsigned long )device;
-  __cil_tmp78 = __cil_tmp77 + __cil_tmp76;
-  __cil_tmp79 = (struct kobject *)__cil_tmp78;
+  __cil_tmp79 = (struct kobject *)((void *)device + __cil_tmp76);
   __cil_tmp80 = (struct attribute_group  const  *)(& pcc_attr_group);
   result = (int )sysfs_create_group(__cil_tmp79, __cil_tmp80);
   }
@@ -4768,9 +4525,7 @@ static int acpi_pcc_hotkey_add(struct acpi_device *device )
   return (0);
   out_backlight: 
   {
-  __cil_tmp81 = (unsigned long )pcc;
-  __cil_tmp82 = __cil_tmp81 + 48;
-  __cil_tmp83 = *((struct backlight_device **)__cil_tmp82);
+  __cil_tmp83 = *((struct backlight_device **)((void *)pcc + 48));
   backlight_device_unregister(__cil_tmp83);
   }
   out_input: 
@@ -4779,9 +4534,7 @@ static int acpi_pcc_hotkey_add(struct acpi_device *device )
   }
   out_sinf: 
   {
-  __cil_tmp84 = (unsigned long )pcc;
-  __cil_tmp85 = __cil_tmp84 + 24;
-  __cil_tmp86 = *((u32 **)__cil_tmp85);
+  __cil_tmp86 = *((u32 **)((void *)pcc + 24));
   __cil_tmp87 = (void const   *)__cil_tmp86;
   kfree(__cil_tmp87);
   }
@@ -4819,15 +4572,9 @@ static int acpi_pcc_hotkey_remove(struct acpi_device *device , int type )
 { struct pcc_acpi *pcc ;
   void *tmp___7 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct kobject *__cil_tmp8 ;
   struct attribute_group  const  *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct backlight_device *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   u32 *__cil_tmp15 ;
   void const   *__cil_tmp16 ;
   void const   *__cil_tmp17 ;
@@ -4847,19 +4594,13 @@ static int acpi_pcc_hotkey_remove(struct acpi_device *device , int type )
   }
   {
   __cil_tmp5 = 944 + 16;
-  __cil_tmp6 = (unsigned long )device;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  __cil_tmp8 = (struct kobject *)__cil_tmp7;
+  __cil_tmp8 = (struct kobject *)((void *)device + __cil_tmp5);
   __cil_tmp9 = (struct attribute_group  const  *)(& pcc_attr_group);
   sysfs_remove_group(__cil_tmp8, __cil_tmp9);
-  __cil_tmp10 = (unsigned long )pcc;
-  __cil_tmp11 = __cil_tmp10 + 48;
-  __cil_tmp12 = *((struct backlight_device **)__cil_tmp11);
+  __cil_tmp12 = *((struct backlight_device **)((void *)pcc + 48));
   backlight_device_unregister(__cil_tmp12);
   acpi_pcc_destroy_input(pcc);
-  __cil_tmp13 = (unsigned long )pcc;
-  __cil_tmp14 = __cil_tmp13 + 24;
-  __cil_tmp15 = *((u32 **)__cil_tmp14);
+  __cil_tmp15 = *((u32 **)((void *)pcc + 24));
   __cil_tmp16 = (void const   *)__cil_tmp15;
   kfree(__cil_tmp16);
   __cil_tmp17 = (void const   *)pcc;

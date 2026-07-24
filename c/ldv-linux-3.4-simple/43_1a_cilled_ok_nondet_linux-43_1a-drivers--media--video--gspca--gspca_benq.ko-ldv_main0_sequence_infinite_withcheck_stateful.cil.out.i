@@ -3494,10 +3494,6 @@ static void reg_w(struct gspca_dev *gspca_dev , u16 value , u16 index )
 { struct usb_device *dev ;
   int ret ;
   unsigned int tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   __u8 __cil_tmp13 ;
@@ -3508,16 +3504,10 @@ static void reg_w(struct gspca_dev *gspca_dev , u16 value , u16 index )
   __u16 __cil_tmp18 ;
   void *__cil_tmp19 ;
   __u16 __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   {
-  __cil_tmp7 = (unsigned long )gspca_dev;
-  __cil_tmp8 = __cil_tmp7 + 1536;
-  dev = *((struct usb_device **)__cil_tmp8);
+  dev = *((struct usb_device **)((void *)gspca_dev + 1536));
   {
-  __cil_tmp9 = (unsigned long )gspca_dev;
-  __cil_tmp10 = __cil_tmp9 + 3888;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)gspca_dev + 3888));
   if (__cil_tmp11 < 0) {
     return;
   } else {
@@ -3540,9 +3530,7 @@ static void reg_w(struct gspca_dev *gspca_dev , u16 value , u16 index )
   if (ret < 0) {
     {
     printk("<3>gspca_benq: reg_w err %d\n", ret);
-    __cil_tmp21 = (unsigned long )gspca_dev;
-    __cil_tmp22 = __cil_tmp21 + 3888;
-    *((int *)__cil_tmp22) = ret;
+    *((int *)((void *)gspca_dev + 3888)) = ret;
     }
   } else {
   }
@@ -3550,26 +3538,15 @@ static void reg_w(struct gspca_dev *gspca_dev , u16 value , u16 index )
 }
 }
 static int sd_config(struct gspca_dev *gspca_dev , struct usb_device_id const *id )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   {
-  __cil_tmp3 = (unsigned long )gspca_dev;
-  __cil_tmp4 = __cil_tmp3 + 1624;
-  *((struct v4l2_pix_format const **)__cil_tmp4) = (struct v4l2_pix_format const *)(& vga_mode);
+  *((struct v4l2_pix_format const **)((void *)gspca_dev + 1624)) = (struct v4l2_pix_format const *)(& vga_mode);
   __cil_tmp5 = 1624 + 32;
-  __cil_tmp6 = (unsigned long )gspca_dev;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  *((u8 *)__cil_tmp7) = (u8 )1U;
+  *((u8 *)((void *)gspca_dev + __cil_tmp5)) = (u8 )1U;
   __cil_tmp8 = 1624 + 33;
-  __cil_tmp9 = (unsigned long )gspca_dev;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  *((u8 *)__cil_tmp10) = (u8 )1U;
+  *((u8 *)((void *)gspca_dev + __cil_tmp8)) = (u8 )1U;
   return (0);
 }
 }
@@ -3590,55 +3567,19 @@ static int sd_start(struct gspca_dev *gspca_dev )
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct usb_device *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   dma_addr_t *__cil_tmp21 ;
   void *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   void *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct usb_device *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   {
   n = 0;
   goto ldv_25685;
@@ -3661,25 +3602,15 @@ static int sd_start(struct gspca_dev *gspca_dev )
   {
   __cil_tmp10 = n * 8UL;
   __cil_tmp11 = 1688 + __cil_tmp10;
-  __cil_tmp12 = (unsigned long )gspca_dev;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  *((struct urb **)__cil_tmp13) = urb;
-  __cil_tmp14 = (unsigned long )urb;
-  __cil_tmp15 = __cil_tmp14 + 104;
-  __cil_tmp16 = (unsigned long )gspca_dev;
-  __cil_tmp17 = __cil_tmp16 + 1536;
-  __cil_tmp18 = *((struct usb_device **)__cil_tmp17);
-  __cil_tmp19 = (unsigned long )urb;
-  __cil_tmp20 = __cil_tmp19 + 112;
-  __cil_tmp21 = (dma_addr_t *)__cil_tmp20;
-  *((void **)__cil_tmp15) = ldv_usb_alloc_coherent_20(__cil_tmp18, 2048UL, 208U, __cil_tmp21);
+  *((struct urb **)((void *)gspca_dev + __cil_tmp11)) = urb;
+  __cil_tmp18 = *((struct usb_device **)((void *)gspca_dev + 1536));
+  __cil_tmp21 = (dma_addr_t *)((void *)urb + 112);
+  *((void **)((void *)urb + 104)) = ldv_usb_alloc_coherent_20(__cil_tmp18, 2048UL, 208U, __cil_tmp21);
   }
   {
   __cil_tmp22 = (void *)0;
   __cil_tmp23 = (unsigned long )__cil_tmp22;
-  __cil_tmp24 = (unsigned long )urb;
-  __cil_tmp25 = __cil_tmp24 + 104;
-  __cil_tmp26 = *((void **)__cil_tmp25);
+  __cil_tmp26 = *((void **)((void *)urb + 104));
   __cil_tmp27 = (unsigned long )__cil_tmp26;
   if (__cil_tmp27 == __cil_tmp23) {
     {
@@ -3689,42 +3620,22 @@ static int sd_start(struct gspca_dev *gspca_dev )
   } else {
   }
   }
-  __cil_tmp28 = (unsigned long )urb;
-  __cil_tmp29 = __cil_tmp28 + 72;
-  __cil_tmp30 = (unsigned long )gspca_dev;
-  __cil_tmp31 = __cil_tmp30 + 1536;
-  *((struct usb_device **)__cil_tmp29) = *((struct usb_device **)__cil_tmp31);
-  __cil_tmp32 = (unsigned long )urb;
-  __cil_tmp33 = __cil_tmp32 + 176;
-  *((void **)__cil_tmp33) = (void *)gspca_dev;
-  __cil_tmp34 = (unsigned long )urb;
-  __cil_tmp35 = __cil_tmp34 + 136;
-  *((u32 *)__cil_tmp35) = 2048U;
+  *((struct usb_device **)((void *)urb + 72)) = *((struct usb_device **)((void *)gspca_dev + 1536));
+  *((void **)((void *)urb + 176)) = (void *)gspca_dev;
+  *((u32 *)((void *)urb + 136)) = 2048U;
   if (n & 1) {
     tmp = 130U;
   } else {
     tmp = 131U;
   }
   {
-  __cil_tmp36 = (unsigned long )gspca_dev;
-  __cil_tmp37 = __cil_tmp36 + 1536;
-  __cil_tmp38 = *((struct usb_device **)__cil_tmp37);
+  __cil_tmp38 = *((struct usb_device **)((void *)gspca_dev + 1536));
   tmp___0 = __create_pipe(__cil_tmp38, tmp);
-  __cil_tmp39 = (unsigned long )urb;
-  __cil_tmp40 = __cil_tmp39 + 88;
-  *((unsigned int *)__cil_tmp40) = tmp___0 | 128U;
-  __cil_tmp41 = (unsigned long )urb;
-  __cil_tmp42 = __cil_tmp41 + 100;
-  *((unsigned int *)__cil_tmp42) = 6U;
-  __cil_tmp43 = (unsigned long )urb;
-  __cil_tmp44 = __cil_tmp43 + 168;
-  *((int *)__cil_tmp44) = 1;
-  __cil_tmp45 = (unsigned long )urb;
-  __cil_tmp46 = __cil_tmp45 + 184;
-  *((void (**)(struct urb * ))__cil_tmp46) = & sd_isoc_irq;
-  __cil_tmp47 = (unsigned long )urb;
-  __cil_tmp48 = __cil_tmp47 + 164;
-  *((int *)__cil_tmp48) = 32;
+  *((unsigned int *)((void *)urb + 88)) = tmp___0 | 128U;
+  *((unsigned int *)((void *)urb + 100)) = 6U;
+  *((int *)((void *)urb + 168)) = 1;
+  *((void (**)(struct urb * ))((void *)urb + 184)) = & sd_isoc_irq;
+  *((int *)((void *)urb + 164)) = 32;
   i = 0;
   }
   goto ldv_25682;
@@ -3732,15 +3643,11 @@ static int sd_start(struct gspca_dev *gspca_dev )
   __cil_tmp49 = i * 16UL;
   __cil_tmp50 = __cil_tmp49 + 4;
   __cil_tmp51 = 192 + __cil_tmp50;
-  __cil_tmp52 = (unsigned long )urb;
-  __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-  *((unsigned int *)__cil_tmp53) = 64U;
+  *((unsigned int *)((void *)urb + __cil_tmp51)) = 64U;
   __cil_tmp54 = i * 16UL;
   __cil_tmp55 = 192 + __cil_tmp54;
-  __cil_tmp56 = (unsigned long )urb;
-  __cil_tmp57 = __cil_tmp56 + __cil_tmp55;
   __cil_tmp58 = i * 64;
-  *((unsigned int *)__cil_tmp57) = (unsigned int )__cil_tmp58;
+  *((unsigned int *)((void *)urb + __cil_tmp55)) = (unsigned int )__cil_tmp58;
   i = i + 1;
   ldv_25682: ;
   if (i <= 31) {
@@ -3758,9 +3665,7 @@ static int sd_start(struct gspca_dev *gspca_dev )
   }
   ldv_25686: ;
   {
-  __cil_tmp59 = (unsigned long )gspca_dev;
-  __cil_tmp60 = __cil_tmp59 + 3888;
-  return (*((int *)__cil_tmp60));
+  return (*((int *)((void *)gspca_dev + 3888)));
   }
 }
 }
@@ -3776,23 +3681,13 @@ static void sd_stopN(struct gspca_dev *gspca_dev )
   u16 __cil_tmp10 ;
   u16 __cil_tmp11 ;
   u16 __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct usb_device *__cil_tmp15 ;
   struct usb_device const *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   __u8 __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct usb_device *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   __u8 __cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
   int __cil_tmp32 ;
@@ -3813,25 +3708,15 @@ static void sd_stopN(struct gspca_dev *gspca_dev )
   __cil_tmp11 = (u16 )60;
   __cil_tmp12 = (u16 )7;
   reg_w(gspca_dev, __cil_tmp11, __cil_tmp12);
-  __cil_tmp13 = (unsigned long )gspca_dev;
-  __cil_tmp14 = __cil_tmp13 + 1536;
-  __cil_tmp15 = *((struct usb_device **)__cil_tmp14);
+  __cil_tmp15 = *((struct usb_device **)((void *)gspca_dev + 1536));
   __cil_tmp16 = (struct usb_device const *)__cil_tmp15;
-  __cil_tmp17 = (unsigned long )gspca_dev;
-  __cil_tmp18 = __cil_tmp17 + 3898;
-  __cil_tmp19 = *((__u8 *)__cil_tmp18);
+  __cil_tmp19 = *((__u8 *)((void *)gspca_dev + 3898));
   __cil_tmp20 = (unsigned int )__cil_tmp19;
   intf = usb_ifnum_to_if(__cil_tmp16, __cil_tmp20);
-  __cil_tmp21 = (unsigned long )gspca_dev;
-  __cil_tmp22 = __cil_tmp21 + 1536;
-  __cil_tmp23 = *((struct usb_device **)__cil_tmp22);
-  __cil_tmp24 = (unsigned long )gspca_dev;
-  __cil_tmp25 = __cil_tmp24 + 3898;
-  __cil_tmp26 = *((__u8 *)__cil_tmp25);
+  __cil_tmp23 = *((struct usb_device **)((void *)gspca_dev + 1536));
+  __cil_tmp26 = *((__u8 *)((void *)gspca_dev + 3898));
   __cil_tmp27 = (int )__cil_tmp26;
-  __cil_tmp28 = (unsigned long )intf;
-  __cil_tmp29 = __cil_tmp28 + 16;
-  __cil_tmp30 = *((unsigned int *)__cil_tmp29);
+  __cil_tmp30 = *((unsigned int *)((void *)intf + 16));
   __cil_tmp31 = __cil_tmp30 - 1U;
   __cil_tmp32 = (int )__cil_tmp31;
   usb_set_interface(__cil_tmp23, __cil_tmp27, __cil_tmp32);
@@ -3851,92 +3736,52 @@ static void sd_isoc_irq(struct urb *urb )
   u8 *data ;
   int i ;
   int st ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   __u8 __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   char __cil_tmp22 ;
   signed char __cil_tmp23 ;
   int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct urb *__cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct urb *__cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct urb *__cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned int __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   unsigned int __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   void *__cil_tmp93 ;
   u8 *__cil_tmp94 ;
   u8 __cil_tmp95 ;
@@ -3959,34 +3804,20 @@ static void sd_isoc_irq(struct urb *urb )
   enum gspca_packet_type __cil_tmp112 ;
   u8 const *__cil_tmp113 ;
   u8 const *__cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   unsigned long __cil_tmp119 ;
   unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   unsigned int __cil_tmp123 ;
   unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   void *__cil_tmp127 ;
   u8 *__cil_tmp128 ;
   enum gspca_packet_type __cil_tmp129 ;
   u8 const *__cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
   int __cil_tmp133 ;
   {
-  __cil_tmp7 = (unsigned long )urb;
-  __cil_tmp8 = __cil_tmp7 + 176;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)urb + 176));
   gspca_dev = (struct gspca_dev *)__cil_tmp9;
   {
-  __cil_tmp10 = (unsigned long )gspca_dev;
-  __cil_tmp11 = __cil_tmp10 + 3444;
-  __cil_tmp12 = *((__u8 *)__cil_tmp11);
+  __cil_tmp12 = *((__u8 *)((void *)gspca_dev + 3444));
   __cil_tmp13 = (unsigned int )__cil_tmp12;
   if (__cil_tmp13 == 0U) {
     return;
@@ -3994,23 +3825,17 @@ static void sd_isoc_irq(struct urb *urb )
   }
   }
   {
-  __cil_tmp14 = (unsigned long )urb;
-  __cil_tmp15 = __cil_tmp14 + 96;
-  __cil_tmp16 = *((int *)__cil_tmp15);
+  __cil_tmp16 = *((int *)((void *)urb + 96));
   if (__cil_tmp16 != 0) {
     {
-    __cil_tmp17 = (unsigned long )urb;
-    __cil_tmp18 = __cil_tmp17 + 96;
-    __cil_tmp19 = *((int *)__cil_tmp18);
+    __cil_tmp19 = *((int *)((void *)urb + 96));
     if (__cil_tmp19 == -108) {
       return;
     } else {
     }
     }
     {
-    __cil_tmp20 = (unsigned long )gspca_dev;
-    __cil_tmp21 = __cil_tmp20 + 3894;
-    __cil_tmp22 = *((char *)__cil_tmp21);
+    __cil_tmp22 = *((char *)((void *)gspca_dev + 3894));
     __cil_tmp23 = (signed char )__cil_tmp22;
     __cil_tmp24 = (int )__cil_tmp23;
     if (__cil_tmp24 != 0) {
@@ -4019,9 +3844,7 @@ static void sd_isoc_irq(struct urb *urb )
     }
     }
     {
-    __cil_tmp25 = (unsigned long )urb;
-    __cil_tmp26 = __cil_tmp25 + 96;
-    __cil_tmp27 = *((int *)__cil_tmp26);
+    __cil_tmp27 = *((int *)((void *)urb + 96));
     printk("<3>gspca_benq: urb status: %d\n", __cil_tmp27);
     }
     return;
@@ -4032,9 +3855,7 @@ static void sd_isoc_irq(struct urb *urb )
   __cil_tmp28 = (unsigned long )urb;
   __cil_tmp29 = 0 * 8UL;
   __cil_tmp30 = 1688 + __cil_tmp29;
-  __cil_tmp31 = (unsigned long )gspca_dev;
-  __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-  __cil_tmp33 = *((struct urb **)__cil_tmp32);
+  __cil_tmp33 = *((struct urb **)((void *)gspca_dev + __cil_tmp30));
   __cil_tmp34 = (unsigned long )__cil_tmp33;
   if (__cil_tmp34 == __cil_tmp28) {
     return;
@@ -4043,9 +3864,7 @@ static void sd_isoc_irq(struct urb *urb )
     __cil_tmp35 = (unsigned long )urb;
     __cil_tmp36 = 2 * 8UL;
     __cil_tmp37 = 1688 + __cil_tmp36;
-    __cil_tmp38 = (unsigned long )gspca_dev;
-    __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-    __cil_tmp40 = *((struct urb **)__cil_tmp39);
+    __cil_tmp40 = *((struct urb **)((void *)gspca_dev + __cil_tmp37));
     __cil_tmp41 = (unsigned long )__cil_tmp40;
     if (__cil_tmp41 == __cil_tmp35) {
       return;
@@ -4058,22 +3877,16 @@ static void sd_isoc_irq(struct urb *urb )
   __cil_tmp42 = (unsigned long )urb;
   __cil_tmp43 = 1 * 8UL;
   __cil_tmp44 = 1688 + __cil_tmp43;
-  __cil_tmp45 = (unsigned long )gspca_dev;
-  __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
-  __cil_tmp47 = *((struct urb **)__cil_tmp46);
+  __cil_tmp47 = *((struct urb **)((void *)gspca_dev + __cil_tmp44));
   __cil_tmp48 = (unsigned long )__cil_tmp47;
   if (__cil_tmp48 == __cil_tmp42) {
     __cil_tmp49 = 0 * 8UL;
     __cil_tmp50 = 1688 + __cil_tmp49;
-    __cil_tmp51 = (unsigned long )gspca_dev;
-    __cil_tmp52 = __cil_tmp51 + __cil_tmp50;
-    urb0 = *((struct urb **)__cil_tmp52);
+    urb0 = *((struct urb **)((void *)gspca_dev + __cil_tmp50));
   } else {
     __cil_tmp53 = 2 * 8UL;
     __cil_tmp54 = 1688 + __cil_tmp53;
-    __cil_tmp55 = (unsigned long )gspca_dev;
-    __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-    urb0 = *((struct urb **)__cil_tmp56);
+    urb0 = *((struct urb **)((void *)gspca_dev + __cil_tmp54));
   }
   }
   i = 0;
@@ -4083,26 +3896,18 @@ static void sd_isoc_irq(struct urb *urb )
   __cil_tmp57 = i * 16UL;
   __cil_tmp58 = __cil_tmp57 + 8;
   __cil_tmp59 = 192 + __cil_tmp58;
-  __cil_tmp60 = (unsigned long )urb0;
-  __cil_tmp61 = __cil_tmp60 + __cil_tmp59;
-  __cil_tmp62 = *((unsigned int *)__cil_tmp61);
+  __cil_tmp62 = *((unsigned int *)((void *)urb0 + __cil_tmp59));
   if (__cil_tmp62 != 64U) {
-    __cil_tmp63 = (unsigned long )gspca_dev;
-    __cil_tmp64 = __cil_tmp63 + 3442;
-    *((__u8 *)__cil_tmp64) = (__u8 )0U;
+    *((__u8 *)((void *)gspca_dev + 3442)) = (__u8 )0U;
     goto ldv_25704;
   } else {
     {
     __cil_tmp65 = i * 16UL;
     __cil_tmp66 = __cil_tmp65 + 8;
     __cil_tmp67 = 192 + __cil_tmp66;
-    __cil_tmp68 = (unsigned long )urb;
-    __cil_tmp69 = __cil_tmp68 + __cil_tmp67;
-    __cil_tmp70 = *((unsigned int *)__cil_tmp69);
+    __cil_tmp70 = *((unsigned int *)((void *)urb + __cil_tmp67));
     if (__cil_tmp70 != 64U) {
-      __cil_tmp71 = (unsigned long )gspca_dev;
-      __cil_tmp72 = __cil_tmp71 + 3442;
-      *((__u8 *)__cil_tmp72) = (__u8 )0U;
+      *((__u8 *)((void *)gspca_dev + 3442)) = (__u8 )0U;
       goto ldv_25704;
     } else {
     }
@@ -4112,37 +3917,27 @@ static void sd_isoc_irq(struct urb *urb )
   __cil_tmp73 = i * 16UL;
   __cil_tmp74 = __cil_tmp73 + 12;
   __cil_tmp75 = 192 + __cil_tmp74;
-  __cil_tmp76 = (unsigned long )urb0;
-  __cil_tmp77 = __cil_tmp76 + __cil_tmp75;
-  st = *((int *)__cil_tmp77);
+  st = *((int *)((void *)urb0 + __cil_tmp75));
   if (st == 0) {
     __cil_tmp78 = i * 16UL;
     __cil_tmp79 = __cil_tmp78 + 12;
     __cil_tmp80 = 192 + __cil_tmp79;
-    __cil_tmp81 = (unsigned long )urb;
-    __cil_tmp82 = __cil_tmp81 + __cil_tmp80;
-    st = *((int *)__cil_tmp82);
+    st = *((int *)((void *)urb + __cil_tmp80));
   } else {
   }
   if (st != 0) {
     {
     printk("<3>gspca_benq: ISOC data error: [%d] status=%d\n", i, st);
-    __cil_tmp83 = (unsigned long )gspca_dev;
-    __cil_tmp84 = __cil_tmp83 + 3442;
-    *((__u8 *)__cil_tmp84) = (__u8 )0U;
+    *((__u8 *)((void *)gspca_dev + 3442)) = (__u8 )0U;
     }
     goto ldv_25704;
   } else {
   }
   __cil_tmp85 = i * 16UL;
   __cil_tmp86 = 192 + __cil_tmp85;
-  __cil_tmp87 = (unsigned long )urb0;
-  __cil_tmp88 = __cil_tmp87 + __cil_tmp86;
-  __cil_tmp89 = *((unsigned int *)__cil_tmp88);
+  __cil_tmp89 = *((unsigned int *)((void *)urb0 + __cil_tmp86));
   __cil_tmp90 = (unsigned long )__cil_tmp89;
-  __cil_tmp91 = (unsigned long )urb0;
-  __cil_tmp92 = __cil_tmp91 + 104;
-  __cil_tmp93 = *((void **)__cil_tmp92);
+  __cil_tmp93 = *((void **)((void *)urb0 + 104));
   __cil_tmp94 = (u8 *)__cil_tmp93;
   data = __cil_tmp94 + __cil_tmp90;
   {
@@ -4187,16 +3982,12 @@ static void sd_isoc_irq(struct urb *urb )
         gspca_frame_add(gspca_dev, __cil_tmp112, __cil_tmp114, 60);
         }
       } else {
-        __cil_tmp115 = (unsigned long )gspca_dev;
-        __cil_tmp116 = __cil_tmp115 + 3442;
-        *((__u8 *)__cil_tmp116) = (__u8 )0U;
+        *((__u8 *)((void *)gspca_dev + 3442)) = (__u8 )0U;
         goto ldv_25704;
       }
       }
     } else {
-      __cil_tmp117 = (unsigned long )gspca_dev;
-      __cil_tmp118 = __cil_tmp117 + 3442;
-      *((__u8 *)__cil_tmp118) = (__u8 )0U;
+      *((__u8 *)((void *)gspca_dev + 3442)) = (__u8 )0U;
       goto ldv_25704;
     }
     }
@@ -4205,13 +3996,9 @@ static void sd_isoc_irq(struct urb *urb )
   {
   __cil_tmp119 = i * 16UL;
   __cil_tmp120 = 192 + __cil_tmp119;
-  __cil_tmp121 = (unsigned long )urb;
-  __cil_tmp122 = __cil_tmp121 + __cil_tmp120;
-  __cil_tmp123 = *((unsigned int *)__cil_tmp122);
+  __cil_tmp123 = *((unsigned int *)((void *)urb + __cil_tmp120));
   __cil_tmp124 = (unsigned long )__cil_tmp123;
-  __cil_tmp125 = (unsigned long )urb;
-  __cil_tmp126 = __cil_tmp125 + 104;
-  __cil_tmp127 = *((void **)__cil_tmp126);
+  __cil_tmp127 = *((void **)((void *)urb + 104));
   __cil_tmp128 = (u8 *)__cil_tmp127;
   data = __cil_tmp128 + __cil_tmp124;
   __cil_tmp129 = (enum gspca_packet_type )2;
@@ -4222,9 +4009,7 @@ static void sd_isoc_irq(struct urb *urb )
   i = i + 1;
   ldv_25706: ;
   {
-  __cil_tmp131 = (unsigned long )urb;
-  __cil_tmp132 = __cil_tmp131 + 164;
-  __cil_tmp133 = *((int *)__cil_tmp132);
+  __cil_tmp133 = *((int *)((void *)urb + 164));
   if (__cil_tmp133 > i) {
     goto ldv_25705;
   } else {

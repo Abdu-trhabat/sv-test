@@ -3368,23 +3368,15 @@ extern struct module __this_module ;
 int init_module(void) ;
 void cleanup_module(void) ;
 static int zero_ctr(struct dm_target *ti , unsigned int argc , char **argv ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-
+{
   {
   if (argc != 0U) {
-    __cil_tmp4 = (unsigned long )ti;
-    __cil_tmp5 = __cil_tmp4 + 56;
-    *((char **)__cil_tmp5) = (char *)"No arguments required";
+    *((char **)((void *)ti + 56)) = (char *)"No arguments required";
     return (-22);
   } else {
 
   }
-  __cil_tmp6 = (unsigned long )ti;
-  __cil_tmp7 = __cil_tmp6 + 44;
-  *((unsigned int *)__cil_tmp7) = 1U;
+  *((unsigned int *)((void *)ti + 44)) = 1U;
   return (0);
 }
 }
@@ -3392,8 +3384,6 @@ static int zero_map(struct dm_target *ti , struct bio *bio , union map_info *map
 { int __cil_tmp4 ;
   int __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
 
@@ -3402,9 +3392,7 @@ static int zero_map(struct dm_target *ti , struct bio *bio , union map_info *map
   __cil_tmp4 = 1 << 12;
   __cil_tmp5 = 1 | __cil_tmp4;
   __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = (unsigned long )bio;
-  __cil_tmp8 = __cil_tmp7 + 32;
-  __cil_tmp9 = *((unsigned long *)__cil_tmp8);
+  __cil_tmp9 = *((unsigned long *)((void *)bio + 32));
   __cil_tmp10 = __cil_tmp9 & __cil_tmp6;
   if ((int )__cil_tmp10 == 0) {
     goto case_0;

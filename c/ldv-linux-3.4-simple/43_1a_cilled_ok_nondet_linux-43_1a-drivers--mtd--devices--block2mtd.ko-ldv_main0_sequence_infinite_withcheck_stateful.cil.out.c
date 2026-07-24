@@ -3404,22 +3404,14 @@ extern int mtd_device_unregister(struct mtd_info * ) ;
 static struct list_head blkmtd_device_list  =    {& blkmtd_device_list, & blkmtd_device_list};
 static void block2mtd_sync(struct mtd_info *mtd ) 
 { struct block2mtd_dev *dev ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct block_device *__cil_tmp8 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )mtd;
-  __cil_tmp4 = __cil_tmp3 + 360;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)mtd + 360));
   dev = (struct block2mtd_dev *)__cil_tmp5;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = *((struct block_device **)__cil_tmp7);
+  __cil_tmp8 = *((struct block_device **)((void *)dev + 16));
   sync_blockdev(__cil_tmp8);
   }
   return;
@@ -3430,27 +3422,15 @@ static void block2mtd_free_device(struct block2mtd_dev *dev )
   unsigned long __cil_tmp3 ;
   unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   char const   *__cil_tmp8 ;
   void const   *__cil_tmp9 ;
   struct block_device *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct block_device *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct block_device *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct inode *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct address_space *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct block_device *__cil_tmp27 ;
   void const   *__cil_tmp28 ;
 
@@ -3467,34 +3447,22 @@ static void block2mtd_free_device(struct block2mtd_dev *dev )
   }
   {
   __cil_tmp5 = 24 + 56;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  __cil_tmp8 = *((char const   **)__cil_tmp7);
+  __cil_tmp8 = *((char const   **)((void *)dev + __cil_tmp5));
   __cil_tmp9 = (void const   *)__cil_tmp8;
   kfree(__cil_tmp9);
   }
   {
   __cil_tmp10 = (struct block_device *)0;
   __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = (unsigned long )dev;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = *((struct block_device **)__cil_tmp13);
+  __cil_tmp14 = *((struct block_device **)((void *)dev + 16));
   __cil_tmp15 = (unsigned long )__cil_tmp14;
   if (__cil_tmp15 != __cil_tmp11) {
     {
-    __cil_tmp16 = (unsigned long )dev;
-    __cil_tmp17 = __cil_tmp16 + 16;
-    __cil_tmp18 = *((struct block_device **)__cil_tmp17);
-    __cil_tmp19 = (unsigned long )__cil_tmp18;
-    __cil_tmp20 = __cil_tmp19 + 8;
-    __cil_tmp21 = *((struct inode **)__cil_tmp20);
-    __cil_tmp22 = (unsigned long )__cil_tmp21;
-    __cil_tmp23 = __cil_tmp22 + 48;
-    __cil_tmp24 = *((struct address_space **)__cil_tmp23);
+    __cil_tmp18 = *((struct block_device **)((void *)dev + 16));
+    __cil_tmp21 = *((struct inode **)((void *)__cil_tmp18 + 8));
+    __cil_tmp24 = *((struct address_space **)((void *)__cil_tmp21 + 48));
     invalidate_mapping_pages(__cil_tmp24, 0UL, 0xffffffffffffffffUL);
-    __cil_tmp25 = (unsigned long )dev;
-    __cil_tmp26 = __cil_tmp25 + 16;
-    __cil_tmp27 = *((struct block_device **)__cil_tmp26);
+    __cil_tmp27 = *((struct block_device **)((void *)dev + 16));
     blkdev_put(__cil_tmp27, 131U);
     }
   } else {
@@ -3523,19 +3491,11 @@ static void block2mtd_exit(void)
   struct list_head  const  *__mptr ;
   size_t tmp ;
   struct list_head *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct mtd_info *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct mtd_info *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   char const   *__cil_tmp20 ;
   char const   *__cil_tmp21 ;
   struct list_head *__cil_tmp22 ;
@@ -3551,23 +3511,15 @@ static void block2mtd_exit(void)
   {
   __mptr = (struct list_head  const  *)pos;
   dev = (struct block2mtd_dev *)__mptr;
-  __cil_tmp7 = (unsigned long )dev;
-  __cil_tmp8 = __cil_tmp7 + 24;
-  __cil_tmp9 = (struct mtd_info *)__cil_tmp8;
+  __cil_tmp9 = (struct mtd_info *)((void *)dev + 24);
   block2mtd_sync(__cil_tmp9);
-  __cil_tmp10 = (unsigned long )dev;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  __cil_tmp12 = (struct mtd_info *)__cil_tmp11;
+  __cil_tmp12 = (struct mtd_info *)((void *)dev + 24);
   mtd_device_unregister(__cil_tmp12);
   tmp = strlen("block2mtd: ");
   __cil_tmp13 = 24 + 64;
-  __cil_tmp14 = (unsigned long )dev;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = *((int *)__cil_tmp15);
+  __cil_tmp16 = *((int *)((void *)dev + __cil_tmp13));
   __cil_tmp17 = 24 + 56;
-  __cil_tmp18 = (unsigned long )dev;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = *((char const   **)__cil_tmp19);
+  __cil_tmp20 = *((char const   **)((void *)dev + __cil_tmp17));
   __cil_tmp21 = __cil_tmp20 + tmp;
   printk("<6>block2mtd: mtd%d: [%s] removed\n", __cil_tmp16, __cil_tmp21);
   __cil_tmp22 = (struct list_head *)dev;

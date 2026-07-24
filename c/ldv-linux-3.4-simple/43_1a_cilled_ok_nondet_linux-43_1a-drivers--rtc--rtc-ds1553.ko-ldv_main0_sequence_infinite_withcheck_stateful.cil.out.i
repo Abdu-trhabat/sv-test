@@ -1885,28 +1885,21 @@ extern struct resource *platform_get_resource(struct platform_device * , unsigne
 extern int platform_get_irq(struct platform_device * , unsigned int ) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1929,21 +1922,13 @@ static int ds1553_rtc_set_time(struct device *dev , struct rtc_time *tm )
   unsigned char tmp___6 ;
   struct platform_device *__cil_tmp16 ;
   struct platform_device const *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
   int __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
   void volatile *__cil_tmp29 ;
   void volatile *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   int __cil_tmp33 ;
   int __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
@@ -1951,8 +1936,6 @@ static int ds1553_rtc_set_time(struct device *dev , struct rtc_time *tm )
   unsigned char __cil_tmp37 ;
   void volatile *__cil_tmp38 ;
   void volatile *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   int __cil_tmp42 ;
   int __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
@@ -1960,8 +1943,6 @@ static int ds1553_rtc_set_time(struct device *dev , struct rtc_time *tm )
   unsigned char __cil_tmp46 ;
   void volatile *__cil_tmp47 ;
   void volatile *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   int __cil_tmp51 ;
   unsigned int __cil_tmp52 ;
   int __cil_tmp53 ;
@@ -1969,24 +1950,18 @@ static int ds1553_rtc_set_time(struct device *dev , struct rtc_time *tm )
   unsigned char __cil_tmp55 ;
   void volatile *__cil_tmp56 ;
   void volatile *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   int __cil_tmp60 ;
   unsigned int __cil_tmp61 ;
   int __cil_tmp62 ;
   unsigned char __cil_tmp63 ;
   void volatile *__cil_tmp64 ;
   void volatile *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   int __cil_tmp68 ;
   unsigned int __cil_tmp69 ;
   int __cil_tmp70 ;
   unsigned char __cil_tmp71 ;
   void volatile *__cil_tmp72 ;
   void volatile *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   int __cil_tmp76 ;
   unsigned int __cil_tmp77 ;
   int __cil_tmp78 ;
@@ -2022,25 +1997,17 @@ static int ds1553_rtc_set_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp17 = (struct platform_device const *)pdev;
   tmp = platform_get_drvdata(__cil_tmp17);
   pdata = (struct rtc_plat_data *)tmp;
-  __cil_tmp18 = (unsigned long )pdata;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  ioaddr = *((void **)__cil_tmp19);
-  __cil_tmp20 = (unsigned long )tm;
-  __cil_tmp21 = __cil_tmp20 + 20;
-  __cil_tmp22 = *((int *)__cil_tmp21);
+  ioaddr = *((void **)((void *)pdata + 8));
+  __cil_tmp22 = *((int *)((void *)tm + 20));
   __cil_tmp23 = __cil_tmp22 + 1900;
   __cil_tmp24 = __cil_tmp23 / 100;
   __cil_tmp25 = (unsigned int )__cil_tmp24;
   century = bin2bcd(__cil_tmp25);
-  __cil_tmp26 = (unsigned long )pdata;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = *((void **)__cil_tmp27);
+  __cil_tmp28 = *((void **)((void *)pdata + 8));
   __cil_tmp29 = (void volatile *)__cil_tmp28;
   __cil_tmp30 = __cil_tmp29 + 8184U;
   writeb((unsigned char)128, __cil_tmp30);
-  __cil_tmp31 = (unsigned long )tm;
-  __cil_tmp32 = __cil_tmp31 + 20;
-  __cil_tmp33 = *((int *)__cil_tmp32);
+  __cil_tmp33 = *((int *)((void *)tm + 20));
   __cil_tmp34 = __cil_tmp33 % 100;
   __cil_tmp35 = (unsigned int )__cil_tmp34;
   tmp___0 = bin2bcd(__cil_tmp35);
@@ -2049,9 +2016,7 @@ static int ds1553_rtc_set_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp38 = (void volatile *)ioaddr;
   __cil_tmp39 = __cil_tmp38 + 8191U;
   writeb(__cil_tmp37, __cil_tmp39);
-  __cil_tmp40 = (unsigned long )tm;
-  __cil_tmp41 = __cil_tmp40 + 16;
-  __cil_tmp42 = *((int *)__cil_tmp41);
+  __cil_tmp42 = *((int *)((void *)tm + 16));
   __cil_tmp43 = __cil_tmp42 + 1;
   __cil_tmp44 = (unsigned int )__cil_tmp43;
   tmp___1 = bin2bcd(__cil_tmp44);
@@ -2060,9 +2025,7 @@ static int ds1553_rtc_set_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp47 = (void volatile *)ioaddr;
   __cil_tmp48 = __cil_tmp47 + 8190U;
   writeb(__cil_tmp46, __cil_tmp48);
-  __cil_tmp49 = (unsigned long )tm;
-  __cil_tmp50 = __cil_tmp49 + 24;
-  __cil_tmp51 = *((int *)__cil_tmp50);
+  __cil_tmp51 = *((int *)((void *)tm + 24));
   __cil_tmp52 = (unsigned int )__cil_tmp51;
   tmp___2 = bin2bcd(__cil_tmp52);
   __cil_tmp53 = (int )tmp___2;
@@ -2071,9 +2034,7 @@ static int ds1553_rtc_set_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp56 = (void volatile *)ioaddr;
   __cil_tmp57 = __cil_tmp56 + 8188U;
   writeb(__cil_tmp55, __cil_tmp57);
-  __cil_tmp58 = (unsigned long )tm;
-  __cil_tmp59 = __cil_tmp58 + 12;
-  __cil_tmp60 = *((int *)__cil_tmp59);
+  __cil_tmp60 = *((int *)((void *)tm + 12));
   __cil_tmp61 = (unsigned int )__cil_tmp60;
   tmp___3 = bin2bcd(__cil_tmp61);
   __cil_tmp62 = (int )tmp___3;
@@ -2081,9 +2042,7 @@ static int ds1553_rtc_set_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp64 = (void volatile *)ioaddr;
   __cil_tmp65 = __cil_tmp64 + 8189U;
   writeb(__cil_tmp63, __cil_tmp65);
-  __cil_tmp66 = (unsigned long )tm;
-  __cil_tmp67 = __cil_tmp66 + 8;
-  __cil_tmp68 = *((int *)__cil_tmp67);
+  __cil_tmp68 = *((int *)((void *)tm + 8));
   __cil_tmp69 = (unsigned int )__cil_tmp68;
   tmp___4 = bin2bcd(__cil_tmp69);
   __cil_tmp70 = (int )tmp___4;
@@ -2091,9 +2050,7 @@ static int ds1553_rtc_set_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp72 = (void volatile *)ioaddr;
   __cil_tmp73 = __cil_tmp72 + 8187U;
   writeb(__cil_tmp71, __cil_tmp73);
-  __cil_tmp74 = (unsigned long )tm;
-  __cil_tmp75 = __cil_tmp74 + 4;
-  __cil_tmp76 = *((int *)__cil_tmp75);
+  __cil_tmp76 = *((int *)((void *)tm + 4));
   __cil_tmp77 = (unsigned int )__cil_tmp76;
   tmp___5 = bin2bcd(__cil_tmp77);
   __cil_tmp78 = (int )tmp___5;
@@ -2163,14 +2120,8 @@ static int ds1553_rtc_read_time(struct device *dev , struct rtc_time *tm )
   int tmp___16 ;
   struct platform_device *__cil_tmp33 ;
   struct platform_device const *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   void volatile *__cil_tmp43 ;
   void volatile *__cil_tmp44 ;
   void const volatile *__cil_tmp45 ;
@@ -2200,28 +2151,18 @@ static int ds1553_rtc_read_time(struct device *dev , struct rtc_time *tm )
   unsigned char __cil_tmp69 ;
   int __cil_tmp70 ;
   unsigned char __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   unsigned char __cil_tmp74 ;
   int __cil_tmp75 ;
   unsigned char __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   unsigned char __cil_tmp79 ;
   int __cil_tmp80 ;
   unsigned char __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   unsigned char __cil_tmp84 ;
   int __cil_tmp85 ;
   unsigned char __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   unsigned char __cil_tmp89 ;
   int __cil_tmp90 ;
   unsigned char __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   unsigned int __cil_tmp94 ;
   unsigned char __cil_tmp95 ;
   int __cil_tmp96 ;
@@ -2229,8 +2170,6 @@ static int ds1553_rtc_read_time(struct device *dev , struct rtc_time *tm )
   unsigned char __cil_tmp98 ;
   int __cil_tmp99 ;
   unsigned char __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   unsigned int __cil_tmp103 ;
   unsigned int __cil_tmp104 ;
   unsigned int __cil_tmp105 ;
@@ -2243,15 +2182,11 @@ static int ds1553_rtc_read_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp34 = (struct platform_device const *)pdev;
   tmp = platform_get_drvdata(__cil_tmp34);
   pdata = (struct rtc_plat_data *)tmp;
-  __cil_tmp35 = (unsigned long )pdata;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  ioaddr = *((void **)__cil_tmp36);
+  ioaddr = *((void **)((void *)pdata + 8));
   }
   {
   __cil_tmp37 = (unsigned long )jiffies;
-  __cil_tmp38 = (unsigned long )pdata;
-  __cil_tmp39 = __cil_tmp38 + 16;
-  __cil_tmp40 = *((unsigned long *)__cil_tmp39);
+  __cil_tmp40 = *((unsigned long *)((void *)pdata + 16));
   if (__cil_tmp40 == __cil_tmp37) {
     {
     msleep(1U);
@@ -2260,9 +2195,7 @@ static int ds1553_rtc_read_time(struct device *dev , struct rtc_time *tm )
   }
   }
   {
-  __cil_tmp41 = (unsigned long )pdata;
-  __cil_tmp42 = __cil_tmp41 + 16;
-  *((unsigned long *)__cil_tmp42) = (unsigned long )jiffies;
+  *((unsigned long *)((void *)pdata + 16)) = (unsigned long )jiffies;
   __cil_tmp43 = (void volatile *)ioaddr;
   __cil_tmp44 = __cil_tmp43 + 8184U;
   writeb((unsigned char)64, __cil_tmp44);
@@ -2313,38 +2246,28 @@ static int ds1553_rtc_read_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp70 = (int )__cil_tmp69;
   __cil_tmp71 = (unsigned char )__cil_tmp70;
   tmp___9 = bcd2bin(__cil_tmp71);
-  __cil_tmp72 = (unsigned long )tm;
-  __cil_tmp73 = __cil_tmp72 + 4;
-  *((int *)__cil_tmp73) = (int )tmp___9;
+  *((int *)((void *)tm + 4)) = (int )tmp___9;
   __cil_tmp74 = (unsigned char )hour;
   __cil_tmp75 = (int )__cil_tmp74;
   __cil_tmp76 = (unsigned char )__cil_tmp75;
   tmp___10 = bcd2bin(__cil_tmp76);
-  __cil_tmp77 = (unsigned long )tm;
-  __cil_tmp78 = __cil_tmp77 + 8;
-  *((int *)__cil_tmp78) = (int )tmp___10;
+  *((int *)((void *)tm + 8)) = (int )tmp___10;
   __cil_tmp79 = (unsigned char )day;
   __cil_tmp80 = (int )__cil_tmp79;
   __cil_tmp81 = (unsigned char )__cil_tmp80;
   tmp___11 = bcd2bin(__cil_tmp81);
-  __cil_tmp82 = (unsigned long )tm;
-  __cil_tmp83 = __cil_tmp82 + 12;
-  *((int *)__cil_tmp83) = (int )tmp___11;
+  *((int *)((void *)tm + 12)) = (int )tmp___11;
   __cil_tmp84 = (unsigned char )week;
   __cil_tmp85 = (int )__cil_tmp84;
   __cil_tmp86 = (unsigned char )__cil_tmp85;
   tmp___12 = bcd2bin(__cil_tmp86);
-  __cil_tmp87 = (unsigned long )tm;
-  __cil_tmp88 = __cil_tmp87 + 24;
-  *((int *)__cil_tmp88) = (int )tmp___12;
+  *((int *)((void *)tm + 24)) = (int )tmp___12;
   __cil_tmp89 = (unsigned char )month;
   __cil_tmp90 = (int )__cil_tmp89;
   __cil_tmp91 = (unsigned char )__cil_tmp90;
   tmp___13 = bcd2bin(__cil_tmp91);
-  __cil_tmp92 = (unsigned long )tm;
-  __cil_tmp93 = __cil_tmp92 + 16;
   __cil_tmp94 = tmp___13 - 1U;
-  *((int *)__cil_tmp93) = (int )__cil_tmp94;
+  *((int *)((void *)tm + 16)) = (int )__cil_tmp94;
   __cil_tmp95 = (unsigned char )year;
   __cil_tmp96 = (int )__cil_tmp95;
   __cil_tmp97 = (unsigned char )__cil_tmp96;
@@ -2353,12 +2276,10 @@ static int ds1553_rtc_read_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp99 = (int )__cil_tmp98;
   __cil_tmp100 = (unsigned char )__cil_tmp99;
   tmp___15 = bcd2bin(__cil_tmp100);
-  __cil_tmp101 = (unsigned long )tm;
-  __cil_tmp102 = __cil_tmp101 + 20;
   __cil_tmp103 = tmp___15 * 100U;
   __cil_tmp104 = tmp___14 + __cil_tmp103;
   __cil_tmp105 = __cil_tmp104 - 1900U;
-  *((int *)__cil_tmp102) = (int )__cil_tmp105;
+  *((int *)((void *)tm + 20)) = (int )__cil_tmp105;
   tmp___16 = rtc_valid_tm(tm);
   }
   if (tmp___16 < 0) {
@@ -2384,97 +2305,59 @@ static void ds1553_rtc_update_alarm(struct rtc_plat_data *pdata )
   unsigned char tmp___5 ;
   int tmp___6 ;
   int tmp___7 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   int __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
   unsigned char __cil_tmp26 ;
   void volatile *__cil_tmp27 ;
   void volatile *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   int __cil_tmp38 ;
   unsigned int __cil_tmp39 ;
   unsigned char __cil_tmp40 ;
   void volatile *__cil_tmp41 ;
   void volatile *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   int __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned int __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   int __cil_tmp52 ;
   unsigned int __cil_tmp53 ;
   unsigned char __cil_tmp54 ;
   void volatile *__cil_tmp55 ;
   void volatile *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned int __cil_tmp62 ;
   unsigned int __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   int __cil_tmp66 ;
   unsigned int __cil_tmp67 ;
   unsigned char __cil_tmp68 ;
   void volatile *__cil_tmp69 ;
   void volatile *__cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   unsigned int __cil_tmp73 ;
   unsigned char __cil_tmp74 ;
   void volatile *__cil_tmp75 ;
   void volatile *__cil_tmp76 ;
   void const volatile *__cil_tmp77 ;
   void const volatile *__cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   spinlock_t *__cil_tmp81 ;
   {
   {
-  __cil_tmp13 = (unsigned long )pdata;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  ioaddr = *((void **)__cil_tmp14);
+  ioaddr = *((void **)((void *)pdata + 8));
   ldv_spin_lock();
   }
   {
-  __cil_tmp15 = (unsigned long )pdata;
-  __cil_tmp16 = __cil_tmp15 + 44;
-  __cil_tmp17 = *((int *)__cil_tmp16);
+  __cil_tmp17 = *((int *)((void *)pdata + 44));
   if (__cil_tmp17 >= 0) {
     {
-    __cil_tmp18 = (unsigned long )pdata;
-    __cil_tmp19 = __cil_tmp18 + 28;
-    __cil_tmp20 = *((unsigned int *)__cil_tmp19);
+    __cil_tmp20 = *((unsigned int *)((void *)pdata + 28));
     __cil_tmp21 = __cil_tmp20 & 16U;
     if (__cil_tmp21 == 0U) {
       {
-      __cil_tmp22 = (unsigned long )pdata;
-      __cil_tmp23 = __cil_tmp22 + 44;
-      __cil_tmp24 = *((int *)__cil_tmp23);
+      __cil_tmp24 = *((int *)((void *)pdata + 44));
       __cil_tmp25 = (unsigned int )__cil_tmp24;
       tmp = bin2bcd(__cil_tmp25);
       tmp___0 = (int )tmp;
@@ -2494,20 +2377,14 @@ static void ds1553_rtc_update_alarm(struct rtc_plat_data *pdata )
   writeb(__cil_tmp26, __cil_tmp28);
   }
   {
-  __cil_tmp29 = (unsigned long )pdata;
-  __cil_tmp30 = __cil_tmp29 + 40;
-  __cil_tmp31 = *((int *)__cil_tmp30);
+  __cil_tmp31 = *((int *)((void *)pdata + 40));
   if (__cil_tmp31 >= 0) {
     {
-    __cil_tmp32 = (unsigned long )pdata;
-    __cil_tmp33 = __cil_tmp32 + 28;
-    __cil_tmp34 = *((unsigned int *)__cil_tmp33);
+    __cil_tmp34 = *((unsigned int *)((void *)pdata + 28));
     __cil_tmp35 = __cil_tmp34 & 16U;
     if (__cil_tmp35 == 0U) {
       {
-      __cil_tmp36 = (unsigned long )pdata;
-      __cil_tmp37 = __cil_tmp36 + 40;
-      __cil_tmp38 = *((int *)__cil_tmp37);
+      __cil_tmp38 = *((int *)((void *)pdata + 40));
       __cil_tmp39 = (unsigned int )__cil_tmp38;
       tmp___1 = bin2bcd(__cil_tmp39);
       tmp___2 = (int )tmp___1;
@@ -2527,20 +2404,14 @@ static void ds1553_rtc_update_alarm(struct rtc_plat_data *pdata )
   writeb(__cil_tmp40, __cil_tmp42);
   }
   {
-  __cil_tmp43 = (unsigned long )pdata;
-  __cil_tmp44 = __cil_tmp43 + 36;
-  __cil_tmp45 = *((int *)__cil_tmp44);
+  __cil_tmp45 = *((int *)((void *)pdata + 36));
   if (__cil_tmp45 >= 0) {
     {
-    __cil_tmp46 = (unsigned long )pdata;
-    __cil_tmp47 = __cil_tmp46 + 28;
-    __cil_tmp48 = *((unsigned int *)__cil_tmp47);
+    __cil_tmp48 = *((unsigned int *)((void *)pdata + 28));
     __cil_tmp49 = __cil_tmp48 & 16U;
     if (__cil_tmp49 == 0U) {
       {
-      __cil_tmp50 = (unsigned long )pdata;
-      __cil_tmp51 = __cil_tmp50 + 36;
-      __cil_tmp52 = *((int *)__cil_tmp51);
+      __cil_tmp52 = *((int *)((void *)pdata + 36));
       __cil_tmp53 = (unsigned int )__cil_tmp52;
       tmp___3 = bin2bcd(__cil_tmp53);
       tmp___4 = (int )tmp___3;
@@ -2560,20 +2431,14 @@ static void ds1553_rtc_update_alarm(struct rtc_plat_data *pdata )
   writeb(__cil_tmp54, __cil_tmp56);
   }
   {
-  __cil_tmp57 = (unsigned long )pdata;
-  __cil_tmp58 = __cil_tmp57 + 32;
-  __cil_tmp59 = *((int *)__cil_tmp58);
+  __cil_tmp59 = *((int *)((void *)pdata + 32));
   if (__cil_tmp59 >= 0) {
     {
-    __cil_tmp60 = (unsigned long )pdata;
-    __cil_tmp61 = __cil_tmp60 + 28;
-    __cil_tmp62 = *((unsigned int *)__cil_tmp61);
+    __cil_tmp62 = *((unsigned int *)((void *)pdata + 28));
     __cil_tmp63 = __cil_tmp62 & 16U;
     if (__cil_tmp63 == 0U) {
       {
-      __cil_tmp64 = (unsigned long )pdata;
-      __cil_tmp65 = __cil_tmp64 + 32;
-      __cil_tmp66 = *((int *)__cil_tmp65);
+      __cil_tmp66 = *((int *)((void *)pdata + 32));
       __cil_tmp67 = (unsigned int )__cil_tmp66;
       tmp___5 = bin2bcd(__cil_tmp67);
       tmp___6 = (int )tmp___5;
@@ -2593,9 +2458,7 @@ static void ds1553_rtc_update_alarm(struct rtc_plat_data *pdata )
   writeb(__cil_tmp68, __cil_tmp70);
   }
   {
-  __cil_tmp71 = (unsigned long )pdata;
-  __cil_tmp72 = __cil_tmp71 + 28;
-  __cil_tmp73 = *((unsigned int *)__cil_tmp72);
+  __cil_tmp73 = *((unsigned int *)((void *)pdata + 28));
   if (__cil_tmp73 != 0U) {
     tmp___7 = 128;
   } else {
@@ -2610,9 +2473,7 @@ static void ds1553_rtc_update_alarm(struct rtc_plat_data *pdata )
   __cil_tmp77 = (void const volatile *)ioaddr;
   __cil_tmp78 = __cil_tmp77 + 8176U;
   readb(__cil_tmp78);
-  __cil_tmp79 = (unsigned long )pdata;
-  __cil_tmp80 = __cil_tmp79 + 48;
-  __cil_tmp81 = (spinlock_t *)__cil_tmp80;
+  __cil_tmp81 = (spinlock_t *)((void *)pdata + 48);
   spin_unlock_irqrestore(__cil_tmp81, flags);
   }
   return;
@@ -2625,34 +2486,12 @@ static int ds1553_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   void *tmp ;
   struct platform_device *__cil_tmp7 ;
   struct platform_device const *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned char __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   {
   {
@@ -2664,47 +2503,25 @@ static int ds1553_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   pdata = (struct rtc_plat_data *)tmp;
   }
   {
-  __cil_tmp9 = (unsigned long )pdata;
-  __cil_tmp10 = __cil_tmp9 + 24;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)pdata + 24));
   if (__cil_tmp11 <= 0) {
     return (-22);
   } else {
   }
   }
-  __cil_tmp12 = (unsigned long )pdata;
-  __cil_tmp13 = __cil_tmp12 + 44;
   __cil_tmp14 = 4 + 12;
-  __cil_tmp15 = (unsigned long )alrm;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((int *)__cil_tmp13) = *((int *)__cil_tmp16);
-  __cil_tmp17 = (unsigned long )pdata;
-  __cil_tmp18 = __cil_tmp17 + 40;
+  *((int *)((void *)pdata + 44)) = *((int *)((void *)alrm + __cil_tmp14));
   __cil_tmp19 = 4 + 8;
-  __cil_tmp20 = (unsigned long )alrm;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  *((int *)__cil_tmp18) = *((int *)__cil_tmp21);
-  __cil_tmp22 = (unsigned long )pdata;
-  __cil_tmp23 = __cil_tmp22 + 36;
+  *((int *)((void *)pdata + 40)) = *((int *)((void *)alrm + __cil_tmp19));
   __cil_tmp24 = 4 + 4;
-  __cil_tmp25 = (unsigned long )alrm;
-  __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-  *((int *)__cil_tmp23) = *((int *)__cil_tmp26);
-  __cil_tmp27 = (unsigned long )pdata;
-  __cil_tmp28 = __cil_tmp27 + 32;
-  __cil_tmp29 = (unsigned long )alrm;
-  __cil_tmp30 = __cil_tmp29 + 4;
-  *((int *)__cil_tmp28) = *((int *)__cil_tmp30);
+  *((int *)((void *)pdata + 36)) = *((int *)((void *)alrm + __cil_tmp24));
+  *((int *)((void *)pdata + 32)) = *((int *)((void *)alrm + 4));
   {
   __cil_tmp31 = *((unsigned char *)alrm);
   __cil_tmp32 = (unsigned int )__cil_tmp31;
   if (__cil_tmp32 != 0U) {
-    __cil_tmp33 = (unsigned long )pdata;
-    __cil_tmp34 = __cil_tmp33 + 28;
-    __cil_tmp35 = (unsigned long )pdata;
-    __cil_tmp36 = __cil_tmp35 + 28;
-    __cil_tmp37 = *((unsigned int *)__cil_tmp36);
-    *((unsigned int *)__cil_tmp34) = __cil_tmp37 | 32U;
+    __cil_tmp37 = *((unsigned int *)((void *)pdata + 28));
+    *((unsigned int *)((void *)pdata + 28)) = __cil_tmp37 | 32U;
   } else {
   }
   }
@@ -2721,53 +2538,17 @@ static int ds1553_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   void *tmp ;
   struct platform_device *__cil_tmp7 ;
   struct platform_device const *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   int __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   int __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned int __cil_tmp56 ;
   unsigned int __cil_tmp57 ;
   int __cil_tmp58 ;
@@ -2781,87 +2562,51 @@ static int ds1553_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   pdata = (struct rtc_plat_data *)tmp;
   }
   {
-  __cil_tmp9 = (unsigned long )pdata;
-  __cil_tmp10 = __cil_tmp9 + 24;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)pdata + 24));
   if (__cil_tmp11 <= 0) {
     return (-22);
   } else {
   }
   }
   {
-  __cil_tmp12 = (unsigned long )pdata;
-  __cil_tmp13 = __cil_tmp12 + 44;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)pdata + 44));
   if (0 > __cil_tmp14) {
     __cil_tmp15 = 4 + 12;
-    __cil_tmp16 = (unsigned long )alrm;
-    __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-    *((int *)__cil_tmp17) = 0;
+    *((int *)((void *)alrm + __cil_tmp15)) = 0;
   } else {
     __cil_tmp18 = 4 + 12;
-    __cil_tmp19 = (unsigned long )alrm;
-    __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-    __cil_tmp21 = (unsigned long )pdata;
-    __cil_tmp22 = __cil_tmp21 + 44;
-    *((int *)__cil_tmp20) = *((int *)__cil_tmp22);
+    *((int *)((void *)alrm + __cil_tmp18)) = *((int *)((void *)pdata + 44));
   }
   }
   {
-  __cil_tmp23 = (unsigned long )pdata;
-  __cil_tmp24 = __cil_tmp23 + 40;
-  __cil_tmp25 = *((int *)__cil_tmp24);
+  __cil_tmp25 = *((int *)((void *)pdata + 40));
   if (0 > __cil_tmp25) {
     __cil_tmp26 = 4 + 8;
-    __cil_tmp27 = (unsigned long )alrm;
-    __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-    *((int *)__cil_tmp28) = 0;
+    *((int *)((void *)alrm + __cil_tmp26)) = 0;
   } else {
     __cil_tmp29 = 4 + 8;
-    __cil_tmp30 = (unsigned long )alrm;
-    __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-    __cil_tmp32 = (unsigned long )pdata;
-    __cil_tmp33 = __cil_tmp32 + 40;
-    *((int *)__cil_tmp31) = *((int *)__cil_tmp33);
+    *((int *)((void *)alrm + __cil_tmp29)) = *((int *)((void *)pdata + 40));
   }
   }
   {
-  __cil_tmp34 = (unsigned long )pdata;
-  __cil_tmp35 = __cil_tmp34 + 36;
-  __cil_tmp36 = *((int *)__cil_tmp35);
+  __cil_tmp36 = *((int *)((void *)pdata + 36));
   if (0 > __cil_tmp36) {
     __cil_tmp37 = 4 + 4;
-    __cil_tmp38 = (unsigned long )alrm;
-    __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-    *((int *)__cil_tmp39) = 0;
+    *((int *)((void *)alrm + __cil_tmp37)) = 0;
   } else {
     __cil_tmp40 = 4 + 4;
-    __cil_tmp41 = (unsigned long )alrm;
-    __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-    __cil_tmp43 = (unsigned long )pdata;
-    __cil_tmp44 = __cil_tmp43 + 36;
-    *((int *)__cil_tmp42) = *((int *)__cil_tmp44);
+    *((int *)((void *)alrm + __cil_tmp40)) = *((int *)((void *)pdata + 36));
   }
   }
   {
-  __cil_tmp45 = (unsigned long )pdata;
-  __cil_tmp46 = __cil_tmp45 + 32;
-  __cil_tmp47 = *((int *)__cil_tmp46);
+  __cil_tmp47 = *((int *)((void *)pdata + 32));
   if (0 > __cil_tmp47) {
-    __cil_tmp48 = (unsigned long )alrm;
-    __cil_tmp49 = __cil_tmp48 + 4;
-    *((int *)__cil_tmp49) = 0;
+    *((int *)((void *)alrm + 4)) = 0;
   } else {
-    __cil_tmp50 = (unsigned long )alrm;
-    __cil_tmp51 = __cil_tmp50 + 4;
-    __cil_tmp52 = (unsigned long )pdata;
-    __cil_tmp53 = __cil_tmp52 + 32;
-    *((int *)__cil_tmp51) = *((int *)__cil_tmp53);
+    *((int *)((void *)alrm + 4)) = *((int *)((void *)pdata + 32));
   }
   }
-  __cil_tmp54 = (unsigned long )pdata;
-  __cil_tmp55 = __cil_tmp54 + 28;
-  __cil_tmp56 = *((unsigned int *)__cil_tmp55);
+  __cil_tmp56 = *((unsigned int *)((void *)pdata + 28));
   __cil_tmp57 = __cil_tmp56 & 32U;
   __cil_tmp58 = __cil_tmp57 != 0U;
   *((unsigned char *)alrm) = (unsigned char )__cil_tmp58;
@@ -2878,10 +2623,6 @@ static irqreturn_t ds1553_rtc_interrupt(int irq , void *dev_id )
   long tmp___1 ;
   unsigned char tmp___2 ;
   struct platform_device const *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   spinlock_t *__cil_tmp16 ;
   void const volatile *__cil_tmp17 ;
   void const volatile *__cil_tmp18 ;
@@ -2898,8 +2639,6 @@ static irqreturn_t ds1553_rtc_interrupt(int irq , void *dev_id )
   int __cil_tmp29 ;
   long __cil_tmp30 ;
   struct rtc_device *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   spinlock_t *__cil_tmp34 ;
   int __cil_tmp35 ;
   {
@@ -2908,13 +2647,9 @@ static irqreturn_t ds1553_rtc_interrupt(int irq , void *dev_id )
   __cil_tmp11 = (struct platform_device const *)pdev;
   tmp = platform_get_drvdata(__cil_tmp11);
   pdata = (struct rtc_plat_data *)tmp;
-  __cil_tmp12 = (unsigned long )pdata;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  ioaddr = *((void **)__cil_tmp13);
+  ioaddr = *((void **)((void *)pdata + 8));
   events = 0UL;
-  __cil_tmp14 = (unsigned long )pdata;
-  __cil_tmp15 = __cil_tmp14 + 48;
-  __cil_tmp16 = (spinlock_t *)__cil_tmp15;
+  __cil_tmp16 = (spinlock_t *)((void *)pdata + 48);
   spin_lock(__cil_tmp16);
   __cil_tmp17 = (void const volatile *)ioaddr;
   __cil_tmp18 = __cil_tmp17 + 8176U;
@@ -2959,9 +2694,7 @@ static irqreturn_t ds1553_rtc_interrupt(int irq , void *dev_id )
   }
   }
   {
-  __cil_tmp32 = (unsigned long )pdata;
-  __cil_tmp33 = __cil_tmp32 + 48;
-  __cil_tmp34 = (spinlock_t *)__cil_tmp33;
+  __cil_tmp34 = (spinlock_t *)((void *)pdata + 48);
   spin_unlock(__cil_tmp34);
   }
   {
@@ -2977,18 +2710,8 @@ static int ds1553_rtc_alarm_irq_enable(struct device *dev , unsigned int enabled
   void *tmp ;
   struct platform_device *__cil_tmp7 ;
   struct platform_device const *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   {
   {
@@ -3000,28 +2723,18 @@ static int ds1553_rtc_alarm_irq_enable(struct device *dev , unsigned int enabled
   pdata = (struct rtc_plat_data *)tmp;
   }
   {
-  __cil_tmp9 = (unsigned long )pdata;
-  __cil_tmp10 = __cil_tmp9 + 24;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)pdata + 24));
   if (__cil_tmp11 <= 0) {
     return (-22);
   } else {
   }
   }
   if (enabled != 0U) {
-    __cil_tmp12 = (unsigned long )pdata;
-    __cil_tmp13 = __cil_tmp12 + 28;
-    __cil_tmp14 = (unsigned long )pdata;
-    __cil_tmp15 = __cil_tmp14 + 28;
-    __cil_tmp16 = *((unsigned int *)__cil_tmp15);
-    *((unsigned int *)__cil_tmp13) = __cil_tmp16 | 32U;
+    __cil_tmp16 = *((unsigned int *)((void *)pdata + 28));
+    *((unsigned int *)((void *)pdata + 28)) = __cil_tmp16 | 32U;
   } else {
-    __cil_tmp17 = (unsigned long )pdata;
-    __cil_tmp18 = __cil_tmp17 + 28;
-    __cil_tmp19 = (unsigned long )pdata;
-    __cil_tmp20 = __cil_tmp19 + 28;
-    __cil_tmp21 = *((unsigned int *)__cil_tmp20);
-    *((unsigned int *)__cil_tmp18) = __cil_tmp21 & 4294967263U;
+    __cil_tmp21 = *((unsigned int *)((void *)pdata + 28));
+    *((unsigned int *)((void *)pdata + 28)) = __cil_tmp21 & 4294967263U;
   }
   {
   ds1553_rtc_update_alarm(pdata);
@@ -3052,8 +2765,6 @@ static ssize_t ds1553_nvram_read(struct file *filp , struct kobject *kobj , stru
   struct device *__cil_tmp18 ;
   struct platform_device *__cil_tmp19 ;
   struct platform_device const *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   void const volatile *__cil_tmp24 ;
   void const volatile *__cil_tmp25 ;
@@ -3068,9 +2779,7 @@ static ssize_t ds1553_nvram_read(struct file *filp , struct kobject *kobj , stru
   __cil_tmp20 = (struct platform_device const *)pdev;
   tmp = platform_get_drvdata(__cil_tmp20);
   pdata = (struct rtc_plat_data *)tmp;
-  __cil_tmp21 = (unsigned long )pdata;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  ioaddr = *((void **)__cil_tmp22);
+  ioaddr = *((void **)((void *)pdata + 8));
   count = 0L;
   }
   goto ldv_21044;
@@ -3117,8 +2826,6 @@ static ssize_t ds1553_nvram_write(struct file *filp , struct kobject *kobj , str
   struct device *__cil_tmp17 ;
   struct platform_device *__cil_tmp18 ;
   struct platform_device const *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   char __cil_tmp22 ;
   unsigned char __cil_tmp23 ;
   int __cil_tmp24 ;
@@ -3137,9 +2844,7 @@ static ssize_t ds1553_nvram_write(struct file *filp , struct kobject *kobj , str
   __cil_tmp19 = (struct platform_device const *)pdev;
   tmp = platform_get_drvdata(__cil_tmp19);
   pdata = (struct rtc_plat_data *)tmp;
-  __cil_tmp20 = (unsigned long )pdata;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  ioaddr = *((void **)__cil_tmp21);
+  ioaddr = *((void **)((void *)pdata + 8));
   count = 0L;
   }
   goto ldv_21064;
@@ -3202,31 +2907,21 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
   struct resource *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct rtc_plat_data *__cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct device *__cil_tmp29 ;
   resource_size_t __cil_tmp30 ;
   char const *__cil_tmp31 ;
   struct resource *__cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct device *__cil_tmp37 ;
   resource_size_t __cil_tmp38 ;
   void *__cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   void const volatile *__cil_tmp46 ;
   void const volatile *__cil_tmp47 ;
   unsigned int __cil_tmp48 ;
@@ -3250,48 +2945,26 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
   void const volatile *__cil_tmp66 ;
   int __cil_tmp67 ;
   int __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   struct device *__cil_tmp71 ;
   struct device const *__cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   spinlock_t *__cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   struct raw_spinlock *__cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   void *__cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   int __cil_tmp84 ;
   void volatile *__cil_tmp85 ;
   void volatile *__cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   struct device *__cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   int __cil_tmp92 ;
   unsigned int __cil_tmp93 ;
   char const *__cil_tmp94 ;
   void *__cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   struct device *__cil_tmp98 ;
   struct device const *__cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
   char const *__cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   struct device *__cil_tmp105 ;
   void const *__cil_tmp106 ;
   void const *__cil_tmp107 ;
   unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   struct kobject *__cil_tmp111 ;
   struct bin_attribute const *__cil_tmp112 ;
   {
@@ -3309,9 +2982,7 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp21 = (unsigned long )pdev;
-  __cil_tmp22 = __cil_tmp21 + 16;
-  __cil_tmp23 = (struct device *)__cil_tmp22;
+  __cil_tmp23 = (struct device *)((void *)pdev + 16);
   tmp = devm_kzalloc(__cil_tmp23, 120UL, 208U);
   pdata = (struct rtc_plat_data *)tmp;
   }
@@ -3325,9 +2996,7 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp27 = (unsigned long )pdev;
-  __cil_tmp28 = __cil_tmp27 + 16;
-  __cil_tmp29 = (struct device *)__cil_tmp28;
+  __cil_tmp29 = (struct device *)((void *)pdev + 16);
   __cil_tmp30 = *((resource_size_t *)res);
   __cil_tmp31 = *((char const **)pdev);
   tmp___0 = __devm_request_region(__cil_tmp29, & iomem_resource, __cil_tmp30, 8192ULL,
@@ -3343,9 +3012,7 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp35 = (unsigned long )pdev;
-  __cil_tmp36 = __cil_tmp35 + 16;
-  __cil_tmp37 = (struct device *)__cil_tmp36;
+  __cil_tmp37 = (struct device *)((void *)pdev + 16);
   __cil_tmp38 = *((resource_size_t *)res);
   ioaddr = devm_ioremap(__cil_tmp37, __cil_tmp38, 8192UL);
   }
@@ -3359,12 +3026,8 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp42 = (unsigned long )pdata;
-  __cil_tmp43 = __cil_tmp42 + 8;
-  *((void **)__cil_tmp43) = ioaddr;
-  __cil_tmp44 = (unsigned long )pdata;
-  __cil_tmp45 = __cil_tmp44 + 24;
-  *((int *)__cil_tmp45) = platform_get_irq(pdev, 0U);
+  *((void **)((void *)pdata + 8)) = ioaddr;
+  *((int *)((void *)pdata + 24)) = platform_get_irq(pdev, 0U);
   __cil_tmp46 = (void const volatile *)ioaddr;
   __cil_tmp47 = __cil_tmp46 + 8185U;
   tmp___1 = readb(__cil_tmp47);
@@ -3410,9 +3073,7 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
   __cil_tmp68 = __cil_tmp67 & 16;
   if (__cil_tmp68 != 0) {
     {
-    __cil_tmp69 = (unsigned long )pdev;
-    __cil_tmp70 = __cil_tmp69 + 16;
-    __cil_tmp71 = (struct device *)__cil_tmp70;
+    __cil_tmp71 = (struct device *)((void *)pdev + 16);
     __cil_tmp72 = (struct device const *)__cil_tmp71;
     dev_warn(__cil_tmp72, "voltage-low detected.\n");
     }
@@ -3420,35 +3081,23 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp73 = (unsigned long )pdata;
-  __cil_tmp74 = __cil_tmp73 + 48;
-  __cil_tmp75 = (spinlock_t *)__cil_tmp74;
+  __cil_tmp75 = (spinlock_t *)((void *)pdata + 48);
   spinlock_check(__cil_tmp75);
-  __cil_tmp76 = (unsigned long )pdata;
-  __cil_tmp77 = __cil_tmp76 + 48;
-  __cil_tmp78 = (struct raw_spinlock *)__cil_tmp77;
+  __cil_tmp78 = (struct raw_spinlock *)((void *)pdata + 48);
   __raw_spin_lock_init(__cil_tmp78, "&(&pdata->lock)->rlock", & __key);
-  __cil_tmp79 = (unsigned long )pdata;
-  __cil_tmp80 = __cil_tmp79 + 16;
-  *((unsigned long *)__cil_tmp80) = (unsigned long )jiffies;
+  *((unsigned long *)((void *)pdata + 16)) = (unsigned long )jiffies;
   __cil_tmp81 = (void *)pdata;
   platform_set_drvdata(pdev, __cil_tmp81);
   }
   {
-  __cil_tmp82 = (unsigned long )pdata;
-  __cil_tmp83 = __cil_tmp82 + 24;
-  __cil_tmp84 = *((int *)__cil_tmp83);
+  __cil_tmp84 = *((int *)((void *)pdata + 24));
   if (__cil_tmp84 > 0) {
     {
     __cil_tmp85 = (void volatile *)ioaddr;
     __cil_tmp86 = __cil_tmp85 + 8182U;
     writeb((unsigned char)0, __cil_tmp86);
-    __cil_tmp87 = (unsigned long )pdev;
-    __cil_tmp88 = __cil_tmp87 + 16;
-    __cil_tmp89 = (struct device *)__cil_tmp88;
-    __cil_tmp90 = (unsigned long )pdata;
-    __cil_tmp91 = __cil_tmp90 + 24;
-    __cil_tmp92 = *((int *)__cil_tmp91);
+    __cil_tmp89 = (struct device *)((void *)pdev + 16);
+    __cil_tmp92 = *((int *)((void *)pdata + 24));
     __cil_tmp93 = (unsigned int )__cil_tmp92;
     __cil_tmp94 = *((char const **)pdev);
     __cil_tmp95 = (void *)pdev;
@@ -3457,14 +3106,10 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
     }
     if (tmp___4 < 0) {
       {
-      __cil_tmp96 = (unsigned long )pdev;
-      __cil_tmp97 = __cil_tmp96 + 16;
-      __cil_tmp98 = (struct device *)__cil_tmp97;
+      __cil_tmp98 = (struct device *)((void *)pdev + 16);
       __cil_tmp99 = (struct device const *)__cil_tmp98;
       dev_warn(__cil_tmp99, "interrupt not available.\n");
-      __cil_tmp100 = (unsigned long )pdata;
-      __cil_tmp101 = __cil_tmp100 + 24;
-      *((int *)__cil_tmp101) = 0;
+      *((int *)((void *)pdata + 24)) = 0;
       }
     } else {
     }
@@ -3473,9 +3118,7 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
   }
   {
   __cil_tmp102 = *((char const **)pdev);
-  __cil_tmp103 = (unsigned long )pdev;
-  __cil_tmp104 = __cil_tmp103 + 16;
-  __cil_tmp105 = (struct device *)__cil_tmp104;
+  __cil_tmp105 = (struct device *)((void *)pdev + 16);
   rtc = rtc_device_register(__cil_tmp102, __cil_tmp105, & ds1553_rtc_ops, & __this_module);
   __cil_tmp106 = (void const *)rtc;
   tmp___6 = IS_ERR(__cil_tmp106);
@@ -3491,9 +3134,7 @@ static int ds1553_rtc_probe(struct platform_device *pdev )
   {
   *((struct rtc_device **)pdata) = rtc;
   __cil_tmp108 = 16 + 16;
-  __cil_tmp109 = (unsigned long )pdev;
-  __cil_tmp110 = __cil_tmp109 + __cil_tmp108;
-  __cil_tmp111 = (struct kobject *)__cil_tmp110;
+  __cil_tmp111 = (struct kobject *)((void *)pdev + __cil_tmp108);
   __cil_tmp112 = (struct bin_attribute const *)(& ds1553_nvram_attr);
   ret = sysfs_create_bin_file(__cil_tmp111, __cil_tmp112);
   }

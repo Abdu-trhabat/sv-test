@@ -3205,18 +3205,6 @@ static int atlas_acpi_button_add(struct acpi_device *device )
   struct input_dev *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long (*__cil_tmp20)[1U] ;
   unsigned long volatile   *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
@@ -3225,15 +3213,11 @@ static int atlas_acpi_button_add(struct acpi_device *device )
   unsigned int __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long (*__cil_tmp30)[12U] ;
   unsigned long volatile   *__cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   acpi_handle __cil_tmp37 ;
   acpi_adr_space_type __cil_tmp38 ;
   void *__cil_tmp39 ;
@@ -3257,25 +3241,13 @@ static int atlas_acpi_button_add(struct acpi_device *device )
   }
   {
   *((char const   **)input_dev) = "Atlas ACPI button driver";
-  __cil_tmp8 = (unsigned long )input_dev;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  *((char const   **)__cil_tmp9) = "ASIM0000/atlas/input0";
-  __cil_tmp10 = (unsigned long )input_dev;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  *((__u16 *)__cil_tmp11) = (__u16 )25U;
-  __cil_tmp12 = (unsigned long )input_dev;
-  __cil_tmp13 = __cil_tmp12 + 224;
-  *((void **)__cil_tmp13) = (void *)(& atlas_keymap);
-  __cil_tmp14 = (unsigned long )input_dev;
-  __cil_tmp15 = __cil_tmp14 + 216;
-  *((unsigned int *)__cil_tmp15) = 2U;
-  __cil_tmp16 = (unsigned long )input_dev;
-  __cil_tmp17 = __cil_tmp16 + 212;
-  *((unsigned int *)__cil_tmp17) = 16U;
+  *((char const   **)((void *)input_dev + 8)) = "ASIM0000/atlas/input0";
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )25U;
+  *((void **)((void *)input_dev + 224)) = (void *)(& atlas_keymap);
+  *((unsigned int *)((void *)input_dev + 216)) = 2U;
+  *((unsigned int *)((void *)input_dev + 212)) = 16U;
   input_set_capability(input_dev, 4U, 4U);
-  __cil_tmp18 = (unsigned long )input_dev;
-  __cil_tmp19 = __cil_tmp18 + 40;
-  __cil_tmp20 = (unsigned long (*)[1U])__cil_tmp19;
+  __cil_tmp20 = (unsigned long (*)[1U])((void *)input_dev + 40);
   __cil_tmp21 = (unsigned long volatile   *)__cil_tmp20;
   __set_bit(1, __cil_tmp21);
   i = 0;
@@ -3291,9 +3263,7 @@ static int atlas_acpi_button_add(struct acpi_device *device )
     __cil_tmp26 = __cil_tmp25 + 59U;
     *((unsigned short *)__cil_tmp23) = (unsigned short )__cil_tmp26;
     __cil_tmp27 = i + 59;
-    __cil_tmp28 = (unsigned long )input_dev;
-    __cil_tmp29 = __cil_tmp28 + 48;
-    __cil_tmp30 = (unsigned long (*)[12U])__cil_tmp29;
+    __cil_tmp30 = (unsigned long (*)[12U])((void *)input_dev + 48);
     __cil_tmp31 = (unsigned long volatile   *)__cil_tmp30;
     __set_bit(__cil_tmp27, __cil_tmp31);
     }
@@ -3326,9 +3296,7 @@ static int atlas_acpi_button_add(struct acpi_device *device )
 
   }
   {
-  __cil_tmp35 = (unsigned long )device;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = *((acpi_handle *)__cil_tmp36);
+  __cil_tmp37 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp38 = (acpi_adr_space_type )129;
   __cil_tmp39 = (void *)device;
   status = acpi_install_address_space_handler(__cil_tmp37, __cil_tmp38, & acpi_atlas_button_handler,
@@ -3348,16 +3316,12 @@ static int atlas_acpi_button_add(struct acpi_device *device )
 }
 static int atlas_acpi_button_remove(struct acpi_device *device , int type ) 
 { acpi_status status ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   acpi_handle __cil_tmp6 ;
   acpi_adr_space_type __cil_tmp7 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )device;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((acpi_handle *)__cil_tmp5);
+  __cil_tmp6 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp7 = (acpi_adr_space_type )129;
   status = acpi_remove_address_space_handler(__cil_tmp6, __cil_tmp7, & acpi_atlas_button_handler);
   }

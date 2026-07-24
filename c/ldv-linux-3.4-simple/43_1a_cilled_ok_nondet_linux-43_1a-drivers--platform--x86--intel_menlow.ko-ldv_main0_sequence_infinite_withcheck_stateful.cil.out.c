@@ -3073,15 +3073,12 @@ extern int sprintf(char * , char const   *  , ...) ;
 extern int sscanf(char const   * , char const   *  , ...) ;
 extern void __list_add(struct list_head * , struct list_head * , struct list_head * ) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )head;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((struct list_head **)__cil_tmp4);
+  __cil_tmp5 = *((struct list_head **)((void *)head + 8));
   __list_add(new, __cil_tmp5, head);
   }
   return;
@@ -3138,14 +3135,10 @@ extern acpi_status acpi_get_handle(acpi_handle  , acpi_string  , acpi_handle ** 
 extern acpi_status acpi_evaluate_integer(acpi_handle  , acpi_string  , struct acpi_object_list * ,
                                          unsigned long long * ) ;
 __inline static void *acpi_driver_data(struct acpi_device *d ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )d;
-  __cil_tmp3 = __cil_tmp2 + 936;
-  return (*((void **)__cil_tmp3));
+  return (*((void **)((void *)d + 936)));
   }
 }
 }
@@ -3160,16 +3153,10 @@ static int memory_get_max_bandwidth(struct thermal_cooling_device *cdev , unsign
   struct acpi_object_list arg_list ;
   union acpi_object arg ;
   acpi_status status ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct acpi_object_list *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   union acpi_object *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   char *__cil_tmp19 ;
   unsigned long long *__cil_tmp20 ;
   unsigned long long __cil_tmp21 ;
@@ -3179,23 +3166,17 @@ static int memory_get_max_bandwidth(struct thermal_cooling_device *cdev , unsign
 
   {
   {
-  __cil_tmp9 = (unsigned long )cdev;
-  __cil_tmp10 = __cil_tmp9 + 1176;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)cdev + 1176));
   device = (struct acpi_device *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )device;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  handle = *((acpi_handle *)__cil_tmp13);
+  handle = *((acpi_handle *)((void *)device + 8));
   status = 0U;
   __cil_tmp14 = & arg_list;
   *((u32 *)__cil_tmp14) = 1U;
-  __cil_tmp15 = (unsigned long )(& arg_list) + 8;
-  *((union acpi_object **)__cil_tmp15) = & arg;
+  *((union acpi_object **)((void *)(&arg_list) + 8)) = & arg;
   __cil_tmp16 = & arg;
   *((acpi_object_type *)__cil_tmp16) = 1U;
   __cil_tmp17 = 0 + 8;
-  __cil_tmp18 = (unsigned long )(& arg) + __cil_tmp17;
-  *((u64 *)__cil_tmp18) = 0ULL;
+  *((u64 *)((void *)(&arg) + __cil_tmp17)) = 0ULL;
   __cil_tmp19 = (char *)"GTHS";
   status = acpi_evaluate_integer(handle, __cil_tmp19, & arg_list, & value);
   }
@@ -3227,39 +3208,27 @@ static int memory_get_cur_bandwidth(struct thermal_cooling_device *cdev , unsign
   struct acpi_object_list arg_list ;
   union acpi_object arg ;
   acpi_status status ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct acpi_object_list *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   union acpi_object *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   char *__cil_tmp19 ;
   unsigned long long *__cil_tmp20 ;
   unsigned long long __cil_tmp21 ;
 
   {
   {
-  __cil_tmp9 = (unsigned long )cdev;
-  __cil_tmp10 = __cil_tmp9 + 1176;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)cdev + 1176));
   device = (struct acpi_device *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )device;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  handle = *((acpi_handle *)__cil_tmp13);
+  handle = *((acpi_handle *)((void *)device + 8));
   status = 0U;
   __cil_tmp14 = & arg_list;
   *((u32 *)__cil_tmp14) = 1U;
-  __cil_tmp15 = (unsigned long )(& arg_list) + 8;
-  *((union acpi_object **)__cil_tmp15) = & arg;
+  *((union acpi_object **)((void *)(&arg_list) + 8)) = & arg;
   __cil_tmp16 = & arg;
   *((acpi_object_type *)__cil_tmp16) = 1U;
   __cil_tmp17 = 0 + 8;
-  __cil_tmp18 = (unsigned long )(& arg) + __cil_tmp17;
-  *((u64 *)__cil_tmp18) = 1ULL;
+  *((u64 *)((void *)(&arg) + __cil_tmp17)) = 1ULL;
   __cil_tmp19 = (char *)"GTHS";
   status = acpi_evaluate_integer(handle, __cil_tmp19, & arg_list, & result);
   }
@@ -3283,29 +3252,19 @@ static int memory_set_cur_bandwidth(struct thermal_cooling_device *cdev , unsign
   unsigned long long temp ;
   unsigned long max_state ;
   int tmp ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   struct acpi_object_list *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   union acpi_object *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   char *__cil_tmp23 ;
 
   {
   {
-  __cil_tmp11 = (unsigned long )cdev;
-  __cil_tmp12 = __cil_tmp11 + 1176;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)cdev + 1176));
   device = (struct acpi_device *)__cil_tmp13;
-  __cil_tmp14 = (unsigned long )device;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  handle = *((acpi_handle *)__cil_tmp15);
+  handle = *((acpi_handle *)((void *)device + 8));
   tmp = memory_get_max_bandwidth(cdev, & max_state);
   }
   if (tmp != 0) {
@@ -3325,13 +3284,11 @@ static int memory_set_cur_bandwidth(struct thermal_cooling_device *cdev , unsign
   {
   __cil_tmp18 = & arg_list;
   *((u32 *)__cil_tmp18) = 1U;
-  __cil_tmp19 = (unsigned long )(& arg_list) + 8;
-  *((union acpi_object **)__cil_tmp19) = & arg;
+  *((union acpi_object **)((void *)(&arg_list) + 8)) = & arg;
   __cil_tmp20 = & arg;
   *((acpi_object_type *)__cil_tmp20) = 1U;
   __cil_tmp21 = 0 + 8;
-  __cil_tmp22 = (unsigned long )(& arg) + __cil_tmp21;
-  *((u64 *)__cil_tmp22) = (u64 )state;
+  *((u64 *)((void *)(&arg) + __cil_tmp21)) = (u64 )state;
   __cil_tmp23 = (char *)"STHS";
   status = acpi_evaluate_integer(handle, __cil_tmp23, & arg_list, & temp);
   printk("<6>intel_menlow: Bandwidth value was %ld: status is %d\n", state, status);
@@ -3355,13 +3312,9 @@ static int intel_menlow_memory_add(struct acpi_device *device )
   struct acpi_device *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   acpi_handle __cil_tmp13 ;
   char *__cil_tmp14 ;
   acpi_handle **__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   acpi_handle __cil_tmp18 ;
   char *__cil_tmp19 ;
   acpi_handle **__cil_tmp20 ;
@@ -3370,27 +3323,15 @@ static int intel_menlow_memory_add(struct acpi_device *device )
   struct thermal_cooling_device_ops  const  *__cil_tmp23 ;
   void const   *__cil_tmp24 ;
   void const   *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct kobject *__cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct kobject *__cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct kobject *__cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct kobject *__cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct kobject *__cil_tmp47 ;
 
   {
@@ -3407,9 +3348,7 @@ static int intel_menlow_memory_add(struct acpi_device *device )
   }
   }
   {
-  __cil_tmp11 = (unsigned long )device;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((acpi_handle *)__cil_tmp12);
+  __cil_tmp13 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp14 = (char *)"GTHS";
   __cil_tmp15 = (acpi_handle **)(& dummy);
   status = acpi_get_handle(__cil_tmp13, __cil_tmp14, __cil_tmp15);
@@ -3420,9 +3359,7 @@ static int intel_menlow_memory_add(struct acpi_device *device )
 
   }
   {
-  __cil_tmp16 = (unsigned long )device;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  __cil_tmp18 = *((acpi_handle *)__cil_tmp17);
+  __cil_tmp18 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp19 = (char *)"STHS";
   __cil_tmp20 = (acpi_handle **)(& dummy);
   status = acpi_get_handle(__cil_tmp18, __cil_tmp19, __cil_tmp20);
@@ -3451,17 +3388,11 @@ static int intel_menlow_memory_add(struct acpi_device *device )
 
   }
   {
-  __cil_tmp26 = (unsigned long )device;
-  __cil_tmp27 = __cil_tmp26 + 936;
-  *((void **)__cil_tmp27) = (void *)cdev;
+  *((void **)((void *)device + 936)) = (void *)cdev;
   __cil_tmp28 = 944 + 16;
-  __cil_tmp29 = (unsigned long )device;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  __cil_tmp31 = (struct kobject *)__cil_tmp30;
+  __cil_tmp31 = (struct kobject *)((void *)device + __cil_tmp28);
   __cil_tmp32 = 24 + 16;
-  __cil_tmp33 = (unsigned long )cdev;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  __cil_tmp35 = (struct kobject *)__cil_tmp34;
+  __cil_tmp35 = (struct kobject *)((void *)cdev + __cil_tmp32);
   result = sysfs_create_link(__cil_tmp31, __cil_tmp35, "thermal_cooling");
   }
   if (result != 0) {
@@ -3471,21 +3402,15 @@ static int intel_menlow_memory_add(struct acpi_device *device )
   }
   {
   __cil_tmp36 = 24 + 16;
-  __cil_tmp37 = (unsigned long )cdev;
-  __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-  __cil_tmp39 = (struct kobject *)__cil_tmp38;
+  __cil_tmp39 = (struct kobject *)((void *)cdev + __cil_tmp36);
   __cil_tmp40 = 944 + 16;
-  __cil_tmp41 = (unsigned long )device;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-  __cil_tmp43 = (struct kobject *)__cil_tmp42;
+  __cil_tmp43 = (struct kobject *)((void *)device + __cil_tmp40);
   result = sysfs_create_link(__cil_tmp39, __cil_tmp43, "device");
   }
   if (result != 0) {
     {
     __cil_tmp44 = 944 + 16;
-    __cil_tmp45 = (unsigned long )device;
-    __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
-    __cil_tmp47 = (struct kobject *)__cil_tmp46;
+    __cil_tmp47 = (struct kobject *)((void *)device + __cil_tmp44);
     sysfs_remove_link(__cil_tmp47, "thermal_cooling");
     }
     goto unregister;
@@ -3511,12 +3436,8 @@ static int intel_menlow_memory_remove(struct acpi_device *device , int type )
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct kobject *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct kobject *__cil_tmp18 ;
 
   {
@@ -3545,14 +3466,10 @@ static int intel_menlow_memory_remove(struct acpi_device *device , int type )
   }
   {
   __cil_tmp11 = 944 + 16;
-  __cil_tmp12 = (unsigned long )device;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  __cil_tmp14 = (struct kobject *)__cil_tmp13;
+  __cil_tmp14 = (struct kobject *)((void *)device + __cil_tmp11);
   sysfs_remove_link(__cil_tmp14, "thermal_cooling");
   __cil_tmp15 = 24 + 16;
-  __cil_tmp16 = (unsigned long )cdev;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = (struct kobject *)__cil_tmp17;
+  __cil_tmp18 = (struct kobject *)((void *)cdev + __cil_tmp15);
   sysfs_remove_link(__cil_tmp18, "device");
   thermal_cooling_device_unregister(cdev);
   }
@@ -3658,7 +3575,6 @@ static int sensor_set_auxtrip(acpi_handle handle , int index , int value )
   char *tmp___0 ;
   union acpi_object *__cil_tmp10 ;
   struct acpi_object_list *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct acpi_object_list *__cil_tmp13 ;
   unsigned long long *__cil_tmp14 ;
   unsigned long long __cil_tmp15 ;
@@ -3667,15 +3583,13 @@ static int sensor_set_auxtrip(acpi_handle handle , int index , int value )
   unsigned long long __cil_tmp18 ;
   unsigned long long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
 
   {
   __cil_tmp10 = & arg;
   *((acpi_object_type *)__cil_tmp10) = 1U;
   __cil_tmp11 = & args;
   *((u32 *)__cil_tmp11) = 1U;
-  __cil_tmp12 = (unsigned long )(& args) + 8;
-  *((union acpi_object **)__cil_tmp12) = & arg;
+  *((union acpi_object **)((void *)(&args) + 8)) = & arg;
   if (index != 0) {
     if (index != 1) {
       return (-22);
@@ -3727,8 +3641,7 @@ static int sensor_set_auxtrip(acpi_handle handle , int index , int value )
 
   }
   __cil_tmp20 = 0 + 8;
-  __cil_tmp21 = (unsigned long )(& arg) + __cil_tmp20;
-  *((u64 *)__cil_tmp21) = (u64 )value;
+  *((u64 *)((void *)(&arg) + __cil_tmp20)) = (u64 )value;
   if (index != 0) {
     tmp___0 = (char *)"SAX1";
   } else {
@@ -3754,8 +3667,6 @@ static ssize_t aux0_show(struct device *dev , struct device_attribute *dev_attr 
   long tmp ;
   int tmp___0 ;
   int tmp___1 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   acpi_handle __cil_tmp13 ;
   unsigned long long *__cil_tmp14 ;
   unsigned long long __cil_tmp15 ;
@@ -3774,9 +3685,7 @@ static ssize_t aux0_show(struct device *dev , struct device_attribute *dev_attr 
   {
   __mptr = (struct device_attribute  const  *)dev_attr;
   attr = (struct intel_menlow_attribute *)__mptr;
-  __cil_tmp11 = (unsigned long )attr;
-  __cil_tmp12 = __cil_tmp11 + 56;
-  __cil_tmp13 = *((acpi_handle *)__cil_tmp12);
+  __cil_tmp13 = *((acpi_handle *)((void *)attr + 56));
   result = sensor_get_auxtrip(__cil_tmp13, 0, & value);
   }
   if (result == 0) {
@@ -3818,8 +3727,6 @@ static ssize_t aux1_show(struct device *dev , struct device_attribute *dev_attr 
   long tmp ;
   int tmp___0 ;
   int tmp___1 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   acpi_handle __cil_tmp13 ;
   unsigned long long *__cil_tmp14 ;
   unsigned long long __cil_tmp15 ;
@@ -3838,9 +3745,7 @@ static ssize_t aux1_show(struct device *dev , struct device_attribute *dev_attr 
   {
   __mptr = (struct device_attribute  const  *)dev_attr;
   attr = (struct intel_menlow_attribute *)__mptr;
-  __cil_tmp11 = (unsigned long )attr;
-  __cil_tmp12 = __cil_tmp11 + 56;
-  __cil_tmp13 = *((acpi_handle *)__cil_tmp12);
+  __cil_tmp13 = *((acpi_handle *)((void *)attr + 56));
   result = sensor_get_auxtrip(__cil_tmp13, 1, & value);
   }
   if (result == 0) {
@@ -3883,8 +3788,6 @@ static ssize_t aux0_store(struct device *dev , struct device_attribute *dev_attr
   size_t tmp___0 ;
   int *__cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   acpi_handle __cil_tmp15 ;
   int *__cil_tmp16 ;
   int __cil_tmp17 ;
@@ -3912,9 +3815,7 @@ static ssize_t aux0_store(struct device *dev , struct device_attribute *dev_attr
   }
   }
   {
-  __cil_tmp13 = (unsigned long )attr;
-  __cil_tmp14 = __cil_tmp13 + 56;
-  __cil_tmp15 = *((acpi_handle *)__cil_tmp14);
+  __cil_tmp15 = *((acpi_handle *)((void *)attr + 56));
   __cil_tmp16 = & value;
   __cil_tmp17 = *__cil_tmp16;
   __cil_tmp18 = __cil_tmp17 * 10;
@@ -3939,8 +3840,6 @@ static ssize_t aux1_store(struct device *dev , struct device_attribute *dev_attr
   size_t tmp___0 ;
   int *__cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   acpi_handle __cil_tmp15 ;
   int *__cil_tmp16 ;
   int __cil_tmp17 ;
@@ -3968,9 +3867,7 @@ static ssize_t aux1_store(struct device *dev , struct device_attribute *dev_attr
   }
   }
   {
-  __cil_tmp13 = (unsigned long )attr;
-  __cil_tmp14 = __cil_tmp13 + 56;
-  __cil_tmp15 = *((acpi_handle *)__cil_tmp14);
+  __cil_tmp15 = *((acpi_handle *)((void *)attr + 56));
   __cil_tmp16 = & value;
   __cil_tmp17 = *__cil_tmp16;
   __cil_tmp18 = __cil_tmp17 * 10;
@@ -4035,27 +3932,13 @@ static int intel_menlow_add_one_attribute(char *name , umode_t mode , void *show
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device_attribute *__cil_tmp32 ;
   struct device_attribute  const  *__cil_tmp33 ;
   void const   *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct list_head *__cil_tmp37 ;
 
   {
@@ -4076,34 +3959,22 @@ static int intel_menlow_add_one_attribute(char *name , umode_t mode , void *show
   {
   __cil_tmp14 = 0 + 16;
   __cil_tmp15 = 0 + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )attr;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  *((struct lock_class_key **)__cil_tmp17) = & __key;
+  *((struct lock_class_key **)((void *)attr + __cil_tmp15)) = & __key;
   *((char const   **)attr) = (char const   *)name;
   __cil_tmp18 = 0 + 8;
   __cil_tmp19 = 0 + __cil_tmp18;
-  __cil_tmp20 = (unsigned long )attr;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  *((umode_t *)__cil_tmp21) = mode;
+  *((umode_t *)((void *)attr + __cil_tmp19)) = mode;
   __cil_tmp22 = 0 + 32;
-  __cil_tmp23 = (unsigned long )attr;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  *((ssize_t (**)(struct device * , struct device_attribute * , char * ))__cil_tmp24) = (ssize_t (*)(struct device * ,
+  *((ssize_t (**)(struct device * , struct device_attribute * , char * ))((void *)attr + __cil_tmp22)) = (ssize_t (*)(struct device * ,
                                                                                                      struct device_attribute * ,
                                                                                                      char * ))show;
   __cil_tmp25 = 0 + 40;
-  __cil_tmp26 = (unsigned long )attr;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  *((ssize_t (**)(struct device * , struct device_attribute * , char const   * , size_t  ))__cil_tmp27) = (ssize_t (*)(struct device * ,
+  *((ssize_t (**)(struct device * , struct device_attribute * , char const   * , size_t  ))((void *)attr + __cil_tmp25)) = (ssize_t (*)(struct device * ,
                                                                                                                        struct device_attribute * ,
                                                                                                                        char const   * ,
                                                                                                                        size_t  ))store;
-  __cil_tmp28 = (unsigned long )attr;
-  __cil_tmp29 = __cil_tmp28 + 48;
-  *((struct device **)__cil_tmp29) = dev;
-  __cil_tmp30 = (unsigned long )attr;
-  __cil_tmp31 = __cil_tmp30 + 56;
-  *((acpi_handle *)__cil_tmp31) = handle;
+  *((struct device **)((void *)attr + 48)) = dev;
+  *((acpi_handle *)((void *)attr + 56)) = handle;
   __cil_tmp32 = (struct device_attribute *)attr;
   __cil_tmp33 = (struct device_attribute  const  *)__cil_tmp32;
   result = device_create_file(dev, __cil_tmp33);
@@ -4119,9 +3990,7 @@ static int intel_menlow_add_one_attribute(char *name , umode_t mode , void *show
   }
   {
   mutex_lock_nested(& intel_menlow_attr_lock, 0U);
-  __cil_tmp35 = (unsigned long )attr;
-  __cil_tmp36 = __cil_tmp35 + 64;
-  __cil_tmp37 = (struct list_head *)__cil_tmp36;
+  __cil_tmp37 = (struct list_head *)((void *)attr + 64);
   list_add_tail(__cil_tmp37, & intel_menlow_attr_list);
   mutex_unlock(& intel_menlow_attr_lock);
   }
@@ -4147,8 +4016,6 @@ static acpi_status intel_menlow_register_sensor(acpi_handle handle , u32 lvl , v
   void *__cil_tmp19 ;
   struct thermal_zone_device **__cil_tmp20 ;
   struct thermal_zone_device *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   char *__cil_tmp25 ;
   acpi_handle **__cil_tmp26 ;
@@ -4160,8 +4027,6 @@ static acpi_status intel_menlow_register_sensor(acpi_handle handle , u32 lvl , v
   void *__cil_tmp32 ;
   struct thermal_zone_device **__cil_tmp33 ;
   struct thermal_zone_device *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct device *__cil_tmp37 ;
   char *__cil_tmp38 ;
   umode_t __cil_tmp39 ;
@@ -4169,8 +4034,6 @@ static acpi_status intel_menlow_register_sensor(acpi_handle handle , u32 lvl , v
   void *__cil_tmp41 ;
   struct thermal_zone_device **__cil_tmp42 ;
   struct thermal_zone_device *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct device *__cil_tmp46 ;
 
   {
@@ -4220,9 +4083,7 @@ static acpi_status intel_menlow_register_sensor(acpi_handle handle , u32 lvl , v
   __cil_tmp19 = (void *)(& aux0_store);
   __cil_tmp20 = & thermal;
   __cil_tmp21 = *__cil_tmp20;
-  __cil_tmp22 = (unsigned long )__cil_tmp21;
-  __cil_tmp23 = __cil_tmp22 + 24;
-  __cil_tmp24 = (struct device *)__cil_tmp23;
+  __cil_tmp24 = (struct device *)((void *)__cil_tmp21 + 24);
   result = intel_menlow_add_one_attribute(__cil_tmp16, __cil_tmp17, __cil_tmp18, __cil_tmp19,
                                           __cil_tmp24, handle);
   }
@@ -4258,9 +4119,7 @@ static acpi_status intel_menlow_register_sensor(acpi_handle handle , u32 lvl , v
   __cil_tmp32 = (void *)(& aux1_store);
   __cil_tmp33 = & thermal;
   __cil_tmp34 = *__cil_tmp33;
-  __cil_tmp35 = (unsigned long )__cil_tmp34;
-  __cil_tmp36 = __cil_tmp35 + 24;
-  __cil_tmp37 = (struct device *)__cil_tmp36;
+  __cil_tmp37 = (struct device *)((void *)__cil_tmp34 + 24);
   result = intel_menlow_add_one_attribute(__cil_tmp29, __cil_tmp30, __cil_tmp31, __cil_tmp32,
                                           __cil_tmp37, handle);
   }
@@ -4279,9 +4138,7 @@ static acpi_status intel_menlow_register_sensor(acpi_handle handle , u32 lvl , v
   __cil_tmp41 = (void *)0;
   __cil_tmp42 = & thermal;
   __cil_tmp43 = *__cil_tmp42;
-  __cil_tmp44 = (unsigned long )__cil_tmp43;
-  __cil_tmp45 = __cil_tmp44 + 24;
-  __cil_tmp46 = (struct device *)__cil_tmp45;
+  __cil_tmp46 = (struct device *)((void *)__cil_tmp43 + 24);
   result = intel_menlow_add_one_attribute(__cil_tmp38, __cil_tmp39, __cil_tmp40, __cil_tmp41,
                                           __cil_tmp46, handle);
   }
@@ -4315,26 +4172,16 @@ static void intel_menlow_unregister_sensor(void)
   struct list_head *__cil_tmp6 ;
   struct list_head *__cil_tmp7 ;
   struct intel_menlow_attribute *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct list_head *__cil_tmp11 ;
   struct intel_menlow_attribute *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct list_head *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device_attribute *__cil_tmp19 ;
   struct device_attribute  const  *__cil_tmp20 ;
   void const   *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct list_head *__cil_tmp24 ;
   struct intel_menlow_attribute *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct list_head *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
 
@@ -4346,9 +4193,7 @@ static void intel_menlow_unregister_sensor(void)
   __mptr = (struct list_head  const  *)__cil_tmp7;
   __cil_tmp8 = (struct intel_menlow_attribute *)__mptr;
   pos = __cil_tmp8 + 0xffffffffffffffc0UL;
-  __cil_tmp9 = (unsigned long )pos;
-  __cil_tmp10 = __cil_tmp9 + 64;
-  __cil_tmp11 = *((struct list_head **)__cil_tmp10);
+  __cil_tmp11 = *((struct list_head **)((void *)pos + 64));
   __mptr___0 = (struct list_head  const  *)__cil_tmp11;
   __cil_tmp12 = (struct intel_menlow_attribute *)__mptr___0;
   next = __cil_tmp12 + 0xffffffffffffffc0UL;
@@ -4356,22 +4201,16 @@ static void intel_menlow_unregister_sensor(void)
   goto ldv_29303;
   ldv_29302: 
   {
-  __cil_tmp13 = (unsigned long )pos;
-  __cil_tmp14 = __cil_tmp13 + 64;
-  __cil_tmp15 = (struct list_head *)__cil_tmp14;
+  __cil_tmp15 = (struct list_head *)((void *)pos + 64);
   list_del(__cil_tmp15);
-  __cil_tmp16 = (unsigned long )pos;
-  __cil_tmp17 = __cil_tmp16 + 48;
-  __cil_tmp18 = *((struct device **)__cil_tmp17);
+  __cil_tmp18 = *((struct device **)((void *)pos + 48));
   __cil_tmp19 = (struct device_attribute *)pos;
   __cil_tmp20 = (struct device_attribute  const  *)__cil_tmp19;
   device_remove_file(__cil_tmp18, __cil_tmp20);
   __cil_tmp21 = (void const   *)pos;
   kfree(__cil_tmp21);
   pos = next;
-  __cil_tmp22 = (unsigned long )next;
-  __cil_tmp23 = __cil_tmp22 + 64;
-  __cil_tmp24 = *((struct list_head **)__cil_tmp23);
+  __cil_tmp24 = *((struct list_head **)((void *)next + 64));
   __mptr___1 = (struct list_head  const  *)__cil_tmp24;
   __cil_tmp25 = (struct intel_menlow_attribute *)__mptr___1;
   next = __cil_tmp25 + 0xffffffffffffffc0UL;
@@ -4379,9 +4218,7 @@ static void intel_menlow_unregister_sensor(void)
   ldv_29303: ;
   {
   __cil_tmp26 = (unsigned long )(& intel_menlow_attr_list);
-  __cil_tmp27 = (unsigned long )pos;
-  __cil_tmp28 = __cil_tmp27 + 64;
-  __cil_tmp29 = (struct list_head *)__cil_tmp28;
+  __cil_tmp29 = (struct list_head *)((void *)pos + 64);
   __cil_tmp30 = (unsigned long )__cil_tmp29;
   if (__cil_tmp30 != __cil_tmp26) {
     goto ldv_29302;

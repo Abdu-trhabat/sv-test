@@ -4864,12 +4864,8 @@ static int airo_probe(struct pcmcia_device *p_dev )
   int __cil_tmp9 ;
   int __cil_tmp10 ;
   long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device  const  *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
 
   {
   {
@@ -4889,9 +4885,7 @@ static int airo_probe(struct pcmcia_device *p_dev )
       }
       if (tmp___7) {
         {
-        __cil_tmp12 = (unsigned long )p_dev;
-        __cil_tmp13 = __cil_tmp12 + 184;
-        __cil_tmp14 = (struct device *)__cil_tmp13;
+        __cil_tmp14 = (struct device *)((void *)p_dev + 184);
         __cil_tmp15 = (struct device  const  *)__cil_tmp14;
         __dynamic_dev_dbg(& descriptor, __cil_tmp15, "airo_attach()\n");
         }
@@ -4919,9 +4913,7 @@ static int airo_probe(struct pcmcia_device *p_dev )
 
   }
   {
-  __cil_tmp16 = (unsigned long )p_dev;
-  __cil_tmp17 = __cil_tmp16 + 952;
-  *((void **)__cil_tmp17) = (void *)local;
+  *((void **)((void *)p_dev + 952)) = (void *)local;
   tmp___9 = airo_config(p_dev);
   }
   return (tmp___9);
@@ -4939,26 +4931,16 @@ static void airo_detach(struct pcmcia_device *link )
   int __cil_tmp6 ;
   int __cil_tmp7 ;
   long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device  const  *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   local_info_t *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void *__cil_tmp19 ;
   local_info_t *__cil_tmp20 ;
   struct net_device *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   void *__cil_tmp24 ;
   local_info_t *__cil_tmp25 ;
   void *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   void *__cil_tmp29 ;
   void const   *__cil_tmp30 ;
 
@@ -4980,9 +4962,7 @@ static void airo_detach(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp9 = (unsigned long )link;
-        __cil_tmp10 = __cil_tmp9 + 184;
-        __cil_tmp11 = (struct device *)__cil_tmp10;
+        __cil_tmp11 = (struct device *)((void *)link + 184);
         __cil_tmp12 = (struct device  const  *)__cil_tmp11;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp12, "airo_detach\n");
         }
@@ -5001,15 +4981,11 @@ static void airo_detach(struct pcmcia_device *link )
   airo_release(link);
   }
   {
-  __cil_tmp13 = (unsigned long )link;
-  __cil_tmp14 = __cil_tmp13 + 952;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)link + 952));
   __cil_tmp16 = (local_info_t *)__cil_tmp15;
   if (*((struct net_device **)__cil_tmp16)) {
     {
-    __cil_tmp17 = (unsigned long )link;
-    __cil_tmp18 = __cil_tmp17 + 952;
-    __cil_tmp19 = *((void **)__cil_tmp18);
+    __cil_tmp19 = *((void **)((void *)link + 952));
     __cil_tmp20 = (local_info_t *)__cil_tmp19;
     __cil_tmp21 = *((struct net_device **)__cil_tmp20);
     stop_airo_card(__cil_tmp21, 0);
@@ -5019,15 +4995,11 @@ static void airo_detach(struct pcmcia_device *link )
   }
   }
   {
-  __cil_tmp22 = (unsigned long )link;
-  __cil_tmp23 = __cil_tmp22 + 952;
-  __cil_tmp24 = *((void **)__cil_tmp23);
+  __cil_tmp24 = *((void **)((void *)link + 952));
   __cil_tmp25 = (local_info_t *)__cil_tmp24;
   __cil_tmp26 = (void *)0;
   *((struct net_device **)__cil_tmp25) = (struct net_device *)__cil_tmp26;
-  __cil_tmp27 = (unsigned long )link;
-  __cil_tmp28 = __cil_tmp27 + 952;
-  __cil_tmp29 = *((void **)__cil_tmp28);
+  __cil_tmp29 = *((void **)((void *)link + 952));
   __cil_tmp30 = (void const   *)__cil_tmp29;
   kfree(__cil_tmp30);
   }
@@ -5036,15 +5008,11 @@ static void airo_detach(struct pcmcia_device *link )
 }
 static int airo_cs_config_check(struct pcmcia_device *p_dev , void *priv_data ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )p_dev;
-  __cil_tmp5 = __cil_tmp4 + 124;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned int *)((void *)p_dev + 124));
   if (__cil_tmp6 == 0U) {
     return (-22);
   } else {
@@ -5065,8 +5033,6 @@ static int airo_config(struct pcmcia_device *link )
 { local_info_t *dev ;
   int ret ;
   long tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
@@ -5074,47 +5040,27 @@ static int airo_config(struct pcmcia_device *link )
   int __cil_tmp11 ;
   int __cil_tmp12 ;
   long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device  const  *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   void *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   void *__cil_tmp29 ;
   local_info_t *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned int __cil_tmp33 ;
   unsigned short __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct resource *__cil_tmp39 ;
   resource_size_t __cil_tmp40 ;
   int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   void *__cil_tmp47 ;
   local_info_t *__cil_tmp48 ;
   struct net_device *__cil_tmp49 ;
 
   {
-  __cil_tmp5 = (unsigned long )link;
-  __cil_tmp6 = __cil_tmp5 + 952;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)link + 952));
   dev = (local_info_t *)__cil_tmp7;
   {
   while (1) {
@@ -5133,9 +5079,7 @@ static int airo_config(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp14 = (unsigned long )link;
-        __cil_tmp15 = __cil_tmp14 + 184;
-        __cil_tmp16 = (struct device *)__cil_tmp15;
+        __cil_tmp16 = (struct device *)((void *)link + 184);
         __cil_tmp17 = (struct device  const  *)__cil_tmp16;
         __dynamic_dev_dbg(& descriptor___1, __cil_tmp17, "airo_config\n");
         }
@@ -5151,12 +5095,8 @@ static int airo_config(struct pcmcia_device *link )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp18 = (unsigned long )link;
-  __cil_tmp19 = __cil_tmp18 + 116;
-  __cil_tmp20 = (unsigned long )link;
-  __cil_tmp21 = __cil_tmp20 + 116;
-  __cil_tmp22 = *((unsigned int *)__cil_tmp21);
-  *((unsigned int *)__cil_tmp19) = __cil_tmp22 | 3585U;
+  __cil_tmp22 = *((unsigned int *)((void *)link + 116));
+  *((unsigned int *)((void *)link + 116)) = __cil_tmp22 | 3585U;
   __cil_tmp23 = (void *)0;
   ret = pcmcia_loop_config(link, & airo_cs_config_check, __cil_tmp23);
   }
@@ -5166,9 +5106,7 @@ static int airo_config(struct pcmcia_device *link )
 
   }
   {
-  __cil_tmp24 = (unsigned long )link;
-  __cil_tmp25 = __cil_tmp24 + 48;
-  __cil_tmp26 = *((unsigned int *)__cil_tmp25);
+  __cil_tmp26 = *((unsigned int *)((void *)link + 48));
   if (! __cil_tmp26) {
     goto failed;
   } else {
@@ -5184,31 +5122,21 @@ static int airo_config(struct pcmcia_device *link )
 
   }
   {
-  __cil_tmp27 = (unsigned long )link;
-  __cil_tmp28 = __cil_tmp27 + 952;
-  __cil_tmp29 = *((void **)__cil_tmp28);
+  __cil_tmp29 = *((void **)((void *)link + 952));
   __cil_tmp30 = (local_info_t *)__cil_tmp29;
-  __cil_tmp31 = (unsigned long )link;
-  __cil_tmp32 = __cil_tmp31 + 48;
-  __cil_tmp33 = *((unsigned int *)__cil_tmp32);
+  __cil_tmp33 = *((unsigned int *)((void *)link + 48));
   __cil_tmp34 = (unsigned short )__cil_tmp33;
   __cil_tmp35 = 0 * 8UL;
   __cil_tmp36 = 56 + __cil_tmp35;
-  __cil_tmp37 = (unsigned long )link;
-  __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-  __cil_tmp39 = *((struct resource **)__cil_tmp38);
+  __cil_tmp39 = *((struct resource **)((void *)link + __cil_tmp36));
   __cil_tmp40 = *((resource_size_t *)__cil_tmp39);
   __cil_tmp41 = (int )__cil_tmp40;
-  __cil_tmp42 = (unsigned long )link;
-  __cil_tmp43 = __cil_tmp42 + 184;
-  __cil_tmp44 = (struct device *)__cil_tmp43;
+  __cil_tmp44 = (struct device *)((void *)link + 184);
   *((struct net_device **)__cil_tmp30) = init_airo_card(__cil_tmp34, __cil_tmp41,
                                                         1, __cil_tmp44);
   }
   {
-  __cil_tmp45 = (unsigned long )link;
-  __cil_tmp46 = __cil_tmp45 + 952;
-  __cil_tmp47 = *((void **)__cil_tmp46);
+  __cil_tmp47 = *((void **)((void *)link + 952));
   __cil_tmp48 = (local_info_t *)__cil_tmp47;
   __cil_tmp49 = *((struct net_device **)__cil_tmp48);
   if (! __cil_tmp49) {
@@ -5237,8 +5165,6 @@ static void airo_release(struct pcmcia_device *link )
   int __cil_tmp6 ;
   int __cil_tmp7 ;
   long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device  const  *__cil_tmp12 ;
 
@@ -5260,9 +5186,7 @@ static void airo_release(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp9 = (unsigned long )link;
-        __cil_tmp10 = __cil_tmp9 + 184;
-        __cil_tmp11 = (struct device *)__cil_tmp10;
+        __cil_tmp11 = (struct device *)((void *)link + 184);
         __cil_tmp12 = (struct device  const  *)__cil_tmp11;
         __dynamic_dev_dbg(& descriptor___2, __cil_tmp12, "airo_release\n");
         }
@@ -5285,16 +5209,12 @@ static void airo_release(struct pcmcia_device *link )
 }
 static int airo_suspend(struct pcmcia_device *link ) 
 { local_info_t *local ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   struct net_device *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )link;
-  __cil_tmp4 = __cil_tmp3 + 952;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)link + 952));
   local = (local_info_t *)__cil_tmp5;
   __cil_tmp6 = *((struct net_device **)local);
   netif_device_detach(__cil_tmp6);
@@ -5304,23 +5224,15 @@ static int airo_suspend(struct pcmcia_device *link )
 }
 static int airo_resume(struct pcmcia_device *link ) 
 { local_info_t *local ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct net_device *__cil_tmp8 ;
   struct net_device *__cil_tmp9 ;
 
   {
-  __cil_tmp3 = (unsigned long )link;
-  __cil_tmp4 = __cil_tmp3 + 952;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)link + 952));
   local = (local_info_t *)__cil_tmp5;
   {
-  __cil_tmp6 = (unsigned long )link;
-  __cil_tmp7 = __cil_tmp6 + 960;
-  if (*((unsigned int *)__cil_tmp7)) {
+  if (*((unsigned int *)((void *)link + 960))) {
     {
     __cil_tmp8 = *((struct net_device **)local);
     reset_airo_card(__cil_tmp8);

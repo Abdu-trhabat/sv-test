@@ -1143,15 +1143,9 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
   struct led_classdev  const  *__mptr ;
   u8 *val ;
   unsigned long flags ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   u8 __cil_tmp16 ;
   signed char __cil_tmp17 ;
   int __cil_tmp18 ;
@@ -1160,8 +1154,6 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
   signed char __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   u8 __cil_tmp26 ;
   int __cil_tmp27 ;
   u8 __cil_tmp28 ;
@@ -1170,8 +1162,6 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
   u8 __cil_tmp31 ;
   int __cil_tmp32 ;
   unsigned char __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   int __cil_tmp37 ;
 
@@ -1182,16 +1172,12 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
   ldv_spin_lock();
   }
   {
-  __cil_tmp7 = (unsigned long )led;
-  __cil_tmp8 = __cil_tmp7 + 416;
-  __cil_tmp9 = *((unsigned long *)__cil_tmp8);
+  __cil_tmp9 = *((unsigned long *)((void *)led + 416));
   if (__cil_tmp9 == 73UL) {
     val = & leds_front;
   } else {
     {
-    __cil_tmp10 = (unsigned long )led;
-    __cil_tmp11 = __cil_tmp10 + 416;
-    __cil_tmp12 = *((unsigned long *)__cil_tmp11);
+    __cil_tmp12 = *((unsigned long *)((void *)led + 416));
     if (__cil_tmp12 == 90UL) {
       val = & leds_back;
     } else {
@@ -1206,9 +1192,7 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
   {
   __cil_tmp13 = (unsigned int )value;
   if (__cil_tmp13 == 0U) {
-    __cil_tmp14 = (unsigned long )led;
-    __cil_tmp15 = __cil_tmp14 + 424;
-    __cil_tmp16 = *((u8 *)__cil_tmp15);
+    __cil_tmp16 = *((u8 *)((void *)led + 424));
     __cil_tmp17 = (signed char )__cil_tmp16;
     __cil_tmp18 = (int )__cil_tmp17;
     __cil_tmp19 = ~ __cil_tmp18;
@@ -1218,9 +1202,7 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
     __cil_tmp23 = __cil_tmp22 & __cil_tmp19;
     *val = (u8 )__cil_tmp23;
   } else {
-    __cil_tmp24 = (unsigned long )led;
-    __cil_tmp25 = __cil_tmp24 + 424;
-    __cil_tmp26 = *((u8 *)__cil_tmp25);
+    __cil_tmp26 = *((u8 *)((void *)led + 424));
     __cil_tmp27 = (int )__cil_tmp26;
     __cil_tmp28 = *val;
     __cil_tmp29 = (int )__cil_tmp28;
@@ -1232,9 +1214,7 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
   __cil_tmp31 = *val;
   __cil_tmp32 = (int )__cil_tmp31;
   __cil_tmp33 = (unsigned char )__cil_tmp32;
-  __cil_tmp34 = (unsigned long )led;
-  __cil_tmp35 = __cil_tmp34 + 416;
-  __cil_tmp36 = *((unsigned long *)__cil_tmp35);
+  __cil_tmp36 = *((unsigned long *)((void *)led + 416));
   __cil_tmp37 = (int )__cil_tmp36;
   outb(__cil_tmp33, __cil_tmp37);
   spin_unlock_irqrestore(& value_lock, flags);
@@ -1254,8 +1234,6 @@ static int ot200_led_probe(struct platform_device *pdev )
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
@@ -1291,9 +1269,7 @@ static int ot200_led_probe(struct platform_device *pdev )
   __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
   __cil_tmp12 = (unsigned long )(leds) + __cil_tmp11;
   *((void (**)(struct led_classdev * , enum led_brightness  ))__cil_tmp12) = & ot200_led_brightness_set;
-  __cil_tmp13 = (unsigned long )pdev;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = (struct device *)__cil_tmp14;
+  __cil_tmp15 = (struct device *)((void *)pdev + 16);
   __cil_tmp16 = i * 432UL;
   __cil_tmp17 = (unsigned long )(leds) + __cil_tmp16;
   __cil_tmp18 = (struct led_classdev *)__cil_tmp17;

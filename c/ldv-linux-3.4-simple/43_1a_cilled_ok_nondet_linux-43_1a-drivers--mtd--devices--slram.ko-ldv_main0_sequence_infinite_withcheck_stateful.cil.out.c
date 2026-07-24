@@ -2909,42 +2909,26 @@ static int slram_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *r
                        u_char const   *buf ) ;
 static int slram_erase(struct mtd_info *mtd , struct erase_info *instr ) 
 { slram_priv_t *priv ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   uint64_t __cil_tmp9 ;
   u_char *__cil_tmp10 ;
   u_char *__cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   uint64_t __cil_tmp15 ;
   size_t __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )mtd;
-  __cil_tmp5 = __cil_tmp4 + 360;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)mtd + 360));
   priv = (slram_priv_t *)__cil_tmp6;
-  __cil_tmp7 = (unsigned long )instr;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = *((uint64_t *)__cil_tmp8);
+  __cil_tmp9 = *((uint64_t *)((void *)instr + 8));
   __cil_tmp10 = *((u_char **)priv);
   __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
   __cil_tmp12 = (void *)__cil_tmp11;
-  __cil_tmp13 = (unsigned long )instr;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((uint64_t *)__cil_tmp14);
+  __cil_tmp15 = *((uint64_t *)((void *)instr + 16));
   __cil_tmp16 = (size_t )__cil_tmp15;
   memset(__cil_tmp12, 255, __cil_tmp16);
-  __cil_tmp17 = (unsigned long )instr;
-  __cil_tmp18 = __cil_tmp17 + 72;
-  *((u_char *)__cil_tmp18) = (u_char )8U;
+  *((u_char *)((void *)instr + 72)) = (u_char )8U;
   mtd_erase_callback(instr);
   }
   return (0);
@@ -2953,17 +2937,13 @@ static int slram_erase(struct mtd_info *mtd , struct erase_info *instr )
 static int slram_point(struct mtd_info *mtd , loff_t from , size_t len , size_t *retlen ,
                        void **virt , resource_size_t *phys ) 
 { slram_priv_t *priv ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   u_char *__cil_tmp12 ;
   void *__cil_tmp13 ;
 
   {
-  __cil_tmp8 = (unsigned long )mtd;
-  __cil_tmp9 = __cil_tmp8 + 360;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)mtd + 360));
   priv = (slram_priv_t *)__cil_tmp10;
   __cil_tmp11 = (unsigned long )from;
   __cil_tmp12 = *((u_char **)priv);
@@ -2986,8 +2966,6 @@ static int slram_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *
 { slram_priv_t *priv ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   void *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
@@ -2997,9 +2975,7 @@ static int slram_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *
 
   {
   {
-  __cil_tmp9 = (unsigned long )mtd;
-  __cil_tmp10 = __cil_tmp9 + 360;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)mtd + 360));
   priv = (slram_priv_t *)__cil_tmp11;
   __len = len;
   __cil_tmp12 = (void *)buf;
@@ -3018,8 +2994,6 @@ static int slram_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *r
 { slram_priv_t *priv ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   u_char *__cil_tmp13 ;
@@ -3029,9 +3003,7 @@ static int slram_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *r
 
   {
   {
-  __cil_tmp9 = (unsigned long )mtd;
-  __cil_tmp10 = __cil_tmp9 + 360;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)mtd + 360));
   priv = (slram_priv_t *)__cil_tmp11;
   __len = len;
   __cil_tmp12 = (unsigned long )to;
@@ -3053,8 +3025,6 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   void *tmp___2 ;
   int tmp___3 ;
   slram_mtd_list_t *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   slram_mtd_list_t *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   slram_mtd_list_t *__cil_tmp15 ;
@@ -3065,8 +3035,6 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   unsigned long __cil_tmp20 ;
   slram_mtd_list_t *__cil_tmp21 ;
   slram_mtd_list_t *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct mtd_info *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   slram_mtd_list_t *__cil_tmp27 ;
@@ -3074,14 +3042,10 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   unsigned long __cil_tmp29 ;
   slram_mtd_list_t *__cil_tmp30 ;
   struct mtd_info *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   void *__cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   slram_mtd_list_t *__cil_tmp36 ;
   struct mtd_info *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   void *__cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   slram_mtd_list_t *__cil_tmp42 ;
@@ -3096,8 +3060,6 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   resource_size_t __cil_tmp51 ;
   slram_mtd_list_t *__cil_tmp52 ;
   struct mtd_info *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   void *__cil_tmp56 ;
   slram_priv_t *__cil_tmp57 ;
   u_char *__cil_tmp58 ;
@@ -3105,65 +3067,37 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   unsigned long __cil_tmp60 ;
   slram_mtd_list_t *__cil_tmp61 ;
   struct mtd_info *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   void *__cil_tmp65 ;
   slram_priv_t *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   slram_mtd_list_t *__cil_tmp69 ;
   struct mtd_info *__cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   void *__cil_tmp73 ;
   slram_priv_t *__cil_tmp74 ;
   u_char *__cil_tmp75 ;
   slram_mtd_list_t *__cil_tmp76 ;
   struct mtd_info *__cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   slram_mtd_list_t *__cil_tmp80 ;
   struct mtd_info *__cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   slram_mtd_list_t *__cil_tmp84 ;
   struct mtd_info *__cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   slram_mtd_list_t *__cil_tmp88 ;
   struct mtd_info *__cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   slram_mtd_list_t *__cil_tmp92 ;
   struct mtd_info *__cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   slram_mtd_list_t *__cil_tmp96 ;
   struct mtd_info *__cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   slram_mtd_list_t *__cil_tmp100 ;
   struct mtd_info *__cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   slram_mtd_list_t *__cil_tmp104 ;
   struct mtd_info *__cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   slram_mtd_list_t *__cil_tmp108 ;
   struct mtd_info *__cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   slram_mtd_list_t *__cil_tmp112 ;
   struct mtd_info *__cil_tmp113 ;
   slram_mtd_list_t *__cil_tmp114 ;
   struct mtd_info *__cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
   slram_mtd_list_t *__cil_tmp118 ;
   struct mtd_info *__cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   slram_mtd_list_t *__cil_tmp122 ;
   struct mtd_info *__cil_tmp123 ;
   char const   **__cil_tmp124 ;
@@ -3171,16 +3105,12 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   struct mtd_partition  const  *__cil_tmp126 ;
   slram_mtd_list_t *__cil_tmp127 ;
   struct mtd_info *__cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
   void *__cil_tmp131 ;
   slram_priv_t *__cil_tmp132 ;
   u_char *__cil_tmp133 ;
   void volatile   *__cil_tmp134 ;
   slram_mtd_list_t *__cil_tmp135 ;
   struct mtd_info *__cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
   void *__cil_tmp139 ;
   void const   *__cil_tmp140 ;
   slram_mtd_list_t *__cil_tmp141 ;
@@ -3191,19 +3121,13 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   unsigned long __cil_tmp146 ;
   slram_mtd_list_t *__cil_tmp147 ;
   struct mtd_info *__cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
   void *__cil_tmp151 ;
   slram_priv_t *__cil_tmp152 ;
   u_char *__cil_tmp153 ;
   slram_mtd_list_t *__cil_tmp154 ;
   struct mtd_info *__cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
-  unsigned long __cil_tmp157 ;
   void *__cil_tmp158 ;
   slram_priv_t *__cil_tmp159 ;
-  unsigned long __cil_tmp160 ;
-  unsigned long __cil_tmp161 ;
   u_char *__cil_tmp162 ;
 
   {
@@ -3211,9 +3135,7 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   goto ldv_22122;
   ldv_22121: 
   __cil_tmp10 = *curmtd;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  curmtd = (struct slram_mtd_list **)__cil_tmp12;
+  curmtd = (struct slram_mtd_list **)((void *)__cil_tmp10 + 8);
   ldv_22122: ;
   {
   __cil_tmp13 = (slram_mtd_list_t *)0;
@@ -3250,9 +3172,7 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   __cil_tmp21 = *curmtd;
   *((struct mtd_info **)__cil_tmp21) = (struct mtd_info *)tmp___0;
   __cil_tmp22 = *curmtd;
-  __cil_tmp23 = (unsigned long )__cil_tmp22;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  *((struct slram_mtd_list **)__cil_tmp24) = (struct slram_mtd_list *)0;
+  *((struct slram_mtd_list **)((void *)__cil_tmp22 + 8)) = (struct slram_mtd_list *)0;
   }
   {
   __cil_tmp25 = (struct mtd_info *)0;
@@ -3264,18 +3184,14 @@ static int register_device(char *name , unsigned long start , unsigned long leng
     {
     __cil_tmp30 = *curmtd;
     __cil_tmp31 = *((struct mtd_info **)__cil_tmp30);
-    __cil_tmp32 = (unsigned long )__cil_tmp31;
-    __cil_tmp33 = __cil_tmp32 + 360;
-    *((void **)__cil_tmp33) = kzalloc(16UL, 208U);
+    *((void **)((void *)__cil_tmp31 + 360)) = kzalloc(16UL, 208U);
     }
     {
     __cil_tmp34 = (void *)0;
     __cil_tmp35 = (unsigned long )__cil_tmp34;
     __cil_tmp36 = *curmtd;
     __cil_tmp37 = *((struct mtd_info **)__cil_tmp36);
-    __cil_tmp38 = (unsigned long )__cil_tmp37;
-    __cil_tmp39 = __cil_tmp38 + 360;
-    __cil_tmp40 = *((void **)__cil_tmp39);
+    __cil_tmp40 = *((void **)((void *)__cil_tmp37 + 360));
     __cil_tmp41 = (unsigned long )__cil_tmp40;
     if (__cil_tmp41 == __cil_tmp35) {
       {
@@ -3315,9 +3231,7 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   tmp___1 = (u_char *)tmp___2;
   __cil_tmp52 = *curmtd;
   __cil_tmp53 = *((struct mtd_info **)__cil_tmp52);
-  __cil_tmp54 = (unsigned long )__cil_tmp53;
-  __cil_tmp55 = __cil_tmp54 + 360;
-  __cil_tmp56 = *((void **)__cil_tmp55);
+  __cil_tmp56 = *((void **)((void *)__cil_tmp53 + 360));
   __cil_tmp57 = (slram_priv_t *)__cil_tmp56;
   *((u_char **)__cil_tmp57) = tmp___1;
   }
@@ -3337,78 +3251,50 @@ static int register_device(char *name , unsigned long start , unsigned long leng
   {
   __cil_tmp61 = *curmtd;
   __cil_tmp62 = *((struct mtd_info **)__cil_tmp61);
-  __cil_tmp63 = (unsigned long )__cil_tmp62;
-  __cil_tmp64 = __cil_tmp63 + 360;
-  __cil_tmp65 = *((void **)__cil_tmp64);
+  __cil_tmp65 = *((void **)((void *)__cil_tmp62 + 360));
   __cil_tmp66 = (slram_priv_t *)__cil_tmp65;
-  __cil_tmp67 = (unsigned long )__cil_tmp66;
-  __cil_tmp68 = __cil_tmp67 + 8;
   __cil_tmp69 = *curmtd;
   __cil_tmp70 = *((struct mtd_info **)__cil_tmp69);
-  __cil_tmp71 = (unsigned long )__cil_tmp70;
-  __cil_tmp72 = __cil_tmp71 + 360;
-  __cil_tmp73 = *((void **)__cil_tmp72);
+  __cil_tmp73 = *((void **)((void *)__cil_tmp70 + 360));
   __cil_tmp74 = (slram_priv_t *)__cil_tmp73;
   __cil_tmp75 = *((u_char **)__cil_tmp74);
-  *((u_char **)__cil_tmp68) = __cil_tmp75 + length;
+  *((u_char **)((void *)__cil_tmp66 + 8)) = __cil_tmp75 + length;
   __cil_tmp76 = *curmtd;
   __cil_tmp77 = *((struct mtd_info **)__cil_tmp76);
-  __cil_tmp78 = (unsigned long )__cil_tmp77;
-  __cil_tmp79 = __cil_tmp78 + 56;
-  *((char const   **)__cil_tmp79) = (char const   *)name;
+  *((char const   **)((void *)__cil_tmp77 + 56)) = (char const   *)name;
   __cil_tmp80 = *curmtd;
   __cil_tmp81 = *((struct mtd_info **)__cil_tmp80);
-  __cil_tmp82 = (unsigned long )__cil_tmp81;
-  __cil_tmp83 = __cil_tmp82 + 8;
-  *((uint64_t *)__cil_tmp83) = (uint64_t )length;
+  *((uint64_t *)((void *)__cil_tmp81 + 8)) = (uint64_t )length;
   __cil_tmp84 = *curmtd;
   __cil_tmp85 = *((struct mtd_info **)__cil_tmp84);
-  __cil_tmp86 = (unsigned long )__cil_tmp85;
-  __cil_tmp87 = __cil_tmp86 + 4;
-  *((uint32_t *)__cil_tmp87) = 7168U;
+  *((uint32_t *)((void *)__cil_tmp85 + 4)) = 7168U;
   __cil_tmp88 = *curmtd;
   __cil_tmp89 = *((struct mtd_info **)__cil_tmp88);
-  __cil_tmp90 = (unsigned long )__cil_tmp89;
-  __cil_tmp91 = __cil_tmp90 + 96;
-  *((int (**)(struct mtd_info * , struct erase_info * ))__cil_tmp91) = & slram_erase;
+  *((int (**)(struct mtd_info * , struct erase_info * ))((void *)__cil_tmp89 + 96)) = & slram_erase;
   __cil_tmp92 = *curmtd;
   __cil_tmp93 = *((struct mtd_info **)__cil_tmp92);
-  __cil_tmp94 = (unsigned long )__cil_tmp93;
-  __cil_tmp95 = __cil_tmp94 + 104;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , void ** , resource_size_t * ))__cil_tmp95) = & slram_point;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , void ** , resource_size_t * ))((void *)__cil_tmp93 + 104)) = & slram_point;
   __cil_tmp96 = *curmtd;
   __cil_tmp97 = *((struct mtd_info **)__cil_tmp96);
-  __cil_tmp98 = (unsigned long )__cil_tmp97;
-  __cil_tmp99 = __cil_tmp98 + 112;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  ))__cil_tmp99) = & slram_unpoint;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  ))((void *)__cil_tmp97 + 112)) = & slram_unpoint;
   __cil_tmp100 = *curmtd;
   __cil_tmp101 = *((struct mtd_info **)__cil_tmp100);
-  __cil_tmp102 = (unsigned long )__cil_tmp101;
-  __cil_tmp103 = __cil_tmp102 + 128;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char * ))__cil_tmp103) = & slram_read;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char * ))((void *)__cil_tmp101 + 128)) = & slram_read;
   __cil_tmp104 = *curmtd;
   __cil_tmp105 = *((struct mtd_info **)__cil_tmp104);
-  __cil_tmp106 = (unsigned long )__cil_tmp105;
-  __cil_tmp107 = __cil_tmp106 + 136;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char const   * ))__cil_tmp107) = & slram_write;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char const   * ))((void *)__cil_tmp105 + 136)) = & slram_write;
   __cil_tmp108 = *curmtd;
   __cil_tmp109 = *((struct mtd_info **)__cil_tmp108);
-  __cil_tmp110 = (unsigned long )__cil_tmp109;
-  __cil_tmp111 = __cil_tmp110 + 368;
-  *((struct module **)__cil_tmp111) = & __this_module;
+  *((struct module **)((void *)__cil_tmp109 + 368)) = & __this_module;
   __cil_tmp112 = *curmtd;
   __cil_tmp113 = *((struct mtd_info **)__cil_tmp112);
   *((u_char *)__cil_tmp113) = (u_char )1U;
   __cil_tmp114 = *curmtd;
   __cil_tmp115 = *((struct mtd_info **)__cil_tmp114);
-  __cil_tmp116 = (unsigned long )__cil_tmp115;
-  __cil_tmp117 = __cil_tmp116 + 16;
-  *((uint32_t *)__cil_tmp117) = 16384U;
+  *((uint32_t *)((void *)__cil_tmp115 + 16)) = 16384U;
   __cil_tmp118 = *curmtd;
   __cil_tmp119 = *((struct mtd_info **)__cil_tmp118);
-  __cil_tmp120 = (unsigned long )__cil_tmp119;
-  __cil_tmp121 = __cil_tmp120 + 20;
-  *((uint32_t *)__cil_tmp121) = 1U;
+  *((uint32_t *)((void *)__cil_tmp119 + 20)) = 1U;
   __cil_tmp122 = *curmtd;
   __cil_tmp123 = *((struct mtd_info **)__cil_tmp122);
   __cil_tmp124 = (char const   **)0;
@@ -3422,18 +3308,14 @@ static int register_device(char *name , unsigned long start , unsigned long leng
     printk("<5>slram: Failed to register new device\n");
     __cil_tmp127 = *curmtd;
     __cil_tmp128 = *((struct mtd_info **)__cil_tmp127);
-    __cil_tmp129 = (unsigned long )__cil_tmp128;
-    __cil_tmp130 = __cil_tmp129 + 360;
-    __cil_tmp131 = *((void **)__cil_tmp130);
+    __cil_tmp131 = *((void **)((void *)__cil_tmp128 + 360));
     __cil_tmp132 = (slram_priv_t *)__cil_tmp131;
     __cil_tmp133 = *((u_char **)__cil_tmp132);
     __cil_tmp134 = (void volatile   *)__cil_tmp133;
     iounmap(__cil_tmp134);
     __cil_tmp135 = *curmtd;
     __cil_tmp136 = *((struct mtd_info **)__cil_tmp135);
-    __cil_tmp137 = (unsigned long )__cil_tmp136;
-    __cil_tmp138 = __cil_tmp137 + 360;
-    __cil_tmp139 = *((void **)__cil_tmp138);
+    __cil_tmp139 = *((void **)((void *)__cil_tmp136 + 360));
     __cil_tmp140 = (void const   *)__cil_tmp139;
     kfree(__cil_tmp140);
     __cil_tmp141 = *curmtd;
@@ -3453,20 +3335,14 @@ static int register_device(char *name , unsigned long start , unsigned long leng
          __cil_tmp146);
   __cil_tmp147 = *curmtd;
   __cil_tmp148 = *((struct mtd_info **)__cil_tmp147);
-  __cil_tmp149 = (unsigned long )__cil_tmp148;
-  __cil_tmp150 = __cil_tmp149 + 360;
-  __cil_tmp151 = *((void **)__cil_tmp150);
+  __cil_tmp151 = *((void **)((void *)__cil_tmp148 + 360));
   __cil_tmp152 = (slram_priv_t *)__cil_tmp151;
   __cil_tmp153 = *((u_char **)__cil_tmp152);
   __cil_tmp154 = *curmtd;
   __cil_tmp155 = *((struct mtd_info **)__cil_tmp154);
-  __cil_tmp156 = (unsigned long )__cil_tmp155;
-  __cil_tmp157 = __cil_tmp156 + 360;
-  __cil_tmp158 = *((void **)__cil_tmp157);
+  __cil_tmp158 = *((void **)((void *)__cil_tmp155 + 360));
   __cil_tmp159 = (slram_priv_t *)__cil_tmp158;
-  __cil_tmp160 = (unsigned long )__cil_tmp159;
-  __cil_tmp161 = __cil_tmp160 + 8;
-  __cil_tmp162 = *((u_char **)__cil_tmp161);
+  __cil_tmp162 = *((u_char **)((void *)__cil_tmp159 + 8));
   printk("<7>slram: Mapped from 0x%p to 0x%p\n", __cil_tmp153, __cil_tmp162);
   }
   return (0);
@@ -3476,16 +3352,12 @@ static void unregister_devices(void)
 { slram_mtd_list_t *nextitem ;
   slram_mtd_list_t **__cil_tmp2 ;
   slram_mtd_list_t *__cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   slram_mtd_list_t **__cil_tmp6 ;
   slram_mtd_list_t *__cil_tmp7 ;
   struct mtd_info *__cil_tmp8 ;
   slram_mtd_list_t **__cil_tmp9 ;
   slram_mtd_list_t *__cil_tmp10 ;
   struct mtd_info *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
   slram_priv_t *__cil_tmp15 ;
   u_char *__cil_tmp16 ;
@@ -3493,8 +3365,6 @@ static void unregister_devices(void)
   slram_mtd_list_t **__cil_tmp18 ;
   slram_mtd_list_t *__cil_tmp19 ;
   struct mtd_info *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   void *__cil_tmp23 ;
   void const   *__cil_tmp24 ;
   slram_mtd_list_t **__cil_tmp25 ;
@@ -3517,9 +3387,7 @@ static void unregister_devices(void)
   {
   __cil_tmp2 = & slram_mtdlist;
   __cil_tmp3 = *__cil_tmp2;
-  __cil_tmp4 = (unsigned long )__cil_tmp3;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  nextitem = *((struct slram_mtd_list **)__cil_tmp5);
+  nextitem = *((struct slram_mtd_list **)((void *)__cil_tmp3 + 8));
   __cil_tmp6 = & slram_mtdlist;
   __cil_tmp7 = *__cil_tmp6;
   __cil_tmp8 = *((struct mtd_info **)__cil_tmp7);
@@ -3527,9 +3395,7 @@ static void unregister_devices(void)
   __cil_tmp9 = & slram_mtdlist;
   __cil_tmp10 = *__cil_tmp9;
   __cil_tmp11 = *((struct mtd_info **)__cil_tmp10);
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 360;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  __cil_tmp14 = *((void **)((void *)__cil_tmp11 + 360));
   __cil_tmp15 = (slram_priv_t *)__cil_tmp14;
   __cil_tmp16 = *((u_char **)__cil_tmp15);
   __cil_tmp17 = (void volatile   *)__cil_tmp16;
@@ -3537,9 +3403,7 @@ static void unregister_devices(void)
   __cil_tmp18 = & slram_mtdlist;
   __cil_tmp19 = *__cil_tmp18;
   __cil_tmp20 = *((struct mtd_info **)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 360;
-  __cil_tmp23 = *((void **)__cil_tmp22);
+  __cil_tmp23 = *((void **)((void *)__cil_tmp20 + 360));
   __cil_tmp24 = (void const   *)__cil_tmp23;
   kfree(__cil_tmp24);
   __cil_tmp25 = & slram_mtdlist;

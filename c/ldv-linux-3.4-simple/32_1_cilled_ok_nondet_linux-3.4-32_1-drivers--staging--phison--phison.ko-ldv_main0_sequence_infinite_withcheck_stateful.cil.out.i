@@ -4156,24 +4156,18 @@ static int phison_pre_reset(struct ata_link *link , unsigned long deadline )
 { int ret ;
   struct ata_port *ap ;
   long tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
   long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
   {
   {
   ap = *((struct ata_port **)link);
-  __cil_tmp6 = (unsigned long )ap;
-  __cil_tmp7 = __cil_tmp6 + 324;
-  *((unsigned int *)__cil_tmp7) = 0U;
+  *((unsigned int *)((void *)ap + 324)) = 0U;
   ret = ata_std_prereset(link, deadline);
   }
   {
@@ -4193,9 +4187,7 @@ static int phison_pre_reset(struct ata_link *link , unsigned long deadline )
       }
       if (tmp___7) {
         {
-        __cil_tmp14 = (unsigned long )ap;
-        __cil_tmp15 = __cil_tmp14 + 12640;
-        __cil_tmp16 = *((struct device **)__cil_tmp15);
+        __cil_tmp16 = *((struct device **)((void *)ap + 12640));
         __cil_tmp17 = (struct device const *)__cil_tmp16;
         __dynamic_dev_dbg(& descriptor, __cil_tmp17, "phison_pre_reset(), ret = %x\n",
                           ret);
@@ -4282,12 +4274,6 @@ static int phison_init_one(struct pci_dev *pdev , struct pci_device_id const *id
   struct ata_port_info const *ppi[2] ;
   long tmp___7 ;
   struct ata_port_info *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
@@ -4304,26 +4290,18 @@ static int phison_init_one(struct pci_dev *pdev , struct pci_device_id const *id
   int __cil_tmp27 ;
   int __cil_tmp28 ;
   long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device *__cil_tmp32 ;
   struct device const *__cil_tmp33 ;
   {
   {
   __cil_tmp7 = & info;
   *((unsigned long *)__cil_tmp7) = 64UL;
-  __cil_tmp8 = (unsigned long )(& info) + 8;
-  *((unsigned long *)__cil_tmp8) = 0UL;
-  __cil_tmp9 = (unsigned long )(& info) + 16;
-  *((unsigned long *)__cil_tmp9) = 31UL;
-  __cil_tmp10 = (unsigned long )(& info) + 24;
-  *((unsigned long *)__cil_tmp10) = 7UL;
-  __cil_tmp11 = (unsigned long )(& info) + 32;
-  *((unsigned long *)__cil_tmp11) = 63UL;
-  __cil_tmp12 = (unsigned long )(& info) + 40;
-  *((struct ata_port_operations **)__cil_tmp12) = & phison_ops;
-  __cil_tmp13 = (unsigned long )(& info) + 48;
-  *((void **)__cil_tmp13) = (void *)0;
+  *((unsigned long *)((void *)(&info) + 8)) = 0UL;
+  *((unsigned long *)((void *)(&info) + 16)) = 31UL;
+  *((unsigned long *)((void *)(&info) + 24)) = 7UL;
+  *((unsigned long *)((void *)(&info) + 32)) = 63UL;
+  *((struct ata_port_operations **)((void *)(&info) + 40)) = & phison_ops;
+  *((void **)((void *)(&info) + 48)) = (void *)0;
   __cil_tmp14 = 0 * 8UL;
   __cil_tmp15 = (unsigned long )(ppi) + __cil_tmp14;
   *((struct ata_port_info const **)__cil_tmp15) = (struct ata_port_info const *)(& info);
@@ -4355,9 +4333,7 @@ static int phison_init_one(struct pci_dev *pdev , struct pci_device_id const *id
       }
       if (tmp___7) {
         {
-        __cil_tmp30 = (unsigned long )pdev;
-        __cil_tmp31 = __cil_tmp30 + 144;
-        __cil_tmp32 = (struct device *)__cil_tmp31;
+        __cil_tmp32 = (struct device *)((void *)pdev + 144);
         __cil_tmp33 = (struct device const *)__cil_tmp32;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp33, "phison_init_one(), ret = %x\n",
                           ret);

@@ -421,16 +421,13 @@ int init_module(void) ;
 void cleanup_module(void) ;
 __inline static void watchdog_set_nowayout(struct watchdog_device *wdd , bool nowayout ) __attribute__((__no_instrument_function__)) ;
 __inline static void watchdog_set_nowayout(struct watchdog_device *wdd , bool nowayout )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   unsigned long *__cil_tmp5 ;
   unsigned long volatile *__cil_tmp6 ;
   {
   if (nowayout) {
     {
-    __cil_tmp3 = (unsigned long )wdd;
-    __cil_tmp4 = __cil_tmp3 + 40;
-    __cil_tmp5 = (unsigned long *)__cil_tmp4;
+    __cil_tmp5 = (unsigned long *)((void *)wdd + 40);
     __cil_tmp6 = (unsigned long volatile *)__cil_tmp5;
     set_bit(3U, __cil_tmp6);
     }
@@ -637,8 +634,7 @@ static void watchdog_fire(unsigned long data )
 }
 }
 static int softdog_ping(struct watchdog_device *w )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   unsigned int __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
   unsigned long volatile __cil_tmp6 ;
@@ -646,9 +642,7 @@ static int softdog_ping(struct watchdog_device *w )
   unsigned long __cil_tmp8 ;
   {
   {
-  __cil_tmp2 = (unsigned long )w;
-  __cil_tmp3 = __cil_tmp2 + 20;
-  __cil_tmp4 = *((unsigned int *)__cil_tmp3);
+  __cil_tmp4 = *((unsigned int *)((void *)w + 20));
   __cil_tmp5 = __cil_tmp4 * 250U;
   __cil_tmp6 = (unsigned long volatile )__cil_tmp5;
   __cil_tmp7 = jiffies + __cil_tmp6;
@@ -668,12 +662,9 @@ static int softdog_stop(struct watchdog_device *w )
 }
 }
 static int softdog_set_timeout(struct watchdog_device *w , unsigned int t )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   {
-  __cil_tmp3 = (unsigned long )w;
-  __cil_tmp4 = __cil_tmp3 + 20;
-  *((unsigned int *)__cil_tmp4) = t;
+  *((unsigned int *)((void *)w + 20)) = t;
   return (0);
 }
 }
@@ -724,7 +715,6 @@ static int watchdog_init(void)
   unsigned int __cil_tmp3 ;
   unsigned int *__cil_tmp4 ;
   unsigned int __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned int *__cil_tmp7 ;
   bool *__cil_tmp8 ;
   bool __cil_tmp9 ;
@@ -763,9 +753,8 @@ static int watchdog_init(void)
   }
   }
   {
-  __cil_tmp6 = (unsigned long )(& softdog_dev) + 20;
   __cil_tmp7 = & soft_margin;
-  *((unsigned int *)__cil_tmp6) = *__cil_tmp7;
+  *((unsigned int *)((void *)(&softdog_dev) + 20)) = *__cil_tmp7;
   __cil_tmp8 = & nowayout;
   __cil_tmp9 = *__cil_tmp8;
   watchdog_set_nowayout(& softdog_dev, __cil_tmp9);

@@ -1232,15 +1232,12 @@ extern int pci_add_dynid(struct pci_driver * , unsigned int , unsigned int , uns
                          unsigned int , unsigned int , unsigned int , unsigned long ) ;
 static char ids[1024U] ;
 static int pci_stub_probe(struct pci_dev *dev , struct pci_device_id const *id )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 144);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   dev_printk("<6>", __cil_tmp6, "claimed by stub\n");
   }

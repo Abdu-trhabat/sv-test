@@ -5549,15 +5549,11 @@ extern int dev_set_drvdata(struct device *dev , void *data ) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf ) __attribute__((__no_instrument_function__)) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp___7 = dev_get_drvdata(__cil_tmp6);
   }
@@ -5566,14 +5562,11 @@ __inline static void *usb_get_intfdata(struct usb_interface *intf )
 }
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -5582,26 +5575,18 @@ __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf ) __attribute__((__no_instrument_function__)) ;
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf )
 { struct device const *__mptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct usb_device *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   char *__cil_tmp11 ;
   char *__cil_tmp12 ;
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = *((struct device **)__cil_tmp4);
+  __cil_tmp5 = *((struct device **)((void *)intf + 48));
   __mptr = (struct device const *)__cil_tmp5;
   {
   __cil_tmp6 = (struct usb_device *)0;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 136;
-  __cil_tmp9 = (struct device *)__cil_tmp8;
+  __cil_tmp9 = (struct device *)((void *)__cil_tmp6 + 136);
   __cil_tmp10 = (unsigned int )__cil_tmp9;
   __cil_tmp11 = (char *)__mptr;
   __cil_tmp12 = __cil_tmp11 - __cil_tmp10;
@@ -5691,34 +5676,23 @@ extern void ath6kl_core_cleanup(struct ath6kl *ar ) ;
 extern void ath6kl_core_destroy(struct ath6kl *ar ) ;
 extern void ath6kl_dbg(enum ATH6K_DEBUG_MASK mask , char const *fmt , ...) ;
 static void ath6kl_usb_destroy(struct ath6kl_usb *ar_usb )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct usb_interface *__cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   u8 *__cil_tmp8 ;
   void const *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u8 *__cil_tmp12 ;
   void const *__cil_tmp13 ;
   void const *__cil_tmp14 ;
   {
   {
-  __cil_tmp2 = (unsigned long )ar_usb;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  __cil_tmp4 = *((struct usb_interface **)__cil_tmp3);
+  __cil_tmp4 = *((struct usb_interface **)((void *)ar_usb + 8));
   __cil_tmp5 = (void *)0;
   usb_set_intfdata(__cil_tmp4, __cil_tmp5);
-  __cil_tmp6 = (unsigned long )ar_usb;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = *((u8 **)__cil_tmp7);
+  __cil_tmp8 = *((u8 **)((void *)ar_usb + 16));
   __cil_tmp9 = (void const *)__cil_tmp8;
   kfree(__cil_tmp9);
-  __cil_tmp10 = (unsigned long )ar_usb;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  __cil_tmp12 = *((u8 **)__cil_tmp11);
+  __cil_tmp12 = *((u8 **)((void *)ar_usb + 24));
   __cil_tmp13 = (void const *)__cil_tmp12;
   kfree(__cil_tmp13);
   __cil_tmp14 = (void const *)ar_usb;
@@ -5741,22 +5715,12 @@ static struct ath6kl_usb *ath6kl_usb_create(struct usb_interface *interface )
   unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u8 *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   void *__cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   u8 *__cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   void *__cil_tmp33 ;
@@ -5785,20 +5749,14 @@ static struct ath6kl_usb *ath6kl_usb_create(struct usb_interface *interface )
   __cil_tmp14 = (void *)ar_usb;
   usb_set_intfdata(interface, __cil_tmp14);
   *((struct usb_device **)ar_usb) = dev;
-  __cil_tmp15 = (unsigned long )ar_usb;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  *((struct usb_interface **)__cil_tmp16) = interface;
+  *((struct usb_interface **)((void *)ar_usb + 8)) = interface;
   tmp___9 = kzalloc(16UL, 208U);
-  __cil_tmp17 = (unsigned long )ar_usb;
-  __cil_tmp18 = __cil_tmp17 + 16;
-  *((u8 **)__cil_tmp18) = (u8 *)tmp___9;
+  *((u8 **)((void *)ar_usb + 16)) = (u8 *)tmp___9;
   }
   {
   __cil_tmp19 = (void *)0;
   __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = (unsigned long )ar_usb;
-  __cil_tmp22 = __cil_tmp21 + 16;
-  __cil_tmp23 = *((u8 **)__cil_tmp22);
+  __cil_tmp23 = *((u8 **)((void *)ar_usb + 16));
   __cil_tmp24 = (unsigned long )__cil_tmp23;
   if (__cil_tmp24 == __cil_tmp20) {
     status = -12;
@@ -5808,16 +5766,12 @@ static struct ath6kl_usb *ath6kl_usb_create(struct usb_interface *interface )
   }
   {
   tmp___10 = kzalloc(4UL, 208U);
-  __cil_tmp25 = (unsigned long )ar_usb;
-  __cil_tmp26 = __cil_tmp25 + 24;
-  *((u8 **)__cil_tmp26) = (u8 *)tmp___10;
+  *((u8 **)((void *)ar_usb + 24)) = (u8 *)tmp___10;
   }
   {
   __cil_tmp27 = (void *)0;
   __cil_tmp28 = (unsigned long )__cil_tmp27;
-  __cil_tmp29 = (unsigned long )ar_usb;
-  __cil_tmp30 = __cil_tmp29 + 24;
-  __cil_tmp31 = *((u8 **)__cil_tmp30);
+  __cil_tmp31 = *((u8 **)((void *)ar_usb + 24));
   __cil_tmp32 = (unsigned long )__cil_tmp31;
   if (__cil_tmp32 == __cil_tmp28) {
     status = -12;
@@ -5843,11 +5797,7 @@ static void ath6kl_usb_device_detached(struct usb_interface *interface )
   void *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct ath6kl *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct ath6kl *__cil_tmp12 ;
   {
   {
@@ -5864,13 +5814,9 @@ static void ath6kl_usb_device_detached(struct usb_interface *interface )
   }
   }
   {
-  __cil_tmp7 = (unsigned long )ar_usb;
-  __cil_tmp8 = __cil_tmp7 + 32;
-  __cil_tmp9 = *((struct ath6kl **)__cil_tmp8);
+  __cil_tmp9 = *((struct ath6kl **)((void *)ar_usb + 32));
   ath6kl_stop_txrx(__cil_tmp9);
-  __cil_tmp10 = (unsigned long )ar_usb;
-  __cil_tmp11 = __cil_tmp10 + 32;
-  __cil_tmp12 = *((struct ath6kl **)__cil_tmp11);
+  __cil_tmp12 = *((struct ath6kl **)((void *)ar_usb + 32));
   ath6kl_core_cleanup(__cil_tmp12);
   ath6kl_usb_destroy(ar_usb);
   }
@@ -6096,51 +6042,33 @@ static int ath6kl_usb_diag_read32(struct ath6kl *ar , u32 address , u32 *data )
   struct ath6kl_usb_ctrl_diag_cmd_read *cmd ;
   u32 resp_len ;
   int ret ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   u8 *__cil_tmp14 ;
   void *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u32 *__cil_tmp18 ;
   u8 __cil_tmp19 ;
   u8 *__cil_tmp20 ;
   u32 __cil_tmp21 ;
   u8 __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   u8 *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   u8 *__cil_tmp28 ;
   {
   {
-  __cil_tmp9 = (unsigned long )ar;
-  __cil_tmp10 = __cil_tmp9 + 120;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)ar + 120));
   ar_usb = (struct ath6kl_usb *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )ar_usb;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = *((u8 **)__cil_tmp13);
+  __cil_tmp14 = *((u8 **)((void *)ar_usb + 16));
   cmd = (struct ath6kl_usb_ctrl_diag_cmd_read *)__cil_tmp14;
   __cil_tmp15 = (void *)cmd;
   memset(__cil_tmp15, 0, 8UL);
   *((__le32 *)cmd) = (__le32 )0;
-  __cil_tmp16 = (unsigned long )cmd;
-  __cil_tmp17 = __cil_tmp16 + 4;
-  *((__le32 *)__cil_tmp17) = address;
+  *((__le32 *)((void *)cmd + 4)) = address;
   __cil_tmp18 = & resp_len;
   *__cil_tmp18 = (u32 )4UL;
   __cil_tmp19 = (u8 )3;
   __cil_tmp20 = (u8 *)cmd;
   __cil_tmp21 = (u32 )16UL;
   __cil_tmp22 = (u8 )4;
-  __cil_tmp23 = (unsigned long )ar_usb;
-  __cil_tmp24 = __cil_tmp23 + 24;
-  __cil_tmp25 = *((u8 **)__cil_tmp24);
+  __cil_tmp25 = *((u8 **)((void *)ar_usb + 24));
   ret = ath6kl_usb_ctrl_msg_exchange(ar_usb, __cil_tmp19, __cil_tmp20, __cil_tmp21,
                                      __cil_tmp22, __cil_tmp25, & resp_len);
   }
@@ -6148,9 +6076,7 @@ static int ath6kl_usb_diag_read32(struct ath6kl *ar , u32 address , u32 *data )
     return (ret);
   } else {
   }
-  __cil_tmp26 = (unsigned long )ar_usb;
-  __cil_tmp27 = __cil_tmp26 + 24;
-  __cil_tmp28 = *((u8 **)__cil_tmp27);
+  __cil_tmp28 = *((u8 **)((void *)ar_usb + 24));
   resp = (struct ath6kl_usb_ctrl_diag_resp_read *)__cil_tmp28;
   *data = *((__le32 *)resp);
   return (ret);
@@ -6160,17 +6086,9 @@ static int ath6kl_usb_diag_write32(struct ath6kl *ar , u32 address , __le32 data
 { struct ath6kl_usb *ar_usb ;
   struct ath6kl_usb_ctrl_diag_cmd_write *cmd ;
   int tmp___7 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u8 *__cil_tmp12 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u8 __cil_tmp18 ;
   u8 *__cil_tmp19 ;
   u32 __cil_tmp20 ;
@@ -6181,23 +6099,15 @@ static int ath6kl_usb_diag_write32(struct ath6kl *ar , u32 address , __le32 data
   u32 *__cil_tmp25 ;
   {
   {
-  __cil_tmp7 = (unsigned long )ar;
-  __cil_tmp8 = __cil_tmp7 + 120;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)ar + 120));
   ar_usb = (struct ath6kl_usb *)__cil_tmp9;
-  __cil_tmp10 = (unsigned long )ar_usb;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = *((u8 **)__cil_tmp11);
+  __cil_tmp12 = *((u8 **)((void *)ar_usb + 16));
   cmd = (struct ath6kl_usb_ctrl_diag_cmd_write *)__cil_tmp12;
   __cil_tmp13 = (void *)cmd;
   memset(__cil_tmp13, 0, 16UL);
   *((__le32 *)cmd) = (__u32 )1;
-  __cil_tmp14 = (unsigned long )cmd;
-  __cil_tmp15 = __cil_tmp14 + 4;
-  *((__le32 *)__cil_tmp15) = address;
-  __cil_tmp16 = (unsigned long )cmd;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  *((__le32 *)__cil_tmp17) = data;
+  *((__le32 *)((void *)cmd + 4)) = address;
+  *((__le32 *)((void *)cmd + 8)) = data;
   __cil_tmp18 = (u8 )3;
   __cil_tmp19 = (u8 *)cmd;
   __cil_tmp20 = (u32 )16UL;
@@ -6215,8 +6125,6 @@ static int ath6kl_usb_diag_write32(struct ath6kl *ar , u32 address , __le32 data
 static int ath6kl_usb_bmi_read(struct ath6kl *ar , u8 *buf , u32 len )
 { struct ath6kl_usb *ar_usb ;
   int ret ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 __cil_tmp9 ;
   u16 __cil_tmp10 ;
@@ -6224,9 +6132,7 @@ static int ath6kl_usb_bmi_read(struct ath6kl *ar , u8 *buf , u32 len )
   void *__cil_tmp12 ;
   {
   {
-  __cil_tmp6 = (unsigned long )ar;
-  __cil_tmp7 = __cil_tmp6 + 120;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)ar + 120));
   ar_usb = (struct ath6kl_usb *)__cil_tmp8;
   __cil_tmp9 = (u8 )2;
   __cil_tmp10 = (u16 )0;
@@ -6248,8 +6154,6 @@ static int ath6kl_usb_bmi_read(struct ath6kl *ar , u8 *buf , u32 len )
 static int ath6kl_usb_bmi_write(struct ath6kl *ar , u8 *buf , u32 len )
 { struct ath6kl_usb *ar_usb ;
   int ret ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 __cil_tmp9 ;
   u16 __cil_tmp10 ;
@@ -6257,9 +6161,7 @@ static int ath6kl_usb_bmi_write(struct ath6kl *ar , u8 *buf , u32 len )
   void *__cil_tmp12 ;
   {
   {
-  __cil_tmp6 = (unsigned long )ar;
-  __cil_tmp7 = __cil_tmp6 + 120;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)ar + 120));
   ar_usb = (struct ath6kl_usb *)__cil_tmp8;
   __cil_tmp9 = (u8 )1;
   __cil_tmp10 = (u16 )0;
@@ -6313,28 +6215,16 @@ static int ath6kl_usb_probe(struct usb_interface *interface , struct usb_device_
   int ret ;
   void *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   __le16 __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   __le16 __cil_tmp18 ;
   enum ATH6K_DEBUG_MASK __cil_tmp19 ;
   enum ATH6K_DEBUG_MASK __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   enum ATH6K_DEBUG_MASK __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct usb_host_interface *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   __u8 __cil_tmp30 ;
   int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   enum usb_device_speed __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
   enum ATH6K_DEBUG_MASK __cil_tmp36 ;
@@ -6343,26 +6233,12 @@ static int ath6kl_usb_probe(struct usb_interface *interface , struct usb_device_
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   struct usb_device *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
   void *__cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   {
   {
   tmp___7 = interface_to_usbdev(interface);
@@ -6372,14 +6248,10 @@ static int ath6kl_usb_probe(struct usb_interface *interface , struct usb_device_
   ret = 0;
   usb_get_dev(dev);
   __cil_tmp11 = 904 + 8;
-  __cil_tmp12 = (unsigned long )dev;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  __cil_tmp14 = *((__le16 *)__cil_tmp13);
+  __cil_tmp14 = *((__le16 *)((void *)dev + __cil_tmp11));
   vendor_id = (int )__cil_tmp14;
   __cil_tmp15 = 904 + 10;
-  __cil_tmp16 = (unsigned long )dev;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = *((__le16 *)__cil_tmp17);
+  __cil_tmp18 = *((__le16 *)((void *)dev + __cil_tmp15));
   product_id = (int )__cil_tmp18;
   __cil_tmp19 = (enum ATH6K_DEBUG_MASK )2097152;
   ath6kl_dbg(__cil_tmp19, "vendor_id = %04x\n", vendor_id);
@@ -6387,18 +6259,12 @@ static int ath6kl_usb_probe(struct usb_interface *interface , struct usb_device_
   ath6kl_dbg(__cil_tmp20, "product_id = %04x\n", product_id);
   }
   {
-  __cil_tmp21 = (unsigned long )interface;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  if (*((struct usb_host_interface **)__cil_tmp22)) {
+  if (*((struct usb_host_interface **)((void *)interface + 8))) {
     {
     __cil_tmp23 = (enum ATH6K_DEBUG_MASK )2097152;
     __cil_tmp24 = 0 + 2;
-    __cil_tmp25 = (unsigned long )interface;
-    __cil_tmp26 = __cil_tmp25 + 8;
-    __cil_tmp27 = *((struct usb_host_interface **)__cil_tmp26);
-    __cil_tmp28 = (unsigned long )__cil_tmp27;
-    __cil_tmp29 = __cil_tmp28 + __cil_tmp24;
-    __cil_tmp30 = *((__u8 *)__cil_tmp29);
+    __cil_tmp27 = *((struct usb_host_interface **)((void *)interface + 8));
+    __cil_tmp30 = *((__u8 *)((void *)__cil_tmp27 + __cil_tmp24));
     __cil_tmp31 = (int )__cil_tmp30;
     ath6kl_dbg(__cil_tmp23, "USB Interface %d\n", __cil_tmp31);
     }
@@ -6406,9 +6272,7 @@ static int ath6kl_usb_probe(struct usb_interface *interface , struct usb_device_
   }
   }
   {
-  __cil_tmp32 = (unsigned long )dev;
-  __cil_tmp33 = __cil_tmp32 + 28;
-  __cil_tmp34 = *((enum usb_device_speed *)__cil_tmp33);
+  __cil_tmp34 = *((enum usb_device_speed *)((void *)dev + 28));
   __cil_tmp35 = (unsigned int )__cil_tmp34;
   if (__cil_tmp35 == 3U) {
     {
@@ -6437,9 +6301,7 @@ static int ath6kl_usb_probe(struct usb_interface *interface , struct usb_device_
   }
   {
   __cil_tmp41 = *((struct usb_device **)ar_usb);
-  __cil_tmp42 = (unsigned long )__cil_tmp41;
-  __cil_tmp43 = __cil_tmp42 + 136;
-  __cil_tmp44 = (struct device *)__cil_tmp43;
+  __cil_tmp44 = (struct device *)((void *)__cil_tmp41 + 136);
   ar = ath6kl_core_create(__cil_tmp44);
   }
   {
@@ -6456,26 +6318,14 @@ static int ath6kl_usb_probe(struct usb_interface *interface , struct usb_device_
   }
   }
   {
-  __cil_tmp48 = (unsigned long )ar;
-  __cil_tmp49 = __cil_tmp48 + 120;
-  *((void **)__cil_tmp49) = (void *)ar_usb;
-  __cil_tmp50 = (unsigned long )ar;
-  __cil_tmp51 = __cil_tmp50 + 112;
-  *((enum ath6kl_hif_type *)__cil_tmp51) = (enum ath6kl_hif_type )1;
-  __cil_tmp52 = (unsigned long )ar;
-  __cil_tmp53 = __cil_tmp52 + 48;
-  *((struct ath6kl_hif_ops const **)__cil_tmp53) = & ath6kl_usb_ops;
+  *((void **)((void *)ar + 120)) = (void *)ar_usb;
+  *((enum ath6kl_hif_type *)((void *)ar + 112)) = (enum ath6kl_hif_type )1;
+  *((struct ath6kl_hif_ops const **)((void *)ar + 48)) = & ath6kl_usb_ops;
   __cil_tmp54 = 5576 + 12;
-  __cil_tmp55 = (unsigned long )ar;
-  __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-  *((u32 *)__cil_tmp56) = (u32 )16;
+  *((u32 *)((void *)ar + __cil_tmp54)) = (u32 )16;
   __cil_tmp57 = 24 + 16;
-  __cil_tmp58 = (unsigned long )ar;
-  __cil_tmp59 = __cil_tmp58 + __cil_tmp57;
-  *((u32 *)__cil_tmp59) = (u32 )252;
-  __cil_tmp60 = (unsigned long )ar_usb;
-  __cil_tmp61 = __cil_tmp60 + 32;
-  *((struct ath6kl **)__cil_tmp61) = ar;
+  *((u32 *)((void *)ar + __cil_tmp57)) = (u32 )252;
+  *((struct ath6kl **)((void *)ar_usb + 32)) = ar;
   ret = ath6kl_core_init(ar);
   }
   if (ret) {

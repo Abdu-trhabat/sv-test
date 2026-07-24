@@ -4145,8 +4145,6 @@ static int marvell_pata_active(struct pci_dev *pdev )
   u32 devices ;
   void *barp ;
   unsigned int tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned short __cil_tmp8 ;
   int __cil_tmp9 ;
   void *__cil_tmp10 ;
@@ -4157,9 +4155,7 @@ static int marvell_pata_active(struct pci_dev *pdev )
 
   {
   {
-  __cil_tmp6 = (unsigned long )pdev;
-  __cil_tmp7 = __cil_tmp6 + 62;
-  __cil_tmp8 = *((unsigned short *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned short *)((void *)pdev + 62));
   __cil_tmp9 = (int )__cil_tmp8;
   if (__cil_tmp9 != 24901) {
     return (1);
@@ -4221,54 +4217,34 @@ static int marvell_pre_reset(struct ata_link *link , unsigned long deadline )
   struct device  const  *__mptr ;
   int tmp___7 ;
   int tmp___8 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct ata_host *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct pci_dev *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   char *__cil_tmp19 ;
   char *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned short __cil_tmp23 ;
   int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
 
   {
   ap = *((struct ata_port **)link);
-  __cil_tmp8 = (unsigned long )ap;
-  __cil_tmp9 = __cil_tmp8 + 12632;
-  __cil_tmp10 = *((struct ata_host **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 24;
-  __cil_tmp13 = *((struct device **)__cil_tmp12);
+  __cil_tmp10 = *((struct ata_host **)((void *)ap + 12632));
+  __cil_tmp13 = *((struct device **)((void *)__cil_tmp10 + 24));
   __mptr = (struct device  const  *)__cil_tmp13;
   __cil_tmp14 = (struct pci_dev *)0;
-  __cil_tmp15 = (unsigned long )__cil_tmp14;
-  __cil_tmp16 = __cil_tmp15 + 144;
-  __cil_tmp17 = (struct device *)__cil_tmp16;
+  __cil_tmp17 = (struct device *)((void *)__cil_tmp14 + 144);
   __cil_tmp18 = (unsigned int )__cil_tmp17;
   __cil_tmp19 = (char *)__mptr;
   __cil_tmp20 = __cil_tmp19 - __cil_tmp18;
   pdev = (struct pci_dev *)__cil_tmp20;
   {
-  __cil_tmp21 = (unsigned long )pdev;
-  __cil_tmp22 = __cil_tmp21 + 62;
-  __cil_tmp23 = *((unsigned short *)__cil_tmp22);
+  __cil_tmp23 = *((unsigned short *)((void *)pdev + 62));
   __cil_tmp24 = (int )__cil_tmp23;
   if (__cil_tmp24 == 24901) {
     {
-    __cil_tmp25 = (unsigned long )ap;
-    __cil_tmp26 = __cil_tmp25 + 40;
-    __cil_tmp27 = *((unsigned int *)__cil_tmp26);
+    __cil_tmp27 = *((unsigned int *)((void *)ap + 40));
     if (__cil_tmp27 == 0U) {
       {
       tmp___7 = marvell_pata_active(pdev);
@@ -4294,20 +4270,14 @@ static int marvell_pre_reset(struct ata_link *link , unsigned long deadline )
 }
 static int marvell_cable_detect(struct ata_port *ap ) 
 { unsigned int tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   void *__cil_tmp10 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )ap;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = *((unsigned int *)__cil_tmp4);
+  __cil_tmp5 = *((unsigned int *)((void *)ap + 40));
   if ((int )__cil_tmp5 == 0) {
     goto case_0;
   } else
@@ -4318,9 +4288,7 @@ static int marvell_cable_detect(struct ata_port *ap )
     case_0: /* CIL Label */ 
     {
     __cil_tmp6 = 48 + 104;
-    __cil_tmp7 = (unsigned long )ap;
-    __cil_tmp8 = __cil_tmp7 + __cil_tmp6;
-    __cil_tmp9 = *((void **)__cil_tmp8);
+    __cil_tmp9 = *((void **)((void *)ap + __cil_tmp6));
     __cil_tmp10 = __cil_tmp9 + 1;
     tmp___7 = ioread8(__cil_tmp10);
     }
@@ -4432,8 +4400,6 @@ static int marvell_init_one(struct pci_dev *pdev , struct pci_device_id  const  
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned short __cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
@@ -4452,9 +4418,7 @@ static int marvell_init_one(struct pci_dev *pdev , struct pci_device_id  const  
   __cil_tmp9 = (unsigned long )(ppi) + __cil_tmp8;
   *((struct ata_port_info  const  **)__cil_tmp9) = & info_sata;
   {
-  __cil_tmp10 = (unsigned long )pdev;
-  __cil_tmp11 = __cil_tmp10 + 62;
-  __cil_tmp12 = *((unsigned short *)__cil_tmp11);
+  __cil_tmp12 = *((unsigned short *)((void *)pdev + 62));
   __cil_tmp13 = (int )__cil_tmp12;
   if (__cil_tmp13 == 24833) {
     __cil_tmp14 = 1 * 8UL;

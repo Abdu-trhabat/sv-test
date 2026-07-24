@@ -1380,15 +1380,11 @@ extern void pci_unregister_driver(struct pci_driver *dev ) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1397,14 +1393,11 @@ __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1477,24 +1470,16 @@ static void matrox_w1_write_ddc_bit(void *data , u8 bit ) ;
 __inline static u8 matrox_w1_read_reg(struct matrox_device *dev , u8 reg ) __attribute__((__no_instrument_function__)) ;
 __inline static u8 matrox_w1_read_reg(struct matrox_device *dev , u8 reg )
 { u8 ret ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   void volatile *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   void const volatile *__cil_tmp11 ;
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)dev + 8));
   __cil_tmp7 = (void volatile *)__cil_tmp6;
   writeb(reg, __cil_tmp7);
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)dev + 16));
   __cil_tmp11 = (void const volatile *)__cil_tmp10;
   ret = readb(__cil_tmp11);
   __asm__ volatile ("": : : "memory");
@@ -1504,24 +1489,17 @@ __inline static u8 matrox_w1_read_reg(struct matrox_device *dev , u8 reg )
 }
 __inline static void matrox_w1_write_reg(struct matrox_device *dev , u8 reg , u8 val ) __attribute__((__no_instrument_function__)) ;
 __inline static void matrox_w1_write_reg(struct matrox_device *dev , u8 reg , u8 val )
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   void *__cil_tmp6 ;
   void volatile *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   void volatile *__cil_tmp11 ;
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)dev + 8));
   __cil_tmp7 = (void volatile *)__cil_tmp6;
   writeb(reg, __cil_tmp7);
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)dev + 16));
   __cil_tmp11 = (void volatile *)__cil_tmp10;
   writeb(val, __cil_tmp11);
   __asm__ volatile ("sfence": : : "memory");
@@ -1532,13 +1510,9 @@ __inline static void matrox_w1_write_reg(struct matrox_device *dev , u8 reg , u8
 static void matrox_w1_write_ddc_bit(void *data , u8 bit )
 { u8 ret ;
   struct matrox_device *dev ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   u8 __cil_tmp7 ;
   u8 __cil_tmp8 ;
   int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u8 __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
@@ -1553,18 +1527,14 @@ static void matrox_w1_write_ddc_bit(void *data , u8 bit )
   if (bit) {
     bit = (u8 )0;
   } else {
-    __cil_tmp5 = (unsigned long )dev;
-    __cil_tmp6 = __cil_tmp5 + 24;
-    bit = *((u8 *)__cil_tmp6);
+    bit = *((u8 *)((void *)dev + 24));
   }
   {
   __cil_tmp7 = (u8 )42;
   ret = matrox_w1_read_reg(dev, __cil_tmp7);
   __cil_tmp8 = (u8 )42;
   __cil_tmp9 = (int )bit;
-  __cil_tmp10 = (unsigned long )dev;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  __cil_tmp12 = *((u8 *)__cil_tmp11);
+  __cil_tmp12 = *((u8 *)((void *)dev + 24));
   __cil_tmp13 = (int )__cil_tmp12;
   __cil_tmp14 = ~ __cil_tmp13;
   __cil_tmp15 = (int )ret;
@@ -1633,84 +1603,34 @@ static int matrox_w1_probe(struct pci_dev *pdev , struct pci_device_id const *en
   int __cil_tmp21 ;
   int __cil_tmp22 ;
   long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned short __cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned short __cil_tmp30 ;
   int __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct device *__cil_tmp35 ;
   struct device const *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct matrox_device *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   resource_size_t __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   resource_size_t __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   void *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct device *__cil_tmp58 ;
   struct device const *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   void *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   void *__cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   void *__cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   int __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   struct w1_bus_master *__cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   struct w1_bus_master *__cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   struct w1_bus_master *__cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   struct w1_bus_master *__cil_tmp90 ;
   void *__cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   struct device *__cil_tmp96 ;
   struct device const *__cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
   void *__cil_tmp102 ;
   void volatile *__cil_tmp103 ;
   void const *__cil_tmp104 ;
@@ -1752,17 +1672,13 @@ static int matrox_w1_probe(struct pci_dev *pdev , struct pci_device_id const *en
   } else {
   }
   {
-  __cil_tmp24 = (unsigned long )pdev;
-  __cil_tmp25 = __cil_tmp24 + 60;
-  __cil_tmp26 = *((unsigned short *)__cil_tmp25);
+  __cil_tmp26 = *((unsigned short *)((void *)pdev + 60));
   __cil_tmp27 = (int )__cil_tmp26;
   if (__cil_tmp27 != 4139) {
     return (-19);
   } else {
     {
-    __cil_tmp28 = (unsigned long )pdev;
-    __cil_tmp29 = __cil_tmp28 + 62;
-    __cil_tmp30 = *((unsigned short *)__cil_tmp29);
+    __cil_tmp30 = *((unsigned short *)((void *)pdev + 62));
     __cil_tmp31 = (int )__cil_tmp30;
     if (__cil_tmp31 != 1317) {
       return (-19);
@@ -1778,9 +1694,7 @@ static int matrox_w1_probe(struct pci_dev *pdev , struct pci_device_id const *en
   }
   if (! dev) {
     {
-    __cil_tmp33 = (unsigned long )pdev;
-    __cil_tmp34 = __cil_tmp33 + 144;
-    __cil_tmp35 = (struct device *)__cil_tmp34;
+    __cil_tmp35 = (struct device *)((void *)pdev + 144);
     __cil_tmp36 = (struct device const *)__cil_tmp35;
     dev_err(__cil_tmp36, "%s: Failed to create new matrox_device object.\n", "matrox_w1_probe");
     }
@@ -1788,39 +1702,23 @@ static int matrox_w1_probe(struct pci_dev *pdev , struct pci_device_id const *en
   } else {
   }
   {
-  __cil_tmp37 = (unsigned long )dev;
-  __cil_tmp38 = __cil_tmp37 + 56;
   __cil_tmp39 = dev + 1;
-  *((struct w1_bus_master **)__cil_tmp38) = (struct w1_bus_master *)__cil_tmp39;
-  __cil_tmp40 = (unsigned long )dev;
-  __cil_tmp41 = __cil_tmp40 + 32;
+  *((struct w1_bus_master **)((void *)dev + 56)) = (struct w1_bus_master *)__cil_tmp39;
   __cil_tmp42 = 1 * 56UL;
   __cil_tmp43 = 920 + __cil_tmp42;
-  __cil_tmp44 = (unsigned long )pdev;
-  __cil_tmp45 = __cil_tmp44 + __cil_tmp43;
-  __cil_tmp46 = *((resource_size_t *)__cil_tmp45);
-  *((unsigned long *)__cil_tmp41) = (unsigned long )__cil_tmp46;
-  __cil_tmp47 = (unsigned long )dev;
-  __cil_tmp48 = __cil_tmp47 + 40;
-  __cil_tmp49 = (unsigned long )dev;
-  __cil_tmp50 = __cil_tmp49 + 32;
-  __cil_tmp51 = *((unsigned long *)__cil_tmp50);
+  __cil_tmp46 = *((resource_size_t *)((void *)pdev + __cil_tmp43));
+  *((unsigned long *)((void *)dev + 32)) = (unsigned long )__cil_tmp46;
+  __cil_tmp51 = *((unsigned long *)((void *)dev + 32));
   __cil_tmp52 = (resource_size_t )__cil_tmp51;
-  *((void **)__cil_tmp48) = ioremap_nocache(__cil_tmp52, 16384UL);
+  *((void **)((void *)dev + 40)) = ioremap_nocache(__cil_tmp52, 16384UL);
   }
   {
-  __cil_tmp53 = (unsigned long )dev;
-  __cil_tmp54 = __cil_tmp53 + 40;
-  __cil_tmp55 = *((void **)__cil_tmp54);
+  __cil_tmp55 = *((void **)((void *)dev + 40));
   if (! __cil_tmp55) {
     {
-    __cil_tmp56 = (unsigned long )pdev;
-    __cil_tmp57 = __cil_tmp56 + 144;
-    __cil_tmp58 = (struct device *)__cil_tmp57;
+    __cil_tmp58 = (struct device *)((void *)pdev + 144);
     __cil_tmp59 = (struct device const *)__cil_tmp58;
-    __cil_tmp60 = (unsigned long )dev;
-    __cil_tmp61 = __cil_tmp60 + 32;
-    __cil_tmp62 = *((unsigned long *)__cil_tmp61);
+    __cil_tmp62 = *((unsigned long *)((void *)dev + 32));
     dev_err(__cil_tmp59, "%s: failed to ioremap(0x%lx, %d).\n", "matrox_w1_probe",
             __cil_tmp62, 16384);
     err = -5;
@@ -1830,42 +1728,22 @@ static int matrox_w1_probe(struct pci_dev *pdev , struct pci_device_id const *en
   }
   }
   {
-  __cil_tmp63 = (unsigned long )dev;
-  __cil_tmp64 = __cil_tmp63 + 40;
-  __cil_tmp65 = *((void **)__cil_tmp64);
+  __cil_tmp65 = *((void **)((void *)dev + 40));
   *((void **)dev) = __cil_tmp65 + 15360;
-  __cil_tmp66 = (unsigned long )dev;
-  __cil_tmp67 = __cil_tmp66 + 8;
   __cil_tmp68 = *((void **)dev);
-  *((void **)__cil_tmp67) = __cil_tmp68 + 0;
-  __cil_tmp69 = (unsigned long )dev;
-  __cil_tmp70 = __cil_tmp69 + 16;
+  *((void **)((void *)dev + 8)) = __cil_tmp68 + 0;
   __cil_tmp71 = *((void **)dev);
-  *((void **)__cil_tmp70) = __cil_tmp71 + 10;
-  __cil_tmp72 = (unsigned long )dev;
-  __cil_tmp73 = __cil_tmp72 + 24;
+  *((void **)((void *)dev + 16)) = __cil_tmp71 + 10;
   __cil_tmp74 = 1 << 1;
-  *((u8 *)__cil_tmp73) = (u8 )__cil_tmp74;
+  *((u8 *)((void *)dev + 24)) = (u8 )__cil_tmp74;
   matrox_w1_hw_init(dev);
-  __cil_tmp75 = (unsigned long )dev;
-  __cil_tmp76 = __cil_tmp75 + 56;
-  __cil_tmp77 = *((struct w1_bus_master **)__cil_tmp76);
+  __cil_tmp77 = *((struct w1_bus_master **)((void *)dev + 56));
   *((void **)__cil_tmp77) = (void *)dev;
-  __cil_tmp78 = (unsigned long )dev;
-  __cil_tmp79 = __cil_tmp78 + 56;
-  __cil_tmp80 = *((struct w1_bus_master **)__cil_tmp79);
-  __cil_tmp81 = (unsigned long )__cil_tmp80;
-  __cil_tmp82 = __cil_tmp81 + 8;
-  *((u8 (**)(void * ))__cil_tmp82) = & matrox_w1_read_ddc_bit;
-  __cil_tmp83 = (unsigned long )dev;
-  __cil_tmp84 = __cil_tmp83 + 56;
-  __cil_tmp85 = *((struct w1_bus_master **)__cil_tmp84);
-  __cil_tmp86 = (unsigned long )__cil_tmp85;
-  __cil_tmp87 = __cil_tmp86 + 16;
-  *((void (**)(void * , u8 ))__cil_tmp87) = & matrox_w1_write_ddc_bit;
-  __cil_tmp88 = (unsigned long )dev;
-  __cil_tmp89 = __cil_tmp88 + 56;
-  __cil_tmp90 = *((struct w1_bus_master **)__cil_tmp89);
+  __cil_tmp80 = *((struct w1_bus_master **)((void *)dev + 56));
+  *((u8 (**)(void * ))((void *)__cil_tmp80 + 8)) = & matrox_w1_read_ddc_bit;
+  __cil_tmp85 = *((struct w1_bus_master **)((void *)dev + 56));
+  *((void (**)(void * , u8 ))((void *)__cil_tmp85 + 16)) = & matrox_w1_write_ddc_bit;
+  __cil_tmp90 = *((struct w1_bus_master **)((void *)dev + 56));
   err = w1_add_master_device(__cil_tmp90);
   }
   if (err) {
@@ -1875,25 +1753,17 @@ static int matrox_w1_probe(struct pci_dev *pdev , struct pci_device_id const *en
   {
   __cil_tmp91 = (void *)dev;
   pci_set_drvdata(pdev, __cil_tmp91);
-  __cil_tmp92 = (unsigned long )dev;
-  __cil_tmp93 = __cil_tmp92 + 48;
-  *((unsigned long *)__cil_tmp93) = 1UL;
-  __cil_tmp94 = (unsigned long )pdev;
-  __cil_tmp95 = __cil_tmp94 + 144;
-  __cil_tmp96 = (struct device *)__cil_tmp95;
+  *((unsigned long *)((void *)dev + 48)) = 1UL;
+  __cil_tmp96 = (struct device *)((void *)pdev + 144);
   __cil_tmp97 = (struct device const *)__cil_tmp96;
   _dev_info(__cil_tmp97, "Matrox G400 GPIO transport layer for 1-wire.\n");
   }
   return (0);
   err_out_free_device:
   {
-  __cil_tmp98 = (unsigned long )dev;
-  __cil_tmp99 = __cil_tmp98 + 40;
-  if (*((void **)__cil_tmp99)) {
+  if (*((void **)((void *)dev + 40))) {
     {
-    __cil_tmp100 = (unsigned long )dev;
-    __cil_tmp101 = __cil_tmp100 + 40;
-    __cil_tmp102 = *((void **)__cil_tmp101);
+    __cil_tmp102 = *((void **)((void *)dev + 40));
     __cil_tmp103 = (void volatile *)__cil_tmp102;
     iounmap(__cil_tmp103);
     }
@@ -1921,13 +1791,7 @@ static void matrox_w1_remove(struct pci_dev *pdev )
   int __cil_tmp10 ;
   int __cil_tmp11 ;
   long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct w1_bus_master *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
   void volatile *__cil_tmp21 ;
   void const *__cil_tmp22 ;
@@ -1953,17 +1817,11 @@ static void matrox_w1_remove(struct pci_dev *pdev )
   } else {
   }
   {
-  __cil_tmp13 = (unsigned long )dev;
-  __cil_tmp14 = __cil_tmp13 + 48;
-  if (*((unsigned long *)__cil_tmp14)) {
+  if (*((unsigned long *)((void *)dev + 48))) {
     {
-    __cil_tmp15 = (unsigned long )dev;
-    __cil_tmp16 = __cil_tmp15 + 56;
-    __cil_tmp17 = *((struct w1_bus_master **)__cil_tmp16);
+    __cil_tmp17 = *((struct w1_bus_master **)((void *)dev + 56));
     w1_remove_master_device(__cil_tmp17);
-    __cil_tmp18 = (unsigned long )dev;
-    __cil_tmp19 = __cil_tmp18 + 40;
-    __cil_tmp20 = *((void **)__cil_tmp19);
+    __cil_tmp20 = *((void **)((void *)dev + 40));
     __cil_tmp21 = (void volatile *)__cil_tmp20;
     iounmap(__cil_tmp21);
     }

@@ -3011,16 +3011,12 @@ extern int dev_set_drvdata(struct device * , void * ) ;
 extern int dev_err(struct device  const  * , char const   *  , ...) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -3028,15 +3024,12 @@ __inline static void *usb_get_intfdata(struct usb_interface *intf )
 }
 }
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3044,15 +3037,11 @@ __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
 }
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf ) 
 { struct device  const  *__mptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct usb_device *__cil_tmp6 ;
 
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = *((struct device **)__cil_tmp4);
+  __cil_tmp5 = *((struct device **)((void *)intf + 48));
   __mptr = (struct device  const  *)__cil_tmp5;
   {
   __cil_tmp6 = (struct usb_device *)__mptr;
@@ -3088,8 +3077,6 @@ static ssize_t show_speed(struct device *dev , struct device_attribute *attr , c
   void *tmp ;
   int tmp___0 ;
   struct usb_interface *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
 
   {
@@ -3099,9 +3086,7 @@ static ssize_t show_speed(struct device *dev , struct device_attribute *attr , c
   intf = __cil_tmp9 + 0xffffffffffffffd0UL;
   tmp = usb_get_intfdata(intf);
   tv = (struct trancevibrator *)tmp;
-  __cil_tmp10 = (unsigned long )tv;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  __cil_tmp12 = *((unsigned int *)__cil_tmp11);
+  __cil_tmp12 = *((unsigned int *)((void *)tv + 8));
   tmp___0 = sprintf(buf, "%d\n", __cil_tmp12);
   }
   return ((ssize_t )tmp___0);
@@ -3124,36 +3109,20 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   long tmp___3 ;
   struct usb_interface *__cil_tmp18 ;
   char **__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct _ddebug *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned char __cil_tmp32 ;
   long __cil_tmp33 ;
   long __cil_tmp34 ;
   struct usb_device *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct device *__cil_tmp38 ;
   struct device  const  *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned int __cil_tmp42 ;
   struct usb_device *__cil_tmp43 ;
   struct usb_device *__cil_tmp44 ;
   unsigned int __cil_tmp45 ;
   __u8 __cil_tmp46 ;
   __u8 __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
   __u16 __cil_tmp51 ;
   int __cil_tmp52 ;
@@ -3161,21 +3130,11 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   __u16 __cil_tmp54 ;
   void *__cil_tmp55 ;
   __u16 __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct _ddebug *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned char __cil_tmp66 ;
   long __cil_tmp67 ;
   long __cil_tmp68 ;
   struct usb_device *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct device *__cil_tmp72 ;
   struct device  const  *__cil_tmp73 ;
 
@@ -3199,27 +3158,17 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
 
   }
   {
-  __cil_tmp20 = (unsigned long )tv;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  __cil_tmp22 = *((unsigned int *)__cil_tmp21);
+  __cil_tmp22 = *((unsigned int *)((void *)tv + 8));
   old = (int )__cil_tmp22;
-  __cil_tmp23 = (unsigned long )tv;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  *((unsigned int *)__cil_tmp24) = (unsigned int )temp;
+  *((unsigned int *)((void *)tv + 8)) = (unsigned int )temp;
   __cil_tmp25 = & descriptor;
   *((char const   **)__cil_tmp25) = "trancevibrator";
-  __cil_tmp26 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp26) = "set_speed";
-  __cil_tmp27 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp27) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1921/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/trancevibrator.c.p";
-  __cil_tmp28 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp28) = "speed = %d\n";
-  __cil_tmp29 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp29) = 88U;
-  __cil_tmp30 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp30) = (unsigned char)1;
-  __cil_tmp31 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp32 = *((unsigned char *)__cil_tmp31);
+  *((char const   **)((void *)(&descriptor) + 8)) = "set_speed";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1921/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/trancevibrator.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "speed = %d\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 88U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+  __cil_tmp32 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp33 = (long )__cil_tmp32;
   __cil_tmp34 = __cil_tmp33 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp34, 0L);
@@ -3227,13 +3176,9 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   if (tmp___1 != 0L) {
     {
     __cil_tmp35 = *((struct usb_device **)tv);
-    __cil_tmp36 = (unsigned long )__cil_tmp35;
-    __cil_tmp37 = __cil_tmp36 + 136;
-    __cil_tmp38 = (struct device *)__cil_tmp37;
+    __cil_tmp38 = (struct device *)((void *)__cil_tmp35 + 136);
     __cil_tmp39 = (struct device  const  *)__cil_tmp38;
-    __cil_tmp40 = (unsigned long )tv;
-    __cil_tmp41 = __cil_tmp40 + 8;
-    __cil_tmp42 = *((unsigned int *)__cil_tmp41);
+    __cil_tmp42 = *((unsigned int *)((void *)tv + 8));
     __dynamic_dev_dbg(& descriptor, __cil_tmp39, "speed = %d\n", __cil_tmp42);
     }
   } else {
@@ -3246,9 +3191,7 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   __cil_tmp45 = tmp___2 | 2147483648U;
   __cil_tmp46 = (__u8 )1;
   __cil_tmp47 = (__u8 )195;
-  __cil_tmp48 = (unsigned long )tv;
-  __cil_tmp49 = __cil_tmp48 + 8;
-  __cil_tmp50 = *((unsigned int *)__cil_tmp49);
+  __cil_tmp50 = *((unsigned int *)((void *)tv + 8));
   __cil_tmp51 = (__u16 )__cil_tmp50;
   __cil_tmp52 = (int )__cil_tmp51;
   __cil_tmp53 = (__u16 )__cil_tmp52;
@@ -3260,23 +3203,15 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   }
   if (retval != 0) {
     {
-    __cil_tmp57 = (unsigned long )tv;
-    __cil_tmp58 = __cil_tmp57 + 8;
-    *((unsigned int *)__cil_tmp58) = (unsigned int )old;
+    *((unsigned int *)((void *)tv + 8)) = (unsigned int )old;
     __cil_tmp59 = & descriptor___0;
     *((char const   **)__cil_tmp59) = "trancevibrator";
-    __cil_tmp60 = (unsigned long )(& descriptor___0) + 8;
-    *((char const   **)__cil_tmp60) = "set_speed";
-    __cil_tmp61 = (unsigned long )(& descriptor___0) + 16;
-    *((char const   **)__cil_tmp61) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1921/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/trancevibrator.c.p";
-    __cil_tmp62 = (unsigned long )(& descriptor___0) + 24;
-    *((char const   **)__cil_tmp62) = "retval = %d\n";
-    __cil_tmp63 = (unsigned long )(& descriptor___0) + 32;
-    *((unsigned int *)__cil_tmp63) = 98U;
-    __cil_tmp64 = (unsigned long )(& descriptor___0) + 35;
-    *((unsigned char *)__cil_tmp64) = (unsigned char)1;
-    __cil_tmp65 = (unsigned long )(& descriptor___0) + 35;
-    __cil_tmp66 = *((unsigned char *)__cil_tmp65);
+    *((char const   **)((void *)(&descriptor___0) + 8)) = "set_speed";
+    *((char const   **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1921/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/trancevibrator.c.p";
+    *((char const   **)((void *)(&descriptor___0) + 24)) = "retval = %d\n";
+    *((unsigned int *)((void *)(&descriptor___0) + 32)) = 98U;
+    *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)1;
+    __cil_tmp66 = *((unsigned char *)((void *)(&descriptor___0) + 35));
     __cil_tmp67 = (long )__cil_tmp66;
     __cil_tmp68 = __cil_tmp67 & 1L;
     tmp___3 = __builtin_expect(__cil_tmp68, 0L);
@@ -3284,9 +3219,7 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
     if (tmp___3 != 0L) {
       {
       __cil_tmp69 = *((struct usb_device **)tv);
-      __cil_tmp70 = (unsigned long )__cil_tmp69;
-      __cil_tmp71 = __cil_tmp70 + 136;
-      __cil_tmp72 = (struct device *)__cil_tmp71;
+      __cil_tmp72 = (struct device *)((void *)__cil_tmp69 + 136);
       __cil_tmp73 = (struct device  const  *)__cil_tmp72;
       __dynamic_dev_dbg(& descriptor___0, __cil_tmp73, "retval = %d\n", retval);
       }
@@ -3314,13 +3247,9 @@ static int tv_probe(struct usb_interface *interface , struct usb_device_id  cons
   struct trancevibrator *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device  const  *__cil_tmp14 ;
   void *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device_attribute  const  *__cil_tmp19 ;
   void *__cil_tmp20 ;
@@ -3339,9 +3268,7 @@ static int tv_probe(struct usb_interface *interface , struct usb_device_id  cons
   __cil_tmp10 = (unsigned long )dev;
   if (__cil_tmp10 == __cil_tmp9) {
     {
-    __cil_tmp11 = (unsigned long )interface;
-    __cil_tmp12 = __cil_tmp11 + 48;
-    __cil_tmp13 = (struct device *)__cil_tmp12;
+    __cil_tmp13 = (struct device *)((void *)interface + 48);
     __cil_tmp14 = (struct device  const  *)__cil_tmp13;
     dev_err(__cil_tmp14, "Out of memory\n");
     retval = -12;
@@ -3355,9 +3282,7 @@ static int tv_probe(struct usb_interface *interface , struct usb_device_id  cons
   *((struct usb_device **)dev) = usb_get_dev(udev);
   __cil_tmp15 = (void *)dev;
   usb_set_intfdata(interface, __cil_tmp15);
-  __cil_tmp16 = (unsigned long )interface;
-  __cil_tmp17 = __cil_tmp16 + 48;
-  __cil_tmp18 = (struct device *)__cil_tmp17;
+  __cil_tmp18 = (struct device *)((void *)interface + 48);
   __cil_tmp19 = (struct device_attribute  const  *)(& dev_attr_speed);
   retval = device_create_file(__cil_tmp18, __cil_tmp19);
   }
@@ -3384,8 +3309,6 @@ static int tv_probe(struct usb_interface *interface , struct usb_device_id  cons
 static void tv_disconnect(struct usb_interface *interface ) 
 { struct trancevibrator *dev ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device_attribute  const  *__cil_tmp7 ;
   void *__cil_tmp8 ;
@@ -3396,9 +3319,7 @@ static void tv_disconnect(struct usb_interface *interface )
   {
   tmp = usb_get_intfdata(interface);
   dev = (struct trancevibrator *)tmp;
-  __cil_tmp4 = (unsigned long )interface;
-  __cil_tmp5 = __cil_tmp4 + 48;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)interface + 48);
   __cil_tmp7 = (struct device_attribute  const  *)(& dev_attr_speed);
   device_remove_file(__cil_tmp6, __cil_tmp7);
   __cil_tmp8 = (void *)0;

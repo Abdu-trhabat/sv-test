@@ -1865,12 +1865,8 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
 { struct device  const  *__mptr ;
   struct device *tmp ;
   struct input_dev *tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct input_dev *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   char *__cil_tmp13 ;
@@ -1880,15 +1876,11 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
   {
   if (dev) {
     {
-    __cil_tmp5 = (unsigned long )dev;
-    __cil_tmp6 = __cil_tmp5 + 648;
-    __cil_tmp7 = (struct device *)__cil_tmp6;
+    __cil_tmp7 = (struct device *)((void *)dev + 648);
     tmp = get_device(__cil_tmp7);
     __mptr = (struct device  const  *)tmp;
     __cil_tmp8 = (struct input_dev *)0;
-    __cil_tmp9 = (unsigned long )__cil_tmp8;
-    __cil_tmp10 = __cil_tmp9 + 648;
-    __cil_tmp11 = (struct device *)__cil_tmp10;
+    __cil_tmp11 = (struct device *)((void *)__cil_tmp8 + 648);
     __cil_tmp12 = (unsigned int )__cil_tmp11;
     __cil_tmp13 = (char *)__mptr;
     __cil_tmp14 = __cil_tmp13 - __cil_tmp12;
@@ -1903,16 +1895,13 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
 }
 __inline static void input_put_device(struct input_dev *dev )  __attribute__((__no_instrument_function__)) ;
 __inline static void input_put_device(struct input_dev *dev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device *__cil_tmp4 ;
 
   {
   if (dev) {
     {
-    __cil_tmp2 = (unsigned long )dev;
-    __cil_tmp3 = __cil_tmp2 + 648;
-    __cil_tmp4 = (struct device *)__cil_tmp3;
+    __cil_tmp4 = (struct device *)((void *)dev + 648);
     put_device(__cil_tmp4);
     }
   } else {
@@ -1976,16 +1965,12 @@ extern void serio_unregister_driver(struct serio_driver *drv ) ;
 __inline static void *serio_get_drvdata(struct serio *serio )  __attribute__((__no_instrument_function__)) ;
 __inline static void *serio_get_drvdata(struct serio *serio ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 272;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 272);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1994,15 +1979,12 @@ __inline static void *serio_get_drvdata(struct serio *serio )
 }
 __inline static void serio_set_drvdata(struct serio *serio , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void serio_set_drvdata(struct serio *serio , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 272;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 272);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2044,66 +2026,40 @@ static irqreturn_t fujitsu_interrupt(struct serio *serio , unsigned char data , 
   void *tmp ;
   struct input_dev *dev ;
   int tmp___0 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
   int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned char __cil_tmp34 ;
   int __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned char __cil_tmp40 ;
   int __cil_tmp41 ;
   int __cil_tmp42 ;
   int __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned char __cil_tmp48 ;
   int __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned char __cil_tmp54 ;
   int __cil_tmp55 ;
   int __cil_tmp56 ;
   int __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned char __cil_tmp62 ;
   int __cil_tmp63 ;
   int __cil_tmp64 ;
   int __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
 
   {
   {
@@ -2112,9 +2068,7 @@ static irqreturn_t fujitsu_interrupt(struct serio *serio , unsigned char data , 
   dev = *((struct input_dev **)fujitsu);
   }
   {
-  __cil_tmp8 = (unsigned long )fujitsu;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)fujitsu + 16));
   if (__cil_tmp10 == 0) {
     {
     __cil_tmp11 = (int )data;
@@ -2129,9 +2083,7 @@ static irqreturn_t fujitsu_interrupt(struct serio *serio , unsigned char data , 
     {
     __cil_tmp13 = (int )data;
     if (__cil_tmp13 & 128) {
-      __cil_tmp14 = (unsigned long )fujitsu;
-      __cil_tmp15 = __cil_tmp14 + 16;
-      *((int *)__cil_tmp15) = 0;
+      *((int *)((void *)fujitsu + 16)) = 0;
       return ((irqreturn_t )1);
     } else {
 
@@ -2139,69 +2091,47 @@ static irqreturn_t fujitsu_interrupt(struct serio *serio , unsigned char data , 
     }
   }
   }
-  __cil_tmp16 = (unsigned long )fujitsu;
-  __cil_tmp17 = __cil_tmp16 + 16;
-  tmp___0 = *((int *)__cil_tmp17);
-  __cil_tmp18 = (unsigned long )fujitsu;
-  __cil_tmp19 = __cil_tmp18 + 16;
-  __cil_tmp20 = (unsigned long )fujitsu;
-  __cil_tmp21 = __cil_tmp20 + 16;
-  __cil_tmp22 = *((int *)__cil_tmp21);
-  *((int *)__cil_tmp19) = __cil_tmp22 + 1;
+  tmp___0 = *((int *)((void *)fujitsu + 16));
+  __cil_tmp22 = *((int *)((void *)fujitsu + 16));
+  *((int *)((void *)fujitsu + 16)) = __cil_tmp22 + 1;
   __cil_tmp23 = tmp___0 * 1UL;
   __cil_tmp24 = 20 + __cil_tmp23;
-  __cil_tmp25 = (unsigned long )fujitsu;
-  __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-  *((unsigned char *)__cil_tmp26) = data;
+  *((unsigned char *)((void *)fujitsu + __cil_tmp24)) = data;
   {
-  __cil_tmp27 = (unsigned long )fujitsu;
-  __cil_tmp28 = __cil_tmp27 + 16;
-  __cil_tmp29 = *((int *)__cil_tmp28);
+  __cil_tmp29 = *((int *)((void *)fujitsu + 16));
   if (__cil_tmp29 == 5) {
     {
     __cil_tmp30 = 1 * 1UL;
     __cil_tmp31 = 20 + __cil_tmp30;
-    __cil_tmp32 = (unsigned long )fujitsu;
-    __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-    __cil_tmp34 = *((unsigned char *)__cil_tmp33);
+    __cil_tmp34 = *((unsigned char *)((void *)fujitsu + __cil_tmp31));
     __cil_tmp35 = (int )__cil_tmp34;
     __cil_tmp36 = 2 * 1UL;
     __cil_tmp37 = 20 + __cil_tmp36;
-    __cil_tmp38 = (unsigned long )fujitsu;
-    __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-    __cil_tmp40 = *((unsigned char *)__cil_tmp39);
+    __cil_tmp40 = *((unsigned char *)((void *)fujitsu + __cil_tmp37));
     __cil_tmp41 = (int )__cil_tmp40;
     __cil_tmp42 = __cil_tmp41 << 7;
     __cil_tmp43 = __cil_tmp42 | __cil_tmp35;
     input_report_abs(dev, 0U, __cil_tmp43);
     __cil_tmp44 = 3 * 1UL;
     __cil_tmp45 = 20 + __cil_tmp44;
-    __cil_tmp46 = (unsigned long )fujitsu;
-    __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-    __cil_tmp48 = *((unsigned char *)__cil_tmp47);
+    __cil_tmp48 = *((unsigned char *)((void *)fujitsu + __cil_tmp45));
     __cil_tmp49 = (int )__cil_tmp48;
     __cil_tmp50 = 4 * 1UL;
     __cil_tmp51 = 20 + __cil_tmp50;
-    __cil_tmp52 = (unsigned long )fujitsu;
-    __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-    __cil_tmp54 = *((unsigned char *)__cil_tmp53);
+    __cil_tmp54 = *((unsigned char *)((void *)fujitsu + __cil_tmp51));
     __cil_tmp55 = (int )__cil_tmp54;
     __cil_tmp56 = __cil_tmp55 << 7;
     __cil_tmp57 = __cil_tmp56 | __cil_tmp49;
     input_report_abs(dev, 1U, __cil_tmp57);
     __cil_tmp58 = 0 * 1UL;
     __cil_tmp59 = 20 + __cil_tmp58;
-    __cil_tmp60 = (unsigned long )fujitsu;
-    __cil_tmp61 = __cil_tmp60 + __cil_tmp59;
-    __cil_tmp62 = *((unsigned char *)__cil_tmp61);
+    __cil_tmp62 = *((unsigned char *)((void *)fujitsu + __cil_tmp59));
     __cil_tmp63 = (int )__cil_tmp62;
     __cil_tmp64 = __cil_tmp63 & 3;
     __cil_tmp65 = __cil_tmp64 != 2;
     input_report_key(dev, 330U, __cil_tmp65);
     input_sync(dev);
-    __cil_tmp66 = (unsigned long )fujitsu;
-    __cil_tmp67 = __cil_tmp66 + 16;
-    *((int *)__cil_tmp67) = 0;
+    *((int *)((void *)fujitsu + 16)) = 0;
     }
   } else {
 
@@ -2243,46 +2173,24 @@ static int fujitsu_connect(struct serio *serio , struct serio_driver *drv )
   struct input_dev *input_dev ;
   int err ;
   void *tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   char *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   char *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   char *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   void *__cil_tmp47 ;
   struct input_dev *__cil_tmp48 ;
   void *__cil_tmp49 ;
@@ -2305,57 +2213,35 @@ static int fujitsu_connect(struct serio *serio , struct serio_driver *drv )
 
   }
   {
-  __cil_tmp7 = (unsigned long )fujitsu;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  *((struct serio **)__cil_tmp8) = serio;
+  *((struct serio **)((void *)fujitsu + 8)) = serio;
   *((struct input_dev **)fujitsu) = input_dev;
   __cil_tmp9 = 0 * 1UL;
   __cil_tmp10 = 25 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )fujitsu;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = (char *)__cil_tmp12;
+  __cil_tmp13 = (char *)((void *)fujitsu + __cil_tmp10);
   __cil_tmp14 = 0 * 1UL;
   __cil_tmp15 = 40 + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )serio;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = (char *)__cil_tmp17;
+  __cil_tmp18 = (char *)((void *)serio + __cil_tmp15);
   snprintf(__cil_tmp13, 32UL, "%s/input0", __cil_tmp18);
   *((char const   **)input_dev) = "Fujitsu Serial Touchscreen";
-  __cil_tmp19 = (unsigned long )input_dev;
-  __cil_tmp20 = __cil_tmp19 + 8;
   __cil_tmp21 = 0 * 1UL;
   __cil_tmp22 = 25 + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )fujitsu;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  __cil_tmp25 = (char *)__cil_tmp24;
-  *((char const   **)__cil_tmp20) = (char const   *)__cil_tmp25;
-  __cil_tmp26 = (unsigned long )input_dev;
-  __cil_tmp27 = __cil_tmp26 + 24;
-  *((__u16 *)__cil_tmp27) = (__u16 )19;
+  __cil_tmp25 = (char *)((void *)fujitsu + __cil_tmp22);
+  *((char const   **)((void *)input_dev + 8)) = (char const   *)__cil_tmp25;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )19;
   __cil_tmp28 = 24 + 2;
-  __cil_tmp29 = (unsigned long )input_dev;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  *((__u16 *)__cil_tmp30) = (__u16 )53;
+  *((__u16 *)((void *)input_dev + __cil_tmp28)) = (__u16 )53;
   __cil_tmp31 = 24 + 4;
-  __cil_tmp32 = (unsigned long )input_dev;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  *((__u16 *)__cil_tmp33) = (__u16 )0;
+  *((__u16 *)((void *)input_dev + __cil_tmp31)) = (__u16 )0;
   __cil_tmp34 = 24 + 6;
-  __cil_tmp35 = (unsigned long )input_dev;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  *((__u16 *)__cil_tmp36) = (__u16 )256;
+  *((__u16 *)((void *)input_dev + __cil_tmp34)) = (__u16 )256;
   __cil_tmp37 = 0 * 8UL;
   __cil_tmp38 = 40 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )input_dev;
-  __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
   __cil_tmp41 = 1UL << 3;
   __cil_tmp42 = 1UL << 1;
-  *((unsigned long *)__cil_tmp40) = __cil_tmp42 | __cil_tmp41;
+  *((unsigned long *)((void *)input_dev + __cil_tmp38)) = __cil_tmp42 | __cil_tmp41;
   __cil_tmp43 = 5 * 8UL;
   __cil_tmp44 = 48 + __cil_tmp43;
-  __cil_tmp45 = (unsigned long )input_dev;
-  __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
-  *((unsigned long *)__cil_tmp46) = 1UL << 10;
+  *((unsigned long *)((void *)input_dev + __cil_tmp44)) = 1UL << 10;
   input_set_abs_params(input_dev, 0U, 0, 4096, 0, 0);
   input_set_abs_params(input_dev, 1U, 0, 4096, 0, 0);
   __cil_tmp47 = (void *)fujitsu;

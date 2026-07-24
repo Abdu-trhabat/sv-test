@@ -2246,14 +2246,10 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)pdev + 16);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -2261,14 +2257,11 @@ __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2299,30 +2292,18 @@ static int wm831x_isink_enable(struct regulator_dev *rdev )
   void *tmp___7 ;
   struct wm831x *wm831x ;
   int ret ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   unsigned short __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned short __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
   unsigned short __cil_tmp19 ;
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   isink = (struct wm831x_isink *)tmp___7;
-  __cil_tmp6 = (unsigned long )isink;
-  __cil_tmp7 = __cil_tmp6 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp7);
-  __cil_tmp8 = (unsigned long )isink;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  wm831x = *((struct wm831x **)((void *)isink + 64));
+  __cil_tmp10 = *((int *)((void *)isink + 56));
   __cil_tmp11 = (unsigned short )__cil_tmp10;
   ret = wm831x_set_bits(wm831x, __cil_tmp11, (unsigned short)32768, (unsigned short)32768);
   }
@@ -2331,17 +2312,13 @@ static int wm831x_isink_enable(struct regulator_dev *rdev )
   } else {
   }
   {
-  __cil_tmp12 = (unsigned long )isink;
-  __cil_tmp13 = __cil_tmp12 + 56;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)isink + 56));
   __cil_tmp15 = (unsigned short )__cil_tmp14;
   ret = wm831x_set_bits(wm831x, __cil_tmp15, (unsigned short)16384, (unsigned short)16384);
   }
   if (ret != 0) {
     {
-    __cil_tmp16 = (unsigned long )isink;
-    __cil_tmp17 = __cil_tmp16 + 56;
-    __cil_tmp18 = *((int *)__cil_tmp17);
+    __cil_tmp18 = *((int *)((void *)isink + 56));
     __cil_tmp19 = (unsigned short )__cil_tmp18;
     wm831x_set_bits(wm831x, __cil_tmp19, (unsigned short)32768, (unsigned short)0);
     }
@@ -2355,26 +2332,16 @@ static int wm831x_isink_disable(struct regulator_dev *rdev )
   void *tmp___7 ;
   struct wm831x *wm831x ;
   int ret ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   unsigned short __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned short __cil_tmp15 ;
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   isink = (struct wm831x_isink *)tmp___7;
-  __cil_tmp6 = (unsigned long )isink;
-  __cil_tmp7 = __cil_tmp6 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp7);
-  __cil_tmp8 = (unsigned long )isink;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  wm831x = *((struct wm831x **)((void *)isink + 64));
+  __cil_tmp10 = *((int *)((void *)isink + 56));
   __cil_tmp11 = (unsigned short )__cil_tmp10;
   ret = wm831x_set_bits(wm831x, __cil_tmp11, (unsigned short)16384, (unsigned short)0);
   }
@@ -2383,9 +2350,7 @@ static int wm831x_isink_disable(struct regulator_dev *rdev )
   } else {
   }
   {
-  __cil_tmp12 = (unsigned long )isink;
-  __cil_tmp13 = __cil_tmp12 + 56;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)isink + 56));
   __cil_tmp15 = (unsigned short )__cil_tmp14;
   ret = wm831x_set_bits(wm831x, __cil_tmp15, (unsigned short)32768, (unsigned short)0);
   }
@@ -2401,10 +2366,6 @@ static int wm831x_isink_is_enabled(struct regulator_dev *rdev )
   void *tmp___7 ;
   struct wm831x *wm831x ;
   int ret ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   unsigned short __cil_tmp11 ;
   int __cil_tmp12 ;
@@ -2412,12 +2373,8 @@ static int wm831x_isink_is_enabled(struct regulator_dev *rdev )
   {
   tmp___7 = rdev_get_drvdata(rdev);
   isink = (struct wm831x_isink *)tmp___7;
-  __cil_tmp6 = (unsigned long )isink;
-  __cil_tmp7 = __cil_tmp6 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp7);
-  __cil_tmp8 = (unsigned long )isink;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  wm831x = *((struct wm831x **)((void *)isink + 64));
+  __cil_tmp10 = *((int *)((void *)isink + 56));
   __cil_tmp11 = (unsigned short )__cil_tmp10;
   ret = wm831x_reg_read(wm831x, __cil_tmp11);
   }
@@ -2442,15 +2399,11 @@ static int wm831x_isink_set_current(struct regulator_dev *rdev , int min_uA , in
   int ret ;
   int i ;
   int val ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
   unsigned short __cil_tmp20 ;
   unsigned short __cil_tmp21 ;
@@ -2458,9 +2411,7 @@ static int wm831x_isink_set_current(struct regulator_dev *rdev , int min_uA , in
   {
   tmp___7 = rdev_get_drvdata(rdev);
   isink = (struct wm831x_isink *)tmp___7;
-  __cil_tmp10 = (unsigned long )isink;
-  __cil_tmp11 = __cil_tmp10 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp11);
+  wm831x = *((struct wm831x **)((void *)isink + 64));
   i = 0;
   }
   {
@@ -2481,9 +2432,7 @@ static int wm831x_isink_set_current(struct regulator_dev *rdev , int min_uA , in
     if (min_uA <= val) {
       if (val <= max_uA) {
         {
-        __cil_tmp17 = (unsigned long )isink;
-        __cil_tmp18 = __cil_tmp17 + 56;
-        __cil_tmp19 = *((int *)__cil_tmp18);
+        __cil_tmp19 = *((int *)((void *)isink + 56));
         __cil_tmp20 = (unsigned short )__cil_tmp19;
         __cil_tmp21 = (unsigned short )i;
         ret = wm831x_set_bits(wm831x, __cil_tmp20, (unsigned short)63, __cil_tmp21);
@@ -2505,10 +2454,6 @@ static int wm831x_isink_get_current(struct regulator_dev *rdev )
   void *tmp___7 ;
   struct wm831x *wm831x ;
   int ret ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   unsigned short __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
@@ -2517,12 +2462,8 @@ static int wm831x_isink_get_current(struct regulator_dev *rdev )
   {
   tmp___7 = rdev_get_drvdata(rdev);
   isink = (struct wm831x_isink *)tmp___7;
-  __cil_tmp6 = (unsigned long )isink;
-  __cil_tmp7 = __cil_tmp6 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp7);
-  __cil_tmp8 = (unsigned long )isink;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  wm831x = *((struct wm831x **)((void *)isink + 64));
+  __cil_tmp10 = *((int *)((void *)isink + 56));
   __cil_tmp11 = (unsigned short )__cil_tmp10;
   ret = wm831x_reg_read(wm831x, __cil_tmp11);
   }
@@ -2561,16 +2502,12 @@ static struct regulator_ops wm831x_isink_ops =
                                                                                        unsigned int mode ))0};
 static irqreturn_t wm831x_isink_irq(int irq , void *data )
 { struct wm831x_isink *isink ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct regulator_dev *__cil_tmp6 ;
   void *__cil_tmp7 ;
   {
   {
   isink = (struct wm831x_isink *)data;
-  __cil_tmp4 = (unsigned long )isink;
-  __cil_tmp5 = __cil_tmp4 + 72;
-  __cil_tmp6 = *((struct regulator_dev **)__cil_tmp5);
+  __cil_tmp6 = *((struct regulator_dev **)((void *)isink + 72));
   __cil_tmp7 = (void *)0;
   regulator_notifier_call_chain(__cil_tmp6, 2UL, __cil_tmp7);
   }
@@ -2597,20 +2534,12 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   void *tmp___9 ;
   long tmp___10 ;
   long tmp___11 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   void *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   int __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
@@ -2620,8 +2549,6 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   int __cil_tmp34 ;
   int __cil_tmp35 ;
   long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
   struct device const *__cil_tmp40 ;
   int __cil_tmp41 ;
@@ -2632,84 +2559,44 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct regulator_init_data *__cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct device *__cil_tmp55 ;
   void *__cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct device *__cil_tmp61 ;
   struct device const *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   void *__cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   struct device *__cil_tmp70 ;
   struct device const *__cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   resource_size_t __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
   unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   char *__cil_tmp79 ;
   int __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   char *__cil_tmp87 ;
   unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   struct regulator_desc *__cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   struct device *__cil_tmp107 ;
   unsigned long __cil_tmp108 ;
   unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   struct regulator_init_data *__cil_tmp112 ;
   struct regulator_init_data const *__cil_tmp113 ;
   void *__cil_tmp114 ;
   void *__cil_tmp115 ;
   struct device_node *__cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   struct regulator_dev *__cil_tmp119 ;
   void const *__cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   struct regulator_dev *__cil_tmp123 ;
   void const *__cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   struct device *__cil_tmp127 ;
   struct device const *__cil_tmp128 ;
   int __cil_tmp129 ;
@@ -2718,39 +2605,25 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   irqreturn_t (*__cil_tmp132)(int , void * ) ;
   unsigned long __cil_tmp133 ;
   unsigned long __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
   char *__cil_tmp137 ;
   char const *__cil_tmp138 ;
   void *__cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
   struct device *__cil_tmp142 ;
   struct device const *__cil_tmp143 ;
   void *__cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
   struct regulator_dev *__cil_tmp147 ;
   {
   {
-  __cil_tmp14 = (unsigned long )pdev;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((struct device **)__cil_tmp15);
+  __cil_tmp16 = *((struct device **)((void *)pdev + 16));
   __cil_tmp17 = (struct device const *)__cil_tmp16;
   tmp___7 = dev_get_drvdata(__cil_tmp17);
   wm831x = (struct wm831x *)tmp___7;
-  __cil_tmp18 = (unsigned long )wm831x;
-  __cil_tmp19 = __cil_tmp18 + 72;
-  __cil_tmp20 = *((struct device **)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 184;
-  __cil_tmp23 = *((void **)__cil_tmp22);
+  __cil_tmp20 = *((struct device **)((void *)wm831x + 72));
+  __cil_tmp23 = *((void **)((void *)__cil_tmp20 + 184));
   pdata = (struct wm831x_pdata *)__cil_tmp23;
   __cil_tmp24 = 16UL / 8UL;
   __cil_tmp25 = __cil_tmp24 + 0UL;
-  __cil_tmp26 = (unsigned long )pdev;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = *((int *)__cil_tmp27);
+  __cil_tmp28 = *((int *)((void *)pdev + 8));
   __cil_tmp29 = (unsigned long )__cil_tmp28;
   __cil_tmp30 = __cil_tmp29 % __cil_tmp25;
   id = (int )__cil_tmp30;
@@ -2772,9 +2645,7 @@ static int wm831x_isink_probe(struct platform_device *pdev )
       }
       if (tmp___8) {
         {
-        __cil_tmp37 = (unsigned long )pdev;
-        __cil_tmp38 = __cil_tmp37 + 16;
-        __cil_tmp39 = (struct device *)__cil_tmp38;
+        __cil_tmp39 = (struct device *)((void *)pdev + 16);
         __cil_tmp40 = (struct device const *)__cil_tmp39;
         __cil_tmp41 = id + 1;
         __dynamic_dev_dbg(& descriptor, __cil_tmp40, "Probing ISINK%d\n", __cil_tmp41);
@@ -2801,9 +2672,7 @@ static int wm831x_isink_probe(struct platform_device *pdev )
     __cil_tmp46 = (unsigned long )__cil_tmp45;
     __cil_tmp47 = id * 8UL;
     __cil_tmp48 = 296 + __cil_tmp47;
-    __cil_tmp49 = (unsigned long )pdata;
-    __cil_tmp50 = __cil_tmp49 + __cil_tmp48;
-    __cil_tmp51 = *((struct regulator_init_data **)__cil_tmp50);
+    __cil_tmp51 = *((struct regulator_init_data **)((void *)pdata + __cil_tmp48));
     __cil_tmp52 = (unsigned long )__cil_tmp51;
     if (__cil_tmp52 == __cil_tmp46) {
       return (-19);
@@ -2813,9 +2682,7 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp53 = (unsigned long )pdev;
-  __cil_tmp54 = __cil_tmp53 + 16;
-  __cil_tmp55 = (struct device *)__cil_tmp54;
+  __cil_tmp55 = (struct device *)((void *)pdev + 16);
   tmp___9 = devm_kzalloc(__cil_tmp55, 80UL, 208U);
   isink = (struct wm831x_isink *)tmp___9;
   }
@@ -2825,9 +2692,7 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   __cil_tmp58 = (unsigned long )isink;
   if (__cil_tmp58 == __cil_tmp57) {
     {
-    __cil_tmp59 = (unsigned long )pdev;
-    __cil_tmp60 = __cil_tmp59 + 16;
-    __cil_tmp61 = (struct device *)__cil_tmp60;
+    __cil_tmp61 = (struct device *)((void *)pdev + 16);
     __cil_tmp62 = (struct device const *)__cil_tmp61;
     dev_err(__cil_tmp62, "Unable to allocate private data\n");
     }
@@ -2836,9 +2701,7 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp63 = (unsigned long )isink;
-  __cil_tmp64 = __cil_tmp63 + 64;
-  *((struct wm831x **)__cil_tmp64) = wm831x;
+  *((struct wm831x **)((void *)isink + 64)) = wm831x;
   res = platform_get_resource(pdev, 256U, 0U);
   }
   {
@@ -2847,9 +2710,7 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   __cil_tmp67 = (unsigned long )res;
   if (__cil_tmp67 == __cil_tmp66) {
     {
-    __cil_tmp68 = (unsigned long )pdev;
-    __cil_tmp69 = __cil_tmp68 + 16;
-    __cil_tmp70 = (struct device *)__cil_tmp69;
+    __cil_tmp70 = (struct device *)((void *)pdev + 16);
     __cil_tmp71 = (struct device const *)__cil_tmp70;
     dev_err(__cil_tmp71, "No I/O resource\n");
     ret = -22;
@@ -2859,78 +2720,48 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp72 = (unsigned long )isink;
-  __cil_tmp73 = __cil_tmp72 + 56;
   __cil_tmp74 = *((resource_size_t *)res);
-  *((int *)__cil_tmp73) = (int )__cil_tmp74;
+  *((int *)((void *)isink + 56)) = (int )__cil_tmp74;
   __cil_tmp75 = 0 * 1UL;
   __cil_tmp76 = 0 + __cil_tmp75;
-  __cil_tmp77 = (unsigned long )isink;
-  __cil_tmp78 = __cil_tmp77 + __cil_tmp76;
-  __cil_tmp79 = (char *)__cil_tmp78;
+  __cil_tmp79 = (char *)((void *)isink + __cil_tmp76);
   __cil_tmp80 = id + 1;
   snprintf(__cil_tmp79, 7UL, "ISINK%d", __cil_tmp80);
-  __cil_tmp81 = (unsigned long )isink;
-  __cil_tmp82 = __cil_tmp81 + 8;
   __cil_tmp83 = 0 * 1UL;
   __cil_tmp84 = 0 + __cil_tmp83;
-  __cil_tmp85 = (unsigned long )isink;
-  __cil_tmp86 = __cil_tmp85 + __cil_tmp84;
-  __cil_tmp87 = (char *)__cil_tmp86;
-  *((char const **)__cil_tmp82) = (char const *)__cil_tmp87;
+  __cil_tmp87 = (char *)((void *)isink + __cil_tmp84);
+  *((char const **)((void *)isink + 8)) = (char const *)__cil_tmp87;
   __cil_tmp88 = 8 + 16;
-  __cil_tmp89 = (unsigned long )isink;
-  __cil_tmp90 = __cil_tmp89 + __cil_tmp88;
-  *((int *)__cil_tmp90) = id;
+  *((int *)((void *)isink + __cil_tmp88)) = id;
   __cil_tmp91 = 8 + 24;
-  __cil_tmp92 = (unsigned long )isink;
-  __cil_tmp93 = __cil_tmp92 + __cil_tmp91;
-  *((struct regulator_ops **)__cil_tmp93) = & wm831x_isink_ops;
+  *((struct regulator_ops **)((void *)isink + __cil_tmp91)) = & wm831x_isink_ops;
   __cil_tmp94 = 8 + 36;
-  __cil_tmp95 = (unsigned long )isink;
-  __cil_tmp96 = __cil_tmp95 + __cil_tmp94;
-  *((enum regulator_type *)__cil_tmp96) = (enum regulator_type )1;
+  *((enum regulator_type *)((void *)isink + __cil_tmp94)) = (enum regulator_type )1;
   __cil_tmp97 = 8 + 40;
-  __cil_tmp98 = (unsigned long )isink;
-  __cil_tmp99 = __cil_tmp98 + __cil_tmp97;
-  *((struct module **)__cil_tmp99) = & __this_module;
-  __cil_tmp100 = (unsigned long )isink;
-  __cil_tmp101 = __cil_tmp100 + 72;
-  __cil_tmp102 = (unsigned long )isink;
-  __cil_tmp103 = __cil_tmp102 + 8;
-  __cil_tmp104 = (struct regulator_desc *)__cil_tmp103;
-  __cil_tmp105 = (unsigned long )pdev;
-  __cil_tmp106 = __cil_tmp105 + 16;
-  __cil_tmp107 = (struct device *)__cil_tmp106;
+  *((struct module **)((void *)isink + __cil_tmp97)) = & __this_module;
+  __cil_tmp104 = (struct regulator_desc *)((void *)isink + 8);
+  __cil_tmp107 = (struct device *)((void *)pdev + 16);
   __cil_tmp108 = id * 8UL;
   __cil_tmp109 = 296 + __cil_tmp108;
-  __cil_tmp110 = (unsigned long )pdata;
-  __cil_tmp111 = __cil_tmp110 + __cil_tmp109;
-  __cil_tmp112 = *((struct regulator_init_data **)__cil_tmp111);
+  __cil_tmp112 = *((struct regulator_init_data **)((void *)pdata + __cil_tmp109));
   __cil_tmp113 = (struct regulator_init_data const *)__cil_tmp112;
   __cil_tmp114 = (void *)isink;
   __cil_tmp115 = (void *)0;
   __cil_tmp116 = (struct device_node *)__cil_tmp115;
-  *((struct regulator_dev **)__cil_tmp101) = regulator_register(__cil_tmp104, __cil_tmp107,
+  *((struct regulator_dev **)((void *)isink + 72)) = regulator_register(__cil_tmp104, __cil_tmp107,
                                                                 __cil_tmp113, __cil_tmp114,
                                                                 __cil_tmp116);
-  __cil_tmp117 = (unsigned long )isink;
-  __cil_tmp118 = __cil_tmp117 + 72;
-  __cil_tmp119 = *((struct regulator_dev **)__cil_tmp118);
+  __cil_tmp119 = *((struct regulator_dev **)((void *)isink + 72));
   __cil_tmp120 = (void const *)__cil_tmp119;
   tmp___11 = (long )IS_ERR(__cil_tmp120);
   }
   if (tmp___11) {
     {
-    __cil_tmp121 = (unsigned long )isink;
-    __cil_tmp122 = __cil_tmp121 + 72;
-    __cil_tmp123 = *((struct regulator_dev **)__cil_tmp122);
+    __cil_tmp123 = *((struct regulator_dev **)((void *)isink + 72));
     __cil_tmp124 = (void const *)__cil_tmp123;
     tmp___10 = (long )PTR_ERR(__cil_tmp124);
     ret = (int )tmp___10;
-    __cil_tmp125 = (unsigned long )wm831x;
-    __cil_tmp126 = __cil_tmp125 + 72;
-    __cil_tmp127 = *((struct device **)__cil_tmp126);
+    __cil_tmp127 = *((struct device **)((void *)wm831x + 72));
     __cil_tmp128 = (struct device const *)__cil_tmp127;
     __cil_tmp129 = id + 1;
     dev_err(__cil_tmp128, "Failed to register ISINK%d: %d\n", __cil_tmp129, ret);
@@ -2945,9 +2776,7 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   __cil_tmp132 = (irqreturn_t (*)(int , void * ))__cil_tmp131;
   __cil_tmp133 = 0 * 1UL;
   __cil_tmp134 = 0 + __cil_tmp133;
-  __cil_tmp135 = (unsigned long )isink;
-  __cil_tmp136 = __cil_tmp135 + __cil_tmp134;
-  __cil_tmp137 = (char *)__cil_tmp136;
+  __cil_tmp137 = (char *)((void *)isink + __cil_tmp134);
   __cil_tmp138 = (char const *)__cil_tmp137;
   __cil_tmp139 = (void *)isink;
   ret = (int )request_threaded_irq(__cil_tmp130, __cil_tmp132, & wm831x_isink_irq,
@@ -2955,9 +2784,7 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   }
   if (ret != 0) {
     {
-    __cil_tmp140 = (unsigned long )pdev;
-    __cil_tmp141 = __cil_tmp140 + 16;
-    __cil_tmp142 = (struct device *)__cil_tmp141;
+    __cil_tmp142 = (struct device *)((void *)pdev + 16);
     __cil_tmp143 = (struct device const *)__cil_tmp142;
     dev_err(__cil_tmp143, "Failed to request ISINK IRQ %d: %d\n", irq, ret);
     }
@@ -2971,9 +2798,7 @@ static int wm831x_isink_probe(struct platform_device *pdev )
   return (0);
   err_regulator:
   {
-  __cil_tmp145 = (unsigned long )isink;
-  __cil_tmp146 = __cil_tmp145 + 72;
-  __cil_tmp147 = *((struct regulator_dev **)__cil_tmp146);
+  __cil_tmp147 = *((struct regulator_dev **)((void *)isink + 72));
   regulator_unregister(__cil_tmp147);
   }
   err:
@@ -2990,8 +2815,6 @@ static int wm831x_isink_remove(struct platform_device *pdev )
   void *__cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct regulator_dev *__cil_tmp11 ;
   {
   {
@@ -3004,9 +2827,7 @@ static int wm831x_isink_remove(struct platform_device *pdev )
   __cil_tmp7 = (unsigned int )tmp___8;
   __cil_tmp8 = (void *)isink;
   free_irq(__cil_tmp7, __cil_tmp8);
-  __cil_tmp9 = (unsigned long )isink;
-  __cil_tmp10 = __cil_tmp9 + 72;
-  __cil_tmp11 = *((struct regulator_dev **)__cil_tmp10);
+  __cil_tmp11 = *((struct regulator_dev **)((void *)isink + 72));
   regulator_unregister(__cil_tmp11);
   }
   return (0);

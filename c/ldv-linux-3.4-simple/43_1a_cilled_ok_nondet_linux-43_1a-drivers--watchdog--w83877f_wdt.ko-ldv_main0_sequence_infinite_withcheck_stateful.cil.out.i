@@ -1558,12 +1558,11 @@ extern int printk(char const * , ...) ;
 extern void might_fault(void) ;
 extern struct pv_cpu_ops pv_cpu_ops ;
 __inline static void slow_down_io(void)
-{ unsigned long __cil_tmp1 ;
+{
   void (*__cil_tmp2)(void) ;
   {
   {
-  __cil_tmp1 = (unsigned long )(& pv_cpu_ops) + 216;
-  __cil_tmp2 = *((void (**)(void))__cil_tmp1);
+  __cil_tmp2 = *((void (**)(void))((void *)(&pv_cpu_ops) + 216));
   (*__cil_tmp2)();
   }
   return;
@@ -1699,8 +1698,6 @@ static void wdt_timer_ping(unsigned long data )
 { long __cil_tmp6 ;
   long __cil_tmp7 ;
   long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   {
   {
   __cil_tmp6 = (long )next_heartbeat;
@@ -1710,9 +1707,7 @@ static void wdt_timer_ping(unsigned long data )
     {
     spin_lock(& wdt_spinlock);
     inb_p(1091);
-    __cil_tmp9 = (unsigned long )jiffies;
-    __cil_tmp10 = __cil_tmp9 + 63UL;
-    mod_timer(& timer, __cil_tmp10);
+    mod_timer(& timer, ((void *)jiffies + 63UL));
     spin_unlock(& wdt_spinlock);
     }
   } else {
@@ -1752,8 +1747,6 @@ static void wdt_startup(void)
   int __cil_tmp3 ;
   int __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   {
   {
   __cil_tmp1 = (unsigned long )jiffies;
@@ -1762,9 +1755,7 @@ static void wdt_startup(void)
   __cil_tmp4 = __cil_tmp3 * 250;
   __cil_tmp5 = (unsigned long )__cil_tmp4;
   next_heartbeat = __cil_tmp5 + __cil_tmp1;
-  __cil_tmp6 = (unsigned long )jiffies;
-  __cil_tmp7 = __cil_tmp6 + 63UL;
-  mod_timer(& timer, __cil_tmp7);
+  mod_timer(& timer, ((void *)jiffies + 63UL));
   wdt_change(156);
   printk("<6>w83877f_wdt: Watchdog timer is now enabled\n");
   }
@@ -1953,31 +1944,22 @@ static long fop_ioctl(struct file *file , unsigned int cmd , unsigned long arg )
   int __ret_pu___0 ;
   int __pu_val___0 ;
   struct watchdog_info *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   void const *__cil_tmp47 ;
   int __cil_tmp48 ;
   int *__cil_tmp49 ;
@@ -1987,40 +1969,31 @@ static long fop_ioctl(struct file *file , unsigned int cmd , unsigned long arg )
   p = (int *)argp;
   __cil_tmp21 = & ident;
   *((__u32 *)__cil_tmp21) = 33152U;
-  __cil_tmp22 = (unsigned long )(& ident) + 4;
-  *((__u32 *)__cil_tmp22) = 1U;
+  *((__u32 *)((void *)(&ident) + 4)) = 1U;
   __cil_tmp23 = 0 * 1UL;
   __cil_tmp24 = 8 + __cil_tmp23;
-  __cil_tmp25 = (unsigned long )(& ident) + __cil_tmp24;
-  *((__u8 *)__cil_tmp25) = (__u8 )'W';
+  *((__u8 *)((void *)(&ident) + __cil_tmp24)) = (__u8 )'W';
   __cil_tmp26 = 1 * 1UL;
   __cil_tmp27 = 8 + __cil_tmp26;
-  __cil_tmp28 = (unsigned long )(& ident) + __cil_tmp27;
-  *((__u8 *)__cil_tmp28) = (__u8 )'8';
+  *((__u8 *)((void *)(&ident) + __cil_tmp27)) = (__u8 )'8';
   __cil_tmp29 = 2 * 1UL;
   __cil_tmp30 = 8 + __cil_tmp29;
-  __cil_tmp31 = (unsigned long )(& ident) + __cil_tmp30;
-  *((__u8 *)__cil_tmp31) = (__u8 )'3';
+  *((__u8 *)((void *)(&ident) + __cil_tmp30)) = (__u8 )'3';
   __cil_tmp32 = 3 * 1UL;
   __cil_tmp33 = 8 + __cil_tmp32;
-  __cil_tmp34 = (unsigned long )(& ident) + __cil_tmp33;
-  *((__u8 *)__cil_tmp34) = (__u8 )'8';
+  *((__u8 *)((void *)(&ident) + __cil_tmp33)) = (__u8 )'8';
   __cil_tmp35 = 4 * 1UL;
   __cil_tmp36 = 8 + __cil_tmp35;
-  __cil_tmp37 = (unsigned long )(& ident) + __cil_tmp36;
-  *((__u8 *)__cil_tmp37) = (__u8 )'7';
+  *((__u8 *)((void *)(&ident) + __cil_tmp36)) = (__u8 )'7';
   __cil_tmp38 = 5 * 1UL;
   __cil_tmp39 = 8 + __cil_tmp38;
-  __cil_tmp40 = (unsigned long )(& ident) + __cil_tmp39;
-  *((__u8 *)__cil_tmp40) = (__u8 )'7';
+  *((__u8 *)((void *)(&ident) + __cil_tmp39)) = (__u8 )'7';
   __cil_tmp41 = 6 * 1UL;
   __cil_tmp42 = 8 + __cil_tmp41;
-  __cil_tmp43 = (unsigned long )(& ident) + __cil_tmp42;
-  *((__u8 *)__cil_tmp43) = (__u8 )'F';
+  *((__u8 *)((void *)(&ident) + __cil_tmp42)) = (__u8 )'F';
   __cil_tmp44 = 7 * 1UL;
   __cil_tmp45 = 8 + __cil_tmp44;
-  __cil_tmp46 = (unsigned long )(& ident) + __cil_tmp45;
-  *((__u8 *)__cil_tmp46) = (__u8 )'\000';
+  *((__u8 *)((void *)(&ident) + __cil_tmp45)) = (__u8 )'\000';
   if ((int )cmd == -2144839936) {
     goto case_neg_2144839936;
   } else

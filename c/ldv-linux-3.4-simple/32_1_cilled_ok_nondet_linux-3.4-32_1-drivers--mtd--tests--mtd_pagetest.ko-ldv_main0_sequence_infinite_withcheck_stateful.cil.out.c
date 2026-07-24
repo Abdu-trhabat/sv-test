@@ -2221,27 +2221,18 @@ static int erase_eraseblock(int ebnum )
 { int err ;
   struct erase_info ei ;
   loff_t addr ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   uint32_t __cil_tmp7 ;
   uint32_t __cil_tmp8 ;
   uint32_t __cil_tmp9 ;
   void *__cil_tmp10 ;
   struct erase_info *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   uint32_t __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u_char __cil_tmp18 ;
   int __cil_tmp19 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )mtd;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((uint32_t *)__cil_tmp6);
+  __cil_tmp7 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp8 = (uint32_t )ebnum;
   __cil_tmp9 = __cil_tmp8 * __cil_tmp7;
   addr = (loff_t )__cil_tmp9;
@@ -2249,13 +2240,9 @@ static int erase_eraseblock(int ebnum )
   memset(__cil_tmp10, 0, 88UL);
   __cil_tmp11 = & ei;
   *((struct mtd_info **)__cil_tmp11) = mtd;
-  __cil_tmp12 = (unsigned long )(& ei) + 8;
-  *((uint64_t *)__cil_tmp12) = (uint64_t )addr;
-  __cil_tmp13 = (unsigned long )(& ei) + 16;
-  __cil_tmp14 = (unsigned long )mtd;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((uint32_t *)__cil_tmp15);
-  *((uint64_t *)__cil_tmp13) = (uint64_t )__cil_tmp16;
+  *((uint64_t *)((void *)(&ei) + 8)) = (uint64_t )addr;
+  __cil_tmp16 = *((uint32_t *)((void *)mtd + 16));
+  *((uint64_t *)((void *)(&ei) + 16)) = (uint64_t )__cil_tmp16;
   err = mtd_erase(mtd, & ei);
   }
   if (err) {
@@ -2267,8 +2254,7 @@ static int erase_eraseblock(int ebnum )
 
   }
   {
-  __cil_tmp17 = (unsigned long )(& ei) + 72;
-  __cil_tmp18 = *((u_char *)__cil_tmp17);
+  __cil_tmp18 = *((u_char *)((void *)(&ei) + 72));
   __cil_tmp19 = (int )__cil_tmp18;
   if (__cil_tmp19 == 16) {
     {
@@ -2286,22 +2272,14 @@ static int write_eraseblock(int ebnum )
 { int err ;
   size_t written ;
   loff_t addr ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   uint32_t __cil_tmp7 ;
   uint32_t __cil_tmp8 ;
   uint32_t __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   uint32_t __cil_tmp12 ;
   size_t __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   uint32_t __cil_tmp16 ;
   size_t __cil_tmp17 ;
   u_char const   *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   uint32_t __cil_tmp21 ;
   size_t __cil_tmp22 ;
   size_t *__cil_tmp23 ;
@@ -2310,23 +2288,17 @@ static int write_eraseblock(int ebnum )
   {
   {
   err = 0;
-  __cil_tmp5 = (unsigned long )mtd;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((uint32_t *)__cil_tmp6);
+  __cil_tmp7 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp8 = (uint32_t )ebnum;
   __cil_tmp9 = __cil_tmp8 * __cil_tmp7;
   addr = (loff_t )__cil_tmp9;
-  __cil_tmp10 = (unsigned long )mtd;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = *((uint32_t *)__cil_tmp11);
+  __cil_tmp12 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp13 = (size_t )__cil_tmp12;
   set_random_data(writebuf, __cil_tmp13);
   __might_sleep("/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--32_1--X--cpachecker/linux-3.4/csd_deg_dscv/5473/dscv_tempdir/dscv/ri/32_1/drivers/mtd/tests/mtd_pagetest.c.common.c",
                 103, 0);
   _cond_resched();
-  __cil_tmp14 = (unsigned long )mtd;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((uint32_t *)__cil_tmp15);
+  __cil_tmp16 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp17 = (size_t )__cil_tmp16;
   __cil_tmp18 = (u_char const   *)writebuf;
   err = mtd_write(mtd, addr, __cil_tmp17, & written, __cil_tmp18);
@@ -2337,9 +2309,7 @@ static int write_eraseblock(int ebnum )
     }
   } else {
     {
-    __cil_tmp19 = (unsigned long )mtd;
-    __cil_tmp20 = __cil_tmp19 + 16;
-    __cil_tmp21 = *((uint32_t *)__cil_tmp20);
+    __cil_tmp21 = *((uint32_t *)((void *)mtd + 16));
     __cil_tmp22 = (size_t )__cil_tmp21;
     __cil_tmp23 = & written;
     __cil_tmp24 = *__cil_tmp23;
@@ -2375,28 +2345,18 @@ static int verify_eraseblock(int ebnum )
   size_t __len ;
   void *__ret ;
   int tmp___14 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   uint32_t __cil_tmp22 ;
   uint32_t __cil_tmp23 ;
   uint32_t __cil_tmp24 ;
   unsigned char *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   uint32_t __cil_tmp28 ;
   loff_t __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   uint64_t __cil_tmp32 ;
   int __cil_tmp33 ;
   int __cil_tmp34 ;
   unsigned char *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   uint32_t __cil_tmp38 ;
   loff_t __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   uint32_t __cil_tmp42 ;
   size_t __cil_tmp43 ;
   int __cil_tmp44 ;
@@ -2456,8 +2416,6 @@ static int verify_eraseblock(int ebnum )
   size_t *__cil_tmp98 ;
   size_t __cil_tmp99 ;
   void *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   uint32_t __cil_tmp103 ;
   unsigned char *__cil_tmp104 ;
   unsigned char *__cil_tmp105 ;
@@ -2470,9 +2428,7 @@ static int verify_eraseblock(int ebnum )
 
   {
   err = 0;
-  __cil_tmp20 = (unsigned long )mtd;
-  __cil_tmp21 = __cil_tmp20 + 16;
-  __cil_tmp22 = *((uint32_t *)__cil_tmp21);
+  __cil_tmp22 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp23 = (uint32_t )ebnum;
   __cil_tmp24 = __cil_tmp23 * __cil_tmp22;
   addr = (loff_t )__cil_tmp24;
@@ -2493,18 +2449,14 @@ static int verify_eraseblock(int ebnum )
     } else {
       goto while_break;
     }
-    __cil_tmp26 = (unsigned long )mtd;
-    __cil_tmp27 = __cil_tmp26 + 16;
-    __cil_tmp28 = *((uint32_t *)__cil_tmp27);
+    __cil_tmp28 = *((uint32_t *)((void *)mtd + 16));
     __cil_tmp29 = (loff_t )__cil_tmp28;
     addr0 = addr0 + __cil_tmp29;
     i = i + 1;
   }
   while_break: /* CIL Label */ ;
   }
-  __cil_tmp30 = (unsigned long )mtd;
-  __cil_tmp31 = __cil_tmp30 + 8;
-  __cil_tmp32 = *((uint64_t *)__cil_tmp31);
+  __cil_tmp32 = *((uint64_t *)((void *)mtd + 8));
   addrn = (loff_t )__cil_tmp32;
   i = 0;
   {
@@ -2524,9 +2476,7 @@ static int verify_eraseblock(int ebnum )
     } else {
       goto while_break___0;
     }
-    __cil_tmp36 = (unsigned long )mtd;
-    __cil_tmp37 = __cil_tmp36 + 16;
-    __cil_tmp38 = *((uint32_t *)__cil_tmp37);
+    __cil_tmp38 = *((uint32_t *)((void *)mtd + 16));
     __cil_tmp39 = (loff_t )__cil_tmp38;
     addrn = addrn - __cil_tmp39;
     i = i + 1;
@@ -2534,9 +2484,7 @@ static int verify_eraseblock(int ebnum )
   while_break___0: /* CIL Label */ ;
   }
   {
-  __cil_tmp40 = (unsigned long )mtd;
-  __cil_tmp41 = __cil_tmp40 + 16;
-  __cil_tmp42 = *((uint32_t *)__cil_tmp41);
+  __cil_tmp42 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp43 = (size_t )__cil_tmp42;
   set_random_data(writebuf, __cil_tmp43);
   j = (uint32_t )0;
@@ -2789,9 +2737,7 @@ static int verify_eraseblock(int ebnum )
       {
       __len = (size_t )pgsize;
       __cil_tmp100 = (void *)boundary;
-      __cil_tmp101 = (unsigned long )mtd;
-      __cil_tmp102 = __cil_tmp101 + 16;
-      __cil_tmp103 = *((uint32_t *)__cil_tmp102);
+      __cil_tmp103 = *((uint32_t *)((void *)mtd + 16));
       __cil_tmp104 = writebuf + __cil_tmp103;
       __cil_tmp105 = __cil_tmp104 - pgsize;
       __cil_tmp106 = (void const   *)__cil_tmp105;
@@ -2848,18 +2794,12 @@ static int crosstest(void)
   int __cil_tmp21 ;
   size_t __cil_tmp22 ;
   unsigned char *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   uint32_t __cil_tmp26 ;
   loff_t __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   uint64_t __cil_tmp30 ;
   int __cil_tmp31 ;
   int __cil_tmp32 ;
   unsigned char *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   uint32_t __cil_tmp36 ;
   loff_t __cil_tmp37 ;
   loff_t __cil_tmp38 ;
@@ -2949,18 +2889,14 @@ static int crosstest(void)
     } else {
       goto while_break;
     }
-    __cil_tmp24 = (unsigned long )mtd;
-    __cil_tmp25 = __cil_tmp24 + 16;
-    __cil_tmp26 = *((uint32_t *)__cil_tmp25);
+    __cil_tmp26 = *((uint32_t *)((void *)mtd + 16));
     __cil_tmp27 = (loff_t )__cil_tmp26;
     addr0 = addr0 + __cil_tmp27;
     i = i + 1;
   }
   while_break: /* CIL Label */ ;
   }
-  __cil_tmp28 = (unsigned long )mtd;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  __cil_tmp30 = *((uint64_t *)__cil_tmp29);
+  __cil_tmp30 = *((uint64_t *)((void *)mtd + 8));
   addrn = (loff_t )__cil_tmp30;
   i = 0;
   {
@@ -2980,9 +2916,7 @@ static int crosstest(void)
     } else {
       goto while_break___0;
     }
-    __cil_tmp34 = (unsigned long )mtd;
-    __cil_tmp35 = __cil_tmp34 + 16;
-    __cil_tmp36 = *((uint32_t *)__cil_tmp35);
+    __cil_tmp36 = *((uint32_t *)((void *)mtd + 16));
     __cil_tmp37 = (loff_t )__cil_tmp36;
     addrn = addrn - __cil_tmp37;
     i = i + 1;
@@ -3221,8 +3155,6 @@ static int erasecrosstest(void)
   int tmp___13 ;
   int tmp___14 ;
   unsigned char *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   uint32_t __cil_tmp20 ;
   loff_t __cil_tmp21 ;
   unsigned char *__cil_tmp22 ;
@@ -3285,9 +3217,7 @@ static int erasecrosstest(void)
     } else {
       goto while_break;
     }
-    __cil_tmp18 = (unsigned long )mtd;
-    __cil_tmp19 = __cil_tmp18 + 16;
-    __cil_tmp20 = *((uint32_t *)__cil_tmp19);
+    __cil_tmp20 = *((uint32_t *)((void *)mtd + 16));
     __cil_tmp21 = (loff_t )__cil_tmp20;
     addr0 = addr0 + __cil_tmp21;
     ebnum = ebnum + 1;
@@ -3538,8 +3468,6 @@ static int erasetest(void)
   int tmp___8 ;
   int tmp___9 ;
   unsigned char *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   uint32_t __cil_tmp14 ;
   loff_t __cil_tmp15 ;
   size_t __cil_tmp16 ;
@@ -3580,9 +3508,7 @@ static int erasetest(void)
     } else {
       goto while_break;
     }
-    __cil_tmp12 = (unsigned long )mtd;
-    __cil_tmp13 = __cil_tmp12 + 16;
-    __cil_tmp14 = *((uint32_t *)__cil_tmp13);
+    __cil_tmp14 = *((uint32_t *)((void *)mtd + 16));
     __cil_tmp15 = (loff_t )__cil_tmp14;
     addr0 = addr0 + __cil_tmp15;
     ebnum = ebnum + 1;
@@ -3721,17 +3647,13 @@ static int erasetest(void)
 static int is_block_bad(int ebnum ) 
 { loff_t addr ;
   int ret ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   uint32_t __cil_tmp6 ;
   uint32_t __cil_tmp7 ;
   uint32_t __cil_tmp8 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )mtd;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  __cil_tmp6 = *((uint32_t *)__cil_tmp5);
+  __cil_tmp6 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp7 = (uint32_t )ebnum;
   __cil_tmp8 = __cil_tmp7 * __cil_tmp6;
   addr = (loff_t )__cil_tmp8;
@@ -3841,34 +3763,16 @@ static int mtd_pagetest_init(void)
   void const   *__cil_tmp20 ;
   u_char __cil_tmp21 ;
   int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned long long __cil_tmp27 ;
   unsigned long long __cil_tmp28 ;
   uint64_t __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   uint32_t __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   uint32_t __cil_tmp35 ;
   uint32_t __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   uint32_t __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   uint64_t __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   uint32_t __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   uint32_t __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   uint32_t __cil_tmp51 ;
   size_t __cil_tmp52 ;
   size_t __cil_tmp53 ;
@@ -3944,46 +3848,28 @@ static int mtd_pagetest_init(void)
   }
   }
   {
-  __cil_tmp23 = (unsigned long )mtd;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  tmp___7 = *((uint64_t *)__cil_tmp24);
-  __cil_tmp25 = (unsigned long )mtd;
-  __cil_tmp26 = __cil_tmp25 + 16;
-  __base = *((uint32_t *)__cil_tmp26);
+  tmp___7 = *((uint64_t *)((void *)mtd + 8));
+  __base = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp27 = (unsigned long long )__base;
   __cil_tmp28 = tmp___7 % __cil_tmp27;
   __rem = (uint32_t )__cil_tmp28;
   __cil_tmp29 = (uint64_t )__base;
   tmp___7 = tmp___7 / __cil_tmp29;
   ebcnt = (int )tmp___7;
-  __cil_tmp30 = (unsigned long )mtd;
-  __cil_tmp31 = __cil_tmp30 + 20;
-  __cil_tmp32 = *((uint32_t *)__cil_tmp31);
-  __cil_tmp33 = (unsigned long )mtd;
-  __cil_tmp34 = __cil_tmp33 + 16;
-  __cil_tmp35 = *((uint32_t *)__cil_tmp34);
+  __cil_tmp32 = *((uint32_t *)((void *)mtd + 20));
+  __cil_tmp35 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp36 = __cil_tmp35 / __cil_tmp32;
   pgcnt = (int )__cil_tmp36;
-  __cil_tmp37 = (unsigned long )mtd;
-  __cil_tmp38 = __cil_tmp37 + 20;
-  __cil_tmp39 = *((uint32_t *)__cil_tmp38);
+  __cil_tmp39 = *((uint32_t *)((void *)mtd + 20));
   pgsize = (int )__cil_tmp39;
-  __cil_tmp40 = (unsigned long )mtd;
-  __cil_tmp41 = __cil_tmp40 + 8;
-  __cil_tmp42 = *((uint64_t *)__cil_tmp41);
-  __cil_tmp43 = (unsigned long )mtd;
-  __cil_tmp44 = __cil_tmp43 + 16;
-  __cil_tmp45 = *((uint32_t *)__cil_tmp44);
-  __cil_tmp46 = (unsigned long )mtd;
-  __cil_tmp47 = __cil_tmp46 + 28;
-  __cil_tmp48 = *((uint32_t *)__cil_tmp47);
+  __cil_tmp42 = *((uint64_t *)((void *)mtd + 8));
+  __cil_tmp45 = *((uint32_t *)((void *)mtd + 16));
+  __cil_tmp48 = *((uint32_t *)((void *)mtd + 28));
   printk("<6>mtd_pagetest: MTD device size %llu, eraseblock size %u, page size %u, count of eraseblocks %u, pages per eraseblock %u, OOB size %u\n",
          __cil_tmp42, __cil_tmp45, pgsize, ebcnt, pgcnt, __cil_tmp48);
   err = -12;
   bufsize = pgsize * 2;
-  __cil_tmp49 = (unsigned long )mtd;
-  __cil_tmp50 = __cil_tmp49 + 16;
-  __cil_tmp51 = *((uint32_t *)__cil_tmp50);
+  __cil_tmp51 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp52 = (size_t )__cil_tmp51;
   tmp___10 = kmalloc(__cil_tmp52, 208U);
   writebuf = (unsigned char *)tmp___10;

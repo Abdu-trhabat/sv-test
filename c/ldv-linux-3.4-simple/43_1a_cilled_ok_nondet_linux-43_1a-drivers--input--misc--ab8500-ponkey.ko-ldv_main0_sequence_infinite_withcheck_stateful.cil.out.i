@@ -1807,14 +1807,11 @@ extern int dev_set_drvdata(struct device * , void * ) ;
 extern int dev_err(struct device const * , char const * , ...) ;
 extern int platform_get_irq_byname(struct platform_device * , char const * ) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1852,21 +1849,15 @@ extern int request_any_context_irq(unsigned int , irqreturn_t (*)(int , void * )
 extern void free_irq(unsigned int , void * ) ;
 static irqreturn_t ab8500_ponkey_handler(int irq , void *data )
 { struct ab8500_ponkey *ponkey ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
   struct input_dev *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   struct input_dev *__cil_tmp11 ;
   struct input_dev *__cil_tmp12 ;
   {
   ponkey = (struct ab8500_ponkey *)data;
   {
-  __cil_tmp4 = (unsigned long )ponkey;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  __cil_tmp6 = *((int *)__cil_tmp5);
+  __cil_tmp6 = *((int *)((void *)ponkey + 16));
   if (__cil_tmp6 == irq) {
     {
     __cil_tmp7 = *((struct input_dev **)ponkey);
@@ -1874,9 +1865,7 @@ static irqreturn_t ab8500_ponkey_handler(int irq , void *data )
     }
   } else {
     {
-    __cil_tmp8 = (unsigned long )ponkey;
-    __cil_tmp9 = __cil_tmp8 + 20;
-    __cil_tmp10 = *((int *)__cil_tmp9);
+    __cil_tmp10 = *((int *)((void *)ponkey + 20));
     if (__cil_tmp10 == irq) {
       {
       __cil_tmp11 = *((struct input_dev **)ponkey);
@@ -1903,16 +1892,10 @@ static int ab8500_ponkey_probe(struct platform_device *pdev )
   int irq_dbr ;
   int error ;
   void *tmp___0 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device const *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device const *__cil_tmp21 ;
   struct ab8500_ponkey *__cil_tmp22 ;
@@ -1921,56 +1904,32 @@ static int ab8500_ponkey_probe(struct platform_device *pdev )
   struct input_dev *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   int __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
   void *__cil_tmp42 ;
   struct device *__cil_tmp43 ;
   struct device const *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   int __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   int __cil_tmp50 ;
   unsigned int __cil_tmp51 ;
   void *__cil_tmp52 ;
   struct device *__cil_tmp53 ;
   struct device const *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   int __cil_tmp57 ;
   struct input_dev *__cil_tmp58 ;
   struct device *__cil_tmp59 ;
   struct device const *__cil_tmp60 ;
   void *__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   int __cil_tmp64 ;
   unsigned int __cil_tmp65 ;
   void *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   int __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
   void *__cil_tmp71 ;
   void const *__cil_tmp72 ;
   {
   {
-  __cil_tmp10 = (unsigned long )pdev;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = *((struct device **)__cil_tmp11);
+  __cil_tmp12 = *((struct device **)((void *)pdev + 16));
   __cil_tmp13 = (struct device const *)__cil_tmp12;
   tmp = dev_get_drvdata(__cil_tmp13);
   ab8500 = (struct ab8500 *)tmp;
@@ -1978,9 +1937,7 @@ static int ab8500_ponkey_probe(struct platform_device *pdev )
   }
   if (irq_dbf < 0) {
     {
-    __cil_tmp14 = (unsigned long )pdev;
-    __cil_tmp15 = __cil_tmp14 + 16;
-    __cil_tmp16 = (struct device *)__cil_tmp15;
+    __cil_tmp16 = (struct device *)((void *)pdev + 16);
     __cil_tmp17 = (struct device const *)__cil_tmp16;
     dev_err(__cil_tmp17, "No IRQ for ONKEY_DBF, error=%d\n", irq_dbf);
     }
@@ -1992,9 +1949,7 @@ static int ab8500_ponkey_probe(struct platform_device *pdev )
   }
   if (irq_dbr < 0) {
     {
-    __cil_tmp18 = (unsigned long )pdev;
-    __cil_tmp19 = __cil_tmp18 + 16;
-    __cil_tmp20 = (struct device *)__cil_tmp19;
+    __cil_tmp20 = (struct device *)((void *)pdev + 16);
     __cil_tmp21 = (struct device const *)__cil_tmp20;
     dev_err(__cil_tmp21, "No IRQ for ONKEY_DBR, error=%d\n", irq_dbr);
     }
@@ -2028,25 +1983,13 @@ static int ab8500_ponkey_probe(struct platform_device *pdev )
   }
   {
   *((struct input_dev **)ponkey) = input;
-  __cil_tmp28 = (unsigned long )ponkey;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  *((struct ab8500 **)__cil_tmp29) = ab8500;
-  __cil_tmp30 = (unsigned long )ponkey;
-  __cil_tmp31 = __cil_tmp30 + 16;
-  *((int *)__cil_tmp31) = irq_dbf;
-  __cil_tmp32 = (unsigned long )ponkey;
-  __cil_tmp33 = __cil_tmp32 + 20;
-  *((int *)__cil_tmp33) = irq_dbr;
+  *((struct ab8500 **)((void *)ponkey + 8)) = ab8500;
+  *((int *)((void *)ponkey + 16)) = irq_dbf;
+  *((int *)((void *)ponkey + 20)) = irq_dbr;
   *((char const **)input) = "AB8500 POn(PowerOn) Key";
-  __cil_tmp34 = (unsigned long )input;
-  __cil_tmp35 = __cil_tmp34 + 840;
-  __cil_tmp36 = (unsigned long )pdev;
-  __cil_tmp37 = __cil_tmp36 + 16;
-  *((struct device **)__cil_tmp35) = (struct device *)__cil_tmp37;
+  *((struct device **)((void *)input + 840)) = (struct device *)((void *)pdev + 16);
   input_set_capability(input, 1U, 116U);
-  __cil_tmp38 = (unsigned long )ponkey;
-  __cil_tmp39 = __cil_tmp38 + 16;
-  __cil_tmp40 = *((int *)__cil_tmp39);
+  __cil_tmp40 = *((int *)((void *)ponkey + 16));
   __cil_tmp41 = (unsigned int )__cil_tmp40;
   __cil_tmp42 = (void *)ponkey;
   error = request_any_context_irq(__cil_tmp41, & ab8500_ponkey_handler, 0UL, "ab8500-ponkey-dbf",
@@ -2056,18 +1999,14 @@ static int ab8500_ponkey_probe(struct platform_device *pdev )
     {
     __cil_tmp43 = *((struct device **)ab8500);
     __cil_tmp44 = (struct device const *)__cil_tmp43;
-    __cil_tmp45 = (unsigned long )ponkey;
-    __cil_tmp46 = __cil_tmp45 + 16;
-    __cil_tmp47 = *((int *)__cil_tmp46);
+    __cil_tmp47 = *((int *)((void *)ponkey + 16));
     dev_err(__cil_tmp44, "Failed to request dbf IRQ#%d: %d\n", __cil_tmp47, error);
     }
     goto err_free_mem;
   } else {
   }
   {
-  __cil_tmp48 = (unsigned long )ponkey;
-  __cil_tmp49 = __cil_tmp48 + 20;
-  __cil_tmp50 = *((int *)__cil_tmp49);
+  __cil_tmp50 = *((int *)((void *)ponkey + 20));
   __cil_tmp51 = (unsigned int )__cil_tmp50;
   __cil_tmp52 = (void *)ponkey;
   error = request_any_context_irq(__cil_tmp51, & ab8500_ponkey_handler, 0UL, "ab8500-ponkey-dbr",
@@ -2077,9 +2016,7 @@ static int ab8500_ponkey_probe(struct platform_device *pdev )
     {
     __cil_tmp53 = *((struct device **)ab8500);
     __cil_tmp54 = (struct device const *)__cil_tmp53;
-    __cil_tmp55 = (unsigned long )ponkey;
-    __cil_tmp56 = __cil_tmp55 + 20;
-    __cil_tmp57 = *((int *)__cil_tmp56);
+    __cil_tmp57 = *((int *)((void *)ponkey + 20));
     dev_err(__cil_tmp54, "Failed to request dbr IRQ#%d: %d\n", __cil_tmp57, error);
     }
     goto err_free_dbf_irq;
@@ -2105,18 +2042,14 @@ static int ab8500_ponkey_probe(struct platform_device *pdev )
   return (0);
   err_free_dbr_irq:
   {
-  __cil_tmp62 = (unsigned long )ponkey;
-  __cil_tmp63 = __cil_tmp62 + 20;
-  __cil_tmp64 = *((int *)__cil_tmp63);
+  __cil_tmp64 = *((int *)((void *)ponkey + 20));
   __cil_tmp65 = (unsigned int )__cil_tmp64;
   __cil_tmp66 = (void *)ponkey;
   free_irq(__cil_tmp65, __cil_tmp66);
   }
   err_free_dbf_irq:
   {
-  __cil_tmp67 = (unsigned long )ponkey;
-  __cil_tmp68 = __cil_tmp67 + 16;
-  __cil_tmp69 = *((int *)__cil_tmp68);
+  __cil_tmp69 = *((int *)((void *)ponkey + 16));
   __cil_tmp70 = (unsigned int )__cil_tmp69;
   __cil_tmp71 = (void *)ponkey;
   free_irq(__cil_tmp70, __cil_tmp71);

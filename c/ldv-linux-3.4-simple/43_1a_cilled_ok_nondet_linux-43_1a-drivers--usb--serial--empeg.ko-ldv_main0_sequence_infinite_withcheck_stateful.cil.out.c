@@ -3466,25 +3466,15 @@ static int empeg_startup(struct usb_serial *serial )
   char *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   struct usb_device *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct usb_host_config *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   __u8 __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   struct usb_device *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device  const  *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   struct usb_device *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct usb_host_config *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   __u8 __cil_tmp27 ;
   int __cil_tmp28 ;
   bool *__cil_tmp29 ;
@@ -3508,28 +3498,18 @@ static int empeg_startup(struct usb_serial *serial )
   {
   __cil_tmp6 = 0 + 5;
   __cil_tmp7 = *((struct usb_device **)serial);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 1328;
-  __cil_tmp10 = *((struct usb_host_config **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp6;
-  __cil_tmp13 = *((__u8 *)__cil_tmp12);
+  __cil_tmp10 = *((struct usb_host_config **)((void *)__cil_tmp7 + 1328));
+  __cil_tmp13 = *((__u8 *)((void *)__cil_tmp10 + __cil_tmp6));
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   if (__cil_tmp14 != 1U) {
     {
     __cil_tmp15 = *((struct usb_device **)serial);
-    __cil_tmp16 = (unsigned long )__cil_tmp15;
-    __cil_tmp17 = __cil_tmp16 + 136;
-    __cil_tmp18 = (struct device *)__cil_tmp17;
+    __cil_tmp18 = (struct device *)((void *)__cil_tmp15 + 136);
     __cil_tmp19 = (struct device  const  *)__cil_tmp18;
     __cil_tmp20 = 0 + 5;
     __cil_tmp21 = *((struct usb_device **)serial);
-    __cil_tmp22 = (unsigned long )__cil_tmp21;
-    __cil_tmp23 = __cil_tmp22 + 1328;
-    __cil_tmp24 = *((struct usb_host_config **)__cil_tmp23);
-    __cil_tmp25 = (unsigned long )__cil_tmp24;
-    __cil_tmp26 = __cil_tmp25 + __cil_tmp20;
-    __cil_tmp27 = *((__u8 *)__cil_tmp26);
+    __cil_tmp24 = *((struct usb_host_config **)((void *)__cil_tmp21 + 1328));
+    __cil_tmp27 = *((__u8 *)((void *)__cil_tmp24 + __cil_tmp20));
     __cil_tmp28 = (int )__cil_tmp27;
     dev_err(__cil_tmp19, "active config #%d != 1 ??\n", __cil_tmp28);
     }
@@ -3559,61 +3539,25 @@ static int empeg_startup(struct usb_serial *serial )
 }
 static void empeg_init_termios(struct tty_struct *tty ) 
 { struct ktermios *termios ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   tcflag_t __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   tcflag_t __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   tcflag_t __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   tcflag_t __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   tcflag_t __cil_tmp25 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )tty;
-  __cil_tmp4 = __cil_tmp3 + 456;
-  termios = *((struct ktermios **)__cil_tmp4);
+  termios = *((struct ktermios **)((void *)tty + 456));
   __cil_tmp5 = *((tcflag_t *)termios);
   *((tcflag_t *)termios) = __cil_tmp5 & 4294965780U;
-  __cil_tmp6 = (unsigned long )termios;
-  __cil_tmp7 = __cil_tmp6 + 4;
-  __cil_tmp8 = (unsigned long )termios;
-  __cil_tmp9 = __cil_tmp8 + 4;
-  __cil_tmp10 = *((tcflag_t *)__cil_tmp9);
-  *((tcflag_t *)__cil_tmp7) = __cil_tmp10 & 4294967294U;
-  __cil_tmp11 = (unsigned long )termios;
-  __cil_tmp12 = __cil_tmp11 + 12;
-  __cil_tmp13 = (unsigned long )termios;
-  __cil_tmp14 = __cil_tmp13 + 12;
-  __cil_tmp15 = *((tcflag_t *)__cil_tmp14);
-  *((tcflag_t *)__cil_tmp12) = __cil_tmp15 & 4294934452U;
-  __cil_tmp16 = (unsigned long )termios;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  __cil_tmp18 = (unsigned long )termios;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  __cil_tmp20 = *((tcflag_t *)__cil_tmp19);
-  *((tcflag_t *)__cil_tmp17) = __cil_tmp20 & 4294962880U;
-  __cil_tmp21 = (unsigned long )termios;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  __cil_tmp23 = (unsigned long )termios;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  __cil_tmp25 = *((tcflag_t *)__cil_tmp24);
-  *((tcflag_t *)__cil_tmp22) = __cil_tmp25 | 48U;
+  __cil_tmp10 = *((tcflag_t *)((void *)termios + 4));
+  *((tcflag_t *)((void *)termios + 4)) = __cil_tmp10 & 4294967294U;
+  __cil_tmp15 = *((tcflag_t *)((void *)termios + 12));
+  *((tcflag_t *)((void *)termios + 12)) = __cil_tmp15 & 4294934452U;
+  __cil_tmp20 = *((tcflag_t *)((void *)termios + 8));
+  *((tcflag_t *)((void *)termios + 8)) = __cil_tmp20 & 4294962880U;
+  __cil_tmp25 = *((tcflag_t *)((void *)termios + 8));
+  *((tcflag_t *)((void *)termios + 8)) = __cil_tmp25 | 48U;
   tty_encode_baud_rate(tty, 115200U, 115200U);
   }
   return;

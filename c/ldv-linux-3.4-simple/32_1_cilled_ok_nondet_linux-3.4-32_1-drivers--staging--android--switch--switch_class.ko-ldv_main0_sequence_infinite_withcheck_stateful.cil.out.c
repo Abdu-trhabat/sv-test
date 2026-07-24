@@ -1657,13 +1657,7 @@ static ssize_t state_show(struct device *dev , struct device_attribute *attr , c
   ssize_t tmp___0 ;
   int tmp___1 ;
   struct device  const  *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   ssize_t (*__cil_tmp14)(struct switch_dev *sdev , char *buf ) ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
 
   {
@@ -1673,13 +1667,9 @@ static ssize_t state_show(struct device *dev , struct device_attribute *attr , c
   sdev = (struct switch_dev *)tmp;
   }
   {
-  __cil_tmp10 = (unsigned long )sdev;
-  __cil_tmp11 = __cil_tmp10 + 32;
-  if (*((ssize_t (**)(struct switch_dev *sdev , char *buf ))__cil_tmp11)) {
+  if (*((ssize_t (**)(struct switch_dev *sdev , char *buf ))((void *)sdev + 32))) {
     {
-    __cil_tmp12 = (unsigned long )sdev;
-    __cil_tmp13 = __cil_tmp12 + 32;
-    __cil_tmp14 = *((ssize_t (**)(struct switch_dev *sdev , char *buf ))__cil_tmp13);
+    __cil_tmp14 = *((ssize_t (**)(struct switch_dev *sdev , char *buf ))((void *)sdev + 32));
     tmp___0 = (*__cil_tmp14)(sdev, buf);
     ret = (int )tmp___0;
     }
@@ -1693,9 +1683,7 @@ static ssize_t state_show(struct device *dev , struct device_attribute *attr , c
   }
   }
   {
-  __cil_tmp15 = (unsigned long )sdev;
-  __cil_tmp16 = __cil_tmp15 + 20;
-  __cil_tmp17 = *((int *)__cil_tmp16);
+  __cil_tmp17 = *((int *)((void *)sdev + 20));
   tmp___1 = sprintf(buf, "%d\n", __cil_tmp17);
   }
   return ((ssize_t )tmp___1);
@@ -1708,10 +1696,6 @@ static ssize_t name_show(struct device *dev , struct device_attribute *attr , ch
   ssize_t tmp___0 ;
   int tmp___1 ;
   struct device  const  *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   ssize_t (*__cil_tmp14)(struct switch_dev *sdev , char *buf ) ;
   char const   *__cil_tmp15 ;
 
@@ -1722,13 +1706,9 @@ static ssize_t name_show(struct device *dev , struct device_attribute *attr , ch
   sdev = (struct switch_dev *)tmp;
   }
   {
-  __cil_tmp10 = (unsigned long )sdev;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  if (*((ssize_t (**)(struct switch_dev *sdev , char *buf ))__cil_tmp11)) {
+  if (*((ssize_t (**)(struct switch_dev *sdev , char *buf ))((void *)sdev + 24))) {
     {
-    __cil_tmp12 = (unsigned long )sdev;
-    __cil_tmp13 = __cil_tmp12 + 24;
-    __cil_tmp14 = *((ssize_t (**)(struct switch_dev *sdev , char *buf ))__cil_tmp13);
+    __cil_tmp14 = *((ssize_t (**)(struct switch_dev *sdev , char *buf ))((void *)sdev + 24));
     tmp___0 = (*__cil_tmp14)(sdev, buf);
     ret = (int )tmp___0;
     }
@@ -1764,13 +1744,7 @@ void switch_set_state(struct switch_dev *sdev , int state )
   int tmp___1 ;
   ssize_t tmp___2 ;
   int tmp___3 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   void *__cil_tmp22 ;
   struct device_attribute *__cil_tmp23 ;
@@ -1787,8 +1761,6 @@ void switch_set_state(struct switch_dev *sdev , int state )
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
   void *__cil_tmp40 ;
   struct device_attribute *__cil_tmp41 ;
@@ -1808,44 +1780,30 @@ void switch_set_state(struct switch_dev *sdev , int state )
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   void *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   struct device *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   struct kobject *__cil_tmp63 ;
   enum kobject_action __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   char **__cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   struct device *__cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   struct kobject *__cil_tmp74 ;
   enum kobject_action __cil_tmp75 ;
 
   {
   env_offset = 0;
   {
-  __cil_tmp14 = (unsigned long )sdev;
-  __cil_tmp15 = __cil_tmp14 + 20;
-  __cil_tmp16 = *((int *)__cil_tmp15);
+  __cil_tmp16 = *((int *)((void *)sdev + 20));
   if (__cil_tmp16 != state) {
     {
-    __cil_tmp17 = (unsigned long )sdev;
-    __cil_tmp18 = __cil_tmp17 + 20;
-    *((int *)__cil_tmp18) = state;
+    *((int *)((void *)sdev + 20)) = state;
     tmp = get_zeroed_page(208U);
     prop_buf = (char *)tmp;
     }
     if (prop_buf) {
       {
-      __cil_tmp19 = (unsigned long )sdev;
-      __cil_tmp20 = __cil_tmp19 + 8;
-      __cil_tmp21 = *((struct device **)__cil_tmp20);
+      __cil_tmp21 = *((struct device **)((void *)sdev + 8));
       __cil_tmp22 = (void *)0;
       __cil_tmp23 = (struct device_attribute *)__cil_tmp22;
       tmp___0 = name_show(__cil_tmp21, __cil_tmp23, prop_buf);
@@ -1882,9 +1840,7 @@ void switch_set_state(struct switch_dev *sdev , int state )
 
       }
       {
-      __cil_tmp37 = (unsigned long )sdev;
-      __cil_tmp38 = __cil_tmp37 + 8;
-      __cil_tmp39 = *((struct device **)__cil_tmp38);
+      __cil_tmp39 = *((struct device **)((void *)sdev + 8));
       __cil_tmp40 = (void *)0;
       __cil_tmp41 = (struct device_attribute *)__cil_tmp40;
       tmp___2 = state_show(__cil_tmp39, __cil_tmp41, prop_buf);
@@ -1925,12 +1881,8 @@ void switch_set_state(struct switch_dev *sdev , int state )
       __cil_tmp56 = (unsigned long )(envp) + __cil_tmp55;
       __cil_tmp57 = (void *)0;
       *((char **)__cil_tmp56) = (char *)__cil_tmp57;
-      __cil_tmp58 = (unsigned long )sdev;
-      __cil_tmp59 = __cil_tmp58 + 8;
-      __cil_tmp60 = *((struct device **)__cil_tmp59);
-      __cil_tmp61 = (unsigned long )__cil_tmp60;
-      __cil_tmp62 = __cil_tmp61 + 16;
-      __cil_tmp63 = (struct kobject *)__cil_tmp62;
+      __cil_tmp60 = *((struct device **)((void *)sdev + 8));
+      __cil_tmp63 = (struct kobject *)((void *)__cil_tmp60 + 16);
       __cil_tmp64 = (enum kobject_action )2;
       __cil_tmp65 = 0 * 8UL;
       __cil_tmp66 = (unsigned long )(envp) + __cil_tmp65;
@@ -1942,12 +1894,8 @@ void switch_set_state(struct switch_dev *sdev , int state )
     } else {
       {
       printk("<3>out of memory in switch_set_state\n");
-      __cil_tmp69 = (unsigned long )sdev;
-      __cil_tmp70 = __cil_tmp69 + 8;
-      __cil_tmp71 = *((struct device **)__cil_tmp70);
-      __cil_tmp72 = (unsigned long )__cil_tmp71;
-      __cil_tmp73 = __cil_tmp72 + 16;
-      __cil_tmp74 = (struct kobject *)__cil_tmp73;
+      __cil_tmp71 = *((struct device **)((void *)sdev + 8));
+      __cil_tmp74 = (struct kobject *)((void *)__cil_tmp71 + 16);
       __cil_tmp75 = (enum kobject_action )2;
       kobject_uevent(__cil_tmp74, __cil_tmp75);
       }
@@ -2009,46 +1957,24 @@ int switch_dev_register(struct switch_dev *sdev )
 { int ret ;
   long tmp ;
   long tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   struct device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
   dev_t __cil_tmp14 ;
   void *__cil_tmp15 ;
   char const   *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   void const   *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   void const   *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct device *__cil_tmp27 ;
   struct device_attribute  const  *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct device *__cil_tmp31 ;
   struct device_attribute  const  *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct device *__cil_tmp35 ;
   void *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct device *__cil_tmp41 ;
   struct device_attribute  const  *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   int __cil_tmp45 ;
   dev_t __cil_tmp46 ;
   char const   *__cil_tmp47 ;
@@ -2067,32 +1993,22 @@ int switch_dev_register(struct switch_dev *sdev )
 
   }
   {
-  __cil_tmp5 = (unsigned long )sdev;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  *((int *)__cil_tmp6) = atomic_add_return(1, & device_count);
-  __cil_tmp7 = (unsigned long )sdev;
-  __cil_tmp8 = __cil_tmp7 + 8;
+  *((int *)((void *)sdev + 16)) = atomic_add_return(1, & device_count);
   __cil_tmp9 = (void *)0;
   __cil_tmp10 = (struct device *)__cil_tmp9;
-  __cil_tmp11 = (unsigned long )sdev;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = *((int *)__cil_tmp12);
+  __cil_tmp13 = *((int *)((void *)sdev + 16));
   __cil_tmp14 = (dev_t )__cil_tmp13;
   __cil_tmp15 = (void *)0;
   __cil_tmp16 = *((char const   **)sdev);
-  *((struct device **)__cil_tmp8) = device_create(switch_class, __cil_tmp10, __cil_tmp14,
+  *((struct device **)((void *)sdev + 8)) = device_create(switch_class, __cil_tmp10, __cil_tmp14,
                                                   __cil_tmp15, __cil_tmp16);
-  __cil_tmp17 = (unsigned long )sdev;
-  __cil_tmp18 = __cil_tmp17 + 8;
-  __cil_tmp19 = *((struct device **)__cil_tmp18);
+  __cil_tmp19 = *((struct device **)((void *)sdev + 8));
   __cil_tmp20 = (void const   *)__cil_tmp19;
   tmp___0 = (long )IS_ERR(__cil_tmp20);
   }
   if (tmp___0) {
     {
-    __cil_tmp21 = (unsigned long )sdev;
-    __cil_tmp22 = __cil_tmp21 + 8;
-    __cil_tmp23 = *((struct device **)__cil_tmp22);
+    __cil_tmp23 = *((struct device **)((void *)sdev + 8));
     __cil_tmp24 = (void const   *)__cil_tmp23;
     tmp = (long )PTR_ERR(__cil_tmp24);
     }
@@ -2101,9 +2017,7 @@ int switch_dev_register(struct switch_dev *sdev )
 
   }
   {
-  __cil_tmp25 = (unsigned long )sdev;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  __cil_tmp27 = *((struct device **)__cil_tmp26);
+  __cil_tmp27 = *((struct device **)((void *)sdev + 8));
   __cil_tmp28 = (struct device_attribute  const  *)(& dev_attr_state);
   ret = device_create_file(__cil_tmp27, __cil_tmp28);
   }
@@ -2113,9 +2027,7 @@ int switch_dev_register(struct switch_dev *sdev )
 
   }
   {
-  __cil_tmp29 = (unsigned long )sdev;
-  __cil_tmp30 = __cil_tmp29 + 8;
-  __cil_tmp31 = *((struct device **)__cil_tmp30);
+  __cil_tmp31 = *((struct device **)((void *)sdev + 8));
   __cil_tmp32 = (struct device_attribute  const  *)(& dev_attr_name);
   ret = device_create_file(__cil_tmp31, __cil_tmp32);
   }
@@ -2125,29 +2037,21 @@ int switch_dev_register(struct switch_dev *sdev )
 
   }
   {
-  __cil_tmp33 = (unsigned long )sdev;
-  __cil_tmp34 = __cil_tmp33 + 8;
-  __cil_tmp35 = *((struct device **)__cil_tmp34);
+  __cil_tmp35 = *((struct device **)((void *)sdev + 8));
   __cil_tmp36 = (void *)sdev;
   dev_set_drvdata(__cil_tmp35, __cil_tmp36);
-  __cil_tmp37 = (unsigned long )sdev;
-  __cil_tmp38 = __cil_tmp37 + 20;
-  *((int *)__cil_tmp38) = 0;
+  *((int *)((void *)sdev + 20)) = 0;
   }
   return (0);
   err_create_file_2: 
   {
-  __cil_tmp39 = (unsigned long )sdev;
-  __cil_tmp40 = __cil_tmp39 + 8;
-  __cil_tmp41 = *((struct device **)__cil_tmp40);
+  __cil_tmp41 = *((struct device **)((void *)sdev + 8));
   __cil_tmp42 = (struct device_attribute  const  *)(& dev_attr_state);
   device_remove_file(__cil_tmp41, __cil_tmp42);
   }
   err_create_file_1: 
   {
-  __cil_tmp43 = (unsigned long )sdev;
-  __cil_tmp44 = __cil_tmp43 + 16;
-  __cil_tmp45 = *((int *)__cil_tmp44);
+  __cil_tmp45 = *((int *)((void *)sdev + 16));
   __cil_tmp46 = (dev_t )__cil_tmp45;
   device_destroy(switch_class, __cil_tmp46);
   __cil_tmp47 = *((char const   **)sdev);
@@ -2169,43 +2073,28 @@ __aligned__(1)))  =
 static struct kernel_symbol  const  __ksymtab_switch_dev_register  __attribute__((__used__,
 __unused__, __section__("___ksymtab_gpl+switch_dev_register")))  =    {(unsigned long )(& switch_dev_register), __kstrtab_switch_dev_register};
 void switch_dev_unregister(struct switch_dev *sdev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device *__cil_tmp4 ;
   struct device_attribute  const  *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   struct device_attribute  const  *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   dev_t __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   void *__cil_tmp17 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )sdev;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  __cil_tmp4 = *((struct device **)__cil_tmp3);
+  __cil_tmp4 = *((struct device **)((void *)sdev + 8));
   __cil_tmp5 = (struct device_attribute  const  *)(& dev_attr_name);
   device_remove_file(__cil_tmp4, __cil_tmp5);
-  __cil_tmp6 = (unsigned long )sdev;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = *((struct device **)__cil_tmp7);
+  __cil_tmp8 = *((struct device **)((void *)sdev + 8));
   __cil_tmp9 = (struct device_attribute  const  *)(& dev_attr_state);
   device_remove_file(__cil_tmp8, __cil_tmp9);
-  __cil_tmp10 = (unsigned long )sdev;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp12 = *((int *)((void *)sdev + 16));
   __cil_tmp13 = (dev_t )__cil_tmp12;
   device_destroy(switch_class, __cil_tmp13);
-  __cil_tmp14 = (unsigned long )sdev;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((struct device **)__cil_tmp15);
+  __cil_tmp16 = *((struct device **)((void *)sdev + 8));
   __cil_tmp17 = (void *)0;
   dev_set_drvdata(__cil_tmp16, __cil_tmp17);
   }

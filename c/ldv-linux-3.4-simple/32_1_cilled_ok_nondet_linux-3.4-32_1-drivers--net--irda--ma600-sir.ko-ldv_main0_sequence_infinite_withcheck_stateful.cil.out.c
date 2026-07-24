@@ -4964,25 +4964,15 @@ static void ma600_sir_cleanup(void)
 }
 static int ma600_open(struct sir_dev *dev ) 
 { struct qos_info *qos ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   __u16 __cil_tmp11 ;
   int __cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
 
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  qos = (struct qos_info *)__cil_tmp4;
+  qos = (struct qos_info *)((void *)dev + 16);
   {
   while (1) {
     while_continue: /* CIL Label */ ;
@@ -5000,19 +4990,13 @@ static int ma600_open(struct sir_dev *dev )
   {
   sirdev_set_dtr_rts(dev, 1, 1);
   __cil_tmp5 = 4 + 4;
-  __cil_tmp6 = (unsigned long )qos;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
   __cil_tmp8 = 4 + 4;
-  __cil_tmp9 = (unsigned long )qos;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = *((__u16 *)__cil_tmp10);
+  __cil_tmp11 = *((__u16 *)((void *)qos + __cil_tmp8));
   __cil_tmp12 = (int )__cil_tmp11;
   __cil_tmp13 = __cil_tmp12 & 63;
-  *((__u16 *)__cil_tmp7) = (__u16 )__cil_tmp13;
+  *((__u16 *)((void *)qos + __cil_tmp5)) = (__u16 )__cil_tmp13;
   __cil_tmp14 = 44 + 4;
-  __cil_tmp15 = (unsigned long )qos;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((__u16 *)__cil_tmp16) = (__u16 )1;
+  *((__u16 *)((void *)qos + __cil_tmp14)) = (__u16 )1;
   irda_qos_bits_to_value(qos);
   }
   return (0);
@@ -5095,8 +5079,6 @@ static int ma600_change_speed(struct sir_dev *dev , unsigned int speed )
   __u8 tmp___8 ;
   int tmp___9 ;
   __u8 tmp___10 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   u8 *__cil_tmp12 ;
   char const   *__cil_tmp13 ;
@@ -5111,8 +5093,6 @@ static int ma600_change_speed(struct sir_dev *dev , unsigned int speed )
   u8 __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
 
   {
   {
@@ -5120,9 +5100,7 @@ static int ma600_change_speed(struct sir_dev *dev , unsigned int speed )
     while_continue: /* CIL Label */ ;
     if (irda_debug >= 2U) {
       {
-      __cil_tmp9 = (unsigned long )dev;
-      __cil_tmp10 = __cil_tmp9 + 336;
-      __cil_tmp11 = *((unsigned int *)__cil_tmp10);
+      __cil_tmp11 = *((unsigned int *)((void *)dev + 336));
       printk("<7>%s(), speed=%d (was %d)\n", "ma600_change_speed", speed, __cil_tmp11);
       }
     } else {
@@ -5196,17 +5174,13 @@ static int ma600_change_speed(struct sir_dev *dev , unsigned int speed )
   {
   sirdev_set_dtr_rts(dev, 1, 1);
   msleep(10U);
-  __cil_tmp25 = (unsigned long )dev;
-  __cil_tmp26 = __cil_tmp25 + 336;
-  *((unsigned int *)__cil_tmp26) = speed;
+  *((unsigned int *)((void *)dev + 336)) = speed;
   }
   return (0);
 }
 }
 static int ma600_reset(struct sir_dev *dev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
   while (1) {
@@ -5227,9 +5201,7 @@ static int ma600_reset(struct sir_dev *dev )
   msleep(10U);
   sirdev_set_dtr_rts(dev, 1, 1);
   msleep(10U);
-  __cil_tmp2 = (unsigned long )dev;
-  __cil_tmp3 = __cil_tmp2 + 336;
-  *((unsigned int *)__cil_tmp3) = 9600U;
+  *((unsigned int *)((void *)dev + 336)) = 9600U;
   }
   return (0);
 }

@@ -5010,8 +5010,6 @@ static ssize_t __show_signal(struct device *dev , struct device_attribute *attr 
   struct device  const  *__mptr ;
   int tmp ;
   struct atm_dev *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   char __cil_tmp10 ;
   int __cil_tmp11 ;
 
@@ -5020,9 +5018,7 @@ static ssize_t __show_signal(struct device *dev , struct device_attribute *attr 
   __mptr = (struct device  const  *)dev;
   __cil_tmp7 = (struct atm_dev *)__mptr;
   atm_dev = __cil_tmp7 + 0xffffffffffffff00UL;
-  __cil_tmp8 = (unsigned long )atm_dev;
-  __cil_tmp9 = __cil_tmp8 + 156;
-  __cil_tmp10 = *((char *)__cil_tmp9);
+  __cil_tmp10 = *((char *)((void *)atm_dev + 156));
   __cil_tmp11 = (int )__cil_tmp10;
   tmp = sprintf(buf, "%d\n", __cil_tmp11);
   }
@@ -5038,47 +5034,28 @@ static struct attribute *adummy_attrs[2U]  = {      & dev_attr_signal.attr,     
 static struct attribute_group adummy_group_attrs  =    {(char const   *)0, (umode_t (*)(struct kobject * , struct attribute * , int  ))0,
     (struct attribute **)(& adummy_attrs)};
 static int adummy_start(struct atm_dev *dev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
 
   {
-  __cil_tmp2 = (unsigned long )dev;
-  __cil_tmp3 = __cil_tmp2 + 94;
-  *((signed char *)__cil_tmp3) = (signed char)4;
+  *((signed char *)((void *)dev + 94)) = (signed char)4;
   __cil_tmp4 = 94 + 1;
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + __cil_tmp4;
-  *((signed char *)__cil_tmp6) = (signed char)12;
+  *((signed char *)((void *)dev + __cil_tmp4)) = (signed char)12;
   return (0);
 }
 }
 static int adummy_open(struct atm_vcc *vcc ) 
 { short vpi ;
   int vci ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long *__cil_tmp11 ;
   unsigned long volatile   *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long *__cil_tmp15 ;
   unsigned long volatile   *__cil_tmp16 ;
 
   {
-  __cil_tmp4 = (unsigned long )vcc;
-  __cil_tmp5 = __cil_tmp4 + 1320;
-  vpi = *((short *)__cil_tmp5);
-  __cil_tmp6 = (unsigned long )vcc;
-  __cil_tmp7 = __cil_tmp6 + 1324;
-  vci = *((int *)__cil_tmp7);
+  vpi = *((short *)((void *)vcc + 1320));
+  vci = *((int *)((void *)vcc + 1324));
   if (vci == -2) {
     return (0);
   } else {
@@ -5092,14 +5069,10 @@ static int adummy_open(struct atm_vcc *vcc )
     }
   }
   {
-  __cil_tmp9 = (unsigned long )vcc;
-  __cil_tmp10 = __cil_tmp9 + 1312;
-  __cil_tmp11 = (unsigned long *)__cil_tmp10;
+  __cil_tmp11 = (unsigned long *)((void *)vcc + 1312);
   __cil_tmp12 = (unsigned long volatile   *)__cil_tmp11;
   set_bit(0U, __cil_tmp12);
-  __cil_tmp13 = (unsigned long )vcc;
-  __cil_tmp14 = __cil_tmp13 + 1312;
-  __cil_tmp15 = (unsigned long *)__cil_tmp14;
+  __cil_tmp15 = (unsigned long *)((void *)vcc + 1312);
   __cil_tmp16 = (unsigned long volatile   *)__cil_tmp15;
   set_bit(1U, __cil_tmp16);
   }
@@ -5107,25 +5080,18 @@ static int adummy_open(struct atm_vcc *vcc )
 }
 }
 static void adummy_close(struct atm_vcc *vcc ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   unsigned long *__cil_tmp4 ;
   unsigned long volatile   *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long *__cil_tmp8 ;
   unsigned long volatile   *__cil_tmp9 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )vcc;
-  __cil_tmp3 = __cil_tmp2 + 1312;
-  __cil_tmp4 = (unsigned long *)__cil_tmp3;
+  __cil_tmp4 = (unsigned long *)((void *)vcc + 1312);
   __cil_tmp5 = (unsigned long volatile   *)__cil_tmp4;
   clear_bit(1, __cil_tmp5);
-  __cil_tmp6 = (unsigned long )vcc;
-  __cil_tmp7 = __cil_tmp6 + 1312;
-  __cil_tmp8 = (unsigned long *)__cil_tmp7;
+  __cil_tmp8 = (unsigned long *)((void *)vcc + 1312);
   __cil_tmp9 = (unsigned long volatile   *)__cil_tmp8;
   clear_bit(0, __cil_tmp9);
   }
@@ -5135,15 +5101,9 @@ static void adummy_close(struct atm_vcc *vcc )
 static int adummy_send(struct atm_vcc *vcc , struct sk_buff *skb ) 
 { void (*__cil_tmp3)(struct atm_vcc * , struct sk_buff * ) ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void (*__cil_tmp7)(struct atm_vcc * , struct sk_buff * ) ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void (*__cil_tmp11)(struct atm_vcc * , struct sk_buff * ) ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct k_atm_aal_stats *__cil_tmp14 ;
   atomic_t *__cil_tmp15 ;
 
@@ -5151,15 +5111,11 @@ static int adummy_send(struct atm_vcc *vcc , struct sk_buff *skb )
   {
   __cil_tmp3 = (void (*)(struct atm_vcc * , struct sk_buff * ))0;
   __cil_tmp4 = (unsigned long )__cil_tmp3;
-  __cil_tmp5 = (unsigned long )vcc;
-  __cil_tmp6 = __cil_tmp5 + 1496;
-  __cil_tmp7 = *((void (**)(struct atm_vcc * , struct sk_buff * ))__cil_tmp6);
+  __cil_tmp7 = *((void (**)(struct atm_vcc * , struct sk_buff * ))((void *)vcc + 1496));
   __cil_tmp8 = (unsigned long )__cil_tmp7;
   if (__cil_tmp8 != __cil_tmp4) {
     {
-    __cil_tmp9 = (unsigned long )vcc;
-    __cil_tmp10 = __cil_tmp9 + 1496;
-    __cil_tmp11 = *((void (**)(struct atm_vcc * , struct sk_buff * ))__cil_tmp10);
+    __cil_tmp11 = *((void (**)(struct atm_vcc * , struct sk_buff * ))((void *)vcc + 1496));
     (*__cil_tmp11)(vcc, skb);
     }
   } else {
@@ -5169,9 +5125,7 @@ static int adummy_send(struct atm_vcc *vcc , struct sk_buff *skb )
   }
   }
   {
-  __cil_tmp12 = (unsigned long )vcc;
-  __cil_tmp13 = __cil_tmp12 + 1536;
-  __cil_tmp14 = *((struct k_atm_aal_stats **)__cil_tmp13);
+  __cil_tmp14 = *((struct k_atm_aal_stats **)((void *)vcc + 1536));
   __cil_tmp15 = (atomic_t *)__cil_tmp14;
   atomic_inc(__cil_tmp15);
   }
@@ -5231,19 +5185,11 @@ static int adummy_init(void)
   struct atm_dev *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct kobject *__cil_tmp22 ;
   struct attribute_group  const  *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct device *__cil_tmp26 ;
   struct device  const  *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct list_head *__cil_tmp30 ;
   void const   *__cil_tmp31 ;
 
@@ -5291,21 +5237,15 @@ static int adummy_init(void)
   }
   {
   *((struct atm_dev **)adummy_dev) = atm_dev;
-  __cil_tmp17 = (unsigned long )atm_dev;
-  __cil_tmp18 = __cil_tmp17 + 32;
-  *((void **)__cil_tmp18) = (void *)adummy_dev;
+  *((void **)((void *)atm_dev + 32)) = (void *)adummy_dev;
   __cil_tmp19 = 256 + 16;
-  __cil_tmp20 = (unsigned long )atm_dev;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  __cil_tmp22 = (struct kobject *)__cil_tmp21;
+  __cil_tmp22 = (struct kobject *)((void *)atm_dev + __cil_tmp19);
   __cil_tmp23 = (struct attribute_group  const  *)(& adummy_group_attrs);
   tmp___0 = sysfs_create_group(__cil_tmp22, __cil_tmp23);
   }
   if (tmp___0 != 0) {
     {
-    __cil_tmp24 = (unsigned long )atm_dev;
-    __cil_tmp25 = __cil_tmp24 + 256;
-    __cil_tmp26 = (struct device *)__cil_tmp25;
+    __cil_tmp26 = (struct device *)((void *)atm_dev + 256);
     __cil_tmp27 = (struct device  const  *)__cil_tmp26;
     dev_err(__cil_tmp27, "Could not register attrs for adummy\n");
     }
@@ -5325,9 +5265,7 @@ static int adummy_init(void)
 
   }
   {
-  __cil_tmp28 = (unsigned long )adummy_dev;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  __cil_tmp30 = (struct list_head *)__cil_tmp29;
+  __cil_tmp30 = (struct list_head *)((void *)adummy_dev + 8);
   list_add(__cil_tmp30, & adummy_devs);
   }
   out: ;
@@ -5353,19 +5291,13 @@ static void adummy_cleanup(void)
   struct list_head *__cil_tmp6 ;
   struct list_head *__cil_tmp7 ;
   struct adummy_dev *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct list_head *__cil_tmp11 ;
   struct adummy_dev *__cil_tmp12 ;
   struct atm_dev *__cil_tmp13 ;
   void const   *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct list_head *__cil_tmp17 ;
   struct adummy_dev *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct list_head *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
 
@@ -5375,9 +5307,7 @@ static void adummy_cleanup(void)
   __mptr = (struct list_head  const  *)__cil_tmp7;
   __cil_tmp8 = (struct adummy_dev *)__mptr;
   adummy_dev = __cil_tmp8 + 0xfffffffffffffff8UL;
-  __cil_tmp9 = (unsigned long )adummy_dev;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = *((struct list_head **)__cil_tmp10);
+  __cil_tmp11 = *((struct list_head **)((void *)adummy_dev + 8));
   __mptr___0 = (struct list_head  const  *)__cil_tmp11;
   __cil_tmp12 = (struct adummy_dev *)__mptr___0;
   next = __cil_tmp12 + 0xfffffffffffffff8UL;
@@ -5389,9 +5319,7 @@ static void adummy_cleanup(void)
   __cil_tmp14 = (void const   *)adummy_dev;
   kfree(__cil_tmp14);
   adummy_dev = next;
-  __cil_tmp15 = (unsigned long )next;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  __cil_tmp17 = *((struct list_head **)__cil_tmp16);
+  __cil_tmp17 = *((struct list_head **)((void *)next + 8));
   __mptr___1 = (struct list_head  const  *)__cil_tmp17;
   __cil_tmp18 = (struct adummy_dev *)__mptr___1;
   next = __cil_tmp18 + 0xfffffffffffffff8UL;
@@ -5399,9 +5327,7 @@ static void adummy_cleanup(void)
   ldv_39357: ;
   {
   __cil_tmp19 = (unsigned long )(& adummy_devs);
-  __cil_tmp20 = (unsigned long )adummy_dev;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  __cil_tmp22 = (struct list_head *)__cil_tmp21;
+  __cil_tmp22 = (struct list_head *)((void *)adummy_dev + 8);
   __cil_tmp23 = (unsigned long )__cil_tmp22;
   if (__cil_tmp23 != __cil_tmp19) {
     goto ldv_39356;

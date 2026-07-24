@@ -2107,8 +2107,6 @@ static ssize_t als_sensing_range_show(struct device *dev , struct device_attribu
   int val ;
   int tmp___7 ;
   struct i2c_client *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   char *__cil_tmp13 ;
@@ -2122,9 +2120,7 @@ static ssize_t als_sensing_range_show(struct device *dev , struct device_attribu
   {
   __mptr = (struct device const *)dev;
   __cil_tmp8 = (struct i2c_client *)0;
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 40;
-  __cil_tmp11 = (struct device *)__cil_tmp10;
+  __cil_tmp11 = (struct device *)((void *)__cil_tmp8 + 40);
   __cil_tmp12 = (unsigned int )__cil_tmp11;
   __cil_tmp13 = (char *)__mptr;
   __cil_tmp14 = __cil_tmp13 - __cil_tmp12;
@@ -2156,8 +2152,6 @@ static ssize_t als_lux_input_data_show(struct device *dev , struct device_attrib
   int temp ;
   int tmp___7 ;
   struct i2c_client *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
@@ -2179,9 +2173,7 @@ static ssize_t als_lux_input_data_show(struct device *dev , struct device_attrib
   {
   __mptr = (struct device const *)dev;
   __cil_tmp11 = (struct i2c_client *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 40;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 40);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
@@ -2247,8 +2239,6 @@ static ssize_t als_sensing_range_store(struct device *dev , struct device_attrib
   unsigned long val ;
   int tmp___7 ;
   struct i2c_client *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
@@ -2281,9 +2271,7 @@ static ssize_t als_sensing_range_store(struct device *dev , struct device_attrib
   {
   __mptr = (struct device const *)dev;
   __cil_tmp10 = (struct i2c_client *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 40;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 40);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
@@ -2411,8 +2399,6 @@ static int als_set_default_config(struct i2c_client *client )
   struct i2c_client const *__cil_tmp3 ;
   u8 __cil_tmp4 ;
   u8 __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   struct device const *__cil_tmp9 ;
   {
@@ -2424,9 +2410,7 @@ static int als_set_default_config(struct i2c_client *client )
   }
   if (retval < 0) {
     {
-    __cil_tmp6 = (unsigned long )client;
-    __cil_tmp7 = __cil_tmp6 + 40;
-    __cil_tmp8 = (struct device *)__cil_tmp7;
+    __cil_tmp8 = (struct device *)((void *)client + 40);
     __cil_tmp9 = (struct device const *)__cil_tmp8;
     dev_err(__cil_tmp9, "default write failed.");
     }
@@ -2439,25 +2423,15 @@ static int als_set_default_config(struct i2c_client *client )
 static int isl29020_probe(struct i2c_client *client , struct i2c_device_id const *id )
 { int res ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct kobject *__cil_tmp7 ;
   struct attribute_group const *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device const *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   char *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   {
   {
@@ -2469,17 +2443,13 @@ static int isl29020_probe(struct i2c_client *client , struct i2c_device_id const
   }
   {
   __cil_tmp4 = 40 + 16;
-  __cil_tmp5 = (unsigned long )client;
-  __cil_tmp6 = __cil_tmp5 + __cil_tmp4;
-  __cil_tmp7 = (struct kobject *)__cil_tmp6;
+  __cil_tmp7 = (struct kobject *)((void *)client + __cil_tmp4);
   __cil_tmp8 = (struct attribute_group const *)(& m_als_gr);
   res = (int )sysfs_create_group(__cil_tmp7, __cil_tmp8);
   }
   if (res) {
     {
-    __cil_tmp9 = (unsigned long )client;
-    __cil_tmp10 = __cil_tmp9 + 40;
-    __cil_tmp11 = (struct device *)__cil_tmp10;
+    __cil_tmp11 = (struct device *)((void *)client + 40);
     __cil_tmp12 = (struct device const *)__cil_tmp11;
     dev_err(__cil_tmp12, "isl29020: device create file failed\n");
     }
@@ -2487,20 +2457,14 @@ static int isl29020_probe(struct i2c_client *client , struct i2c_device_id const
   } else {
   }
   {
-  __cil_tmp13 = (unsigned long )client;
-  __cil_tmp14 = __cil_tmp13 + 40;
-  __cil_tmp15 = (struct device *)__cil_tmp14;
+  __cil_tmp15 = (struct device *)((void *)client + 40);
   __cil_tmp16 = (struct device const *)__cil_tmp15;
   __cil_tmp17 = 0 * 1UL;
   __cil_tmp18 = 4 + __cil_tmp17;
-  __cil_tmp19 = (unsigned long )client;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-  __cil_tmp21 = (char *)__cil_tmp20;
+  __cil_tmp21 = (char *)((void *)client + __cil_tmp18);
   _dev_info(__cil_tmp16, "%s isl29020: ALS chip found\n", __cil_tmp21);
   als_set_power_state(client, 0);
-  __cil_tmp22 = (unsigned long )client;
-  __cil_tmp23 = __cil_tmp22 + 40;
-  __cil_tmp24 = (struct device *)__cil_tmp23;
+  __cil_tmp24 = (struct device *)((void *)client + 40);
   pm_runtime_enable(__cil_tmp24);
   }
   return (res);
@@ -2508,16 +2472,12 @@ static int isl29020_probe(struct i2c_client *client , struct i2c_device_id const
 }
 static int isl29020_remove(struct i2c_client *client )
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct kobject *__cil_tmp5 ;
   struct attribute_group const *__cil_tmp6 ;
   {
   {
   __cil_tmp2 = 40 + 16;
-  __cil_tmp3 = (unsigned long )client;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  __cil_tmp5 = (struct kobject *)__cil_tmp4;
+  __cil_tmp5 = (struct kobject *)((void *)client + __cil_tmp2);
   __cil_tmp6 = (struct attribute_group const *)(& m_als_gr);
   sysfs_remove_group(__cil_tmp5, __cil_tmp6);
   }
@@ -2533,8 +2493,6 @@ static int isl29020_runtime_suspend(struct device *dev )
 { struct i2c_client *client ;
   struct device const *__mptr ;
   struct i2c_client *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   char *__cil_tmp9 ;
@@ -2543,9 +2501,7 @@ static int isl29020_runtime_suspend(struct device *dev )
   {
   __mptr = (struct device const *)dev;
   __cil_tmp4 = (struct i2c_client *)0;
-  __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = __cil_tmp5 + 40;
-  __cil_tmp7 = (struct device *)__cil_tmp6;
+  __cil_tmp7 = (struct device *)((void *)__cil_tmp4 + 40);
   __cil_tmp8 = (unsigned int )__cil_tmp7;
   __cil_tmp9 = (char *)__mptr;
   __cil_tmp10 = __cil_tmp9 - __cil_tmp8;
@@ -2559,8 +2515,6 @@ static int isl29020_runtime_resume(struct device *dev )
 { struct i2c_client *client ;
   struct device const *__mptr ;
   struct i2c_client *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   char *__cil_tmp9 ;
@@ -2569,9 +2523,7 @@ static int isl29020_runtime_resume(struct device *dev )
   {
   __mptr = (struct device const *)dev;
   __cil_tmp4 = (struct i2c_client *)0;
-  __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = __cil_tmp5 + 40;
-  __cil_tmp7 = (struct device *)__cil_tmp6;
+  __cil_tmp7 = (struct device *)((void *)__cil_tmp4 + 40);
   __cil_tmp8 = (unsigned int )__cil_tmp7;
   __cil_tmp9 = (char *)__mptr;
   __cil_tmp10 = __cil_tmp9 - __cil_tmp8;

@@ -2680,16 +2680,12 @@ int acpi_ec_add_debugfs(struct acpi_ec *ec , unsigned int ec_device_count )
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   umode_t __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long *__cil_tmp21 ;
   u32 *__cil_tmp22 ;
   struct dentry *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   umode_t __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long *__cil_tmp29 ;
   u32 *__cil_tmp30 ;
   struct dentry *__cil_tmp31 ;
@@ -2742,9 +2738,7 @@ int acpi_ec_add_debugfs(struct acpi_ec *ec , unsigned int ec_device_count )
   }
   {
   __cil_tmp18 = (umode_t )292;
-  __cil_tmp19 = (unsigned long )first_ec;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  __cil_tmp21 = (unsigned long *)__cil_tmp20;
+  __cil_tmp21 = (unsigned long *)((void *)first_ec + 8);
   __cil_tmp22 = (u32 *)__cil_tmp21;
   tmp = debugfs_create_x32("gpe", __cil_tmp18, dev_dir, __cil_tmp22);
   }
@@ -2759,9 +2753,7 @@ int acpi_ec_add_debugfs(struct acpi_ec *ec , unsigned int ec_device_count )
   }
   {
   __cil_tmp26 = (umode_t )292;
-  __cil_tmp27 = (unsigned long )first_ec;
-  __cil_tmp28 = __cil_tmp27 + 32;
-  __cil_tmp29 = (unsigned long *)__cil_tmp28;
+  __cil_tmp29 = (unsigned long *)((void *)first_ec + 32);
   __cil_tmp30 = (u32 *)__cil_tmp29;
   tmp___0 = debugfs_create_bool("use_global_lock", __cil_tmp26, dev_dir, __cil_tmp30);
   }

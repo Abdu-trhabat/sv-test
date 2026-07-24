@@ -1728,8 +1728,6 @@ static void synth_interrogate(struct spk_synth *synth___0 )
   int __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   char const *__cil_tmp32 ;
   unsigned char *__cil_tmp33 ;
   {
@@ -1811,9 +1809,7 @@ static void synth_interrogate(struct spk_synth *synth___0 )
   __cil_tmp28 = __cil_tmp27 * 1UL;
   __cil_tmp29 = (unsigned long )(rom_v) + __cil_tmp28;
   *((unsigned char *)__cil_tmp29) = (unsigned char)0;
-  __cil_tmp30 = (unsigned long )synth___0;
-  __cil_tmp31 = __cil_tmp30 + 16;
-  __cil_tmp32 = *((char const **)__cil_tmp31);
+  __cil_tmp32 = *((char const **)((void *)synth___0 + 16));
   __cil_tmp33 = (unsigned char *)(& rom_v);
   printk("<6>%s: ROM version: %s\n", __cil_tmp32, __cil_tmp33);
   }
@@ -1822,8 +1818,6 @@ static void synth_interrogate(struct spk_synth *synth___0 )
 }
 static int synth_probe(struct spk_synth *synth___0 )
 { int failed ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   {
   {
   failed = 0;
@@ -1835,9 +1829,7 @@ static int synth_probe(struct spk_synth *synth___0 )
     }
   } else {
   }
-  __cil_tmp3 = (unsigned long )synth___0;
-  __cil_tmp4 = __cil_tmp3 + 176;
-  *((int *)__cil_tmp4) = failed == 0;
+  *((int *)((void *)synth___0 + 176)) = failed == 0;
   return (failed);
 }
 }

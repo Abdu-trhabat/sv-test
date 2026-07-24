@@ -4068,11 +4068,7 @@ static int opti_pre_reset(struct ata_link *link , unsigned long deadline )
   struct pci_bits opti_enable_bits[2U] ;
   int tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct ata_host *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct pci_dev *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
@@ -4097,8 +4093,6 @@ static int opti_pre_reset(struct ata_link *link , unsigned long deadline )
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   struct pci_bits const *__cil_tmp42 ;
@@ -4106,12 +4100,8 @@ static int opti_pre_reset(struct ata_link *link , unsigned long deadline )
   {
   {
   ap = *((struct ata_port **)link);
-  __cil_tmp9 = (unsigned long )ap;
-  __cil_tmp10 = __cil_tmp9 + 13880;
-  __cil_tmp11 = *((struct ata_host **)__cil_tmp10);
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 72;
-  __cil_tmp14 = *((struct device **)__cil_tmp13);
+  __cil_tmp11 = *((struct ata_host **)((void *)ap + 13880));
+  __cil_tmp14 = *((struct device **)((void *)__cil_tmp11 + 72));
   __mptr = (struct device const *)__cil_tmp14;
   __cil_tmp15 = (struct pci_dev *)__mptr;
   pdev = __cil_tmp15 + 0xffffffffffffff70UL;
@@ -4145,9 +4135,7 @@ static int opti_pre_reset(struct ata_link *link , unsigned long deadline )
   __cil_tmp36 = __cil_tmp35 + 16;
   __cil_tmp37 = (unsigned long )(opti_enable_bits) + __cil_tmp36;
   *((unsigned long *)__cil_tmp37) = 0UL;
-  __cil_tmp38 = (unsigned long )ap;
-  __cil_tmp39 = __cil_tmp38 + 40;
-  __cil_tmp40 = *((unsigned int *)__cil_tmp39);
+  __cil_tmp40 = *((unsigned int *)((void *)ap + 40));
   __cil_tmp41 = (unsigned long )__cil_tmp40;
   __cil_tmp42 = (struct pci_bits const *)(& opti_enable_bits);
   __cil_tmp43 = __cil_tmp42 + __cil_tmp41;
@@ -4165,8 +4153,6 @@ static int opti_pre_reset(struct ata_link *link , unsigned long deadline )
 }
 static void opti_write_reg(struct ata_port *ap , u8 val , int reg )
 { void *regio ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 __cil_tmp9 ;
@@ -4179,9 +4165,7 @@ static void opti_write_reg(struct ata_port *ap , u8 val , int reg )
   void *__cil_tmp16 ;
   {
   {
-  __cil_tmp5 = (unsigned long )ap;
-  __cil_tmp6 = __cil_tmp5 + 48;
-  regio = *((void **)__cil_tmp6);
+  regio = *((void **)((void *)ap + 48));
   __cil_tmp7 = regio + 1UL;
   ioread16(__cil_tmp7);
   __cil_tmp8 = regio + 1UL;
@@ -4212,12 +4196,8 @@ static void opti_set_piomode(struct ata_port *ap , struct ata_device *adev )
   u8 data_rec_timing[2U][5U] ;
   unsigned int tmp___0 ;
   u8 pair_addr ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   u8 __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
@@ -4309,8 +4289,6 @@ static void opti_set_piomode(struct ata_port *ap , struct ata_device *adev )
   struct ata_device *__cil_tmp107 ;
   unsigned long __cil_tmp108 ;
   unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   u8 __cil_tmp112 ;
   int __cil_tmp113 ;
   int __cil_tmp114 ;
@@ -4320,8 +4298,6 @@ static void opti_set_piomode(struct ata_port *ap , struct ata_device *adev )
   unsigned long __cil_tmp118 ;
   int __cil_tmp119 ;
   int __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   unsigned int __cil_tmp123 ;
   u8 __cil_tmp124 ;
   int __cil_tmp125 ;
@@ -4347,14 +4323,10 @@ static void opti_set_piomode(struct ata_port *ap , struct ata_device *adev )
   {
   tmp = ata_dev_pair(adev);
   pair = tmp;
-  __cil_tmp13 = (unsigned long )adev;
-  __cil_tmp14 = __cil_tmp13 + 1248;
-  __cil_tmp15 = *((u8 *)__cil_tmp14);
+  __cil_tmp15 = *((u8 *)((void *)adev + 1248));
   __cil_tmp16 = (int )__cil_tmp15;
   pio = __cil_tmp16 + -8;
-  __cil_tmp17 = (unsigned long )ap;
-  __cil_tmp18 = __cil_tmp17 + 48;
-  regio = *((void **)__cil_tmp18);
+  regio = *((void **)((void *)ap + 48));
   __cil_tmp19 = 0 * 1UL;
   __cil_tmp20 = 0 * 5UL;
   __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
@@ -4473,9 +4445,7 @@ static void opti_set_piomode(struct ata_port *ap , struct ata_device *adev )
   __cil_tmp108 = (unsigned long )__cil_tmp107;
   __cil_tmp109 = (unsigned long )pair;
   if (__cil_tmp109 != __cil_tmp108) {
-    __cil_tmp110 = (unsigned long )pair;
-    __cil_tmp111 = __cil_tmp110 + 1248;
-    __cil_tmp112 = *((u8 *)__cil_tmp111);
+    __cil_tmp112 = *((u8 *)((void *)pair + 1248));
     __cil_tmp113 = (int )__cil_tmp112;
     __cil_tmp114 = __cil_tmp113 + -8;
     __cil_tmp115 = __cil_tmp114 * 1UL;
@@ -4495,9 +4465,7 @@ static void opti_set_piomode(struct ata_port *ap , struct ata_device *adev )
   }
   }
   {
-  __cil_tmp121 = (unsigned long )adev;
-  __cil_tmp122 = __cil_tmp121 + 8;
-  __cil_tmp123 = *((unsigned int *)__cil_tmp122);
+  __cil_tmp123 = *((unsigned int *)((void *)adev + 8));
   __cil_tmp124 = (u8 )__cil_tmp123;
   __cil_tmp125 = (int )__cil_tmp124;
   __cil_tmp126 = (u8 )__cil_tmp125;
@@ -4592,18 +4560,10 @@ static int opti_init_one(struct pci_dev *dev , struct pci_device_id const *id )
   bool __print_once ;
   int tmp ;
   struct ata_port_info *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device const *__cil_tmp21 ;
   struct ata_port_info const * const *__cil_tmp22 ;
@@ -4611,18 +4571,12 @@ static int opti_init_one(struct pci_dev *dev , struct pci_device_id const *id )
   {
   __cil_tmp7 = & info;
   *((unsigned long *)__cil_tmp7) = 1UL;
-  __cil_tmp8 = (unsigned long )(& info) + 8;
-  *((unsigned long *)__cil_tmp8) = 0UL;
-  __cil_tmp9 = (unsigned long )(& info) + 16;
-  *((unsigned long *)__cil_tmp9) = 31UL;
-  __cil_tmp10 = (unsigned long )(& info) + 24;
-  *((unsigned long *)__cil_tmp10) = 0UL;
-  __cil_tmp11 = (unsigned long )(& info) + 32;
-  *((unsigned long *)__cil_tmp11) = 0UL;
-  __cil_tmp12 = (unsigned long )(& info) + 40;
-  *((struct ata_port_operations **)__cil_tmp12) = & opti_port_ops;
-  __cil_tmp13 = (unsigned long )(& info) + 48;
-  *((void **)__cil_tmp13) = (void *)0;
+  *((unsigned long *)((void *)(&info) + 8)) = 0UL;
+  *((unsigned long *)((void *)(&info) + 16)) = 31UL;
+  *((unsigned long *)((void *)(&info) + 24)) = 0UL;
+  *((unsigned long *)((void *)(&info) + 32)) = 0UL;
+  *((struct ata_port_operations **)((void *)(&info) + 40)) = & opti_port_ops;
+  *((void **)((void *)(&info) + 48)) = (void *)0;
   __cil_tmp14 = 0 * 8UL;
   __cil_tmp15 = (unsigned long )(ppi) + __cil_tmp14;
   *((struct ata_port_info const **)__cil_tmp15) = (struct ata_port_info const *)(& info);
@@ -4632,9 +4586,7 @@ static int opti_init_one(struct pci_dev *dev , struct pci_device_id const *id )
   if (! __print_once) {
     {
     __print_once = (bool )1;
-    __cil_tmp18 = (unsigned long )dev;
-    __cil_tmp19 = __cil_tmp18 + 144;
-    __cil_tmp20 = (struct device *)__cil_tmp19;
+    __cil_tmp20 = (struct device *)((void *)dev + 144);
     __cil_tmp21 = (struct device const *)__cil_tmp20;
     ata_print_version(__cil_tmp21, "0.2.9");
     }

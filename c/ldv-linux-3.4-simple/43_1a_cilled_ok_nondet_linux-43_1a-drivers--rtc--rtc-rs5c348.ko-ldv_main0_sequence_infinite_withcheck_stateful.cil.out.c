@@ -2996,8 +2996,6 @@ static int rs5c348_rtc_set_time(struct device *dev , struct rtc_time *tm )
   unsigned char tmp___2 ;
   int tmp___3 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
@@ -3013,57 +3011,37 @@ static int rs5c348_rtc_set_time(struct device *dev , struct rtc_time *tm )
   int __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
   u8 *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   int __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   int __cil_tmp37 ;
   u8 *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   int __cil_tmp41 ;
   unsigned int __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   int __cil_tmp45 ;
   int __cil_tmp46 ;
   int __cil_tmp47 ;
   int __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   int __cil_tmp52 ;
   u8 *__cil_tmp53 ;
   signed char __cil_tmp54 ;
   int __cil_tmp55 ;
   int __cil_tmp56 ;
   u8 *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   int __cil_tmp60 ;
   unsigned int __cil_tmp61 ;
   u8 *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   int __cil_tmp65 ;
   unsigned int __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   int __cil_tmp69 ;
   int __cil_tmp70 ;
   unsigned int __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   int __cil_tmp74 ;
   u8 *__cil_tmp75 ;
   signed char __cil_tmp76 ;
   int __cil_tmp77 ;
   int __cil_tmp78 ;
   u8 *__cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   int __cil_tmp82 ;
   int __cil_tmp83 ;
   unsigned int __cil_tmp84 ;
@@ -3075,9 +3053,7 @@ static int rs5c348_rtc_set_time(struct device *dev , struct rtc_time *tm )
   tmp = to_spi_device(dev);
   spi = tmp;
   __cil_tmp13 = 0 + 280;
-  __cil_tmp14 = (unsigned long )spi;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp16 = *((void **)((void *)spi + __cil_tmp13));
   pdata = (struct rs5c348_plat_data *)__cil_tmp16;
   txp = (u8 *)(& txbuf);
   __cil_tmp17 = 0 * 1UL;
@@ -3101,30 +3077,22 @@ static int rs5c348_rtc_set_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp29 = (unsigned int )__cil_tmp28;
   *txp = bin2bcd(__cil_tmp29);
   __cil_tmp30 = txp + 1UL;
-  __cil_tmp31 = (unsigned long )tm;
-  __cil_tmp32 = __cil_tmp31 + 4;
-  __cil_tmp33 = *((int *)__cil_tmp32);
+  __cil_tmp33 = *((int *)((void *)tm + 4));
   __cil_tmp34 = (unsigned int )__cil_tmp33;
   *__cil_tmp30 = bin2bcd(__cil_tmp34);
   }
   {
-  __cil_tmp35 = (unsigned long )pdata;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = *((int *)__cil_tmp36);
+  __cil_tmp37 = *((int *)((void *)pdata + 8));
   if (__cil_tmp37 != 0) {
     {
     __cil_tmp38 = txp + 2UL;
-    __cil_tmp39 = (unsigned long )tm;
-    __cil_tmp40 = __cil_tmp39 + 8;
-    __cil_tmp41 = *((int *)__cil_tmp40);
+    __cil_tmp41 = *((int *)((void *)tm + 8));
     __cil_tmp42 = (unsigned int )__cil_tmp41;
     *__cil_tmp38 = bin2bcd(__cil_tmp42);
     }
   } else {
     {
-    __cil_tmp43 = (unsigned long )tm;
-    __cil_tmp44 = __cil_tmp43 + 8;
-    __cil_tmp45 = *((int *)__cil_tmp44);
+    __cil_tmp45 = *((int *)((void *)tm + 8));
     __cil_tmp46 = __cil_tmp45 + 11;
     __cil_tmp47 = __cil_tmp46 % 12;
     __cil_tmp48 = __cil_tmp47 + 1;
@@ -3132,9 +3100,7 @@ static int rs5c348_rtc_set_time(struct device *dev , struct rtc_time *tm )
     tmp___0 = bin2bcd(__cil_tmp49);
     }
     {
-    __cil_tmp50 = (unsigned long )tm;
-    __cil_tmp51 = __cil_tmp50 + 8;
-    __cil_tmp52 = *((int *)__cil_tmp51);
+    __cil_tmp52 = *((int *)((void *)tm + 8));
     if (__cil_tmp52 > 11) {
       tmp___1 = 32;
     } else {
@@ -3150,28 +3116,20 @@ static int rs5c348_rtc_set_time(struct device *dev , struct rtc_time *tm )
   }
   {
   __cil_tmp57 = txp + 3UL;
-  __cil_tmp58 = (unsigned long )tm;
-  __cil_tmp59 = __cil_tmp58 + 24;
-  __cil_tmp60 = *((int *)__cil_tmp59);
+  __cil_tmp60 = *((int *)((void *)tm + 24));
   __cil_tmp61 = (unsigned int )__cil_tmp60;
   *__cil_tmp57 = bin2bcd(__cil_tmp61);
   __cil_tmp62 = txp + 4UL;
-  __cil_tmp63 = (unsigned long )tm;
-  __cil_tmp64 = __cil_tmp63 + 12;
-  __cil_tmp65 = *((int *)__cil_tmp64);
+  __cil_tmp65 = *((int *)((void *)tm + 12));
   __cil_tmp66 = (unsigned int )__cil_tmp65;
   *__cil_tmp62 = bin2bcd(__cil_tmp66);
-  __cil_tmp67 = (unsigned long )tm;
-  __cil_tmp68 = __cil_tmp67 + 16;
-  __cil_tmp69 = *((int *)__cil_tmp68);
+  __cil_tmp69 = *((int *)((void *)tm + 16));
   __cil_tmp70 = __cil_tmp69 + 1;
   __cil_tmp71 = (unsigned int )__cil_tmp70;
   tmp___2 = bin2bcd(__cil_tmp71);
   }
   {
-  __cil_tmp72 = (unsigned long )tm;
-  __cil_tmp73 = __cil_tmp72 + 20;
-  __cil_tmp74 = *((int *)__cil_tmp73);
+  __cil_tmp74 = *((int *)((void *)tm + 20));
   if (__cil_tmp74 > 99) {
     tmp___3 = -128;
   } else {
@@ -3185,9 +3143,7 @@ static int rs5c348_rtc_set_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp78 = __cil_tmp77 | tmp___3;
   *__cil_tmp75 = (u8 )__cil_tmp78;
   __cil_tmp79 = txp + 6UL;
-  __cil_tmp80 = (unsigned long )tm;
-  __cil_tmp81 = __cil_tmp80 + 20;
-  __cil_tmp82 = *((int *)__cil_tmp81);
+  __cil_tmp82 = *((int *)((void *)tm + 20));
   __cil_tmp83 = __cil_tmp82 % 100;
   __cil_tmp84 = (unsigned int )__cil_tmp83;
   *__cil_tmp79 = bin2bcd(__cil_tmp84);
@@ -3216,8 +3172,6 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   unsigned int tmp___7 ;
   int tmp___8 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   void *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
@@ -3243,33 +3197,19 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   int __cil_tmp43 ;
   int __cil_tmp44 ;
   unsigned char __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   u8 __cil_tmp50 ;
   int __cil_tmp51 ;
   int __cil_tmp52 ;
   unsigned char __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   int __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   u8 __cil_tmp66 ;
   int __cil_tmp67 ;
   int __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   int __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
@@ -3277,24 +3217,18 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   int __cil_tmp77 ;
   int __cil_tmp78 ;
   unsigned char __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
   u8 __cil_tmp84 ;
   int __cil_tmp85 ;
   int __cil_tmp86 ;
   unsigned char __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
   u8 __cil_tmp92 ;
   int __cil_tmp93 ;
   int __cil_tmp94 ;
   unsigned char __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   unsigned int __cil_tmp98 ;
   unsigned long __cil_tmp99 ;
   unsigned long __cil_tmp100 ;
@@ -3306,8 +3240,6 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   u8 __cil_tmp106 ;
   signed char __cil_tmp107 ;
   int __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   unsigned int __cil_tmp111 ;
   struct device *__cil_tmp112 ;
   struct device  const  *__cil_tmp113 ;
@@ -3317,9 +3249,7 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   tmp = to_spi_device(dev);
   spi = tmp;
   __cil_tmp18 = 0 + 280;
-  __cil_tmp19 = (unsigned long )spi;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-  __cil_tmp21 = *((void **)__cil_tmp20);
+  __cil_tmp21 = *((void **)((void *)spi + __cil_tmp18));
   pdata = (struct rs5c348_plat_data *)__cil_tmp21;
   __cil_tmp22 = 0 * 1UL;
   __cil_tmp23 = (unsigned long )(txbuf) + __cil_tmp22;
@@ -3362,9 +3292,7 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp44 = __cil_tmp43 & 127;
   __cil_tmp45 = (unsigned char )__cil_tmp44;
   tmp___1 = bcd2bin(__cil_tmp45);
-  __cil_tmp46 = (unsigned long )tm;
-  __cil_tmp47 = __cil_tmp46 + 4;
-  *((int *)__cil_tmp47) = (int )tmp___1;
+  *((int *)((void *)tm + 4)) = (int )tmp___1;
   __cil_tmp48 = 2 * 1UL;
   __cil_tmp49 = (unsigned long )(rxbuf) + __cil_tmp48;
   __cil_tmp50 = *((u8 *)__cil_tmp49);
@@ -3372,21 +3300,13 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp52 = __cil_tmp51 & 63;
   __cil_tmp53 = (unsigned char )__cil_tmp52;
   tmp___2 = bcd2bin(__cil_tmp53);
-  __cil_tmp54 = (unsigned long )tm;
-  __cil_tmp55 = __cil_tmp54 + 8;
-  *((int *)__cil_tmp55) = (int )tmp___2;
+  *((int *)((void *)tm + 8)) = (int )tmp___2;
   }
   {
-  __cil_tmp56 = (unsigned long )pdata;
-  __cil_tmp57 = __cil_tmp56 + 8;
-  __cil_tmp58 = *((int *)__cil_tmp57);
+  __cil_tmp58 = *((int *)((void *)pdata + 8));
   if (__cil_tmp58 == 0) {
-    __cil_tmp59 = (unsigned long )tm;
-    __cil_tmp60 = __cil_tmp59 + 8;
-    __cil_tmp61 = (unsigned long )tm;
-    __cil_tmp62 = __cil_tmp61 + 8;
-    __cil_tmp63 = *((int *)__cil_tmp62);
-    *((int *)__cil_tmp60) = __cil_tmp63 % 12;
+    __cil_tmp63 = *((int *)((void *)tm + 8));
+    *((int *)((void *)tm + 8)) = __cil_tmp63 % 12;
     {
     __cil_tmp64 = 2 * 1UL;
     __cil_tmp65 = (unsigned long )(rxbuf) + __cil_tmp64;
@@ -3394,12 +3314,8 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
     __cil_tmp67 = (int )__cil_tmp66;
     __cil_tmp68 = __cil_tmp67 & 32;
     if (__cil_tmp68 != 0) {
-      __cil_tmp69 = (unsigned long )tm;
-      __cil_tmp70 = __cil_tmp69 + 8;
-      __cil_tmp71 = (unsigned long )tm;
-      __cil_tmp72 = __cil_tmp71 + 8;
-      __cil_tmp73 = *((int *)__cil_tmp72);
-      *((int *)__cil_tmp70) = __cil_tmp73 + 12;
+      __cil_tmp73 = *((int *)((void *)tm + 8));
+      *((int *)((void *)tm + 8)) = __cil_tmp73 + 12;
     } else {
 
     }
@@ -3416,9 +3332,7 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp78 = __cil_tmp77 & 3;
   __cil_tmp79 = (unsigned char )__cil_tmp78;
   tmp___3 = bcd2bin(__cil_tmp79);
-  __cil_tmp80 = (unsigned long )tm;
-  __cil_tmp81 = __cil_tmp80 + 24;
-  *((int *)__cil_tmp81) = (int )tmp___3;
+  *((int *)((void *)tm + 24)) = (int )tmp___3;
   __cil_tmp82 = 4 * 1UL;
   __cil_tmp83 = (unsigned long )(rxbuf) + __cil_tmp82;
   __cil_tmp84 = *((u8 *)__cil_tmp83);
@@ -3426,9 +3340,7 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp86 = __cil_tmp85 & 63;
   __cil_tmp87 = (unsigned char )__cil_tmp86;
   tmp___4 = bcd2bin(__cil_tmp87);
-  __cil_tmp88 = (unsigned long )tm;
-  __cil_tmp89 = __cil_tmp88 + 12;
-  *((int *)__cil_tmp89) = (int )tmp___4;
+  *((int *)((void *)tm + 12)) = (int )tmp___4;
   __cil_tmp90 = 5 * 1UL;
   __cil_tmp91 = (unsigned long )(rxbuf) + __cil_tmp90;
   __cil_tmp92 = *((u8 *)__cil_tmp91);
@@ -3436,10 +3348,8 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   __cil_tmp94 = __cil_tmp93 & 31;
   __cil_tmp95 = (unsigned char )__cil_tmp94;
   tmp___5 = bcd2bin(__cil_tmp95);
-  __cil_tmp96 = (unsigned long )tm;
-  __cil_tmp97 = __cil_tmp96 + 16;
   __cil_tmp98 = tmp___5 - 1U;
-  *((int *)__cil_tmp97) = (int )__cil_tmp98;
+  *((int *)((void *)tm + 16)) = (int )__cil_tmp98;
   __cil_tmp99 = 6 * 1UL;
   __cil_tmp100 = (unsigned long )(rxbuf) + __cil_tmp99;
   __cil_tmp101 = *((u8 *)__cil_tmp100);
@@ -3460,10 +3370,8 @@ static int rs5c348_rtc_read_time(struct device *dev , struct rtc_time *tm )
   }
   }
   {
-  __cil_tmp109 = (unsigned long )tm;
-  __cil_tmp110 = __cil_tmp109 + 20;
   __cil_tmp111 = tmp___6 + tmp___7;
-  *((int *)__cil_tmp110) = (int )__cil_tmp111;
+  *((int *)((void *)tm + 20)) = (int )__cil_tmp111;
   tmp___8 = rtc_valid_tm(tm);
   }
   if (tmp___8 < 0) {
@@ -3505,8 +3413,6 @@ static int rs5c348_probe(struct spi_device *spi )
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   u8 __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device  const  *__cil_tmp21 ;
@@ -3517,8 +3423,6 @@ static int rs5c348_probe(struct spi_device *spi )
   struct device  const  *__cil_tmp26 ;
   struct device *__cil_tmp27 ;
   struct device  const  *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   u32 __cil_tmp31 ;
   u32 __cil_tmp32 ;
   u32 __cil_tmp33 ;
@@ -3539,9 +3443,6 @@ static int rs5c348_probe(struct spi_device *spi )
   void *__cil_tmp48 ;
   u8 __cil_tmp49 ;
   int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   char const   *__cil_tmp54 ;
   struct device *__cil_tmp55 ;
   void const   *__cil_tmp56 ;
@@ -3565,9 +3466,7 @@ static int rs5c348_probe(struct spi_device *spi )
   }
   {
   __cil_tmp16 = 0 + 280;
-  __cil_tmp17 = (unsigned long )spi;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  *((void **)__cil_tmp18) = (void *)pdata;
+  *((void **)((void *)spi + __cil_tmp16)) = (void *)pdata;
   __cil_tmp19 = (u8 )12;
   tmp___0 = spi_w8r8(spi, __cil_tmp19);
   ret = (int )tmp___0;
@@ -3600,9 +3499,7 @@ static int rs5c348_probe(struct spi_device *spi )
   _dev_info(__cil_tmp26, "chip found, driver version 0.2\n");
   __cil_tmp27 = (struct device *)spi;
   __cil_tmp28 = (struct device  const  *)__cil_tmp27;
-  __cil_tmp29 = (unsigned long )spi;
-  __cil_tmp30 = __cil_tmp29 + 1160;
-  __cil_tmp31 = *((u32 *)__cil_tmp30);
+  __cil_tmp31 = *((u32 *)((void *)spi + 1160));
   __cil_tmp32 = __cil_tmp31 + 500U;
   __cil_tmp33 = __cil_tmp32 / 1000U;
   _dev_info(__cil_tmp28, "spiclk %u KHz.\n", __cil_tmp33);
@@ -3685,16 +3582,13 @@ static int rs5c348_probe(struct spi_device *spi )
   {
   __cil_tmp50 = ret & 32;
   if (__cil_tmp50 != 0) {
-    __cil_tmp51 = (unsigned long )pdata;
-    __cil_tmp52 = __cil_tmp51 + 8;
-    *((int *)__cil_tmp52) = 1;
+    *((int *)((void *)pdata + 8)) = 1;
   } else {
 
   }
   }
   {
-  __cil_tmp53 = (unsigned long )(& rs5c348_driver) + 48;
-  __cil_tmp54 = *((char const   **)__cil_tmp53);
+  __cil_tmp54 = *((char const   **)((void *)(&rs5c348_driver) + 48));
   __cil_tmp55 = (struct device *)spi;
   rtc = rtc_device_register(__cil_tmp54, __cil_tmp55, & rs5c348_rtc_ops, & __this_module);
   __cil_tmp56 = (void const   *)rtc;
@@ -3724,8 +3618,6 @@ static int rs5c348_remove(struct spi_device *spi )
 { struct rs5c348_plat_data *pdata ;
   struct rtc_device *rtc ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   struct rtc_device *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
@@ -3734,9 +3626,7 @@ static int rs5c348_remove(struct spi_device *spi )
 
   {
   __cil_tmp4 = 0 + 280;
-  __cil_tmp5 = (unsigned long )spi;
-  __cil_tmp6 = __cil_tmp5 + __cil_tmp4;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)spi + __cil_tmp4));
   pdata = (struct rs5c348_plat_data *)__cil_tmp7;
   rtc = *((struct rtc_device **)pdata);
   {

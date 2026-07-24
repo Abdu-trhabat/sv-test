@@ -6060,16 +6060,12 @@ extern void msleep(unsigned int msecs ) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf )  __attribute__((__no_instrument_function__)) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf ) 
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp___7 = dev_get_drvdata(__cil_tmp6);
   }
@@ -6084,15 +6080,11 @@ extern void rc_keyup(struct rc_dev *dev ) ;
 __inline static void *i2c_get_adapdata(struct i2c_adapter  const  *dev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_adapdata(struct i2c_adapter  const  *dev ) 
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 128;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)dev + 128);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -6359,14 +6351,6 @@ static int stb6100_get_frequency(struct dvb_frontend *fe , u32 *frequency )
   int err ;
   void *__cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int (*__cil_tmp17)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ) ;
   enum tuner_param __cil_tmp18 ;
   struct tuner_state *__cil_tmp19 ;
@@ -6383,24 +6367,16 @@ static int stb6100_get_frequency(struct dvb_frontend *fe , u32 *frequency )
 
   }
   {
-  __cil_tmp9 = (unsigned long )frontend_ops;
-  __cil_tmp10 = __cil_tmp9 + 384;
-  if ((struct dvb_tuner_ops *)__cil_tmp10) {
-    __cil_tmp11 = (unsigned long )frontend_ops;
-    __cil_tmp12 = __cil_tmp11 + 384;
-    tuner_ops = (struct dvb_tuner_ops *)__cil_tmp12;
+  if ((struct dvb_tuner_ops *)((void *)frontend_ops + 384)) {
+    tuner_ops = (struct dvb_tuner_ops *)((void *)frontend_ops + 384);
   } else {
 
   }
   }
   {
-  __cil_tmp13 = (unsigned long )tuner_ops;
-  __cil_tmp14 = __cil_tmp13 + 272;
-  if (*((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))__cil_tmp14)) {
+  if (*((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))((void *)tuner_ops + 272))) {
     {
-    __cil_tmp15 = (unsigned long )tuner_ops;
-    __cil_tmp16 = __cil_tmp15 + 272;
-    __cil_tmp17 = *((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))__cil_tmp16);
+    __cil_tmp17 = *((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))((void *)tuner_ops + 272));
     __cil_tmp18 = (enum tuner_param )1;
     err = (*__cil_tmp17)(fe, __cil_tmp18, & t_state);
     }
@@ -6429,14 +6405,6 @@ static int stb6100_set_frequency(struct dvb_frontend *fe , u32 frequency )
   void *__cil_tmp7 ;
   void *__cil_tmp8 ;
   struct tuner_state *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int (*__cil_tmp18)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ) ;
   enum tuner_param __cil_tmp19 ;
 
@@ -6454,24 +6422,16 @@ static int stb6100_set_frequency(struct dvb_frontend *fe , u32 frequency )
 
   }
   {
-  __cil_tmp10 = (unsigned long )frontend_ops;
-  __cil_tmp11 = __cil_tmp10 + 384;
-  if ((struct dvb_tuner_ops *)__cil_tmp11) {
-    __cil_tmp12 = (unsigned long )frontend_ops;
-    __cil_tmp13 = __cil_tmp12 + 384;
-    tuner_ops = (struct dvb_tuner_ops *)__cil_tmp13;
+  if ((struct dvb_tuner_ops *)((void *)frontend_ops + 384)) {
+    tuner_ops = (struct dvb_tuner_ops *)((void *)frontend_ops + 384);
   } else {
 
   }
   }
   {
-  __cil_tmp14 = (unsigned long )tuner_ops;
-  __cil_tmp15 = __cil_tmp14 + 264;
-  if (*((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))__cil_tmp15)) {
+  if (*((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))((void *)tuner_ops + 264))) {
     {
-    __cil_tmp16 = (unsigned long )tuner_ops;
-    __cil_tmp17 = __cil_tmp16 + 264;
-    __cil_tmp18 = *((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))__cil_tmp17);
+    __cil_tmp18 = *((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))((void *)tuner_ops + 264));
     __cil_tmp19 = (enum tuner_param )1;
     err = (*__cil_tmp18)(fe, __cil_tmp19, & t_state);
     }
@@ -6495,25 +6455,12 @@ static int stb6100_get_bandwidth(struct dvb_frontend *fe , u32 *bandwidth )
   struct dvb_tuner_ops *tuner_ops ;
   struct tuner_state t_state ;
   int err ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int (*__cil_tmp17)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ) ;
   enum tuner_param __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
 
   {
   frontend_ops = (struct dvb_frontend_ops *)fe;
-  __cil_tmp7 = (unsigned long )frontend_ops;
-  __cil_tmp8 = __cil_tmp7 + 384;
-  tuner_ops = (struct dvb_tuner_ops *)__cil_tmp8;
+  tuner_ops = (struct dvb_tuner_ops *)((void *)frontend_ops + 384);
   err = 0;
   if ((struct dvb_frontend_ops *)fe) {
     frontend_ops = (struct dvb_frontend_ops *)fe;
@@ -6521,24 +6468,16 @@ static int stb6100_get_bandwidth(struct dvb_frontend *fe , u32 *bandwidth )
 
   }
   {
-  __cil_tmp9 = (unsigned long )frontend_ops;
-  __cil_tmp10 = __cil_tmp9 + 384;
-  if ((struct dvb_tuner_ops *)__cil_tmp10) {
-    __cil_tmp11 = (unsigned long )frontend_ops;
-    __cil_tmp12 = __cil_tmp11 + 384;
-    tuner_ops = (struct dvb_tuner_ops *)__cil_tmp12;
+  if ((struct dvb_tuner_ops *)((void *)frontend_ops + 384)) {
+    tuner_ops = (struct dvb_tuner_ops *)((void *)frontend_ops + 384);
   } else {
 
   }
   }
   {
-  __cil_tmp13 = (unsigned long )tuner_ops;
-  __cil_tmp14 = __cil_tmp13 + 272;
-  if (*((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))__cil_tmp14)) {
+  if (*((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))((void *)tuner_ops + 272))) {
     {
-    __cil_tmp15 = (unsigned long )tuner_ops;
-    __cil_tmp16 = __cil_tmp15 + 272;
-    __cil_tmp17 = *((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))__cil_tmp16);
+    __cil_tmp17 = *((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))((void *)tuner_ops + 272));
     __cil_tmp18 = (enum tuner_param )8;
     err = (*__cil_tmp17)(fe, __cil_tmp18, & t_state);
     }
@@ -6550,8 +6489,7 @@ static int stb6100_get_bandwidth(struct dvb_frontend *fe , u32 *bandwidth )
     } else {
 
     }
-    __cil_tmp19 = (unsigned long )(& t_state) + 12;
-    *bandwidth = *((u32 *)__cil_tmp19);
+    *bandwidth = *((u32 *)((void *)(&t_state) + 12));
   } else {
 
   }
@@ -6566,15 +6504,6 @@ static int stb6100_set_bandwidth(struct dvb_frontend *fe , u32 bandwidth )
   int err ;
   void *__cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int (*__cil_tmp18)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ) ;
   enum tuner_param __cil_tmp19 ;
 
@@ -6584,32 +6513,23 @@ static int stb6100_set_bandwidth(struct dvb_frontend *fe , u32 bandwidth )
   __cil_tmp8 = (void *)0;
   tuner_ops = (struct dvb_tuner_ops *)__cil_tmp8;
   err = 0;
-  __cil_tmp9 = (unsigned long )(& t_state) + 12;
-  *((u32 *)__cil_tmp9) = bandwidth;
+  *((u32 *)((void *)(&t_state) + 12)) = bandwidth;
   if ((struct dvb_frontend_ops *)fe) {
     frontend_ops = (struct dvb_frontend_ops *)fe;
   } else {
 
   }
   {
-  __cil_tmp10 = (unsigned long )frontend_ops;
-  __cil_tmp11 = __cil_tmp10 + 384;
-  if ((struct dvb_tuner_ops *)__cil_tmp11) {
-    __cil_tmp12 = (unsigned long )frontend_ops;
-    __cil_tmp13 = __cil_tmp12 + 384;
-    tuner_ops = (struct dvb_tuner_ops *)__cil_tmp13;
+  if ((struct dvb_tuner_ops *)((void *)frontend_ops + 384)) {
+    tuner_ops = (struct dvb_tuner_ops *)((void *)frontend_ops + 384);
   } else {
 
   }
   }
   {
-  __cil_tmp14 = (unsigned long )tuner_ops;
-  __cil_tmp15 = __cil_tmp14 + 264;
-  if (*((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))__cil_tmp15)) {
+  if (*((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))((void *)tuner_ops + 264))) {
     {
-    __cil_tmp16 = (unsigned long )tuner_ops;
-    __cil_tmp17 = __cil_tmp16 + 264;
-    __cil_tmp18 = *((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))__cil_tmp17);
+    __cil_tmp18 = *((int (**)(struct dvb_frontend *fe , enum tuner_param param , struct tuner_state *state ))((void *)tuner_ops + 264));
     __cil_tmp19 = (enum tuner_param )8;
     err = (*__cil_tmp18)(fe, __cil_tmp19, & t_state);
     }
@@ -6713,8 +6633,6 @@ static int tt3650_ci_msg(struct dvb_usb_device *d , u8 cmd , u8 *data , unsigned
   void *__ret ;
   size_t __len___0 ;
   void *__ret___0 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   void *__cil_tmp24 ;
@@ -6729,12 +6647,6 @@ static int tt3650_ci_msg(struct dvb_usb_device *d , u8 cmd , u8 *data , unsigned
   int __cil_tmp33 ;
   int __cil_tmp34 ;
   long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   u8 __cil_tmp42 ;
   int __cil_tmp43 ;
   int __cil_tmp44 ;
@@ -6792,9 +6704,7 @@ static int tt3650_ci_msg(struct dvb_usb_device *d , u8 cmd , u8 *data , unsigned
   int __cil_tmp96 ;
 
   {
-  __cil_tmp20 = (unsigned long )d;
-  __cil_tmp21 = __cil_tmp20 + 9696;
-  __cil_tmp22 = *((void **)__cil_tmp21);
+  __cil_tmp22 = *((void **)((void *)d + 9696));
   state = (struct pctv452e_state *)__cil_tmp22;
   {
   while (1) {
@@ -6925,17 +6835,11 @@ static int tt3650_ci_msg(struct dvb_usb_device *d , u8 cmd , u8 *data , unsigned
   while_break___5: /* CIL Label */ ;
   }
   {
-  __cil_tmp36 = (unsigned long )state;
-  __cil_tmp37 = __cil_tmp36 + 160;
-  tmp___11 = *((u8 *)__cil_tmp37);
-  __cil_tmp38 = (unsigned long )state;
-  __cil_tmp39 = __cil_tmp38 + 160;
-  __cil_tmp40 = (unsigned long )state;
-  __cil_tmp41 = __cil_tmp40 + 160;
-  __cil_tmp42 = *((u8 *)__cil_tmp41);
+  tmp___11 = *((u8 *)((void *)state + 160));
+  __cil_tmp42 = *((u8 *)((void *)state + 160));
   __cil_tmp43 = (int )__cil_tmp42;
   __cil_tmp44 = __cil_tmp43 + 1;
-  *((u8 *)__cil_tmp39) = (u8 )__cil_tmp44;
+  *((u8 *)((void *)state + 160)) = (u8 )__cil_tmp44;
   id = (u8 )tmp___11;
   __cil_tmp45 = 0 * 1UL;
   __cil_tmp46 = (unsigned long )(buf) + __cil_tmp45;
@@ -7042,37 +6946,21 @@ static int tt3650_ci_msg_locked(struct dvb_ca_en50221 *ca , u8 cmd , u8 *data , 
 { struct dvb_usb_device *d ;
   struct pctv452e_state *state ;
   int ret ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mutex *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct mutex *__cil_tmp20 ;
 
   {
   {
-  __cil_tmp9 = (unsigned long )ca;
-  __cil_tmp10 = __cil_tmp9 + 72;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)ca + 72));
   d = (struct dvb_usb_device *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )d;
-  __cil_tmp13 = __cil_tmp12 + 9696;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  __cil_tmp14 = *((void **)((void *)d + 9696));
   state = (struct pctv452e_state *)__cil_tmp14;
-  __cil_tmp15 = (unsigned long )state;
-  __cil_tmp16 = __cil_tmp15 + 88;
-  __cil_tmp17 = (struct mutex *)__cil_tmp16;
+  __cil_tmp17 = (struct mutex *)((void *)state + 88);
   mutex_lock(__cil_tmp17);
   ret = tt3650_ci_msg(d, cmd, data, write_len, read_len);
-  __cil_tmp18 = (unsigned long )state;
-  __cil_tmp19 = __cil_tmp18 + 88;
-  __cil_tmp20 = (struct mutex *)__cil_tmp19;
+  __cil_tmp20 = (struct mutex *)((void *)state + 88);
   mutex_unlock(__cil_tmp20);
   }
   return (ret);
@@ -7375,16 +7263,10 @@ static int tt3650_ci_slot_reset(struct dvb_ca_en50221 *ca , int slot )
   struct pctv452e_state *state ;
   u8 buf[1] ;
   int ret ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mutex *__cil_tmp17 ;
   u8 __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
@@ -7402,18 +7284,12 @@ static int tt3650_ci_slot_reset(struct dvb_ca_en50221 *ca , int slot )
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   u8 *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct mutex *__cil_tmp36 ;
 
   {
-  __cil_tmp7 = (unsigned long )ca;
-  __cil_tmp8 = __cil_tmp7 + 72;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)ca + 72));
   d = (struct dvb_usb_device *)__cil_tmp9;
-  __cil_tmp10 = (unsigned long )d;
-  __cil_tmp11 = __cil_tmp10 + 9696;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)d + 9696));
   state = (struct pctv452e_state *)__cil_tmp12;
   {
   while (1) {
@@ -7431,9 +7307,7 @@ static int tt3650_ci_slot_reset(struct dvb_ca_en50221 *ca , int slot )
   __cil_tmp13 = 0 * 1UL;
   __cil_tmp14 = (unsigned long )(buf) + __cil_tmp13;
   *((u8 *)__cil_tmp14) = (u8 )0;
-  __cil_tmp15 = (unsigned long )state;
-  __cil_tmp16 = __cil_tmp15 + 88;
-  __cil_tmp17 = (struct mutex *)__cil_tmp16;
+  __cil_tmp17 = (struct mutex *)((void *)state + 88);
   mutex_lock(__cil_tmp17);
   __cil_tmp18 = (u8 )69;
   __cil_tmp19 = 0 * 1UL;
@@ -7475,9 +7349,7 @@ static int tt3650_ci_slot_reset(struct dvb_ca_en50221 *ca , int slot )
   }
   failed: 
   {
-  __cil_tmp34 = (unsigned long )state;
-  __cil_tmp35 = __cil_tmp34 + 88;
-  __cil_tmp36 = (struct mutex *)__cil_tmp35;
+  __cil_tmp36 = (struct mutex *)((void *)state + 88);
   mutex_unlock(__cil_tmp36);
   }
   return (ret);
@@ -7532,15 +7404,11 @@ static void tt3650_ci_uninit(struct dvb_usb_device *d )
   unsigned long __cil_tmp3 ;
   void *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   void *__cil_tmp17 ;
@@ -7568,9 +7436,7 @@ static void tt3650_ci_uninit(struct dvb_usb_device *d )
 
   }
   }
-  __cil_tmp6 = (unsigned long )d;
-  __cil_tmp7 = __cil_tmp6 + 9696;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)d + 9696));
   state = (struct pctv452e_state *)__cil_tmp8;
   {
   __cil_tmp9 = (unsigned long )state;
@@ -7584,9 +7450,7 @@ static void tt3650_ci_uninit(struct dvb_usb_device *d )
   }
   {
   __cil_tmp12 = 0 + 72;
-  __cil_tmp13 = (unsigned long )state;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)state + __cil_tmp12));
   __cil_tmp16 = (unsigned long )__cil_tmp15;
   __cil_tmp17 = (void *)0;
   __cil_tmp18 = (unsigned long )__cil_tmp17;
@@ -7613,41 +7477,17 @@ static int tt3650_ci_init(struct dvb_usb_adapter *a )
 { struct dvb_usb_device *d ;
   struct pctv452e_state *state ;
   int ret ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct dvb_adapter *__cil_tmp40 ;
   struct dvb_ca_en50221 *__cil_tmp41 ;
   struct dvb_ca_en50221 *__cil_tmp42 ;
@@ -7655,9 +7495,7 @@ static int tt3650_ci_init(struct dvb_usb_adapter *a )
 
   {
   d = *((struct dvb_usb_device **)a);
-  __cil_tmp5 = (unsigned long )d;
-  __cil_tmp6 = __cil_tmp5 + 9696;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)d + 9696));
   state = (struct pctv452e_state *)__cil_tmp7;
   {
   while (1) {
@@ -7670,9 +7508,7 @@ static int tt3650_ci_init(struct dvb_usb_adapter *a )
   while (1) {
     while_continue___0: /* CIL Label */ ;
     {
-    __cil_tmp8 = (unsigned long )state;
-    __cil_tmp9 = __cil_tmp8 + 88;
-    __cil_tmp10 = (struct mutex *)__cil_tmp9;
+    __cil_tmp10 = (struct mutex *)((void *)state + 88);
     __mutex_init(__cil_tmp10, "&state->ca_mutex", & __key___8);
     }
     goto while_break___0;
@@ -7682,44 +7518,24 @@ static int tt3650_ci_init(struct dvb_usb_adapter *a )
   {
   *((struct module **)state) = & __this_module;
   __cil_tmp11 = 0 + 8;
-  __cil_tmp12 = (unsigned long )state;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  *((int (**)(struct dvb_ca_en50221 *ca , int slot , int address ))__cil_tmp13) = & tt3650_ci_read_attribute_mem;
+  *((int (**)(struct dvb_ca_en50221 *ca , int slot , int address ))((void *)state + __cil_tmp11)) = & tt3650_ci_read_attribute_mem;
   __cil_tmp14 = 0 + 16;
-  __cil_tmp15 = (unsigned long )state;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((int (**)(struct dvb_ca_en50221 *ca , int slot , int address , u8 value ))__cil_tmp16) = & tt3650_ci_write_attribute_mem;
+  *((int (**)(struct dvb_ca_en50221 *ca , int slot , int address , u8 value ))((void *)state + __cil_tmp14)) = & tt3650_ci_write_attribute_mem;
   __cil_tmp17 = 0 + 24;
-  __cil_tmp18 = (unsigned long )state;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  *((int (**)(struct dvb_ca_en50221 *ca , int slot , u8 address ))__cil_tmp19) = & tt3650_ci_read_cam_control;
+  *((int (**)(struct dvb_ca_en50221 *ca , int slot , u8 address ))((void *)state + __cil_tmp17)) = & tt3650_ci_read_cam_control;
   __cil_tmp20 = 0 + 32;
-  __cil_tmp21 = (unsigned long )state;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  *((int (**)(struct dvb_ca_en50221 *ca , int slot , u8 address , u8 value ))__cil_tmp22) = & tt3650_ci_write_cam_control;
+  *((int (**)(struct dvb_ca_en50221 *ca , int slot , u8 address , u8 value ))((void *)state + __cil_tmp20)) = & tt3650_ci_write_cam_control;
   __cil_tmp23 = 0 + 40;
-  __cil_tmp24 = (unsigned long )state;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  *((int (**)(struct dvb_ca_en50221 *ca , int slot ))__cil_tmp25) = & tt3650_ci_slot_reset;
+  *((int (**)(struct dvb_ca_en50221 *ca , int slot ))((void *)state + __cil_tmp23)) = & tt3650_ci_slot_reset;
   __cil_tmp26 = 0 + 48;
-  __cil_tmp27 = (unsigned long )state;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-  *((int (**)(struct dvb_ca_en50221 *ca , int slot ))__cil_tmp28) = & tt3650_ci_slot_shutdown;
+  *((int (**)(struct dvb_ca_en50221 *ca , int slot ))((void *)state + __cil_tmp26)) = & tt3650_ci_slot_shutdown;
   __cil_tmp29 = 0 + 56;
-  __cil_tmp30 = (unsigned long )state;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  *((int (**)(struct dvb_ca_en50221 *ca , int slot ))__cil_tmp31) = & tt3650_ci_slot_ts_enable;
+  *((int (**)(struct dvb_ca_en50221 *ca , int slot ))((void *)state + __cil_tmp29)) = & tt3650_ci_slot_ts_enable;
   __cil_tmp32 = 0 + 64;
-  __cil_tmp33 = (unsigned long )state;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  *((int (**)(struct dvb_ca_en50221 *ca , int slot , int open ))__cil_tmp34) = & tt3650_ci_poll_slot_status;
+  *((int (**)(struct dvb_ca_en50221 *ca , int slot , int open ))((void *)state + __cil_tmp32)) = & tt3650_ci_poll_slot_status;
   __cil_tmp35 = 0 + 72;
-  __cil_tmp36 = (unsigned long )state;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  *((void **)__cil_tmp37) = (void *)d;
-  __cil_tmp38 = (unsigned long )a;
-  __cil_tmp39 = __cil_tmp38 + 216;
-  __cil_tmp40 = (struct dvb_adapter *)__cil_tmp39;
+  *((void **)((void *)state + __cil_tmp35)) = (void *)d;
+  __cil_tmp40 = (struct dvb_adapter *)((void *)a + 216);
   __cil_tmp41 = (struct dvb_ca_en50221 *)state;
   ret = dvb_ca_en50221_init(__cil_tmp40, __cil_tmp41, 0, 1);
   }
@@ -7751,15 +7567,7 @@ static int pctv452e_i2c_msg(struct dvb_usb_device *d , u8 addr , u8 const   *snd
   void *__ret ;
   size_t __len___0 ;
   void *__ret___0 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   void *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   u8 __cil_tmp25 ;
   int __cil_tmp26 ;
   int __cil_tmp27 ;
@@ -7851,21 +7659,13 @@ static int pctv452e_i2c_msg(struct dvb_usb_device *d , u8 addr , u8 const   *snd
   int __cil_tmp113 ;
 
   {
-  __cil_tmp16 = (unsigned long )d;
-  __cil_tmp17 = __cil_tmp16 + 9696;
-  __cil_tmp18 = *((void **)__cil_tmp17);
+  __cil_tmp18 = *((void **)((void *)d + 9696));
   state = (struct pctv452e_state *)__cil_tmp18;
-  __cil_tmp19 = (unsigned long )state;
-  __cil_tmp20 = __cil_tmp19 + 160;
-  tmp___7 = *((u8 *)__cil_tmp20);
-  __cil_tmp21 = (unsigned long )state;
-  __cil_tmp22 = __cil_tmp21 + 160;
-  __cil_tmp23 = (unsigned long )state;
-  __cil_tmp24 = __cil_tmp23 + 160;
-  __cil_tmp25 = *((u8 *)__cil_tmp24);
+  tmp___7 = *((u8 *)((void *)state + 160));
+  __cil_tmp25 = *((u8 *)((void *)state + 160));
   __cil_tmp26 = (int )__cil_tmp25;
   __cil_tmp27 = __cil_tmp26 + 1;
-  *((u8 *)__cil_tmp22) = (u8 )__cil_tmp27;
+  *((u8 *)((void *)state + 160)) = (u8 )__cil_tmp27;
   id = (u8 )tmp___7;
   ret = -22;
   {
@@ -8039,38 +7839,24 @@ static int pctv452e_i2c_xfer(struct i2c_adapter *adapter , struct i2c_msg *msg ,
   u8 *rcv_buf ;
   int ret ;
   struct i2c_adapter  const  *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mutex *__cil_tmp17 ;
   struct i2c_msg *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   __u16 __cil_tmp21 ;
   int __cil_tmp22 ;
   struct i2c_msg *__cil_tmp23 ;
   __u16 __cil_tmp24 ;
   void *__cil_tmp25 ;
   struct i2c_msg *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct i2c_msg *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   __u16 __cil_tmp32 ;
   struct i2c_msg *__cil_tmp33 ;
   __u16 __cil_tmp34 ;
   struct i2c_msg *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct i2c_msg *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   __u16 __cil_tmp41 ;
   void *__cil_tmp42 ;
   u8 const   *__cil_tmp43 ;
   int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct mutex *__cil_tmp47 ;
 
   {
@@ -8078,9 +7864,7 @@ static int pctv452e_i2c_xfer(struct i2c_adapter *adapter , struct i2c_msg *msg ,
   __cil_tmp14 = (struct i2c_adapter  const  *)adapter;
   tmp___7 = i2c_get_adapdata(__cil_tmp14);
   d = (struct dvb_usb_device *)tmp___7;
-  __cil_tmp15 = (unsigned long )d;
-  __cil_tmp16 = __cil_tmp15 + 3648;
-  __cil_tmp17 = (struct mutex *)__cil_tmp16;
+  __cil_tmp17 = (struct mutex *)((void *)d + 3648);
   tmp___8 = (int )mutex_lock_interruptible(__cil_tmp17);
   }
   if (tmp___8 < 0) {
@@ -8099,9 +7883,7 @@ static int pctv452e_i2c_xfer(struct i2c_adapter *adapter , struct i2c_msg *msg ,
     }
     {
     __cil_tmp18 = msg + i;
-    __cil_tmp19 = (unsigned long )__cil_tmp18;
-    __cil_tmp20 = __cil_tmp19 + 2;
-    __cil_tmp21 = *((__u16 *)__cil_tmp20);
+    __cil_tmp21 = *((__u16 *)((void *)__cil_tmp18 + 2));
     __cil_tmp22 = (int )__cil_tmp21;
     if (__cil_tmp22 & 1) {
       __cil_tmp23 = msg + i;
@@ -8111,26 +7893,18 @@ static int pctv452e_i2c_xfer(struct i2c_adapter *adapter , struct i2c_msg *msg ,
       snd_buf = (u8 *)__cil_tmp25;
       snd_len = (u8 )0;
       __cil_tmp26 = msg + i;
-      __cil_tmp27 = (unsigned long )__cil_tmp26;
-      __cil_tmp28 = __cil_tmp27 + 8;
-      rcv_buf = *((__u8 **)__cil_tmp28);
+      rcv_buf = *((__u8 **)((void *)__cil_tmp26 + 8));
       __cil_tmp29 = msg + i;
-      __cil_tmp30 = (unsigned long )__cil_tmp29;
-      __cil_tmp31 = __cil_tmp30 + 4;
-      __cil_tmp32 = *((__u16 *)__cil_tmp31);
+      __cil_tmp32 = *((__u16 *)((void *)__cil_tmp29 + 4));
       rcv_len = (u8 )__cil_tmp32;
     } else {
       __cil_tmp33 = msg + i;
       __cil_tmp34 = *((__u16 *)__cil_tmp33);
       addr = (u8 )__cil_tmp34;
       __cil_tmp35 = msg + i;
-      __cil_tmp36 = (unsigned long )__cil_tmp35;
-      __cil_tmp37 = __cil_tmp36 + 8;
-      snd_buf = *((__u8 **)__cil_tmp37);
+      snd_buf = *((__u8 **)((void *)__cil_tmp35 + 8));
       __cil_tmp38 = msg + i;
-      __cil_tmp39 = (unsigned long )__cil_tmp38;
-      __cil_tmp40 = __cil_tmp39 + 4;
-      __cil_tmp41 = *((__u16 *)__cil_tmp40);
+      __cil_tmp41 = *((__u16 *)((void *)__cil_tmp38 + 4));
       snd_len = (u8 )__cil_tmp41;
       __cil_tmp42 = (void *)0;
       rcv_buf = (u8 *)__cil_tmp42;
@@ -8154,9 +7928,7 @@ static int pctv452e_i2c_xfer(struct i2c_adapter *adapter , struct i2c_msg *msg ,
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp45 = (unsigned long )d;
-  __cil_tmp46 = __cil_tmp45 + 3648;
-  __cil_tmp47 = (struct mutex *)__cil_tmp46;
+  __cil_tmp47 = (struct mutex *)((void *)d + 3648);
   mutex_unlock(__cil_tmp47);
   }
   return (i);
@@ -8176,8 +7948,6 @@ static int pctv452e_power_ctrl(struct dvb_usb_device *d , int i )
   int ret ;
   u8 tmp___7 ;
   u8 tmp___8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
@@ -8189,17 +7959,7 @@ static int pctv452e_power_ctrl(struct dvb_usb_device *d , int i )
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct usb_device *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   u8 __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
@@ -8213,12 +7973,6 @@ static int pctv452e_power_ctrl(struct dvb_usb_device *d , int i )
   unsigned long __cil_tmp43 ;
   u8 *__cil_tmp44 ;
   u16 __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   u8 __cil_tmp52 ;
   int __cil_tmp53 ;
   int __cil_tmp54 ;
@@ -8234,14 +7988,10 @@ static int pctv452e_power_ctrl(struct dvb_usb_device *d , int i )
   unsigned long __cil_tmp64 ;
   u8 *__cil_tmp65 ;
   u16 __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
 
   {
   {
-  __cil_tmp9 = (unsigned long )d;
-  __cil_tmp10 = __cil_tmp9 + 9696;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)d + 9696));
   state = (struct pctv452e_state *)__cil_tmp11;
   __cil_tmp12 = 0 * 1UL;
   __cil_tmp13 = (unsigned long )(b0) + __cil_tmp12;
@@ -8266,18 +8016,14 @@ static int pctv452e_power_ctrl(struct dvb_usb_device *d , int i )
 
   }
   {
-  __cil_tmp22 = (unsigned long )state;
-  __cil_tmp23 = __cil_tmp22 + 161;
-  if (*((u8 *)__cil_tmp23)) {
+  if (*((u8 *)((void *)state + 161))) {
     return (0);
   } else {
 
   }
   }
   {
-  __cil_tmp24 = (unsigned long )d;
-  __cil_tmp25 = __cil_tmp24 + 3560;
-  __cil_tmp26 = *((struct usb_device **)__cil_tmp25);
+  __cil_tmp26 = *((struct usb_device **)((void *)d + 3560));
   ret = usb_set_interface(__cil_tmp26, 0, 3);
   }
   if (ret != 0) {
@@ -8289,17 +8035,11 @@ static int pctv452e_power_ctrl(struct dvb_usb_device *d , int i )
 
   }
   {
-  __cil_tmp27 = (unsigned long )state;
-  __cil_tmp28 = __cil_tmp27 + 160;
-  tmp___7 = *((u8 *)__cil_tmp28);
-  __cil_tmp29 = (unsigned long )state;
-  __cil_tmp30 = __cil_tmp29 + 160;
-  __cil_tmp31 = (unsigned long )state;
-  __cil_tmp32 = __cil_tmp31 + 160;
-  __cil_tmp33 = *((u8 *)__cil_tmp32);
+  tmp___7 = *((u8 *)((void *)state + 160));
+  __cil_tmp33 = *((u8 *)((void *)state + 160));
   __cil_tmp34 = (int )__cil_tmp33;
   __cil_tmp35 = __cil_tmp34 + 1;
-  *((u8 *)__cil_tmp30) = (u8 )__cil_tmp35;
+  *((u8 *)((void *)state + 160)) = (u8 )__cil_tmp35;
   __cil_tmp36 = 1 * 1UL;
   __cil_tmp37 = (unsigned long )(b0) + __cil_tmp36;
   *((u8 *)__cil_tmp37) = (u8 )tmp___7;
@@ -8320,17 +8060,11 @@ static int pctv452e_power_ctrl(struct dvb_usb_device *d , int i )
 
   }
   {
-  __cil_tmp46 = (unsigned long )state;
-  __cil_tmp47 = __cil_tmp46 + 160;
-  tmp___8 = *((u8 *)__cil_tmp47);
-  __cil_tmp48 = (unsigned long )state;
-  __cil_tmp49 = __cil_tmp48 + 160;
-  __cil_tmp50 = (unsigned long )state;
-  __cil_tmp51 = __cil_tmp50 + 160;
-  __cil_tmp52 = *((u8 *)__cil_tmp51);
+  tmp___8 = *((u8 *)((void *)state + 160));
+  __cil_tmp52 = *((u8 *)((void *)state + 160));
   __cil_tmp53 = (int )__cil_tmp52;
   __cil_tmp54 = __cil_tmp53 + 1;
-  *((u8 *)__cil_tmp49) = (u8 )__cil_tmp54;
+  *((u8 *)((void *)state + 160)) = (u8 )__cil_tmp54;
   __cil_tmp55 = 1 * 1UL;
   __cil_tmp56 = (unsigned long )(b0) + __cil_tmp55;
   *((u8 *)__cil_tmp56) = (u8 )tmp___8;
@@ -8353,9 +8087,7 @@ static int pctv452e_power_ctrl(struct dvb_usb_device *d , int i )
   } else {
 
   }
-  __cil_tmp67 = (unsigned long )state;
-  __cil_tmp68 = __cil_tmp67 + 161;
-  *((u8 *)__cil_tmp68) = (u8 )1;
+  *((u8 *)((void *)state + 161)) = (u8 )1;
   return (0);
 }
 }
@@ -8367,15 +8099,7 @@ static int pctv452e_rc_query(struct dvb_usb_device *d )
   int i ;
   u8 id ;
   u8 tmp___7 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u8 __cil_tmp18 ;
   int __cil_tmp19 ;
   int __cil_tmp20 ;
@@ -8427,8 +8151,6 @@ static int pctv452e_rc_query(struct dvb_usb_device *d )
   unsigned long __cil_tmp66 ;
   u8 __cil_tmp67 ;
   int __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   u8 __cil_tmp73 ;
@@ -8449,39 +8171,21 @@ static int pctv452e_rc_query(struct dvb_usb_device *d )
   unsigned long __cil_tmp88 ;
   u8 __cil_tmp89 ;
   int __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   struct rc_dev *__cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   u16 __cil_tmp96 ;
   int __cil_tmp97 ;
   u8 __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   struct rc_dev *__cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
 
   {
   {
-  __cil_tmp9 = (unsigned long )d;
-  __cil_tmp10 = __cil_tmp9 + 9696;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)d + 9696));
   state = (struct pctv452e_state *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )state;
-  __cil_tmp13 = __cil_tmp12 + 160;
-  tmp___7 = *((u8 *)__cil_tmp13);
-  __cil_tmp14 = (unsigned long )state;
-  __cil_tmp15 = __cil_tmp14 + 160;
-  __cil_tmp16 = (unsigned long )state;
-  __cil_tmp17 = __cil_tmp16 + 160;
-  __cil_tmp18 = *((u8 *)__cil_tmp17);
+  tmp___7 = *((u8 *)((void *)state + 160));
+  __cil_tmp18 = *((u8 *)((void *)state + 160));
   __cil_tmp19 = (int )__cil_tmp18;
   __cil_tmp20 = __cil_tmp19 + 1;
-  *((u8 *)__cil_tmp15) = (u8 )__cil_tmp20;
+  *((u8 *)((void *)state + 160)) = (u8 )__cil_tmp20;
   id = (u8 )tmp___7;
   __cil_tmp21 = 0 * 1UL;
   __cil_tmp22 = (unsigned long )(b) + __cil_tmp21;
@@ -8584,8 +8288,6 @@ static int pctv452e_rc_query(struct dvb_usb_device *d )
     __cil_tmp67 = *((u8 *)__cil_tmp66);
     __cil_tmp68 = (int )__cil_tmp67;
     if (__cil_tmp68 & 1) {
-      __cil_tmp69 = (unsigned long )state;
-      __cil_tmp70 = __cil_tmp69 + 162;
       __cil_tmp71 = 6 * 1UL;
       __cil_tmp72 = (unsigned long )(rx) + __cil_tmp71;
       __cil_tmp73 = *((u8 *)__cil_tmp72);
@@ -8596,7 +8298,7 @@ static int pctv452e_rc_query(struct dvb_usb_device *d )
       __cil_tmp78 = (int )__cil_tmp77;
       __cil_tmp79 = __cil_tmp78 << 8;
       __cil_tmp80 = __cil_tmp79 | __cil_tmp74;
-      *((u16 *)__cil_tmp70) = (u16 )__cil_tmp80;
+      *((u16 *)((void *)state + 162)) = (u16 )__cil_tmp80;
       {
       __cil_tmp81 = & debug;
       __cil_tmp82 = *__cil_tmp81;
@@ -8618,12 +8320,8 @@ static int pctv452e_rc_query(struct dvb_usb_device *d )
       }
       }
       {
-      __cil_tmp91 = (unsigned long )d;
-      __cil_tmp92 = __cil_tmp91 + 9488;
-      __cil_tmp93 = *((struct rc_dev **)__cil_tmp92);
-      __cil_tmp94 = (unsigned long )state;
-      __cil_tmp95 = __cil_tmp94 + 162;
-      __cil_tmp96 = *((u16 *)__cil_tmp95);
+      __cil_tmp93 = *((struct rc_dev **)((void *)d + 9488));
+      __cil_tmp96 = *((u16 *)((void *)state + 162));
       __cil_tmp97 = (int )__cil_tmp96;
       __cil_tmp98 = (u8 )0;
       rc_keydown(__cil_tmp93, __cil_tmp97, __cil_tmp98);
@@ -8635,17 +8333,11 @@ static int pctv452e_rc_query(struct dvb_usb_device *d )
   } else {
     _L: /* CIL Label */ 
     {
-    __cil_tmp99 = (unsigned long )state;
-    __cil_tmp100 = __cil_tmp99 + 162;
-    if (*((u16 *)__cil_tmp100)) {
+    if (*((u16 *)((void *)state + 162))) {
       {
-      __cil_tmp101 = (unsigned long )d;
-      __cil_tmp102 = __cil_tmp101 + 9488;
-      __cil_tmp103 = *((struct rc_dev **)__cil_tmp102);
+      __cil_tmp103 = *((struct rc_dev **)((void *)d + 9488));
       rc_keyup(__cil_tmp103);
-      __cil_tmp104 = (unsigned long )state;
-      __cil_tmp105 = __cil_tmp104 + 162;
-      *((u16 *)__cil_tmp105) = (u16 )0;
+      *((u16 *)((void *)state + 162)) = (u16 )0;
       }
     } else {
 
@@ -8665,8 +8357,6 @@ static int pctv452e_read_mac_address(struct dvb_usb_device *d , u8 *mac )
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct mutex *__cil_tmp13 ;
   int __cil_tmp14 ;
   u8 __cil_tmp15 ;
@@ -8691,8 +8381,6 @@ static int pctv452e_read_mac_address(struct dvb_usb_device *d , u8 *mac )
   unsigned long __cil_tmp34 ;
   u8 *__cil_tmp35 ;
   u8 __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct mutex *__cil_tmp39 ;
   u8 *__cil_tmp40 ;
   unsigned long __cil_tmp41 ;
@@ -8710,9 +8398,7 @@ static int pctv452e_read_mac_address(struct dvb_usb_device *d , u8 *mac )
   __cil_tmp10 = (unsigned long )(mem_addr) + __cil_tmp9;
   *((u8 *)__cil_tmp10) = (u8 )204;
   ret = -11;
-  __cil_tmp11 = (unsigned long )d;
-  __cil_tmp12 = __cil_tmp11 + 3648;
-  __cil_tmp13 = (struct mutex *)__cil_tmp12;
+  __cil_tmp13 = (struct mutex *)((void *)d + 3648);
   tmp___7 = (int )mutex_lock_interruptible(__cil_tmp13);
   }
   if (tmp___7 < 0) {
@@ -8755,9 +8441,7 @@ static int pctv452e_read_mac_address(struct dvb_usb_device *d , u8 *mac )
 
   }
   {
-  __cil_tmp37 = (unsigned long )d;
-  __cil_tmp38 = __cil_tmp37 + 3648;
-  __cil_tmp39 = (struct mutex *)__cil_tmp38;
+  __cil_tmp39 = (struct mutex *)((void *)d + 3648);
   mutex_unlock(__cil_tmp39);
   }
   if (20 != ret) {
@@ -9013,30 +8697,20 @@ static int pctv452e_frontend_attach(struct dvb_usb_adapter *a )
   struct dvb_frontend *tmp___16 ;
   bool __cil_tmp17 ;
   struct dvb_usb_device *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct i2c_adapter *__cil_tmp21 ;
   void *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct dvb_frontend *__cil_tmp33 ;
   bool __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct dvb_frontend *__cil_tmp39 ;
   struct dvb_usb_device *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct i2c_adapter *__cil_tmp43 ;
   void *__cil_tmp44 ;
   unsigned long __cil_tmp45 ;
@@ -9047,17 +8721,9 @@ static int pctv452e_frontend_attach(struct dvb_usb_adapter *a )
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   struct dvb_usb_device *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct dvb_usb_device_description *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   __u16 __cil_tmp60 ;
   int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   __u16 __cil_tmp64 ;
   int __cil_tmp65 ;
 
@@ -9081,9 +8747,7 @@ static int pctv452e_frontend_attach(struct dvb_usb_adapter *a )
   if (__a) {
     {
     __cil_tmp18 = *((struct dvb_usb_device **)a);
-    __cil_tmp19 = (unsigned long )__cil_tmp18;
-    __cil_tmp20 = __cil_tmp19 + 3720;
-    __cil_tmp21 = (struct i2c_adapter *)__cil_tmp20;
+    __cil_tmp21 = (struct i2c_adapter *)((void *)__cil_tmp18 + 3720);
     tmp___11 = (*__a)(& stb0899_config, __cil_tmp21);
     __r = (void *)tmp___11;
     }
@@ -9106,15 +8770,11 @@ static int pctv452e_frontend_attach(struct dvb_usb_adapter *a )
   }
   __cil_tmp25 = 0 * 360UL;
   __cil_tmp26 = 1600 + __cil_tmp25;
-  __cil_tmp27 = (unsigned long )a;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-  *((struct dvb_frontend **)__cil_tmp28) = (struct dvb_frontend *)__r;
+  *((struct dvb_frontend **)((void *)a + __cil_tmp26)) = (struct dvb_frontend *)__r;
   {
   __cil_tmp29 = 0 * 360UL;
   __cil_tmp30 = 1600 + __cil_tmp29;
-  __cil_tmp31 = (unsigned long )a;
-  __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-  __cil_tmp33 = *((struct dvb_frontend **)__cil_tmp32);
+  __cil_tmp33 = *((struct dvb_frontend **)((void *)a + __cil_tmp30));
   if (! __cil_tmp33) {
     return (-19);
   } else {
@@ -9141,13 +8801,9 @@ static int pctv452e_frontend_attach(struct dvb_usb_adapter *a )
     {
     __cil_tmp35 = 0 * 360UL;
     __cil_tmp36 = 1600 + __cil_tmp35;
-    __cil_tmp37 = (unsigned long )a;
-    __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-    __cil_tmp39 = *((struct dvb_frontend **)__cil_tmp38);
+    __cil_tmp39 = *((struct dvb_frontend **)((void *)a + __cil_tmp36));
     __cil_tmp40 = *((struct dvb_usb_device **)a);
-    __cil_tmp41 = (unsigned long )__cil_tmp40;
-    __cil_tmp42 = __cil_tmp41 + 3720;
-    __cil_tmp43 = (struct i2c_adapter *)__cil_tmp42;
+    __cil_tmp43 = (struct i2c_adapter *)((void *)__cil_tmp40 + 3720);
     tmp___16 = (*__a___0)(__cil_tmp39, __cil_tmp43);
     __r___0 = (void *)tmp___16;
     }
@@ -9183,22 +8839,14 @@ static int pctv452e_frontend_attach(struct dvb_usb_adapter *a )
   __cil_tmp50 = 0 * 8UL;
   __cil_tmp51 = 128 + __cil_tmp50;
   __cil_tmp52 = *((struct dvb_usb_device **)a);
-  __cil_tmp53 = (unsigned long )__cil_tmp52;
-  __cil_tmp54 = __cil_tmp53 + 3552;
-  __cil_tmp55 = *((struct dvb_usb_device_description **)__cil_tmp54);
-  __cil_tmp56 = (unsigned long )__cil_tmp55;
-  __cil_tmp57 = __cil_tmp56 + __cil_tmp51;
-  id = *((struct usb_device_id **)__cil_tmp57);
+  __cil_tmp55 = *((struct dvb_usb_device_description **)((void *)__cil_tmp52 + 3552));
+  id = *((struct usb_device_id **)((void *)__cil_tmp55 + __cil_tmp51));
   {
-  __cil_tmp58 = (unsigned long )id;
-  __cil_tmp59 = __cil_tmp58 + 2;
-  __cil_tmp60 = *((__u16 *)__cil_tmp59);
+  __cil_tmp60 = *((__u16 *)((void *)id + 2));
   __cil_tmp61 = (int )__cil_tmp60;
   if (2888 == __cil_tmp61) {
     {
-    __cil_tmp62 = (unsigned long )id;
-    __cil_tmp63 = __cil_tmp62 + 4;
-    __cil_tmp64 = *((__u16 *)__cil_tmp63);
+    __cil_tmp64 = *((__u16 *)((void *)id + 4));
     __cil_tmp65 = (int )__cil_tmp64;
     if (12298 == __cil_tmp65) {
       {
@@ -9226,19 +8874,13 @@ static int pctv452e_tuner_attach(struct dvb_usb_adapter *a )
   struct dvb_frontend *tmp___11 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct dvb_frontend *__cil_tmp13 ;
   bool __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct dvb_frontend *__cil_tmp19 ;
   struct stb6100_config  const  *__cil_tmp20 ;
   struct dvb_usb_device *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct i2c_adapter *__cil_tmp24 ;
   void *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
@@ -9251,9 +8893,7 @@ static int pctv452e_tuner_attach(struct dvb_usb_adapter *a )
   {
   __cil_tmp9 = 0 * 360UL;
   __cil_tmp10 = 1600 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )a;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = *((struct dvb_frontend **)__cil_tmp12);
+  __cil_tmp13 = *((struct dvb_frontend **)((void *)a + __cil_tmp10));
   if (! __cil_tmp13) {
     return (-19);
   } else {
@@ -9282,14 +8922,10 @@ static int pctv452e_tuner_attach(struct dvb_usb_adapter *a )
     {
     __cil_tmp15 = 0 * 360UL;
     __cil_tmp16 = 1600 + __cil_tmp15;
-    __cil_tmp17 = (unsigned long )a;
-    __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-    __cil_tmp19 = *((struct dvb_frontend **)__cil_tmp18);
+    __cil_tmp19 = *((struct dvb_frontend **)((void *)a + __cil_tmp16));
     __cil_tmp20 = (struct stb6100_config  const  *)(& stb6100_config);
     __cil_tmp21 = *((struct dvb_usb_device **)a);
-    __cil_tmp22 = (unsigned long )__cil_tmp21;
-    __cil_tmp23 = __cil_tmp22 + 3720;
-    __cil_tmp24 = (struct i2c_adapter *)__cil_tmp23;
+    __cil_tmp24 = (struct i2c_adapter *)((void *)__cil_tmp21 + 3720);
     tmp___11 = (*__a)(__cil_tmp19, __cil_tmp20, __cil_tmp24);
     __r = (void *)tmp___11;
     }

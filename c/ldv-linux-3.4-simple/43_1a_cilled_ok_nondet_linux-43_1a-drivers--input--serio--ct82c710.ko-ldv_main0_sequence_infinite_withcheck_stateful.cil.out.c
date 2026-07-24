@@ -1101,13 +1101,12 @@ extern int snprintf(char * , size_t  , char const   *  , ...) ;
 extern struct pv_cpu_ops pv_cpu_ops ;
 extern size_t strlcpy(char * , char const   * , size_t  ) ;
 __inline static void slow_down_io(void) 
-{ unsigned long __cil_tmp1 ;
+{
   void (*__cil_tmp2)(void) ;
 
   {
   {
-  __cil_tmp1 = (unsigned long )(& pv_cpu_ops) + 216;
-  __cil_tmp2 = *((void (**)(void))__cil_tmp1);
+  __cil_tmp2 = *((void (**)(void))((void *)(&pv_cpu_ops) + 216));
   (*__cil_tmp2)();
   }
   return;
@@ -1523,10 +1522,8 @@ static int ct82c710_detect(void)
   struct resource *__cil_tmp4 ;
   int __cil_tmp5 ;
   int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct resource *__cil_tmp8 ;
   resource_size_t __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
 
   {
   {
@@ -1553,12 +1550,10 @@ static int ct82c710_detect(void)
   __cil_tmp5 = (int )tmp___0;
   __cil_tmp6 = __cil_tmp5 << 2;
   *((resource_size_t *)__cil_tmp4) = (resource_size_t )__cil_tmp6;
-  __cil_tmp7 = (unsigned long )(& ct82c710_iores) + 8;
   __cil_tmp8 = & ct82c710_iores;
   __cil_tmp9 = *((resource_size_t *)__cil_tmp8);
-  *((resource_size_t *)__cil_tmp7) = __cil_tmp9 + 1ULL;
-  __cil_tmp10 = (unsigned long )(& ct82c710_iores) + 24;
-  *((unsigned long *)__cil_tmp10) = 256UL;
+  *((resource_size_t *)((void *)(&ct82c710_iores) + 8)) = __cil_tmp9 + 1ULL;
+  *((unsigned long *)((void *)(&ct82c710_iores) + 24)) = 256UL;
   outb_p((unsigned char)15, 912);
   outb_p((unsigned char)15, 913);
   }
@@ -1570,24 +1565,8 @@ static int ct82c710_probe(struct platform_device *dev )
   struct serio *__cil_tmp3 ;
   unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   char (*__cil_tmp20)[32U] ;
   char *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   char (*__cil_tmp24)[32U] ;
   char *__cil_tmp25 ;
   struct resource *__cil_tmp26 ;
@@ -1611,31 +1590,15 @@ static int ct82c710_probe(struct platform_device *dev )
   }
   }
   {
-  __cil_tmp6 = (unsigned long )ct82c710_port;
-  __cil_tmp7 = __cil_tmp6 + 73;
-  *((__u8 *)__cil_tmp7) = (__u8 )1U;
-  __cil_tmp8 = (unsigned long )ct82c710_port;
-  __cil_tmp9 = __cil_tmp8 + 416;
-  __cil_tmp10 = (unsigned long )dev;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  *((struct device **)__cil_tmp9) = (struct device *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )ct82c710_port;
-  __cil_tmp13 = __cil_tmp12 + 160;
-  *((int (**)(struct serio * ))__cil_tmp13) = & ct82c710_open;
-  __cil_tmp14 = (unsigned long )ct82c710_port;
-  __cil_tmp15 = __cil_tmp14 + 168;
-  *((void (**)(struct serio * ))__cil_tmp15) = & ct82c710_close;
-  __cil_tmp16 = (unsigned long )ct82c710_port;
-  __cil_tmp17 = __cil_tmp16 + 152;
-  *((int (**)(struct serio * , unsigned char  ))__cil_tmp17) = & ct82c710_write;
-  __cil_tmp18 = (unsigned long )ct82c710_port;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  __cil_tmp20 = (char (*)[32U])__cil_tmp19;
+  *((__u8 *)((void *)ct82c710_port + 73)) = (__u8 )1U;
+  *((struct device **)((void *)ct82c710_port + 416)) = (struct device *)((void *)dev + 16);
+  *((int (**)(struct serio * ))((void *)ct82c710_port + 160)) = & ct82c710_open;
+  *((void (**)(struct serio * ))((void *)ct82c710_port + 168)) = & ct82c710_close;
+  *((int (**)(struct serio * , unsigned char  ))((void *)ct82c710_port + 152)) = & ct82c710_write;
+  __cil_tmp20 = (char (*)[32U])((void *)ct82c710_port + 8);
   __cil_tmp21 = (char *)__cil_tmp20;
   strlcpy(__cil_tmp21, "C&T 82c710 mouse port", 32UL);
-  __cil_tmp22 = (unsigned long )ct82c710_port;
-  __cil_tmp23 = __cil_tmp22 + 40;
-  __cil_tmp24 = (char (*)[32U])__cil_tmp23;
+  __cil_tmp24 = (char (*)[32U])((void *)ct82c710_port + 40);
   __cil_tmp25 = (char *)__cil_tmp24;
   __cil_tmp26 = & ct82c710_iores;
   __cil_tmp27 = *((resource_size_t *)__cil_tmp26);

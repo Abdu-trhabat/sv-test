@@ -2905,14 +2905,11 @@ extern int dev_err(struct device const * , char const * , ...) ;
 extern int i2c_master_send(struct i2c_client const * , char const * , int ) ;
 extern int i2c_master_recv(struct i2c_client const * , char * , int ) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2931,38 +2928,26 @@ static int ad714x_i2c_write(struct ad714x_chip *chip , unsigned short reg , unsi
   __u16 tmp ;
   __u16 tmp___0 ;
   long tmp___1 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct i2c_client *__cil_tmp13 ;
   int __cil_tmp14 ;
   __u16 __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   __u16 __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct i2c_client const *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   __be16 (*__cil_tmp29)[16U] ;
   char const *__cil_tmp30 ;
   int __cil_tmp31 ;
   long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct device *__cil_tmp35 ;
   struct device const *__cil_tmp36 ;
   {
   {
-  __cil_tmp10 = (unsigned long )chip;
-  __cil_tmp11 = __cil_tmp10 + 104;
-  __cil_tmp12 = *((struct device **)__cil_tmp11);
+  __cil_tmp12 = *((struct device **)((void *)chip + 104));
   __mptr = (struct device const *)__cil_tmp12;
   __cil_tmp13 = (struct i2c_client *)__mptr;
   client = __cil_tmp13 + 0xffffffffffffffd8UL;
@@ -2971,21 +2956,15 @@ static int ad714x_i2c_write(struct ad714x_chip *chip , unsigned short reg , unsi
   tmp = __fswab16(__cil_tmp15);
   __cil_tmp16 = 0 * 2UL;
   __cil_tmp17 = 304 + __cil_tmp16;
-  __cil_tmp18 = (unsigned long )chip;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  *((__be16 *)__cil_tmp19) = tmp;
+  *((__be16 *)((void *)chip + __cil_tmp17)) = tmp;
   __cil_tmp20 = (int )data;
   __cil_tmp21 = (__u16 )__cil_tmp20;
   tmp___0 = __fswab16(__cil_tmp21);
   __cil_tmp22 = 1 * 2UL;
   __cil_tmp23 = 304 + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )chip;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  *((__be16 *)__cil_tmp25) = tmp___0;
+  *((__be16 *)((void *)chip + __cil_tmp23)) = tmp___0;
   __cil_tmp26 = (struct i2c_client const *)client;
-  __cil_tmp27 = (unsigned long )chip;
-  __cil_tmp28 = __cil_tmp27 + 304;
-  __cil_tmp29 = (__be16 (*)[16U])__cil_tmp28;
+  __cil_tmp29 = (__be16 (*)[16U])((void *)chip + 304);
   __cil_tmp30 = (char const *)__cil_tmp29;
   error = i2c_master_send(__cil_tmp26, __cil_tmp30, 4);
   __cil_tmp31 = error < 0;
@@ -2994,9 +2973,7 @@ static int ad714x_i2c_write(struct ad714x_chip *chip , unsigned short reg , unsi
   }
   if (tmp___1 != 0L) {
     {
-    __cil_tmp33 = (unsigned long )client;
-    __cil_tmp34 = __cil_tmp33 + 40;
-    __cil_tmp35 = (struct device *)__cil_tmp34;
+    __cil_tmp35 = (struct device *)((void *)client + 40);
     __cil_tmp36 = (struct device const *)__cil_tmp35;
     dev_err(__cil_tmp36, "I2C write error: %d\n", error);
     }
@@ -3015,24 +2992,16 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   __u16 tmp ;
   long tmp___0 ;
   __u16 tmp___1 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct i2c_client *__cil_tmp15 ;
   int __cil_tmp16 ;
   __u16 __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct i2c_client const *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   __be16 (*__cil_tmp25)[16U] ;
   char const *__cil_tmp26 ;
   struct i2c_client const *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   __be16 (*__cil_tmp30)[16U] ;
   char *__cil_tmp31 ;
   unsigned int __cil_tmp32 ;
@@ -3040,14 +3009,10 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   int __cil_tmp34 ;
   int __cil_tmp35 ;
   long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
   struct device const *__cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   __be16 __cil_tmp45 ;
   int __cil_tmp46 ;
   __u16 __cil_tmp47 ;
@@ -3056,9 +3021,7 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   size_t __cil_tmp50 ;
   {
   {
-  __cil_tmp12 = (unsigned long )chip;
-  __cil_tmp13 = __cil_tmp12 + 104;
-  __cil_tmp14 = *((struct device **)__cil_tmp13);
+  __cil_tmp14 = *((struct device **)((void *)chip + 104));
   __mptr = (struct device const *)__cil_tmp14;
   __cil_tmp15 = (struct i2c_client *)__mptr;
   client = __cil_tmp15 + 0xffffffffffffffd8UL;
@@ -3067,22 +3030,16 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   tmp = __fswab16(__cil_tmp17);
   __cil_tmp18 = 0 * 2UL;
   __cil_tmp19 = 304 + __cil_tmp18;
-  __cil_tmp20 = (unsigned long )chip;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  *((__be16 *)__cil_tmp21) = tmp;
+  *((__be16 *)((void *)chip + __cil_tmp19)) = tmp;
   __cil_tmp22 = (struct i2c_client const *)client;
-  __cil_tmp23 = (unsigned long )chip;
-  __cil_tmp24 = __cil_tmp23 + 304;
-  __cil_tmp25 = (__be16 (*)[16U])__cil_tmp24;
+  __cil_tmp25 = (__be16 (*)[16U])((void *)chip + 304);
   __cil_tmp26 = (char const *)__cil_tmp25;
   error = i2c_master_send(__cil_tmp22, __cil_tmp26, 2);
   }
   if (error >= 0) {
     {
     __cil_tmp27 = (struct i2c_client const *)client;
-    __cil_tmp28 = (unsigned long )chip;
-    __cil_tmp29 = __cil_tmp28 + 304;
-    __cil_tmp30 = (__be16 (*)[16U])__cil_tmp29;
+    __cil_tmp30 = (__be16 (*)[16U])((void *)chip + 304);
     __cil_tmp31 = (char *)__cil_tmp30;
     __cil_tmp32 = (unsigned int )len;
     __cil_tmp33 = __cil_tmp32 * 2U;
@@ -3098,9 +3055,7 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   }
   if (tmp___0 != 0L) {
     {
-    __cil_tmp37 = (unsigned long )client;
-    __cil_tmp38 = __cil_tmp37 + 40;
-    __cil_tmp39 = (struct device *)__cil_tmp38;
+    __cil_tmp39 = (struct device *)((void *)client + 40);
     __cil_tmp40 = (struct device const *)__cil_tmp39;
     dev_err(__cil_tmp40, "I2C read error: %d\n", error);
     }
@@ -3113,9 +3068,7 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   {
   __cil_tmp41 = i * 2UL;
   __cil_tmp42 = 304 + __cil_tmp41;
-  __cil_tmp43 = (unsigned long )chip;
-  __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
-  __cil_tmp45 = *((__be16 *)__cil_tmp44);
+  __cil_tmp45 = *((__be16 *)((void *)chip + __cil_tmp42));
   __cil_tmp46 = (int )__cil_tmp45;
   __cil_tmp47 = (__u16 )__cil_tmp46;
   tmp___1 = __fswab16(__cil_tmp47);
@@ -3141,25 +3094,17 @@ static int ad714x_i2c_probe(struct i2c_client *client , struct i2c_device_id con
 { struct ad714x_chip *chip ;
   long tmp ;
   long tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   u16 __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   void const *__cil_tmp13 ;
   void const *__cil_tmp14 ;
   void *__cil_tmp15 ;
   {
   {
-  __cil_tmp6 = (unsigned long )client;
-  __cil_tmp7 = __cil_tmp6 + 40;
-  __cil_tmp8 = (struct device *)__cil_tmp7;
+  __cil_tmp8 = (struct device *)((void *)client + 40);
   __cil_tmp9 = (u16 )24;
-  __cil_tmp10 = (unsigned long )client;
-  __cil_tmp11 = __cil_tmp10 + 1192;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp12 = *((int *)((void *)client + 1192));
   chip = ad714x_probe(__cil_tmp8, __cil_tmp9, __cil_tmp12, & ad714x_i2c_read, & ad714x_i2c_write);
   __cil_tmp13 = (void const *)chip;
   tmp___0 = IS_ERR(__cil_tmp13);

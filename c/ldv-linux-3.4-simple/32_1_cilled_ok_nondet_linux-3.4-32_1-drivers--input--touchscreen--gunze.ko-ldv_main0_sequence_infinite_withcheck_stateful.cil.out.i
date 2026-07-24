@@ -1865,12 +1865,8 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
 { struct device const *__mptr ;
   struct device *tmp ;
   struct input_dev *tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct input_dev *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   char *__cil_tmp13 ;
@@ -1879,15 +1875,11 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
   {
   if (dev) {
     {
-    __cil_tmp5 = (unsigned long )dev;
-    __cil_tmp6 = __cil_tmp5 + 648;
-    __cil_tmp7 = (struct device *)__cil_tmp6;
+    __cil_tmp7 = (struct device *)((void *)dev + 648);
     tmp = get_device(__cil_tmp7);
     __mptr = (struct device const *)tmp;
     __cil_tmp8 = (struct input_dev *)0;
-    __cil_tmp9 = (unsigned long )__cil_tmp8;
-    __cil_tmp10 = __cil_tmp9 + 648;
-    __cil_tmp11 = (struct device *)__cil_tmp10;
+    __cil_tmp11 = (struct device *)((void *)__cil_tmp8 + 648);
     __cil_tmp12 = (unsigned int )__cil_tmp11;
     __cil_tmp13 = (char *)__mptr;
     __cil_tmp14 = __cil_tmp13 - __cil_tmp12;
@@ -1902,15 +1894,12 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
 }
 __inline static void input_put_device(struct input_dev *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void input_put_device(struct input_dev *dev )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device *__cil_tmp4 ;
   {
   if (dev) {
     {
-    __cil_tmp2 = (unsigned long )dev;
-    __cil_tmp3 = __cil_tmp2 + 648;
-    __cil_tmp4 = (struct device *)__cil_tmp3;
+    __cil_tmp4 = (struct device *)((void *)dev + 648);
     put_device(__cil_tmp4);
     }
   } else {
@@ -1970,15 +1959,11 @@ extern void serio_unregister_driver(struct serio_driver *drv ) ;
 __inline static void *serio_get_drvdata(struct serio *serio ) __attribute__((__no_instrument_function__)) ;
 __inline static void *serio_get_drvdata(struct serio *serio )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 272;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 272);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1987,14 +1972,11 @@ __inline static void *serio_get_drvdata(struct serio *serio )
 }
 __inline static void serio_set_drvdata(struct serio *serio , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void serio_set_drvdata(struct serio *serio , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 272;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 272);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2035,46 +2017,30 @@ static void gunze_process_packet(struct gunze *gunze )
 { struct input_dev *dev ;
   unsigned long tmp ;
   unsigned long tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned char *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned char __cil_tmp17 ;
   int __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned char *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned char __cil_tmp28 ;
   int __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned char __cil_tmp34 ;
   int __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned char *__cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char *__cil_tmp45 ;
   unsigned char *__cil_tmp46 ;
   char const *__cil_tmp47 ;
@@ -2083,8 +2049,6 @@ static void gunze_process_packet(struct gunze *gunze )
   int __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned char *__cil_tmp55 ;
   unsigned char *__cil_tmp56 ;
   char const *__cil_tmp57 ;
@@ -2094,24 +2058,18 @@ static void gunze_process_packet(struct gunze *gunze )
   int __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned char __cil_tmp66 ;
   int __cil_tmp67 ;
   int __cil_tmp68 ;
   {
   dev = *((struct input_dev **)gunze);
   {
-  __cil_tmp5 = (unsigned long )gunze;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((int *)__cil_tmp6);
+  __cil_tmp7 = *((int *)((void *)gunze + 16));
   if (__cil_tmp7 != 10) {
     {
     __cil_tmp8 = 0 * 1UL;
     __cil_tmp9 = 20 + __cil_tmp8;
-    __cil_tmp10 = (unsigned long )gunze;
-    __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-    __cil_tmp12 = (unsigned char *)__cil_tmp11;
+    __cil_tmp12 = (unsigned char *)((void *)gunze + __cil_tmp9);
     printk("<4>gunze.c: bad packet: >%.*s<\n", 10, __cil_tmp12);
     }
     return;
@@ -2119,17 +2077,13 @@ static void gunze_process_packet(struct gunze *gunze )
     {
     __cil_tmp13 = 5 * 1UL;
     __cil_tmp14 = 20 + __cil_tmp13;
-    __cil_tmp15 = (unsigned long )gunze;
-    __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-    __cil_tmp17 = *((unsigned char *)__cil_tmp16);
+    __cil_tmp17 = *((unsigned char *)((void *)gunze + __cil_tmp14));
     __cil_tmp18 = (int )__cil_tmp17;
     if (__cil_tmp18 != 44) {
       {
       __cil_tmp19 = 0 * 1UL;
       __cil_tmp20 = 20 + __cil_tmp19;
-      __cil_tmp21 = (unsigned long )gunze;
-      __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-      __cil_tmp23 = (unsigned char *)__cil_tmp22;
+      __cil_tmp23 = (unsigned char *)((void *)gunze + __cil_tmp20);
       printk("<4>gunze.c: bad packet: >%.*s<\n", 10, __cil_tmp23);
       }
       return;
@@ -2137,25 +2091,19 @@ static void gunze_process_packet(struct gunze *gunze )
       {
       __cil_tmp24 = 0 * 1UL;
       __cil_tmp25 = 20 + __cil_tmp24;
-      __cil_tmp26 = (unsigned long )gunze;
-      __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-      __cil_tmp28 = *((unsigned char *)__cil_tmp27);
+      __cil_tmp28 = *((unsigned char *)((void *)gunze + __cil_tmp25));
       __cil_tmp29 = (int )__cil_tmp28;
       if (__cil_tmp29 != 84) {
         {
         __cil_tmp30 = 0 * 1UL;
         __cil_tmp31 = 20 + __cil_tmp30;
-        __cil_tmp32 = (unsigned long )gunze;
-        __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-        __cil_tmp34 = *((unsigned char *)__cil_tmp33);
+        __cil_tmp34 = *((unsigned char *)((void *)gunze + __cil_tmp31));
         __cil_tmp35 = (int )__cil_tmp34;
         if (__cil_tmp35 != 82) {
           {
           __cil_tmp36 = 0 * 1UL;
           __cil_tmp37 = 20 + __cil_tmp36;
-          __cil_tmp38 = (unsigned long )gunze;
-          __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-          __cil_tmp40 = (unsigned char *)__cil_tmp39;
+          __cil_tmp40 = (unsigned char *)((void *)gunze + __cil_tmp37);
           printk("<4>gunze.c: bad packet: >%.*s<\n", 10, __cil_tmp40);
           }
           return;
@@ -2172,9 +2120,7 @@ static void gunze_process_packet(struct gunze *gunze )
   {
   __cil_tmp41 = 0 * 1UL;
   __cil_tmp42 = 20 + __cil_tmp41;
-  __cil_tmp43 = (unsigned long )gunze;
-  __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
-  __cil_tmp45 = (unsigned char *)__cil_tmp44;
+  __cil_tmp45 = (unsigned char *)((void *)gunze + __cil_tmp42);
   __cil_tmp46 = __cil_tmp45 + 1;
   __cil_tmp47 = (char const *)__cil_tmp46;
   __cil_tmp48 = (void *)0;
@@ -2184,9 +2130,7 @@ static void gunze_process_packet(struct gunze *gunze )
   input_report_abs(dev, 0U, __cil_tmp50);
   __cil_tmp51 = 0 * 1UL;
   __cil_tmp52 = 20 + __cil_tmp51;
-  __cil_tmp53 = (unsigned long )gunze;
-  __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-  __cil_tmp55 = (unsigned char *)__cil_tmp54;
+  __cil_tmp55 = (unsigned char *)((void *)gunze + __cil_tmp52);
   __cil_tmp56 = __cil_tmp55 + 6;
   __cil_tmp57 = (char const *)__cil_tmp56;
   __cil_tmp58 = (void *)0;
@@ -2197,9 +2141,7 @@ static void gunze_process_packet(struct gunze *gunze )
   input_report_abs(dev, 1U, __cil_tmp61);
   __cil_tmp62 = 0 * 1UL;
   __cil_tmp63 = 20 + __cil_tmp62;
-  __cil_tmp64 = (unsigned long )gunze;
-  __cil_tmp65 = __cil_tmp64 + __cil_tmp63;
-  __cil_tmp66 = *((unsigned char *)__cil_tmp65);
+  __cil_tmp66 = *((unsigned char *)((void *)gunze + __cil_tmp63));
   __cil_tmp67 = (int )__cil_tmp66;
   __cil_tmp68 = __cil_tmp67 == 84;
   input_report_key(dev, 330U, __cil_tmp68);
@@ -2213,22 +2155,10 @@ static irqreturn_t gunze_interrupt(struct serio *serio , unsigned char data , un
   void *tmp ;
   int tmp___0 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   {
   {
   tmp = serio_get_drvdata(serio);
@@ -2239,30 +2169,18 @@ static irqreturn_t gunze_interrupt(struct serio *serio , unsigned char data , un
   if (__cil_tmp7 == 13) {
     {
     gunze_process_packet(gunze);
-    __cil_tmp8 = (unsigned long )gunze;
-    __cil_tmp9 = __cil_tmp8 + 16;
-    *((int *)__cil_tmp9) = 0;
+    *((int *)((void *)gunze + 16)) = 0;
     }
   } else {
     {
-    __cil_tmp10 = (unsigned long )gunze;
-    __cil_tmp11 = __cil_tmp10 + 16;
-    __cil_tmp12 = *((int *)__cil_tmp11);
+    __cil_tmp12 = *((int *)((void *)gunze + 16));
     if (__cil_tmp12 < 10) {
-      __cil_tmp13 = (unsigned long )gunze;
-      __cil_tmp14 = __cil_tmp13 + 16;
-      tmp___0 = *((int *)__cil_tmp14);
-      __cil_tmp15 = (unsigned long )gunze;
-      __cil_tmp16 = __cil_tmp15 + 16;
-      __cil_tmp17 = (unsigned long )gunze;
-      __cil_tmp18 = __cil_tmp17 + 16;
-      __cil_tmp19 = *((int *)__cil_tmp18);
-      *((int *)__cil_tmp16) = __cil_tmp19 + 1;
+      tmp___0 = *((int *)((void *)gunze + 16));
+      __cil_tmp19 = *((int *)((void *)gunze + 16));
+      *((int *)((void *)gunze + 16)) = __cil_tmp19 + 1;
       __cil_tmp20 = tmp___0 * 1UL;
       __cil_tmp21 = 20 + __cil_tmp20;
-      __cil_tmp22 = (unsigned long )gunze;
-      __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-      *((unsigned char *)__cil_tmp23) = data;
+      *((unsigned char *)((void *)gunze + __cil_tmp21)) = data;
     } else {
     }
     }
@@ -2303,50 +2221,24 @@ static int gunze_connect(struct serio *serio , struct serio_driver *drv )
   struct input_dev *input_dev ;
   int err ;
   void *tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   char *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   char *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   char *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   void *__cil_tmp51 ;
   struct input_dev *__cil_tmp52 ;
   void *__cil_tmp53 ;
@@ -2367,62 +2259,36 @@ static int gunze_connect(struct serio *serio , struct serio_driver *drv )
   } else {
   }
   {
-  __cil_tmp7 = (unsigned long )gunze;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  *((struct serio **)__cil_tmp8) = serio;
+  *((struct serio **)((void *)gunze + 8)) = serio;
   *((struct input_dev **)gunze) = input_dev;
   __cil_tmp9 = 0 * 1UL;
   __cil_tmp10 = 30 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )gunze;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = (char *)__cil_tmp12;
+  __cil_tmp13 = (char *)((void *)gunze + __cil_tmp10);
   __cil_tmp14 = 0 * 1UL;
   __cil_tmp15 = 40 + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )serio;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = (char *)__cil_tmp17;
+  __cil_tmp18 = (char *)((void *)serio + __cil_tmp15);
   snprintf(__cil_tmp13, 32UL, "%s/input0", __cil_tmp18);
   *((char const **)input_dev) = "Gunze AHL-51S TouchScreen";
-  __cil_tmp19 = (unsigned long )input_dev;
-  __cil_tmp20 = __cil_tmp19 + 8;
   __cil_tmp21 = 0 * 1UL;
   __cil_tmp22 = 30 + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )gunze;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  __cil_tmp25 = (char *)__cil_tmp24;
-  *((char const **)__cil_tmp20) = (char const *)__cil_tmp25;
-  __cil_tmp26 = (unsigned long )input_dev;
-  __cil_tmp27 = __cil_tmp26 + 24;
-  *((__u16 *)__cil_tmp27) = (__u16 )19;
+  __cil_tmp25 = (char *)((void *)gunze + __cil_tmp22);
+  *((char const **)((void *)input_dev + 8)) = (char const *)__cil_tmp25;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )19;
   __cil_tmp28 = 24 + 2;
-  __cil_tmp29 = (unsigned long )input_dev;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  *((__u16 *)__cil_tmp30) = (__u16 )28;
+  *((__u16 *)((void *)input_dev + __cil_tmp28)) = (__u16 )28;
   __cil_tmp31 = 24 + 4;
-  __cil_tmp32 = (unsigned long )input_dev;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  *((__u16 *)__cil_tmp33) = (__u16 )81;
+  *((__u16 *)((void *)input_dev + __cil_tmp31)) = (__u16 )81;
   __cil_tmp34 = 24 + 6;
-  __cil_tmp35 = (unsigned long )input_dev;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  *((__u16 *)__cil_tmp36) = (__u16 )256;
-  __cil_tmp37 = (unsigned long )input_dev;
-  __cil_tmp38 = __cil_tmp37 + 648;
-  __cil_tmp39 = (unsigned long )serio;
-  __cil_tmp40 = __cil_tmp39 + 272;
-  *((struct device **)__cil_tmp38) = (struct device *)__cil_tmp40;
+  *((__u16 *)((void *)input_dev + __cil_tmp34)) = (__u16 )256;
+  *((struct device **)((void *)input_dev + 648)) = (struct device *)((void *)serio + 272);
   __cil_tmp41 = 0 * 8UL;
   __cil_tmp42 = 40 + __cil_tmp41;
-  __cil_tmp43 = (unsigned long )input_dev;
-  __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
   __cil_tmp45 = 1UL << 3;
   __cil_tmp46 = 1UL << 1;
-  *((unsigned long *)__cil_tmp44) = __cil_tmp46 | __cil_tmp45;
+  *((unsigned long *)((void *)input_dev + __cil_tmp42)) = __cil_tmp46 | __cil_tmp45;
   __cil_tmp47 = 5 * 8UL;
   __cil_tmp48 = 48 + __cil_tmp47;
-  __cil_tmp49 = (unsigned long )input_dev;
-  __cil_tmp50 = __cil_tmp49 + __cil_tmp48;
-  *((unsigned long *)__cil_tmp50) = 1UL << 10;
+  *((unsigned long *)((void *)input_dev + __cil_tmp48)) = 1UL << 10;
   input_set_abs_params(input_dev, 0U, 24, 1000, 0, 0);
   input_set_abs_params(input_dev, 1U, 24, 1000, 0, 0);
   __cil_tmp51 = (void *)gunze;

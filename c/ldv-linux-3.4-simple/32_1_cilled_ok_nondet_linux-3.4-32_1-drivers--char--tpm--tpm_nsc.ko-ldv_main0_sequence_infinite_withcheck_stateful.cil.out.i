@@ -2938,8 +2938,6 @@ extern int tpm_pm_resume(struct device * ) ;
 static int wait_for_stat(struct tpm_chip *chip , u8 mask , u8 val , u8 *data )
 { unsigned long stop ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
@@ -2951,8 +2949,6 @@ static int wait_for_stat(struct tpm_chip *chip , u8 mask , u8 val , u8 *data )
   unsigned long volatile __cil_tmp21 ;
   unsigned long volatile __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   int __cil_tmp28 ;
@@ -2967,9 +2963,7 @@ static int wait_for_stat(struct tpm_chip *chip , u8 mask , u8 val , u8 *data )
   {
   {
   __cil_tmp10 = 304 + 16;
-  __cil_tmp11 = (unsigned long )chip;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = *((unsigned long *)__cil_tmp12);
+  __cil_tmp13 = *((unsigned long *)((void *)chip + __cil_tmp10));
   __cil_tmp14 = __cil_tmp13 + 1UL;
   __cil_tmp15 = (int )__cil_tmp14;
   *data = inb(__cil_tmp15);
@@ -2994,9 +2988,7 @@ static int wait_for_stat(struct tpm_chip *chip , u8 mask , u8 val , u8 *data )
     {
     msleep(5U);
     __cil_tmp23 = 304 + 16;
-    __cil_tmp24 = (unsigned long )chip;
-    __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-    __cil_tmp26 = *((unsigned long *)__cil_tmp25);
+    __cil_tmp26 = *((unsigned long *)((void *)chip + __cil_tmp23));
     __cil_tmp27 = __cil_tmp26 + 1UL;
     __cil_tmp28 = (int )__cil_tmp27;
     *data = inb(__cil_tmp28);
@@ -3035,27 +3027,19 @@ static int nsc_wait_for_ready(struct tpm_chip *chip )
   unsigned char tmp___9 ;
   unsigned char tmp___10 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   unsigned long volatile __cil_tmp23 ;
   unsigned long volatile __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   int __cil_tmp35 ;
   long __cil_tmp36 ;
@@ -3066,9 +3050,7 @@ static int nsc_wait_for_ready(struct tpm_chip *chip )
   {
   {
   __cil_tmp12 = 304 + 16;
-  __cil_tmp13 = (unsigned long )chip;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((unsigned long *)__cil_tmp14);
+  __cil_tmp15 = *((unsigned long *)((void *)chip + __cil_tmp12));
   __cil_tmp16 = __cil_tmp15 + 1UL;
   __cil_tmp17 = (int )__cil_tmp16;
   tmp___7 = inb(__cil_tmp17);
@@ -3077,9 +3059,7 @@ static int nsc_wait_for_ready(struct tpm_chip *chip )
   if (status & 1) {
     {
     __cil_tmp18 = 304 + 16;
-    __cil_tmp19 = (unsigned long )chip;
-    __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-    __cil_tmp21 = *((unsigned long *)__cil_tmp20);
+    __cil_tmp21 = *((unsigned long *)((void *)chip + __cil_tmp18));
     __cil_tmp22 = (int )__cil_tmp21;
     tmp___8 = inb(__cil_tmp22);
     status = (int )tmp___8;
@@ -3099,9 +3079,7 @@ static int nsc_wait_for_ready(struct tpm_chip *chip )
     {
     msleep(5U);
     __cil_tmp25 = 304 + 16;
-    __cil_tmp26 = (unsigned long )chip;
-    __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-    __cil_tmp28 = *((unsigned long *)__cil_tmp27);
+    __cil_tmp28 = *((unsigned long *)((void *)chip + __cil_tmp25));
     __cil_tmp29 = __cil_tmp28 + 1UL;
     __cil_tmp30 = (int )__cil_tmp29;
     tmp___9 = inb(__cil_tmp30);
@@ -3110,9 +3088,7 @@ static int nsc_wait_for_ready(struct tpm_chip *chip )
     if (status & 1) {
       {
       __cil_tmp31 = 304 + 16;
-      __cil_tmp32 = (unsigned long )chip;
-      __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-      __cil_tmp34 = *((unsigned long *)__cil_tmp33);
+      __cil_tmp34 = *((unsigned long *)((void *)chip + __cil_tmp31));
       __cil_tmp35 = (int )__cil_tmp34;
       tmp___10 = inb(__cil_tmp35);
       status = (int )tmp___10;
@@ -3159,8 +3135,6 @@ static int tpm_nsc_recv(struct tpm_chip *chip , u8 *buf , size_t count )
   struct device const *__cil_tmp16 ;
   u8 *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   u8 *__cil_tmp23 ;
@@ -3182,8 +3156,6 @@ static int tpm_nsc_recv(struct tpm_chip *chip , u8 *buf , size_t count )
   u8 __cil_tmp39 ;
   int __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   int __cil_tmp45 ;
   u8 *__cil_tmp46 ;
@@ -3196,8 +3168,6 @@ static int tpm_nsc_recv(struct tpm_chip *chip , u8 *buf , size_t count )
   struct device const *__cil_tmp53 ;
   u8 *__cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
   u8 *__cil_tmp60 ;
@@ -3234,9 +3204,7 @@ static int tpm_nsc_recv(struct tpm_chip *chip , u8 *buf , size_t count )
   {
   __cil_tmp17 = & data;
   __cil_tmp18 = 304 + 16;
-  __cil_tmp19 = (unsigned long )chip;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-  __cil_tmp21 = *((unsigned long *)__cil_tmp20);
+  __cil_tmp21 = *((unsigned long *)((void *)chip + __cil_tmp18));
   __cil_tmp22 = (int )__cil_tmp21;
   *__cil_tmp17 = inb(__cil_tmp22);
   }
@@ -3295,9 +3263,7 @@ static int tpm_nsc_recv(struct tpm_chip *chip , u8 *buf , size_t count )
     }
     {
     __cil_tmp41 = 304 + 16;
-    __cil_tmp42 = (unsigned long )chip;
-    __cil_tmp43 = __cil_tmp42 + __cil_tmp41;
-    __cil_tmp44 = *((unsigned long *)__cil_tmp43);
+    __cil_tmp44 = *((unsigned long *)((void *)chip + __cil_tmp41));
     __cil_tmp45 = (int )__cil_tmp44;
     *p = inb(__cil_tmp45);
     p = p + 1;
@@ -3331,9 +3297,7 @@ static int tpm_nsc_recv(struct tpm_chip *chip , u8 *buf , size_t count )
   {
   __cil_tmp54 = & data;
   __cil_tmp55 = 304 + 16;
-  __cil_tmp56 = (unsigned long )chip;
-  __cil_tmp57 = __cil_tmp56 + __cil_tmp55;
-  __cil_tmp58 = *((unsigned long *)__cil_tmp57);
+  __cil_tmp58 = *((unsigned long *)((void *)chip + __cil_tmp55));
   __cil_tmp59 = (int )__cil_tmp58;
   *__cil_tmp54 = inb(__cil_tmp59);
   }
@@ -3380,8 +3344,6 @@ static int tpm_nsc_send(struct tpm_chip *chip , u8 *buf , size_t count )
   int tmp___10 ;
   int tmp___11 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -3390,8 +3352,6 @@ static int tpm_nsc_send(struct tpm_chip *chip , u8 *buf , size_t count )
   struct device *__cil_tmp19 ;
   struct device const *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   int __cil_tmp26 ;
@@ -3407,8 +3367,6 @@ static int tpm_nsc_send(struct tpm_chip *chip , u8 *buf , size_t count )
   u8 *__cil_tmp36 ;
   u8 __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   int __cil_tmp42 ;
   u8 __cil_tmp43 ;
@@ -3416,17 +3374,13 @@ static int tpm_nsc_send(struct tpm_chip *chip , u8 *buf , size_t count )
   struct device *__cil_tmp45 ;
   struct device const *__cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   int __cil_tmp52 ;
   {
   {
   __cil_tmp11 = 304 + 16;
-  __cil_tmp12 = (unsigned long )chip;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  __cil_tmp14 = *((unsigned long *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned long *)((void *)chip + __cil_tmp11));
   __cil_tmp15 = __cil_tmp14 + 1UL;
   __cil_tmp16 = (int )__cil_tmp15;
   outb((unsigned char)34, __cil_tmp16);
@@ -3452,9 +3406,7 @@ static int tpm_nsc_send(struct tpm_chip *chip , u8 *buf , size_t count )
   }
   {
   __cil_tmp21 = 304 + 16;
-  __cil_tmp22 = (unsigned long )chip;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  __cil_tmp24 = *((unsigned long *)__cil_tmp23);
+  __cil_tmp24 = *((unsigned long *)((void *)chip + __cil_tmp21));
   __cil_tmp25 = __cil_tmp24 + 1UL;
   __cil_tmp26 = (int )__cil_tmp25;
   outb((unsigned char)1, __cil_tmp26);
@@ -3500,9 +3452,7 @@ static int tpm_nsc_send(struct tpm_chip *chip , u8 *buf , size_t count )
     __cil_tmp36 = buf + i;
     __cil_tmp37 = *__cil_tmp36;
     __cil_tmp38 = 304 + 16;
-    __cil_tmp39 = (unsigned long )chip;
-    __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-    __cil_tmp41 = *((unsigned long *)__cil_tmp40);
+    __cil_tmp41 = *((unsigned long *)((void *)chip + __cil_tmp38));
     __cil_tmp42 = (int )__cil_tmp41;
     outb(__cil_tmp37, __cil_tmp42);
     i = i + 1;
@@ -3526,9 +3476,7 @@ static int tpm_nsc_send(struct tpm_chip *chip , u8 *buf , size_t count )
   }
   {
   __cil_tmp47 = 304 + 16;
-  __cil_tmp48 = (unsigned long )chip;
-  __cil_tmp49 = __cil_tmp48 + __cil_tmp47;
-  __cil_tmp50 = *((unsigned long *)__cil_tmp49);
+  __cil_tmp50 = *((unsigned long *)((void *)chip + __cil_tmp47));
   __cil_tmp51 = __cil_tmp50 + 1UL;
   __cil_tmp52 = (int )__cil_tmp51;
   outb((unsigned char)3, __cil_tmp52);
@@ -3538,17 +3486,13 @@ static int tpm_nsc_send(struct tpm_chip *chip , u8 *buf , size_t count )
 }
 static void tpm_nsc_cancel(struct tpm_chip *chip )
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   {
   {
   __cil_tmp2 = 304 + 16;
-  __cil_tmp3 = (unsigned long )chip;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  __cil_tmp5 = *((unsigned long *)__cil_tmp4);
+  __cil_tmp5 = *((unsigned long *)((void *)chip + __cil_tmp2));
   __cil_tmp6 = __cil_tmp5 + 1UL;
   __cil_tmp7 = (int )__cil_tmp6;
   outb((unsigned char)34, __cil_tmp7);
@@ -3559,17 +3503,13 @@ static void tpm_nsc_cancel(struct tpm_chip *chip )
 static u8 tpm_nsc_status(struct tpm_chip *chip )
 { unsigned char tmp___7 ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
   {
   {
   __cil_tmp3 = 304 + 16;
-  __cil_tmp4 = (unsigned long )chip;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  __cil_tmp6 = *((unsigned long *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned long *)((void *)chip + __cil_tmp3));
   __cil_tmp7 = __cil_tmp6 + 1UL;
   __cil_tmp8 = (int )__cil_tmp7;
   tmp___7 = inb(__cil_tmp8);
@@ -3635,8 +3575,6 @@ static void tpm_nsc_remove(struct device *dev )
   void *tmp___7 ;
   struct device const *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   resource_size_t __cil_tmp9 ;
   resource_size_t __cil_tmp10 ;
@@ -3650,9 +3588,7 @@ static void tpm_nsc_remove(struct device *dev )
   if (chip) {
     {
     __cil_tmp5 = 304 + 16;
-    __cil_tmp6 = (unsigned long )chip;
-    __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-    __cil_tmp8 = *((unsigned long *)__cil_tmp7);
+    __cil_tmp8 = *((unsigned long *)((void *)chip + __cil_tmp5));
     __cil_tmp9 = (resource_size_t )__cil_tmp8;
     __cil_tmp10 = (resource_size_t )2;
     __release_region(& ioport_resource, __cil_tmp9, __cil_tmp10);
@@ -3666,14 +3602,10 @@ static void tpm_nsc_remove(struct device *dev )
 }
 static int tpm_nsc_suspend(struct platform_device *dev , int msg_event7 )
 { int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)dev + 16);
   tmp___7 = tpm_pm_suspend(__cil_tmp6, msg_event7);
   }
   return (tmp___7);
@@ -3681,14 +3613,10 @@ static int tpm_nsc_suspend(struct platform_device *dev , int msg_event7 )
 }
 static int tpm_nsc_resume(struct platform_device *dev )
 { int tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 16);
   tmp___7 = tpm_pm_resume(__cil_tmp5);
   }
   return (tmp___7);
@@ -3800,22 +3728,13 @@ static int init_nsc(void)
   int __cil_tmp49 ;
   int __cil_tmp50 ;
   int __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   resource_size_t __cil_tmp61 ;
   resource_size_t __cil_tmp62 ;
   void *__cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct device *__cil_tmp68 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp69 ;
   unsigned int __cil_tmp70 ;
@@ -3823,8 +3742,6 @@ static int init_nsc(void)
   int __cil_tmp72 ;
   int __cil_tmp73 ;
   long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   struct device *__cil_tmp77 ;
   struct device const *__cil_tmp78 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp79 ;
@@ -3833,8 +3750,6 @@ static int init_nsc(void)
   int __cil_tmp82 ;
   int __cil_tmp83 ;
   long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   struct device *__cil_tmp87 ;
   struct device const *__cil_tmp88 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp89 ;
@@ -3843,8 +3758,6 @@ static int init_nsc(void)
   int __cil_tmp92 ;
   int __cil_tmp93 ;
   long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   struct device *__cil_tmp97 ;
   struct device const *__cil_tmp98 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp99 ;
@@ -3853,8 +3766,6 @@ static int init_nsc(void)
   int __cil_tmp102 ;
   int __cil_tmp103 ;
   long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   struct device *__cil_tmp107 ;
   struct device const *__cil_tmp108 ;
   int __cil_tmp109 ;
@@ -3865,8 +3776,6 @@ static int init_nsc(void)
   int __cil_tmp114 ;
   int __cil_tmp115 ;
   long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   struct device *__cil_tmp119 ;
   struct device const *__cil_tmp120 ;
   int __cil_tmp121 ;
@@ -3877,8 +3786,6 @@ static int init_nsc(void)
   int __cil_tmp126 ;
   int __cil_tmp127 ;
   long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
   struct device *__cil_tmp131 ;
   struct device const *__cil_tmp132 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp133 ;
@@ -3887,8 +3794,6 @@ static int init_nsc(void)
   int __cil_tmp136 ;
   int __cil_tmp137 ;
   long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
   struct device *__cil_tmp141 ;
   struct device const *__cil_tmp142 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp143 ;
@@ -3897,8 +3802,6 @@ static int init_nsc(void)
   int __cil_tmp146 ;
   int __cil_tmp147 ;
   long __cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
   struct device *__cil_tmp151 ;
   struct device const *__cil_tmp152 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp153 ;
@@ -3907,18 +3810,12 @@ static int init_nsc(void)
   int __cil_tmp156 ;
   int __cil_tmp157 ;
   long __cil_tmp158 ;
-  unsigned long __cil_tmp159 ;
-  unsigned long __cil_tmp160 ;
   struct device *__cil_tmp161 ;
   struct device const *__cil_tmp162 ;
-  unsigned long __cil_tmp163 ;
-  unsigned long __cil_tmp164 ;
   struct device *__cil_tmp165 ;
   struct device const *__cil_tmp166 ;
   int __cil_tmp167 ;
   unsigned long __cil_tmp168 ;
-  unsigned long __cil_tmp169 ;
-  unsigned long __cil_tmp170 ;
   resource_size_t __cil_tmp171 ;
   resource_size_t __cil_tmp172 ;
   {
@@ -3964,18 +3861,11 @@ static int init_nsc(void)
   } else {
   }
   {
-  __cil_tmp52 = (unsigned long )pdev;
-  __cil_tmp53 = __cil_tmp52 + 784;
-  *((u32 *)__cil_tmp53) = (u32 )0;
+  *((u32 *)((void *)pdev + 784)) = (u32 )0;
   __cil_tmp54 = 16 + 176;
-  __cil_tmp55 = (unsigned long )pdev;
-  __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-  __cil_tmp57 = (unsigned long )(& nsc_drv) + 40;
-  *((struct device_driver **)__cil_tmp56) = (struct device_driver *)__cil_tmp57;
+  *((struct device_driver **)((void *)pdev + __cil_tmp54)) = (struct device_driver *)((void *)(&nsc_drv) + 40);
   __cil_tmp58 = 16 + 760;
-  __cil_tmp59 = (unsigned long )pdev;
-  __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
-  *((void (**)(struct device *dev ))__cil_tmp60) = & tpm_nsc_remove;
+  *((void (**)(struct device *dev ))((void *)pdev + __cil_tmp58)) = & tpm_nsc_remove;
   rc = platform_device_add(pdev);
   }
   if (rc < 0) {
@@ -3999,9 +3889,7 @@ static int init_nsc(void)
   }
   }
   {
-  __cil_tmp66 = (unsigned long )pdev;
-  __cil_tmp67 = __cil_tmp66 + 16;
-  __cil_tmp68 = (struct device *)__cil_tmp67;
+  __cil_tmp68 = (struct device *)((void *)pdev + 16);
   chip = tpm_register_hardware(__cil_tmp68, & tpm_nsc);
   }
   if (chip) {
@@ -4026,9 +3914,7 @@ static int init_nsc(void)
       }
       if (tmp___12) {
         {
-        __cil_tmp75 = (unsigned long )pdev;
-        __cil_tmp76 = __cil_tmp75 + 16;
-        __cil_tmp77 = (struct device *)__cil_tmp76;
+        __cil_tmp77 = (struct device *)((void *)pdev + 16);
         __cil_tmp78 = (struct device const *)__cil_tmp77;
         __dynamic_dev_dbg(& descriptor, __cil_tmp78, "NSC TPM detected\n");
         }
@@ -4062,9 +3948,7 @@ static int init_nsc(void)
         tmp___13 = tpm_read_index(nscAddrBase, 39);
         tmp___14 = tpm_read_index(nscAddrBase, 32);
         tmp___15 = tpm_read_index(nscAddrBase, 7);
-        __cil_tmp85 = (unsigned long )pdev;
-        __cil_tmp86 = __cil_tmp85 + 16;
-        __cil_tmp87 = (struct device *)__cil_tmp86;
+        __cil_tmp87 = (struct device *)((void *)pdev + 16);
         __cil_tmp88 = (struct device const *)__cil_tmp87;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp88, "NSC LDN 0x%x, SID 0x%x, SRID 0x%x\n",
                           tmp___15, tmp___14, tmp___13);
@@ -4100,9 +3984,7 @@ static int init_nsc(void)
         tmp___18 = tpm_read_index(nscAddrBase, 38);
         tmp___19 = tpm_read_index(nscAddrBase, 37);
         tmp___20 = tpm_read_index(nscAddrBase, 33);
-        __cil_tmp95 = (unsigned long )pdev;
-        __cil_tmp96 = __cil_tmp95 + 16;
-        __cil_tmp97 = (struct device *)__cil_tmp96;
+        __cil_tmp97 = (struct device *)((void *)pdev + 16);
         __cil_tmp98 = (struct device const *)__cil_tmp97;
         __dynamic_dev_dbg(& descriptor___1, __cil_tmp98, "NSC SIOCF1 0x%x SIOCF5 0x%x SIOCF6 0x%x SIOCF8 0x%x\n",
                           tmp___20, tmp___19, tmp___18, tmp___17);
@@ -4136,9 +4018,7 @@ static int init_nsc(void)
         {
         tmp___22 = tpm_read_index(nscAddrBase, 96);
         tmp___23 = tpm_read_index(nscAddrBase, 97);
-        __cil_tmp105 = (unsigned long )pdev;
-        __cil_tmp106 = __cil_tmp105 + 16;
-        __cil_tmp107 = (struct device *)__cil_tmp106;
+        __cil_tmp107 = (struct device *)((void *)pdev + 16);
         __cil_tmp108 = (struct device const *)__cil_tmp107;
         __cil_tmp109 = tmp___22 << 8;
         __cil_tmp110 = __cil_tmp109 | tmp___23;
@@ -4173,9 +4053,7 @@ static int init_nsc(void)
         {
         tmp___25 = tpm_read_index(nscAddrBase, 98);
         tmp___26 = tpm_read_index(nscAddrBase, 99);
-        __cil_tmp117 = (unsigned long )pdev;
-        __cil_tmp118 = __cil_tmp117 + 16;
-        __cil_tmp119 = (struct device *)__cil_tmp118;
+        __cil_tmp119 = (struct device *)((void *)pdev + 16);
         __cil_tmp120 = (struct device const *)__cil_tmp119;
         __cil_tmp121 = tmp___25 << 8;
         __cil_tmp122 = __cil_tmp121 | tmp___26;
@@ -4209,9 +4087,7 @@ static int init_nsc(void)
       if (tmp___29) {
         {
         tmp___28 = tpm_read_index(nscAddrBase, 112);
-        __cil_tmp129 = (unsigned long )pdev;
-        __cil_tmp130 = __cil_tmp129 + 16;
-        __cil_tmp131 = (struct device *)__cil_tmp130;
+        __cil_tmp131 = (struct device *)((void *)pdev + 16);
         __cil_tmp132 = (struct device const *)__cil_tmp131;
         __dynamic_dev_dbg(& descriptor___4, __cil_tmp132, "NSC Interrupt number and wakeup 0x%x\n",
                           tmp___28);
@@ -4244,9 +4120,7 @@ static int init_nsc(void)
       if (tmp___31) {
         {
         tmp___30 = tpm_read_index(nscAddrBase, 113);
-        __cil_tmp139 = (unsigned long )pdev;
-        __cil_tmp140 = __cil_tmp139 + 16;
-        __cil_tmp141 = (struct device *)__cil_tmp140;
+        __cil_tmp141 = (struct device *)((void *)pdev + 16);
         __cil_tmp142 = (struct device const *)__cil_tmp141;
         __dynamic_dev_dbg(& descriptor___5, __cil_tmp142, "NSC IRQ type select 0x%x\n",
                           tmp___30);
@@ -4280,9 +4154,7 @@ static int init_nsc(void)
         {
         tmp___32 = tpm_read_index(nscAddrBase, 117);
         tmp___33 = tpm_read_index(nscAddrBase, 116);
-        __cil_tmp149 = (unsigned long )pdev;
-        __cil_tmp150 = __cil_tmp149 + 16;
-        __cil_tmp151 = (struct device *)__cil_tmp150;
+        __cil_tmp151 = (struct device *)((void *)pdev + 16);
         __cil_tmp152 = (struct device const *)__cil_tmp151;
         __dynamic_dev_dbg(& descriptor___6, __cil_tmp152, "NSC DMA channel select0 0x%x, select1 0x%x\n",
                           tmp___33, tmp___32);
@@ -4324,9 +4196,7 @@ static int init_nsc(void)
         tmp___42 = tpm_read_index(nscAddrBase, 242);
         tmp___43 = tpm_read_index(nscAddrBase, 241);
         tmp___44 = tpm_read_index(nscAddrBase, 240);
-        __cil_tmp159 = (unsigned long )pdev;
-        __cil_tmp160 = __cil_tmp159 + 16;
-        __cil_tmp161 = (struct device *)__cil_tmp160;
+        __cil_tmp161 = (struct device *)((void *)pdev + 16);
         __cil_tmp162 = (struct device const *)__cil_tmp161;
         __dynamic_dev_dbg(& descriptor___7, __cil_tmp162, "NSC Config 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x\n",
                           tmp___44, tmp___43, tmp___42, tmp___41, tmp___40, tmp___39,
@@ -4344,16 +4214,12 @@ static int init_nsc(void)
   }
   {
   tmp___46 = tpm_read_index(nscAddrBase, 39);
-  __cil_tmp163 = (unsigned long )pdev;
-  __cil_tmp164 = __cil_tmp163 + 16;
-  __cil_tmp165 = (struct device *)__cil_tmp164;
+  __cil_tmp165 = (struct device *)((void *)pdev + 16);
   __cil_tmp166 = (struct device const *)__cil_tmp165;
   __cil_tmp167 = tmp___46 & 31;
   _dev_info(__cil_tmp166, "NSC TPM revision %d\n", __cil_tmp167);
   __cil_tmp168 = 304 + 16;
-  __cil_tmp169 = (unsigned long )chip;
-  __cil_tmp170 = __cil_tmp169 + __cil_tmp168;
-  *((unsigned long *)__cil_tmp170) = base;
+  *((unsigned long *)((void *)chip + __cil_tmp168)) = base;
   }
   return (0);
   err_rel_reg:
@@ -4379,15 +4245,12 @@ static int init_nsc(void)
 }
 static void cleanup_nsc(void) __attribute__((__section__(".exit.text"), __no_instrument_function__)) ;
 static void cleanup_nsc(void)
-{ unsigned long __cil_tmp1 ;
-  unsigned long __cil_tmp2 ;
+{
   struct device *__cil_tmp3 ;
   {
   if (pdev) {
     {
-    __cil_tmp1 = (unsigned long )pdev;
-    __cil_tmp2 = __cil_tmp1 + 16;
-    __cil_tmp3 = (struct device *)__cil_tmp2;
+    __cil_tmp3 = (struct device *)((void *)pdev + 16);
     tpm_nsc_remove(__cil_tmp3);
     platform_device_unregister(pdev);
     }

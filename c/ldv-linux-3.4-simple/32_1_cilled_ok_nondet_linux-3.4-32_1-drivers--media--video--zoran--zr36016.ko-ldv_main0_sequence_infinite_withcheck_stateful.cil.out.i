@@ -553,68 +553,36 @@ __aligned__(1))) =
 static u8 zr36016_read(struct zr36016 *ptr , u16 reg )
 { u8 value ;
   __u32 tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct videocodec *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct videocodec_master *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct videocodec *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct videocodec_master *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   __u32 (*__cil_tmp21)(struct videocodec *codec , __u16 reg ) ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct videocodec *__cil_tmp24 ;
   unsigned int __cil_tmp25 ;
   int *__cil_tmp26 ;
   int __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   char *__cil_tmp32 ;
   int *__cil_tmp33 ;
   int __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   char *__cil_tmp39 ;
   int __cil_tmp40 ;
   int __cil_tmp41 ;
   {
   value = (u8 )0;
   {
-  __cil_tmp5 = (unsigned long )ptr;
-  __cil_tmp6 = __cil_tmp5 + 40;
-  __cil_tmp7 = *((struct videocodec **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 64;
-  __cil_tmp10 = *((struct videocodec_master **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 64;
-  if (*((__u32 (**)(struct videocodec *codec , __u16 reg ))__cil_tmp12)) {
+  __cil_tmp7 = *((struct videocodec **)((void *)ptr + 40));
+  __cil_tmp10 = *((struct videocodec_master **)((void *)__cil_tmp7 + 64));
+  if (*((__u32 (**)(struct videocodec *codec , __u16 reg ))((void *)__cil_tmp10 + 64))) {
     {
-    __cil_tmp13 = (unsigned long )ptr;
-    __cil_tmp14 = __cil_tmp13 + 40;
-    __cil_tmp15 = *((struct videocodec **)__cil_tmp14);
-    __cil_tmp16 = (unsigned long )__cil_tmp15;
-    __cil_tmp17 = __cil_tmp16 + 64;
-    __cil_tmp18 = *((struct videocodec_master **)__cil_tmp17);
-    __cil_tmp19 = (unsigned long )__cil_tmp18;
-    __cil_tmp20 = __cil_tmp19 + 64;
-    __cil_tmp21 = *((__u32 (**)(struct videocodec *codec , __u16 reg ))__cil_tmp20);
-    __cil_tmp22 = (unsigned long )ptr;
-    __cil_tmp23 = __cil_tmp22 + 40;
-    __cil_tmp24 = *((struct videocodec **)__cil_tmp23);
+    __cil_tmp15 = *((struct videocodec **)((void *)ptr + 40));
+    __cil_tmp18 = *((struct videocodec_master **)((void *)__cil_tmp15 + 64));
+    __cil_tmp21 = *((__u32 (**)(struct videocodec *codec , __u16 reg ))((void *)__cil_tmp18 + 64));
+    __cil_tmp24 = *((struct videocodec **)((void *)ptr + 40));
     tmp = (*__cil_tmp21)(__cil_tmp24, reg);
     __cil_tmp25 = tmp & 255U;
     value = (u8 )__cil_tmp25;
@@ -630,9 +598,7 @@ static u8 zr36016_read(struct zr36016 *ptr , u16 reg )
         {
         __cil_tmp28 = 0 * 1UL;
         __cil_tmp29 = 0 + __cil_tmp28;
-        __cil_tmp30 = (unsigned long )ptr;
-        __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-        __cil_tmp32 = (char *)__cil_tmp31;
+        __cil_tmp32 = (char *)((void *)ptr + __cil_tmp29);
         printk("<3>%s: invalid I/O setup, nothing read!\n", __cil_tmp32);
         }
       } else {
@@ -654,9 +620,7 @@ static u8 zr36016_read(struct zr36016 *ptr , u16 reg )
       {
       __cil_tmp35 = 0 * 1UL;
       __cil_tmp36 = 0 + __cil_tmp35;
-      __cil_tmp37 = (unsigned long )ptr;
-      __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-      __cil_tmp39 = (char *)__cil_tmp38;
+      __cil_tmp39 = (char *)((void *)ptr + __cil_tmp36);
       __cil_tmp40 = (int )reg;
       __cil_tmp41 = (int )value;
       printk("%s: reading from 0x%04x: %02x\n", __cil_tmp39, __cil_tmp40, __cil_tmp41);
@@ -676,38 +640,20 @@ static void zr36016_write(struct zr36016 *ptr , u16 reg , u8 value )
   int __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   char *__cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct videocodec *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct videocodec_master *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct videocodec *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct videocodec_master *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   void (*__cil_tmp29)(struct videocodec *codec , __u16 reg , __u32 value ) ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct videocodec *__cil_tmp32 ;
   __u32 __cil_tmp33 ;
   int *__cil_tmp34 ;
   int __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   char *__cil_tmp40 ;
   {
   {
@@ -720,9 +666,7 @@ static void zr36016_write(struct zr36016 *ptr , u16 reg , u8 value )
       {
       __cil_tmp6 = 0 * 1UL;
       __cil_tmp7 = 0 + __cil_tmp6;
-      __cil_tmp8 = (unsigned long )ptr;
-      __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-      __cil_tmp10 = (char *)__cil_tmp9;
+      __cil_tmp10 = (char *)((void *)ptr + __cil_tmp7);
       __cil_tmp11 = (int )value;
       __cil_tmp12 = (int )reg;
       printk("%s: writing 0x%02x to 0x%04x\n", __cil_tmp10, __cil_tmp11, __cil_tmp12);
@@ -735,28 +679,14 @@ static void zr36016_write(struct zr36016 *ptr , u16 reg , u8 value )
   while_break: ;
   }
   {
-  __cil_tmp13 = (unsigned long )ptr;
-  __cil_tmp14 = __cil_tmp13 + 40;
-  __cil_tmp15 = *((struct videocodec **)__cil_tmp14);
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + 64;
-  __cil_tmp18 = *((struct videocodec_master **)__cil_tmp17);
-  __cil_tmp19 = (unsigned long )__cil_tmp18;
-  __cil_tmp20 = __cil_tmp19 + 72;
-  if (*((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))__cil_tmp20)) {
+  __cil_tmp15 = *((struct videocodec **)((void *)ptr + 40));
+  __cil_tmp18 = *((struct videocodec_master **)((void *)__cil_tmp15 + 64));
+  if (*((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))((void *)__cil_tmp18 + 72))) {
     {
-    __cil_tmp21 = (unsigned long )ptr;
-    __cil_tmp22 = __cil_tmp21 + 40;
-    __cil_tmp23 = *((struct videocodec **)__cil_tmp22);
-    __cil_tmp24 = (unsigned long )__cil_tmp23;
-    __cil_tmp25 = __cil_tmp24 + 64;
-    __cil_tmp26 = *((struct videocodec_master **)__cil_tmp25);
-    __cil_tmp27 = (unsigned long )__cil_tmp26;
-    __cil_tmp28 = __cil_tmp27 + 72;
-    __cil_tmp29 = *((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))__cil_tmp28);
-    __cil_tmp30 = (unsigned long )ptr;
-    __cil_tmp31 = __cil_tmp30 + 40;
-    __cil_tmp32 = *((struct videocodec **)__cil_tmp31);
+    __cil_tmp23 = *((struct videocodec **)((void *)ptr + 40));
+    __cil_tmp26 = *((struct videocodec_master **)((void *)__cil_tmp23 + 64));
+    __cil_tmp29 = *((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))((void *)__cil_tmp26 + 72));
+    __cil_tmp32 = *((struct videocodec **)((void *)ptr + 40));
     __cil_tmp33 = (__u32 )value;
     (*__cil_tmp29)(__cil_tmp32, reg, __cil_tmp33);
     }
@@ -771,9 +701,7 @@ static void zr36016_write(struct zr36016 *ptr , u16 reg , u8 value )
         {
         __cil_tmp36 = 0 * 1UL;
         __cil_tmp37 = 0 + __cil_tmp36;
-        __cil_tmp38 = (unsigned long )ptr;
-        __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-        __cil_tmp40 = (char *)__cil_tmp39;
+        __cil_tmp40 = (char *)((void *)ptr + __cil_tmp37);
         printk("<3>%s: invalid I/O setup, nothing written!\n", __cil_tmp40);
         }
       } else {
@@ -791,49 +719,21 @@ static void zr36016_write(struct zr36016 *ptr , u16 reg , u8 value )
 static u8 zr36016_readi(struct zr36016 *ptr , u16 reg )
 { u8 value ;
   __u32 tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct videocodec *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct videocodec_master *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct videocodec *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct videocodec_master *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct videocodec *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct videocodec_master *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   void (*__cil_tmp29)(struct videocodec *codec , __u16 reg , __u32 value ) ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct videocodec *__cil_tmp32 ;
   __u16 __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
   __u32 __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct videocodec *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct videocodec_master *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   __u32 (*__cil_tmp45)(struct videocodec *codec , __u16 reg ) ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct videocodec *__cil_tmp48 ;
   __u16 __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
@@ -841,70 +741,38 @@ static u8 zr36016_readi(struct zr36016 *ptr , u16 reg )
   int __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   char *__cil_tmp57 ;
   int *__cil_tmp58 ;
   int __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   char *__cil_tmp64 ;
   int __cil_tmp65 ;
   int __cil_tmp66 ;
   {
   value = (u8 )0;
   {
-  __cil_tmp5 = (unsigned long )ptr;
-  __cil_tmp6 = __cil_tmp5 + 40;
-  __cil_tmp7 = *((struct videocodec **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 64;
-  __cil_tmp10 = *((struct videocodec_master **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 72;
-  if (*((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))__cil_tmp12)) {
+  __cil_tmp7 = *((struct videocodec **)((void *)ptr + 40));
+  __cil_tmp10 = *((struct videocodec_master **)((void *)__cil_tmp7 + 64));
+  if (*((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))((void *)__cil_tmp10 + 72))) {
     {
-    __cil_tmp13 = (unsigned long )ptr;
-    __cil_tmp14 = __cil_tmp13 + 40;
-    __cil_tmp15 = *((struct videocodec **)__cil_tmp14);
-    __cil_tmp16 = (unsigned long )__cil_tmp15;
-    __cil_tmp17 = __cil_tmp16 + 64;
-    __cil_tmp18 = *((struct videocodec_master **)__cil_tmp17);
-    __cil_tmp19 = (unsigned long )__cil_tmp18;
-    __cil_tmp20 = __cil_tmp19 + 64;
-    if (*((__u32 (**)(struct videocodec *codec , __u16 reg ))__cil_tmp20)) {
+    __cil_tmp15 = *((struct videocodec **)((void *)ptr + 40));
+    __cil_tmp18 = *((struct videocodec_master **)((void *)__cil_tmp15 + 64));
+    if (*((__u32 (**)(struct videocodec *codec , __u16 reg ))((void *)__cil_tmp18 + 64))) {
       {
-      __cil_tmp21 = (unsigned long )ptr;
-      __cil_tmp22 = __cil_tmp21 + 40;
-      __cil_tmp23 = *((struct videocodec **)__cil_tmp22);
-      __cil_tmp24 = (unsigned long )__cil_tmp23;
-      __cil_tmp25 = __cil_tmp24 + 64;
-      __cil_tmp26 = *((struct videocodec_master **)__cil_tmp25);
-      __cil_tmp27 = (unsigned long )__cil_tmp26;
-      __cil_tmp28 = __cil_tmp27 + 72;
-      __cil_tmp29 = *((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))__cil_tmp28);
-      __cil_tmp30 = (unsigned long )ptr;
-      __cil_tmp31 = __cil_tmp30 + 40;
-      __cil_tmp32 = *((struct videocodec **)__cil_tmp31);
+      __cil_tmp23 = *((struct videocodec **)((void *)ptr + 40));
+      __cil_tmp26 = *((struct videocodec_master **)((void *)__cil_tmp23 + 64));
+      __cil_tmp29 = *((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))((void *)__cil_tmp26 + 72));
+      __cil_tmp32 = *((struct videocodec **)((void *)ptr + 40));
       __cil_tmp33 = (__u16 )2;
       __cil_tmp34 = (int )reg;
       __cil_tmp35 = __cil_tmp34 & 15;
       __cil_tmp36 = (__u32 )__cil_tmp35;
       (*__cil_tmp29)(__cil_tmp32, __cil_tmp33, __cil_tmp36);
-      __cil_tmp37 = (unsigned long )ptr;
-      __cil_tmp38 = __cil_tmp37 + 40;
-      __cil_tmp39 = *((struct videocodec **)__cil_tmp38);
-      __cil_tmp40 = (unsigned long )__cil_tmp39;
-      __cil_tmp41 = __cil_tmp40 + 64;
-      __cil_tmp42 = *((struct videocodec_master **)__cil_tmp41);
-      __cil_tmp43 = (unsigned long )__cil_tmp42;
-      __cil_tmp44 = __cil_tmp43 + 64;
-      __cil_tmp45 = *((__u32 (**)(struct videocodec *codec , __u16 reg ))__cil_tmp44);
-      __cil_tmp46 = (unsigned long )ptr;
-      __cil_tmp47 = __cil_tmp46 + 40;
-      __cil_tmp48 = *((struct videocodec **)__cil_tmp47);
+      __cil_tmp39 = *((struct videocodec **)((void *)ptr + 40));
+      __cil_tmp42 = *((struct videocodec_master **)((void *)__cil_tmp39 + 64));
+      __cil_tmp45 = *((__u32 (**)(struct videocodec *codec , __u16 reg ))((void *)__cil_tmp42 + 64));
+      __cil_tmp48 = *((struct videocodec **)((void *)ptr + 40));
       __cil_tmp49 = (__u16 )3;
       tmp = (*__cil_tmp45)(__cil_tmp48, __cil_tmp49);
       __cil_tmp50 = tmp & 255U;
@@ -926,9 +794,7 @@ static u8 zr36016_readi(struct zr36016 *ptr , u16 reg )
         {
         __cil_tmp53 = 0 * 1UL;
         __cil_tmp54 = 0 + __cil_tmp53;
-        __cil_tmp55 = (unsigned long )ptr;
-        __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-        __cil_tmp57 = (char *)__cil_tmp56;
+        __cil_tmp57 = (char *)((void *)ptr + __cil_tmp54);
         printk("<3>%s: invalid I/O setup, nothing read (i)!\n", __cil_tmp57);
         }
       } else {
@@ -950,9 +816,7 @@ static u8 zr36016_readi(struct zr36016 *ptr , u16 reg )
       {
       __cil_tmp60 = 0 * 1UL;
       __cil_tmp61 = 0 + __cil_tmp60;
-      __cil_tmp62 = (unsigned long )ptr;
-      __cil_tmp63 = __cil_tmp62 + __cil_tmp61;
-      __cil_tmp64 = (char *)__cil_tmp63;
+      __cil_tmp64 = (char *)((void *)ptr + __cil_tmp61);
       __cil_tmp65 = (int )reg;
       __cil_tmp66 = (int )value;
       printk("%s: reading indirect from 0x%04x: %02x\n", __cil_tmp64, __cil_tmp65,
@@ -973,46 +837,22 @@ static void zr36016_writei(struct zr36016 *ptr , u16 reg , u8 value )
   int __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   char *__cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct videocodec *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct videocodec_master *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct videocodec *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct videocodec_master *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   void (*__cil_tmp29)(struct videocodec *codec , __u16 reg , __u32 value ) ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct videocodec *__cil_tmp32 ;
   __u16 __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
   __u32 __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct videocodec *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct videocodec_master *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   void (*__cil_tmp45)(struct videocodec *codec , __u16 reg , __u32 value ) ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct videocodec *__cil_tmp48 ;
   __u16 __cil_tmp49 ;
   int __cil_tmp50 ;
@@ -1022,8 +862,6 @@ static void zr36016_writei(struct zr36016 *ptr , u16 reg , u8 value )
   int __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   char *__cil_tmp59 ;
   {
   {
@@ -1036,9 +874,7 @@ static void zr36016_writei(struct zr36016 *ptr , u16 reg , u8 value )
       {
       __cil_tmp6 = 0 * 1UL;
       __cil_tmp7 = 0 + __cil_tmp6;
-      __cil_tmp8 = (unsigned long )ptr;
-      __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-      __cil_tmp10 = (char *)__cil_tmp9;
+      __cil_tmp10 = (char *)((void *)ptr + __cil_tmp7);
       __cil_tmp11 = (int )value;
       __cil_tmp12 = (int )reg;
       printk("%s: writing indirect 0x%02x to 0x%04x\n", __cil_tmp10, __cil_tmp11,
@@ -1052,45 +888,23 @@ static void zr36016_writei(struct zr36016 *ptr , u16 reg , u8 value )
   while_break: ;
   }
   {
-  __cil_tmp13 = (unsigned long )ptr;
-  __cil_tmp14 = __cil_tmp13 + 40;
-  __cil_tmp15 = *((struct videocodec **)__cil_tmp14);
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + 64;
-  __cil_tmp18 = *((struct videocodec_master **)__cil_tmp17);
-  __cil_tmp19 = (unsigned long )__cil_tmp18;
-  __cil_tmp20 = __cil_tmp19 + 72;
-  if (*((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))__cil_tmp20)) {
+  __cil_tmp15 = *((struct videocodec **)((void *)ptr + 40));
+  __cil_tmp18 = *((struct videocodec_master **)((void *)__cil_tmp15 + 64));
+  if (*((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))((void *)__cil_tmp18 + 72))) {
     {
-    __cil_tmp21 = (unsigned long )ptr;
-    __cil_tmp22 = __cil_tmp21 + 40;
-    __cil_tmp23 = *((struct videocodec **)__cil_tmp22);
-    __cil_tmp24 = (unsigned long )__cil_tmp23;
-    __cil_tmp25 = __cil_tmp24 + 64;
-    __cil_tmp26 = *((struct videocodec_master **)__cil_tmp25);
-    __cil_tmp27 = (unsigned long )__cil_tmp26;
-    __cil_tmp28 = __cil_tmp27 + 72;
-    __cil_tmp29 = *((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))__cil_tmp28);
-    __cil_tmp30 = (unsigned long )ptr;
-    __cil_tmp31 = __cil_tmp30 + 40;
-    __cil_tmp32 = *((struct videocodec **)__cil_tmp31);
+    __cil_tmp23 = *((struct videocodec **)((void *)ptr + 40));
+    __cil_tmp26 = *((struct videocodec_master **)((void *)__cil_tmp23 + 64));
+    __cil_tmp29 = *((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))((void *)__cil_tmp26 + 72));
+    __cil_tmp32 = *((struct videocodec **)((void *)ptr + 40));
     __cil_tmp33 = (__u16 )2;
     __cil_tmp34 = (int )reg;
     __cil_tmp35 = __cil_tmp34 & 15;
     __cil_tmp36 = (__u32 )__cil_tmp35;
     (*__cil_tmp29)(__cil_tmp32, __cil_tmp33, __cil_tmp36);
-    __cil_tmp37 = (unsigned long )ptr;
-    __cil_tmp38 = __cil_tmp37 + 40;
-    __cil_tmp39 = *((struct videocodec **)__cil_tmp38);
-    __cil_tmp40 = (unsigned long )__cil_tmp39;
-    __cil_tmp41 = __cil_tmp40 + 64;
-    __cil_tmp42 = *((struct videocodec_master **)__cil_tmp41);
-    __cil_tmp43 = (unsigned long )__cil_tmp42;
-    __cil_tmp44 = __cil_tmp43 + 72;
-    __cil_tmp45 = *((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))__cil_tmp44);
-    __cil_tmp46 = (unsigned long )ptr;
-    __cil_tmp47 = __cil_tmp46 + 40;
-    __cil_tmp48 = *((struct videocodec **)__cil_tmp47);
+    __cil_tmp39 = *((struct videocodec **)((void *)ptr + 40));
+    __cil_tmp42 = *((struct videocodec_master **)((void *)__cil_tmp39 + 64));
+    __cil_tmp45 = *((void (**)(struct videocodec *codec , __u16 reg , __u32 value ))((void *)__cil_tmp42 + 72));
+    __cil_tmp48 = *((struct videocodec **)((void *)ptr + 40));
     __cil_tmp49 = (__u16 )3;
     __cil_tmp50 = (int )value;
     __cil_tmp51 = __cil_tmp50 & 255;
@@ -1108,9 +922,7 @@ static void zr36016_writei(struct zr36016 *ptr , u16 reg , u8 value )
         {
         __cil_tmp55 = 0 * 1UL;
         __cil_tmp56 = 0 + __cil_tmp55;
-        __cil_tmp57 = (unsigned long )ptr;
-        __cil_tmp58 = __cil_tmp57 + __cil_tmp56;
-        __cil_tmp59 = (char *)__cil_tmp58;
+        __cil_tmp59 = (char *)((void *)ptr + __cil_tmp56);
         printk("<3>%s: invalid I/O setup, nothing written (i)!\n", __cil_tmp59);
         }
       } else {
@@ -1128,26 +940,18 @@ static void zr36016_writei(struct zr36016 *ptr , u16 reg , u8 value )
 static u8 zr36016_read_version(struct zr36016 *ptr )
 { u8 tmp ;
   u16 __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   {
   {
   __cil_tmp3 = (u16 )0;
   tmp = zr36016_read(ptr, __cil_tmp3);
-  __cil_tmp4 = (unsigned long )ptr;
-  __cil_tmp5 = __cil_tmp4 + 48;
   __cil_tmp6 = (int )tmp;
   __cil_tmp7 = __cil_tmp6 >> 4;
-  *((__u8 *)__cil_tmp5) = (__u8 )__cil_tmp7;
+  *((__u8 *)((void *)ptr + 48)) = (__u8 )__cil_tmp7;
   }
   {
-  __cil_tmp8 = (unsigned long )ptr;
-  __cil_tmp9 = __cil_tmp8 + 48;
-  return (*((__u8 *)__cil_tmp9));
+  return (*((__u8 *)((void *)ptr + 48)));
   }
 }
 }
@@ -1163,8 +967,6 @@ static int zr36016_basic_test(struct zr36016 *ptr )
   int __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   char *__cil_tmp15 ;
   int *__cil_tmp16 ;
   int __cil_tmp17 ;
@@ -1180,8 +982,6 @@ static int zr36016_basic_test(struct zr36016 *ptr )
   int __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   char *__cil_tmp32 ;
   u16 __cil_tmp33 ;
   u8 __cil_tmp34 ;
@@ -1191,22 +991,14 @@ static int zr36016_basic_test(struct zr36016 *ptr )
   int __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   char *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   __u8 __cil_tmp46 ;
   int __cil_tmp47 ;
   int *__cil_tmp48 ;
   int __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   char *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   __u8 __cil_tmp57 ;
   int __cil_tmp58 ;
   {
@@ -1228,9 +1020,7 @@ static int zr36016_basic_test(struct zr36016 *ptr )
         {
         __cil_tmp11 = 0 * 1UL;
         __cil_tmp12 = 0 + __cil_tmp11;
-        __cil_tmp13 = (unsigned long )ptr;
-        __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-        __cil_tmp15 = (char *)__cil_tmp14;
+        __cil_tmp15 = (char *)((void *)ptr + __cil_tmp12);
         printk("<6>%s: registers: ", __cil_tmp15);
         }
       } else {
@@ -1312,9 +1102,7 @@ static int zr36016_basic_test(struct zr36016 *ptr )
         {
         __cil_tmp28 = 0 * 1UL;
         __cil_tmp29 = 0 + __cil_tmp28;
-        __cil_tmp30 = (unsigned long )ptr;
-        __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-        __cil_tmp32 = (char *)__cil_tmp31;
+        __cil_tmp32 = (char *)((void *)ptr + __cil_tmp29);
         printk("<3>%s: attach failed, can\'t connect to vfe processor!\n", __cil_tmp32);
         }
       } else {
@@ -1348,9 +1136,7 @@ static int zr36016_basic_test(struct zr36016 *ptr )
         {
         __cil_tmp39 = 0 * 1UL;
         __cil_tmp40 = 0 + __cil_tmp39;
-        __cil_tmp41 = (unsigned long )ptr;
-        __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-        __cil_tmp43 = (char *)__cil_tmp42;
+        __cil_tmp43 = (char *)((void *)ptr + __cil_tmp40);
         printk("<3>%s: attach failed, can\'t connect to vfe processor!\n", __cil_tmp43);
         }
       } else {
@@ -1368,9 +1154,7 @@ static int zr36016_basic_test(struct zr36016 *ptr )
   zr36016_read_version(ptr);
   }
   {
-  __cil_tmp44 = (unsigned long )ptr;
-  __cil_tmp45 = __cil_tmp44 + 48;
-  __cil_tmp46 = *((__u8 *)__cil_tmp45);
+  __cil_tmp46 = *((__u8 *)((void *)ptr + 48));
   __cil_tmp47 = (int )__cil_tmp46;
   if (__cil_tmp47 & 12) {
     {
@@ -1383,12 +1167,8 @@ static int zr36016_basic_test(struct zr36016 *ptr )
         {
         __cil_tmp50 = 0 * 1UL;
         __cil_tmp51 = 0 + __cil_tmp50;
-        __cil_tmp52 = (unsigned long )ptr;
-        __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-        __cil_tmp54 = (char *)__cil_tmp53;
-        __cil_tmp55 = (unsigned long )ptr;
-        __cil_tmp56 = __cil_tmp55 + 48;
-        __cil_tmp57 = *((__u8 *)__cil_tmp56);
+        __cil_tmp54 = (char *)((void *)ptr + __cil_tmp51);
+        __cil_tmp57 = *((__u8 *)((void *)ptr + 48));
         __cil_tmp58 = (int )__cil_tmp57;
         printk("<3>%s: attach failed, suspicious version %d found...\n", __cil_tmp54,
                __cil_tmp58);
@@ -1413,16 +1193,10 @@ static void zr36016_init(struct zr36016 *ptr )
   int tmp___1 ;
   u16 __cil_tmp5 ;
   u8 __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
   u16 __cil_tmp10 ;
   int __cil_tmp11 ;
   u8 __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u16 __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
@@ -1430,57 +1204,41 @@ static void zr36016_init(struct zr36016 *ptr )
   u16 __cil_tmp21 ;
   u8 __cil_tmp22 ;
   u16 __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   __u16 __cil_tmp26 ;
   int __cil_tmp27 ;
   int __cil_tmp28 ;
   u8 __cil_tmp29 ;
   u16 __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   __u16 __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
   u8 __cil_tmp36 ;
   u16 __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   __u16 __cil_tmp40 ;
   int __cil_tmp41 ;
   int __cil_tmp42 ;
   u8 __cil_tmp43 ;
   u16 __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   __u16 __cil_tmp47 ;
   int __cil_tmp48 ;
   int __cil_tmp49 ;
   u8 __cil_tmp50 ;
   u16 __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   __u16 __cil_tmp54 ;
   int __cil_tmp55 ;
   int __cil_tmp56 ;
   u8 __cil_tmp57 ;
   u16 __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   __u16 __cil_tmp61 ;
   int __cil_tmp62 ;
   int __cil_tmp63 ;
   u8 __cil_tmp64 ;
   u16 __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   __u16 __cil_tmp68 ;
   int __cil_tmp69 ;
   int __cil_tmp70 ;
   u8 __cil_tmp71 ;
   u16 __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   __u16 __cil_tmp75 ;
   int __cil_tmp76 ;
   int __cil_tmp77 ;
@@ -1494,9 +1252,7 @@ static void zr36016_init(struct zr36016 *ptr )
   zr36016_write(ptr, __cil_tmp5, __cil_tmp6);
   }
   {
-  __cil_tmp7 = (unsigned long )ptr;
-  __cil_tmp8 = __cil_tmp7 + 52;
-  __cil_tmp9 = *((int *)__cil_tmp8);
+  __cil_tmp9 = *((int *)((void *)ptr + 52));
   if (__cil_tmp9 == 0) {
     tmp = 128;
   } else {
@@ -1510,18 +1266,14 @@ static void zr36016_init(struct zr36016 *ptr )
   zr36016_write(ptr, __cil_tmp10, __cil_tmp12);
   }
   {
-  __cil_tmp13 = (unsigned long )ptr;
-  __cil_tmp14 = __cil_tmp13 + 64;
-  if (*((__u16 *)__cil_tmp14)) {
+  if (*((__u16 *)((void *)ptr + 64))) {
     tmp___0 = 48;
   } else {
     tmp___0 = 0;
   }
   }
   {
-  __cil_tmp15 = (unsigned long )ptr;
-  __cil_tmp16 = __cil_tmp15 + 66;
-  if (*((__u16 *)__cil_tmp16)) {
+  if (*((__u16 *)((void *)ptr + 66))) {
     tmp___1 = 64;
   } else {
     tmp___1 = 0;
@@ -1537,65 +1289,49 @@ static void zr36016_init(struct zr36016 *ptr )
   __cil_tmp22 = (u8 )4;
   zr36016_writei(ptr, __cil_tmp21, __cil_tmp22);
   __cil_tmp23 = (u16 )5;
-  __cil_tmp24 = (unsigned long )ptr;
-  __cil_tmp25 = __cil_tmp24 + 60;
-  __cil_tmp26 = *((__u16 *)__cil_tmp25);
+  __cil_tmp26 = *((__u16 *)((void *)ptr + 60));
   __cil_tmp27 = (int )__cil_tmp26;
   __cil_tmp28 = __cil_tmp27 >> 8;
   __cil_tmp29 = (u8 )__cil_tmp28;
   zr36016_writei(ptr, __cil_tmp23, __cil_tmp29);
   __cil_tmp30 = (u16 )4;
-  __cil_tmp31 = (unsigned long )ptr;
-  __cil_tmp32 = __cil_tmp31 + 60;
-  __cil_tmp33 = *((__u16 *)__cil_tmp32);
+  __cil_tmp33 = *((__u16 *)((void *)ptr + 60));
   __cil_tmp34 = (int )__cil_tmp33;
   __cil_tmp35 = __cil_tmp34 & 255;
   __cil_tmp36 = (u8 )__cil_tmp35;
   zr36016_writei(ptr, __cil_tmp30, __cil_tmp36);
   __cil_tmp37 = (u16 )9;
-  __cil_tmp38 = (unsigned long )ptr;
-  __cil_tmp39 = __cil_tmp38 + 62;
-  __cil_tmp40 = *((__u16 *)__cil_tmp39);
+  __cil_tmp40 = *((__u16 *)((void *)ptr + 62));
   __cil_tmp41 = (int )__cil_tmp40;
   __cil_tmp42 = __cil_tmp41 >> 8;
   __cil_tmp43 = (u8 )__cil_tmp42;
   zr36016_writei(ptr, __cil_tmp37, __cil_tmp43);
   __cil_tmp44 = (u16 )8;
-  __cil_tmp45 = (unsigned long )ptr;
-  __cil_tmp46 = __cil_tmp45 + 62;
-  __cil_tmp47 = *((__u16 *)__cil_tmp46);
+  __cil_tmp47 = *((__u16 *)((void *)ptr + 62));
   __cil_tmp48 = (int )__cil_tmp47;
   __cil_tmp49 = __cil_tmp48 & 255;
   __cil_tmp50 = (u8 )__cil_tmp49;
   zr36016_writei(ptr, __cil_tmp44, __cil_tmp50);
   __cil_tmp51 = (u16 )3;
-  __cil_tmp52 = (unsigned long )ptr;
-  __cil_tmp53 = __cil_tmp52 + 56;
-  __cil_tmp54 = *((__u16 *)__cil_tmp53);
+  __cil_tmp54 = *((__u16 *)((void *)ptr + 56));
   __cil_tmp55 = (int )__cil_tmp54;
   __cil_tmp56 = __cil_tmp55 >> 8;
   __cil_tmp57 = (u8 )__cil_tmp56;
   zr36016_writei(ptr, __cil_tmp51, __cil_tmp57);
   __cil_tmp58 = (u16 )2;
-  __cil_tmp59 = (unsigned long )ptr;
-  __cil_tmp60 = __cil_tmp59 + 56;
-  __cil_tmp61 = *((__u16 *)__cil_tmp60);
+  __cil_tmp61 = *((__u16 *)((void *)ptr + 56));
   __cil_tmp62 = (int )__cil_tmp61;
   __cil_tmp63 = __cil_tmp62 & 255;
   __cil_tmp64 = (u8 )__cil_tmp63;
   zr36016_writei(ptr, __cil_tmp58, __cil_tmp64);
   __cil_tmp65 = (u16 )7;
-  __cil_tmp66 = (unsigned long )ptr;
-  __cil_tmp67 = __cil_tmp66 + 58;
-  __cil_tmp68 = *((__u16 *)__cil_tmp67);
+  __cil_tmp68 = *((__u16 *)((void *)ptr + 58));
   __cil_tmp69 = (int )__cil_tmp68;
   __cil_tmp70 = __cil_tmp69 >> 8;
   __cil_tmp71 = (u8 )__cil_tmp70;
   zr36016_writei(ptr, __cil_tmp65, __cil_tmp71);
   __cil_tmp72 = (u16 )6;
-  __cil_tmp73 = (unsigned long )ptr;
-  __cil_tmp74 = __cil_tmp73 + 58;
-  __cil_tmp75 = *((__u16 *)__cil_tmp74);
+  __cil_tmp75 = *((__u16 *)((void *)ptr + 58));
   __cil_tmp76 = (int )__cil_tmp75;
   __cil_tmp77 = __cil_tmp76 & 255;
   __cil_tmp78 = (u8 )__cil_tmp77;
@@ -1609,22 +1345,14 @@ static void zr36016_init(struct zr36016 *ptr )
 }
 static int zr36016_set_mode(struct videocodec *codec , int mode )
 { struct zr36016 *ptr ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   int *__cil_tmp7 ;
   int __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   char *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   {
-  __cil_tmp4 = (unsigned long )codec;
-  __cil_tmp5 = __cil_tmp4 + 72;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)codec + 72));
   ptr = (struct zr36016 *)__cil_tmp6;
   {
   while (1) {
@@ -1636,9 +1364,7 @@ static int zr36016_set_mode(struct videocodec *codec , int mode )
       {
       __cil_tmp9 = 0 * 1UL;
       __cil_tmp10 = 0 + __cil_tmp9;
-      __cil_tmp11 = (unsigned long )ptr;
-      __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-      __cil_tmp13 = (char *)__cil_tmp12;
+      __cil_tmp13 = (char *)((void *)ptr + __cil_tmp10);
       printk("%s: set_mode %d call\n", __cil_tmp13, mode);
       }
     } else {
@@ -1656,9 +1382,7 @@ static int zr36016_set_mode(struct videocodec *codec , int mode )
   } else {
   }
   {
-  __cil_tmp14 = (unsigned long )ptr;
-  __cil_tmp15 = __cil_tmp14 + 52;
-  *((int *)__cil_tmp15) = mode;
+  *((int *)((void *)ptr + 52)) = mode;
   zr36016_init(ptr);
   }
   return (0);
@@ -1668,91 +1392,41 @@ static int zr36016_set_video(struct videocodec *codec , struct tvnorm *norm , st
                              struct vfe_polarity *pol )
 { struct zr36016 *ptr ;
   int tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   int *__cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   char *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   u16 __cil_tmp19 ;
   int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u16 __cil_tmp23 ;
   int __cil_tmp24 ;
   __u32 __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   __u32 __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   __u32 __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   __u32 __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   __u16 __cil_tmp37 ;
   int __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   __u32 __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   __u32 __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   u16 __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   __u32 __cil_tmp56 ;
   __u32 __cil_tmp57 ;
   __u32 __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   __u32 __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   u16 __cil_tmp66 ;
   __u32 __cil_tmp67 ;
   __u32 __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   __u16 __cil_tmp71 ;
   int __cil_tmp72 ;
   int __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   __u16 __cil_tmp80 ;
   int __cil_tmp81 ;
   int __cil_tmp82 ;
   int __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   {
-  __cil_tmp7 = (unsigned long )codec;
-  __cil_tmp8 = __cil_tmp7 + 72;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)codec + 72));
   ptr = (struct zr36016 *)__cil_tmp9;
   {
   while (1) {
@@ -1764,30 +1438,16 @@ static int zr36016_set_video(struct videocodec *codec , struct tvnorm *norm , st
       {
       __cil_tmp12 = 0 * 1UL;
       __cil_tmp13 = 0 + __cil_tmp12;
-      __cil_tmp14 = (unsigned long )ptr;
-      __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-      __cil_tmp16 = (char *)__cil_tmp15;
-      __cil_tmp17 = (unsigned long )norm;
-      __cil_tmp18 = __cil_tmp17 + 4;
-      __cil_tmp19 = *((u16 *)__cil_tmp18);
+      __cil_tmp16 = (char *)((void *)ptr + __cil_tmp13);
+      __cil_tmp19 = *((u16 *)((void *)norm + 4));
       __cil_tmp20 = (int )__cil_tmp19;
-      __cil_tmp21 = (unsigned long )norm;
-      __cil_tmp22 = __cil_tmp21 + 12;
-      __cil_tmp23 = *((u16 *)__cil_tmp22);
+      __cil_tmp23 = *((u16 *)((void *)norm + 12));
       __cil_tmp24 = (int )__cil_tmp23;
       __cil_tmp25 = *((__u32 *)cap);
-      __cil_tmp26 = (unsigned long )cap;
-      __cil_tmp27 = __cil_tmp26 + 4;
-      __cil_tmp28 = *((__u32 *)__cil_tmp27);
-      __cil_tmp29 = (unsigned long )cap;
-      __cil_tmp30 = __cil_tmp29 + 8;
-      __cil_tmp31 = *((__u32 *)__cil_tmp30);
-      __cil_tmp32 = (unsigned long )cap;
-      __cil_tmp33 = __cil_tmp32 + 12;
-      __cil_tmp34 = *((__u32 *)__cil_tmp33);
-      __cil_tmp35 = (unsigned long )cap;
-      __cil_tmp36 = __cil_tmp35 + 16;
-      __cil_tmp37 = *((__u16 *)__cil_tmp36);
+      __cil_tmp28 = *((__u32 *)((void *)cap + 4));
+      __cil_tmp31 = *((__u32 *)((void *)cap + 8));
+      __cil_tmp34 = *((__u32 *)((void *)cap + 12));
+      __cil_tmp37 = *((__u16 *)((void *)cap + 16));
       __cil_tmp38 = (int )__cil_tmp37;
       printk("%s: set_video %d.%d, %d/%d-%dx%d (0x%x) call\n", __cil_tmp16, __cil_tmp20,
              __cil_tmp24, __cil_tmp25, __cil_tmp28, __cil_tmp31, __cil_tmp34, __cil_tmp38);
@@ -1799,78 +1459,46 @@ static int zr36016_set_video(struct videocodec *codec , struct tvnorm *norm , st
   }
   while_break: ;
   }
-  __cil_tmp39 = (unsigned long )ptr;
-  __cil_tmp40 = __cil_tmp39 + 60;
-  __cil_tmp41 = (unsigned long )cap;
-  __cil_tmp42 = __cil_tmp41 + 8;
-  __cil_tmp43 = *((__u32 *)__cil_tmp42);
-  *((__u16 *)__cil_tmp40) = (__u16 )__cil_tmp43;
-  __cil_tmp44 = (unsigned long )ptr;
-  __cil_tmp45 = __cil_tmp44 + 62;
-  __cil_tmp46 = (unsigned long )cap;
-  __cil_tmp47 = __cil_tmp46 + 12;
-  __cil_tmp48 = *((__u32 *)__cil_tmp47);
-  *((__u16 *)__cil_tmp45) = (__u16 )__cil_tmp48;
+  __cil_tmp43 = *((__u32 *)((void *)cap + 8));
+  *((__u16 *)((void *)ptr + 60)) = (__u16 )__cil_tmp43;
+  __cil_tmp48 = *((__u32 *)((void *)cap + 12));
+  *((__u16 *)((void *)ptr + 62)) = (__u16 )__cil_tmp48;
   {
-  __cil_tmp49 = (unsigned long )norm;
-  __cil_tmp50 = __cil_tmp49 + 4;
-  if (*((u16 *)__cil_tmp50)) {
-    __cil_tmp51 = (unsigned long )norm;
-    __cil_tmp52 = __cil_tmp51 + 4;
-    __cil_tmp53 = *((u16 *)__cil_tmp52);
+  if (*((u16 *)((void *)norm + 4))) {
+    __cil_tmp53 = *((u16 *)((void *)norm + 4));
     tmp = (int )__cil_tmp53;
   } else {
     tmp = 1;
   }
   }
-  __cil_tmp54 = (unsigned long )ptr;
-  __cil_tmp55 = __cil_tmp54 + 56;
   __cil_tmp56 = *((__u32 *)cap);
   __cil_tmp57 = (__u32 )tmp;
   __cil_tmp58 = __cil_tmp57 + __cil_tmp56;
-  *((__u16 *)__cil_tmp55) = (__u16 )__cil_tmp58;
-  __cil_tmp59 = (unsigned long )ptr;
-  __cil_tmp60 = __cil_tmp59 + 58;
-  __cil_tmp61 = (unsigned long )cap;
-  __cil_tmp62 = __cil_tmp61 + 4;
-  __cil_tmp63 = *((__u32 *)__cil_tmp62);
-  __cil_tmp64 = (unsigned long )norm;
-  __cil_tmp65 = __cil_tmp64 + 12;
-  __cil_tmp66 = *((u16 *)__cil_tmp65);
+  *((__u16 *)((void *)ptr + 56)) = (__u16 )__cil_tmp58;
+  __cil_tmp63 = *((__u32 *)((void *)cap + 4));
+  __cil_tmp66 = *((u16 *)((void *)norm + 12));
   __cil_tmp67 = (__u32 )__cil_tmp66;
   __cil_tmp68 = __cil_tmp67 + __cil_tmp63;
-  *((__u16 *)__cil_tmp60) = (__u16 )__cil_tmp68;
+  *((__u16 *)((void *)ptr + 58)) = (__u16 )__cil_tmp68;
   {
-  __cil_tmp69 = (unsigned long )cap;
-  __cil_tmp70 = __cil_tmp69 + 16;
-  __cil_tmp71 = *((__u16 *)__cil_tmp70);
+  __cil_tmp71 = *((__u16 *)((void *)cap + 16));
   __cil_tmp72 = (int )__cil_tmp71;
   __cil_tmp73 = __cil_tmp72 & 255;
   if (__cil_tmp73 == 1) {
-    __cil_tmp74 = (unsigned long )ptr;
-    __cil_tmp75 = __cil_tmp74 + 64;
-    *((__u16 *)__cil_tmp75) = (__u16 )0;
+    *((__u16 *)((void *)ptr + 64)) = (__u16 )0;
   } else {
-    __cil_tmp76 = (unsigned long )ptr;
-    __cil_tmp77 = __cil_tmp76 + 64;
-    *((__u16 *)__cil_tmp77) = (__u16 )1;
+    *((__u16 *)((void *)ptr + 64)) = (__u16 )1;
   }
   }
   {
-  __cil_tmp78 = (unsigned long )cap;
-  __cil_tmp79 = __cil_tmp78 + 16;
-  __cil_tmp80 = *((__u16 *)__cil_tmp79);
+  __cil_tmp80 = *((__u16 *)((void *)cap + 16));
   __cil_tmp81 = (int )__cil_tmp80;
   __cil_tmp82 = __cil_tmp81 >> 8;
   __cil_tmp83 = __cil_tmp82 & 255;
   if (__cil_tmp83 == 1) {
-    __cil_tmp84 = (unsigned long )ptr;
-    __cil_tmp85 = __cil_tmp84 + 66;
-    *((__u16 *)__cil_tmp85) = (__u16 )0;
+    *((__u16 *)((void *)ptr + 66)) = (__u16 )0;
   } else {
-    __cil_tmp86 = (unsigned long )ptr;
-    __cil_tmp87 = __cil_tmp86 + 66;
-    *((__u16 *)__cil_tmp87) = (__u16 )1;
+    *((__u16 *)((void *)ptr + 66)) = (__u16 )1;
   }
   }
   return (0);
@@ -1879,24 +1507,18 @@ static int zr36016_set_video(struct videocodec *codec , struct tvnorm *norm , st
 static int zr36016_control(struct videocodec *codec , int type , int size , void *data )
 { struct zr36016 *ptr ;
   int *ival ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   int *__cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   char *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   {
-  __cil_tmp7 = (unsigned long )codec;
-  __cil_tmp8 = __cil_tmp7 + 72;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)codec + 72));
   ptr = (struct zr36016 *)__cil_tmp9;
   ival = (int *)data;
   {
@@ -1909,9 +1531,7 @@ static int zr36016_control(struct videocodec *codec , int type , int size , void
       {
       __cil_tmp12 = 0 * 1UL;
       __cil_tmp13 = 0 + __cil_tmp12;
-      __cil_tmp14 = (unsigned long )ptr;
-      __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-      __cil_tmp16 = (char *)__cil_tmp15;
+      __cil_tmp16 = (char *)((void *)ptr + __cil_tmp13);
       printk("%s: control %d call with %d byte\n", __cil_tmp16, type, size);
       }
     } else {
@@ -1995,26 +1615,16 @@ static int zr36016_control(struct videocodec *codec , int type , int size , void
 }
 static int zr36016_unset(struct videocodec *codec )
 { struct zr36016 *ptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   int *__cil_tmp6 ;
   int __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   char *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   void const *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   {
-  __cil_tmp3 = (unsigned long )codec;
-  __cil_tmp4 = __cil_tmp3 + 72;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)codec + 72));
   ptr = (struct zr36016 *)__cil_tmp5;
   if (ptr) {
     {
@@ -2027,12 +1637,8 @@ static int zr36016_unset(struct videocodec *codec )
         {
         __cil_tmp8 = 0 * 1UL;
         __cil_tmp9 = 0 + __cil_tmp8;
-        __cil_tmp10 = (unsigned long )ptr;
-        __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-        __cil_tmp12 = (char *)__cil_tmp11;
-        __cil_tmp13 = (unsigned long )ptr;
-        __cil_tmp14 = __cil_tmp13 + 32;
-        __cil_tmp15 = *((int *)__cil_tmp14);
+        __cil_tmp12 = (char *)((void *)ptr + __cil_tmp9);
+        __cil_tmp15 = *((int *)((void *)ptr + 32));
         printk("%s: finished codec #%d\n", __cil_tmp12, __cil_tmp15);
         }
       } else {
@@ -2045,9 +1651,7 @@ static int zr36016_unset(struct videocodec *codec )
     {
     __cil_tmp16 = (void const *)ptr;
     kfree(__cil_tmp16);
-    __cil_tmp17 = (unsigned long )codec;
-    __cil_tmp18 = __cil_tmp17 + 72;
-    *((void **)__cil_tmp18) = (void *)0;
+    *((void **)((void *)codec + 72)) = (void *)0;
     zr36016_codecs = zr36016_codecs - 1;
     }
     return (0);
@@ -2065,8 +1669,6 @@ static int zr36016_setup(struct videocodec *codec )
   int __cil_tmp7 ;
   int *__cil_tmp8 ;
   int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
@@ -2074,32 +1676,12 @@ static int zr36016_setup(struct videocodec *codec )
   int __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   char *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   int *__cil_tmp36 ;
   int __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   char *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   __u8 __cil_tmp45 ;
   int __cil_tmp46 ;
   {
@@ -2144,9 +1726,7 @@ static int zr36016_setup(struct videocodec *codec )
   {
   tmp = kzalloc(72UL, 208U);
   ptr = (struct zr36016 *)tmp;
-  __cil_tmp10 = (unsigned long )codec;
-  __cil_tmp11 = __cil_tmp10 + 72;
-  *((void **)__cil_tmp11) = (void *)ptr;
+  *((void **)((void *)codec + 72)) = (void *)ptr;
   }
   {
   __cil_tmp12 = (unsigned long )ptr;
@@ -2177,18 +1757,12 @@ static int zr36016_setup(struct videocodec *codec )
   {
   __cil_tmp17 = 0 * 1UL;
   __cil_tmp18 = 0 + __cil_tmp17;
-  __cil_tmp19 = (unsigned long )ptr;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-  __cil_tmp21 = (char *)__cil_tmp20;
+  __cil_tmp21 = (char *)((void *)ptr + __cil_tmp18);
   snprintf(__cil_tmp21, 32UL, "zr36016[%d]", zr36016_codecs);
   tmp___0 = zr36016_codecs;
   zr36016_codecs = zr36016_codecs + 1;
-  __cil_tmp22 = (unsigned long )ptr;
-  __cil_tmp23 = __cil_tmp22 + 32;
-  *((int *)__cil_tmp23) = tmp___0;
-  __cil_tmp24 = (unsigned long )ptr;
-  __cil_tmp25 = __cil_tmp24 + 40;
-  *((struct videocodec **)__cil_tmp25) = codec;
+  *((int *)((void *)ptr + 32)) = tmp___0;
+  *((struct videocodec **)((void *)ptr + 40)) = codec;
   res = zr36016_basic_test(ptr);
   }
   if (res < 0) {
@@ -2199,21 +1773,11 @@ static int zr36016_setup(struct videocodec *codec )
   } else {
   }
   {
-  __cil_tmp26 = (unsigned long )ptr;
-  __cil_tmp27 = __cil_tmp26 + 52;
-  *((int *)__cil_tmp27) = 0;
-  __cil_tmp28 = (unsigned long )ptr;
-  __cil_tmp29 = __cil_tmp28 + 60;
-  *((__u16 *)__cil_tmp29) = (__u16 )768;
-  __cil_tmp30 = (unsigned long )ptr;
-  __cil_tmp31 = __cil_tmp30 + 62;
-  *((__u16 *)__cil_tmp31) = (__u16 )288;
-  __cil_tmp32 = (unsigned long )ptr;
-  __cil_tmp33 = __cil_tmp32 + 64;
-  *((__u16 *)__cil_tmp33) = (__u16 )1;
-  __cil_tmp34 = (unsigned long )ptr;
-  __cil_tmp35 = __cil_tmp34 + 66;
-  *((__u16 *)__cil_tmp35) = (__u16 )0;
+  *((int *)((void *)ptr + 52)) = 0;
+  *((__u16 *)((void *)ptr + 60)) = (__u16 )768;
+  *((__u16 *)((void *)ptr + 62)) = (__u16 )288;
+  *((__u16 *)((void *)ptr + 64)) = (__u16 )1;
+  *((__u16 *)((void *)ptr + 66)) = (__u16 )0;
   zr36016_init(ptr);
   }
   {
@@ -2226,12 +1790,8 @@ static int zr36016_setup(struct videocodec *codec )
       {
       __cil_tmp38 = 0 * 1UL;
       __cil_tmp39 = 0 + __cil_tmp38;
-      __cil_tmp40 = (unsigned long )ptr;
-      __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-      __cil_tmp42 = (char *)__cil_tmp41;
-      __cil_tmp43 = (unsigned long )ptr;
-      __cil_tmp44 = __cil_tmp43 + 48;
-      __cil_tmp45 = *((__u8 *)__cil_tmp44);
+      __cil_tmp42 = (char *)((void *)ptr + __cil_tmp39);
+      __cil_tmp45 = *((__u8 *)((void *)ptr + 48));
       __cil_tmp46 = (int )__cil_tmp45;
       printk("<6>%s: codec v%d attached and running\n", __cil_tmp42, __cil_tmp46);
       }

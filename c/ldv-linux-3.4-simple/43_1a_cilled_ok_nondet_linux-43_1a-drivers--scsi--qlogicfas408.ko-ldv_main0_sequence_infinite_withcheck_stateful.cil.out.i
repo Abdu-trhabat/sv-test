@@ -3757,8 +3757,6 @@ __inline static void *lowmem_page_address(struct page const *page )
   long __cil_tmp4 ;
   unsigned long long __cil_tmp5 ;
   unsigned long long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   {
   {
   __cil_tmp2 = (long )page;
@@ -3766,9 +3764,7 @@ __inline static void *lowmem_page_address(struct page const *page )
   __cil_tmp4 = __cil_tmp3 / 64L;
   __cil_tmp5 = (unsigned long long )__cil_tmp4;
   __cil_tmp6 = __cil_tmp5 << 12;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 0xffff880000000000UL;
-  return ((void *)__cil_tmp8);
+  return ((void *)((void *)__cil_tmp6 + 0xffff880000000000UL));
   }
 }
 }
@@ -3778,14 +3774,10 @@ __inline static struct page *sg_page(struct scatterlist *sg )
   unsigned long __cil_tmp4 ;
   int __cil_tmp5 ;
   long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   long __cil_tmp11 ;
   long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   {
@@ -3803,9 +3795,7 @@ __inline static struct page *sg_page(struct scatterlist *sg )
   } else {
   }
   {
-  __cil_tmp7 = (unsigned long )sg;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = *((unsigned long *)__cil_tmp8);
+  __cil_tmp9 = *((unsigned long *)((void *)sg + 8));
   __cil_tmp10 = (int )__cil_tmp9;
   __cil_tmp11 = (long )__cil_tmp10;
   __cil_tmp12 = __cil_tmp11 & 1L;
@@ -3819,9 +3809,7 @@ __inline static struct page *sg_page(struct scatterlist *sg )
   } else {
   }
   {
-  __cil_tmp13 = (unsigned long )sg;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  __cil_tmp15 = *((unsigned long *)__cil_tmp14);
+  __cil_tmp15 = *((unsigned long *)((void *)sg + 8));
   __cil_tmp16 = __cil_tmp15 & 0xfffffffffffffffcUL;
   return ((struct page *)__cil_tmp16);
   }
@@ -3831,8 +3819,6 @@ __inline static void *sg_virt(struct scatterlist *sg )
 { struct page *tmp ;
   void *tmp___0 ;
   struct page const *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   {
@@ -3842,9 +3828,7 @@ __inline static void *sg_virt(struct scatterlist *sg )
   tmp___0 = lowmem_page_address(__cil_tmp4);
   }
   {
-  __cil_tmp5 = (unsigned long )sg;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((unsigned int *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned int *)((void *)sg + 16));
   __cil_tmp8 = (unsigned long )__cil_tmp7;
   return (tmp___0 + __cil_tmp8);
   }
@@ -3854,50 +3838,36 @@ extern struct scatterlist *sg_next(struct scatterlist * ) ;
 __inline static unsigned int scsi_sg_count(struct scsi_cmnd *cmd )
 { unsigned long __cil_tmp2 ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   {
   {
   __cil_tmp2 = 0 + 8;
   __cil_tmp3 = 88 + __cil_tmp2;
-  __cil_tmp4 = (unsigned long )cmd;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  return (*((unsigned int *)__cil_tmp5));
+  return (*((unsigned int *)((void *)cmd + __cil_tmp3)));
   }
 }
 }
 __inline static struct scatterlist *scsi_sglist(struct scsi_cmnd *cmd )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   {
-  __cil_tmp2 = (unsigned long )cmd;
-  __cil_tmp3 = __cil_tmp2 + 88;
-  return (*((struct scatterlist **)__cil_tmp3));
+  return (*((struct scatterlist **)((void *)cmd + 88)));
   }
 }
 }
 __inline static unsigned int scsi_bufflen(struct scsi_cmnd *cmd )
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   {
   {
   __cil_tmp2 = 88 + 16;
-  __cil_tmp3 = (unsigned long )cmd;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  return (*((unsigned int *)__cil_tmp4));
+  return (*((unsigned int *)((void *)cmd + __cil_tmp2)));
   }
 }
 }
 __inline static unsigned int sdev_id(struct scsi_device *sdev )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   {
-  __cil_tmp2 = (unsigned long )sdev;
-  __cil_tmp3 = __cil_tmp2 + 200;
-  return (*((unsigned int *)__cil_tmp3));
+  return (*((unsigned int *)((void *)sdev + 200)));
   }
 }
 }
@@ -3926,8 +3896,6 @@ static void ql_zap(struct qlogicfas408_priv *priv )
   unsigned char tmp ;
   unsigned char tmp___0 ;
   unsigned char tmp___1 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
@@ -3954,9 +3922,7 @@ static void ql_zap(struct qlogicfas408_priv *priv )
   {
   {
   qbase = *((int *)priv);
-  __cil_tmp8 = (unsigned long )priv;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  int_type = *((int *)__cil_tmp9);
+  int_type = *((int *)((void *)priv + 16));
   __cil_tmp10 = qbase + 13;
   tmp = inb(__cil_tmp10);
   x = (int )tmp;
@@ -4378,19 +4344,13 @@ static int ql_wai(struct qlogicfas408_priv *priv )
   long __cil_tmp16 ;
   long __cil_tmp17 ;
   long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
   long __cil_tmp24 ;
   long __cil_tmp25 ;
   long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
   int __cil_tmp33 ;
   int __cil_tmp34 ;
@@ -4413,9 +4373,7 @@ static int ql_wai(struct qlogicfas408_priv *priv )
   __cil_tmp18 = __cil_tmp17 - __cil_tmp16;
   if (__cil_tmp18 < 0L) {
     {
-    __cil_tmp19 = (unsigned long )priv;
-    __cil_tmp20 = __cil_tmp19 + 8;
-    __cil_tmp21 = *((int *)__cil_tmp20);
+    __cil_tmp21 = *((int *)((void *)priv + 8));
     if (__cil_tmp21 == 0) {
       {
       __cil_tmp22 = qbase + 4;
@@ -4449,14 +4407,10 @@ static int ql_wai(struct qlogicfas408_priv *priv )
   }
   }
   {
-  __cil_tmp27 = (unsigned long )priv;
-  __cil_tmp28 = __cil_tmp27 + 8;
-  __cil_tmp29 = *((int *)__cil_tmp28);
+  __cil_tmp29 = *((int *)((void *)priv + 8));
   if (__cil_tmp29 != 0) {
     {
-    __cil_tmp30 = (unsigned long )priv;
-    __cil_tmp31 = __cil_tmp30 + 8;
-    __cil_tmp32 = *((int *)__cil_tmp31);
+    __cil_tmp32 = *((int *)((void *)priv + 8));
     if (__cil_tmp32 == 1) {
       tmp___0 = 5;
     } else {
@@ -4507,13 +4461,7 @@ static void ql_icmd(struct scsi_cmnd *cmd )
   unsigned int tmp___5 ;
   struct scsi_device *__cil_tmp13 ;
   struct Scsi_Host *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long (*__cil_tmp17)[0U] ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
   int __cil_tmp24 ;
@@ -4557,8 +4505,6 @@ static void ql_icmd(struct scsi_cmnd *cmd )
   int __cil_tmp62 ;
   unsigned char __cil_tmp63 ;
   int __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   int __cil_tmp67 ;
   signed char __cil_tmp68 ;
   int __cil_tmp69 ;
@@ -4593,36 +4539,24 @@ static void ql_icmd(struct scsi_cmnd *cmd )
   unsigned char __cil_tmp98 ;
   int __cil_tmp99 ;
   unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   unsigned char *__cil_tmp103 ;
   unsigned char *__cil_tmp104 ;
   unsigned char __cil_tmp105 ;
   int __cil_tmp106 ;
   unsigned char __cil_tmp107 ;
   int __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   unsigned short __cil_tmp111 ;
   unsigned int __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   int __cil_tmp115 ;
   {
   {
   __cil_tmp13 = *((struct scsi_device **)cmd);
   __cil_tmp14 = *((struct Scsi_Host **)__cil_tmp13);
-  __cil_tmp15 = (unsigned long )__cil_tmp14;
-  __cil_tmp16 = __cil_tmp15 + 3048;
-  __cil_tmp17 = (unsigned long (*)[0U])__cil_tmp16;
+  __cil_tmp17 = (unsigned long (*)[0U])((void *)__cil_tmp14 + 3048);
   priv = (struct qlogicfas408_priv *)__cil_tmp17;
   qbase = *((int *)priv);
-  __cil_tmp18 = (unsigned long )priv;
-  __cil_tmp19 = __cil_tmp18 + 16;
-  int_type = *((int *)__cil_tmp19);
-  __cil_tmp20 = (unsigned long )priv;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  *((int *)__cil_tmp21) = 0;
+  int_type = *((int *)((void *)priv + 16));
+  *((int *)((void *)priv + 8)) = 0;
   __cil_tmp22 = qbase + 13;
   tmp = inb(__cil_tmp22);
   __cil_tmp23 = (int )tmp;
@@ -4717,9 +4651,7 @@ static void ql_icmd(struct scsi_cmnd *cmd )
   __cil_tmp63 = (unsigned char )__cil_tmp62;
   __cil_tmp64 = qbase + 12;
   outb(__cil_tmp63, __cil_tmp64);
-  __cil_tmp65 = (unsigned long )priv;
-  __cil_tmp66 = __cil_tmp65 + 4;
-  __cil_tmp67 = *((int *)__cil_tmp66);
+  __cil_tmp67 = *((int *)((void *)priv + 4));
   __cil_tmp68 = (signed char )__cil_tmp67;
   __cil_tmp69 = (int )__cil_tmp68;
   __cil_tmp70 = (signed char )qlcfg8;
@@ -4765,9 +4697,7 @@ static void ql_icmd(struct scsi_cmnd *cmd )
   ldv_30065:
   {
   __cil_tmp100 = (unsigned long )i;
-  __cil_tmp101 = (unsigned long )cmd;
-  __cil_tmp102 = __cil_tmp101 + 80;
-  __cil_tmp103 = *((unsigned char **)__cil_tmp102);
+  __cil_tmp103 = *((unsigned char **)((void *)cmd + 80));
   __cil_tmp104 = __cil_tmp103 + __cil_tmp100;
   __cil_tmp105 = *__cil_tmp104;
   __cil_tmp106 = (int )__cil_tmp105;
@@ -4778,9 +4708,7 @@ static void ql_icmd(struct scsi_cmnd *cmd )
   }
   ldv_30066: ;
   {
-  __cil_tmp109 = (unsigned long )cmd;
-  __cil_tmp110 = __cil_tmp109 + 74;
-  __cil_tmp111 = *((unsigned short *)__cil_tmp110);
+  __cil_tmp111 = *((unsigned short *)((void *)cmd + 74));
   __cil_tmp112 = (unsigned int )__cil_tmp111;
   if (__cil_tmp112 > i) {
     goto ldv_30065;
@@ -4790,9 +4718,7 @@ static void ql_icmd(struct scsi_cmnd *cmd )
   }
   ldv_30067:
   {
-  __cil_tmp113 = (unsigned long )priv;
-  __cil_tmp114 = __cil_tmp113 + 104;
-  *((struct scsi_cmnd **)__cil_tmp114) = cmd;
+  *((struct scsi_cmnd **)((void *)priv + 104)) = cmd;
   __cil_tmp115 = qbase + 3;
   outb((unsigned char)65, __cil_tmp115);
   }
@@ -4842,11 +4768,7 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   unsigned int tmp___25 ;
   struct scsi_device *__cil_tmp50 ;
   struct Scsi_Host *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned long (*__cil_tmp54)[0U] ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   int __cil_tmp57 ;
   int __cil_tmp58 ;
   int __cil_tmp59 ;
@@ -4887,8 +4809,6 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   int __cil_tmp94 ;
   unsigned char __cil_tmp95 ;
   int __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   int __cil_tmp99 ;
   int __cil_tmp100 ;
   int __cil_tmp101 ;
@@ -4896,12 +4816,8 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   unsigned char __cil_tmp103 ;
   int __cil_tmp104 ;
   int __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   int __cil_tmp108 ;
   int __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   unsigned int __cil_tmp112 ;
   int __cil_tmp113 ;
   int __cil_tmp114 ;
@@ -4916,8 +4832,6 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   long __cil_tmp123 ;
   long __cil_tmp124 ;
   long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
   int __cil_tmp128 ;
   int __cil_tmp129 ;
   int __cil_tmp130 ;
@@ -4927,11 +4841,7 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   long __cil_tmp134 ;
   int __cil_tmp135 ;
   unsigned int __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
   int __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
   int __cil_tmp142 ;
   int __cil_tmp143 ;
   unsigned int __cil_tmp144 ;
@@ -4945,15 +4855,9 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   int __cil_tmp152 ;
   int __cil_tmp153 ;
   unsigned int __cil_tmp154 ;
-  unsigned long __cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
   int __cil_tmp157 ;
   unsigned int __cil_tmp158 ;
-  unsigned long __cil_tmp159 ;
-  unsigned long __cil_tmp160 ;
   int __cil_tmp161 ;
-  unsigned long __cil_tmp162 ;
-  unsigned long __cil_tmp163 ;
   int __cil_tmp164 ;
   unsigned int __cil_tmp165 ;
   unsigned int __cil_tmp166 ;
@@ -4963,14 +4867,10 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   {
   __cil_tmp50 = *((struct scsi_device **)cmd);
   __cil_tmp51 = *((struct Scsi_Host **)__cil_tmp50);
-  __cil_tmp52 = (unsigned long )__cil_tmp51;
-  __cil_tmp53 = __cil_tmp52 + 3048;
-  __cil_tmp54 = (unsigned long (*)[0U])__cil_tmp53;
+  __cil_tmp54 = (unsigned long (*)[0U])((void *)__cil_tmp51 + 3048);
   priv = (struct qlogicfas408_priv *)__cil_tmp54;
   qbase = *((int *)priv);
-  __cil_tmp55 = (unsigned long )priv;
-  __cil_tmp56 = __cil_tmp55 + 16;
-  int_type = *((int *)__cil_tmp56);
+  int_type = *((int *)((void *)priv + 16));
   __cil_tmp57 = qbase + 6;
   tmp = inb(__cil_tmp57);
   j = (unsigned int )tmp;
@@ -5082,9 +4982,7 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
       goto ldv_30086;
       ldv_30085: ;
       {
-      __cil_tmp97 = (unsigned long )priv;
-      __cil_tmp98 = __cil_tmp97 + 8;
-      __cil_tmp99 = *((int *)__cil_tmp98);
+      __cil_tmp99 = *((int *)((void *)priv + 8));
       if (__cil_tmp99 != 0) {
         {
         __cil_tmp100 = qbase + 13;
@@ -5098,9 +4996,7 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
         outb((unsigned char)4, __cil_tmp105);
         }
         {
-        __cil_tmp106 = (unsigned long )priv;
-        __cil_tmp107 = __cil_tmp106 + 8;
-        __cil_tmp108 = *((int *)__cil_tmp107);
+        __cil_tmp108 = *((int *)((void *)priv + 8));
         if (__cil_tmp108 == 1) {
           tmp___6 = 327680U;
         } else {
@@ -5115,9 +5011,7 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
       tmp___7 = sg_virt(sg);
       buf = (char *)tmp___7;
       __cil_tmp109 = (int )phase;
-      __cil_tmp110 = (unsigned long )sg;
-      __cil_tmp111 = __cil_tmp110 + 20;
-      __cil_tmp112 = *((unsigned int *)__cil_tmp111);
+      __cil_tmp112 = *((unsigned int *)((void *)sg + 20));
       __cil_tmp113 = (int )__cil_tmp112;
       tmp___8 = ql_pdma(priv, __cil_tmp109, buf, __cil_tmp113);
       }
@@ -5183,9 +5077,7 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   __cil_tmp125 = __cil_tmp124 - __cil_tmp123;
   if (__cil_tmp125 < 0L) {
     {
-    __cil_tmp126 = (unsigned long )priv;
-    __cil_tmp127 = __cil_tmp126 + 8;
-    __cil_tmp128 = *((int *)__cil_tmp127);
+    __cil_tmp128 = *((int *)((void *)priv + 8));
     if (__cil_tmp128 == 0) {
       {
       __cil_tmp129 = qbase + 4;
@@ -5241,14 +5133,10 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   }
   ldv_30104: ;
   {
-  __cil_tmp137 = (unsigned long )priv;
-  __cil_tmp138 = __cil_tmp137 + 8;
-  __cil_tmp139 = *((int *)__cil_tmp138);
+  __cil_tmp139 = *((int *)((void *)priv + 8));
   if (__cil_tmp139 != 0) {
     {
-    __cil_tmp140 = (unsigned long )priv;
-    __cil_tmp141 = __cil_tmp140 + 8;
-    __cil_tmp142 = *((int *)__cil_tmp141);
+    __cil_tmp142 = *((int *)((void *)priv + 8));
     if (__cil_tmp142 == 1) {
       tmp___16 = 327680U;
     } else {
@@ -5337,9 +5225,7 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   }
   ldv_30106: ;
   {
-  __cil_tmp155 = (unsigned long )priv;
-  __cil_tmp156 = __cil_tmp155 + 8;
-  __cil_tmp157 = *((int *)__cil_tmp156);
+  __cil_tmp157 = *((int *)((void *)priv + 8));
   if (__cil_tmp157 == 0) {
     {
     __cil_tmp158 = i & 32U;
@@ -5355,14 +5241,10 @@ static unsigned int ql_pcmd(struct scsi_cmnd *cmd )
   }
   ldv_30107: ;
   {
-  __cil_tmp159 = (unsigned long )priv;
-  __cil_tmp160 = __cil_tmp159 + 8;
-  __cil_tmp161 = *((int *)__cil_tmp160);
+  __cil_tmp161 = *((int *)((void *)priv + 8));
   if (__cil_tmp161 != 0) {
     {
-    __cil_tmp162 = (unsigned long )priv;
-    __cil_tmp163 = __cil_tmp162 + 8;
-    __cil_tmp164 = *((int *)__cil_tmp163);
+    __cil_tmp164 = *((int *)((void *)priv + 8));
     if (__cil_tmp164 == 1) {
       tmp___25 = 327680U;
     } else {
@@ -5393,8 +5275,6 @@ static void ql_ihandl(void *dev_id )
   int tmp___1 ;
   unsigned char tmp___2 ;
   unsigned int tmp___3 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long (*__cil_tmp14)[0U] ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -5407,27 +5287,15 @@ static void ql_ihandl(void *dev_id )
   int __cil_tmp23 ;
   struct scsi_cmnd *__cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct scsi_cmnd *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   void (*__cil_tmp40)(struct scsi_cmnd * ) ;
   {
   {
   host = (struct Scsi_Host *)dev_id;
-  __cil_tmp12 = (unsigned long )host;
-  __cil_tmp13 = __cil_tmp12 + 3048;
-  __cil_tmp14 = (unsigned long (*)[0U])__cil_tmp13;
+  __cil_tmp14 = (unsigned long (*)[0U])((void *)host + 3048);
   priv = (struct qlogicfas408_priv *)__cil_tmp14;
   qbase = *((int *)priv);
   __cil_tmp15 = qbase + 13;
@@ -5453,9 +5321,7 @@ static void ql_ihandl(void *dev_id )
   {
   __cil_tmp24 = (struct scsi_cmnd *)0;
   __cil_tmp25 = (unsigned long )__cil_tmp24;
-  __cil_tmp26 = (unsigned long )priv;
-  __cil_tmp27 = __cil_tmp26 + 104;
-  __cil_tmp28 = *((struct scsi_cmnd **)__cil_tmp27);
+  __cil_tmp28 = *((struct scsi_cmnd **)((void *)priv + 104));
   __cil_tmp29 = (unsigned long )__cil_tmp28;
   if (__cil_tmp29 == __cil_tmp25) {
     i = 16;
@@ -5486,19 +5352,11 @@ static void ql_ihandl(void *dev_id )
   }
   }
   {
-  __cil_tmp32 = (unsigned long )priv;
-  __cil_tmp33 = __cil_tmp32 + 104;
-  icmd = *((struct scsi_cmnd **)__cil_tmp33);
+  icmd = *((struct scsi_cmnd **)((void *)priv + 104));
   tmp___3 = ql_pcmd(icmd);
-  __cil_tmp34 = (unsigned long )icmd;
-  __cil_tmp35 = __cil_tmp34 + 224;
-  *((int *)__cil_tmp35) = (int )tmp___3;
-  __cil_tmp36 = (unsigned long )priv;
-  __cil_tmp37 = __cil_tmp36 + 104;
-  *((struct scsi_cmnd **)__cil_tmp37) = (struct scsi_cmnd *)0;
-  __cil_tmp38 = (unsigned long )icmd;
-  __cil_tmp39 = __cil_tmp38 + 144;
-  __cil_tmp40 = *((void (**)(struct scsi_cmnd * ))__cil_tmp39);
+  *((int *)((void *)icmd + 224)) = (int )tmp___3;
+  *((struct scsi_cmnd **)((void *)priv + 104)) = (struct scsi_cmnd *)0;
+  __cil_tmp40 = *((void (**)(struct scsi_cmnd * ))((void *)icmd + 144));
   (*__cil_tmp40)(icmd);
   }
   return;
@@ -5507,17 +5365,13 @@ static void ql_ihandl(void *dev_id )
 irqreturn_t qlogicfas408_ihandl(int irq , void *dev_id )
 { unsigned long flags ;
   struct Scsi_Host *host ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   spinlock_t *__cil_tmp7 ;
   {
   {
   host = (struct Scsi_Host *)dev_id;
   ldv_spin_lock();
   ql_ihandl(dev_id);
-  __cil_tmp5 = (unsigned long )host;
-  __cil_tmp6 = __cil_tmp5 + 216;
-  __cil_tmp7 = *((spinlock_t **)__cil_tmp6);
+  __cil_tmp7 = *((spinlock_t **)((void *)host + 216));
   spin_unlock_irqrestore(__cil_tmp7, flags);
   }
   return ((irqreturn_t )1);
@@ -5528,54 +5382,36 @@ static int qlogicfas408_queuecommand_lck(struct scsi_cmnd *cmd , void (*done)(st
   unsigned int tmp ;
   struct scsi_device *__cil_tmp5 ;
   struct Scsi_Host *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long (*__cil_tmp9)[0U] ;
   struct scsi_device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct scsi_cmnd *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct scsi_cmnd *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   {
   {
   __cil_tmp5 = *((struct scsi_device **)cmd);
   __cil_tmp6 = *((struct Scsi_Host **)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 3048;
-  __cil_tmp9 = (unsigned long (*)[0U])__cil_tmp8;
+  __cil_tmp9 = (unsigned long (*)[0U])((void *)__cil_tmp6 + 3048);
   priv = (struct qlogicfas408_priv *)__cil_tmp9;
   __cil_tmp10 = *((struct scsi_device **)cmd);
   tmp = sdev_id(__cil_tmp10);
   }
   {
-  __cil_tmp11 = (unsigned long )priv;
-  __cil_tmp12 = __cil_tmp11 + 4;
-  __cil_tmp13 = *((int *)__cil_tmp12);
+  __cil_tmp13 = *((int *)((void *)priv + 4));
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   if (tmp == __cil_tmp14) {
     {
-    __cil_tmp15 = (unsigned long )cmd;
-    __cil_tmp16 = __cil_tmp15 + 224;
-    *((int *)__cil_tmp16) = 262144;
+    *((int *)((void *)cmd + 224)) = 262144;
     (*done)(cmd);
     }
     return (0);
   } else {
   }
   }
-  __cil_tmp17 = (unsigned long )cmd;
-  __cil_tmp18 = __cil_tmp17 + 144;
-  *((void (**)(struct scsi_cmnd * ))__cil_tmp18) = done;
+  *((void (**)(struct scsi_cmnd * ))((void *)cmd + 144)) = done;
   goto ldv_30132;
   ldv_30131:
   {
@@ -5586,9 +5422,7 @@ static int qlogicfas408_queuecommand_lck(struct scsi_cmnd *cmd , void (*done)(st
   {
   __cil_tmp19 = (struct scsi_cmnd *)0;
   __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = (unsigned long )priv;
-  __cil_tmp22 = __cil_tmp21 + 104;
-  __cil_tmp23 = *((struct scsi_cmnd **)__cil_tmp22);
+  __cil_tmp23 = *((struct scsi_cmnd **)((void *)priv + 104));
   __cil_tmp24 = (unsigned long )__cil_tmp23;
   if (__cil_tmp24 != __cil_tmp20) {
     goto ldv_30131;
@@ -5606,23 +5440,15 @@ static int qlogicfas408_queuecommand_lck(struct scsi_cmnd *cmd , void (*done)(st
 int qlogicfas408_queuecommand(struct Scsi_Host *shost , struct scsi_cmnd *cmd )
 { unsigned long irq_flags ;
   int rc ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void (*__cil_tmp7)(struct scsi_cmnd * ) ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   spinlock_t *__cil_tmp10 ;
   {
   {
   ldv_spin_lock();
   scsi_cmd_get_serial(shost, cmd);
-  __cil_tmp5 = (unsigned long )cmd;
-  __cil_tmp6 = __cil_tmp5 + 144;
-  __cil_tmp7 = *((void (**)(struct scsi_cmnd * ))__cil_tmp6);
+  __cil_tmp7 = *((void (**)(struct scsi_cmnd * ))((void *)cmd + 144));
   rc = qlogicfas408_queuecommand_lck(cmd, __cil_tmp7);
-  __cil_tmp8 = (unsigned long )shost;
-  __cil_tmp9 = __cil_tmp8 + 216;
-  __cil_tmp10 = *((spinlock_t **)__cil_tmp9);
+  __cil_tmp10 = *((spinlock_t **)((void *)shost + 216));
   spin_unlock_irqrestore(__cil_tmp10, irq_flags);
   }
   return (rc);
@@ -5685,22 +5511,14 @@ int qlogicfas408_abort(struct scsi_cmnd *cmd )
 { struct qlogicfas408_priv *priv ;
   struct scsi_device *__cil_tmp3 ;
   struct Scsi_Host *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned long (*__cil_tmp7)[0U] ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   {
   {
   __cil_tmp3 = *((struct scsi_device **)cmd);
   __cil_tmp4 = *((struct Scsi_Host **)__cil_tmp3);
-  __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = __cil_tmp5 + 3048;
-  __cil_tmp7 = (unsigned long (*)[0U])__cil_tmp6;
+  __cil_tmp7 = (unsigned long (*)[0U])((void *)__cil_tmp4 + 3048);
   priv = (struct qlogicfas408_priv *)__cil_tmp7;
-  __cil_tmp8 = (unsigned long )priv;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  *((int *)__cil_tmp9) = 1;
+  *((int *)((void *)priv + 8)) = 1;
   ql_zap(priv);
   }
   return (8194);
@@ -5711,34 +5529,22 @@ int qlogicfas408_bus_reset(struct scsi_cmnd *cmd )
   unsigned long flags ;
   struct scsi_device *__cil_tmp4 ;
   struct Scsi_Host *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long (*__cil_tmp8)[0U] ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct scsi_device *__cil_tmp11 ;
   struct Scsi_Host *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   spinlock_t *__cil_tmp15 ;
   {
   {
   __cil_tmp4 = *((struct scsi_device **)cmd);
   __cil_tmp5 = *((struct Scsi_Host **)__cil_tmp4);
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 3048;
-  __cil_tmp8 = (unsigned long (*)[0U])__cil_tmp7;
+  __cil_tmp8 = (unsigned long (*)[0U])((void *)__cil_tmp5 + 3048);
   priv = (struct qlogicfas408_priv *)__cil_tmp8;
-  __cil_tmp9 = (unsigned long )priv;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  *((int *)__cil_tmp10) = 2;
+  *((int *)((void *)priv + 8)) = 2;
   ldv_spin_lock();
   ql_zap(priv);
   __cil_tmp11 = *((struct scsi_device **)cmd);
   __cil_tmp12 = *((struct Scsi_Host **)__cil_tmp11);
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + 216;
-  __cil_tmp15 = *((spinlock_t **)__cil_tmp14);
+  __cil_tmp15 = *((spinlock_t **)((void *)__cil_tmp12 + 216));
   spin_unlock_irqrestore(__cil_tmp15, flags);
   }
   return (8194);
@@ -5746,21 +5552,13 @@ int qlogicfas408_bus_reset(struct scsi_cmnd *cmd )
 }
 char const *qlogicfas408_info(struct Scsi_Host *host )
 { struct qlogicfas408_priv *priv ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned long (*__cil_tmp5)[0U] ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   char (*__cil_tmp8)[80U] ;
   {
-  __cil_tmp3 = (unsigned long )host;
-  __cil_tmp4 = __cil_tmp3 + 3048;
-  __cil_tmp5 = (unsigned long (*)[0U])__cil_tmp4;
+  __cil_tmp5 = (unsigned long (*)[0U])((void *)host + 3048);
   priv = (struct qlogicfas408_priv *)__cil_tmp5;
   {
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 20;
-  __cil_tmp8 = (char (*)[80U])__cil_tmp7;
+  __cil_tmp8 = (char (*)[80U])((void *)priv + 20);
   return ((char const *)__cil_tmp8);
   }
 }
@@ -5964,8 +5762,6 @@ void qlogicfas408_disable_ints(struct qlogicfas408_priv *priv )
 { int qbase ;
   int int_type ;
   unsigned char tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
@@ -5983,9 +5779,7 @@ void qlogicfas408_disable_ints(struct qlogicfas408_priv *priv )
   {
   {
   qbase = *((int *)priv);
-  __cil_tmp5 = (unsigned long )priv;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  int_type = *((int *)__cil_tmp6);
+  int_type = *((int *)((void *)priv + 16));
   __cil_tmp7 = qbase + 13;
   tmp = inb(__cil_tmp7);
   __cil_tmp8 = (unsigned int )tmp;

@@ -4048,12 +4048,11 @@ extern void *memset(void *s , int c , size_t n ) ;
 extern struct pv_cpu_ops pv_cpu_ops ;
 __inline static void slow_down_io(void) __attribute__((__no_instrument_function__)) ;
 __inline static void slow_down_io(void)
-{ unsigned long __cil_tmp1 ;
+{
   void (*__cil_tmp2)(void) ;
   {
   {
-  __cil_tmp1 = (unsigned long )(& pv_cpu_ops) + 216;
-  __cil_tmp2 = *((void (**)(void))__cil_tmp1);
+  __cil_tmp2 = *((void (**)(void))((void *)(&pv_cpu_ops) + 216));
   (*__cil_tmp2)();
   }
   return;
@@ -4184,12 +4183,8 @@ __inline static void ide_std_init_ports(struct ide_hw *hw , unsigned long io_add
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   {
   i = 0U;
   {
@@ -4204,18 +4199,14 @@ __inline static void ide_std_init_ports(struct ide_hw *hw , unsigned long io_add
     __cil_tmp6 = i * 8UL;
     __cil_tmp7 = 0 + __cil_tmp6;
     __cil_tmp8 = 0 + __cil_tmp7;
-    __cil_tmp9 = (unsigned long )hw;
-    __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-    *((unsigned long *)__cil_tmp10) = tmp___7;
+    *((unsigned long *)((void *)hw + __cil_tmp8)) = tmp___7;
     i = i + 1U;
   }
   while_break: ;
   }
   __cil_tmp11 = 0 + 64;
   __cil_tmp12 = 0 + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )hw;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  *((unsigned long *)__cil_tmp14) = ctl_addr;
+  *((unsigned long *)((void *)hw + __cil_tmp12)) = ctl_addr;
   return;
 }
 }
@@ -4229,42 +4220,26 @@ __inline static ide_drive_t *ide_get_pair_dev(ide_drive_t *drive ) __attribute__
 __inline static ide_drive_t *ide_get_pair_dev(ide_drive_t *drive )
 { ide_drive_t *peer ;
   ide_drive_t *tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   u8 __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
   int __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct hwif_s *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
   {
-  __cil_tmp4 = (unsigned long )drive;
-  __cil_tmp5 = __cil_tmp4 + 114;
-  __cil_tmp6 = *((u8 *)__cil_tmp5);
+  __cil_tmp6 = *((u8 *)((void *)drive + 114));
   __cil_tmp7 = (int )__cil_tmp6;
   __cil_tmp8 = __cil_tmp7 ^ 1;
   __cil_tmp9 = __cil_tmp8 & 1;
   __cil_tmp10 = __cil_tmp9 * 8UL;
   __cil_tmp11 = 136 + __cil_tmp10;
-  __cil_tmp12 = (unsigned long )drive;
-  __cil_tmp13 = __cil_tmp12 + 64;
-  __cil_tmp14 = *((struct hwif_s **)__cil_tmp13);
-  __cil_tmp15 = (unsigned long )__cil_tmp14;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp11;
-  peer = *((ide_drive_t **)__cil_tmp16);
+  __cil_tmp14 = *((struct hwif_s **)((void *)drive + 64));
+  peer = *((ide_drive_t **)((void *)__cil_tmp14 + __cil_tmp11));
   {
-  __cil_tmp17 = (unsigned long )peer;
-  __cil_tmp18 = __cil_tmp17 + 80;
-  __cil_tmp19 = *((unsigned long *)__cil_tmp18);
+  __cil_tmp19 = *((unsigned long *)((void *)peer + 80));
   if (__cil_tmp19 & 64UL) {
     tmp___7 = peer;
   } else {
@@ -4721,69 +4696,26 @@ static int secondary_port_responding(void)
 }
 }
 static void __set_prefetch_mode(ide_drive_t *drive , int mode )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
+{
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   {
   if (mode) {
-    __cil_tmp3 = (unsigned long )drive;
-    __cil_tmp4 = __cil_tmp3 + 80;
-    __cil_tmp5 = (unsigned long )drive;
-    __cil_tmp6 = __cil_tmp5 + 80;
-    __cil_tmp7 = *((unsigned long *)__cil_tmp6);
-    *((unsigned long *)__cil_tmp4) = __cil_tmp7 | 8192UL;
-    __cil_tmp8 = (unsigned long )drive;
-    __cil_tmp9 = __cil_tmp8 + 80;
-    __cil_tmp10 = (unsigned long )drive;
-    __cil_tmp11 = __cil_tmp10 + 80;
-    __cil_tmp12 = *((unsigned long *)__cil_tmp11);
-    *((unsigned long *)__cil_tmp9) = __cil_tmp12 & 0xfffffffffffffffbUL;
-    __cil_tmp13 = (unsigned long )drive;
-    __cil_tmp14 = __cil_tmp13 + 80;
-    __cil_tmp15 = (unsigned long )drive;
-    __cil_tmp16 = __cil_tmp15 + 80;
-    __cil_tmp17 = *((unsigned long *)__cil_tmp16);
-    *((unsigned long *)__cil_tmp14) = __cil_tmp17 & 0xffffffffffffbfffUL;
+    __cil_tmp7 = *((unsigned long *)((void *)drive + 80));
+    *((unsigned long *)((void *)drive + 80)) = __cil_tmp7 | 8192UL;
+    __cil_tmp12 = *((unsigned long *)((void *)drive + 80));
+    *((unsigned long *)((void *)drive + 80)) = __cil_tmp12 & 0xfffffffffffffffbUL;
+    __cil_tmp17 = *((unsigned long *)((void *)drive + 80));
+    *((unsigned long *)((void *)drive + 80)) = __cil_tmp17 & 0xffffffffffffbfffUL;
   } else {
-    __cil_tmp18 = (unsigned long )drive;
-    __cil_tmp19 = __cil_tmp18 + 80;
-    __cil_tmp20 = (unsigned long )drive;
-    __cil_tmp21 = __cil_tmp20 + 80;
-    __cil_tmp22 = *((unsigned long *)__cil_tmp21);
-    *((unsigned long *)__cil_tmp19) = __cil_tmp22 & 0xffffffffffffdfffUL;
-    __cil_tmp23 = (unsigned long )drive;
-    __cil_tmp24 = __cil_tmp23 + 80;
-    __cil_tmp25 = (unsigned long )drive;
-    __cil_tmp26 = __cil_tmp25 + 80;
-    __cil_tmp27 = *((unsigned long *)__cil_tmp26);
-    *((unsigned long *)__cil_tmp24) = __cil_tmp27 | 16384UL;
-    __cil_tmp28 = (unsigned long )drive;
-    __cil_tmp29 = __cil_tmp28 + 120;
-    *((u8 *)__cil_tmp29) = (u8 )0;
+    __cil_tmp22 = *((unsigned long *)((void *)drive + 80));
+    *((unsigned long *)((void *)drive + 80)) = __cil_tmp22 & 0xffffffffffffdfffUL;
+    __cil_tmp27 = *((unsigned long *)((void *)drive + 80));
+    *((unsigned long *)((void *)drive + 80)) = __cil_tmp27 | 16384UL;
+    *((u8 *)((void *)drive + 120)) = (u8 )0;
   }
   return;
 }
@@ -5165,11 +5097,7 @@ static void cmd640_set_mode(ide_drive_t *drive , unsigned int index , u8 pio_mod
   int __cil_tmp18 ;
   int __cil_tmp19 ;
   u8 __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u8 __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   u16 __cil_tmp26 ;
   int __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
@@ -5240,13 +5168,9 @@ static void cmd640_set_mode(ide_drive_t *drive , unsigned int index , u8 pio_mod
   __cil_tmp19 = 8 + __cil_tmp18;
   __cil_tmp20 = (u8 )__cil_tmp19;
   t = ide_timing_find_mode(__cil_tmp20);
-  __cil_tmp21 = (unsigned long )t;
-  __cil_tmp22 = __cil_tmp21 + 1;
-  __cil_tmp23 = *((u8 *)__cil_tmp22);
+  __cil_tmp23 = *((u8 *)((void *)t + 1));
   setup_time = (int )__cil_tmp23;
-  __cil_tmp24 = (unsigned long )t;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  __cil_tmp26 = *((u16 *)__cil_tmp25);
+  __cil_tmp26 = *((u16 *)((void *)t + 8));
   active_time = (int )__cil_tmp26;
   __cil_tmp27 = setup_time + active_time;
   __cil_tmp28 = (unsigned int )__cil_tmp27;
@@ -5356,8 +5280,6 @@ static void cmd640_set_pio_mode(ide_hwif_t *hwif , ide_drive_t *drive )
   char const *tmp___8 ;
   char const *tmp___9 ;
   u16 tmp___10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u8 __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
@@ -5371,28 +5293,20 @@ static void cmd640_set_pio_mode(ide_hwif_t *hwif , ide_drive_t *drive )
   int __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   char *__cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
   int __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   char *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   char *__cil_tmp41 ;
   int __cil_tmp42 ;
   {
   index = 0U;
-  __cil_tmp11 = (unsigned long )drive;
-  __cil_tmp12 = __cil_tmp11 + 112;
-  __cil_tmp13 = *((u8 *)__cil_tmp12);
+  __cil_tmp13 = *((u8 *)((void *)drive + 112));
   __cil_tmp14 = (int )__cil_tmp13;
   __cil_tmp15 = __cil_tmp14 - 8;
   pio = (u8 )__cil_tmp15;
@@ -5442,9 +5356,7 @@ static void cmd640_set_pio_mode(ide_hwif_t *hwif , ide_drive_t *drive )
     {
     __cil_tmp24 = 0 * 1UL;
     __cil_tmp25 = 0 + __cil_tmp24;
-    __cil_tmp26 = (unsigned long )drive;
-    __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-    __cil_tmp28 = (char *)__cil_tmp27;
+    __cil_tmp28 = (char *)((void *)drive + __cil_tmp25);
     printk("%s: %sabled cmd640 fast host timing (devsel)\n", __cil_tmp28, tmp___8);
     }
     return;
@@ -5466,9 +5378,7 @@ static void cmd640_set_pio_mode(ide_hwif_t *hwif , ide_drive_t *drive )
     {
     __cil_tmp32 = 0 * 1UL;
     __cil_tmp33 = 0 + __cil_tmp32;
-    __cil_tmp34 = (unsigned long )drive;
-    __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-    __cil_tmp36 = (char *)__cil_tmp35;
+    __cil_tmp36 = (char *)((void *)drive + __cil_tmp33);
     printk("%s: %sabled cmd640 prefetch\n", __cil_tmp36, tmp___9);
     }
     return;
@@ -5481,9 +5391,7 @@ static void cmd640_set_pio_mode(ide_hwif_t *hwif , ide_drive_t *drive )
   cmd640_set_mode(drive, index, pio, cycle_time);
   __cil_tmp37 = 0 * 1UL;
   __cil_tmp38 = 0 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )drive;
-  __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-  __cil_tmp41 = (char *)__cil_tmp40;
+  __cil_tmp41 = (char *)((void *)drive + __cil_tmp38);
   __cil_tmp42 = (int )pio;
   printk("%s: selected cmd640 PIO mode%d (%dns)", __cil_tmp41, __cil_tmp42, cycle_time);
   display_clocks(index);
@@ -5495,16 +5403,10 @@ static void cmd640_init_dev(ide_drive_t *drive ) __attribute__((__section__(".in
 __no_instrument_function__)) ;
 static void cmd640_init_dev(ide_drive_t *drive )
 { unsigned int i ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   u8 __cil_tmp5 ;
   int __cil_tmp6 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct hwif_s *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u8 __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
@@ -5517,17 +5419,11 @@ static void cmd640_init_dev(ide_drive_t *drive )
   unsigned long __cil_tmp22 ;
   {
   {
-  __cil_tmp3 = (unsigned long )drive;
-  __cil_tmp4 = __cil_tmp3 + 114;
-  __cil_tmp5 = *((u8 *)__cil_tmp4);
+  __cil_tmp5 = *((u8 *)((void *)drive + 114));
   __cil_tmp6 = (int )__cil_tmp5;
   __cil_tmp7 = __cil_tmp6 & 1;
-  __cil_tmp8 = (unsigned long )drive;
-  __cil_tmp9 = __cil_tmp8 + 64;
-  __cil_tmp10 = *((struct hwif_s **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 170;
-  __cil_tmp13 = *((u8 *)__cil_tmp12);
+  __cil_tmp10 = *((struct hwif_s **)((void *)drive + 64));
+  __cil_tmp13 = *((u8 *)((void *)__cil_tmp10 + 170));
   __cil_tmp14 = (int )__cil_tmp13;
   __cil_tmp15 = __cil_tmp14 * 2;
   __cil_tmp16 = __cil_tmp15 + __cil_tmp7;
@@ -5556,18 +5452,12 @@ static int cmd640_test_irq(ide_hwif_t *hwif )
   u8 irq_stat___0 ;
   u8 tmp___9 ;
   int tmp___10 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u16 __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   {
   {
-  __cil_tmp9 = (unsigned long )hwif;
-  __cil_tmp10 = __cil_tmp9 + 170;
-  if (*((u8 *)__cil_tmp10)) {
+  if (*((u8 *)((void *)hwif + 170))) {
     tmp___7 = 87;
   } else {
     tmp___7 = 80;
@@ -5575,9 +5465,7 @@ static int cmd640_test_irq(ide_hwif_t *hwif )
   }
   irq_reg = tmp___7;
   {
-  __cil_tmp11 = (unsigned long )hwif;
-  __cil_tmp12 = __cil_tmp11 + 170;
-  if (*((u8 *)__cil_tmp12)) {
+  if (*((u8 *)((void *)hwif + 170))) {
     tmp___8 = 16;
   } else {
     tmp___8 = 4;

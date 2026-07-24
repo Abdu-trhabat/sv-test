@@ -1024,14 +1024,10 @@ __inline static void irq_set_handler(unsigned int irq , void (*handle)(unsigned 
 extern void irq_modify_status(unsigned int  , unsigned long  , unsigned long  ) ;
 extern int irq_set_chip(unsigned int  , struct irq_chip * ) ;
 __inline static struct irq_chip *irq_data_get_irq_chip(struct irq_data *d ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )d;
-  __cil_tmp3 = __cil_tmp2 + 24;
-  return (*((struct irq_chip **)__cil_tmp3));
+  return (*((struct irq_chip **)((void *)d + 24)));
   }
 }
 }
@@ -1051,16 +1047,12 @@ static void iio_dummy_event_irqmask(struct irq_data *d )
   struct irq_chip *tmp ;
   struct iio_dummy_eventgen *evgen ;
   struct irq_chip  const  *__mptr ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
 
   {
   {
@@ -1068,17 +1060,13 @@ static void iio_dummy_event_irqmask(struct irq_data *d )
   chip = tmp;
   __mptr = (struct irq_chip  const  *)chip;
   evgen = (struct iio_dummy_eventgen *)__mptr;
-  __cil_tmp6 = (unsigned long )evgen;
-  __cil_tmp7 = __cil_tmp6 + 184;
-  __cil_tmp8 = *((int *)__cil_tmp7);
+  __cil_tmp8 = *((int *)((void *)evgen + 184));
   __cil_tmp9 = (unsigned int )__cil_tmp8;
   __cil_tmp10 = *((unsigned int *)d);
   __cil_tmp11 = __cil_tmp10 - __cil_tmp9;
   __cil_tmp12 = __cil_tmp11 * 1UL;
   __cil_tmp13 = 188 + __cil_tmp12;
-  __cil_tmp14 = (unsigned long )evgen;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  *((bool *)__cil_tmp15) = (bool )0;
+  *((bool *)((void *)evgen + __cil_tmp13)) = (bool )0;
   }
   return;
 }
@@ -1088,16 +1076,12 @@ static void iio_dummy_event_irqunmask(struct irq_data *d )
   struct irq_chip *tmp ;
   struct iio_dummy_eventgen *evgen ;
   struct irq_chip  const  *__mptr ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
 
   {
   {
@@ -1105,17 +1089,13 @@ static void iio_dummy_event_irqunmask(struct irq_data *d )
   chip = tmp;
   __mptr = (struct irq_chip  const  *)chip;
   evgen = (struct iio_dummy_eventgen *)__mptr;
-  __cil_tmp6 = (unsigned long )evgen;
-  __cil_tmp7 = __cil_tmp6 + 184;
-  __cil_tmp8 = *((int *)__cil_tmp7);
+  __cil_tmp8 = *((int *)((void *)evgen + 184));
   __cil_tmp9 = (unsigned int )__cil_tmp8;
   __cil_tmp10 = *((unsigned int *)d);
   __cil_tmp11 = __cil_tmp10 - __cil_tmp9;
   __cil_tmp12 = __cil_tmp11 * 1UL;
   __cil_tmp13 = 188 + __cil_tmp12;
-  __cil_tmp14 = (unsigned long )evgen;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  *((bool *)__cil_tmp15) = (bool )1;
+  *((bool *)((void *)evgen + __cil_tmp13)) = (bool )1;
   }
   return;
 }
@@ -1128,38 +1108,20 @@ static int iio_dummy_evgen_create(void)
   struct iio_dummy_eventgen *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void const   *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   struct irq_chip *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
   int __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   int __cil_tmp35 ;
   int __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct mutex *__cil_tmp40 ;
 
   {
@@ -1178,19 +1140,13 @@ static int iio_dummy_evgen_create(void)
   }
   }
   {
-  __cil_tmp8 = (unsigned long )iio_evgen;
-  __cil_tmp9 = __cil_tmp8 + 184;
-  *((int *)__cil_tmp9) = __irq_alloc_descs(-1, 0U, 10U, 0, & __this_module);
+  *((int *)((void *)iio_evgen + 184)) = __irq_alloc_descs(-1, 0U, 10U, 0, & __this_module);
   }
   {
-  __cil_tmp10 = (unsigned long )iio_evgen;
-  __cil_tmp11 = __cil_tmp10 + 184;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp12 = *((int *)((void *)iio_evgen + 184));
   if (__cil_tmp12 < 0) {
     {
-    __cil_tmp13 = (unsigned long )iio_evgen;
-    __cil_tmp14 = __cil_tmp13 + 184;
-    ret = *((int *)__cil_tmp14);
+    ret = *((int *)((void *)iio_evgen + 184));
     __cil_tmp15 = (void const   *)iio_evgen;
     kfree(__cil_tmp15);
     }
@@ -1201,33 +1157,23 @@ static int iio_dummy_evgen_create(void)
   }
   *((char const   **)iio_evgen) = iio_evgen_name;
   __cil_tmp16 = 0 + 48;
-  __cil_tmp17 = (unsigned long )iio_evgen;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  *((void (**)(struct irq_data * ))__cil_tmp18) = & iio_dummy_event_irqmask;
+  *((void (**)(struct irq_data * ))((void *)iio_evgen + __cil_tmp16)) = & iio_dummy_event_irqmask;
   __cil_tmp19 = 0 + 64;
-  __cil_tmp20 = (unsigned long )iio_evgen;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  *((void (**)(struct irq_data * ))__cil_tmp21) = & iio_dummy_event_irqunmask;
+  *((void (**)(struct irq_data * ))((void *)iio_evgen + __cil_tmp19)) = & iio_dummy_event_irqunmask;
   i = 0;
   goto ldv_16830;
   ldv_16829: 
   {
-  __cil_tmp22 = (unsigned long )iio_evgen;
-  __cil_tmp23 = __cil_tmp22 + 184;
-  __cil_tmp24 = *((int *)__cil_tmp23);
+  __cil_tmp24 = *((int *)((void *)iio_evgen + 184));
   __cil_tmp25 = __cil_tmp24 + i;
   __cil_tmp26 = (unsigned int )__cil_tmp25;
   __cil_tmp27 = (struct irq_chip *)iio_evgen;
   irq_set_chip(__cil_tmp26, __cil_tmp27);
-  __cil_tmp28 = (unsigned long )iio_evgen;
-  __cil_tmp29 = __cil_tmp28 + 184;
-  __cil_tmp30 = *((int *)__cil_tmp29);
+  __cil_tmp30 = *((int *)((void *)iio_evgen + 184));
   __cil_tmp31 = __cil_tmp30 + i;
   __cil_tmp32 = (unsigned int )__cil_tmp31;
   irq_set_handler(__cil_tmp32, & handle_simple_irq);
-  __cil_tmp33 = (unsigned long )iio_evgen;
-  __cil_tmp34 = __cil_tmp33 + 184;
-  __cil_tmp35 = *((int *)__cil_tmp34);
+  __cil_tmp35 = *((int *)((void *)iio_evgen + 184));
   __cil_tmp36 = __cil_tmp35 + i;
   __cil_tmp37 = (unsigned int )__cil_tmp36;
   irq_modify_status(__cil_tmp37, 6144UL, 1024UL);
@@ -1241,9 +1187,7 @@ static int iio_dummy_evgen_create(void)
   }
   ldv_16831: 
   {
-  __cil_tmp38 = (unsigned long )iio_evgen;
-  __cil_tmp39 = __cil_tmp38 + 208;
-  __cil_tmp40 = (struct mutex *)__cil_tmp39;
+  __cil_tmp40 = (struct mutex *)((void *)iio_evgen + 208);
   __mutex_init(__cil_tmp40, "&iio_evgen->lock", & __key);
   }
   return (0);
@@ -1255,23 +1199,13 @@ int iio_dummy_evgen_get_irq(void)
   struct iio_dummy_eventgen *__cil_tmp3 ;
   unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct mutex *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   bool __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct mutex *__cil_tmp23 ;
 
   {
@@ -1287,9 +1221,7 @@ int iio_dummy_evgen_get_irq(void)
   }
   }
   {
-  __cil_tmp6 = (unsigned long )iio_evgen;
-  __cil_tmp7 = __cil_tmp6 + 208;
-  __cil_tmp8 = (struct mutex *)__cil_tmp7;
+  __cil_tmp8 = (struct mutex *)((void *)iio_evgen + 208);
   mutex_lock_nested(__cil_tmp8, 0U);
   i = 0;
   }
@@ -1298,19 +1230,13 @@ int iio_dummy_evgen_get_irq(void)
   {
   __cil_tmp9 = i * 1UL;
   __cil_tmp10 = 198 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )iio_evgen;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = *((bool *)__cil_tmp12);
+  __cil_tmp13 = *((bool *)((void *)iio_evgen + __cil_tmp10));
   if (! __cil_tmp13) {
-    __cil_tmp14 = (unsigned long )iio_evgen;
-    __cil_tmp15 = __cil_tmp14 + 184;
-    __cil_tmp16 = *((int *)__cil_tmp15);
+    __cil_tmp16 = *((int *)((void *)iio_evgen + 184));
     ret = __cil_tmp16 + i;
     __cil_tmp17 = i * 1UL;
     __cil_tmp18 = 198 + __cil_tmp17;
-    __cil_tmp19 = (unsigned long )iio_evgen;
-    __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-    *((bool *)__cil_tmp20) = (bool )1;
+    *((bool *)((void *)iio_evgen + __cil_tmp18)) = (bool )1;
     goto ldv_16838;
   } else {
 
@@ -1325,9 +1251,7 @@ int iio_dummy_evgen_get_irq(void)
   }
   ldv_16838: 
   {
-  __cil_tmp21 = (unsigned long )iio_evgen;
-  __cil_tmp22 = __cil_tmp21 + 208;
-  __cil_tmp23 = (struct mutex *)__cil_tmp22;
+  __cil_tmp23 = (struct mutex *)((void *)iio_evgen + 208);
   mutex_unlock(__cil_tmp23);
   }
   if (i == 10) {
@@ -1339,56 +1263,38 @@ int iio_dummy_evgen_get_irq(void)
 }
 }
 int iio_dummy_evgen_release_irq(int irq ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct mutex *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )iio_evgen;
-  __cil_tmp3 = __cil_tmp2 + 208;
-  __cil_tmp4 = (struct mutex *)__cil_tmp3;
+  __cil_tmp4 = (struct mutex *)((void *)iio_evgen + 208);
   mutex_lock_nested(__cil_tmp4, 0U);
-  __cil_tmp5 = (unsigned long )iio_evgen;
-  __cil_tmp6 = __cil_tmp5 + 184;
-  __cil_tmp7 = *((int *)__cil_tmp6);
+  __cil_tmp7 = *((int *)((void *)iio_evgen + 184));
   __cil_tmp8 = irq - __cil_tmp7;
   __cil_tmp9 = __cil_tmp8 * 1UL;
   __cil_tmp10 = 198 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )iio_evgen;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  *((bool *)__cil_tmp12) = (bool )0;
-  __cil_tmp13 = (unsigned long )iio_evgen;
-  __cil_tmp14 = __cil_tmp13 + 208;
-  __cil_tmp15 = (struct mutex *)__cil_tmp14;
+  *((bool *)((void *)iio_evgen + __cil_tmp10)) = (bool )0;
+  __cil_tmp15 = (struct mutex *)((void *)iio_evgen + 208);
   mutex_unlock(__cil_tmp15);
   }
   return (0);
 }
 }
 static void iio_dummy_evgen_free(void) 
-{ unsigned long __cil_tmp1 ;
-  unsigned long __cil_tmp2 ;
+{
   int __cil_tmp3 ;
   unsigned int __cil_tmp4 ;
   void const   *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp1 = (unsigned long )iio_evgen;
-  __cil_tmp2 = __cil_tmp1 + 184;
-  __cil_tmp3 = *((int *)__cil_tmp2);
+  __cil_tmp3 = *((int *)((void *)iio_evgen + 184));
   __cil_tmp4 = (unsigned int )__cil_tmp3;
   irq_free_descs(__cil_tmp4, 10U);
   __cil_tmp5 = (void const   *)iio_evgen;
@@ -1411,20 +1317,12 @@ static ssize_t iio_evgen_poke(struct device *dev , struct device_attribute *attr
                               char const   *buf , size_t len ) 
 { struct iio_dev_attr *this_attr ;
   struct device_attribute  const  *__mptr ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   u64 __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   bool __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u64 __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
@@ -1433,23 +1331,15 @@ static ssize_t iio_evgen_poke(struct device *dev , struct device_attribute *attr
   __mptr = (struct device_attribute  const  *)attr;
   this_attr = (struct iio_dev_attr *)__mptr;
   {
-  __cil_tmp7 = (unsigned long )this_attr;
-  __cil_tmp8 = __cil_tmp7 + 48;
-  __cil_tmp9 = *((u64 *)__cil_tmp8);
+  __cil_tmp9 = *((u64 *)((void *)this_attr + 48));
   __cil_tmp10 = __cil_tmp9 * 1UL;
   __cil_tmp11 = 188 + __cil_tmp10;
-  __cil_tmp12 = (unsigned long )iio_evgen;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  __cil_tmp14 = *((bool *)__cil_tmp13);
+  __cil_tmp14 = *((bool *)((void *)iio_evgen + __cil_tmp11));
   if ((int )__cil_tmp14) {
     {
-    __cil_tmp15 = (unsigned long )this_attr;
-    __cil_tmp16 = __cil_tmp15 + 48;
-    __cil_tmp17 = *((u64 *)__cil_tmp16);
+    __cil_tmp17 = *((u64 *)((void *)this_attr + 48));
     __cil_tmp18 = (unsigned int )__cil_tmp17;
-    __cil_tmp19 = (unsigned long )iio_evgen;
-    __cil_tmp20 = __cil_tmp19 + 184;
-    __cil_tmp21 = *((int *)__cil_tmp20);
+    __cil_tmp21 = *((int *)((void *)iio_evgen + 184));
     __cil_tmp22 = (unsigned int )__cil_tmp21;
     __cil_tmp23 = __cil_tmp22 + __cil_tmp18;
     handle_nested_irq(__cil_tmp23);

@@ -1816,8 +1816,6 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
   struct input_dev *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct input_dev *__cil_tmp11 ;
   {
@@ -1827,9 +1825,7 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
   __cil_tmp7 = (unsigned long )dev;
   if (__cil_tmp7 != __cil_tmp6) {
     {
-    __cil_tmp8 = (unsigned long )dev;
-    __cil_tmp9 = __cil_tmp8 + 840;
-    __cil_tmp10 = (struct device *)__cil_tmp9;
+    __cil_tmp10 = (struct device *)((void *)dev + 840);
     tmp = get_device(__cil_tmp10);
     __mptr = (struct device const *)tmp;
     __cil_tmp11 = (struct input_dev *)__mptr;
@@ -1846,8 +1842,6 @@ __inline static void input_put_device(struct input_dev *dev )
 { struct input_dev *__cil_tmp2 ;
   unsigned long __cil_tmp3 ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   {
   {
@@ -1856,9 +1850,7 @@ __inline static void input_put_device(struct input_dev *dev )
   __cil_tmp4 = (unsigned long )dev;
   if (__cil_tmp4 != __cil_tmp3) {
     {
-    __cil_tmp5 = (unsigned long )dev;
-    __cil_tmp6 = __cil_tmp5 + 840;
-    __cil_tmp7 = (struct device *)__cil_tmp6;
+    __cil_tmp7 = (struct device *)((void *)dev + 840);
     put_device(__cil_tmp7);
     }
   } else {
@@ -1908,15 +1900,11 @@ extern int __serio_register_driver(struct serio_driver * , struct module * , cha
 extern void serio_unregister_driver(struct serio_driver * ) ;
 __inline static void *serio_get_drvdata(struct serio *serio )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 416);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1924,14 +1912,11 @@ __inline static void *serio_get_drvdata(struct serio *serio )
 }
 }
 __inline static void serio_set_drvdata(struct serio *serio , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 416);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1939,33 +1924,21 @@ __inline static void serio_set_drvdata(struct serio *serio , void *data )
 }
 static void hampshire_process_data(struct hampshire *phampshire )
 { struct input_dev *dev ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned char __cil_tmp15 ;
   int __cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned char __cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned char __cil_tmp30 ;
   int __cil_tmp31 ;
   int __cil_tmp32 ;
@@ -1974,23 +1947,17 @@ static void hampshire_process_data(struct hampshire *phampshire )
   int __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned char __cil_tmp40 ;
   int __cil_tmp41 ;
   int __cil_tmp42 ;
   int __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned char __cil_tmp48 ;
   int __cil_tmp49 ;
   int __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned char __cil_tmp55 ;
   int __cil_tmp56 ;
   int __cil_tmp57 ;
@@ -1998,47 +1965,31 @@ static void hampshire_process_data(struct hampshire *phampshire )
   int __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned char __cil_tmp64 ;
   int __cil_tmp65 ;
   int __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   {
   dev = *((struct input_dev **)phampshire);
-  __cil_tmp3 = (unsigned long )phampshire;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (unsigned long )phampshire;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((int *)__cil_tmp6);
-  *((int *)__cil_tmp4) = __cil_tmp7 + 1;
+  __cil_tmp7 = *((int *)((void *)phampshire + 16));
+  *((int *)((void *)phampshire + 16)) = __cil_tmp7 + 1;
   {
-  __cil_tmp8 = (unsigned long )phampshire;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)phampshire + 16));
   if (__cil_tmp10 == 4) {
     {
     __cil_tmp11 = 0 * 1UL;
     __cil_tmp12 = 20 + __cil_tmp11;
-    __cil_tmp13 = (unsigned long )phampshire;
-    __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-    __cil_tmp15 = *((unsigned char *)__cil_tmp14);
+    __cil_tmp15 = *((unsigned char *)((void *)phampshire + __cil_tmp12));
     __cil_tmp16 = (int )__cil_tmp15;
     __cil_tmp17 = __cil_tmp16 & 56;
     __cil_tmp18 = __cil_tmp17 << 6;
     __cil_tmp19 = 1 * 1UL;
     __cil_tmp20 = 20 + __cil_tmp19;
-    __cil_tmp21 = (unsigned long )phampshire;
-    __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-    __cil_tmp23 = *((unsigned char *)__cil_tmp22);
+    __cil_tmp23 = *((unsigned char *)((void *)phampshire + __cil_tmp20));
     __cil_tmp24 = (int )__cil_tmp23;
     __cil_tmp25 = __cil_tmp24 << 2;
     __cil_tmp26 = 3 * 1UL;
     __cil_tmp27 = 20 + __cil_tmp26;
-    __cil_tmp28 = (unsigned long )phampshire;
-    __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-    __cil_tmp30 = *((unsigned char *)__cil_tmp29);
+    __cil_tmp30 = *((unsigned char *)((void *)phampshire + __cil_tmp27));
     __cil_tmp31 = (int )__cil_tmp30;
     __cil_tmp32 = __cil_tmp31 & 12;
     __cil_tmp33 = __cil_tmp32 >> 2;
@@ -2047,24 +1998,18 @@ static void hampshire_process_data(struct hampshire *phampshire )
     input_report_abs(dev, 0U, __cil_tmp35);
     __cil_tmp36 = 0 * 1UL;
     __cil_tmp37 = 20 + __cil_tmp36;
-    __cil_tmp38 = (unsigned long )phampshire;
-    __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-    __cil_tmp40 = *((unsigned char *)__cil_tmp39);
+    __cil_tmp40 = *((unsigned char *)((void *)phampshire + __cil_tmp37));
     __cil_tmp41 = (int )__cil_tmp40;
     __cil_tmp42 = __cil_tmp41 & 7;
     __cil_tmp43 = __cil_tmp42 << 9;
     __cil_tmp44 = 2 * 1UL;
     __cil_tmp45 = 20 + __cil_tmp44;
-    __cil_tmp46 = (unsigned long )phampshire;
-    __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-    __cil_tmp48 = *((unsigned char *)__cil_tmp47);
+    __cil_tmp48 = *((unsigned char *)((void *)phampshire + __cil_tmp45));
     __cil_tmp49 = (int )__cil_tmp48;
     __cil_tmp50 = __cil_tmp49 << 2;
     __cil_tmp51 = 3 * 1UL;
     __cil_tmp52 = 20 + __cil_tmp51;
-    __cil_tmp53 = (unsigned long )phampshire;
-    __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-    __cil_tmp55 = *((unsigned char *)__cil_tmp54);
+    __cil_tmp55 = *((unsigned char *)((void *)phampshire + __cil_tmp52));
     __cil_tmp56 = (int )__cil_tmp55;
     __cil_tmp57 = __cil_tmp56 & 3;
     __cil_tmp58 = __cil_tmp57 | __cil_tmp50;
@@ -2072,16 +2017,12 @@ static void hampshire_process_data(struct hampshire *phampshire )
     input_report_abs(dev, 1U, __cil_tmp59);
     __cil_tmp60 = 0 * 1UL;
     __cil_tmp61 = 20 + __cil_tmp60;
-    __cil_tmp62 = (unsigned long )phampshire;
-    __cil_tmp63 = __cil_tmp62 + __cil_tmp61;
-    __cil_tmp64 = *((unsigned char *)__cil_tmp63);
+    __cil_tmp64 = *((unsigned char *)((void *)phampshire + __cil_tmp61));
     __cil_tmp65 = (int )__cil_tmp64;
     __cil_tmp66 = __cil_tmp65 & 64;
     input_report_key(dev, 330U, __cil_tmp66);
     input_sync(dev);
-    __cil_tmp67 = (unsigned long )phampshire;
-    __cil_tmp68 = __cil_tmp67 + 16;
-    *((int *)__cil_tmp68) = 0;
+    *((int *)((void *)phampshire + 16)) = 0;
     }
   } else {
   }
@@ -2095,59 +2036,37 @@ static irqreturn_t hampshire_interrupt(struct serio *serio , unsigned char data 
   void *tmp ;
   struct _ddebug descriptor ;
   long tmp___0 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned char __cil_tmp19 ;
   signed char __cil_tmp20 ;
   int __cil_tmp21 ;
   struct _ddebug *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned char __cil_tmp29 ;
   long __cil_tmp30 ;
   long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   struct device const *__cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned char __cil_tmp40 ;
   int __cil_tmp41 ;
   {
   {
   tmp = serio_get_drvdata(serio);
   phampshire = (struct hampshire *)tmp;
-  __cil_tmp8 = (unsigned long )phampshire;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)phampshire + 16));
   __cil_tmp11 = __cil_tmp10 * 1UL;
   __cil_tmp12 = 20 + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )phampshire;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  *((unsigned char *)__cil_tmp14) = data;
+  *((unsigned char *)((void *)phampshire + __cil_tmp12)) = data;
   }
   {
   __cil_tmp15 = 0 * 1UL;
   __cil_tmp16 = 20 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )phampshire;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = *((unsigned char *)__cil_tmp18);
+  __cil_tmp19 = *((unsigned char *)((void *)phampshire + __cil_tmp16));
   __cil_tmp20 = (signed char )__cil_tmp19;
   __cil_tmp21 = (int )__cil_tmp20;
   if (__cil_tmp21 < 0) {
@@ -2158,33 +2077,23 @@ static irqreturn_t hampshire_interrupt(struct serio *serio , unsigned char data 
     {
     __cil_tmp22 = & descriptor;
     *((char const **)__cil_tmp22) = "hampshire";
-    __cil_tmp23 = (unsigned long )(& descriptor) + 8;
-    *((char const **)__cil_tmp23) = "hampshire_interrupt";
-    __cil_tmp24 = (unsigned long )(& descriptor) + 16;
-    *((char const **)__cil_tmp24) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3107/dscv_tempdir/dscv/ri/43_1a/drivers/input/touchscreen/hampshire.c.p";
-    __cil_tmp25 = (unsigned long )(& descriptor) + 24;
-    *((char const **)__cil_tmp25) = "unknown/unsynchronized data: %x\n";
-    __cil_tmp26 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp26) = 104U;
-    __cil_tmp27 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp27) = (unsigned char)0;
-    __cil_tmp28 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp29 = *((unsigned char *)__cil_tmp28);
+    *((char const **)((void *)(&descriptor) + 8)) = "hampshire_interrupt";
+    *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3107/dscv_tempdir/dscv/ri/43_1a/drivers/input/touchscreen/hampshire.c.p";
+    *((char const **)((void *)(&descriptor) + 24)) = "unknown/unsynchronized data: %x\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 104U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+    __cil_tmp29 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp30 = (long )__cil_tmp29;
     __cil_tmp31 = __cil_tmp30 & 1L;
     tmp___0 = __builtin_expect(__cil_tmp31, 0L);
     }
     if (tmp___0 != 0L) {
       {
-      __cil_tmp32 = (unsigned long )serio;
-      __cil_tmp33 = __cil_tmp32 + 416;
-      __cil_tmp34 = (struct device *)__cil_tmp33;
+      __cil_tmp34 = (struct device *)((void *)serio + 416);
       __cil_tmp35 = (struct device const *)__cil_tmp34;
       __cil_tmp36 = 0 * 1UL;
       __cil_tmp37 = 20 + __cil_tmp36;
-      __cil_tmp38 = (unsigned long )phampshire;
-      __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-      __cil_tmp40 = *((unsigned char *)__cil_tmp39);
+      __cil_tmp40 = *((unsigned char *)((void *)phampshire + __cil_tmp37));
       __cil_tmp41 = (int )__cil_tmp40;
       __dynamic_dev_dbg(& descriptor, __cil_tmp35, "unknown/unsynchronized data: %x\n",
                         __cil_tmp41);
@@ -2234,44 +2143,18 @@ static int hampshire_connect(struct serio *serio , struct serio_driver *drv )
   struct input_dev *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   char (*__cil_tmp17)[32U] ;
   char *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   char (*__cil_tmp21)[32U] ;
   char *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   char (*__cil_tmp27)[32U] ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct input_dev *__cil_tmp51 ;
   struct input_dev *__cil_tmp52 ;
   void *__cil_tmp53 ;
@@ -2305,56 +2188,30 @@ static int hampshire_connect(struct serio *serio , struct serio_driver *drv )
   }
   }
   {
-  __cil_tmp13 = (unsigned long )phampshire;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  *((struct serio **)__cil_tmp14) = serio;
+  *((struct serio **)((void *)phampshire + 8)) = serio;
   *((struct input_dev **)phampshire) = input_dev;
-  __cil_tmp15 = (unsigned long )phampshire;
-  __cil_tmp16 = __cil_tmp15 + 24;
-  __cil_tmp17 = (char (*)[32U])__cil_tmp16;
+  __cil_tmp17 = (char (*)[32U])((void *)phampshire + 24);
   __cil_tmp18 = (char *)__cil_tmp17;
-  __cil_tmp19 = (unsigned long )serio;
-  __cil_tmp20 = __cil_tmp19 + 40;
-  __cil_tmp21 = (char (*)[32U])__cil_tmp20;
+  __cil_tmp21 = (char (*)[32U])((void *)serio + 40);
   __cil_tmp22 = (char *)__cil_tmp21;
   snprintf(__cil_tmp18, 32UL, "%s/input0", __cil_tmp22);
   *((char const **)input_dev) = "Hampshire Serial TouchScreen";
-  __cil_tmp23 = (unsigned long )input_dev;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  __cil_tmp25 = (unsigned long )phampshire;
-  __cil_tmp26 = __cil_tmp25 + 24;
-  __cil_tmp27 = (char (*)[32U])__cil_tmp26;
-  *((char const **)__cil_tmp24) = (char const *)__cil_tmp27;
-  __cil_tmp28 = (unsigned long )input_dev;
-  __cil_tmp29 = __cil_tmp28 + 24;
-  *((__u16 *)__cil_tmp29) = (__u16 )19U;
+  __cil_tmp27 = (char (*)[32U])((void *)phampshire + 24);
+  *((char const **)((void *)input_dev + 8)) = (char const *)__cil_tmp27;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )19U;
   __cil_tmp30 = 24 + 2;
-  __cil_tmp31 = (unsigned long )input_dev;
-  __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-  *((__u16 *)__cil_tmp32) = (__u16 )59U;
+  *((__u16 *)((void *)input_dev + __cil_tmp30)) = (__u16 )59U;
   __cil_tmp33 = 24 + 4;
-  __cil_tmp34 = (unsigned long )input_dev;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  *((__u16 *)__cil_tmp35) = (__u16 )0U;
+  *((__u16 *)((void *)input_dev + __cil_tmp33)) = (__u16 )0U;
   __cil_tmp36 = 24 + 6;
-  __cil_tmp37 = (unsigned long )input_dev;
-  __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-  *((__u16 *)__cil_tmp38) = (__u16 )1U;
-  __cil_tmp39 = (unsigned long )input_dev;
-  __cil_tmp40 = __cil_tmp39 + 840;
-  __cil_tmp41 = (unsigned long )serio;
-  __cil_tmp42 = __cil_tmp41 + 416;
-  *((struct device **)__cil_tmp40) = (struct device *)__cil_tmp42;
+  *((__u16 *)((void *)input_dev + __cil_tmp36)) = (__u16 )1U;
+  *((struct device **)((void *)input_dev + 840)) = (struct device *)((void *)serio + 416);
   __cil_tmp43 = 0 * 8UL;
   __cil_tmp44 = 40 + __cil_tmp43;
-  __cil_tmp45 = (unsigned long )input_dev;
-  __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
-  *((unsigned long *)__cil_tmp46) = 10UL;
+  *((unsigned long *)((void *)input_dev + __cil_tmp44)) = 10UL;
   __cil_tmp47 = 5 * 8UL;
   __cil_tmp48 = 48 + __cil_tmp47;
-  __cil_tmp49 = (unsigned long )input_dev;
-  __cil_tmp50 = __cil_tmp49 + __cil_tmp48;
-  *((unsigned long *)__cil_tmp50) = 1024UL;
+  *((unsigned long *)((void *)input_dev + __cil_tmp48)) = 1024UL;
   __cil_tmp51 = *((struct input_dev **)phampshire);
   input_set_abs_params(__cil_tmp51, 0U, 0, 4096, 0, 0);
   __cil_tmp52 = *((struct input_dev **)phampshire);

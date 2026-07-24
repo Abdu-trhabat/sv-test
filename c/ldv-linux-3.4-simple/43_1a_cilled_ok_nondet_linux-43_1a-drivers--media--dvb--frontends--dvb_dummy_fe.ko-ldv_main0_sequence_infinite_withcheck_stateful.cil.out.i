@@ -3195,25 +3195,17 @@ static int dvb_dummy_fe_set_frontend(struct dvb_frontend *fe )
   unsigned long __cil_tmp3 ;
   unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int (*__cil_tmp8)(struct dvb_frontend * ) ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int (*__cil_tmp14)(struct dvb_frontend * ) ;
   int (*__cil_tmp15)(struct dvb_frontend * , int ) ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int (*__cil_tmp20)(struct dvb_frontend * , int ) ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int (*__cil_tmp25)(struct dvb_frontend * , int ) ;
   {
   {
@@ -3221,33 +3213,25 @@ static int dvb_dummy_fe_set_frontend(struct dvb_frontend *fe )
   __cil_tmp3 = (unsigned long )__cil_tmp2;
   __cil_tmp4 = 384 + 176;
   __cil_tmp5 = 0 + __cil_tmp4;
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  __cil_tmp8 = *((int (**)(struct dvb_frontend * ))__cil_tmp7);
+  __cil_tmp8 = *((int (**)(struct dvb_frontend * ))((void *)fe + __cil_tmp5));
   __cil_tmp9 = (unsigned long )__cil_tmp8;
   if (__cil_tmp9 != __cil_tmp3) {
     {
     __cil_tmp10 = 384 + 176;
     __cil_tmp11 = 0 + __cil_tmp10;
-    __cil_tmp12 = (unsigned long )fe;
-    __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-    __cil_tmp14 = *((int (**)(struct dvb_frontend * ))__cil_tmp13);
+    __cil_tmp14 = *((int (**)(struct dvb_frontend * ))((void *)fe + __cil_tmp11));
     (*__cil_tmp14)(fe);
     }
     {
     __cil_tmp15 = (int (*)(struct dvb_frontend * , int ))0;
     __cil_tmp16 = (unsigned long )__cil_tmp15;
     __cil_tmp17 = 0 + 360;
-    __cil_tmp18 = (unsigned long )fe;
-    __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-    __cil_tmp20 = *((int (**)(struct dvb_frontend * , int ))__cil_tmp19);
+    __cil_tmp20 = *((int (**)(struct dvb_frontend * , int ))((void *)fe + __cil_tmp17));
     __cil_tmp21 = (unsigned long )__cil_tmp20;
     if (__cil_tmp21 != __cil_tmp16) {
       {
       __cil_tmp22 = 0 + 360;
-      __cil_tmp23 = (unsigned long )fe;
-      __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-      __cil_tmp25 = *((int (**)(struct dvb_frontend * , int ))__cil_tmp24);
+      __cil_tmp25 = *((int (**)(struct dvb_frontend * , int ))((void *)fe + __cil_tmp22));
       (*__cil_tmp25)(fe, 0);
       }
     } else {
@@ -3285,15 +3269,11 @@ static int dvb_dummy_fe_set_voltage(struct dvb_frontend *fe , fe_sec_voltage_t v
 }
 static void dvb_dummy_fe_release(struct dvb_frontend *fe )
 { struct dvb_dummy_fe_state *state ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   void const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )fe;
-  __cil_tmp4 = __cil_tmp3 + 760;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)fe + 760));
   state = (struct dvb_dummy_fe_state *)__cil_tmp5;
   __cil_tmp6 = (void const *)state;
   kfree(__cil_tmp6);
@@ -3317,8 +3297,6 @@ struct dvb_frontend *dvb_dummy_fe_ofdm_attach(void)
   void *__cil_tmp12 ;
   void const *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void const *__cil_tmp17 ;
   {
   {
@@ -3352,9 +3330,7 @@ struct dvb_frontend *dvb_dummy_fe_ofdm_attach(void)
     }
   }
   __cil_tmp14 = 0 + 760;
-  __cil_tmp15 = (unsigned long )state;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((void **)__cil_tmp16) = (void *)state;
+  *((void **)((void *)state + __cil_tmp14)) = (void *)state;
   return ((struct dvb_frontend *)state);
   error:
   {
@@ -3380,8 +3356,6 @@ struct dvb_frontend *dvb_dummy_fe_qpsk_attach(void)
   void *__cil_tmp12 ;
   void const *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void const *__cil_tmp17 ;
   {
   {
@@ -3415,9 +3389,7 @@ struct dvb_frontend *dvb_dummy_fe_qpsk_attach(void)
     }
   }
   __cil_tmp14 = 0 + 760;
-  __cil_tmp15 = (unsigned long )state;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((void **)__cil_tmp16) = (void *)state;
+  *((void **)((void *)state + __cil_tmp14)) = (void *)state;
   return ((struct dvb_frontend *)state);
   error:
   {
@@ -3443,8 +3415,6 @@ struct dvb_frontend *dvb_dummy_fe_qam_attach(void)
   void *__cil_tmp12 ;
   void const *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void const *__cil_tmp17 ;
   {
   {
@@ -3478,9 +3448,7 @@ struct dvb_frontend *dvb_dummy_fe_qam_attach(void)
     }
   }
   __cil_tmp14 = 0 + 760;
-  __cil_tmp15 = (unsigned long )state;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((void **)__cil_tmp16) = (void *)state;
+  *((void **)((void *)state + __cil_tmp14)) = (void *)state;
   return ((struct dvb_frontend *)state);
   error:
   {

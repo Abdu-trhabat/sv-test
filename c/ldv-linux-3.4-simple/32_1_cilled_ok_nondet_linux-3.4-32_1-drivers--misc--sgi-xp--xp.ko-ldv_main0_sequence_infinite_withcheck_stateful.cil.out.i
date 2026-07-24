@@ -1805,28 +1805,18 @@ void xpc_set_interface(void (*connect)(int ) , void (*disconnect)(int ) , enum x
                                                                                  void * ) ,
                        enum xp_retval (*partid_to_nasids)(short , void * ) )
 { struct xpc_interface *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   {
   __cil_tmp7 = & xpc_interface;
   *((void (**)(int ))__cil_tmp7) = connect;
-  __cil_tmp8 = (unsigned long )(& xpc_interface) + 8;
-  *((void (**)(int ))__cil_tmp8) = disconnect;
-  __cil_tmp9 = (unsigned long )(& xpc_interface) + 16;
-  *((enum xp_retval (**)(short , int , u32 , void * , u16 ))__cil_tmp9) = send;
-  __cil_tmp10 = (unsigned long )(& xpc_interface) + 24;
+  *((void (**)(int ))((void *)(&xpc_interface) + 8)) = disconnect;
+  *((enum xp_retval (**)(short , int , u32 , void * , u16 ))((void *)(&xpc_interface) + 16)) = send;
   *((enum xp_retval (**)(short , int , u32 , void * , u16 , void (*)(enum xp_retval reason ,
                                                                          short partid ,
                                                                          int ch_number ,
                                                                          void *key ) ,
-                         void * ))__cil_tmp10) = send_notify;
-  __cil_tmp11 = (unsigned long )(& xpc_interface) + 32;
-  *((void (**)(short , int , void * ))__cil_tmp11) = received;
-  __cil_tmp12 = (unsigned long )(& xpc_interface) + 40;
-  *((enum xp_retval (**)(short , void * ))__cil_tmp12) = partid_to_nasids;
+                         void * ))((void *)(&xpc_interface) + 24)) = send_notify;
+  *((void (**)(short , int , void * ))((void *)(&xpc_interface) + 32)) = received;
+  *((enum xp_retval (**)(short , void * ))((void *)(&xpc_interface) + 40)) = partid_to_nasids;
   return;
 }
 }
@@ -1844,38 +1834,28 @@ static struct kernel_symbol const __ksymtab_xpc_set_interface __attribute__((__u
 __unused__, __section__("___ksymtab_gpl+xpc_set_interface"))) = {(unsigned long )(& xpc_set_interface), __kstrtab_xpc_set_interface};
 void xpc_clear_interface(void)
 { struct xpc_interface *__cil_tmp1 ;
-  unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   {
   __cil_tmp1 = & xpc_interface;
   *((void (**)(int ))__cil_tmp1) = (void (*)(int ))(& xpc_notloaded);
-  __cil_tmp2 = (unsigned long )(& xpc_interface) + 8;
-  *((void (**)(int ))__cil_tmp2) = (void (*)(int ))(& xpc_notloaded);
-  __cil_tmp3 = (unsigned long )(& xpc_interface) + 16;
-  *((enum xp_retval (**)(short , int , u32 , void * , u16 ))__cil_tmp3) = (enum xp_retval (*)(short ,
+  *((void (**)(int ))((void *)(&xpc_interface) + 8)) = (void (*)(int ))(& xpc_notloaded);
+  *((enum xp_retval (**)(short , int , u32 , void * , u16 ))((void *)(&xpc_interface) + 16)) = (enum xp_retval (*)(short ,
                                                                                                   int ,
                                                                                                   u32 ,
                                                                                                   void * ,
                                                                                                   u16 ))(& xpc_notloaded);
-  __cil_tmp4 = (unsigned long )(& xpc_interface) + 24;
   *((enum xp_retval (**)(short , int , u32 , void * , u16 , void (*)(enum xp_retval reason ,
                                                                          short partid ,
                                                                          int ch_number ,
                                                                          void *key ) ,
-                         void * ))__cil_tmp4) = (enum xp_retval (*)(short , int ,
+                         void * ))((void *)(&xpc_interface) + 24)) = (enum xp_retval (*)(short , int ,
                                                                     u32 , void * ,
                                                                     u16 , void (*)(enum xp_retval reason ,
                                                                                     short partid ,
                                                                                     int ch_number ,
                                                                                     void *key ) ,
                                                                     void * ))(& xpc_notloaded);
-  __cil_tmp5 = (unsigned long )(& xpc_interface) + 32;
-  *((void (**)(short , int , void * ))__cil_tmp5) = (void (*)(short , int , void * ))(& xpc_notloaded);
-  __cil_tmp6 = (unsigned long )(& xpc_interface) + 40;
-  *((enum xp_retval (**)(short , void * ))__cil_tmp6) = (enum xp_retval (*)(short ,
+  *((void (**)(short , int , void * ))((void *)(&xpc_interface) + 32)) = (void (*)(short , int , void * ))(& xpc_notloaded);
+  *((enum xp_retval (**)(short , void * ))((void *)(&xpc_interface) + 40)) = (enum xp_retval (*)(short ,
                                                                              void * ))(& xpc_notloaded);
   return;
 }
@@ -1919,14 +1899,10 @@ enum xp_retval xpc_connect(int ch_number , void (*func)(enum xp_retval reason , 
   struct mutex *__cil_tmp31 ;
   void *__cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   void (*__cil_tmp36)(enum xp_retval reason , short partid , int ch_number , void *data ,
                       void *key ) ;
   unsigned long __cil_tmp37 ;
   struct mutex *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   int __cil_tmp41 ;
   int __cil_tmp42 ;
   int __cil_tmp43 ;
@@ -1934,16 +1910,6 @@ enum xp_retval xpc_connect(int ch_number , void (*func)(enum xp_retval reason , 
   int __cil_tmp45 ;
   int __cil_tmp46 ;
   int __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct mutex *__cil_tmp58 ;
   struct xpc_interface *__cil_tmp59 ;
   void (*__cil_tmp60)(int ) ;
@@ -1991,10 +1957,8 @@ enum xp_retval xpc_connect(int ch_number , void (*func)(enum xp_retval reason , 
   {
   __cil_tmp32 = (void *)0;
   __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = (unsigned long )registration;
-  __cil_tmp35 = __cil_tmp34 + 72;
   __cil_tmp36 = *((void (**)(enum xp_retval reason , short partid , int ch_number ,
-                             void *data , void *key ))__cil_tmp35);
+                             void *data , void *key ))((void *)registration + 72));
   __cil_tmp37 = (unsigned long )__cil_tmp36;
   if (__cil_tmp37 != __cil_tmp33) {
     {
@@ -2022,8 +1986,6 @@ enum xp_retval xpc_connect(int ch_number , void (*func)(enum xp_retval reason , 
     tmp___10 = 128;
   }
   {
-  __cil_tmp39 = (unsigned long )registration;
-  __cil_tmp40 = __cil_tmp39 + 90;
   __cil_tmp41 = tmp___10 - 1;
   __cil_tmp42 = ~ __cil_tmp41;
   __cil_tmp43 = tmp___7 - 1;
@@ -2031,23 +1993,13 @@ enum xp_retval xpc_connect(int ch_number , void (*func)(enum xp_retval reason , 
   __cil_tmp45 = 16 + __cil_tmp44;
   __cil_tmp46 = __cil_tmp45 + __cil_tmp43;
   __cil_tmp47 = __cil_tmp46 & __cil_tmp42;
-  *((u16 *)__cil_tmp40) = (u16 )__cil_tmp47;
-  __cil_tmp48 = (unsigned long )registration;
-  __cil_tmp49 = __cil_tmp48 + 88;
-  *((u16 *)__cil_tmp49) = nentries;
-  __cil_tmp50 = (unsigned long )registration;
-  __cil_tmp51 = __cil_tmp50 + 92;
-  *((u32 *)__cil_tmp51) = assigned_limit;
-  __cil_tmp52 = (unsigned long )registration;
-  __cil_tmp53 = __cil_tmp52 + 96;
-  *((u32 *)__cil_tmp53) = idle_limit;
-  __cil_tmp54 = (unsigned long )registration;
-  __cil_tmp55 = __cil_tmp54 + 80;
-  *((void **)__cil_tmp55) = key;
-  __cil_tmp56 = (unsigned long )registration;
-  __cil_tmp57 = __cil_tmp56 + 72;
+  *((u16 *)((void *)registration + 90)) = (u16 )__cil_tmp47;
+  *((u16 *)((void *)registration + 88)) = nentries;
+  *((u32 *)((void *)registration + 92)) = assigned_limit;
+  *((u32 *)((void *)registration + 96)) = idle_limit;
+  *((void **)((void *)registration + 80)) = key;
   *((void (**)(enum xp_retval reason , short partid , int ch_number , void *data ,
-               void *key ))__cil_tmp57) = func;
+               void *key ))((void *)registration + 72)) = func;
   __cil_tmp58 = (struct mutex *)registration;
   mutex_unlock(__cil_tmp58);
   __cil_tmp59 = & xpc_interface;
@@ -2074,26 +2026,11 @@ void xpc_disconnect(int ch_number )
   struct mutex *__cil_tmp5 ;
   void *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void (*__cil_tmp10)(enum xp_retval reason , short partid , int ch_number , void *data ,
                       void *key ) ;
   unsigned long __cil_tmp11 ;
   struct mutex *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   void (*__cil_tmp27)(int ) ;
   struct mutex *__cil_tmp28 ;
   {
@@ -2107,10 +2044,8 @@ void xpc_disconnect(int ch_number )
   {
   __cil_tmp6 = (void *)0;
   __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = (unsigned long )registration;
-  __cil_tmp9 = __cil_tmp8 + 72;
   __cil_tmp10 = *((void (**)(enum xp_retval reason , short partid , int ch_number ,
-                             void *data , void *key ))__cil_tmp9);
+                             void *data , void *key ))((void *)registration + 72));
   __cil_tmp11 = (unsigned long )__cil_tmp10;
   if (__cil_tmp11 == __cil_tmp7) {
     {
@@ -2122,29 +2057,16 @@ void xpc_disconnect(int ch_number )
   }
   }
   {
-  __cil_tmp13 = (unsigned long )registration;
-  __cil_tmp14 = __cil_tmp13 + 72;
   __cil_tmp15 = (void *)0;
   *((void (**)(enum xp_retval reason , short partid , int ch_number , void *data ,
-               void *key ))__cil_tmp14) = (void (*)(enum xp_retval reason , short partid ,
+               void *key ))((void *)registration + 72)) = (void (*)(enum xp_retval reason , short partid ,
                                                     int ch_number , void *data , void *key ))__cil_tmp15;
-  __cil_tmp16 = (unsigned long )registration;
-  __cil_tmp17 = __cil_tmp16 + 80;
-  *((void **)__cil_tmp17) = (void *)0;
-  __cil_tmp18 = (unsigned long )registration;
-  __cil_tmp19 = __cil_tmp18 + 88;
-  *((u16 *)__cil_tmp19) = (u16 )0;
-  __cil_tmp20 = (unsigned long )registration;
-  __cil_tmp21 = __cil_tmp20 + 90;
-  *((u16 *)__cil_tmp21) = (u16 )0;
-  __cil_tmp22 = (unsigned long )registration;
-  __cil_tmp23 = __cil_tmp22 + 92;
-  *((u32 *)__cil_tmp23) = (u32 )0;
-  __cil_tmp24 = (unsigned long )registration;
-  __cil_tmp25 = __cil_tmp24 + 96;
-  *((u32 *)__cil_tmp25) = (u32 )0;
-  __cil_tmp26 = (unsigned long )(& xpc_interface) + 8;
-  __cil_tmp27 = *((void (**)(int ))__cil_tmp26);
+  *((void **)((void *)registration + 80)) = (void *)0;
+  *((u16 *)((void *)registration + 88)) = (u16 )0;
+  *((u16 *)((void *)registration + 90)) = (u16 )0;
+  *((u32 *)((void *)registration + 92)) = (u32 )0;
+  *((u32 *)((void *)registration + 96)) = (u32 )0;
+  __cil_tmp27 = *((void (**)(int ))((void *)(&xpc_interface) + 8));
   (*__cil_tmp27)(ch_number);
   __cil_tmp28 = (struct mutex *)registration;
   mutex_unlock(__cil_tmp28);
@@ -2489,20 +2411,14 @@ __inline static unsigned long uv_soc_phys_ram_to_gpa(unsigned long paddr )
   void *__cil_tmp16 ;
   struct uv_hub_info_s *__cil_tmp17 ;
   struct uv_hub_info_s *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
   struct uv_hub_info_s *__cil_tmp23 ;
   struct uv_hub_info_s *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
   struct uv_hub_info_s *__cil_tmp29 ;
   struct uv_hub_info_s *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   void *__cil_tmp34 ;
   struct uv_hub_info_s *__cil_tmp35 ;
@@ -2513,25 +2429,17 @@ __inline static unsigned long uv_soc_phys_ram_to_gpa(unsigned long paddr )
   void *__cil_tmp40 ;
   struct uv_hub_info_s *__cil_tmp41 ;
   struct uv_hub_info_s *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char __cil_tmp45 ;
   int __cil_tmp46 ;
   struct uv_hub_info_s *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned char __cil_tmp50 ;
   int __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   struct uv_hub_info_s *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned char __cil_tmp57 ;
   int __cil_tmp58 ;
   struct uv_hub_info_s *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned char __cil_tmp62 ;
   int __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
@@ -2556,9 +2464,7 @@ __inline static unsigned long uv_soc_phys_ram_to_gpa(unsigned long paddr )
                        ", %0": "=r" (tcp_ptr_____0): "m" (this_cpu_off), "0" (& __uv_hub_info));
   {
   __cil_tmp18 = (struct uv_hub_info_s *)tcp_ptr_____0;
-  __cil_tmp19 = (unsigned long )__cil_tmp18;
-  __cil_tmp20 = __cil_tmp19 + 32;
-  __cil_tmp21 = *((unsigned long *)__cil_tmp20);
+  __cil_tmp21 = *((unsigned long *)((void *)__cil_tmp18 + 32));
   if (paddr < __cil_tmp21) {
     {
     while (1) {
@@ -2578,9 +2484,7 @@ __inline static unsigned long uv_soc_phys_ram_to_gpa(unsigned long paddr )
                          "1"
                          ", %0": "=r" (tcp_ptr__): "m" (this_cpu_off), "0" (& __uv_hub_info));
     __cil_tmp24 = (struct uv_hub_info_s *)tcp_ptr__;
-    __cil_tmp25 = (unsigned long )__cil_tmp24;
-    __cil_tmp26 = __cil_tmp25 + 40;
-    __cil_tmp27 = *((unsigned long *)__cil_tmp26);
+    __cil_tmp27 = *((unsigned long *)((void *)__cil_tmp24 + 40));
     paddr = paddr | __cil_tmp27;
   } else {
   }
@@ -2603,9 +2507,7 @@ __inline static unsigned long uv_soc_phys_ram_to_gpa(unsigned long paddr )
                        "1"
                        ", %0": "=r" (tcp_ptr_____1): "m" (this_cpu_off), "0" (& __uv_hub_info));
   __cil_tmp30 = (struct uv_hub_info_s *)tcp_ptr_____1;
-  __cil_tmp31 = (unsigned long )__cil_tmp30;
-  __cil_tmp32 = __cil_tmp31 + 24;
-  __cil_tmp33 = *((unsigned long *)__cil_tmp32);
+  __cil_tmp33 = *((unsigned long *)((void *)__cil_tmp30 + 24));
   paddr = paddr | __cil_tmp33;
   {
   while (1) {
@@ -2676,26 +2578,18 @@ __inline static unsigned long uv_soc_phys_ram_to_gpa(unsigned long paddr )
                        "1"
                        ", %0": "=r" (tcp_ptr_____5): "m" (this_cpu_off), "0" (& __uv_hub_info));
   __cil_tmp42 = (struct uv_hub_info_s *)tcp_ptr_____5;
-  __cil_tmp43 = (unsigned long )__cil_tmp42;
-  __cil_tmp44 = __cil_tmp43 + 23;
-  __cil_tmp45 = *((unsigned char *)__cil_tmp44);
+  __cil_tmp45 = *((unsigned char *)((void *)__cil_tmp42 + 23));
   __cil_tmp46 = (int )__cil_tmp45;
   __cil_tmp47 = (struct uv_hub_info_s *)tcp_ptr_____4;
-  __cil_tmp48 = (unsigned long )__cil_tmp47;
-  __cil_tmp49 = __cil_tmp48 + 57;
-  __cil_tmp50 = *((unsigned char *)__cil_tmp49);
+  __cil_tmp50 = *((unsigned char *)((void *)__cil_tmp47 + 57));
   __cil_tmp51 = (int )__cil_tmp50;
   __cil_tmp52 = paddr >> __cil_tmp51;
   __cil_tmp53 = __cil_tmp52 << __cil_tmp46;
   __cil_tmp54 = (struct uv_hub_info_s *)tcp_ptr_____3;
-  __cil_tmp55 = (unsigned long )__cil_tmp54;
-  __cil_tmp56 = __cil_tmp55 + 22;
-  __cil_tmp57 = *((unsigned char *)__cil_tmp56);
+  __cil_tmp57 = *((unsigned char *)((void *)__cil_tmp54 + 22));
   __cil_tmp58 = (int )__cil_tmp57;
   __cil_tmp59 = (struct uv_hub_info_s *)tcp_ptr_____2;
-  __cil_tmp60 = (unsigned long )__cil_tmp59;
-  __cil_tmp61 = __cil_tmp60 + 22;
-  __cil_tmp62 = *((unsigned char *)__cil_tmp61);
+  __cil_tmp62 = *((unsigned char *)((void *)__cil_tmp59 + 22));
   __cil_tmp63 = (int )__cil_tmp62;
   __cil_tmp64 = paddr << __cil_tmp63;
   __cil_tmp65 = __cil_tmp64 >> __cil_tmp58;
@@ -2749,13 +2643,9 @@ __inline static unsigned long uv_gpa_to_soc_phys_ram(unsigned long gpa )
   void *__cil_tmp19 ;
   struct uv_hub_info_s *__cil_tmp20 ;
   struct uv_hub_info_s *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   void *__cil_tmp24 ;
   struct uv_hub_info_s *__cil_tmp25 ;
   struct uv_hub_info_s *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   void *__cil_tmp29 ;
   struct uv_hub_info_s *__cil_tmp30 ;
   void *__cil_tmp31 ;
@@ -2765,25 +2655,17 @@ __inline static unsigned long uv_gpa_to_soc_phys_ram(unsigned long gpa )
   void *__cil_tmp35 ;
   struct uv_hub_info_s *__cil_tmp36 ;
   struct uv_hub_info_s *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned char __cil_tmp40 ;
   int __cil_tmp41 ;
   struct uv_hub_info_s *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char __cil_tmp45 ;
   int __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   struct uv_hub_info_s *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned char __cil_tmp52 ;
   int __cil_tmp53 ;
   struct uv_hub_info_s *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned char __cil_tmp57 ;
   int __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
@@ -2791,8 +2673,6 @@ __inline static unsigned long uv_gpa_to_soc_phys_ram(unsigned long gpa )
   void *__cil_tmp61 ;
   struct uv_hub_info_s *__cil_tmp62 ;
   struct uv_hub_info_s *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   {
@@ -2814,9 +2694,7 @@ __inline static unsigned long uv_gpa_to_soc_phys_ram(unsigned long gpa )
                        "1"
                        ", %0": "=r" (tcp_ptr__): "m" (this_cpu_off), "0" (& __uv_hub_info));
   __cil_tmp21 = (struct uv_hub_info_s *)tcp_ptr__;
-  __cil_tmp22 = (unsigned long )__cil_tmp21;
-  __cil_tmp23 = __cil_tmp22 + 40;
-  remap_base = *((unsigned long *)__cil_tmp23);
+  remap_base = *((unsigned long *)((void *)__cil_tmp21 + 40));
   {
   while (1) {
     while_continue___0: ;
@@ -2835,9 +2713,7 @@ __inline static unsigned long uv_gpa_to_soc_phys_ram(unsigned long gpa )
                        "1"
                        ", %0": "=r" (tcp_ptr_____0): "m" (this_cpu_off), "0" (& __uv_hub_info));
   __cil_tmp26 = (struct uv_hub_info_s *)tcp_ptr_____0;
-  __cil_tmp27 = (unsigned long )__cil_tmp26;
-  __cil_tmp28 = __cil_tmp27 + 32;
-  remap_top = *((unsigned long *)__cil_tmp28);
+  remap_top = *((unsigned long *)((void *)__cil_tmp26 + 32));
   {
   while (1) {
     while_continue___1: ;
@@ -2907,26 +2783,18 @@ __inline static unsigned long uv_gpa_to_soc_phys_ram(unsigned long gpa )
                        "1"
                        ", %0": "=r" (tcp_ptr_____4): "m" (this_cpu_off), "0" (& __uv_hub_info));
   __cil_tmp37 = (struct uv_hub_info_s *)tcp_ptr_____4;
-  __cil_tmp38 = (unsigned long )__cil_tmp37;
-  __cil_tmp39 = __cil_tmp38 + 57;
-  __cil_tmp40 = *((unsigned char *)__cil_tmp39);
+  __cil_tmp40 = *((unsigned char *)((void *)__cil_tmp37 + 57));
   __cil_tmp41 = (int )__cil_tmp40;
   __cil_tmp42 = (struct uv_hub_info_s *)tcp_ptr_____3;
-  __cil_tmp43 = (unsigned long )__cil_tmp42;
-  __cil_tmp44 = __cil_tmp43 + 23;
-  __cil_tmp45 = *((unsigned char *)__cil_tmp44);
+  __cil_tmp45 = *((unsigned char *)((void *)__cil_tmp42 + 23));
   __cil_tmp46 = (int )__cil_tmp45;
   __cil_tmp47 = gpa >> __cil_tmp46;
   __cil_tmp48 = __cil_tmp47 << __cil_tmp41;
   __cil_tmp49 = (struct uv_hub_info_s *)tcp_ptr_____2;
-  __cil_tmp50 = (unsigned long )__cil_tmp49;
-  __cil_tmp51 = __cil_tmp50 + 22;
-  __cil_tmp52 = *((unsigned char *)__cil_tmp51);
+  __cil_tmp52 = *((unsigned char *)((void *)__cil_tmp49 + 22));
   __cil_tmp53 = (int )__cil_tmp52;
   __cil_tmp54 = (struct uv_hub_info_s *)tcp_ptr_____1;
-  __cil_tmp55 = (unsigned long )__cil_tmp54;
-  __cil_tmp56 = __cil_tmp55 + 22;
-  __cil_tmp57 = *((unsigned char *)__cil_tmp56);
+  __cil_tmp57 = *((unsigned char *)((void *)__cil_tmp54 + 22));
   __cil_tmp58 = (int )__cil_tmp57;
   __cil_tmp59 = gpa << __cil_tmp58;
   __cil_tmp60 = __cil_tmp59 >> __cil_tmp53;
@@ -2949,9 +2817,7 @@ __inline static unsigned long uv_gpa_to_soc_phys_ram(unsigned long gpa )
                        "1"
                        ", %0": "=r" (tcp_ptr_____5): "m" (this_cpu_off), "0" (& __uv_hub_info));
   __cil_tmp63 = (struct uv_hub_info_s *)tcp_ptr_____5;
-  __cil_tmp64 = (unsigned long )__cil_tmp63;
-  __cil_tmp65 = __cil_tmp64 + 8;
-  __cil_tmp66 = *((unsigned long *)__cil_tmp65);
+  __cil_tmp66 = *((unsigned long *)((void *)__cil_tmp63 + 8));
   paddr = gpa & __cil_tmp66;
   if (paddr >= remap_base) {
     {
@@ -2984,8 +2850,6 @@ __inline static int uv_cpu_to_pnode(int cpu ) __attribute__((__no_instrument_fun
 __inline static int uv_cpu_to_pnode(int cpu )
 { int tmp ;
   struct uv_blade_info *__cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned short __cil_tmp6 ;
   {
   {
@@ -2993,9 +2857,7 @@ __inline static int uv_cpu_to_pnode(int cpu )
   }
   {
   __cil_tmp3 = uv_blade_info + tmp;
-  __cil_tmp4 = (unsigned long )__cil_tmp3;
-  __cil_tmp5 = __cil_tmp4 + 4;
-  __cil_tmp6 = *((unsigned short *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned short *)((void *)__cil_tmp3 + 4));
   return ((int )__cil_tmp6);
   }
 }
@@ -3190,8 +3052,6 @@ static int xp_cpu_to_nasid_uv(int cpuid___0 )
   void *__cil_tmp5 ;
   struct uv_hub_info_s *__cil_tmp6 ;
   struct uv_hub_info_s *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
@@ -3219,9 +3079,7 @@ static int xp_cpu_to_nasid_uv(int cpuid___0 )
                        ", %0": "=r" (tcp_ptr__): "m" (this_cpu_off), "0" (& __uv_hub_info));
   {
   __cil_tmp7 = (struct uv_hub_info_s *)tcp_ptr__;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((unsigned int *)__cil_tmp9);
+  __cil_tmp10 = *((unsigned int *)((void *)__cil_tmp7 + 16));
   __cil_tmp11 = (unsigned int )tmp;
   __cil_tmp12 = __cil_tmp11 | __cil_tmp10;
   __cil_tmp13 = __cil_tmp12 << 1;

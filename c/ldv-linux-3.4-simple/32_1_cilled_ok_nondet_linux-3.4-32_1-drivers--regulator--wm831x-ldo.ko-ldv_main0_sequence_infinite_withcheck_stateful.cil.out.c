@@ -2239,15 +2239,11 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -2255,15 +2251,12 @@ __inline static void *platform_get_drvdata(struct platform_device  const  *pdev 
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2297,16 +2290,12 @@ static int wm831x_ldo_is_enabled(struct regulator_dev *rdev )
   int mask ;
   int tmp___8 ;
   int reg ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
 
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp8 = (unsigned long )ldo;
-  __cil_tmp9 = __cil_tmp8 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp9);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
   tmp___8 = rdev_get_id(rdev);
   mask = 1 << tmp___8;
   reg = wm831x_reg_read(wm831x, (unsigned short)16465);
@@ -2330,8 +2319,6 @@ static int wm831x_ldo_enable(struct regulator_dev *rdev )
   int mask ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned short __cil_tmp10 ;
   unsigned short __cil_tmp11 ;
 
@@ -2339,9 +2326,7 @@ static int wm831x_ldo_enable(struct regulator_dev *rdev )
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp8 = (unsigned long )ldo;
-  __cil_tmp9 = __cil_tmp8 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp9);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
   tmp___8 = rdev_get_id(rdev);
   mask = 1 << tmp___8;
   __cil_tmp10 = (unsigned short )mask;
@@ -2358,17 +2343,13 @@ static int wm831x_ldo_disable(struct regulator_dev *rdev )
   int mask ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned short __cil_tmp10 ;
 
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp8 = (unsigned long )ldo;
-  __cil_tmp9 = __cil_tmp8 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp9);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
   tmp___8 = rdev_get_id(rdev);
   mask = 1 << tmp___8;
   __cil_tmp10 = (unsigned short )mask;
@@ -2379,17 +2360,13 @@ static int wm831x_ldo_disable(struct regulator_dev *rdev )
 }
 static irqreturn_t wm831x_ldo_uv_irq(int irq , void *data ) 
 { struct wm831x_ldo *ldo ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct regulator_dev *__cil_tmp6 ;
   void *__cil_tmp7 ;
 
   {
   {
   ldo = (struct wm831x_ldo *)data;
-  __cil_tmp4 = (unsigned long )ldo;
-  __cil_tmp5 = __cil_tmp4 + 72;
-  __cil_tmp6 = *((struct regulator_dev **)__cil_tmp5);
+  __cil_tmp6 = *((struct regulator_dev **)((void *)ldo + 72));
   __cil_tmp7 = (void *)0;
   regulator_notifier_call_chain(__cil_tmp6, 1UL, __cil_tmp7);
   }
@@ -2434,8 +2411,6 @@ static int wm831x_gp_ldo_set_voltage_int(struct regulator_dev *rdev , int reg , 
   int vsel ;
   int ret ;
   int tmp___8 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -2448,9 +2423,7 @@ static int wm831x_gp_ldo_set_voltage_int(struct regulator_dev *rdev , int reg , 
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp12 = (unsigned long )ldo;
-  __cil_tmp13 = __cil_tmp12 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp13);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
   }
   if (min_uV < 900000) {
     vsel = 0;
@@ -2496,17 +2469,13 @@ static int wm831x_gp_ldo_set_voltage(struct regulator_dev *rdev , int min_uV , i
   void *tmp___7 ;
   int reg ;
   int tmp___8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
 
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp9 = (unsigned long )ldo;
-  __cil_tmp10 = __cil_tmp9 + 56;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)ldo + 56));
   reg = __cil_tmp11 + 1;
   tmp___8 = wm831x_gp_ldo_set_voltage_int(rdev, reg, min_uV, max_uV, selector);
   }
@@ -2519,17 +2488,13 @@ static int wm831x_gp_ldo_set_suspend_voltage(struct regulator_dev *rdev , int uV
   int reg ;
   unsigned int selector ;
   int tmp___8 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
 
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp8 = (unsigned long )ldo;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)ldo + 56));
   reg = __cil_tmp10 + 2;
   tmp___8 = wm831x_gp_ldo_set_voltage_int(rdev, reg, uV, uV, & selector);
   }
@@ -2542,10 +2507,6 @@ static int wm831x_gp_ldo_get_voltage_sel(struct regulator_dev *rdev )
   struct wm831x *wm831x ;
   int reg ;
   int ret ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned short __cil_tmp12 ;
 
@@ -2553,12 +2514,8 @@ static int wm831x_gp_ldo_get_voltage_sel(struct regulator_dev *rdev )
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp7 = (unsigned long )ldo;
-  __cil_tmp8 = __cil_tmp7 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp8);
-  __cil_tmp9 = (unsigned long )ldo;
-  __cil_tmp10 = __cil_tmp9 + 56;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
+  __cil_tmp11 = *((int *)((void *)ldo + 56));
   reg = __cil_tmp11 + 1;
   __cil_tmp12 = (unsigned short )reg;
   ret = wm831x_reg_read(wm831x, __cil_tmp12);
@@ -2579,12 +2536,6 @@ static unsigned int wm831x_gp_ldo_get_mode(struct regulator_dev *rdev )
   int ctrl_reg ;
   int on_reg ;
   int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned short __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -2594,15 +2545,9 @@ static unsigned int wm831x_gp_ldo_get_mode(struct regulator_dev *rdev )
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp8 = (unsigned long )ldo;
-  __cil_tmp9 = __cil_tmp8 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp9);
-  __cil_tmp10 = (unsigned long )ldo;
-  __cil_tmp11 = __cil_tmp10 + 56;
-  ctrl_reg = *((int *)__cil_tmp11);
-  __cil_tmp12 = (unsigned long )ldo;
-  __cil_tmp13 = __cil_tmp12 + 56;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
+  ctrl_reg = *((int *)((void *)ldo + 56));
+  __cil_tmp14 = *((int *)((void *)ldo + 56));
   on_reg = __cil_tmp14 + 1;
   __cil_tmp15 = (unsigned short )on_reg;
   ret = wm831x_reg_read(wm831x, __cil_tmp15);
@@ -2643,12 +2588,6 @@ static int wm831x_gp_ldo_set_mode(struct regulator_dev *rdev , unsigned int mode
   int ctrl_reg ;
   int on_reg ;
   int ret ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   unsigned short __cil_tmp16 ;
   unsigned short __cil_tmp17 ;
@@ -2660,15 +2599,9 @@ static int wm831x_gp_ldo_set_mode(struct regulator_dev *rdev , unsigned int mode
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp9 = (unsigned long )ldo;
-  __cil_tmp10 = __cil_tmp9 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp10);
-  __cil_tmp11 = (unsigned long )ldo;
-  __cil_tmp12 = __cil_tmp11 + 56;
-  ctrl_reg = *((int *)__cil_tmp12);
-  __cil_tmp13 = (unsigned long )ldo;
-  __cil_tmp14 = __cil_tmp13 + 56;
-  __cil_tmp15 = *((int *)__cil_tmp14);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
+  ctrl_reg = *((int *)((void *)ldo + 56));
+  __cil_tmp15 = *((int *)((void *)ldo + 56));
   on_reg = __cil_tmp15 + 1;
   }
   if ((int )mode == 2) {
@@ -2753,8 +2686,6 @@ static int wm831x_gp_ldo_get_status(struct regulator_dev *rdev )
   int ret ;
   unsigned int tmp___9 ;
   int tmp___10 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
 
@@ -2762,9 +2693,7 @@ static int wm831x_gp_ldo_get_status(struct regulator_dev *rdev )
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp10 = (unsigned long )ldo;
-  __cil_tmp11 = __cil_tmp10 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp11);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
   tmp___8 = rdev_get_id(rdev);
   mask = 1 << tmp___8;
   ret = wm831x_reg_read(wm831x, (unsigned short)16467);
@@ -2855,20 +2784,12 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   void *tmp___9 ;
   long tmp___10 ;
   long tmp___11 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device  const  *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   void *__cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   int __cil_tmp28 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp29 ;
   unsigned int __cil_tmp30 ;
@@ -2876,8 +2797,6 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   int __cil_tmp32 ;
   int __cil_tmp33 ;
   long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct device *__cil_tmp37 ;
   struct device  const  *__cil_tmp38 ;
   int __cil_tmp39 ;
@@ -2888,87 +2807,45 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct regulator_init_data *__cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct device *__cil_tmp53 ;
   void *__cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct device *__cil_tmp59 ;
   struct device  const  *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   void *__cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct device *__cil_tmp68 ;
   struct device  const  *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   resource_size_t __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   char *__cil_tmp77 ;
   int __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   char *__cil_tmp85 ;
   unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   struct regulator_desc *__cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   struct device *__cil_tmp108 ;
   unsigned long __cil_tmp109 ;
   unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   struct regulator_init_data *__cil_tmp113 ;
   struct regulator_init_data  const  *__cil_tmp114 ;
   void *__cil_tmp115 ;
   void *__cil_tmp116 ;
   struct device_node *__cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
   struct regulator_dev *__cil_tmp120 ;
   void const   *__cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
   struct regulator_dev *__cil_tmp124 ;
   void const   *__cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
   struct device *__cil_tmp128 ;
   struct device  const  *__cil_tmp129 ;
   int __cil_tmp130 ;
@@ -2977,34 +2854,22 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   irqreturn_t (*__cil_tmp133)(int  , void * ) ;
   unsigned long __cil_tmp134 ;
   unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
   char *__cil_tmp138 ;
   char const   *__cil_tmp139 ;
   void *__cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
   struct device *__cil_tmp143 ;
   struct device  const  *__cil_tmp144 ;
   void *__cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
-  unsigned long __cil_tmp147 ;
   struct regulator_dev *__cil_tmp148 ;
 
   {
   {
-  __cil_tmp14 = (unsigned long )pdev;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((struct device **)__cil_tmp15);
+  __cil_tmp16 = *((struct device **)((void *)pdev + 16));
   __cil_tmp17 = (struct device  const  *)__cil_tmp16;
   tmp___7 = dev_get_drvdata(__cil_tmp17);
   wm831x = (struct wm831x *)tmp___7;
-  __cil_tmp18 = (unsigned long )wm831x;
-  __cil_tmp19 = __cil_tmp18 + 72;
-  __cil_tmp20 = *((struct device **)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 184;
-  __cil_tmp23 = *((void **)__cil_tmp22);
+  __cil_tmp20 = *((struct device **)((void *)wm831x + 72));
+  __cil_tmp23 = *((void **)((void *)__cil_tmp20 + 184));
   pdata = (struct wm831x_pdata *)__cil_tmp23;
   }
   if (pdata) {
@@ -3018,9 +2883,7 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   } else {
     id = 0;
   }
-  __cil_tmp26 = (unsigned long )pdev;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = *((int *)__cil_tmp27);
+  __cil_tmp28 = *((int *)((void *)pdev + 8));
   id = __cil_tmp28 - id;
   {
   while (1) {
@@ -3039,9 +2902,7 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
       }
       if (tmp___8) {
         {
-        __cil_tmp35 = (unsigned long )pdev;
-        __cil_tmp36 = __cil_tmp35 + 16;
-        __cil_tmp37 = (struct device *)__cil_tmp36;
+        __cil_tmp37 = (struct device *)((void *)pdev + 16);
         __cil_tmp38 = (struct device  const  *)__cil_tmp37;
         __cil_tmp39 = id + 1;
         __dynamic_dev_dbg(& descriptor, __cil_tmp38, "Probing LDO%d\n", __cil_tmp39);
@@ -3069,9 +2930,7 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
     __cil_tmp44 = (unsigned long )__cil_tmp43;
     __cil_tmp45 = id * 8UL;
     __cil_tmp46 = 208 + __cil_tmp45;
-    __cil_tmp47 = (unsigned long )pdata;
-    __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-    __cil_tmp49 = *((struct regulator_init_data **)__cil_tmp48);
+    __cil_tmp49 = *((struct regulator_init_data **)((void *)pdata + __cil_tmp46));
     __cil_tmp50 = (unsigned long )__cil_tmp49;
     if (__cil_tmp50 == __cil_tmp44) {
       return (-19);
@@ -3082,9 +2941,7 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp51 = (unsigned long )pdev;
-  __cil_tmp52 = __cil_tmp51 + 16;
-  __cil_tmp53 = (struct device *)__cil_tmp52;
+  __cil_tmp53 = (struct device *)((void *)pdev + 16);
   tmp___9 = devm_kzalloc(__cil_tmp53, 80UL, 208U);
   ldo = (struct wm831x_ldo *)tmp___9;
   }
@@ -3094,9 +2951,7 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   __cil_tmp56 = (unsigned long )ldo;
   if (__cil_tmp56 == __cil_tmp55) {
     {
-    __cil_tmp57 = (unsigned long )pdev;
-    __cil_tmp58 = __cil_tmp57 + 16;
-    __cil_tmp59 = (struct device *)__cil_tmp58;
+    __cil_tmp59 = (struct device *)((void *)pdev + 16);
     __cil_tmp60 = (struct device  const  *)__cil_tmp59;
     dev_err(__cil_tmp60, "Unable to allocate private data\n");
     }
@@ -3106,9 +2961,7 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp61 = (unsigned long )ldo;
-  __cil_tmp62 = __cil_tmp61 + 64;
-  *((struct wm831x **)__cil_tmp62) = wm831x;
+  *((struct wm831x **)((void *)ldo + 64)) = wm831x;
   res = platform_get_resource(pdev, 256U, 0U);
   }
   {
@@ -3117,9 +2970,7 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   __cil_tmp65 = (unsigned long )res;
   if (__cil_tmp65 == __cil_tmp64) {
     {
-    __cil_tmp66 = (unsigned long )pdev;
-    __cil_tmp67 = __cil_tmp66 + 16;
-    __cil_tmp68 = (struct device *)__cil_tmp67;
+    __cil_tmp68 = (struct device *)((void *)pdev + 16);
     __cil_tmp69 = (struct device  const  *)__cil_tmp68;
     dev_err(__cil_tmp69, "No I/O resource\n");
     ret = -22;
@@ -3130,82 +2981,50 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp70 = (unsigned long )ldo;
-  __cil_tmp71 = __cil_tmp70 + 56;
   __cil_tmp72 = *((resource_size_t *)res);
-  *((int *)__cil_tmp71) = (int )__cil_tmp72;
+  *((int *)((void *)ldo + 56)) = (int )__cil_tmp72;
   __cil_tmp73 = 0 * 1UL;
   __cil_tmp74 = 0 + __cil_tmp73;
-  __cil_tmp75 = (unsigned long )ldo;
-  __cil_tmp76 = __cil_tmp75 + __cil_tmp74;
-  __cil_tmp77 = (char *)__cil_tmp76;
+  __cil_tmp77 = (char *)((void *)ldo + __cil_tmp74);
   __cil_tmp78 = id + 1;
   snprintf(__cil_tmp77, 6UL, "LDO%d", __cil_tmp78);
-  __cil_tmp79 = (unsigned long )ldo;
-  __cil_tmp80 = __cil_tmp79 + 8;
   __cil_tmp81 = 0 * 1UL;
   __cil_tmp82 = 0 + __cil_tmp81;
-  __cil_tmp83 = (unsigned long )ldo;
-  __cil_tmp84 = __cil_tmp83 + __cil_tmp82;
-  __cil_tmp85 = (char *)__cil_tmp84;
-  *((char const   **)__cil_tmp80) = (char const   *)__cil_tmp85;
+  __cil_tmp85 = (char *)((void *)ldo + __cil_tmp82);
+  *((char const   **)((void *)ldo + 8)) = (char const   *)__cil_tmp85;
   __cil_tmp86 = 8 + 16;
-  __cil_tmp87 = (unsigned long )ldo;
-  __cil_tmp88 = __cil_tmp87 + __cil_tmp86;
-  *((int *)__cil_tmp88) = id;
+  *((int *)((void *)ldo + __cil_tmp86)) = id;
   __cil_tmp89 = 8 + 36;
-  __cil_tmp90 = (unsigned long )ldo;
-  __cil_tmp91 = __cil_tmp90 + __cil_tmp89;
-  *((enum regulator_type *)__cil_tmp91) = (enum regulator_type )0;
+  *((enum regulator_type *)((void *)ldo + __cil_tmp89)) = (enum regulator_type )0;
   __cil_tmp92 = 8 + 20;
-  __cil_tmp93 = (unsigned long )ldo;
-  __cil_tmp94 = __cil_tmp93 + __cil_tmp92;
-  *((unsigned int *)__cil_tmp94) = 32U;
+  *((unsigned int *)((void *)ldo + __cil_tmp92)) = 32U;
   __cil_tmp95 = 8 + 24;
-  __cil_tmp96 = (unsigned long )ldo;
-  __cil_tmp97 = __cil_tmp96 + __cil_tmp95;
-  *((struct regulator_ops **)__cil_tmp97) = & wm831x_gp_ldo_ops;
+  *((struct regulator_ops **)((void *)ldo + __cil_tmp95)) = & wm831x_gp_ldo_ops;
   __cil_tmp98 = 8 + 40;
-  __cil_tmp99 = (unsigned long )ldo;
-  __cil_tmp100 = __cil_tmp99 + __cil_tmp98;
-  *((struct module **)__cil_tmp100) = & __this_module;
-  __cil_tmp101 = (unsigned long )ldo;
-  __cil_tmp102 = __cil_tmp101 + 72;
-  __cil_tmp103 = (unsigned long )ldo;
-  __cil_tmp104 = __cil_tmp103 + 8;
-  __cil_tmp105 = (struct regulator_desc *)__cil_tmp104;
-  __cil_tmp106 = (unsigned long )pdev;
-  __cil_tmp107 = __cil_tmp106 + 16;
-  __cil_tmp108 = (struct device *)__cil_tmp107;
+  *((struct module **)((void *)ldo + __cil_tmp98)) = & __this_module;
+  __cil_tmp105 = (struct regulator_desc *)((void *)ldo + 8);
+  __cil_tmp108 = (struct device *)((void *)pdev + 16);
   __cil_tmp109 = id * 8UL;
   __cil_tmp110 = 208 + __cil_tmp109;
-  __cil_tmp111 = (unsigned long )pdata;
-  __cil_tmp112 = __cil_tmp111 + __cil_tmp110;
-  __cil_tmp113 = *((struct regulator_init_data **)__cil_tmp112);
+  __cil_tmp113 = *((struct regulator_init_data **)((void *)pdata + __cil_tmp110));
   __cil_tmp114 = (struct regulator_init_data  const  *)__cil_tmp113;
   __cil_tmp115 = (void *)ldo;
   __cil_tmp116 = (void *)0;
   __cil_tmp117 = (struct device_node *)__cil_tmp116;
-  *((struct regulator_dev **)__cil_tmp102) = regulator_register(__cil_tmp105, __cil_tmp108,
+  *((struct regulator_dev **)((void *)ldo + 72)) = regulator_register(__cil_tmp105, __cil_tmp108,
                                                                 __cil_tmp114, __cil_tmp115,
                                                                 __cil_tmp117);
-  __cil_tmp118 = (unsigned long )ldo;
-  __cil_tmp119 = __cil_tmp118 + 72;
-  __cil_tmp120 = *((struct regulator_dev **)__cil_tmp119);
+  __cil_tmp120 = *((struct regulator_dev **)((void *)ldo + 72));
   __cil_tmp121 = (void const   *)__cil_tmp120;
   tmp___11 = (long )IS_ERR(__cil_tmp121);
   }
   if (tmp___11) {
     {
-    __cil_tmp122 = (unsigned long )ldo;
-    __cil_tmp123 = __cil_tmp122 + 72;
-    __cil_tmp124 = *((struct regulator_dev **)__cil_tmp123);
+    __cil_tmp124 = *((struct regulator_dev **)((void *)ldo + 72));
     __cil_tmp125 = (void const   *)__cil_tmp124;
     tmp___10 = (long )PTR_ERR(__cil_tmp125);
     ret = (int )tmp___10;
-    __cil_tmp126 = (unsigned long )wm831x;
-    __cil_tmp127 = __cil_tmp126 + 72;
-    __cil_tmp128 = *((struct device **)__cil_tmp127);
+    __cil_tmp128 = *((struct device **)((void *)wm831x + 72));
     __cil_tmp129 = (struct device  const  *)__cil_tmp128;
     __cil_tmp130 = id + 1;
     dev_err(__cil_tmp129, "Failed to register LDO%d: %d\n", __cil_tmp130, ret);
@@ -3221,9 +3040,7 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   __cil_tmp133 = (irqreturn_t (*)(int  , void * ))__cil_tmp132;
   __cil_tmp134 = 0 * 1UL;
   __cil_tmp135 = 0 + __cil_tmp134;
-  __cil_tmp136 = (unsigned long )ldo;
-  __cil_tmp137 = __cil_tmp136 + __cil_tmp135;
-  __cil_tmp138 = (char *)__cil_tmp137;
+  __cil_tmp138 = (char *)((void *)ldo + __cil_tmp135);
   __cil_tmp139 = (char const   *)__cil_tmp138;
   __cil_tmp140 = (void *)ldo;
   ret = (int )request_threaded_irq(__cil_tmp131, __cil_tmp133, & wm831x_ldo_uv_irq,
@@ -3231,9 +3048,7 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   }
   if (ret != 0) {
     {
-    __cil_tmp141 = (unsigned long )pdev;
-    __cil_tmp142 = __cil_tmp141 + 16;
-    __cil_tmp143 = (struct device *)__cil_tmp142;
+    __cil_tmp143 = (struct device *)((void *)pdev + 16);
     __cil_tmp144 = (struct device  const  *)__cil_tmp143;
     dev_err(__cil_tmp144, "Failed to request UV IRQ %d: %d\n", irq, ret);
     }
@@ -3248,9 +3063,7 @@ static int wm831x_gp_ldo_probe(struct platform_device *pdev )
   return (0);
   err_regulator: 
   {
-  __cil_tmp146 = (unsigned long )ldo;
-  __cil_tmp147 = __cil_tmp146 + 72;
-  __cil_tmp148 = *((struct regulator_dev **)__cil_tmp147);
+  __cil_tmp148 = *((struct regulator_dev **)((void *)ldo + 72));
   regulator_unregister(__cil_tmp148);
   }
   err: 
@@ -3267,8 +3080,6 @@ static int wm831x_gp_ldo_remove(struct platform_device *pdev )
   void *__cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct regulator_dev *__cil_tmp11 ;
 
   {
@@ -3282,9 +3093,7 @@ static int wm831x_gp_ldo_remove(struct platform_device *pdev )
   __cil_tmp7 = (unsigned int )tmp___8;
   __cil_tmp8 = (void *)ldo;
   free_irq(__cil_tmp7, __cil_tmp8);
-  __cil_tmp9 = (unsigned long )ldo;
-  __cil_tmp10 = __cil_tmp9 + 72;
-  __cil_tmp11 = *((struct regulator_dev **)__cil_tmp10);
+  __cil_tmp11 = *((struct regulator_dev **)((void *)ldo + 72));
   regulator_unregister(__cil_tmp11);
   }
   return (0);
@@ -3335,8 +3144,6 @@ static int wm831x_aldo_set_voltage_int(struct regulator_dev *rdev , int reg , in
   int vsel ;
   int ret ;
   int tmp___8 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -3349,9 +3156,7 @@ static int wm831x_aldo_set_voltage_int(struct regulator_dev *rdev , int reg , in
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp12 = (unsigned long )ldo;
-  __cil_tmp13 = __cil_tmp12 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp13);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
   }
   if (min_uV < 1000000) {
     vsel = 0;
@@ -3397,17 +3202,13 @@ static int wm831x_aldo_set_voltage(struct regulator_dev *rdev , int min_uV , int
   void *tmp___7 ;
   int reg ;
   int tmp___8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
 
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp9 = (unsigned long )ldo;
-  __cil_tmp10 = __cil_tmp9 + 56;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)ldo + 56));
   reg = __cil_tmp11 + 1;
   tmp___8 = wm831x_aldo_set_voltage_int(rdev, reg, min_uV, max_uV, selector);
   }
@@ -3420,17 +3221,13 @@ static int wm831x_aldo_set_suspend_voltage(struct regulator_dev *rdev , int uV )
   int reg ;
   unsigned int selector ;
   int tmp___8 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
 
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp8 = (unsigned long )ldo;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)ldo + 56));
   reg = __cil_tmp10 + 2;
   tmp___8 = wm831x_aldo_set_voltage_int(rdev, reg, uV, uV, & selector);
   }
@@ -3443,10 +3240,6 @@ static int wm831x_aldo_get_voltage_sel(struct regulator_dev *rdev )
   struct wm831x *wm831x ;
   int reg ;
   int ret ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned short __cil_tmp12 ;
 
@@ -3454,12 +3247,8 @@ static int wm831x_aldo_get_voltage_sel(struct regulator_dev *rdev )
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp7 = (unsigned long )ldo;
-  __cil_tmp8 = __cil_tmp7 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp8);
-  __cil_tmp9 = (unsigned long )ldo;
-  __cil_tmp10 = __cil_tmp9 + 56;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
+  __cil_tmp11 = *((int *)((void *)ldo + 56));
   reg = __cil_tmp11 + 1;
   __cil_tmp12 = (unsigned short )reg;
   ret = wm831x_reg_read(wm831x, __cil_tmp12);
@@ -3479,10 +3268,6 @@ static unsigned int wm831x_aldo_get_mode(struct regulator_dev *rdev )
   struct wm831x *wm831x ;
   int on_reg ;
   int ret ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned short __cil_tmp12 ;
 
@@ -3490,12 +3275,8 @@ static unsigned int wm831x_aldo_get_mode(struct regulator_dev *rdev )
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp7 = (unsigned long )ldo;
-  __cil_tmp8 = __cil_tmp7 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp8);
-  __cil_tmp9 = (unsigned long )ldo;
-  __cil_tmp10 = __cil_tmp9 + 56;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
+  __cil_tmp11 = *((int *)((void *)ldo + 56));
   on_reg = __cil_tmp11 + 1;
   __cil_tmp12 = (unsigned short )on_reg;
   ret = wm831x_reg_read(wm831x, __cil_tmp12);
@@ -3518,10 +3299,6 @@ static int wm831x_aldo_set_mode(struct regulator_dev *rdev , unsigned int mode )
   struct wm831x *wm831x ;
   int on_reg ;
   int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   unsigned short __cil_tmp13 ;
   unsigned short __cil_tmp14 ;
@@ -3530,12 +3307,8 @@ static int wm831x_aldo_set_mode(struct regulator_dev *rdev , unsigned int mode )
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp8 = (unsigned long )ldo;
-  __cil_tmp9 = __cil_tmp8 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp9);
-  __cil_tmp10 = (unsigned long )ldo;
-  __cil_tmp11 = __cil_tmp10 + 56;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
+  __cil_tmp12 = *((int *)((void *)ldo + 56));
   on_reg = __cil_tmp12 + 1;
   }
   if ((int )mode == 2) {
@@ -3588,8 +3361,6 @@ static int wm831x_aldo_get_status(struct regulator_dev *rdev )
   int ret ;
   unsigned int tmp___9 ;
   int tmp___10 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
 
@@ -3597,9 +3368,7 @@ static int wm831x_aldo_get_status(struct regulator_dev *rdev )
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp10 = (unsigned long )ldo;
-  __cil_tmp11 = __cil_tmp10 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp11);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
   tmp___8 = rdev_get_id(rdev);
   mask = 1 << tmp___8;
   ret = wm831x_reg_read(wm831x, (unsigned short)16467);
@@ -3673,20 +3442,12 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   void *tmp___9 ;
   long tmp___10 ;
   long tmp___11 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device  const  *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   void *__cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   int __cil_tmp28 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp29 ;
   unsigned int __cil_tmp30 ;
@@ -3694,8 +3455,6 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   int __cil_tmp32 ;
   int __cil_tmp33 ;
   long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct device *__cil_tmp37 ;
   struct device  const  *__cil_tmp38 ;
   int __cil_tmp39 ;
@@ -3706,87 +3465,45 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct regulator_init_data *__cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct device *__cil_tmp53 ;
   void *__cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct device *__cil_tmp59 ;
   struct device  const  *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   void *__cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct device *__cil_tmp68 ;
   struct device  const  *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   resource_size_t __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   char *__cil_tmp77 ;
   int __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   char *__cil_tmp85 ;
   unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   struct regulator_desc *__cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   struct device *__cil_tmp108 ;
   unsigned long __cil_tmp109 ;
   unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   struct regulator_init_data *__cil_tmp113 ;
   struct regulator_init_data  const  *__cil_tmp114 ;
   void *__cil_tmp115 ;
   void *__cil_tmp116 ;
   struct device_node *__cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
   struct regulator_dev *__cil_tmp120 ;
   void const   *__cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
   struct regulator_dev *__cil_tmp124 ;
   void const   *__cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
   struct device *__cil_tmp128 ;
   struct device  const  *__cil_tmp129 ;
   int __cil_tmp130 ;
@@ -3795,34 +3512,22 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   irqreturn_t (*__cil_tmp133)(int  , void * ) ;
   unsigned long __cil_tmp134 ;
   unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
   char *__cil_tmp138 ;
   char const   *__cil_tmp139 ;
   void *__cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
   struct device *__cil_tmp143 ;
   struct device  const  *__cil_tmp144 ;
   void *__cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
-  unsigned long __cil_tmp147 ;
   struct regulator_dev *__cil_tmp148 ;
 
   {
   {
-  __cil_tmp14 = (unsigned long )pdev;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((struct device **)__cil_tmp15);
+  __cil_tmp16 = *((struct device **)((void *)pdev + 16));
   __cil_tmp17 = (struct device  const  *)__cil_tmp16;
   tmp___7 = dev_get_drvdata(__cil_tmp17);
   wm831x = (struct wm831x *)tmp___7;
-  __cil_tmp18 = (unsigned long )wm831x;
-  __cil_tmp19 = __cil_tmp18 + 72;
-  __cil_tmp20 = *((struct device **)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 184;
-  __cil_tmp23 = *((void **)__cil_tmp22);
+  __cil_tmp20 = *((struct device **)((void *)wm831x + 72));
+  __cil_tmp23 = *((void **)((void *)__cil_tmp20 + 184));
   pdata = (struct wm831x_pdata *)__cil_tmp23;
   }
   if (pdata) {
@@ -3836,9 +3541,7 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   } else {
     id = 0;
   }
-  __cil_tmp26 = (unsigned long )pdev;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = *((int *)__cil_tmp27);
+  __cil_tmp28 = *((int *)((void *)pdev + 8));
   id = __cil_tmp28 - id;
   {
   while (1) {
@@ -3857,9 +3560,7 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
       }
       if (tmp___8) {
         {
-        __cil_tmp35 = (unsigned long )pdev;
-        __cil_tmp36 = __cil_tmp35 + 16;
-        __cil_tmp37 = (struct device *)__cil_tmp36;
+        __cil_tmp37 = (struct device *)((void *)pdev + 16);
         __cil_tmp38 = (struct device  const  *)__cil_tmp37;
         __cil_tmp39 = id + 1;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp38, "Probing LDO%d\n", __cil_tmp39);
@@ -3887,9 +3588,7 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
     __cil_tmp44 = (unsigned long )__cil_tmp43;
     __cil_tmp45 = id * 8UL;
     __cil_tmp46 = 208 + __cil_tmp45;
-    __cil_tmp47 = (unsigned long )pdata;
-    __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-    __cil_tmp49 = *((struct regulator_init_data **)__cil_tmp48);
+    __cil_tmp49 = *((struct regulator_init_data **)((void *)pdata + __cil_tmp46));
     __cil_tmp50 = (unsigned long )__cil_tmp49;
     if (__cil_tmp50 == __cil_tmp44) {
       return (-19);
@@ -3900,9 +3599,7 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp51 = (unsigned long )pdev;
-  __cil_tmp52 = __cil_tmp51 + 16;
-  __cil_tmp53 = (struct device *)__cil_tmp52;
+  __cil_tmp53 = (struct device *)((void *)pdev + 16);
   tmp___9 = devm_kzalloc(__cil_tmp53, 80UL, 208U);
   ldo = (struct wm831x_ldo *)tmp___9;
   }
@@ -3912,9 +3609,7 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   __cil_tmp56 = (unsigned long )ldo;
   if (__cil_tmp56 == __cil_tmp55) {
     {
-    __cil_tmp57 = (unsigned long )pdev;
-    __cil_tmp58 = __cil_tmp57 + 16;
-    __cil_tmp59 = (struct device *)__cil_tmp58;
+    __cil_tmp59 = (struct device *)((void *)pdev + 16);
     __cil_tmp60 = (struct device  const  *)__cil_tmp59;
     dev_err(__cil_tmp60, "Unable to allocate private data\n");
     }
@@ -3924,9 +3619,7 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp61 = (unsigned long )ldo;
-  __cil_tmp62 = __cil_tmp61 + 64;
-  *((struct wm831x **)__cil_tmp62) = wm831x;
+  *((struct wm831x **)((void *)ldo + 64)) = wm831x;
   res = platform_get_resource(pdev, 256U, 0U);
   }
   {
@@ -3935,9 +3628,7 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   __cil_tmp65 = (unsigned long )res;
   if (__cil_tmp65 == __cil_tmp64) {
     {
-    __cil_tmp66 = (unsigned long )pdev;
-    __cil_tmp67 = __cil_tmp66 + 16;
-    __cil_tmp68 = (struct device *)__cil_tmp67;
+    __cil_tmp68 = (struct device *)((void *)pdev + 16);
     __cil_tmp69 = (struct device  const  *)__cil_tmp68;
     dev_err(__cil_tmp69, "No I/O resource\n");
     ret = -22;
@@ -3948,82 +3639,50 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp70 = (unsigned long )ldo;
-  __cil_tmp71 = __cil_tmp70 + 56;
   __cil_tmp72 = *((resource_size_t *)res);
-  *((int *)__cil_tmp71) = (int )__cil_tmp72;
+  *((int *)((void *)ldo + 56)) = (int )__cil_tmp72;
   __cil_tmp73 = 0 * 1UL;
   __cil_tmp74 = 0 + __cil_tmp73;
-  __cil_tmp75 = (unsigned long )ldo;
-  __cil_tmp76 = __cil_tmp75 + __cil_tmp74;
-  __cil_tmp77 = (char *)__cil_tmp76;
+  __cil_tmp77 = (char *)((void *)ldo + __cil_tmp74);
   __cil_tmp78 = id + 1;
   snprintf(__cil_tmp77, 6UL, "LDO%d", __cil_tmp78);
-  __cil_tmp79 = (unsigned long )ldo;
-  __cil_tmp80 = __cil_tmp79 + 8;
   __cil_tmp81 = 0 * 1UL;
   __cil_tmp82 = 0 + __cil_tmp81;
-  __cil_tmp83 = (unsigned long )ldo;
-  __cil_tmp84 = __cil_tmp83 + __cil_tmp82;
-  __cil_tmp85 = (char *)__cil_tmp84;
-  *((char const   **)__cil_tmp80) = (char const   *)__cil_tmp85;
+  __cil_tmp85 = (char *)((void *)ldo + __cil_tmp82);
+  *((char const   **)((void *)ldo + 8)) = (char const   *)__cil_tmp85;
   __cil_tmp86 = 8 + 16;
-  __cil_tmp87 = (unsigned long )ldo;
-  __cil_tmp88 = __cil_tmp87 + __cil_tmp86;
-  *((int *)__cil_tmp88) = id;
+  *((int *)((void *)ldo + __cil_tmp86)) = id;
   __cil_tmp89 = 8 + 36;
-  __cil_tmp90 = (unsigned long )ldo;
-  __cil_tmp91 = __cil_tmp90 + __cil_tmp89;
-  *((enum regulator_type *)__cil_tmp91) = (enum regulator_type )0;
+  *((enum regulator_type *)((void *)ldo + __cil_tmp89)) = (enum regulator_type )0;
   __cil_tmp92 = 8 + 20;
-  __cil_tmp93 = (unsigned long )ldo;
-  __cil_tmp94 = __cil_tmp93 + __cil_tmp92;
-  *((unsigned int *)__cil_tmp94) = 32U;
+  *((unsigned int *)((void *)ldo + __cil_tmp92)) = 32U;
   __cil_tmp95 = 8 + 24;
-  __cil_tmp96 = (unsigned long )ldo;
-  __cil_tmp97 = __cil_tmp96 + __cil_tmp95;
-  *((struct regulator_ops **)__cil_tmp97) = & wm831x_aldo_ops;
+  *((struct regulator_ops **)((void *)ldo + __cil_tmp95)) = & wm831x_aldo_ops;
   __cil_tmp98 = 8 + 40;
-  __cil_tmp99 = (unsigned long )ldo;
-  __cil_tmp100 = __cil_tmp99 + __cil_tmp98;
-  *((struct module **)__cil_tmp100) = & __this_module;
-  __cil_tmp101 = (unsigned long )ldo;
-  __cil_tmp102 = __cil_tmp101 + 72;
-  __cil_tmp103 = (unsigned long )ldo;
-  __cil_tmp104 = __cil_tmp103 + 8;
-  __cil_tmp105 = (struct regulator_desc *)__cil_tmp104;
-  __cil_tmp106 = (unsigned long )pdev;
-  __cil_tmp107 = __cil_tmp106 + 16;
-  __cil_tmp108 = (struct device *)__cil_tmp107;
+  *((struct module **)((void *)ldo + __cil_tmp98)) = & __this_module;
+  __cil_tmp105 = (struct regulator_desc *)((void *)ldo + 8);
+  __cil_tmp108 = (struct device *)((void *)pdev + 16);
   __cil_tmp109 = id * 8UL;
   __cil_tmp110 = 208 + __cil_tmp109;
-  __cil_tmp111 = (unsigned long )pdata;
-  __cil_tmp112 = __cil_tmp111 + __cil_tmp110;
-  __cil_tmp113 = *((struct regulator_init_data **)__cil_tmp112);
+  __cil_tmp113 = *((struct regulator_init_data **)((void *)pdata + __cil_tmp110));
   __cil_tmp114 = (struct regulator_init_data  const  *)__cil_tmp113;
   __cil_tmp115 = (void *)ldo;
   __cil_tmp116 = (void *)0;
   __cil_tmp117 = (struct device_node *)__cil_tmp116;
-  *((struct regulator_dev **)__cil_tmp102) = regulator_register(__cil_tmp105, __cil_tmp108,
+  *((struct regulator_dev **)((void *)ldo + 72)) = regulator_register(__cil_tmp105, __cil_tmp108,
                                                                 __cil_tmp114, __cil_tmp115,
                                                                 __cil_tmp117);
-  __cil_tmp118 = (unsigned long )ldo;
-  __cil_tmp119 = __cil_tmp118 + 72;
-  __cil_tmp120 = *((struct regulator_dev **)__cil_tmp119);
+  __cil_tmp120 = *((struct regulator_dev **)((void *)ldo + 72));
   __cil_tmp121 = (void const   *)__cil_tmp120;
   tmp___11 = (long )IS_ERR(__cil_tmp121);
   }
   if (tmp___11) {
     {
-    __cil_tmp122 = (unsigned long )ldo;
-    __cil_tmp123 = __cil_tmp122 + 72;
-    __cil_tmp124 = *((struct regulator_dev **)__cil_tmp123);
+    __cil_tmp124 = *((struct regulator_dev **)((void *)ldo + 72));
     __cil_tmp125 = (void const   *)__cil_tmp124;
     tmp___10 = (long )PTR_ERR(__cil_tmp125);
     ret = (int )tmp___10;
-    __cil_tmp126 = (unsigned long )wm831x;
-    __cil_tmp127 = __cil_tmp126 + 72;
-    __cil_tmp128 = *((struct device **)__cil_tmp127);
+    __cil_tmp128 = *((struct device **)((void *)wm831x + 72));
     __cil_tmp129 = (struct device  const  *)__cil_tmp128;
     __cil_tmp130 = id + 1;
     dev_err(__cil_tmp129, "Failed to register LDO%d: %d\n", __cil_tmp130, ret);
@@ -4039,9 +3698,7 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   __cil_tmp133 = (irqreturn_t (*)(int  , void * ))__cil_tmp132;
   __cil_tmp134 = 0 * 1UL;
   __cil_tmp135 = 0 + __cil_tmp134;
-  __cil_tmp136 = (unsigned long )ldo;
-  __cil_tmp137 = __cil_tmp136 + __cil_tmp135;
-  __cil_tmp138 = (char *)__cil_tmp137;
+  __cil_tmp138 = (char *)((void *)ldo + __cil_tmp135);
   __cil_tmp139 = (char const   *)__cil_tmp138;
   __cil_tmp140 = (void *)ldo;
   ret = (int )request_threaded_irq(__cil_tmp131, __cil_tmp133, & wm831x_ldo_uv_irq,
@@ -4049,9 +3706,7 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   }
   if (ret != 0) {
     {
-    __cil_tmp141 = (unsigned long )pdev;
-    __cil_tmp142 = __cil_tmp141 + 16;
-    __cil_tmp143 = (struct device *)__cil_tmp142;
+    __cil_tmp143 = (struct device *)((void *)pdev + 16);
     __cil_tmp144 = (struct device  const  *)__cil_tmp143;
     dev_err(__cil_tmp144, "Failed to request UV IRQ %d: %d\n", irq, ret);
     }
@@ -4066,9 +3721,7 @@ static int wm831x_aldo_probe(struct platform_device *pdev )
   return (0);
   err_regulator: 
   {
-  __cil_tmp146 = (unsigned long )ldo;
-  __cil_tmp147 = __cil_tmp146 + 72;
-  __cil_tmp148 = *((struct regulator_dev **)__cil_tmp147);
+  __cil_tmp148 = *((struct regulator_dev **)((void *)ldo + 72));
   regulator_unregister(__cil_tmp148);
   }
   err: 
@@ -4084,8 +3737,6 @@ static int wm831x_aldo_remove(struct platform_device *pdev )
   struct platform_device  const  *__cil_tmp5 ;
   unsigned int __cil_tmp6 ;
   void *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct regulator_dev *__cil_tmp10 ;
 
   {
@@ -4097,9 +3748,7 @@ static int wm831x_aldo_remove(struct platform_device *pdev )
   __cil_tmp6 = (unsigned int )tmp___8;
   __cil_tmp7 = (void *)ldo;
   free_irq(__cil_tmp6, __cil_tmp7);
-  __cil_tmp8 = (unsigned long )ldo;
-  __cil_tmp9 = __cil_tmp8 + 72;
-  __cil_tmp10 = *((struct regulator_dev **)__cil_tmp9);
+  __cil_tmp10 = *((struct regulator_dev **)((void *)ldo + 72));
   regulator_unregister(__cil_tmp10);
   }
   return (0);
@@ -4137,8 +3786,6 @@ static int wm831x_alive_ldo_set_voltage_int(struct regulator_dev *rdev , int reg
   int vsel ;
   int ret ;
   int tmp___8 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   unsigned short __cil_tmp16 ;
@@ -4148,9 +3795,7 @@ static int wm831x_alive_ldo_set_voltage_int(struct regulator_dev *rdev , int reg
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp12 = (unsigned long )ldo;
-  __cil_tmp13 = __cil_tmp12 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp13);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
   __cil_tmp14 = min_uV - 800000;
   vsel = __cil_tmp14 / 50000;
   __cil_tmp15 = (unsigned int )vsel;
@@ -4184,16 +3829,12 @@ static int wm831x_alive_ldo_set_voltage(struct regulator_dev *rdev , int min_uV 
   void *tmp___7 ;
   int reg ;
   int tmp___8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
 
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp9 = (unsigned long )ldo;
-  __cil_tmp10 = __cil_tmp9 + 56;
-  reg = *((int *)__cil_tmp10);
+  reg = *((int *)((void *)ldo + 56));
   tmp___8 = wm831x_alive_ldo_set_voltage_int(rdev, reg, min_uV, max_uV, selector);
   }
   return (tmp___8);
@@ -4205,17 +3846,13 @@ static int wm831x_alive_ldo_set_suspend_voltage(struct regulator_dev *rdev , int
   int reg ;
   unsigned int selector ;
   int tmp___8 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
 
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp8 = (unsigned long )ldo;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)ldo + 56));
   reg = __cil_tmp10 + 1;
   tmp___8 = wm831x_alive_ldo_set_voltage_int(rdev, reg, uV, uV, & selector);
   }
@@ -4228,22 +3865,14 @@ static int wm831x_alive_ldo_get_voltage_sel(struct regulator_dev *rdev )
   struct wm831x *wm831x ;
   int reg ;
   int ret ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned short __cil_tmp11 ;
 
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp7 = (unsigned long )ldo;
-  __cil_tmp8 = __cil_tmp7 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp8);
-  __cil_tmp9 = (unsigned long )ldo;
-  __cil_tmp10 = __cil_tmp9 + 56;
-  reg = *((int *)__cil_tmp10);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
+  reg = *((int *)((void *)ldo + 56));
   __cil_tmp11 = (unsigned short )reg;
   ret = wm831x_reg_read(wm831x, __cil_tmp11);
   }
@@ -4263,16 +3892,12 @@ static int wm831x_alive_ldo_get_status(struct regulator_dev *rdev )
   int mask ;
   int tmp___8 ;
   int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
 
   {
   {
   tmp___7 = rdev_get_drvdata(rdev);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp8 = (unsigned long )ldo;
-  __cil_tmp9 = __cil_tmp8 + 64;
-  wm831x = *((struct wm831x **)__cil_tmp9);
+  wm831x = *((struct wm831x **)((void *)ldo + 64));
   tmp___8 = rdev_get_id(rdev);
   mask = 1 << tmp___8;
   ret = wm831x_reg_read(wm831x, (unsigned short)16467);
@@ -4322,20 +3947,12 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
   void *tmp___9 ;
   long tmp___10 ;
   long tmp___11 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device  const  *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
   int __cil_tmp23 ;
   int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp28 ;
   unsigned int __cil_tmp29 ;
@@ -4343,8 +3960,6 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
   int __cil_tmp31 ;
   int __cil_tmp32 ;
   long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct device *__cil_tmp36 ;
   struct device  const  *__cil_tmp37 ;
   int __cil_tmp38 ;
@@ -4355,87 +3970,45 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct regulator_init_data *__cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct device *__cil_tmp52 ;
   void *__cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct device *__cil_tmp58 ;
   struct device  const  *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   void *__cil_tmp62 ;
   unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   struct device *__cil_tmp67 ;
   struct device  const  *__cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   resource_size_t __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   char *__cil_tmp76 ;
   int __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   char *__cil_tmp84 ;
   unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   struct regulator_desc *__cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   struct device *__cil_tmp107 ;
   unsigned long __cil_tmp108 ;
   unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   struct regulator_init_data *__cil_tmp112 ;
   struct regulator_init_data  const  *__cil_tmp113 ;
   void *__cil_tmp114 ;
   void *__cil_tmp115 ;
   struct device_node *__cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   struct regulator_dev *__cil_tmp119 ;
   void const   *__cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   struct regulator_dev *__cil_tmp123 ;
   void const   *__cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   struct device *__cil_tmp127 ;
   struct device  const  *__cil_tmp128 ;
   int __cil_tmp129 ;
@@ -4443,18 +4016,12 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
 
   {
   {
-  __cil_tmp13 = (unsigned long )pdev;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((struct device **)__cil_tmp14);
+  __cil_tmp15 = *((struct device **)((void *)pdev + 16));
   __cil_tmp16 = (struct device  const  *)__cil_tmp15;
   tmp___7 = dev_get_drvdata(__cil_tmp16);
   wm831x = (struct wm831x *)tmp___7;
-  __cil_tmp17 = (unsigned long )wm831x;
-  __cil_tmp18 = __cil_tmp17 + 72;
-  __cil_tmp19 = *((struct device **)__cil_tmp18);
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 184;
-  __cil_tmp22 = *((void **)__cil_tmp21);
+  __cil_tmp19 = *((struct device **)((void *)wm831x + 72));
+  __cil_tmp22 = *((void **)((void *)__cil_tmp19 + 184));
   pdata = (struct wm831x_pdata *)__cil_tmp22;
   }
   if (pdata) {
@@ -4468,9 +4035,7 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
   } else {
     id = 0;
   }
-  __cil_tmp25 = (unsigned long )pdev;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  __cil_tmp27 = *((int *)__cil_tmp26);
+  __cil_tmp27 = *((int *)((void *)pdev + 8));
   id = __cil_tmp27 - id;
   {
   while (1) {
@@ -4489,9 +4054,7 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
       }
       if (tmp___8) {
         {
-        __cil_tmp34 = (unsigned long )pdev;
-        __cil_tmp35 = __cil_tmp34 + 16;
-        __cil_tmp36 = (struct device *)__cil_tmp35;
+        __cil_tmp36 = (struct device *)((void *)pdev + 16);
         __cil_tmp37 = (struct device  const  *)__cil_tmp36;
         __cil_tmp38 = id + 1;
         __dynamic_dev_dbg(& descriptor___1, __cil_tmp37, "Probing LDO%d\n", __cil_tmp38);
@@ -4519,9 +4082,7 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
     __cil_tmp43 = (unsigned long )__cil_tmp42;
     __cil_tmp44 = id * 8UL;
     __cil_tmp45 = 208 + __cil_tmp44;
-    __cil_tmp46 = (unsigned long )pdata;
-    __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-    __cil_tmp48 = *((struct regulator_init_data **)__cil_tmp47);
+    __cil_tmp48 = *((struct regulator_init_data **)((void *)pdata + __cil_tmp45));
     __cil_tmp49 = (unsigned long )__cil_tmp48;
     if (__cil_tmp49 == __cil_tmp43) {
       return (-19);
@@ -4532,9 +4093,7 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp50 = (unsigned long )pdev;
-  __cil_tmp51 = __cil_tmp50 + 16;
-  __cil_tmp52 = (struct device *)__cil_tmp51;
+  __cil_tmp52 = (struct device *)((void *)pdev + 16);
   tmp___9 = devm_kzalloc(__cil_tmp52, 80UL, 208U);
   ldo = (struct wm831x_ldo *)tmp___9;
   }
@@ -4544,9 +4103,7 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
   __cil_tmp55 = (unsigned long )ldo;
   if (__cil_tmp55 == __cil_tmp54) {
     {
-    __cil_tmp56 = (unsigned long )pdev;
-    __cil_tmp57 = __cil_tmp56 + 16;
-    __cil_tmp58 = (struct device *)__cil_tmp57;
+    __cil_tmp58 = (struct device *)((void *)pdev + 16);
     __cil_tmp59 = (struct device  const  *)__cil_tmp58;
     dev_err(__cil_tmp59, "Unable to allocate private data\n");
     }
@@ -4556,9 +4113,7 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp60 = (unsigned long )ldo;
-  __cil_tmp61 = __cil_tmp60 + 64;
-  *((struct wm831x **)__cil_tmp61) = wm831x;
+  *((struct wm831x **)((void *)ldo + 64)) = wm831x;
   res = platform_get_resource(pdev, 256U, 0U);
   }
   {
@@ -4567,9 +4122,7 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
   __cil_tmp64 = (unsigned long )res;
   if (__cil_tmp64 == __cil_tmp63) {
     {
-    __cil_tmp65 = (unsigned long )pdev;
-    __cil_tmp66 = __cil_tmp65 + 16;
-    __cil_tmp67 = (struct device *)__cil_tmp66;
+    __cil_tmp67 = (struct device *)((void *)pdev + 16);
     __cil_tmp68 = (struct device  const  *)__cil_tmp67;
     dev_err(__cil_tmp68, "No I/O resource\n");
     ret = -22;
@@ -4580,82 +4133,50 @@ static int wm831x_alive_ldo_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp69 = (unsigned long )ldo;
-  __cil_tmp70 = __cil_tmp69 + 56;
   __cil_tmp71 = *((resource_size_t *)res);
-  *((int *)__cil_tmp70) = (int )__cil_tmp71;
+  *((int *)((void *)ldo + 56)) = (int )__cil_tmp71;
   __cil_tmp72 = 0 * 1UL;
   __cil_tmp73 = 0 + __cil_tmp72;
-  __cil_tmp74 = (unsigned long )ldo;
-  __cil_tmp75 = __cil_tmp74 + __cil_tmp73;
-  __cil_tmp76 = (char *)__cil_tmp75;
+  __cil_tmp76 = (char *)((void *)ldo + __cil_tmp73);
   __cil_tmp77 = id + 1;
   snprintf(__cil_tmp76, 6UL, "LDO%d", __cil_tmp77);
-  __cil_tmp78 = (unsigned long )ldo;
-  __cil_tmp79 = __cil_tmp78 + 8;
   __cil_tmp80 = 0 * 1UL;
   __cil_tmp81 = 0 + __cil_tmp80;
-  __cil_tmp82 = (unsigned long )ldo;
-  __cil_tmp83 = __cil_tmp82 + __cil_tmp81;
-  __cil_tmp84 = (char *)__cil_tmp83;
-  *((char const   **)__cil_tmp79) = (char const   *)__cil_tmp84;
+  __cil_tmp84 = (char *)((void *)ldo + __cil_tmp81);
+  *((char const   **)((void *)ldo + 8)) = (char const   *)__cil_tmp84;
   __cil_tmp85 = 8 + 16;
-  __cil_tmp86 = (unsigned long )ldo;
-  __cil_tmp87 = __cil_tmp86 + __cil_tmp85;
-  *((int *)__cil_tmp87) = id;
+  *((int *)((void *)ldo + __cil_tmp85)) = id;
   __cil_tmp88 = 8 + 36;
-  __cil_tmp89 = (unsigned long )ldo;
-  __cil_tmp90 = __cil_tmp89 + __cil_tmp88;
-  *((enum regulator_type *)__cil_tmp90) = (enum regulator_type )0;
+  *((enum regulator_type *)((void *)ldo + __cil_tmp88)) = (enum regulator_type )0;
   __cil_tmp91 = 8 + 20;
-  __cil_tmp92 = (unsigned long )ldo;
-  __cil_tmp93 = __cil_tmp92 + __cil_tmp91;
-  *((unsigned int *)__cil_tmp93) = 16U;
+  *((unsigned int *)((void *)ldo + __cil_tmp91)) = 16U;
   __cil_tmp94 = 8 + 24;
-  __cil_tmp95 = (unsigned long )ldo;
-  __cil_tmp96 = __cil_tmp95 + __cil_tmp94;
-  *((struct regulator_ops **)__cil_tmp96) = & wm831x_alive_ldo_ops;
+  *((struct regulator_ops **)((void *)ldo + __cil_tmp94)) = & wm831x_alive_ldo_ops;
   __cil_tmp97 = 8 + 40;
-  __cil_tmp98 = (unsigned long )ldo;
-  __cil_tmp99 = __cil_tmp98 + __cil_tmp97;
-  *((struct module **)__cil_tmp99) = & __this_module;
-  __cil_tmp100 = (unsigned long )ldo;
-  __cil_tmp101 = __cil_tmp100 + 72;
-  __cil_tmp102 = (unsigned long )ldo;
-  __cil_tmp103 = __cil_tmp102 + 8;
-  __cil_tmp104 = (struct regulator_desc *)__cil_tmp103;
-  __cil_tmp105 = (unsigned long )pdev;
-  __cil_tmp106 = __cil_tmp105 + 16;
-  __cil_tmp107 = (struct device *)__cil_tmp106;
+  *((struct module **)((void *)ldo + __cil_tmp97)) = & __this_module;
+  __cil_tmp104 = (struct regulator_desc *)((void *)ldo + 8);
+  __cil_tmp107 = (struct device *)((void *)pdev + 16);
   __cil_tmp108 = id * 8UL;
   __cil_tmp109 = 208 + __cil_tmp108;
-  __cil_tmp110 = (unsigned long )pdata;
-  __cil_tmp111 = __cil_tmp110 + __cil_tmp109;
-  __cil_tmp112 = *((struct regulator_init_data **)__cil_tmp111);
+  __cil_tmp112 = *((struct regulator_init_data **)((void *)pdata + __cil_tmp109));
   __cil_tmp113 = (struct regulator_init_data  const  *)__cil_tmp112;
   __cil_tmp114 = (void *)ldo;
   __cil_tmp115 = (void *)0;
   __cil_tmp116 = (struct device_node *)__cil_tmp115;
-  *((struct regulator_dev **)__cil_tmp101) = regulator_register(__cil_tmp104, __cil_tmp107,
+  *((struct regulator_dev **)((void *)ldo + 72)) = regulator_register(__cil_tmp104, __cil_tmp107,
                                                                 __cil_tmp113, __cil_tmp114,
                                                                 __cil_tmp116);
-  __cil_tmp117 = (unsigned long )ldo;
-  __cil_tmp118 = __cil_tmp117 + 72;
-  __cil_tmp119 = *((struct regulator_dev **)__cil_tmp118);
+  __cil_tmp119 = *((struct regulator_dev **)((void *)ldo + 72));
   __cil_tmp120 = (void const   *)__cil_tmp119;
   tmp___11 = (long )IS_ERR(__cil_tmp120);
   }
   if (tmp___11) {
     {
-    __cil_tmp121 = (unsigned long )ldo;
-    __cil_tmp122 = __cil_tmp121 + 72;
-    __cil_tmp123 = *((struct regulator_dev **)__cil_tmp122);
+    __cil_tmp123 = *((struct regulator_dev **)((void *)ldo + 72));
     __cil_tmp124 = (void const   *)__cil_tmp123;
     tmp___10 = (long )PTR_ERR(__cil_tmp124);
     ret = (int )tmp___10;
-    __cil_tmp125 = (unsigned long )wm831x;
-    __cil_tmp126 = __cil_tmp125 + 72;
-    __cil_tmp127 = *((struct device **)__cil_tmp126);
+    __cil_tmp127 = *((struct device **)((void *)wm831x + 72));
     __cil_tmp128 = (struct device  const  *)__cil_tmp127;
     __cil_tmp129 = id + 1;
     dev_err(__cil_tmp128, "Failed to register LDO%d: %d\n", __cil_tmp129, ret);
@@ -4679,8 +4200,6 @@ static int wm831x_alive_ldo_remove(struct platform_device *pdev )
 { struct wm831x_ldo *ldo ;
   void *tmp___7 ;
   struct platform_device  const  *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct regulator_dev *__cil_tmp7 ;
 
   {
@@ -4688,9 +4207,7 @@ static int wm831x_alive_ldo_remove(struct platform_device *pdev )
   __cil_tmp4 = (struct platform_device  const  *)pdev;
   tmp___7 = platform_get_drvdata(__cil_tmp4);
   ldo = (struct wm831x_ldo *)tmp___7;
-  __cil_tmp5 = (unsigned long )ldo;
-  __cil_tmp6 = __cil_tmp5 + 72;
-  __cil_tmp7 = *((struct regulator_dev **)__cil_tmp6);
+  __cil_tmp7 = *((struct regulator_dev **)((void *)ldo + 72));
   regulator_unregister(__cil_tmp7);
   }
   return (0);

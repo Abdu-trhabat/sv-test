@@ -277,14 +277,10 @@ extern int printk(char const   *  , ...) ;
 extern ssize_t memory_read_from_buffer(void * , size_t  , loff_t * , void const   * ,
                                        size_t  ) ;
 __inline static void *phys_to_virt(phys_addr_t address ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )address;
-  __cil_tmp3 = __cil_tmp2 + 0xffff880000000000UL;
-  return ((void *)__cil_tmp3);
+  return ((void *)((void *)address + 0xffff880000000000UL));
   }
 }
 }
@@ -344,36 +340,24 @@ static void found_v1_header(struct biosmemcon_ebda *hdr )
 { void *tmp ;
   unsigned long __cil_tmp3 ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   u32 __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u16 __cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u16 __cil_tmp18 ;
   int __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   u16 __cil_tmp24 ;
   int __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   u16 __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   u32 __cil_tmp35 ;
   phys_addr_t __cil_tmp36 ;
 
@@ -382,40 +366,28 @@ static void found_v1_header(struct biosmemcon_ebda *hdr )
   printk("<6>BIOS console v1 EBDA structure found at %p\n", hdr);
   __cil_tmp3 = 0 + 4;
   __cil_tmp4 = 4 + __cil_tmp3;
-  __cil_tmp5 = (unsigned long )hdr;
-  __cil_tmp6 = __cil_tmp5 + __cil_tmp4;
-  __cil_tmp7 = *((u32 *)__cil_tmp6);
+  __cil_tmp7 = *((u32 *)((void *)hdr + __cil_tmp4));
   __cil_tmp8 = 0 + 8;
   __cil_tmp9 = 4 + __cil_tmp8;
-  __cil_tmp10 = (unsigned long )hdr;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  __cil_tmp12 = *((u16 *)__cil_tmp11);
+  __cil_tmp12 = *((u16 *)((void *)hdr + __cil_tmp9));
   __cil_tmp13 = (int )__cil_tmp12;
   __cil_tmp14 = 0 + 10;
   __cil_tmp15 = 4 + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )hdr;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = *((u16 *)__cil_tmp17);
+  __cil_tmp18 = *((u16 *)((void *)hdr + __cil_tmp15));
   __cil_tmp19 = (int )__cil_tmp18;
   __cil_tmp20 = 0 + 12;
   __cil_tmp21 = 4 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )hdr;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  __cil_tmp24 = *((u16 *)__cil_tmp23);
+  __cil_tmp24 = *((u16 *)((void *)hdr + __cil_tmp21));
   __cil_tmp25 = (int )__cil_tmp24;
   printk("<6>BIOS console buffer at 0x%.8x, start = %d, end = %d, num = %d\n", __cil_tmp7,
          __cil_tmp13, __cil_tmp19, __cil_tmp25);
   __cil_tmp26 = 0 + 12;
   __cil_tmp27 = 4 + __cil_tmp26;
-  __cil_tmp28 = (unsigned long )hdr;
-  __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-  __cil_tmp30 = *((u16 *)__cil_tmp29);
+  __cil_tmp30 = *((u16 *)((void *)hdr + __cil_tmp27));
   memconsole_length = (size_t )__cil_tmp30;
   __cil_tmp31 = 0 + 4;
   __cil_tmp32 = 4 + __cil_tmp31;
-  __cil_tmp33 = (unsigned long )hdr;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  __cil_tmp35 = *((u32 *)__cil_tmp34);
+  __cil_tmp35 = *((u32 *)((void *)hdr + __cil_tmp32));
   __cil_tmp36 = (phys_addr_t )__cil_tmp35;
   tmp = phys_to_virt(__cil_tmp36);
   memconsole_baseaddr = (char *)tmp;
@@ -425,48 +397,32 @@ static void found_v1_header(struct biosmemcon_ebda *hdr )
 }
 static void found_v2_header(struct biosmemcon_ebda *hdr ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   u32 __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u16 __cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   u16 __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u16 __cil_tmp22 ;
   int __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   u16 __cil_tmp28 ;
   int __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   u16 __cil_tmp34 ;
   int __cil_tmp35 ;
   int __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   u16 __cil_tmp41 ;
   u32 __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   u32 __cil_tmp45 ;
   u32 __cil_tmp46 ;
   phys_addr_t __cil_tmp47 ;
@@ -474,52 +430,36 @@ static void found_v2_header(struct biosmemcon_ebda *hdr )
   {
   {
   printk("<6>BIOS console v2 EBDA structure found at %p\n", hdr);
-  __cil_tmp3 = (unsigned long )hdr;
-  __cil_tmp4 = __cil_tmp3 + 4;
-  __cil_tmp5 = *((u32 *)__cil_tmp4);
+  __cil_tmp5 = *((u32 *)((void *)hdr + 4));
   __cil_tmp6 = 0 + 6;
   __cil_tmp7 = 4 + __cil_tmp6;
-  __cil_tmp8 = (unsigned long )hdr;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((u16 *)__cil_tmp9);
+  __cil_tmp10 = *((u16 *)((void *)hdr + __cil_tmp7));
   __cil_tmp11 = (int )__cil_tmp10;
   __cil_tmp12 = 0 + 8;
   __cil_tmp13 = 4 + __cil_tmp12;
-  __cil_tmp14 = (unsigned long )hdr;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = *((u16 *)__cil_tmp15);
+  __cil_tmp16 = *((u16 *)((void *)hdr + __cil_tmp13));
   __cil_tmp17 = (int )__cil_tmp16;
   __cil_tmp18 = 0 + 4;
   __cil_tmp19 = 4 + __cil_tmp18;
-  __cil_tmp20 = (unsigned long )hdr;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  __cil_tmp22 = *((u16 *)__cil_tmp21);
+  __cil_tmp22 = *((u16 *)((void *)hdr + __cil_tmp19));
   __cil_tmp23 = (int )__cil_tmp22;
   printk("<6>BIOS console buffer at 0x%.8x, start = %d, end = %d, num_bytes = %d\n",
          __cil_tmp5, __cil_tmp11, __cil_tmp17, __cil_tmp23);
   __cil_tmp24 = 0 + 6;
   __cil_tmp25 = 4 + __cil_tmp24;
-  __cil_tmp26 = (unsigned long )hdr;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  __cil_tmp28 = *((u16 *)__cil_tmp27);
+  __cil_tmp28 = *((u16 *)((void *)hdr + __cil_tmp25));
   __cil_tmp29 = (int )__cil_tmp28;
   __cil_tmp30 = 0 + 8;
   __cil_tmp31 = 4 + __cil_tmp30;
-  __cil_tmp32 = (unsigned long )hdr;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  __cil_tmp34 = *((u16 *)__cil_tmp33);
+  __cil_tmp34 = *((u16 *)((void *)hdr + __cil_tmp31));
   __cil_tmp35 = (int )__cil_tmp34;
   __cil_tmp36 = __cil_tmp35 - __cil_tmp29;
   memconsole_length = (size_t )__cil_tmp36;
   __cil_tmp37 = 0 + 6;
   __cil_tmp38 = 4 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )hdr;
-  __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-  __cil_tmp41 = *((u16 *)__cil_tmp40);
+  __cil_tmp41 = *((u16 *)((void *)hdr + __cil_tmp38));
   __cil_tmp42 = (u32 )__cil_tmp41;
-  __cil_tmp43 = (unsigned long )hdr;
-  __cil_tmp44 = __cil_tmp43 + 4;
-  __cil_tmp45 = *((u32 *)__cil_tmp44);
+  __cil_tmp45 = *((u32 *)((void *)hdr + 4));
   __cil_tmp46 = __cil_tmp45 + __cil_tmp42;
   __cil_tmp47 = (phys_addr_t )__cil_tmp46;
   tmp = phys_to_virt(__cil_tmp47);
@@ -1114,7 +1054,6 @@ static int memconsole_init(void)
   bool tmp___0 ;
   int tmp___1 ;
   struct dmi_system_id  const  *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct bin_attribute  const  *__cil_tmp7 ;
 
   {
@@ -1141,8 +1080,7 @@ static int memconsole_init(void)
 
   }
   {
-  __cil_tmp6 = (unsigned long )(& memconsole_bin_attr) + 32;
-  *((size_t *)__cil_tmp6) = memconsole_length;
+  *((size_t *)((void *)(&memconsole_bin_attr) + 32)) = memconsole_length;
   __cil_tmp7 = (struct bin_attribute  const  *)(& memconsole_bin_attr);
   ret = sysfs_create_bin_file(firmware_kobj, __cil_tmp7);
   }

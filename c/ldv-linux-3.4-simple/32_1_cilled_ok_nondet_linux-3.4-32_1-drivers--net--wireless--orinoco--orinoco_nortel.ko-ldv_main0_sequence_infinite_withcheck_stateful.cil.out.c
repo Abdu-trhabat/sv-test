@@ -5151,16 +5151,12 @@ extern void pci_unregister_driver(struct pci_driver *dev ) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -5169,15 +5165,12 @@ __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -5233,8 +5226,6 @@ extern irqreturn_t orinoco_interrupt(int irq , void *dev_id ) ;
 static int orinoco_pci_suspend(struct pci_dev *pdev , int state_event9 ) 
 { struct orinoco_private *priv ;
   void *tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   void *__cil_tmp8 ;
 
@@ -5243,9 +5234,7 @@ static int orinoco_pci_suspend(struct pci_dev *pdev , int state_event9 )
   tmp___7 = pci_get_drvdata(pdev);
   priv = (struct orinoco_private *)tmp___7;
   orinoco_down(priv);
-  __cil_tmp5 = (unsigned long )pdev;
-  __cil_tmp6 = __cil_tmp5 + 916;
-  __cil_tmp7 = *((unsigned int *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned int *)((void *)pdev + 916));
   __cil_tmp8 = (void *)priv;
   free_irq(__cil_tmp7, __cil_tmp8);
   pci_save_state(pdev);
@@ -5260,36 +5249,24 @@ static int orinoco_pci_resume(struct pci_dev *pdev )
   void *tmp___7 ;
   struct net_device *dev ;
   int err ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   char *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   char *__cil_tmp20 ;
   char const   *__cil_tmp21 ;
   void *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   char *__cil_tmp27 ;
 
   {
   {
   tmp___7 = pci_get_drvdata(pdev);
   priv = (struct orinoco_private *)tmp___7;
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 856;
-  dev = *((struct net_device **)__cil_tmp7);
+  dev = *((struct net_device **)((void *)priv + 856));
   pci_set_power_state(pdev, 0);
   err = (int )pci_enable_device(pdev);
   }
@@ -5297,9 +5274,7 @@ static int orinoco_pci_resume(struct pci_dev *pdev )
     {
     __cil_tmp8 = 0 * 1UL;
     __cil_tmp9 = 0 + __cil_tmp8;
-    __cil_tmp10 = (unsigned long )dev;
-    __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-    __cil_tmp12 = (char *)__cil_tmp11;
+    __cil_tmp12 = (char *)((void *)dev + __cil_tmp9);
     printk("<3>%s: pci_enable_device failed on resume\n", __cil_tmp12);
     }
     return (err);
@@ -5308,14 +5283,10 @@ static int orinoco_pci_resume(struct pci_dev *pdev )
   }
   {
   pci_restore_state(pdev);
-  __cil_tmp13 = (unsigned long )pdev;
-  __cil_tmp14 = __cil_tmp13 + 916;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
+  __cil_tmp15 = *((unsigned int *)((void *)pdev + 916));
   __cil_tmp16 = 0 * 1UL;
   __cil_tmp17 = 0 + __cil_tmp16;
-  __cil_tmp18 = (unsigned long )dev;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = (char *)__cil_tmp19;
+  __cil_tmp20 = (char *)((void *)dev + __cil_tmp17);
   __cil_tmp21 = (char const   *)__cil_tmp20;
   __cil_tmp22 = (void *)priv;
   err = (int )request_irq(__cil_tmp15, & orinoco_interrupt, 128UL, __cil_tmp21, __cil_tmp22);
@@ -5324,9 +5295,7 @@ static int orinoco_pci_resume(struct pci_dev *pdev )
     {
     __cil_tmp23 = 0 * 1UL;
     __cil_tmp24 = 0 + __cil_tmp23;
-    __cil_tmp25 = (unsigned long )dev;
-    __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-    __cil_tmp27 = (char *)__cil_tmp26;
+    __cil_tmp27 = (char *)((void *)dev + __cil_tmp24);
     printk("<3>%s: cannot re-allocate IRQ on resume\n", __cil_tmp27);
     pci_disable_device(pdev);
     }
@@ -5346,33 +5315,21 @@ static int orinoco_nortel_cor_reset(struct orinoco_private *priv )
   u16 __cil_tmp10 ;
   void *__cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   void *__cil_tmp16 ;
   u16 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
   void *__cil_tmp21 ;
   u16 __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   void *__cil_tmp25 ;
   void *__cil_tmp26 ;
   u16 __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   void *__cil_tmp30 ;
   void *__cil_tmp31 ;
   u16 __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   void *__cil_tmp35 ;
   void *__cil_tmp36 ;
   u16 __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   void *__cil_tmp40 ;
   void *__cil_tmp41 ;
   u16 __cil_tmp42 ;
@@ -5387,41 +5344,29 @@ static int orinoco_nortel_cor_reset(struct orinoco_private *priv )
   __cil_tmp11 = *((void **)card);
   __cil_tmp12 = __cil_tmp11 + 2;
   iowrite16(__cil_tmp10, __cil_tmp12);
-  __cil_tmp13 = (unsigned long )card;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)card + 8));
   __cil_tmp16 = __cil_tmp15 + 224;
   ioread16(__cil_tmp16);
   __cil_tmp17 = (u16 )128;
-  __cil_tmp18 = (unsigned long )card;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  __cil_tmp20 = *((void **)__cil_tmp19);
+  __cil_tmp20 = *((void **)((void *)card + 8));
   __cil_tmp21 = __cil_tmp20 + 224;
   iowrite16(__cil_tmp17, __cil_tmp21);
   __const_udelay(4295000UL);
   __cil_tmp22 = (u16 )0;
-  __cil_tmp23 = (unsigned long )card;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  __cil_tmp25 = *((void **)__cil_tmp24);
+  __cil_tmp25 = *((void **)((void *)card + 8));
   __cil_tmp26 = __cil_tmp25 + 224;
   iowrite16(__cil_tmp22, __cil_tmp26);
   __cil_tmp27 = (u16 )0;
-  __cil_tmp28 = (unsigned long )card;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  __cil_tmp30 = *((void **)__cil_tmp29);
+  __cil_tmp30 = *((void **)((void *)card + 8));
   __cil_tmp31 = __cil_tmp30 + 224;
   iowrite16(__cil_tmp27, __cil_tmp31);
   __const_udelay(4295000UL);
   __cil_tmp32 = (u16 )65;
-  __cil_tmp33 = (unsigned long )card;
-  __cil_tmp34 = __cil_tmp33 + 8;
-  __cil_tmp35 = *((void **)__cil_tmp34);
+  __cil_tmp35 = *((void **)((void *)card + 8));
   __cil_tmp36 = __cil_tmp35 + 224;
   iowrite16(__cil_tmp32, __cil_tmp36);
   __cil_tmp37 = (u16 )65;
-  __cil_tmp38 = (unsigned long )card;
-  __cil_tmp39 = __cil_tmp38 + 8;
-  __cil_tmp40 = *((void **)__cil_tmp39);
+  __cil_tmp40 = *((void **)((void *)card + 8));
   __cil_tmp41 = __cil_tmp40 + 224;
   iowrite16(__cil_tmp37, __cil_tmp41);
   __const_udelay(4295000UL);
@@ -5456,27 +5401,17 @@ static int orinoco_nortel_hw_init(struct orinoco_pci_card *card )
   void *__cil_tmp23 ;
   void *__cil_tmp24 ;
   void *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
   void *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   void *__cil_tmp32 ;
   void *__cil_tmp33 ;
   void *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   void *__cil_tmp37 ;
   void *__cil_tmp38 ;
   void *__cil_tmp39 ;
   u16 __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   void *__cil_tmp43 ;
   void *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   void *__cil_tmp47 ;
   void *__cil_tmp48 ;
   u16 __cil_tmp49 ;
@@ -5577,9 +5512,7 @@ static int orinoco_nortel_hw_init(struct orinoco_pci_card *card )
 
   }
   {
-  __cil_tmp26 = (unsigned long )card;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = *((void **)__cil_tmp27);
+  __cil_tmp28 = *((void **)((void *)card + 8));
   __cil_tmp29 = __cil_tmp28 + 224;
   tmp___11 = ioread16(__cil_tmp29);
   }
@@ -5592,9 +5525,7 @@ static int orinoco_nortel_hw_init(struct orinoco_pci_card *card )
 
   }
   {
-  __cil_tmp30 = (unsigned long )card;
-  __cil_tmp31 = __cil_tmp30 + 8;
-  __cil_tmp32 = *((void **)__cil_tmp31);
+  __cil_tmp32 = *((void **)((void *)card + 8));
   __cil_tmp33 = __cil_tmp32 + 224;
   __cil_tmp34 = __cil_tmp33 + 2;
   tmp___12 = ioread16(__cil_tmp34);
@@ -5608,9 +5539,7 @@ static int orinoco_nortel_hw_init(struct orinoco_pci_card *card )
 
   }
   {
-  __cil_tmp35 = (unsigned long )card;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = *((void **)__cil_tmp36);
+  __cil_tmp37 = *((void **)((void *)card + 8));
   __cil_tmp38 = __cil_tmp37 + 224;
   __cil_tmp39 = __cil_tmp38 + 4;
   tmp___13 = ioread16(__cil_tmp39);
@@ -5625,15 +5554,11 @@ static int orinoco_nortel_hw_init(struct orinoco_pci_card *card )
   }
   {
   __cil_tmp40 = (u16 )65;
-  __cil_tmp41 = (unsigned long )card;
-  __cil_tmp42 = __cil_tmp41 + 8;
-  __cil_tmp43 = *((void **)__cil_tmp42);
+  __cil_tmp43 = *((void **)((void *)card + 8));
   __cil_tmp44 = __cil_tmp43 + 224;
   iowrite16(__cil_tmp40, __cil_tmp44);
   __const_udelay(4295000UL);
-  __cil_tmp45 = (unsigned long )card;
-  __cil_tmp46 = __cil_tmp45 + 8;
-  __cil_tmp47 = *((void **)__cil_tmp46);
+  __cil_tmp47 = *((void **)((void *)card + 8));
   __cil_tmp48 = __cil_tmp47 + 224;
   reg = ioread16(__cil_tmp48);
   }
@@ -5662,29 +5587,17 @@ static int orinoco_nortel_init_one(struct pci_dev *pdev , struct pci_device_id  
   void *bridge_io ;
   void *attr_io ;
   int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   void *__cil_tmp13 ;
   int (*__cil_tmp14)(struct orinoco_private * , int  ) ;
   void *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct hermes *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   void *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   void *__cil_tmp28 ;
   struct net_device_ops  const  *__cil_tmp29 ;
   void *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned int __cil_tmp33 ;
   void *__cil_tmp34 ;
   void *__cil_tmp35 ;
@@ -5750,9 +5663,7 @@ static int orinoco_nortel_init_one(struct pci_dev *pdev , struct pci_device_id  
   }
   {
   __cil_tmp9 = (int )16UL;
-  __cil_tmp10 = (unsigned long )pdev;
-  __cil_tmp11 = __cil_tmp10 + 144;
-  __cil_tmp12 = (struct device *)__cil_tmp11;
+  __cil_tmp12 = (struct device *)((void *)pdev + 144);
   __cil_tmp13 = (void *)0;
   __cil_tmp14 = (int (*)(struct orinoco_private * , int  ))__cil_tmp13;
   priv = alloc_orinocodev(__cil_tmp9, __cil_tmp12, & orinoco_nortel_cor_reset, __cil_tmp14);
@@ -5770,25 +5681,17 @@ static int orinoco_nortel_init_one(struct pci_dev *pdev , struct pci_device_id  
   __cil_tmp15 = *((void **)priv);
   card = (struct orinoco_pci_card *)__cil_tmp15;
   *((void **)card) = bridge_io;
-  __cil_tmp16 = (unsigned long )card;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  *((void **)__cil_tmp17) = attr_io;
-  __cil_tmp18 = (unsigned long )priv;
-  __cil_tmp19 = __cil_tmp18 + 1080;
-  __cil_tmp20 = (struct hermes *)__cil_tmp19;
+  *((void **)((void *)card + 8)) = attr_io;
+  __cil_tmp20 = (struct hermes *)((void *)priv + 1080);
   hermes_struct_init(__cil_tmp20, hermes_io, 0);
-  __cil_tmp21 = (unsigned long )pdev;
-  __cil_tmp22 = __cil_tmp21 + 916;
-  __cil_tmp23 = *((unsigned int *)__cil_tmp22);
+  __cil_tmp23 = *((unsigned int *)((void *)pdev + 916));
   __cil_tmp24 = (void *)priv;
   err = (int )request_irq(__cil_tmp23, & orinoco_interrupt, 128UL, "orinoco_nortel",
                           __cil_tmp24);
   }
   if (err) {
     {
-    __cil_tmp25 = (unsigned long )pdev;
-    __cil_tmp26 = __cil_tmp25 + 916;
-    __cil_tmp27 = *((unsigned int *)__cil_tmp26);
+    __cil_tmp27 = *((unsigned int *)((void *)pdev + 916));
     printk("<3>orinoco_nortel: Cannot allocate IRQ %d\n", __cil_tmp27);
     err = -16;
     }
@@ -5849,9 +5752,7 @@ static int orinoco_nortel_init_one(struct pci_dev *pdev , struct pci_device_id  
   return (0);
   fail: 
   {
-  __cil_tmp31 = (unsigned long )pdev;
-  __cil_tmp32 = __cil_tmp31 + 916;
-  __cil_tmp33 = *((unsigned int *)__cil_tmp32);
+  __cil_tmp33 = *((unsigned int *)((void *)pdev + 916));
   __cil_tmp34 = (void *)priv;
   free_irq(__cil_tmp33, __cil_tmp34);
   }
@@ -5894,16 +5795,10 @@ static void orinoco_nortel_remove_one(struct pci_dev *pdev )
   u16 __cil_tmp6 ;
   void *__cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   void *__cil_tmp12 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void *__cil_tmp19 ;
   void *__cil_tmp20 ;
 
@@ -5918,21 +5813,15 @@ static void orinoco_nortel_remove_one(struct pci_dev *pdev )
   __cil_tmp8 = __cil_tmp7 + 10;
   iowrite16(__cil_tmp6, __cil_tmp8);
   orinoco_if_del(priv);
-  __cil_tmp9 = (unsigned long )pdev;
-  __cil_tmp10 = __cil_tmp9 + 916;
-  __cil_tmp11 = *((unsigned int *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned int *)((void *)pdev + 916));
   __cil_tmp12 = (void *)priv;
   free_irq(__cil_tmp11, __cil_tmp12);
   __cil_tmp13 = (void *)0;
   pci_set_drvdata(pdev, __cil_tmp13);
   free_orinocodev(priv);
-  __cil_tmp14 = (unsigned long )priv;
-  __cil_tmp15 = __cil_tmp14 + 1080;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp16 = *((void **)((void *)priv + 1080));
   pci_iounmap(pdev, __cil_tmp16);
-  __cil_tmp17 = (unsigned long )card;
-  __cil_tmp18 = __cil_tmp17 + 8;
-  __cil_tmp19 = *((void **)__cil_tmp18);
+  __cil_tmp19 = *((void **)((void *)card + 8));
   pci_iounmap(pdev, __cil_tmp19);
   __cil_tmp20 = *((void **)card);
   pci_iounmap(pdev, __cil_tmp20);

@@ -3542,15 +3542,11 @@ __inline static struct page *sg_page(struct scatterlist *sg )
   int __cil_tmp6 ;
   int __cil_tmp7 ;
   long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
   long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
 
@@ -3598,9 +3594,7 @@ __inline static struct page *sg_page(struct scatterlist *sg )
   while (1) {
     while_continue___2: /* CIL Label */ ;
     {
-    __cil_tmp9 = (unsigned long )sg;
-    __cil_tmp10 = __cil_tmp9 + 8;
-    __cil_tmp11 = *((unsigned long *)__cil_tmp10);
+    __cil_tmp11 = *((unsigned long *)((void *)sg + 8));
     __cil_tmp12 = __cil_tmp11 & 1UL;
     __cil_tmp13 = ! __cil_tmp12;
     __cil_tmp14 = ! __cil_tmp13;
@@ -3636,9 +3630,7 @@ __inline static struct page *sg_page(struct scatterlist *sg )
   while_break___2: /* CIL Label */ ;
   }
   {
-  __cil_tmp16 = (unsigned long )sg;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  __cil_tmp18 = *((unsigned long *)__cil_tmp17);
+  __cil_tmp18 = *((unsigned long *)((void *)sg + 8));
   __cil_tmp19 = __cil_tmp18 & 0xfffffffffffffffcUL;
   return ((struct page *)__cil_tmp19);
   }
@@ -3655,17 +3647,13 @@ __inline static void *mmc_priv(struct mmc_host *host )  __attribute__((__no_inst
 __inline static void *mmc_priv(struct mmc_host *host ) 
 { unsigned long __cil_tmp2 ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long *__cil_tmp6 ;
 
   {
   {
   __cil_tmp2 = 0 * 8UL;
   __cil_tmp3 = 1576 + __cil_tmp2;
-  __cil_tmp4 = (unsigned long )host;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  __cil_tmp6 = (unsigned long *)__cil_tmp5;
+  __cil_tmp6 = (unsigned long *)((void *)host + __cil_tmp3);
   return ((void *)__cil_tmp6);
   }
 }
@@ -3695,17 +3683,13 @@ __inline static unsigned int sdricoh_readl(struct sdricoh_host *host , unsigned 
 __inline static unsigned int sdricoh_readl(struct sdricoh_host *host , unsigned int reg ) 
 { unsigned int value ;
   unsigned int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned char *__cil_tmp7 ;
   unsigned char *__cil_tmp8 ;
   void const volatile   *__cil_tmp9 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )host;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((unsigned char **)__cil_tmp6);
+  __cil_tmp7 = *((unsigned char **)((void *)host + 16));
   __cil_tmp8 = __cil_tmp7 + reg;
   __cil_tmp9 = (void const volatile   *)__cil_tmp8;
   tmp___7 = readl(__cil_tmp9);
@@ -3718,17 +3702,14 @@ __inline static void sdricoh_writel(struct sdricoh_host *host , unsigned int reg
                                     unsigned int value )  __attribute__((__no_instrument_function__)) ;
 __inline static void sdricoh_writel(struct sdricoh_host *host , unsigned int reg ,
                                     unsigned int value ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   unsigned char *__cil_tmp6 ;
   unsigned char *__cil_tmp7 ;
   void volatile   *__cil_tmp8 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )host;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  __cil_tmp6 = *((unsigned char **)__cil_tmp5);
+  __cil_tmp6 = *((unsigned char **)((void *)host + 16));
   __cil_tmp7 = __cil_tmp6 + reg;
   __cil_tmp8 = (void volatile   *)__cil_tmp7;
   writel(value, __cil_tmp8);
@@ -3740,17 +3721,14 @@ __inline static void sdricoh_writew(struct sdricoh_host *host , unsigned int reg
                                     unsigned short value )  __attribute__((__no_instrument_function__)) ;
 __inline static void sdricoh_writew(struct sdricoh_host *host , unsigned int reg ,
                                     unsigned short value ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   unsigned char *__cil_tmp6 ;
   unsigned char *__cil_tmp7 ;
   void volatile   *__cil_tmp8 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )host;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  __cil_tmp6 = *((unsigned char **)__cil_tmp5);
+  __cil_tmp6 = *((unsigned char **)((void *)host + 16));
   __cil_tmp7 = __cil_tmp6 + reg;
   __cil_tmp8 = (void volatile   *)__cil_tmp7;
   writew(value, __cil_tmp8);
@@ -3762,17 +3740,13 @@ __inline static unsigned int sdricoh_readb(struct sdricoh_host *host , unsigned 
 __inline static unsigned int sdricoh_readb(struct sdricoh_host *host , unsigned int reg ) 
 { unsigned int value ;
   unsigned char tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned char *__cil_tmp7 ;
   unsigned char *__cil_tmp8 ;
   void const volatile   *__cil_tmp9 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )host;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((unsigned char **)__cil_tmp6);
+  __cil_tmp7 = *((unsigned char **)((void *)host + 16));
   __cil_tmp8 = __cil_tmp7 + reg;
   __cil_tmp9 = (void const volatile   *)__cil_tmp8;
   tmp___7 = readb(__cil_tmp9);
@@ -4165,10 +4139,6 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
   void *tmp___14 ;
   int tmp___15 ;
   long tmp___16 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u32 __cil_tmp27 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp28 ;
   unsigned int __cil_tmp29 ;
@@ -4185,31 +4155,15 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
   long __cil_tmp40 ;
   struct device  const  *__cil_tmp41 ;
   int __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   int __cil_tmp45 ;
   int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned int __cil_tmp54 ;
   unsigned short __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   u32 __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   unsigned int __cil_tmp63 ;
   int __cil_tmp64 ;
   unsigned int __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   unsigned int __cil_tmp68 ;
   int __cil_tmp69 ;
   int __cil_tmp70 ;
@@ -4217,8 +4171,6 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
   unsigned int __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   int __cil_tmp77 ;
   int __cil_tmp78 ;
   int __cil_tmp79 ;
@@ -4226,19 +4178,11 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
   unsigned int __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
   unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   u32 __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
   unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   unsigned int __cil_tmp97 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp98 ;
   unsigned int __cil_tmp99 ;
@@ -4247,63 +4191,33 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
   int __cil_tmp102 ;
   long __cil_tmp103 ;
   struct device  const  *__cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   unsigned int __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
   unsigned int __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   unsigned int __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
   struct scatterlist *__cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   unsigned int __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   unsigned int __cil_tmp122 ;
   unsigned int __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
   unsigned int __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
   struct scatterlist *__cil_tmp129 ;
   size_t __cil_tmp130 ;
   size_t __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
   struct scatterlist *__cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
   unsigned int __cil_tmp137 ;
   void *__cil_tmp138 ;
   void *__cil_tmp139 ;
   int __cil_tmp140 ;
   unsigned int __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
   unsigned int __cil_tmp144 ;
   unsigned int __cil_tmp145 ;
   int __cil_tmp146 ;
   int __cil_tmp147 ;
   struct device  const  *__cil_tmp148 ;
   u32 __cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
-  unsigned long __cil_tmp151 ;
-  unsigned long __cil_tmp152 ;
-  unsigned long __cil_tmp153 ;
-  unsigned long __cil_tmp154 ;
-  unsigned long __cil_tmp155 ;
   unsigned int __cil_tmp156 ;
   size_t __cil_tmp157 ;
   size_t __cil_tmp158 ;
   struct device  const  *__cil_tmp159 ;
-  unsigned long __cil_tmp160 ;
-  unsigned long __cil_tmp161 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp162 ;
   unsigned int __cil_tmp163 ;
   unsigned int __cil_tmp164 ;
@@ -4316,12 +4230,8 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
   {
   tmp___7 = mmc_priv(mmc);
   host = (struct sdricoh_host *)tmp___7;
-  __cil_tmp23 = (unsigned long )mrq;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  cmd = *((struct mmc_command **)__cil_tmp24);
-  __cil_tmp25 = (unsigned long )cmd;
-  __cil_tmp26 = __cil_tmp25 + 40;
-  data = *((struct mmc_data **)__cil_tmp26);
+  cmd = *((struct mmc_command **)((void *)mrq + 8));
+  data = *((struct mmc_data **)((void *)cmd + 40));
   dev = *((struct device **)host);
   __cil_tmp27 = *((u32 *)cmd);
   opcode = (unsigned char )__cil_tmp27;
@@ -4394,22 +4304,16 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
   sdricoh_writel(host, 540U, 24U);
   }
   {
-  __cil_tmp43 = (unsigned long )host;
-  __cil_tmp44 = __cil_tmp43 + 32;
-  if (*((int *)__cil_tmp44)) {
+  if (*((int *)((void *)host + 32))) {
     __cil_tmp45 = (int )opcode;
     __cil_tmp46 = __cil_tmp45 | 64;
     opcode = (unsigned char )__cil_tmp46;
-    __cil_tmp47 = (unsigned long )host;
-    __cil_tmp48 = __cil_tmp47 + 32;
-    *((int *)__cil_tmp48) = 0;
+    *((int *)((void *)host + 32)) = 0;
   } else {
     {
     __cil_tmp49 = (int )opcode;
     if (__cil_tmp49 == 55) {
-      __cil_tmp50 = (unsigned long )host;
-      __cil_tmp51 = __cil_tmp50 + 32;
-      *((int *)__cil_tmp51) = 1;
+      *((int *)((void *)host + 32)) = 1;
     } else {
 
     }
@@ -4418,9 +4322,7 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
   }
   if (data) {
     {
-    __cil_tmp52 = (unsigned long )data;
-    __cil_tmp53 = __cil_tmp52 + 8;
-    __cil_tmp54 = *((unsigned int *)__cil_tmp53);
+    __cil_tmp54 = *((unsigned int *)((void *)data + 8));
     __cil_tmp55 = (unsigned short )__cil_tmp54;
     sdricoh_writew(host, 550U, __cil_tmp55);
     sdricoh_writel(host, 520U, 0U);
@@ -4429,25 +4331,17 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
 
   }
   {
-  __cil_tmp56 = (unsigned long )cmd;
-  __cil_tmp57 = __cil_tmp56 + 4;
-  __cil_tmp58 = *((u32 *)__cil_tmp57);
+  __cil_tmp58 = *((u32 *)((void *)cmd + 4));
   tmp___10 = sdricoh_mmc_cmd(host, opcode, __cil_tmp58);
-  __cil_tmp59 = (unsigned long )cmd;
-  __cil_tmp60 = __cil_tmp59 + 32;
-  *((unsigned int *)__cil_tmp60) = (unsigned int )tmp___10;
+  *((unsigned int *)((void *)cmd + 32)) = (unsigned int )tmp___10;
   }
   {
-  __cil_tmp61 = (unsigned long )cmd;
-  __cil_tmp62 = __cil_tmp61 + 24;
-  __cil_tmp63 = *((unsigned int *)__cil_tmp62);
+  __cil_tmp63 = *((unsigned int *)((void *)cmd + 24));
   if (__cil_tmp63 & 1U) {
     {
     __cil_tmp64 = 1 << 1;
     __cil_tmp65 = (unsigned int )__cil_tmp64;
-    __cil_tmp66 = (unsigned long )cmd;
-    __cil_tmp67 = __cil_tmp66 + 24;
-    __cil_tmp68 = *((unsigned int *)__cil_tmp67);
+    __cil_tmp68 = *((unsigned int *)((void *)cmd + 24));
     if (__cil_tmp68 & __cil_tmp65) {
       i = 0;
       {
@@ -4466,9 +4360,7 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
         tmp___11 = sdricoh_readl(host, __cil_tmp72);
         __cil_tmp73 = i * 4UL;
         __cil_tmp74 = 8 + __cil_tmp73;
-        __cil_tmp75 = (unsigned long )cmd;
-        __cil_tmp76 = __cil_tmp75 + __cil_tmp74;
-        *((u32 *)__cil_tmp76) = tmp___11 << 8;
+        *((u32 *)((void *)cmd + __cil_tmp74)) = tmp___11 << 8;
         }
         if (i != 3) {
           {
@@ -4480,14 +4372,10 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
           tmp___12 = sdricoh_readb(host, __cil_tmp81);
           __cil_tmp82 = i * 4UL;
           __cil_tmp83 = 8 + __cil_tmp82;
-          __cil_tmp84 = (unsigned long )cmd;
-          __cil_tmp85 = __cil_tmp84 + __cil_tmp83;
           __cil_tmp86 = i * 4UL;
           __cil_tmp87 = 8 + __cil_tmp86;
-          __cil_tmp88 = (unsigned long )cmd;
-          __cil_tmp89 = __cil_tmp88 + __cil_tmp87;
-          __cil_tmp90 = *((u32 *)__cil_tmp89);
-          *((u32 *)__cil_tmp85) = __cil_tmp90 | tmp___12;
+          __cil_tmp90 = *((u32 *)((void *)cmd + __cil_tmp87));
+          *((u32 *)((void *)cmd + __cil_tmp83)) = __cil_tmp90 | tmp___12;
           }
         } else {
 
@@ -4500,9 +4388,7 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
       {
       __cil_tmp91 = 0 * 4UL;
       __cil_tmp92 = 8 + __cil_tmp91;
-      __cil_tmp93 = (unsigned long )cmd;
-      __cil_tmp94 = __cil_tmp93 + __cil_tmp92;
-      *((u32 *)__cil_tmp94) = sdricoh_readl(host, 524U);
+      *((u32 *)((void *)cmd + __cil_tmp92)) = sdricoh_readl(host, 524U);
       }
     }
     }
@@ -4512,9 +4398,7 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
   }
   if (data) {
     {
-    __cil_tmp95 = (unsigned long )cmd;
-    __cil_tmp96 = __cil_tmp95 + 32;
-    __cil_tmp97 = *((unsigned int *)__cil_tmp96);
+    __cil_tmp97 = *((unsigned int *)((void *)cmd + 32));
     if (__cil_tmp97 == 0U) {
       {
       while (1) {
@@ -4534,21 +4418,11 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
           if (tmp___13) {
             {
             __cil_tmp104 = (struct device  const  *)dev;
-            __cil_tmp105 = (unsigned long )data;
-            __cil_tmp106 = __cil_tmp105 + 8;
-            __cil_tmp107 = *((unsigned int *)__cil_tmp106);
-            __cil_tmp108 = (unsigned long )data;
-            __cil_tmp109 = __cil_tmp108 + 12;
-            __cil_tmp110 = *((unsigned int *)__cil_tmp109);
-            __cil_tmp111 = (unsigned long )data;
-            __cil_tmp112 = __cil_tmp111 + 48;
-            __cil_tmp113 = *((unsigned int *)__cil_tmp112);
-            __cil_tmp114 = (unsigned long )data;
-            __cil_tmp115 = __cil_tmp114 + 56;
-            __cil_tmp116 = *((struct scatterlist **)__cil_tmp115);
-            __cil_tmp117 = (unsigned long )__cil_tmp116;
-            __cil_tmp118 = __cil_tmp117 + 20;
-            __cil_tmp119 = *((unsigned int *)__cil_tmp118);
+            __cil_tmp107 = *((unsigned int *)((void *)data + 8));
+            __cil_tmp110 = *((unsigned int *)((void *)data + 12));
+            __cil_tmp113 = *((unsigned int *)((void *)data + 48));
+            __cil_tmp116 = *((struct scatterlist **)((void *)data + 56));
+            __cil_tmp119 = *((unsigned int *)((void *)__cil_tmp116 + 20));
             __dynamic_dev_dbg(& descriptor___2, __cil_tmp104, "transfer: blksz %i blocks %i sg_len %i sg length %i\n",
                               __cil_tmp107, __cil_tmp110, __cil_tmp113, __cil_tmp119);
             }
@@ -4571,9 +4445,7 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
       while (1) {
         while_continue___6: /* CIL Label */ ;
         {
-        __cil_tmp120 = (unsigned long )data;
-        __cil_tmp121 = __cil_tmp120 + 12;
-        __cil_tmp122 = *((unsigned int *)__cil_tmp121);
+        __cil_tmp122 = *((unsigned int *)((void *)data + 12));
         __cil_tmp123 = (unsigned int )i;
         if (__cil_tmp123 < __cil_tmp122) {
 
@@ -4582,31 +4454,21 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
         }
         }
         {
-        __cil_tmp124 = (unsigned long )data;
-        __cil_tmp125 = __cil_tmp124 + 8;
-        __cil_tmp126 = *((unsigned int *)__cil_tmp125);
+        __cil_tmp126 = *((unsigned int *)((void *)data + 8));
         len = (size_t )__cil_tmp126;
-        __cil_tmp127 = (unsigned long )data;
-        __cil_tmp128 = __cil_tmp127 + 56;
-        __cil_tmp129 = *((struct scatterlist **)__cil_tmp128);
+        __cil_tmp129 = *((struct scatterlist **)((void *)data + 56));
         page = sg_page(__cil_tmp129);
         tmp___14 = kmap(page);
         __cil_tmp130 = (size_t )i;
         __cil_tmp131 = len * __cil_tmp130;
-        __cil_tmp132 = (unsigned long )data;
-        __cil_tmp133 = __cil_tmp132 + 56;
-        __cil_tmp134 = *((struct scatterlist **)__cil_tmp133);
-        __cil_tmp135 = (unsigned long )__cil_tmp134;
-        __cil_tmp136 = __cil_tmp135 + 16;
-        __cil_tmp137 = *((unsigned int *)__cil_tmp136);
+        __cil_tmp134 = *((struct scatterlist **)((void *)data + 56));
+        __cil_tmp137 = *((unsigned int *)((void *)__cil_tmp134 + 16));
         __cil_tmp138 = tmp___14 + __cil_tmp137;
         __cil_tmp139 = __cil_tmp138 + __cil_tmp131;
         buf = (u8 *)__cil_tmp139;
         __cil_tmp140 = 1 << 9;
         __cil_tmp141 = (unsigned int )__cil_tmp140;
-        __cil_tmp142 = (unsigned long )data;
-        __cil_tmp143 = __cil_tmp142 + 20;
-        __cil_tmp144 = *((unsigned int *)__cil_tmp143);
+        __cil_tmp144 = *((unsigned int *)((void *)data + 20));
         __cil_tmp145 = __cil_tmp144 & __cil_tmp141;
         __cil_tmp146 = (int )__cil_tmp145;
         __cil_tmp147 = (int )len;
@@ -4626,20 +4488,14 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
           __cil_tmp149 = *((u32 *)cmd);
           dev_err(__cil_tmp148, "sdricoh_request: cmd %i block transfer failed\n",
                   __cil_tmp149);
-          __cil_tmp150 = (unsigned long )cmd;
-          __cil_tmp151 = __cil_tmp150 + 32;
-          *((unsigned int *)__cil_tmp151) = (unsigned int )result;
+          *((unsigned int *)((void *)cmd + 32)) = (unsigned int )result;
           }
           goto while_break___6;
         } else {
-          __cil_tmp152 = (unsigned long )data;
-          __cil_tmp153 = __cil_tmp152 + 24;
-          __cil_tmp154 = (unsigned long )data;
-          __cil_tmp155 = __cil_tmp154 + 24;
-          __cil_tmp156 = *((unsigned int *)__cil_tmp155);
+          __cil_tmp156 = *((unsigned int *)((void *)data + 24));
           __cil_tmp157 = (size_t )__cil_tmp156;
           __cil_tmp158 = __cil_tmp157 + len;
-          *((unsigned int *)__cil_tmp153) = (unsigned int )__cil_tmp158;
+          *((unsigned int *)((void *)data + 24)) = (unsigned int )__cil_tmp158;
         }
         i = i + 1;
       }
@@ -4653,9 +4509,7 @@ static void sdricoh_request(struct mmc_host *mmc , struct mmc_request *mrq )
         {
         __cil_tmp159 = (struct device  const  *)dev;
         dev_err(__cil_tmp159, "sdricoh_request: transfer end error\n");
-        __cil_tmp160 = (unsigned long )cmd;
-        __cil_tmp161 = __cil_tmp160 + 32;
-        *((unsigned int *)__cil_tmp161) = 4294967274U;
+        *((unsigned int *)((void *)cmd + 32)) = 4294967274U;
         }
       } else {
 
@@ -4720,16 +4574,10 @@ static void sdricoh_set_ios(struct mmc_host *mmc , struct mmc_ios *ios )
   long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device  const  *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned char __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned char __cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned char __cil_tmp24 ;
   int __cil_tmp25 ;
 
@@ -4771,18 +4619,14 @@ static void sdricoh_set_ios(struct mmc_host *mmc , struct mmc_ios *ios )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp14 = (unsigned long )ios;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((unsigned char *)__cil_tmp15);
+  __cil_tmp16 = *((unsigned char *)((void *)ios + 8));
   __cil_tmp17 = (int )__cil_tmp16;
   if (__cil_tmp17 == 2) {
     {
     sdricoh_writel(host, 552U, 49376U);
     }
     {
-    __cil_tmp18 = (unsigned long )ios;
-    __cil_tmp19 = __cil_tmp18 + 9;
-    __cil_tmp20 = *((unsigned char *)__cil_tmp19);
+    __cil_tmp20 = *((unsigned char *)((void *)ios + 9));
     __cil_tmp21 = (int )__cil_tmp20;
     if (__cil_tmp21 == 2) {
       {
@@ -4797,9 +4641,7 @@ static void sdricoh_set_ios(struct mmc_host *mmc , struct mmc_ios *ios )
     }
   } else {
     {
-    __cil_tmp22 = (unsigned long )ios;
-    __cil_tmp23 = __cil_tmp22 + 8;
-    __cil_tmp24 = *((unsigned char *)__cil_tmp23);
+    __cil_tmp24 = *((unsigned char *)((void *)ios + 8));
     __cil_tmp25 = (int )__cil_tmp24;
     if (__cil_tmp25 == 1) {
       {
@@ -4894,46 +4736,30 @@ static int sdricoh_init_mmc(struct pci_dev *pci_dev , struct pcmcia_device *pcmc
   long tmp___16 ;
   void *__cil_tmp18 ;
   void *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   resource_size_t __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   resource_size_t __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   resource_size_t __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   resource_size_t __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   resource_size_t __cil_tmp48 ;
   resource_size_t __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   resource_size_t __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   resource_size_t __cil_tmp60 ;
   resource_size_t __cil_tmp61 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp62 ;
@@ -4954,33 +4780,9 @@ static int sdricoh_init_mmc(struct pci_dev *pci_dev , struct pcmcia_device *pcmc
   long __cil_tmp77 ;
   struct device  const  *__cil_tmp78 ;
   int __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   struct device *__cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   struct device  const  *__cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
   unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp107 ;
   unsigned int __cil_tmp108 ;
   unsigned int __cil_tmp109 ;
@@ -5003,42 +4805,30 @@ static int sdricoh_init_mmc(struct pci_dev *pci_dev , struct pcmcia_device *pcmc
   mmc = (struct mmc_host *)__cil_tmp18;
   __cil_tmp19 = (void *)0;
   host = (struct sdricoh_host *)__cil_tmp19;
-  __cil_tmp20 = (unsigned long )pcmcia_dev;
-  __cil_tmp21 = __cil_tmp20 + 184;
-  dev = (struct device *)__cil_tmp21;
+  dev = (struct device *)((void *)pcmcia_dev + 184);
   {
   __cil_tmp22 = 0 * 56UL;
   __cil_tmp23 = 920 + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )pci_dev;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  __cil_tmp26 = *((resource_size_t *)__cil_tmp25);
+  __cil_tmp26 = *((resource_size_t *)((void *)pci_dev + __cil_tmp23));
   if (__cil_tmp26 == 0ULL) {
     {
     __cil_tmp27 = 0 * 56UL;
     __cil_tmp28 = 920 + __cil_tmp27;
-    __cil_tmp29 = (unsigned long )pci_dev;
-    __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-    __cil_tmp31 = *((resource_size_t *)__cil_tmp30);
+    __cil_tmp31 = *((resource_size_t *)((void *)pci_dev + __cil_tmp28));
     __cil_tmp32 = 0 * 56UL;
     __cil_tmp33 = __cil_tmp32 + 8;
     __cil_tmp34 = 920 + __cil_tmp33;
-    __cil_tmp35 = (unsigned long )pci_dev;
-    __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-    __cil_tmp37 = *((resource_size_t *)__cil_tmp36);
+    __cil_tmp37 = *((resource_size_t *)((void *)pci_dev + __cil_tmp34));
     if (__cil_tmp37 == __cil_tmp31) {
       tmp___8 = (resource_size_t )0;
     } else {
       __cil_tmp38 = 0 * 56UL;
       __cil_tmp39 = 920 + __cil_tmp38;
-      __cil_tmp40 = (unsigned long )pci_dev;
-      __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-      __cil_tmp42 = *((resource_size_t *)__cil_tmp41);
+      __cil_tmp42 = *((resource_size_t *)((void *)pci_dev + __cil_tmp39));
       __cil_tmp43 = 0 * 56UL;
       __cil_tmp44 = __cil_tmp43 + 8;
       __cil_tmp45 = 920 + __cil_tmp44;
-      __cil_tmp46 = (unsigned long )pci_dev;
-      __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-      __cil_tmp48 = *((resource_size_t *)__cil_tmp47);
+      __cil_tmp48 = *((resource_size_t *)((void *)pci_dev + __cil_tmp45));
       __cil_tmp49 = __cil_tmp48 - __cil_tmp42;
       tmp___8 = __cil_tmp49 + 1ULL;
     }
@@ -5046,15 +4836,11 @@ static int sdricoh_init_mmc(struct pci_dev *pci_dev , struct pcmcia_device *pcmc
   } else {
     __cil_tmp50 = 0 * 56UL;
     __cil_tmp51 = 920 + __cil_tmp50;
-    __cil_tmp52 = (unsigned long )pci_dev;
-    __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-    __cil_tmp54 = *((resource_size_t *)__cil_tmp53);
+    __cil_tmp54 = *((resource_size_t *)((void *)pci_dev + __cil_tmp51));
     __cil_tmp55 = 0 * 56UL;
     __cil_tmp56 = __cil_tmp55 + 8;
     __cil_tmp57 = 920 + __cil_tmp56;
-    __cil_tmp58 = (unsigned long )pci_dev;
-    __cil_tmp59 = __cil_tmp58 + __cil_tmp57;
-    __cil_tmp60 = *((resource_size_t *)__cil_tmp59);
+    __cil_tmp60 = *((resource_size_t *)((void *)pci_dev + __cil_tmp57));
     __cil_tmp61 = __cil_tmp60 - __cil_tmp54;
     tmp___8 = __cil_tmp61 + 1ULL;
   }
@@ -5151,14 +4937,10 @@ static int sdricoh_init_mmc(struct pci_dev *pci_dev , struct pcmcia_device *pcmc
   }
   {
   __cil_tmp79 = (int )40UL;
-  __cil_tmp80 = (unsigned long )pcmcia_dev;
-  __cil_tmp81 = __cil_tmp80 + 184;
-  __cil_tmp82 = (struct device *)__cil_tmp81;
+  __cil_tmp82 = (struct device *)((void *)pcmcia_dev + 184);
   tmp___12 = mmc_alloc_host(__cil_tmp79, __cil_tmp82);
   tmp___11 = (void *)tmp___12;
-  __cil_tmp83 = (unsigned long )pcmcia_dev;
-  __cil_tmp84 = __cil_tmp83 + 952;
-  *((void **)__cil_tmp84) = tmp___11;
+  *((void **)((void *)pcmcia_dev + 952)) = tmp___11;
   mmc = (struct mmc_host *)tmp___11;
   }
   if (! mmc) {
@@ -5174,37 +4956,17 @@ static int sdricoh_init_mmc(struct pci_dev *pci_dev , struct pcmcia_device *pcmc
   {
   tmp___13 = mmc_priv(mmc);
   host = (struct sdricoh_host *)tmp___13;
-  __cil_tmp86 = (unsigned long )host;
-  __cil_tmp87 = __cil_tmp86 + 16;
-  *((unsigned char **)__cil_tmp87) = (unsigned char *)iobase;
+  *((unsigned char **)((void *)host + 16)) = (unsigned char *)iobase;
   *((struct device **)host) = dev;
-  __cil_tmp88 = (unsigned long )host;
-  __cil_tmp89 = __cil_tmp88 + 24;
-  *((struct pci_dev **)__cil_tmp89) = pci_dev;
-  __cil_tmp90 = (unsigned long )mmc;
-  __cil_tmp91 = __cil_tmp90 + 784;
-  *((struct mmc_host_ops  const  **)__cil_tmp91) = (struct mmc_host_ops  const  *)(& sdricoh_ops);
-  __cil_tmp92 = (unsigned long )mmc;
-  __cil_tmp93 = __cil_tmp92 + 792;
-  *((unsigned int *)__cil_tmp93) = 450000U;
-  __cil_tmp94 = (unsigned long )mmc;
-  __cil_tmp95 = __cil_tmp94 + 796;
-  *((unsigned int *)__cil_tmp95) = 24000000U;
-  __cil_tmp96 = (unsigned long )mmc;
-  __cil_tmp97 = __cil_tmp96 + 804;
-  *((u32 *)__cil_tmp97) = (u32 )3145728;
-  __cil_tmp98 = (unsigned long )mmc;
-  __cil_tmp99 = __cil_tmp98 + 848;
-  __cil_tmp100 = (unsigned long )mmc;
-  __cil_tmp101 = __cil_tmp100 + 848;
-  __cil_tmp102 = *((unsigned long *)__cil_tmp101);
-  *((unsigned long *)__cil_tmp99) = __cil_tmp102 | 1UL;
-  __cil_tmp103 = (unsigned long )mmc;
-  __cil_tmp104 = __cil_tmp103 + 1136;
-  *((unsigned int *)__cil_tmp104) = 524288U;
-  __cil_tmp105 = (unsigned long )mmc;
-  __cil_tmp106 = __cil_tmp105 + 1148;
-  *((unsigned int *)__cil_tmp106) = 512U;
+  *((struct pci_dev **)((void *)host + 24)) = pci_dev;
+  *((struct mmc_host_ops  const  **)((void *)mmc + 784)) = (struct mmc_host_ops  const  *)(& sdricoh_ops);
+  *((unsigned int *)((void *)mmc + 792)) = 450000U;
+  *((unsigned int *)((void *)mmc + 796)) = 24000000U;
+  *((u32 *)((void *)mmc + 804)) = (u32 )3145728;
+  __cil_tmp102 = *((unsigned long *)((void *)mmc + 848));
+  *((unsigned long *)((void *)mmc + 848)) = __cil_tmp102 | 1UL;
+  *((unsigned int *)((void *)mmc + 1136)) = 524288U;
+  *((unsigned int *)((void *)mmc + 1148)) = 512U;
   tmp___15 = sdricoh_reset(host);
   }
   if (tmp___15) {
@@ -5305,26 +5067,16 @@ static int sdricoh_pcmcia_probe(struct pcmcia_device *pcmcia_dev )
 { struct pci_dev *pci_dev ;
   int tmp___7 ;
   void *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct device  const  *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   char *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   char *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device  const  *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct device *__cil_tmp25 ;
   struct device  const  *__cil_tmp26 ;
 
@@ -5332,20 +5084,14 @@ static int sdricoh_pcmcia_probe(struct pcmcia_device *pcmcia_dev )
   {
   __cil_tmp4 = (void *)0;
   pci_dev = (struct pci_dev *)__cil_tmp4;
-  __cil_tmp5 = (unsigned long )pcmcia_dev;
-  __cil_tmp6 = __cil_tmp5 + 184;
-  __cil_tmp7 = (struct device *)__cil_tmp6;
+  __cil_tmp7 = (struct device *)((void *)pcmcia_dev + 184);
   __cil_tmp8 = (struct device  const  *)__cil_tmp7;
   __cil_tmp9 = 0 * 8UL;
   __cil_tmp10 = 144 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )pcmcia_dev;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = *((char **)__cil_tmp12);
+  __cil_tmp13 = *((char **)((void *)pcmcia_dev + __cil_tmp10));
   __cil_tmp14 = 1 * 8UL;
   __cil_tmp15 = 144 + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )pcmcia_dev;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = *((char **)__cil_tmp17);
+  __cil_tmp18 = *((char **)((void *)pcmcia_dev + __cil_tmp15));
   _dev_info(__cil_tmp8, "Searching MMC controller for pcmcia device %s %s ...\n",
             __cil_tmp13, __cil_tmp18);
   }
@@ -5367,9 +5113,7 @@ static int sdricoh_pcmcia_probe(struct pcmcia_device *pcmcia_dev )
 
     } else {
       {
-      __cil_tmp19 = (unsigned long )pcmcia_dev;
-      __cil_tmp20 = __cil_tmp19 + 184;
-      __cil_tmp21 = (struct device *)__cil_tmp20;
+      __cil_tmp21 = (struct device *)((void *)pcmcia_dev + 184);
       __cil_tmp22 = (struct device  const  *)__cil_tmp21;
       _dev_info(__cil_tmp22, "MMC controller found\n");
       }
@@ -5379,9 +5123,7 @@ static int sdricoh_pcmcia_probe(struct pcmcia_device *pcmcia_dev )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp23 = (unsigned long )pcmcia_dev;
-  __cil_tmp24 = __cil_tmp23 + 184;
-  __cil_tmp25 = (struct device *)__cil_tmp24;
+  __cil_tmp25 = (struct device *)((void *)pcmcia_dev + 184);
   __cil_tmp26 = (struct device  const  *)__cil_tmp25;
   dev_err(__cil_tmp26, "No MMC controller was found.\n");
   }
@@ -5397,8 +5139,6 @@ static void sdricoh_pcmcia_detach(struct pcmcia_device *link )
   long tmp___7 ;
   struct sdricoh_host *host ;
   void *tmp___8 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
@@ -5406,25 +5146,15 @@ static void sdricoh_pcmcia_detach(struct pcmcia_device *link )
   int __cil_tmp12 ;
   int __cil_tmp13 ;
   long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   struct device  const  *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct pci_dev *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned char *__cil_tmp24 ;
   void *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct pci_dev *__cil_tmp28 ;
 
   {
-  __cil_tmp6 = (unsigned long )link;
-  __cil_tmp7 = __cil_tmp6 + 952;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)link + 952));
   mmc = (struct mmc_host *)__cil_tmp8;
   {
   while (1) {
@@ -5443,9 +5173,7 @@ static void sdricoh_pcmcia_detach(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp15 = (unsigned long )link;
-        __cil_tmp16 = __cil_tmp15 + 184;
-        __cil_tmp17 = (struct device *)__cil_tmp16;
+        __cil_tmp17 = (struct device *)((void *)link + 184);
         __cil_tmp18 = (struct device  const  *)__cil_tmp17;
         __dynamic_dev_dbg(& descriptor___9, __cil_tmp18, "detach\n");
         }
@@ -5465,17 +5193,11 @@ static void sdricoh_pcmcia_detach(struct pcmcia_device *link )
     tmp___8 = mmc_priv(mmc);
     host = (struct sdricoh_host *)tmp___8;
     mmc_remove_host(mmc);
-    __cil_tmp19 = (unsigned long )host;
-    __cil_tmp20 = __cil_tmp19 + 24;
-    __cil_tmp21 = *((struct pci_dev **)__cil_tmp20);
-    __cil_tmp22 = (unsigned long )host;
-    __cil_tmp23 = __cil_tmp22 + 16;
-    __cil_tmp24 = *((unsigned char **)__cil_tmp23);
+    __cil_tmp21 = *((struct pci_dev **)((void *)host + 24));
+    __cil_tmp24 = *((unsigned char **)((void *)host + 16));
     __cil_tmp25 = (void *)__cil_tmp24;
     pci_iounmap(__cil_tmp21, __cil_tmp25);
-    __cil_tmp26 = (unsigned long )host;
-    __cil_tmp27 = __cil_tmp26 + 24;
-    __cil_tmp28 = *((struct pci_dev **)__cil_tmp27);
+    __cil_tmp28 = *((struct pci_dev **)((void *)host + 24));
     pci_dev_put(__cil_tmp28);
     mmc_free_host(mmc);
     }
@@ -5495,8 +5217,6 @@ __section__("__verbose")))  =    {"sdricoh_cs", "sdricoh_pcmcia_suspend", "/home
 static int sdricoh_pcmcia_suspend(struct pcmcia_device *link ) 
 { struct mmc_host *mmc ;
   long tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp7 ;
   unsigned int __cil_tmp8 ;
@@ -5504,15 +5224,11 @@ static int sdricoh_pcmcia_suspend(struct pcmcia_device *link )
   int __cil_tmp10 ;
   int __cil_tmp11 ;
   long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device  const  *__cil_tmp16 ;
 
   {
-  __cil_tmp4 = (unsigned long )link;
-  __cil_tmp5 = __cil_tmp4 + 952;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)link + 952));
   mmc = (struct mmc_host *)__cil_tmp6;
   {
   while (1) {
@@ -5531,9 +5247,7 @@ static int sdricoh_pcmcia_suspend(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp13 = (unsigned long )link;
-        __cil_tmp14 = __cil_tmp13 + 184;
-        __cil_tmp15 = (struct device *)__cil_tmp14;
+        __cil_tmp15 = (struct device *)((void *)link + 184);
         __cil_tmp16 = (struct device  const  *)__cil_tmp15;
         __dynamic_dev_dbg(& descriptor___10, __cil_tmp16, "suspend\n");
         }
@@ -5562,8 +5276,6 @@ static int sdricoh_pcmcia_resume(struct pcmcia_device *link )
 { struct mmc_host *mmc ;
   long tmp___7 ;
   void *tmp___8 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
@@ -5571,16 +5283,12 @@ static int sdricoh_pcmcia_resume(struct pcmcia_device *link )
   int __cil_tmp11 ;
   int __cil_tmp12 ;
   long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device  const  *__cil_tmp17 ;
   struct sdricoh_host *__cil_tmp18 ;
 
   {
-  __cil_tmp5 = (unsigned long )link;
-  __cil_tmp6 = __cil_tmp5 + 952;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)link + 952));
   mmc = (struct mmc_host *)__cil_tmp7;
   {
   while (1) {
@@ -5599,9 +5307,7 @@ static int sdricoh_pcmcia_resume(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp14 = (unsigned long )link;
-        __cil_tmp15 = __cil_tmp14 + 184;
-        __cil_tmp16 = (struct device *)__cil_tmp15;
+        __cil_tmp16 = (struct device *)((void *)link + 184);
         __cil_tmp17 = (struct device  const  *)__cil_tmp16;
         __dynamic_dev_dbg(& descriptor___11, __cil_tmp17, "resume\n");
         }

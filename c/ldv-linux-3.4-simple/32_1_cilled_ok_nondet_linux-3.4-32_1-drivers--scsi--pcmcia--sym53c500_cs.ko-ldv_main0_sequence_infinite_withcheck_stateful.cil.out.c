@@ -4455,57 +4455,41 @@ __inline static unsigned int scsi_sg_count(struct scsi_cmnd *cmd )  __attribute_
 __inline static unsigned int scsi_sg_count(struct scsi_cmnd *cmd ) 
 { unsigned long __cil_tmp2 ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
 
   {
   {
   __cil_tmp2 = 0 + 8;
   __cil_tmp3 = 88 + __cil_tmp2;
-  __cil_tmp4 = (unsigned long )cmd;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  return (*((unsigned int *)__cil_tmp5));
+  return (*((unsigned int *)((void *)cmd + __cil_tmp3)));
   }
 }
 }
 __inline static struct scatterlist *scsi_sglist(struct scsi_cmnd *cmd )  __attribute__((__no_instrument_function__)) ;
 __inline static struct scatterlist *scsi_sglist(struct scsi_cmnd *cmd ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )cmd;
-  __cil_tmp3 = __cil_tmp2 + 88;
-  return (*((struct scatterlist **)__cil_tmp3));
+  return (*((struct scatterlist **)((void *)cmd + 88)));
   }
 }
 }
 __inline static unsigned int scsi_bufflen(struct scsi_cmnd *cmd )  __attribute__((__no_instrument_function__)) ;
 __inline static unsigned int scsi_bufflen(struct scsi_cmnd *cmd ) 
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
 
   {
   {
   __cil_tmp2 = 88 + 16;
-  __cil_tmp3 = (unsigned long )cmd;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  return (*((unsigned int *)__cil_tmp4));
+  return (*((unsigned int *)((void *)cmd + __cil_tmp2)));
   }
 }
 }
 __inline static unsigned int sdev_id(struct scsi_device *sdev )  __attribute__((__no_instrument_function__)) ;
 __inline static unsigned int sdev_id(struct scsi_device *sdev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )sdev;
-  __cil_tmp3 = __cil_tmp2 + 152;
-  return (*((unsigned int *)__cil_tmp3));
+  return (*((unsigned int *)((void *)sdev + 152)));
   }
 }
 }
@@ -4930,18 +4914,10 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
   unsigned int tmp___17 ;
   unsigned char tmp___18 ;
   unsigned char tmp___19 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned long *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   spinlock_t *__cil_tmp43 ;
   int __cil_tmp44 ;
   int __cil_tmp45 ;
@@ -4950,46 +4926,26 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
   int __cil_tmp48 ;
   int __cil_tmp49 ;
   int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   int __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   int __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   int __cil_tmp62 ;
   int volatile   __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   int volatile   __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   int volatile   __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   int volatile   __cil_tmp76 ;
   int volatile   __cil_tmp77 ;
   int volatile   __cil_tmp78 ;
   int volatile   __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   int volatile   __cil_tmp83 ;
   int volatile   __cil_tmp84 ;
   int volatile   __cil_tmp85 ;
   int __cil_tmp86 ;
   int __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   int __cil_tmp91 ;
   unsigned int __cil_tmp92 ;
   unsigned char __cil_tmp93 ;
@@ -5004,14 +4960,10 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
   int __cil_tmp102 ;
   unsigned int __cil_tmp103 ;
   unsigned char *__cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   unsigned int __cil_tmp107 ;
   int __cil_tmp108 ;
   int __cil_tmp109 ;
   unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   int __cil_tmp113 ;
   unsigned int __cil_tmp114 ;
   unsigned char __cil_tmp115 ;
@@ -5026,73 +4978,43 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
   int __cil_tmp124 ;
   unsigned int __cil_tmp125 ;
   unsigned char *__cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
   unsigned int __cil_tmp129 ;
   int __cil_tmp130 ;
   unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
   unsigned long __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
   int __cil_tmp137 ;
   int __cil_tmp138 ;
   unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
   int __cil_tmp142 ;
   int __cil_tmp143 ;
   unsigned long __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
   int __cil_tmp147 ;
   unsigned long __cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
   int __cil_tmp151 ;
   unsigned long __cil_tmp152 ;
-  unsigned long __cil_tmp153 ;
-  unsigned long __cil_tmp154 ;
   int volatile   __cil_tmp155 ;
   unsigned long __cil_tmp156 ;
-  unsigned long __cil_tmp157 ;
-  unsigned long __cil_tmp158 ;
   int volatile   __cil_tmp159 ;
   int __cil_tmp160 ;
   int volatile   __cil_tmp161 ;
   unsigned long __cil_tmp162 ;
-  unsigned long __cil_tmp163 ;
-  unsigned long __cil_tmp164 ;
   int volatile   __cil_tmp165 ;
   int __cil_tmp166 ;
   int __cil_tmp167 ;
-  unsigned long __cil_tmp168 ;
-  unsigned long __cil_tmp169 ;
   spinlock_t *__cil_tmp170 ;
   unsigned long __cil_tmp171 ;
-  unsigned long __cil_tmp172 ;
-  unsigned long __cil_tmp173 ;
-  unsigned long __cil_tmp174 ;
-  unsigned long __cil_tmp175 ;
   void (*__cil_tmp176)(struct scsi_cmnd * ) ;
 
   {
   dev = (struct Scsi_Host *)dev_id;
-  __cil_tmp31 = (unsigned long )dev;
-  __cil_tmp32 = __cil_tmp31 + 448;
-  __cil_tmp33 = *((unsigned long *)__cil_tmp32);
+  __cil_tmp33 = *((unsigned long *)((void *)dev + 448));
   port_base = (int )__cil_tmp33;
   __cil_tmp34 = 0 * 8UL;
   __cil_tmp35 = 2040 + __cil_tmp34;
-  __cil_tmp36 = (unsigned long )dev;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  __cil_tmp38 = (unsigned long *)__cil_tmp37;
+  __cil_tmp38 = (unsigned long *)((void *)dev + __cil_tmp35);
   data = (struct sym53c500_data *)__cil_tmp38;
   curSC = *((struct scsi_cmnd **)data);
-  __cil_tmp39 = (unsigned long )data;
-  __cil_tmp40 = __cil_tmp39 + 8;
-  fast_pio = *((int *)__cil_tmp40);
+  fast_pio = *((int *)((void *)data + 8));
   {
   while (1) {
     while_continue: /* CIL Label */ ;
@@ -5100,9 +5022,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
     while (1) {
       while_continue___0: /* CIL Label */ ;
       {
-      __cil_tmp41 = (unsigned long )dev;
-      __cil_tmp42 = __cil_tmp41 + 120;
-      __cil_tmp43 = *((spinlock_t **)__cil_tmp42);
+      __cil_tmp43 = *((spinlock_t **)((void *)dev + 120));
       tmp___7 = spinlock_check(__cil_tmp43);
       flags = _raw_spin_lock_irqsave(tmp___7);
       }
@@ -5131,9 +5051,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
   {
   __cil_tmp50 = (int )int_reg;
   if (__cil_tmp50 & 128) {
-    __cil_tmp51 = (unsigned long )curSC;
-    __cil_tmp52 = __cil_tmp51 + 224;
-    *((int *)__cil_tmp52) = 8 << 16;
+    *((int *)((void *)curSC + 224)) = 8 << 16;
     goto idle_out;
   } else {
 
@@ -5144,9 +5062,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
   if (__cil_tmp53 & 128) {
     {
     printk("SYM53C500: Warning: PIO error!\n");
-    __cil_tmp54 = (unsigned long )curSC;
-    __cil_tmp55 = __cil_tmp54 + 224;
-    *((int *)__cil_tmp55) = 7 << 16;
+    *((int *)((void *)curSC + 224)) = 7 << 16;
     }
     goto idle_out;
   } else {
@@ -5158,9 +5074,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
   if (__cil_tmp56 & 32) {
     {
     printk("SYM53C500: Warning: parity error!\n");
-    __cil_tmp57 = (unsigned long )curSC;
-    __cil_tmp58 = __cil_tmp57 + 224;
-    *((int *)__cil_tmp58) = 6 << 16;
+    *((int *)((void *)curSC + 224)) = 6 << 16;
     }
     goto idle_out;
   } else {
@@ -5172,9 +5086,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
   if (__cil_tmp59 & 64) {
     {
     printk("SYM53C500: Warning: gross error!\n");
-    __cil_tmp60 = (unsigned long )curSC;
-    __cil_tmp61 = __cil_tmp60 + 224;
-    *((int *)__cil_tmp61) = 7 << 16;
+    *((int *)((void *)curSC + 224)) = 7 << 16;
     }
     goto idle_out;
   } else {
@@ -5187,31 +5099,21 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
     {
     __cil_tmp63 = (int volatile   )6;
     __cil_tmp64 = 152 + 56;
-    __cil_tmp65 = (unsigned long )curSC;
-    __cil_tmp66 = __cil_tmp65 + __cil_tmp64;
-    __cil_tmp67 = *((int volatile   *)__cil_tmp66);
+    __cil_tmp67 = *((int volatile   *)((void *)curSC + __cil_tmp64));
     if (__cil_tmp67 != __cil_tmp63) {
-      __cil_tmp68 = (unsigned long )curSC;
-      __cil_tmp69 = __cil_tmp68 + 224;
-      *((int *)__cil_tmp69) = 1 << 16;
+      *((int *)((void *)curSC + 224)) = 1 << 16;
     } else {
-      __cil_tmp70 = (unsigned long )curSC;
-      __cil_tmp71 = __cil_tmp70 + 224;
       __cil_tmp72 = (int volatile   )255;
       __cil_tmp73 = 152 + 44;
-      __cil_tmp74 = (unsigned long )curSC;
-      __cil_tmp75 = __cil_tmp74 + __cil_tmp73;
-      __cil_tmp76 = *((int volatile   *)__cil_tmp75);
+      __cil_tmp76 = *((int volatile   *)((void *)curSC + __cil_tmp73));
       __cil_tmp77 = __cil_tmp76 & __cil_tmp72;
       __cil_tmp78 = __cil_tmp77 << 8;
       __cil_tmp79 = (int volatile   )255;
       __cil_tmp80 = 152 + 40;
-      __cil_tmp81 = (unsigned long )curSC;
-      __cil_tmp82 = __cil_tmp81 + __cil_tmp80;
-      __cil_tmp83 = *((int volatile   *)__cil_tmp82);
+      __cil_tmp83 = *((int volatile   *)((void *)curSC + __cil_tmp80));
       __cil_tmp84 = __cil_tmp83 & __cil_tmp79;
       __cil_tmp85 = __cil_tmp84 | __cil_tmp78;
-      *((int *)__cil_tmp71) = (int )__cil_tmp85;
+      *((int *)((void *)curSC + 224)) = (int )__cil_tmp85;
     }
     }
     goto idle_out;
@@ -5252,9 +5154,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
     if (__cil_tmp87 & 16) {
       {
       __cil_tmp88 = 152 + 56;
-      __cil_tmp89 = (unsigned long )curSC;
-      __cil_tmp90 = __cil_tmp89 + __cil_tmp88;
-      *((int volatile   *)__cil_tmp90) = (int volatile   )1;
+      *((int volatile   *)((void *)curSC + __cil_tmp88)) = (int volatile   )1;
       __cil_tmp91 = port_base + 3;
       outb((unsigned char)1, __cil_tmp91);
       tmp___8 = scsi_bufflen(curSC);
@@ -5295,9 +5195,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
         {
         tmp___11 = sg_virt(sg);
         __cil_tmp104 = (unsigned char *)tmp___11;
-        __cil_tmp105 = (unsigned long )sg;
-        __cil_tmp106 = __cil_tmp105 + 20;
-        __cil_tmp107 = *((unsigned int *)__cil_tmp106);
+        __cil_tmp107 = *((unsigned int *)((void *)sg + 20));
         SYM53C500_pio_write(fast_pio, port_base, __cil_tmp104, __cil_tmp107);
         i = i + 1;
         sg = sg_next(sg);
@@ -5320,9 +5218,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
     if (__cil_tmp109 & 16) {
       {
       __cil_tmp110 = 152 + 56;
-      __cil_tmp111 = (unsigned long )curSC;
-      __cil_tmp112 = __cil_tmp111 + __cil_tmp110;
-      *((int volatile   *)__cil_tmp112) = (int volatile   )2;
+      *((int volatile   *)((void *)curSC + __cil_tmp110)) = (int volatile   )2;
       __cil_tmp113 = port_base + 3;
       outb((unsigned char)1, __cil_tmp113);
       tmp___13 = scsi_bufflen(curSC);
@@ -5363,9 +5259,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
         {
         tmp___16 = sg_virt(sg___0);
         __cil_tmp126 = (unsigned char *)tmp___16;
-        __cil_tmp127 = (unsigned long )sg___0;
-        __cil_tmp128 = __cil_tmp127 + 20;
-        __cil_tmp129 = *((unsigned int *)__cil_tmp128);
+        __cil_tmp129 = *((unsigned int *)((void *)sg___0 + 20));
         SYM53C500_pio_read(fast_pio, port_base, __cil_tmp126, __cil_tmp129);
         i___0 = i___0 + 1;
         sg___0 = sg_next(sg___0);
@@ -5385,18 +5279,14 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
     case_2: /* CIL Label */ 
     {
     __cil_tmp131 = 152 + 56;
-    __cil_tmp132 = (unsigned long )curSC;
-    __cil_tmp133 = __cil_tmp132 + __cil_tmp131;
-    *((int volatile   *)__cil_tmp133) = (int volatile   )3;
+    *((int volatile   *)((void *)curSC + __cil_tmp131)) = (int volatile   )3;
     printk("SYM53C500: Warning: Unknown interrupt occurred in command phase!\n");
     }
     goto switch_break;
     case_3: /* CIL Label */ 
     {
     __cil_tmp134 = 152 + 56;
-    __cil_tmp135 = (unsigned long )curSC;
-    __cil_tmp136 = __cil_tmp135 + __cil_tmp134;
-    *((int volatile   *)__cil_tmp136) = (int volatile   )4;
+    *((int volatile   *)((void *)curSC + __cil_tmp134)) = (int volatile   )4;
     __cil_tmp137 = port_base + 3;
     outb((unsigned char)1, __cil_tmp137);
     __cil_tmp138 = port_base + 3;
@@ -5412,9 +5302,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
     case_6: /* CIL Label */ 
     {
     __cil_tmp139 = 152 + 56;
-    __cil_tmp140 = (unsigned long )curSC;
-    __cil_tmp141 = __cil_tmp140 + __cil_tmp139;
-    *((int volatile   *)__cil_tmp141) = (int volatile   )5;
+    *((int volatile   *)((void *)curSC + __cil_tmp139)) = (int volatile   )5;
     __cil_tmp142 = port_base + 3;
     outb((unsigned char)26, __cil_tmp142);
     __cil_tmp143 = port_base + 3;
@@ -5424,28 +5312,20 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
     case_7: /* CIL Label */ 
     {
     __cil_tmp144 = 152 + 56;
-    __cil_tmp145 = (unsigned long )curSC;
-    __cil_tmp146 = __cil_tmp145 + __cil_tmp144;
-    *((int volatile   *)__cil_tmp146) = (int volatile   )6;
+    *((int volatile   *)((void *)curSC + __cil_tmp144)) = (int volatile   )6;
     __cil_tmp147 = port_base + 2;
     tmp___18 = inb(__cil_tmp147);
     __cil_tmp148 = 152 + 40;
-    __cil_tmp149 = (unsigned long )curSC;
-    __cil_tmp150 = __cil_tmp149 + __cil_tmp148;
-    *((int volatile   *)__cil_tmp150) = (int volatile   )tmp___18;
+    *((int volatile   *)((void *)curSC + __cil_tmp148)) = (int volatile   )tmp___18;
     __cil_tmp151 = port_base + 2;
     tmp___19 = inb(__cil_tmp151);
     __cil_tmp152 = 152 + 44;
-    __cil_tmp153 = (unsigned long )curSC;
-    __cil_tmp154 = __cil_tmp153 + __cil_tmp152;
-    *((int volatile   *)__cil_tmp154) = (int volatile   )tmp___19;
+    *((int volatile   *)((void *)curSC + __cil_tmp152)) = (int volatile   )tmp___19;
     }
     {
     __cil_tmp155 = (int volatile   )2;
     __cil_tmp156 = 152 + 44;
-    __cil_tmp157 = (unsigned long )curSC;
-    __cil_tmp158 = __cil_tmp157 + __cil_tmp156;
-    __cil_tmp159 = *((int volatile   *)__cil_tmp158);
+    __cil_tmp159 = *((int volatile   *)((void *)curSC + __cil_tmp156));
     if (__cil_tmp159 == __cil_tmp155) {
       {
       __cil_tmp160 = port_base + 3;
@@ -5455,9 +5335,7 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
       {
       __cil_tmp161 = (int volatile   )4;
       __cil_tmp162 = 152 + 44;
-      __cil_tmp163 = (unsigned long )curSC;
-      __cil_tmp164 = __cil_tmp163 + __cil_tmp162;
-      __cil_tmp165 = *((int volatile   *)__cil_tmp164);
+      __cil_tmp165 = *((int volatile   *)((void *)curSC + __cil_tmp162));
       if (__cil_tmp165 == __cil_tmp161) {
         {
         __cil_tmp166 = port_base + 3;
@@ -5480,21 +5358,15 @@ static irqreturn_t SYM53C500_intr(int irq , void *dev_id )
   }
   out: 
   {
-  __cil_tmp168 = (unsigned long )dev;
-  __cil_tmp169 = __cil_tmp168 + 120;
-  __cil_tmp170 = *((spinlock_t **)__cil_tmp169);
+  __cil_tmp170 = *((spinlock_t **)((void *)dev + 120));
   spin_unlock_irqrestore(__cil_tmp170, flags);
   }
   return ((irqreturn_t )1);
   idle_out: 
   {
   __cil_tmp171 = 152 + 56;
-  __cil_tmp172 = (unsigned long )curSC;
-  __cil_tmp173 = __cil_tmp172 + __cil_tmp171;
-  *((int volatile   *)__cil_tmp173) = (int volatile   )0;
-  __cil_tmp174 = (unsigned long )curSC;
-  __cil_tmp175 = __cil_tmp174 + 144;
-  __cil_tmp176 = *((void (**)(struct scsi_cmnd * ))__cil_tmp175);
+  *((int volatile   *)((void *)curSC + __cil_tmp171)) = (int volatile   )0;
+  __cil_tmp176 = *((void (**)(struct scsi_cmnd * ))((void *)curSC + 144));
   (*__cil_tmp176)(curSC);
   }
   goto out;
@@ -5508,48 +5380,26 @@ static void SYM53C500_release(struct pcmcia_device *link )
 { struct scsi_info_t *info ;
   struct Scsi_Host *shost ;
   long tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
   long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device  const  *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
   void *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   resource_size_t __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned char __cil_tmp36 ;
   resource_size_t __cil_tmp37 ;
 
   {
-  __cil_tmp5 = (unsigned long )link;
-  __cil_tmp6 = __cil_tmp5 + 952;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)link + 952));
   info = (struct scsi_info_t *)__cil_tmp7;
-  __cil_tmp8 = (unsigned long )info;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  shost = *((struct Scsi_Host **)__cil_tmp9);
+  shost = *((struct Scsi_Host **)((void *)info + 8));
   {
   while (1) {
     while_continue: /* CIL Label */ ;
@@ -5567,9 +5417,7 @@ static void SYM53C500_release(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp16 = (unsigned long )link;
-        __cil_tmp17 = __cil_tmp16 + 184;
-        __cil_tmp18 = (struct device *)__cil_tmp17;
+        __cil_tmp18 = (struct device *)((void *)link + 184);
         __cil_tmp19 = (struct device  const  *)__cil_tmp18;
         __dynamic_dev_dbg(& descriptor, __cil_tmp19, "SYM53C500_release\n");
         }
@@ -5588,13 +5436,9 @@ static void SYM53C500_release(struct pcmcia_device *link )
   scsi_remove_host(shost);
   }
   {
-  __cil_tmp20 = (unsigned long )shost;
-  __cil_tmp21 = __cil_tmp20 + 460;
-  if (*((unsigned int *)__cil_tmp21)) {
+  if (*((unsigned int *)((void *)shost + 460))) {
     {
-    __cil_tmp22 = (unsigned long )shost;
-    __cil_tmp23 = __cil_tmp22 + 460;
-    __cil_tmp24 = *((unsigned int *)__cil_tmp23);
+    __cil_tmp24 = *((unsigned int *)((void *)shost + 460));
     __cil_tmp25 = (void *)shost;
     free_irq(__cil_tmp24, __cil_tmp25);
     }
@@ -5603,21 +5447,13 @@ static void SYM53C500_release(struct pcmcia_device *link )
   }
   }
   {
-  __cil_tmp26 = (unsigned long )shost;
-  __cil_tmp27 = __cil_tmp26 + 448;
-  if (*((unsigned long *)__cil_tmp27)) {
+  if (*((unsigned long *)((void *)shost + 448))) {
     {
-    __cil_tmp28 = (unsigned long )shost;
-    __cil_tmp29 = __cil_tmp28 + 456;
-    if (*((unsigned char *)__cil_tmp29)) {
+    if (*((unsigned char *)((void *)shost + 456))) {
       {
-      __cil_tmp30 = (unsigned long )shost;
-      __cil_tmp31 = __cil_tmp30 + 448;
-      __cil_tmp32 = *((unsigned long *)__cil_tmp31);
+      __cil_tmp32 = *((unsigned long *)((void *)shost + 448));
       __cil_tmp33 = (resource_size_t )__cil_tmp32;
-      __cil_tmp34 = (unsigned long )shost;
-      __cil_tmp35 = __cil_tmp34 + 456;
-      __cil_tmp36 = *((unsigned char *)__cil_tmp35);
+      __cil_tmp36 = *((unsigned char *)((void *)shost + 456));
       __cil_tmp37 = (resource_size_t )__cil_tmp36;
       __release_region(& ioport_resource, __cil_tmp33, __cil_tmp37);
       }
@@ -5642,19 +5478,11 @@ static char const   *SYM53C500_info(struct Scsi_Host *SChost )
   char const   *tmp___7 ;
   unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   char *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
@@ -5663,14 +5491,10 @@ static char const   *SYM53C500_info(struct Scsi_Host *SChost )
   {
   __cil_tmp4 = 0 * 8UL;
   __cil_tmp5 = 2040 + __cil_tmp4;
-  __cil_tmp6 = (unsigned long )SChost;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  __cil_tmp8 = (unsigned long *)__cil_tmp7;
+  __cil_tmp8 = (unsigned long *)((void *)SChost + __cil_tmp5);
   data = (struct sym53c500_data *)__cil_tmp8;
   {
-  __cil_tmp9 = (unsigned long )data;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  if (*((int *)__cil_tmp10)) {
+  if (*((int *)((void *)data + 8))) {
     tmp___7 = "fast";
   } else {
     tmp___7 = "slow";
@@ -5680,12 +5504,8 @@ static char const   *SYM53C500_info(struct Scsi_Host *SChost )
   __cil_tmp11 = 0 * 1UL;
   __cil_tmp12 = (unsigned long )(info_msg) + __cil_tmp11;
   __cil_tmp13 = (char *)__cil_tmp12;
-  __cil_tmp14 = (unsigned long )SChost;
-  __cil_tmp15 = __cil_tmp14 + 448;
-  __cil_tmp16 = *((unsigned long *)__cil_tmp15);
-  __cil_tmp17 = (unsigned long )SChost;
-  __cil_tmp18 = __cil_tmp17 + 460;
-  __cil_tmp19 = *((unsigned int *)__cil_tmp18);
+  __cil_tmp16 = *((unsigned long *)((void *)SChost + 448));
+  __cil_tmp19 = *((unsigned int *)((void *)SChost + 460));
   snprintf(__cil_tmp13, 256UL, "SYM53C500 at 0x%lx, IRQ %d, %s PIO mode.", __cil_tmp16,
            __cil_tmp19, tmp___7);
   }
@@ -5704,42 +5524,26 @@ static int SYM53C500_queue_lck(struct scsi_cmnd *SCpnt , void (*done)(struct scs
   unsigned int tmp___7 ;
   struct scsi_device *__cil_tmp7 ;
   struct Scsi_Host *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   struct scsi_device *__cil_tmp14 ;
   struct Scsi_Host *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long *__cil_tmp18 ;
   struct scsi_cmnd *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   struct scsi_cmnd *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   struct scsi_cmnd *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   struct scsi_cmnd *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   int __cil_tmp34 ;
   struct scsi_device *__cil_tmp35 ;
   unsigned char __cil_tmp36 ;
   int __cil_tmp37 ;
   int __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned short __cil_tmp41 ;
   int __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char *__cil_tmp45 ;
   unsigned char *__cil_tmp46 ;
   unsigned char __cil_tmp47 ;
@@ -5750,38 +5554,26 @@ static int SYM53C500_queue_lck(struct scsi_cmnd *SCpnt , void (*done)(struct scs
   {
   __cil_tmp7 = *((struct scsi_device **)SCpnt);
   __cil_tmp8 = *((struct Scsi_Host **)__cil_tmp7);
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 448;
-  __cil_tmp11 = *((unsigned long *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned long *)((void *)__cil_tmp8 + 448));
   port_base = (int )__cil_tmp11;
   __cil_tmp12 = 0 * 8UL;
   __cil_tmp13 = 2040 + __cil_tmp12;
   __cil_tmp14 = *((struct scsi_device **)SCpnt);
   __cil_tmp15 = *((struct Scsi_Host **)__cil_tmp14);
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp13;
-  __cil_tmp18 = (unsigned long *)__cil_tmp17;
+  __cil_tmp18 = (unsigned long *)((void *)__cil_tmp15 + __cil_tmp13);
   data = (struct sym53c500_data *)__cil_tmp18;
   *((struct scsi_cmnd **)data) = SCpnt;
   __cil_tmp19 = *((struct scsi_cmnd **)data);
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 144;
-  *((void (**)(struct scsi_cmnd * ))__cil_tmp21) = done;
+  *((void (**)(struct scsi_cmnd * ))((void *)__cil_tmp19 + 144)) = done;
   __cil_tmp22 = 152 + 56;
   __cil_tmp23 = *((struct scsi_cmnd **)data);
-  __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp22;
-  *((int volatile   *)__cil_tmp25) = (int volatile   )3;
+  *((int volatile   *)((void *)__cil_tmp23 + __cil_tmp22)) = (int volatile   )3;
   __cil_tmp26 = 152 + 40;
   __cil_tmp27 = *((struct scsi_cmnd **)data);
-  __cil_tmp28 = (unsigned long )__cil_tmp27;
-  __cil_tmp29 = __cil_tmp28 + __cil_tmp26;
-  *((int volatile   *)__cil_tmp29) = (int volatile   )0;
+  *((int volatile   *)((void *)__cil_tmp27 + __cil_tmp26)) = (int volatile   )0;
   __cil_tmp30 = 152 + 44;
   __cil_tmp31 = *((struct scsi_cmnd **)data);
-  __cil_tmp32 = (unsigned long )__cil_tmp31;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp30;
-  *((int volatile   *)__cil_tmp33) = (int volatile   )0;
+  *((int volatile   *)((void *)__cil_tmp31 + __cil_tmp30)) = (int volatile   )0;
   __cil_tmp34 = port_base + 13;
   outb((unsigned char)4, __cil_tmp34);
   __cil_tmp35 = *((struct scsi_device **)SCpnt);
@@ -5797,9 +5589,7 @@ static int SYM53C500_queue_lck(struct scsi_cmnd *SCpnt , void (*done)(struct scs
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp39 = (unsigned long )SCpnt;
-    __cil_tmp40 = __cil_tmp39 + 74;
-    __cil_tmp41 = *((unsigned short *)__cil_tmp40);
+    __cil_tmp41 = *((unsigned short *)((void *)SCpnt + 74));
     __cil_tmp42 = (int )__cil_tmp41;
     if (i < __cil_tmp42) {
 
@@ -5808,9 +5598,7 @@ static int SYM53C500_queue_lck(struct scsi_cmnd *SCpnt , void (*done)(struct scs
     }
     }
     {
-    __cil_tmp43 = (unsigned long )SCpnt;
-    __cil_tmp44 = __cil_tmp43 + 80;
-    __cil_tmp45 = *((unsigned char **)__cil_tmp44);
+    __cil_tmp45 = *((unsigned char **)((void *)SCpnt + 80));
     __cil_tmp46 = __cil_tmp45 + i;
     __cil_tmp47 = *__cil_tmp46;
     __cil_tmp48 = port_base + 2;
@@ -5831,14 +5619,8 @@ static int SYM53C500_queue(struct Scsi_Host *shost , struct scsi_cmnd *cmd )
 { unsigned long irq_flags ;
   int rc ;
   raw_spinlock_t *tmp___7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   spinlock_t *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void (*__cil_tmp13)(struct scsi_cmnd * ) ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   spinlock_t *__cil_tmp16 ;
 
   {
@@ -5849,9 +5631,7 @@ static int SYM53C500_queue(struct Scsi_Host *shost , struct scsi_cmnd *cmd )
     while (1) {
       while_continue___0: /* CIL Label */ ;
       {
-      __cil_tmp8 = (unsigned long )shost;
-      __cil_tmp9 = __cil_tmp8 + 120;
-      __cil_tmp10 = *((spinlock_t **)__cil_tmp9);
+      __cil_tmp10 = *((spinlock_t **)((void *)shost + 120));
       tmp___7 = spinlock_check(__cil_tmp10);
       irq_flags = _raw_spin_lock_irqsave(tmp___7);
       }
@@ -5865,13 +5645,9 @@ static int SYM53C500_queue(struct Scsi_Host *shost , struct scsi_cmnd *cmd )
   }
   {
   scsi_cmd_get_serial(shost, cmd);
-  __cil_tmp11 = (unsigned long )cmd;
-  __cil_tmp12 = __cil_tmp11 + 144;
-  __cil_tmp13 = *((void (**)(struct scsi_cmnd * ))__cil_tmp12);
+  __cil_tmp13 = *((void (**)(struct scsi_cmnd * ))((void *)cmd + 144));
   rc = SYM53C500_queue_lck(cmd, __cil_tmp13);
-  __cil_tmp14 = (unsigned long )shost;
-  __cil_tmp15 = __cil_tmp14 + 120;
-  __cil_tmp16 = *((spinlock_t **)__cil_tmp15);
+  __cil_tmp16 = *((spinlock_t **)((void *)shost + 120));
   spin_unlock_irqrestore(__cil_tmp16, irq_flags);
   }
   return (rc);
@@ -5881,40 +5657,28 @@ static int SYM53C500_host_reset(struct scsi_cmnd *SCpnt )
 { int port_base ;
   struct scsi_device *__cil_tmp3 ;
   struct Scsi_Host *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   struct scsi_device *__cil_tmp8 ;
   struct Scsi_Host *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   spinlock_t *__cil_tmp12 ;
   struct scsi_device *__cil_tmp13 ;
   struct Scsi_Host *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   spinlock_t *__cil_tmp17 ;
 
   {
   {
   __cil_tmp3 = *((struct scsi_device **)SCpnt);
   __cil_tmp4 = *((struct Scsi_Host **)__cil_tmp3);
-  __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = __cil_tmp5 + 448;
-  __cil_tmp7 = *((unsigned long *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned long *)((void *)__cil_tmp4 + 448));
   port_base = (int )__cil_tmp7;
   __cil_tmp8 = *((struct scsi_device **)SCpnt);
   __cil_tmp9 = *((struct Scsi_Host **)__cil_tmp8);
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 120;
-  __cil_tmp12 = *((spinlock_t **)__cil_tmp11);
+  __cil_tmp12 = *((spinlock_t **)((void *)__cil_tmp9 + 120));
   spin_lock_irq(__cil_tmp12);
   SYM53C500_int_host_reset(port_base);
   __cil_tmp13 = *((struct scsi_device **)SCpnt);
   __cil_tmp14 = *((struct Scsi_Host **)__cil_tmp13);
-  __cil_tmp15 = (unsigned long )__cil_tmp14;
-  __cil_tmp16 = __cil_tmp15 + 120;
-  __cil_tmp17 = *((spinlock_t **)__cil_tmp16);
+  __cil_tmp17 = *((spinlock_t **)((void *)__cil_tmp14 + 120));
   spin_unlock_irq(__cil_tmp17);
   }
   return (8194);
@@ -5964,43 +5728,31 @@ static ssize_t SYM53C500_show_pio(struct device *dev , struct device_attribute *
   struct sym53c500_data *data ;
   int tmp___7 ;
   struct Scsi_Host *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   char *__cil_tmp13 ;
   char *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long *__cil_tmp19 ;
   size_t __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   int __cil_tmp23 ;
 
   {
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp8 = (struct Scsi_Host *)0;
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 1240;
-  __cil_tmp11 = (struct device *)__cil_tmp10;
+  __cil_tmp11 = (struct device *)((void *)__cil_tmp8 + 1240);
   __cil_tmp12 = (unsigned int )__cil_tmp11;
   __cil_tmp13 = (char *)__mptr;
   __cil_tmp14 = __cil_tmp13 - __cil_tmp12;
   SHp = (struct Scsi_Host *)__cil_tmp14;
   __cil_tmp15 = 0 * 8UL;
   __cil_tmp16 = 2040 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )SHp;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = (unsigned long *)__cil_tmp18;
+  __cil_tmp19 = (unsigned long *)((void *)SHp + __cil_tmp16);
   data = (struct sym53c500_data *)__cil_tmp19;
   __cil_tmp20 = (size_t )4;
-  __cil_tmp21 = (unsigned long )data;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  __cil_tmp23 = *((int *)__cil_tmp22);
+  __cil_tmp23 = *((int *)((void *)data + 8));
   tmp___7 = snprintf(buf, __cil_tmp20, "%d\n", __cil_tmp23);
   }
   return ((ssize_t )tmp___7);
@@ -6014,40 +5766,28 @@ static ssize_t SYM53C500_store_pio(struct device *dev , struct device_attribute 
   struct sym53c500_data *data ;
   unsigned long tmp___7 ;
   struct Scsi_Host *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
   char *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long *__cil_tmp21 ;
   void *__cil_tmp22 ;
   char **__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
 
   {
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp10 = (struct Scsi_Host *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 1240;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 1240);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
   SHp = (struct Scsi_Host *)__cil_tmp16;
   __cil_tmp17 = 0 * 8UL;
   __cil_tmp18 = 2040 + __cil_tmp17;
-  __cil_tmp19 = (unsigned long )SHp;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-  __cil_tmp21 = (unsigned long *)__cil_tmp20;
+  __cil_tmp21 = (unsigned long *)((void *)SHp + __cil_tmp18);
   data = (struct sym53c500_data *)__cil_tmp21;
   __cil_tmp22 = (void *)0;
   __cil_tmp23 = (char **)__cil_tmp22;
@@ -6055,15 +5795,11 @@ static ssize_t SYM53C500_store_pio(struct device *dev , struct device_attribute 
   pio = (int )tmp___7;
   }
   if (pio == 0) {
-    __cil_tmp24 = (unsigned long )data;
-    __cil_tmp25 = __cil_tmp24 + 8;
-    *((int *)__cil_tmp25) = pio;
+    *((int *)((void *)data + 8)) = pio;
     return ((ssize_t )count);
   } else
   if (pio == 1) {
-    __cil_tmp26 = (unsigned long )data;
-    __cil_tmp27 = __cil_tmp26 + 8;
-    *((int *)__cil_tmp27) = pio;
+    *((int *)((void *)data + 8)) = pio;
     return ((ssize_t )count);
   } else {
     return ((ssize_t )-22);
@@ -6091,87 +5827,47 @@ static struct scsi_host_template sym53c500_driver_template  =
     {(struct list_head *)0, (struct list_head *)0}, 0ULL};
 static int SYM53C500_config_check(struct pcmcia_device *p_dev , void *priv_data ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct resource *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct resource *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct resource *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct resource *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct resource *__cil_tmp40 ;
   resource_size_t __cil_tmp41 ;
 
   {
-  __cil_tmp4 = (unsigned long )p_dev;
-  __cil_tmp5 = __cil_tmp4 + 132;
-  *((unsigned int *)__cil_tmp5) = 10U;
+  *((unsigned int *)((void *)p_dev + 132)) = 10U;
   __cil_tmp6 = 0 * 8UL;
   __cil_tmp7 = 56 + __cil_tmp6;
-  __cil_tmp8 = (unsigned long )p_dev;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((struct resource **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 24;
+  __cil_tmp10 = *((struct resource **)((void *)p_dev + __cil_tmp7));
   __cil_tmp13 = 0 * 8UL;
   __cil_tmp14 = 56 + __cil_tmp13;
-  __cil_tmp15 = (unsigned long )p_dev;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  __cil_tmp17 = *((struct resource **)__cil_tmp16);
-  __cil_tmp18 = (unsigned long )__cil_tmp17;
-  __cil_tmp19 = __cil_tmp18 + 24;
-  __cil_tmp20 = *((unsigned long *)__cil_tmp19);
-  *((unsigned long *)__cil_tmp12) = __cil_tmp20 & 0xffffffffffffffe7UL;
+  __cil_tmp17 = *((struct resource **)((void *)p_dev + __cil_tmp14));
+  __cil_tmp20 = *((unsigned long *)((void *)__cil_tmp17 + 24));
+  *((unsigned long *)((void *)__cil_tmp10 + 24)) = __cil_tmp20 & 0xffffffffffffffe7UL;
   __cil_tmp21 = 0 * 8UL;
   __cil_tmp22 = 56 + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )p_dev;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  __cil_tmp25 = *((struct resource **)__cil_tmp24);
-  __cil_tmp26 = (unsigned long )__cil_tmp25;
-  __cil_tmp27 = __cil_tmp26 + 24;
+  __cil_tmp25 = *((struct resource **)((void *)p_dev + __cil_tmp22));
   __cil_tmp28 = 0 * 8UL;
   __cil_tmp29 = 56 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )p_dev;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = *((struct resource **)__cil_tmp31);
-  __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = __cil_tmp33 + 24;
-  __cil_tmp35 = *((unsigned long *)__cil_tmp34);
-  *((unsigned long *)__cil_tmp27) = __cil_tmp35 | 16UL;
+  __cil_tmp32 = *((struct resource **)((void *)p_dev + __cil_tmp29));
+  __cil_tmp35 = *((unsigned long *)((void *)__cil_tmp32 + 24));
+  *((unsigned long *)((void *)__cil_tmp25 + 24)) = __cil_tmp35 | 16UL;
   {
   __cil_tmp36 = 0 * 8UL;
   __cil_tmp37 = 56 + __cil_tmp36;
-  __cil_tmp38 = (unsigned long )p_dev;
-  __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-  __cil_tmp40 = *((struct resource **)__cil_tmp39);
+  __cil_tmp40 = *((struct resource **)((void *)p_dev + __cil_tmp37));
   __cil_tmp41 = *((resource_size_t *)__cil_tmp40);
   if (__cil_tmp41 == 0ULL) {
     return (-19);
@@ -6200,8 +5896,6 @@ static int SYM53C500_config(struct pcmcia_device *link )
   long tmp___7 ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp15 ;
   unsigned int __cil_tmp16 ;
@@ -6209,133 +5903,81 @@ static int SYM53C500_config(struct pcmcia_device *link )
   int __cil_tmp18 ;
   int __cil_tmp19 ;
   long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct device  const  *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   void *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned short __cil_tmp35 ;
   int __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct resource *__cil_tmp41 ;
   resource_size_t __cil_tmp42 ;
   resource_size_t __cil_tmp43 ;
   int __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct resource *__cil_tmp49 ;
   resource_size_t __cil_tmp50 ;
   resource_size_t __cil_tmp51 ;
   int __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct resource *__cil_tmp57 ;
   resource_size_t __cil_tmp58 ;
   resource_size_t __cil_tmp59 ;
   int __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   unsigned short __cil_tmp63 ;
   int __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct resource *__cil_tmp69 ;
   resource_size_t __cil_tmp70 ;
   resource_size_t __cil_tmp71 ;
   int __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   struct resource *__cil_tmp77 ;
   resource_size_t __cil_tmp78 ;
   resource_size_t __cil_tmp79 ;
   int __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   struct resource *__cil_tmp85 ;
   resource_size_t __cil_tmp86 ;
   resource_size_t __cil_tmp87 ;
   int __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   unsigned short __cil_tmp91 ;
   int __cil_tmp92 ;
   unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   struct resource *__cil_tmp97 ;
   resource_size_t __cil_tmp98 ;
   resource_size_t __cil_tmp99 ;
   int __cil_tmp100 ;
   unsigned long __cil_tmp101 ;
   unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   struct resource *__cil_tmp105 ;
   resource_size_t __cil_tmp106 ;
   resource_size_t __cil_tmp107 ;
   int __cil_tmp108 ;
   unsigned long __cil_tmp109 ;
   unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   struct resource *__cil_tmp113 ;
   resource_size_t __cil_tmp114 ;
   resource_size_t __cil_tmp115 ;
   int __cil_tmp116 ;
   unsigned long __cil_tmp117 ;
   unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   struct resource *__cil_tmp121 ;
   resource_size_t __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
   unsigned int __cil_tmp125 ;
   int __cil_tmp126 ;
   unsigned long __cil_tmp127 ;
   unsigned long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
   unsigned long *__cil_tmp131 ;
   unsigned int __cil_tmp132 ;
   void *__cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
-  unsigned long __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
-  unsigned long __cil_tmp147 ;
   void *__cil_tmp148 ;
   struct device *__cil_tmp149 ;
   unsigned int __cil_tmp150 ;
@@ -6344,9 +5986,7 @@ static int SYM53C500_config(struct pcmcia_device *link )
   resource_size_t __cil_tmp153 ;
 
   {
-  __cil_tmp12 = (unsigned long )link;
-  __cil_tmp13 = __cil_tmp12 + 952;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  __cil_tmp14 = *((void **)((void *)link + 952));
   info = (struct scsi_info_t *)__cil_tmp14;
   tpnt = & sym53c500_driver_template;
   {
@@ -6366,9 +6006,7 @@ static int SYM53C500_config(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp21 = (unsigned long )link;
-        __cil_tmp22 = __cil_tmp21 + 184;
-        __cil_tmp23 = (struct device *)__cil_tmp22;
+        __cil_tmp23 = (struct device *)((void *)link + 184);
         __cil_tmp24 = (struct device  const  *)__cil_tmp23;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp24, "SYM53C500_config\n");
         }
@@ -6384,11 +6022,7 @@ static int SYM53C500_config(struct pcmcia_device *link )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp25 = (unsigned long )info;
-  __cil_tmp26 = __cil_tmp25 + 16;
-  __cil_tmp27 = (unsigned long )link;
-  __cil_tmp28 = __cil_tmp27 + 140;
-  *((unsigned short *)__cil_tmp26) = *((u16 *)__cil_tmp28);
+  *((unsigned short *)((void *)info + 16)) = *((u16 *)((void *)link + 140));
   __cil_tmp29 = (void *)0;
   ret = pcmcia_loop_config(link, & SYM53C500_config_check, __cil_tmp29);
   }
@@ -6398,9 +6032,7 @@ static int SYM53C500_config(struct pcmcia_device *link )
 
   }
   {
-  __cil_tmp30 = (unsigned long )link;
-  __cil_tmp31 = __cil_tmp30 + 48;
-  __cil_tmp32 = *((unsigned int *)__cil_tmp31);
+  __cil_tmp32 = *((unsigned int *)((void *)link + 48));
   if (! __cil_tmp32) {
     goto failed;
   } else {
@@ -6416,35 +6048,27 @@ static int SYM53C500_config(struct pcmcia_device *link )
 
   }
   {
-  __cil_tmp33 = (unsigned long )info;
-  __cil_tmp34 = __cil_tmp33 + 16;
-  __cil_tmp35 = *((unsigned short *)__cil_tmp34);
+  __cil_tmp35 = *((unsigned short *)((void *)info + 16));
   __cil_tmp36 = (int )__cil_tmp35;
   if (__cil_tmp36 == 49163) {
     {
     __cil_tmp37 = 0 * 8UL;
     __cil_tmp38 = 56 + __cil_tmp37;
-    __cil_tmp39 = (unsigned long )link;
-    __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-    __cil_tmp41 = *((struct resource **)__cil_tmp40);
+    __cil_tmp41 = *((struct resource **)((void *)link + __cil_tmp38));
     __cil_tmp42 = *((resource_size_t *)__cil_tmp41);
     __cil_tmp43 = __cil_tmp42 + 13ULL;
     __cil_tmp44 = (int )__cil_tmp43;
     outb((unsigned char)180, __cil_tmp44);
     __cil_tmp45 = 0 * 8UL;
     __cil_tmp46 = 56 + __cil_tmp45;
-    __cil_tmp47 = (unsigned long )link;
-    __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-    __cil_tmp49 = *((struct resource **)__cil_tmp48);
+    __cil_tmp49 = *((struct resource **)((void *)link + __cil_tmp46));
     __cil_tmp50 = *((resource_size_t *)__cil_tmp49);
     __cil_tmp51 = __cil_tmp50 + 9ULL;
     __cil_tmp52 = (int )__cil_tmp51;
     outb((unsigned char)36, __cil_tmp52);
     __cil_tmp53 = 0 * 8UL;
     __cil_tmp54 = 56 + __cil_tmp53;
-    __cil_tmp55 = (unsigned long )link;
-    __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-    __cil_tmp57 = *((struct resource **)__cil_tmp56);
+    __cil_tmp57 = *((struct resource **)((void *)link + __cil_tmp54));
     __cil_tmp58 = *((resource_size_t *)__cil_tmp57);
     __cil_tmp59 = __cil_tmp58 + 13ULL;
     __cil_tmp60 = (int )__cil_tmp59;
@@ -6452,35 +6076,27 @@ static int SYM53C500_config(struct pcmcia_device *link )
     }
   } else {
     {
-    __cil_tmp61 = (unsigned long )info;
-    __cil_tmp62 = __cil_tmp61 + 16;
-    __cil_tmp63 = *((unsigned short *)__cil_tmp62);
+    __cil_tmp63 = *((unsigned short *)((void *)info + 16));
     __cil_tmp64 = (int )__cil_tmp63;
     if (__cil_tmp64 == 11) {
       {
       __cil_tmp65 = 0 * 8UL;
       __cil_tmp66 = 56 + __cil_tmp65;
-      __cil_tmp67 = (unsigned long )link;
-      __cil_tmp68 = __cil_tmp67 + __cil_tmp66;
-      __cil_tmp69 = *((struct resource **)__cil_tmp68);
+      __cil_tmp69 = *((struct resource **)((void *)link + __cil_tmp66));
       __cil_tmp70 = *((resource_size_t *)__cil_tmp69);
       __cil_tmp71 = __cil_tmp70 + 13ULL;
       __cil_tmp72 = (int )__cil_tmp71;
       outb((unsigned char)180, __cil_tmp72);
       __cil_tmp73 = 0 * 8UL;
       __cil_tmp74 = 56 + __cil_tmp73;
-      __cil_tmp75 = (unsigned long )link;
-      __cil_tmp76 = __cil_tmp75 + __cil_tmp74;
-      __cil_tmp77 = *((struct resource **)__cil_tmp76);
+      __cil_tmp77 = *((struct resource **)((void *)link + __cil_tmp74));
       __cil_tmp78 = *((resource_size_t *)__cil_tmp77);
       __cil_tmp79 = __cil_tmp78 + 9ULL;
       __cil_tmp80 = (int )__cil_tmp79;
       outb((unsigned char)36, __cil_tmp80);
       __cil_tmp81 = 0 * 8UL;
       __cil_tmp82 = 56 + __cil_tmp81;
-      __cil_tmp83 = (unsigned long )link;
-      __cil_tmp84 = __cil_tmp83 + __cil_tmp82;
-      __cil_tmp85 = *((struct resource **)__cil_tmp84);
+      __cil_tmp85 = *((struct resource **)((void *)link + __cil_tmp82));
       __cil_tmp86 = *((resource_size_t *)__cil_tmp85);
       __cil_tmp87 = __cil_tmp86 + 13ULL;
       __cil_tmp88 = (int )__cil_tmp87;
@@ -6488,35 +6104,27 @@ static int SYM53C500_config(struct pcmcia_device *link )
       }
     } else {
       {
-      __cil_tmp89 = (unsigned long )info;
-      __cil_tmp90 = __cil_tmp89 + 16;
-      __cil_tmp91 = *((unsigned short *)__cil_tmp90);
+      __cil_tmp91 = *((unsigned short *)((void *)info + 16));
       __cil_tmp92 = (int )__cil_tmp91;
       if (__cil_tmp92 == 152) {
         {
         __cil_tmp93 = 0 * 8UL;
         __cil_tmp94 = 56 + __cil_tmp93;
-        __cil_tmp95 = (unsigned long )link;
-        __cil_tmp96 = __cil_tmp95 + __cil_tmp94;
-        __cil_tmp97 = *((struct resource **)__cil_tmp96);
+        __cil_tmp97 = *((struct resource **)((void *)link + __cil_tmp94));
         __cil_tmp98 = *((resource_size_t *)__cil_tmp97);
         __cil_tmp99 = __cil_tmp98 + 13ULL;
         __cil_tmp100 = (int )__cil_tmp99;
         outb((unsigned char)180, __cil_tmp100);
         __cil_tmp101 = 0 * 8UL;
         __cil_tmp102 = 56 + __cil_tmp101;
-        __cil_tmp103 = (unsigned long )link;
-        __cil_tmp104 = __cil_tmp103 + __cil_tmp102;
-        __cil_tmp105 = *((struct resource **)__cil_tmp104);
+        __cil_tmp105 = *((struct resource **)((void *)link + __cil_tmp102));
         __cil_tmp106 = *((resource_size_t *)__cil_tmp105);
         __cil_tmp107 = __cil_tmp106 + 9ULL;
         __cil_tmp108 = (int )__cil_tmp107;
         outb((unsigned char)36, __cil_tmp108);
         __cil_tmp109 = 0 * 8UL;
         __cil_tmp110 = 56 + __cil_tmp109;
-        __cil_tmp111 = (unsigned long )link;
-        __cil_tmp112 = __cil_tmp111 + __cil_tmp110;
-        __cil_tmp113 = *((struct resource **)__cil_tmp112);
+        __cil_tmp113 = *((struct resource **)((void *)link + __cil_tmp110));
         __cil_tmp114 = *((resource_size_t *)__cil_tmp113);
         __cil_tmp115 = __cil_tmp114 + 13ULL;
         __cil_tmp116 = (int )__cil_tmp115;
@@ -6533,14 +6141,10 @@ static int SYM53C500_config(struct pcmcia_device *link )
   {
   __cil_tmp117 = 0 * 8UL;
   __cil_tmp118 = 56 + __cil_tmp117;
-  __cil_tmp119 = (unsigned long )link;
-  __cil_tmp120 = __cil_tmp119 + __cil_tmp118;
-  __cil_tmp121 = *((struct resource **)__cil_tmp120);
+  __cil_tmp121 = *((struct resource **)((void *)link + __cil_tmp118));
   __cil_tmp122 = *((resource_size_t *)__cil_tmp121);
   port_base = (int )__cil_tmp122;
-  __cil_tmp123 = (unsigned long )link;
-  __cil_tmp124 = __cil_tmp123 + 48;
-  __cil_tmp125 = *((unsigned int *)__cil_tmp124);
+  __cil_tmp125 = *((unsigned int *)((void *)link + 48));
   irq_level = (int )__cil_tmp125;
   chip_init(port_base);
   __cil_tmp126 = (int )16UL;
@@ -6556,9 +6160,7 @@ static int SYM53C500_config(struct pcmcia_device *link )
   }
   __cil_tmp127 = 0 * 8UL;
   __cil_tmp128 = 2040 + __cil_tmp127;
-  __cil_tmp129 = (unsigned long )host;
-  __cil_tmp130 = __cil_tmp129 + __cil_tmp128;
-  __cil_tmp131 = (unsigned long *)__cil_tmp130;
+  __cil_tmp131 = (unsigned long *)((void *)host + __cil_tmp128);
   data = (struct sym53c500_data *)__cil_tmp131;
   if (irq_level > 0) {
     {
@@ -6582,27 +6184,13 @@ static int SYM53C500_config(struct pcmcia_device *link )
     goto err_free_scsi;
   }
   {
-  __cil_tmp134 = (unsigned long )host;
-  __cil_tmp135 = __cil_tmp134 + 340;
-  *((unsigned int *)__cil_tmp135) = (unsigned int )port_base;
-  __cil_tmp136 = (unsigned long )host;
-  __cil_tmp137 = __cil_tmp136 + 460;
-  *((unsigned int *)__cil_tmp137) = (unsigned int )irq_level;
-  __cil_tmp138 = (unsigned long )host;
-  __cil_tmp139 = __cil_tmp138 + 448;
-  *((unsigned long *)__cil_tmp139) = (unsigned long )port_base;
-  __cil_tmp140 = (unsigned long )host;
-  __cil_tmp141 = __cil_tmp140 + 456;
-  *((unsigned char *)__cil_tmp141) = (unsigned char)16;
-  __cil_tmp142 = (unsigned long )host;
-  __cil_tmp143 = __cil_tmp142 + 457;
-  *((unsigned char *)__cil_tmp143) = (unsigned char)255;
-  __cil_tmp144 = (unsigned long )data;
-  __cil_tmp145 = __cil_tmp144 + 8;
-  *((int *)__cil_tmp145) = 1;
-  __cil_tmp146 = (unsigned long )info;
-  __cil_tmp147 = __cil_tmp146 + 8;
-  *((struct Scsi_Host **)__cil_tmp147) = host;
+  *((unsigned int *)((void *)host + 340)) = (unsigned int )port_base;
+  *((unsigned int *)((void *)host + 460)) = (unsigned int )irq_level;
+  *((unsigned long *)((void *)host + 448)) = (unsigned long )port_base;
+  *((unsigned char *)((void *)host + 456)) = (unsigned char)16;
+  *((unsigned char *)((void *)host + 457)) = (unsigned char)255;
+  *((int *)((void *)data + 8)) = 1;
+  *((struct Scsi_Host **)((void *)info + 8)) = host;
   __cil_tmp148 = (void *)0;
   __cil_tmp149 = (struct device *)__cil_tmp148;
   tmp___9 = (int )scsi_add_host(host, __cil_tmp149);
@@ -6643,136 +6231,98 @@ static int SYM53C500_config(struct pcmcia_device *link )
 }
 static int sym53c500_resume(struct pcmcia_device *link ) 
 { struct scsi_info_t *info ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned short __cil_tmp8 ;
   int __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct resource *__cil_tmp14 ;
   resource_size_t __cil_tmp15 ;
   resource_size_t __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct resource *__cil_tmp22 ;
   resource_size_t __cil_tmp23 ;
   resource_size_t __cil_tmp24 ;
   int __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct resource *__cil_tmp30 ;
   resource_size_t __cil_tmp31 ;
   resource_size_t __cil_tmp32 ;
   int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned short __cil_tmp36 ;
   int __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct resource *__cil_tmp42 ;
   resource_size_t __cil_tmp43 ;
   resource_size_t __cil_tmp44 ;
   int __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct resource *__cil_tmp50 ;
   resource_size_t __cil_tmp51 ;
   resource_size_t __cil_tmp52 ;
   int __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct resource *__cil_tmp58 ;
   resource_size_t __cil_tmp59 ;
   resource_size_t __cil_tmp60 ;
   int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned short __cil_tmp64 ;
   int __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   struct resource *__cil_tmp70 ;
   resource_size_t __cil_tmp71 ;
   resource_size_t __cil_tmp72 ;
   int __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   struct resource *__cil_tmp78 ;
   resource_size_t __cil_tmp79 ;
   resource_size_t __cil_tmp80 ;
   int __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   struct resource *__cil_tmp86 ;
   resource_size_t __cil_tmp87 ;
   resource_size_t __cil_tmp88 ;
   int __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   struct resource *__cil_tmp94 ;
   resource_size_t __cil_tmp95 ;
   int __cil_tmp96 ;
 
   {
-  __cil_tmp3 = (unsigned long )link;
-  __cil_tmp4 = __cil_tmp3 + 952;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)link + 952));
   info = (struct scsi_info_t *)__cil_tmp5;
   {
-  __cil_tmp6 = (unsigned long )info;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = *((unsigned short *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned short *)((void *)info + 16));
   __cil_tmp9 = (int )__cil_tmp8;
   if (__cil_tmp9 == 49163) {
     {
     __cil_tmp10 = 0 * 8UL;
     __cil_tmp11 = 56 + __cil_tmp10;
-    __cil_tmp12 = (unsigned long )link;
-    __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-    __cil_tmp14 = *((struct resource **)__cil_tmp13);
+    __cil_tmp14 = *((struct resource **)((void *)link + __cil_tmp11));
     __cil_tmp15 = *((resource_size_t *)__cil_tmp14);
     __cil_tmp16 = __cil_tmp15 + 13ULL;
     __cil_tmp17 = (int )__cil_tmp16;
     outb((unsigned char)128, __cil_tmp17);
     __cil_tmp18 = 0 * 8UL;
     __cil_tmp19 = 56 + __cil_tmp18;
-    __cil_tmp20 = (unsigned long )link;
-    __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-    __cil_tmp22 = *((struct resource **)__cil_tmp21);
+    __cil_tmp22 = *((struct resource **)((void *)link + __cil_tmp19));
     __cil_tmp23 = *((resource_size_t *)__cil_tmp22);
     __cil_tmp24 = __cil_tmp23 + 9ULL;
     __cil_tmp25 = (int )__cil_tmp24;
     outb((unsigned char)36, __cil_tmp25);
     __cil_tmp26 = 0 * 8UL;
     __cil_tmp27 = 56 + __cil_tmp26;
-    __cil_tmp28 = (unsigned long )link;
-    __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-    __cil_tmp30 = *((struct resource **)__cil_tmp29);
+    __cil_tmp30 = *((struct resource **)((void *)link + __cil_tmp27));
     __cil_tmp31 = *((resource_size_t *)__cil_tmp30);
     __cil_tmp32 = __cil_tmp31 + 13ULL;
     __cil_tmp33 = (int )__cil_tmp32;
@@ -6780,35 +6330,27 @@ static int sym53c500_resume(struct pcmcia_device *link )
     }
   } else {
     {
-    __cil_tmp34 = (unsigned long )info;
-    __cil_tmp35 = __cil_tmp34 + 16;
-    __cil_tmp36 = *((unsigned short *)__cil_tmp35);
+    __cil_tmp36 = *((unsigned short *)((void *)info + 16));
     __cil_tmp37 = (int )__cil_tmp36;
     if (__cil_tmp37 == 11) {
       {
       __cil_tmp38 = 0 * 8UL;
       __cil_tmp39 = 56 + __cil_tmp38;
-      __cil_tmp40 = (unsigned long )link;
-      __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-      __cil_tmp42 = *((struct resource **)__cil_tmp41);
+      __cil_tmp42 = *((struct resource **)((void *)link + __cil_tmp39));
       __cil_tmp43 = *((resource_size_t *)__cil_tmp42);
       __cil_tmp44 = __cil_tmp43 + 13ULL;
       __cil_tmp45 = (int )__cil_tmp44;
       outb((unsigned char)128, __cil_tmp45);
       __cil_tmp46 = 0 * 8UL;
       __cil_tmp47 = 56 + __cil_tmp46;
-      __cil_tmp48 = (unsigned long )link;
-      __cil_tmp49 = __cil_tmp48 + __cil_tmp47;
-      __cil_tmp50 = *((struct resource **)__cil_tmp49);
+      __cil_tmp50 = *((struct resource **)((void *)link + __cil_tmp47));
       __cil_tmp51 = *((resource_size_t *)__cil_tmp50);
       __cil_tmp52 = __cil_tmp51 + 9ULL;
       __cil_tmp53 = (int )__cil_tmp52;
       outb((unsigned char)36, __cil_tmp53);
       __cil_tmp54 = 0 * 8UL;
       __cil_tmp55 = 56 + __cil_tmp54;
-      __cil_tmp56 = (unsigned long )link;
-      __cil_tmp57 = __cil_tmp56 + __cil_tmp55;
-      __cil_tmp58 = *((struct resource **)__cil_tmp57);
+      __cil_tmp58 = *((struct resource **)((void *)link + __cil_tmp55));
       __cil_tmp59 = *((resource_size_t *)__cil_tmp58);
       __cil_tmp60 = __cil_tmp59 + 13ULL;
       __cil_tmp61 = (int )__cil_tmp60;
@@ -6816,35 +6358,27 @@ static int sym53c500_resume(struct pcmcia_device *link )
       }
     } else {
       {
-      __cil_tmp62 = (unsigned long )info;
-      __cil_tmp63 = __cil_tmp62 + 16;
-      __cil_tmp64 = *((unsigned short *)__cil_tmp63);
+      __cil_tmp64 = *((unsigned short *)((void *)info + 16));
       __cil_tmp65 = (int )__cil_tmp64;
       if (__cil_tmp65 == 152) {
         {
         __cil_tmp66 = 0 * 8UL;
         __cil_tmp67 = 56 + __cil_tmp66;
-        __cil_tmp68 = (unsigned long )link;
-        __cil_tmp69 = __cil_tmp68 + __cil_tmp67;
-        __cil_tmp70 = *((struct resource **)__cil_tmp69);
+        __cil_tmp70 = *((struct resource **)((void *)link + __cil_tmp67));
         __cil_tmp71 = *((resource_size_t *)__cil_tmp70);
         __cil_tmp72 = __cil_tmp71 + 13ULL;
         __cil_tmp73 = (int )__cil_tmp72;
         outb((unsigned char)128, __cil_tmp73);
         __cil_tmp74 = 0 * 8UL;
         __cil_tmp75 = 56 + __cil_tmp74;
-        __cil_tmp76 = (unsigned long )link;
-        __cil_tmp77 = __cil_tmp76 + __cil_tmp75;
-        __cil_tmp78 = *((struct resource **)__cil_tmp77);
+        __cil_tmp78 = *((struct resource **)((void *)link + __cil_tmp75));
         __cil_tmp79 = *((resource_size_t *)__cil_tmp78);
         __cil_tmp80 = __cil_tmp79 + 9ULL;
         __cil_tmp81 = (int )__cil_tmp80;
         outb((unsigned char)36, __cil_tmp81);
         __cil_tmp82 = 0 * 8UL;
         __cil_tmp83 = 56 + __cil_tmp82;
-        __cil_tmp84 = (unsigned long )link;
-        __cil_tmp85 = __cil_tmp84 + __cil_tmp83;
-        __cil_tmp86 = *((struct resource **)__cil_tmp85);
+        __cil_tmp86 = *((struct resource **)((void *)link + __cil_tmp83));
         __cil_tmp87 = *((resource_size_t *)__cil_tmp86);
         __cil_tmp88 = __cil_tmp87 + 13ULL;
         __cil_tmp89 = (int )__cil_tmp88;
@@ -6861,9 +6395,7 @@ static int sym53c500_resume(struct pcmcia_device *link )
   {
   __cil_tmp90 = 0 * 8UL;
   __cil_tmp91 = 56 + __cil_tmp90;
-  __cil_tmp92 = (unsigned long )link;
-  __cil_tmp93 = __cil_tmp92 + __cil_tmp91;
-  __cil_tmp94 = *((struct resource **)__cil_tmp93);
+  __cil_tmp94 = *((struct resource **)((void *)link + __cil_tmp91));
   __cil_tmp95 = *((resource_size_t *)__cil_tmp94);
   __cil_tmp96 = (int )__cil_tmp95;
   SYM53C500_int_host_reset(__cil_tmp96);
@@ -6883,16 +6415,10 @@ static void SYM53C500_detach(struct pcmcia_device *link )
   int __cil_tmp6 ;
   int __cil_tmp7 ;
   long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device  const  *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   void const   *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
 
   {
   {
@@ -6912,9 +6438,7 @@ static void SYM53C500_detach(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp9 = (unsigned long )link;
-        __cil_tmp10 = __cil_tmp9 + 184;
-        __cil_tmp11 = (struct device *)__cil_tmp10;
+        __cil_tmp11 = (struct device *)((void *)link + 184);
         __cil_tmp12 = (struct device  const  *)__cil_tmp11;
         __dynamic_dev_dbg(& descriptor___1, __cil_tmp12, "SYM53C500_detach\n");
         }
@@ -6931,14 +6455,10 @@ static void SYM53C500_detach(struct pcmcia_device *link )
   }
   {
   SYM53C500_release(link);
-  __cil_tmp13 = (unsigned long )link;
-  __cil_tmp14 = __cil_tmp13 + 952;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)link + 952));
   __cil_tmp16 = (void const   *)__cil_tmp15;
   kfree(__cil_tmp16);
-  __cil_tmp17 = (unsigned long )link;
-  __cil_tmp18 = __cil_tmp17 + 952;
-  *((void **)__cil_tmp18) = (void *)0;
+  *((void **)((void *)link + 952)) = (void *)0;
   }
   return;
 }
@@ -6958,16 +6478,8 @@ static int SYM53C500_probe(struct pcmcia_device *link )
   int __cil_tmp9 ;
   int __cil_tmp10 ;
   long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device  const  *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
 
   {
@@ -6988,9 +6500,7 @@ static int SYM53C500_probe(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp12 = (unsigned long )link;
-        __cil_tmp13 = __cil_tmp12 + 184;
-        __cil_tmp14 = (struct device *)__cil_tmp13;
+        __cil_tmp14 = (struct device *)((void *)link + 184);
         __cil_tmp15 = (struct device  const  *)__cil_tmp14;
         __dynamic_dev_dbg(& descriptor___2, __cil_tmp15, "SYM53C500_attach()\n");
         }
@@ -7016,15 +6526,9 @@ static int SYM53C500_probe(struct pcmcia_device *link )
   }
   {
   *((struct pcmcia_device **)info) = link;
-  __cil_tmp16 = (unsigned long )link;
-  __cil_tmp17 = __cil_tmp16 + 952;
-  *((void **)__cil_tmp17) = (void *)info;
-  __cil_tmp18 = (unsigned long )link;
-  __cil_tmp19 = __cil_tmp18 + 116;
-  __cil_tmp20 = (unsigned long )link;
-  __cil_tmp21 = __cil_tmp20 + 116;
-  __cil_tmp22 = *((unsigned int *)__cil_tmp21);
-  *((unsigned int *)__cil_tmp19) = __cil_tmp22 | 2049U;
+  *((void **)((void *)link + 952)) = (void *)info;
+  __cil_tmp22 = *((unsigned int *)((void *)link + 116));
+  *((unsigned int *)((void *)link + 116)) = __cil_tmp22 | 2049U;
   tmp___9 = SYM53C500_config(link);
   }
   return (tmp___9);

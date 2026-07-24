@@ -897,15 +897,9 @@ static struct mtd_info *mymtd  ;
 static int init_ts5500_map(void)  __attribute__((__section__(".init.text"), __no_instrument_function__)) ;
 static int init_ts5500_map(void) 
 { int rc ;
-  unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
   resource_size_t __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   char const   **__cil_tmp12 ;
   void *__cil_tmp13 ;
@@ -917,23 +911,18 @@ static int init_ts5500_map(void)
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   void *__cil_tmp23 ;
   void volatile   *__cil_tmp24 ;
 
   {
   {
   rc = 0;
-  __cil_tmp2 = (unsigned long )(& ts5500_map) + 24;
-  __cil_tmp3 = (unsigned long )(& ts5500_map) + 16;
-  __cil_tmp4 = *((resource_size_t *)__cil_tmp3);
-  __cil_tmp5 = (unsigned long )(& ts5500_map) + 8;
-  __cil_tmp6 = *((unsigned long *)__cil_tmp5);
-  *((void **)__cil_tmp2) = ioremap_nocache(__cil_tmp4, __cil_tmp6);
+  __cil_tmp4 = *((resource_size_t *)((void *)(&ts5500_map) + 16));
+  __cil_tmp6 = *((unsigned long *)((void *)(&ts5500_map) + 8));
+  *((void **)((void *)(&ts5500_map) + 24)) = ioremap_nocache(__cil_tmp4, __cil_tmp6);
   }
   {
-  __cil_tmp7 = (unsigned long )(& ts5500_map) + 24;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)(&ts5500_map) + 24));
   if (! __cil_tmp8) {
     {
     printk("<3>Failed to ioremap_nocache\n");
@@ -962,9 +951,7 @@ static int init_ts5500_map(void)
 
   }
   {
-  __cil_tmp9 = (unsigned long )mymtd;
-  __cil_tmp10 = __cil_tmp9 + 368;
-  *((struct module **)__cil_tmp10) = & __this_module;
+  *((struct module **)((void *)mymtd + 368)) = & __this_module;
   __cil_tmp11 = (void *)0;
   __cil_tmp12 = (char const   **)__cil_tmp11;
   __cil_tmp13 = (void *)0;
@@ -981,8 +968,7 @@ static int init_ts5500_map(void)
   return (0);
   err1: 
   {
-  __cil_tmp22 = (unsigned long )(& ts5500_map) + 24;
-  __cil_tmp23 = *((void **)__cil_tmp22);
+  __cil_tmp23 = *((void **)((void *)(&ts5500_map) + 24));
   __cil_tmp24 = (void volatile   *)__cil_tmp23;
   iounmap(__cil_tmp24);
   }
@@ -992,11 +978,9 @@ static int init_ts5500_map(void)
 }
 static void cleanup_ts5500_map(void)  __attribute__((__section__(".exit.text"), __no_instrument_function__)) ;
 static void cleanup_ts5500_map(void) 
-{ unsigned long __cil_tmp1 ;
-  unsigned long __cil_tmp2 ;
+{
   void *__cil_tmp3 ;
   void volatile   *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
 
   {
   if (mymtd) {
@@ -1008,15 +992,12 @@ static void cleanup_ts5500_map(void)
 
   }
   {
-  __cil_tmp1 = (unsigned long )(& ts5500_map) + 24;
-  if (*((void **)__cil_tmp1)) {
+  if (*((void **)((void *)(&ts5500_map) + 24))) {
     {
-    __cil_tmp2 = (unsigned long )(& ts5500_map) + 24;
-    __cil_tmp3 = *((void **)__cil_tmp2);
+    __cil_tmp3 = *((void **)((void *)(&ts5500_map) + 24));
     __cil_tmp4 = (void volatile   *)__cil_tmp3;
     iounmap(__cil_tmp4);
-    __cil_tmp5 = (unsigned long )(& ts5500_map) + 24;
-    *((void **)__cil_tmp5) = (void *)0;
+    *((void **)((void *)(&ts5500_map) + 24)) = (void *)0;
     }
   } else {
 

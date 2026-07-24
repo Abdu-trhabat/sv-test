@@ -4102,12 +4102,8 @@ __inline static void ide_std_init_ports(struct ide_hw *hw , unsigned long io_add
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
 
   {
   i = 0U;
@@ -4118,9 +4114,7 @@ __inline static void ide_std_init_ports(struct ide_hw *hw , unsigned long io_add
   __cil_tmp6 = i * 8UL;
   __cil_tmp7 = 0 + __cil_tmp6;
   __cil_tmp8 = 0 + __cil_tmp7;
-  __cil_tmp9 = (unsigned long )hw;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  *((unsigned long *)__cil_tmp10) = tmp;
+  *((unsigned long *)((void *)hw + __cil_tmp8)) = tmp;
   i = i + 1U;
   ldv_34007: ;
   if (i <= 7U) {
@@ -4131,9 +4125,7 @@ __inline static void ide_std_init_ports(struct ide_hw *hw , unsigned long io_add
   ldv_34008: 
   __cil_tmp11 = 0 + 64;
   __cil_tmp12 = 0 + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )hw;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  *((unsigned long *)__cil_tmp14) = ctl_addr;
+  *((unsigned long *)((void *)hw + __cil_tmp12)) = ctl_addr;
   return;
 }
 }
@@ -4184,7 +4176,6 @@ static int idepnp_probe(struct pnp_dev *dev , struct pnp_device_id  const  *dev_
   char *__cil_tmp29 ;
   resource_size_t __cil_tmp30 ;
   void *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct ide_hw **__cil_tmp33 ;
   struct ide_host **__cil_tmp34 ;
   struct ide_host *__cil_tmp35 ;
@@ -4267,8 +4258,7 @@ static int idepnp_probe(struct pnp_dev *dev , struct pnp_device_id  const  *dev_
   memset(__cil_tmp31, 0, 112UL);
   ide_std_init_ports(& hw, base, ctl);
   tmp___6 = pnp_irq(dev, 0U);
-  __cil_tmp32 = (unsigned long )(& hw) + 80;
-  *((int *)__cil_tmp32) = (int )tmp___6;
+  *((int *)((void *)(&hw) + 80)) = (int )tmp___6;
   __cil_tmp33 = (struct ide_hw **)(& hws);
   rc = ide_host_add(& ide_pnp_port_info, __cil_tmp33, 1U, & host);
   }

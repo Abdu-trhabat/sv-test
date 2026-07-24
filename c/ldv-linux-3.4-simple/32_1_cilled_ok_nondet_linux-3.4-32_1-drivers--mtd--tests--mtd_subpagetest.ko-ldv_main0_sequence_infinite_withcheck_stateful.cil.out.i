@@ -2222,26 +2222,17 @@ static int erase_eraseblock(int ebnum )
 { int err ;
   struct erase_info ei ;
   loff_t addr ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   uint32_t __cil_tmp7 ;
   uint32_t __cil_tmp8 ;
   uint32_t __cil_tmp9 ;
   void *__cil_tmp10 ;
   struct erase_info *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   uint32_t __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u_char __cil_tmp18 ;
   int __cil_tmp19 ;
   {
   {
-  __cil_tmp5 = (unsigned long )mtd;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((uint32_t *)__cil_tmp6);
+  __cil_tmp7 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp8 = (uint32_t )ebnum;
   __cil_tmp9 = __cil_tmp8 * __cil_tmp7;
   addr = (loff_t )__cil_tmp9;
@@ -2249,13 +2240,9 @@ static int erase_eraseblock(int ebnum )
   memset(__cil_tmp10, 0, 88UL);
   __cil_tmp11 = & ei;
   *((struct mtd_info **)__cil_tmp11) = mtd;
-  __cil_tmp12 = (unsigned long )(& ei) + 8;
-  *((uint64_t *)__cil_tmp12) = (uint64_t )addr;
-  __cil_tmp13 = (unsigned long )(& ei) + 16;
-  __cil_tmp14 = (unsigned long )mtd;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((uint32_t *)__cil_tmp15);
-  *((uint64_t *)__cil_tmp13) = (uint64_t )__cil_tmp16;
+  *((uint64_t *)((void *)(&ei) + 8)) = (uint64_t )addr;
+  __cil_tmp16 = *((uint32_t *)((void *)mtd + 16));
+  *((uint64_t *)((void *)(&ei) + 16)) = (uint64_t )__cil_tmp16;
   err = mtd_erase(mtd, & ei);
   }
   if (err) {
@@ -2266,8 +2253,7 @@ static int erase_eraseblock(int ebnum )
   } else {
   }
   {
-  __cil_tmp17 = (unsigned long )(& ei) + 72;
-  __cil_tmp18 = *((u_char *)__cil_tmp17);
+  __cil_tmp18 = *((u_char *)((void *)(&ei) + 72));
   __cil_tmp19 = (int )__cil_tmp18;
   if (__cil_tmp19 == 16) {
     {
@@ -2342,8 +2328,6 @@ static int write_eraseblock(int ebnum )
   int tmp___10 ;
   int tmp___11 ;
   long tmp___12 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   uint32_t __cil_tmp13 ;
   uint32_t __cil_tmp14 ;
   uint32_t __cil_tmp15 ;
@@ -2375,9 +2359,7 @@ static int write_eraseblock(int ebnum )
   {
   {
   err = 0;
-  __cil_tmp11 = (unsigned long )mtd;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = *((uint32_t *)__cil_tmp12);
+  __cil_tmp13 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp14 = (uint32_t )ebnum;
   __cil_tmp15 = __cil_tmp14 * __cil_tmp13;
   addr = (loff_t )__cil_tmp15;
@@ -2495,13 +2477,9 @@ static int write_eraseblock2(int ebnum )
   int tmp___7 ;
   int tmp___8 ;
   long tmp___9 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   uint32_t __cil_tmp11 ;
   uint32_t __cil_tmp12 ;
   uint32_t __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   uint32_t __cil_tmp16 ;
   int __cil_tmp17 ;
   uint32_t __cil_tmp18 ;
@@ -2530,9 +2508,7 @@ static int write_eraseblock2(int ebnum )
   loff_t __cil_tmp41 ;
   {
   err = 0;
-  __cil_tmp9 = (unsigned long )mtd;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = *((uint32_t *)__cil_tmp10);
+  __cil_tmp11 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp12 = (uint32_t )ebnum;
   __cil_tmp13 = __cil_tmp12 * __cil_tmp11;
   addr = (loff_t )__cil_tmp13;
@@ -2545,9 +2521,7 @@ static int write_eraseblock2(int ebnum )
       goto while_break;
     }
     {
-    __cil_tmp14 = (unsigned long )mtd;
-    __cil_tmp15 = __cil_tmp14 + 16;
-    __cil_tmp16 = *((uint32_t *)__cil_tmp15);
+    __cil_tmp16 = *((uint32_t *)((void *)mtd + 16));
     __cil_tmp17 = ebnum + 1;
     __cil_tmp18 = (uint32_t )__cil_tmp17;
     __cil_tmp19 = __cil_tmp18 * __cil_tmp16;
@@ -2691,8 +2665,6 @@ static int verify_eraseblock(int ebnum )
   int tmp___18 ;
   int tmp___19 ;
   long tmp___20 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   uint32_t __cil_tmp21 ;
   uint32_t __cil_tmp22 ;
   uint32_t __cil_tmp23 ;
@@ -2728,9 +2700,7 @@ static int verify_eraseblock(int ebnum )
   {
   {
   err = 0;
-  __cil_tmp19 = (unsigned long )mtd;
-  __cil_tmp20 = __cil_tmp19 + 16;
-  __cil_tmp21 = *((uint32_t *)__cil_tmp20);
+  __cil_tmp21 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp22 = (uint32_t )ebnum;
   __cil_tmp23 = __cil_tmp22 * __cil_tmp21;
   addr = (loff_t )__cil_tmp23;
@@ -2920,13 +2890,9 @@ static int verify_eraseblock2(int ebnum )
   int tmp___11 ;
   int tmp___12 ;
   long tmp___13 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   uint32_t __cil_tmp15 ;
   uint32_t __cil_tmp16 ;
   uint32_t __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   uint32_t __cil_tmp20 ;
   int __cil_tmp21 ;
   uint32_t __cil_tmp22 ;
@@ -2959,9 +2925,7 @@ static int verify_eraseblock2(int ebnum )
   loff_t __cil_tmp49 ;
   {
   err = 0;
-  __cil_tmp13 = (unsigned long )mtd;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((uint32_t *)__cil_tmp14);
+  __cil_tmp15 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp16 = (uint32_t )ebnum;
   __cil_tmp17 = __cil_tmp16 * __cil_tmp15;
   addr = (loff_t )__cil_tmp17;
@@ -2974,9 +2938,7 @@ static int verify_eraseblock2(int ebnum )
       goto while_break;
     }
     {
-    __cil_tmp18 = (unsigned long )mtd;
-    __cil_tmp19 = __cil_tmp18 + 16;
-    __cil_tmp20 = *((uint32_t *)__cil_tmp19);
+    __cil_tmp20 = *((uint32_t *)((void *)mtd + 16));
     __cil_tmp21 = ebnum + 1;
     __cil_tmp22 = (uint32_t )__cil_tmp21;
     __cil_tmp23 = __cil_tmp22 * __cil_tmp20;
@@ -3097,16 +3059,12 @@ static int verify_eraseblock_ff(int ebnum )
   int tmp___11 ;
   int tmp___12 ;
   long tmp___13 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   uint32_t __cil_tmp15 ;
   uint32_t __cil_tmp16 ;
   uint32_t __cil_tmp17 ;
   void *__cil_tmp18 ;
   size_t __cil_tmp19 ;
   uint32_t __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   uint32_t __cil_tmp23 ;
   uint32_t __cil_tmp24 ;
   size_t __cil_tmp25 ;
@@ -3126,9 +3084,7 @@ static int verify_eraseblock_ff(int ebnum )
   {
   {
   err = 0;
-  __cil_tmp13 = (unsigned long )mtd;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((uint32_t *)__cil_tmp14);
+  __cil_tmp15 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp16 = (uint32_t )ebnum;
   __cil_tmp17 = __cil_tmp16 * __cil_tmp15;
   addr = (loff_t )__cil_tmp17;
@@ -3142,9 +3098,7 @@ static int verify_eraseblock_ff(int ebnum )
     while_continue: ;
     {
     __cil_tmp20 = (uint32_t )subpgsize;
-    __cil_tmp21 = (unsigned long )mtd;
-    __cil_tmp22 = __cil_tmp21 + 16;
-    __cil_tmp23 = *((uint32_t *)__cil_tmp22);
+    __cil_tmp23 = *((uint32_t *)((void *)mtd + 16));
     __cil_tmp24 = __cil_tmp23 / __cil_tmp20;
     if (j < __cil_tmp24) {
     } else {
@@ -3303,16 +3257,12 @@ static int verify_all_eraseblocks_ff(void)
 static int is_block_bad(int ebnum )
 { loff_t addr ;
   int ret ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   uint32_t __cil_tmp6 ;
   uint32_t __cil_tmp7 ;
   uint32_t __cil_tmp8 ;
   {
   {
-  __cil_tmp4 = (unsigned long )mtd;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  __cil_tmp6 = *((uint32_t *)__cil_tmp5);
+  __cil_tmp6 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp7 = (uint32_t )ebnum;
   __cil_tmp8 = __cil_tmp7 * __cil_tmp6;
   addr = (loff_t )__cil_tmp8;
@@ -3420,38 +3370,18 @@ static int mtd_subpagetest_init(void)
   void const *__cil_tmp23 ;
   u_char __cil_tmp24 ;
   int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   uint32_t __cil_tmp31 ;
   uint32_t __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long long __cil_tmp37 ;
   unsigned long long __cil_tmp38 ;
   uint64_t __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   uint32_t __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   uint32_t __cil_tmp45 ;
   uint32_t __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   uint64_t __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   uint32_t __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   uint32_t __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   uint32_t __cil_tmp58 ;
   size_t __cil_tmp59 ;
   size_t __cil_tmp60 ;
@@ -3538,46 +3468,26 @@ static int mtd_subpagetest_init(void)
   }
   }
   {
-  __cil_tmp26 = (unsigned long )mtd;
-  __cil_tmp27 = __cil_tmp26 + 352;
-  __cil_tmp28 = *((int *)__cil_tmp27);
-  __cil_tmp29 = (unsigned long )mtd;
-  __cil_tmp30 = __cil_tmp29 + 20;
-  __cil_tmp31 = *((uint32_t *)__cil_tmp30);
+  __cil_tmp28 = *((int *)((void *)mtd + 352));
+  __cil_tmp31 = *((uint32_t *)((void *)mtd + 20));
   __cil_tmp32 = __cil_tmp31 >> __cil_tmp28;
   subpgsize = (int )__cil_tmp32;
-  __cil_tmp33 = (unsigned long )mtd;
-  __cil_tmp34 = __cil_tmp33 + 8;
-  tmp___7 = *((uint64_t *)__cil_tmp34);
-  __cil_tmp35 = (unsigned long )mtd;
-  __cil_tmp36 = __cil_tmp35 + 16;
-  __base = *((uint32_t *)__cil_tmp36);
+  tmp___7 = *((uint64_t *)((void *)mtd + 8));
+  __base = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp37 = (unsigned long long )__base;
   __cil_tmp38 = tmp___7 % __cil_tmp37;
   __rem = (uint32_t )__cil_tmp38;
   __cil_tmp39 = (uint64_t )__base;
   tmp___7 = tmp___7 / __cil_tmp39;
   ebcnt = (int )tmp___7;
-  __cil_tmp40 = (unsigned long )mtd;
-  __cil_tmp41 = __cil_tmp40 + 20;
-  __cil_tmp42 = *((uint32_t *)__cil_tmp41);
-  __cil_tmp43 = (unsigned long )mtd;
-  __cil_tmp44 = __cil_tmp43 + 16;
-  __cil_tmp45 = *((uint32_t *)__cil_tmp44);
+  __cil_tmp42 = *((uint32_t *)((void *)mtd + 20));
+  __cil_tmp45 = *((uint32_t *)((void *)mtd + 16));
   __cil_tmp46 = __cil_tmp45 / __cil_tmp42;
   pgcnt = (int )__cil_tmp46;
-  __cil_tmp47 = (unsigned long )mtd;
-  __cil_tmp48 = __cil_tmp47 + 8;
-  __cil_tmp49 = *((uint64_t *)__cil_tmp48);
-  __cil_tmp50 = (unsigned long )mtd;
-  __cil_tmp51 = __cil_tmp50 + 16;
-  __cil_tmp52 = *((uint32_t *)__cil_tmp51);
-  __cil_tmp53 = (unsigned long )mtd;
-  __cil_tmp54 = __cil_tmp53 + 20;
-  __cil_tmp55 = *((uint32_t *)__cil_tmp54);
-  __cil_tmp56 = (unsigned long )mtd;
-  __cil_tmp57 = __cil_tmp56 + 28;
-  __cil_tmp58 = *((uint32_t *)__cil_tmp57);
+  __cil_tmp49 = *((uint64_t *)((void *)mtd + 8));
+  __cil_tmp52 = *((uint32_t *)((void *)mtd + 16));
+  __cil_tmp55 = *((uint32_t *)((void *)mtd + 20));
+  __cil_tmp58 = *((uint32_t *)((void *)mtd + 28));
   printk("<6>mtd_subpagetest: MTD device size %llu, eraseblock size %u, page size %u, subpage size %u, count of eraseblocks %u, pages per eraseblock %u, OOB size %u\n",
          __cil_tmp49, __cil_tmp52, __cil_tmp55, subpgsize, ebcnt, pgcnt, __cil_tmp58);
   err = -12;

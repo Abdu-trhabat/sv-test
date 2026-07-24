@@ -1947,34 +1947,18 @@ static struct pardevice *parkbd_dev ;
 static struct serio *parkbd_port ;
 static int parkbd_readlines(void)
 { unsigned char tmp ;
-  unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
   struct parport *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct parport_operations *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned char (*__cil_tmp10)(struct parport * ) ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct parport *__cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   {
   {
-  __cil_tmp2 = (unsigned long )parkbd_dev;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  __cil_tmp4 = *((struct parport **)__cil_tmp3);
-  __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = __cil_tmp5 + 440;
-  __cil_tmp7 = *((struct parport_operations **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 40;
-  __cil_tmp10 = *((unsigned char (**)(struct parport * ))__cil_tmp9);
-  __cil_tmp11 = (unsigned long )parkbd_dev;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((struct parport **)__cil_tmp12);
+  __cil_tmp4 = *((struct parport **)((void *)parkbd_dev + 8));
+  __cil_tmp7 = *((struct parport_operations **)((void *)__cil_tmp4 + 440));
+  __cil_tmp10 = *((unsigned char (**)(struct parport * ))((void *)__cil_tmp7 + 40));
+  __cil_tmp13 = *((struct parport **)((void *)parkbd_dev + 8));
   tmp = (*__cil_tmp10)(__cil_tmp13);
   }
   {
@@ -1985,17 +1969,10 @@ static int parkbd_readlines(void)
 }
 }
 static void parkbd_writelines(int data )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct parport *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct parport_operations *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void (*__cil_tmp10)(struct parport * , unsigned char ) ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct parport *__cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
@@ -2003,18 +1980,10 @@ static void parkbd_writelines(int data )
   unsigned char __cil_tmp17 ;
   {
   {
-  __cil_tmp2 = (unsigned long )parkbd_dev;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  __cil_tmp4 = *((struct parport **)__cil_tmp3);
-  __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = __cil_tmp5 + 440;
-  __cil_tmp7 = *((struct parport_operations **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((void (**)(struct parport * , unsigned char ))__cil_tmp9);
-  __cil_tmp11 = (unsigned long )parkbd_dev;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((struct parport **)__cil_tmp12);
+  __cil_tmp4 = *((struct parport **)((void *)parkbd_dev + 8));
+  __cil_tmp7 = *((struct parport_operations **)((void *)__cil_tmp4 + 440));
+  __cil_tmp10 = *((void (**)(struct parport * , unsigned char ))((void *)__cil_tmp7 + 16));
+  __cil_tmp13 = *((struct parport **)((void *)parkbd_dev + 8));
   __cil_tmp14 = ~ data;
   __cil_tmp15 = __cil_tmp14 & 3;
   __cil_tmp16 = __cil_tmp15 | 16;
@@ -2286,27 +2255,15 @@ __no_instrument_function__)) ;
 static struct serio *parkbd_allocate_serio(void)
 { struct serio *serio ;
   void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned int *__cil_tmp5 ;
   unsigned int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   char *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   char *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct parport *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   char const *__cil_tmp24 ;
   {
   {
@@ -2315,31 +2272,19 @@ static struct serio *parkbd_allocate_serio(void)
   }
   if (serio) {
     {
-    __cil_tmp3 = (unsigned long )serio;
-    __cil_tmp4 = __cil_tmp3 + 73;
     __cil_tmp5 = & parkbd_mode;
     __cil_tmp6 = *__cil_tmp5;
-    *((__u8 *)__cil_tmp4) = (__u8 )__cil_tmp6;
-    __cil_tmp7 = (unsigned long )serio;
-    __cil_tmp8 = __cil_tmp7 + 104;
-    *((int (**)(struct serio * , unsigned char ))__cil_tmp8) = & parkbd_write;
+    *((__u8 *)((void *)serio + 73)) = (__u8 )__cil_tmp6;
+    *((int (**)(struct serio * , unsigned char ))((void *)serio + 104)) = & parkbd_write;
     __cil_tmp9 = 0 * 1UL;
     __cil_tmp10 = 8 + __cil_tmp9;
-    __cil_tmp11 = (unsigned long )serio;
-    __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-    __cil_tmp13 = (char *)__cil_tmp12;
+    __cil_tmp13 = (char *)((void *)serio + __cil_tmp10);
     strlcpy(__cil_tmp13, "PARKBD AT/XT keyboard adapter", 32UL);
     __cil_tmp14 = 0 * 1UL;
     __cil_tmp15 = 40 + __cil_tmp14;
-    __cil_tmp16 = (unsigned long )serio;
-    __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-    __cil_tmp18 = (char *)__cil_tmp17;
-    __cil_tmp19 = (unsigned long )parkbd_dev;
-    __cil_tmp20 = __cil_tmp19 + 8;
-    __cil_tmp21 = *((struct parport **)__cil_tmp20);
-    __cil_tmp22 = (unsigned long )__cil_tmp21;
-    __cil_tmp23 = __cil_tmp22 + 24;
-    __cil_tmp24 = *((char const **)__cil_tmp23);
+    __cil_tmp18 = (char *)((void *)serio + __cil_tmp15);
+    __cil_tmp21 = *((struct parport **)((void *)parkbd_dev + 8));
+    __cil_tmp24 = *((char const **)((void *)__cil_tmp21 + 24));
     snprintf(__cil_tmp18, 32UL, "%s/serio0", __cil_tmp24);
     }
   } else {
@@ -2352,11 +2297,7 @@ static int parkbd_init(void)
 { int err ;
   char const *tmp ;
   unsigned int *__cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct parport *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   char const *__cil_tmp9 ;
   {
   {
@@ -2389,12 +2330,8 @@ static int parkbd_init(void)
   }
   }
   {
-  __cil_tmp4 = (unsigned long )parkbd_dev;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((struct parport **)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 24;
-  __cil_tmp9 = *((char const **)__cil_tmp8);
+  __cil_tmp6 = *((struct parport **)((void *)parkbd_dev + 8));
+  __cil_tmp9 = *((char const **)((void *)__cil_tmp6 + 24));
   printk("<6>serio: PARKBD %s adapter on %s\n", tmp, __cil_tmp9);
   }
   return (0);

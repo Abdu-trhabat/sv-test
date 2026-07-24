@@ -838,14 +838,10 @@ struct gpio_switch_data {
 long ldv__builtin_expect(long val , long res ) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )  __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -901,15 +897,11 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -1000,14 +992,10 @@ extern int switch_dev_register(struct switch_dev *sdev ) ;
 extern void switch_dev_unregister(struct switch_dev *sdev ) ;
 __inline static int switch_get_state(struct switch_dev *sdev )  __attribute__((__no_instrument_function__)) ;
 __inline static int switch_get_state(struct switch_dev *sdev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )sdev;
-  __cil_tmp3 = __cil_tmp2 + 20;
-  return (*((int *)__cil_tmp3));
+  return (*((int *)((void *)sdev + 20)));
   }
 }
 }
@@ -1017,14 +1005,10 @@ static void gpio_switch_work(struct work_struct *work )
   struct gpio_switch_data *data ;
   struct work_struct  const  *__mptr ;
   struct gpio_switch_data *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct work_struct *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   char *__cil_tmp10 ;
   char *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   struct switch_dev *__cil_tmp15 ;
 
@@ -1032,16 +1016,12 @@ static void gpio_switch_work(struct work_struct *work )
   {
   __mptr = (struct work_struct  const  *)work;
   __cil_tmp5 = (struct gpio_switch_data *)0;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 88;
-  __cil_tmp8 = (struct work_struct *)__cil_tmp7;
+  __cil_tmp8 = (struct work_struct *)((void *)__cil_tmp5 + 88);
   __cil_tmp9 = (unsigned int )__cil_tmp8;
   __cil_tmp10 = (char *)__mptr;
   __cil_tmp11 = __cil_tmp10 - __cil_tmp9;
   data = (struct gpio_switch_data *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )data;
-  __cil_tmp13 = __cil_tmp12 + 40;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)data + 40));
   state = gpio_get_value(__cil_tmp14);
   __cil_tmp15 = (struct switch_dev *)data;
   switch_set_state(__cil_tmp15, state);
@@ -1051,16 +1031,12 @@ static void gpio_switch_work(struct work_struct *work )
 }
 static irqreturn_t gpio_irq_handler(int irq , void *dev_id ) 
 { struct gpio_switch_data *switch_data ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct work_struct *__cil_tmp6 ;
 
   {
   {
   switch_data = (struct gpio_switch_data *)dev_id;
-  __cil_tmp4 = (unsigned long )switch_data;
-  __cil_tmp5 = __cil_tmp4 + 88;
-  __cil_tmp6 = (struct work_struct *)__cil_tmp5;
+  __cil_tmp6 = (struct work_struct *)((void *)switch_data + 88);
   schedule_work(__cil_tmp6);
   }
   return ((irqreturn_t )1);
@@ -1077,10 +1053,6 @@ static ssize_t switch_gpio_print_state(struct switch_dev *sdev , char *buf )
   unsigned int __cil_tmp10 ;
   char *__cil_tmp11 ;
   char *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
 
   {
   {
@@ -1094,13 +1066,9 @@ static ssize_t switch_gpio_print_state(struct switch_dev *sdev , char *buf )
   tmp = switch_get_state(sdev);
   }
   if (tmp) {
-    __cil_tmp13 = (unsigned long )switch_data;
-    __cil_tmp14 = __cil_tmp13 + 64;
-    state = *((char const   **)__cil_tmp14);
+    state = *((char const   **)((void *)switch_data + 64));
   } else {
-    __cil_tmp15 = (unsigned long )switch_data;
-    __cil_tmp16 = __cil_tmp15 + 72;
-    state = *((char const   **)__cil_tmp16);
+    state = *((char const   **)((void *)switch_data + 72));
   }
   if (state) {
     {
@@ -1120,73 +1088,23 @@ static int gpio_switch_probe(struct platform_device *pdev )
   void *tmp ;
   atomic_long_t __constr_expr_0 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct switch_dev *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   char const   *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct work_struct *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct list_head *__cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   int __cil_tmp66 ;
   unsigned int __cil_tmp67 ;
   char const   *__cil_tmp68 ;
   void *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct work_struct *__cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   unsigned int __cil_tmp75 ;
   struct switch_dev *__cil_tmp76 ;
   void const   *__cil_tmp77 ;
@@ -1194,9 +1112,7 @@ static int gpio_switch_probe(struct platform_device *pdev )
 
   {
   __cil_tmp7 = 16 + 184;
-  __cil_tmp8 = (unsigned long )pdev;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)pdev + __cil_tmp7));
   pdata = (struct gpio_switch_platform_data *)__cil_tmp10;
   ret = 0;
   if (! pdata) {
@@ -1215,35 +1131,13 @@ static int gpio_switch_probe(struct platform_device *pdev )
   }
   {
   *((char const   **)switch_data) = *((char const   **)pdata);
-  __cil_tmp11 = (unsigned long )switch_data;
-  __cil_tmp12 = __cil_tmp11 + 40;
-  __cil_tmp13 = (unsigned long )pdata;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  *((unsigned int *)__cil_tmp12) = *((unsigned int *)__cil_tmp14);
-  __cil_tmp15 = (unsigned long )switch_data;
-  __cil_tmp16 = __cil_tmp15 + 48;
-  __cil_tmp17 = (unsigned long )pdata;
-  __cil_tmp18 = __cil_tmp17 + 16;
-  *((char const   **)__cil_tmp16) = *((char const   **)__cil_tmp18);
-  __cil_tmp19 = (unsigned long )switch_data;
-  __cil_tmp20 = __cil_tmp19 + 56;
-  __cil_tmp21 = (unsigned long )pdata;
-  __cil_tmp22 = __cil_tmp21 + 24;
-  *((char const   **)__cil_tmp20) = *((char const   **)__cil_tmp22);
-  __cil_tmp23 = (unsigned long )switch_data;
-  __cil_tmp24 = __cil_tmp23 + 64;
-  __cil_tmp25 = (unsigned long )pdata;
-  __cil_tmp26 = __cil_tmp25 + 32;
-  *((char const   **)__cil_tmp24) = *((char const   **)__cil_tmp26);
-  __cil_tmp27 = (unsigned long )switch_data;
-  __cil_tmp28 = __cil_tmp27 + 72;
-  __cil_tmp29 = (unsigned long )pdata;
-  __cil_tmp30 = __cil_tmp29 + 40;
-  *((char const   **)__cil_tmp28) = *((char const   **)__cil_tmp30);
+  *((unsigned int *)((void *)switch_data + 40)) = *((unsigned int *)((void *)pdata + 8));
+  *((char const   **)((void *)switch_data + 48)) = *((char const   **)((void *)pdata + 16));
+  *((char const   **)((void *)switch_data + 56)) = *((char const   **)((void *)pdata + 24));
+  *((char const   **)((void *)switch_data + 64)) = *((char const   **)((void *)pdata + 32));
+  *((char const   **)((void *)switch_data + 72)) = *((char const   **)((void *)pdata + 40));
   __cil_tmp31 = 0 + 32;
-  __cil_tmp32 = (unsigned long )switch_data;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  *((ssize_t (**)(struct switch_dev *sdev , char *buf ))__cil_tmp33) = & switch_gpio_print_state;
+  *((ssize_t (**)(struct switch_dev *sdev , char *buf ))((void *)switch_data + __cil_tmp31)) = & switch_gpio_print_state;
   __cil_tmp34 = (struct switch_dev *)switch_data;
   ret = switch_dev_register(__cil_tmp34);
   }
@@ -1253,9 +1147,7 @@ static int gpio_switch_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp35 = (unsigned long )switch_data;
-  __cil_tmp36 = __cil_tmp35 + 40;
-  __cil_tmp37 = *((unsigned int *)__cil_tmp36);
+  __cil_tmp37 = *((unsigned int *)((void *)switch_data + 40));
   __cil_tmp38 = *((char const   **)pdev);
   ret = gpio_request(__cil_tmp37, __cil_tmp38);
   }
@@ -1265,9 +1157,7 @@ static int gpio_switch_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp39 = (unsigned long )switch_data;
-  __cil_tmp40 = __cil_tmp39 + 40;
-  __cil_tmp41 = *((unsigned int *)__cil_tmp40);
+  __cil_tmp41 = *((unsigned int *)((void *)switch_data + 40));
   ret = gpio_direction_input(__cil_tmp41);
   }
   if (ret < 0) {
@@ -1282,27 +1172,19 @@ static int gpio_switch_probe(struct platform_device *pdev )
     while (1) {
       while_continue___0: /* CIL Label */ ;
       {
-      __cil_tmp42 = (unsigned long )switch_data;
-      __cil_tmp43 = __cil_tmp42 + 88;
-      __cil_tmp44 = (struct work_struct *)__cil_tmp43;
+      __cil_tmp44 = (struct work_struct *)((void *)switch_data + 88);
       __init_work(__cil_tmp44, 0);
       __constr_expr_0_counter78 = 2097664L;
-      __cil_tmp45 = (unsigned long )switch_data;
-      __cil_tmp46 = __cil_tmp45 + 88;
-      ((atomic_long_t *)__cil_tmp46)->counter = __constr_expr_0_counter78;
+      ((atomic_long_t *)((void *)switch_data + 88))->counter = __constr_expr_0_counter78;
       __cil_tmp47 = 88 + 8;
-      __cil_tmp48 = (unsigned long )switch_data;
-      __cil_tmp49 = __cil_tmp48 + __cil_tmp47;
-      __cil_tmp50 = (struct list_head *)__cil_tmp49;
+      __cil_tmp50 = (struct list_head *)((void *)switch_data + __cil_tmp47);
       INIT_LIST_HEAD(__cil_tmp50);
       }
       {
       while (1) {
         while_continue___1: /* CIL Label */ ;
         __cil_tmp51 = 88 + 24;
-        __cil_tmp52 = (unsigned long )switch_data;
-        __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-        *((void (**)(struct work_struct *work ))__cil_tmp53) = & gpio_switch_work;
+        *((void (**)(struct work_struct *work ))((void *)switch_data + __cil_tmp51)) = & gpio_switch_work;
         goto while_break___1;
       }
       while_break___1: /* CIL Label */ ;
@@ -1316,30 +1198,20 @@ static int gpio_switch_probe(struct platform_device *pdev )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp54 = (unsigned long )switch_data;
-  __cil_tmp55 = __cil_tmp54 + 80;
-  __cil_tmp56 = (unsigned long )switch_data;
-  __cil_tmp57 = __cil_tmp56 + 40;
-  __cil_tmp58 = *((unsigned int *)__cil_tmp57);
-  *((int *)__cil_tmp55) = gpio_to_irq(__cil_tmp58);
+  __cil_tmp58 = *((unsigned int *)((void *)switch_data + 40));
+  *((int *)((void *)switch_data + 80)) = gpio_to_irq(__cil_tmp58);
   }
   {
-  __cil_tmp59 = (unsigned long )switch_data;
-  __cil_tmp60 = __cil_tmp59 + 80;
-  __cil_tmp61 = *((int *)__cil_tmp60);
+  __cil_tmp61 = *((int *)((void *)switch_data + 80));
   if (__cil_tmp61 < 0) {
-    __cil_tmp62 = (unsigned long )switch_data;
-    __cil_tmp63 = __cil_tmp62 + 80;
-    ret = *((int *)__cil_tmp63);
+    ret = *((int *)((void *)switch_data + 80));
     goto err_request_irq;
   } else {
 
   }
   }
   {
-  __cil_tmp64 = (unsigned long )switch_data;
-  __cil_tmp65 = __cil_tmp64 + 80;
-  __cil_tmp66 = *((int *)__cil_tmp65);
+  __cil_tmp66 = *((int *)((void *)switch_data + 80));
   __cil_tmp67 = (unsigned int )__cil_tmp66;
   __cil_tmp68 = *((char const   **)pdev);
   __cil_tmp69 = (void *)switch_data;
@@ -1351,17 +1223,13 @@ static int gpio_switch_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp70 = (unsigned long )switch_data;
-  __cil_tmp71 = __cil_tmp70 + 88;
-  __cil_tmp72 = (struct work_struct *)__cil_tmp71;
+  __cil_tmp72 = (struct work_struct *)((void *)switch_data + 88);
   gpio_switch_work(__cil_tmp72);
   }
   return (0);
   err_request_irq: 
   {
-  __cil_tmp73 = (unsigned long )switch_data;
-  __cil_tmp74 = __cil_tmp73 + 40;
-  __cil_tmp75 = *((unsigned int *)__cil_tmp74);
+  __cil_tmp75 = *((unsigned int *)((void *)switch_data + 40));
   gpio_free(__cil_tmp75);
   }
   err_request_gpio: 
@@ -1383,11 +1251,7 @@ static int gpio_switch_remove(struct platform_device *pdev )
 { struct gpio_switch_data *switch_data ;
   void *tmp ;
   struct platform_device  const  *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct work_struct *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   struct switch_dev *__cil_tmp11 ;
   void const   *__cil_tmp12 ;
@@ -1397,13 +1261,9 @@ static int gpio_switch_remove(struct platform_device *pdev )
   __cil_tmp4 = (struct platform_device  const  *)pdev;
   tmp = platform_get_drvdata(__cil_tmp4);
   switch_data = (struct gpio_switch_data *)tmp;
-  __cil_tmp5 = (unsigned long )switch_data;
-  __cil_tmp6 = __cil_tmp5 + 88;
-  __cil_tmp7 = (struct work_struct *)__cil_tmp6;
+  __cil_tmp7 = (struct work_struct *)((void *)switch_data + 88);
   cancel_work_sync(__cil_tmp7);
-  __cil_tmp8 = (unsigned long )switch_data;
-  __cil_tmp9 = __cil_tmp8 + 40;
-  __cil_tmp10 = *((unsigned int *)__cil_tmp9);
+  __cil_tmp10 = *((unsigned int *)((void *)switch_data + 40));
   gpio_free(__cil_tmp10);
   __cil_tmp11 = (struct switch_dev *)switch_data;
   switch_dev_unregister(__cil_tmp11);
