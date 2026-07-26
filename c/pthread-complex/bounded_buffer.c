@@ -136,7 +136,7 @@ int bounded_buf_put(bounded_buf_t * bbuf, void *item)
         return EINVAL;
 
     status = pthread_mutex_lock(&bbuf->mutex);
-    printf("producer %d -> lock\n", (int) pthread_self());
+    // printf("producer %d -> lock\n",pthread_self());
     if (status != 0) return status;
 
 
@@ -145,7 +145,7 @@ int bounded_buf_put(bounded_buf_t * bbuf, void *item)
         bbuf->p_wait++;
 
         while ( (bbuf->rear + 1)% bbuf->max_size == bbuf->head ){
-            printf("producer %d -> wait not_full\n", (int) pthread_self());
+            // printf("producer %d -> wait not_full\n",pthread_self());
             status = pthread_cond_wait(&bbuf->not_full, &bbuf->mutex);
             if (status != 0) break;
         }
@@ -157,11 +157,11 @@ int bounded_buf_put(bounded_buf_t * bbuf, void *item)
         bbuf->buf[bbuf->rear]= item;
         bbuf->rear = (bbuf->rear+1)% (bbuf->max_size);
         if (bbuf->c_wait > 0){
-            printf("producer %d -> signal not_empty\n", (int) pthread_self());
+            // printf("producer %d -> signal not_empty\n",pthread_self());
             status1 = pthread_cond_signal(&bbuf->not_empty);
         }
     }
-    printf("producer %d -> unlock\n", (int) pthread_self());
+    // printf("producer %d -> unlock\n",pthread_self());
     status2 = pthread_mutex_unlock(&bbuf->mutex);
     return (status == 0)? status2 : status;
 }
@@ -175,7 +175,7 @@ int bounded_buf_get(bounded_buf_t *bbuf, void **item)
         return EINVAL;
 
     status = pthread_mutex_lock(&bbuf->mutex);
-    printf("\t\t\tconsumer %d -> lock\n", (int) pthread_self());
+    // printf("\t\t\tconsumer %d -> lock\n",pthread_self());
     if (status != 0) return status;
 
     if (bbuf->head == bbuf->rear)
@@ -185,7 +185,7 @@ int bounded_buf_get(bounded_buf_t *bbuf, void **item)
 
         while (bbuf->head == bbuf->rear)
         {
-            printf("\t\t\tconsumer %d -> wait(not_empty)\n", (int) pthread_self());
+            // printf("\t\t\tconsumer %d -> wait(not_empty)\n",pthread_self());
             status = pthread_cond_wait(&bbuf->not_empty, &bbuf->mutex);
             if (status != 0) break;
         }
@@ -195,11 +195,11 @@ int bounded_buf_get(bounded_buf_t *bbuf, void **item)
     }
 
     //error
-    printf("\t\t\tconsumer %d -> unlock_err\n", (int) pthread_self());
+    // printf("\t\t\tconsumer %d -> unlock_err\n",pthread_self());
     status = pthread_mutex_unlock(&bbuf->mutex);
     //usleep(10);
     status = pthread_mutex_lock(&bbuf->mutex);
-    printf("\t\t\tconsumer %d -> lock_err\n", (int) pthread_self());
+    // printf("\t\t\tconsumer %d -> lock_err\n",pthread_self());
 
     if (status == 0)
     {
@@ -211,13 +211,13 @@ int bounded_buf_get(bounded_buf_t *bbuf, void **item)
         bbuf->head = (bbuf->head+1) % bbuf->max_size;
 
         if (bbuf->p_wait > 0){
-            printf("\t\t\tconsumer %d -> signal(not_full)\n", (int) pthread_self());
+            // printf("\t\t\tconsumer %d -> signal(not_full)\n",pthread_self());
             status1 = pthread_cond_signal(&bbuf->not_full);
         }
     }
 
     //  printf("%x:unlock:%x\n", pthread_self(), (int)&bbuf->mutex);
-    printf("\t\t\tconsumer %d -> unlock\n", (int) pthread_self());
+    // printf("\t\t\tconsumer %d -> unlock\n",pthread_self());
     status2 = pthread_mutex_unlock(&bbuf->mutex);
     return (status != 0)? status : (status1 != 0)? status1 : status2;
 }

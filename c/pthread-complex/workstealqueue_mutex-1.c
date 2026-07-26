@@ -11,6 +11,11 @@
 
 extern void abort(void);
 void reach_error() { assert(0); }
+void fail_if_not(bool condition) {
+    if (!condition) {
+        reach_error();
+    }
+}
 
 enum {
     STATICSIZE    = 16,
@@ -108,7 +113,7 @@ bool Steal(Obj **result) {
 
     // insert a memory fence here if memory is not sequentially consistent
     //
-    if ((found = h < atomic_load(&q.tail))) {
+    if (found = (h < atomic_load(&q.tail))) {
         // == (h+1 <= tail) == (head <= tail)
         //
         // BUG: atomic_store(&q.head, h + 1);
@@ -132,7 +137,7 @@ bool SyncPop(Obj **result) {
     //
     long t = atomic_load(&q.tail) - 1;
     atomic_store(&q.tail, t);
-    if ((found = atomic_load(&q.head) <= t)) {
+    if (found = (atomic_load(&q.head) <= t)) {
         // == (head <= tail)
         //
         long temp = t & q.mask;
@@ -196,9 +201,7 @@ void SyncPush(Obj* elem) {
         //
         long newsize = (q.mask == 0 ? q.InitialSize : 2 * (q.mask + 1));
 
-        if(!(newsize < q.MaxSize)) {
-            reach_error();
-        }
+        fail_if_not(newsize < q.MaxSize);
 
         Obj *newtasks[STATICSIZE];
         long i;
@@ -215,9 +218,7 @@ void SyncPush(Obj* elem) {
         atomic_store(&q.tail, count);
     }
 
-    if(!(count < q.mask)) {
-        reach_error();
-    }
+    fail_if_not(count < q.mask);
 
     // push the element
     //
@@ -301,9 +302,7 @@ int main(void) {
     }
 
     for (i = 0; i < ITEMS; i++) {
-        if(items[i].field != 1) {
-            reach_error();
-        }
+        fail_if_not(items[i].field == 1);
     }
 
     return 0;
