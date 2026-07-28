@@ -14,14 +14,14 @@ Interlingua), an intermediate language for symbolic model checking built on top 
 SMT-LIB 2. See the language definition (SPIN 2024):
 <https://doi.org/10.1007/978-3-031-66149-5_2>.
 
-## Input formats
+## Input format
 
-- A task model is given in one of two behaviorally equivalent formats:
-  - *native MoXI*, the SMT-LIB-style S-expression syntax (`.moxi`); or
-  - *MoXI-JSON*, a JSON serialization of the same model (`.json`).
-- Both formats are interpreted identically according to the MoXI standard, and a tool
-  may accept either. The task-definition `.yml` lists the concrete file(s) via
-  `input_files`.
+- A task model is given in *native MoXI*, the SMT-LIB-style S-expression syntax
+  (`.moxi`). This is the sole input format of the track; no other rendition (e.g.,
+  MoXI-JSON) is provided or accepted. Tools that internally prefer another
+  representation must convert the input themselves (e.g., MoXI-MC-Flow provides a
+  `moxi2json` converter).
+- The task-definition `.yml` lists the concrete file via `input_files`.
 
 ## Modeling
 
@@ -52,5 +52,5 @@ SMT-LIB 2. See the language definition (SPIN 2024):
   a queried state, reported as a `:trace` whose `:prefix` trail lists the states of the
   execution (in MoXI's format, a lasso trace with an empty lasso; see Fig. 4 of the
   MoXI language paper, SPIN 2024, linked above). If the model has free symbols, the
-  response also provides a `:model`
-  interpretation for them. Responses may be given in native MoXI or MoXI-JSON.
+  response also provides a `:model` interpretation for them. Responses are given in
+  native MoXI.
