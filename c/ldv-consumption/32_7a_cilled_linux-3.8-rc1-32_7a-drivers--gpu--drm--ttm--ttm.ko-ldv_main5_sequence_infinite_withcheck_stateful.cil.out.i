@@ -11,22 +11,6 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "32_7a_cilled_linux-3.8-rc1-32_7a-drivers--gpu--drm--ttm--ttm.ko-ldv_main5_sequence_infinite_withcheck_stateful.cil.out.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -3606,6 +3590,23 @@ extern void kfree(void const * ) ;
 extern int __VERIFIER_nondet_int(void);
 
 extern void *malloc(size_t size);
+extern void *calloc(size_t num, size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 long ldv_is_err(const void *ptr)
 {
   return ((unsigned long)ptr > ((unsigned long)-4095));

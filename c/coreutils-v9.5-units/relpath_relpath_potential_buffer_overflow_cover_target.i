@@ -474,6 +474,15 @@ __extension__
 __extension__
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ )) __attribute__ ((__malloc__))
                                          ;
+extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void free (void *__ptr) __attribute__ ((__nothrow__ ));
 extern void exit (int __status) __attribute__ ((__nothrow__ )) __attribute__ ((__noreturn__));
 
@@ -611,14 +620,6 @@ buffer_or_output (char const *str, char **pbuf, size_t *plen)
     }
   return 0;
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 _Bool
 relpath (char const *can_fname, char const *can_reldir, char *buf, size_t len)
 {

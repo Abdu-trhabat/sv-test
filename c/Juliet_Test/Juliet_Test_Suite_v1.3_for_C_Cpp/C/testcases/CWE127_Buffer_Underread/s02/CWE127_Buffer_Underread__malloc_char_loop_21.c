@@ -17,6 +17,16 @@ Template File: sources-sink-21.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
+extern void abort(void);
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #ifndef OMITBAD
 
@@ -38,14 +48,6 @@ static char * badSource(char * data)
     }
     return data;
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE127_Buffer_Underread__malloc_char_loop_21_bad()
 {

@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -2967,6 +2959,14 @@ void ldv_check_alloc_flags(gfp_t flags ) ;
 void ldv_check_alloc_nonatomic(void) ;
 struct page *ldv_check_alloc_flags_and_return_some_page(gfp_t flags ) ;
 extern void *calloc(size_t nmemb, size_t msize);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static void *kzalloc(size_t size, gfp_t flags) {
 	return safe_calloc(1UL, size);
 }

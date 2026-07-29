@@ -5,7 +5,8 @@ extern int __VERIFIER_nondet_int();
 #include "assert.h"
 
 extern void *malloc(unsigned int size);
-void *safe_malloc(size_t size) {
+extern void abort(void);
+void *safe_malloc(unsigned int size) {
   void *p = malloc(size);
   if (p == 0) {
     abort();

@@ -8,14 +8,6 @@ extern int __VERIFIER_nondet_int(void);
 extern long __VERIFIER_nondet_long(void);
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void memcpy_guard(void* p1, void* p2, unsigned int n)
 {
     if ((unsigned long)p1 + n <= (unsigned long)p2 || (unsigned long)p2 + n <= (unsigned long)p1)
@@ -28,6 +20,14 @@ void memcpy_guard(void* p1, void* p2, unsigned int n)
 
 #pragma pack(push,8)
 typedef unsigned int size_t;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 typedef unsigned short wchar_t;
 #pragma pack(pop)
 #pragma pack(push,8)

@@ -28,6 +28,16 @@ Template File: sources-sink-44.tmpl.c
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+extern void abort(void);
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
 #define CLOSE_SOCKET close
@@ -56,14 +66,6 @@ static void badSink(int data)
         free(dataBuffer);
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__listen_socket_malloc_44_bad()
 {

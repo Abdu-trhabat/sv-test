@@ -16,14 +16,6 @@ void reach_error() {
                 "reach_error");
 }
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(_Bool cond) {
   if (!cond) {
     abort();
@@ -55,8 +47,16 @@ __extension__
     __extension__
 
     extern void *
-    safe_malloc(size_t __size) __attribute__((__nothrow__, __leaf__))
+    malloc(size_t __size) __attribute__((__nothrow__, __leaf__))
     __attribute__((__malloc__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int memcmp(const void *__s1, const void *__s2, size_t __n)
     __attribute__((__nothrow__, __leaf__)) __attribute__((__pure__))

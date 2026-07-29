@@ -14,6 +14,16 @@ Template File: point-flaw-04.tmpl.c
  * */
 
 #include "std_testcase.h"
+extern void abort(void);
+extern void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 static char * helperBad(char * aString)
 {
@@ -71,14 +81,6 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE416_Use_After_Free__return_freed_ptr_04_bad()
 {

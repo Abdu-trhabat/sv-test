@@ -9838,5 +9838,15 @@ int ldv_spin_trylock(void)
   }
 }
 }
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+
 #include "model/linux-3.10-rc1-43_1a-bitvector-drivers--net--ethernet--broadcom--b44.ko--ldv_main0_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"

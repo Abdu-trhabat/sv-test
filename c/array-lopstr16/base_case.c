@@ -1,5 +1,10 @@
 extern void abort(void);
-void *safe_malloc(size_t size) {
+#include <assert.h>
+void reach_error() { assert(0); }
+void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
+extern int __VERIFIER_nondet_int();
+void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
   void *p = malloc(size);
   if (p == 0) {
     abort();
@@ -7,11 +12,6 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
-#include <assert.h>
-void reach_error() { assert(0); }
-void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
-extern int __VERIFIER_nondet_int();
-void *malloc(unsigned int size);
 #define SIZE 1000000
 #define NULL 0
 struct S

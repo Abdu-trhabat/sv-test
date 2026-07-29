@@ -16,6 +16,16 @@ Template File: point-flaw-04.tmpl.c
 #include "std_testcase.h"
 
 #include <signal.h>
+extern void abort(void);
+extern void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 static void helperBad(int sig)
 {
@@ -48,14 +58,6 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE479_Signal_Handler_Use_of_Non_Reentrant_Function__basic_04_bad()
 {

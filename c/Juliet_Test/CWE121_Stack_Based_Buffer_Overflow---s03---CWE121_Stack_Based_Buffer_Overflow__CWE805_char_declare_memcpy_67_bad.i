@@ -94,22 +94,6 @@ typedef struct _CWE121_Stack_Based_Buffer_Overflow__CWE805_char_declare_memcpy_6
 typedef long __time_t;
 
 typedef __time_t time_t;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 int printf(char const * , ...);
 
@@ -639,6 +623,24 @@ int globalArgc = 0;
 char **globalArgv = (char **)0;
 
 void *malloc(size_t);
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 void free(void *);

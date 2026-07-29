@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -677,6 +669,14 @@ void __release_region(struct resource *arg0, resource_size_t arg1, resource_size
 extern _Bool __VERIFIER_nondet_bool(void) ;
 typedef unsigned long size_t;
 extern void *malloc(size_t) ;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;

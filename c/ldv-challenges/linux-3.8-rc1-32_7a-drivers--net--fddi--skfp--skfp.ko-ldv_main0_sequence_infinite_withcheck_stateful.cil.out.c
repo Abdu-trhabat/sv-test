@@ -21228,5 +21228,15 @@ void ldv_check_final_state(void)
   return;
 }
 }
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+
 #include "model/linux-3.8-rc1-32_7a-drivers--net--fddi--skfp--skfp.ko-ldv_main0_sequence_infinite_withcheck_stateful_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"

@@ -1,20 +1,4 @@
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -2079,6 +2063,23 @@ extern raw_spinlock_t i8253_lock ;
 extern void *dev_get_drvdata(struct device const *dev ) ;
 extern int dev_set_drvdata(struct device *dev , void *data ) ;
 extern void *calloc(size_t nmemb, size_t msize);
+extern void *malloc(size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static void *kzalloc(size_t size, gfp_t flags) {
        return safe_calloc(1UL, size);
 }

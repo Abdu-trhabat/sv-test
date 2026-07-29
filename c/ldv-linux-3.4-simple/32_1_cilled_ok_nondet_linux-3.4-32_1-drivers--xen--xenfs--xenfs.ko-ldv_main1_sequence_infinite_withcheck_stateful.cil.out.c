@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -2489,6 +2481,15 @@ void main(void)
 }
 #include "model/32_1_cilled_true-unreach-call_ok_nondet_linux-3_false-termination.4-32_1-drivers--xen--xenfs--xenfs.ko-ldv_main1_sequence_infinite_withcheck_stateful.cil.out.env.c"
 #include "model/common.env.c"
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 long ldv_is_err(void const *ptr )
 {
   return ((unsigned long )ptr > 4294967295UL);

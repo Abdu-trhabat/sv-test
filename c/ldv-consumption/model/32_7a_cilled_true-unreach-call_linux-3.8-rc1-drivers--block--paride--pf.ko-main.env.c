@@ -1,3 +1,4 @@
+void *safe_malloc(size_t size);
 // Skip function: __VERIFIER_error
 
 // Skip function: __VERIFIER_nondet_int
@@ -5,14 +6,6 @@
 // Function: __blk_end_request_cur
 // with type: bool __blk_end_request_cur(struct request *, int)
 // with return type: bool 
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 bool __VERIFIER_nondet_bool(void);
 bool __blk_end_request_cur(struct request *arg0, int arg1) {
   // Typedef type

@@ -1,11 +1,3 @@
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE690_NULL_Deref_From_Return__wchar_t_malloc_61b.c
 Label Definition File: CWE690_NULL_Deref_From_Return.free.label.xml
@@ -25,6 +17,16 @@ Template File: source-sinks-61b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
+extern void abort(void);
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #ifndef OMITBAD
 

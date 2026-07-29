@@ -18,6 +18,25 @@ Template File: sources-sinks-21.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+extern void *malloc(size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #ifndef OMITBAD
 
@@ -39,22 +58,6 @@ static void badSink(void * data)
         }
     }
 }
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE135_21_bad()
 {

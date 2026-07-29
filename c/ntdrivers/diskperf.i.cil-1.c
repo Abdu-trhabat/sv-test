@@ -9,14 +9,6 @@ extern unsigned long __VERIFIER_nondet_ulong(void);
 extern long __VERIFIER_nondet_long(void);
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void memcpy_guard(void* p1, void* p2, unsigned int n)
 {
     if ((unsigned long)p1 + n <= (unsigned long)p2 || (unsigned long)p2 + n <= (unsigned long)p1)
@@ -1506,6 +1498,14 @@ extern void *memcpy(void * , void const   * , size_t  ) ;
 extern void *memmove(void * , void const   * , size_t  ) ;
 extern void *memset(void * , int  , size_t  ) ;
 extern void *malloc(size_t);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 unsigned long KeNumberProcessors ;
 #pragma warning(disable:4103)
 #pragma warning(disable:4103)

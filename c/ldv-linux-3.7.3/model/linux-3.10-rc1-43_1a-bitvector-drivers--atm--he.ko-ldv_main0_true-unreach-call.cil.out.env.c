@@ -1,3 +1,4 @@
+void *safe_malloc(size_t size);
 // Skip function: __VERIFIER_error
 
 // Skip function: __VERIFIER_nondet_int
@@ -5,14 +6,6 @@
 // Function: __const_udelay
 // with type: void __const_udelay(unsigned long)
 // with return type: void
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void __const_udelay(unsigned long arg0) {
   // Void type
   return;

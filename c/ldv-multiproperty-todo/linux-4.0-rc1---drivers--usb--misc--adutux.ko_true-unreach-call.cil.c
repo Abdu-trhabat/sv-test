@@ -38,22 +38,6 @@ typedef __kernel_uid32_t uid_t;
 typedef __kernel_gid32_t gid_t;
 typedef __kernel_loff_t loff_t;
 typedef __kernel_size_t size_t;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 typedef __kernel_ssize_t ssize_t;
 typedef __kernel_time_t time_t;
 typedef __s32 int32_t;
@@ -9497,6 +9481,23 @@ void ldv__builtin_trap(void)
 void *ldv_calloc(size_t nmemb , size_t size ) ;
 extern void *malloc(size_t  ) ;
 extern void *calloc(size_t  , size_t  ) ;
+extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void free(void * ) ;
 extern void *memset(void * , int  , size_t  ) ;
 void *ldv_malloc(size_t size ) 

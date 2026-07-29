@@ -7,6 +7,15 @@ extern void *memcpy (void *__restrict __dest,
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
 
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
+extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 
@@ -35,14 +44,6 @@ struct B {
 } __attribute__((packed));
 
 struct B d;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int main(void)
 {
 	struct A *p;

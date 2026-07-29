@@ -6,14 +6,6 @@ void reach_error() { __assert_fail("0", "ddv_machzwd_outl_p.i", 3, "reach_error"
 
 
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -722,6 +714,14 @@ extern void pthread_kill_other_threads_np(void);
 
 
 void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 

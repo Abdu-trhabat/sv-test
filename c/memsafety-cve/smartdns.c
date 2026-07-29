@@ -12,14 +12,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include "helpers.c"
 
 #define DNS_MAX_CNAME_LEN 256

@@ -94,22 +94,6 @@ struct _stdThread {
 struct _stdThreadLock {
    pthread_mutex_t mutex ;
 };
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 int printf(char const * , ...);
 
@@ -723,6 +707,24 @@ void CWE124_Buffer_Underwrite__char_declare_memmove_67b_badSink(CWE124_Buffer_Un
 
 
 void *malloc(size_t);
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 void free(void *);

@@ -15,6 +15,16 @@ Template File: sources-sink-45.tmpl.c
  * */
 
 #include "std_testcase.h"
+extern void abort(void);
+extern void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 static int CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fscanf_45_badData;
 static int CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fscanf_45_goodG2BData;
@@ -39,14 +49,6 @@ static void badSink()
         free(intPointer);
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fscanf_45_bad()
 {

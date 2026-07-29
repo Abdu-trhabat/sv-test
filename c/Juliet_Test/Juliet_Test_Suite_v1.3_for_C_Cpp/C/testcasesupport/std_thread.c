@@ -9,6 +9,16 @@
 # include <pthread.h>
 #endif
 #include "std_thread.h"
+extern void abort(void);
+extern void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 struct _stdThread {
 #ifdef _WIN32
@@ -44,14 +54,6 @@ static void *internal_start(void *args)
     return NULL;
 #endif
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 int stdThreadCreate(stdThreadRoutine start, void *args, stdThread *thread)
 {

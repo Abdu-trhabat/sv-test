@@ -57,6 +57,24 @@ typedef __kernel_uid32_t uid_t;
 typedef __kernel_gid32_t gid_t;
 typedef __kernel_loff_t loff_t;
 typedef __kernel_size_t size_t;
+extern void *calloc(size_t num, size_t size);
+extern void *malloc(size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 typedef __kernel_ssize_t ssize_t;
 typedef __kernel_time_t time_t;
 typedef unsigned short ushort;
@@ -5604,22 +5622,6 @@ extern void *calloc(size_t nmemb , size_t size ) ;
 extern int __VERIFIER_nondet_int(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }

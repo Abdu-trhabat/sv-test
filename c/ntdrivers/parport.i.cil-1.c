@@ -2,14 +2,6 @@ extern void abort(void);
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "parport.i.cil-1.c", 3, "reach_error"); }
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -1950,6 +1942,14 @@ struct _SCSI_REQUEST_BLOCK;
 #pragma warning(disable:4035)
 #pragma warning(pop)
 extern void *malloc(unsigned int sz ) ;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void *memcpy(void * , void const   * , size_t  ) ;
 extern void *memset(void * , int  , size_t  ) ;
 extern void *memmove(void * , void const   * , size_t  ) ;

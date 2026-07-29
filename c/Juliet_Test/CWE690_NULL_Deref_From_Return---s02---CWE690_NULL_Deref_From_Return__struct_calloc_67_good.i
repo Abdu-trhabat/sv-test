@@ -94,6 +94,13 @@ struct _stdThread {
 struct _stdThreadLock {
    pthread_mutex_t mutex ;
 };
+
+void srand(unsigned int);
+
+
+void *calloc(size_t, size_t);
+extern void abort(void);
+extern void *malloc(size_t size);
 void *safe_calloc(size_t num, size_t size) {
   void *p = calloc(num, size);
   if (p == 0) {
@@ -110,11 +117,6 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
-
-void srand(unsigned int);
-
-
-void *calloc(size_t, size_t);
 
 
 time_t time(time_t *);

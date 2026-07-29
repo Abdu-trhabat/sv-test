@@ -29769,30 +29769,6 @@ typedef struct __dirstream DIR;
 typedef struct _IO_FILE_8427 FILE;
 typedef struct FTS FTS;
 typedef struct _ftsent FTSENT;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 typedef _Bool (*Hash_comparator)(const void*, const void*);
 typedef void (*Hash_data_freer)(void*);
 typedef unsigned long size_t;
@@ -50524,6 +50500,30 @@ _Bool readtokens0(FILE *in, struct Tokens *t);
 void readtokens0_free(struct Tokens *t);
 void readtokens0_init(struct Tokens *t);
 void *realloc(void*, size_t);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static gid_t *realloc_groupbuf_167923(gid_t *g, size_t num);
 void *reallocarray(void *__ptr, size_t __nmemb, size_t __size);
 char *realpath(const char *__name, char *__resolved);

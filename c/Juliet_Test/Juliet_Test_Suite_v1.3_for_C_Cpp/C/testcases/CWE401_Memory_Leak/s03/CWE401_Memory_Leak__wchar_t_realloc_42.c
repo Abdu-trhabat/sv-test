@@ -18,6 +18,16 @@ Template File: sources-sinks-42.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
+extern void abort(void);
+extern void *realloc(void *ptr, size_t size);
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #ifndef OMITBAD
 
@@ -31,14 +41,6 @@ static wchar_t * badSource(wchar_t * data)
     printWLine(data);
     return data;
 }
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE401_Memory_Leak__wchar_t_realloc_42_bad()
 {

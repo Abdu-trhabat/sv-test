@@ -13,14 +13,6 @@
 #include <getopt.h>
 #include <string.h>
 #include <stdlib.h>
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <stdio.h>
 #include "helpers.c"
 

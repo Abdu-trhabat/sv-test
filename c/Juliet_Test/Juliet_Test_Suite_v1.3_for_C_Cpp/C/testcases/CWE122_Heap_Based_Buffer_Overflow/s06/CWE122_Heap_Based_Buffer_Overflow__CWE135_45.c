@@ -18,6 +18,25 @@ Template File: sources-sinks-45.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+extern void *malloc(size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 static void * CWE122_Heap_Based_Buffer_Overflow__CWE135_45_badData;
 static void * CWE122_Heap_Based_Buffer_Overflow__CWE135_45_goodG2BData;
@@ -38,22 +57,6 @@ static void badSink()
         free(dest);
     }
 }
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE135_45_bad()
 {

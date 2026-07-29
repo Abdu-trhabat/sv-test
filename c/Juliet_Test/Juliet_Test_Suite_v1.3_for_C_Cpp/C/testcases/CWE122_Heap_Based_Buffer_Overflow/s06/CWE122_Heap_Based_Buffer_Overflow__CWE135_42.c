@@ -18,21 +18,9 @@ Template File: sources-sinks-42.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-
-#ifndef OMITBAD
-
-static void * badSource(void * data)
-{
-    {
-        wchar_t * dataBadBuffer = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
-        if (dataBadBuffer == NULL) {exit(-1);}
-        wmemset(dataBadBuffer, L'A', 50-1);
-        dataBadBuffer[50-1] = L'\0';
-        /* POTENTIAL FLAW: Set data to point to a wide string */
-        data = (void *)dataBadBuffer;
-    }
-    return data;
-}
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+extern void *malloc(size_t size);
 void *safe_calloc(size_t num, size_t size) {
   void *p = calloc(num, size);
   if (p == 0) {
@@ -49,6 +37,21 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
+
+#ifndef OMITBAD
+
+static void * badSource(void * data)
+{
+    {
+        wchar_t * dataBadBuffer = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+        if (dataBadBuffer == NULL) {exit(-1);}
+        wmemset(dataBadBuffer, L'A', 50-1);
+        dataBadBuffer[50-1] = L'\0';
+        /* POTENTIAL FLAW: Set data to point to a wide string */
+        data = (void *)dataBadBuffer;
+    }
+    return data;
+}
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE135_42_bad()
 {

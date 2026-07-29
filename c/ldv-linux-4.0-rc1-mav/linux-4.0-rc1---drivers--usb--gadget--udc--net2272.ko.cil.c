@@ -13343,6 +13343,23 @@ void *ldv_malloc(size_t size ) ;
 void *ldv_calloc(size_t nmemb , size_t size ) ;
 extern void *malloc(size_t  ) ;
 extern void *calloc(size_t  , size_t  ) ;
+extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void free(void * ) ;
 extern void *memset(void * , int  , size_t  ) ;
 void *ldv_malloc(size_t size ) 
@@ -15005,22 +15022,6 @@ void ldv_linux_lib_idr_check_final_state(void)
 }
 }
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <assert.h>
 void reach_error() { assert(0); }
 void ldv_assert_linux_net_rtnetlink__double_lock(int expr ) 

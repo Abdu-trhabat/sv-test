@@ -1873,6 +1873,23 @@ __inline static void platform_set_drvdata(struct platform_device *pdev , void *d
 }
 }
 extern void *calloc(size_t nmemb, size_t msize);
+extern void *malloc(size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static void *kzalloc(size_t size, gfp_t flags) {
  return safe_calloc(1UL, size);
 }
@@ -1915,22 +1932,6 @@ extern int irq_to_pcap(struct pcap_chip * , int ) ;
 extern void kfree(void const * ) ;
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }

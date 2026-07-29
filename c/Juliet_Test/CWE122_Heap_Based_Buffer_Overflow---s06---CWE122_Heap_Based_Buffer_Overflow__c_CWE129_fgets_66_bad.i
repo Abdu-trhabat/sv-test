@@ -141,22 +141,6 @@ extern FILE *stdin;
 
 
 char *fgets(char *, int, FILE *);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 
 int atoi(char const *);
@@ -232,6 +216,24 @@ void ldv_exit(void);
 
 
 void *malloc(size_t);
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 void free(void *);

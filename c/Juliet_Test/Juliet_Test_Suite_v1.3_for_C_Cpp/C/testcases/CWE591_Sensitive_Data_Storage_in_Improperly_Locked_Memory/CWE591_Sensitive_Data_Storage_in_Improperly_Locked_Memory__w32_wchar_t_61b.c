@@ -1,11 +1,3 @@
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_61b.c
 Label Definition File: CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32.label.xml
@@ -26,6 +18,16 @@ Template File: sources-sink-61b.tmpl.c
 
 #include <wchar.h>
 #include <windows.h>
+extern void abort(void);
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #pragma comment(lib, "advapi32.lib")
 

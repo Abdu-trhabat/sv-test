@@ -16,7 +16,7 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern void abort(void);
-void *safe_malloc(size_t size) {
+void *safe_malloc(unsigned int size) {
   void *p = malloc(size);
   if (p == 0) {
     abort();

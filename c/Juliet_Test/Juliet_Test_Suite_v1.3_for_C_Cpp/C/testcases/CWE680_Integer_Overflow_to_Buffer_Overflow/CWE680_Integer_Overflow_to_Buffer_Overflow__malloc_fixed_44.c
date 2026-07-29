@@ -15,6 +15,16 @@ Template File: sources-sink-44.tmpl.c
  * */
 
 #include "std_testcase.h"
+extern void abort(void);
+extern void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #ifndef OMITBAD
 
@@ -35,14 +45,6 @@ static void badSink(int data)
         free(intPointer);
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_44_bad()
 {

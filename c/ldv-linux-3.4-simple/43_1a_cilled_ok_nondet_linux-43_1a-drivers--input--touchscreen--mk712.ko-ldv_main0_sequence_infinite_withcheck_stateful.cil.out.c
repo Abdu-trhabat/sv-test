@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -1841,6 +1833,14 @@ __inline static int request_irq(unsigned int irq , irqreturn_t (*handler)(int  ,
 }
 extern void free_irq(unsigned int  , void * ) ;
 extern void *calloc(size_t nmemb, size_t msize);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static void *kzalloc(size_t size, gfp_t flags) {
        return safe_calloc(1UL, size);
 }

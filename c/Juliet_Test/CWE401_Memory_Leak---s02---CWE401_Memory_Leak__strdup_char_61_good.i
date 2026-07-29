@@ -101,22 +101,6 @@ static char *ldv_strcpy_1(char * __restrict ldv_func_arg1, char const * __restri
 
 
 static char *ldv_strdup_2(char const *ldv_func_arg1);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 
 void printLine(char const *line);
@@ -768,6 +752,24 @@ int globalArgc = 0;
 char **globalArgv = (char **)0;
 
 void *malloc(size_t);
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 int pthread_create(pthread_t *, pthread_attr_t const *, void *(*)(void *), void *);

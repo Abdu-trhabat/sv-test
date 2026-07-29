@@ -12,7 +12,7 @@ extern int __VERIFIER_nondet_int(void);
 extern _Bool __VERIFIER_nondet_bool(void);
 
 extern void abort(void);
-void *safe_malloc(size_t size) {
+void *safe_malloc(unsigned int size) {
   void *p = malloc(size);
   if (p == 0) {
     abort();

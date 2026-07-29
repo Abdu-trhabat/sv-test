@@ -7,14 +7,6 @@ extern int __VERIFIER_nondet_int(void);
 extern long __VERIFIER_nondet_long(void);
 extern unsigned long __VERIFIER_nondet_ulong(void);
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -1657,6 +1649,14 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject , PUNICODE_STRING RegistryPath 
 #pragma alloc_text(PAGE,KbFilter_PnP)
 #pragma alloc_text(PAGE,KbFilter_Power)
 extern void *malloc(size_t);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void errorFn(void) 
 { 
 

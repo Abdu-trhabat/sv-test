@@ -6,14 +6,6 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void avoid_zero(int y)
 {
     if (!y) 
@@ -180,7 +172,15 @@ static UINT32 Id_MCDC_92(UINT32 Id_MCDC_90, UINT32 Id_MCDC_91);
 static UINT32 Id_MCDC_95(UINT32 Id_MCDC_93, CHAR* Id_MCDC_94);
 UINT32 Id_MCDC_96(UINT16 Id_MCDC_82, UINT8 Id_MCDC_83, UINT32* Id_MCDC_84, UINT32* Id_MCDC_85, INT32* Id_MCDC_86, void ** Id_MCDC_87);
 UINT32 Id_MCDC_97();
-extern void * safe_malloc(size_t Id_MCDC_98);
+extern void * malloc(size_t Id_MCDC_98);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void  Id_MCDC_99();
 void  Id_MCDC_100();
 extern FILE* fopen(char  const* Id_MCDC_101, char  const* Id_MCDC_102);

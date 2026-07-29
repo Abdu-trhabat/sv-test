@@ -132,22 +132,6 @@ struct sockaddr_in {
    struct in_addr sin_addr ;
    unsigned char sin_zero[8U] ;
 };
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 int printf(char const * , ...);
 
@@ -677,6 +661,24 @@ int globalArgc = 0;
 char **globalArgv = (char **)0;
 
 void *malloc(size_t);
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 void free(void *);

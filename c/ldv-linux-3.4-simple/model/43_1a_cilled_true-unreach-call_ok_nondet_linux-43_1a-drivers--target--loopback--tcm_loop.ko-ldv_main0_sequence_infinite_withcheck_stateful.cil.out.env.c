@@ -1,3 +1,4 @@
+void *safe_malloc(size_t size);
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
 __inline static  IS_ERR(void const *ptr ) ;
@@ -17,14 +18,6 @@ void *ldv_malloc(size_t size )
 // with return type: (struct workqueue_struct)*
 struct workqueue_struct *__alloc_workqueue_key(const char *arg0, unsigned int arg1, int arg2, struct lock_class_key *arg3, const char *arg4, ...) {
   // Pointer type
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
   return ldv_malloc(0UL);
 }
 

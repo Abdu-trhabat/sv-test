@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -2992,6 +2984,14 @@ int atomic_dec_and_mutex_lock(atomic_t *cnt , struct mutex *lock ) ;
 int init_module(void) ;
 void cleanup_module(void) ;
 extern void *calloc(size_t nmemb, size_t msize);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static void *kzalloc(size_t size, gfp_t flags) {
 	return safe_calloc(1UL, size);
 }

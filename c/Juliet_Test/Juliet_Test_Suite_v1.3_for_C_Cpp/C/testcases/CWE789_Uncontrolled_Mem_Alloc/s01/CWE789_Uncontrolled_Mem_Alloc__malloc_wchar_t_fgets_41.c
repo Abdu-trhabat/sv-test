@@ -19,6 +19,16 @@ Template File: sources-sinks-41.tmpl.c
 
 #ifndef _WIN32
 #include <wchar.h>
+extern void abort(void);
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #endif
 
 #define CHAR_ARRAY_SIZE (3 * sizeof(data) + 2)
@@ -49,14 +59,6 @@ static void badSink(size_t data)
         }
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_fgets_41_bad()
 {

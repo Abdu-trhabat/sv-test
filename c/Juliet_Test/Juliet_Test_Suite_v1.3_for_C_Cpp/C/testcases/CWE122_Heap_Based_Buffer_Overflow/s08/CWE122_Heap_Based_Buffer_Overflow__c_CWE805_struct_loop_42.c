@@ -15,6 +15,16 @@ Template File: sources-sink-42.tmpl.c
  * */
 
 #include "std_testcase.h"
+extern void abort(void);
+extern void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #ifndef OMITBAD
 
@@ -25,14 +35,6 @@ static twoIntsStruct * badSource(twoIntsStruct * data)
     if (data == NULL) {exit(-1);}
     return data;
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_42_bad()
 {

@@ -6,14 +6,6 @@
 // with type: u64 clockevent_delta2ns(unsigned long latch, struct clock_event_device *evt)
 // with return type: u64 
 unsigned long __VERIFIER_nondet_ulong(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 u64 clockevent_delta2ns(unsigned long arg0, struct clock_event_device *arg1) {
   // Typedef type
   // Real type: unsigned long long
@@ -31,6 +23,15 @@ void clockevents_register_device(struct clock_event_device *arg0) {
 extern _Bool __VERIFIER_nondet_bool(void) ;
 typedef unsigned long size_t;
 extern void *malloc(size_t) ;
+extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;

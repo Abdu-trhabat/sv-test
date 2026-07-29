@@ -1,3 +1,4 @@
+void *safe_malloc(size_t size);
 // Skip function: __VERIFIER_error
 
 // Skip function: __VERIFIER_nondet_int
@@ -5,14 +6,6 @@
 // Function: __bus_register
 // with type: int __bus_register(struct bus_type *, struct lock_class_key *)
 // with return type: int
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int __VERIFIER_nondet_int(void);
 int __bus_register(struct bus_type *arg0, struct lock_class_key *arg1) {
   // Simple type

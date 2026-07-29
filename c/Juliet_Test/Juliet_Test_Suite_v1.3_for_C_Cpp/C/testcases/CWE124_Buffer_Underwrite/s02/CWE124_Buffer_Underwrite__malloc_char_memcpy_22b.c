@@ -1,11 +1,3 @@
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE124_Buffer_Underwrite__malloc_char_memcpy_22b.c
 Label Definition File: CWE124_Buffer_Underwrite__malloc.label.xml
@@ -25,6 +17,16 @@ Template File: sources-sink-22b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
+extern void abort(void);
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #ifndef OMITBAD
 

@@ -14,7 +14,7 @@ void assume_abort_if_not(int cond) {
 }
 
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
+void *safe_calloc(unsigned int num, unsigned int size) {
   void *p = calloc(num, size);
   if (p == 0) {
     abort();

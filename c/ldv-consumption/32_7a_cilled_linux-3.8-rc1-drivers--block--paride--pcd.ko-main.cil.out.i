@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -3779,6 +3771,14 @@ static struct cdrom_device_ops pcd_dops =
     & pcd_lock_door, 0, 0, 0, & pcd_get_mcn, & pcd_drive_reset, & pcd_audio_ioctl,
     29639, 0, & pcd_packet};
 extern void *malloc(size_t );
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static void pcd_init_units(void)
 { struct pcd_unit *cd ;
   int unit ;

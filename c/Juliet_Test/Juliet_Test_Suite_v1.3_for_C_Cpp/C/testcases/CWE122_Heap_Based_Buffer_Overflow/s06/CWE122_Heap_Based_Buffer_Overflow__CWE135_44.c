@@ -18,21 +18,9 @@ Template File: sources-sinks-44.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-
-#ifndef OMITBAD
-
-static void badSink(void * data)
-{
-    {
-        /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
-        size_t dataLen = strlen((char *)data);
-        void * dest = (void *)safe_calloc(dataLen+1, sizeof(wchar_t));
-        if (dest == NULL) {exit(-1);}
-        (void)wcscpy(dest, data);
-        printLine((char *)dest);
-        free(dest);
-    }
-}
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+extern void *malloc(size_t size);
 void *safe_calloc(size_t num, size_t size) {
   void *p = calloc(num, size);
   if (p == 0) {
@@ -49,6 +37,21 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
+
+#ifndef OMITBAD
+
+static void badSink(void * data)
+{
+    {
+        /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
+        size_t dataLen = strlen((char *)data);
+        void * dest = (void *)safe_calloc(dataLen+1, sizeof(wchar_t));
+        if (dest == NULL) {exit(-1);}
+        (void)wcscpy(dest, data);
+        printLine((char *)dest);
+        free(dest);
+    }
+}
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE135_44_bad()
 {

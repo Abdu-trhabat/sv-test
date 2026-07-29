@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -10959,6 +10951,15 @@ void ldv_check_final_state(void)
 }
 #include "model/module_get_put-drivers-atm-eni.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 long ldv_is_err(void const *ptr )
 {
   return ((unsigned long )ptr > 4294967295UL);

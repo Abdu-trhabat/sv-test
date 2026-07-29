@@ -1,16 +1,9 @@
+void *safe_malloc(size_t size);
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
   return safe_malloc(size);
 }
 // Skip function: __VERIFIER_error

@@ -17,6 +17,16 @@ Template File: source-sinks-42.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
+extern void abort(void);
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #ifndef OMITBAD
 
@@ -26,14 +36,6 @@ static int64_t * badSource(int64_t * data)
     data = (int64_t *)safe_malloc(1*sizeof(int64_t));
     return data;
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__int64_t_malloc_42_bad()
 {

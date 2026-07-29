@@ -3,6 +3,16 @@
  * Author: Thomas Ströder
  */
 typedef long unsigned int size_t;
+extern void abort(void);
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void * __attribute__((__cdecl__)) safe_malloc (size_t __size) ;
 
@@ -37,14 +47,6 @@ int (cstrcspn)(const char *s1, const char *s2)
      }
      return sc1 - s1;            /* terminating nulls match */
  }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 int main() {
     return cstrcspn(build_nondet_String(),build_nondet_String());

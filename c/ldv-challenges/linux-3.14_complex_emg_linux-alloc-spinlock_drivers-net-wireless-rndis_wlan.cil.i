@@ -6823,6 +6823,33 @@ __inline static bool queue_delayed_work(struct workqueue_struct *wq , struct del
 extern void msleep(unsigned int ) ;
 extern void get_random_bytes(void * , int ) ;
 extern void *realloc(void * , size_t ) ;
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+extern void *malloc(size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static void *ldv_krealloc_84(void const *ldv_func_arg1 , size_t ldv_func_arg2 ,
                              gfp_t flags ) ;
 extern void kfree(void const * ) ;
@@ -17649,30 +17676,6 @@ int ldv_exclusive_spin_is_locked(void)
 }
 }
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)

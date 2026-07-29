@@ -5420,30 +5420,6 @@ struct ldv_thread {
 typedef _Bool ldv_set;
 long ldv__builtin_expect(long exp , long c ) ;
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -5780,6 +5756,32 @@ __inline static void dev_set_drvdata(struct device *dev , void *data )
 extern void dev_printk(char const   * , struct device  const  * , char const   * 
                        , ...) ;
 extern void *realloc(void * , size_t  ) ;
+extern void *calloc(size_t num, size_t size);
+extern void *malloc(size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static void *ldv_krealloc_98(void const   *ldv_func_arg1 , size_t ldv_func_arg2 ,
                              gfp_t flags ) ;
 extern void kfree(void const   * ) ;

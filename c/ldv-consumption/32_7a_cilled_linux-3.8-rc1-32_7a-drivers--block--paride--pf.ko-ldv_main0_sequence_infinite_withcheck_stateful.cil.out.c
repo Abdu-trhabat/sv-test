@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <assert.h>
 void reach_error() { assert(0); }
 
@@ -3675,6 +3667,14 @@ static struct block_device_operations  const  pf_fops  =
      {& pf_open, & pf_release, & pf_ioctl, 0, 0, & pf_check_events, 0, 0, 0, & pf_getgeo,
     0, & __this_module};
 extern void *malloc(size_t  );
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static void pf_init_units(void) 
 { 
   struct pf_unit *pf ;

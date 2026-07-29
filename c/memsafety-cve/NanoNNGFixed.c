@@ -12,14 +12,6 @@
 
 #include <stdint.h>
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <stdio.h>
 #include <string.h>
 #include "helpers.c"

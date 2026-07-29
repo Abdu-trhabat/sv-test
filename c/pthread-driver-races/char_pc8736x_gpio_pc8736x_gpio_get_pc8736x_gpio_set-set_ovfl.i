@@ -167,14 +167,6 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "svcomp.h", 24, __extension__ __PRETTY_FUNCTION__); })); }
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -371,7 +363,15 @@ struct thread_info {
  unsigned int sig_on_uaccess_error:1;
  unsigned int uaccess_err:1;
 };
-extern void* safe_malloc(unsigned int);
+extern void* malloc(unsigned int);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static __attribute__((always_inline)) struct thread_info *current_thread_info(void)
 {
  struct thread_info *ti = (struct thread_info *) safe_malloc(sizeof(struct thread_info));

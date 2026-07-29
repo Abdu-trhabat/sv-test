@@ -88,22 +88,6 @@ struct _stdThread {
 struct _stdThreadLock {
    pthread_mutex_t mutex ;
 };
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 int printf(char const * , ...);
 
@@ -633,6 +617,24 @@ int globalArgc = 0;
 char **globalArgv = (char **)0;
 
 void *malloc(size_t);
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 long *CWE690_NULL_Deref_From_Return__long_malloc_61b_goodB2GSource(long *data)

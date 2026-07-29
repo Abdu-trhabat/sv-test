@@ -1,3 +1,4 @@
+void *safe_malloc(size_t size);
 // Skip function: __VERIFIER_error
 
 // Skip function: __VERIFIER_nondet_int
@@ -8,14 +9,6 @@
 unsigned int __VERIFIER_nondet_uint(void);
 unsigned int bcd2bin(unsigned char arg0) {
   // Simple type
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
   return __VERIFIER_nondet_uint();
 }
 

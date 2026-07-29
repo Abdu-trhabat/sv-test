@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "discover_list.c", 3, "reach_error"); }
 void *malloc(unsigned int size);
@@ -71,6 +63,14 @@ char  const* zpi_fn;
 FILE* zpi_filep;
 } ;
 typedef unsigned int  size_t;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 struct _IO_FILE{
 int  _flags;
 char * _IO_read_ptr;

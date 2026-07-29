@@ -6528,6 +6528,7 @@ void *ldv_zalloc(size_t size ) ;
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *calloc(size_t, size_t) ;
 extern void abort(void);
+extern void *malloc(size_t size);
 void *safe_calloc(size_t num, size_t size) {
   void *p = calloc(num, size);
   if (p == 0) {

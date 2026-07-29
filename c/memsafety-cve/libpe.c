@@ -12,14 +12,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include "helpers.c"
 
 #define LIBPE_PTR_ADD(p, o) ((void *)((char *)(p) + (o)))

@@ -1,3 +1,4 @@
+void *safe_malloc(size_t size);
 // Skip function: __VERIFIER_error
 
 // Skip function: __VERIFIER_nondet_int
@@ -5,14 +6,6 @@
 // Function: __free_pages
 // with type: void __free_pages(struct page *, unsigned int)
 // with return type: void
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void __free_pages(struct page *arg0, unsigned int arg1) {
   // Void type
   return;

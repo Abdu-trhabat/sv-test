@@ -11901,6 +11901,15 @@ void *safe_calloc(size_t num, size_t size) {
   return p;
 }
 
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }

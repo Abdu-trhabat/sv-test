@@ -19,6 +19,16 @@ Template File: sources-sinks-21.tmpl.c
 
 #ifndef _WIN32
 #include <wchar.h>
+extern void abort(void);
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #endif
 
 #define HELLO_STRING L"hello"
@@ -53,14 +63,6 @@ static void badSink(size_t data)
         }
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE789_Uncontrolled_Mem_Alloc__malloc_wchar_t_rand_21_bad()
 {

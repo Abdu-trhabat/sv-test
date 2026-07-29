@@ -95,22 +95,6 @@ union __anonunion_CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_environment_3
 };
 
 typedef union __anonunion_CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_environment_34_unionType_68 CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_environment_34_unionType;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 int printf(char const * , ...);
 
@@ -640,6 +624,24 @@ int globalArgc = 0;
 char **globalArgv = (char **)0;
 
 void *malloc(size_t);
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 void free(void *);

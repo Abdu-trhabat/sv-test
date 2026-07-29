@@ -2,14 +2,6 @@ extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -8571,6 +8563,14 @@ extern unsigned long int __VERIFIER_nondet_ulong();
 extern unsigned int __VERIFIER_nondet_uint();
 
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void *ldv_successful_malloc(size_t __size) {
   void *p = safe_malloc(__size);
   assume_abort_if_not(p != (void *)0);

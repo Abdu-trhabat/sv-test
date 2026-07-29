@@ -1,11 +1,3 @@
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 /* TEMPLATE GENERATED TESTCASE FILE
 Filename: CWE401_Memory_Leak__struct_twoIntsStruct_calloc_61b.c
 Label Definition File: CWE401_Memory_Leak.c.label.xml
@@ -26,6 +18,16 @@ Template File: sources-sinks-61b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #ifndef OMITBAD
 

@@ -1,4 +1,17 @@
 extern void abort(void);
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error() { __assert_fail("0", "s3.i", 3, "reach_error"); }
+
+extern void *malloc(unsigned int sz);
+
+
+
+extern int __VERIFIER_nondet_int(void);
+extern unsigned long __VERIFIER_nondet_ulong(void);
+extern  long __VERIFIER_nondet_long(void);
+
+typedef unsigned int size_t;
+extern void *calloc(size_t num, size_t size);
 void *safe_calloc(size_t num, size_t size) {
   void *p = calloc(num, size);
   if (p == 0) {
@@ -15,18 +28,6 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
-extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void reach_error() { __assert_fail("0", "s3.i", 3, "reach_error"); }
-
-extern void *malloc(unsigned int sz);
-
-
-
-extern int __VERIFIER_nondet_int(void);
-extern unsigned long __VERIFIER_nondet_ulong(void);
-extern  long __VERIFIER_nondet_long(void);
-
-typedef unsigned int size_t;
 typedef long __time_t;
 struct buf_mem_st {
    int length ;

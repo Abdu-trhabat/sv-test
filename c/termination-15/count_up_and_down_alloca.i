@@ -1,25 +1,8 @@
 typedef long unsigned int size_t;
-typedef short unsigned int wchar_t;
-typedef long int ptrdiff_t;
-typedef signed char __int8_t;
-typedef unsigned char __uint8_t;
-typedef short int __int16_t;
-typedef short unsigned int __uint16_t;
-typedef int __int32_t;
-typedef unsigned int __uint32_t;
-typedef long int __int64_t;
-typedef long unsigned int __uint64_t;
-typedef signed char __int_least8_t;
-typedef unsigned char __uint_least8_t;
-typedef short int __int_least16_t;
-typedef short unsigned int __uint_least16_t;
-typedef int __int_least32_t;
-typedef unsigned int __uint_least32_t;
-typedef long int __int_least64_t;
-typedef long unsigned int __uint_least64_t;
-typedef long int __intptr_t;
-typedef long unsigned int __uintptr_t;
-typedef void *_LOCK_T;
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+extern void *malloc(size_t size);
+extern void *realloc(void *ptr, size_t size);
 void *safe_calloc(size_t num, size_t size) {
   void *p = calloc(num, size);
   if (p == 0) {
@@ -44,6 +27,27 @@ void *safe_realloc(void *ptr, size_t size) {
   return p;
 }
 
+typedef short unsigned int wchar_t;
+typedef long int ptrdiff_t;
+typedef signed char __int8_t;
+typedef unsigned char __uint8_t;
+typedef short int __int16_t;
+typedef short unsigned int __uint16_t;
+typedef int __int32_t;
+typedef unsigned int __uint32_t;
+typedef long int __int64_t;
+typedef long unsigned int __uint64_t;
+typedef signed char __int_least8_t;
+typedef unsigned char __uint_least8_t;
+typedef short int __int_least16_t;
+typedef short unsigned int __uint_least16_t;
+typedef int __int_least32_t;
+typedef unsigned int __uint_least32_t;
+typedef long int __int_least64_t;
+typedef long unsigned int __uint_least64_t;
+typedef long int __intptr_t;
+typedef long unsigned int __uintptr_t;
+typedef void *_LOCK_T;
 void __cygwin_lock_init(_LOCK_T *);
 void __cygwin_lock_init_recursive(_LOCK_T *);
 void __cygwin_lock_fini(_LOCK_T *);

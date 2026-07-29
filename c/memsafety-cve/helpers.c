@@ -23,6 +23,14 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 
 // #include "helpers.c"

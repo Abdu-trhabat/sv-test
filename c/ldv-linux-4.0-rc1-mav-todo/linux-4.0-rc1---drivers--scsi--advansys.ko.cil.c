@@ -5751,6 +5751,33 @@ __inline static void dev_set_drvdata(struct device *dev , void *data )
 extern void dev_printk(char const   * , struct device  const  * , char const   * 
                        , ...) ;
 extern void *realloc(void * , size_t  ) ;
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
+extern void *malloc(size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static void *ldv_krealloc_98(void const   *ldv_func_arg1 , size_t ldv_func_arg2 ,
                              gfp_t flags ) ;
 extern void kfree(void const   * ) ;
@@ -22436,30 +22463,6 @@ void ldv_linux_lib_idr_check_final_state(void)
 }
 }
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <assert.h>
 void reach_error() { assert(0); }
 void ldv_assert_linux_net_rtnetlink__double_lock(int expr ) 

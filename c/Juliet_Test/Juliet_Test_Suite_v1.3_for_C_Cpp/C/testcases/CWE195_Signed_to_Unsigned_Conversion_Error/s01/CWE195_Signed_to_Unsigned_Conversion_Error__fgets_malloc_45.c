@@ -15,6 +15,16 @@ Template File: sources-sink-45.tmpl.c
  * */
 
 #include "std_testcase.h"
+extern void abort(void);
+extern void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #define CHAR_ARRAY_SIZE (3 * sizeof(data) + 2)
 
@@ -40,14 +50,6 @@ static void badSink()
         free(dataBuffer);
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__fgets_malloc_45_bad()
 {

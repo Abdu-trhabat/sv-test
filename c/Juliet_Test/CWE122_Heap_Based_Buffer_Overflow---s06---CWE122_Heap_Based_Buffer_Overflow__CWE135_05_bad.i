@@ -88,6 +88,21 @@ struct _stdThread {
 struct _stdThreadLock {
    pthread_mutex_t mutex ;
 };
+
+void ldv_exit(void);
+
+
+size_t ldv_strlen(char const *str);
+
+
+void srand(unsigned int);
+
+
+void *malloc(size_t);
+
+
+void *calloc(size_t, size_t);
+extern void abort(void);
 void *safe_calloc(size_t num, size_t size) {
   void *p = calloc(num, size);
   if (p == 0) {
@@ -104,20 +119,6 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
-
-void ldv_exit(void);
-
-
-size_t ldv_strlen(char const *str);
-
-
-void srand(unsigned int);
-
-
-void *malloc(size_t);
-
-
-void *calloc(size_t, size_t);
 
 
 void free(void *);

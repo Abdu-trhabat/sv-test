@@ -17,6 +17,16 @@ Template File: source-sinks-42.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
+extern void abort(void);
+extern void *realloc(void *ptr, size_t size);
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #ifndef OMITBAD
 
@@ -26,14 +36,6 @@ static twoIntsStruct * badSource(twoIntsStruct * data)
     data = (twoIntsStruct *)safe_realloc(data, 1*sizeof(twoIntsStruct));
     return data;
 }
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__struct_realloc_42_bad()
 {

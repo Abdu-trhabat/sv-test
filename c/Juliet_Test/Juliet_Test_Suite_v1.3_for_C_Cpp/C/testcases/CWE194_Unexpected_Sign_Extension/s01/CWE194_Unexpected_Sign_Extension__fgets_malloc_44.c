@@ -15,6 +15,16 @@ Template File: sources-sink-44.tmpl.c
  * */
 
 #include "std_testcase.h"
+extern void abort(void);
+extern void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 /* Must be at least 8 for atoi() to work properly */
 #define CHAR_ARRAY_SIZE 8
@@ -37,14 +47,6 @@ static void badSink(short data)
         free(dataBuffer);
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE194_Unexpected_Sign_Extension__fgets_malloc_44_bad()
 {

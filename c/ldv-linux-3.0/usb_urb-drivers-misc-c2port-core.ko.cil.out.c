@@ -5587,5 +5587,15 @@ void ldv_check_final_state(void)
   return;
 }
 }
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+
 #include "model/usb_urb-drivers-misc-c2port-core.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"

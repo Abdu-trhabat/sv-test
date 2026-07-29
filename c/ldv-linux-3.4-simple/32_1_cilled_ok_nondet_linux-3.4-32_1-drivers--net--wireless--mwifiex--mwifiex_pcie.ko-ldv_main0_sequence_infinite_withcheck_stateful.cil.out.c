@@ -6082,6 +6082,10 @@ extern void *pci_iomap(struct pci_dev *dev , int bar , unsigned long max ) ;
 extern void kfree(void const   * ) ;
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
+void assume_abort_if_not(int cond) {
+  if(!cond) {abort();}
+}
+extern void *malloc(size_t size);
 void *safe_malloc(size_t size) {
   void *p = malloc(size);
   if (p == 0) {
@@ -6090,10 +6094,6 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
-void assume_abort_if_not(int cond) {
-  if(!cond) {abort();}
-}
-extern void *malloc(size_t size);
 long ldv_is_err(const void *ptr)
 {
 		return ((unsigned long)ptr > ((unsigned long)-4095));

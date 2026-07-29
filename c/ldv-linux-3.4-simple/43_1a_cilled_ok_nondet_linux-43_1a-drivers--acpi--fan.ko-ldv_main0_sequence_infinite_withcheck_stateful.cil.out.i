@@ -11,14 +11,6 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "43_1a_cilled_ok_nondet_linux-43_1a-drivers--acpi--fan.ko-ldv_main0_sequence_infinite_withcheck_stateful.cil.out.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -3499,6 +3491,14 @@ extern void ldv_initialize(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 extern unsigned long int __VERIFIER_nondet_ulong();
 extern void *malloc(size_t );
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void *ldv_successful_malloc(size_t __size) {
   void *p = safe_malloc(__size);
   assume_abort_if_not(p != (void *)0);

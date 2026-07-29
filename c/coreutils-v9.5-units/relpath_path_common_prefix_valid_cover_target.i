@@ -467,6 +467,15 @@ __extension__
 __extension__
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ )) __attribute__ ((__malloc__))
                                          ;
+extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void exit (int __status) __attribute__ ((__nothrow__ )) __attribute__ ((__noreturn__));
 
 enum
@@ -540,14 +549,6 @@ path_common_prefix (char const *path1, char const *path2)
 }
 extern int __VERIFIER_nondet_int();
 extern unsigned char __VERIFIER_nondet_uchar();
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void reach_error() {
     ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "/tmp/fv-intermediate-kd9yq_8a/sources/relpath/formal/includes/util.h", 14, __extension__ __PRETTY_FUNCTION__); }));
 }

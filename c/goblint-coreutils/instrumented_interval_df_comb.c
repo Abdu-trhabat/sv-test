@@ -4861,30 +4861,6 @@ char *xgetcwd(void) ;
 #pragma merger(0,"/tmp/cil-2LOrzFgC.i","-g,-O2")
 #line 514 "/usr/include/stdlib.h"
 extern void abort(void)  __attribute__((__nothrow__, __noreturn__)) ;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #line 1 "cloexec.o"
 #pragma merger(0,"/tmp/cil-GIolek74.i","-g,-O2")
 #line 32 "cloexec.h"
@@ -5832,6 +5808,30 @@ void *hash_delete(Hash_table *table___1 , void const   *entry ) ;
 #line 473 "/usr/include/stdlib.h"
 extern void *( __attribute__((__warn_unused_result__)) calloc)(size_t __nmemb , size_t __size )  __attribute__((__nothrow__,
 __malloc__)) ;
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #line 130 "hash.c"
 static struct hash_tuning  const  default_tuning  =    {(float )0.0, (float )1.0, (float )0.8, (float )1.414, (_Bool)0};
 #line 1 "hash-pjw.o"

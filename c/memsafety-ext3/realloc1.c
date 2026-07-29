@@ -1,8 +1,8 @@
 typedef unsigned int size_t;
 extern  void free(void*);
-extern void* safe_malloc(size_t);
-extern void* safe_realloc( void *ptr, size_t new_size );
-extern char __VERIFIER_nondet_char(void);
+extern void* malloc(size_t);
+extern void* realloc( void *ptr, size_t new_size );
+extern void abort(void);
 void *safe_malloc(size_t size) {
   void *p = malloc(size);
   if (p == 0) {
@@ -19,6 +19,7 @@ void *safe_realloc(void *ptr, size_t size) {
   return p;
 }
 
+extern char __VERIFIER_nondet_char(void);
 
 int main(void) {
     char* p = safe_malloc(10 * sizeof(int));

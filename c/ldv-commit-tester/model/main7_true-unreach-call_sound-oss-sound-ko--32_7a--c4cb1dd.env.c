@@ -1,3 +1,4 @@
+void *safe_malloc(size_t size);
 // Skip function: __VERIFIER_error
 
 // Skip function: __VERIFIER_nondet_int
@@ -8,14 +9,6 @@
 unsigned long __VERIFIER_nondet_ulong(void);
 unsigned long int __get_free_pages(gfp_t arg0, unsigned int arg1) {
   // Simple type
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
   return __VERIFIER_nondet_ulong();
 }
 

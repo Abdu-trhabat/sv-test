@@ -18,6 +18,16 @@ Template File: sources-sink-42.tmpl.c
 
 #ifndef _WIN32
 #include <wchar.h>
+extern void abort(void);
+extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #endif
 
 /* MAINTENANCE NOTE: The length of this string should equal the 10 */
@@ -32,14 +42,6 @@ static char * badSource(char * data)
     if (data == NULL) {exit(-1);}
     return data;
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_memmove_42_bad()
 {

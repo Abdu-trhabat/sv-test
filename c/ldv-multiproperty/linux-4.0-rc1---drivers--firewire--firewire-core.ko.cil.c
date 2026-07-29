@@ -4412,22 +4412,6 @@ void ldv__builtin_va_end(__builtin_va_list  ) ;
 long ldv__builtin_expect(long exp , long c ) ;
 void ldv__builtin_va_start(__builtin_va_list  ) ;
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -22029,6 +22013,22 @@ void ldv__builtin_trap(void)
 void *ldv_calloc(size_t nmemb , size_t size ) ;
 extern void *malloc(size_t  ) ;
 extern void *calloc(size_t  , size_t  ) ;
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void free(void * ) ;
 extern void *memset(void * , int  , size_t  ) ;
 void *ldv_malloc(size_t size ) 

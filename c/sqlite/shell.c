@@ -242,6 +242,22 @@ static sqlite3_int64 timeOfDay(void){
 #if !defined(_WIN32) && !defined(WIN32) && !defined(__minux)
 #include <sys/time.h>
 #include <sys/resource.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 /* VxWorks does not support getrusage() as far as we can determine */
 #if defined(_WRS_KERNEL) || defined(__RTP__)
@@ -991,22 +1007,6 @@ static void shellAddSchemaName(
 
 #include <stdio.h>
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <errno.h>
 #include <io.h>
 #include <limits.h>

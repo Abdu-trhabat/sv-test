@@ -1,6 +1,7 @@
 typedef unsigned int size_t;
 extern  void free(void*);
-extern void* safe_malloc(size_t);
+extern void* malloc(size_t);
+extern void abort(void);
 void *safe_malloc(size_t size) {
   void *p = malloc(size);
   if (p == 0) {

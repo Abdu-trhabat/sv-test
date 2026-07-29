@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "floppy.i.cil-1.c", 3, "reach_error"); }
 
@@ -2090,6 +2082,14 @@ NTSTATUS FlHdbit(PDISKETTE_EXTENSION DisketteExtension ) ;
 #pragma alloc_text(PAGE,FlFdcDeviceIo)
 #pragma alloc_text(PAGE,FlHdbit)
 extern void *malloc(size_t);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void errorFn(void) 
 { 
 

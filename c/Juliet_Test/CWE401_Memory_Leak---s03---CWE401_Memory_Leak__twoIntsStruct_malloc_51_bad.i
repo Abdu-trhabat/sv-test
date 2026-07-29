@@ -88,6 +88,23 @@ struct _stdThread {
 struct _stdThreadLock {
    pthread_mutex_t mutex ;
 };
+
+void CWE401_Memory_Leak__twoIntsStruct_malloc_51b_badSink(twoIntsStruct *data)
+{
+  
+  return;
+}
+
+
+void ldv_exit(void);
+
+
+void srand(unsigned int);
+
+
+void *malloc(size_t);
+extern void abort(void);
+extern void *calloc(size_t num, size_t size);
 void *safe_calloc(size_t num, size_t size) {
   void *p = calloc(num, size);
   if (p == 0) {
@@ -104,21 +121,6 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
-
-void CWE401_Memory_Leak__twoIntsStruct_malloc_51b_badSink(twoIntsStruct *data)
-{
-  
-  return;
-}
-
-
-void ldv_exit(void);
-
-
-void srand(unsigned int);
-
-
-void *malloc(size_t);
 
 
 static void ldv_exit_1(int ldv_func_arg1);

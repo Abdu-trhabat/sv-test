@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -340,6 +332,14 @@ extern void *calloc (size_t __nmemb, size_t __size)
 __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
 extern void *realloc (void *__ptr, size_t __size)
 __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
 __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));

@@ -4919,22 +4919,6 @@ struct ldv_thread {
 };
 typedef _Bool ldv_set;
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -25329,6 +25313,22 @@ void ldv__builtin_trap(void)
 }
 extern void *malloc(size_t  ) ;
 extern void *calloc(size_t  , size_t  ) ;
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void free(void * ) ;
 extern void *memset(void * , int  , size_t  ) ;
 void *ldv_malloc(size_t size ) 

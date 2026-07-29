@@ -24,7 +24,7 @@ typedef union
     uint8_t bytes[32];
 } uint256_t;
 typedef long unsigned int size_t;
-extern void* safe_malloc(size_t);
+extern void* malloc(size_t);
 extern void free(void*);
 extern void abort(void);
 void *safe_malloc(size_t size) {

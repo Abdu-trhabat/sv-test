@@ -7,14 +7,6 @@ extern int __VERIFIER_nondet_int(void);
 extern long __VERIFIER_nondet_long(void);
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void memcpy_guard(void* p1, const void* p2, unsigned int n)
 {
     if ((unsigned long)p1 + n <= (unsigned long)p2 || (unsigned long)p2 + n <= (unsigned long)p1)
@@ -20920,6 +20912,14 @@ char *malloc(int i )
   return (& _SLAM_alloc_dummy);
 }
 }
+void *safe_malloc(int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
  __attribute__((__dllimport__)) void ( __attribute__((__fastcall__)) ExAcquireFastMutex)(PFAST_MUTEX FastMutex ) ;
 void ( __attribute__((__fastcall__)) ExAcquireFastMutex)(PFAST_MUTEX FastMutex ) 
 { 

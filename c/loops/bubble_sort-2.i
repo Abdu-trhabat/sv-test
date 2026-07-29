@@ -1,12 +1,4 @@
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -45,6 +37,14 @@ struct node {
    struct list_head nested ;
 };
 extern __attribute__((__nothrow__)) void *malloc(size_t __size ) __attribute__((__malloc__)) ;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern __attribute__((__nothrow__)) void free(void *__ptr ) ;
 extern __attribute__((__nothrow__, __noreturn__)) void abort(void) ;
 extern int __VERIFIER_nondet_int(void);

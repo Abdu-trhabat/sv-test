@@ -7933,6 +7933,23 @@ void *ldv_calloc(size_t nmemb , size_t size ) ;
 void ldv_free(void *s ) ;
 extern void *malloc(size_t ) ;
 extern void *calloc(size_t , size_t ) ;
+extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void free(void * ) ;
 extern void *memset(void * , int , size_t ) ;
 void *ldv_malloc(size_t size )
@@ -9108,22 +9125,6 @@ void ldv_linux_lib_idr_check_final_state(void)
 }
 }
 extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)

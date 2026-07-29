@@ -7,14 +7,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "email_spec9_product16.cil.c", 3, "reach_error"); }
 
@@ -244,6 +236,14 @@ extern  __attribute__((__nothrow__, __noreturn__)) void __assert_fail(char const
                                                                       unsigned int __line ,
                                                                       char const   *__function ) ;
 extern  __attribute__((__nothrow__)) void *malloc(size_t __size )  __attribute__((__malloc__)) ;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern  __attribute__((__nothrow__)) void free(void *__ptr ) ;
 void __utac__exception__cf_handler_set(void *exception , int (*cflow_func)(int  ,
                                                                            int  ) ,
