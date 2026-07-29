@@ -20,7 +20,7 @@ m_get(int nowait, int type)
                 return (NULL);
         }
 
-        m = safe_malloc(sizeof(struct mbuf), 0, 0);
+        m = malloc(sizeof(struct mbuf), 0, 0);
         m->m_type = type;
         m->m_next = NULL;
         m->m_nextpkt = NULL;
@@ -39,7 +39,7 @@ m_gethdr(int nowait, int type)
                 return (NULL);
         }
 
-        m = safe_malloc(sizeof(struct mbuf), 0, 0);
+        m = malloc(sizeof(struct mbuf), 0, 0);
         m->m_type = type;
 
         return (m_inithdr(m));
@@ -86,14 +86,6 @@ m_freem(struct mbuf *m)
 
         return (n);
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 int
 m_leadingspace(struct mbuf *m)

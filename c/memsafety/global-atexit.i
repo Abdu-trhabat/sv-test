@@ -453,14 +453,6 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -574,12 +566,12 @@ void h() {
  if (__VERIFIER_nondet_bool()) exit(1);
 }
 void f() {
- *g = (int *) safe_malloc(sizeof(int));
+ *g = (int *) malloc(sizeof(int));
  atexit(free_g2);
  h();
 }
 int main() {
- g = (int **) safe_malloc(sizeof(int *));
+ g = (int **) malloc(sizeof(int *));
  atexit(free_g1);
  if (__VERIFIER_nondet_bool()) exit(1);
  f();

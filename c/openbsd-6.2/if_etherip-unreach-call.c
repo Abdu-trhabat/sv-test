@@ -21,14 +21,6 @@
 #endif
 
 struct mbuf *m_gethdr(int, int);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void ip6_init(void);
 void ip_init(void);
 int ip_deliver(struct mbuf **, int *, int, int);
@@ -104,7 +96,7 @@ struct mbuf *m_get(int nowait, int type) {
     return (NULL);
   }
 
-  m = safe_malloc(sizeof(struct mbuf), 0, 0);
+  m = malloc(sizeof(struct mbuf), 0, 0);
   m->m_type = type;
   m->m_next = NULL;
   m->m_nextpkt = NULL;
@@ -121,7 +113,7 @@ struct mbuf *m_gethdr(int nowait, int type) {
     return (NULL);
   }
 
-  m = safe_malloc(sizeof(struct mbuf), 0, 0);
+  m = malloc(sizeof(struct mbuf), 0, 0);
   m->m_type = type;
 
   return (m_inithdr(m));
@@ -602,7 +594,7 @@ void ip6_init(void) {
   struct protosw *pr;
   int i;
 
-  ip6counters = safe_malloc(ip6s_ncounters * sizeof(uint64_t), 0, 0);
+  ip6counters = malloc(ip6s_ncounters * sizeof(uint64_t), 0, 0);
   explicit_bzero(ip6counters, ip6s_ncounters * sizeof(uint64_t));
 
   pr = pffindproto(PF_INET6, IPPROTO_RAW, SOCK_RAW);
@@ -1400,7 +1392,7 @@ int etherip_clone_create(struct if_clone *ifc, int unit) {
   struct ifnet *ifp;
   struct etherip_softc *sc;
 
-  if ((sc = safe_malloc(sizeof(*sc), M_DEVBUF, M_NOWAIT | M_ZERO)) == NULL)
+  if ((sc = malloc(sizeof(*sc), M_DEVBUF, M_NOWAIT | M_ZERO)) == NULL)
     return ENOMEM;
 
   ifp = &sc->sc_ac.ac_if;

@@ -28,14 +28,6 @@
 #define IPSTAT_INC(name)  ipstat_inc(ips_##name)
 
 struct protosw inetsw[] = {{}};
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void
 ip_init(void)
@@ -222,7 +214,7 @@ ip6_init(void)
     struct protosw *pr;
     int i;
 
-    ip6counters = safe_malloc(ip6s_ncounters * sizeof(uint64_t),0,0);
+    ip6counters = malloc(ip6s_ncounters * sizeof(uint64_t),0,0);
     explicit_bzero(ip6counters, ip6s_ncounters * sizeof(uint64_t));
 
     pr = pffindproto(PF_INET6, IPPROTO_RAW, SOCK_RAW);

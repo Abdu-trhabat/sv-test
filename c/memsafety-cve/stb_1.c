@@ -12,22 +12,6 @@
 
 #include <string.h>
 #include <stdlib.h>
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <stdio.h>
 #include "helpers.c"
 
@@ -58,13 +42,13 @@ int main() {
     char* randomString = getRandomString(5, 500);
     int NumberOfNumbers = getNumberOfNumbersInAString(randomString);
     if (!out) {
-      out = safe_calloc(NumberOfNumbers, sizeof(unsigned char));
+      out = calloc(NumberOfNumbers, sizeof(unsigned char));
       if (!out) {
         printf("out of memory\n");
         return 1;
       }
     } else {
-      unsigned char *tmp = safe_realloc(out, NumberOfNumbers); // 'clever' way to reuse the same buffer
+      unsigned char *tmp = realloc(out, NumberOfNumbers); // 'clever' way to reuse the same buffer
       if (!tmp) {
         printf("out of memory\n");
         // Problem: in case realloc was given a size of 0 it may free pointer given to it and return a null pointer
