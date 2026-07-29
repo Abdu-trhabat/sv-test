@@ -128,7 +128,7 @@ java:
 
 java-format:
   stage: checks
-  image: openjdk:11
+  image: eclipse-temurin:11
   script: "java/check-format.sh"
   cache:
     key: "$CI_JOB_NAME"

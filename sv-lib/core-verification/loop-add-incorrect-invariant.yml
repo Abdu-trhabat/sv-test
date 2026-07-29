@@ -4,5 +4,5 @@ input_files:
 - loop-add-incorrect-invariant.svlib
 
 properties:
-- property_file: ../properties/correct-tags.prp
+- property_file: ../properties/correct-annotations.prp
   expected_verdict: false

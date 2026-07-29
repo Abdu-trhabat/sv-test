@@ -60,6 +60,7 @@ int main () {
   int j = __VERIFIER_nondet_int(), k = __VERIFIER_nondet_int();
   assume_abort_if_not(0 <= j && j < 10);
   assume_abort_if_not(0 <= k && k < 10);
+  assume_abort_if_not(j != k);
   struct s *p;
   pthread_t t1;
 

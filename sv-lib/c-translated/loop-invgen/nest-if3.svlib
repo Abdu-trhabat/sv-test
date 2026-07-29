@@ -7,13 +7,11 @@
 
 (set-logic QF_LIA)
 
-(set-option :produce-violation-witnesses true)
-
-(set-option :produce-correctness-witnesses true)
-
-(set-option :witness-output-channel "./witness.svlib")
+(set-option :produce-witnesses true)
 
 (set-info :format-version "1.0")
+
+(declare-var nondet_int$2 Int)
 
 (define-proc
   main

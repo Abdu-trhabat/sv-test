@@ -9842,7 +9842,7 @@ void aws_byte_buf_write_from_whole_string_harness() {
     size_t available_cap = buf.capacity - buf.len;
     
    _Bool 
-        nondet_parameter;
+        nondet_parameter = nondet_bool();
 
     if (aws_byte_buf_write_from_whole_string(nondet_parameter ? &buf : 
                                                                       ((void *)0)

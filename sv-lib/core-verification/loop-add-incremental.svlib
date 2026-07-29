@@ -7,11 +7,7 @@
 
 (set-logic LIA)
 
-(set-option :produce-violation-witnesses true)
-
-(set-option :produce-correctness-witnesses true)
-
-(set-option :witness-output-channel "./witness.svlib")
+(set-option :produce-witnesses true)
 
 (set-info :format-version "1.0")
 
@@ -39,6 +35,8 @@
 
 (declare-const x1 Int)
 (declare-const y1 Int)
+
+(assert (<= 0 y1))
 
 (verify-call add (x1 y1))
 

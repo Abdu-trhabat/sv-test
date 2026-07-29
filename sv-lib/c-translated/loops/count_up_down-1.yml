@@ -1,6 +1,0 @@
-format_version: '2.0'
-input_files:
-- count_up_down-1.svlib
-properties:
-- property_file: ../../properties/correct-tags.prp
-  expected_verdict: correct

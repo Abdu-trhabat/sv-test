@@ -95,8 +95,8 @@ void* thread(void* arg)
                 break;
         }
 
-        stack.array[elem].Value = idx;
-        assert(stack.array[elem].Value == idx);
+        __atomic_store_n(&stack.array[elem].Value,  idx, 5); // atomic to avoid race
+        assert(__atomic_load_n(&stack.array[elem].Value, 5) == idx); // atomic to avoid race
 
         Push(elem);
     }

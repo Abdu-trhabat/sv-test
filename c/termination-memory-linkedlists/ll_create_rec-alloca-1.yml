@@ -5,7 +5,7 @@ input_files: 'll_create_rec-alloca-1.i'
 
 properties:
   - property_file: ../properties/termination.prp
-    expected_verdict: false
+    expected_verdict: true
 
 options:
   language: C
