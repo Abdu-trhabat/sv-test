@@ -107337,7 +107337,7 @@ int _getopt_internal_r(int argc , char **argv , char const   *optstring , struct
   }
   }
   {
-  int t = argc * argc * (__VERIFIER_nondet_uint() % 4);
+  int t = argc * argc * ((int) (__VERIFIER_nondet_uint() % 4));
 #line 788
   tmp___39 = d->__nextchar;
 #line 788

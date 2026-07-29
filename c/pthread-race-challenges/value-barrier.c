@@ -8,6 +8,10 @@
 // Race-free due to value-based barrier, main thread only writes before.
 // Extracted from silver searcher.
 #include <stdlib.h>
+#include <stdbool.h>
+#include <pthread.h>
+#include <stdint.h>
+extern void abort(void);
 void *safe_malloc(size_t size) {
   void *p = malloc(size);
   if (p == 0) {
@@ -16,9 +20,6 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
-#include <stdbool.h>
-#include <pthread.h>
-extern void abort(void);
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -45,6 +46,7 @@ int main() {
   int threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
 
+  assume_abort_if_not(threads_total <= SIZE_MAX / sizeof(pthread_t));
   pthread_t *tids = safe_malloc(threads_total * sizeof(pthread_t));
 
   // create threads

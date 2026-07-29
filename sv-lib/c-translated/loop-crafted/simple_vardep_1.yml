@@ -2,5 +2,5 @@ format_version: '2.0'
 input_files:
 - simple_vardep_1.svlib
 properties:
-- property_file: ../../properties/correct-tags.prp
-  expected_verdict: correct
+- property_file: ../../properties/correct-annotations.prp
+  expected_verdict: true

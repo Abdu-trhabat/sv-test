@@ -43,7 +43,7 @@ public class Main {
     Main instance = new Main();
     instance.dragFractal(x, y);
     instance.dragFractal(x, y);
-    if (!Double.isNaN(x) && !Double.isNaN(y)) {
+    if (Double.isFinite(x) && Double.isFinite(y) && !(x == 0.0f ^ y == 0.0f)) {
       assert instance.totalDragX == x;
       assert instance.totalDragY == y;
     }

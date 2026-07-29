@@ -1743,8 +1743,8 @@ void* thread(void* arg)
             if (elem >= 0)
                 break;
         }
-        stack.array[elem].Value = idx;
-        if(!(stack.array[elem].Value == idx)) reach_error();
+        __atomic_store_n(&stack.array[elem].Value, idx, 5);
+        if(!(__atomic_load_n(&stack.array[elem].Value, 5) == idx)) reach_error();
         Push(elem);
     }
     return ((void *)0);

@@ -2,5 +2,5 @@ format_version: '2.0'
 input_files:
 - benchmark19_conjunctive.svlib
 properties:
-- property_file: ../../properties/correct-tags.prp
-  expected_verdict: correct
+- property_file: ../../properties/correct-annotations.prp
+  expected_verdict: true
