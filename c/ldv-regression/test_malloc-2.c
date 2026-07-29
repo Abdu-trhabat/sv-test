@@ -26,8 +26,8 @@ int CURRENTLY_UNSAFE;
 int main(void) {
 /*
 #ifdef BLAST_AUTO_1
-	int * p1 = safe_malloc(sizeof(int));
-	int * p2 = safe_malloc(sizeof(int));
+	int * p1 = malloc(sizeof(int));
+	int * p2 = malloc(sizeof(int));
 #else
 */
 	int a,b;

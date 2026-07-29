@@ -30,14 +30,6 @@ static void badSink()
     /* POTENTIAL FLAW: Possibly deallocating memory allocated on the stack */
     free(data);
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE590_Free_Memory_Not_on_Heap__free_int_alloca_45_bad()
 {
@@ -78,10 +70,10 @@ static void goodG2B()
     data = NULL; /* Initialize data */
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
-        int * dataBuffer = (int *)safe_malloc(100*sizeof(int));
+        int * dataBuffer = (int *)malloc(100*sizeof(int));
         if (dataBuffer == NULL)
         {
-            printLine("safe_malloc() failed");
+            printLine("malloc() failed");
             exit(1);
         }
         {

@@ -3627,18 +3627,10 @@ void __list_add(struct list_head *arg0, struct list_head *arg1, struct list_head
 }
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 struct adxl34x *adxl34x_probe(struct device *arg0, int arg1, bool arg2, const struct adxl34x_bus_ops *arg3) {
   return ldv_malloc(0UL);

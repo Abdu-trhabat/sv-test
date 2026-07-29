@@ -45,19 +45,11 @@ Template File: source-sinks-61a.tmpl.c
 
 /* bad function declaration */
 char * CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_61b_badSource(char * data);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_61_bad()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     data = CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_61b_badSource(data);
@@ -84,7 +76,7 @@ char * CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_61b_goodB2
 static void goodB2G()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     data = CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_61b_goodB2GSource(data);

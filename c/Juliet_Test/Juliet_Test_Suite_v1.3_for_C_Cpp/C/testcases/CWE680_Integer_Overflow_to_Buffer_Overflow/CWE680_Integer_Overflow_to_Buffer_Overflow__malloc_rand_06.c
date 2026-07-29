@@ -21,14 +21,6 @@ Template File: sources-sink-06.tmpl.c
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_rand_06_bad()
 {
@@ -45,7 +37,7 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_rand_06_bad()
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)safe_malloc(data * sizeof(int));
+        intPointer = (int*)malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {
@@ -81,7 +73,7 @@ static void goodG2B1()
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)safe_malloc(data * sizeof(int));
+        intPointer = (int*)malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {
@@ -108,7 +100,7 @@ static void goodG2B2()
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)safe_malloc(data * sizeof(int));
+        intPointer = (int*)malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {

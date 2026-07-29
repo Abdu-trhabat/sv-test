@@ -10,7 +10,7 @@
 // commit: 5e2d564
 // extract of: pjlib-util/src/pjlib-util/dns.c (function: parse_rr)
 
-#include "helpers.c"
+#include "helpers-safe.c"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>

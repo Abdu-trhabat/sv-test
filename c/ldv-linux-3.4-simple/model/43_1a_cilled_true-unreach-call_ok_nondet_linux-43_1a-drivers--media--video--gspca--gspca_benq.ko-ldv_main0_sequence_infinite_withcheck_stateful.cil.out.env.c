@@ -5,14 +5,6 @@
 // Function: gspca_dev_probe
 // with type: int gspca_dev_probe(struct usb_interface *, const struct usb_device_id *, const struct sd_desc *, int, struct module *)
 // with return type: int
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int __VERIFIER_nondet_int(void);
 int gspca_dev_probe(struct usb_interface *arg0, const struct usb_device_id *arg1, const struct sd_desc *arg2, int arg3, struct module *arg4) {
   // Simple type
@@ -31,7 +23,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: kmem_cache_alloc

@@ -1,14 +1,6 @@
 typedef unsigned int size_t;
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
 extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -31,7 +23,7 @@ int main ()
  }
  for(i = 0; i < 100000 / 2; i++)
  {
-  a[i] = safe_malloc(sizeof(int)) ;
+  a[i] = malloc(sizeof(int)) ;
  }
  for(i = 0; i < 100000 / 2; i++)
  {

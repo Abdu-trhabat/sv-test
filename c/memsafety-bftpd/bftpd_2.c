@@ -9,14 +9,6 @@
  */
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <string.h>
 
 void c1();
@@ -52,7 +44,7 @@ void parse_input(char *input) {
 }
 
 void c1() {
-	char *x = (char *)safe_malloc(sizeof(char));
+	char *x = (char *)malloc(sizeof(char));
 	if(!x) {
 		// out of memory
 		return;

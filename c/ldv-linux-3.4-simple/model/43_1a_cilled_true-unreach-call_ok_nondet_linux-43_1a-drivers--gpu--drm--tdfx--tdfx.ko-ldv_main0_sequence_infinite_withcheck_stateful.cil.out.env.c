@@ -5,14 +5,6 @@
 // Function: drm_pci_exit
 // with type: void drm_pci_exit(struct drm_driver *, struct pci_driver *)
 // with return type: void
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void drm_pci_exit(struct drm_driver *arg0, struct pci_driver *arg1) {
   // Void type
   return;
@@ -31,7 +23,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: kmem_cache_alloc

@@ -28,16 +28,6 @@ Template File: sources-sink-44.tmpl.c
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
 #define CLOSE_SOCKET close
@@ -57,7 +47,7 @@ static void badSink(int data)
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)safe_malloc(data * sizeof(int));
+        intPointer = (int*)malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {
@@ -160,7 +150,7 @@ static void goodG2BSink(int data)
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)safe_malloc(data * sizeof(int));
+        intPointer = (int*)malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {

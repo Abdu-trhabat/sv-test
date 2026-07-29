@@ -6,7 +6,7 @@ Template File: source-sinks-21.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using safe_malloc()
+ * BadSource: malloc Allocate data using malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -33,21 +33,13 @@ static void badSink(long * data)
         free(data);
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__long_malloc_21_bad()
 {
     long * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)safe_malloc(1*sizeof(long));
+    data = (long *)malloc(1*sizeof(long));
     badStatic = 1; /* true */
     badSink(data);
 }
@@ -85,7 +77,7 @@ static void goodB2G1()
     long * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)safe_malloc(1*sizeof(long));
+    data = (long *)malloc(1*sizeof(long));
     goodB2G1Static = 0; /* false */
     goodB2G1Sink(data);
 }
@@ -110,7 +102,7 @@ static void goodB2G2()
     long * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)safe_malloc(1*sizeof(long));
+    data = (long *)malloc(1*sizeof(long));
     goodB2G2Static = 1; /* true */
     goodB2G2Sink(data);
 }

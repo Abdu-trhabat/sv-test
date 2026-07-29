@@ -9,14 +9,6 @@ extern int __VERIFIER_nondet_int();
  * Then check if the list length has increased by k.
  */
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 typedef struct node {
   struct node* next;
@@ -29,7 +21,7 @@ void myexit(int s) {
 SLL sll_create(int len) {
   SLL head = NULL;
   while(len-- > 0) {
-    SLL new_head = (SLL) safe_malloc(sizeof(struct node));
+    SLL new_head = (SLL) malloc(sizeof(struct node));
     if(NULL == new_head) {
       myexit(1);
     }
@@ -57,7 +49,7 @@ void sll_destroy(SLL head) {
 }
 
 void sll_insert(SLL* head, int position) {
-  SLL new_node = (SLL) safe_malloc(sizeof(struct node));
+  SLL new_node = (SLL) malloc(sizeof(struct node));
   if(NULL == new_node) {
     myexit(1);
   }

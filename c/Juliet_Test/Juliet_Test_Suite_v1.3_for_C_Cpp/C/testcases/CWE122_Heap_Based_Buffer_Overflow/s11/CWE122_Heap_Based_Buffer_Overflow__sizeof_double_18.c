@@ -17,14 +17,6 @@ Template File: sources-sink-18.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_double_18_bad()
 {
@@ -34,8 +26,8 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_double_18_bad()
     goto source;
 source:
     /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-    /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
-    data = (double *)safe_malloc(sizeof(data));
+    /* FLAW: Using sizeof the pointer and not the data type in malloc() */
+    data = (double *)malloc(sizeof(data));
     if (data == NULL) {exit(-1);}
     *data = 1.7E300;
     /* POTENTIAL FLAW: Attempt to use data, which may not have enough memory allocated */
@@ -55,8 +47,8 @@ static void goodG2B()
     data = NULL;
     goto source;
 source:
-    /* FIX: Using sizeof the data type in safe_malloc() */
-    data = (double *)safe_malloc(sizeof(*data));
+    /* FIX: Using sizeof the data type in malloc() */
+    data = (double *)malloc(sizeof(*data));
     if (data == NULL) {exit(-1);}
     *data = 1.7E300;
     /* POTENTIAL FLAW: Attempt to use data, which may not have enough memory allocated */

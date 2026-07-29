@@ -8,14 +8,6 @@ void reach_error() { assert(0); }
  * Directly continue the traversal, check data and deallocate.
  */
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 typedef struct node {
   struct node* next;
@@ -27,7 +19,7 @@ void myexit(int s) {
 }
 
 SLL sll_circular_create(int len, int data) {
-  SLL const last = (SLL) safe_malloc(sizeof(struct node));
+  SLL const last = (SLL) malloc(sizeof(struct node));
   if(NULL == last){
     myexit(1);
   }
@@ -35,7 +27,7 @@ SLL sll_circular_create(int len, int data) {
   last->data = data;
   SLL head = last;
   while(len > 1) {
-    SLL new_head = (SLL) safe_malloc(sizeof(struct node));
+    SLL new_head = (SLL) malloc(sizeof(struct node));
     if(NULL == new_head){
       myexit(1);
     }

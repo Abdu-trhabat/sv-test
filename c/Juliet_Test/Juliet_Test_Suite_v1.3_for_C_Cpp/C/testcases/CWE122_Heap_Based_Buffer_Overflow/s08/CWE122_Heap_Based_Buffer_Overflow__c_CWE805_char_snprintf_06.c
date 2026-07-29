@@ -6,8 +6,8 @@ Template File: sources-sink-06.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sink: snprintf
  *    BadSink : Copy string to data using snprintf
  * Flow Variant: 06 Control flow: if(STATIC_CONST_FIVE==5) and if(STATIC_CONST_FIVE!=5)
@@ -29,14 +29,6 @@ Template File: sources-sink-06.tmpl.c
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_snprintf_06_bad()
 {
@@ -45,7 +37,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_snprintf_06_bad()
     if(STATIC_CONST_FIVE==5)
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-        data = (char *)safe_malloc(50*sizeof(char));
+        data = (char *)malloc(50*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
     }
@@ -77,7 +69,7 @@ static void goodG2B1()
     else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
     }
@@ -100,7 +92,7 @@ static void goodG2B2()
     if(STATIC_CONST_FIVE==5)
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
     }

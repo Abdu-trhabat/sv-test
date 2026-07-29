@@ -2519,18 +2519,10 @@ struct timespec current_kernel_time() {
 }
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 struct dentry *d_alloc_name(struct dentry *arg0, const char *arg1) {
   return ldv_malloc(sizeof(struct dentry));
@@ -2618,7 +2610,7 @@ void *ldv_xmalloc(size_t size )
   long tmp___0 ;
   {
   {
-  tmp = safe_malloc(size);
+  tmp = malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);

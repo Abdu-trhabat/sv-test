@@ -69,14 +69,6 @@ void __VERIFIER_assert(int cond) {
 }
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 struct node
 {
@@ -121,7 +113,7 @@ int main()
 
   while(__VERIFIER_nondet_bool())
   {
-    struct node *n=safe_malloc(sizeof(struct node));
+    struct node *n=malloc(sizeof(struct node));
     if(n==0)
       break;
 

@@ -42,14 +42,6 @@ static void helperGood(int sig)
 }
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE364_Signal_Handler_Race_Condition__basic_16_bad()
 {
@@ -63,7 +55,7 @@ void CWE364_Signal_Handler_Race_Condition__basic_16_bad()
                 free(CWE364_Signal_Handler_Race_Condition__basic_16StructSigAtomicBad);
                 CWE364_Signal_Handler_Race_Condition__basic_16StructSigAtomicBad = NULL;
             }
-            gStructSigAtomic = (structSigAtomic*)safe_malloc(sizeof(structSigAtomic));
+            gStructSigAtomic = (structSigAtomic*)malloc(sizeof(structSigAtomic));
             if (gStructSigAtomic == NULL) {exit(-1);}
             CWE364_Signal_Handler_Race_Condition__basic_16StructSigAtomicBad = gStructSigAtomic;
             CWE364_Signal_Handler_Race_Condition__basic_16StructSigAtomicBad->val = 1;
@@ -111,7 +103,7 @@ static void good1()
                 free(CWE364_Signal_Handler_Race_Condition__basic_16StructSigAtomicGood);
                 CWE364_Signal_Handler_Race_Condition__basic_16StructSigAtomicGood = 0;
             }
-            gStructSigAtomic = (structSigAtomic*)safe_malloc(sizeof(structSigAtomic));
+            gStructSigAtomic = (structSigAtomic*)malloc(sizeof(structSigAtomic));
             if (gStructSigAtomic == NULL) {exit(-1);}
             CWE364_Signal_Handler_Race_Condition__basic_16StructSigAtomicGood = gStructSigAtomic;
             CWE364_Signal_Handler_Race_Condition__basic_16StructSigAtomicGood->val = 1;

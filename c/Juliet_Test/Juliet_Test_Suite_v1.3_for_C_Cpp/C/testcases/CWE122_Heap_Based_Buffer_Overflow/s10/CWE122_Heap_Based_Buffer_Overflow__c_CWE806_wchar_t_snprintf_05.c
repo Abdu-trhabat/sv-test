@@ -32,19 +32,11 @@ static int staticTrue = 1; /* true */
 static int staticFalse = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_snprintf_05_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     if(staticTrue)
     {
@@ -69,7 +61,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_snprintf_05_bad()
 static void goodG2B1()
 {
     wchar_t * data;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     if(staticFalse)
     {
@@ -95,7 +87,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     wchar_t * data;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     if(staticTrue)
     {

@@ -26,29 +26,13 @@ static int staticTrue = 1; /* true */
 static int staticFalse = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE244_Heap_Inspection__w32_wchar_t_realloc_05_bad()
 {
     if(staticTrue)
     {
         {
-            wchar_t * password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;
@@ -86,7 +70,7 @@ void CWE244_Heap_Inspection__w32_wchar_t_realloc_05_bad()
             }
             /* FLAW: reallocate password without clearing the password buffer
              * which could leave a copy of the password in memory */
-            password = safe_realloc(password, 200 * sizeof(wchar_t));
+            password = realloc(password, 200 * sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             /* Zeroize the password */
             SecureZeroMemory(password, 200 * sizeof(wchar_t));
@@ -113,7 +97,7 @@ static void good1()
     else
     {
         {
-            wchar_t * password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;
@@ -151,7 +135,7 @@ static void good1()
             }
             /* FIX: Zeroize the password buffer before reallocating it */
             SecureZeroMemory(password, 100 * sizeof(wchar_t));
-            password = safe_realloc(password, 200 * sizeof(wchar_t));
+            password = realloc(password, 200 * sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             /* Use the password buffer again */
             wcscpy(password, L"Nothing to see here");
@@ -167,7 +151,7 @@ static void good2()
     if(staticTrue)
     {
         {
-            wchar_t * password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * password = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;
@@ -205,7 +189,7 @@ static void good2()
             }
             /* FIX: Zeroize the password buffer before reallocating it */
             SecureZeroMemory(password, 100 * sizeof(wchar_t));
-            password = safe_realloc(password, 200 * sizeof(wchar_t));
+            password = realloc(password, 200 * sizeof(wchar_t));
             if (password == NULL) {exit(-1);}
             /* Use the password buffer again */
             wcscpy(password, L"Nothing to see here");

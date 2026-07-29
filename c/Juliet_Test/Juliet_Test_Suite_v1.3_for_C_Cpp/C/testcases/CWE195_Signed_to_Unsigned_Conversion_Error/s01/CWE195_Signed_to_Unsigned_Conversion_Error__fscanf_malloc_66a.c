@@ -9,7 +9,7 @@ Template File: sources-sink-66a.tmpl.c
  * BadSource: fscanf Read data from the console using fscanf()
  * GoodSource: Positive integer
  * Sinks: malloc
- *    BadSink : Allocate memory using safe_malloc() with the size of data
+ *    BadSink : Allocate memory using malloc() with the size of data
  * Flow Variant: 66 Data flow: data passed in an array from one function to another in different source files
  *
  * */
@@ -19,14 +19,6 @@ Template File: sources-sink-66a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE195_Signed_to_Unsigned_Conversion_Error__fscanf_malloc_66b_badSink(int dataArray[]);
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__fscanf_malloc_66_bad()

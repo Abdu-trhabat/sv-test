@@ -24,14 +24,6 @@ typedef struct _CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_67_structType
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_67b_badSink(CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_67_structType myStruct);
 
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_67_bad()
@@ -41,8 +33,8 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_67_bad()
     /* Initialize data */
     data = NULL;
     /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-    /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
-    data = (int64_t *)safe_malloc(sizeof(data));
+    /* FLAW: Using sizeof the pointer and not the data type in malloc() */
+    data = (int64_t *)malloc(sizeof(data));
     if (data == NULL) {exit(-1);}
     *data = 2147483643LL;
     myStruct.structFirst = data;
@@ -62,8 +54,8 @@ static void goodG2B()
     CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_67_structType myStruct;
     /* Initialize data */
     data = NULL;
-    /* FIX: Using sizeof the data type in safe_malloc() */
-    data = (int64_t *)safe_malloc(sizeof(*data));
+    /* FIX: Using sizeof the data type in malloc() */
+    data = (int64_t *)malloc(sizeof(*data));
     if (data == NULL) {exit(-1);}
     *data = 2147483643LL;
     myStruct.structFirst = data;

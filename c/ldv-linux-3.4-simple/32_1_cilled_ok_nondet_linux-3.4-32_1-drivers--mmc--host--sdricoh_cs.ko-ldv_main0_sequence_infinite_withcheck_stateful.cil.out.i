@@ -5983,18 +5983,10 @@ int mmc_add_host(struct mmc_host *arg0) {
 }
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 struct mmc_host *mmc_alloc_host(int arg0, struct device *arg1) {
   return ldv_malloc(sizeof(struct mmc_host));

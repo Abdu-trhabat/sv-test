@@ -10,14 +10,6 @@ extern int __VERIFIER_nondet_int();
  * Violation of monotonicity assumption: Append a node with a sublist of length 3.
  */
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 typedef struct node {
   struct node* next;
@@ -31,7 +23,7 @@ void myexit(int s) {
 SLL sll_create(int len) {
   SLL head = NULL;
   while(len > 0) {
-    SLL new_head = (SLL) safe_malloc(sizeof(struct node));
+    SLL new_head = (SLL) malloc(sizeof(struct node));
     if(NULL == new_head) {
       myexit(1);
     }
@@ -43,7 +35,7 @@ SLL sll_create(int len) {
 }
 
 SLL node_create_with_sublist(int sublist_length) {
-  SLL new_node = (SLL) safe_malloc(sizeof(struct node));
+  SLL new_node = (SLL) malloc(sizeof(struct node));
   if(NULL == new_node) {
     myexit(1);
   }

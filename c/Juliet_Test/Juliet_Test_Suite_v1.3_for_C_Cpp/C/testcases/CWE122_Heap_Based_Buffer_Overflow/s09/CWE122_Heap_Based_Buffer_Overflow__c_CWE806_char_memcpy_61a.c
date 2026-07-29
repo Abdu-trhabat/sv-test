@@ -22,19 +22,11 @@ Template File: sources-sink-61a.tmpl.c
 
 /* bad function declaration */
 char * CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_memcpy_61b_badSource(char * data);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_memcpy_61_bad()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_memcpy_61b_badSource(data);
     {
@@ -57,7 +49,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_memcpy_61b_goodG2BSource
 static void goodG2B()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_memcpy_61b_goodG2BSource(data);
     {

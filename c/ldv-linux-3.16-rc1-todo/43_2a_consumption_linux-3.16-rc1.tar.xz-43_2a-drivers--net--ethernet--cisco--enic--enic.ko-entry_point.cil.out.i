@@ -6892,22 +6892,6 @@ __inline static void *kcalloc(size_t n , size_t size , gfp_t flags ) ;
 void ldv_check_alloc_flags(gfp_t flags ) ;
 extern void *malloc(size_t size ) ;
 extern void *calloc(size_t nmemb , size_t size ) ;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int __VERIFIER_nondet_int(void) ;
 extern u16 __VERIFIER_nondet_u16(void) ;
 extern unsigned long __VERIFIER_nondet_ulong(void) ;
@@ -6921,7 +6905,7 @@ void *ldv_malloc(size_t size )
   if (tmp___0 != 0) {
     return ((void *)0);
   } else {
-    tmp = safe_malloc(size);
+    tmp = malloc(size);
     p = tmp;
     assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
     return (p);
@@ -6938,7 +6922,7 @@ void *ldv_zalloc(size_t size )
   if (tmp___0 != 0) {
     return ((void *)0);
   } else {
-    tmp = safe_calloc(1UL, size);
+    tmp = calloc(1UL, size);
     p = tmp;
     assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
     return (p);

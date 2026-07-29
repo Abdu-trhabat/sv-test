@@ -5,14 +5,6 @@ extern int __VERIFIER_nondet_int(void);
 
 #include <stdio.h>
 #include <stdlib.h>
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <string.h>
 #include <errno.h>
 #include <pthread.h>
@@ -80,7 +72,7 @@ int bounded_buf_init(bounded_buf_t * bbuf, size_t sz)
     bbuf->max_size = sz;
     bbuf->head = 0;
     bbuf->rear = 0;
-    bbuf->buf = safe_calloc( sz, sizeof(void*) );
+    bbuf->buf = calloc( sz, sizeof(void*) );
     if (bbuf->buf == NULL)
     {
         pthread_mutex_destroy(&bbuf->mutex);

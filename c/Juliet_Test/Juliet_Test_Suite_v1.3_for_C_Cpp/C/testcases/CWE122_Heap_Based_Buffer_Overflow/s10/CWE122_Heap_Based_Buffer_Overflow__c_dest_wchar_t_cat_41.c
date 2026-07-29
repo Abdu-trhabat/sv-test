@@ -6,8 +6,8 @@ Template File: sources-sink-41.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sink: cat
  *    BadSink : Copy string to data using wcscat
  * Flow Variant: 41 Data flow: data passed as an argument from one function to another in the same source file
@@ -19,14 +19,6 @@ Template File: sources-sink-41.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_dest_wchar_t_cat_41_badSink(wchar_t * data)
 {
@@ -46,7 +38,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_dest_wchar_t_cat_41_bad()
     wchar_t * data;
     data = NULL;
     /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-    data = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+    data = (wchar_t *)malloc(50*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0'; /* null terminate */
     CWE122_Heap_Based_Buffer_Overflow__c_dest_wchar_t_cat_41_badSink(data);
@@ -75,7 +67,7 @@ static void goodG2B()
     wchar_t * data;
     data = NULL;
     /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0'; /* null terminate */
     CWE122_Heap_Based_Buffer_Overflow__c_dest_wchar_t_cat_41_goodG2BSink(data);

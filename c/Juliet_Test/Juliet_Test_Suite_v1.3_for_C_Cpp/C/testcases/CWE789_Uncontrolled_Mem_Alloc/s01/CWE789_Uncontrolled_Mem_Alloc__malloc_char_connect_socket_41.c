@@ -9,8 +9,8 @@ Template File: sources-sinks-41.tmpl.c
  * BadSource: connect_socket Read data using a connect socket (client side)
  * GoodSource: Small number greater than zero
  * Sinks:
- *    GoodSink: Allocate memory with safe_malloc() and check the size of the memory to be allocated
- *    BadSink : Allocate memory with safe_malloc(), but incorrectly check the size of the memory to be allocated
+ *    GoodSink: Allocate memory with malloc() and check the size of the memory to be allocated
+ *    BadSink : Allocate memory with malloc(), but incorrectly check the size of the memory to be allocated
  * Flow Variant: 41 Data flow: data passed as an argument from one function to another in the same source file
  *
  * */
@@ -33,16 +33,6 @@ Template File: sources-sinks-41.tmpl.c
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
 #define CLOSE_SOCKET close
@@ -66,7 +56,7 @@ static void badSink(size_t data)
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > strlen(HELLO_STRING))
         {
-            myString = (char *)safe_malloc(data*sizeof(char));
+            myString = (char *)malloc(data*sizeof(char));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             strcpy(myString, HELLO_STRING);
@@ -158,7 +148,7 @@ static void goodG2BSink(size_t data)
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > strlen(HELLO_STRING))
         {
-            myString = (char *)safe_malloc(data*sizeof(char));
+            myString = (char *)malloc(data*sizeof(char));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             strcpy(myString, HELLO_STRING);
@@ -192,7 +182,7 @@ static void goodB2GSink(size_t data)
         /* INCIDENTAL FLAW: The source could cause a type overrun in data or in the memory allocation */
         if (data > strlen(HELLO_STRING) && data < 100)
         {
-            myString = (char *)safe_malloc(data*sizeof(char));
+            myString = (char *)malloc(data*sizeof(char));
             if (myString == NULL) {exit(-1);}
             /* Copy a small string into myString */
             strcpy(myString, HELLO_STRING);

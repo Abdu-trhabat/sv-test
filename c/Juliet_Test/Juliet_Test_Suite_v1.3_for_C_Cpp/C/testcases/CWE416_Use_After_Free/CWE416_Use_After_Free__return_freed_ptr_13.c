@@ -14,16 +14,6 @@ Template File: point-flaw-13.tmpl.c
  * */
 
 #include "std_testcase.h"
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 static char * helperBad(char * aString)
 {
@@ -33,7 +23,7 @@ static char * helperBad(char * aString)
     if (aString != NULL)
     {
         i = strlen(aString);
-        reversedString = (char *) safe_malloc(i+1);
+        reversedString = (char *) malloc(i+1);
         if (reversedString == NULL) {exit(-1);}
         for (j = 0; j < i; j++)
         {
@@ -58,7 +48,7 @@ static char * helperGood(char * aString)
     if (aString != NULL)
     {
         i = strlen(aString);
-        reversedString = (char *) safe_malloc(i+1);
+        reversedString = (char *) malloc(i+1);
         if (reversedString == NULL) {exit(-1);}
         for (j = 0; j < i; j++)
         {

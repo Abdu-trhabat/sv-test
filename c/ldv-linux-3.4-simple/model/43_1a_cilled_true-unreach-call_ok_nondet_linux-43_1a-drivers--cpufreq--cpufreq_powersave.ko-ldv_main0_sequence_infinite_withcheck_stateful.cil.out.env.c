@@ -5,14 +5,6 @@
 // Function: __cpufreq_driver_target
 // with type: int __cpufreq_driver_target(struct cpufreq_policy *, unsigned int, unsigned int)
 // with return type: int
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int __VERIFIER_nondet_int(void);
 int __cpufreq_driver_target(struct cpufreq_policy *arg0, unsigned int arg1, unsigned int arg2) {
   // Simple type
@@ -49,7 +41,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: kmem_cache_alloc

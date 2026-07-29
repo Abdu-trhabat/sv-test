@@ -25096,23 +25096,6 @@ void ldv__builtin_trap(void)
 }
 extern void *malloc(size_t  ) ;
 extern void *calloc(size_t  , size_t  ) ;
-extern void abort(void);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern void free(void * ) ;
 void *ldv_malloc(size_t size ) 
 { 
@@ -25127,7 +25110,7 @@ void *ldv_malloc(size_t size )
   }
   if (tmp___1 != 0) {
     {
-    tmp = safe_malloc(size);
+    tmp = malloc(size);
     res = tmp;
     ldv_assume((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const   *)res);
@@ -25152,7 +25135,7 @@ void *ldv_calloc(size_t nmemb , size_t size )
   }
   if (tmp___1 != 0) {
     {
-    tmp = safe_calloc(nmemb, size);
+    tmp = calloc(nmemb, size);
     res = tmp;
     ldv_assume((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const   *)res);
@@ -25194,7 +25177,7 @@ void *ldv_xmalloc(size_t size )
 
   {
   {
-  tmp = safe_malloc(size);
+  tmp = malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const   *)res);
@@ -25211,7 +25194,7 @@ void *ldv_xzalloc(size_t size )
 
   {
   {
-  tmp = safe_calloc(1UL, size);
+  tmp = calloc(1UL, size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const   *)res);

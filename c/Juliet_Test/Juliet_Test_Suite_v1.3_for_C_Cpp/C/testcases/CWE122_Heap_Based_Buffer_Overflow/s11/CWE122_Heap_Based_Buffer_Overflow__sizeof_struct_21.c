@@ -15,16 +15,6 @@ Template File: sources-sink-21.tmpl.c
  * */
 
 #include "std_testcase.h"
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -36,8 +26,8 @@ static twoIntsStruct * badSource(twoIntsStruct * data)
     if(badStatic)
     {
         /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-        /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
-        data = (twoIntsStruct *)safe_malloc(sizeof(data));
+        /* FLAW: Using sizeof the pointer and not the data type in malloc() */
+        data = (twoIntsStruct *)malloc(sizeof(data));
         if (data == NULL) {exit(-1);}
         data->intOne = 1;
         data->intTwo = 2;
@@ -75,8 +65,8 @@ static twoIntsStruct * goodG2B1Source(twoIntsStruct * data)
     }
     else
     {
-        /* FIX: Using sizeof the data type in safe_malloc() */
-        data = (twoIntsStruct *)safe_malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in malloc() */
+        data = (twoIntsStruct *)malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         data->intOne = 1;
         data->intTwo = 2;
@@ -101,8 +91,8 @@ static twoIntsStruct * goodG2B2Source(twoIntsStruct * data)
 {
     if(goodG2B2Static)
     {
-        /* FIX: Using sizeof the data type in safe_malloc() */
-        data = (twoIntsStruct *)safe_malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in malloc() */
+        data = (twoIntsStruct *)malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         data->intOne = 1;
         data->intTwo = 2;

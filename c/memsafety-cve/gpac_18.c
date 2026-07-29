@@ -44,7 +44,7 @@ void avc_parse_slice(AVCSliceInfo *si, AVCState *avc) {
 
 int main() {
   AVCSliceInfo si = {0};
-  si.pps = safe_calloc(1, sizeof(AVC_PPS));
+  si.pps = calloc(1, sizeof(AVC_PPS));
   if (si.pps == NULL)
     return 1;
   si.pps->sps_id = getNumberInRange(0, 35); // value >= 32 will cause a buffer overflow later in program

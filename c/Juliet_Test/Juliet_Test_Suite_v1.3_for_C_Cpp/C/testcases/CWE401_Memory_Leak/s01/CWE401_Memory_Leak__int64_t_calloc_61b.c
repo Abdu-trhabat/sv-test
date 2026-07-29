@@ -6,7 +6,7 @@ Template File: sources-sinks-61b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -18,23 +18,13 @@ Template File: sources-sinks-61b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *calloc(size_t num, size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 int64_t * CWE401_Memory_Leak__int64_t_calloc_61b_badSource(int64_t * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int64_t *)safe_calloc(100, sizeof(int64_t));
+    data = (int64_t *)calloc(100, sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5LL;
@@ -61,7 +51,7 @@ int64_t * CWE401_Memory_Leak__int64_t_calloc_61b_goodG2BSource(int64_t * data)
 int64_t * CWE401_Memory_Leak__int64_t_calloc_61b_goodB2GSource(int64_t * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int64_t *)safe_calloc(100, sizeof(int64_t));
+    data = (int64_t *)calloc(100, sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5LL;

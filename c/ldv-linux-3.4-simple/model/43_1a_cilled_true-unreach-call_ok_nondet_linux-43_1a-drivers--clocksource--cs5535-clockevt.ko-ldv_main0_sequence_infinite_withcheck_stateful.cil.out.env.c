@@ -6,14 +6,6 @@
 // with type: u64 clockevent_delta2ns(unsigned long, struct clock_event_device *)
 // with return type: u64 
 unsigned long __VERIFIER_nondet_ulong(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 u64 clockevent_delta2ns(unsigned long arg0, struct clock_event_device *arg1) {
   // Typedef type
   // Real type: unsigned long long
@@ -33,7 +25,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: cs5535_mfgpt_alloc_timer

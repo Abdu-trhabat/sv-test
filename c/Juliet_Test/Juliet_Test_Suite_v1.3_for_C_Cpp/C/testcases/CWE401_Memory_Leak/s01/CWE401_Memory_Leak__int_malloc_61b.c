@@ -6,7 +6,7 @@ Template File: sources-sinks-61b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: malloc Allocate data using safe_malloc()
+ * BadSource: malloc Allocate data using malloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -18,23 +18,13 @@ Template File: sources-sinks-61b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 int * CWE401_Memory_Leak__int_malloc_61b_badSource(int * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int *)safe_malloc(100*sizeof(int));
+    data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;
@@ -61,7 +51,7 @@ int * CWE401_Memory_Leak__int_malloc_61b_goodG2BSource(int * data)
 int * CWE401_Memory_Leak__int_malloc_61b_goodB2GSource(int * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int *)safe_malloc(100*sizeof(int));
+    data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;

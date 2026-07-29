@@ -272,14 +272,6 @@ void cover_check() {
 #endif
 
 #include<stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #include<assert.h>
 
@@ -345,11 +337,11 @@ static bool relpath_return_value;
 
 static void init_buffers_large() {
 
-    path1 = safe_malloc(MAX_BUFFER_SIZE);
+    path1 = malloc(MAX_BUFFER_SIZE);
 
-    path2 = safe_malloc(MAX_BUFFER_SIZE);
+    path2 = malloc(MAX_BUFFER_SIZE);
 
-    output_buf = safe_malloc(MAX_BUFFER_SIZE);
+    output_buf = malloc(MAX_BUFFER_SIZE);
 
     output_len = MAX_BUFFER_SIZE;
 
@@ -363,15 +355,15 @@ static void init_buffers_large() {
 
 static void init_buffers_for_overflow() {
 
-    path1 = safe_malloc(MAX_BUFFER_SIZE);
+    path1 = malloc(MAX_BUFFER_SIZE);
 
-    path2 = safe_malloc(MAX_BUFFER_SIZE);
+    path2 = malloc(MAX_BUFFER_SIZE);
 
     output_len = __VERIFIER_nondet_size_t();
 
     assume_or_exit(output_len > 0 && output_len < MAX_BUFFER_SIZE);
 
-    output_buf = safe_malloc(output_len);
+    output_buf = malloc(output_len);
 
     assume_or_exit(path1 != NULL && path2 != NULL && output_buf != NULL);
 

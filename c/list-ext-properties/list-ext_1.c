@@ -10,14 +10,6 @@ extern int __VERIFIER_nondet_int();
  * finishes by a 3.
  */
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void myexit(int s) {
   _EXIT: goto _EXIT;
@@ -34,7 +26,7 @@ int main() {
   int y = 0;
 
   /* Build a list of the form 1->...->1->2->....->2->3 */
-  List a = (List) safe_malloc(sizeof(struct node));
+  List a = (List) malloc(sizeof(struct node));
 
   if (a == 0) myexit(1);
 
@@ -43,7 +35,7 @@ int main() {
   while (i < 10 && __VERIFIER_nondet_int()) {
     i++;
     p->h = 1;
-    t = (List) safe_malloc(sizeof(struct node));
+    t = (List) malloc(sizeof(struct node));
 
     if (t == 0) myexit(1);
 
@@ -53,7 +45,7 @@ int main() {
   while (y < 10 && __VERIFIER_nondet_int()) {
     y++;
     p->h = 2;
-    t = (List) safe_malloc(sizeof(struct node));
+    t = (List) malloc(sizeof(struct node));
 
     if (t == 0) myexit(1);
 

@@ -22,14 +22,6 @@ int * CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_68_goodG2BData;
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_68b_badSink();
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_68_bad()
@@ -37,7 +29,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_68_bad()
     int * data;
     data = NULL;
     /* FLAW: Allocate memory without using sizeof(int) */
-    data = (int *)safe_malloc(10);
+    data = (int *)malloc(10);
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_68_badData = data;
     CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_68b_badSink();
@@ -56,7 +48,7 @@ static void goodG2B()
     int * data;
     data = NULL;
     /* FIX: Allocate memory using sizeof(int) */
-    data = (int *)safe_malloc(10*sizeof(int));
+    data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_68_goodG2BData = data;
     CWE122_Heap_Based_Buffer_Overflow__CWE131_loop_68b_goodG2BSink();

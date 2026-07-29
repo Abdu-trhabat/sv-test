@@ -8,14 +8,6 @@ void reach_error() { assert(0); }
  */
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -87,7 +79,7 @@ LIST_HEAD(gl_list);
 
 static void gl_insert(int value)
 {
-    struct node *node = safe_malloc(sizeof *node);
+    struct node *node = malloc(sizeof *node);
     if (!node)
         abort();
 

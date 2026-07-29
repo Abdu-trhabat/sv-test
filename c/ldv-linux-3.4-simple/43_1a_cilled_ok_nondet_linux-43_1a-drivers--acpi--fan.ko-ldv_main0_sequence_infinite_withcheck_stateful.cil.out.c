@@ -3516,16 +3516,8 @@ extern int __VERIFIER_nondet_int(void) ;
 extern unsigned long int __VERIFIER_nondet_ulong();
 
 extern void *malloc(size_t  );
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_successful_malloc(size_t __size) {
-  void *p = safe_malloc(__size);
+  void *p = malloc(__size);
   assume_abort_if_not(p != (void *)0);
   return p;
 }

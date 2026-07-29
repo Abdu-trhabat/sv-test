@@ -6,8 +6,8 @@ Template File: sources-sink-22b.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sink: cpy
  *    BadSink : Copy string to data using strcpy
  * Flow Variant: 22 Control flow: Flow controlled by value of a global variable. Sink functions are in a separate file from sources.
@@ -17,16 +17,6 @@ Template File: sources-sink-22b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -38,7 +28,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_dest_char_cpy_22_badSource(char * da
     if(CWE122_Heap_Based_Buffer_Overflow__c_dest_char_cpy_22_badGlobal)
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-        data = (char *)safe_malloc(50*sizeof(char));
+        data = (char *)malloc(50*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
     }
@@ -64,7 +54,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_dest_char_cpy_22_goodG2B1Source(char
     else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
     }
@@ -77,7 +67,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_dest_char_cpy_22_goodG2B2Source(char
     if(CWE122_Heap_Based_Buffer_Overflow__c_dest_char_cpy_22_goodG2B2Global)
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
     }

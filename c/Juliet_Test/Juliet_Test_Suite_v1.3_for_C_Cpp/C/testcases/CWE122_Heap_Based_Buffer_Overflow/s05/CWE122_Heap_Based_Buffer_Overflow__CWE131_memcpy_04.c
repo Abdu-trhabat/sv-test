@@ -24,14 +24,6 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_04_bad()
 {
@@ -40,7 +32,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_04_bad()
     if(STATIC_CONST_TRUE)
     {
         /* FLAW: Allocate memory without using sizeof(int) */
-        data = (int *)safe_malloc(10);
+        data = (int *)malloc(10);
         if (data == NULL) {exit(-1);}
     }
     {
@@ -69,7 +61,7 @@ static void goodG2B1()
     else
     {
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)safe_malloc(10*sizeof(int));
+        data = (int *)malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     {
@@ -89,7 +81,7 @@ static void goodG2B2()
     if(STATIC_CONST_TRUE)
     {
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)safe_malloc(10*sizeof(int));
+        data = (int *)malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     {

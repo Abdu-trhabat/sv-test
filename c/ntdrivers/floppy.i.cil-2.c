@@ -7221,7 +7221,7 @@ PVOID ExAllocatePoolWithTag(POOL_TYPE PoolType , SIZE_T NumberOfBytes ,
 
   {
   {
-  tmp = & _SLAM_alloc_dummy; /* safe_malloc(NumberOfBytes); */ /* INLINED */
+  tmp = & _SLAM_alloc_dummy; /* malloc(NumberOfBytes); */ /* INLINED */
   x = tmp;
   }
   return (x);
@@ -7286,7 +7286,7 @@ PMDL IoAllocateMdl(PVOID VirtualAddress , ULONG Length , BOOLEAN SecondaryBuffer
     if (0) {
       switch_191_0: /* CIL Label */ 
       {
-      tmp = & _SLAM_alloc_dummy; /* safe_malloc(sizeof(MDL )); */ /* INLINED */
+      tmp = & _SLAM_alloc_dummy; /* malloc(sizeof(MDL )); */ /* INLINED */
       }
       return ((void *)tmp);
       switch_191_default: /* CIL Label */ ;
@@ -7343,7 +7343,7 @@ PIRP IoBuildAsynchronousFsdRequest(ULONG MajorFunction , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_193_0: /* CIL Label */ 
       {
-      tmp = & _SLAM_alloc_dummy; /* safe_malloc(sizeof(IRP )); */ /* INLINED */
+      tmp = & _SLAM_alloc_dummy; /* malloc(sizeof(IRP )); */ /* INLINED */
       }
       return ((void *)tmp);
       switch_193_default: /* CIL Label */ ;
@@ -7381,7 +7381,7 @@ PIRP IoBuildDeviceIoControlRequest(ULONG IoControlCode , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_194_0: /* CIL Label */ 
       {
-      tmp = & _SLAM_alloc_dummy; /* safe_malloc(sizeof(IRP )); */ /* INLINED */
+      tmp = & _SLAM_alloc_dummy; /* malloc(sizeof(IRP )); */ /* INLINED */
       }
       return ((void *)tmp);
       switch_194_default: /* CIL Label */ ;
@@ -7413,7 +7413,7 @@ NTSTATUS IoCreateDevice(PDRIVER_OBJECT DriverObject , ULONG DeviceExtensionSize 
     if (0) {
       switch_195_0: /* CIL Label */ 
       {
-      tmp = & _SLAM_alloc_dummy; /* safe_malloc(sizeof(DEVICE_OBJECT )); */ /* INLINED */
+      tmp = & _SLAM_alloc_dummy; /* malloc(sizeof(DEVICE_OBJECT )); */ /* INLINED */
       *DeviceObject = (void *)tmp;
       }
       return (0L);
@@ -7509,7 +7509,7 @@ PCONFIGURATION_INFORMATION IoGetConfigurationInformation(void)
 
   {
   {
-  tmp = & _SLAM_alloc_dummy; /* safe_malloc(sizeof(CONFIGURATION_INFORMATION )); */ /* INLINED */
+  tmp = & _SLAM_alloc_dummy; /* malloc(sizeof(CONFIGURATION_INFORMATION )); */ /* INLINED */
   }
   return ((void *)tmp);
 }
@@ -7890,7 +7890,7 @@ PVOID MmAllocateContiguousMemory(SIZE_T NumberOfBytes , PHYSICAL_ADDRESS Highest
       if (0) {
         switch_204_0: /* CIL Label */ 
         {
-        tmp = & _SLAM_alloc_dummy; /* safe_malloc(NumberOfBytes); */ /* INLINED */
+        tmp = & _SLAM_alloc_dummy; /* malloc(NumberOfBytes); */ /* INLINED */
         }
         return (tmp);
         switch_204_1: /* CIL Label */ ;

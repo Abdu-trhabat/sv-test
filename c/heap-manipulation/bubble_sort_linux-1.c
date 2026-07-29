@@ -9,14 +9,6 @@ void reach_error() { assert(0); }
 
 #include <stdbool.h>
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <stdio.h>
 
 extern int __VERIFIER_nondet_int(void);
@@ -116,7 +108,7 @@ static inline void list_move(struct list_head *list, struct list_head *head)
 
 static void gl_insert(int value)
 {
-    struct node *node = safe_malloc(sizeof *node);
+    struct node *node = malloc(sizeof *node);
     if (!node)
         abort();
 

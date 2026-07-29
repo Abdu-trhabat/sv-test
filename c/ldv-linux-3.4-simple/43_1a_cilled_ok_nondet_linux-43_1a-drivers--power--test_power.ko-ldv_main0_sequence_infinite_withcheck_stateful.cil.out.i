@@ -1170,16 +1170,8 @@ extern void ldv_check_final_state(void) ;
 extern void ldv_initialize(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 extern void *malloc(size_t );
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_successful_malloc(size_t __size) {
-  void *p = safe_malloc(__size);
+  void *p = malloc(__size);
   assume_abort_if_not(p != (void *)0);
   return p;
 }
@@ -1443,7 +1435,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 void *kmem_cache_alloc(struct kmem_cache *arg0, gfp_t arg1) {
   return ldv_malloc(0UL);

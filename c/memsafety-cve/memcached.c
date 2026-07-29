@@ -233,7 +233,7 @@ int proxy_process_command(char *command, size_t cmdlen, bool multiget) {
     return 0;
   }
 
-  char *key = safe_calloc(pr.klen + 1, sizeof(char));
+  char *key = calloc(pr.klen + 1, sizeof(char));
   if (key == NULL) {
     printf("Out of memory!\n");
     return 1;

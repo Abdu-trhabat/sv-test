@@ -6,8 +6,8 @@ Template File: sources-sink-61a.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sinks: snprintf
  *    BadSink : Copy string to data using snprintf
  * Flow Variant: 61 Data flow: data returned from one function to another in different source files
@@ -28,14 +28,6 @@ Template File: sources-sink-61a.tmpl.c
 
 /* bad function declaration */
 char * CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_snprintf_61b_badSource(char * data);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_char_snprintf_61_bad()
 {

@@ -5,14 +5,6 @@ extern int __VERIFIER_nondet_int();
  * Then, destroy the dll in nondeterministic order.
  */
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 typedef struct node {
   struct node* next;
@@ -24,7 +16,7 @@ void myexit(int s) {
 }
 
 DLL dll_circular_create(int len) {
-  DLL last = (DLL) safe_malloc(sizeof(struct node));
+  DLL last = (DLL) malloc(sizeof(struct node));
   if(NULL == last) {
     myexit(1);
   }
@@ -32,7 +24,7 @@ DLL dll_circular_create(int len) {
   last->prev = last;
   DLL head = last;
   while(len > 1) {
-    DLL new_head = (DLL) safe_malloc(sizeof(struct node));
+    DLL new_head = (DLL) malloc(sizeof(struct node));
     if(NULL == new_head) {
       myexit(1);
     }

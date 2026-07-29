@@ -1582,14 +1582,6 @@ extern void *calloc (size_t __nmemb, size_t __size)
 
 extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 
 
@@ -6704,7 +6696,7 @@ void ensure_linked_list_is_allocated(struct aws_linked_list *const list, size_t 
     for (size_t i = 0; i < length; i++) {
 
 
-        struct aws_linked_list_node *node = safe_malloc(sizeof(struct aws_linked_list_node));
+        struct aws_linked_list_node *node = malloc(sizeof(struct aws_linked_list_node));
         curr->next = node;
         node->prev = curr;
         curr = node;

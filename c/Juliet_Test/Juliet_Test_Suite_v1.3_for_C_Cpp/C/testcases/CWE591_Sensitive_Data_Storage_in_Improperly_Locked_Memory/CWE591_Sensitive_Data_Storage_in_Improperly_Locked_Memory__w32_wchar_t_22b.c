@@ -18,16 +18,6 @@ Template File: sources-sink-22b.tmpl.c
 
 #include <wchar.h>
 #include <windows.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -38,7 +28,7 @@ wchar_t * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t
 {
     if(CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_22_badGlobal)
     {
-        password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -69,7 +59,7 @@ wchar_t * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t
     }
     else
     {
-        password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -92,7 +82,7 @@ wchar_t * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t
 {
     if(CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_22_goodG2B2Global)
     {
-        password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");

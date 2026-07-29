@@ -34,21 +34,13 @@ typedef struct _CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_file_67_structT
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_file_67b_badSink(CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_file_67_structType myStruct);
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_file_67_bad()
 {
     char * data;
     CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_file_67_structType myStruct;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {
@@ -87,7 +79,7 @@ static void goodB2G()
 {
     char * data;
     CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_file_67_structType myStruct;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {

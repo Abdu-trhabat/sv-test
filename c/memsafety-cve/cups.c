@@ -19,7 +19,7 @@ int main() {
   char *cur = getRandomString(5, 500);
   char* curcpy = cur;
   size_t curSize = strlen(cur);
-  char *decoded = safe_calloc(curSize, sizeof(char));
+  char *decoded = calloc(curSize, sizeof(char));
   if (decoded == NULL) {
     printf("Out of memory\n");
     return 1;

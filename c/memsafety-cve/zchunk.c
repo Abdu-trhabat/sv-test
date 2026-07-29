@@ -32,7 +32,7 @@ size_t readUInt32(const unsigned char *ptr, size_t offset) {
 }
 
 bool comp_add_to_data(zckComp *comp, const unsigned char *src, size_t src_size) {
-  unsigned char *temp = safe_realloc(comp->data, comp->data_size + src_size); // Problem: integer overflow
+  unsigned char *temp = realloc(comp->data, comp->data_size + src_size); // Problem: integer overflow
   if (!temp) {
     printf("Reallocation failed\n");
     return false;
@@ -59,7 +59,7 @@ int main() {
   size_t offset = 0;
 
   zckComp comp = {0};
-  comp.data = safe_calloc(6, sizeof(unsigned char));
+  comp.data = calloc(6, sizeof(unsigned char));
   if (!comp.data) {
     printf("out of memory");
     free(data);

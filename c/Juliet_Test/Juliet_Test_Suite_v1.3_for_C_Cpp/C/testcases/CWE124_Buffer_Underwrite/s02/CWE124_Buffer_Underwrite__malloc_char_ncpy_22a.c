@@ -24,14 +24,6 @@ Template File: sources-sink-22a.tmpl.c
 int CWE124_Buffer_Underwrite__malloc_char_ncpy_22_badGlobal = 0;
 
 char * CWE124_Buffer_Underwrite__malloc_char_ncpy_22_badSource(char * data);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE124_Buffer_Underwrite__malloc_char_ncpy_22_bad()
 {
@@ -49,7 +41,7 @@ void CWE124_Buffer_Underwrite__malloc_char_ncpy_22_bad()
         data[100-1] = '\0';
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 
@@ -80,7 +72,7 @@ static void goodG2B1()
         data[100-1] = '\0';
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 
@@ -103,7 +95,7 @@ static void goodG2B2()
         data[100-1] = '\0';
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 

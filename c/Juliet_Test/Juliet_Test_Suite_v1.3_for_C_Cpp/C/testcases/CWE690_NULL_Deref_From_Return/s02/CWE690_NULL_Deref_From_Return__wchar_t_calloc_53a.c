@@ -6,7 +6,7 @@ Template File: source-sinks-53a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -21,14 +21,6 @@ Template File: source-sinks-53a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE690_NULL_Deref_From_Return__wchar_t_calloc_53b_badSink(wchar_t * data);
 
 void CWE690_NULL_Deref_From_Return__wchar_t_calloc_53_bad()
@@ -36,7 +28,7 @@ void CWE690_NULL_Deref_From_Return__wchar_t_calloc_53_bad()
     wchar_t * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (wchar_t *)safe_calloc(20, sizeof(wchar_t));
+    data = (wchar_t *)calloc(20, sizeof(wchar_t));
     CWE690_NULL_Deref_From_Return__wchar_t_calloc_53b_badSink(data);
 }
 
@@ -53,7 +45,7 @@ static void goodB2G()
     wchar_t * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (wchar_t *)safe_calloc(20, sizeof(wchar_t));
+    data = (wchar_t *)calloc(20, sizeof(wchar_t));
     CWE690_NULL_Deref_From_Return__wchar_t_calloc_53b_goodB2GSink(data);
 }
 

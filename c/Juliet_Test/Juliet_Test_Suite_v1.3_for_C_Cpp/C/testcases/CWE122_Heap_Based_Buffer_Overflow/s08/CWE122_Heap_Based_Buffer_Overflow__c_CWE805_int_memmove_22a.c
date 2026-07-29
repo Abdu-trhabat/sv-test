@@ -6,8 +6,8 @@ Template File: sources-sink-22a.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sink: memmove
  *    BadSink : Copy int array to data using memmove
  * Flow Variant: 22 Control flow: Flow controlled by value of a global variable. Sink functions are in a separate file from sources.
@@ -22,14 +22,6 @@ Template File: sources-sink-22a.tmpl.c
 int CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_memmove_22_badGlobal = 0;
 
 int * CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_memmove_22_badSource(int * data);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_memmove_22_bad()
 {

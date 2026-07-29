@@ -11,22 +11,6 @@
 // extract of: src/normals.c (function: stl_fix_normal_directions)
 
 #include <stdlib.h>
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 struct _numbers {
   int number;
@@ -47,17 +31,17 @@ typedef struct {
 numbers_file *initializeStl() {
   numbers *lastNumber = NULL;
   numbers *preLastNumber = NULL;
-  numbers_file *stl = (numbers_file *)safe_malloc(sizeof(numbers_file));
+  numbers_file *stl = (numbers_file *)malloc(sizeof(numbers_file));
   if (stl == NULL)
     exit(1);
-  stl->numbers_start = (numbers *)safe_malloc(sizeof(numbers));
+  stl->numbers_start = (numbers *)malloc(sizeof(numbers));
   if (stl->numbers_start == NULL)
     exit(1);
   stl->number_of_numbers = 12;
   stl->numbers_start[0].number = 1;
   lastNumber = stl->numbers_start;
   for (int i = 1; i < 14; i++) { // fibonacci sequence in numbers
-    numbers *number = (numbers *)safe_malloc(sizeof(numbers));
+    numbers *number = (numbers *)malloc(sizeof(numbers));
     if (number == NULL)
       exit(1);
     if (i == 1 || preLastNumber == NULL) {
@@ -76,7 +60,7 @@ numbers_file *initializeStl() {
 int main() {
   numbers_file *stl = initializeStl();
   int i = 0;
-  int *extractedNumbers = (int *)safe_calloc(stl->number_of_numbers, sizeof(int)); // numbers get extracted and put here.
+  int *extractedNumbers = (int *)calloc(stl->number_of_numbers, sizeof(int)); // numbers get extracted and put here.
   if (extractedNumbers == NULL)
     exit(1);
   numbers *currentNumber = stl->numbers_start;

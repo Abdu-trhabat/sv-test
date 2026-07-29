@@ -6,7 +6,7 @@ Template File: sources-sinks-61b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: malloc Allocate data using safe_malloc()
+ * BadSource: malloc Allocate data using malloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -18,23 +18,13 @@ Template File: sources-sinks-61b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 wchar_t * CWE401_Memory_Leak__wchar_t_malloc_61b_badSource(wchar_t * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     wcscpy(data, L"A String");
@@ -61,7 +51,7 @@ wchar_t * CWE401_Memory_Leak__wchar_t_malloc_61b_goodG2BSource(wchar_t * data)
 wchar_t * CWE401_Memory_Leak__wchar_t_malloc_61b_goodB2GSource(wchar_t * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     wcscpy(data, L"A String");

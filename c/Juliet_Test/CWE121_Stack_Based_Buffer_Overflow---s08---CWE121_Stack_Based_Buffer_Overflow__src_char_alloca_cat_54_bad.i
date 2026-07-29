@@ -722,24 +722,6 @@ void CWE121_Stack_Based_Buffer_Overflow__src_char_alloca_cat_54e_badSink(char *d
 
 
 void *malloc(size_t);
-extern void abort(void);
-extern void *calloc(size_t num, size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 
 void free(void *);
@@ -812,7 +794,7 @@ int stdThreadCreate(void (*start)(void *), void *args, stdThread *thread)
   
   *thread = (struct _stdThread *)0;
   
-  my_thread = (stdThread)safe_malloc(24UL);
+  my_thread = (stdThread)malloc(24UL);
   
   if (my_thread == (struct _stdThread *)0) {
     
@@ -891,7 +873,7 @@ int stdThreadLockCreate(stdThreadLock *lock)
   
   *lock = (struct _stdThreadLock *)0;
   
-  my_lock = (stdThreadLock)safe_malloc(40UL);
+  my_lock = (stdThreadLock)malloc(40UL);
   
   if (my_lock == (struct _stdThreadLock *)0) {
     
@@ -1451,7 +1433,7 @@ void *ldv_reference_malloc(size_t size)
   
   if (tmp != 0) {
     
-    res = safe_malloc(size);
+    res = malloc(size);
     
     assume_abort_if_not(res != (void *)0);
     
@@ -1474,7 +1456,7 @@ void *ldv_reference_calloc(size_t nmemb, size_t size)
 {
   void *tmp;
   
-  tmp = safe_calloc(nmemb,size);
+  tmp = calloc(nmemb,size);
   
   return tmp;
 }
@@ -1484,7 +1466,7 @@ void *ldv_reference_zalloc(size_t size)
 {
   void *tmp;
   
-  tmp = safe_calloc(1UL,size);
+  tmp = calloc(1UL,size);
   
   return tmp;
 }
@@ -1517,7 +1499,7 @@ void *ldv_reference_realloc(void *ptr, size_t size)
   
   if (ptr == (void *)0) {
     
-    res = safe_malloc(size);
+    res = malloc(size);
     
     __retres = res;
     
@@ -1529,7 +1511,7 @@ void *ldv_reference_realloc(void *ptr, size_t size)
   
   if (tmp != 0) {
     
-    res = safe_malloc(size);
+    res = malloc(size);
     
     assume_abort_if_not(res != (void *)0);
     
@@ -1556,7 +1538,7 @@ void *ldv_reference_xmalloc(size_t size)
 {
   void *res;
   
-  res = safe_malloc(size);
+  res = malloc(size);
   
   assume_abort_if_not(res != (void *)0);
   
@@ -1568,7 +1550,7 @@ void *ldv_reference_xzalloc(size_t size)
 {
   void *res;
   
-  res = safe_calloc(1UL,size);
+  res = calloc(1UL,size);
   
   assume_abort_if_not(res != (void *)0);
   

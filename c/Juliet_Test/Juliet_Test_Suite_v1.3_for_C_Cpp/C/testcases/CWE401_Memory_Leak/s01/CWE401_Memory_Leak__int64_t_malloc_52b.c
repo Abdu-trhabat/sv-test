@@ -6,7 +6,7 @@ Template File: sources-sinks-52b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: malloc Allocate data using safe_malloc()
+ * BadSource: malloc Allocate data using malloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -22,14 +22,6 @@ Template File: sources-sinks-52b.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE401_Memory_Leak__int64_t_malloc_52c_badSink(int64_t * data);
 
 void CWE401_Memory_Leak__int64_t_malloc_52b_badSink(int64_t * data)

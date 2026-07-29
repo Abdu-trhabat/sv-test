@@ -41,7 +41,7 @@ void update_header(Header *headers, char *header, char *newValue) {
 }
 
 Header *initializeHeaders() {
-  Header *headers = safe_calloc(NUMBER_OF_HEADERS, sizeof(Header));
+  Header *headers = calloc(NUMBER_OF_HEADERS, sizeof(Header));
   if (headers == NULL) {
     printf("Out of memory\n");
     exit(1);

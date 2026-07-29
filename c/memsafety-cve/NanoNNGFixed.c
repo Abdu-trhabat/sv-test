@@ -82,7 +82,7 @@ uint8_t *copyn_utf8_str(const uint8_t *src, uint32_t *pos, int *str_len, int lim
     return NULL;
   }
   if (*str_len > 0) {
-    if ((dest = safe_malloc(*str_len + 1)) == NULL) {
+    if ((dest = malloc(*str_len + 1)) == NULL) {
       *str_len = 0;
       return NULL;
     }

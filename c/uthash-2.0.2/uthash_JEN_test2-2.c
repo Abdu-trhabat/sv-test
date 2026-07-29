@@ -1,14 +1,6 @@
 #include "uthash_JEN.h"
 #include <time.h>
 #include <stdlib.h>   /* malloc */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <assert.h>
 // BEGIN HARNESS
 void reach_error() {
@@ -56,7 +48,7 @@ int main()
 
     /* create elements */
     for(i=0; i<10; i++) {
-        user = (example_user_t*)safe_malloc(sizeof(example_user_t));
+        user = (example_user_t*)malloc(sizeof(example_user_t));
         if (user == NULL) {
             exit(-1);
         }

@@ -17,23 +17,13 @@ Template File: sources-sink-61b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 char * CWE126_Buffer_Overread__malloc_char_loop_61b_badSource(char * data)
 {
     /* FLAW: Use a small buffer */
-    data = (char *)safe_malloc(50*sizeof(char));
+    data = (char *)malloc(50*sizeof(char));
     if (data == NULL) {exit(-1);}
     memset(data, 'A', 50-1); /* fill with 'A's */
     data[50-1] = '\0'; /* null terminate */
@@ -48,7 +38,7 @@ char * CWE126_Buffer_Overread__malloc_char_loop_61b_badSource(char * data)
 char * CWE126_Buffer_Overread__malloc_char_loop_61b_goodG2BSource(char * data)
 {
     /* FIX: Use a large buffer */
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     memset(data, 'A', 100-1); /* fill with 'A's */
     data[100-1] = '\0'; /* null terminate */

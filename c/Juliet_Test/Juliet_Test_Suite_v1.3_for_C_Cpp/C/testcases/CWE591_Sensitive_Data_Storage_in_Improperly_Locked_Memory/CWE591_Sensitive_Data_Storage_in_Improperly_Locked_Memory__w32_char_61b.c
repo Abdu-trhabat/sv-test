@@ -18,16 +18,6 @@ Template File: sources-sink-61b.tmpl.c
 
 #include <wchar.h>
 #include <windows.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #pragma comment(lib, "advapi32.lib")
 
@@ -35,7 +25,7 @@ void *safe_malloc(size_t size) {
 
 char * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_61b_badSource(char * password)
 {
-    password = (char *)safe_malloc(100*sizeof(char));
+    password = (char *)malloc(100*sizeof(char));
     if (password == NULL)
     {
         printLine("Memory could not be allocated");
@@ -54,7 +44,7 @@ char * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_61b_b
 /* goodG2B() uses the GoodSource with the BadSink */
 char * CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_61b_goodG2BSource(char * password)
 {
-    password = (char *)safe_malloc(100*sizeof(char));
+    password = (char *)malloc(100*sizeof(char));
     if (password == NULL)
     {
         printLine("Memory could not be allocated");

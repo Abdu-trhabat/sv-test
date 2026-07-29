@@ -466,14 +466,6 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -582,7 +574,7 @@ void myexit(int s) {
 SLL sll_create(int len) {
   SLL head = ((void *)0);
   while(len-- > 0) {
-    SLL new_head = (SLL) safe_malloc(sizeof(struct node));
+    SLL new_head = (SLL) malloc(sizeof(struct node));
     if(((void *)0) == new_head) {
       myexit(1);
     }
@@ -607,7 +599,7 @@ void sll_destroy(SLL head) {
   }
 }
 void sll_insert(SLL* head, int position) {
-  SLL new_node = (SLL) safe_malloc(sizeof(struct node));
+  SLL new_node = (SLL) malloc(sizeof(struct node));
   if(((void *)0) == new_node) {
     myexit(1);
   }

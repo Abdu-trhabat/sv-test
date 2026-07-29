@@ -6,8 +6,8 @@ Template File: sources-sinks-01.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
- * GoodSource: Allocate data using safe_malloc()
+ * BadSource:  Allocate data using malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -20,21 +20,13 @@ Template File: sources-sinks-01.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE415_Double_Free__malloc_free_int64_t_01_bad()
 {
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    data = (int64_t *)safe_malloc(100*sizeof(int64_t));
+    data = (int64_t *)malloc(100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);
@@ -52,7 +44,7 @@ static void goodG2B()
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    data = (int64_t *)safe_malloc(100*sizeof(int64_t));
+    data = (int64_t *)malloc(100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* FIX: Do NOT free data in the source - the bad sink frees data */
     /* POTENTIAL FLAW: Possibly freeing memory twice */
@@ -65,7 +57,7 @@ static void goodB2G()
     int64_t * data;
     /* Initialize data */
     data = NULL;
-    data = (int64_t *)safe_malloc(100*sizeof(int64_t));
+    data = (int64_t *)malloc(100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);

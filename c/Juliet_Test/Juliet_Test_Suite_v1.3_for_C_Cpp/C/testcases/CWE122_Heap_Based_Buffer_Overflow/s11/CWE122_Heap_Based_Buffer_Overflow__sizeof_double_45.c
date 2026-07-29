@@ -28,14 +28,6 @@ static void badSink()
     printDoubleLine(*data);
     free(data);
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__sizeof_double_45_bad()
 {
@@ -43,8 +35,8 @@ void CWE122_Heap_Based_Buffer_Overflow__sizeof_double_45_bad()
     /* Initialize data */
     data = NULL;
     /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-    /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
-    data = (double *)safe_malloc(sizeof(data));
+    /* FLAW: Using sizeof the pointer and not the data type in malloc() */
+    data = (double *)malloc(sizeof(data));
     if (data == NULL) {exit(-1);}
     *data = 1.7E300;
     CWE122_Heap_Based_Buffer_Overflow__sizeof_double_45_badData = data;
@@ -69,8 +61,8 @@ static void goodG2B()
     double * data;
     /* Initialize data */
     data = NULL;
-    /* FIX: Using sizeof the data type in safe_malloc() */
-    data = (double *)safe_malloc(sizeof(*data));
+    /* FIX: Using sizeof the data type in malloc() */
+    data = (double *)malloc(sizeof(*data));
     if (data == NULL) {exit(-1);}
     *data = 1.7E300;
     CWE122_Heap_Based_Buffer_Overflow__sizeof_double_45_goodG2BData = data;

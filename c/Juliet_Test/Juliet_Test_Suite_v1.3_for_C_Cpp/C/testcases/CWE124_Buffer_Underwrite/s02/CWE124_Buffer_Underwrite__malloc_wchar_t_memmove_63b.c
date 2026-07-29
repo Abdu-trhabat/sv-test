@@ -19,14 +19,6 @@ Template File: sources-sink-63b.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE124_Buffer_Underwrite__malloc_wchar_t_memmove_63b_badSink(wchar_t * * dataPtr)
 {
@@ -41,7 +33,7 @@ void CWE124_Buffer_Underwrite__malloc_wchar_t_memmove_63b_badSink(wchar_t * * da
         data[100-1] = L'\0';
         printWLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 
@@ -63,7 +55,7 @@ void CWE124_Buffer_Underwrite__malloc_wchar_t_memmove_63b_goodG2BSink(wchar_t * 
         data[100-1] = L'\0';
         printWLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 

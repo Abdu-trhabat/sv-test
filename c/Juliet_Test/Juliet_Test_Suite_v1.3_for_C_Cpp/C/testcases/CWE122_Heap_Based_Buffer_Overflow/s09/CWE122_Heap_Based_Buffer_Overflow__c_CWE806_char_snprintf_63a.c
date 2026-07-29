@@ -27,20 +27,12 @@ Template File: sources-sink-63a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_63b_badSink(char * * dataPtr);
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_63_bad()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
     memset(data, 'A', 100-1); /* fill with 'A's */
@@ -58,7 +50,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_char_snprintf_63b_goodG2BSink(c
 static void goodG2B()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
     memset(data, 'A', 50-1); /* fill with 'A's */

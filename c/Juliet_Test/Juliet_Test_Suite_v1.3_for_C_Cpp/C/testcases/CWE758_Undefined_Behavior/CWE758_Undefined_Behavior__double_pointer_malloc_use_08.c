@@ -29,21 +29,13 @@ static int staticReturnsFalse()
 }
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE758_Undefined_Behavior__double_pointer_malloc_use_08_bad()
 {
     if(staticReturnsTrue())
     {
         {
-            double * * pointer = (double * *)safe_malloc(sizeof(double *));
+            double * * pointer = (double * *)malloc(sizeof(double *));
             if (pointer == NULL) {exit(-1);}
             double * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
             free(pointer);
@@ -68,10 +60,10 @@ static void good1()
     {
         {
             double * data;
-            double * * pointer = (double * *)safe_malloc(sizeof(double *));
+            double * * pointer = (double * *)malloc(sizeof(double *));
             if (pointer == NULL) {exit(-1);}
             /* initialize both the pointer and the data pointed to */
-            data = (double *)safe_malloc(sizeof(double));
+            data = (double *)malloc(sizeof(double));
             if (data == NULL) {exit(-1);}
             *data = 5.0;
             *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
@@ -91,10 +83,10 @@ static void good2()
     {
         {
             double * data;
-            double * * pointer = (double * *)safe_malloc(sizeof(double *));
+            double * * pointer = (double * *)malloc(sizeof(double *));
             if (pointer == NULL) {exit(-1);}
             /* initialize both the pointer and the data pointed to */
-            data = (double *)safe_malloc(sizeof(double));
+            data = (double *)malloc(sizeof(double));
             if (data == NULL) {exit(-1);}
             *data = 5.0;
             *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */

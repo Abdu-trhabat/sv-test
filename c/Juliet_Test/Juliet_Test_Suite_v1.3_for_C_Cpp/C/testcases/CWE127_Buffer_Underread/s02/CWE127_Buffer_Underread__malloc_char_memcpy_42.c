@@ -17,23 +17,13 @@ Template File: sources-sink-42.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 static char * badSource(char * data)
 {
     {
-        char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
+        char * dataBuffer = (char *)malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}
         memset(dataBuffer, 'A', 100-1);
         dataBuffer[100-1] = '\0';
@@ -58,7 +48,7 @@ void CWE127_Buffer_Underread__malloc_char_memcpy_42_bad()
         dest[100-1] = '\0';
         printLine(dest);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 
@@ -69,7 +59,7 @@ void CWE127_Buffer_Underread__malloc_char_memcpy_42_bad()
 static char * goodG2BSource(char * data)
 {
     {
-        char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
+        char * dataBuffer = (char *)malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}
         memset(dataBuffer, 'A', 100-1);
         dataBuffer[100-1] = '\0';
@@ -95,7 +85,7 @@ static void goodG2B()
         dest[100-1] = '\0';
         printLine(dest);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 

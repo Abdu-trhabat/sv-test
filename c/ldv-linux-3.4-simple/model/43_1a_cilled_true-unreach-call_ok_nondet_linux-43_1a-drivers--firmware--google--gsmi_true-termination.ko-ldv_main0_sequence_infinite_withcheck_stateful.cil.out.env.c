@@ -1,4 +1,3 @@
-void *safe_malloc(size_t size);
 // Skip function: __VERIFIER_error
 
 // Skip function: __VERIFIER_nondet_int
@@ -51,7 +50,7 @@ __inline static  IS_ERR(void const *ptr ) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  void *p = safe_malloc(size);
+  void *p = malloc(size);
   assume_abort_if_not(IS_ERR(p) == 0);
   return p;
 }

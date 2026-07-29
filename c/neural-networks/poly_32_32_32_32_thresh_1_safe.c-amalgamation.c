@@ -1214,14 +1214,6 @@ https://github.com/f0uriest/keras2c
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <string.h>
 #include <keras2c/k2c_include.h>
 
@@ -1500,7 +1492,7 @@ void k2c_bias_add(k2c_tensor* A, const k2c_tensor* b) {
  * :return: pointer to allocated array.
  */
 float* k2c_read_array(const char* filename, const size_t array_size) {
-    float* ptr = (float*) safe_malloc(array_size * sizeof(float));
+    float* ptr = (float*) malloc(array_size * sizeof(float));
     if (!ptr) {
         printf("cannot allocate memory %s \n", filename);
         exit(-1);

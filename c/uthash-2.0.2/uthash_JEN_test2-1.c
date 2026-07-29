@@ -1,5 +1,3 @@
-#include "uthash_JEN.h"
-#include <time.h>
 #include <stdlib.h>   /* malloc */
 void *safe_malloc(size_t size) {
   void *p = malloc(size);
@@ -8,7 +6,9 @@ void *safe_malloc(size_t size) {
   }
   return p;
 }
-
+#define uthash_malloc(sz) safe_malloc(sz)
+#include "uthash_JEN.h"
+#include <time.h>
 #include <assert.h>
 // BEGIN HARNESS
 void reach_error() {

@@ -49,21 +49,13 @@ typedef struct _CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_connect_sock
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_connect_socket_67b_badSink(CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_connect_socket_67_structType myStruct);
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_connect_socket_67_bad()
 {
     wchar_t * data;
     CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_connect_socket_67_structType myStruct;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     {
@@ -148,7 +140,7 @@ static void goodB2G()
 {
     wchar_t * data;
     CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_connect_socket_67_structType myStruct;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     {

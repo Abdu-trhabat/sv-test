@@ -19,19 +19,11 @@ Template File: sources-sink-13.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_src_char_cpy_13_bad()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     if(GLOBAL_CONST_FIVE==5)
     {
@@ -56,7 +48,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_src_char_cpy_13_bad()
 static void goodG2B1()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     if(GLOBAL_CONST_FIVE!=5)
     {
@@ -82,7 +74,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     if(GLOBAL_CONST_FIVE==5)
     {

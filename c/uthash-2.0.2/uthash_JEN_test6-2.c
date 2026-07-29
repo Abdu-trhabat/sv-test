@@ -2,14 +2,6 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <string.h>
 
 // BEGIN HARNESS
@@ -50,7 +42,7 @@ static void *alt_malloc(size_t sz)
     if (alt_malloc_balance == 1) {
         __VERIFIER_assert(sz == sizeof(UT_hash_table));
     }
-    return safe_malloc(sz);
+    return malloc(sz);
 }
 static void alt_free(void *ptr, size_t sz)
 {
@@ -77,7 +69,7 @@ static void alt_bzero(void *a, size_t n)
 
 static void *real_malloc(size_t n)
 {
-    return safe_malloc(n);
+    return malloc(n);
 }
 
 static void real_free(void *p)

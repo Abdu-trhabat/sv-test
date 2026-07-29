@@ -280,14 +280,6 @@ extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern void exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void _Exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
@@ -394,7 +386,7 @@ int main() {
   BPP = *(int *)&header[28];
   size = (width * height * (BPP / 8));
   padding = ((4 - (width * (BPP / 8)) % 4) % 4);
-  data = safe_calloc(size, (BPP / 8));
+  data = calloc(size, (BPP / 8));
   if (data == ((void *)0)) {
     fclose(f);
     return 1;

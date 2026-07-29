@@ -5,14 +5,6 @@
 // Function: __init_waitqueue_head
 // with type: void __init_waitqueue_head(wait_queue_head_t *q, struct lock_class_key *)
 // with return type: void
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void __init_waitqueue_head(wait_queue_head_t *arg0, struct lock_class_key *arg1) {
   // Void type
   return;
@@ -22,7 +14,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: __kmalloc

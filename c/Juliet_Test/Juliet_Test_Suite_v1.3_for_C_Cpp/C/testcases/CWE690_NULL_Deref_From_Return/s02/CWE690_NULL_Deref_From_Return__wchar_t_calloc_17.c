@@ -6,7 +6,7 @@ Template File: source-sinks-17.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -19,14 +19,6 @@ Template File: source-sinks-17.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__wchar_t_calloc_17_bad()
 {
@@ -34,7 +26,7 @@ void CWE690_NULL_Deref_From_Return__wchar_t_calloc_17_bad()
     wchar_t * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (wchar_t *)safe_calloc(20, sizeof(wchar_t));
+    data = (wchar_t *)calloc(20, sizeof(wchar_t));
     for(j = 0; j < 1; j++)
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
@@ -55,7 +47,7 @@ static void goodB2G()
     wchar_t * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (wchar_t *)safe_calloc(20, sizeof(wchar_t));
+    data = (wchar_t *)calloc(20, sizeof(wchar_t));
     for(k = 0; k < 1; k++)
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */

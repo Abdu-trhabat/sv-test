@@ -6,8 +6,8 @@ Template File: sources-sink-67b.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sinks: memmove
  *    BadSink : Copy string to data using memmove
  * Flow Variant: 67 Data flow: data passed in a struct from one function to another in different source files
@@ -24,14 +24,6 @@ typedef struct _CWE122_Heap_Based_Buffer_Overflow__c_CWE805_wchar_t_memmove_67_s
 } CWE122_Heap_Based_Buffer_Overflow__c_CWE805_wchar_t_memmove_67_structType;
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_wchar_t_memmove_67b_badSink(CWE122_Heap_Based_Buffer_Overflow__c_CWE805_wchar_t_memmove_67_structType myStruct)
 {

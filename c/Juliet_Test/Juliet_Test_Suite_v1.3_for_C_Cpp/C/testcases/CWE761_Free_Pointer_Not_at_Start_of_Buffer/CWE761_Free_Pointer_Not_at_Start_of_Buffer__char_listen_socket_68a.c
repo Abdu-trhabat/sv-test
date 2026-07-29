@@ -48,20 +48,12 @@ char * CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_68_badData
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_68b_badSink();
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_68_bad()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {
@@ -158,7 +150,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__char_listen_socket_68b_goodB2GS
 static void goodB2G()
 {
     char * data;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     data[0] = '\0';
     {

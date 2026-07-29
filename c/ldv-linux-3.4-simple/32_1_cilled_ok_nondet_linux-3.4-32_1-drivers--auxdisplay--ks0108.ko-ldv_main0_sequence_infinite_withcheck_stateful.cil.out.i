@@ -1344,18 +1344,10 @@ int parport_claim(struct pardevice *arg0) {
 }
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 struct parport *parport_find_base(unsigned long arg0) {
   return ldv_malloc(sizeof(struct parport));

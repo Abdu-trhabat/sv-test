@@ -8,14 +8,6 @@ extern int __VERIFIER_nondet_int();
  * Then, count nodes and check if count is correct.
  */
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 typedef struct node {
   struct node* next;
@@ -28,7 +20,7 @@ void myexit(int s) {
 SLL sll_create(int len) {
   SLL head = NULL;
   while(len > 0) {
-    SLL new_head = (SLL) safe_malloc(sizeof(struct node));
+    SLL new_head = (SLL) malloc(sizeof(struct node));
     if(NULL == new_head) {
       myexit(1);
     }

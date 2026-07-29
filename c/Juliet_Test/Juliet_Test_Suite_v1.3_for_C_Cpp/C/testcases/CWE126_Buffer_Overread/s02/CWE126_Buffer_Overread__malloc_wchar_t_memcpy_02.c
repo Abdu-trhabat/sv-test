@@ -19,14 +19,6 @@ Template File: sources-sink-02.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE126_Buffer_Overread__malloc_wchar_t_memcpy_02_bad()
 {
@@ -35,7 +27,7 @@ void CWE126_Buffer_Overread__malloc_wchar_t_memcpy_02_bad()
     if(1)
     {
         /* FLAW: Use a small buffer */
-        data = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+        data = (wchar_t *)malloc(50*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 50-1); /* fill with 'A's */
         data[50-1] = L'\0'; /* null terminate */
@@ -70,7 +62,7 @@ static void goodG2B1()
     else
     {
         /* FIX: Use a large buffer */
-        data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1); /* fill with 'A's */
         data[100-1] = L'\0'; /* null terminate */
@@ -96,7 +88,7 @@ static void goodG2B2()
     if(1)
     {
         /* FIX: Use a large buffer */
-        data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1); /* fill with 'A's */
         data[100-1] = L'\0'; /* null terminate */

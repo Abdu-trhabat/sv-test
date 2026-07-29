@@ -6,7 +6,7 @@ Template File: sources-sinks-51a.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using safe_realloc()
+ * BadSource: realloc Allocate data using realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -22,14 +22,6 @@ Template File: sources-sinks-51a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE401_Memory_Leak__int_realloc_51b_badSink(int * data);
 
 void CWE401_Memory_Leak__int_realloc_51_bad()
@@ -37,7 +29,7 @@ void CWE401_Memory_Leak__int_realloc_51_bad()
     int * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int *)safe_realloc(data, 100*sizeof(int));
+    data = (int *)realloc(data, 100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;
@@ -72,7 +64,7 @@ static void goodB2G()
     int * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int *)safe_realloc(data, 100*sizeof(int));
+    data = (int *)realloc(data, 100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;

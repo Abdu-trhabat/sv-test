@@ -34,24 +34,16 @@ static void badSink()
         strcpy(data, source);
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE124_Buffer_Underwrite__malloc_char_cpy_45_bad()
 {
     char * data;
     data = NULL;
     {
-        char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
+        char * dataBuffer = (char *)malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}
         memset(dataBuffer, 'A', 100-1);
         dataBuffer[100-1] = '\0';
@@ -78,7 +70,7 @@ static void goodG2BSink()
         strcpy(data, source);
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 
@@ -87,7 +79,7 @@ static void goodG2B()
     char * data;
     data = NULL;
     {
-        char * dataBuffer = (char *)safe_malloc(100*sizeof(char));
+        char * dataBuffer = (char *)malloc(100*sizeof(char));
         if (dataBuffer == NULL) {exit(-1);}
         memset(dataBuffer, 'A', 100-1);
         dataBuffer[100-1] = '\0';

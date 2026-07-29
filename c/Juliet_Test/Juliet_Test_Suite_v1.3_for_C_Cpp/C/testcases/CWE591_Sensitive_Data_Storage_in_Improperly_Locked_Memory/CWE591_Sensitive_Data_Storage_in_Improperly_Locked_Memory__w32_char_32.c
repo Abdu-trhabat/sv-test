@@ -22,14 +22,6 @@ Template File: sources-sink-32.tmpl.c
 #pragma comment(lib, "advapi32.lib")
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_32_bad()
 {
@@ -40,7 +32,7 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_char_32_bad(
     password = "";
     {
         char * password = *passwordPtr1;
-        password = (char *)safe_malloc(100*sizeof(char));
+        password = (char *)malloc(100*sizeof(char));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -93,7 +85,7 @@ static void goodG2B()
     password = "";
     {
         char * password = *passwordPtr1;
-        password = (char *)safe_malloc(100*sizeof(char));
+        password = (char *)malloc(100*sizeof(char));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");

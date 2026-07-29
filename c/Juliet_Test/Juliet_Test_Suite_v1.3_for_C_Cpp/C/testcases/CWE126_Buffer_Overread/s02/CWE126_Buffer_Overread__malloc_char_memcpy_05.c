@@ -26,14 +26,6 @@ static int staticTrue = 1; /* true */
 static int staticFalse = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE126_Buffer_Overread__malloc_char_memcpy_05_bad()
 {
@@ -42,7 +34,7 @@ void CWE126_Buffer_Overread__malloc_char_memcpy_05_bad()
     if(staticTrue)
     {
         /* FLAW: Use a small buffer */
-        data = (char *)safe_malloc(50*sizeof(char));
+        data = (char *)malloc(50*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 50-1); /* fill with 'A's */
         data[50-1] = '\0'; /* null terminate */
@@ -77,7 +69,7 @@ static void goodG2B1()
     else
     {
         /* FIX: Use a large buffer */
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */
@@ -103,7 +95,7 @@ static void goodG2B2()
     if(staticTrue)
     {
         /* FIX: Use a large buffer */
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */

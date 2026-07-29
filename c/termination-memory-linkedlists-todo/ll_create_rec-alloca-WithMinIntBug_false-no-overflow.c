@@ -6,14 +6,6 @@
  */
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 
 extern int __VERIFIER_nondet_int();
@@ -29,7 +21,7 @@ node_t* new_ll(int n)
 {
   if (n == 0)
     return NULL;
-  node_t* head = safe_malloc(sizeof(node_t));
+  node_t* head = malloc(sizeof(node_t));
   head->val = n;
   head->next = new_ll(n-1);
   return head;

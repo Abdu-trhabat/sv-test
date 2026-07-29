@@ -21,14 +21,6 @@ Template File: sources-sink-53a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE590_Free_Memory_Not_on_Heap__free_wchar_t_alloca_53b_badSink(wchar_t * data);
 
 void CWE590_Free_Memory_Not_on_Heap__free_wchar_t_alloca_53_bad()
@@ -59,10 +51,10 @@ static void goodG2B()
     data = NULL; /* Initialize data */
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
-        wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (dataBuffer == NULL)
         {
-            printLine("safe_malloc() failed");
+            printLine("malloc() failed");
             exit(1);
         }
         wmemset(dataBuffer, L'A', 100-1); /* fill with 'A's */

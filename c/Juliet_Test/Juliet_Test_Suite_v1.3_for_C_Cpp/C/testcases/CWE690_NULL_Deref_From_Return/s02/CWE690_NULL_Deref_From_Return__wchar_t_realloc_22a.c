@@ -6,7 +6,7 @@ Template File: source-sinks-22a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: realloc Allocate data using safe_realloc()
+ * BadSource: realloc Allocate data using realloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -22,14 +22,6 @@ Template File: source-sinks-22a.tmpl.c
 
 /* The global variable below is used to drive control flow in the sink function */
 int CWE690_NULL_Deref_From_Return__wchar_t_realloc_22_badGlobal = 0;
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__wchar_t_realloc_22_badSink(wchar_t * data);
 
@@ -38,7 +30,7 @@ void CWE690_NULL_Deref_From_Return__wchar_t_realloc_22_bad()
     wchar_t * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (wchar_t *)safe_realloc(data, 20*sizeof(wchar_t));
+    data = (wchar_t *)realloc(data, 20*sizeof(wchar_t));
     CWE690_NULL_Deref_From_Return__wchar_t_realloc_22_badGlobal = 1; /* true */
     CWE690_NULL_Deref_From_Return__wchar_t_realloc_22_badSink(data);
 }
@@ -59,7 +51,7 @@ static void goodB2G1()
     wchar_t * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (wchar_t *)safe_realloc(data, 20*sizeof(wchar_t));
+    data = (wchar_t *)realloc(data, 20*sizeof(wchar_t));
     CWE690_NULL_Deref_From_Return__wchar_t_realloc_22_goodB2G1Global = 0; /* false */
     CWE690_NULL_Deref_From_Return__wchar_t_realloc_22_goodB2G1Sink(data);
 }
@@ -72,7 +64,7 @@ static void goodB2G2()
     wchar_t * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (wchar_t *)safe_realloc(data, 20*sizeof(wchar_t));
+    data = (wchar_t *)realloc(data, 20*sizeof(wchar_t));
     CWE690_NULL_Deref_From_Return__wchar_t_realloc_22_goodB2G2Global = 1; /* true */
     CWE690_NULL_Deref_From_Return__wchar_t_realloc_22_goodB2G2Sink(data);
 }

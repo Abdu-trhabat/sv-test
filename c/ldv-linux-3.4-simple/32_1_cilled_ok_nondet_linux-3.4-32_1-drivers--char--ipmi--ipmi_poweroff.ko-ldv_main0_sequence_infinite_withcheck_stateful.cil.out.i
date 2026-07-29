@@ -3819,18 +3819,10 @@ int printk(const char *arg0, ...) {
 }
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 struct ctl_table_header *register_sysctl_table(struct ctl_table *arg0) {
   return ldv_malloc(sizeof(struct ctl_table_header));

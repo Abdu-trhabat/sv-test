@@ -123,7 +123,7 @@ einval:
 char *copy_msg(struct ncrx_msg *src) {
   char *dst;
 
-  dst = safe_malloc(src->text_len + 1);
+  dst = malloc(src->text_len + 1);
   if (!dst)
     return NULL;
 

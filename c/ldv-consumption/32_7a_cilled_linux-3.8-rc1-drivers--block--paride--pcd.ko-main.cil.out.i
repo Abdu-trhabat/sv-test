@@ -3771,14 +3771,6 @@ static struct cdrom_device_ops pcd_dops =
     & pcd_lock_door, 0, 0, 0, & pcd_get_mcn, & pcd_drive_reset, & pcd_audio_ioctl,
     29639, 0, & pcd_packet};
 extern void *malloc(size_t );
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 static void pcd_init_units(void)
 { struct pcd_unit *cd ;
   int unit ;
@@ -3790,7 +3782,7 @@ static void pcd_init_units(void)
   cd = (struct pcd_unit *)(& pcd);
   goto ldv_29969;
   ldv_29968:
-  tmp = safe_malloc(sizeof(struct gendisk));
+  tmp = malloc(sizeof(struct gendisk));
   disk = tmp;
   if ((unsigned long )disk == (unsigned long )((struct gendisk *)0)) {
     goto ldv_29967;
@@ -5999,7 +5991,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 struct request *blk_fetch_request(struct request_queue *arg0) {
   return ldv_malloc(sizeof(struct request));

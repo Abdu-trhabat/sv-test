@@ -5,14 +5,6 @@
 // Function: __pci_register_driver
 // with type: int __pci_register_driver(struct pci_driver *, struct module *, const char *)
 // with return type: int
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int __VERIFIER_nondet_int(void);
 int __pci_register_driver(struct pci_driver *arg0, struct module *arg1, const char *arg2) {
   // Simple type
@@ -40,7 +32,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: kmem_cache_alloc

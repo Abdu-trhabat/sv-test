@@ -1,4 +1,3 @@
-void *safe_malloc(size_t size);
 // Skip function: __VERIFIER_error
 
 // Skip function: __VERIFIER_nondet_int
@@ -890,7 +889,7 @@ void mutex_unlock(struct mutex *arg0) {
 
 void *ldv_xmalloc(size_t size)
 {
-  void *res = safe_malloc(size);
+  void *res = malloc(size);
   assume_abort_if_not(res != (void *)0);
   return res;
 }

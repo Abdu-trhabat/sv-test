@@ -9,14 +9,6 @@ extern int __VERIFIER_nondet_int();
  * After creation, traverse dll in both directions including data checks.
  */
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 typedef struct node {
   int data_0;
@@ -33,7 +25,7 @@ void myexit(int s) {
 DLL dll_create(int len) {
   DLL head = NULL;
   while(len > 0) {
-    DLL new_head = (DLL) safe_malloc(sizeof(struct node));
+    DLL new_head = (DLL) malloc(sizeof(struct node));
     if(NULL == new_head) {
       myexit(1);
     }

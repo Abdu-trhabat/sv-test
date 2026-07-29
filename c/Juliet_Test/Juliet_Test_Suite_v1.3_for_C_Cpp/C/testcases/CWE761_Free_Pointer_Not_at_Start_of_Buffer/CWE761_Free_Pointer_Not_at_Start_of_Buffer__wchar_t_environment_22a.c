@@ -30,21 +30,13 @@ Template File: source-sinks-22a.tmpl.c
 
 /* The global variable below is used to drive control flow in the sink function */
 int CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_environment_22_badGlobal = 0;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_environment_22_badSink(wchar_t * data);
 
 void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_environment_22_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     {
@@ -76,7 +68,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_environment_22_goodB2G1
 static void goodB2G1()
 {
     wchar_t * data;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     {
@@ -100,7 +92,7 @@ void CWE761_Free_Pointer_Not_at_Start_of_Buffer__wchar_t_environment_22_goodB2G2
 static void goodB2G2()
 {
     wchar_t * data;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     data[0] = L'\0';
     {

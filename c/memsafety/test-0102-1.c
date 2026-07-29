@@ -8,14 +8,6 @@ void reach_error() { assert(0); }
  */
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -86,7 +78,7 @@ void destroy_top(struct list_head *head)
 
 void insert_sub(struct list_head *head)
 {
-    struct sub_list *sub = safe_malloc(sizeof(*sub));
+    struct sub_list *sub = malloc(sizeof(*sub));
     if (!sub)
         abort();
 
@@ -107,7 +99,7 @@ void create_sub_list(struct list_head *sub)
 
 void insert_top(struct list_head *head)
 {
-    struct top_list *top = safe_malloc(sizeof(*top));
+    struct top_list *top = malloc(sizeof(*top));
     if (!top)
         abort();
 

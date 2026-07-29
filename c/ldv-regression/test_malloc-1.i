@@ -332,14 +332,6 @@ extern void *calloc (size_t __nmemb, size_t __size)
 __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
 extern void *realloc (void *__ptr, size_t __size)
 __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
 __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
@@ -388,8 +380,8 @@ extern void __malloc_check_init (void) __attribute__ ((__nothrow__ , __leaf__)) 
 
 int CURRENTLY_UNSAFE;
 int main(void) {
- int * p1 = safe_malloc(sizeof(int));
- int * p2 = safe_malloc(sizeof(int));
+ int * p1 = malloc(sizeof(int));
+ int * p2 = malloc(sizeof(int));
  if(p1!=0 && p2!=0) {
   __VERIFIER_assert(p1!=p2);
  }

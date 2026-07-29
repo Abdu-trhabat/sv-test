@@ -6,7 +6,7 @@ Template File: sources-sinks-07.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -25,14 +25,6 @@ Template File: sources-sinks-07.tmpl.c
 static int staticFive = 5;
 
 #ifndef OMITBAD
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE401_Memory_Leak__char_calloc_07_bad()
 {
@@ -41,7 +33,7 @@ void CWE401_Memory_Leak__char_calloc_07_bad()
     if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (char *)safe_calloc(100, sizeof(char));
+        data = (char *)calloc(100, sizeof(char));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         strcpy(data, "A String");
@@ -66,7 +58,7 @@ static void goodB2G1()
     if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (char *)safe_calloc(100, sizeof(char));
+        data = (char *)calloc(100, sizeof(char));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         strcpy(data, "A String");
@@ -92,7 +84,7 @@ static void goodB2G2()
     if(staticFive==5)
     {
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (char *)safe_calloc(100, sizeof(char));
+        data = (char *)calloc(100, sizeof(char));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         strcpy(data, "A String");

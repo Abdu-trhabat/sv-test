@@ -9193,27 +9193,10 @@ void ldv_main1_sequence_infinite_withcheck_stateful(void)
 void *ldv_zalloc(size_t size ) ;
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *calloc(size_t, size_t) ;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_zalloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_calloc(1UL, size);
+  return calloc(1UL, size);
 }
 __inline static void *kzalloc(size_t size , gfp_t flags ) 
 { void *tmp ;

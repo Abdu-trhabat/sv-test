@@ -26,14 +26,6 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE590_Free_Memory_Not_on_Heap__free_long_alloca_04_bad()
 {
@@ -77,10 +69,10 @@ static void goodG2B1()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            long * dataBuffer = (long *)safe_malloc(100*sizeof(long));
+            long * dataBuffer = (long *)malloc(100*sizeof(long));
             if (dataBuffer == NULL)
             {
-                printLine("safe_malloc() failed");
+                printLine("malloc() failed");
                 exit(1);
             }
             {
@@ -107,10 +99,10 @@ static void goodG2B2()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            long * dataBuffer = (long *)safe_malloc(100*sizeof(long));
+            long * dataBuffer = (long *)malloc(100*sizeof(long));
             if (dataBuffer == NULL)
             {
-                printLine("safe_malloc() failed");
+                printLine("malloc() failed");
                 exit(1);
             }
             {

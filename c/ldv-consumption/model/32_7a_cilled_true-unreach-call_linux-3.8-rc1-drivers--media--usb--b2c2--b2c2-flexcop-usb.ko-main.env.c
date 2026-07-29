@@ -5,14 +5,6 @@
 // Function: debug_dma_alloc_coherent
 // with type: void debug_dma_alloc_coherent(struct device *, size_t , dma_addr_t , void *)
 // with return type: void
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void debug_dma_alloc_coherent(struct device *arg0, size_t arg1, dma_addr_t arg2, void *arg3) {
   // Void type
   return;
@@ -30,7 +22,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: dev_get_drvdata

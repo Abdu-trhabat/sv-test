@@ -25,7 +25,7 @@ Template File: sources-sink-42.tmpl.c
 
 static wchar_t * badSource(wchar_t * password)
 {
-    password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    password = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (password == NULL)
     {
         printLine("Memory could not be allocated");
@@ -36,14 +36,6 @@ static wchar_t * badSource(wchar_t * password)
     wcscpy(password, L"Password1234!");
     return password;
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_42_bad()
 {
@@ -82,7 +74,7 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_42_b
 
 static wchar_t * goodG2BSource(wchar_t * password)
 {
-    password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    password = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (password == NULL)
     {
         printLine("Memory could not be allocated");

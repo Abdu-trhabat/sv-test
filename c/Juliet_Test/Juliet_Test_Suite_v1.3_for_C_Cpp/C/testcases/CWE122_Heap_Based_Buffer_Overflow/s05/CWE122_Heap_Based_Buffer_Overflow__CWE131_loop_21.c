@@ -15,16 +15,6 @@ Template File: sources-sink-21.tmpl.c
  * */
 
 #include "std_testcase.h"
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -36,7 +26,7 @@ static int * badSource(int * data)
     if(badStatic)
     {
         /* FLAW: Allocate memory without using sizeof(int) */
-        data = (int *)safe_malloc(10);
+        data = (int *)malloc(10);
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -80,7 +70,7 @@ static int * goodG2B1Source(int * data)
     else
     {
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)safe_malloc(10*sizeof(int));
+        data = (int *)malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -111,7 +101,7 @@ static int * goodG2B2Source(int * data)
     if(goodG2B2Static)
     {
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)safe_malloc(10*sizeof(int));
+        data = (int *)malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;

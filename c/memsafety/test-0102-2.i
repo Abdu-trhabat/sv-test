@@ -438,14 +438,6 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -575,7 +567,7 @@ void destroy_top(struct list_head *head)
 }
 void insert_sub(struct list_head *head)
 {
-    struct sub_list *sub = safe_malloc(sizeof(*sub));
+    struct sub_list *sub = malloc(sizeof(*sub));
     if (!sub)
         abort();
     sub->number = 0;
@@ -591,7 +583,7 @@ void create_sub_list(struct list_head *sub)
 }
 void insert_top(struct list_head *head)
 {
-    struct top_list *top = safe_malloc(sizeof(*top));
+    struct top_list *top = malloc(sizeof(*top));
     if (!top)
         abort();
     create_sub_list(&top->sub1);

@@ -5137,27 +5137,10 @@ void *ldv_kmem_cache_alloc_16(struct kmem_cache *ldv_func_arg1 , gfp_t ldv_func_
 void *ldv_zalloc(size_t size ) ;
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *calloc(size_t, size_t) ;
-extern void *malloc(size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_zalloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_calloc(1UL, size);
+  return calloc(1UL, size);
 }
 __inline static void *kzalloc(size_t size , gfp_t flags )
 { void *tmp ;
@@ -5178,7 +5161,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 IXJ *ixj_pcmcia_probe(unsigned long arg0, unsigned long arg1) {
   return ldv_malloc(sizeof(IXJ));

@@ -25,19 +25,11 @@ Template File: sources-sink-12.tmpl.c
 #endif
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_snprintf_12_bad()
 {
     wchar_t * data;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     if(globalReturnsTrueOrFalse())
     {
@@ -69,7 +61,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE806_wchar_t_snprintf_12_bad()
 static void goodG2B()
 {
     wchar_t * data;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     if(globalReturnsTrueOrFalse())
     {

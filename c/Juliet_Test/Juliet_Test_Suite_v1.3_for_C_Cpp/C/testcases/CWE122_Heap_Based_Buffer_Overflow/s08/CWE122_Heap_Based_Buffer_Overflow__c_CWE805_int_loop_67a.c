@@ -6,8 +6,8 @@ Template File: sources-sink-67a.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sinks: loop
  *    BadSink : Copy int array to data using a loop
  * Flow Variant: 67 Data flow: data passed in a struct from one function to another in different source files
@@ -24,14 +24,6 @@ typedef struct _CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_loop_67_structTy
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_loop_67b_badSink(CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_loop_67_structType myStruct);
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_loop_67_bad()
@@ -40,7 +32,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_loop_67_bad()
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_loop_67_structType myStruct;
     data = NULL;
     /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-    data = (int *)safe_malloc(50*sizeof(int));
+    data = (int *)malloc(50*sizeof(int));
     if (data == NULL) {exit(-1);}
     myStruct.structFirst = data;
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_loop_67b_badSink(myStruct);
@@ -59,7 +51,7 @@ static void goodG2B()
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_loop_67_structType myStruct;
     data = NULL;
     /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-    data = (int *)safe_malloc(100*sizeof(int));
+    data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     myStruct.structFirst = data;
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int_loop_67b_goodG2BSink(myStruct);

@@ -6,7 +6,7 @@ Template File: sources-sinks-21.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -32,21 +32,13 @@ static void badSink(twoIntsStruct * data)
         ; /* empty statement needed for some flow variants */
     }
 }
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE401_Memory_Leak__twoIntsStruct_calloc_21_bad()
 {
     twoIntsStruct * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (twoIntsStruct *)safe_calloc(100, sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)calloc(100, sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0].intOne = 0;
@@ -85,7 +77,7 @@ static void goodB2G1()
     twoIntsStruct * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (twoIntsStruct *)safe_calloc(100, sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)calloc(100, sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0].intOne = 0;
@@ -110,7 +102,7 @@ static void goodB2G2()
     twoIntsStruct * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (twoIntsStruct *)safe_calloc(100, sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)calloc(100, sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0].intOne = 0;

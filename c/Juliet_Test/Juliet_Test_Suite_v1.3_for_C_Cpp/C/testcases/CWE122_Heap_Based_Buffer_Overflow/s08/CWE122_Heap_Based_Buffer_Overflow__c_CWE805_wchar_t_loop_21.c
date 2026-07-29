@@ -6,8 +6,8 @@ Template File: sources-sink-21.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sink: loop
  *    BadSink : Copy string to data using a loop
  * Flow Variant: 21 Control flow: Flow controlled by value of a static global variable. All functions contained in one file.
@@ -17,16 +17,6 @@ Template File: sources-sink-21.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -38,7 +28,7 @@ static wchar_t * badSource(wchar_t * data)
     if(badStatic)
     {
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-        data = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+        data = (wchar_t *)malloc(50*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         data[0] = L'\0'; /* null terminate */
     }
@@ -86,7 +76,7 @@ static wchar_t * goodG2B1Source(wchar_t * data)
     else
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         data[0] = L'\0'; /* null terminate */
     }
@@ -121,7 +111,7 @@ static wchar_t * goodG2B2Source(wchar_t * data)
     if(goodG2B2Static)
     {
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         data[0] = L'\0'; /* null terminate */
     }

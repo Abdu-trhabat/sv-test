@@ -25,14 +25,6 @@ Template File: sources-sink-07.tmpl.c
 static int staticFive = 5;
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE590_Free_Memory_Not_on_Heap__free_int_declare_07_bad()
 {
@@ -76,10 +68,10 @@ static void goodG2B1()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            int * dataBuffer = (int *)safe_malloc(100*sizeof(int));
+            int * dataBuffer = (int *)malloc(100*sizeof(int));
             if (dataBuffer == NULL)
             {
-                printLine("safe_malloc() failed");
+                printLine("malloc() failed");
                 exit(1);
             }
             {
@@ -106,10 +98,10 @@ static void goodG2B2()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            int * dataBuffer = (int *)safe_malloc(100*sizeof(int));
+            int * dataBuffer = (int *)malloc(100*sizeof(int));
             if (dataBuffer == NULL)
             {
-                printLine("safe_malloc() failed");
+                printLine("malloc() failed");
                 exit(1);
             }
             {

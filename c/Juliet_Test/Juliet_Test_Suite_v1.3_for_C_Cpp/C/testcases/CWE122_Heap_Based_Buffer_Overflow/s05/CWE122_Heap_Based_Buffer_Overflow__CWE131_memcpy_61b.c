@@ -15,23 +15,13 @@ Template File: sources-sink-61b.tmpl.c
  * */
 
 #include "std_testcase.h"
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 int * CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_61b_badSource(int * data)
 {
     /* FLAW: Allocate memory without using sizeof(int) */
-    data = (int *)safe_malloc(10);
+    data = (int *)malloc(10);
     if (data == NULL) {exit(-1);}
     return data;
 }
@@ -44,7 +34,7 @@ int * CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_61b_badSource(int * data)
 int * CWE122_Heap_Based_Buffer_Overflow__CWE131_memcpy_61b_goodG2BSource(int * data)
 {
     /* FIX: Allocate memory using sizeof(int) */
-    data = (int *)safe_malloc(10*sizeof(int));
+    data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
     return data;
 }

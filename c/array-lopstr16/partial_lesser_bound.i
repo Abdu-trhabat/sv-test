@@ -12,14 +12,6 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "partial_lesser_bound.c", 3, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int *a[1000000];
 int i;
 int main()
@@ -30,7 +22,7 @@ int main()
  }
  for(i = 0; i < 1000000 / 2; i++)
  {
-  a[i] = safe_malloc(sizeof(int)) ;
+  a[i] = malloc(sizeof(int)) ;
  }
  for(i = 0; i < 1000000 / 2; i++)
  {

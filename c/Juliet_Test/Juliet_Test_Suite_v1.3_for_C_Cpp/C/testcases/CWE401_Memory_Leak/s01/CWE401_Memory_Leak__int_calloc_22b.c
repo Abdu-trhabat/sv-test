@@ -6,7 +6,7 @@ Template File: sources-sinks-22b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -23,14 +23,6 @@ Template File: sources-sinks-22b.tmpl.c
 
 /* The global variable below is used to drive control flow in the sink function */
 extern int CWE401_Memory_Leak__int_calloc_22_badGlobal;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE401_Memory_Leak__int_calloc_22_badSink(int * data)
 {

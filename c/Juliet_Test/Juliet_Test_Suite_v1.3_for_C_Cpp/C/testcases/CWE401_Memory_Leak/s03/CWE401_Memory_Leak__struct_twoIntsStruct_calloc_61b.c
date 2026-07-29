@@ -6,7 +6,7 @@ Template File: sources-sinks-61b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -18,16 +18,6 @@ Template File: sources-sinks-61b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *calloc(size_t num, size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -35,7 +25,7 @@ struct _twoIntsStruct * CWE401_Memory_Leak__struct_twoIntsStruct_calloc_61b_badS
 {
 
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (struct _twoIntsStruct *)safe_calloc(100, sizeof(struct _twoIntsStruct));
+    data = (struct _twoIntsStruct *)calloc(100, sizeof(struct _twoIntsStruct));
     if (data == NULL) {exit(-1);}
 
     /* Initialize and make use of data */
@@ -74,7 +64,7 @@ struct _twoIntsStruct * CWE401_Memory_Leak__struct_twoIntsStruct_calloc_61b_good
 {
 
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (struct _twoIntsStruct *)safe_calloc(100, sizeof(struct _twoIntsStruct));
+    data = (struct _twoIntsStruct *)calloc(100, sizeof(struct _twoIntsStruct));
     if (data == NULL) {exit(-1);}
 
     /* Initialize and make use of data */

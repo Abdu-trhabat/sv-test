@@ -10951,15 +10951,6 @@ void ldv_check_final_state(void)
 }
 #include "model/module_get_put-drivers-atm-eni.ko_true-unreach-call.cil.out.env.c"
 #include "model/common.env.c"
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 long ldv_is_err(void const *ptr )
 {
   return ((unsigned long )ptr > 4294967295UL);
@@ -10982,7 +10973,7 @@ void *ldv_xmalloc(size_t size )
   long tmp___0 ;
   {
   {
-  tmp = safe_malloc(size);
+  tmp = malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);

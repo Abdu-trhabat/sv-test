@@ -5422,14 +5422,6 @@ extern void kfree(void const * ) ;
 extern int __VERIFIER_nondet_int(void);
 
 extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 long ldv_is_err(const void *ptr)
 {
   return ((unsigned long)ptr > ((unsigned long)-4095));
@@ -5437,7 +5429,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
  if (__VERIFIER_nondet_int()) {
-  void *res = safe_malloc(size);
+  void *res = malloc(size);
   assume_abort_if_not(!ldv_is_err(res));
   return res;
  } else {
@@ -7741,7 +7733,7 @@ enum v4l2_buf_type nondet_v4l2_buf_type() {
 }
 extern void *malloc(size_t );
 void *ldv_successful_malloc(size_t __size) {
-  void *p = safe_malloc(__size);
+  void *p = malloc(__size);
   assume_abort_if_not(p != (void *)0);
   return p;
 }

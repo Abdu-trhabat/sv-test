@@ -6,8 +6,8 @@ Template File: sources-sinks-44.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
- * GoodSource: Allocate data using safe_malloc()
+ * BadSource:  Allocate data using malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -26,14 +26,6 @@ static void badSink(wchar_t * data)
     /* POTENTIAL FLAW: Possibly freeing memory twice */
     free(data);
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE415_Double_Free__malloc_free_wchar_t_44_bad()
 {
@@ -42,7 +34,7 @@ void CWE415_Double_Free__malloc_free_wchar_t_44_bad()
     void (*funcPtr) (wchar_t *) = badSink;
     /* Initialize data */
     data = NULL;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);
@@ -67,7 +59,7 @@ static void goodG2B()
     void (*funcPtr) (wchar_t *) = goodG2BSink;
     /* Initialize data */
     data = NULL;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* FIX: Do NOT free data in the source - the bad sink frees data */
     funcPtr(data);
@@ -87,7 +79,7 @@ static void goodB2G()
     void (*funcPtr) (wchar_t *) = goodB2GSink;
     /* Initialize data */
     data = NULL;
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);

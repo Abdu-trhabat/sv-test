@@ -18,14 +18,6 @@ Template File: sources-sinks-66b.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_rand_66b_badSink(int dataArray[])
 {
@@ -33,7 +25,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_rand_66b_badSink(int dataArray[
     int data = dataArray[2];
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -69,7 +61,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_rand_66b_goodG2BSink(int dataAr
     int data = dataArray[2];
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -101,7 +93,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_rand_66b_goodB2GSink(int dataAr
     int data = dataArray[2];
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)

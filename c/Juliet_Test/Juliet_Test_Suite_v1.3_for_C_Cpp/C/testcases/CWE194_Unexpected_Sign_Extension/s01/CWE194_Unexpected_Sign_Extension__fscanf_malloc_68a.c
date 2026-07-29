@@ -9,7 +9,7 @@ Template File: sources-sink-68a.tmpl.c
  * BadSource: fscanf Read data from the console using fscanf()
  * GoodSource: Positive integer
  * Sink: malloc
- *    BadSink : Allocate memory using safe_malloc() with the size of data
+ *    BadSink : Allocate memory using malloc() with the size of data
  * Flow Variant: 68 Data flow: data passed as a global variable from one function to another in different source files
  *
  * */
@@ -22,14 +22,6 @@ short CWE194_Unexpected_Sign_Extension__fscanf_malloc_68_goodG2BData;
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE194_Unexpected_Sign_Extension__fscanf_malloc_68b_badSink();
 
 void CWE194_Unexpected_Sign_Extension__fscanf_malloc_68_bad()

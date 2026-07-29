@@ -1472,7 +1472,7 @@ SQLITE_API int sqlite3_exec(
 #define SQLITE_ABORT        4   /* Callback routine requested an abort */
 #define SQLITE_BUSY         5   /* The database file is locked */
 #define SQLITE_LOCKED       6   /* A table in the database is locked */
-#define SQLITE_NOMEM        7   /* A safe_malloc() failed */
+#define SQLITE_NOMEM        7   /* A malloc() failed */
 #define SQLITE_READONLY     8   /* Attempt to write a readonly database */
 #define SQLITE_INTERRUPT    9   /* Operation terminated by sqlite3_interrupt()*/
 #define SQLITE_IOERR       10   /* Some kind of disk I/O error occurred */
@@ -2645,7 +2645,7 @@ SQLITE_API int sqlite3_db_config(sqlite3*, int op, ...);
 ** conditions.
 **
 ** The xMalloc, xRealloc, and xFree methods must work like the
-** safe_malloc(), safe_realloc() and free() functions from the standard C library.
+** malloc(), realloc() and free() functions from the standard C library.
 ** ^SQLite guarantees that the second argument to
 ** xRealloc is always a value returned by a prior call to xRoundup.
 **
@@ -2839,7 +2839,7 @@ struct sqlite3_mem_methods {
 ** An 8-byte aligned pointer to the memory,
 ** the number of bytes in the memory buffer, and the minimum allocation size.
 ** ^If the first pointer (the memory pointer) is NULL, then SQLite reverts
-** to using its default memory allocator (the system safe_malloc() implementation),
+** to using its default memory allocator (the system malloc() implementation),
 ** undoing any prior invocation of [SQLITE_CONFIG_MALLOC].  ^If the
 ** memory pointer is not NULL then the alternative memory
 ** allocator is engaged to handle all of SQLites memory allocation needs.
@@ -3789,7 +3789,7 @@ SQLITE_API char *sqlite3_vsnprintf(int,char*,const char*, va_list);
 ** The SQLite core uses these three routines for all of its own
 ** internal memory allocation needs. "Core" in the previous sentence
 ** does not include operating-system specific VFS implementation.  The
-** Windows VFS uses native safe_malloc() and free() for some operations.
+** Windows VFS uses native malloc() and free() for some operations.
 **
 ** ^The sqlite3_malloc() routine returns a pointer to a block
 ** of memory at least N bytes in length, where N is the parameter.
@@ -3855,7 +3855,7 @@ SQLITE_API char *sqlite3_vsnprintf(int,char*,const char*, va_list);
 ** is no longer provided.  Only built-in memory allocators can be used.
 **
 ** Prior to SQLite version 3.7.10, the Windows OS interface layer called
-** the system safe_malloc() and free() directly when converting
+** the system malloc() and free() directly when converting
 ** filenames between the UTF-8 encoding used by SQLite
 ** and whatever filename encoding is used by the particular Windows
 ** installation.  Memory allocation errors were detected, but
@@ -5203,7 +5203,7 @@ typedef struct sqlite3_context sqlite3_context;
 ** exceeds limits imposed by [sqlite3_limit]([SQLITE_LIMIT_LENGTH]) or
 ** [SQLITE_MAX_LENGTH].
 ** ^[SQLITE_RANGE] is returned if the parameter
-** index is out of range.  ^[SQLITE_NOMEM] is returned if safe_malloc() fails.
+** index is out of range.  ^[SQLITE_NOMEM] is returned if malloc() fails.
 **
 ** See also: [sqlite3_bind_parameter_count()],
 ** [sqlite3_bind_parameter_name()], and [sqlite3_bind_parameter_index()].
@@ -13252,10 +13252,10 @@ struct fts5_api {
 ** Exactly one of the following macros must be defined in order to
 ** specify which memory allocation subsystem to use.
 **
-**     SQLITE_SYSTEM_MALLOC          // Use normal system safe_malloc()
+**     SQLITE_SYSTEM_MALLOC          // Use normal system malloc()
 **     SQLITE_WIN32_MALLOC           // Use Win32 native heap API
 **     SQLITE_ZERO_MALLOC            // Use a stub allocator that always fails
-**     SQLITE_MEMDEBUG               // Debugging version of system safe_malloc()
+**     SQLITE_MEMDEBUG               // Debugging version of system malloc()
 **
 ** On Windows, if the SQLITE_WIN32_MALLOC_VALIDATE macro is defined and the
 ** assert() macro is enabled, each call into the Win32 native heap subsystem
@@ -13766,23 +13766,6 @@ SQLITE_PRIVATE void sqlite3HashClear(Hash*);
 #include <assert.h>
 #include <stddef.h>
 
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-
 /*
 ** Use a macro to replace memcpy() if compiled with SQLITE_INLINE_MEMCPY.
 ** This allows better measurements of where memcpy() is used when running
@@ -14135,7 +14118,7 @@ typedef INT16_TYPE LogEst;
 ** all alignment restrictions correct.
 **
 ** Except, if SQLITE_4_BYTE_ALIGNED_MALLOC is defined, then the
-** underlying safe_malloc() implementation might return us 4-byte aligned
+** underlying malloc() implementation might return us 4-byte aligned
 ** pointers.  In that case, only verify 4-byte alignment.
 */
 #ifdef SQLITE_4_BYTE_ALIGNED_MALLOC
@@ -17585,7 +17568,7 @@ struct Expr {
 #define EP_WinFunc   0x1000000 /* TK_FUNCTION with Expr.y.pWin set */
 #define EP_Subrtn    0x2000000 /* Uses Expr.y.sub. TK_IN, _SELECT, or _EXISTS */
 #define EP_Quoted    0x4000000 /* TK_ID was originally quoted */
-#define EP_Static    0x8000000 /* Held in memory not obtained from safe_malloc() */
+#define EP_Static    0x8000000 /* Held in memory not obtained from malloc() */
 #define EP_IsTrue   0x10000000 /* Always has boolean value of TRUE */
 #define EP_IsFalse  0x20000000 /* Always has boolean value of FALSE */
 #define EP_Indirect 0x40000000 /* Contained within a TRIGGER or a VIEW */
@@ -18821,7 +18804,7 @@ SQLITE_PRIVATE int sqlite3HeapNearlyFull(void);
 /*
 ** On systems with ample stack space and that support alloca(), make
 ** use of alloca() to obtain space for large automatic objects.  By default,
-** obtain space from safe_malloc().
+** obtain space from malloc().
 **
 ** The alloca() routine never returns NULL.  This will cause code paths
 ** that deal with sqlite3StackAlloc() failures to be unreachable.
@@ -22383,10 +22366,10 @@ SQLITE_API int sqlite3_open_file_count = 0;
 ** The default SQLite sqlite3_vfs implementations do not allocate
 ** memory (actually, os_unix.c allocates a small amount of memory
 ** from within OsOpen()), but some third-party implementations may.
-** So we test the effects of a safe_malloc() failing and the sqlite3OsXXX()
+** So we test the effects of a malloc() failing and the sqlite3OsXXX()
 ** function returning SQLITE_IOERR_NOMEM using the DO_OS_MALLOC_TEST macro.
 **
-** The following functions are instrumented for safe_malloc() failure
+** The following functions are instrumented for malloc() failure
 ** testing:
 **
 **     sqlite3OsRead()
@@ -23001,9 +22984,9 @@ static malloc_zone_t* _sqliteZone_;
 ** Use standard C library malloc and free on non-Apple systems.  
 ** Also used by Apple systems if SQLITE_WITHOUT_ZONEMALLOC is defined.
 */
-#define SQLITE_MALLOC(x)             safe_malloc(x)
+#define SQLITE_MALLOC(x)             malloc(x)
 #define SQLITE_FREE(x)               free(x)
-#define SQLITE_REALLOC(x,y)          safe_realloc((x),(y))
+#define SQLITE_REALLOC(x,y)          realloc((x),(y))
 
 /*
 ** The malloc.h header file is needed for malloc_usable_size() function
@@ -23046,7 +23029,7 @@ static malloc_zone_t* _sqliteZone_;
 #endif /* __APPLE__ or not __APPLE__ */
 
 /*
-** Like safe_malloc(), but remember the size of the allocation
+** Like malloc(), but remember the size of the allocation
 ** so that we can find it later using sqlite3MemSize().
 **
 ** For this low-level routine, we are guaranteed that nByte>0 because
@@ -23116,7 +23099,7 @@ static int sqlite3MemSize(void *pPrior){
 }
 
 /*
-** Like safe_realloc().  Resize an allocation previously obtained from
+** Like realloc().  Resize an allocation previously obtained from
 ** sqlite3MemMalloc().
 **
 ** For this low-level interface, we know that pPrior!=0.  Cases where
@@ -23474,7 +23457,7 @@ static void *sqlite3MemMalloc(int nByte){
   nReserve = ROUND8(nByte);
   totalSize = nReserve + sizeof(*pHdr) + sizeof(int) +
                mem.nBacktrace*sizeof(void*) + mem.nTitle;
-  p = safe_malloc(totalSize);
+  p = malloc(totalSize);
   if( p ){
     z = p;
     pBt = (void**)&z[mem.nTitle];
@@ -23766,7 +23749,7 @@ SQLITE_PRIVATE int sqlite3MemdebugMallocCount(){
 ** allocation subsystem for use by SQLite. 
 **
 ** This version of the memory allocation subsystem omits all
-** use of safe_malloc(). The SQLite user supplies a block of memory
+** use of malloc(). The SQLite user supplies a block of memory
 ** before calling sqlite3_initialize() from which allocations
 ** are made and returned by the xMalloc() and xRealloc() 
 ** implementations. Once sqlite3_initialize() has been called,
@@ -24456,7 +24439,7 @@ SQLITE_PRIVATE const sqlite3_mem_methods *sqlite3MemGetMemsys3(void){
 ** allocation subsystem for use by SQLite. 
 **
 ** This version of the memory allocation subsystem omits all
-** use of safe_malloc(). The application gives SQLite a block of memory
+** use of malloc(). The application gives SQLite a block of memory
 ** before calling sqlite3_initialize() from which allocations
 ** are made and returned by the xMalloc() and xRealloc() 
 ** implementations. Once sqlite3_initialize() has been called,
@@ -27183,7 +27166,7 @@ static SQLITE_NOINLINE void *dbMallocRawFinish(sqlite3 *db, u64 n){
 **         int *b = (int*)sqlite3DbMallocRaw(db, 200);
 **         if( b ) a[10] = 9;
 **
-** In other words, if a subsequent safe_malloc (ex: "b") worked, it is assumed
+** In other words, if a subsequent malloc (ex: "b") worked, it is assumed
 ** that all prior mallocs (ex: "a") worked too.
 **
 ** The sqlite3MallocRawNN() variant guarantees that the "db" parameter is
@@ -27390,7 +27373,7 @@ static SQLITE_NOINLINE int apiOomError(sqlite3 *db){
 ** sqlite3_realloc.
 **
 ** The returned value is normally a copy of the second argument to this
-** function. However, if a safe_malloc() failure has occurred since the previous
+** function. However, if a malloc() failure has occurred since the previous
 ** invocation SQLITE_NOMEM is returned instead. 
 **
 ** If an OOM as occurred, then the connection error-code (the value
@@ -27649,7 +27632,7 @@ SQLITE_API void sqlite3_str_vappendf(
   char buf[etBUFSIZE];       /* Conversion buffer */
 
   /* pAccum never starts out with an empty buffer that was obtained from 
-  ** safe_malloc().  This precondition is required by the mprintf("%z...")
+  ** malloc().  This precondition is required by the mprintf("%z...")
   ** optimization. */
   assert( pAccum->nChar>0 || (pAccum->printfFlags&SQLITE_PRINTF_MALLOCED)==0 );
 
@@ -31954,10 +31937,10 @@ SQLITE_PRIVATE u64 sqlite3LogEstToInt(LogEst x){
 ** During code generation, pointers to the variable names within the
 ** VList are taken.  When that happens, nAlloc is set to zero as an 
 ** indication that the VList may never again be enlarged, since the
-** accompanying safe_realloc() would invalidate the pointers.
+** accompanying realloc() would invalidate the pointers.
 */
 SQLITE_PRIVATE VList *sqlite3VListAdd(
-  sqlite3 *db,           /* The database connection used for safe_malloc() */
+  sqlite3 *db,           /* The database connection used for malloc() */
   VList *pIn,            /* The input VList.  Might be NULL */
   const char *zName,     /* Name of symbol to add */
   int nName,             /* Bytes of text in zName */
@@ -53170,7 +53153,7 @@ static int pager_playback_one_page(
   **
   ** An exception to the above rule: If the database is in no-sync mode
   ** and a page is moved during an incremental vacuum then the page may
-  ** not be in the pager cache. Later: if a safe_malloc() or IO error occurs
+  ** not be in the pager cache. Later: if a malloc() or IO error occurs
   ** during a Movepage() call, then the page may not be in the cache
   ** either. So the condition described in the above paragraph is not
   ** assert()able.
@@ -53595,7 +53578,7 @@ static void setSectorSize(Pager *pPager){
 ** is then deleted and SQLITE_OK returned, just as if no corruption had
 ** been encountered.
 **
-** If an I/O or safe_malloc() error occurs, the journal-file is not deleted
+** If an I/O or malloc() error occurs, the journal-file is not deleted
 ** and an error code is returned.
 **
 ** The isHot parameter indicates that we are trying to rollback a journal
@@ -57620,7 +57603,7 @@ static SQLITE_NOINLINE int pagerOpenSavepoint(Pager *pPager, int nSavepoint){
   assert( assert_pager_state(pPager) );
   assert( nSavepoint>nCurrent && pPager->useJournal );
 
-  /* Grow the Pager.aSavepoint array using safe_realloc(). Return SQLITE_NOMEM
+  /* Grow the Pager.aSavepoint array using realloc(). Return SQLITE_NOMEM
   ** if the allocation fails. Otherwise, zero the new portion in case a 
   ** malloc failure occurs while populating it in the for(...) loop below.
   */
@@ -58004,7 +57987,7 @@ SQLITE_PRIVATE int sqlite3PagerMovepage(Pager *pPager, DbPage *pPg, Pgno pgno, i
     ** flag.
     **
     ** If the attempt to load the page into the page-cache fails, (due
-    ** to a safe_malloc() or IO failure), clear the bit in the pInJournal[]
+    ** to a malloc() or IO failure), clear the bit in the pInJournal[]
     ** array. Otherwise, if the page is loaded and written again in
     ** this transaction, it may be written to the database file before
     ** it is synced into the journal file. This way, it may end up in
@@ -58323,7 +58306,7 @@ static int pagerOpenWal(Pager *pPager){
   }
 
   /* Open the connection to the log file. If this operation fails, 
-  ** (e.g. due to safe_malloc() failure), return an error code.
+  ** (e.g. due to malloc() failure), return an error code.
   */
   if( rc==SQLITE_OK ){
     rc = sqlite3WalOpen(pPager->pVfs,
@@ -74847,7 +74830,7 @@ SQLITE_PRIVATE int sqlite3VdbeMemValidStrRep(Mem *p){
 ** routine is a no-op.
 **
 ** SQLITE_OK is returned if the conversion is successful (or not required).
-** SQLITE_NOMEM may be returned if a safe_malloc() fails during conversion
+** SQLITE_NOMEM may be returned if a malloc() fails during conversion
 ** between formats.
 */
 SQLITE_PRIVATE int sqlite3VdbeChangeEncoding(Mem *pMem, int desiredEnc){
@@ -78418,7 +78401,7 @@ SQLITE_PRIVATE int sqlite3VdbeList(
   p->pResultSet = 0;
 
   if( p->rc==SQLITE_NOMEM ){
-    /* This happens if a safe_malloc() inside a call to sqlite3_column_text() or
+    /* This happens if a malloc() inside a call to sqlite3_column_text() or
     ** sqlite3_column_text16() failed.  */
     sqlite3OomFault(db);
     return SQLITE_ERROR;
@@ -82249,7 +82232,7 @@ static int sqlite3Step(Vdbe *p){
 #endif
   }
 
-  /* Check that safe_malloc() has not failed. If it has, return early. */
+  /* Check that malloc() has not failed. If it has, return early. */
   db = p->db;
   if( db->mallocFailed ){
     p->rc = SQLITE_NOMEM;
@@ -82677,8 +82660,8 @@ static Mem *columnMem(sqlite3_stmt *pStmt, int i){
 /*
 ** This function is called after invoking an sqlite3_value_XXX function on a 
 ** column value (i.e. a value returned by evaluating an SQL expression in the
-** select list of a SELECT statement) that may cause a safe_malloc() failure. If 
-** safe_malloc() has failed, the threads mallocFailed flag is cleared and the result
+** select list of a SELECT statement) that may cause a malloc() failure. If 
+** malloc() has failed, the threads mallocFailed flag is cleared and the result
 ** code of statement pStmt set to SQLITE_NOMEM.
 **
 ** Specifically, this is called from within:
@@ -82694,7 +82677,7 @@ static Mem *columnMem(sqlite3_stmt *pStmt, int i){
 */
 static void columnMallocFailure(sqlite3_stmt *pStmt)
 {
-  /* If safe_malloc() failed during an encoding conversion within an
+  /* If malloc() failed during an encoding conversion within an
   ** sqlite3_column_XXX API, then set the return code of the statement to
   ** SQLITE_NOMEM. The next call to _step() (if any) will return SQLITE_ERROR
   ** and _finalize() will return NOMEM.
@@ -82716,7 +82699,7 @@ SQLITE_API const void *sqlite3_column_blob(sqlite3_stmt *pStmt, int i){
   const void *val;
   val = sqlite3_value_blob( columnMem(pStmt,i) );
   /* Even though there is no encoding conversion, value_blob() might
-  ** need to call safe_malloc() to expand the result of a zeroblob() 
+  ** need to call malloc() to expand the result of a zeroblob() 
   ** expression. 
   */
   columnMallocFailure(pStmt);
@@ -84625,7 +84608,7 @@ SQLITE_PRIVATE int sqlite3VdbeExec(
   }
 #endif
   if( p->rc==SQLITE_NOMEM ){
-    /* This happens if a safe_malloc() inside a call to sqlite3_column_text() or
+    /* This happens if a malloc() inside a call to sqlite3_column_text() or
     ** sqlite3_column_text16() failed.  */
     goto no_mem;
   }
@@ -91744,7 +91727,7 @@ too_big:
   rc = SQLITE_TOOBIG;
   goto abort_due_to_error;
 
-  /* Jump to here if a safe_malloc() fails.
+  /* Jump to here if a malloc() fails.
   */
 no_mem:
   sqlite3OomFault(db);
@@ -93205,7 +93188,7 @@ static int vdbeSorterCompareInt(
 ** SQLITE_OK is returned if successful, or an SQLite error code otherwise.
 */
 SQLITE_PRIVATE int sqlite3VdbeSorterInit(
-  sqlite3 *db,                    /* Database connection (for safe_malloc()) */
+  sqlite3 *db,                    /* Database connection (for malloc()) */
   int nField,                     /* Number of key fields in each record */
   VdbeCursor *pCsr                /* Cursor that holds the new sorter */
 ){
@@ -105135,7 +105118,7 @@ struct Stat4Accum {
   int nMaxEqZero;           /* Max leading 0 in anEq[] for any a[] entry */
   int iGet;                 /* Index of current sample accessed by stat_get() */
   Stat4Sample *a;           /* Array of mxSample Stat4Sample objects */
-  sqlite3 *db;              /* Database connection, for safe_malloc() */
+  sqlite3 *db;              /* Database connection, for malloc() */
 };
 
 /* Reclaim memory used by a Stat4Sample
@@ -111535,12 +111518,12 @@ exit_drop_index:
 ** the array (in entries - so the allocation is ((*pnEntry) * szEntry) bytes
 ** in total).
 **
-** If the safe_realloc() is successful (i.e. if no OOM condition occurs), the
+** If the realloc() is successful (i.e. if no OOM condition occurs), the
 ** space allocated for the new object is zeroed, *pnEntry updated to
 ** reflect the new size of the array and a pointer to the new allocation
 ** returned. *pIdx is set to the index of the new array entry in this case.
 **
-** Otherwise, if the safe_realloc() fails, *pIdx is set to -1, *pnEntry remains
+** Otherwise, if the realloc() fails, *pIdx is set to -1, *pnEntry remains
 ** unchanged and a copy of pArray returned.
 */
 SQLITE_PRIVATE void *sqlite3ArrayAllocate(
@@ -111571,7 +111554,7 @@ SQLITE_PRIVATE void *sqlite3ArrayAllocate(
 ** Append a new element to the given IdList.  Create a new IdList if
 ** need be.
 **
-** A new IdList is returned, or NULL if safe_malloc() fails.
+** A new IdList is returned, or NULL if malloc() fails.
 */
 SQLITE_PRIVATE IdList *sqlite3IdListAppend(Parse *pParse, IdList *pList, Token *pToken){
   sqlite3 *db = pParse->db;
@@ -112646,7 +112629,7 @@ static CollSeq *findCollSeqEntry(
       memcpy(pColl[0].zName, zName, nName);
       pDel = sqlite3HashInsert(&db->aCollSeq, pColl[0].zName, pColl);
 
-      /* If a safe_malloc() failure occurred in sqlite3HashInsert(), it will 
+      /* If a malloc() failure occurred in sqlite3HashInsert(), it will 
       ** return the pColl pointer to be deleted (because it wasn't added
       ** to the hash table).
       */
@@ -114359,7 +114342,7 @@ static void roundFunc(sqlite3_context *context, int argc, sqlite3_value **argv){
 /*
 ** Allocate nByte bytes of space using sqlite3Malloc(). If the
 ** allocation fails, call sqlite3_result_error_nomem() to notify
-** the database handle that safe_malloc() has failed and return NULL.
+** the database handle that malloc() has failed and return NULL.
 ** If nByte is larger than the maximum string or blob length, then
 ** raise an SQLITE_TOOBIG exception and return NULL.
 */
@@ -119881,7 +119864,7 @@ static int xferOptimization(
 /*
 ** Execute SQL code.  Return one of the SQLITE_ success/failure
 ** codes.  Also write an error message into memory obtained from
-** safe_malloc() and make *pzErrMsg point to that message.
+** malloc() and make *pzErrMsg point to that message.
 **
 ** If the SQL is a query, then for each row in the query result
 ** the xCallback() function is called.  pArg becomes the first
@@ -129939,7 +129922,7 @@ static int propagateConstants(
 ** terms are duplicated into the subquery.
 */
 static int pushDownWhereTerms(
-  Parse *pParse,        /* Parse context (for safe_malloc() and error reporting) */
+  Parse *pParse,        /* Parse context (for malloc() and error reporting) */
   Select *pSubq,        /* The subquery whose WHERE clause is to be augmented */
   Expr *pWhere,         /* The WHERE clause of the outer query */
   int iCursor,          /* Cursor number of the subquery */
@@ -132431,11 +132414,11 @@ malloc_failed:
 
 /*
 ** Query the database.  But instead of invoking a callback for each row,
-** safe_malloc() for space to hold the result and return the entire results
+** malloc() for space to hold the result and return the entire results
 ** at the conclusion of the call.
 **
 ** The result that is written to ***pazResult is held in memory obtained
-** from safe_malloc().  But the caller cannot free this memory directly.  
+** from malloc().  But the caller cannot free this memory directly.  
 ** Instead, the entire table should be passed to sqlite3_free_table() when
 ** the calling procedure is finished using it.
 */
@@ -149709,7 +149692,7 @@ SQLITE_PRIVATE void sqlite3WindowCodeStep(
 #endif
 
 /*
-** Alternative datatype for the argument to the safe_malloc() routine passed
+** Alternative datatype for the argument to the malloc() routine passed
 ** into sqlite3ParserAlloc().  The default is size_t.
 */
 #define YYMALLOCARGTYPE  u64
@@ -149871,7 +149854,7 @@ static void disableLookaside(Parse *pParse){
 **                       which is sqlite3ParserTOKENTYPE.  The entry in the union
 **                       for terminal symbols is called "yy0".
 **    YYSTACKDEPTH       is the maximum depth of the parser's stack.  If
-**                       zero the stack is dynamically sized using safe_realloc()
+**                       zero the stack is dynamically sized using realloc()
 **    sqlite3ParserARG_SDECL     A static variable declaration for the %extra_argument
 **    sqlite3ParserARG_PDECL     A parameter declaration for the %extra_argument
 **    sqlite3ParserARG_PARAM     Code to pass %extra_argument as a subroutine parameter
@@ -151575,10 +151558,10 @@ static int yyGrowStack(yyParser *p){
   newSize = p->yystksz*2 + 100;
   idx = p->yytos ? (int)(p->yytos - p->yystack) : 0;
   if( p->yystack==&p->yystk0 ){
-    pNew = safe_malloc(newSize*sizeof(pNew[0]));
+    pNew = malloc(newSize*sizeof(pNew[0]));
     if( pNew ) pNew[0] = p->yystk0;
   }else{
-    pNew = safe_realloc(p->yystack, newSize*sizeof(pNew[0]));
+    pNew = realloc(p->yystack, newSize*sizeof(pNew[0]));
   }
   if( pNew ){
     p->yystack = pNew;
@@ -156399,7 +156382,7 @@ SQLITE_API int sqlite3_initialize(void){
   rc = sqlite3MutexInit();
   if( rc ) return rc;
 
-  /* Initialize the safe_malloc() system and the recursive pInitMutex mutex.
+  /* Initialize the malloc() system and the recursive pInitMutex mutex.
   ** This operation is protected by the STATIC_MASTER mutex.  Note that
   ** MutexAlloc() is called for a static mutex prior to initializing the
   ** malloc subsystem - this implies that the allocation of a static
@@ -156747,7 +156730,7 @@ SQLITE_API int sqlite3_config(int op, ...){
       if( sqlite3GlobalConfig.pHeap==0 ){
         /* EVIDENCE-OF: R-49920-60189 If the first pointer (the memory pointer)
         ** is NULL, then SQLite reverts to using its default memory allocator
-        ** (the system safe_malloc() implementation), undoing any prior invocation of
+        ** (the system malloc() implementation), undoing any prior invocation of
         ** SQLITE_CONFIG_MALLOC.
         **
         ** Setting sqlite3GlobalConfig.m to all zeros will cause malloc to
@@ -157910,7 +157893,7 @@ SQLITE_API void sqlite3_interrupt(sqlite3 *db){
 /*
 ** This function is exactly the same as sqlite3_create_function(), except
 ** that it is designed to be called by internal code. The difference is
-** that if a safe_malloc() fails in sqlite3_create_function(), an error code
+** that if a malloc() fails in sqlite3_create_function(), an error code
 ** is returned and the mallocFailed flag cleared. 
 */
 SQLITE_PRIVATE int sqlite3CreateFunc(
@@ -158676,7 +158659,7 @@ SQLITE_API const void *sqlite3_errmsg16(sqlite3 *db){
       sqlite3ErrorWithMsg(db, db->errCode, sqlite3ErrStr(db->errCode));
       z = sqlite3_value_text16(db->pErr);
     }
-    /* A safe_malloc() may have failed within the call to sqlite3_value_text16()
+    /* A malloc() may have failed within the call to sqlite3_value_text16()
     ** above. If this is the case, then the db->mallocFailed flag needs to
     ** be cleared before returning. Do this directly, instead of via
     ** sqlite3ApiExit(), to avoid setting the database handle error message.
@@ -158690,7 +158673,7 @@ SQLITE_API const void *sqlite3_errmsg16(sqlite3 *db){
 
 /*
 ** Return the most recent error code generated by an SQLite routine. If NULL is
-** passed to this function, we assume a safe_malloc() failed during sqlite3_open().
+** passed to this function, we assume a malloc() failed during sqlite3_open().
 */
 SQLITE_API int sqlite3_errcode(sqlite3 *db){
   if( db && !sqlite3SafetyCheckSickOrOk(db) ){
@@ -159369,7 +159352,7 @@ static int openDatabase(
 
   /* Add the default collation sequence BINARY. BINARY works for both UTF-8
   ** and UTF-16, so add a version for each to avoid any unnecessary
-  ** conversions. The only error that can occur here is a safe_malloc() failure.
+  ** conversions. The only error that can occur here is a malloc() failure.
   **
   ** EVIDENCE-OF: R-52786-44878 SQLite defines three built-in collating
   ** functions:
@@ -159751,7 +159734,7 @@ SQLITE_API int sqlite3_collation_needed16(
 #ifndef SQLITE_OMIT_DEPRECATED
 /*
 ** This function is now an anachronism. It used to be used to recover from a
-** safe_malloc() failure, but SQLite now does this automatically.
+** malloc() failure, but SQLite now does this automatically.
 */
 SQLITE_API int sqlite3_global_recover(void){
   return SQLITE_OK;
@@ -160121,7 +160104,7 @@ SQLITE_API int sqlite3_test_control(int op, ...){
     /*
     **  sqlite3_test_control(BENIGN_MALLOC_HOOKS, xBegin, xEnd)
     **
-    ** Register hooks to call to indicate which safe_malloc() failures 
+    ** Register hooks to call to indicate which malloc() failures 
     ** are benign.
     */
     case SQLITE_TESTCTRL_BENIGN_MALLOC_HOOKS: {
@@ -163814,7 +163797,7 @@ static int fts3ScanInteriorNode(
     int nPrefix = 0;              /* Size of term prefix */
     int nBuffer;                  /* Total term size */
   
-    /* Load the next term on the node into zBuffer. Use safe_realloc() to expand
+    /* Load the next term on the node into zBuffer. Use realloc() to expand
     ** the size of zBuffer if required.  */
     if( !isFirstTerm ){
       zCsr += fts3GetVarint32(zCsr, &nPrefix);
@@ -172257,7 +172240,7 @@ struct SegmentWriter {
   char *zMalloc;                  /* Malloc'd space (possibly) used for zTerm */
   int nSize;                      /* Size of allocation at aData */
   int nData;                      /* Bytes of data in aData */
-  char *aData;                    /* Pointer to block from safe_malloc() */
+  char *aData;                    /* Pointer to block from malloc() */
   i64 nLeafData;                  /* Number of bytes of leaf data written */
 };
 
@@ -178331,7 +178314,7 @@ static int fts3BestSnippet(
   }
 
   /* Now that it is known how many phrases there are, allocate and zero
-  ** the required space using safe_malloc().
+  ** the required space using malloc().
   */
   nByte = sizeof(SnippetPhrase) * nList;
   sIter.aPhrase = (SnippetPhrase *)sqlite3_malloc64(nByte);
@@ -178399,7 +178382,7 @@ static int fts3StringAppend(
     nAppend = (int)strlen(zAppend);
   }
 
-  /* If there is insufficient space allocated at StrBuffer.z, use safe_realloc()
+  /* If there is insufficient space allocated at StrBuffer.z, use realloc()
   ** to grow the buffer until so that it is big enough to accomadate the
   ** appended data.
   */
@@ -204016,7 +203999,7 @@ static void sqlite3Fts5UnicodeAscii(u8*, u8*);
 #define fts5YYPARSEFREENOTNULL 1
 
 /*
-** Alternative datatype for the argument to the safe_malloc() routine passed
+** Alternative datatype for the argument to the malloc() routine passed
 ** into sqlite3ParserAlloc().  The default is size_t.
 */
 #define fts5YYMALLOCARGTYPE  u64
@@ -204058,7 +204041,7 @@ static void sqlite3Fts5UnicodeAscii(u8*, u8*);
 **                       which is sqlite3Fts5ParserFTS5TOKENTYPE.  The entry in the union
 **                       for terminal symbols is called "fts5yy0".
 **    fts5YYSTACKDEPTH       is the maximum depth of the parser's stack.  If
-**                       zero the stack is dynamically sized using safe_realloc()
+**                       zero the stack is dynamically sized using realloc()
 **    sqlite3Fts5ParserARG_SDECL     A static variable declaration for the %extra_argument
 **    sqlite3Fts5ParserARG_PDECL     A parameter declaration for the %extra_argument
 **    sqlite3Fts5ParserARG_PARAM     Code to pass %extra_argument as a subroutine parameter
@@ -204421,10 +204404,10 @@ static int fts5yyGrowStack(fts5yyParser *p){
   newSize = p->fts5yystksz*2 + 100;
   idx = p->fts5yytos ? (int)(p->fts5yytos - p->fts5yystack) : 0;
   if( p->fts5yystack==&p->fts5yystk0 ){
-    pNew = safe_malloc(newSize*sizeof(pNew[0]));
+    pNew = malloc(newSize*sizeof(pNew[0]));
     if( pNew ) pNew[0] = p->fts5yystk0;
   }else{
-    pNew = safe_realloc(p->fts5yystack, newSize*sizeof(pNew[0]));
+    pNew = realloc(p->fts5yystack, newSize*sizeof(pNew[0]));
   }
   if( pNew ){
     p->fts5yystack = pNew;

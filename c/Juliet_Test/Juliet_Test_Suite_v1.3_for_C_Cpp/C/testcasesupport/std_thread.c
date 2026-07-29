@@ -9,16 +9,6 @@
 # include <pthread.h>
 #endif
 #include "std_thread.h"
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 struct _stdThread {
 #ifdef _WIN32
@@ -66,7 +56,7 @@ int stdThreadCreate(stdThreadRoutine start, void *args, stdThread *thread)
 
     *thread = NULL;
 
-    my_thread = (stdThread)safe_malloc(sizeof(*my_thread));
+    my_thread = (stdThread)malloc(sizeof(*my_thread));
     if (my_thread == NULL) {
         return 0;
     }
@@ -146,7 +136,7 @@ int stdThreadLockCreate(stdThreadLock *lock)
 
     *lock = NULL;
 
-    my_lock = (stdThreadLock)safe_malloc(sizeof(*my_lock));
+    my_lock = (stdThreadLock)malloc(sizeof(*my_lock));
     if (my_lock == NULL) return 0;
 
 #ifdef _WIN32

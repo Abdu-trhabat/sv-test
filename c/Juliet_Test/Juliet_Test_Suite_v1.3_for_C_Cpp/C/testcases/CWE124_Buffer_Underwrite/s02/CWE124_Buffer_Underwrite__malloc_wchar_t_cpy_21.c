@@ -17,16 +17,6 @@ Template File: sources-sink-21.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -38,7 +28,7 @@ static wchar_t * badSource(wchar_t * data)
     if(badStatic)
     {
         {
-            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL) {exit(-1);}
             wmemset(dataBuffer, L'A', 100-1);
             dataBuffer[100-1] = L'\0';
@@ -63,7 +53,7 @@ void CWE124_Buffer_Underwrite__malloc_wchar_t_cpy_21_bad()
         wcscpy(data, source);
         printWLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 
@@ -86,7 +76,7 @@ static wchar_t * goodG2B1Source(wchar_t * data)
     else
     {
         {
-            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL) {exit(-1);}
             wmemset(dataBuffer, L'A', 100-1);
             dataBuffer[100-1] = L'\0';
@@ -111,7 +101,7 @@ static void goodG2B1()
         wcscpy(data, source);
         printWLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 
@@ -121,7 +111,7 @@ static wchar_t * goodG2B2Source(wchar_t * data)
     if(goodG2B2Static)
     {
         {
-            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL) {exit(-1);}
             wmemset(dataBuffer, L'A', 100-1);
             dataBuffer[100-1] = L'\0';
@@ -146,7 +136,7 @@ static void goodG2B2()
         wcscpy(data, source);
         printWLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 

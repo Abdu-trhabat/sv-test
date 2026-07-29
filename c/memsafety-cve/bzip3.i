@@ -311,22 +311,6 @@ extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern void exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void _Exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
@@ -432,7 +416,7 @@ int getNumberInRange(int lowestBound, int highestBound) {
   return value;
 }
 unsigned char *getRandomByteStream(int size) {
-  unsigned char *randomString = (unsigned char *)safe_calloc(size, sizeof(unsigned char));
+  unsigned char *randomString = (unsigned char *)calloc(size, sizeof(unsigned char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -444,7 +428,7 @@ unsigned char *getRandomByteStream(int size) {
 }
 char *getRandomString(int lowestSize, int highestSize) {
   int stringSize = getNumberInRange(lowestSize, highestSize);
-  char *randomString = (char *)safe_calloc(stringSize + 1, sizeof(char));
+  char *randomString = (char *)calloc(stringSize + 1, sizeof(char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -456,7 +440,7 @@ char *getRandomString(int lowestSize, int highestSize) {
   return randomString;
 }
 char *getRandomStringFixedSize(int size) {
-  char *randomString = (char *)safe_calloc(size + 1, sizeof(char));
+  char *randomString = (char *)calloc(size + 1, sizeof(char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -468,7 +452,7 @@ char *getRandomStringFixedSize(int size) {
 }
 char *strdup(const char *s) {
   size_t size = strlen(s) + 1;
-  char *p = safe_malloc(size);
+  char *p = malloc(size);
   if (p) {
     memcpy(p, s, size);
   }
@@ -501,7 +485,7 @@ struct bz3_state *bz3_new(s32 block_size) {
   if (block_size < 0x10 || block_size > ((65) * 1024)) {
     return ((void *)0);
   }
-  struct bz3_state *bz3_state = (struct bz3_state *)safe_malloc(sizeof(struct bz3_state));
+  struct bz3_state *bz3_state = (struct bz3_state *)malloc(sizeof(struct bz3_state));
   if (!bz3_state) {
     return ((void *)0);
   }
@@ -532,7 +516,7 @@ void bz3_decode_block(struct bz3_state *state, u8 *buffer, s32 data_size, s32 or
     size_src = lzp_size;
   else
     size_src = orig_size;
-  u8 *b1 = (u8*)safe_malloc(size_src);
+  u8 *b1 = (u8*)malloc(size_src);
   if(b1 == ((void *)0)) {
     state->last_error = 1;
     free(b1);
@@ -561,7 +545,7 @@ int bz3_decompress(const uint8_t *in, uint8_t *out, u32 in_size, u32 *out_size) 
   struct bz3_state *state = bz3_new(block_size);
   if (!state)
     return 1;
-  u8 *compression_buf = (u8 *)safe_malloc(block_size);
+  u8 *compression_buf = (u8 *)malloc(block_size);
   if (!compression_buf) {
     free(state);
     return 1;
@@ -601,7 +585,7 @@ int main() {
   u32 in_size = (u32)getNumberInRange(50, 5000);
   uint8_t *in = getRandomByteStream(in_size);
   u32 orig_size = *(u32 *)in;
-  uint8_t *outbuf = (uint8_t *)safe_calloc(orig_size, sizeof(uint8_t));
+  uint8_t *outbuf = (uint8_t *)calloc(orig_size, sizeof(uint8_t));
   if (outbuf == ((void *)0)) {
     free(in);
     return 1;

@@ -20,20 +20,12 @@ Template File: sources-sinks-63a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE457_Use_of_Uninitialized_Variable__double_array_malloc_no_init_63b_badSink(double * * dataPtr);
 
 void CWE457_Use_of_Uninitialized_Variable__double_array_malloc_no_init_63_bad()
 {
     double * data;
-    data = (double *)safe_malloc(10*sizeof(double));
+    data = (double *)malloc(10*sizeof(double));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Don't initialize data */
     ; /* empty statement needed for some flow variants */
@@ -50,7 +42,7 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_malloc_no_init_63b_goodG
 static void goodG2B()
 {
     double * data;
-    data = (double *)safe_malloc(10*sizeof(double));
+    data = (double *)malloc(10*sizeof(double));
     if (data == NULL) {exit(-1);}
     /* FIX: Completely initialize data */
     {
@@ -69,7 +61,7 @@ void CWE457_Use_of_Uninitialized_Variable__double_array_malloc_no_init_63b_goodB
 static void goodB2G()
 {
     double * data;
-    data = (double *)safe_malloc(10*sizeof(double));
+    data = (double *)malloc(10*sizeof(double));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Don't initialize data */
     ; /* empty statement needed for some flow variants */

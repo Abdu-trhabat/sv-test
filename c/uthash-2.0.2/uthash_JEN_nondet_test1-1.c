@@ -1,4 +1,5 @@
-#include "uthash_JEN.h"
+#include <stdlib.h>   /* malloc */
+#define uthash_malloc(sz) safe_malloc(sz)
 #include <stdlib.h>   /* malloc */
 void *safe_malloc(size_t size) {
   void *p = malloc(size);
@@ -7,6 +8,8 @@ void *safe_malloc(size_t size) {
   }
   return p;
 }
+#define uthash_malloc(sz) safe_malloc(sz)
+#include "uthash_JEN.h"
 
 #include "verifier.h"
 #include <assert.h>// variant of test1.c, but with nondeterministic values(cookies)

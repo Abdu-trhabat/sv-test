@@ -18,16 +18,6 @@ Template File: sources-sink-61b.tmpl.c
 
 #ifndef _WIN32
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #endif
 
 /* MAINTENANCE NOTE: The length of this string should equal the 10 */
@@ -38,7 +28,7 @@ void *safe_malloc(size_t size) {
 wchar_t * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_cpy_61b_badSource(wchar_t * data)
 {
     /* FLAW: Did not leave space for a null terminator */
-    data = (wchar_t *)safe_malloc(10*sizeof(wchar_t));
+    data = (wchar_t *)malloc(10*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     return data;
 }
@@ -51,7 +41,7 @@ wchar_t * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_cpy_61b_badSource(
 wchar_t * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_wchar_t_cpy_61b_goodG2BSource(wchar_t * data)
 {
     /* FIX: Allocate space for a null terminator */
-    data = (wchar_t *)safe_malloc((10+1)*sizeof(wchar_t));
+    data = (wchar_t *)malloc((10+1)*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     return data;
 }

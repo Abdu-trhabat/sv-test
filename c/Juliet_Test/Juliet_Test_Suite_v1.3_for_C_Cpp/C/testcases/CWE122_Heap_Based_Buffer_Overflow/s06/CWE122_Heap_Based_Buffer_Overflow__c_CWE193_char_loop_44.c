@@ -41,14 +41,6 @@ static void badSink(char * data)
         free(data);
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_loop_44_bad()
 {
@@ -57,7 +49,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_loop_44_bad()
     void (*funcPtr) (char *) = badSink;
     data = NULL;
     /* FLAW: Did not leave space for a null terminator */
-    data = (char *)safe_malloc(10*sizeof(char));
+    data = (char *)malloc(10*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* use the function pointer */
     funcPtr(data);
@@ -91,7 +83,7 @@ static void goodG2B()
     void (*funcPtr) (char *) = goodG2BSink;
     data = NULL;
     /* FIX: Allocate space for a null terminator */
-    data = (char *)safe_malloc((10+1)*sizeof(char));
+    data = (char *)malloc((10+1)*sizeof(char));
     if (data == NULL) {exit(-1);}
     funcPtr(data);
 }

@@ -32,7 +32,7 @@ void decToString(char *input, char *string) {
 
 int main() {
   char* randomString = getRandomString(50, 500);
-  char* converted = safe_calloc(strlen(randomString) + 1, sizeof(char));
+  char* converted = calloc(strlen(randomString) + 1, sizeof(char));
   if (converted == NULL) {
     printf("Out of memory\n");
     free(randomString);

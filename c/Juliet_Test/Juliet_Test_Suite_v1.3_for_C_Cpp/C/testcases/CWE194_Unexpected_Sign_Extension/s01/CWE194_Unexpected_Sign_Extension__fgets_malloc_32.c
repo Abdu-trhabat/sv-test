@@ -9,7 +9,7 @@ Template File: sources-sink-32.tmpl.c
  * BadSource: fgets Read data from the console using fgets()
  * GoodSource: Positive integer
  * Sink: malloc
- *    BadSink : Allocate memory using safe_malloc() with the size of data
+ *    BadSink : Allocate memory using malloc() with the size of data
  * Flow Variant: 32 Data flow using two pointers to the same value within the same function
  *
  * */
@@ -20,14 +20,6 @@ Template File: sources-sink-32.tmpl.c
 #define CHAR_ARRAY_SIZE 8
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE194_Unexpected_Sign_Extension__fgets_malloc_32_bad()
 {
@@ -58,9 +50,9 @@ void CWE194_Unexpected_Sign_Extension__fgets_malloc_32_bad()
         /* Assume we want to allocate a relatively small buffer */
         if (data < 100)
         {
-            /* POTENTIAL FLAW: safe_malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
-             * the conversion will cause safe_malloc() to allocate a very large amount of data or fail */
-            char * dataBuffer = (char *)safe_malloc(data);
+            /* POTENTIAL FLAW: malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
+             * the conversion will cause malloc() to allocate a very large amount of data or fail */
+            char * dataBuffer = (char *)malloc(data);
             if (dataBuffer == NULL) {exit(-1);}
             /* Do something with dataBuffer */
             memset(dataBuffer, 'A', data-1);
@@ -94,9 +86,9 @@ static void goodG2B()
         /* Assume we want to allocate a relatively small buffer */
         if (data < 100)
         {
-            /* POTENTIAL FLAW: safe_malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
-             * the conversion will cause safe_malloc() to allocate a very large amount of data or fail */
-            char * dataBuffer = (char *)safe_malloc(data);
+            /* POTENTIAL FLAW: malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
+             * the conversion will cause malloc() to allocate a very large amount of data or fail */
+            char * dataBuffer = (char *)malloc(data);
             if (dataBuffer == NULL) {exit(-1);}
             /* Do something with dataBuffer */
             memset(dataBuffer, 'A', data-1);

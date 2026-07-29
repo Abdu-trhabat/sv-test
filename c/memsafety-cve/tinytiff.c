@@ -13,14 +13,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <string.h>
 
 #define TIFF_FIELD_IMAGEWIDTH 256
@@ -87,7 +79,7 @@ uint8_t TinyTIFFReader_readuint8(TinyTIFFReaderFile *tiff) {
 }
 
 TinyTIFFReader_IFD *TinyTIFFReader_readIFD(TinyTIFFReaderFile *tiff) {
-  TinyTIFFReader_IFD *d = safe_calloc(1, sizeof(TinyTIFFReader_IFD));
+  TinyTIFFReader_IFD *d = calloc(1, sizeof(TinyTIFFReader_IFD));
   if (d == NULL)
     return NULL;
   d->pvalue = 0;
@@ -111,7 +103,7 @@ TinyTIFFReader_IFD *TinyTIFFReader_readIFD(TinyTIFFReaderFile *tiff) {
   switch (d->type) {
   case TIFF_TYPE_BYTE:
   case TIFF_TYPE_ASCII:
-    d->pvalue = (uint32_t *)safe_calloc(d->value, sizeof(uint32_t));
+    d->pvalue = (uint32_t *)calloc(d->value, sizeof(uint32_t));
     if (d->pvalue == NULL) {
       free(d);
       return NULL;
@@ -126,7 +118,7 @@ TinyTIFFReader_IFD *TinyTIFFReader_readIFD(TinyTIFFReaderFile *tiff) {
     }
     break;
   case TIFF_TYPE_SHORT:
-    d->pvalue = (uint32_t *)safe_calloc(d->value, sizeof(uint32_t));
+    d->pvalue = (uint32_t *)calloc(d->value, sizeof(uint32_t));
     if (d->pvalue == NULL) {
       free(d);
       return NULL;
@@ -141,7 +133,7 @@ TinyTIFFReader_IFD *TinyTIFFReader_readIFD(TinyTIFFReaderFile *tiff) {
     }
     break;
   case TIFF_TYPE_LONG:
-    d->pvalue = (uint32_t *)safe_calloc(d->value, sizeof(uint32_t));
+    d->pvalue = (uint32_t *)calloc(d->value, sizeof(uint32_t));
     if (d->pvalue == NULL) {
       free(d);
       return NULL;
@@ -181,7 +173,7 @@ void TinyTIFFReader_readNextFrame(TinyTIFFReaderFile *tiff) {
       if (tiff->currentFrame.stripoffsets != NULL) {
         free(tiff->currentFrame.stripoffsets);
       }
-      tiff->currentFrame.stripoffsets = (uint32_t *)safe_calloc(ifd->value, sizeof(uint32_t));
+      tiff->currentFrame.stripoffsets = (uint32_t *)calloc(ifd->value, sizeof(uint32_t));
       if (tiff->currentFrame.stripoffsets == NULL)
         break;
       memcpy(tiff->currentFrame.stripoffsets, ifd->pvalue, ifd->value * sizeof(uint32_t)); // Problem: in case ifd->pvalue is 0 memcpy will fail

@@ -5,14 +5,6 @@
 // Function: gspca_auto_gain_n_exposure
 // with type: int gspca_auto_gain_n_exposure(struct gspca_dev *, int, int, int, int, int)
 // with return type: int
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int __VERIFIER_nondet_int(void);
 int gspca_auto_gain_n_exposure(struct gspca_dev *arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
   // Simple type
@@ -48,7 +40,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: kmem_cache_alloc

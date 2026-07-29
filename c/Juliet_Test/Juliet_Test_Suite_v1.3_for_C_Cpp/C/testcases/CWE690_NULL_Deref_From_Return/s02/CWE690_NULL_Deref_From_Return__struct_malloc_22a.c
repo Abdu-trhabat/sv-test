@@ -6,7 +6,7 @@ Template File: source-sinks-22a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using safe_malloc()
+ * BadSource: malloc Allocate data using malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -22,14 +22,6 @@ Template File: source-sinks-22a.tmpl.c
 
 /* The global variable below is used to drive control flow in the sink function */
 int CWE690_NULL_Deref_From_Return__struct_malloc_22_badGlobal = 0;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__struct_malloc_22_badSink(twoIntsStruct * data);
 
@@ -38,7 +30,7 @@ void CWE690_NULL_Deref_From_Return__struct_malloc_22_bad()
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)safe_malloc(1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
     CWE690_NULL_Deref_From_Return__struct_malloc_22_badGlobal = 1; /* true */
     CWE690_NULL_Deref_From_Return__struct_malloc_22_badSink(data);
 }
@@ -59,7 +51,7 @@ static void goodB2G1()
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)safe_malloc(1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
     CWE690_NULL_Deref_From_Return__struct_malloc_22_goodB2G1Global = 0; /* false */
     CWE690_NULL_Deref_From_Return__struct_malloc_22_goodB2G1Sink(data);
 }
@@ -72,7 +64,7 @@ static void goodB2G2()
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)safe_malloc(1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
     CWE690_NULL_Deref_From_Return__struct_malloc_22_goodB2G2Global = 1; /* true */
     CWE690_NULL_Deref_From_Return__struct_malloc_22_goodB2G2Sink(data);
 }

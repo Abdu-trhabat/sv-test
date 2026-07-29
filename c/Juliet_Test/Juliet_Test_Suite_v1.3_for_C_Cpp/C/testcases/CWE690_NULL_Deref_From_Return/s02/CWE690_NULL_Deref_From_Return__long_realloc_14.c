@@ -6,7 +6,7 @@ Template File: source-sinks-14.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: realloc Allocate data using safe_realloc()
+ * BadSource: realloc Allocate data using realloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -19,21 +19,13 @@ Template File: source-sinks-14.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__long_realloc_14_bad()
 {
     long * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)safe_realloc(data, 1*sizeof(long));
+    data = (long *)realloc(data, 1*sizeof(long));
     if(globalFive==5)
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
@@ -53,7 +45,7 @@ static void goodB2G1()
     long * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)safe_realloc(data, 1*sizeof(long));
+    data = (long *)realloc(data, 1*sizeof(long));
     if(globalFive!=5)
     {
         /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
@@ -77,7 +69,7 @@ static void goodB2G2()
     long * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (long *)safe_realloc(data, 1*sizeof(long));
+    data = (long *)realloc(data, 1*sizeof(long));
     if(globalFive==5)
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */

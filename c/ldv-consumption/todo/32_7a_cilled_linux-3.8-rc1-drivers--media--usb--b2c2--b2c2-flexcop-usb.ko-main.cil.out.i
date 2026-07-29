@@ -8027,18 +8027,10 @@ void debug_dma_free_coherent(struct device *arg0, size_t arg1, void *arg2, dma_a
 }
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 void *dev_get_drvdata(const struct device *arg0) {
   return ldv_malloc(0UL);

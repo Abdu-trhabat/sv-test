@@ -24,14 +24,6 @@ wchar_t * CWE124_Buffer_Underwrite__malloc_wchar_t_memcpy_68_goodG2BData;
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE124_Buffer_Underwrite__malloc_wchar_t_memcpy_68b_badSink();
 
 void CWE124_Buffer_Underwrite__malloc_wchar_t_memcpy_68_bad()
@@ -39,7 +31,7 @@ void CWE124_Buffer_Underwrite__malloc_wchar_t_memcpy_68_bad()
     wchar_t * data;
     data = NULL;
     {
-        wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (dataBuffer == NULL) {exit(-1);}
         wmemset(dataBuffer, L'A', 100-1);
         dataBuffer[100-1] = L'\0';
@@ -63,7 +55,7 @@ static void goodG2B()
     wchar_t * data;
     data = NULL;
     {
-        wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (dataBuffer == NULL) {exit(-1);}
         wmemset(dataBuffer, L'A', 100-1);
         dataBuffer[100-1] = L'\0';

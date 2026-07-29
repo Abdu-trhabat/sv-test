@@ -128,14 +128,6 @@ extern  __attribute__((__nothrow__, __noreturn__)) void __assert_fail(char const
                                                                       unsigned int __line ,
                                                                       char const   *__function ) ;
 extern  __attribute__((__nothrow__)) void *malloc(size_t __size )  __attribute__((__malloc__)) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern  __attribute__((__nothrow__)) void free(void *__ptr ) ;
 void __utac__exception__cf_handler_set(void *exception , int (*cflow_func)(int  ,
                                                                            int  ) ,
@@ -160,7 +152,7 @@ void __utac__exception__cf_handler_set(void *exception , int (*cflow_func)(int  
   {
   {
   excep = (struct __UTAC__EXCEPTION *)exception;
-  tmp = safe_malloc(24UL);
+  tmp = malloc(24UL);
   cf = (struct __UTAC__CFLOW_FUNC *)tmp;
   mem_15 = (int (**)(int  , int  ))cf;
   *mem_15 = cflow_func;
@@ -332,7 +324,7 @@ void *__utac__error_stack_mgt(void *env , int mode , int count )
   }
   if (mode == 0) {
     {
-    tmp = safe_malloc(16UL);
+    tmp = malloc(16UL);
     new = (struct __ACC__ERR *)tmp;
     mem_18 = (void **)new;
     *mem_18 = env;

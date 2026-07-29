@@ -11,14 +11,6 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <pthread.h>
 #include <string.h>
 
@@ -28,7 +20,7 @@ char *v;
 
 void *thread1(void * arg)
 {
-  v = safe_malloc(sizeof(char) * 8);
+  v = malloc(sizeof(char) * 8);
   return 0;
 }
 
@@ -49,7 +41,7 @@ int main()
   pthread_create(&t2, 0, thread2, 0);
   pthread_join(t2, 0);
 
-  __VERIFIER_assert(v[0] == 'B');  // <---- wrong, safe_malloc() can fail and therefore no strcpy! Competition's rule: safe_malloc() never fails, thus it is safe.
+  __VERIFIER_assert(v[0] == 'B');  // <---- wrong, malloc() can fail and therefore no strcpy! Competition's rule: malloc() never fails, thus it is safe.
 
   return 0;
 }

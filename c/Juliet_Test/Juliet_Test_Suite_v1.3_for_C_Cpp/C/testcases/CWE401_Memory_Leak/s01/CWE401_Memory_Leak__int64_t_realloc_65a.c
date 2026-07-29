@@ -6,7 +6,7 @@ Template File: sources-sinks-65a.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using safe_realloc()
+ * BadSource: realloc Allocate data using realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -22,14 +22,6 @@ Template File: sources-sinks-65a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE401_Memory_Leak__int64_t_realloc_65b_badSink(int64_t * data);
 
 void CWE401_Memory_Leak__int64_t_realloc_65_bad()
@@ -39,7 +31,7 @@ void CWE401_Memory_Leak__int64_t_realloc_65_bad()
     void (*funcPtr) (int64_t *) = CWE401_Memory_Leak__int64_t_realloc_65b_badSink;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int64_t *)safe_realloc(data, 100*sizeof(int64_t));
+    data = (int64_t *)realloc(data, 100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5LL;
@@ -77,7 +69,7 @@ static void goodB2G()
     void (*funcPtr) (int64_t *) = CWE401_Memory_Leak__int64_t_realloc_65b_goodB2GSink;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int64_t *)safe_realloc(data, 100*sizeof(int64_t));
+    data = (int64_t *)realloc(data, 100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5LL;

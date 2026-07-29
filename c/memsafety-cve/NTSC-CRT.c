@@ -15,14 +15,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <string.h>
 
 #define HEADER_SIZE 8
@@ -47,7 +39,7 @@ int main() {
   BPP = *(int *)&header[28];
   size = (width * height * (BPP / 8)); // Problem: integer overflow
   padding = ((4 - (width * (BPP / 8)) % 4) % 4);
-  data = safe_calloc(size, (BPP / 8));
+  data = calloc(size, (BPP / 8));
   if (data == NULL) {
     fclose(f);
     return 1;

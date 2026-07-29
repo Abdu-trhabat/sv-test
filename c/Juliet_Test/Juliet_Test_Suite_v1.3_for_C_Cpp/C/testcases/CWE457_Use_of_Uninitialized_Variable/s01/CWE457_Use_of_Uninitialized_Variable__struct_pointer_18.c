@@ -20,14 +20,6 @@ Template File: sources-sinks-18.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE457_Use_of_Uninitialized_Variable__struct_pointer_18_bad()
 {
@@ -59,7 +51,7 @@ source:
 sink:
     /* FIX: Ensure data is initialized before use */
     /* initialize both the pointer and the data pointed to */
-    data = (twoIntsStruct *)safe_malloc(sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     data->intOne = 5;
     data->intTwo = 6;
@@ -75,7 +67,7 @@ static void goodG2B()
 source:
     /* FIX: Initialize data */
     /* initialize both the pointer and the data pointed to */
-    data = (twoIntsStruct *)safe_malloc(sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     data->intOne = 5;
     data->intTwo = 6;

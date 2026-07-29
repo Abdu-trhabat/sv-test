@@ -34,14 +34,6 @@ static void badSink(wchar_t * data)
         free(data);
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE126_Buffer_Overread__malloc_wchar_t_memmove_44_bad()
 {
@@ -50,7 +42,7 @@ void CWE126_Buffer_Overread__malloc_wchar_t_memmove_44_bad()
     void (*funcPtr) (wchar_t *) = badSink;
     data = NULL;
     /* FLAW: Use a small buffer */
-    data = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+    data = (wchar_t *)malloc(50*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     wmemset(data, L'A', 50-1); /* fill with 'A's */
     data[50-1] = L'\0'; /* null terminate */
@@ -84,7 +76,7 @@ static void goodG2B()
     void (*funcPtr) (wchar_t *) = goodG2BSink;
     data = NULL;
     /* FIX: Use a large buffer */
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     wmemset(data, L'A', 100-1); /* fill with 'A's */
     data[100-1] = L'\0'; /* null terminate */

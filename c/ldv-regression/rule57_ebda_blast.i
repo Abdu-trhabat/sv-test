@@ -45,15 +45,7 @@ int freed_tmp_slot = 1;
 typedef long unsigned int size_t;
 extern void * calloc (size_t __nmemb, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void * kzalloc(int size, int flags) { (void)flags; return safe_calloc(1, size); }
+void * kzalloc(int size, int flags) { (void)flags; return calloc(1, size); }
 
 void kfree(void *p) {
  if(p!=0 && p==tmp_slot)

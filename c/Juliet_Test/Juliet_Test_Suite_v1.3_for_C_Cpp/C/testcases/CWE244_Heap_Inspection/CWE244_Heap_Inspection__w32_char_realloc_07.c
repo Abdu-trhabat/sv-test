@@ -25,29 +25,13 @@ Template File: point-flaw-07.tmpl.c
 static int staticFive = 5;
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE244_Heap_Inspection__w32_char_realloc_07_bad()
 {
     if(staticFive==5)
     {
         {
-            char * password = (char *)safe_malloc(100*sizeof(char));
+            char * password = (char *)malloc(100*sizeof(char));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;
@@ -85,7 +69,7 @@ void CWE244_Heap_Inspection__w32_char_realloc_07_bad()
             }
             /* FLAW: reallocate password without clearing the password buffer
              * which could leave a copy of the password in memory */
-            password = safe_realloc(password, 200 * sizeof(char));
+            password = realloc(password, 200 * sizeof(char));
             if (password == NULL) {exit(-1);}
             /* Zeroize the password */
             SecureZeroMemory(password, 200 * sizeof(char));
@@ -112,7 +96,7 @@ static void good1()
     else
     {
         {
-            char * password = (char *)safe_malloc(100*sizeof(char));
+            char * password = (char *)malloc(100*sizeof(char));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;
@@ -150,7 +134,7 @@ static void good1()
             }
             /* FIX: Zeroize the password buffer before reallocating it */
             SecureZeroMemory(password, 100 * sizeof(char));
-            password = safe_realloc(password, 200 * sizeof(char));
+            password = realloc(password, 200 * sizeof(char));
             if (password == NULL) {exit(-1);}
             /* Use the password buffer again */
             strcpy(password, "Nothing to see here");
@@ -166,7 +150,7 @@ static void good2()
     if(staticFive==5)
     {
         {
-            char * password = (char *)safe_malloc(100*sizeof(char));
+            char * password = (char *)malloc(100*sizeof(char));
             if (password == NULL) {exit(-1);}
             size_t passwordLen = 0;
             HANDLE hUser;
@@ -204,7 +188,7 @@ static void good2()
             }
             /* FIX: Zeroize the password buffer before reallocating it */
             SecureZeroMemory(password, 100 * sizeof(char));
-            password = safe_realloc(password, 200 * sizeof(char));
+            password = realloc(password, 200 * sizeof(char));
             if (password == NULL) {exit(-1);}
             /* Use the password buffer again */
             strcpy(password, "Nothing to see here");

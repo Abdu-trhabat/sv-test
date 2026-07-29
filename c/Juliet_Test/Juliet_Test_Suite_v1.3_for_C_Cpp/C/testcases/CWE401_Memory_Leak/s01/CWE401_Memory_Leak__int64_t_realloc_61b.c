@@ -6,7 +6,7 @@ Template File: sources-sinks-61b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using safe_realloc()
+ * BadSource: realloc Allocate data using realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -18,23 +18,13 @@ Template File: sources-sinks-61b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *realloc(void *ptr, size_t size);
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 int64_t * CWE401_Memory_Leak__int64_t_realloc_61b_badSource(int64_t * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int64_t *)safe_realloc(data, 100*sizeof(int64_t));
+    data = (int64_t *)realloc(data, 100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5LL;
@@ -61,7 +51,7 @@ int64_t * CWE401_Memory_Leak__int64_t_realloc_61b_goodG2BSource(int64_t * data)
 int64_t * CWE401_Memory_Leak__int64_t_realloc_61b_goodB2GSource(int64_t * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int64_t *)safe_realloc(data, 100*sizeof(int64_t));
+    data = (int64_t *)realloc(data, 100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5LL;

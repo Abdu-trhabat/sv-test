@@ -49,14 +49,6 @@ __extension__
     extern void *
     malloc(size_t __size) __attribute__((__nothrow__, __leaf__))
     __attribute__((__malloc__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern size_t strlen(const char *__s) __attribute__((__nothrow__, __leaf__))
 __attribute__((__pure__)) __attribute__((__nonnull__(1)));
@@ -286,7 +278,7 @@ const char *ensure_c_str_is_allocated(size_t max_size) {
 
 void *bounded_malloc(size_t size) {
   assume_abort_if_not(size <= ((18446744073709551615UL) >> (8 + 1)));
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 void assert_byte_from_buffer_matches(

@@ -6,7 +6,7 @@ Template File: source-sinks-22b.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -22,14 +22,6 @@ Template File: source-sinks-22b.tmpl.c
 
 /* The global variable below is used to drive control flow in the sink function */
 extern int CWE690_NULL_Deref_From_Return__char_calloc_22_badGlobal;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__char_calloc_22_badSink(char * data)
 {

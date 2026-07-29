@@ -6,7 +6,7 @@ Template File: sources-sinks-22b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using safe_realloc()
+ * BadSource: realloc Allocate data using realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -23,14 +23,6 @@ Template File: sources-sinks-22b.tmpl.c
 
 /* The global variable below is used to drive control flow in the sink function */
 extern int CWE401_Memory_Leak__twoIntsStruct_realloc_22_badGlobal;
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE401_Memory_Leak__twoIntsStruct_realloc_22_badSink(twoIntsStruct * data)
 {

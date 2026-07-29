@@ -5,14 +5,6 @@
 // Function: __module_get
 // with type: void __module_get(struct module *)
 // with return type: void
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void __module_get(struct module *arg0) {
   // Void type
   return;
@@ -64,7 +56,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: ioremap_nocache

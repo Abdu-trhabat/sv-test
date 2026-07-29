@@ -48,14 +48,6 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE364_Signal_Handler_Race_Condition__basic_04_bad()
 {
@@ -69,7 +61,7 @@ void CWE364_Signal_Handler_Race_Condition__basic_04_bad()
                 free(CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicBad);
                 CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicBad = NULL;
             }
-            gStructSigAtomic = (structSigAtomic*)safe_malloc(sizeof(structSigAtomic));
+            gStructSigAtomic = (structSigAtomic*)malloc(sizeof(structSigAtomic));
             if (gStructSigAtomic == NULL) {exit(-1);}
             CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicBad = gStructSigAtomic;
             CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicBad->val = 1;
@@ -121,7 +113,7 @@ static void good1()
                 free(CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicGood);
                 CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicGood = 0;
             }
-            gStructSigAtomic = (structSigAtomic*)safe_malloc(sizeof(structSigAtomic));
+            gStructSigAtomic = (structSigAtomic*)malloc(sizeof(structSigAtomic));
             if (gStructSigAtomic == NULL) {exit(-1);}
             CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicGood = gStructSigAtomic;
             CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicGood->val = 1;
@@ -162,7 +154,7 @@ static void good2()
                 free(CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicGood);
                 CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicGood = 0;
             }
-            gStructSigAtomic = (structSigAtomic*)safe_malloc(sizeof(structSigAtomic));
+            gStructSigAtomic = (structSigAtomic*)malloc(sizeof(structSigAtomic));
             if (gStructSigAtomic == NULL) {exit(-1);}
             CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicGood = gStructSigAtomic;
             CWE364_Signal_Handler_Race_Condition__basic_04StructSigAtomicGood->val = 1;

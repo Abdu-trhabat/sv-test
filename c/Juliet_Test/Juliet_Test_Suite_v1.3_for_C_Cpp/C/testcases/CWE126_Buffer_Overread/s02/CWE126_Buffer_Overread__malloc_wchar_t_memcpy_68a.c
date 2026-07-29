@@ -24,14 +24,6 @@ wchar_t * CWE126_Buffer_Overread__malloc_wchar_t_memcpy_68_goodG2BData;
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE126_Buffer_Overread__malloc_wchar_t_memcpy_68b_badSink();
 
 void CWE126_Buffer_Overread__malloc_wchar_t_memcpy_68_bad()
@@ -39,7 +31,7 @@ void CWE126_Buffer_Overread__malloc_wchar_t_memcpy_68_bad()
     wchar_t * data;
     data = NULL;
     /* FLAW: Use a small buffer */
-    data = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+    data = (wchar_t *)malloc(50*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     wmemset(data, L'A', 50-1); /* fill with 'A's */
     data[50-1] = L'\0'; /* null terminate */
@@ -60,7 +52,7 @@ static void goodG2B()
     wchar_t * data;
     data = NULL;
     /* FIX: Use a large buffer */
-    data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    data = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (data == NULL) {exit(-1);}
     wmemset(data, L'A', 100-1); /* fill with 'A's */
     data[100-1] = L'\0'; /* null terminate */

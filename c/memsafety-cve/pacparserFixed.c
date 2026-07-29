@@ -13,7 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "helpers.c"
+#include "helpers-safe.c"
 
 char *str_replace(char *orig, char *rep, char *with) {
   char *result;  // the return string

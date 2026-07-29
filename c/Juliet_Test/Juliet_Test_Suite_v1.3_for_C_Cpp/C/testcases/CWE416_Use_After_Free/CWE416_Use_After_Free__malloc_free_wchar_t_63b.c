@@ -6,8 +6,8 @@ Template File: sources-sinks-63b.tmpl.c
 /*
  * @description
  * CWE: 416 Use After Free
- * BadSource:  Allocate data using safe_malloc(), initialize memory block, and Deallocate data using free()
- * GoodSource: Allocate data using safe_malloc() and initialize memory block
+ * BadSource:  Allocate data using malloc(), initialize memory block, and Deallocate data using free()
+ * GoodSource: Allocate data using malloc() and initialize memory block
  * Sinks:
  *    GoodSink: Do nothing
  *    BadSink : Use data
@@ -20,14 +20,6 @@ Template File: sources-sinks-63b.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE416_Use_After_Free__malloc_free_wchar_t_63b_badSink(wchar_t * * dataPtr)
 {

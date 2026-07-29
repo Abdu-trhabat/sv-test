@@ -5,14 +5,6 @@
 // Function: asus_wmi_register_driver
 // with type: int asus_wmi_register_driver(struct asus_wmi_driver *)
 // with return type: int
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int __VERIFIER_nondet_int(void);
 int asus_wmi_register_driver(struct asus_wmi_driver *arg0) {
   // Simple type
@@ -31,7 +23,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: kmem_cache_alloc

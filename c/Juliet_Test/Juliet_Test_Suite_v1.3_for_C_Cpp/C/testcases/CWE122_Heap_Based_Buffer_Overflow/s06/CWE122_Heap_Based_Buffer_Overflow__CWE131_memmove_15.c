@@ -17,14 +17,6 @@ Template File: sources-sink-15.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE131_memmove_15_bad()
 {
@@ -34,7 +26,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE131_memmove_15_bad()
     {
     case 6:
         /* FLAW: Allocate memory without using sizeof(int) */
-        data = (int *)safe_malloc(10);
+        data = (int *)malloc(10);
         if (data == NULL) {exit(-1);}
         break;
     default:
@@ -68,7 +60,7 @@ static void goodG2B1()
         break;
     default:
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)safe_malloc(10*sizeof(int));
+        data = (int *)malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
         break;
     }
@@ -90,7 +82,7 @@ static void goodG2B2()
     {
     case 6:
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)safe_malloc(10*sizeof(int));
+        data = (int *)malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
         break;
     default:

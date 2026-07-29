@@ -10,14 +10,6 @@ extern int __VERIFIER_nondet_int();
  * that the list is what has been built just before.
  */
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 /*  #include "assert.h" */
 
 void myexit(int s) {
@@ -36,7 +28,7 @@ int main() {
   /* Build a list of the form 1->2->2->...->1->3
    * with 1,2 depending on some flag
    */
-  a = (List) safe_malloc(sizeof(struct node));
+  a = (List) malloc(sizeof(struct node));
   if (a == 0) myexit(1);
   p = a;
   
@@ -52,7 +44,7 @@ int main() {
       p->h = 2;
     }
 
-    t = (List) safe_malloc(sizeof(struct node));
+    t = (List) malloc(sizeof(struct node));
     
     if (t == 0) myexit(1);
 

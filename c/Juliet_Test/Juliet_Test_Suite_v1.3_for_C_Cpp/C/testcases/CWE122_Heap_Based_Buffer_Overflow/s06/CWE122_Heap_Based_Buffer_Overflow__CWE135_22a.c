@@ -23,14 +23,6 @@ Template File: sources-sinks-22a.tmpl.c
 
 /* The global variable below is used to drive control flow in the sink function */
 int CWE122_Heap_Based_Buffer_Overflow__CWE135_22_badGlobal = 0;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__CWE135_22_badSink(void * data);
 
@@ -39,7 +31,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_22_bad()
     void * data;
     data = NULL;
     {
-        wchar_t * dataBadBuffer = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+        wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
         if (dataBadBuffer == NULL) {exit(-1);}
         wmemset(dataBadBuffer, L'A', 50-1);
         dataBadBuffer[50-1] = L'\0';
@@ -67,7 +59,7 @@ static void goodB2G1()
     void * data;
     data = NULL;
     {
-        wchar_t * dataBadBuffer = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+        wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
         if (dataBadBuffer == NULL) {exit(-1);}
         wmemset(dataBadBuffer, L'A', 50-1);
         dataBadBuffer[50-1] = L'\0';
@@ -86,7 +78,7 @@ static void goodB2G2()
     void * data;
     data = NULL;
     {
-        wchar_t * dataBadBuffer = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+        wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
         if (dataBadBuffer == NULL) {exit(-1);}
         wmemset(dataBadBuffer, L'A', 50-1);
         dataBadBuffer[50-1] = L'\0';
@@ -105,7 +97,7 @@ static void goodG2B()
     void * data;
     data = NULL;
     {
-        char * dataGoodBuffer = (char *)safe_malloc(50*sizeof(char));
+        char * dataGoodBuffer = (char *)malloc(50*sizeof(char));
         if (dataGoodBuffer == NULL) {exit(-1);}
         memset(dataGoodBuffer, 'A', 50-1);
         dataGoodBuffer[50-1] = '\0';

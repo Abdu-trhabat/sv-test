@@ -22,14 +22,6 @@ Template File: sources-sinks-64a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE457_Use_of_Uninitialized_Variable__double_pointer_64b_badSink(void * dataVoidPtr);
 
 void CWE457_Use_of_Uninitialized_Variable__double_pointer_64_bad()
@@ -52,7 +44,7 @@ static void goodG2B()
     double * data;
     /* FIX: Initialize data */
     /* initialize both the pointer and the data pointed to */
-    data = (double *)safe_malloc(sizeof(double));
+    data = (double *)malloc(sizeof(double));
     if (data == NULL) {exit(-1);}
     *data = 5.0;
     CWE457_Use_of_Uninitialized_Variable__double_pointer_64b_goodG2BSink(&data);

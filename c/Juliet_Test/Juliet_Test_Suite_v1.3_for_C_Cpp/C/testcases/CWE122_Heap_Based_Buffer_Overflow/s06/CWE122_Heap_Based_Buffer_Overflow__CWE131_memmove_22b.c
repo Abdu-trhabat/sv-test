@@ -15,16 +15,6 @@ Template File: sources-sink-22b.tmpl.c
  * */
 
 #include "std_testcase.h"
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -36,7 +26,7 @@ int * CWE122_Heap_Based_Buffer_Overflow__CWE131_memmove_22_badSource(int * data)
     if(CWE122_Heap_Based_Buffer_Overflow__CWE131_memmove_22_badGlobal)
     {
         /* FLAW: Allocate memory without using sizeof(int) */
-        data = (int *)safe_malloc(10);
+        data = (int *)malloc(10);
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -61,7 +51,7 @@ int * CWE122_Heap_Based_Buffer_Overflow__CWE131_memmove_22_goodG2B1Source(int * 
     else
     {
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)safe_malloc(10*sizeof(int));
+        data = (int *)malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -73,7 +63,7 @@ int * CWE122_Heap_Based_Buffer_Overflow__CWE131_memmove_22_goodG2B2Source(int * 
     if(CWE122_Heap_Based_Buffer_Overflow__CWE131_memmove_22_goodG2B2Global)
     {
         /* FIX: Allocate memory using sizeof(int) */
-        data = (int *)safe_malloc(10*sizeof(int));
+        data = (int *)malloc(10*sizeof(int));
         if (data == NULL) {exit(-1);}
     }
     return data;

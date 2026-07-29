@@ -29,14 +29,6 @@
 #endif
 
 #include<stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #include<assert.h>
 
@@ -70,9 +62,9 @@ static size_t num_nines;
 
 static void init_getlimits_buffer() {
 
-    input_buf = safe_malloc(MAX_BUFFER_SIZE);
+    input_buf = malloc(MAX_BUFFER_SIZE);
 
-    old_digits = safe_malloc(MAX_BUFFER_SIZE);
+    old_digits = malloc(MAX_BUFFER_SIZE);
 
     assume_or_exit(input_buf != NULL && old_digits != NULL);
 

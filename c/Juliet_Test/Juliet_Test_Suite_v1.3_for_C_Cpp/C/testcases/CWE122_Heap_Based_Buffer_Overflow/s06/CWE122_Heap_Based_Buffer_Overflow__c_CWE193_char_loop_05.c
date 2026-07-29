@@ -31,14 +31,6 @@ static int staticTrue = 1; /* true */
 static int staticFalse = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_loop_05_bad()
 {
@@ -47,7 +39,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_loop_05_bad()
     if(staticTrue)
     {
         /* FLAW: Did not leave space for a null terminator */
-        data = (char *)safe_malloc(10*sizeof(char));
+        data = (char *)malloc(10*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     {
@@ -82,7 +74,7 @@ static void goodG2B1()
     else
     {
         /* FIX: Allocate space for a null terminator */
-        data = (char *)safe_malloc((10+1)*sizeof(char));
+        data = (char *)malloc((10+1)*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     {
@@ -108,7 +100,7 @@ static void goodG2B2()
     if(staticTrue)
     {
         /* FIX: Allocate space for a null terminator */
-        data = (char *)safe_malloc((10+1)*sizeof(char));
+        data = (char *)malloc((10+1)*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     {

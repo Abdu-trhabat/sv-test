@@ -3561,22 +3561,6 @@ static void topstar_laptop_exit(void)
 }
 }
 extern void *malloc(size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern void free(void *);
 extern void ldv_check_final_state(void) ;
 extern void ldv_initialize(void) ;
@@ -3688,7 +3672,7 @@ void* ldv_successful_alloc(size_t size)
   void *res ;
   long tmp ;
 
-  res = safe_malloc(size);
+  res = malloc(size);
   assume_abort_if_not((unsigned long )res != (unsigned long )((void *)0));
   tmp = ldv_is_err((void const   *)res);
   assume_abort_if_not(tmp == 0L);
@@ -3818,7 +3802,7 @@ void *ldv_calloc(size_t nmemb , size_t size )
 
   tmp___1 = __VERIFIER_nondet_int();
   if (tmp___1 != 0) {
-    res = safe_calloc(nmemb, size);
+    res = calloc(nmemb, size);
     assume_abort_if_not((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const   *)res);
     assume_abort_if_not(tmp___0 == 0L);

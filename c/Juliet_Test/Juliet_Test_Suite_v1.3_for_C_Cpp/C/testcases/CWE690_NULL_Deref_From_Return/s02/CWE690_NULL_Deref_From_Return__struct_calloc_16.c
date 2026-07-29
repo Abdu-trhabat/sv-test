@@ -6,7 +6,7 @@ Template File: source-sinks-16.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -19,21 +19,13 @@ Template File: source-sinks-16.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__struct_calloc_16_bad()
 {
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)safe_calloc(1, sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)calloc(1, sizeof(twoIntsStruct));
     while(1)
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
@@ -55,7 +47,7 @@ static void goodB2G()
     twoIntsStruct * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)safe_calloc(1, sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)calloc(1, sizeof(twoIntsStruct));
     while(1)
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */

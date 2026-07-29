@@ -6,8 +6,8 @@ Template File: sources-sinks-17.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
- * GoodSource: Allocate data using safe_malloc()
+ * BadSource:  Allocate data using malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -20,14 +20,6 @@ Template File: sources-sinks-17.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE415_Double_Free__malloc_free_char_17_bad()
 {
@@ -37,7 +29,7 @@ void CWE415_Double_Free__malloc_free_char_17_bad()
     data = NULL;
     for(i = 0; i < 1; i++)
     {
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
@@ -62,7 +54,7 @@ static void goodB2G()
     data = NULL;
     for(i = 0; i < 1; i++)
     {
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
         free(data);
@@ -84,7 +76,7 @@ static void goodG2B()
     data = NULL;
     for(h = 0; h < 1; h++)
     {
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         /* FIX: Do NOT free data in the source - the bad sink frees data */
     }

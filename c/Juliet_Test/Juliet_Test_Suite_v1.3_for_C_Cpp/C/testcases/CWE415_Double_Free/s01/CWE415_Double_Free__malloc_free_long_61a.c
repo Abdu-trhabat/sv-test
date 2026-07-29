@@ -6,8 +6,8 @@ Template File: sources-sinks-61a.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
- * GoodSource: Allocate data using safe_malloc()
+ * BadSource:  Allocate data using malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -23,14 +23,6 @@ Template File: sources-sinks-61a.tmpl.c
 
 /* bad function declaration */
 long * CWE415_Double_Free__malloc_free_long_61b_badSource(long * data);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE415_Double_Free__malloc_free_long_61_bad()
 {

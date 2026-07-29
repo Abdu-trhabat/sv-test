@@ -18,19 +18,11 @@ Template File: sources-sinks-01.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_01_bad()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Partially initialize data */
     {
@@ -60,7 +52,7 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_partial_init_01_b
 static void goodG2B()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* FIX: Completely initialize data */
     {
@@ -86,7 +78,7 @@ static void goodG2B()
 static void goodB2G()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Partially initialize data */
     {

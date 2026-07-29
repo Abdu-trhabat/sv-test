@@ -6,8 +6,8 @@ Template File: sources-sinks-66a.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
- * GoodSource: Allocate data using safe_malloc()
+ * BadSource:  Allocate data using malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -22,14 +22,6 @@ Template File: sources-sinks-66a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE415_Double_Free__malloc_free_int_66b_badSink(int * dataArray[]);
 
 void CWE415_Double_Free__malloc_free_int_66_bad()
@@ -38,7 +30,7 @@ void CWE415_Double_Free__malloc_free_int_66_bad()
     int * dataArray[5];
     /* Initialize data */
     data = NULL;
-    data = (int *)safe_malloc(100*sizeof(int));
+    data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);
@@ -60,7 +52,7 @@ static void goodG2B()
     int * dataArray[5];
     /* Initialize data */
     data = NULL;
-    data = (int *)safe_malloc(100*sizeof(int));
+    data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* FIX: Do NOT free data in the source - the bad sink frees data */
     dataArray[2] = data;
@@ -76,7 +68,7 @@ static void goodB2G()
     int * dataArray[5];
     /* Initialize data */
     data = NULL;
-    data = (int *)safe_malloc(100*sizeof(int));
+    data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);

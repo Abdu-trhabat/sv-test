@@ -57,7 +57,7 @@ int __parse_json_members(const char *cursor, const char **end) {
       return -1;
     }
 
-    char *value = safe_calloc(len + 1, sizeof(char));
+    char *value = calloc(len + 1, sizeof(char));
     if (!value) {
       printf("Out of memory!\n");
       return -1;

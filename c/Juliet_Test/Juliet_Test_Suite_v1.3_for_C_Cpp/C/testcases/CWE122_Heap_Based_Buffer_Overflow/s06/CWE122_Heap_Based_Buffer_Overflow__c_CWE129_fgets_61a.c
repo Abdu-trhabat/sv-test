@@ -22,14 +22,6 @@ Template File: sources-sinks-61a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int CWE122_Heap_Based_Buffer_Overflow__c_CWE129_fgets_61b_badSource(int data);
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_fgets_61_bad()
@@ -40,7 +32,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_fgets_61_bad()
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE129_fgets_61b_badSource(data);
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -81,7 +73,7 @@ static void goodG2B()
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE129_fgets_61b_goodG2BSource(data);
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -118,7 +110,7 @@ static void goodB2G()
     data = CWE122_Heap_Based_Buffer_Overflow__c_CWE129_fgets_61b_goodB2GSource(data);
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)

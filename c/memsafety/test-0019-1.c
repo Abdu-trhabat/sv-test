@@ -3,14 +3,6 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 typedef struct {
     void *lo;
@@ -19,8 +11,8 @@ typedef struct {
 
 static void alloc_data(TData *pdata)
 {
-    pdata->lo = safe_malloc(16);
-    pdata->hi = safe_malloc(24);
+    pdata->lo = malloc(16);
+    pdata->hi = malloc(24);
 }
 
 static void free_data(TData data)

@@ -5,14 +5,6 @@
 // Function: __dynamic_netdev_dbg
 // with type: int __dynamic_netdev_dbg(struct _ddebug *, const struct net_device *, const char *, ...)
 // with return type: int
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int __VERIFIER_nondet_int(void);
 int __dynamic_netdev_dbg(struct _ddebug *arg0, const struct net_device *arg1, const char *arg2, ...) {
   // Simple type
@@ -23,7 +15,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: __netdev_alloc_skb

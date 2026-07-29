@@ -24,14 +24,6 @@ typedef struct _CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_67_stru
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_67b_badSink(CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_67_structType myStruct);
 
 void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_67_bad()
@@ -40,7 +32,7 @@ void CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_67_bad()
     CWE680_Integer_Overflow_to_Buffer_Overflow__malloc_fixed_67_structType myStruct;
     /* Initialize data */
     data = -1;
-    /* FLAW: Set data to a value that will cause an integer overflow in the call to safe_malloc() in the sink */
+    /* FLAW: Set data to a value that will cause an integer overflow in the call to malloc() in the sink */
     data = INT_MAX / 2 + 2; /* 1073741825 */
     /* NOTE: This value will cause the sink to only allocate 4 bytes of memory, however
      * the for loop will attempt to access indices 0-1073741824 */

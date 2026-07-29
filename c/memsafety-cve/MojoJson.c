@@ -47,7 +47,7 @@ void ParseString(char **jsonPtr) {
   }
   char *strStart;
   int length = SkipString(jsonPtr, &strStart);
-  char *string = safe_calloc(length + 1, sizeof(char));
+  char *string = calloc(length + 1, sizeof(char));
   if (!string) {
     printf("Out of memory!\n");
     return;

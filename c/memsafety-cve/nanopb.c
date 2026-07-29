@@ -18,7 +18,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include "helpers.c"
+#include "helpers-safe.c"
 
 typedef struct pb_istream_s {
   bool (*callback)(struct pb_istream_s *stream, uint8_t *buf, size_t count);

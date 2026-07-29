@@ -14,7 +14,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include "helpers.c"
+#include "helpers-safe.c"
 
 typedef unsigned char u8;
 typedef unsigned int u32;

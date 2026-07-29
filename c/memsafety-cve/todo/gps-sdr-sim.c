@@ -22,7 +22,7 @@ int main() {
   int result;
   char navfile[MAX_CHAR];
 
-  char **argv = safe_calloc(3, sizeof(char *));
+  char **argv = calloc(3, sizeof(char *));
   if (argv == NULL) {
     printf("Out of memory\n");
     return 1;

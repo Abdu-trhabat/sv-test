@@ -24,19 +24,11 @@ static const int STATIC_CONST_TRUE = 1; /* true */
 static const int STATIC_CONST_FALSE = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE457_Use_of_Uninitialized_Variable__int_array_malloc_partial_init_04_bad()
 {
     int * data;
-    data = (int *)safe_malloc(10*sizeof(int));
+    data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_TRUE)
     {
@@ -70,7 +62,7 @@ void CWE457_Use_of_Uninitialized_Variable__int_array_malloc_partial_init_04_bad(
 static void goodB2G1()
 {
     int * data;
-    data = (int *)safe_malloc(10*sizeof(int));
+    data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_TRUE)
     {
@@ -112,7 +104,7 @@ static void goodB2G1()
 static void goodB2G2()
 {
     int * data;
-    data = (int *)safe_malloc(10*sizeof(int));
+    data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_TRUE)
     {
@@ -149,7 +141,7 @@ static void goodB2G2()
 static void goodG2B1()
 {
     int * data;
-    data = (int *)safe_malloc(10*sizeof(int));
+    data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_FALSE)
     {
@@ -184,7 +176,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     int * data;
-    data = (int *)safe_malloc(10*sizeof(int));
+    data = (int *)malloc(10*sizeof(int));
     if (data == NULL) {exit(-1);}
     if(STATIC_CONST_TRUE)
     {

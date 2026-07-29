@@ -9,7 +9,7 @@ Template File: sources-sink-61b.tmpl.c
  * BadSource: fgets Read data from the console using fgets()
  * GoodSource: Positive integer
  * Sinks: malloc
- *    BadSink : Allocate memory using safe_malloc() with the size of data
+ *    BadSink : Allocate memory using malloc() with the size of data
  * Flow Variant: 61 Data flow: data returned from one function to another in different source files
  *
  * */
@@ -20,14 +20,6 @@ Template File: sources-sink-61b.tmpl.c
 #define CHAR_ARRAY_SIZE 8
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 short CWE194_Unexpected_Sign_Extension__fgets_malloc_61b_badSource(short data)
 {

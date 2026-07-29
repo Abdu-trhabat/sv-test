@@ -6,7 +6,7 @@ Template File: sources-sinks-61b.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -18,23 +18,13 @@ Template File: sources-sinks-61b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *calloc(size_t num, size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 char * CWE401_Memory_Leak__char_calloc_61b_badSource(char * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (char *)safe_calloc(100, sizeof(char));
+    data = (char *)calloc(100, sizeof(char));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     strcpy(data, "A String");
@@ -61,7 +51,7 @@ char * CWE401_Memory_Leak__char_calloc_61b_goodG2BSource(char * data)
 char * CWE401_Memory_Leak__char_calloc_61b_goodB2GSource(char * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (char *)safe_calloc(100, sizeof(char));
+    data = (char *)calloc(100, sizeof(char));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     strcpy(data, "A String");

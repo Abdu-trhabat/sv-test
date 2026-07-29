@@ -1676,18 +1676,10 @@ int virtqueue_add_buf(struct virtqueue *arg0, struct scatterlist *arg1, unsigned
 }
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 void *virtqueue_get_buf(struct virtqueue *arg0, unsigned int *arg1) {
   return ldv_malloc(0UL);

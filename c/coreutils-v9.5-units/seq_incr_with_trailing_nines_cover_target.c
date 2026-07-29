@@ -38,14 +38,6 @@ void cover_check() {
 #endif
 
 #include<stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #include<assert.h>
 
@@ -81,9 +73,9 @@ static size_t nine_position;
 
 static void init_seq_buffer() {
 
-    buffer = safe_malloc(MAX_BUFFER_SIZE);
+    buffer = malloc(MAX_BUFFER_SIZE);
 
-    old_buffer = safe_malloc(MAX_BUFFER_SIZE);
+    old_buffer = malloc(MAX_BUFFER_SIZE);
 
     assume_or_exit(buffer != NULL && old_buffer != NULL);
 

@@ -6,7 +6,7 @@ Template File: sources-sinks-42.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -18,23 +18,13 @@ Template File: sources-sinks-42.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *calloc(size_t num, size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 static char * badSource(char * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (char *)safe_calloc(100, sizeof(char));
+    data = (char *)calloc(100, sizeof(char));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     strcpy(data, "A String");
@@ -79,7 +69,7 @@ static void goodG2B()
 static char * goodB2GSource(char * data)
 {
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (char *)safe_calloc(100, sizeof(char));
+    data = (char *)calloc(100, sizeof(char));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     strcpy(data, "A String");

@@ -23,19 +23,11 @@ Template File: sources-sinks-07.tmpl.c
 static int staticFive = 5;
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_no_init_07_bad()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     if(staticFive==5)
     {
@@ -64,7 +56,7 @@ void CWE457_Use_of_Uninitialized_Variable__struct_array_malloc_no_init_07_bad()
 static void goodB2G1()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     if(staticFive==5)
     {
@@ -102,7 +94,7 @@ static void goodB2G1()
 static void goodB2G2()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     if(staticFive==5)
     {
@@ -135,7 +127,7 @@ static void goodB2G2()
 static void goodG2B1()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     if(staticFive!=5)
     {
@@ -172,7 +164,7 @@ static void goodG2B1()
 static void goodG2B2()
 {
     twoIntsStruct * data;
-    data = (twoIntsStruct *)safe_malloc(10*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(10*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     if(staticFive==5)
     {

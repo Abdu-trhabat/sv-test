@@ -18,16 +18,6 @@ Template File: sources-sink-22b.tmpl.c
 
 #ifndef _WIN32
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #endif
 
 /* MAINTENANCE NOTE: The length of this string should equal the 10 */
@@ -43,7 +33,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22_badSource(char * 
     if(CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22_badGlobal)
     {
         /* FLAW: Did not leave space for a null terminator */
-        data = (char *)safe_malloc(10*sizeof(char));
+        data = (char *)malloc(10*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -68,7 +58,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22_goodG2B1Source(ch
     else
     {
         /* FIX: Allocate space for a null terminator */
-        data = (char *)safe_malloc((10+1)*sizeof(char));
+        data = (char *)malloc((10+1)*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     return data;
@@ -80,7 +70,7 @@ char * CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22_goodG2B2Source(ch
     if(CWE122_Heap_Based_Buffer_Overflow__c_CWE193_char_cpy_22_goodG2B2Global)
     {
         /* FIX: Allocate space for a null terminator */
-        data = (char *)safe_malloc((10+1)*sizeof(char));
+        data = (char *)malloc((10+1)*sizeof(char));
         if (data == NULL) {exit(-1);}
     }
     return data;

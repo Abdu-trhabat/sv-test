@@ -6,7 +6,7 @@ Template File: source-sinks-42.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using safe_malloc()
+ * BadSource: malloc Allocate data using malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -17,23 +17,13 @@ Template File: source-sinks-42.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 static twoIntsStruct * badSource(twoIntsStruct * data)
 {
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)safe_malloc(1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
     return data;
 }
 
@@ -56,7 +46,7 @@ void CWE690_NULL_Deref_From_Return__struct_malloc_42_bad()
 static twoIntsStruct * goodB2GSource(twoIntsStruct * data)
 {
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (twoIntsStruct *)safe_malloc(1*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(1*sizeof(twoIntsStruct));
     return data;
 }
 

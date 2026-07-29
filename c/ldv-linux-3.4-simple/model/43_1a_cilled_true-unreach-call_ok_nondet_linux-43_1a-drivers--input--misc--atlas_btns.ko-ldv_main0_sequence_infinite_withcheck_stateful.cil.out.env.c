@@ -5,13 +5,7 @@
 // Function: acpi_bus_register_driver
 // with type: int acpi_bus_register_driver(struct acpi_driver *)
 // with return type: int
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
+void *safe_malloc(size_t size);
 
 int __VERIFIER_nondet_int(void);
 int acpi_bus_register_driver(struct acpi_driver *arg0) {

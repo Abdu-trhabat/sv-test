@@ -1,4 +1,3 @@
-void *safe_malloc(size_t size);
 // Skip function: __VERIFIER_error
 
 // Skip function: __VERIFIER_nondet_int
@@ -25,7 +24,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: __kmalloc

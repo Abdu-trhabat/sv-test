@@ -3649,14 +3649,6 @@ static struct block_device_operations const pf_fops =
      {& pf_open, & pf_release, & pf_ioctl, 0, 0, & pf_check_events, 0, 0, 0, & pf_getgeo,
     0, & __this_module};
 extern void *malloc(size_t );
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 static void pf_init_units(void)
 {
   struct pf_unit *pf ;
@@ -3669,7 +3661,7 @@ static void pf_init_units(void)
   pf = (struct pf_unit *)(& units);
   goto ldv_30015;
   ldv_30014:
-  tmp = safe_malloc(sizeof(struct gendisk));
+  tmp = malloc(sizeof(struct gendisk));
   disk = tmp;
   if ((unsigned long )disk == (unsigned long )((struct gendisk *)0)) {
     goto ldv_30013;
@@ -5600,7 +5592,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 struct request *blk_fetch_request(struct request_queue *arg0) {
   return ldv_malloc(sizeof(struct request));

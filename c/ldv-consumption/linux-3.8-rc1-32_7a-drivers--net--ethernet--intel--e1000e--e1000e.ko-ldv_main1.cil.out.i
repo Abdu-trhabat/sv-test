@@ -8422,16 +8422,8 @@ extern _Bool __VERIFIER_nondet_bool();
 extern unsigned long int __VERIFIER_nondet_ulong();
 extern unsigned int __VERIFIER_nondet_uint();
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_successful_malloc(size_t __size) {
-  void *p = safe_malloc(__size);
+  void *p = malloc(__size);
   assume_abort_if_not(p != (void *)0);
   return p;
 }
@@ -22575,7 +22567,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
  if (__VERIFIER_nondet_int()) {
-  void *res = safe_malloc(size);
+  void *res = malloc(size);
   assume_abort_if_not(!ldv_is_err(res));
   return res;
  } else {
@@ -36501,7 +36493,7 @@ void *ldv_xmalloc(size_t size )
   long tmp___0 ;
   {
   {
-  tmp = safe_malloc(size);
+  tmp = malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);

@@ -7,14 +7,6 @@
 // Function: input_free_device
 // with type: void input_free_device(struct input_dev *)
 // with return type: void
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void input_free_device(struct input_dev *arg0) {
   // Void type
   return;
@@ -41,7 +33,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Skip function: kfree

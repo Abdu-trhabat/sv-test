@@ -5,13 +5,7 @@
 // Function: __release_region
 // with type: void __release_region(struct resource *, resource_size_t , resource_size_t )
 // with return type: void
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
+void *safe_malloc(size_t size);
 
 void __release_region(struct resource *arg0, resource_size_t arg1, resource_size_t arg2) {
   // Void type

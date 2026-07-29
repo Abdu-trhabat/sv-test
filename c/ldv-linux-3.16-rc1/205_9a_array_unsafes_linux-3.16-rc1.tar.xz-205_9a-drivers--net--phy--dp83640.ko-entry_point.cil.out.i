@@ -57,24 +57,6 @@ typedef __kernel_uid32_t uid_t;
 typedef __kernel_gid32_t gid_t;
 typedef __kernel_loff_t loff_t;
 typedef __kernel_size_t size_t;
-extern void *calloc(size_t num, size_t size);
-extern void *malloc(size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 typedef __kernel_ssize_t ssize_t;
 typedef __kernel_time_t time_t;
 typedef unsigned short ushort;
@@ -5482,7 +5464,7 @@ void *ldv_xmalloc(size_t size) {
   long tmp___0 ;
   {
   {
-  tmp = safe_malloc(size);
+  tmp = malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);
@@ -5636,7 +5618,7 @@ void *ldv_malloc(size_t size )
   if (tmp___0 != 0) {
     return ((void *)0);
   } else {
-    tmp = safe_malloc(size);
+    tmp = malloc(size);
     p = tmp;
     assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
     assume_abort_if_not(IS_ERR(p) == 0);
@@ -5654,7 +5636,7 @@ void *ldv_zalloc(size_t size )
   if (tmp___0 != 0) {
     return ((void *)0);
   } else {
-    tmp = safe_calloc(1UL, size);
+    tmp = calloc(1UL, size);
     p = tmp;
     assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
     assume_abort_if_not(IS_ERR(p) == 0);

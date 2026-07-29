@@ -6,8 +6,8 @@ Template File: sources-sinks-42.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
- * GoodSource: Allocate data using safe_malloc()
+ * BadSource:  Allocate data using malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -18,22 +18,12 @@ Template File: sources-sinks-42.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 static long * badSource(long * data)
 {
-    data = (long *)safe_malloc(100*sizeof(long));
+    data = (long *)malloc(100*sizeof(long));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);
@@ -57,7 +47,7 @@ void CWE415_Double_Free__malloc_free_long_42_bad()
 /* goodG2B uses the GoodSource with the BadSink */
 static long * goodG2BSource(long * data)
 {
-    data = (long *)safe_malloc(100*sizeof(long));
+    data = (long *)malloc(100*sizeof(long));
     if (data == NULL) {exit(-1);}
     /* FIX: Do NOT free data in the source - the bad sink frees data */
     return data;
@@ -76,7 +66,7 @@ static void goodG2B()
 /* goodB2G uses the BadSource with the GoodSink */
 static long * goodB2GSource(long * data)
 {
-    data = (long *)safe_malloc(100*sizeof(long));
+    data = (long *)malloc(100*sizeof(long));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);

@@ -16,19 +16,11 @@ Template File: point-flaw-01.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE758_Undefined_Behavior__struct_malloc_use_01_bad()
 {
     {
-        twoIntsStruct * pointer = (twoIntsStruct *)safe_malloc(sizeof(twoIntsStruct));
+        twoIntsStruct * pointer = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
         if (pointer == NULL) {exit(-1);}
         twoIntsStruct data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         free(pointer);
@@ -45,7 +37,7 @@ static void good1()
 {
     {
         twoIntsStruct data;
-        twoIntsStruct * pointer = (twoIntsStruct *)safe_malloc(sizeof(twoIntsStruct));
+        twoIntsStruct * pointer = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
         if (pointer == NULL) {exit(-1);}
         data.intOne = 1;
         data.intTwo = 2;

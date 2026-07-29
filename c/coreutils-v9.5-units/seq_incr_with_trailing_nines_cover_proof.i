@@ -25,15 +25,6 @@ __extension__
 
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ )) __attribute__ ((__malloc__))
                                          ;
-extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern void free (void *__ptr) __attribute__ ((__nothrow__ ));
 extern void exit (int __status) __attribute__ ((__nothrow__ )) __attribute__ ((__noreturn__));
 
@@ -599,8 +590,8 @@ static size_t num_zeroes;
 static size_t old_num_digits;
 static size_t nine_position;
 static void init_seq_buffer() {
-    buffer = safe_malloc(200);
-    old_buffer = safe_malloc(200);
+    buffer = malloc(200);
+    old_buffer = malloc(200);
     assume_or_exit(buffer != ((void*)0) && old_buffer != ((void*)0));
 }
 static void free_seq_buffer() {

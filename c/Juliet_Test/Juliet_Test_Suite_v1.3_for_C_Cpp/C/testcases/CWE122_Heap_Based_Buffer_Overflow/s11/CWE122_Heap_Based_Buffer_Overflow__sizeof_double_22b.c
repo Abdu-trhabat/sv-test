@@ -15,16 +15,6 @@ Template File: sources-sink-22b.tmpl.c
  * */
 
 #include "std_testcase.h"
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -36,8 +26,8 @@ double * CWE122_Heap_Based_Buffer_Overflow__sizeof_double_22_badSource(double * 
     if(CWE122_Heap_Based_Buffer_Overflow__sizeof_double_22_badGlobal)
     {
         /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-        /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
-        data = (double *)safe_malloc(sizeof(data));
+        /* FLAW: Using sizeof the pointer and not the data type in malloc() */
+        data = (double *)malloc(sizeof(data));
         if (data == NULL) {exit(-1);}
         *data = 1.7E300;
     }
@@ -62,8 +52,8 @@ double * CWE122_Heap_Based_Buffer_Overflow__sizeof_double_22_goodG2B1Source(doub
     }
     else
     {
-        /* FIX: Using sizeof the data type in safe_malloc() */
-        data = (double *)safe_malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in malloc() */
+        data = (double *)malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         *data = 1.7E300;
     }
@@ -75,8 +65,8 @@ double * CWE122_Heap_Based_Buffer_Overflow__sizeof_double_22_goodG2B2Source(doub
 {
     if(CWE122_Heap_Based_Buffer_Overflow__sizeof_double_22_goodG2B2Global)
     {
-        /* FIX: Using sizeof the data type in safe_malloc() */
-        data = (double *)safe_malloc(sizeof(*data));
+        /* FIX: Using sizeof the data type in malloc() */
+        data = (double *)malloc(sizeof(*data));
         if (data == NULL) {exit(-1);}
         *data = 1.7E300;
     }

@@ -18,25 +18,6 @@ Template File: sources-sinks-41.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *calloc(size_t num, size_t size);
-extern void *malloc(size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -45,7 +26,7 @@ static void badSink(void * data)
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
-        void * dest = (void *)safe_calloc(dataLen+1, sizeof(wchar_t));
+        void * dest = (void *)calloc(dataLen+1, sizeof(wchar_t));
         if (dest == NULL) {exit(-1);}
         (void)wcscpy(dest, data);
         printLine((char *)dest);
@@ -58,7 +39,7 @@ void CWE122_Heap_Based_Buffer_Overflow__CWE135_41_bad()
     void * data;
     data = NULL;
     {
-        wchar_t * dataBadBuffer = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+        wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
         if (dataBadBuffer == NULL) {exit(-1);}
         wmemset(dataBadBuffer, L'A', 50-1);
         dataBadBuffer[50-1] = L'\0';
@@ -78,7 +59,7 @@ static void goodG2BSink(void * data)
     {
         /* POTENTIAL FLAW: treating pointer as a char* when it may point to a wide string */
         size_t dataLen = strlen((char *)data);
-        void * dest = (void *)safe_calloc(dataLen+1, 1);
+        void * dest = (void *)calloc(dataLen+1, 1);
         if (dest == NULL) {exit(-1);}
         (void)strcpy(dest, data);
         printLine((char *)dest);
@@ -91,7 +72,7 @@ static void goodG2B()
     void * data;
     data = NULL;
     {
-        char * dataGoodBuffer = (char *)safe_malloc(50*sizeof(char));
+        char * dataGoodBuffer = (char *)malloc(50*sizeof(char));
         if (dataGoodBuffer == NULL) {exit(-1);}
         memset(dataGoodBuffer, 'A', 50-1);
         dataGoodBuffer[50-1] = '\0';
@@ -107,7 +88,7 @@ static void goodB2GSink(void * data)
     {
         /* FIX: treating pointer like a wchar_t*  */
         size_t dataLen = wcslen((wchar_t *)data);
-        void * dest = (void *)safe_calloc(dataLen+1, sizeof(wchar_t));
+        void * dest = (void *)calloc(dataLen+1, sizeof(wchar_t));
         if (dest == NULL) {exit(-1);}
         (void)wcscpy(dest, data);
         printWLine((wchar_t *)dest);
@@ -120,7 +101,7 @@ static void goodB2G()
     void * data;
     data = NULL;
     {
-        wchar_t * dataBadBuffer = (wchar_t *)safe_malloc(50*sizeof(wchar_t));
+        wchar_t * dataBadBuffer = (wchar_t *)malloc(50*sizeof(wchar_t));
         if (dataBadBuffer == NULL) {exit(-1);}
         wmemset(dataBadBuffer, L'A', 50-1);
         dataBadBuffer[50-1] = L'\0';

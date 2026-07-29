@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "helpers.c"
+#include "helpers-safe.c"
 
 #define QUERYMAXLEN 80
 

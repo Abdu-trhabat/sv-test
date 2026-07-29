@@ -24,14 +24,6 @@ long * CWE590_Free_Memory_Not_on_Heap__free_long_static_68_goodG2BData;
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE590_Free_Memory_Not_on_Heap__free_long_static_68b_badSink();
 
 void CWE590_Free_Memory_Not_on_Heap__free_long_static_68_bad()
@@ -68,10 +60,10 @@ static void goodG2B()
     data = NULL; /* Initialize data */
     {
         /* FIX: data is allocated on the heap and deallocated in the BadSink */
-        long * dataBuffer = (long *)safe_malloc(100*sizeof(long));
+        long * dataBuffer = (long *)malloc(100*sizeof(long));
         if (dataBuffer == NULL)
         {
-            printLine("safe_malloc() failed");
+            printLine("malloc() failed");
             exit(1);
         }
         {

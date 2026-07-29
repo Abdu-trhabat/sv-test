@@ -6823,33 +6823,6 @@ __inline static bool queue_delayed_work(struct workqueue_struct *wq , struct del
 extern void msleep(unsigned int ) ;
 extern void get_random_bytes(void * , int ) ;
 extern void *realloc(void * , size_t ) ;
-extern void abort(void);
-extern void *calloc(size_t num, size_t size);
-extern void *malloc(size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 static void *ldv_krealloc_84(void const *ldv_func_arg1 , size_t ldv_func_arg2 ,
                              gfp_t flags ) ;
 extern void kfree(void const * ) ;
@@ -16017,7 +15990,7 @@ static void *ldv_krealloc_84(void const *ldv_func_arg1 , size_t ldv_func_arg2 ,
   {
   {
   ldv_check_alloc_flags(flags);
-  tmp = safe_realloc(ldv_func_arg1, ldv_func_arg2);
+  tmp = realloc(ldv_func_arg1, ldv_func_arg2);
   }
   return (tmp);
 }
@@ -16259,7 +16232,7 @@ void *ldv_malloc(size_t size )
   }
   if (tmp___1 != 0) {
     {
-    tmp = safe_malloc(size);
+    tmp = malloc(size);
     res = tmp;
     ldv_assume((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const *)res);
@@ -16283,7 +16256,7 @@ void *ldv_calloc(size_t nmemb , size_t size )
   }
   if (tmp___1 != 0) {
     {
-    tmp = safe_calloc(nmemb, size);
+    tmp = calloc(nmemb, size);
     res = tmp;
     ldv_assume((unsigned long )res != (unsigned long )((void *)0));
     tmp___0 = ldv_is_err((void const *)res);
@@ -16321,7 +16294,7 @@ void *ldv_xmalloc(size_t size )
   long tmp___0 ;
   {
   {
-  tmp = safe_malloc(size);
+  tmp = malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);
@@ -16337,7 +16310,7 @@ void *ldv_xzalloc(size_t size )
   long tmp___0 ;
   {
   {
-  tmp = safe_calloc(1UL, size);
+  tmp = calloc(1UL, size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);

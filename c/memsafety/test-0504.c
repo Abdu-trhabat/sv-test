@@ -3,14 +3,6 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -33,7 +25,7 @@ int main() {
 
     while (__VERIFIER_nondet_int()) {
 
-        struct T2* x = safe_malloc(sizeof(struct T2));
+        struct T2* x = malloc(sizeof(struct T2));
         if (!x)
             abort();
 
@@ -46,7 +38,7 @@ int main() {
         struct T* y = NULL;
 
         while (__VERIFIER_nondet_int()) {
-            y = safe_malloc(sizeof(struct T));
+            y = malloc(sizeof(struct T));
             if (!y)
                 abort();
 

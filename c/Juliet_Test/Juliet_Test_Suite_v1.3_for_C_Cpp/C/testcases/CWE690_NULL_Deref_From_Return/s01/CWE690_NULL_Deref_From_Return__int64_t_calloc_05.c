@@ -6,7 +6,7 @@ Template File: source-sinks-05.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -25,21 +25,13 @@ static int staticTrue = 1; /* true */
 static int staticFalse = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__int64_t_calloc_05_bad()
 {
     int64_t * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (int64_t *)safe_calloc(1, sizeof(int64_t));
+    data = (int64_t *)calloc(1, sizeof(int64_t));
     if(staticTrue)
     {
         /* FLAW: Initialize memory buffer without checking to see if the memory allocation function failed */
@@ -59,7 +51,7 @@ static void goodB2G1()
     int64_t * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (int64_t *)safe_calloc(1, sizeof(int64_t));
+    data = (int64_t *)calloc(1, sizeof(int64_t));
     if(staticFalse)
     {
         /* INCIDENTAL: CWE 561 Dead Code, the code below will never run */
@@ -83,7 +75,7 @@ static void goodB2G2()
     int64_t * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (int64_t *)safe_calloc(1, sizeof(int64_t));
+    data = (int64_t *)calloc(1, sizeof(int64_t));
     if(staticTrue)
     {
         /* FIX: Check to see if the memory allocation function was successful before initializing the memory buffer */

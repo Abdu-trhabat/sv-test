@@ -6,8 +6,8 @@ Template File: sources-sink-34.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sinks: loop
  *    BadSink : Copy int64_t array to data using a loop
  * Flow Variant: 34 Data flow: use of a union containing two methods of accessing the same data (within the same function)
@@ -23,14 +23,6 @@ typedef union
 } CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_loop_34_unionType;
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_loop_34_bad()
 {
@@ -38,7 +30,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_loop_34_bad()
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_loop_34_unionType myUnion;
     data = NULL;
     /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-    data = (int64_t *)safe_malloc(50*sizeof(int64_t));
+    data = (int64_t *)malloc(50*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     myUnion.unionFirst = data;
     {
@@ -70,7 +62,7 @@ static void goodG2B()
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_int64_t_loop_34_unionType myUnion;
     data = NULL;
     /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-    data = (int64_t *)safe_malloc(100*sizeof(int64_t));
+    data = (int64_t *)malloc(100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     myUnion.unionFirst = data;
     {

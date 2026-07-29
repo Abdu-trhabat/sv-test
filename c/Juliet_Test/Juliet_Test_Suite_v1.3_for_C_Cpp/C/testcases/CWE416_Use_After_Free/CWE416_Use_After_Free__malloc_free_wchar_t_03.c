@@ -6,8 +6,8 @@ Template File: sources-sinks-03.tmpl.c
 /*
  * @description
  * CWE: 416 Use After Free
- * BadSource:  Allocate data using safe_malloc(), initialize memory block, and Deallocate data using free()
- * GoodSource: Allocate data using safe_malloc() and initialize memory block
+ * BadSource:  Allocate data using malloc(), initialize memory block, and Deallocate data using free()
+ * GoodSource: Allocate data using malloc() and initialize memory block
  * Sinks:
  *    GoodSink: Do nothing
  *    BadSink : Use data
@@ -20,14 +20,6 @@ Template File: sources-sinks-03.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE416_Use_After_Free__malloc_free_wchar_t_03_bad()
 {
@@ -36,7 +28,7 @@ void CWE416_Use_After_Free__malloc_free_wchar_t_03_bad()
     data = NULL;
     if(5==5)
     {
-        data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1);
         data[100-1] = L'\0';
@@ -63,7 +55,7 @@ static void goodB2G1()
     data = NULL;
     if(5==5)
     {
-        data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1);
         data[100-1] = L'\0';
@@ -92,7 +84,7 @@ static void goodB2G2()
     data = NULL;
     if(5==5)
     {
-        data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1);
         data[100-1] = L'\0';
@@ -121,7 +113,7 @@ static void goodG2B1()
     }
     else
     {
-        data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1);
         data[100-1] = L'\0';
@@ -143,7 +135,7 @@ static void goodG2B2()
     data = NULL;
     if(5==5)
     {
-        data = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        data = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (data == NULL) {exit(-1);}
         wmemset(data, L'A', 100-1);
         data[100-1] = L'\0';

@@ -474,15 +474,6 @@ __extension__
 __extension__
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ )) __attribute__ ((__malloc__))
                                          ;
-extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern void free (void *__ptr) __attribute__ ((__nothrow__ ));
 extern void exit (int __status) __attribute__ ((__nothrow__ )) __attribute__ ((__noreturn__));
 
@@ -686,11 +677,11 @@ static char *output_buf;
 static size_t output_len;
 static _Bool relpath_return_value;
 static void init_buffers_for_overflow() {
-    path1 = safe_malloc(200);
-    path2 = safe_malloc(200);
+    path1 = malloc(200);
+    path2 = malloc(200);
     output_len = __VERIFIER_nondet_size_t();
     assume_or_exit(output_len > 0 && output_len < 200);
-    output_buf = safe_malloc(output_len);
+    output_buf = malloc(output_len);
     assume_or_exit(path1 != ((void*)0) && path2 != ((void*)0) && output_buf != ((void*)0));
 }
 static void free_buffers() {

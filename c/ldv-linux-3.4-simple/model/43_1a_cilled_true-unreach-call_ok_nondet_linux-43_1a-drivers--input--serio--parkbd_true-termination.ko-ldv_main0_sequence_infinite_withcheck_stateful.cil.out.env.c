@@ -5,14 +5,6 @@
 // Function: __serio_register_port
 // with type: void __serio_register_port(struct serio *, struct module *)
 // with return type: void
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void __serio_register_port(struct serio *arg0, struct module *arg1) {
   // Void type
   return;
@@ -22,7 +14,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: kmem_cache_alloc

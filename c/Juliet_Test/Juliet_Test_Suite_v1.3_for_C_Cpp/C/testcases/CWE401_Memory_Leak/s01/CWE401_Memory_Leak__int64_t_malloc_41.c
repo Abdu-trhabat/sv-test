@@ -6,7 +6,7 @@ Template File: sources-sinks-41.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: malloc Allocate data using safe_malloc()
+ * BadSource: malloc Allocate data using malloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -26,21 +26,13 @@ static void badSink(int64_t * data)
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE401_Memory_Leak__int64_t_malloc_41_bad()
 {
     int64_t * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int64_t *)safe_malloc(100*sizeof(int64_t));
+    data = (int64_t *)malloc(100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5LL;
@@ -83,7 +75,7 @@ static void goodB2G()
     int64_t * data;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int64_t *)safe_malloc(100*sizeof(int64_t));
+    data = (int64_t *)malloc(100*sizeof(int64_t));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5LL;

@@ -66,7 +66,7 @@ int pico_transport_receive(struct pico_frame *f, int proto) {
 }
 
 static int pico_fragments_reassemble(int proto) {
-  struct pico_frame *full = safe_calloc(1, sizeof(struct pico_frame));
+  struct pico_frame *full = calloc(1, sizeof(struct pico_frame));
   if (full == NULL) {
     printf("Out of memory\n");
     return 1;

@@ -15,14 +15,6 @@ extern void __VERIFIER_atomic_end(void);
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #include <unistd.h>
 #include <pthread.h>
 
@@ -132,7 +124,7 @@ void Init_WorkStealQueue(long size) {
     writeV(&q.head, 0);
     q.mask = size - 1;
     writeV(&q.tail, 0);
-    // q.elems = safe_malloc(size * sizeof(Obj*));
+    // q.elems = malloc(size * sizeof(Obj*));
 }
 
 void Destroy_WorkStealQueue() {}

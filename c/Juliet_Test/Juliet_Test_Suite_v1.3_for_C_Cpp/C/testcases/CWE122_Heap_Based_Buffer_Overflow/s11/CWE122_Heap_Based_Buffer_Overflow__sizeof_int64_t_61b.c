@@ -15,24 +15,14 @@ Template File: sources-sink-61b.tmpl.c
  * */
 
 #include "std_testcase.h"
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 int64_t * CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_61b_badSource(int64_t * data)
 {
     /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-    /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
-    data = (int64_t *)safe_malloc(sizeof(data));
+    /* FLAW: Using sizeof the pointer and not the data type in malloc() */
+    data = (int64_t *)malloc(sizeof(data));
     if (data == NULL) {exit(-1);}
     *data = 2147483643LL;
     return data;
@@ -45,8 +35,8 @@ int64_t * CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_61b_badSource(int64_
 /* goodG2B() uses the GoodSource with the BadSink */
 int64_t * CWE122_Heap_Based_Buffer_Overflow__sizeof_int64_t_61b_goodG2BSource(int64_t * data)
 {
-    /* FIX: Using sizeof the data type in safe_malloc() */
-    data = (int64_t *)safe_malloc(sizeof(*data));
+    /* FIX: Using sizeof the data type in malloc() */
+    data = (int64_t *)malloc(sizeof(*data));
     if (data == NULL) {exit(-1);}
     *data = 2147483643LL;
     return data;

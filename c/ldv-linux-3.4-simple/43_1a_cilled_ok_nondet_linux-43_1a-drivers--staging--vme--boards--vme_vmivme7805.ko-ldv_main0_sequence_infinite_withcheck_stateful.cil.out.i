@@ -2361,18 +2361,10 @@ unsigned int ioread32(void *arg0) {
 }
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 void *ioremap_nocache(resource_size_t arg0, unsigned long arg1) {
   return ldv_malloc(0UL);

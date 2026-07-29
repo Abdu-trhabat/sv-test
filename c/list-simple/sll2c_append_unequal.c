@@ -6,14 +6,6 @@ void reach_error() { assert(0); }
  * Append node with data = 5. Check result: 1-1-5
  */
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 typedef struct node {
   struct node *next;
@@ -25,7 +17,7 @@ void myexit(int s) {
 }
 
 SLL node_create(int data) {
-  SLL temp = (SLL) safe_malloc(sizeof(struct node));
+  SLL temp = (SLL) malloc(sizeof(struct node));
   if(NULL == temp) {
     myexit(1);
   }

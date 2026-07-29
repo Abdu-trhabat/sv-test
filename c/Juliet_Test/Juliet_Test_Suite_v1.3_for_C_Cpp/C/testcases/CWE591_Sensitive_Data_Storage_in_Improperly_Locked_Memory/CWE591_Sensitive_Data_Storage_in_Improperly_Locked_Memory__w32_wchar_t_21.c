@@ -30,7 +30,7 @@ static wchar_t * badSource(wchar_t * password)
 {
     if(badStatic)
     {
-        password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -42,14 +42,6 @@ static wchar_t * badSource(wchar_t * password)
     }
     return password;
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_21_bad()
 {
@@ -101,7 +93,7 @@ static wchar_t * goodG2B1Source(wchar_t * password)
     }
     else
     {
-        password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");
@@ -156,7 +148,7 @@ static wchar_t * goodG2B2Source(wchar_t * password)
 {
     if(goodG2B2Static)
     {
-        password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+        password = (wchar_t *)malloc(100*sizeof(wchar_t));
         if (password == NULL)
         {
             printLine("Memory could not be allocated");

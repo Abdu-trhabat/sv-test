@@ -43,7 +43,7 @@ int ntlm_init_ctx(struct ntlm_ctx **ctx) {
   struct ntlm_ctx *_ctx;
   int ret = 0;
 
-  _ctx = safe_calloc(1, sizeof(struct ntlm_ctx));
+  _ctx = calloc(1, sizeof(struct ntlm_ctx));
   if (!_ctx) {
     return 1;
   }
@@ -118,7 +118,7 @@ static int ntlm_decode_u16l_str_hdr(struct ntlm_ctx *ctx,
 
   in = (char *)&buffer->data[str_offs];
 
-  out = safe_malloc(str_len * 2 + 1);
+  out = malloc(str_len * 2 + 1);
   if (!out) {
     return 1;
   }

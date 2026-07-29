@@ -17,14 +17,6 @@ struct node {
    struct list_head nested ;
 };
 extern  __attribute__((__nothrow__)) void *malloc(size_t __size )  __attribute__((__malloc__)) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern  __attribute__((__nothrow__)) void free(void *__ptr ) ;
 extern  __attribute__((__nothrow__, __noreturn__)) void abort(void) ;
 extern int __VERIFIER_nondet_int(void);
@@ -645,7 +637,7 @@ static void gl_insert(int value )
   {
   {
   __cil_tmp4 = (unsigned int )20UL;
-  tmp = safe_malloc(__cil_tmp4);
+  tmp = malloc(__cil_tmp4);
   node = (struct node *)tmp;
   }
   if (! node) {

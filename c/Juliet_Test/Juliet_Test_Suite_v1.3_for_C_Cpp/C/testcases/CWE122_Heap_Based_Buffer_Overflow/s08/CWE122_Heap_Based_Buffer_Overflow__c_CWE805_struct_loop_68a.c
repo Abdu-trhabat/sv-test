@@ -6,8 +6,8 @@ Template File: sources-sink-68a.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sink: loop
  *    BadSink : Copy twoIntsStruct array to data using a loop
  * Flow Variant: 68 Data flow: data passed as a global variable from one function to another in different source files
@@ -22,14 +22,6 @@ twoIntsStruct * CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_68_goodG
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_68b_badSink();
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_68_bad()
@@ -37,7 +29,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_68_bad()
     twoIntsStruct * data;
     data = NULL;
     /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-    data = (twoIntsStruct *)safe_malloc(50*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(50*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_68_badData = data;
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_68b_badSink();
@@ -56,7 +48,7 @@ static void goodG2B()
     twoIntsStruct * data;
     data = NULL;
     /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-    data = (twoIntsStruct *)safe_malloc(100*sizeof(twoIntsStruct));
+    data = (twoIntsStruct *)malloc(100*sizeof(twoIntsStruct));
     if (data == NULL) {exit(-1);}
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_68_goodG2BData = data;
     CWE122_Heap_Based_Buffer_Overflow__c_CWE805_struct_loop_68b_goodG2BSink();

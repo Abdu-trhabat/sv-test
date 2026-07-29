@@ -38,7 +38,7 @@ bool comp_add_to_data(zckComp *comp, const unsigned char *src, uint32_t src_size
     return false;
   }
 
-  unsigned char *temp = (unsigned char*)safe_realloc(comp->data, comp->data_size + src_size);
+  unsigned char *temp = (unsigned char*)realloc(comp->data, comp->data_size + src_size);
   if (!temp) {
     printf("Reallocation failed\n");
     return false;
@@ -57,7 +57,7 @@ int main() {
   uint32_t offset = 0;
 
   zckComp comp = {0};
-  comp.data = (unsigned char*)safe_calloc(6, sizeof(unsigned char));
+  comp.data = (unsigned char*)calloc(6, sizeof(unsigned char));
   if (comp.data == NULL) {
     printf("out of memory");
     free(data);

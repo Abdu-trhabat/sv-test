@@ -6,7 +6,7 @@ Template File: sources-sinks-44.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -26,14 +26,6 @@ static void badSink(int * data)
     /* POTENTIAL FLAW: No deallocation */
     ; /* empty statement needed for some flow variants */
 }
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE401_Memory_Leak__int_calloc_44_bad()
 {
@@ -42,7 +34,7 @@ void CWE401_Memory_Leak__int_calloc_44_bad()
     void (*funcPtr) (int *) = badSink;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int *)safe_calloc(100, sizeof(int));
+    data = (int *)calloc(100, sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;
@@ -88,7 +80,7 @@ static void goodB2G()
     void (*funcPtr) (int *) = goodB2GSink;
     data = NULL;
     /* POTENTIAL FLAW: Allocate memory on the heap */
-    data = (int *)safe_calloc(100, sizeof(int));
+    data = (int *)calloc(100, sizeof(int));
     if (data == NULL) {exit(-1);}
     /* Initialize and make use of data */
     data[0] = 5;

@@ -8,14 +8,6 @@ void reach_error() { assert(0); }
  * Check new data in a backward traversal and release memory.
  */
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 typedef struct node {
   int data;
@@ -28,7 +20,7 @@ void myexit(int s) {
 }
 
 DLL dll_circular_create(int len, int data) {
-  DLL last = (DLL) safe_malloc(sizeof(struct node));
+  DLL last = (DLL) malloc(sizeof(struct node));
   if(NULL == last){
     myexit(1);
   }
@@ -37,7 +29,7 @@ DLL dll_circular_create(int len, int data) {
   last->data = data;
   DLL head = last;
   while(len > 1) {
-    DLL new_head = (DLL) safe_malloc(sizeof(struct node));
+    DLL new_head = (DLL) malloc(sizeof(struct node));
     if(NULL == new_head) {
       myexit(1);
     }

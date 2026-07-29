@@ -6,8 +6,8 @@ Template File: sources-sinks-34.tmpl.c
 /*
  * @description
  * CWE: 415 Double Free
- * BadSource:  Allocate data using safe_malloc() and Deallocate data using free()
- * GoodSource: Allocate data using safe_malloc()
+ * BadSource:  Allocate data using malloc() and Deallocate data using free()
+ * GoodSource: Allocate data using malloc()
  * Sinks:
  *    GoodSink: do nothing
  *    BadSink : Deallocate data using free()
@@ -26,14 +26,6 @@ typedef union
 } CWE415_Double_Free__malloc_free_int_34_unionType;
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE415_Double_Free__malloc_free_int_34_bad()
 {
@@ -41,7 +33,7 @@ void CWE415_Double_Free__malloc_free_int_34_bad()
     CWE415_Double_Free__malloc_free_int_34_unionType myUnion;
     /* Initialize data */
     data = NULL;
-    data = (int *)safe_malloc(100*sizeof(int));
+    data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);
@@ -64,7 +56,7 @@ static void goodG2B()
     CWE415_Double_Free__malloc_free_int_34_unionType myUnion;
     /* Initialize data */
     data = NULL;
-    data = (int *)safe_malloc(100*sizeof(int));
+    data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* FIX: Do NOT free data in the source - the bad sink frees data */
     myUnion.unionFirst = data;
@@ -82,7 +74,7 @@ static void goodB2G()
     CWE415_Double_Free__malloc_free_int_34_unionType myUnion;
     /* Initialize data */
     data = NULL;
-    data = (int *)safe_malloc(100*sizeof(int));
+    data = (int *)malloc(100*sizeof(int));
     if (data == NULL) {exit(-1);}
     /* POTENTIAL FLAW: Free data in the source - the bad sink frees data as well */
     free(data);

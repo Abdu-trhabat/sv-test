@@ -21,14 +21,6 @@ Template File: sources-sinks-22b.tmpl.c
 
 /* The global variable below is used to drive control flow in the sink function */
 extern int CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_22_badGlobal;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_22_badSink(int data)
 {
@@ -36,7 +28,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_22_badSink(int da
     {
         {
             int i;
-            int * buffer = (int *)safe_malloc(10 * sizeof(int));
+            int * buffer = (int *)malloc(10 * sizeof(int));
             if (buffer == NULL) {exit(-1);}
             /* initialize buffer */
             for (i = 0; i < 10; i++)
@@ -84,7 +76,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_22_goodB2G1Sink(i
     {
         {
             int i;
-            int * buffer = (int *)safe_malloc(10 * sizeof(int));
+            int * buffer = (int *)malloc(10 * sizeof(int));
             if (buffer == NULL) {exit(-1);}
             /* initialize buffer */
             for (i = 0; i < 10; i++)
@@ -117,7 +109,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_22_goodB2G2Sink(i
     {
         {
             int i;
-            int * buffer = (int *)safe_malloc(10 * sizeof(int));
+            int * buffer = (int *)malloc(10 * sizeof(int));
             if (buffer == NULL) {exit(-1);}
             /* initialize buffer */
             for (i = 0; i < 10; i++)
@@ -150,7 +142,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_22_goodG2BSink(in
     {
         {
             int i;
-            int * buffer = (int *)safe_malloc(10 * sizeof(int));
+            int * buffer = (int *)malloc(10 * sizeof(int));
             if (buffer == NULL) {exit(-1);}
             /* initialize buffer */
             for (i = 0; i < 10; i++)

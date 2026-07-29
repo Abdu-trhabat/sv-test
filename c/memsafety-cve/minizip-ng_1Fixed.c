@@ -43,7 +43,7 @@ int main() {
   char *path = getRandomString(0, 500);
   size_t path_length = strlen(path);
 
-  char *pathwfs = (char *)safe_calloc(path_length + 1, sizeof(char));
+  char *pathwfs = (char *)calloc(path_length + 1, sizeof(char));
   if (pathwfs == NULL) {
     printf("Out of memory\n");
     free(path);

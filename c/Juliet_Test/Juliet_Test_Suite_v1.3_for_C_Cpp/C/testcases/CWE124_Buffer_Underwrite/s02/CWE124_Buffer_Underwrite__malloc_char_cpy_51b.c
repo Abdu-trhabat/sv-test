@@ -21,14 +21,6 @@ Template File: sources-sink-51b.tmpl.c
 /* all the sinks are the same, we just want to know where the hit originated if a tool flags one */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE124_Buffer_Underwrite__malloc_char_cpy_51b_badSink(char * data)
 {
@@ -40,7 +32,7 @@ void CWE124_Buffer_Underwrite__malloc_char_cpy_51b_badSink(char * data)
         strcpy(data, source);
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 
@@ -59,7 +51,7 @@ void CWE124_Buffer_Underwrite__malloc_char_cpy_51b_goodG2BSink(char * data)
         strcpy(data, source);
         printLine(data);
         /* INCIDENTAL CWE-401: Memory Leak - data may not point to location
-         * returned by safe_malloc() so can't safely call free() on it */
+         * returned by malloc() so can't safely call free() on it */
     }
 }
 

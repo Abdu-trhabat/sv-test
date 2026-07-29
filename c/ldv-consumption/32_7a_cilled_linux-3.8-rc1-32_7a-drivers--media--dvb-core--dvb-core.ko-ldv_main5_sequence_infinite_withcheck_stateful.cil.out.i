@@ -5758,14 +5758,6 @@ extern void kfree(void const * ) ;
 extern int __VERIFIER_nondet_int(void);
 
 extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 long ldv_is_err(const void *ptr)
 {
   return ((unsigned long)ptr > ((unsigned long)-4095));
@@ -5773,7 +5765,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
  if (__VERIFIER_nondet_int()) {
-  void *res = safe_malloc(size);
+  void *res = malloc(size);
   assume_abort_if_not(!ldv_is_err(res));
   return res;
  } else {
@@ -16950,7 +16942,7 @@ void dvb_frontend_detach(struct dvb_frontend *fe )
 }
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) ;
 void *ldv_successful_malloc(size_t __size) {
-  void *p = safe_malloc(__size);
+  void *p = malloc(__size);
   assume_abort_if_not(p != (void *)0);
   return p;
 }
@@ -21097,7 +21089,7 @@ void *ldv_xmalloc(size_t size )
   long tmp___0 ;
   {
   {
-  tmp = safe_malloc(size);
+  tmp = malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);

@@ -426,22 +426,6 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -541,13 +525,13 @@ void *memcpy(void*, const void *, size_t);
 void *memset(void*, int, size_t);
 void *ldv_malloc(size_t size) {
  if(__VERIFIER_nondet_int()) {
-  return safe_malloc(size);
+  return malloc(size);
  } else {
   return 0;
  }
 };
 void *ldv_zalloc(size_t size) {
- return safe_calloc(size, 1);
+ return calloc(size, 1);
 }
 struct ldv_list_head {
  struct ldv_list_head *next, *prev;

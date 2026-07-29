@@ -465,14 +465,6 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -581,7 +573,7 @@ void myexit(int s) {
  _EXIT: goto _EXIT;
 }
 DLL node_create(int data) {
-  DLL temp = (DLL) safe_malloc(sizeof(struct node));
+  DLL temp = (DLL) malloc(sizeof(struct node));
   if(((void *)0) == temp) {
     myexit(1);
   }

@@ -6,7 +6,7 @@ Template File: source-sinks-51a.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: malloc Allocate data using safe_malloc()
+ * BadSource: malloc Allocate data using malloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -21,14 +21,6 @@ Template File: source-sinks-51a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE690_NULL_Deref_From_Return__int_malloc_51b_badSink(int * data);
 
 void CWE690_NULL_Deref_From_Return__int_malloc_51_bad()
@@ -36,7 +28,7 @@ void CWE690_NULL_Deref_From_Return__int_malloc_51_bad()
     int * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (int *)safe_malloc(1*sizeof(int));
+    data = (int *)malloc(1*sizeof(int));
     CWE690_NULL_Deref_From_Return__int_malloc_51b_badSink(data);
 }
 
@@ -53,7 +45,7 @@ static void goodB2G()
     int * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (int *)safe_malloc(1*sizeof(int));
+    data = (int *)malloc(1*sizeof(int));
     CWE690_NULL_Deref_From_Return__int_malloc_51b_goodB2GSink(data);
 }
 

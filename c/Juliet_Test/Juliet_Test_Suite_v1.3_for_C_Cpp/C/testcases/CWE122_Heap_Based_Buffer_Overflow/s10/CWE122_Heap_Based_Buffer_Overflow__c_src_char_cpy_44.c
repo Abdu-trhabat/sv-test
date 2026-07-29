@@ -30,21 +30,13 @@ static void badSink(char * data)
         free(data);
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_src_char_cpy_44_bad()
 {
     char * data;
     /* define a function pointer */
     void (*funcPtr) (char *) = badSink;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* FLAW: Initialize data as a large buffer that is larger than the small buffer used in the sink */
     memset(data, 'A', 100-1); /* fill with 'A's */
@@ -73,7 +65,7 @@ static void goodG2B()
 {
     char * data;
     void (*funcPtr) (char *) = goodG2BSink;
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     /* FIX: Initialize data as a small buffer that as small or smaller than the small buffer used in the sink */
     memset(data, 'A', 50-1); /* fill with 'A's */

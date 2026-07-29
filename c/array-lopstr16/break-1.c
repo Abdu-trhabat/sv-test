@@ -3,14 +3,6 @@ extern void abort(void);
 void reach_error() { assert(0); }
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int __VERIFIER_nondet_int(void);
 #define SIZE 1000000
 #define NULL 0
@@ -30,7 +22,7 @@ int main()
 		if(c > 5)
 			break;
 
-		s[i].n = safe_malloc(sizeof(int));
+		s[i].n = malloc(sizeof(int));
 	}
 
 	for(i = 0; i < SIZE; i++)

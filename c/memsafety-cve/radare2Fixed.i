@@ -280,22 +280,6 @@ extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern void exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void _Exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
@@ -401,7 +385,7 @@ int getNumberInRange(int lowestBound, int highestBound) {
   return value;
 }
 unsigned char *getRandomByteStream(int size) {
-  unsigned char *randomString = (unsigned char *)safe_calloc(size, sizeof(unsigned char));
+  unsigned char *randomString = (unsigned char *)calloc(size, sizeof(unsigned char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -413,7 +397,7 @@ unsigned char *getRandomByteStream(int size) {
 }
 char *getRandomString(int lowestSize, int highestSize) {
   int stringSize = getNumberInRange(lowestSize, highestSize);
-  char *randomString = (char *)safe_calloc(stringSize + 1, sizeof(char));
+  char *randomString = (char *)calloc(stringSize + 1, sizeof(char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -425,7 +409,7 @@ char *getRandomString(int lowestSize, int highestSize) {
   return randomString;
 }
 char *getRandomStringFixedSize(int size) {
-  char *randomString = (char *)safe_calloc(size + 1, sizeof(char));
+  char *randomString = (char *)calloc(size + 1, sizeof(char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -437,7 +421,7 @@ char *getRandomStringFixedSize(int size) {
 }
 char *strdup(const char *s) {
   size_t size = strlen(s) + 1;
-  char *p = safe_malloc(size);
+  char *p = malloc(size);
   if (p) {
     memcpy(p, s, size);
   }
@@ -501,7 +485,7 @@ static void free_object(pyc_object *object) {
 }
 static pyc_object *get_none_object(void) {
   pyc_object *ret;
-  ret = (pyc_object *)safe_calloc(1, sizeof(pyc_object));
+  ret = (pyc_object *)calloc(1, sizeof(pyc_object));
   if (!ret) {
     return ((void *)0);
   }
@@ -513,7 +497,7 @@ static pyc_object *get_none_object(void) {
   return ret;
 }
 static pyc_object *get_false_object(void) {
-  pyc_object *ret = (pyc_object *)safe_calloc(1, sizeof(pyc_object));
+  pyc_object *ret = (pyc_object *)calloc(1, sizeof(pyc_object));
   if (!ret) {
     return ((void *)0);
   }
@@ -525,7 +509,7 @@ static pyc_object *get_false_object(void) {
   return ret;
 }
 static pyc_object *get_true_object(void) {
-  pyc_object *ret = (pyc_object *)safe_calloc(1, sizeof(pyc_object));
+  pyc_object *ret = (pyc_object *)calloc(1, sizeof(pyc_object));
   if (!ret) {
     return ((void *)0);
   }
@@ -543,13 +527,13 @@ static pyc_object *get_int_object(RBuffer *buffer) {
   if (error) {
     return ((void *)0);
   }
-  ret = (pyc_object *)safe_calloc(1, sizeof(pyc_object));
+  ret = (pyc_object *)calloc(1, sizeof(pyc_object));
   if (!ret) {
     return ((void *)0);
   }
   ret->type = TYPE_INT;
   int length = snprintf(((void *)0), 0, "%d", i);
-  ret->data = safe_malloc(length + 1);
+  ret->data = malloc(length + 1);
   if (!ret->data) {
     { free((void *)ret); ret = ((void *)0); };
     return ((void *)0);
@@ -559,7 +543,7 @@ static pyc_object *get_int_object(RBuffer *buffer) {
 }
 RListIter *r_list_append(pyc_object *data) {
   RListIter *item = ((void *)0);
-  item = (RListIter *)safe_malloc(sizeof(RListIter));
+  item = (RListIter *)malloc(sizeof(RListIter));
   if (!item) {
     return item;
   }

@@ -26,7 +26,7 @@ uint16_t *bit_utf8_to_TU(char *restrict str) {
     printf("Overlong string truncated (len=%lu)\n", (unsigned long)len);
     len = UINT16_MAX - 1;
   }
-  wstr = (uint16_t *)safe_calloc(2, len + 1);
+  wstr = (uint16_t *)calloc(2, len + 1);
   if (!wstr) {
     printf("Out of memory\n");
     return NULL;

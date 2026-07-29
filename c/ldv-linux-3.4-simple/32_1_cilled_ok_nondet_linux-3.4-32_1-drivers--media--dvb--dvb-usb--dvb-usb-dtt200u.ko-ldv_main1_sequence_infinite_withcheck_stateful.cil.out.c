@@ -8506,14 +8506,6 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 long ldv_is_err(const void *ptr)
 {
 		return ((unsigned long)ptr > ((unsigned long)-4095));
@@ -8522,7 +8514,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
 	if (__VERIFIER_nondet_int()) {
-		void *res = safe_malloc(size);
+		void *res = malloc(size);
 		assume_abort_if_not(!ldv_is_err(res));
 
 		return res;

@@ -29,14 +29,6 @@ typedef struct _charVoid
 } charVoid;
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_17_bad()
 {
@@ -44,7 +36,7 @@ void CWE122_Heap_Based_Buffer_Overflow__wchar_t_type_overrun_memmove_17_bad()
     for(j = 0; j < 1; j++)
     {
         {
-            charVoid * structCharVoid = (charVoid *)safe_malloc(sizeof(charVoid));
+            charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
             if (structCharVoid == NULL) {exit(-1);}
             structCharVoid->voidSecond = (void *)SRC_STR;
             /* Print the initial block pointed to by structCharVoid->voidSecond */
@@ -69,7 +61,7 @@ static void good1()
     for(k = 0; k < 1; k++)
     {
         {
-            charVoid * structCharVoid = (charVoid *)safe_malloc(sizeof(charVoid));
+            charVoid * structCharVoid = (charVoid *)malloc(sizeof(charVoid));
             if (structCharVoid == NULL) {exit(-1);}
             structCharVoid->voidSecond = (void *)SRC_STR;
             /* Print the initial block pointed to by structCharVoid->voidSecond */

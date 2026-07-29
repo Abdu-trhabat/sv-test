@@ -3,14 +3,6 @@ extern void __assert_fail(const char *, const char *, unsigned int, const char *
 void reach_error() { __assert_fail("0", "alt_test.i", 3, "reach_error"); }
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void __blast_assert()
 {
@@ -30,7 +22,7 @@ main(int argc, char* argv[]) {
 }
 
 void* l_malloc(int size) {
- void *retVal = safe_malloc(size);
+ void *retVal = malloc(size);
  if(retVal != ((void *)0))
   globalState=1;
  return retVal;

@@ -26,14 +26,6 @@ static int staticTrue = 1; /* true */
 static int staticFalse = 0; /* false */
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE590_Free_Memory_Not_on_Heap__free_wchar_t_alloca_05_bad()
 {
@@ -72,10 +64,10 @@ static void goodG2B1()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL)
             {
-                printLine("safe_malloc() failed");
+                printLine("malloc() failed");
                 exit(1);
             }
             wmemset(dataBuffer, L'A', 100-1); /* fill with 'A's */
@@ -97,10 +89,10 @@ static void goodG2B2()
     {
         {
             /* FIX: data is allocated on the heap and deallocated in the BadSink */
-            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL)
             {
-                printLine("safe_malloc() failed");
+                printLine("malloc() failed");
                 exit(1);
             }
             wmemset(dataBuffer, L'A', 100-1); /* fill with 'A's */

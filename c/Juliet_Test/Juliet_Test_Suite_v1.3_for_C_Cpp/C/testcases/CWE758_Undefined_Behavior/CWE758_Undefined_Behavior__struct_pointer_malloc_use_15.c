@@ -16,14 +16,6 @@ Template File: point-flaw-15.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE758_Undefined_Behavior__struct_pointer_malloc_use_15_bad()
 {
@@ -31,7 +23,7 @@ void CWE758_Undefined_Behavior__struct_pointer_malloc_use_15_bad()
     {
     case 6:
     {
-        twoIntsStruct * * pointer = (twoIntsStruct * *)safe_malloc(sizeof(twoIntsStruct *));
+        twoIntsStruct * * pointer = (twoIntsStruct * *)malloc(sizeof(twoIntsStruct *));
         if (pointer == NULL) {exit(-1);}
         twoIntsStruct * data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         free(pointer);
@@ -62,10 +54,10 @@ static void good1()
     default:
     {
         twoIntsStruct * data;
-        twoIntsStruct * * pointer = (twoIntsStruct * *)safe_malloc(sizeof(twoIntsStruct *));
+        twoIntsStruct * * pointer = (twoIntsStruct * *)malloc(sizeof(twoIntsStruct *));
         if (pointer == NULL) {exit(-1);}
         /* initialize both the pointer and the data pointed to */
-        data = (twoIntsStruct *)safe_malloc(sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
         data->intOne = 5;
         data->intTwo = 6;
@@ -89,10 +81,10 @@ static void good2()
     case 6:
     {
         twoIntsStruct * data;
-        twoIntsStruct * * pointer = (twoIntsStruct * *)safe_malloc(sizeof(twoIntsStruct *));
+        twoIntsStruct * * pointer = (twoIntsStruct * *)malloc(sizeof(twoIntsStruct *));
         if (pointer == NULL) {exit(-1);}
         /* initialize both the pointer and the data pointed to */
-        data = (twoIntsStruct *)safe_malloc(sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)malloc(sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
         data->intOne = 5;
         data->intTwo = 6;

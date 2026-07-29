@@ -6,7 +6,7 @@ Template File: source-sinks-15.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -19,21 +19,13 @@ Template File: source-sinks-15.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__char_calloc_15_bad()
 {
     char * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (char *)safe_calloc(20, sizeof(char));
+    data = (char *)calloc(20, sizeof(char));
     switch(6)
     {
     case 6:
@@ -59,7 +51,7 @@ static void goodB2G1()
     char * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (char *)safe_calloc(20, sizeof(char));
+    data = (char *)calloc(20, sizeof(char));
     switch(5)
     {
     case 6:
@@ -84,7 +76,7 @@ static void goodB2G2()
     char * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (char *)safe_calloc(20, sizeof(char));
+    data = (char *)calloc(20, sizeof(char));
     switch(6)
     {
     case 6:

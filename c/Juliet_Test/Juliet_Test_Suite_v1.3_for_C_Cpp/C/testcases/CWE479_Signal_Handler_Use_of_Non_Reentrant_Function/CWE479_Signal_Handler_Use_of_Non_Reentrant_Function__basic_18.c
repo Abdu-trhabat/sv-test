@@ -8,7 +8,7 @@ Template File: point-flaw-18.tmpl.c
  * CWE: 479 Signal Handler Use of Non-Reentrant Function
  * Sinks:
  *    GoodSink: Don't call a function from within the signal handler
- *    BadSink : safe_malloc() and free() inside a signal handler
+ *    BadSink : malloc() and free() inside a signal handler
  * Flow Variant: 18 Control flow: goto statements
  *
  * */
@@ -16,16 +16,6 @@ Template File: point-flaw-18.tmpl.c
 #include "std_testcase.h"
 
 #include <signal.h>
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 static void helperBad(int sig)
 {
@@ -35,7 +25,7 @@ static void helperBad(int sig)
      * procedural analysis, so we cannot do that either.  So instead,
      * do something very contrived with malloc/free
      */
-    void *voidPointer = safe_malloc(10);
+    void *voidPointer = malloc(10);
     if (voidPointer == NULL) {exit(-1);}
     free(voidPointer);
 }

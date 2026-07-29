@@ -9,8 +9,8 @@ Template File: sources-sinks-61b.tmpl.c
  * BadSource: fgets Read data from the console using fgets()
  * GoodSource: Small number greater than zero
  * Sinks:
- *    GoodSink: Allocate memory with safe_malloc() and check the size of the memory to be allocated
- *    BadSink : Allocate memory with safe_malloc(), but incorrectly check the size of the memory to be allocated
+ *    GoodSink: Allocate memory with malloc() and check the size of the memory to be allocated
+ *    BadSink : Allocate memory with malloc(), but incorrectly check the size of the memory to be allocated
  * Flow Variant: 61 Data flow: data returned from one function to another in different source files
  *
  * */
@@ -26,14 +26,6 @@ Template File: sources-sinks-61b.tmpl.c
 #define HELLO_STRING "hello"
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 size_t CWE789_Uncontrolled_Mem_Alloc__malloc_char_fgets_61b_badSource(size_t data)
 {

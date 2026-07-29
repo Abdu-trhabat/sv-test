@@ -6,8 +6,8 @@ Template File: sources-sink-15.tmpl.c
 /*
  * @description
  * CWE: 122 Heap Based Buffer Overflow
- * BadSource:  Allocate using safe_malloc() and set data pointer to a small buffer
- * GoodSource: Allocate using safe_malloc() and set data pointer to a large buffer
+ * BadSource:  Allocate using malloc() and set data pointer to a small buffer
+ * GoodSource: Allocate using malloc() and set data pointer to a large buffer
  * Sink: cpy
  *    BadSink : Copy string to data using strcpy
  * Flow Variant: 15 Control flow: switch(6)
@@ -19,14 +19,6 @@ Template File: sources-sink-15.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_dest_char_cpy_15_bad()
 {
@@ -36,7 +28,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_dest_char_cpy_15_bad()
     {
     case 6:
         /* FLAW: Allocate and point data to a small buffer that is smaller than the large buffer used in the sinks */
-        data = (char *)safe_malloc(50*sizeof(char));
+        data = (char *)malloc(50*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
         break;
@@ -73,7 +65,7 @@ static void goodG2B1()
         break;
     default:
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
         break;
@@ -98,7 +90,7 @@ static void goodG2B2()
     {
     case 6:
         /* FIX: Allocate and point data to a large buffer that is at least as large as the large buffer used in the sink */
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         data[0] = '\0'; /* null terminate */
         break;

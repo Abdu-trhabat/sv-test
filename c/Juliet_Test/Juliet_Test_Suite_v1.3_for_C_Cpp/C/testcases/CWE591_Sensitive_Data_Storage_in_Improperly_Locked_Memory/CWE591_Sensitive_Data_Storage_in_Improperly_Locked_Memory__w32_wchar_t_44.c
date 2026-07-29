@@ -49,14 +49,6 @@ static void badSink(wchar_t * password)
         free(password);
     }
 }
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_44_bad()
 {
@@ -65,7 +57,7 @@ void CWE591_Sensitive_Data_Storage_in_Improperly_Locked_Memory__w32_wchar_t_44_b
     void (*funcPtr) (wchar_t *) = badSink;
     /* Initialize Data */
     password = L"";
-    password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    password = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (password == NULL)
     {
         printLine("Memory could not be allocated");
@@ -116,7 +108,7 @@ static void goodG2B()
     void (*funcPtr) (wchar_t *) = goodG2BSink;
     /* Initialize Data */
     password = L"";
-    password = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+    password = (wchar_t *)malloc(100*sizeof(wchar_t));
     if (password == NULL)
     {
         printLine("Memory could not be allocated");

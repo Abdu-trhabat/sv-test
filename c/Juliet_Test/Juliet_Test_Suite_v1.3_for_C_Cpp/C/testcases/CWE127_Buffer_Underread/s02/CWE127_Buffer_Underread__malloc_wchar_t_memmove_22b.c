@@ -17,16 +17,6 @@ Template File: sources-sink-22b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -38,7 +28,7 @@ wchar_t * CWE127_Buffer_Underread__malloc_wchar_t_memmove_22_badSource(wchar_t *
     if(CWE127_Buffer_Underread__malloc_wchar_t_memmove_22_badGlobal)
     {
         {
-            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL) {exit(-1);}
             wmemset(dataBuffer, L'A', 100-1);
             dataBuffer[100-1] = L'\0';
@@ -68,7 +58,7 @@ wchar_t * CWE127_Buffer_Underread__malloc_wchar_t_memmove_22_goodG2B1Source(wcha
     else
     {
         {
-            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL) {exit(-1);}
             wmemset(dataBuffer, L'A', 100-1);
             dataBuffer[100-1] = L'\0';
@@ -85,7 +75,7 @@ wchar_t * CWE127_Buffer_Underread__malloc_wchar_t_memmove_22_goodG2B2Source(wcha
     if(CWE127_Buffer_Underread__malloc_wchar_t_memmove_22_goodG2B2Global)
     {
         {
-            wchar_t * dataBuffer = (wchar_t *)safe_malloc(100*sizeof(wchar_t));
+            wchar_t * dataBuffer = (wchar_t *)malloc(100*sizeof(wchar_t));
             if (dataBuffer == NULL) {exit(-1);}
             wmemset(dataBuffer, L'A', 100-1);
             dataBuffer[100-1] = L'\0';

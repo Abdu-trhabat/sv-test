@@ -16,14 +16,6 @@ Template File: point-flaw-15.tmpl.c
 #include "std_testcase.h"
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE758_Undefined_Behavior__long_malloc_use_15_bad()
 {
@@ -31,7 +23,7 @@ void CWE758_Undefined_Behavior__long_malloc_use_15_bad()
     {
     case 6:
     {
-        long * pointer = (long *)safe_malloc(sizeof(long));
+        long * pointer = (long *)malloc(sizeof(long));
         if (pointer == NULL) {exit(-1);}
         long data = *pointer; /* FLAW: the value pointed to by pointer is undefined */
         free(pointer);
@@ -61,7 +53,7 @@ static void good1()
     default:
     {
         long data;
-        long * pointer = (long *)safe_malloc(sizeof(long));
+        long * pointer = (long *)malloc(sizeof(long));
         if (pointer == NULL) {exit(-1);}
         data = 5L;
         *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */
@@ -83,7 +75,7 @@ static void good2()
     case 6:
     {
         long data;
-        long * pointer = (long *)safe_malloc(sizeof(long));
+        long * pointer = (long *)malloc(sizeof(long));
         if (pointer == NULL) {exit(-1);}
         data = 5L;
         *pointer = data; /* FIX: Assign a value to the thing pointed to by pointer */

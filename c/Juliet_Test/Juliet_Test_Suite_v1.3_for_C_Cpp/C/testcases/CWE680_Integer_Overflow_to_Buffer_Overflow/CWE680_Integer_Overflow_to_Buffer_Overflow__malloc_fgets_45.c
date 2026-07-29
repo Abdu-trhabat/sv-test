@@ -15,16 +15,6 @@ Template File: sources-sink-45.tmpl.c
  * */
 
 #include "std_testcase.h"
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #define CHAR_ARRAY_SIZE (3 * sizeof(data) + 2)
 
@@ -41,7 +31,7 @@ static void badSink()
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)safe_malloc(data * sizeof(int));
+        intPointer = (int*)malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {
@@ -87,7 +77,7 @@ static void goodG2BSink()
         int *intPointer;
         /* POTENTIAL FLAW: if data * sizeof(int) > SIZE_MAX, overflows to a small value
          * so that the for loop doing the initialization causes a buffer overflow */
-        intPointer = (int*)safe_malloc(data * sizeof(int));
+        intPointer = (int*)malloc(data * sizeof(int));
         if (intPointer == NULL) {exit(-1);}
         for (i = 0; i < (size_t)data; i++)
         {

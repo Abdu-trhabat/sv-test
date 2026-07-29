@@ -17,16 +17,6 @@ Template File: sources-sink-22b.tmpl.c
 #include "std_testcase.h"
 
 #include <wchar.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
@@ -38,7 +28,7 @@ char * CWE126_Buffer_Overread__malloc_char_loop_22_badSource(char * data)
     if(CWE126_Buffer_Overread__malloc_char_loop_22_badGlobal)
     {
         /* FLAW: Use a small buffer */
-        data = (char *)safe_malloc(50*sizeof(char));
+        data = (char *)malloc(50*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 50-1); /* fill with 'A's */
         data[50-1] = '\0'; /* null terminate */
@@ -65,7 +55,7 @@ char * CWE126_Buffer_Overread__malloc_char_loop_22_goodG2B1Source(char * data)
     else
     {
         /* FIX: Use a large buffer */
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */
@@ -79,7 +69,7 @@ char * CWE126_Buffer_Overread__malloc_char_loop_22_goodG2B2Source(char * data)
     if(CWE126_Buffer_Overread__malloc_char_loop_22_goodG2B2Global)
     {
         /* FIX: Use a large buffer */
-        data = (char *)safe_malloc(100*sizeof(char));
+        data = (char *)malloc(100*sizeof(char));
         if (data == NULL) {exit(-1);}
         memset(data, 'A', 100-1); /* fill with 'A's */
         data[100-1] = '\0'; /* null terminate */

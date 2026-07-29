@@ -15,24 +15,14 @@ Template File: sources-sink-61b.tmpl.c
  * */
 
 #include "std_testcase.h"
-extern void abort(void);
-extern void *malloc(unsigned int size);
-void *safe_malloc(unsigned int size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 #ifndef OMITBAD
 
 twoIntsStruct * CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_61b_badSource(twoIntsStruct * data)
 {
     /* INCIDENTAL: CWE-467 (Use of sizeof() on a pointer type) */
-    /* FLAW: Using sizeof the pointer and not the data type in safe_malloc() */
-    data = (twoIntsStruct *)safe_malloc(sizeof(data));
+    /* FLAW: Using sizeof the pointer and not the data type in malloc() */
+    data = (twoIntsStruct *)malloc(sizeof(data));
     if (data == NULL) {exit(-1);}
     data->intOne = 1;
     data->intTwo = 2;
@@ -46,8 +36,8 @@ twoIntsStruct * CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_61b_badSource(t
 /* goodG2B() uses the GoodSource with the BadSink */
 twoIntsStruct * CWE122_Heap_Based_Buffer_Overflow__sizeof_struct_61b_goodG2BSource(twoIntsStruct * data)
 {
-    /* FIX: Using sizeof the data type in safe_malloc() */
-    data = (twoIntsStruct *)safe_malloc(sizeof(*data));
+    /* FIX: Using sizeof the data type in malloc() */
+    data = (twoIntsStruct *)malloc(sizeof(*data));
     if (data == NULL) {exit(-1);}
     data->intOne = 1;
     data->intTwo = 2;

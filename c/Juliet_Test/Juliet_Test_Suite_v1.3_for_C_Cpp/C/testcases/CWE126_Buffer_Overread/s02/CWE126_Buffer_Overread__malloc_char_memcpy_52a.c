@@ -21,14 +21,6 @@ Template File: sources-sink-52a.tmpl.c
 #ifndef OMITBAD
 
 /* bad function declaration */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void CWE126_Buffer_Overread__malloc_char_memcpy_52b_badSink(char * data);
 
 void CWE126_Buffer_Overread__malloc_char_memcpy_52_bad()
@@ -36,7 +28,7 @@ void CWE126_Buffer_Overread__malloc_char_memcpy_52_bad()
     char * data;
     data = NULL;
     /* FLAW: Use a small buffer */
-    data = (char *)safe_malloc(50*sizeof(char));
+    data = (char *)malloc(50*sizeof(char));
     if (data == NULL) {exit(-1);}
     memset(data, 'A', 50-1); /* fill with 'A's */
     data[50-1] = '\0'; /* null terminate */
@@ -56,7 +48,7 @@ static void goodG2B()
     char * data;
     data = NULL;
     /* FIX: Use a large buffer */
-    data = (char *)safe_malloc(100*sizeof(char));
+    data = (char *)malloc(100*sizeof(char));
     if (data == NULL) {exit(-1);}
     memset(data, 'A', 100-1); /* fill with 'A's */
     data[100-1] = '\0'; /* null terminate */

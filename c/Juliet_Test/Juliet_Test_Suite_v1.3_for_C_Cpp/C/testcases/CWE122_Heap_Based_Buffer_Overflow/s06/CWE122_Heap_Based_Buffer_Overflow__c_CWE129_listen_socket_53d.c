@@ -40,20 +40,12 @@ Template File: sources-sinks-53d.tmpl.c
 #define CHAR_ARRAY_SIZE (3 * sizeof(data) + 2)
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_53d_badSink(int data)
 {
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -88,7 +80,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_53d_goodG2BSink(i
 {
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -119,7 +111,7 @@ void CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_53d_goodB2GSink(i
 {
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)

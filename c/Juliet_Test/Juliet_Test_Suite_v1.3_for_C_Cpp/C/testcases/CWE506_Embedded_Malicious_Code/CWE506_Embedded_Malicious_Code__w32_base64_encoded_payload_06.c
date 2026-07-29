@@ -27,14 +27,6 @@ Template File: point-flaw-06.tmpl.c
 static const int STATIC_CONST_FIVE = 5;
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_06_bad()
 {
@@ -59,7 +51,7 @@ void CWE506_Embedded_Malicious_Code__w32_base64_encoded_payload_06_bad()
                     break;
                 }
                 /* Allocate memory for the decoded message */
-                decodedPayload = (BYTE*) safe_malloc(requiredLength + 1);
+                decodedPayload = (BYTE*) malloc(requiredLength + 1);
                 if (decodedPayload == NULL)
                 {
                     break;

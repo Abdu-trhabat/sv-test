@@ -2959,16 +2959,8 @@ void ldv_check_alloc_flags(gfp_t flags ) ;
 void ldv_check_alloc_nonatomic(void) ;
 struct page *ldv_check_alloc_flags_and_return_some_page(gfp_t flags ) ;
 extern void *calloc(size_t nmemb, size_t msize);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 static void *kzalloc(size_t size, gfp_t flags) {
-	return safe_calloc(1UL, size);
+	return calloc(1UL, size);
 }
 struct input_dev *input_allocate_device(void) {
        return kzalloc(sizeof(struct input_dev), 0x10u | 0x40u | 0x80u);

@@ -5,14 +5,6 @@
 // Function: ___pskb_trim
 // with type: int ___pskb_trim(struct sk_buff *, unsigned int)
 // with return type: int
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 int __VERIFIER_nondet_int(void);
 int ___pskb_trim(struct sk_buff *arg0, unsigned int arg1) {
   // Simple type
@@ -39,7 +31,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: __kmalloc

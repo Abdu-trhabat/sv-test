@@ -6,7 +6,7 @@ Template File: source-sinks-21.tmpl.c
 /*
  * @description
  * CWE: 690 Unchecked Return Value To NULL Pointer
- * BadSource: calloc Allocate data using safe_calloc()
+ * BadSource: calloc Allocate data using calloc()
  * Sinks:
  *    GoodSink: Check to see if the data allocation failed and if not, use data
  *    BadSink : Don't check for NULL and use data
@@ -33,21 +33,13 @@ static void badSink(char * data)
         free(data);
     }
 }
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE690_NULL_Deref_From_Return__char_calloc_21_bad()
 {
     char * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (char *)safe_calloc(20, sizeof(char));
+    data = (char *)calloc(20, sizeof(char));
     badStatic = 1; /* true */
     badSink(data);
 }
@@ -85,7 +77,7 @@ static void goodB2G1()
     char * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (char *)safe_calloc(20, sizeof(char));
+    data = (char *)calloc(20, sizeof(char));
     goodB2G1Static = 0; /* false */
     goodB2G1Sink(data);
 }
@@ -110,7 +102,7 @@ static void goodB2G2()
     char * data;
     data = NULL; /* Initialize data */
     /* POTENTIAL FLAW: Allocate memory without checking if the memory allocation function failed */
-    data = (char *)safe_calloc(20, sizeof(char));
+    data = (char *)calloc(20, sizeof(char));
     goodB2G2Static = 1; /* true */
     goodB2G2Sink(data);
 }

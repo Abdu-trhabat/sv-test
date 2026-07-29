@@ -6,7 +6,7 @@ Template File: sources-sinks-61a.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using safe_realloc()
+ * BadSource: realloc Allocate data using realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -23,14 +23,6 @@ Template File: sources-sinks-61a.tmpl.c
 
 /* bad function declaration */
 char * CWE401_Memory_Leak__char_realloc_61b_badSource(char * data);
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE401_Memory_Leak__char_realloc_61_bad()
 {

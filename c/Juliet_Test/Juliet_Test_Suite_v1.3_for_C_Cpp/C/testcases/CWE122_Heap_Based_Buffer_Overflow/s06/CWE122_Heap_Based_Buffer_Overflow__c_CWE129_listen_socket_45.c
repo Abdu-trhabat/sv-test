@@ -29,16 +29,6 @@ Template File: sources-sinks-45.tmpl.c
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-extern void abort(void);
-extern void *malloc(size_t size);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
 #define CLOSE_SOCKET close
@@ -60,7 +50,7 @@ static void badSink()
     int data = CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_45_badData;
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -174,7 +164,7 @@ static void goodG2BSink()
     int data = CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_45_goodG2BData;
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)
@@ -218,7 +208,7 @@ static void goodB2GSink()
     int data = CWE122_Heap_Based_Buffer_Overflow__c_CWE129_listen_socket_45_goodB2GData;
     {
         int i;
-        int * buffer = (int *)safe_malloc(10 * sizeof(int));
+        int * buffer = (int *)malloc(10 * sizeof(int));
         if (buffer == NULL) {exit(-1);}
         /* initialize buffer */
         for (i = 0; i < 10; i++)

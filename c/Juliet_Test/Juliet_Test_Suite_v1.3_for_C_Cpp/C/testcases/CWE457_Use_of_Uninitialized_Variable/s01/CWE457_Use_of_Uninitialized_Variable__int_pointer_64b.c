@@ -20,14 +20,6 @@ Template File: sources-sinks-64b.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE457_Use_of_Uninitialized_Variable__int_pointer_64b_badSink(void * dataVoidPtr)
 {
@@ -63,7 +55,7 @@ void CWE457_Use_of_Uninitialized_Variable__int_pointer_64b_goodB2GSink(void * da
     int * data = (*dataPtr);
     /* FIX: Ensure data is initialized before use */
     /* initialize both the pointer and the data pointed to */
-    data = (int *)safe_malloc(sizeof(int));
+    data = (int *)malloc(sizeof(int));
     if (data == NULL) {exit(-1);}
     *data = 5;
     printIntLine(*data);

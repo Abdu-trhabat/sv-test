@@ -6,7 +6,7 @@ Template File: sources-sinks-15.tmpl.c
 /*
  * @description
  * CWE: 401 Memory Leak
- * BadSource: realloc Allocate data using safe_realloc()
+ * BadSource: realloc Allocate data using realloc()
  * GoodSource: Allocate data on the stack
  * Sinks:
  *    GoodSink: call free() on data
@@ -20,14 +20,6 @@ Template File: sources-sinks-15.tmpl.c
 #include <wchar.h>
 
 #ifndef OMITBAD
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE401_Memory_Leak__twoIntsStruct_realloc_15_bad()
 {
@@ -37,7 +29,7 @@ void CWE401_Memory_Leak__twoIntsStruct_realloc_15_bad()
     {
     case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (twoIntsStruct *)safe_realloc(data, 100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)realloc(data, 100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         data[0].intOne = 0;
@@ -75,7 +67,7 @@ static void goodB2G1()
     {
     case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (twoIntsStruct *)safe_realloc(data, 100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)realloc(data, 100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         data[0].intOne = 0;
@@ -109,7 +101,7 @@ static void goodB2G2()
     {
     case 6:
         /* POTENTIAL FLAW: Allocate memory on the heap */
-        data = (twoIntsStruct *)safe_realloc(data, 100*sizeof(twoIntsStruct));
+        data = (twoIntsStruct *)realloc(data, 100*sizeof(twoIntsStruct));
         if (data == NULL) {exit(-1);}
         /* Initialize and make use of data */
         data[0].intOne = 0;

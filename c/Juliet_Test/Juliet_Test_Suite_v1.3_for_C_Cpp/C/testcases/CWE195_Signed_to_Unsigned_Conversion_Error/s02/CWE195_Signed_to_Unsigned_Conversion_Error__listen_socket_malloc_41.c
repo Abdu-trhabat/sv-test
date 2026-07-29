@@ -9,7 +9,7 @@ Template File: sources-sink-41.tmpl.c
  * BadSource: listen_socket Read data using a listen socket (server side)
  * GoodSource: Positive integer
  * Sink: malloc
- *    BadSink : Allocate memory using safe_malloc() with the size of data
+ *    BadSink : Allocate memory using malloc() with the size of data
  * Flow Variant: 41 Data flow: data passed as an argument from one function to another in the same source file
  *
  * */
@@ -39,23 +39,15 @@ Template File: sources-sink-41.tmpl.c
 #define CHAR_ARRAY_SIZE (3 * sizeof(data) + 2)
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE195_Signed_to_Unsigned_Conversion_Error__listen_socket_malloc_41_badSink(int data)
 {
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {
-        /* POTENTIAL FLAW: safe_malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
-         * the conversion will cause safe_malloc() to allocate a very large amount of data or fail */
-        char * dataBuffer = (char *)safe_malloc(data);
+        /* POTENTIAL FLAW: malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
+         * the conversion will cause malloc() to allocate a very large amount of data or fail */
+        char * dataBuffer = (char *)malloc(data);
         if (dataBuffer == NULL) {exit(-1);}
         /* Do something with dataBuffer */
         memset(dataBuffer, 'A', data-1);
@@ -151,9 +143,9 @@ void CWE195_Signed_to_Unsigned_Conversion_Error__listen_socket_malloc_41_goodG2B
     /* Assume we want to allocate a relatively small buffer */
     if (data < 100)
     {
-        /* POTENTIAL FLAW: safe_malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
-         * the conversion will cause safe_malloc() to allocate a very large amount of data or fail */
-        char * dataBuffer = (char *)safe_malloc(data);
+        /* POTENTIAL FLAW: malloc() takes a size_t (unsigned int) as input and therefore if it is negative,
+         * the conversion will cause malloc() to allocate a very large amount of data or fail */
+        char * dataBuffer = (char *)malloc(data);
         if (dataBuffer == NULL) {exit(-1);}
         /* Do something with dataBuffer */
         memset(dataBuffer, 'A', data-1);

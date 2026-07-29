@@ -3440,18 +3440,10 @@ int ade7854_probe(struct iio_dev *arg0, struct device *arg1) {
 }
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 void *dev_get_drvdata(const struct device *arg0) {
   return ldv_malloc(0UL);

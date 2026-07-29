@@ -3939,18 +3939,10 @@ int __request_module(bool arg0, const char *arg1, ...) {
 }
 extern _Bool __VERIFIER_nondet_bool(void) ;
 extern void *malloc(size_t) ;
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 void *kmem_cache_alloc(struct kmem_cache *arg0, gfp_t arg1) {
   return ldv_malloc(0UL);

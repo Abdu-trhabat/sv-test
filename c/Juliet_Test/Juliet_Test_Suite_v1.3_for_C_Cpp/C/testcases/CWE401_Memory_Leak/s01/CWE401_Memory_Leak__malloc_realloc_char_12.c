@@ -8,7 +8,7 @@ Template File: point-flaw-12.tmpl.c
  * CWE: 401 Memory Leak
  * Sinks:
  *    GoodSink: Ensure the memory block pointed to by data is always freed
- *    BadSink : safe_malloc() and use then safe_realloc() and use data before free()
+ *    BadSink : malloc() and use then realloc() and use data before free()
  * Flow Variant: 12 Control flow: if(globalReturnsTrueOrFalse())
  *
  * */
@@ -20,35 +20,19 @@ Template File: point-flaw-12.tmpl.c
 #endif
 
 #ifndef OMITBAD
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 void CWE401_Memory_Leak__malloc_realloc_char_12_bad()
 {
     if(globalReturnsTrueOrFalse())
     {
         {
-            char * data = (char *)safe_malloc(100*sizeof(char));
+            char * data = (char *)malloc(100*sizeof(char));
             if (data == NULL) {exit(-1);}
             /* Initialize and make use of data */
             strcpy(data, "A String");
             printLine(data);
-            /* FLAW: If safe_realloc() fails, the initial memory block will not be freed() */
-            data = (char *)safe_realloc(data, (130000)*sizeof(char));
+            /* FLAW: If realloc() fails, the initial memory block will not be freed() */
+            data = (char *)realloc(data, (130000)*sizeof(char));
             if (data != NULL)
             {
                 /* Reinitialize and make use of data */
@@ -61,15 +45,15 @@ void CWE401_Memory_Leak__malloc_realloc_char_12_bad()
     else
     {
         {
-            char * data = (char *)safe_malloc(100*sizeof(char));
+            char * data = (char *)malloc(100*sizeof(char));
             if (data == NULL) {exit(-1);}
             char * tmpData;
             /* Initialize and make use of data */
             strcpy(data, "A String");
             printLine(data);
-            tmpData = (char *)safe_realloc(data, (130000)*sizeof(char));
-            /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
-            * allocated with safe_realloc() */
+            tmpData = (char *)realloc(data, (130000)*sizeof(char));
+            /* FIX: Ensure realloc() was successful before assigning data to the memory block
+            * allocated with realloc() */
             if (tmpData != NULL)
             {
                 data = tmpData;
@@ -92,15 +76,15 @@ static void good1()
     if(globalReturnsTrueOrFalse())
     {
         {
-            char * data = (char *)safe_malloc(100*sizeof(char));
+            char * data = (char *)malloc(100*sizeof(char));
             if (data == NULL) {exit(-1);}
             char * tmpData;
             /* Initialize and make use of data */
             strcpy(data, "A String");
             printLine(data);
-            tmpData = (char *)safe_realloc(data, (130000)*sizeof(char));
-            /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
-            * allocated with safe_realloc() */
+            tmpData = (char *)realloc(data, (130000)*sizeof(char));
+            /* FIX: Ensure realloc() was successful before assigning data to the memory block
+            * allocated with realloc() */
             if (tmpData != NULL)
             {
                 data = tmpData;
@@ -114,15 +98,15 @@ static void good1()
     else
     {
         {
-            char * data = (char *)safe_malloc(100*sizeof(char));
+            char * data = (char *)malloc(100*sizeof(char));
             if (data == NULL) {exit(-1);}
             char * tmpData;
             /* Initialize and make use of data */
             strcpy(data, "A String");
             printLine(data);
-            tmpData = (char *)safe_realloc(data, (130000)*sizeof(char));
-            /* FIX: Ensure safe_realloc() was successful before assigning data to the memory block
-            * allocated with safe_realloc() */
+            tmpData = (char *)realloc(data, (130000)*sizeof(char));
+            /* FIX: Ensure realloc() was successful before assigning data to the memory block
+            * allocated with realloc() */
             if (tmpData != NULL)
             {
                 data = tmpData;

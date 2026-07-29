@@ -25,15 +25,6 @@ __extension__
 
 extern void *malloc (size_t __size) __attribute__ ((__nothrow__ )) __attribute__ ((__malloc__))
                                          ;
-extern void abort(void);
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern void free (void *__ptr) __attribute__ ((__nothrow__ ));
 extern void exit (int __status) __attribute__ ((__nothrow__ )) __attribute__ ((__noreturn__));
 
@@ -591,8 +582,8 @@ static const char *result;
 static size_t num_digits;
 static _Bool is_negative;
 static void init_getlimits_buffer() {
-    input_buf = safe_malloc(200);
-    old_digits = safe_malloc(200);
+    input_buf = malloc(200);
+    old_digits = malloc(200);
     assume_or_exit(input_buf != ((void*)0) && old_digits != ((void*)0));
 }
 static void free_getlimits_buffer() {

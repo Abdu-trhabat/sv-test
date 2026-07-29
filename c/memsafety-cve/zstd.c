@@ -26,7 +26,7 @@ char* mallocAndJoin2Dir(const char *dir1, const char *dir2)
   const size_t dir2Size = strlen(dir2);
   char *outDirBuffer, *buffer, trailingChar;
 
-  outDirBuffer = (char *) safe_malloc(dir1Size + dir2Size + 2);
+  outDirBuffer = (char *) malloc(dir1Size + dir2Size + 2);
   if (outDirBuffer == NULL) {
     printf("Out of memory!\n");
     exit(1);
