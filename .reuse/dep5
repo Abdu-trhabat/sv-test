@@ -3,6 +3,7 @@ Upstream-Name: SV-Benchmarks
 Source: https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
 
 Files:
+ Invalid-TaskDefs.set
  c/*.set
  c/*/*.yml
  sv-lib/*.set
