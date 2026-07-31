@@ -29,14 +29,6 @@
 #define DEVNAME "pc8736x_gpio"
 
 static int major;		/* default to dynamic major */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 static DEFINE_MUTEX(pc8736x_gpio_config_lock);
 static unsigned pc8736x_gpio_base;

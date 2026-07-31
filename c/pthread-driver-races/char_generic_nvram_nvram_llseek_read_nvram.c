@@ -31,14 +31,6 @@
 #include <undef_funcs_generic_nvram.h>
 
 #define NVRAM_SIZE	8192
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 
 static DEFINE_MUTEX(nvram_mutex);
 static ssize_t nvram_len;

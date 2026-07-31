@@ -36,10 +36,17 @@ struct thread_info {
 };
 
 extern void* malloc(unsigned int);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
 
 static inline struct thread_info *current_thread_info(void)
 {
-	struct thread_info *ti = (struct thread_info *) malloc(sizeof(struct thread_info));
+	struct thread_info *ti = (struct thread_info *) safe_malloc(sizeof(struct thread_info));
 	return ti;
 }
 
