@@ -1,6 +1,4 @@
 #include <stdlib.h>   /* malloc */
-#define uthash_malloc(sz) safe_malloc(sz)
-#include <stdlib.h>   /* malloc */
 void *safe_malloc(size_t size) {
   void *p = malloc(size);
   if (p == 0) {
