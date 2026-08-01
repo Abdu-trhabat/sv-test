@@ -5,8 +5,6 @@
 // Function: acpi_bus_register_driver
 // with type: int acpi_bus_register_driver(struct acpi_driver *)
 // with return type: int
-void *safe_malloc(size_t size);
-
 int __VERIFIER_nondet_int(void);
 int acpi_bus_register_driver(struct acpi_driver *arg0) {
   // Simple type
@@ -94,7 +92,7 @@ extern void *malloc(size_t) ;
 void *ldv_malloc(size_t size )
 {
   if(__VERIFIER_nondet_bool()) return 0;
-  return safe_malloc(size);
+  return malloc(size);
 }
 
 // Function: kmem_cache_alloc

@@ -1,13 +1,5 @@
-#include <stdlib.h>   /* malloc */
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-#define uthash_malloc(sz) safe_malloc(sz)
 #include "uthash_JEN.h"
+#include <stdlib.h>   /* malloc */
 #include "verifier.h"
 #include <assert.h>// version of test3.c with nondeterministic bound
 
@@ -26,7 +18,7 @@ int main()
 
     /* create elements */
     for(i=0; i<bound; i++) {
-        user = (example_user_t*)safe_malloc(sizeof(example_user_t));
+        user = (example_user_t*)malloc(sizeof(example_user_t));
         if (user == NULL) {
             exit(-1);
         }
