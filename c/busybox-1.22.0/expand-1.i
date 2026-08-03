@@ -1318,14 +1318,6 @@ void *safe_malloc(size_t size) {
   return p;
 }
 
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -2392,7 +2384,7 @@ static void bb_verror_msg(const char *s, va_list p, const char *strerr)
   return_value_strlen$4=strlen(msg_eol);
   msgeol_len = (signed int)return_value_strlen$4;
   void *return_value_realloc$5;
-  return_value_realloc$5=safe_realloc((void *)msg, (unsigned long int)(applet_len + used + strerr_len + msgeol_len + 3));
+  return_value_realloc$5=realloc((void *)msg, (unsigned long int)(applet_len + used + strerr_len + msgeol_len + 3));
   msg1 = (char *)return_value_realloc$5;
   signed int tmp_post$6;
   signed int tmp_post$7;
@@ -3491,7 +3483,7 @@ static void xfunc_die(void)
 static void * xmalloc(unsigned long int size)
 {
   void *ptr;
-  ptr=safe_malloc(size);
+  ptr=malloc(size);
   if(ptr == ((void *)0))
   {
     if(!(size == 0ul))
@@ -3508,7 +3500,7 @@ static char * xmalloc_fgets(struct _IO_FILE *file)
 }
 static void * xrealloc(void *ptr, unsigned long int size)
 {
-  ptr=safe_realloc(ptr, size);
+  ptr=realloc(ptr, size);
   if(ptr == ((void *)0))
   {
     if(!(size == 0ul))
