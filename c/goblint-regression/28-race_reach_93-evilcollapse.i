@@ -237,14 +237,14 @@ struct __pthread_mutex_s
   unsigned int __count;
   int __owner;
   int __kind;
- 
+
   unsigned int __nusers;
   __extension__ union
   {
     struct { short __espins; short __eelision; } __elision_data;
     __pthread_slist_t __list;
   };
- 
+
 };
 struct __pthread_cond_s
 {
@@ -1003,16 +1003,16 @@ void assume_abort_if_not(int cond) {
 }
 pthread_mutex_t __global_lock = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 struct list_head {
-   struct list_head *next ;
-   struct list_head *prev ;
+  struct list_head *next ;
+  struct list_head *prev ;
 };
 struct s {
-   int datum ;
-   struct list_head list ;
+  int datum ;
+  struct list_head list ;
 };
 struct cache {
-   struct list_head slot[10] ;
-   pthread_mutex_t slots_mutex[10] ;
+  struct list_head slot[10] ;
+  pthread_mutex_t slots_mutex[10] ;
 };
 struct cache c ;
 static inline void INIT_LIST_HEAD(struct list_head *list) {
@@ -1031,6 +1031,20 @@ static inline void list_add(struct list_head *new, struct list_head *head) {
   new->next = next;
   new->prev = head;
   head->next = new;
+}
+inline static struct list_head *lookup1 (int d) {
+  int hvalue1 = __VERIFIER_nondet_int();
+  assume_abort_if_not(0 <= hvalue1 && hvalue1 < 10);
+  struct list_head *p;
+  p = c.slot[hvalue1].next;
+  return p;
+}
+inline static struct list_head *lookup2 (int d) {
+  int hvalue2 = __VERIFIER_nondet_int();
+  assume_abort_if_not(0 <= hvalue2 && hvalue2 < 10);
+  struct list_head *p;
+  p = c.slot[hvalue2].next;
+  return p;
 }
 void *t_fun(void *arg) {
   struct s *pos ;
@@ -1053,12 +1067,19 @@ void *t_fun(void *arg) {
   return 0;
 }
 int main() {
+  int x = __VERIFIER_nondet_int();
+  struct list_head *pp;
+  pthread_t t1, t2;
   for (int i = 0; i < 10; i++) {
     INIT_LIST_HEAD(&c.slot[i]);
     pthread_mutex_init(&c.slots_mutex[i], ((void *)0));
-    for (int j = 0; j < 30; j++) list_add(&new(0)->list, &c.slot[i]);
+    for (int j = 0; j < 30; j++) list_add(&new(j*i)->list, &c.slot[i]);
   }
+  if (x)
+    pp = lookup1(7);
+  else
+    pp = lookup2(7);
   pthread_t t_ids[10000]; for (int i=0; i<10000; i++) pthread_create(&t_ids[i], ((void *)0), t_fun, ((void *)0));
   for (int i=0; i < 10000; i++) pthread_join (t_ids[i], ((void *)0));
-  return 0;
+  return ((long) pp);
 }
