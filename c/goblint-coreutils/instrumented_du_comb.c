@@ -5819,30 +5819,6 @@ void *hash_delete(Hash_table *table___0 , void const   *entry ) ;
 #line 473 "/usr/include/stdlib.h"
 extern void *( __attribute__((__warn_unused_result__)) calloc)(size_t __nmemb , size_t __size )  __attribute__((__nothrow__,
 __malloc__)) ;
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 #line 130 "hash.c"
 static struct hash_tuning  const  default_tuning  =    {(float )0.0, (float )1.0, (float )0.8, (float )1.414, (_Bool)0};
 #line 1 "hash-pjw.o"
@@ -11210,7 +11186,7 @@ char *areadlink_with_size(char const   *file , size_t size )
     }
     {
 #line 70
-    tmp___1 = safe_malloc(buf_size);
+    tmp___1 = malloc(buf_size);
 #line 70
     buffer = (char *)tmp___1;
     }
@@ -12532,7 +12508,7 @@ struct argv_iterator *( __attribute__((__nonnull__(1))) argv_iter_init_argv)(cha
   {
   {
 #line 42
-  tmp = safe_malloc(sizeof(*ai));
+  tmp = malloc(sizeof(*ai));
 #line 42
   ai = (struct argv_iterator *)tmp;
   }
@@ -12565,7 +12541,7 @@ struct argv_iterator *( __attribute__((__nonnull__(1))) argv_iter_init_stream)(F
   {
   {
 #line 56
-  tmp = safe_malloc(sizeof(*ai));
+  tmp = malloc(sizeof(*ai));
 #line 56
   ai = (struct argv_iterator *)tmp;
   }
@@ -13789,7 +13765,7 @@ size_t base64_encode_alloc(char const   *in , size_t inlen , char **out )
   }
   {
 #line 139
-  tmp = safe_malloc(outlen);
+  tmp = malloc(outlen);
 #line 139
   *out = (char *)tmp;
   }
@@ -14564,7 +14540,7 @@ _Bool base64_decode_alloc_ctx(struct base64_decode_context *ctx , char const   *
 #line 560
   needlen = 3UL * (inlen / 4UL) + 3UL;
 #line 562
-  tmp = safe_malloc(needlen);
+  tmp = malloc(needlen);
 #line 562
   *out = (char *)tmp;
   }
@@ -17870,7 +17846,7 @@ int md5_stream(FILE *stream , void *resblock )
   {
   {
 #line 143
-  tmp = safe_malloc((size_t )32840);
+  tmp = malloc((size_t )32840);
 #line 143
   buffer = (char *)tmp;
   }
@@ -20171,7 +20147,7 @@ int sha1_stream(FILE *stream , void *resblock )
   {
   {
 #line 131
-  tmp = safe_malloc((size_t )32840);
+  tmp = malloc((size_t )32840);
 #line 131
   buffer = (char *)tmp;
   }
@@ -22928,7 +22904,7 @@ int sha256_stream(FILE *stream , void *resblock )
   {
   {
 #line 175
-  tmp = safe_malloc((size_t )32840);
+  tmp = malloc((size_t )32840);
 #line 175
   buffer = (char *)tmp;
   }
@@ -23080,7 +23056,7 @@ int sha224_stream(FILE *stream , void *resblock )
   {
   {
 #line 246
-  tmp = safe_malloc((size_t )32840);
+  tmp = malloc((size_t )32840);
 #line 246
   buffer = (char *)tmp;
   }
@@ -25727,7 +25703,7 @@ int sha512_stream(FILE *stream , void *resblock )
   {
   {
 #line 183
-  tmp = safe_malloc((size_t )32840);
+  tmp = malloc((size_t )32840);
 #line 183
   buffer = (char *)tmp;
   }
@@ -25879,7 +25855,7 @@ int sha384_stream(FILE *stream , void *resblock )
   {
   {
 #line 254
-  tmp = safe_malloc((size_t )32840);
+  tmp = malloc((size_t )32840);
 #line 254
   buffer = (char *)tmp;
   }
@@ -28964,7 +28940,7 @@ struct di_set *di_set_alloc(void)
   {
   {
 #line 115
-  tmp = safe_malloc(sizeof(*dis));
+  tmp = malloc(sizeof(*dis));
 #line 115
   dis = (struct di_set *)tmp;
   }
@@ -29063,7 +29039,7 @@ static struct hash_table *map_device(struct di_set *dis , dev_t dev )
     __VERIFIER_assert(probe == 0);
     {
 #line 167
-    tmp = safe_malloc(sizeof(*probe));
+    tmp = malloc(sizeof(*probe));
 #line 167
     probe = (struct di_ent *)tmp;
 #line 167
@@ -29590,7 +29566,7 @@ char *mdir_name(char const   *file )
 #line 74
   append_dot = (_Bool )tmp___0;
 #line 78
-  tmp___1 = safe_malloc((length + (size_t )append_dot) + 1UL);
+  tmp___1 = malloc((length + (size_t )append_dot) + 1UL);
 #line 78
   dir = (char *)tmp___1;
   }
@@ -34984,7 +34960,7 @@ char *mfile_name_concat(char const   *dir , char const   *abase , char **base_in
 #line 69
   baselen = tmp___3;
 #line 71
-  tmp___4 = safe_malloc(((dirlen + needs_separator) + baselen) + 1UL);
+  tmp___4 = malloc(((dirlen + needs_separator) + baselen) + 1UL);
 #line 71
   p_concat = (char *)tmp___4;
   }
@@ -45584,7 +45560,7 @@ ssize_t getndelim2(char **lineptr , size_t *linesize , size_t offset , size_t nm
     }
     {
 #line 84
-    tmp = safe_malloc(size);
+    tmp = malloc(size);
 #line 84
     ptr = (char *)tmp;
     }
@@ -45846,7 +45822,7 @@ ssize_t getndelim2(char **lineptr , size_t *linesize , size_t offset , size_t nm
 #line 172
         nbytes_avail = newsize - (size_t )(read_pos - ptr);
 #line 173
-        tmp___2 = safe_realloc((void *)ptr, newsize);
+        tmp___2 = realloc((void *)ptr, newsize);
 #line 173
         newptr = (char *)tmp___2;
         }
@@ -48078,7 +48054,7 @@ Hash_table *( __attribute__((__warn_unused_result__)) hash_initialize)(size_t ca
   __VERIFIER_assert(((((comparator == & di_ent_compare || comparator == & string_compare) || comparator == & raw_comparator) || comparator == & ino_compare) || comparator == & AD_compare) || comparator == & LCO_compare);
   {
 #line 605
-  tmp = safe_malloc(sizeof(*table___0));
+  tmp = malloc(sizeof(*table___0));
 #line 605
   table___0 = (Hash_table *)tmp;
   }
@@ -48142,7 +48118,7 @@ Hash_table *( __attribute__((__warn_unused_result__)) hash_initialize)(size_t ca
   }
   {
 #line 626
-  tmp___1 = safe_calloc(table___0->n_buckets, sizeof(*(table___0->bucket)));
+  tmp___1 = calloc(table___0->n_buckets, sizeof(*(table___0->bucket)));
 #line 626
   table___0->bucket = (struct hash_entry *)tmp___1;
   }
@@ -48481,7 +48457,7 @@ static struct hash_entry *allocate_entry(Hash_table *table___0 )
 
     {
 #line 765
-    tmp = safe_malloc(sizeof(*new));
+    tmp = malloc(sizeof(*new));
 #line 765
     new = (struct hash_entry *)tmp;
     }
@@ -48893,7 +48869,7 @@ _Bool ( __attribute__((__warn_unused_result__)) hash_rehash)(Hash_table *table__
 #line 954
   __VERIFIER_assert(new_table == & storage);
 #line 954
-  tmp___0 = safe_calloc(new_size, sizeof(*(new_table->bucket)));
+  tmp___0 = calloc(new_size, sizeof(*(new_table->bucket)));
 #line 954
   new_table->bucket = (struct hash_entry *)tmp___0;
   }
@@ -53001,7 +52977,7 @@ struct ino_map *ino_map_alloc(size_t next_mapped_ino )
   {
   {
 #line 85
-  tmp = safe_malloc(sizeof(*im));
+  tmp = malloc(sizeof(*im));
 #line 85
   im = (struct ino_map *)tmp;
   }
@@ -53095,7 +53071,7 @@ size_t ( __attribute__((__nonnull__(1))) ino_map_insert)(struct ino_map *im , in
     __VERIFIER_assert(probe == 0);
     {
 #line 133
-    tmp = safe_malloc(sizeof(*probe));
+    tmp = malloc(sizeof(*probe));
 #line 133
     probe = (struct ino_map_ent *)tmp;
 #line 133
@@ -54135,7 +54111,7 @@ static char const   *get_charset_aliases(void)
 #line 143
     add_slash = tmp___2;
 #line 144
-    tmp___3 = safe_malloc(((dir_len___0 + (size_t )add_slash) + base_len___0) + 1UL);
+    tmp___3 = malloc(((dir_len___0 + (size_t )add_slash) + base_len___0) + 1UL);
 #line 144
     file_name___1 = (char *)tmp___3;
     }
@@ -54406,7 +54382,7 @@ static char const   *get_charset_aliases(void)
 #line 221
               res_size = ((l1 + 1UL) + l2) + 1UL;
 #line 222
-              tmp___6 = safe_malloc(res_size + 1UL);
+              tmp___6 = malloc(res_size + 1UL);
 #line 222
               res_ptr = (char *)tmp___6;
               }
@@ -54419,7 +54395,7 @@ static char const   *get_charset_aliases(void)
 #line 226
               res_size += ((l1 + 1UL) + l2) + 1UL;
 #line 227
-              tmp___7 = safe_realloc((void *)res_ptr, res_size + 1UL);
+              tmp___7 = realloc((void *)res_ptr, res_size + 1UL);
 #line 227
               res_ptr = (char *)tmp___7;
               }
@@ -54973,7 +54949,7 @@ void *mmalloca(size_t n )
 
     {
 #line 78
-    tmp = safe_malloc(nplus);
+    tmp = malloc(nplus);
 #line 78
     p = (char *)tmp;
     }
@@ -55348,7 +55324,7 @@ size_t mbsalign(char const   *src , char *dest , size_t dest_size , size_t *widt
 #line 139
     src_chars ++;
 #line 140
-    tmp___1 = safe_malloc(src_chars * sizeof(wchar_t ));
+    tmp___1 = malloc(src_chars * sizeof(wchar_t ));
 #line 140
     str_wc = (wchar_t *)tmp___1;
     }
@@ -55431,7 +55407,7 @@ size_t mbsalign(char const   *src , char *dest , size_t dest_size , size_t *widt
         }
         {
 #line 167
-        tmp___6 = safe_malloc(src_size);
+        tmp___6 = malloc(src_size);
 #line 167
         newstr = (char *)tmp___6;
         }
@@ -55640,7 +55616,7 @@ char *ambsalign(char const   *src , size_t *width , mbs_align_t align , int flag
 #line 249
     size = req + 1UL;
 #line 250
-    tmp = safe_realloc((void *)buf___1, size);
+    tmp = realloc((void *)buf___1, size);
 #line 250
     nbuf = (char *)tmp;
     }
@@ -60929,7 +60905,7 @@ static gid_t *realloc_groupbuf(gid_t *g , size_t num )
   }
   {
 #line 45
-  tmp___1 = safe_realloc((void *)g, num * sizeof(*g));
+  tmp___1 = realloc((void *)g, num * sizeof(*g));
   }
 #line 45
   return ((gid_t *)tmp___1);
@@ -64981,7 +64957,7 @@ int yyparse(parser_control *pc )
 #line 1640
     yyss1 = yyss;
 #line 1641
-    tmp = safe_malloc(yystacksize * (sizeof(yytype_int16 ) + sizeof(YYSTYPE )) + (sizeof(union yyalloc ) - 1UL));
+    tmp = malloc(yystacksize * (sizeof(yytype_int16 ) + sizeof(YYSTYPE )) + (sizeof(union yyalloc ) - 1UL));
 #line 1641
     yyptr = (union yyalloc *)tmp;
     }
@@ -83374,7 +83350,7 @@ char *fread_file(FILE *stream , size_t *length )
   }
   {
 #line 76
-  tmp___3 = safe_malloc(alloc);
+  tmp___3 = malloc(alloc);
 #line 76
   buf___1 = (char *)tmp___3;
   }
@@ -83443,7 +83419,7 @@ char *fread_file(FILE *stream , size_t *length )
 
         {
 #line 100
-        tmp___7 = safe_realloc((void *)buf___1, size + 1UL);
+        tmp___7 = realloc((void *)buf___1, size + 1UL);
 #line 100
         smaller_buf = (char *)tmp___7;
         }
@@ -83501,7 +83477,7 @@ char *fread_file(FILE *stream , size_t *length )
     }
     {
 #line 124
-    tmp___9 = safe_realloc((void *)buf___1, alloc);
+    tmp___9 = realloc((void *)buf___1, alloc);
 #line 124
     new_buf = (char *)tmp___9;
     }
@@ -91094,7 +91070,7 @@ int mem_cd_iconv(char const   *src , size_t srclen , iconv_t cd , char **resultp
     _L: 
     {
 #line 128
-    tmp___4 = safe_malloc(length);
+    tmp___4 = malloc(length);
 #line 128
     result = (char *)tmp___4;
     }
@@ -91302,7 +91278,7 @@ char *str_cd_iconv(char const   *src , iconv_t cd )
 #line 270
   result_size ++;
 #line 272
-  tmp___0 = safe_malloc(result_size);
+  tmp___0 = malloc(result_size);
 #line 272
   result = (char *)tmp___0;
   }
@@ -91400,7 +91376,7 @@ char *str_cd_iconv(char const   *src , iconv_t cd )
           }
           {
 #line 315
-          tmp___4 = safe_realloc((void *)result, newsize);
+          tmp___4 = realloc((void *)result, newsize);
 #line 315
           newresult = (char *)tmp___4;
           }
@@ -91505,7 +91481,7 @@ char *str_cd_iconv(char const   *src , iconv_t cd )
         }
         {
 #line 354
-        tmp___10 = safe_realloc((void *)result, newsize___0);
+        tmp___10 = realloc((void *)result, newsize___0);
 #line 354
         newresult___0 = (char *)tmp___10;
         }
@@ -91571,7 +91547,7 @@ char *str_cd_iconv(char const   *src , iconv_t cd )
     __VERIFIER_assert(result_size != 0UL);
     {
 #line 382
-    tmp___14 = safe_realloc((void *)result, length);
+    tmp___14 = realloc((void *)result, length);
 #line 382
     smaller_result = (char *)tmp___14;
     }
@@ -95813,7 +95789,7 @@ int utimecmp(char const   *dst_name , struct stat  const  *dst_stat , struct sta
 
         {
 #line 176
-        tmp___1 = safe_malloc(sizeof(*new_dst_res));
+        tmp___1 = malloc(sizeof(*new_dst_res));
 #line 176
         new_dst_res = (struct fs_res *)tmp___1;
         }
@@ -97995,7 +97971,7 @@ void *xmalloc(size_t n )
   {
   {
 #line 43
-  tmp = safe_malloc(n);
+  tmp = malloc(n);
 #line 43
   p = tmp;
   }
@@ -98050,7 +98026,7 @@ void *xrealloc(void *p , size_t n )
   }
   {
 #line 63
-  p = safe_realloc(p, n);
+  p = realloc(p, n);
   }
 #line 64
   if (! p) {
@@ -98115,7 +98091,7 @@ void *xcalloc(size_t n , size_t s )
   {
   {
 #line 102
-  p = safe_calloc(n, s);
+  p = calloc(n, s);
   }
 #line 102
   if (! p) {
@@ -103828,7 +103804,7 @@ static _Bool setup_dir(FTS *fts )
 
     {
 #line 62
-    tmp = safe_malloc(sizeof(*(fts->fts_cycle.state)));
+    tmp = malloc(sizeof(*(fts->fts_cycle.state)));
 #line 62
     fts->fts_cycle.state = (struct cycle_check_state *)tmp;
     }
@@ -103869,7 +103845,7 @@ static _Bool enter_dir(FTS *fts , FTSENT *ent )
 #line 78
     st = (struct stat  const  *)(ent->fts_statp);
 #line 79
-    tmp = safe_malloc(sizeof(*ad));
+    tmp = malloc(sizeof(*ad));
 #line 79
     ad = (struct Active_dir *)tmp;
     }
@@ -104559,7 +104535,7 @@ FTS *( __attribute__((__warn_unused_result__)) fts_open)(char **argv , int optio
   }
   {
 #line 399
-  tmp___3 = safe_malloc(sizeof(FTS ));
+  tmp___3 = malloc(sizeof(FTS ));
 #line 399
   sp = (FTS *)tmp___3;
   }
@@ -105557,7 +105533,7 @@ static _Bool link_count_optimize_ok(FTSENT const   *p )
   }
   {
 #line 784
-  tmp___2 = safe_malloc(sizeof(*t2));
+  tmp___2 = malloc(sizeof(*t2));
 #line 784
   t2 = (struct LCO_ent *)tmp___2;
   }
@@ -109629,7 +109605,7 @@ static FTSENT *fts_sort(FTS *sp , FTSENT *head , size_t nitems )
 
       {
 #line 1855
-      tmp___0 = safe_realloc((void *)sp->fts_array, sp->fts_nitems * sizeof(*a));
+      tmp___0 = realloc((void *)sp->fts_array, sp->fts_nitems * sizeof(*a));
 #line 1855
       a = (FTSENT **)tmp___0;
       }
@@ -109759,7 +109735,7 @@ static FTSENT *fts_alloc(FTS *sp , char const   *name , size_t namelen )
 #line 1885
   len = sizeof(FTSENT ) + namelen;
 #line 1886
-  tmp = safe_malloc(len);
+  tmp = malloc(len);
 #line 1886
   p = (FTSENT *)tmp;
   }
@@ -109889,7 +109865,7 @@ static _Bool fts_palloc(FTS *sp , size_t more )
 #line 1943
   sp->fts_pathlen = new_len;
 #line 1944
-  tmp___0 = safe_realloc((void *)sp->fts_path, sp->fts_pathlen);
+  tmp___0 = realloc((void *)sp->fts_path, sp->fts_pathlen);
 #line 1944
   p = (char *)tmp___0;
   }
@@ -110811,7 +110787,7 @@ char *rpl_getcwd(char *buf___1 , size_t size )
 
     {
 #line 186
-    tmp___13 = safe_malloc(allocated);
+    tmp___13 = malloc(allocated);
 #line 186
     dir = (char *)tmp___13;
     }
@@ -111232,7 +111208,7 @@ char *rpl_getcwd(char *buf___1 , size_t size )
 
           {
 #line 366
-          tmp___26 = safe_realloc((void *)dir, allocated);
+          tmp___26 = realloc((void *)dir, allocated);
 #line 366
           tmp___24 = (char *)tmp___26;
           }
@@ -111324,7 +111300,7 @@ char *rpl_getcwd(char *buf___1 , size_t size )
 
     {
 #line 405
-    tmp___29 = safe_realloc((void *)dir, used);
+    tmp___29 = realloc((void *)dir, used);
 #line 405
     buf___1 = (char *)tmp___29;
     }
@@ -112827,7 +112803,7 @@ int _getopt_internal_r(int argc , char **argv , char const   *optstring , struct
 
                       {
 #line 523
-                      tmp___8 = safe_malloc(sizeof(*newp));
+                      tmp___8 = malloc(sizeof(*newp));
 #line 523
                       newp = (struct option_list *)tmp___8;
 #line 524
@@ -112848,7 +112824,7 @@ int _getopt_internal_r(int argc , char **argv , char const   *optstring , struct
 
                         {
 #line 523
-                        tmp___8 = safe_malloc(sizeof(*newp));
+                        tmp___8 = malloc(sizeof(*newp));
 #line 523
                         newp = (struct option_list *)tmp___8;
 #line 524
@@ -112868,7 +112844,7 @@ int _getopt_internal_r(int argc , char **argv , char const   *optstring , struct
 
                           {
 #line 523
-                          tmp___8 = safe_malloc(sizeof(*newp));
+                          tmp___8 = malloc(sizeof(*newp));
 #line 523
                           newp = (struct option_list *)tmp___8;
 #line 524
@@ -112888,7 +112864,7 @@ int _getopt_internal_r(int argc , char **argv , char const   *optstring , struct
 
                             {
 #line 523
-                            tmp___8 = safe_malloc(sizeof(*newp));
+                            tmp___8 = malloc(sizeof(*newp));
 #line 523
                             newp = (struct option_list *)tmp___8;
 #line 524
@@ -116944,7 +116920,7 @@ char *openat_proc_name(char *buf___1 , int fd , char const   *file )
 
       {
 #line 103
-      tmp___3 = safe_malloc(bufsize___0);
+      tmp___3 = malloc(bufsize___0);
 #line 103
       result = (char *)tmp___3;
       }
@@ -118133,7 +118109,7 @@ int printf_parse(char const   *format , char_directives *d , arguments *a )
 
             {
 #line 263
-            tmp___6 = safe_realloc((void *)a->arg, memory_size);
+            tmp___6 = realloc((void *)a->arg, memory_size);
 #line 263
             tmp___8 = tmp___6;
             }
@@ -118143,7 +118119,7 @@ int printf_parse(char const   *format , char_directives *d , arguments *a )
 
             {
 #line 263
-            tmp___7 = safe_malloc(memory_size);
+            tmp___7 = malloc(memory_size);
 #line 263
             tmp___8 = tmp___7;
             }
@@ -118572,7 +118548,7 @@ int printf_parse(char const   *format , char_directives *d , arguments *a )
 
               {
 #line 321
-              tmp___14 = safe_realloc((void *)a->arg, memory_size___0);
+              tmp___14 = realloc((void *)a->arg, memory_size___0);
 #line 321
               tmp___16 = tmp___14;
               }
@@ -118582,7 +118558,7 @@ int printf_parse(char const   *format , char_directives *d , arguments *a )
 
               {
 #line 321
-              tmp___15 = safe_malloc(memory_size___0);
+              tmp___15 = malloc(memory_size___0);
 #line 321
               tmp___16 = tmp___15;
               }
@@ -119560,7 +119536,7 @@ int printf_parse(char const   *format , char_directives *d , arguments *a )
 
             {
 #line 578
-            tmp___21 = safe_realloc((void *)a->arg, memory_size___1);
+            tmp___21 = realloc((void *)a->arg, memory_size___1);
 #line 578
             tmp___23 = tmp___21;
             }
@@ -119570,7 +119546,7 @@ int printf_parse(char const   *format , char_directives *d , arguments *a )
 
             {
 #line 578
-            tmp___22 = safe_malloc(memory_size___1);
+            tmp___22 = malloc(memory_size___1);
 #line 578
             tmp___23 = tmp___22;
             }
@@ -119714,7 +119690,7 @@ int printf_parse(char const   *format , char_directives *d , arguments *a )
 
           {
 #line 595
-          tmp___25 = safe_realloc((void *)d->dir, memory_size___2);
+          tmp___25 = realloc((void *)d->dir, memory_size___2);
 #line 595
           tmp___27 = tmp___25;
           }
@@ -119724,7 +119700,7 @@ int printf_parse(char const   *format , char_directives *d , arguments *a )
 
           {
 #line 595
-          tmp___26 = safe_malloc(memory_size___2);
+          tmp___26 = malloc(memory_size___2);
 #line 595
           tmp___27 = tmp___26;
           }
@@ -123151,7 +123127,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
     }
     {
 #line 1798
-    tmp___5 = safe_malloc(buf_memsize);
+    tmp___5 = malloc(buf_memsize);
 #line 1798
     buf___1 = (char *)tmp___5;
     }
@@ -123307,7 +123283,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
           {
 #line 1851
-          tmp___8 = safe_malloc(memory_size);
+          tmp___8 = malloc(memory_size);
 #line 1851
           memory = (char *)tmp___8;
           }
@@ -123321,7 +123297,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
             {
 #line 1851
-            tmp___8 = safe_malloc(memory_size);
+            tmp___8 = malloc(memory_size);
 #line 1851
             memory = (char *)tmp___8;
             }
@@ -123331,7 +123307,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
             {
 #line 1851
-            tmp___9 = safe_realloc((void *)result, memory_size);
+            tmp___9 = realloc((void *)result, memory_size);
 #line 1851
             memory = (char *)tmp___9;
             }
@@ -123536,7 +123512,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
           {
 #line 1878
-          tmp___14 = safe_malloc(memory_size___0);
+          tmp___14 = malloc(memory_size___0);
 #line 1878
           memory___0 = (char *)tmp___14;
           }
@@ -123550,7 +123526,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
             {
 #line 1878
-            tmp___14 = safe_malloc(memory_size___0);
+            tmp___14 = malloc(memory_size___0);
 #line 1878
             memory___0 = (char *)tmp___14;
             }
@@ -123560,7 +123536,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
             {
 #line 1878
-            tmp___15 = safe_realloc((void *)result, memory_size___0);
+            tmp___15 = realloc((void *)result, memory_size___0);
 #line 1878
             memory___0 = (char *)tmp___15;
             }
@@ -124123,7 +124099,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
                               }
                               {
 #line 3566
-                              tmp___26 = safe_malloc(tmp_memsize);
+                              tmp___26 = malloc(tmp_memsize);
 #line 3566
                               tmp___16 = (char *)tmp___26;
                               }
@@ -125135,7 +125111,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
                                   {
 #line 4567
-                                  tmp___75 = safe_malloc(memory_size___1);
+                                  tmp___75 = malloc(memory_size___1);
 #line 4567
                                   memory___1 = (char *)tmp___75;
                                   }
@@ -125149,7 +125125,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
                                     {
 #line 4567
-                                    tmp___75 = safe_malloc(memory_size___1);
+                                    tmp___75 = malloc(memory_size___1);
 #line 4567
                                     memory___1 = (char *)tmp___75;
                                     }
@@ -125159,7 +125135,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
                                     {
 #line 4567
-                                    tmp___76 = safe_realloc((void *)result, memory_size___1);
+                                    tmp___76 = realloc((void *)result, memory_size___1);
 #line 4567
                                     memory___1 = (char *)tmp___76;
                                     }
@@ -125737,7 +125713,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
                             {
 #line 4906
-                            tmp___97 = safe_malloc(memory_size___2);
+                            tmp___97 = malloc(memory_size___2);
 #line 4906
                             memory___2 = (char *)tmp___97;
                             }
@@ -125751,7 +125727,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
                               {
 #line 4906
-                              tmp___97 = safe_malloc(memory_size___2);
+                              tmp___97 = malloc(memory_size___2);
 #line 4906
                               memory___2 = (char *)tmp___97;
                               }
@@ -125761,7 +125737,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
                               {
 #line 4906
-                              tmp___98 = safe_realloc((void *)result, memory_size___2);
+                              tmp___98 = realloc((void *)result, memory_size___2);
 #line 4906
                               memory___2 = (char *)tmp___98;
                               }
@@ -127565,7 +127541,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
                                   {
 #line 5213
-                                  tmp___160 = safe_malloc(memory_size___3);
+                                  tmp___160 = malloc(memory_size___3);
 #line 5213
                                   memory___3 = (char *)tmp___160;
                                   }
@@ -127579,7 +127555,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
                                     {
 #line 5213
-                                    tmp___160 = safe_malloc(memory_size___3);
+                                    tmp___160 = malloc(memory_size___3);
 #line 5213
                                     memory___3 = (char *)tmp___160;
                                     }
@@ -127589,7 +127565,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
                                     {
 #line 5213
-                                    tmp___161 = safe_realloc((void *)result, memory_size___3);
+                                    tmp___161 = realloc((void *)result, memory_size___3);
 #line 5213
                                     memory___3 = (char *)tmp___161;
                                     }
@@ -127777,7 +127753,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
       {
 #line 5521
-      tmp___167 = safe_malloc(memory_size___4);
+      tmp___167 = malloc(memory_size___4);
 #line 5521
       memory___4 = (char *)tmp___167;
       }
@@ -127791,7 +127767,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
         {
 #line 5521
-        tmp___167 = safe_malloc(memory_size___4);
+        tmp___167 = malloc(memory_size___4);
 #line 5521
         memory___4 = (char *)tmp___167;
         }
@@ -127801,7 +127777,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
         {
 #line 5521
-        tmp___168 = safe_realloc((void *)result, memory_size___4);
+        tmp___168 = realloc((void *)result, memory_size___4);
 #line 5521
         memory___4 = (char *)tmp___168;
         }
@@ -127854,7 +127830,7 @@ char *vasnprintf(char *resultbuf , size_t *lengthp , char const   *format , va_l
 
       {
 #line 5529
-      tmp___170 = safe_realloc((void *)result, (length + 1UL) * sizeof(char ));
+      tmp___170 = realloc((void *)result, (length + 1UL) * sizeof(char ));
 #line 5529
       memory___5 = (char *)tmp___170;
       }

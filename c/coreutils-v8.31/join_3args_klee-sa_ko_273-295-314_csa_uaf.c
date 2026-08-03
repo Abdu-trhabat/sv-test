@@ -50583,30 +50583,6 @@ _Bool readtokens0(FILE *in, struct Tokens *t);
 void readtokens0_free(struct Tokens *t);
 void readtokens0_init(struct Tokens *t);
 void *realloc(void*, size_t);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 static gid_t *realloc_groupbuf_167923(gid_t *g, size_t num);
 void *reallocarray(void *__ptr, size_t __nmemb, size_t __size);
 char *realpath(const char *__name, char *__resolved);
@@ -55461,7 +55437,7 @@ static struct hash_entry *allocate_entry_120489(Hash_table *table)
         table->free_entry_list = new->next;
     }
     else {
-        new = safe_malloc(16UL);
+        new = malloc(16UL);
     }
     return new;
 }
@@ -55474,7 +55450,7 @@ char *ambsalign(const char *src, size_t *width, mbs_align_t align, int flags)
     while (req >= size) {
         char *nbuf;
         size = req + 1;
-        nbuf = safe_realloc(buf, size);
+        nbuf = realloc(buf, size);
         if (nbuf == (void*)0) {
             free(buf);
             buf = (void*)0;
@@ -55495,14 +55471,14 @@ static reg_errcode_t analyze_244822(regex_t *preg)
 {
     re_dfa_t *dfa = preg->buffer;
     reg_errcode_t ret;
-    dfa->nexts = (Idx*)safe_malloc(dfa->nodes_alloc * 8UL);
-    dfa->org_indices = (Idx*)safe_malloc(dfa->nodes_alloc * 8UL);
-    dfa->edests = (re_node_set*)safe_malloc(dfa->nodes_alloc * 24UL);
-    dfa->eclosures = (re_node_set*)safe_malloc(dfa->nodes_alloc * 24UL);
+    dfa->nexts = (Idx*)malloc(dfa->nodes_alloc * 8UL);
+    dfa->org_indices = (Idx*)malloc(dfa->nodes_alloc * 8UL);
+    dfa->edests = (re_node_set*)malloc(dfa->nodes_alloc * 24UL);
+    dfa->eclosures = (re_node_set*)malloc(dfa->nodes_alloc * 24UL);
     if (__builtin_expect((((dfa->nexts == (void*)0) || (dfa->org_indices == (void*)0)) || (dfa->edests == (void*)0)) || (dfa->eclosures == (void*)0), 0)) {
         return 12;
     }
-    dfa->subexp_map = (Idx*)safe_malloc(preg->re_nsub * 8UL);
+    dfa->subexp_map = (Idx*)malloc(preg->re_nsub * 8UL);
     if (dfa->subexp_map != (void*)0) {
         Idx i;
         for (i = 0; i < preg->re_nsub; i = i + 1L) {
@@ -55537,7 +55513,7 @@ static reg_errcode_t analyze_244822(regex_t *preg)
         return ret;
     }
     if ((((! preg->no_sub) && (preg->re_nsub > 0)) && (dfa->has_plural_match)) || (dfa->nbackref)) {
-        dfa->inveclosures = (re_node_set*)safe_malloc(dfa->nodes_len * 24UL);
+        dfa->inveclosures = (re_node_set*)malloc(dfa->nodes_len * 24UL);
         if (__builtin_expect(dfa->inveclosures == (void*)0, 0)) {
             return 12;
         }
@@ -84051,7 +84027,7 @@ char *areadlink_with_size(const char *file, size_t size)
     while (1) {
         ssize_t r;
         size_t link_length;
-        char *buffer = safe_malloc(buf_size);
+        char *buffer = malloc(buf_size);
         if (buffer == (void*)0) {
             return (void*)0;
         }
@@ -84228,7 +84204,7 @@ void argv_iter_free(struct argv_iterator_10912 *ai)
 }
 struct argv_iterator_10912 *argv_iter_init_argv(char **argv)
 {
-    struct argv_iterator_10912 *ai = safe_malloc(48UL);
+    struct argv_iterator_10912 *ai = malloc(48UL);
     if (! ai) {
         return (void*)0;
     }
@@ -84239,7 +84215,7 @@ struct argv_iterator_10912 *argv_iter_init_argv(char **argv)
 }
 struct argv_iterator_10912 *argv_iter_init_stream(FILE *fp)
 {
-    struct argv_iterator_10912 *ai = safe_malloc(48UL);
+    struct argv_iterator_10912 *ai = malloc(48UL);
     if (! ai) {
         return (void*)0;
     }
@@ -84289,7 +84265,7 @@ char *backupfile_internal(int dir_fd, const char *file, enum backup_type backup_
         backup_suffix_size_guess = 9;
     }
     ssize_t ssize = filelen + backup_suffix_size_guess + 1;
-    char *s = safe_malloc(ssize);
+    char *s = malloc(ssize);
     if (! s) {
         return s;
     }
@@ -84356,7 +84332,7 @@ char *backupfile_internal(int dir_fd, const char *file, enum backup_type backup_
 _Bool base32_decode_alloc_ctx(struct base32_decode_context *ctx, const char *in, size_t inlen, char **out, size_t *outlen)
 {
     size_t needlen = 5 * (inlen / 8) + 5;
-    *out = safe_malloc(needlen);
+    *out = malloc(needlen);
     if (! *out) {
         return 1;
     }
@@ -84585,7 +84561,7 @@ size_t base32_encode_alloc(const char *in, size_t inlen, char **out)
         *out = (void*)0;
         return 0;
     }
-    *out = safe_malloc(outlen);
+    *out = malloc(outlen);
     if (! *out) {
         return outlen;
     }
@@ -84595,7 +84571,7 @@ size_t base32_encode_alloc(const char *in, size_t inlen, char **out)
 _Bool base64_decode_alloc_ctx(struct base64_decode_context *ctx, const char *in, size_t inlen, char **out, size_t *outlen)
 {
     size_t needlen = 3 * (inlen / 4) + 3;
-    *out = safe_malloc(needlen);
+    *out = malloc(needlen);
     if (! *out) {
         return 1;
     }
@@ -84752,7 +84728,7 @@ size_t base64_encode_alloc(const char *in, size_t inlen, char **out)
         *out = (void*)0;
         return 0;
     }
-    *out = safe_malloc(outlen);
+    *out = malloc(outlen);
     if (! *out) {
         return outlen;
     }
@@ -85020,7 +84996,7 @@ static reg_errcode_t build_charclass_244965(unsigned char *trans, bitset_word_t 
     }
     if (__builtin_expect(*char_class_alloc == mbcset->nchar_classes, 0)) {
         Idx new_char_class_alloc = 2 * mbcset->nchar_classes + 1;
-        wctype_t *new_char_classes = (wctype_t*)safe_realloc(mbcset->char_classes, new_char_class_alloc * 8UL);
+        wctype_t *new_char_classes = (wctype_t*)realloc(mbcset->char_classes, new_char_class_alloc * 8UL);
         if (__builtin_expect(new_char_classes == (void*)0, 0)) {
             return 12;
         }
@@ -85292,12 +85268,12 @@ static bin_tree_t *build_charclass_op_244973(re_dfa_t *dfa, unsigned char *trans
     reg_errcode_t ret;
     re_token_t br_token;
     bin_tree_t *tree;
-    sbcset = (re_bitset_ptr_t)safe_calloc(8UL * 4UL, 1);
+    sbcset = (re_bitset_ptr_t)calloc(8UL * 4UL, 1);
     if (__builtin_expect(sbcset == (void*)0, 0)) {
         *err = 12;
         return (void*)0;
     }
-    mbcset = (re_charset_t*)safe_calloc(80UL, 1);
+    mbcset = (re_charset_t*)calloc(80UL, 1);
     if (__builtin_expect(mbcset == (void*)0, 0)) {
         free(sbcset);
         *err = 12;
@@ -85454,8 +85430,8 @@ static reg_errcode_t build_range_exp_245301(const reg_syntax_t syntax, bitset_wo
                 wchar_t *new_array_end;
                 Idx new_nranges;
                 new_nranges = 2 * mbcset->nranges + 1;
-                new_array_start = (wchar_t*)safe_realloc(mbcset->range_starts, new_nranges * 4UL);
-                new_array_end = (wchar_t*)safe_realloc(mbcset->range_ends, new_nranges * 4UL);
+                new_array_start = (wchar_t*)realloc(mbcset->range_starts, new_nranges * 4UL);
+                new_array_end = (wchar_t*)realloc(mbcset->range_ends, new_nranges * 4UL);
                 if (__builtin_expect((new_array_start == (void*)0) || (new_array_end == (void*)0), 0)) {
                     free(new_array_start);
                     free(new_array_end);
@@ -85533,7 +85509,7 @@ static _Bool build_trtable_245692(const re_dfa_t *dfa, re_dfastate_t *state)
         dests_alloc = (struct dests_alloc*)__builtin_alloca(14336UL);
     }
     else {
-        dests_alloc = (struct dests_alloc*)safe_malloc(1 * 14336UL);
+        dests_alloc = (struct dests_alloc*)malloc(1 * 14336UL);
         if (__builtin_expect(dests_alloc == (void*)0, 0)) {
             return 0;
         }
@@ -85549,7 +85525,7 @@ static _Bool build_trtable_245692(const re_dfa_t *dfa, re_dfastate_t *state)
             free(dests_alloc);
         }
         if (ndests == 0) {
-            state->trtable = (re_dfastate_t**)safe_calloc(8UL, 127 * 2 + 1 + 1);
+            state->trtable = (re_dfastate_t**)calloc(8UL, 127 * 2 + 1 + 1);
             if (__builtin_expect(state->trtable == (void*)0, 0)) {
                 return 0;
             }
@@ -85569,7 +85545,7 @@ static _Bool build_trtable_245692(const re_dfa_t *dfa, re_dfastate_t *state)
         dest_states = (re_dfastate_t**)__builtin_alloca(ndests * 3 * 8UL);
     }
     else {
-        dest_states = (re_dfastate_t**)safe_malloc(ndests * 3 * 8UL);
+        dest_states = (re_dfastate_t**)malloc(ndests * 3 * 8UL);
         if (__builtin_expect(dest_states == (void*)0, 0)) {
             out_free:;
             if (dest_states_malloced) {
@@ -85625,7 +85601,7 @@ static _Bool build_trtable_245692(const re_dfa_t *dfa, re_dfastate_t *state)
         bitset_merge_244456(acceptable, dests_ch[i]);
     }
     if (! __builtin_expect(need_word_trtable, 0)) {
-        state->trtable = (re_dfastate_t**)safe_calloc(8UL, 127 * 2 + 1 + 1);
+        state->trtable = (re_dfastate_t**)calloc(8UL, 127 * 2 + 1 + 1);
         trtable = state->trtable;
         if (__builtin_expect(trtable == (void*)0, 0)) {
             goto out_free;
@@ -85651,7 +85627,7 @@ static _Bool build_trtable_245692(const re_dfa_t *dfa, re_dfastate_t *state)
         }
     }
     else {
-        state->word_trtable = (re_dfastate_t**)safe_calloc(8UL, 2 * (127 * 2 + 1 + 1));
+        state->word_trtable = (re_dfastate_t**)calloc(8UL, 2 * (127 * 2 + 1 + 1));
         trtable = state->word_trtable;
         if (__builtin_expect(trtable == (void*)0, 0)) {
             goto out_free;
@@ -85891,7 +85867,7 @@ static reg_errcode_t build_wcs_upper_buffer_244505(re_string_t *pstr)
                                 break;
                             }
                             if (pstr->offsets == (void*)0) {
-                                pstr->offsets = (Idx*)safe_malloc(pstr->bufs_len * 8UL);
+                                pstr->offsets = (Idx*)malloc(pstr->bufs_len * 8UL);
                                 if (pstr->offsets == (void*)0) {
                                     return 12;
                                 }
@@ -87613,7 +87589,7 @@ static reg_errcode_t check_arrival_245657(re_match_context_t *mctx, state_array_
         if (__builtin_expect(18446744073709551615UL / 8UL < new_alloc, 0)) {
             return 12;
         }
-        new_array = (re_dfastate_t**)safe_realloc(path->array, new_alloc * 8UL);
+        new_array = (re_dfastate_t**)realloc(path->array, new_alloc * 8UL);
         if (__builtin_expect(new_array == (void*)0, 0)) {
             return 12;
         }
@@ -88772,7 +88748,7 @@ static re_dfastate_t *create_cd_newstate_244492(const re_dfa_t *dfa, const re_no
     Idx nctx_nodes = 0;
     reg_errcode_t err;
     re_dfastate_t *newstate;
-    newstate = (re_dfastate_t*)safe_calloc(112UL, 1);
+    newstate = (re_dfastate_t*)calloc(112UL, 1);
     if (__builtin_expect(newstate == (void*)0, 0)) {
         return (void*)0;
     }
@@ -88801,7 +88777,7 @@ static re_dfastate_t *create_cd_newstate_244492(const re_dfa_t *dfa, const re_no
         }
         if (constraint) {
             if (newstate->entrance_nodes == &newstate->nodes) {
-                newstate->entrance_nodes = (re_node_set*)safe_malloc(1 * 24UL);
+                newstate->entrance_nodes = (re_node_set*)malloc(1 * 24UL);
                 if (__builtin_expect(newstate->entrance_nodes == (void*)0, 0)) {
                     free_state_244773(newstate);
                     return (void*)0;
@@ -88830,7 +88806,7 @@ static re_dfastate_t *create_ci_newstate_244487(const re_dfa_t *dfa, const re_no
     Idx i;
     reg_errcode_t err;
     re_dfastate_t *newstate;
-    newstate = (re_dfastate_t*)safe_calloc(112UL, 1);
+    newstate = (re_dfastate_t*)calloc(112UL, 1);
     if (__builtin_expect(newstate == (void*)0, 0)) {
         return (void*)0;
     }
@@ -88934,7 +88910,7 @@ static bin_tree_t *create_token_tree_244987(re_dfa_t *dfa, bin_tree_t *left, bin
 {
     bin_tree_t *tree;
     if (__builtin_expect(dfa->str_tree_storage_idx == (1024 - 8UL) / 64UL, 0)) {
-        bin_tree_storage_t *storage = (bin_tree_storage_t*)safe_malloc(1 * 968UL);
+        bin_tree_storage_t *storage = (bin_tree_storage_t*)malloc(1 * 968UL);
         if (storage == (void*)0) {
             return (void*)0;
         }
@@ -89622,7 +89598,7 @@ static size_t di_ino_hash_50876(const void *i, size_t table_size)
 }
 struct di_set_50008 *di_set_alloc()
 {
-    struct di_set_50008 *dis = safe_malloc(24UL);
+    struct di_set_50008 *dis = malloc(24UL);
     if (dis) {
         dis->dev_map = hash_initialize(11, (void*)0, di_ent_hash_50852, di_ent_compare_50861, di_ent_free_50867);
         if (! dis->dev_map) {
@@ -90183,7 +90159,7 @@ static _Bool enter_dir_106488(FTS *fts, FTSENT *ent)
 {
     if ((fts->fts_options) & ((256) | (2))) {
         const struct stat *st = ent->fts_statp;
-        struct Active_dir *ad = safe_malloc(24UL);
+        struct Active_dir *ad = malloc(24UL);
         struct Active_dir *ad_from_table;
         if (! ad) {
             return 0;
@@ -90446,7 +90422,7 @@ static reg_errcode_t extend_buffers_245713(re_match_context_t *mctx, int min_len
         return ret;
     }
     if (mctx->state_log != (void*)0) {
-        re_dfastate_t **new_array = (re_dfastate_t**)safe_realloc(mctx->state_log, (pstr->bufs_len + 1) * 8UL);
+        re_dfastate_t **new_array = (re_dfastate_t**)realloc(mctx->state_log, (pstr->bufs_len + 1) * 8UL);
         if (__builtin_expect(new_array == (void*)0, 0)) {
             return 12;
         }
@@ -90968,7 +90944,7 @@ static fsword filesystem_type_106615(const FTSENT *p, int fd)
         return 0;
     }
     if (h) {
-        struct dev_type *t2 = safe_malloc(16UL);
+        struct dev_type *t2 = malloc(16UL);
         if (t2) {
             t2->st_dev = p->fts_statp->st_dev;
             t2->f_type = fs_buf.f_type;
@@ -91366,7 +91342,7 @@ char *fread_file(FILE *stream, size_t *length)
             }
         }
     }
-    buf = safe_malloc(alloc);
+    buf = malloc(alloc);
     if (! buf) {
         return (void*)0;
     }
@@ -91383,7 +91359,7 @@ char *fread_file(FILE *stream, size_t *length)
                     break;
                 }
                 if (size < alloc - 1) {
-                    char *smaller_buf = safe_realloc(buf, size + 1);
+                    char *smaller_buf = realloc(buf, size + 1);
                     if (smaller_buf != (void*)0) {
                         buf = smaller_buf;
                     }
@@ -91404,7 +91380,7 @@ char *fread_file(FILE *stream, size_t *length)
                 else {
                     alloc = 18446744073709551615UL;
                 }
-                new_buf = safe_realloc(buf, alloc);
+                new_buf = realloc(buf, alloc);
                 if (! new_buf) {
                     save_errno = *__errno_location();
                     break;
@@ -91870,7 +91846,7 @@ static FTSENT *fts_alloc_105958(FTS *sp, const char *name, size_t namelen)
     FTSENT *p;
     size_t len;
     len = (264UL + 8UL - 1 + (namelen + 1)) & (~ (8UL - 1));
-    p = safe_malloc(len);
+    p = malloc(len);
     if (p == (void*)0) {
         return (void*)0;
     }
@@ -92300,7 +92276,7 @@ static _Bool fts_palloc_105981(FTS *sp, size_t more)
         return 0;
     }
     sp->fts_pathlen = new_len;
-    p = safe_realloc(sp->fts_path, sp->fts_pathlen);
+    p = realloc(sp->fts_path, sp->fts_pathlen);
     if (p == (void*)0) {
         free(sp->fts_path);
         sp->fts_path = (void*)0;
@@ -92408,7 +92384,7 @@ static FTSENT *fts_sort_105985(FTS *sp, FTSENT *head, size_t nitems)
             __SAST_tmp_265 = 18446744073709551615UL / 8UL < sp->fts_nitems;
             if (__SAST_tmp_265) ;
             else {
-                a = safe_realloc(sp->fts_array, sp->fts_nitems * 8UL);
+                a = realloc(sp->fts_array, sp->fts_nitems * 8UL);
                 __SAST_tmp_265 = ! a;
             }
             if (__SAST_tmp_265) {
@@ -93283,7 +93259,7 @@ static reg_errcode_t get_subexp_245639(re_match_context_t *mctx, Idx bkref_node,
                 continue;
             }
             if (sub_top->path == (void*)0) {
-                sub_top->path = safe_calloc(24UL, sl_str - sub_top->str_idx + 1);
+                sub_top->path = calloc(24UL, sl_str - sub_top->str_idx + 1);
                 if (sub_top->path == (void*)0) {
                     return 12;
                 }
@@ -93513,7 +93489,7 @@ ssize_t getndelim2(char **lineptr, size_t *linesize, size_t offset, size_t nmax,
             }
             size = __SAST_tmp_271;
         }
-        ptr = safe_malloc(size);
+        ptr = malloc(size);
         if (! ptr) {
             return - 1;
         }
@@ -93605,7 +93581,7 @@ ssize_t getndelim2(char **lineptr, size_t *linesize, size_t offset, size_t nmax,
                 }
             }
             nbytes_avail = newsize - (read_pos - ptr);
-            newptr = safe_realloc(ptr, newsize);
+            newptr = realloc(ptr, newsize);
             if (! newptr) {
                 goto unlock_done;
             }
@@ -94291,7 +94267,7 @@ Hash_table *hash_initialize(size_t candidate, const Hash_tuning *tuning, Hash_ha
     if (comparator == (void*)0) {
         comparator = raw_comparator_120461;
     }
-    table = safe_malloc(80UL);
+    table = malloc(80UL);
     if (table == (void*)0) {
         return (void*)0;
     }
@@ -94306,7 +94282,7 @@ Hash_table *hash_initialize(size_t candidate, const Hash_tuning *tuning, Hash_ha
     if (! table->n_buckets) {
         goto fail;
     }
-    table->bucket = safe_calloc(table->n_buckets, 16UL);
+    table->bucket = calloc(table->n_buckets, 16UL);
     if (table->bucket == (void*)0) {
         goto fail;
     }
@@ -94443,7 +94419,7 @@ _Bool hash_rehash(Hash_table *table, size_t candidate)
         return 1;
     }
     new_table = &storage;
-    new_table->bucket = safe_calloc(new_size, 16UL);
+    new_table->bucket = calloc(new_size, 16UL);
     if (new_table->bucket == (void*)0) {
         return 0;
     }
@@ -95096,13 +95072,13 @@ static reg_errcode_t init_dfa_244806(re_dfa_t *dfa, size_t pat_len)
         }
     }
     dfa->nodes_alloc = pat_len + 1;
-    dfa->nodes = (re_token_t*)safe_malloc(dfa->nodes_alloc * 16UL);
+    dfa->nodes = (re_token_t*)malloc(dfa->nodes_alloc * 16UL);
     for (table_size = 1; ; table_size = (table_size) << (1)) {
         if (table_size > pat_len) {
             break;
         }
     }
-    dfa->state_table = safe_calloc(24UL, table_size);
+    dfa->state_table = calloc(24UL, table_size);
     dfa->state_hash_mask = table_size - 1;
     dfa->mb_cur_max = __ctype_get_mb_cur_max();
     codeset_name = nl_langinfo(14);
@@ -95118,7 +95094,7 @@ static reg_errcode_t init_dfa_244806(re_dfa_t *dfa, size_t pat_len)
             int i;
             int j;
             int ch;
-            dfa->sb_char = (re_bitset_ptr_t)safe_calloc(8UL * 4UL, 1);
+            dfa->sb_char = (re_bitset_ptr_t)calloc(8UL * 4UL, 1);
             if (__builtin_expect(dfa->sb_char == (void*)0, 0)) {
                 return 12;
             }
@@ -95230,7 +95206,7 @@ static size_t ino_hash_129105(const void *x, size_t table_size)
 }
 struct ino_map_128277 *ino_map_alloc(size_t next_mapped_ino)
 {
-    struct ino_map_128277 *im = safe_malloc(24UL);
+    struct ino_map_128277 *im = malloc(24UL);
     if (im) {
         im->map = hash_initialize(1021, (void*)0, ino_hash_129105, ino_compare_129114, free);
         if (! im->map) {
@@ -95258,7 +95234,7 @@ size_t ino_map_insert(struct ino_map_128277 *im, ino_t ino)
         }
     }
     else {
-        probe = safe_malloc(16UL);
+        probe = malloc(16UL);
         im->probe = probe;
         if (! probe) {
             return (size_t)- 1;
@@ -96755,10 +96731,10 @@ int main()
 {
     int argc = 4;
     optind = 1;
-    char **argv = safe_malloc((argc + 1) * 8UL);
+    char **argv = malloc((argc + 1) * 8UL);
     argv[argc] = 0;
     for (int i = 0; i < argc; i = i + 1) {
-        argv[i] = safe_malloc(11 * 1UL);
+        argv[i] = malloc(11 * 1UL);
         argv[i][10] = 0;
         for (int j = 0; j < 10; j = j + 1) {
             argv[i][j] = __VERIFIER_nondet_char();
@@ -96908,7 +96884,7 @@ static struct hash_table_119894 *map_device_50880(struct di_set_50008 *dis, dev_
         }
     }
     else {
-        probe = safe_malloc(16UL);
+        probe = malloc(16UL);
         dis->probe = probe;
         if (! probe) {
             return (void*)0;
@@ -96953,7 +96929,7 @@ static reg_errcode_t match_ctx_add_entry_245435(re_match_context_t *mctx, Idx no
 {
     if (mctx->nbkref_ents >= mctx->abkref_ents) {
         struct re_backref_cache_entry *new_entry;
-        new_entry = (struct re_backref_cache_entry*)safe_realloc(mctx->bkref_ents, mctx->abkref_ents * 2 * 40UL);
+        new_entry = (struct re_backref_cache_entry*)realloc(mctx->bkref_ents, mctx->abkref_ents * 2 * 40UL);
         if (__builtin_expect(new_entry == (void*)0, 0)) {
             free(mctx->bkref_ents);
             return 12;
@@ -96991,14 +96967,14 @@ static re_sub_match_last_t *match_ctx_add_sublast_245451(re_sub_match_top_t *sub
     re_sub_match_last_t *new_entry;
     if (__builtin_expect(subtop->nlasts == subtop->alasts, 0)) {
         Idx new_alasts = 2 * subtop->alasts + 1;
-        re_sub_match_last_t **new_array = (re_sub_match_last_t**)safe_realloc(subtop->lasts, new_alasts * 8UL);
+        re_sub_match_last_t **new_array = (re_sub_match_last_t**)realloc(subtop->lasts, new_alasts * 8UL);
         if (__builtin_expect(new_array == (void*)0, 0)) {
             return (void*)0;
         }
         subtop->lasts = new_array;
         subtop->alasts = new_alasts;
     }
-    new_entry = safe_calloc(1, 40UL);
+    new_entry = calloc(1, 40UL);
     if (__builtin_expect(new_entry != (void*)0, 1)) {
         subtop->lasts[subtop->nlasts] = new_entry;
         new_entry->node = node;
@@ -97011,14 +96987,14 @@ static reg_errcode_t match_ctx_add_subtop_245446(re_match_context_t *mctx, Idx n
 {
     if (__builtin_expect(mctx->nsub_tops == mctx->asub_tops, 0)) {
         Idx new_asub_tops = mctx->asub_tops * 2;
-        re_sub_match_top_t **new_array = (re_sub_match_top_t**)safe_realloc(mctx->sub_tops, new_asub_tops * 8UL);
+        re_sub_match_top_t **new_array = (re_sub_match_top_t**)realloc(mctx->sub_tops, new_asub_tops * 8UL);
         if (__builtin_expect(new_array == (void*)0, 0)) {
             return 12;
         }
         mctx->sub_tops = new_array;
         mctx->asub_tops = new_asub_tops;
     }
-    mctx->sub_tops[mctx->nsub_tops] = safe_calloc(1, 48UL);
+    mctx->sub_tops[mctx->nsub_tops] = calloc(1, 48UL);
     if (__builtin_expect(mctx->sub_tops[mctx->nsub_tops] == (void*)0, 0)) {
         return 12;
     }
@@ -97079,8 +97055,8 @@ static reg_errcode_t match_ctx_init_245424(re_match_context_t *mctx, int eflags,
                 return 12;
             }
         }
-        mctx->bkref_ents = (struct re_backref_cache_entry*)safe_malloc(n * 40UL);
-        mctx->sub_tops = (re_sub_match_top_t**)safe_malloc(n * 8UL);
+        mctx->bkref_ents = (struct re_backref_cache_entry*)malloc(n * 40UL);
+        mctx->sub_tops = (re_sub_match_top_t**)malloc(n * 8UL);
         if (__builtin_expect((mctx->bkref_ents == (void*)0) || (mctx->sub_tops == (void*)0), 0)) {
             return 12;
         }
@@ -97275,7 +97251,7 @@ size_t mbsalign(const char *src, char *dest, size_t dest_size, size_t *width, mb
             }
         }
         src_chars = src_chars + 1;
-        str_wc = safe_malloc(src_chars * 4UL);
+        str_wc = malloc(src_chars * 4UL);
         if (str_wc == (void*)0) {
             if ((flags) & (1)) {
                 goto mbsalign_unibyte;
@@ -97295,7 +97271,7 @@ size_t mbsalign(const char *src, char *dest, size_t dest_size, size_t *width, mb
         if (conversion) {
             src_size = wcstombs((void*)0, str_wc, 0) + 1;
         }
-        newstr = safe_malloc(src_size);
+        newstr = malloc(src_size);
         if (newstr == (void*)0) {
             if ((flags) & (1)) {
                 goto mbsalign_unibyte;
@@ -98675,7 +98651,7 @@ int md5_stream(FILE *stream, void *resblock)
     case - 5:;
     return 1;
     }
-    char *buffer = safe_malloc(32768 + 72);
+    char *buffer = malloc(32768 + 72);
     if (! buffer) {
         return 1;
     }
@@ -98716,7 +98692,7 @@ char *mdir_name(const char *file)
 {
     size_t length = dir_len(file);
     _Bool append_dot = (length == 0) || ((((0) && (length == 0)) && (file[2] != 0)) && (! (file[2] == '/')));
-    char *dir = safe_malloc(length + append_dot + 1);
+    char *dir = malloc(length + append_dot + 1);
     if (! dir) {
         return (void*)0;
     }
@@ -98774,7 +98750,7 @@ int mem_cd_iconv(const char *src, size_t srclen, iconv_t cd, char **resultp, siz
         result = *resultp;
     }
     else {
-        result = (char*)safe_malloc(length);
+        result = (char*)malloc(length);
         if (result == (void*)0) {
             *__errno_location() = 12;
             return - 1;
@@ -99078,7 +99054,7 @@ char *mfile_name_concat(const char *dir, const char *base, char **base_in_result
             sep = '.';
         }
     }
-    char *p_concat = safe_malloc(dirlen + (sep != 0) + baselen + 1);
+    char *p_concat = malloc(dirlen + (sep != 0) + baselen + 1);
     char *p;
     if (p_concat == (void*)0) {
         return (void*)0;
@@ -109473,7 +109449,7 @@ void *mmalloca(size_t n)
 {
     size_t nplus = n + 1UL + 2 * 16 - 1;
     if (nplus >= n) {
-        char *mem = (char*)safe_malloc(nplus);
+        char *mem = (char*)malloc(nplus);
         if (mem != (void*)0) {
             char *p = (char*)((((uintptr_t)mem + 1UL + 16 - 1) & (~ (uintptr_t)(2 * 16 - 1))) + 16);
             ((small_t*)p)[- 1] = p - mem;
@@ -110065,7 +110041,7 @@ static enum numbered_backup_result numbered_backup_16183(int dir_fd, char **buff
                     new_buffer_size = new_buffer_size * 2;
                 }
             }
-            char *new_buf = safe_realloc(buf, new_buffer_size);
+            char *new_buf = realloc(buf, new_buffer_size);
             if (! new_buf) {
                 *buffer = buf;
                 return 3;
@@ -110624,7 +110600,7 @@ char *openat_proc_name(char *buf, int fd, const char *file)
                     __SAST_tmp_1885 = 4096 - 64;
                 }
                 if (__SAST_tmp_1885 < bufsize) {
-                    result = safe_malloc(bufsize);
+                    result = malloc(bufsize);
                     if (! result) {
                         return (void*)0;
                     }
@@ -110883,8 +110859,8 @@ static bin_tree_t *parse_bracket_exp_244938(re_string_t *regexp, re_dfa_t *dfa, 
     bin_tree_t *work_tree;
     int token_len;
     _Bool first_round = 1;
-    sbcset = (re_bitset_ptr_t)safe_calloc(8UL * 4UL, 1);
-    mbcset = (re_charset_t*)safe_calloc(80UL, 1);
+    sbcset = (re_bitset_ptr_t)calloc(8UL * 4UL, 1);
+    mbcset = (re_charset_t*)calloc(80UL, 1);
     if (__builtin_expect((sbcset == (void*)0) || (mbcset == (void*)0), 0)) {
         free(sbcset);
         free(mbcset);
@@ -110983,7 +110959,7 @@ static bin_tree_t *parse_bracket_exp_244938(re_string_t *regexp, re_dfa_t *dfa, 
             if (__builtin_expect(mbchar_alloc == mbcset->nmbchars, 0)) {
                 wchar_t *new_mbchars;
                 mbchar_alloc = 2 * mbcset->nmbchars + 1;
-                new_mbchars = (wchar_t*)safe_realloc(mbcset->mbchars, mbchar_alloc * 4UL);
+                new_mbchars = (wchar_t*)realloc(mbcset->mbchars, mbchar_alloc * 4UL);
                 if (__builtin_expect(new_mbchars == (void*)0, 0)) {
                     goto parse_bracket_exp_espace;
                 }
@@ -111231,7 +111207,7 @@ _Bool parse_datetime2(struct timespec *result, const char *p, const struct times
                     char *tz1string = tz1buf;
                     char *z;
                     if (100 < tzsize) {
-                        tz1alloc = safe_malloc(tzsize);
+                        tz1alloc = malloc(tzsize);
                         if (! tz1alloc) {
                             goto fail;
                         }
@@ -153295,10 +153271,10 @@ int printf_parse(const char *format, char_directives *d, arguments *a)
                         {
                             void *__SAST_tmp_17385;
                             if (a->arg != a->direct_alloc_arg) {
-                                __SAST_tmp_17385 = safe_realloc(a->arg, memory_size);
+                                __SAST_tmp_17385 = realloc(a->arg, memory_size);
                             }
                             else {
-                                __SAST_tmp_17385 = safe_malloc(memory_size);
+                                __SAST_tmp_17385 = malloc(memory_size);
                             }
                             memory = (argument*)__SAST_tmp_17385;
                         }
@@ -153413,10 +153389,10 @@ int printf_parse(const char *format, char_directives *d, arguments *a)
                             {
                                 void *__SAST_tmp_17389;
                                 if (a->arg != a->direct_alloc_arg) {
-                                    __SAST_tmp_17389 = safe_realloc(a->arg, memory_size);
+                                    __SAST_tmp_17389 = realloc(a->arg, memory_size);
                                 }
                                 else {
-                                    __SAST_tmp_17389 = safe_malloc(memory_size);
+                                    __SAST_tmp_17389 = malloc(memory_size);
                                 }
                                 memory = (argument*)__SAST_tmp_17389;
                             }
@@ -153685,10 +153661,10 @@ int printf_parse(const char *format, char_directives *d, arguments *a)
                             {
                                 void *__SAST_tmp_17392;
                                 if (a->arg != a->direct_alloc_arg) {
-                                    __SAST_tmp_17392 = safe_realloc(a->arg, memory_size);
+                                    __SAST_tmp_17392 = realloc(a->arg, memory_size);
                                 }
                                 else {
-                                    __SAST_tmp_17392 = safe_malloc(memory_size);
+                                    __SAST_tmp_17392 = malloc(memory_size);
                                 }
                                 memory = (argument*)__SAST_tmp_17392;
                             }
@@ -153747,10 +153723,10 @@ int printf_parse(const char *format, char_directives *d, arguments *a)
                 {
                     void *__SAST_tmp_17395;
                     if (d->dir != d->direct_alloc_dir) {
-                        __SAST_tmp_17395 = safe_realloc(d->dir, memory_size);
+                        __SAST_tmp_17395 = realloc(d->dir, memory_size);
                     }
                     else {
-                        __SAST_tmp_17395 = safe_malloc(memory_size);
+                        __SAST_tmp_17395 = malloc(memory_size);
                     }
                     memory = (char_directive*)__SAST_tmp_17395;
                 }
@@ -154111,13 +154087,13 @@ static reg_errcode_t prune_impossible_nodes_245502(re_match_context_t *mctx)
             return 12;
         }
     }
-    sifted_states = (re_dfastate_t**)safe_malloc((match_last + 1) * 8UL);
+    sifted_states = (re_dfastate_t**)malloc((match_last + 1) * 8UL);
     if (__builtin_expect(sifted_states == (void*)0, 0)) {
         ret = 12;
         goto free_return;
     }
     if (dfa->nbackref) {
-        lim_states = (re_dfastate_t**)safe_malloc((match_last + 1) * 8UL);
+        lim_states = (re_dfastate_t**)malloc((match_last + 1) * 8UL);
         if (__builtin_expect(lim_states == (void*)0, 0)) {
             ret = 12;
             goto free_return;
@@ -154180,7 +154156,7 @@ static reg_errcode_t push_fail_stack_245523(struct re_fail_stack_t *fs, Idx str_
     fs->num = fs->num + 1L;
     if (fs->num == fs->alloc) {
         struct re_fail_stack_ent_t *new_array;
-        new_array = (struct re_fail_stack_ent_t*)safe_realloc(fs->stack, fs->alloc * 2 * 48UL);
+        new_array = (struct re_fail_stack_ent_t*)realloc(fs->stack, fs->alloc * 2 * 48UL);
         if (new_array == (void*)0) {
             return 12;
         }
@@ -154189,7 +154165,7 @@ static reg_errcode_t push_fail_stack_245523(struct re_fail_stack_t *fs, Idx str_
     }
     fs->stack[num].idx = str_idx;
     fs->stack[num].node = dest_node;
-    fs->stack[num].regs = (regmatch_t*)safe_malloc(nregs * 16UL);
+    fs->stack[num].regs = (regmatch_t*)malloc(nregs * 16UL);
     if (fs->stack[num].regs == (void*)0) {
         return 12;
     }
@@ -154919,7 +154895,7 @@ static reg_errcode_t re_compile_internal_244795(regex_t *preg, const char *patte
     preg->regs_allocated = 0;
     dfa = preg->buffer;
     if (__builtin_expect(preg->allocated < 232UL, 0)) {
-        dfa = (re_dfa_t*)safe_realloc(preg->buffer, 1 * 232UL);
+        dfa = (re_dfa_t*)realloc(preg->buffer, 1 * 232UL);
         if (dfa == (void*)0) {
             return 12;
         }
@@ -154977,11 +154953,11 @@ static unsigned int re_copy_regs_245496(struct re_registers *regs, regmatch_t *p
     Idx i;
     Idx need_regs = nregs + 1;
     if (regs_allocated == 0) {
-        regs->start = (regoff_t*)safe_malloc(need_regs * 8UL);
+        regs->start = (regoff_t*)malloc(need_regs * 8UL);
         if (__builtin_expect(regs->start == (void*)0, 0)) {
             return 0;
         }
-        regs->end = (regoff_t*)safe_malloc(need_regs * 8UL);
+        regs->end = (regoff_t*)malloc(need_regs * 8UL);
         if (__builtin_expect(regs->end == (void*)0, 0)) {
             free(regs->start);
             return 0;
@@ -154991,12 +154967,12 @@ static unsigned int re_copy_regs_245496(struct re_registers *regs, regmatch_t *p
     else {
         if (regs_allocated == 1) {
             if (__builtin_expect(need_regs > regs->num_regs, 0)) {
-                regoff_t *new_start = (regoff_t*)safe_realloc(regs->start, need_regs * 8UL);
+                regoff_t *new_start = (regoff_t*)realloc(regs->start, need_regs * 8UL);
                 regoff_t *new_end;
                 if (__builtin_expect(new_start == (void*)0, 0)) {
                     return 0;
                 }
-                new_end = (regoff_t*)safe_realloc(regs->end, need_regs * 8UL);
+                new_end = (regoff_t*)realloc(regs->end, need_regs * 8UL);
                 if (__builtin_expect(new_end == (void*)0, 0)) {
                     free(new_start);
                     return 0;
@@ -155073,15 +155049,15 @@ static Idx re_dfa_add_node_244724(re_dfa_t *dfa, re_token_t token)
                 return - 1;
             }
         }
-        new_nodes = (re_token_t*)safe_realloc(dfa->nodes, new_nodes_alloc * 16UL);
+        new_nodes = (re_token_t*)realloc(dfa->nodes, new_nodes_alloc * 16UL);
         if (__builtin_expect(new_nodes == (void*)0, 0)) {
             return - 1;
         }
         dfa->nodes = new_nodes;
-        new_nexts = (Idx*)safe_realloc(dfa->nexts, new_nodes_alloc * 8UL);
-        new_indices = (Idx*)safe_realloc(dfa->org_indices, new_nodes_alloc * 8UL);
-        new_edests = (re_node_set*)safe_realloc(dfa->edests, new_nodes_alloc * 24UL);
-        new_eclosures = (re_node_set*)safe_realloc(dfa->eclosures, new_nodes_alloc * 24UL);
+        new_nexts = (Idx*)realloc(dfa->nexts, new_nodes_alloc * 8UL);
+        new_indices = (Idx*)realloc(dfa->org_indices, new_nodes_alloc * 8UL);
+        new_edests = (re_node_set*)realloc(dfa->edests, new_nodes_alloc * 24UL);
+        new_eclosures = (re_node_set*)realloc(dfa->eclosures, new_nodes_alloc * 24UL);
         if (__builtin_expect((((new_nexts == (void*)0) || (new_indices == (void*)0)) || (new_edests == (void*)0)) || (new_eclosures == (void*)0), 0)) {
             free(new_nexts);
             free(new_indices);
@@ -155121,7 +155097,7 @@ static reg_errcode_t re_node_set_add_intersect_244666(re_node_set *dest, const r
     }
     if (src1->nelem + src2->nelem + dest->nelem > dest->alloc) {
         Idx new_alloc = src1->nelem + src2->nelem + dest->alloc;
-        Idx *new_elems = (Idx*)safe_realloc(dest->elems, new_alloc * 8UL);
+        Idx *new_elems = (Idx*)realloc(dest->elems, new_alloc * 8UL);
         if (__builtin_expect(new_elems == (void*)0, 0)) {
             return 12;
         }
@@ -155200,7 +155176,7 @@ static reg_errcode_t re_node_set_alloc_244649(re_node_set *set, Idx size)
 {
     set->alloc = size;
     set->nelem = 0;
-    set->elems = (Idx*)safe_malloc(size * 8UL);
+    set->elems = (Idx*)malloc(size * 8UL);
     if ((__builtin_expect(set->elems == (void*)0, 0)) && ((1) || (size != 0))) {
         return 12;
     }
@@ -155255,7 +155231,7 @@ static reg_errcode_t re_node_set_init_1_244653(re_node_set *set, Idx elem)
 {
     set->alloc = 1;
     set->nelem = 1;
-    set->elems = (Idx*)safe_malloc(1 * 8UL);
+    set->elems = (Idx*)malloc(1 * 8UL);
     if (__builtin_expect(set->elems == (void*)0, 0)) {
         set->nelem = 0;
         set->alloc = set->nelem;
@@ -155267,7 +155243,7 @@ static reg_errcode_t re_node_set_init_1_244653(re_node_set *set, Idx elem)
 static reg_errcode_t re_node_set_init_2_244657(re_node_set *set, Idx elem1, Idx elem2)
 {
     set->alloc = 2;
-    set->elems = (Idx*)safe_malloc(2 * 8UL);
+    set->elems = (Idx*)malloc(2 * 8UL);
     if (__builtin_expect(set->elems == (void*)0, 0)) {
         return 12;
     }
@@ -155293,7 +155269,7 @@ static reg_errcode_t re_node_set_init_copy_244662(re_node_set *dest, const re_no
     dest->nelem = src->nelem;
     if (src->nelem > 0) {
         dest->alloc = dest->nelem;
-        dest->elems = (Idx*)safe_malloc(dest->alloc * 8UL);
+        dest->elems = (Idx*)malloc(dest->alloc * 8UL);
         if (__builtin_expect(dest->elems == (void*)0, 0)) {
             dest->nelem = 0;
             dest->alloc = dest->nelem;
@@ -155313,7 +155289,7 @@ static reg_errcode_t re_node_set_init_union_244679(re_node_set *dest, const re_n
     Idx id;
     if ((((src1 != (void*)0) && (src1->nelem > 0)) && (src2 != (void*)0)) && (src2->nelem > 0)) {
         dest->alloc = src1->nelem + src2->nelem;
-        dest->elems = (Idx*)safe_malloc(dest->alloc * 8UL);
+        dest->elems = (Idx*)malloc(dest->alloc * 8UL);
         if (__builtin_expect(dest->elems == (void*)0, 0)) {
             return 12;
         }
@@ -155376,7 +155352,7 @@ static _Bool re_node_set_insert_244697(re_node_set *set, Idx elem)
     if (set->alloc == set->nelem) {
         Idx *new_elems;
         set->alloc = set->alloc * 2;
-        new_elems = (Idx*)safe_realloc(set->elems, set->alloc * 8UL);
+        new_elems = (Idx*)realloc(set->elems, set->alloc * 8UL);
         if (__builtin_expect(new_elems == (void*)0, 0)) {
             return 0;
         }
@@ -155402,7 +155378,7 @@ static _Bool re_node_set_insert_last_244703(re_node_set *set, Idx elem)
     if (set->alloc == set->nelem) {
         Idx *new_elems;
         set->alloc = (set->alloc + 1) * 2;
-        new_elems = (Idx*)safe_realloc(set->elems, set->alloc * 8UL);
+        new_elems = (Idx*)realloc(set->elems, set->alloc * 8UL);
         if (__builtin_expect(new_elems == (void*)0, 0)) {
             return 0;
         }
@@ -155423,7 +155399,7 @@ static reg_errcode_t re_node_set_merge_244687(re_node_set *dest, const re_node_s
     }
     if (dest->alloc < 2 * src->nelem + dest->nelem) {
         Idx new_alloc = 2 * (src->nelem + dest->alloc);
-        Idx *new_buffer = (Idx*)safe_realloc(dest->elems, new_alloc * 8UL);
+        Idx *new_buffer = (Idx*)realloc(dest->elems, new_alloc * 8UL);
         if (__builtin_expect(new_buffer == (void*)0, 0)) {
             return 12;
         }
@@ -157547,7 +157523,7 @@ static regoff_t re_search_2_stub_245474(struct re_pattern_buffer *bufp, const ch
     }
     if (length2 > 0) {
         if (length1 > 0) {
-            s = (char*)safe_malloc(len * 1UL);
+            s = (char*)malloc(len * 1UL);
             if (__builtin_expect(s == (void*)0, 0)) {
                 return - 2;
             }
@@ -157637,7 +157613,7 @@ static reg_errcode_t re_search_internal_245463(const regex_t *preg, const char *
                 goto free_return;
             }
         }
-        mctx.state_log = (re_dfastate_t**)safe_malloc((mctx.input.bufs_len + 1) * 8UL);
+        mctx.state_log = (re_dfastate_t**)malloc((mctx.input.bufs_len + 1) * 8UL);
         if (__builtin_expect(mctx.state_log == (void*)0, 0)) {
             err = 12;
             goto free_return;
@@ -157997,7 +157973,7 @@ static regoff_t re_search_stub_245486(struct re_pattern_buffer *bufp, const char
             nregs = bufp->re_nsub + 1;
         }
     }
-    pmatch = (regmatch_t*)safe_malloc(nregs * 16UL);
+    pmatch = (regmatch_t*)malloc(nregs * 16UL);
     if (__builtin_expect(pmatch == (void*)0, 0)) {
         rval = - 2;
         goto out;
@@ -158339,13 +158315,13 @@ static reg_errcode_t re_string_realloc_buffers_244498(re_string_t *pstr, Idx new
                 return 12;
             }
         }
-        new_wcs = (wint_t*)safe_realloc(pstr->wcs, new_buf_len * 4UL);
+        new_wcs = (wint_t*)realloc(pstr->wcs, new_buf_len * 4UL);
         if (__builtin_expect(new_wcs == (void*)0, 0)) {
             return 12;
         }
         pstr->wcs = new_wcs;
         if (pstr->offsets != (void*)0) {
-            Idx *new_offsets = (Idx*)safe_realloc(pstr->offsets, new_buf_len * 8UL);
+            Idx *new_offsets = (Idx*)realloc(pstr->offsets, new_buf_len * 8UL);
             if (__builtin_expect(new_offsets == (void*)0, 0)) {
                 return 12;
             }
@@ -158353,7 +158329,7 @@ static reg_errcode_t re_string_realloc_buffers_244498(re_string_t *pstr, Idx new
         }
     }
     if (pstr->mbs_allocated) {
-        unsigned char *new_mbs = (unsigned char*)safe_realloc(pstr->mbs, new_buf_len * 1UL);
+        unsigned char *new_mbs = (unsigned char*)realloc(pstr->mbs, new_buf_len * 1UL);
         if (__builtin_expect(new_mbs == (void*)0, 0)) {
             return 12;
         }
@@ -159174,7 +159150,7 @@ static gid_t *realloc_groupbuf_167923(gid_t *g, size_t num)
             return (void*)0;
         }
     }
-    return safe_realloc(g, num * 4UL);
+    return realloc(g, num * 4UL);
 }
 void record_file(Hash_table *ht, const char *file, const struct stat *stats)
 {
@@ -159217,7 +159193,7 @@ static reg_errcode_t register_state_244762(const re_dfa_t *dfa, re_dfastate_t *n
     spot = dfa->state_table + ((hash) & (dfa->state_hash_mask));
     if (__builtin_expect(spot->alloc <= spot->num, 0)) {
         Idx new_alloc = 2 * spot->num + 2;
-        re_dfastate_t **new_array = (re_dfastate_t**)safe_realloc(spot->array, new_alloc * 8UL);
+        re_dfastate_t **new_array = (re_dfastate_t**)realloc(spot->array, new_alloc * 8UL);
         if (__builtin_expect(new_array == (void*)0, 0)) {
             return 12;
         }
@@ -159682,7 +159658,7 @@ FTS *rpl_fts_open(char *const *argv, int options, int (*compar)(const FTSENT**, 
         *__errno_location() = 22;
         return (void*)0;
     }
-    sp = safe_malloc(128UL);
+    sp = malloc(128UL);
     if (sp == (void*)0) {
         return (void*)0;
     }
@@ -160270,7 +160246,7 @@ int rpl_regcomp(regex_t *preg, const char *pattern, int cflags)
     preg->buffer = (void*)0;
     preg->allocated = 0;
     preg->used = 0;
-    preg->fastmap = (char*)safe_malloc((127 * 2 + 1 + 1) * 1UL);
+    preg->fastmap = (char*)malloc((127 * 2 + 1 + 1) * 1UL);
     if (__builtin_expect(preg->fastmap == (void*)0, 0)) {
         return 12;
     }
@@ -161137,7 +161113,7 @@ static reg_errcode_t set_regs_245531(const regex_t *preg, const re_match_context
     _Bool prev_idx_match_malloced = 0;
     if (fl_backtrack) {
         fs = &fs_body;
-        fs->stack = (struct re_fail_stack_ent_t*)safe_malloc(fs->alloc * 48UL);
+        fs->stack = (struct re_fail_stack_ent_t*)malloc(fs->alloc * 48UL);
         if (fs->stack == (void*)0) {
             return 12;
         }
@@ -161151,7 +161127,7 @@ static reg_errcode_t set_regs_245531(const regex_t *preg, const re_match_context
         prev_idx_match = (regmatch_t*)__builtin_alloca(nmatch * 16UL);
     }
     else {
-        prev_idx_match = (regmatch_t*)safe_malloc(nmatch * 16UL);
+        prev_idx_match = (regmatch_t*)malloc(nmatch * 16UL);
         if (prev_idx_match == (void*)0) {
             free_fail_stack_return_245538(fs);
             return 12;
@@ -161419,7 +161395,7 @@ static _Bool setup_dir_106482(FTS *fts)
         }
     }
     else {
-        fts->fts_cycle.state = safe_malloc(32UL);
+        fts->fts_cycle.state = malloc(32UL);
         if (! fts->fts_cycle.state) {
             return 0;
         }
@@ -162093,7 +162069,7 @@ int sha1_stream(FILE *stream, void *resblock)
     case - 5:;
     return 1;
     }
-    char *buffer = safe_malloc(32768 + 72);
+    char *buffer = malloc(32768 + 72);
     if (! buffer) {
         return 1;
     }
@@ -163682,7 +163658,7 @@ static int shaxxx_stream_272872(FILE *stream, const char *alg, void *resblock, s
     case - 5:;
     return 1;
     }
-    char *buffer = safe_malloc(32768 + 72);
+    char *buffer = malloc(32768 + 72);
     if (! buffer) {
         return 1;
     }
@@ -163727,7 +163703,7 @@ static int shaxxx_stream_274537(FILE *stream, const char *alg, void *resblock, s
     case - 5:;
     return 1;
     }
-    char *buffer = safe_malloc(32768 + 72);
+    char *buffer = malloc(32768 + 72);
     if (! buffer) {
         return 1;
     }
@@ -164119,7 +164095,7 @@ char *str_cd_iconv(const char *src, iconv_t cd)
         }
     }
     result_size = result_size + 1;
-    result = (char*)safe_malloc(result_size);
+    result = (char*)malloc(result_size);
     if (result == (void*)0) {
         *__errno_location() = 12;
         return (void*)0;
@@ -164143,7 +164119,7 @@ char *str_cd_iconv(const char *src, iconv_t cd)
                             *__errno_location() = 12;
                             goto failed;
                         }
-                        newresult = (char*)safe_realloc(result, newsize);
+                        newresult = (char*)realloc(result, newsize);
                         if (newresult == (void*)0) {
                             *__errno_location() = 12;
                             goto failed;
@@ -164173,7 +164149,7 @@ char *str_cd_iconv(const char *src, iconv_t cd)
                         *__errno_location() = 12;
                         goto failed;
                     }
-                    newresult = (char*)safe_realloc(result, newsize);
+                    newresult = (char*)realloc(result, newsize);
                     if (newresult == (void*)0) {
                         *__errno_location() = 12;
                         goto failed;
@@ -164196,7 +164172,7 @@ char *str_cd_iconv(const char *src, iconv_t cd)
         length = outptr - result;
     }
     if (length < result_size) {
-        char *smaller_result = (char*)safe_realloc(result, length);
+        char *smaller_result = (char*)realloc(result, length);
         if (smaller_result != (void*)0) {
             result = smaller_result;
         }
@@ -176844,7 +176820,7 @@ timezone_t tzalloc(const char *name)
         __SAST_tmp_17972 = name_size + 1;
     }
     size_t abbr_size = __SAST_tmp_17972;
-    timezone_t tz = safe_malloc((9UL + 8UL - 1 + abbr_size) & (~ (8UL - 1)));
+    timezone_t tz = malloc((9UL + 8UL - 1 + abbr_size) & (~ (8UL - 1)));
     if (tz) {
         tz->next = (void*)0;
         tz->tz_is_set = ! ! name;
@@ -177375,7 +177351,7 @@ int utimecmpat(int dfd, const char *dst_name, const struct stat *dst_stat, const
         }
         if (ht_306194) {
             if (! new_dst_res_306196) {
-                new_dst_res_306196 = safe_malloc(16UL);
+                new_dst_res_306196 = malloc(16UL);
                 if (! new_dst_res_306196) {
                     goto low_memory;
                 }
@@ -177614,7 +177590,7 @@ char *vasnprintf(char *resultbuf, size_t *lengthp, const char *format, va_list_8
             if (buf_memsize == 18446744073709551615UL) {
                 goto out_of_memory_1;
             }
-            buf = (char*)safe_malloc(buf_memsize);
+            buf = (char*)malloc(buf_memsize);
             if (buf == (void*)0) {
                 goto out_of_memory_1;
             }
@@ -177676,10 +177652,10 @@ char *vasnprintf(char *resultbuf, size_t *lengthp, const char *format, va_list_8
                         goto out_of_memory;
                     }
                     if ((result == resultbuf) || (result == (void*)0)) {
-                        memory = (char*)safe_malloc(memory_size);
+                        memory = (char*)malloc(memory_size);
                     }
                     else {
-                        memory = (char*)safe_realloc(result, memory_size);
+                        memory = (char*)realloc(result, memory_size);
                     }
                     if (memory == (void*)0) {
                         goto out_of_memory;
@@ -177750,10 +177726,10 @@ char *vasnprintf(char *resultbuf, size_t *lengthp, const char *format, va_list_8
                         goto out_of_memory;
                     }
                     if ((result == resultbuf) || (result == (void*)0)) {
-                        memory = (char*)safe_malloc(memory_size);
+                        memory = (char*)malloc(memory_size);
                     }
                     else {
-                        memory = (char*)safe_realloc(result, memory_size);
+                        memory = (char*)realloc(result, memory_size);
                     }
                     if (memory == (void*)0) {
                         goto out_of_memory;
@@ -177943,10 +177919,10 @@ char *vasnprintf(char *resultbuf, size_t *lengthp, const char *format, va_list_8
                             goto out_of_memory;
                         }
                         if ((result == resultbuf) || (result == (void*)0)) {
-                            memory = (char*)safe_malloc(memory_size);
+                            memory = (char*)malloc(memory_size);
                         }
                         else {
-                            memory = (char*)safe_realloc(result, memory_size);
+                            memory = (char*)realloc(result, memory_size);
                         }
                         if (memory == (void*)0) {
                             goto out_of_memory;
@@ -178372,10 +178348,10 @@ char *vasnprintf(char *resultbuf, size_t *lengthp, const char *format, va_list_8
                                         goto out_of_memory;
                                     }
                                     if ((result == resultbuf) || (result == (void*)0)) {
-                                        memory = (char*)safe_malloc(memory_size);
+                                        memory = (char*)malloc(memory_size);
                                     }
                                     else {
-                                        memory = (char*)safe_realloc(result, memory_size);
+                                        memory = (char*)realloc(result, memory_size);
                                     }
                                     if (memory == (void*)0) {
                                         goto out_of_memory;
@@ -178432,10 +178408,10 @@ char *vasnprintf(char *resultbuf, size_t *lengthp, const char *format, va_list_8
                 goto out_of_memory;
             }
             if ((result == resultbuf) || (result == (void*)0)) {
-                memory = (char*)safe_malloc(memory_size);
+                memory = (char*)malloc(memory_size);
             }
             else {
-                memory = (char*)safe_realloc(result, memory_size);
+                memory = (char*)realloc(result, memory_size);
             }
             if (memory == (void*)0) {
                 goto out_of_memory;
@@ -178448,7 +178424,7 @@ char *vasnprintf(char *resultbuf, size_t *lengthp, const char *format, va_list_8
         result[length] = 0;
         if ((result != resultbuf) && (length + 1 < allocated)) {
             char *memory;
-            memory = (char*)safe_realloc(result, (length + 1) * 1UL);
+            memory = (char*)realloc(result, (length + 1) * 1UL);
             if (memory != (void*)0) {
                 result = memory;
             }
@@ -178748,7 +178724,7 @@ void *xcalloc(size_t n, size_t s)
         __SAST_tmp_18105 = (size_t)__SAST_tmp_18104 / s < n;
         if (__SAST_tmp_18105) ;
         else {
-            p = safe_calloc(n, s);
+            p = calloc(n, s);
             __SAST_tmp_18105 = (! p) && ((1) || (n != 0));
         }
         if (__SAST_tmp_18105) {
@@ -178782,7 +178758,7 @@ static void xfields_350622(struct line *line)
 {
     fprintf(stdout, "1");
     fflush_unlocked(stdout);
-    ytmp = (int*)safe_malloc(4UL);
+    ytmp = (int*)malloc(4UL);
     char *ptr = line->buf.buffer;
     const char *lim = ptr + line->buf.length - 1;
     if (ptr == lim) {
@@ -178900,7 +178876,7 @@ char *xgethostname()
 }
 void *xmalloc(size_t n)
 {
-    void *p = safe_malloc(n);
+    void *p = malloc(n);
     if ((! p) && (n != 0)) {
         xalloc_die();
     }
@@ -179117,7 +179093,7 @@ void *xrealloc(void *p, size_t n)
         free(p);
         return (void*)0;
     }
-    p = safe_realloc(p, n);
+    p = realloc(p, n);
     if ((! p) && (n)) {
         xalloc_die();
     }
@@ -187160,7 +187136,7 @@ int yyparse(parser_control *pc)
         }
         {
             yy_state_t *yyss1 = yyss;
-            union yyalloc *yyptr = (union yyalloc*)safe_malloc((unsigned long)(yystacksize * ((long)1UL + (long)56UL) + ((long)56UL - 1)));
+            union yyalloc *yyptr = (union yyalloc*)malloc((unsigned long)(yystacksize * ((long)1UL + (long)56UL) + ((long)56UL - 1)));
             if (! yyptr) {
                 goto yyexhaustedlab;
             }
