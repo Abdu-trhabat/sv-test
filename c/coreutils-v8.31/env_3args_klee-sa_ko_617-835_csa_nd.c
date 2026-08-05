@@ -51205,6 +51205,14 @@ _Bool readtokens0(FILE *in, struct Tokens *t);
 void readtokens0_free(struct Tokens *t);
 void readtokens0_init(struct Tokens *t);
 void *realloc(void*, size_t);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 static gid_t *realloc_groupbuf_167923(gid_t *g, size_t num);
 void *reallocarray(void *__ptr, size_t __nmemb, size_t __size);
 char *realpath(const char *__name, char *__resolved);
@@ -97077,10 +97085,10 @@ int main()
 {
     int argc = 4;
     optind = 1;
-    char **argv = malloc((argc + 1) * 8UL);
+    char **argv = safe_malloc((argc + 1) * 8UL);
     argv[argc] = 0;
     for (int i = 0; i < argc; i = i + 1) {
-        argv[i] = malloc(11 * 1UL);
+        argv[i] = safe_malloc(11 * 1UL);
         argv[i][10] = 0;
         for (int j = 0; j < 10; j = j + 1) {
             argv[i][j] = __VERIFIER_nondet_char();
