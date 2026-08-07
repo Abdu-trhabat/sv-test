@@ -1,32 +1,4 @@
 typedef long unsigned int size_t;
-extern void abort(void);
-extern void *calloc(size_t num, size_t size);
-extern void *malloc(size_t size);
-extern void *realloc(void *ptr, size_t size);
-void *safe_calloc(size_t num, size_t size) {
-  void *p = calloc(num, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_malloc(size_t size) {
-  void *p = malloc(size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
-void *safe_realloc(void *ptr, size_t size) {
-  void *p = realloc(ptr, size);
-  if (p == 0) {
-    abort();
-  }
-  return p;
-}
-
 typedef short unsigned int wchar_t;
 typedef long int ptrdiff_t;
 typedef signed char __int8_t;
@@ -282,7 +254,7 @@ int __attribute__((__cdecl__)) _atoi_r (struct _reent *, const char *__nptr);
 long __attribute__((__cdecl__)) atol (const char *__nptr);
 long __attribute__((__cdecl__)) _atol_r (struct _reent *, const char *__nptr);
 void * __attribute__((__cdecl__)) bsearch (const void * __key, const void * __base, size_t __nmemb, size_t __size, __compar_fn_t _compar);
-void * __attribute__((__cdecl__)) safe_calloc (size_t __nmemb, size_t __size) ;
+void * __attribute__((__cdecl__)) calloc (size_t __nmemb, size_t __size) ;
 div_t __attribute__((__cdecl__)) div (int __numer, int __denom);
 void __attribute__((__cdecl__)) exit (int __status) __attribute__ ((__noreturn__));
 void __attribute__((__cdecl__)) free (void *) ;
@@ -294,7 +266,7 @@ extern char *suboptarg;
 int __attribute__((__cdecl__)) getsubopt (char **, char * const *, char **);
 long __attribute__((__cdecl__)) labs (long);
 ldiv_t __attribute__((__cdecl__)) ldiv (long __numer, long __denom);
-void * __attribute__((__cdecl__)) safe_malloc (size_t __size) ;
+void * __attribute__((__cdecl__)) malloc (size_t __size) ;
 int __attribute__((__cdecl__)) mblen (const char *, size_t);
 int __attribute__((__cdecl__)) _mblen_r (struct _reent *, const char *, size_t, _mbstate_t *);
 int __attribute__((__cdecl__)) mbtowc (wchar_t *, const char *, size_t);
@@ -319,7 +291,7 @@ int __attribute__((__cdecl__)) _mkstemps_r (struct _reent *, char *, int);
 char * __attribute__((__cdecl__)) _mktemp_r (struct _reent *, char *) __attribute__ ((__warning__ ("the use of `mktemp' is dangerous; use `mkstemp' instead")));
 void __attribute__((__cdecl__)) qsort (void * __base, size_t __nmemb, size_t __size, __compar_fn_t _compar);
 int __attribute__((__cdecl__)) rand (void);
-void * __attribute__((__cdecl__)) safe_realloc (void * __r, size_t __size) ;
+void * __attribute__((__cdecl__)) realloc (void * __r, size_t __size) ;
 void * __attribute__((__cdecl__)) reallocf (void * __r, size_t __size);
 char * __attribute__((__cdecl__)) realpath (const char * path, char * resolved_path);
 void __attribute__((__cdecl__)) srand (unsigned __seed);
@@ -387,6 +359,14 @@ char * __attribute__((__cdecl__)) _dtoa_r (struct _reent *, double, int, int, in
 int __attribute__((__cdecl__)) _system_r (struct _reent *, const char *);
 void __attribute__((__cdecl__)) __eprintf (const char *, const char *, unsigned int, const char *);
 extern long double strtold (const char *, char **);
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
 
 extern int __VERIFIER_nondet_int(void);
 int (cstrcspn)(const char *s1, const char *s2)
