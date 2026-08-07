@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "helpers-safe.c"
+#include "helpers.c"
 
 typedef unsigned char u8;
 typedef unsigned int u32;

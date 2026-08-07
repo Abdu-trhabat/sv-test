@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "helpers-safe.c"
+#include "helpers.c"
 
 #define LIBPE_PTR_ADD(p, o) ((void *)((char *)(p) + (o)))
 

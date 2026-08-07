@@ -12,7 +12,7 @@
 
 // Similar vulnerabilty with negative index buffer access after atoi of user input: https://www.cvedetails.com/cve/CVE-2023-43641/
 
-#include "helpers-safe.c"
+#include "helpers.c"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>

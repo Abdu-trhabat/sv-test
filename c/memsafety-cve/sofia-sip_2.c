@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "helpers-safe.c"
+#include "helpers.c"
 
 #define STUN_A_LAST_MANDATORY 0x2020
 #define STUN_A_OPTIONAL 0x7fff
