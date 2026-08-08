@@ -10,6 +10,7 @@ memsafety-ext2/*.yml
 memsafety-ext3/*.yml
 memsafety-cve/*.yml
 memsafety-bftpd/*.yml
+memsafety-sanity/*.yml
 memory-alloca/*.yml
 ldv-memsafety/*.yml
 ldv-memsafety-bitfields/*.yml
