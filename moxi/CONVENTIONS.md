@@ -25,9 +25,9 @@ SMT-LIB 2. See the language definition (SPIN 2024):
 
 ## Modeling
 
-- Each task declares its SMT theory with `(set-logic <L>)`, where `<L>` is one of
-  `QF_ABV`, `QF_BV`, or `QF_LIA`. All sorts and operators are interpreted according to
-  the corresponding SMT-LIB 2.6 theory; there is no undefined behavior.
+- Each task declares its SMT-LIB logic with `(set-logic <L>)`. All sorts and operators
+  are interpreted according to the corresponding SMT-LIB 2.6 theories; there is no
+  undefined behavior.
 - A model is one or more transition systems defined with `define-system` (attributes
   `:input`, `:output`, `:local`, `:init`, `:trans`, `:inv`; systems may be composed
   synchronously via `:subsys`). Verification obligations are stated with `check-system`,
