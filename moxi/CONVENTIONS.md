@@ -16,7 +16,7 @@ SMT-LIB 2. See the language definition (SPIN 2024):
 
 ## Input format
 
-- A task model is given in *native MoXI*, the SMT-LIB-style S-expression syntax
+- A task model is given in _native MoXI_, the SMT-LIB-style S-expression syntax
   (`.moxi`). This is the sole input format of the track; no other rendition (e.g.,
   MoXI-JSON) is provided or accepted. Tools that internally prefer another
   representation must convert the input themselves (e.g., MoXI-MC-Flow provides a
@@ -36,8 +36,11 @@ SMT-LIB 2. See the language definition (SPIN 2024):
   `__VERIFIER_nondet` API and no library or external functions -- each task is
   self-contained. Uninterpreted constant and function symbols, if any, are rigid
   (time-invariant).
-- Every system is expected to be deadlock-free (i.e., to execute forever), per MoXI's
-  sanity requirements on the initial and transition predicates.
+- Per the sanity requirements of the [MoXI language](https://doi.org/10.1007/978-3-031-66149-5_2) paper,
+  models are expected (but not guaranteed) to be deadlock-free, that is, to start and to run forever:
+  every assignment to the input variables can be extended to an initial state, and from every
+  reachable state, every assignment to the next inputs can be extended to a successor state.
+  Note that right-totality of the transition relation is not assumed: unreachable states may lack successors.
 
 ## Property
 
