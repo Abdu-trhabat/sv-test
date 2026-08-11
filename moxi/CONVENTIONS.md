@@ -52,9 +52,9 @@ language definition; the SPIN 2024 paper above is the normative reference.
 - The only property considered is `unreach-query` (see
   [`properties/unreach-query.md`](properties/unreach-query.md)): the single query of
   the task is unsatisfiable, i.e., no queried state is reachable.
-- Verification obligations are stated with `check-system` as queries (`:query`) over
-  named conditions of the command; see Sect. 3.2 of the SPIN 2024 MoXI language paper
-  for the definition of a query. For the competition, each task file contains exactly
+- The verification obligation is stated with `check-system`;
+  see Sect. 3.2 of the SPIN 2024 MoXI language paper for the definition of a query.
+  For the competition, each task file contains exactly
   one `check-system` command; it references the system `main` and contains exactly one
   `:query` (the `:queries` attribute is not used).
 - The query may range over `:reachable`, `:assumption`, and `:current` conditions;
