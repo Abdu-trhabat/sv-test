@@ -14,6 +14,11 @@ Interlingua), an intermediate language for symbolic model checking built on top 
 SMT-LIB 2. See the language definition (SPIN 2024):
 <https://doi.org/10.1007/978-3-031-66149-5_2>.
 
+This file is meant to get competition participants started quickly: it lists the most
+important MoXI constructs and fixes the interpretation of aspects relevant to the
+competition. It is neither a comprehensive tutorial nor a replacement of the official
+language definition; the SPIN 2024 paper above is the normative reference.
+
 ## Input format
 
 - A task model is given in _native MoXI_, the SMT-LIB-style S-expression syntax
@@ -30,8 +35,9 @@ SMT-LIB 2. See the language definition (SPIN 2024):
   undefined behavior.
 - A model is one or more transition systems defined with `define-system` (attributes
   `:input`, `:output`, `:local`, `:init`, `:trans`, `:inv`; systems may be composed
-  synchronously via `:subsys`). Verification obligations are stated with `check-system`,
-  using `:reachable` conditions collected into `:query`/`:queries`.
+  synchronously via `:subsys`). Verification obligations are stated with `check-system`
+  as queries (`:query`/`:queries`) over named conditions of the command; see Sect. 3.2
+  of the SPIN 2024 MoXI language paper for the definition of a query.
 - Nondeterministic inputs are the free `:input` variables of a system; there is no
   `__VERIFIER_nondet` API and no library or external functions -- each task is
   self-contained. Uninterpreted constant and function symbols, if any, are rigid
