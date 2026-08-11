@@ -31,7 +31,7 @@ language definition; the SPIN 2024 paper above is the normative reference.
 ## Modeling
 
 - Each task declares its SMT-LIB logic with `(set-logic <L>)`. All sorts and operators
-  are interpreted according to the corresponding SMT-LIB 2.6 theories; there is no
+  are interpreted according to the corresponding SMT-LIB theories; there is no
   undefined behavior.
 - A model is one or more transition systems defined with `define-system` (attributes
   `:input`, `:output`, `:local`, `:init`, `:trans`, `:inv`; systems may be composed
