@@ -35,24 +35,12 @@ language definition; the SPIN 2024 paper above is the normative reference.
   undefined behavior.
 - A model is one or more transition systems defined with `define-system` (attributes
   `:input`, `:output`, `:local`, `:init`, `:trans`, `:inv`; systems may be composed
-  synchronously via `:subsys`). Verification obligations are stated with `check-system`
-  as queries (`:query`) over named conditions of the command; see Sect. 3.2
-  of the SPIN 2024 MoXI language paper for the definition of a query.
-- For the competition, each task file is restricted to the following shape: it contains
-  exactly one `check-system` command, which references a system named `main`. The system
-  `main` is the unique top system of the file: it is not instantiated by any other
-  system, and every other defined system is a transitive subsystem of `main`. The
-  `check-system` command contains exactly one `:query` (the `:queries` attribute is not
-  used). The query may range over `:reachable`, `:assumption`, and `:current`
-  conditions; `:fairness` conditions are excluded from the property `unreach-query`,
-  because a query with a fairness condition is evaluated with infinite-trace semantics
-  (Sect. 3.2 of the SPIN 2024 paper), which is incompatible with the finite violation
-  witnesses below. Queries with fairness conditions may be considered in the future
-  as a separate property in its own sub-track.
+  synchronously via `:subsys`). For the competition, each task file contains exactly
+  one top system, named `main`: no other system instantiates it, and every other
+  defined system is a transitive subsystem of `main`.
 - Nondeterministic inputs are the free `:input` variables of a system; there is no
   `__VERIFIER_nondet` API and no library or external functions -- each task is
-  self-contained. Uninterpreted constant and function symbols, if any, are rigid
-  (time-invariant).
+  self-contained. Uninterpreted constant and function symbols, if any, are rigid (time-invariant).
 - Per the sanity requirements of the [MoXI language](https://doi.org/10.1007/978-3-031-66149-5_2) paper,
   models are expected (but not guaranteed) to be deadlock-free, that is, to start and to run forever:
   every assignment to the input variables can be extended to an initial state, and from every
@@ -62,8 +50,19 @@ language definition; the SPIN 2024 paper above is the normative reference.
 ## Property
 
 - The only property considered is `unreach-query` (see
-  [`properties/unreach-query.md`](properties/unreach-query.md)): every reachability query
-  of the system is unsatisfiable, i.e., no queried state is reachable.
+  [`properties/unreach-query.md`](properties/unreach-query.md)): the single query of
+  the task is unsatisfiable, i.e., no queried state is reachable.
+- Verification obligations are stated with `check-system` as queries (`:query`) over
+  named conditions of the command; see Sect. 3.2 of the SPIN 2024 MoXI language paper
+  for the definition of a query. For the competition, each task file contains exactly
+  one `check-system` command; it references the system `main` and contains exactly one
+  `:query` (the `:queries` attribute is not used).
+- The query may range over `:reachable`, `:assumption`, and `:current` conditions;
+  `:fairness` conditions are excluded from the property `unreach-query`, because a
+  query with a fairness condition is evaluated with infinite-trace semantics
+  (Sect. 3.2 of the SPIN 2024 paper), which is incompatible with the finite violation
+  witnesses below. Queries with fairness conditions may be considered in the future
+  as a separate property in its own sub-track.
 
 ## Witnesses (for validation)
 
