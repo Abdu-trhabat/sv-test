@@ -44,9 +44,11 @@ language definition; the SPIN 2024 paper above is the normative reference.
   system, and every other defined system is a transitive subsystem of `main`. The
   `check-system` command contains exactly one `:query` (the `:queries` attribute is not
   used). The query may range over `:reachable`, `:assumption`, and `:current`
-  conditions; `:fairness` conditions are excluded, because a query with a fairness
-  condition is evaluated with infinite-trace semantics (Sect. 3.2 of the SPIN 2024
-  paper), which is incompatible with the finite violation witnesses below.
+  conditions; `:fairness` conditions are excluded from the property `unreach-query`,
+  because a query with a fairness condition is evaluated with infinite-trace semantics
+  (Sect. 3.2 of the SPIN 2024 paper), which is incompatible with the finite violation
+  witnesses below. Queries with fairness conditions may be considered in the future
+  as a separate property in its own sub-track.
 - Nondeterministic inputs are the free `:input` variables of a system; there is no
   `__VERIFIER_nondet` API and no library or external functions -- each task is
   self-contained. Uninterpreted constant and function symbols, if any, are rigid
