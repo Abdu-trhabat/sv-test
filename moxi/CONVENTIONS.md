@@ -36,8 +36,17 @@ language definition; the SPIN 2024 paper above is the normative reference.
 - A model is one or more transition systems defined with `define-system` (attributes
   `:input`, `:output`, `:local`, `:init`, `:trans`, `:inv`; systems may be composed
   synchronously via `:subsys`). Verification obligations are stated with `check-system`
-  as queries (`:query`/`:queries`) over named conditions of the command; see Sect. 3.2
+  as queries (`:query`) over named conditions of the command; see Sect. 3.2
   of the SPIN 2024 MoXI language paper for the definition of a query.
+- For the competition, each task file is restricted to the following shape: it contains
+  exactly one `check-system` command, which references a system named `main`. The system
+  `main` is the unique top system of the file: it is not instantiated by any other
+  system, and every other defined system is a transitive subsystem of `main`. The
+  `check-system` command contains exactly one `:query` (the `:queries` attribute is not
+  used). The query may range over `:reachable`, `:assumption`, and `:current`
+  conditions; `:fairness` conditions are excluded, because a query with a fairness
+  condition is evaluated with infinite-trace semantics (Sect. 3.2 of the SPIN 2024
+  paper), which is incompatible with the finite violation witnesses below.
 - Nondeterministic inputs are the free `:input` variables of a system; there is no
   `__VERIFIER_nondet` API and no library or external functions -- each task is
   self-contained. Uninterpreted constant and function symbols, if any, are rigid

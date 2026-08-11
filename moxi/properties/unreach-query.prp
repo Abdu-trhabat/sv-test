@@ -1,1 +1,1 @@
-CHECK( init, LTL(G ! query) )
+CHECK( check-system(main), unreach-query )
