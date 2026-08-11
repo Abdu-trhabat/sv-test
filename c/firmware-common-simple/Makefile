@@ -9,4 +9,7 @@ LEVEL := ../
 
 CC.Arch := 64
 
+COMMON_WARNINGS := \
+	-Wno-error=overflow
+
 include $(LEVEL)/Makefile.config
