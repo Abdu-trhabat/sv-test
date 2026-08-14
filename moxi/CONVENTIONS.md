@@ -43,16 +43,15 @@ language definition; the SPIN 2024 paper above is the normative reference.
   self-contained. Uninterpreted constant and function symbols, if any, are rigid (time-invariant).
 - Per the sanity requirements of the [MoXI language](https://doi.org/10.1007/978-3-031-66149-5_2) paper,
   models are expected (but not guaranteed) to be deadlock-free, that is, to start and to run forever:
-  every assignment to the input variables can be extended to an initial state, and from every
-  reachable state, every assignment to the next inputs can be extended to a successor state.
+  every assignment to the input variables can be extended to satisfy the initial condition,
+  and from every reachable state, every assignment to the next (i.e., primed) inputs
+  can be extended such that the current and the next state satisfy the transition condition.
   Note that right-totality of the transition relation is not assumed: unreachable states may lack successors.
 
 ## Property
 
 - The only property considered is `unsat-query` (see
-  [`properties/unsat-query.md`](properties/unsat-query.md)): the single query of
-  the task is unsatisfiable. For the current tasks, whose queries are reachability
-  queries, this means that no queried state is reachable.
+  [`properties/unsat-query.md`](properties/unsat-query.md)): the single query of the task is unsatisfiable.
 - The verification obligation is stated with `check-system`;
   see Sect. 3.2 of the SPIN 2024 MoXI language paper for the definition of a query.
   For the competition, each task file contains exactly
@@ -62,15 +61,14 @@ language definition; the SPIN 2024 paper above is the normative reference.
   conditions. A query without fairness conditions is evaluated under finite-trace
   semantics and expresses a safety (reachability) obligation; a query with fairness
   conditions is evaluated under infinite-trace semantics (Sect. 3.2 of the SPIN 2024
-  paper) and expresses a liveness obligation. The two kinds are separated into
-  different categories via task-set files; the current categories contain only
-  safety tasks (no `:fairness` conditions).
+  paper) and expresses a liveness obligation.
+  The two kinds are separated into different categories via task-set files.
 
 ## Witnesses (for validation)
 
 - A tool's answer is a MoXI `check-system-response`. A violation witness is a trace
   demonstrating the query's satisfiability, reported as a `:trace`: for safety
-  queries (all current tasks), a finite execution that reaches a queried state, whose
+  queries, a finite execution that reaches a queried state, whose
   states are listed in the `:prefix` trail and which has no `:lasso` trail (cf.
   Fig. 4 of the MoXI language paper, SPIN 2024, linked above); for liveness queries,
   a `:trace` with both a `:prefix` and a `:lasso` trail. If the model has free
