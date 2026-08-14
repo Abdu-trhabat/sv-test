@@ -49,27 +49,29 @@ language definition; the SPIN 2024 paper above is the normative reference.
 
 ## Property
 
-- The only property considered is `unreach-query` (see
-  [`properties/unreach-query.md`](properties/unreach-query.md)): the single query of
-  the task is unsatisfiable, i.e., no queried state is reachable.
+- The only property considered is `unsat-query` (see
+  [`properties/unsat-query.md`](properties/unsat-query.md)): the single query of
+  the task is unsatisfiable. For the current tasks, whose queries are reachability
+  queries, this means that no queried state is reachable.
 - The verification obligation is stated with `check-system`;
   see Sect. 3.2 of the SPIN 2024 MoXI language paper for the definition of a query.
   For the competition, each task file contains exactly
   one `check-system` command; it references the system `main` and contains exactly one
   `:query` (the `:queries` attribute is not used).
 - The query may range over `:reachable`, `:assumption`, and `:current` conditions;
-  `:fairness` conditions are excluded from the property `unreach-query`, because a
+  `:fairness` conditions are excluded from the current task set, because a
   query with a fairness condition is evaluated with infinite-trace semantics
   (Sect. 3.2 of the SPIN 2024 paper), which is incompatible with the finite violation
-  witnesses below. Queries with fairness conditions may be considered in the future
-  as a separate property in its own sub-track.
+  witnesses below. Tasks whose queries contain fairness conditions may be added in
+  the future as a separate category (distinguished by task-set files), with
+  lasso-shaped violation witnesses.
 
 ## Witnesses (for validation)
 
-- A tool's answer is a MoXI `check-system-response`. For `unreach-query`, which is a
-  safety (reachability) property, a violation witness is a finite execution that reaches
-  a queried state, reported as a `:trace` whose `:prefix` trail lists the states of the
-  execution (in MoXI's format, a lasso trace with an empty lasso; see Fig. 4 of the
-  MoXI language paper, SPIN 2024, linked above). If the model has free symbols, the
-  response also provides a `:model` interpretation for them. Responses are given in
-  native MoXI.
+- A tool's answer is a MoXI `check-system-response`. The queries of the current tasks
+  contain no fairness conditions and are thus safety (reachability) properties: a
+  violation witness is a finite execution that reaches a queried state, reported as a
+  `:trace` whose `:prefix` trail lists the states of the execution (in MoXI's format,
+  a lasso trace with an empty lasso; see Fig. 4 of the MoXI language paper, SPIN 2024,
+  linked above). If the model has free symbols, the response also provides a `:model`
+  interpretation for them. Responses are given in native MoXI.
