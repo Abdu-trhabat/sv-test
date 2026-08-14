@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'stalmark_e8_64_e8_207.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: false

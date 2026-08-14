@@ -10,9 +10,19 @@ Files:
  sv-lib/*/*/*.yml
  java/*.set
  java/*/*.yml
+ moxi/*.set
+ moxi/*/*/*.yml
  .gitlab/merge_request_templates/*.md
 Copyright: 2011-2020 The SV-Benchmarks Community
 License: CC0-1.0
+
+Files:
+ moxi/QF_ABV/*/*.moxi
+ moxi/QF_BV/*/*.moxi
+ moxi/QF_LIA/*/*.moxi
+ _
+Copyright: unknown
+License: LicenseRef-unknown
 
 Files: c/Juliet_Test/Juliet_Test_Suite_v1.3_for_C_Cpp/
  _

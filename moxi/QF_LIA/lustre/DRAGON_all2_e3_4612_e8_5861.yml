@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'DRAGON_all2_e3_4612_e8_5861.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: false

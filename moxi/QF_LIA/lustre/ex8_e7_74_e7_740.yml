@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'ex8_e7_74_e7_740.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: false

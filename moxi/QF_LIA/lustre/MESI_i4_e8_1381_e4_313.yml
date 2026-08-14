@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'MESI_i4_e8_1381_e4_313.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: false

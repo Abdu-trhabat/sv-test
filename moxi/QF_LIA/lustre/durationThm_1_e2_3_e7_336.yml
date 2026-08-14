@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'durationThm_1_e2_3_e7_336.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: true

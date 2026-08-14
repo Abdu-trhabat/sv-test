@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'PRODUCER_CONSUMMER_luke_1.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: false

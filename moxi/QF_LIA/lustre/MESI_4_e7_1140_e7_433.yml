@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'MESI_4_e7_1140_e7_433.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: true
