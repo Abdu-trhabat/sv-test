@@ -11,8 +11,7 @@ The verification task is the single query of the task's `check-system` command, 
 references the system `main` (see `CONVENTIONS.md` for the required task shape).
 The property holds if the query is unsatisfiable (see Sect. 3.2 of the MoXI language
 definition for the semantics of queries).
-The current tasks contain no `:fairness` conditions, so their queries are evaluated
-under finite-trace semantics: the property holds if no execution of `main` compatible
-with the query's conditions reaches a state meeting the query's `:reachable`
-condition, and a counterexample (violation witness) is a finite execution
-demonstrating the query's satisfiability.
+A counterexample (violation witness) is a trace demonstrating the query's
+satisfiability: a finite execution for queries without fairness conditions
+(evaluated under finite-trace semantics), and a lasso-shaped execution for queries
+with fairness conditions (evaluated under infinite-trace semantics).

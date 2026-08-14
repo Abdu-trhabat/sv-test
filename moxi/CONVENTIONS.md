@@ -58,20 +58,21 @@ language definition; the SPIN 2024 paper above is the normative reference.
   For the competition, each task file contains exactly
   one `check-system` command; it references the system `main` and contains exactly one
   `:query` (the `:queries` attribute is not used).
-- The query may range over `:reachable`, `:assumption`, and `:current` conditions;
-  `:fairness` conditions are excluded from the current task set, because a
-  query with a fairness condition is evaluated with infinite-trace semantics
-  (Sect. 3.2 of the SPIN 2024 paper), which is incompatible with the finite violation
-  witnesses below. Tasks whose queries contain fairness conditions may be added in
-  the future as a separate category (distinguished by task-set files), with
-  lasso-shaped violation witnesses.
+- The query may range over `:reachable`, `:assumption`, `:current`, and `:fairness`
+  conditions. A query without fairness conditions is evaluated under finite-trace
+  semantics and expresses a safety (reachability) obligation; a query with fairness
+  conditions is evaluated under infinite-trace semantics (Sect. 3.2 of the SPIN 2024
+  paper) and expresses a liveness obligation. The two kinds are separated into
+  different categories via task-set files; the current categories contain only
+  safety tasks (no `:fairness` conditions).
 
 ## Witnesses (for validation)
 
-- A tool's answer is a MoXI `check-system-response`. The queries of the current tasks
-  contain no fairness conditions and are thus safety (reachability) properties: a
-  violation witness is a finite execution that reaches a queried state, reported as a
-  `:trace` whose `:prefix` trail lists the states of the execution (in MoXI's format,
-  a lasso trace with an empty lasso; see Fig. 4 of the MoXI language paper, SPIN 2024,
-  linked above). If the model has free symbols, the response also provides a `:model`
-  interpretation for them. Responses are given in native MoXI.
+- A tool's answer is a MoXI `check-system-response`. A violation witness is a trace
+  demonstrating the query's satisfiability, reported as a `:trace`: for safety
+  queries (all current tasks), a finite execution that reaches a queried state, whose
+  states are listed in the `:prefix` trail and which has no `:lasso` trail (cf.
+  Fig. 4 of the MoXI language paper, SPIN 2024, linked above); for liveness queries,
+  a `:trace` with both a `:prefix` and a `:lasso` trail. If the model has free
+  symbols, the response also provides a `:model` interpretation for them. Responses
+  are given in native MoXI.
