@@ -118,3 +118,6 @@ and function `free` always deallocates the memory and
 makes the pointer invalid for further dereferences.
 Moreover, we assume that the function `alloca` always returns
 a valid pointer, i.e., the stack never overflows.
+
+#### `pthread_mutex_lock()`, `pthread_mutex_unlock()`
+We assume that `pthread_mutex_lock` and `pthread_mutex_unlock` always succeed.
