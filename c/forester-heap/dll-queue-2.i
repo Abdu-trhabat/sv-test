@@ -972,10 +972,10 @@ extern int getloadavg (double __loadavg[], int __nelem)
      __attribute__ ((__nothrow__ )) __attribute__ ((__nonnull__ (1)));
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
-void *safe_malloc(size_t size) {
+void *safe_malloc_or_loop(size_t size) {
   void *p = malloc(size);
   if (p == 0) {
-    abort();
+    while (1) { }
   }
   return p;
 }
@@ -1002,7 +1002,7 @@ typedef struct TSLL
 int main()
 {
 
- SLL* head = safe_malloc(sizeof(SLL));
+ SLL* head = safe_malloc_or_loop(sizeof(SLL));
  head->next = ((void*)0);
  head->prev = ((void*)0);
  head->data = 0;
@@ -1011,7 +1011,7 @@ int main()
 
  while (__VERIFIER_nondet_int())
  {
-  item->next = safe_malloc(sizeof(SLL));
+  item->next = safe_malloc_or_loop(sizeof(SLL));
   item->next->prev = item;
   item = item->next;
   item->next = ((void*)0);

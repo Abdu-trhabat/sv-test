@@ -7,10 +7,10 @@
  */
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
+void *safe_malloc_or_loop(size_t size) {
   void *p = malloc(size);
   if (p == 0) {
-    abort();
+    while (1) { }
   }
   return p;
 }
@@ -30,11 +30,11 @@ typedef struct TSLL
 
 int main()
 {
-	SLL* null = safe_malloc(sizeof(SLL));
+	SLL* null = safe_malloc_or_loop(sizeof(SLL));
 	null->colour = BLACK;
 	null->next = NULL;
 	// create the head
-	SLL* list = safe_malloc(sizeof(SLL));
+	SLL* list = safe_malloc_or_loop(sizeof(SLL));
 	list->next = null;
 	list->colour = BLACK;
 
@@ -44,7 +44,7 @@ int main()
 	while (__VERIFIER_nondet_int())
 	{
 		// create a node
-		end->next = safe_malloc(sizeof(SLL));
+		end->next = safe_malloc_or_loop(sizeof(SLL));
 		end = end->next;
 		end->next = null;
 
@@ -55,7 +55,7 @@ int main()
 		else
 		{	// mark the node as red and follow it by a black node
 			end->colour = RED;
-			end->next = safe_malloc(sizeof(SLL));
+			end->next = safe_malloc_or_loop(sizeof(SLL));
 			end = end->next;
 			end->next = null;
 			end->colour = BLACK;

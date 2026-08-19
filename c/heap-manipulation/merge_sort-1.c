@@ -115,14 +115,14 @@ int main()
     while (__VERIFIER_nondet_int()) {
         struct node *node = malloc(sizeof *node);
         if (!node)
-            abort();
+            while (1) { }
 
         node->next = node;
         node->value = __VERIFIER_nondet_int();
 
         struct list *item = malloc(sizeof *item);
         if (!item)
-            abort();
+            while (1) { }
 
         item->slist = node;
         item->next = data;

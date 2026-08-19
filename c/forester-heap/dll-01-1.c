@@ -6,10 +6,10 @@
  */
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
+void *safe_malloc_or_loop(size_t size) {
   void *p = malloc(size);
   if (p == 0) {
-    abort();
+    while (1) { }
   }
   return p;
 }
@@ -25,7 +25,7 @@ void reach_error() { assert(0); }
 		N->inner = NULL;                                        \
 	}                                                           \
     else {                                                      \
-        N->inner = safe_malloc(sizeof(SLL));                         \
+        N->inner = safe_malloc_or_loop(sizeof(SLL));                         \
         N->inner->next = NULL;                                  \
         N->inner->inner = NULL;                                 \
     }                                                           \
@@ -41,7 +41,7 @@ typedef struct TSLL
 int main()
 {
 	// create the head
-	SLL* list = safe_malloc(sizeof(SLL));
+	SLL* list = safe_malloc_or_loop(sizeof(SLL));
 	list->next = NULL;
 	list->prev = NULL;
 	CREATE_INNER(list);
@@ -52,7 +52,7 @@ int main()
 	while (__VERIFIER_nondet_int())
 	{
 		// create a node
-		end->next = safe_malloc(sizeof(SLL));
+		end->next = safe_malloc_or_loop(sizeof(SLL));
 		end->next->prev = end;
 		end = end->next;
 		end->next = NULL;

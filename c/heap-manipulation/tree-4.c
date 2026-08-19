@@ -3,10 +3,10 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
-void *safe_malloc(size_t size) {
+void *safe_malloc_or_loop(size_t size) {
   void *p = malloc(size);
   if (p == 0) {
-    abort();
+    while (1) { }
   }
   return p;
 }
@@ -50,7 +50,7 @@ struct node *create_tree()
     struct node *nodelast = NULL;
     struct node *node = NULL;
     while (__VERIFIER_nondet_int()) {
-        node = safe_malloc(sizeof *node);
+        node = safe_malloc_or_loop(sizeof *node);
         if (!node)
             abort();
 
@@ -65,7 +65,7 @@ struct node *create_tree()
     if (node != NULL)
       node->parent = NULL;
     while (node != NULL) {
-        node->left = safe_malloc(sizeof *node);
+        node->left = safe_malloc_or_loop(sizeof *node);
         if (!node)
             abort();
         node->left->left = NULL;
