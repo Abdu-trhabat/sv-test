@@ -43,7 +43,7 @@ int main() {
   do {
     struct Node *new = malloc(sizeof(struct Node));
     if (new == 0) {
-      return 1;
+      while (1) { }
     }
 
     new->next = 0;

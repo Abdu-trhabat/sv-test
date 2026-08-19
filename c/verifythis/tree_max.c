@@ -16,10 +16,10 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern void abort(void);
-void *safe_malloc(unsigned int size) {
+void *safe_malloc_or_loop(unsigned int size) {
   void *p = malloc(size);
   if (p == 0) {
-    abort();
+    while (1) { }
   }
   return p;
 }
@@ -39,7 +39,7 @@ struct node *nondet_tree() {
     if(__VERIFIER_nondet_bool()) {
         return 0;
     } else {
-        struct node *n = (struct node *)safe_malloc(sizeof(struct node));
+        struct node *n = (struct node *)safe_malloc_or_loop(sizeof(struct node));
         n->data = __VERIFIER_nondet_int();
         n->left = nondet_tree();
         n->right = nondet_tree();

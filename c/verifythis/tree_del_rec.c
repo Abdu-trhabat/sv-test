@@ -17,18 +17,18 @@ void assume_cycle_if_not(int cond) {
 }
 
 extern void abort(void);
-void *safe_calloc(unsigned int num, unsigned int size) {
+void *safe_calloc_or_loop(unsigned int num, unsigned int size) {
   void *p = calloc(num, size);
   if (p == 0) {
-    abort();
+    while (1) { }
   }
   return p;
 }
 
-void *safe_malloc(unsigned int size) {
+void *safe_malloc_or_loop(unsigned int size) {
   void *p = malloc(size);
   if (p == 0) {
-    abort();
+    while (1) { }
   }
   return p;
 }
@@ -48,7 +48,7 @@ struct node *nondet_tree() {
     if(__VERIFIER_nondet_bool()) {
         return 0;
     } else {
-        struct node *n = (struct node *)safe_malloc(sizeof(struct node));
+        struct node *n = (struct node *)safe_malloc_or_loop(sizeof(struct node));
         n->data = __VERIFIER_nondet_int();
         n->left = nondet_tree();
         n->right = nondet_tree();
@@ -103,14 +103,14 @@ void task(struct node *t) {
 
     int n = size(t);
     assume_cycle_if_not(n != 0);
-    int *x = safe_calloc(n, sizeof(int));
+    int *x = safe_calloc_or_loop(n, sizeof(int));
     tree_inorder(t, x, n);
     __VERIFIER_assert(a == x[0]);
 
     struct node *r = tree_del(t, &b);
     __VERIFIER_assert(a == b);
     int m = size(t);
-    int *y = safe_calloc(n, sizeof(int));
+    int *y = safe_calloc_or_loop(n, sizeof(int));
     tree_inorder(t, y, m);
 
     __VERIFIER_assert(n == m + 1);

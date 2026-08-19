@@ -444,10 +444,10 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
-void *safe_malloc(size_t size) {
+void *safe_malloc_or_loop(size_t size) {
   void *p = malloc(size);
   if (p == 0) {
-    abort();
+    while (1) { }
   }
   return p;
 }
@@ -547,7 +547,7 @@ mlist* search_list(mlist *l, int k){
   return l;
 }
 int insert_list(mlist *l, int k){
-  l = (mlist*)safe_malloc(sizeof(mlist));
+  l = (mlist*)safe_malloc_or_loop(sizeof(mlist));
   l->key = k;
   if (head==((void *)0)) {
     l->next = ((void *)0);
