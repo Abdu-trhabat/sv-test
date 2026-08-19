@@ -4,6 +4,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <limits.h>
 
 #define APPEND(l,i) {i->next=l; l=i;}
@@ -18,7 +26,7 @@ int main() {
     int min = INT_MAX, max = -INT_MAX;
  
     while (__VERIFIER_nondet_int()) {
-        Node *p = malloc(sizeof(*p));
+        Node *p = safe_malloc(sizeof(*p));
         p->val = __VERIFIER_nondet_int();
         APPEND(l, p)
         

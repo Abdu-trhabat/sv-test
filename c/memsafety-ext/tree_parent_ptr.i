@@ -439,6 +439,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -531,7 +539,7 @@ int main() {
   struct StackItem* next;
   struct TreeNode* node;
  };
- struct TreeNode* root = malloc(sizeof(*root)), *n;
+ struct TreeNode* root = safe_malloc(sizeof(*root)), *n;
  root->left = ((void *)0);
  root->right = ((void *)0);
  root->parent = ((void *)0);
@@ -544,20 +552,20 @@ int main() {
     n = n->right;
   }
   if (!n->left && __VERIFIER_nondet_int()) {
-   n->left = malloc(sizeof(*n));
+   n->left = safe_malloc(sizeof(*n));
    n->left->left = ((void *)0);
    n->left->right = ((void *)0);
    n->left->parent = n;
   }
   if (!n->right && __VERIFIER_nondet_int()) {
-   n->right = malloc(sizeof(*n));
+   n->right = safe_malloc(sizeof(*n));
    n->right->left = ((void *)0);
    n->right->right = ((void *)0);
    n->right->parent = n;
   }
  }
  n = ((void *)0);
- struct StackItem* s = malloc(sizeof(*s)), *st;
+ struct StackItem* s = safe_malloc(sizeof(*s)), *st;
  s->next = ((void *)0);
  s->node = root;
  while (s != ((void *)0)) {
@@ -566,13 +574,13 @@ int main() {
   n = st->node;
   free(st);
   if (n->left) {
-   st = malloc(sizeof(*st));
+   st = safe_malloc(sizeof(*st));
    st->next = s;
    st->node = n->left;
    s = st;
   }
   if (n->right) {
-   st = malloc(sizeof(*st));
+   st = safe_malloc(sizeof(*st));
    st->next = s;
    st->node = n->right;
    s = st;

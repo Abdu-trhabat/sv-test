@@ -466,6 +466,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -574,9 +582,9 @@ struct list_node {
     struct list_node *next;
 };
 int main() {
-    struct mem *m = malloc(sizeof(*m));
+    struct mem *m = safe_malloc(sizeof(*m));
     m->val = 0;
-    struct list_node *head = malloc(sizeof(*head));
+    struct list_node *head = safe_malloc(sizeof(*head));
     head->x = 1;
     head->mem = m;
     head->next = head;
@@ -584,7 +592,7 @@ int main() {
     while (__VERIFIER_nondet_int()) {
         int x = __VERIFIER_nondet_int();
         if (x > 0 && x < 10) {
-            struct list_node *n = malloc(sizeof(*n));
+            struct list_node *n = safe_malloc(sizeof(*n));
             n->x = x;
             n->mem = m;
             n->next = head;

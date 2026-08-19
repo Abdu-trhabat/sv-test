@@ -7,6 +7,14 @@
 
 #include<pthread.h>
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include "racemacros.h"
 
 struct list_head {
@@ -32,7 +40,7 @@ static inline void INIT_LIST_HEAD(struct list_head *list) {
 }
 
 struct s *new(int x) {
-  struct s *p = malloc(sizeof(struct s));
+  struct s *p = safe_malloc(sizeof(struct s));
   p->datum = x;
   INIT_LIST_HEAD(&p->list);
   return p;

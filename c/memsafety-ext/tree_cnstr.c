@@ -10,6 +10,14 @@ void reach_error() { assert(0); }
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int main() {
 
@@ -18,7 +26,7 @@ int main() {
 		struct TreeNode* right;
 	};
 
-	struct TreeNode* root = malloc(sizeof(*root)), *n;
+	struct TreeNode* root = safe_malloc(sizeof(*root)), *n;
 	root->left = NULL;
 	root->right = NULL;
 
@@ -31,12 +39,12 @@ int main() {
 				n = n->right;
 		}
 		if (!n->left && __VERIFIER_nondet_int()) {
-			n->left = malloc(sizeof(*n));
+			n->left = safe_malloc(sizeof(*n));
 			n->left->left = NULL;
 			n->left->right = NULL;
 		}
 		if (!n->right && __VERIFIER_nondet_int()) {
-			n->right = malloc(sizeof(*n));
+			n->right = safe_malloc(sizeof(*n));
 			n->right->left = NULL;
 			n->right->right = NULL;
 		}

@@ -6,6 +6,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 extern int __VERIFIER_nondet_int();
@@ -19,7 +27,7 @@ node_t* new_lseg(node_t* p, int n)
 {
   if (n==0)
     return p;
-  node_t* x = malloc(sizeof(node_t));
+  node_t* x = safe_malloc(sizeof(node_t));
   x->val = n;
   x->next = new_lseg(p, n-1);
   return x;
@@ -28,7 +36,7 @@ node_t* new_lseg(node_t* p, int n)
 // Create a circular linked list with length n via new_lseg
 node_t* new_cll(int n)
 {
-  node_t* x = malloc(sizeof(node_t));
+  node_t* x = safe_malloc(sizeof(node_t));
   x->val = n;
   x->next = new_lseg(x,n-1);
   return x;

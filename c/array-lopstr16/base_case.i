@@ -13,6 +13,14 @@ void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; els
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 extern int __VERIFIER_nondet_int();
 void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 struct S
 {
  int n;
@@ -24,11 +32,11 @@ int main()
  int i;
  for (i = 0; i < 1000000; i++)
  {
-  struct S *s1 = (struct S *) malloc(sizeof(struct S));
+  struct S *s1 = (struct S *) safe_malloc(sizeof(struct S));
   s1->n = __VERIFIER_nondet_int();
   if (s1->n == 0)
   {
-   s1->p = (int *) malloc(sizeof(int));
+   s1->p = (int *) safe_malloc(sizeof(int));
   }
   else
   {

@@ -11,6 +11,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <pthread.h>
 #include <string.h>
 
@@ -22,7 +30,7 @@ char *v;
 
 void *thread1(void * arg)
 {
-  v = malloc(sizeof(char));
+  v = safe_malloc(sizeof(char));
   return 0;
 }
 

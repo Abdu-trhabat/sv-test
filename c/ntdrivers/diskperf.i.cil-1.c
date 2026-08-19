@@ -1498,6 +1498,14 @@ extern void *memcpy(void * , void const   * , size_t  ) ;
 extern void *memmove(void * , void const   * , size_t  ) ;
 extern void *memset(void * , int  , size_t  ) ;
 extern void *malloc(size_t);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 unsigned long KeNumberProcessors ;
 #pragma warning(disable:4103)
 #pragma warning(disable:4103)
@@ -1613,7 +1621,7 @@ void KeQuerySystemTime(PLARGE_INTEGER CurrentTime){
 #pragma warning(disable:4103)
 PVOID IoAllocateErrorLogEntry(PVOID IoObject, UCHAR EntrySize){
     if(__VERIFIER_nondet_int()){
-        return (void*)malloc(EntrySize);
+        return (void*)safe_malloc(EntrySize);
     }
     return (void*)(char*)(0);
 }
@@ -3341,7 +3349,7 @@ int main(void)
   struct_4.ListEntry = list_entry_8;
   union __anonunion____missing_field_name_52 union_6;
   union_6.PacketType = __VERIFIER_nondet_long();
-  union_6.CurrentStackLocation = malloc(4 * sizeof (IO_STACK_LOCATION));
+  union_6.CurrentStackLocation = safe_malloc(4 * sizeof (IO_STACK_LOCATION));
   /* ensure a bounded number of subsequent decrements do not result in stack underflow */
   union_6.CurrentStackLocation += 3;
   struct_4.__annonCompField16 = union_6;
@@ -3367,14 +3375,14 @@ int main(void)
   devobj.Flags = __VERIFIER_nondet_long();
   devobj.Characteristics = __VERIFIER_nondet_long();
   devobj.Vpb = (PVPB)0;
-  devobj.DeviceExtension = malloc(sizeof(struct _DEVICE_EXTENSION));
+  devobj.DeviceExtension = safe_malloc(sizeof(struct _DEVICE_EXTENSION));
   ((struct _DEVICE_EXTENSION *)devobj.DeviceExtension)->TargetDeviceObject =
-    malloc(sizeof(struct _DEVICE_OBJECT));
+    safe_malloc(sizeof(struct _DEVICE_OBJECT));
   ((struct _DEVICE_EXTENSION *)devobj.DeviceExtension)->PhysicalDeviceName.Buffer =
-    malloc(sizeof(wchar_t));
+    safe_malloc(sizeof(wchar_t));
   ((struct _DEVICE_EXTENSION *)devobj.DeviceExtension)->Processors = 2;
   ((struct _DEVICE_EXTENSION *)devobj.DeviceExtension)->DiskCounters =
-    malloc(2 * sizeof(struct _DISK_PERFORMANCE));
+    safe_malloc(2 * sizeof(struct _DISK_PERFORMANCE));
   devobj.DeviceType = __VERIFIER_nondet_long();
   devobj.StackSize = __VERIFIER_nondet_char();
   union __anonunion_Queue_43 aqueue_1;
@@ -3639,7 +3647,7 @@ PVOID ExAllocatePoolWithTag(POOL_TYPE PoolType , SIZE_T NumberOfBytes ,
 
   {
   {
-  tmp = malloc(NumberOfBytes);
+  tmp = safe_malloc(NumberOfBytes);
   x = tmp;
   }
   return (x);
@@ -3704,7 +3712,7 @@ PMDL IoAllocateMdl(PVOID VirtualAddress , ULONG Length , BOOLEAN SecondaryBuffer
     if (0) {
       switch_5_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(MDL ));
+      tmp = safe_malloc(sizeof(MDL ));
       }
       return ((void *)tmp);
       switch_5_default: /* CIL Label */ ;
@@ -3761,7 +3769,7 @@ PIRP IoBuildAsynchronousFsdRequest(ULONG MajorFunction , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_7_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(IRP ));
+      tmp = safe_malloc(sizeof(IRP ));
       }
       return ((void *)tmp);
       switch_7_default: /* CIL Label */ ;
@@ -3799,7 +3807,7 @@ PIRP IoBuildDeviceIoControlRequest(ULONG IoControlCode , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_8_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(IRP ));
+      tmp = safe_malloc(sizeof(IRP ));
       }
       return ((void *)tmp);
       switch_8_default: /* CIL Label */ ;
@@ -3831,7 +3839,7 @@ NTSTATUS IoCreateDevice(PDRIVER_OBJECT DriverObject , ULONG DeviceExtensionSize 
     if (0) {
       switch_9_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(DEVICE_OBJECT ));
+      tmp = safe_malloc(sizeof(DEVICE_OBJECT ));
       *DeviceObject = (void *)tmp;
       }
       return (0L);
@@ -3927,7 +3935,7 @@ PCONFIGURATION_INFORMATION IoGetConfigurationInformation(void)
 
   {
   {
-  tmp = malloc(sizeof(CONFIGURATION_INFORMATION ));
+  tmp = safe_malloc(sizeof(CONFIGURATION_INFORMATION ));
   }
   return ((void *)tmp);
 }
@@ -4316,7 +4324,7 @@ PVOID MmAllocateContiguousMemory(SIZE_T NumberOfBytes , PHYSICAL_ADDRESS Highest
       if (0) {
         switch_18_0: /* CIL Label */ 
         {
-        tmp = malloc(NumberOfBytes);
+        tmp = safe_malloc(NumberOfBytes);
         }
         return (tmp);
         switch_18_1: /* CIL Label */ ;

@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int *a, *b;
 int n;
@@ -21,8 +29,8 @@ void foo ()
 int main ()
 {
   n = BLOCK_SIZE;
-  a = malloc (n * sizeof(*a));
-  b = malloc (n * sizeof(*b));
+  a = safe_malloc (n * sizeof(*a));
+  b = safe_malloc (n * sizeof(*b));
   *b++ = 0;
   foo ();
   if (b[-1])

@@ -1,6 +1,14 @@
 /* Contributed by Anton Vasilyev. */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 
 struct A {
@@ -31,7 +39,7 @@ struct B d;
 int main(void)
 {
 	struct A *p;
-	p = malloc(sizeof(struct A));
+	p = safe_malloc(sizeof(struct A));
 	memcpy(p, &d, sizeof(struct A)); //ERROR: sizeof(struct A) > sizeof(struct B)
 	if (p->a != 0) {
 		free(p);

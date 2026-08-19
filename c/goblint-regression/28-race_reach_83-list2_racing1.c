@@ -6,6 +6,14 @@
 // SPDX-License-Identifier: MIT
 
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include "racemacros.h"
 
 struct s {
@@ -41,7 +49,7 @@ pthread_mutex_t A_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t B_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void *t1_fun(void *arg) {
-  struct s *p = malloc(sizeof(struct s)); init(p);
+  struct s *p = safe_malloc(sizeof(struct s)); init(p);
 
   struct s *list = __VERIFIER_nondet_int() ? A : B;
   insert(p, list);
@@ -67,8 +75,8 @@ void *t3_fun(void *arg) {
 
 
 int main () {
-  A = malloc(sizeof(struct s)); init(A);
-  B = malloc(sizeof(struct s)); init(B);
+  A = safe_malloc(sizeof(struct s)); init(A);
+  B = safe_malloc(sizeof(struct s)); init(B);
   create_threads(t1);
   create_threads(t2);
   create_threads(t3);

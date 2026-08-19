@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -17,13 +25,13 @@ static void append(struct item **plist)
 {
     c++;
 
-    struct item *item = malloc(sizeof *item);
+    struct item *item = safe_malloc(sizeof *item);
     item->next = *plist;
 
     // shared data
     item->data = (item->next)
         ? item->next->data
-        : malloc(sizeof *item);
+        : safe_malloc(sizeof *item);
 
     *plist = item;
 }

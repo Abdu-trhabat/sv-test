@@ -467,6 +467,14 @@ extern void *alloca (size_t __size) __attribute__ ((__nothrow__ , __leaf__));
 
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -554,7 +562,7 @@ extern int getloadavg (double __loadavg[], int __nelem)
 
 int main(void)
 {
-    jmp_buf* my_jump_buffer = malloc(sizeof(jmp_buf));
+    jmp_buf* my_jump_buffer = safe_malloc(sizeof(jmp_buf));
     volatile int count = _setjmp (*my_jump_buffer);
     __VERIFIER_assert(!(count == 0));
     if (count < 5) {

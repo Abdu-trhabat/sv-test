@@ -1,4 +1,12 @@
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <stdint.h>
 
 int main() {
@@ -10,12 +18,12 @@ int main() {
     struct T* x = NULL;
     struct T* y = NULL;
 
-    y = malloc(sizeof(*y));
+    y = safe_malloc(sizeof(*y));
     intptr_t adressY = (intptr_t) y;
 
     free(y);
 
-    x = malloc(sizeof(*x));
+    x = safe_malloc(sizeof(*x));
     intptr_t adressX = (intptr_t) x;
 
     if (adressX == adressY)

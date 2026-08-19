@@ -26,7 +26,7 @@ typedef struct pe_ctx {
 } pe_ctx_t;
 
 void initCtxMapAddr(pe_ctx_t *ctx) {
-  ctx->map_addr = malloc(ctx->NumberOfNames * sizeof(uint16_t));
+  ctx->map_addr = safe_malloc(ctx->NumberOfNames * sizeof(uint16_t));
 
   for (int i = 0; i < ctx->NumberOfNames; i++) {
     uint16_t *entry_ordinal_list = LIBPE_PTR_ADD(ctx->map_addr, sizeof(uint16_t) * i);
@@ -40,7 +40,7 @@ int main() {
   ctx.NumberOfNames = ctx.NumberOfFunctions * 2;
   initCtxMapAddr(&ctx);
 
-  uint16_t *offsets_to_Names = malloc(ctx.NumberOfFunctions * sizeof(uint16_t));
+  uint16_t *offsets_to_Names = safe_malloc(ctx.NumberOfFunctions * sizeof(uint16_t));
 
   for (int i = 0; i < ctx.NumberOfNames; i++) {
     uint16_t *entry_ordinal_list = LIBPE_PTR_ADD(ctx.map_addr, sizeof(uint16_t) * i);

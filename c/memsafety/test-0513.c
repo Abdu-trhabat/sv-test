@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -25,14 +33,14 @@ int main() {
     // fill top level list with single data items
     while (__VERIFIER_nondet_int()) {
 
-        item = malloc(sizeof *item);
+        item = safe_malloc(sizeof *item);
         if (!item)
             abort();
 
         item->next = NULL;
         item->value = __VERIFIER_nondet_int();
 
-        lItem = malloc(sizeof *lItem);
+        lItem = safe_malloc(sizeof *lItem);
         if (data) {
             lItem->next = data->next;
             data->next = lItem;

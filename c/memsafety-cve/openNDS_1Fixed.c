@@ -35,7 +35,7 @@ static int get_query(char **elements, int element_counter, char *query, const ch
       length++;
   }
 
-  query_str = (char *)calloc(QUERYMAXLEN, sizeof(char));
+  query_str = (char *)safe_calloc(QUERYMAXLEN, sizeof(char));
 
   for (i = 0; i < element_counter; i++) {
     if (!elements[i]) {
@@ -72,7 +72,7 @@ static int get_query(char **elements, int element_counter, char *query, const ch
 
 int main() {
   char query[QUERYMAXLEN];
-  char **elements = (char **)malloc(5 * sizeof(char *));
+  char **elements = (char **)safe_malloc(5 * sizeof(char *));
   elements[0] = getRandomString(5, 100);
   elements[1] = getRandomString(5, 100);
   elements[2] = getRandomString(5, 100);

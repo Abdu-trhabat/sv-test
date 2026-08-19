@@ -426,6 +426,22 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_realloc(void *ptr, size_t size) {
+  void *p = realloc(ptr, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -516,7 +532,7 @@ void *expandArray(void *arg) {
   while (newsize < num) {
     newsize = newsize + 1;
     int *b = ((void *)0);
-    b = realloc(a, sizeof(int) * newsize);
+    b = safe_realloc(a, sizeof(int) * newsize);
     b[newsize - 1] = i;
     a = b;
   }
@@ -527,7 +543,7 @@ int main(int argc, char **argv) {
   if (!(num > 0 && num < 100)) {
     return 0;
   }
-  int *a = (int *)malloc(sizeof(int));
+  int *a = (int *)safe_malloc(sizeof(int));
   if (a == ((void *)0)) {
     return 0;
   }

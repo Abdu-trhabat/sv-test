@@ -4,6 +4,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #define LOW -1
 #define HIGH 1
@@ -15,7 +23,7 @@ struct node {
 };
 
 void append_to_list(struct node **list, int val, int exp) {
-    struct node *node = malloc(sizeof(*node));
+    struct node *node = safe_malloc(sizeof(*node));
     node->next = *list;
     node->value = val;
     node->expected_list = exp;
