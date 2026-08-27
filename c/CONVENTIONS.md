@@ -119,5 +119,9 @@ makes the pointer invalid for further dereferences.
 Moreover, we assume that the function `alloca` always returns
 a valid pointer, i.e., the stack never overflows.
 
-#### `pthread_mutex_lock()`, `pthread_mutex_unlock()`
-We assume that `pthread_mutex_lock` and `pthread_mutex_unlock` always succeed.
+#### `pthread_*()`
+We assume the following about `pthread.h` functions:
+* `pthread_mutex_lock` always succeeds,
+* `pthread_mutex_unlock` always succeeds,
+* `pthread_key_create` never fails with `EAGAIN` or `ENOMEM`,
+* `pthread_setspecific` never fails with `ENOMEM`.
