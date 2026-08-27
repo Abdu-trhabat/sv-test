@@ -121,7 +121,21 @@ a valid pointer, i.e., the stack never overflows.
 
 #### `pthread_*()`
 We assume the following about `pthread.h` functions:
-* `pthread_mutex_lock` always succeeds,
-* `pthread_mutex_unlock` always succeeds,
-* `pthread_key_create` never fails with `EAGAIN` or `ENOMEM`,
+* `pthread_attr_init` never fails with `ENOMEM`;
+* `pthread_create` never fails with `EAGAIN` or `EPERM`;
+* `pthread_mutexattr_init` never fails with `ENOMEM`;
+* `pthread_mutex_init` never fails with `EAGAIN`, `ENOMEM` or `EPERM`;
+* `pthread_mutex_lock` never fails with `EAGAIN`;
+* `pthread_mutex_trylock` never fails with `EAGAIN`;
+* `pthread_rwlockattr_init` never fails with `ENOMEM`;
+* `pthread_rwlock_init` never fails with `EAGAIN`, `ENOMEM` or `EPERM`;
+* `pthread_rwlock_rdlock` never fails with `EAGAIN`;
+* `pthread_rwlock_tryrdlock` never fails with `EAGAIN`;
+* `pthread_rwlock_timedrdlock` never fails with `EAGAIN`;
+* `pthread_condattr_init` never fails with `ENOMEM`;
+* `pthread_cond_init` never fails with `EAGAIN` or `ENOMEM`;
+* `pthread_barrierattr_init` never fails with `ENOMEM`;
+* `pthread_barrier_init` never fails with `EAGAIN` or `ENOMEM`;
+* `pthread_spin_init` never fails with `EAGAIN` or `ENOMEM`;
+* `pthread_key_create` never fails with `EAGAIN` or `ENOMEM`;
 * `pthread_setspecific` never fails with `ENOMEM`.
