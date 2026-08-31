@@ -32,7 +32,7 @@
 
 (annotate-tag
     while-1
-    :not-live)
+    :not-recurring)
 
 (declare-const n Int)
 (assert (<= 0 n))

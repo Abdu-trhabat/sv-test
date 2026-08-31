@@ -30,7 +30,7 @@
   proc-add
   :requires (<= 0 y0)
   :ensures  (= x (+ x0 y0))
-  :not-live)
+  :not-recurring)
 
 (annotate-tag
   while-loop
