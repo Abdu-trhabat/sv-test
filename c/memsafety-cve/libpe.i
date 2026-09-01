@@ -280,6 +280,22 @@ extern void *realloc (void *__ptr, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__warn_unused_result__)) __attribute__ ((__alloc_size__ (2)));
 extern void free (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern void exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 extern void _Exit (int __status) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
@@ -385,7 +401,7 @@ int getNumberInRange(int lowestBound, int highestBound) {
   return value;
 }
 unsigned char *getRandomByteStream(int size) {
-  unsigned char *randomString = (unsigned char *)calloc(size, sizeof(unsigned char));
+  unsigned char *randomString = (unsigned char *)safe_calloc(size, sizeof(unsigned char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -397,7 +413,7 @@ unsigned char *getRandomByteStream(int size) {
 }
 char *getRandomString(int lowestSize, int highestSize) {
   int stringSize = getNumberInRange(lowestSize, highestSize);
-  char *randomString = (char *)calloc(stringSize + 1, sizeof(char));
+  char *randomString = (char *)safe_calloc(stringSize + 1, sizeof(char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -409,7 +425,7 @@ char *getRandomString(int lowestSize, int highestSize) {
   return randomString;
 }
 char *getRandomStringFixedSize(int size) {
-  char *randomString = (char *)calloc(size + 1, sizeof(char));
+  char *randomString = (char *)safe_calloc(size + 1, sizeof(char));
   if (randomString == ((void *)0)) {
     printf("Out of memory\n");
     exit(1);
@@ -421,7 +437,7 @@ char *getRandomStringFixedSize(int size) {
 }
 char *strdup(const char *s) {
   size_t size = strlen(s) + 1;
-  char *p = malloc(size);
+  char *p = safe_malloc(size);
   if (p) {
     memcpy(p, s, size);
   }
@@ -446,7 +462,7 @@ typedef struct pe_ctx {
   void *map_addr;
 } pe_ctx_t;
 void initCtxMapAddr(pe_ctx_t *ctx) {
-  ctx->map_addr = malloc(ctx->NumberOfNames * sizeof(uint16_t));
+  ctx->map_addr = safe_malloc(ctx->NumberOfNames * sizeof(uint16_t));
   for (int i = 0; i < ctx->NumberOfNames; i++) {
     uint16_t *entry_ordinal_list = ((void *)((char *)(ctx->map_addr) + (sizeof(uint16_t) * i)));
     *entry_ordinal_list = i;
@@ -457,7 +473,7 @@ int main() {
   ctx.NumberOfFunctions = getNumberInRange(5, 50);
   ctx.NumberOfNames = ctx.NumberOfFunctions * 2;
   initCtxMapAddr(&ctx);
-  uint16_t *offsets_to_Names = malloc(ctx.NumberOfFunctions * sizeof(uint16_t));
+  uint16_t *offsets_to_Names = safe_malloc(ctx.NumberOfFunctions * sizeof(uint16_t));
   for (int i = 0; i < ctx.NumberOfNames; i++) {
     uint16_t *entry_ordinal_list = ((void *)((char *)(ctx.map_addr) + (sizeof(uint16_t) * i)));
     offsets_to_Names[*entry_ordinal_list] = 5;

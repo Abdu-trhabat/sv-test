@@ -463,6 +463,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -585,7 +593,7 @@ struct node *create_tree()
     struct node *nodelast = ((void *)0);
     struct node *node = ((void *)0);
     while (__VERIFIER_nondet_int()) {
-        node = malloc(sizeof *node);
+        node = safe_malloc(sizeof *node);
         if (!node)
             abort();
         node->left = ((void *)0);
@@ -601,7 +609,7 @@ struct node *create_tree()
     if (node != ((void *)0))
       node->parent = ((void *)0);
     while (node != ((void *)0)) {
-        node->left = malloc(sizeof *node);
+        node->left = safe_malloc(sizeof *node);
         if (!node)
             abort();
         node->left->left = ((void *)0);

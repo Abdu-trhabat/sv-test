@@ -995,6 +995,14 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "racemacros.h", 9, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 extern int __VERIFIER_nondet_int();
@@ -1020,7 +1028,7 @@ static inline void INIT_LIST_HEAD(struct list_head *list) {
   list->prev = list;
 }
 struct s *new(int x) {
-  struct s *p = malloc(sizeof(struct s));
+  struct s *p = safe_malloc(sizeof(struct s));
   p->datum = x;
   INIT_LIST_HEAD(&p->list);
   return p;

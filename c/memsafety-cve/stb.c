@@ -37,7 +37,7 @@ int get32_packet(vorb *f) {
 
 void *setup_malloc(int sz) {
   sz = (sz + 7) & ~7;
-  return sz ? malloc(sz) : NULL;
+  return sz ? safe_malloc(sz) : NULL;
 }
 
 void start_decoder(vorb *f) {

@@ -893,6 +893,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 
@@ -1129,8 +1137,8 @@ int main()
 {
   unsigned long pat_len = __VERIFIER_nondet_ulong(), a_len = __VERIFIER_nondet_ulong();
 
-  int *pat=malloc(sizeof(int)*pat_len);
-  int *a=malloc(sizeof(int)*a_len);
+  int *pat=safe_malloc(sizeof(int)*pat_len);
+  int *a=safe_malloc(sizeof(int)*a_len);
 
 
 

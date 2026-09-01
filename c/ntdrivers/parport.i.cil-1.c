@@ -1942,6 +1942,14 @@ struct _SCSI_REQUEST_BLOCK;
 #pragma warning(disable:4035)
 #pragma warning(pop)
 extern void *malloc(unsigned int sz ) ;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void *memcpy(void * , void const   * , size_t  ) ;
 extern void *memset(void * , int  , size_t  ) ;
 extern void *memmove(void * , void const   * , size_t  ) ;
@@ -2124,7 +2132,7 @@ void IoAcquireCancelSpinLock(PKIRQL Irql ) {
 }
 PVOID IoAllocateErrorLogEntry(PVOID IoObject, UCHAR EntrySize){
     if(__VERIFIER_nondet_int()){
-        return (void*)malloc(EntrySize);
+        return (void*)safe_malloc(EntrySize);
     }
     return (void*)(char*)(0);
 }
@@ -9666,7 +9674,7 @@ int main(void)
   int irp_choice = __VERIFIER_nondet_int() ;
   DEVICE_OBJECT devobj ;
   s = __VERIFIER_nondet_int();
-  irp.Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation = malloc(4 * sizeof (IO_STACK_LOCATION));
+  irp.Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation = safe_malloc(4 * sizeof (IO_STACK_LOCATION));
   /* ensure a bounded number of subsequent decrements do not result in stack underflow */
   irp.Tail.Overlay.__annonCompField17.__annonCompField16.CurrentStackLocation += 3;
 
@@ -9884,7 +9892,7 @@ PVOID ExAllocatePoolWithTag(POOL_TYPE PoolType , SIZE_T NumberOfBytes ,
 
   {
   {
-  tmp = malloc(NumberOfBytes);
+  tmp = safe_malloc(NumberOfBytes);
   x = tmp;
   }
   return (x);
@@ -9949,7 +9957,7 @@ PMDL IoAllocateMdl(PVOID VirtualAddress , ULONG Length , BOOLEAN SecondaryBuffer
     if (0) {
       switch_329_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(MDL ));
+      tmp = safe_malloc(sizeof(MDL ));
       }
       return ((void *)tmp);
       switch_329_default: /* CIL Label */ ;
@@ -10006,7 +10014,7 @@ PIRP IoBuildAsynchronousFsdRequest(ULONG MajorFunction , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_331_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(IRP ));
+      tmp = safe_malloc(sizeof(IRP ));
       }
       return ((void *)tmp);
       switch_331_default: /* CIL Label */ ;
@@ -10044,7 +10052,7 @@ PIRP IoBuildDeviceIoControlRequest(ULONG IoControlCode , PDEVICE_OBJECT DeviceOb
     if (0) {
       switch_332_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(IRP ));
+      tmp = safe_malloc(sizeof(IRP ));
       }
       return ((void *)tmp);
       switch_332_default: /* CIL Label */ ;
@@ -10076,7 +10084,7 @@ NTSTATUS IoCreateDevice(PDRIVER_OBJECT DriverObject , ULONG DeviceExtensionSize 
     if (0) {
       switch_333_0: /* CIL Label */ 
       {
-      tmp = malloc(sizeof(DEVICE_OBJECT ));
+      tmp = safe_malloc(sizeof(DEVICE_OBJECT ));
       *DeviceObject = (void *)tmp;
       }
       return (0L);
@@ -10172,7 +10180,7 @@ PCONFIGURATION_INFORMATION IoGetConfigurationInformation(void)
 
   {
   {
-  tmp = malloc(sizeof(CONFIGURATION_INFORMATION ));
+  tmp = safe_malloc(sizeof(CONFIGURATION_INFORMATION ));
   }
   return ((void *)tmp);
 }
@@ -10565,7 +10573,7 @@ PVOID MmAllocateContiguousMemory(SIZE_T NumberOfBytes , PHYSICAL_ADDRESS Highest
       if (0) {
         switch_342_0: /* CIL Label */ 
         {
-        tmp = malloc(NumberOfBytes);
+        tmp = safe_malloc(NumberOfBytes);
         }
         return (tmp);
         switch_342_1: /* CIL Label */ ;

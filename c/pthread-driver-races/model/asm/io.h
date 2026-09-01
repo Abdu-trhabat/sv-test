@@ -7,7 +7,7 @@ void *phys_to_virt(unsigned long);
 
 void *ioremap(unsigned long offset, unsigned long size)
 {
-	void *memory = (void *) malloc(size);
+	void *memory = (void *) safe_malloc(size);
 	return memory;
 }
 

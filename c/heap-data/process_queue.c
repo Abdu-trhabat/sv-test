@@ -4,6 +4,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #define MAX_PROC 1000
 
@@ -56,7 +64,7 @@ int main() {
         if (next_time < MAX_PROC && __VERIFIER_nondet_int()) {
             int new_id = __VERIFIER_nondet_int();
             
-            struct process_node *new_process = malloc(sizeof(*new_process));
+            struct process_node *new_process = safe_malloc(sizeof(*new_process));
             new_process->process_id = __VERIFIER_nondet_int();
             new_process->time_to_wait = next_time++;
             append_to_queue(new_process, &queue);

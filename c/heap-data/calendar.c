@@ -4,6 +4,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #define APPEND(l,i) {i->next=l; l=i;}
 
@@ -25,7 +33,7 @@ int main() {
         if (((ev1 == 0) && (ev2 == 2)) || ((ev1 == 1) && (ev2 == 3)) || ((ev1 == 0) && (ev2 == 3)))
             continue;
 
-        Node *p = malloc(sizeof(*p));
+        Node *p = safe_malloc(sizeof(*p));
         p->event1 = ev1;
         p->event2 = ev2;
         APPEND(l,p)

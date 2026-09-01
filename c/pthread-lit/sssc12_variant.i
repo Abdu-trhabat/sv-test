@@ -1017,6 +1017,14 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "assert.h", 6, __extension__ __PRETTY_FUNCTION__); })); }
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -1056,7 +1064,7 @@ int main(int argc, char* argv[]) {
     next = 0;
     len = __VERIFIER_nondet_int();
     assume_abort_if_not(len > 0 && len < 4294967296 / sizeof(int));
-    data = malloc(sizeof(int) * len);
+    data = safe_malloc(sizeof(int) * len);
     while(1) {
  pthread_create(&t, 0, thr, 0);
     }

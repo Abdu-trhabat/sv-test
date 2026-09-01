@@ -1,6 +1,14 @@
 /* Contributed by Anton Vasilyev. */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 struct A {
 	unsigned char a;
@@ -12,7 +20,7 @@ struct A {
 int main(void)
 {
 	struct A *p;
-	p = malloc(2);
+	p = safe_malloc(2);
 	p->a = 1;
 	if (p->a != 1) {
 		free(p);

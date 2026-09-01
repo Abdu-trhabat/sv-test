@@ -1062,6 +1062,14 @@ typedef unsigned int uintptr_t;
 typedef __intmax_t intmax_t;
 typedef __uintmax_t uintmax_t;
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -1082,9 +1090,9 @@ int main() {
   int threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
   assume_abort_if_not(threads_total <= (4294967295U) / sizeof(pthread_t));
-  pthread_t *tids = malloc(threads_total * sizeof(pthread_t));
+  pthread_t *tids = safe_malloc(threads_total * sizeof(pthread_t));
   assume_abort_if_not(threads_total <= (4294967295U) / sizeof(int));
-  datas = malloc(threads_total * sizeof(int));
+  datas = safe_malloc(threads_total * sizeof(int));
   for (int i = 0; i < threads_total; i++) {
     pthread_create(&tids[i], ((void *)0), &thread, ((void *)0));
   }

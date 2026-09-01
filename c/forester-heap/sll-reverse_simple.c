@@ -11,6 +11,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
@@ -21,7 +29,7 @@ void reach_error() { assert(0); }
 #define RED 2
 
 #define ALLOC_NODE(X, C) \
-	X->next = malloc(sizeof(SLL)); \
+	X->next = safe_malloc(sizeof(SLL)); \
 	X = X->next; \
 	X->next = NULL; \
 	X->data = C;
@@ -41,7 +49,7 @@ typedef struct TSLL
 int main()
 {
 	// create the head
-	SLL* head = malloc(sizeof(SLL));
+	SLL* head = safe_malloc(sizeof(SLL));
 	head->next = NULL;
 	head->data = WHITE;
 

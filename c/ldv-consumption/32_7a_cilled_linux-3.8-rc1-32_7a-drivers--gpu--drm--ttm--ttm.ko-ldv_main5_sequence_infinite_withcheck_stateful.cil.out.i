@@ -3590,6 +3590,23 @@ extern void kfree(void const * ) ;
 extern int __VERIFIER_nondet_int(void);
 
 extern void *malloc(size_t size);
+extern void *calloc(size_t num, size_t size);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 long ldv_is_err(const void *ptr)
 {
   return ((unsigned long)ptr > ((unsigned long)-4095));
@@ -3597,7 +3614,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
  if (__VERIFIER_nondet_int()) {
-  void *res = malloc(size);
+  void *res = safe_malloc(size);
   assume_abort_if_not(!ldv_is_err(res));
   return res;
  } else {
@@ -3612,7 +3629,7 @@ void *ldv_xmalloc(size_t size )
   long tmp___0 ;
   {
   {
-  tmp = malloc(size);
+  tmp = safe_malloc(size);
   res = tmp;
   ldv_assume((unsigned long )res != (unsigned long )((void *)0));
   tmp___0 = ldv_is_err((void const *)res);
@@ -9796,11 +9813,11 @@ int main(void)
   int tmp ;
   int tmp___0 ;
   var_group1 = ldv_init_zalloc(sizeof(struct vm_area_struct));
-  var_group1->vm_private_data = (struct ttm_buffer_object *)malloc(sizeof(struct ttm_buffer_object));
+  var_group1->vm_private_data = (struct ttm_buffer_object *)safe_malloc(sizeof(struct ttm_buffer_object));
   bo = (struct ttm_buffer_object *)var_group1->vm_private_data;
-  bo->bdev = bdev = (struct ttm_bo_device *)malloc(sizeof(struct ttm_bo_device));
+  bo->bdev = bdev = (struct ttm_bo_device *)safe_malloc(sizeof(struct ttm_bo_device));
   (bo->bdev)->driver = &_var_group1_vm_private_data_driver;
-  bo->ttm = (struct ttm_tt *)malloc(sizeof(struct ttm_tt));
+  bo->ttm = (struct ttm_tt *)safe_malloc(sizeof(struct ttm_tt));
   INIT_LIST_HEAD(& bo->lru);
   INIT_LIST_HEAD(& bo->ddestroy);
   INIT_LIST_HEAD(& bo->swap);
@@ -9859,7 +9876,7 @@ void *ldv_init_zalloc(size_t size )
   void *p ;
   void *tmp ;
   {
-  tmp = calloc(1UL, size);
+  tmp = safe_calloc(1UL, size);
   p = tmp;
   assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
   return (p);

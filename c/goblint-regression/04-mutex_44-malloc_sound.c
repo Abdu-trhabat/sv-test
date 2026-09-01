@@ -6,6 +6,14 @@
 // SPDX-License-Identifier: MIT
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <pthread.h>
 
 int glob;
@@ -26,7 +34,7 @@ int main() {
   pthread_mutex_t *a;
 
   for (i=0; i < 10; i++){
-    a = malloc(sizeof(pthread_mutex_t));
+    a = safe_malloc(sizeof(pthread_mutex_t));
     pthread_mutex_init(a,0);
     if (i==3)
       p = a;

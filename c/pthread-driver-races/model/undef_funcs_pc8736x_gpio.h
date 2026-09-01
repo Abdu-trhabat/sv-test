@@ -6,7 +6,7 @@ const unsigned int default_alloc_size = 4;
 // with return type: void *
 void *external_alloc(unsigned int size)
 {
-  char *p = malloc(size);
+  char *p = safe_malloc(size);
   for(unsigned i = 0; i < size; ++i)
     p[i] = __VERIFIER_nondet_char();
   return p;

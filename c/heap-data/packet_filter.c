@@ -6,6 +6,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #define LOW 0
 #define HIGH 1
@@ -37,7 +45,7 @@ Packet receive() {
 void send(struct packet p) { (void)p; }
 
 void append_to_queue(Packet p, Node *q) {
-    Node node = malloc(sizeof(*node));
+    Node node = safe_malloc(sizeof(*node));
     node->packet = p;
     node->next = *q;
     *q = node;

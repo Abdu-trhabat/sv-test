@@ -98,6 +98,14 @@ void __VERIFIER_assert(int cond) {
 }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 _Bool is_relaxed_prefix(
   int pat[], unsigned long pat_length,
@@ -129,8 +137,8 @@ int main()
 {
   unsigned long pat_len = __VERIFIER_nondet_ulong(), a_len = __VERIFIER_nondet_ulong();
 
-  int *pat=malloc(sizeof(int)*pat_len);
-  int *a=malloc(sizeof(int)*a_len);
+  int *pat=safe_malloc(sizeof(int)*pat_len);
+  int *a=safe_malloc(sizeof(int)*a_len);
   //int pat[]={1,3};
   //int pat[]={1,2,3};
   //int pat[]={1,2,4};

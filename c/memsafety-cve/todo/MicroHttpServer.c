@@ -13,6 +13,14 @@
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
@@ -48,7 +56,7 @@ void _ParseHeader(int *clisock, char *req_buf) {
 }
 
 char *getResponse() {
-  char *output = calloc(3000, sizeof(char));
+  char *output = safe_calloc(3000, sizeof(char));
   char *content = "<h1>Hello</h1>";
   char *httpVersion = "HTTP/1.1 200 OK\r\n";
   char *contentLengthTitle = "Content-Length: ";

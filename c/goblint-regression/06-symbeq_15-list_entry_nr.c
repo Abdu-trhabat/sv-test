@@ -7,6 +7,14 @@
 
 #include<pthread.h>
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include<stdio.h>
 #include <stddef.h>
 
@@ -37,7 +45,7 @@ void *t_fun(void *arg) {
 
 int main () {
   pthread_t t1;
-  A = malloc(sizeof(struct s));
+  A = safe_malloc(sizeof(struct s));
   init(A,666);
 
   pthread_create(&t1, NULL, t_fun, NULL);
