@@ -13003,6 +13003,21 @@ extern void ldv_initialize(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT ;
 static int res_dc395x_init_one_106 ;
+/* https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/issues/1466
+   Give the harness's uninitialised callback argument a definite value,
+   following ldv_init_zalloc() in the EMG-generated tasks (c/ldv-linux-4.2-rc1). */
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void assume_abort_if_not(int cond) { if(!cond) {abort();} }
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 int main(void)
 { struct Scsi_Host *var_group1 ;
   char *var_dc395x_proc_info_104_p1 ;
@@ -13026,6 +13041,7 @@ int main(void)
   int tmp___9 ;
 
   {
+  var_group2 = (struct scsi_device *)ldv_init_zalloc(sizeof(struct scsi_device));
   {
   LDV_IN_INTERRUPT = 1;
   ldv_initialize();

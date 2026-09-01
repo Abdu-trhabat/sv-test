@@ -8069,6 +8069,17 @@ void ldv_initialize(void) ;
 extern void ldv_handler_precall(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT ;
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 int main(void)
 {
   struct mmc_host *var_group1 ;
@@ -8084,6 +8095,7 @@ int main(void)
   int tmp___0 ;
   int tmp___1 ;
   {
+  var_group1 = (struct mmc_host *)ldv_init_zalloc(sizeof(struct mmc_host) + sizeof(struct sdhci_host));
   LDV_IN_INTERRUPT = 1;
   ldv_initialize();
   ldv_handler_precall();

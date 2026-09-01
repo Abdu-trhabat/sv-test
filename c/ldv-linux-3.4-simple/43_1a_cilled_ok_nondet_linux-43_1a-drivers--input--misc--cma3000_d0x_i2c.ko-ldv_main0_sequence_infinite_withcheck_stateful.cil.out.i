@@ -3054,6 +3054,17 @@ extern void ldv_check_return_value(int ) ;
 extern void ldv_initialize(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT ;
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 void main(void)
 { struct device *var_group1 ;
   u8 var_cma3000_i2c_read_1_p1 ;
@@ -3074,6 +3085,7 @@ void main(void)
   int __cil_tmp17 ;
   u8 __cil_tmp18 ;
   {
+  var_group2 = (struct i2c_client *)ldv_init_zalloc(sizeof(struct i2c_client));
   {
   ldv_s_cma3000_i2c_driver_i2c_driver = 0;
   LDV_IN_INTERRUPT = 1;

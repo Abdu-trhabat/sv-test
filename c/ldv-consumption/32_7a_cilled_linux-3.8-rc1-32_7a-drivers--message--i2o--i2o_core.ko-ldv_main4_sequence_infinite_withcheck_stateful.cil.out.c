@@ -7192,6 +7192,20 @@ void i2o_pci_exit(void)
 struct pci_device_id  const  __mod_pci_device_table  ;
 extern void ldv_check_return_value(int  ) ;
 extern void ldv_check_return_value_probe(int  ) ;
+/* https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/issues/1466
+   Give the harness's uninitialised callback argument a definite value,
+   following ldv_init_zalloc() in the EMG-generated tasks (c/ldv-linux-4.2-rc1). */
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 int main(void) 
 { 
   struct pci_dev *var_group1 ;
@@ -7204,6 +7218,7 @@ int main(void)
   int tmp___0 ;
 
   {
+  var_i2o_pci_interrupt_2_p1 = (void *)ldv_init_zalloc(sizeof(struct i2o_controller));
   ldv_s_i2o_pci_driver_pci_driver = 0;
   LDV_IN_INTERRUPT = 1;
   ldv_initialize();

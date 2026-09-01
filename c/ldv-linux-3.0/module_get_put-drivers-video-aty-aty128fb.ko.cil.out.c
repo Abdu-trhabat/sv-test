@@ -6546,6 +6546,20 @@ extern void ldv_check_return_value(int ) ;
 extern void ldv_initialize(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT ;
+/* https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/issues/1466
+   Give the harness's uninitialised callback argument a definite value,
+   following ldv_init_zalloc() in the EMG-generated tasks (c/ldv-linux-4.2-rc1). */
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 int main(void)
 { struct pci_dev *var_group1 ;
   struct pci_device_id const *var_aty128_probe_48_p1 ;
@@ -6569,6 +6583,7 @@ int main(void)
   int tmp___1 ;
 
   {
+  var_group1 = (struct pci_dev *)ldv_init_zalloc(sizeof(struct pci_dev));
   {
   ldv_s_aty128fb_driver_pci_driver = 0;
   LDV_IN_INTERRUPT = 1;

@@ -1315,6 +1315,21 @@ extern void ldv_check_final_state(void) ;
 extern void ldv_initialize(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT  ;
+/* https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/issues/1466
+   Give the harness's uninitialised callback argument a definite value,
+   following ldv_init_zalloc() in the EMG-generated tasks (c/ldv-linux-4.2-rc1). */
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void assume_abort_if_not(int cond) { if(!cond) {abort();} }
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 void main(void) 
 { struct platform_device *var_group1 ;
   pm_message_t var_w1_gpio_suspend_5_p1 ;
@@ -1325,6 +1340,7 @@ void main(void)
   int var_w1_gpio_suspend_5_p1_event7 ;
 
   {
+  var_group1 = (struct platform_device *)ldv_init_zalloc(sizeof(struct platform_device));
   {
   ldv_s_w1_gpio_driver_platform_driver = 0;
   LDV_IN_INTERRUPT = 1;

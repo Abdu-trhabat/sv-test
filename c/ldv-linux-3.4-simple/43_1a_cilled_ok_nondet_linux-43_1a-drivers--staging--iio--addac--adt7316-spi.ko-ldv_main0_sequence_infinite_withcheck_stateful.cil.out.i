@@ -2394,6 +2394,18 @@ extern void ldv_check_return_value(int ) ;
 extern void ldv_initialize(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT ;
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void assume_abort_if_not(int cond) { if(!cond) {abort();} }
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 void main(void)
 { void *var_adt7316_spi_read_2_p0 ;
   u8 var_adt7316_spi_read_2_p1 ;
@@ -2429,6 +2441,7 @@ void main(void)
   int __cil_tmp32 ;
   u8 __cil_tmp33 ;
   {
+  var_group1 = (struct spi_device *)ldv_init_zalloc(sizeof(struct spi_device));
   {
   ldv_s_adt7316_driver_spi_driver = 0;
   LDV_IN_INTERRUPT = 1;

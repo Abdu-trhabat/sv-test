@@ -6788,6 +6788,17 @@ void ldv_initialize(void) ;
 extern void ldv_handler_precall(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT ;
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 int main(void)
 {
   struct videobuf_queue *var_group1 ;
@@ -6863,6 +6874,7 @@ int main(void)
   int tmp___0 ;
   int tmp___1 ;
   {
+  var_vidioc_s_fmt_vid_cap_22_p1 = (void *)ldv_init_zalloc(sizeof(struct cx8802_fh));
   ldv_s_mpeg_fops_v4l2_file_operations = 0;
   ldv_s_cx8802_blackbird_driver_cx8802_driver = 0;
   LDV_IN_INTERRUPT = 1;
