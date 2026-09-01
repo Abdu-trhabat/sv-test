@@ -439,6 +439,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -533,16 +541,16 @@ typedef struct TTreeNode
 } TreeNode;
 int main()
 {
- TreeNode* tree = malloc(sizeof(*tree));
+ TreeNode* tree = safe_malloc(sizeof(*tree));
  TreeNode* tmp;
  ListNode* tmpList;
  tree->left = ((void *)0);
  tree->right = ((void *)0);
- tree->list = malloc(sizeof(ListNode));
+ tree->list = safe_malloc(sizeof(ListNode));
  tree->list->next = tree->list;
  while (__VERIFIER_nondet_int())
  {
-  tmpList = malloc(sizeof(ListNode));
+  tmpList = safe_malloc(sizeof(ListNode));
   tmpList->next = tree->list->next;
   tree->list->next = tmpList;
  }
@@ -563,12 +571,12 @@ int main()
   TreeNode* newNode;
   if ((((void *)0) == tmp->left) && __VERIFIER_nondet_int())
   {
-   newNode = malloc(sizeof(*newNode));
+   newNode = safe_malloc(sizeof(*newNode));
    tmp->left = newNode;
   }
   else if ((((void *)0) == tmp->right) && __VERIFIER_nondet_int())
   {
-   newNode = malloc(sizeof(*newNode));
+   newNode = safe_malloc(sizeof(*newNode));
    tmp->right = newNode;
   }
   else
@@ -577,11 +585,11 @@ int main()
   }
   newNode->left = ((void *)0);
   newNode->right = ((void *)0);
-  newNode->list = malloc(sizeof(*newNode->list));
+  newNode->list = safe_malloc(sizeof(*newNode->list));
   newNode->list->next = newNode->list;
   while (__VERIFIER_nondet_int())
   {
-   tmpList = malloc(sizeof(ListNode));
+   tmpList = safe_malloc(sizeof(ListNode));
    tmpList->next = tree->list->next;
    tree->list->next = tmpList;
   }

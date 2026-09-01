@@ -1,3 +1,4 @@
+void *safe_malloc(size_t size);
 // Skip function: __VERIFIER_error
 
 // Skip function: __VERIFIER_nondet_int
@@ -362,7 +363,7 @@ void *kmem_cache_alloc(struct kmem_cache *arg0, gfp_t arg1) {
 
 void *ldv_xmalloc(size_t size)
 {
-  void *res = malloc(size);
+  void *res = safe_malloc(size);
   assume_abort_if_not(res != (void *)0);
   return res;
 }

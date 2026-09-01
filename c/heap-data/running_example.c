@@ -4,6 +4,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 typedef struct node {
     int val;
@@ -11,14 +19,14 @@ typedef struct node {
 } Node;
 
 int main() {
-    Node *p, *list = malloc(sizeof(*list));
+    Node *p, *list = safe_malloc(sizeof(*list));
     Node *tail = list;
     list->next = NULL;
     list->val = 10;
     while (__VERIFIER_nondet_int()) {
         int x = __VERIFIER_nondet_int();
         if (x < 10 || x > 20) continue;
-        p = malloc(sizeof(*p));
+        p = safe_malloc(sizeof(*p));
         tail->next = p;
         p->next = NULL;
         p->val = x;

@@ -34,6 +34,14 @@ extern void __VERIFIER_atomic_begin(void);
 extern void __VERIFIER_atomic_end(void);
 
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -124,7 +132,7 @@ int main() {
   done = create_fresh_bool_array(n_update);
   assume_abort_if_not(n1 >= 0);
   assume_abort_if_not(n1 <= (((size_t) 4294967295) / sizeof(int*)));
-  consume = (int**)malloc(sizeof(int*) * (size_t)n1);
+  consume = (int**)safe_malloc(sizeof(int*) * (size_t)n1);
   for (int i=0; i<n1; i++) {
     consume[i] = create_fresh_int_array(n2);
   }
@@ -147,7 +155,7 @@ int *create_fresh_int_array(int size) {
   assume_abort_if_not(size >= 0);
   assume_abort_if_not(size <= (((size_t) 4294967295) / sizeof(int)));
 
-  int* arr = (int*)malloc(sizeof(int) * (size_t)size);
+  int* arr = (int*)safe_malloc(sizeof(int) * (size_t)size);
   for (int i = 0; i < size; i++) {
     arr[i] = __VERIFIER_nondet_int();
   }
@@ -158,7 +166,7 @@ _Bool *create_fresh_bool_array(int size) {
   assume_abort_if_not(size >= 0);
   assume_abort_if_not(size <= (((size_t) 4294967295) / sizeof(_Bool)));
 
-  _Bool* arr = (_Bool*)malloc(sizeof(_Bool) * (size_t)size);
+  _Bool* arr = (_Bool*)safe_malloc(sizeof(_Bool) * (size_t)size);
   for (int i = 0; i < size; i++) {
     arr[i] = __VERIFIER_nondet_bool();
   }

@@ -12,6 +12,14 @@ void reach_error() { assert(0); }
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <pthread.h>
 //#include <assert.h>
 
@@ -88,8 +96,8 @@ int main(int argc, char *argv[]) {
       exit(-1);
     }
 
-    data1Lock = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t));
-    data2Lock = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t));
+    data1Lock = (pthread_mutex_t *) safe_malloc(sizeof(pthread_mutex_t));
+    data2Lock = (pthread_mutex_t *) safe_malloc(sizeof(pthread_mutex_t));
     if (0 != (err = pthread_mutex_init(data1Lock, NULL))) {
         fprintf(stderr, "pthread_mutex_init error: %d\n", err);
         exit(-1);

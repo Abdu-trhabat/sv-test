@@ -11,6 +11,14 @@ void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();}
 
 #include<setjmp.h>
 #include<stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 jmp_buf env_buffer;
 struct c {
@@ -32,7 +40,7 @@ void set_g_to_keyword(struct c* t) {
 }
 
 int main() {
-  struct c* ab = malloc(sizeof(struct c));
+  struct c* ab = safe_malloc(sizeof(struct c));
   int x;
 
   if(setjmp(env_buffer)) {

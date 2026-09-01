@@ -18,6 +18,14 @@ void reach_error() { assert(0); }
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 // a skip list node with three next pointers
 struct sl_item {
@@ -31,17 +39,17 @@ struct sl {
 
 struct sl_item* alloc_or_die(void)
 {
-	struct sl_item *pi = malloc(sizeof(struct sl_item));
+	struct sl_item *pi = safe_malloc(sizeof(struct sl_item));
 
 	return pi;
 }
 
 struct sl* create_sl_with_head_and_tail(void)
 {
-	struct sl *sl = malloc(sizeof(*sl));
+	struct sl *sl = safe_malloc(sizeof(*sl));
 
-	sl->head = malloc(sizeof(struct sl_item));
-	sl->tail = malloc(sizeof(struct sl_item));
+	sl->head = safe_malloc(sizeof(struct sl_item));
+	sl->tail = safe_malloc(sizeof(struct sl_item));
 
 	sl->head->n2 = sl->head->n1 = sl->tail;
 	sl->tail->n2 = sl->tail->n1 = NULL;
@@ -67,7 +75,7 @@ void sl_random_insert(struct sl *sl)
 		a1 = a1->n1;
 
 	// allocation and insertion of a new node
-	new = malloc(sizeof(struct sl_item));
+	new = safe_malloc(sizeof(struct sl_item));
 	// always insert at level 1
 	new->n1 = a1->n1;
 	a1->n1 = new;

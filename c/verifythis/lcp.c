@@ -14,6 +14,14 @@ void assume_abort_if_not(int cond) {
 }
 
 extern void abort(void);
+void *safe_calloc(unsigned int num, unsigned int size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 void reach_error() { __assert_fail("0", "lcp.c", 11, "reach_error"); }
 void __VERIFIER_assert(int cond) {
@@ -43,7 +51,7 @@ int main() {
     int n = __VERIFIER_nondet_int();
     /* 1 << 30 will make sure n * sizeof(int) does not overflow */
     assume_abort_if_not(n >= 0 && n < (1 << 30));
-    int *a = calloc(n, sizeof(int));
+    int *a = safe_calloc(n, sizeof(int));
 
     int x = __VERIFIER_nondet_int();
     int y = __VERIFIER_nondet_int();

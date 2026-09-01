@@ -7,6 +7,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc_or_loop(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    while (1) { }
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
@@ -22,11 +30,11 @@ typedef struct TSLL
 
 int main()
 {
-	SLL* null = malloc(sizeof(SLL));
+	SLL* null = safe_malloc_or_loop(sizeof(SLL));
 	null->colour = BLACK;
 	null->next = NULL;
 	// create the head
-	SLL* list = malloc(sizeof(SLL));
+	SLL* list = safe_malloc_or_loop(sizeof(SLL));
 	list->next = null;
 	list->colour = BLACK;
 
@@ -36,7 +44,7 @@ int main()
 	while (__VERIFIER_nondet_int())
 	{
 		// create a node
-		end->next = malloc(sizeof(SLL));
+		end->next = safe_malloc_or_loop(sizeof(SLL));
 		end = end->next;
 		end->next = null;
 
@@ -47,7 +55,7 @@ int main()
 		else
 		{	// mark the node as red and follow it by a black node
 			end->colour = RED;
-			end->next = malloc(sizeof(SLL));
+			end->next = safe_malloc_or_loop(sizeof(SLL));
 			end = end->next;
 			end->next = null;
 			end->colour = BLACK;

@@ -441,6 +441,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -546,11 +554,11 @@ typedef struct node {
 node_t* init_cll (int n)
 {
   node_t* head;
-  node_t* curr = malloc(sizeof(node_t));
+  node_t* curr = safe_malloc(sizeof(node_t));
   curr->val = 0;
   head = curr;
   for (int i = 1; i < n; i++) {
-    node_t* next_node = malloc(sizeof(node_t));
+    node_t* next_node = safe_malloc(sizeof(node_t));
     next_node->val = i;
     curr->next = next_node;
     curr = next_node;

@@ -463,6 +463,14 @@ extern __uint32_t arc4random_uniform (__uint32_t __upper_bound)
 extern void *malloc(size_t) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -565,7 +573,7 @@ void set_g_to_keyword(struct c* t) {
   t->g = keyword;
 }
 int main() {
-  struct c* ab = malloc(sizeof(struct c));
+  struct c* ab = safe_malloc(sizeof(struct c));
   int x;
   if(_setjmp (env_buffer)) {
    __VERIFIER_assert(x == 2);

@@ -24,7 +24,7 @@ struct slave_item* alloc_or_die_slave(void)
 {
     struct slave_item *ptr = malloc(sizeof(*ptr));
     if (!ptr)
-        abort();
+        while (1) { }
 
     ptr->next = NULL;
     ptr->next = NULL;
@@ -41,7 +41,7 @@ struct master_item* alloc_or_die_master(void)
 {
     struct master_item *ptr = malloc(sizeof(*ptr));
     if (!ptr)
-        abort();
+        while (1) { }
 
     ptr->next = NULL;
     ptr->prev = NULL;

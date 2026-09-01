@@ -924,6 +924,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -2129,7 +2137,7 @@ ssize_t write(int fildes, const void *buf, size_t nbyte)
 }
 int main()
 {
-  char *a = malloc(11);
+  char *a = safe_malloc(11);
   a[10] = 0;
   for(int i=0; i<10; ++i)
     a[i]=__VERIFIER_nondet_char();
@@ -2138,12 +2146,12 @@ int main()
   optind = 1;
   int argc = __VERIFIER_nondet_int();
   assume_abort_if_not(argc >= 1 && argc <= 10000);
-  char **argv=malloc((argc+1)*sizeof(char*));
-  char **mem_track=malloc((argc+1)*sizeof(char*));
+  char **argv=safe_malloc((argc+1)*sizeof(char*));
+  char **mem_track=safe_malloc((argc+1)*sizeof(char*));
   argv[argc]=0;
   for(int i=0; i<argc; ++i)
   {
-    argv[i]=malloc(11);
+    argv[i]=safe_malloc(11);
     mem_track[i]=argv[i];
     argv[i][10] = 0;
     for(int j=0; j<10; ++j)

@@ -1,4 +1,12 @@
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -8,8 +16,8 @@ extern int __VERIFIER_nondet_int(void);
 int lis(int* a, int N)
 {
     int *best, *prev, i, j, max = 0;
-    best = (int*) malloc(sizeof(int) * N);
-    prev = (int*) malloc(sizeof(int) * N);
+    best = (int*) safe_malloc(sizeof(int) * N);
+    prev = (int*) safe_malloc(sizeof(int) * N);
 
     for (i = 0; i < N; i++)
         best[i] = 1, prev[i] = i;

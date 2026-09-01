@@ -10,7 +10,7 @@
 // commit: 5e2d564
 // extract of: pjlib-util/src/pjlib-util/dns.c (function: parse_rr)
 
-#include "helpers.c"
+#include "helpers-safe.c"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -95,7 +95,7 @@ int parse_rr(pj_dns_parsed_rr *rr, const uint8_t *start, const uint8_t *max, int
 
   } else {
     /* Copy the raw data */
-    rr->data = calloc(rr->rdlength, 1);
+    rr->data = safe_calloc(rr->rdlength, 1);
     memcpy(rr->data, p, rr->rdlength);
 
     p += rr->rdlength;

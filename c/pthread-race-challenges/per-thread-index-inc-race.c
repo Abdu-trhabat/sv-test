@@ -12,6 +12,14 @@
 #include <strings.h>
 #include <stdint.h>
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -35,9 +43,9 @@ int main() {
   assume_abort_if_not(threads_total >= 0);
 
   assume_abort_if_not(threads_total <= SIZE_MAX / sizeof(pthread_t));
-  pthread_t *tids = malloc(threads_total * sizeof(pthread_t));
+  pthread_t *tids = safe_malloc(threads_total * sizeof(pthread_t));
   assume_abort_if_not(threads_total <= SIZE_MAX / sizeof(int));
-  datas = malloc(threads_total * sizeof(int));
+  datas = safe_malloc(threads_total * sizeof(int));
 
   // create threads
   for (int i = 0; i < threads_total; i++) {

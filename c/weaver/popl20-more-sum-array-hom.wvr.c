@@ -34,6 +34,14 @@ extern void __VERIFIER_atomic_begin(void);
 extern void __VERIFIER_atomic_end(void);
 
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -96,7 +104,7 @@ unsigned int *create_fresh_uint_array(int size) {
   assume_abort_if_not(size >= 0);
   assume_abort_if_not(size <= (((size_t) 4294967295) / sizeof(unsigned int)));
 
-  unsigned int* arr = (unsigned int*)malloc(sizeof(unsigned int) * (size_t)size);
+  unsigned int* arr = (unsigned int*)safe_malloc(sizeof(unsigned int) * (size_t)size);
   for (int i = 0; i < size; i++) {
     arr[i] = __VERIFIER_nondet_int();
   }

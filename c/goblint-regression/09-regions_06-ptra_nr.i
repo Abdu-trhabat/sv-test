@@ -2201,6 +2201,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 /* Abort execution and generate a core-dump.  */
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* Register a function to be called when `exit' is called.  */
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 /* Register a function to be called when `quick_exit' is called.  */
@@ -2999,7 +3007,7 @@ pthread_mutex_t B_mutex = { { 0, 0, 0, PTHREAD_MUTEX_TIMED_NP, 0, { { 0, 0 } } }
 void *t_fun(void *arg) {
   int *ip;
   struct s *t, *sp;
-  struct s *p = malloc(sizeof(struct s));
+  struct s *p = safe_malloc(sizeof(struct s));
   init(p,7);
   ip = &p->datum;
   sp = ((struct s *)((char *)(ip)-(unsigned long)__builtin_offsetof (struct s, datum)));
@@ -3014,12 +3022,12 @@ int main () {
   pthread_t t1;
   int *ip;
   struct s *sp;
-  struct s *p = malloc(sizeof(struct s));
+  struct s *p = safe_malloc(sizeof(struct s));
   init(p,9);
-  A = malloc(sizeof(struct s));
+  A = safe_malloc(sizeof(struct s));
   init(A,3);
   A->next = p;
-  B = malloc(sizeof(struct s));
+  B = safe_malloc(sizeof(struct s));
   init(B,5);
   pthread_create(&t1, ((void *)0), t_fun, ((void *)0));
   ip = &p->datum;

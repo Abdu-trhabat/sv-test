@@ -10,6 +10,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 // void __VERIFIER_plot(const char *name, ...);
@@ -26,7 +34,7 @@ struct internal_node {
 
 struct node* alloc_and_zero(void)
 {
-    struct node *pi = malloc(sizeof(*pi));
+    struct node *pi = safe_malloc(sizeof(*pi));
     pi->next = NULL;
     pi->nested1 = NULL;
     pi->nested2 = NULL;
@@ -36,7 +44,7 @@ struct node* alloc_and_zero(void)
 
 struct internal_node* alloc_and_zero_internal(void)
 {
-    struct internal_node *pi = malloc(sizeof(*pi));
+    struct internal_node *pi = safe_malloc(sizeof(*pi));
     pi->next = NULL;
 
     return pi;
