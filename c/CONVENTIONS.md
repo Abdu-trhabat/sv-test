@@ -139,3 +139,9 @@ We assume the following about `pthread.h` functions:
 * `pthread_spin_init` never fails with `EAGAIN` or `ENOMEM`;
 * `pthread_key_create` never fails with `EAGAIN` or `ENOMEM`;
 * `pthread_setspecific` never fails with `ENOMEM`.
+
+Some of these functions may still fail for other reasons,
+e.g., `pthread_mutex_lock` may fail with `EDEADLK` if the mutex has been configured to have the type `PTHREAD_MUTEX_ERRORCHECK`.
+
+(These assumptions reflect the current state of the benchmarks.
+The community may choose to drop them in the future.)
