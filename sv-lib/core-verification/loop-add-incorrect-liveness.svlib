@@ -34,7 +34,7 @@
   :requires (<= 0 y0)
   :ensures  (= x (+ x0 y0)))
 
-(annotate-tag while-loop :not-live)
+(annotate-tag while-loop :not-recurring)
 
 (declare-const x1 Int)
 (declare-const y1 Int)
