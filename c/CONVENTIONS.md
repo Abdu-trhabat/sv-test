@@ -112,8 +112,11 @@ void assume_abort_if_not(int cond) {
 The following non-standard assumptions are made by the programs.
 
 #### `alloca()`
-Moreover, we assume that the function `alloca` always returns
-a valid pointer, i.e., the stack never overflows.
+We assume that the functions `alloca` and `__builtin_alloca` always return
+a valid non-`NULL` pointer, i.e., the stack never overflows.
+
+(This assumption reflects the current state of the benchmarks.
+The community may choose to drop it in the future.)
 
 #### `pthread_*()`
 We assume the following about `pthread.h` functions:
