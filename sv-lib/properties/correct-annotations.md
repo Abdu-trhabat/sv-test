@@ -1,0 +1,1 @@
+All properties present in the SV-LIB script are correct with respect to the standard.
