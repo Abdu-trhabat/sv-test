@@ -3290,17 +3290,13 @@ extern void *memset(void *s , int c , size_t n ) ;
 __inline static int test_ti_thread_flag(struct thread_info *ti , int flag )  __attribute__((__no_instrument_function__)) ;
 __inline static int test_ti_thread_flag(struct thread_info *ti , int flag ) 
 { int tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   __u32 *__cil_tmp7 ;
   unsigned long *__cil_tmp8 ;
   unsigned long const volatile   *__cil_tmp9 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )ti;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = (__u32 *)__cil_tmp6;
+  __cil_tmp7 = (__u32 *)((void *)ti + 16);
   __cil_tmp8 = (unsigned long *)__cil_tmp7;
   __cil_tmp9 = (unsigned long const volatile   *)__cil_tmp8;
   tmp___0 = variable_test_bit(flag, __cil_tmp9);
@@ -3396,16 +3392,12 @@ extern void schedule(void) ;
 __inline static int test_tsk_thread_flag(struct task_struct *tsk , int flag )  __attribute__((__no_instrument_function__)) ;
 __inline static int test_tsk_thread_flag(struct task_struct *tsk , int flag ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   struct thread_info *__cil_tmp7 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )tsk;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)tsk + 8));
   __cil_tmp7 = (struct thread_info *)__cil_tmp6;
   tmp___7 = test_ti_thread_flag(__cil_tmp7, flag);
   }
@@ -3515,7 +3507,6 @@ static char *get_initstring(void)
   void *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   enum var_id_t __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   enum var_id_t __cil_tmp14 ;
@@ -3524,14 +3515,10 @@ static char *get_initstring(void)
   unsigned int __cil_tmp17 ;
   enum var_id_t __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   char *__cil_tmp22 ;
   char const   *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   int __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
@@ -3546,8 +3533,7 @@ static char *get_initstring(void)
   __cil_tmp9 = 0 * 1UL;
   __cil_tmp10 = (unsigned long )(buf) + __cil_tmp9;
   cp = (char *)__cil_tmp10;
-  __cil_tmp11 = (unsigned long )(& synth_soft) + 64;
-  var = *((struct var_t **)__cil_tmp11);
+  var = *((struct var_t **)((void *)(&synth_soft) + 64));
   }
   {
   while (1) {
@@ -3574,15 +3560,11 @@ static char *get_initstring(void)
         __cil_tmp19 = (unsigned int )__cil_tmp18;
         if (__cil_tmp19 != 36U) {
           {
-          __cil_tmp20 = (unsigned long )var;
-          __cil_tmp21 = __cil_tmp20 + 8;
-          __cil_tmp22 = *((char **)__cil_tmp21);
+          __cil_tmp22 = *((char **)((void *)var + 8));
           __cil_tmp23 = (char const   *)__cil_tmp22;
           __cil_tmp24 = 0 + 32;
           __cil_tmp25 = 8 + __cil_tmp24;
-          __cil_tmp26 = (unsigned long )var;
-          __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-          __cil_tmp28 = *((int *)__cil_tmp27);
+          __cil_tmp28 = *((int *)((void *)var + __cil_tmp25));
           tmp___7 = sprintf(cp, __cil_tmp23, __cil_tmp28);
           cp = cp + tmp___7;
           }
@@ -3618,10 +3600,8 @@ static int softsynth_open(struct inode *inode , struct file *fp )
   raw_spinlock_t *tmp___7 ;
   struct speakup_info_t *__cil_tmp7 ;
   spinlock_t *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct speakup_info_t *__cil_tmp10 ;
   spinlock_t *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct speakup_info_t *__cil_tmp13 ;
   spinlock_t *__cil_tmp14 ;
 
@@ -3647,8 +3627,7 @@ static int softsynth_open(struct inode *inode , struct file *fp )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp9 = (unsigned long )(& synth_soft) + 176;
-  if (*((int *)__cil_tmp9)) {
+  if (*((int *)((void *)(&synth_soft) + 176))) {
     {
     __cil_tmp10 = & speakup_info;
     __cil_tmp11 = (spinlock_t *)__cil_tmp10;
@@ -3660,8 +3639,7 @@ static int softsynth_open(struct inode *inode , struct file *fp )
   }
   }
   {
-  __cil_tmp12 = (unsigned long )(& synth_soft) + 176;
-  *((int *)__cil_tmp12) = 1;
+  *((int *)((void *)(&synth_soft) + 176)) = 1;
   __cil_tmp13 = & speakup_info;
   __cil_tmp14 = (spinlock_t *)__cil_tmp13;
   spin_unlock_irqrestore(__cil_tmp14, flags);
@@ -3674,7 +3652,6 @@ static int softsynth_close(struct inode *inode , struct file *fp )
   raw_spinlock_t *tmp___7 ;
   struct speakup_info_t *__cil_tmp7 ;
   spinlock_t *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct speakup_info_t *__cil_tmp10 ;
   spinlock_t *__cil_tmp11 ;
 
@@ -3700,8 +3677,7 @@ static int softsynth_close(struct inode *inode , struct file *fp )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp9 = (unsigned long )(& synth_soft) + 176;
-  *((int *)__cil_tmp9) = 0;
+  *((int *)((void *)(&synth_soft) + 176)) = 0;
   initialized = 0;
   __cil_tmp10 = & speakup_info;
   __cil_tmp11 = (spinlock_t *)__cil_tmp10;
@@ -3729,26 +3705,15 @@ static ssize_t softsynth_read(struct file *fp , char *buf___0 , size_t count , l
   int tmp___14 ;
   raw_spinlock_t *tmp___15 ;
   wait_queue_t *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct speakup_info_t *__cil_tmp35 ;
   spinlock_t *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct speakup_info_t *__cil_tmp38 ;
   spinlock_t *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned int __cil_tmp42 ;
   struct speakup_info_t *__cil_tmp43 ;
   spinlock_t *__cil_tmp44 ;
   size_t __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   char *__cil_tmp48 ;
   char *__cil_tmp49 ;
   char *__cil_tmp50 ;
@@ -3769,17 +3734,11 @@ static ssize_t softsynth_read(struct file *fp , char *buf___0 , size_t count , l
   tmp___7 = get_current();
   __cil_tmp27 = & wait;
   *((unsigned int *)__cil_tmp27) = 0U;
-  __cil_tmp28 = (unsigned long )(& wait) + 8;
-  *((void **)__cil_tmp28) = (void *)tmp___7;
-  __cil_tmp29 = (unsigned long )(& wait) + 16;
-  *((int (**)(wait_queue_t *wait , unsigned int mode , int flags , void *key ))__cil_tmp29) = & autoremove_wake_function;
-  __cil_tmp30 = (unsigned long )(& wait) + 24;
-  __cil_tmp31 = (unsigned long )(& wait) + 24;
-  *((struct list_head **)__cil_tmp30) = (struct list_head *)__cil_tmp31;
+  *((void **)((void *)(&wait) + 8)) = (void *)tmp___7;
+  *((int (**)(wait_queue_t *wait , unsigned int mode , int flags , void *key ))((void *)(&wait) + 16)) = & autoremove_wake_function;
+  *((struct list_head **)((void *)(&wait) + 24)) = (struct list_head *)((void *)(&wait) + 24);
   __cil_tmp32 = 24 + 8;
-  __cil_tmp33 = (unsigned long )(& wait) + __cil_tmp32;
-  __cil_tmp34 = (unsigned long )(& wait) + 24;
-  *((struct list_head **)__cil_tmp33) = (struct list_head *)__cil_tmp34;
+  *((struct list_head **)((void *)(&wait) + __cil_tmp32)) = (struct list_head *)((void *)(&wait) + 24);
   }
   {
   while (1) {
@@ -3810,8 +3769,7 @@ static ssize_t softsynth_read(struct file *fp , char *buf___0 , size_t count , l
     }
     if (tmp___9) {
       {
-      __cil_tmp37 = (unsigned long )(& speakup_info) + 28;
-      if (*((int *)__cil_tmp37)) {
+      if (*((int *)((void *)(&speakup_info) + 28))) {
         goto while_break___1;
       } else {
 
@@ -3826,9 +3784,7 @@ static ssize_t softsynth_read(struct file *fp , char *buf___0 , size_t count , l
     spin_unlock_irqrestore(__cil_tmp39, flags);
     }
     {
-    __cil_tmp40 = (unsigned long )fp;
-    __cil_tmp41 = __cil_tmp40 + 80;
-    __cil_tmp42 = *((unsigned int *)__cil_tmp41);
+    __cil_tmp42 = *((unsigned int *)((void *)fp + 80));
     if (__cil_tmp42 & 2048U) {
       {
       finish_wait(& speakup_event, & wait);
@@ -3893,10 +3849,8 @@ static ssize_t softsynth_read(struct file *fp , char *buf___0 , size_t count , l
     }
     }
     {
-    __cil_tmp46 = (unsigned long )(& speakup_info) + 28;
-    if (*((int *)__cil_tmp46)) {
-      __cil_tmp47 = (unsigned long )(& speakup_info) + 28;
-      *((int *)__cil_tmp47) = 0;
+    if (*((int *)((void *)(&speakup_info) + 28))) {
+      *((int *)((void *)(&speakup_info) + 28)) = 0;
       __cil_tmp48 = & ch;
       *__cil_tmp48 = (char )'\030';
     } else {
@@ -4013,7 +3967,6 @@ static unsigned int softsynth_poll(struct file *fp , struct poll_table_struct *w
   int tmp___8 ;
   struct speakup_info_t *__cil_tmp9 ;
   spinlock_t *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct speakup_info_t *__cil_tmp12 ;
   spinlock_t *__cil_tmp13 ;
 
@@ -4047,8 +4000,7 @@ static unsigned int softsynth_poll(struct file *fp , struct poll_table_struct *w
   }
   if (tmp___8) {
     {
-    __cil_tmp11 = (unsigned long )(& speakup_info) + 28;
-    if (*((int *)__cil_tmp11)) {
+    if (*((int *)((void *)(&speakup_info) + 28))) {
       ret = 65;
     } else {
 
@@ -4106,8 +4058,6 @@ static int softsynth_probe(struct spk_synth *synth___0 )
 { int tmp___7 ;
   void *__cil_tmp3 ;
   struct miscdevice *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
 
   {
   if (misc_registered != 0) {
@@ -4120,10 +4070,8 @@ static int softsynth_probe(struct spk_synth *synth___0 )
   memset(__cil_tmp3, 0, 72UL);
   __cil_tmp4 = & synth_device;
   *((int *)__cil_tmp4) = 26;
-  __cil_tmp5 = (unsigned long )(& synth_device) + 8;
-  *((char const   **)__cil_tmp5) = "softsynth";
-  __cil_tmp6 = (unsigned long )(& synth_device) + 16;
-  *((struct file_operations  const  **)__cil_tmp6) = & softsynth_fops;
+  *((char const   **)((void *)(&synth_device) + 8)) = "softsynth";
+  *((struct file_operations  const  **)((void *)(&synth_device) + 16)) = & softsynth_fops;
   tmp___7 = misc_register(& synth_device);
   }
   if (tmp___7) {
@@ -4154,12 +4102,10 @@ static void softsynth_release(void)
 }
 }
 static int softsynth_is_alive(struct spk_synth *synth___0 ) 
-{ unsigned long __cil_tmp2 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )(& synth_soft) + 176;
-  if (*((int *)__cil_tmp2)) {
+  if (*((int *)((void *)(&synth_soft) + 176))) {
     return (1);
   } else {
 

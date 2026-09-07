@@ -2043,8 +2043,7 @@ static __u8 pf1209_rdesc_fixed[133U]  =
         (__u8 )6U,      (__u8 )129U,      (__u8 )1U,      (__u8 )192U, 
         (__u8 )192U};
 static __u8 *uclogic_report_fixup(struct hid_device *hdev , __u8 *rdesc , unsigned int *rsize ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   __u32 __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
@@ -2054,9 +2053,7 @@ static __u8 *uclogic_report_fixup(struct hid_device *hdev , __u8 *rdesc , unsign
 
   {
   {
-  __cil_tmp4 = (unsigned long )hdev;
-  __cil_tmp5 = __cil_tmp4 + 44;
-  __cil_tmp6 = *((__u32 *)__cil_tmp5);
+  __cil_tmp6 = *((__u32 *)((void *)hdev + 44));
   if ((int )__cil_tmp6 == 66) {
     goto case_66;
   } else

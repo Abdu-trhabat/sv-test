@@ -6013,24 +6013,16 @@ __inline static int mt352_write(struct dvb_frontend *fe , u8 const *buf , int le
 __inline static int mt352_write(struct dvb_frontend *fe , u8 const *buf , int len )
 { int r ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int (*__cil_tmp11)(struct dvb_frontend *fe , u8 const *buf , int len ) ;
   {
   r = 0;
   {
   __cil_tmp5 = 0 + 208;
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  if (*((int (**)(struct dvb_frontend *fe , u8 const *buf , int len ))__cil_tmp7)) {
+  if (*((int (**)(struct dvb_frontend *fe , u8 const *buf , int len ))((void *)fe + __cil_tmp5))) {
     {
     __cil_tmp8 = 0 + 208;
-    __cil_tmp9 = (unsigned long )fe;
-    __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-    __cil_tmp11 = *((int (**)(struct dvb_frontend *fe , u8 const *buf , int len ))__cil_tmp10);
+    __cil_tmp11 = *((int (**)(struct dvb_frontend *fe , u8 const *buf , int len ))((void *)fe + __cil_tmp8));
     r = (*__cil_tmp11)(fe, buf, len);
     }
   } else {
@@ -6247,27 +6239,21 @@ static int umt_mt352_frontend_attach(struct dvb_usb_adapter *adap )
   void *tmp___10 ;
   struct dvb_frontend *tmp___11 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct mt352_config *__cil_tmp12 ;
   bool __cil_tmp13 ;
   struct mt352_config const *__cil_tmp14 ;
   struct dvb_usb_device *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct i2c_adapter *__cil_tmp18 ;
   void *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   {
   {
   __cil_tmp10 = (void *)(& umt_config);
   memset(__cil_tmp10, 0, 24UL);
-  __cil_tmp11 = (unsigned long )(& umt_config) + 16;
-  *((int (**)(struct dvb_frontend *fe ))__cil_tmp11) = & umt_mt352_demod_init;
+  *((int (**)(struct dvb_frontend *fe ))((void *)(&umt_config) + 16)) = & umt_mt352_demod_init;
   __cil_tmp12 = & umt_config;
   *((u8 *)__cil_tmp12) = (u8 )15;
   __r = (void *)0;
@@ -6288,9 +6274,7 @@ static int umt_mt352_frontend_attach(struct dvb_usb_adapter *adap )
     {
     __cil_tmp14 = (struct mt352_config const *)(& umt_config);
     __cil_tmp15 = *((struct dvb_usb_device **)adap);
-    __cil_tmp16 = (unsigned long )__cil_tmp15;
-    __cil_tmp17 = __cil_tmp16 + 3720;
-    __cil_tmp18 = (struct i2c_adapter *)__cil_tmp17;
+    __cil_tmp18 = (struct i2c_adapter *)((void *)__cil_tmp15 + 3720);
     tmp___11 = (*__a)(__cil_tmp14, __cil_tmp18);
     __r = (void *)tmp___11;
     }
@@ -6312,9 +6296,7 @@ static int umt_mt352_frontend_attach(struct dvb_usb_adapter *adap )
   }
   __cil_tmp22 = 0 * 360UL;
   __cil_tmp23 = 1600 + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )adap;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  *((struct dvb_frontend **)__cil_tmp25) = (struct dvb_frontend *)__r;
+  *((struct dvb_frontend **)((void *)adap + __cil_tmp23)) = (struct dvb_frontend *)__r;
   return (0);
 }
 }
@@ -6330,8 +6312,6 @@ static int umt_tuner_attach(struct dvb_usb_adapter *adap )
   bool __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct dvb_frontend *__cil_tmp14 ;
   void *__cil_tmp15 ;
   struct i2c_adapter *__cil_tmp16 ;
@@ -6360,9 +6340,7 @@ static int umt_tuner_attach(struct dvb_usb_adapter *adap )
     {
     __cil_tmp10 = 0 * 360UL;
     __cil_tmp11 = 1600 + __cil_tmp10;
-    __cil_tmp12 = (unsigned long )adap;
-    __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-    __cil_tmp14 = *((struct dvb_frontend **)__cil_tmp13);
+    __cil_tmp14 = *((struct dvb_frontend **)((void *)adap + __cil_tmp11));
     __cil_tmp15 = (void *)0;
     __cil_tmp16 = (struct i2c_adapter *)__cil_tmp15;
     tmp___11 = (*__a)(__cil_tmp14, 97, __cil_tmp16, 7U);

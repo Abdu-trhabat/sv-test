@@ -2142,15 +2142,11 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 __inline static void *pci_get_drvdata(struct pci_dev *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -2159,14 +2155,11 @@ __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2200,16 +2193,12 @@ static irqreturn_t irqhandler(int irq , struct uio_info *info )
 { struct uio_pci_generic_dev *gdev ;
   struct uio_pci_generic_dev *tmp ;
   bool tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct pci_dev *__cil_tmp8 ;
   {
   {
   tmp = to_uio_pci_generic_dev(info);
   gdev = tmp;
-  __cil_tmp6 = (unsigned long )gdev;
-  __cil_tmp7 = __cil_tmp6 + 528;
-  __cil_tmp8 = *((struct pci_dev **)__cil_tmp7);
+  __cil_tmp8 = *((struct pci_dev **)((void *)gdev + 528));
   tmp___0 = pci_check_and_mask_intx(__cil_tmp8);
   }
   if (tmp___0) {
@@ -2227,39 +2216,17 @@ static int probe(struct pci_dev *pdev , struct pci_device_id const *id )
   bool tmp ;
   void *tmp___0 ;
   int tmp___1 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device const *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   struct device const *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct device *__cil_tmp41 ;
   struct uio_info *__cil_tmp42 ;
   void *__cil_tmp43 ;
@@ -2270,9 +2237,7 @@ static int probe(struct pci_dev *pdev , struct pci_device_id const *id )
   }
   if (err) {
     {
-    __cil_tmp8 = (unsigned long )pdev;
-    __cil_tmp9 = __cil_tmp8 + 144;
-    __cil_tmp10 = (struct device *)__cil_tmp9;
+    __cil_tmp10 = (struct device *)((void *)pdev + 144);
     __cil_tmp11 = (struct device const *)__cil_tmp10;
     dev_err(__cil_tmp11, "%s: pci_enable_device failed: %d\n", "probe", err);
     }
@@ -2280,14 +2245,10 @@ static int probe(struct pci_dev *pdev , struct pci_device_id const *id )
   } else {
   }
   {
-  __cil_tmp12 = (unsigned long )pdev;
-  __cil_tmp13 = __cil_tmp12 + 916;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)pdev + 916));
   if (! __cil_tmp14) {
     {
-    __cil_tmp15 = (unsigned long )pdev;
-    __cil_tmp16 = __cil_tmp15 + 144;
-    __cil_tmp17 = (struct device *)__cil_tmp16;
+    __cil_tmp17 = (struct device *)((void *)pdev + 144);
     __cil_tmp18 = (struct device const *)__cil_tmp17;
     dev_warn(__cil_tmp18, "No IRQ assigned to device: no support for interrupts?\n");
     pci_disable_device(pdev);
@@ -2315,34 +2276,18 @@ static int probe(struct pci_dev *pdev , struct pci_device_id const *id )
   }
   {
   __cil_tmp19 = 0 + 8;
-  __cil_tmp20 = (unsigned long )gdev;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  *((char const **)__cil_tmp21) = "uio_pci_generic";
+  *((char const **)((void *)gdev + __cil_tmp19)) = "uio_pci_generic";
   __cil_tmp22 = 0 + 16;
-  __cil_tmp23 = (unsigned long )gdev;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  *((char const **)__cil_tmp24) = "0.01.0";
+  *((char const **)((void *)gdev + __cil_tmp22)) = "0.01.0";
   __cil_tmp25 = 0 + 464;
-  __cil_tmp26 = (unsigned long )gdev;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  __cil_tmp28 = (unsigned long )pdev;
-  __cil_tmp29 = __cil_tmp28 + 916;
-  __cil_tmp30 = *((unsigned int *)__cil_tmp29);
-  *((long *)__cil_tmp27) = (long )__cil_tmp30;
+  __cil_tmp30 = *((unsigned int *)((void *)pdev + 916));
+  *((long *)((void *)gdev + __cil_tmp25)) = (long )__cil_tmp30;
   __cil_tmp31 = 0 + 472;
-  __cil_tmp32 = (unsigned long )gdev;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  *((unsigned long *)__cil_tmp33) = 128UL;
+  *((unsigned long *)((void *)gdev + __cil_tmp31)) = 128UL;
   __cil_tmp34 = 0 + 488;
-  __cil_tmp35 = (unsigned long )gdev;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  *((irqreturn_t (**)(int irq , struct uio_info *dev_info ))__cil_tmp36) = & irqhandler;
-  __cil_tmp37 = (unsigned long )gdev;
-  __cil_tmp38 = __cil_tmp37 + 528;
-  *((struct pci_dev **)__cil_tmp38) = pdev;
-  __cil_tmp39 = (unsigned long )pdev;
-  __cil_tmp40 = __cil_tmp39 + 144;
-  __cil_tmp41 = (struct device *)__cil_tmp40;
+  *((irqreturn_t (**)(int irq , struct uio_info *dev_info ))((void *)gdev + __cil_tmp34)) = & irqhandler;
+  *((struct pci_dev **)((void *)gdev + 528)) = pdev;
+  __cil_tmp41 = (struct device *)((void *)pdev + 144);
   __cil_tmp42 = (struct uio_info *)gdev;
   tmp___1 = (int )__uio_register_device(& __this_module, __cil_tmp41, __cil_tmp42);
   }

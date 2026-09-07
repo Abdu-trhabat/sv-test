@@ -3111,99 +3111,52 @@ extern int cpufreq_unregister_driver(struct cpufreq_driver * ) ;
 extern void cpufreq_notify_transition(struct cpufreq_freqs * , unsigned int  ) ;
 __inline static void cpufreq_verify_within_limits(struct cpufreq_policy *policy ,
                                                   unsigned int min , unsigned int max ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   unsigned int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )policy;
-  __cil_tmp5 = __cil_tmp4 + 36;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned int *)((void *)policy + 36));
   if (__cil_tmp6 < min) {
-    __cil_tmp7 = (unsigned long )policy;
-    __cil_tmp8 = __cil_tmp7 + 36;
-    *((unsigned int *)__cil_tmp8) = min;
+    *((unsigned int *)((void *)policy + 36)) = min;
   } else {
 
   }
   }
   {
-  __cil_tmp9 = (unsigned long )policy;
-  __cil_tmp10 = __cil_tmp9 + 40;
-  __cil_tmp11 = *((unsigned int *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned int *)((void *)policy + 40));
   if (__cil_tmp11 < min) {
-    __cil_tmp12 = (unsigned long )policy;
-    __cil_tmp13 = __cil_tmp12 + 40;
-    *((unsigned int *)__cil_tmp13) = min;
+    *((unsigned int *)((void *)policy + 40)) = min;
   } else {
 
   }
   }
   {
-  __cil_tmp14 = (unsigned long )policy;
-  __cil_tmp15 = __cil_tmp14 + 36;
-  __cil_tmp16 = *((unsigned int *)__cil_tmp15);
+  __cil_tmp16 = *((unsigned int *)((void *)policy + 36));
   if (__cil_tmp16 > max) {
-    __cil_tmp17 = (unsigned long )policy;
-    __cil_tmp18 = __cil_tmp17 + 36;
-    *((unsigned int *)__cil_tmp18) = max;
+    *((unsigned int *)((void *)policy + 36)) = max;
   } else {
 
   }
   }
   {
-  __cil_tmp19 = (unsigned long )policy;
-  __cil_tmp20 = __cil_tmp19 + 40;
-  __cil_tmp21 = *((unsigned int *)__cil_tmp20);
+  __cil_tmp21 = *((unsigned int *)((void *)policy + 40));
   if (__cil_tmp21 > max) {
-    __cil_tmp22 = (unsigned long )policy;
-    __cil_tmp23 = __cil_tmp22 + 40;
-    *((unsigned int *)__cil_tmp23) = max;
+    *((unsigned int *)((void *)policy + 40)) = max;
   } else {
 
   }
   }
   {
-  __cil_tmp24 = (unsigned long )policy;
-  __cil_tmp25 = __cil_tmp24 + 40;
-  __cil_tmp26 = *((unsigned int *)__cil_tmp25);
-  __cil_tmp27 = (unsigned long )policy;
-  __cil_tmp28 = __cil_tmp27 + 36;
-  __cil_tmp29 = *((unsigned int *)__cil_tmp28);
+  __cil_tmp26 = *((unsigned int *)((void *)policy + 40));
+  __cil_tmp29 = *((unsigned int *)((void *)policy + 36));
   if (__cil_tmp29 > __cil_tmp26) {
-    __cil_tmp30 = (unsigned long )policy;
-    __cil_tmp31 = __cil_tmp30 + 36;
-    __cil_tmp32 = (unsigned long )policy;
-    __cil_tmp33 = __cil_tmp32 + 40;
-    *((unsigned int *)__cil_tmp31) = *((unsigned int *)__cil_tmp33);
+    *((unsigned int *)((void *)policy + 36)) = *((unsigned int *)((void *)policy + 40));
   } else {
 
   }
@@ -3230,22 +3183,14 @@ static u64 doorbell_write  ;
 static struct pcc_cpu *pcc_cpu_info  ;
 static int pcc_cpufreq_verify(struct cpufreq_policy *policy ) 
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
 
   {
   {
   __cil_tmp2 = 24 + 4;
-  __cil_tmp3 = (unsigned long )policy;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  __cil_tmp5 = *((unsigned int *)__cil_tmp4);
-  __cil_tmp6 = (unsigned long )policy;
-  __cil_tmp7 = __cil_tmp6 + 24;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp5 = *((unsigned int *)((void *)policy + __cil_tmp2));
+  __cil_tmp8 = *((unsigned int *)((void *)policy + 24));
   cpufreq_verify_within_limits(policy, __cil_tmp5, __cil_tmp8);
   }
   return (0);
@@ -3259,8 +3204,6 @@ __inline static void pcc_cmd(void)
   u64 __cil_tmp5 ;
   unsigned long long __cil_tmp6 ;
   unsigned long long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u16 *__cil_tmp10 ;
   void *__cil_tmp11 ;
   int __cil_tmp12 ;
@@ -3278,9 +3221,7 @@ __inline static void pcc_cmd(void)
   goto ldv_25560;
   ldv_25559: 
   {
-  __cil_tmp8 = (unsigned long )pcch_hdr;
-  __cil_tmp9 = __cil_tmp8 + 14;
-  __cil_tmp10 = (u16 *)__cil_tmp9;
+  __cil_tmp10 = (u16 *)((void *)pcch_hdr + 14);
   __cil_tmp11 = (void *)__cil_tmp10;
   tmp = ioread16(__cil_tmp11);
   }
@@ -3347,12 +3288,6 @@ static unsigned int pcc_get_freq(unsigned int cpu )
   struct _ddebug descriptor___2 ;
   long tmp___4 ;
   struct _ddebug *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned char __cil_tmp27 ;
   long __cil_tmp28 ;
   long __cil_tmp29 ;
@@ -3364,12 +3299,8 @@ static unsigned int pcc_get_freq(unsigned int cpu )
   unsigned long __cil_tmp35 ;
   void *__cil_tmp36 ;
   u16 __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   u16 *__cil_tmp40 ;
   void *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   u32 __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   void *__cil_tmp46 ;
@@ -3377,63 +3308,35 @@ static unsigned int pcc_get_freq(unsigned int cpu )
   unsigned long __cil_tmp48 ;
   void volatile   *__cil_tmp49 ;
   void volatile   *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   u16 *__cil_tmp53 ;
   void *__cil_tmp54 ;
   unsigned int __cil_tmp55 ;
   struct _ddebug *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   unsigned char __cil_tmp63 ;
   long __cil_tmp64 ;
   long __cil_tmp65 ;
   int __cil_tmp66 ;
   u16 __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   u16 *__cil_tmp70 ;
   void *__cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   u32 *__cil_tmp74 ;
   void *__cil_tmp75 ;
   unsigned int __cil_tmp76 ;
   unsigned int __cil_tmp77 ;
   unsigned int __cil_tmp78 ;
   struct _ddebug *__cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   unsigned char __cil_tmp86 ;
   long __cil_tmp87 ;
   long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   u32 __cil_tmp91 ;
   unsigned long __cil_tmp92 ;
   void *__cil_tmp93 ;
   u32 __cil_tmp94 ;
   struct _ddebug *__cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
   unsigned char __cil_tmp102 ;
   long __cil_tmp103 ;
   long __cil_tmp104 ;
   u16 __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   u16 *__cil_tmp108 ;
   void *__cil_tmp109 ;
 
@@ -3442,18 +3345,12 @@ static unsigned int pcc_get_freq(unsigned int cpu )
   spin_lock(& pcc_lock);
   __cil_tmp20 = & descriptor;
   *((char const   **)__cil_tmp20) = "pcc_cpufreq";
-  __cil_tmp21 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp21) = "pcc_get_freq";
-  __cil_tmp22 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp22) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-  __cil_tmp23 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp23) = "get: get_freq for CPU %d\n";
-  __cil_tmp24 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp24) = 167U;
-  __cil_tmp25 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp25) = (unsigned char)0;
-  __cil_tmp26 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp27 = *((unsigned char *)__cil_tmp26);
+  *((char const   **)((void *)(&descriptor) + 8)) = "pcc_get_freq";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "get: get_freq for CPU %d\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 167U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp27 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp28 = (long )__cil_tmp27;
   __cil_tmp29 = __cil_tmp28 & 1L;
   tmp = __builtin_expect(__cil_tmp29, 0L);
@@ -3479,15 +3376,11 @@ static unsigned int pcc_get_freq(unsigned int cpu )
   __cil_tmp36 = pcch_virt_addr + __cil_tmp35;
   iowrite32(input_buffer, __cil_tmp36);
   __cil_tmp37 = (u16 )0;
-  __cil_tmp38 = (unsigned long )pcch_hdr;
-  __cil_tmp39 = __cil_tmp38 + 12;
-  __cil_tmp40 = (u16 *)__cil_tmp39;
+  __cil_tmp40 = (u16 *)((void *)pcch_hdr + 12);
   __cil_tmp41 = (void *)__cil_tmp40;
   iowrite16(__cil_tmp37, __cil_tmp41);
   pcc_cmd();
-  __cil_tmp42 = (unsigned long )pcc_cpu_data;
-  __cil_tmp43 = __cil_tmp42 + 4;
-  __cil_tmp44 = *((u32 *)__cil_tmp43);
+  __cil_tmp44 = *((u32 *)((void *)pcc_cpu_data + 4));
   __cil_tmp45 = (unsigned long )__cil_tmp44;
   __cil_tmp46 = pcch_virt_addr + __cil_tmp45;
   output_buffer = ioread32(__cil_tmp46);
@@ -3496,9 +3389,7 @@ static unsigned int pcc_get_freq(unsigned int cpu )
   __cil_tmp49 = (void volatile   *)pcch_virt_addr;
   __cil_tmp50 = __cil_tmp49 + __cil_tmp48;
   memset_io(__cil_tmp50, (unsigned char)0, 4UL);
-  __cil_tmp51 = (unsigned long )pcch_hdr;
-  __cil_tmp52 = __cil_tmp51 + 14;
-  __cil_tmp53 = (u16 *)__cil_tmp52;
+  __cil_tmp53 = (u16 *)((void *)pcch_hdr + 14);
   __cil_tmp54 = (void *)__cil_tmp53;
   tmp___0 = ioread16(__cil_tmp54);
   status = (u16 )tmp___0;
@@ -3509,18 +3400,12 @@ static unsigned int pcc_get_freq(unsigned int cpu )
     {
     __cil_tmp56 = & descriptor___0;
     *((char const   **)__cil_tmp56) = "pcc_cpufreq";
-    __cil_tmp57 = (unsigned long )(& descriptor___0) + 8;
-    *((char const   **)__cil_tmp57) = "pcc_get_freq";
-    __cil_tmp58 = (unsigned long )(& descriptor___0) + 16;
-    *((char const   **)__cil_tmp58) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-    __cil_tmp59 = (unsigned long )(& descriptor___0) + 24;
-    *((char const   **)__cil_tmp59) = "get: FAILED: for CPU %d, status is %d\n";
-    __cil_tmp60 = (unsigned long )(& descriptor___0) + 32;
-    *((unsigned int *)__cil_tmp60) = 186U;
-    __cil_tmp61 = (unsigned long )(& descriptor___0) + 35;
-    *((unsigned char *)__cil_tmp61) = (unsigned char)0;
-    __cil_tmp62 = (unsigned long )(& descriptor___0) + 35;
-    __cil_tmp63 = *((unsigned char *)__cil_tmp62);
+    *((char const   **)((void *)(&descriptor___0) + 8)) = "pcc_get_freq";
+    *((char const   **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+    *((char const   **)((void *)(&descriptor___0) + 24)) = "get: FAILED: for CPU %d, status is %d\n";
+    *((unsigned int *)((void *)(&descriptor___0) + 32)) = 186U;
+    *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+    __cil_tmp63 = *((unsigned char *)((void *)(&descriptor___0) + 35));
     __cil_tmp64 = (long )__cil_tmp63;
     __cil_tmp65 = __cil_tmp64 & 1L;
     tmp___1 = __builtin_expect(__cil_tmp65, 0L);
@@ -3541,14 +3426,10 @@ static unsigned int pcc_get_freq(unsigned int cpu )
   }
   {
   __cil_tmp67 = (u16 )0;
-  __cil_tmp68 = (unsigned long )pcch_hdr;
-  __cil_tmp69 = __cil_tmp68 + 14;
-  __cil_tmp70 = (u16 *)__cil_tmp69;
+  __cil_tmp70 = (u16 *)((void *)pcch_hdr + 14);
   __cil_tmp71 = (void *)__cil_tmp70;
   iowrite16(__cil_tmp67, __cil_tmp71);
-  __cil_tmp72 = (unsigned long )pcch_hdr;
-  __cil_tmp73 = __cil_tmp72 + 28;
-  __cil_tmp74 = (u32 *)__cil_tmp73;
+  __cil_tmp74 = (u32 *)((void *)pcch_hdr + 28);
   __cil_tmp75 = (void *)__cil_tmp74;
   tmp___2 = ioread32(__cil_tmp75);
   __cil_tmp76 = output_buffer & 255U;
@@ -3557,27 +3438,19 @@ static unsigned int pcc_get_freq(unsigned int cpu )
   curr_freq = __cil_tmp78 * 1000U;
   __cil_tmp79 = & descriptor___1;
   *((char const   **)__cil_tmp79) = "pcc_cpufreq";
-  __cil_tmp80 = (unsigned long )(& descriptor___1) + 8;
-  *((char const   **)__cil_tmp80) = "pcc_get_freq";
-  __cil_tmp81 = (unsigned long )(& descriptor___1) + 16;
-  *((char const   **)__cil_tmp81) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-  __cil_tmp82 = (unsigned long )(& descriptor___1) + 24;
-  *((char const   **)__cil_tmp82) = "get: SUCCESS: (virtual) output_offset for cpu %d is 0x%p, contains a value of: 0x%x. Speed is: %d MHz\n";
-  __cil_tmp83 = (unsigned long )(& descriptor___1) + 32;
-  *((unsigned int *)__cil_tmp83) = 196U;
-  __cil_tmp84 = (unsigned long )(& descriptor___1) + 35;
-  *((unsigned char *)__cil_tmp84) = (unsigned char)0;
-  __cil_tmp85 = (unsigned long )(& descriptor___1) + 35;
-  __cil_tmp86 = *((unsigned char *)__cil_tmp85);
+  *((char const   **)((void *)(&descriptor___1) + 8)) = "pcc_get_freq";
+  *((char const   **)((void *)(&descriptor___1) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+  *((char const   **)((void *)(&descriptor___1) + 24)) = "get: SUCCESS: (virtual) output_offset for cpu %d is 0x%p, contains a value of: 0x%x. Speed is: %d MHz\n";
+  *((unsigned int *)((void *)(&descriptor___1) + 32)) = 196U;
+  *((unsigned char *)((void *)(&descriptor___1) + 35)) = (unsigned char)0;
+  __cil_tmp86 = *((unsigned char *)((void *)(&descriptor___1) + 35));
   __cil_tmp87 = (long )__cil_tmp86;
   __cil_tmp88 = __cil_tmp87 & 1L;
   tmp___3 = __builtin_expect(__cil_tmp88, 0L);
   }
   if (tmp___3 != 0L) {
     {
-    __cil_tmp89 = (unsigned long )pcc_cpu_data;
-    __cil_tmp90 = __cil_tmp89 + 4;
-    __cil_tmp91 = *((u32 *)__cil_tmp90);
+    __cil_tmp91 = *((u32 *)((void *)pcc_cpu_data + 4));
     __cil_tmp92 = (unsigned long )__cil_tmp91;
     __cil_tmp93 = pcch_virt_addr + __cil_tmp92;
     __dynamic_pr_debug(& descriptor___1, "get: SUCCESS: (virtual) output_offset for cpu %d is 0x%p, contains a value of: 0x%x. Speed is: %d MHz\n",
@@ -3592,18 +3465,12 @@ static unsigned int pcc_get_freq(unsigned int cpu )
     {
     __cil_tmp95 = & descriptor___2;
     *((char const   **)__cil_tmp95) = "pcc_cpufreq";
-    __cil_tmp96 = (unsigned long )(& descriptor___2) + 8;
-    *((char const   **)__cil_tmp96) = "pcc_get_freq";
-    __cil_tmp97 = (unsigned long )(& descriptor___2) + 16;
-    *((char const   **)__cil_tmp97) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-    __cil_tmp98 = (unsigned long )(& descriptor___2) + 24;
-    *((char const   **)__cil_tmp98) = "get: frequency for cpu %d is being temporarily capped at %d\n";
-    __cil_tmp99 = (unsigned long )(& descriptor___2) + 32;
-    *((unsigned int *)__cil_tmp99) = 201U;
-    __cil_tmp100 = (unsigned long )(& descriptor___2) + 35;
-    *((unsigned char *)__cil_tmp100) = (unsigned char)0;
-    __cil_tmp101 = (unsigned long )(& descriptor___2) + 35;
-    __cil_tmp102 = *((unsigned char *)__cil_tmp101);
+    *((char const   **)((void *)(&descriptor___2) + 8)) = "pcc_get_freq";
+    *((char const   **)((void *)(&descriptor___2) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+    *((char const   **)((void *)(&descriptor___2) + 24)) = "get: frequency for cpu %d is being temporarily capped at %d\n";
+    *((unsigned int *)((void *)(&descriptor___2) + 32)) = 201U;
+    *((unsigned char *)((void *)(&descriptor___2) + 35)) = (unsigned char)0;
+    __cil_tmp102 = *((unsigned char *)((void *)(&descriptor___2) + 35));
     __cil_tmp103 = (long )__cil_tmp102;
     __cil_tmp104 = __cil_tmp103 & 1L;
     tmp___4 = __builtin_expect(__cil_tmp104, 0L);
@@ -3626,9 +3493,7 @@ static unsigned int pcc_get_freq(unsigned int cpu )
   cmd_incomplete: 
   {
   __cil_tmp105 = (u16 )0;
-  __cil_tmp106 = (unsigned long )pcch_hdr;
-  __cil_tmp107 = __cil_tmp106 + 14;
-  __cil_tmp108 = (u16 *)__cil_tmp107;
+  __cil_tmp108 = (u16 *)((void *)pcch_hdr + 14);
   __cil_tmp109 = (void *)__cil_tmp108;
   iowrite16(__cil_tmp105, __cil_tmp109);
   spin_unlock(& pcc_lock);
@@ -3653,30 +3518,19 @@ static int pcc_cpufreq_target(struct cpufreq_policy *policy , unsigned int targe
   long tmp___2 ;
   struct _ddebug descriptor___1 ;
   long tmp___3 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   struct _ddebug *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned char __cil_tmp33 ;
   long __cil_tmp34 ;
   long __cil_tmp35 ;
   u32 __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   void *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct cpufreq_freqs *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   u32 *__cil_tmp43 ;
   void *__cil_tmp44 ;
   unsigned int __cil_tmp45 ;
@@ -3687,57 +3541,35 @@ static int pcc_cpufreq_target(struct cpufreq_policy *policy , unsigned int targe
   unsigned long __cil_tmp50 ;
   void *__cil_tmp51 ;
   u16 __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   u16 *__cil_tmp55 ;
   void *__cil_tmp56 ;
   u32 __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   void volatile   *__cil_tmp59 ;
   void volatile   *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   u16 *__cil_tmp63 ;
   void *__cil_tmp64 ;
   unsigned int __cil_tmp65 ;
   struct _ddebug *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   unsigned char __cil_tmp73 ;
   long __cil_tmp74 ;
   long __cil_tmp75 ;
   int __cil_tmp76 ;
   u16 __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   u16 *__cil_tmp80 ;
   void *__cil_tmp81 ;
   struct _ddebug *__cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   unsigned char __cil_tmp89 ;
   long __cil_tmp90 ;
   long __cil_tmp91 ;
   u16 __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   u16 *__cil_tmp95 ;
   void *__cil_tmp96 ;
 
   {
   {
   spin_lock(& pcc_lock);
-  __cil_tmp19 = (unsigned long )policy;
-  __cil_tmp20 = __cil_tmp19 + 20;
-  __cil_tmp21 = *((unsigned int *)__cil_tmp20);
+  __cil_tmp21 = *((unsigned int *)((void *)policy + 20));
   cpu = (int )__cil_tmp21;
   __vpp_verify = (void const   *)0;
   __asm__  ("": "=r" (__ptr): "0" (pcc_cpu_info));
@@ -3748,18 +3580,12 @@ static int pcc_cpufreq_target(struct cpufreq_policy *policy , unsigned int targe
   pcc_cpu_data = (struct pcc_cpu *)__cil_tmp25;
   __cil_tmp26 = & descriptor;
   *((char const   **)__cil_tmp26) = "pcc_cpufreq";
-  __cil_tmp27 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp27) = "pcc_cpufreq_target";
-  __cil_tmp28 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp28) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-  __cil_tmp29 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp29) = "target: CPU %d should go to target freq: %d (virtual) input_offset is 0x%p\n";
-  __cil_tmp30 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp30) = 230U;
-  __cil_tmp31 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp31) = (unsigned char)0;
-  __cil_tmp32 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp33 = *((unsigned char *)__cil_tmp32);
+  *((char const   **)((void *)(&descriptor) + 8)) = "pcc_cpufreq_target";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "target: CPU %d should go to target freq: %d (virtual) input_offset is 0x%p\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 230U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp33 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp34 = (long )__cil_tmp33;
   __cil_tmp35 = __cil_tmp34 & 1L;
   tmp = __builtin_expect(__cil_tmp35, 0L);
@@ -3776,14 +3602,11 @@ static int pcc_cpufreq_target(struct cpufreq_policy *policy , unsigned int targe
 
   }
   {
-  __cil_tmp39 = (unsigned long )(& freqs) + 8;
-  *((unsigned int *)__cil_tmp39) = target_freq;
+  *((unsigned int *)((void *)(&freqs) + 8)) = target_freq;
   __cil_tmp40 = & freqs;
   *((unsigned int *)__cil_tmp40) = (unsigned int )cpu;
   cpufreq_notify_transition(& freqs, 0U);
-  __cil_tmp41 = (unsigned long )pcch_hdr;
-  __cil_tmp42 = __cil_tmp41 + 28;
-  __cil_tmp43 = (u32 *)__cil_tmp42;
+  __cil_tmp43 = (u32 *)((void *)pcch_hdr + 28);
   __cil_tmp44 = (void *)__cil_tmp43;
   tmp___0 = ioread32(__cil_tmp44);
   __cil_tmp45 = tmp___0 * 1000U;
@@ -3796,9 +3619,7 @@ static int pcc_cpufreq_target(struct cpufreq_policy *policy , unsigned int targe
   __cil_tmp51 = pcch_virt_addr + __cil_tmp50;
   iowrite32(input_buffer, __cil_tmp51);
   __cil_tmp52 = (u16 )1;
-  __cil_tmp53 = (unsigned long )pcch_hdr;
-  __cil_tmp54 = __cil_tmp53 + 12;
-  __cil_tmp55 = (u16 *)__cil_tmp54;
+  __cil_tmp55 = (u16 *)((void *)pcch_hdr + 12);
   __cil_tmp56 = (void *)__cil_tmp55;
   iowrite16(__cil_tmp52, __cil_tmp56);
   pcc_cmd();
@@ -3807,9 +3628,7 @@ static int pcc_cpufreq_target(struct cpufreq_policy *policy , unsigned int targe
   __cil_tmp59 = (void volatile   *)pcch_virt_addr;
   __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
   memset_io(__cil_tmp60, (unsigned char)0, 4UL);
-  __cil_tmp61 = (unsigned long )pcch_hdr;
-  __cil_tmp62 = __cil_tmp61 + 14;
-  __cil_tmp63 = (u16 *)__cil_tmp62;
+  __cil_tmp63 = (u16 *)((void *)pcch_hdr + 14);
   __cil_tmp64 = (void *)__cil_tmp63;
   tmp___1 = ioread16(__cil_tmp64);
   status = (u16 )tmp___1;
@@ -3820,18 +3639,12 @@ static int pcc_cpufreq_target(struct cpufreq_policy *policy , unsigned int targe
     {
     __cil_tmp66 = & descriptor___0;
     *((char const   **)__cil_tmp66) = "pcc_cpufreq";
-    __cil_tmp67 = (unsigned long )(& descriptor___0) + 8;
-    *((char const   **)__cil_tmp67) = "pcc_cpufreq_target";
-    __cil_tmp68 = (unsigned long )(& descriptor___0) + 16;
-    *((char const   **)__cil_tmp68) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-    __cil_tmp69 = (unsigned long )(& descriptor___0) + 24;
-    *((char const   **)__cil_tmp69) = "target: FAILED for cpu %d, with status: 0x%x\n";
-    __cil_tmp70 = (unsigned long )(& descriptor___0) + 32;
-    *((unsigned int *)__cil_tmp70) = 250U;
-    __cil_tmp71 = (unsigned long )(& descriptor___0) + 35;
-    *((unsigned char *)__cil_tmp71) = (unsigned char)0;
-    __cil_tmp72 = (unsigned long )(& descriptor___0) + 35;
-    __cil_tmp73 = *((unsigned char *)__cil_tmp72);
+    *((char const   **)((void *)(&descriptor___0) + 8)) = "pcc_cpufreq_target";
+    *((char const   **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+    *((char const   **)((void *)(&descriptor___0) + 24)) = "target: FAILED for cpu %d, with status: 0x%x\n";
+    *((unsigned int *)((void *)(&descriptor___0) + 32)) = 250U;
+    *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+    __cil_tmp73 = *((unsigned char *)((void *)(&descriptor___0) + 35));
     __cil_tmp74 = (long )__cil_tmp73;
     __cil_tmp75 = __cil_tmp74 & 1L;
     tmp___2 = __builtin_expect(__cil_tmp75, 0L);
@@ -3852,26 +3665,18 @@ static int pcc_cpufreq_target(struct cpufreq_policy *policy , unsigned int targe
   }
   {
   __cil_tmp77 = (u16 )0;
-  __cil_tmp78 = (unsigned long )pcch_hdr;
-  __cil_tmp79 = __cil_tmp78 + 14;
-  __cil_tmp80 = (u16 *)__cil_tmp79;
+  __cil_tmp80 = (u16 *)((void *)pcch_hdr + 14);
   __cil_tmp81 = (void *)__cil_tmp80;
   iowrite16(__cil_tmp77, __cil_tmp81);
   cpufreq_notify_transition(& freqs, 1U);
   __cil_tmp82 = & descriptor___1;
   *((char const   **)__cil_tmp82) = "pcc_cpufreq";
-  __cil_tmp83 = (unsigned long )(& descriptor___1) + 8;
-  *((char const   **)__cil_tmp83) = "pcc_cpufreq_target";
-  __cil_tmp84 = (unsigned long )(& descriptor___1) + 16;
-  *((char const   **)__cil_tmp84) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-  __cil_tmp85 = (unsigned long )(& descriptor___1) + 24;
-  *((char const   **)__cil_tmp85) = "target: was SUCCESSFUL for cpu %d\n";
-  __cil_tmp86 = (unsigned long )(& descriptor___1) + 32;
-  *((unsigned int *)__cil_tmp86) = 256U;
-  __cil_tmp87 = (unsigned long )(& descriptor___1) + 35;
-  *((unsigned char *)__cil_tmp87) = (unsigned char)0;
-  __cil_tmp88 = (unsigned long )(& descriptor___1) + 35;
-  __cil_tmp89 = *((unsigned char *)__cil_tmp88);
+  *((char const   **)((void *)(&descriptor___1) + 8)) = "pcc_cpufreq_target";
+  *((char const   **)((void *)(&descriptor___1) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+  *((char const   **)((void *)(&descriptor___1) + 24)) = "target: was SUCCESSFUL for cpu %d\n";
+  *((unsigned int *)((void *)(&descriptor___1) + 32)) = 256U;
+  *((unsigned char *)((void *)(&descriptor___1) + 35)) = (unsigned char)0;
+  __cil_tmp89 = *((unsigned char *)((void *)(&descriptor___1) + 35));
   __cil_tmp90 = (long )__cil_tmp89;
   __cil_tmp91 = __cil_tmp90 & 1L;
   tmp___3 = __builtin_expect(__cil_tmp91, 0L);
@@ -3890,9 +3695,7 @@ static int pcc_cpufreq_target(struct cpufreq_policy *policy , unsigned int targe
   cmd_incomplete: 
   {
   __cil_tmp92 = (u16 )0;
-  __cil_tmp93 = (unsigned long )pcch_hdr;
-  __cil_tmp94 = __cil_tmp93 + 14;
-  __cil_tmp95 = (u16 *)__cil_tmp94;
+  __cil_tmp95 = (u16 *)((void *)pcch_hdr + 14);
   __cil_tmp96 = (void *)__cil_tmp95;
   iowrite16(__cil_tmp92, __cil_tmp96);
   spin_unlock(& pcc_lock);
@@ -3915,7 +3718,6 @@ static int pcc_get_offset(int cpu )
   struct _ddebug descriptor ;
   long tmp ;
   struct acpi_buffer *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
@@ -3931,70 +3733,47 @@ static int pcc_get_offset(int cpu )
   acpi_handle __cil_tmp29 ;
   char *__cil_tmp30 ;
   struct acpi_object_list *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   void *__cil_tmp33 ;
   union acpi_object *__cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   acpi_object_type __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   union acpi_object *__cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   acpi_object_type __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   u64 __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   union acpi_object *__cil_tmp52 ;
   union acpi_object *__cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   acpi_object_type __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   u64 __cil_tmp62 ;
   u32 __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   void volatile   *__cil_tmp65 ;
   void volatile   *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   u32 __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   void volatile   *__cil_tmp71 ;
   void volatile   *__cil_tmp72 ;
   struct _ddebug *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   unsigned char __cil_tmp80 ;
   long __cil_tmp81 ;
   long __cil_tmp82 ;
   u32 __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   u32 __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   void *__cil_tmp88 ;
   void const   *__cil_tmp89 ;
 
   {
   __cil_tmp15 = & buffer;
   *((acpi_size *)__cil_tmp15) = 0xffffffffffffffffULL;
-  __cil_tmp16 = (unsigned long )(& buffer) + 8;
-  *((void **)__cil_tmp16) = (void *)0;
+  *((void **)((void *)(&buffer) + 8)) = (void *)0;
   ret = 0;
   __vpp_verify = (void const   *)0;
   __asm__  ("": "=r" (__ptr): "0" (& processors));
@@ -4032,8 +3811,7 @@ static int pcc_get_offset(int cpu )
   } else {
 
   }
-  __cil_tmp32 = (unsigned long )(& buffer) + 8;
-  __cil_tmp33 = *((void **)__cil_tmp32);
+  __cil_tmp33 = *((void **)((void *)(&buffer) + 8));
   pccp = (union acpi_object *)__cil_tmp33;
   {
   __cil_tmp34 = (union acpi_object *)0;
@@ -4055,9 +3833,7 @@ static int pcc_get_offset(int cpu )
   }
   }
   __cil_tmp38 = 0 + 8;
-  __cil_tmp39 = (unsigned long )pccp;
-  __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-  offset = *((union acpi_object **)__cil_tmp40);
+  offset = *((union acpi_object **)((void *)pccp + __cil_tmp38));
   {
   __cil_tmp41 = (union acpi_object *)0;
   __cil_tmp42 = (unsigned long )__cil_tmp41;
@@ -4078,14 +3854,10 @@ static int pcc_get_offset(int cpu )
   }
   }
   __cil_tmp45 = 0 + 8;
-  __cil_tmp46 = (unsigned long )offset;
-  __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-  __cil_tmp48 = *((u64 *)__cil_tmp47);
+  __cil_tmp48 = *((u64 *)((void *)offset + __cil_tmp45));
   *((u32 *)pcc_cpu_data) = (u32 )__cil_tmp48;
   __cil_tmp49 = 0 + 8;
-  __cil_tmp50 = (unsigned long )pccp;
-  __cil_tmp51 = __cil_tmp50 + __cil_tmp49;
-  __cil_tmp52 = *((union acpi_object **)__cil_tmp51);
+  __cil_tmp52 = *((union acpi_object **)((void *)pccp + __cil_tmp49));
   offset = __cil_tmp52 + 1UL;
   {
   __cil_tmp53 = (union acpi_object *)0;
@@ -4107,39 +3879,27 @@ static int pcc_get_offset(int cpu )
   }
   }
   {
-  __cil_tmp57 = (unsigned long )pcc_cpu_data;
-  __cil_tmp58 = __cil_tmp57 + 4;
   __cil_tmp59 = 0 + 8;
-  __cil_tmp60 = (unsigned long )offset;
-  __cil_tmp61 = __cil_tmp60 + __cil_tmp59;
-  __cil_tmp62 = *((u64 *)__cil_tmp61);
-  *((u32 *)__cil_tmp58) = (u32 )__cil_tmp62;
+  __cil_tmp62 = *((u64 *)((void *)offset + __cil_tmp59));
+  *((u32 *)((void *)pcc_cpu_data + 4)) = (u32 )__cil_tmp62;
   __cil_tmp63 = *((u32 *)pcc_cpu_data);
   __cil_tmp64 = (unsigned long )__cil_tmp63;
   __cil_tmp65 = (void volatile   *)pcch_virt_addr;
   __cil_tmp66 = __cil_tmp65 + __cil_tmp64;
   memset_io(__cil_tmp66, (unsigned char)0, 4UL);
-  __cil_tmp67 = (unsigned long )pcc_cpu_data;
-  __cil_tmp68 = __cil_tmp67 + 4;
-  __cil_tmp69 = *((u32 *)__cil_tmp68);
+  __cil_tmp69 = *((u32 *)((void *)pcc_cpu_data + 4));
   __cil_tmp70 = (unsigned long )__cil_tmp69;
   __cil_tmp71 = (void volatile   *)pcch_virt_addr;
   __cil_tmp72 = __cil_tmp71 + __cil_tmp70;
   memset_io(__cil_tmp72, (unsigned char)0, 4UL);
   __cil_tmp73 = & descriptor;
   *((char const   **)__cil_tmp73) = "pcc_cpufreq";
-  __cil_tmp74 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp74) = "pcc_get_offset";
-  __cil_tmp75 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp75) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-  __cil_tmp76 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp76) = "pcc_get_offset: for CPU %d: pcc_cpu_data input_offset: 0x%x, pcc_cpu_data output_offset: 0x%x\n";
-  __cil_tmp77 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp77) = 313U;
-  __cil_tmp78 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp78) = (unsigned char)0;
-  __cil_tmp79 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp80 = *((unsigned char *)__cil_tmp79);
+  *((char const   **)((void *)(&descriptor) + 8)) = "pcc_get_offset";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "pcc_get_offset: for CPU %d: pcc_cpu_data input_offset: 0x%x, pcc_cpu_data output_offset: 0x%x\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 313U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp80 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp81 = (long )__cil_tmp80;
   __cil_tmp82 = __cil_tmp81 & 1L;
   tmp = __builtin_expect(__cil_tmp82, 0L);
@@ -4147,9 +3907,7 @@ static int pcc_get_offset(int cpu )
   if (tmp != 0L) {
     {
     __cil_tmp83 = *((u32 *)pcc_cpu_data);
-    __cil_tmp84 = (unsigned long )pcc_cpu_data;
-    __cil_tmp85 = __cil_tmp84 + 4;
-    __cil_tmp86 = *((u32 *)__cil_tmp85);
+    __cil_tmp86 = *((u32 *)((void *)pcc_cpu_data + 4));
     __dynamic_pr_debug(& descriptor, "pcc_get_offset: for CPU %d: pcc_cpu_data input_offset: 0x%x, pcc_cpu_data output_offset: 0x%x\n",
                        cpu, __cil_tmp83, __cil_tmp86);
     }
@@ -4158,8 +3916,7 @@ static int pcc_get_offset(int cpu )
   }
   out_free: 
   {
-  __cil_tmp87 = (unsigned long )(& buffer) + 8;
-  __cil_tmp88 = *((void **)__cil_tmp87);
+  __cil_tmp88 = *((void **)((void *)(&buffer) + 8));
   __cil_tmp89 = (void const   *)__cil_tmp88;
   kfree(__cil_tmp89);
   }
@@ -4180,75 +3937,33 @@ static int pcc_cpufreq_cpu_init(struct cpufreq_policy *policy )
   long tmp___5 ;
   struct _ddebug descriptor___1 ;
   long tmp___6 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   struct _ddebug *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned char __cil_tmp28 ;
   long __cil_tmp29 ;
   long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   u32 *__cil_tmp33 ;
   void *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   u32 *__cil_tmp41 ;
   void *__cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned int __cil_tmp52 ;
   struct _ddebug *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   unsigned char __cil_tmp60 ;
   long __cil_tmp61 ;
   long __cil_tmp62 ;
   struct _ddebug *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned char __cil_tmp70 ;
   long __cil_tmp71 ;
   long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   unsigned int __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   unsigned int __cil_tmp78 ;
 
   {
-  __cil_tmp15 = (unsigned long )policy;
-  __cil_tmp16 = __cil_tmp15 + 20;
-  cpu = *((unsigned int *)__cil_tmp16);
+  cpu = *((unsigned int *)((void *)policy + 20));
   result = 0U;
   {
   __cil_tmp17 = (void *)0;
@@ -4270,18 +3985,12 @@ static int pcc_cpufreq_cpu_init(struct cpufreq_policy *policy )
     {
     __cil_tmp21 = & descriptor;
     *((char const   **)__cil_tmp21) = "pcc_cpufreq";
-    __cil_tmp22 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp22) = "pcc_cpufreq_cpu_init";
-    __cil_tmp23 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp23) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-    __cil_tmp24 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp24) = "init: PCCP evaluation failed\n";
-    __cil_tmp25 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp25) = 568U;
-    __cil_tmp26 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp26) = (unsigned char)0;
-    __cil_tmp27 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp28 = *((unsigned char *)__cil_tmp27);
+    *((char const   **)((void *)(&descriptor) + 8)) = "pcc_cpufreq_cpu_init";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "init: PCCP evaluation failed\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 568U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+    __cil_tmp28 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp29 = (long )__cil_tmp28;
     __cil_tmp30 = __cil_tmp29 & 1L;
     tmp___0 = __builtin_expect(__cil_tmp30, 0L);
@@ -4298,55 +4007,33 @@ static int pcc_cpufreq_cpu_init(struct cpufreq_policy *policy )
 
   }
   {
-  __cil_tmp31 = (unsigned long )pcch_hdr;
-  __cil_tmp32 = __cil_tmp31 + 28;
-  __cil_tmp33 = (u32 *)__cil_tmp32;
+  __cil_tmp33 = (u32 *)((void *)pcch_hdr + 28);
   __cil_tmp34 = (void *)__cil_tmp33;
   tmp___2 = ioread32(__cil_tmp34);
   tmp___1 = tmp___2 * 1000U;
-  __cil_tmp35 = (unsigned long )policy;
-  __cil_tmp36 = __cil_tmp35 + 24;
-  *((unsigned int *)__cil_tmp36) = tmp___1;
-  __cil_tmp37 = (unsigned long )policy;
-  __cil_tmp38 = __cil_tmp37 + 40;
-  *((unsigned int *)__cil_tmp38) = tmp___1;
-  __cil_tmp39 = (unsigned long )pcch_hdr;
-  __cil_tmp40 = __cil_tmp39 + 36;
-  __cil_tmp41 = (u32 *)__cil_tmp40;
+  *((unsigned int *)((void *)policy + 24)) = tmp___1;
+  *((unsigned int *)((void *)policy + 40)) = tmp___1;
+  __cil_tmp41 = (u32 *)((void *)pcch_hdr + 36);
   __cil_tmp42 = (void *)__cil_tmp41;
   tmp___4 = ioread32(__cil_tmp42);
   tmp___3 = tmp___4 * 1000U;
   __cil_tmp43 = 24 + 4;
-  __cil_tmp44 = (unsigned long )policy;
-  __cil_tmp45 = __cil_tmp44 + __cil_tmp43;
-  *((unsigned int *)__cil_tmp45) = tmp___3;
-  __cil_tmp46 = (unsigned long )policy;
-  __cil_tmp47 = __cil_tmp46 + 36;
-  *((unsigned int *)__cil_tmp47) = tmp___3;
-  __cil_tmp48 = (unsigned long )policy;
-  __cil_tmp49 = __cil_tmp48 + 44;
-  *((unsigned int *)__cil_tmp49) = pcc_get_freq(cpu);
+  *((unsigned int *)((void *)policy + __cil_tmp43)) = tmp___3;
+  *((unsigned int *)((void *)policy + 36)) = tmp___3;
+  *((unsigned int *)((void *)policy + 44)) = pcc_get_freq(cpu);
   }
   {
-  __cil_tmp50 = (unsigned long )policy;
-  __cil_tmp51 = __cil_tmp50 + 44;
-  __cil_tmp52 = *((unsigned int *)__cil_tmp51);
+  __cil_tmp52 = *((unsigned int *)((void *)policy + 44));
   if (__cil_tmp52 == 0U) {
     {
     __cil_tmp53 = & descriptor___0;
     *((char const   **)__cil_tmp53) = "pcc_cpufreq";
-    __cil_tmp54 = (unsigned long )(& descriptor___0) + 8;
-    *((char const   **)__cil_tmp54) = "pcc_cpufreq_cpu_init";
-    __cil_tmp55 = (unsigned long )(& descriptor___0) + 16;
-    *((char const   **)__cil_tmp55) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-    __cil_tmp56 = (unsigned long )(& descriptor___0) + 24;
-    *((char const   **)__cil_tmp56) = "init: Unable to get current CPU frequency\n";
-    __cil_tmp57 = (unsigned long )(& descriptor___0) + 32;
-    *((unsigned int *)__cil_tmp57) = 579U;
-    __cil_tmp58 = (unsigned long )(& descriptor___0) + 35;
-    *((unsigned char *)__cil_tmp58) = (unsigned char)0;
-    __cil_tmp59 = (unsigned long )(& descriptor___0) + 35;
-    __cil_tmp60 = *((unsigned char *)__cil_tmp59);
+    *((char const   **)((void *)(&descriptor___0) + 8)) = "pcc_cpufreq_cpu_init";
+    *((char const   **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+    *((char const   **)((void *)(&descriptor___0) + 24)) = "init: Unable to get current CPU frequency\n";
+    *((unsigned int *)((void *)(&descriptor___0) + 32)) = 579U;
+    *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+    __cil_tmp60 = *((unsigned char *)((void *)(&descriptor___0) + 35));
     __cil_tmp61 = (long )__cil_tmp60;
     __cil_tmp62 = __cil_tmp61 & 1L;
     tmp___5 = __builtin_expect(__cil_tmp62, 0L);
@@ -4367,30 +4054,20 @@ static int pcc_cpufreq_cpu_init(struct cpufreq_policy *policy )
   {
   __cil_tmp63 = & descriptor___1;
   *((char const   **)__cil_tmp63) = "pcc_cpufreq";
-  __cil_tmp64 = (unsigned long )(& descriptor___1) + 8;
-  *((char const   **)__cil_tmp64) = "pcc_cpufreq_cpu_init";
-  __cil_tmp65 = (unsigned long )(& descriptor___1) + 16;
-  *((char const   **)__cil_tmp65) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
-  __cil_tmp66 = (unsigned long )(& descriptor___1) + 24;
-  *((char const   **)__cil_tmp66) = "init: policy->max is %d, policy->min is %d\n";
-  __cil_tmp67 = (unsigned long )(& descriptor___1) + 32;
-  *((unsigned int *)__cil_tmp67) = 585U;
-  __cil_tmp68 = (unsigned long )(& descriptor___1) + 35;
-  *((unsigned char *)__cil_tmp68) = (unsigned char)0;
-  __cil_tmp69 = (unsigned long )(& descriptor___1) + 35;
-  __cil_tmp70 = *((unsigned char *)__cil_tmp69);
+  *((char const   **)((void *)(&descriptor___1) + 8)) = "pcc_cpufreq_cpu_init";
+  *((char const   **)((void *)(&descriptor___1) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11159/dscv_tempdir/dscv/ri/43_1a/drivers/cpufreq/pcc-cpufreq.c.p";
+  *((char const   **)((void *)(&descriptor___1) + 24)) = "init: policy->max is %d, policy->min is %d\n";
+  *((unsigned int *)((void *)(&descriptor___1) + 32)) = 585U;
+  *((unsigned char *)((void *)(&descriptor___1) + 35)) = (unsigned char)0;
+  __cil_tmp70 = *((unsigned char *)((void *)(&descriptor___1) + 35));
   __cil_tmp71 = (long )__cil_tmp70;
   __cil_tmp72 = __cil_tmp71 & 1L;
   tmp___6 = __builtin_expect(__cil_tmp72, 0L);
   }
   if (tmp___6 != 0L) {
     {
-    __cil_tmp73 = (unsigned long )policy;
-    __cil_tmp74 = __cil_tmp73 + 40;
-    __cil_tmp75 = *((unsigned int *)__cil_tmp74);
-    __cil_tmp76 = (unsigned long )policy;
-    __cil_tmp77 = __cil_tmp76 + 36;
-    __cil_tmp78 = *((unsigned int *)__cil_tmp77);
+    __cil_tmp75 = *((unsigned int *)((void *)policy + 40));
+    __cil_tmp78 = *((unsigned int *)((void *)policy + 36));
     __dynamic_pr_debug(& descriptor___1, "init: policy->max is %d, policy->min is %d\n",
                        __cil_tmp75, __cil_tmp78);
     }

@@ -2125,27 +2125,18 @@ static int nettel_init(void)
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   resource_size_t __cil_tmp21 ;
   void *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   void *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   void volatile   *__cil_tmp27 ;
   struct mtd_info *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   uint64_t __cil_tmp33 ;
   uint64_t __cil_tmp34 ;
   int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   uint64_t __cil_tmp40 ;
   struct mtd_info *__cil_tmp41 ;
   unsigned long __cil_tmp42 ;
@@ -2154,7 +2145,6 @@ static int nettel_init(void)
   struct mtd_part_parser_data *__cil_tmp45 ;
   struct mtd_partition  const  *__cil_tmp46 ;
   void volatile   *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   void *__cil_tmp49 ;
   void volatile   *__cil_tmp50 ;
 
@@ -2194,17 +2184,14 @@ static int nettel_init(void)
   __cil_tmp18 = __cil_tmp17 | 2315255808UL;
   *amdpar = (unsigned long volatile   )__cil_tmp18;
   __asm__  volatile   ("wbinvd":);
-  __cil_tmp19 = (unsigned long )(& nettel_amd_map) + 16;
-  *((resource_size_t *)__cil_tmp19) = (resource_size_t )amdaddr;
-  __cil_tmp20 = (unsigned long )(& nettel_amd_map) + 24;
+  *((resource_size_t *)((void *)(&nettel_amd_map) + 16)) = (resource_size_t )amdaddr;
   __cil_tmp21 = (resource_size_t )amdaddr;
-  *((void **)__cil_tmp20) = ioremap_nocache(__cil_tmp21, maxsize);
+  *((void **)((void *)(&nettel_amd_map) + 24)) = ioremap_nocache(__cil_tmp21, maxsize);
   }
   {
   __cil_tmp22 = (void *)0;
   __cil_tmp23 = (unsigned long )__cil_tmp22;
-  __cil_tmp24 = (unsigned long )(& nettel_amd_map) + 24;
-  __cil_tmp25 = *((void **)__cil_tmp24);
+  __cil_tmp25 = *((void **)((void *)(&nettel_amd_map) + 24));
   __cil_tmp26 = (unsigned long )__cil_tmp25;
   if (__cil_tmp26 == __cil_tmp23) {
     {
@@ -2227,21 +2214,15 @@ static int nettel_init(void)
   __cil_tmp30 = (unsigned long )amd_mtd;
   if (__cil_tmp30 != __cil_tmp29) {
     {
-    __cil_tmp31 = (unsigned long )amd_mtd;
-    __cil_tmp32 = __cil_tmp31 + 8;
-    __cil_tmp33 = *((uint64_t *)__cil_tmp32);
+    __cil_tmp33 = *((uint64_t *)((void *)amd_mtd + 8));
     __cil_tmp34 = __cil_tmp33 >> 10;
     __cil_tmp35 = (int )__cil_tmp34;
     printk("<5>SNAPGEAR: AMD flash device size = %dK\n", __cil_tmp35);
-    __cil_tmp36 = (unsigned long )amd_mtd;
-    __cil_tmp37 = __cil_tmp36 + 368;
-    *((struct module **)__cil_tmp37) = & __this_module;
+    *((struct module **)((void *)amd_mtd + 368)) = & __this_module;
     num_amd_partitions = 4;
     }
     {
-    __cil_tmp38 = (unsigned long )amd_mtd;
-    __cil_tmp39 = __cil_tmp38 + 8;
-    __cil_tmp40 = *((uint64_t *)__cil_tmp39);
+    __cil_tmp40 = *((uint64_t *)((void *)amd_mtd + 8));
     if (__cil_tmp40 <= 2097151ULL) {
       num_amd_partitions = num_amd_partitions - 1;
     } else {
@@ -2274,8 +2255,7 @@ static int nettel_init(void)
   {
   __cil_tmp47 = (void volatile   *)nettel_mmcrp;
   iounmap(__cil_tmp47);
-  __cil_tmp48 = (unsigned long )(& nettel_amd_map) + 24;
-  __cil_tmp49 = *((void **)__cil_tmp48);
+  __cil_tmp49 = *((void **)((void *)(&nettel_amd_map) + 24));
   __cil_tmp50 = (void volatile   *)__cil_tmp49;
   iounmap(__cil_tmp50);
   }
@@ -2292,13 +2272,10 @@ static void nettel_cleanup(void)
   void volatile   *__cil_tmp7 ;
   void *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
   void volatile   *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
 
   {
   {
@@ -2331,17 +2308,14 @@ static void nettel_cleanup(void)
   {
   __cil_tmp8 = (void *)0;
   __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = (unsigned long )(& nettel_amd_map) + 24;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)(&nettel_amd_map) + 24));
   __cil_tmp12 = (unsigned long )__cil_tmp11;
   if (__cil_tmp12 != __cil_tmp9) {
     {
-    __cil_tmp13 = (unsigned long )(& nettel_amd_map) + 24;
-    __cil_tmp14 = *((void **)__cil_tmp13);
+    __cil_tmp14 = *((void **)((void *)(&nettel_amd_map) + 24));
     __cil_tmp15 = (void volatile   *)__cil_tmp14;
     iounmap(__cil_tmp15);
-    __cil_tmp16 = (unsigned long )(& nettel_amd_map) + 24;
-    *((void **)__cil_tmp16) = (void *)0;
+    *((void **)((void *)(&nettel_amd_map) + 24)) = (void *)0;
     }
   } else {
 

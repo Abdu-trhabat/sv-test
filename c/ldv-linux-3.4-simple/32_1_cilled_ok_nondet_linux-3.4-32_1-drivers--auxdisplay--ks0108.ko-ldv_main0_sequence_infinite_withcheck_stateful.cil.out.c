@@ -637,16 +637,13 @@ __section__(".modinfo"), __aligned__(1)))  =
 static struct parport *ks0108_parport  ;
 static struct pardevice *ks0108_pardevice  ;
 void ks0108_writedata(unsigned char byte ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct parport_operations *__cil_tmp4 ;
   void (*__cil_tmp5)(struct parport * , unsigned char  ) ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )ks0108_parport;
-  __cil_tmp3 = __cil_tmp2 + 440;
-  __cil_tmp4 = *((struct parport_operations **)__cil_tmp3);
+  __cil_tmp4 = *((struct parport_operations **)((void *)ks0108_parport + 440));
   __cil_tmp5 = *((void (**)(struct parport * , unsigned char  ))__cil_tmp4);
   (*__cil_tmp5)(ks0108_parport, byte);
   }
@@ -657,11 +654,7 @@ void ks0108_writecontrol(unsigned char byte )
 { unsigned int *__cil_tmp2 ;
   unsigned int __cil_tmp3 ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct parport_operations *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void (*__cil_tmp10)(struct parport * , unsigned char  ) ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
@@ -677,12 +670,8 @@ void ks0108_writecontrol(unsigned char byte )
   __cil_tmp3 = *__cil_tmp2;
   __cil_tmp4 = (unsigned long )__cil_tmp3;
   __udelay(__cil_tmp4);
-  __cil_tmp5 = (unsigned long )ks0108_parport;
-  __cil_tmp6 = __cil_tmp5 + 440;
-  __cil_tmp7 = *((struct parport_operations **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((void (**)(struct parport * , unsigned char  ))__cil_tmp9);
+  __cil_tmp7 = *((struct parport_operations **)((void *)ks0108_parport + 440));
+  __cil_tmp10 = *((void (**)(struct parport * , unsigned char  ))((void *)__cil_tmp7 + 16));
   __cil_tmp11 = 1 << 3;
   __cil_tmp12 = 1 << 1;
   __cil_tmp13 = 1 | __cil_tmp12;

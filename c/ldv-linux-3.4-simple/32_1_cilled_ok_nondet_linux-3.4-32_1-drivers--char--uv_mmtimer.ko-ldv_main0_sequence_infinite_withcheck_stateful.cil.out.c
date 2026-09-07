@@ -2882,8 +2882,6 @@ __inline static int is_uv1_hub(void)
   void *__cil_tmp3 ;
   struct uv_hub_info_s *__cil_tmp4 ;
   struct uv_hub_info_s *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned char __cil_tmp8 ;
   int __cil_tmp9 ;
 
@@ -2907,9 +2905,7 @@ __inline static int is_uv1_hub(void)
                        ", %0": "=r" (tcp_ptr__): "m" (this_cpu_off), "0" (& __uv_hub_info));
   {
   __cil_tmp5 = (struct uv_hub_info_s *)tcp_ptr__;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 20;
-  __cil_tmp8 = *((unsigned char *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned char *)((void *)__cil_tmp5 + 20));
   __cil_tmp9 = (int )__cil_tmp8;
   return (__cil_tmp9 < 3);
   }
@@ -2947,8 +2943,6 @@ __inline static int uv_blade_processor_id(void)
   void *__cil_tmp3 ;
   struct uv_hub_info_s *__cil_tmp4 ;
   struct uv_hub_info_s *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned char __cil_tmp8 ;
 
   {
@@ -2971,9 +2965,7 @@ __inline static int uv_blade_processor_id(void)
                        ", %0": "=r" (tcp_ptr__): "m" (this_cpu_off), "0" (& __uv_hub_info));
   {
   __cil_tmp5 = (struct uv_hub_info_s *)tcp_ptr__;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 56;
-  __cil_tmp8 = *((unsigned char *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned char *)((void *)__cil_tmp5 + 56));
   return ((int )__cil_tmp8);
   }
 }
@@ -2985,8 +2977,6 @@ __inline static int uv_get_min_hub_revision_id(void)
   void *__cil_tmp3 ;
   struct uv_hub_info_s *__cil_tmp4 ;
   struct uv_hub_info_s *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned char __cil_tmp8 ;
 
   {
@@ -3009,9 +2999,7 @@ __inline static int uv_get_min_hub_revision_id(void)
                        ", %0": "=r" (tcp_ptr__): "m" (this_cpu_off), "0" (& __uv_hub_info));
   {
   __cil_tmp5 = (struct uv_hub_info_s *)tcp_ptr__;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 20;
-  __cil_tmp8 = *((unsigned char *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned char *)((void *)__cil_tmp5 + 20));
   return ((int )__cil_tmp8);
   }
 }
@@ -4205,15 +4193,9 @@ static int uv_mmtimer_mmap(struct file *file , struct vm_area_struct *vma )
   int tmp___9 ;
   int tmp___10 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
@@ -4222,25 +4204,13 @@ static int uv_mmtimer_mmap(struct file *file , struct vm_area_struct *vma )
   __u8 __cil_tmp24 ;
   int __cil_tmp25 ;
   pteval_t __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   pgprotval_t __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   pgprot_t __cil_tmp46 ;
   pgprotval_t __constr_expr_0_pgprot47 ;
   pgprotval_t __cil_tmp46_pgprot48 ;
@@ -4249,12 +4219,8 @@ static int uv_mmtimer_mmap(struct file *file , struct vm_area_struct *vma )
   {
   {
   __cil_tmp9 = 1UL << 12;
-  __cil_tmp10 = (unsigned long )vma;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  __cil_tmp12 = *((unsigned long *)__cil_tmp11);
-  __cil_tmp13 = (unsigned long )vma;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((unsigned long *)__cil_tmp14);
+  __cil_tmp12 = *((unsigned long *)((void *)vma + 8));
+  __cil_tmp15 = *((unsigned long *)((void *)vma + 16));
   __cil_tmp16 = __cil_tmp15 - __cil_tmp12;
   if (__cil_tmp16 != __cil_tmp9) {
     return (-22);
@@ -4263,9 +4229,7 @@ static int uv_mmtimer_mmap(struct file *file , struct vm_area_struct *vma )
   }
   }
   {
-  __cil_tmp17 = (unsigned long )vma;
-  __cil_tmp18 = __cil_tmp17 + 48;
-  __cil_tmp19 = *((unsigned long *)__cil_tmp18);
+  __cil_tmp19 = *((unsigned long *)((void *)vma + 48));
   if (__cil_tmp19 & 2UL) {
     return (-1);
   } else {
@@ -4288,19 +4252,11 @@ static int uv_mmtimer_mmap(struct file *file , struct vm_area_struct *vma )
   __cil_tmp25 = (int )__cil_tmp24;
   if (__cil_tmp25 > 3) {
     __cil_tmp26 = 1UL << 4;
-    __cil_tmp27 = (unsigned long )vma;
-    __cil_tmp28 = __cil_tmp27 + 40;
-    __cil_tmp29 = *((pgprotval_t *)__cil_tmp28);
+    __cil_tmp29 = *((pgprotval_t *)((void *)vma + 40));
     __constr_expr_0_pgprot47 = __cil_tmp29 | __cil_tmp26;
-    __cil_tmp30 = (unsigned long )vma;
-    __cil_tmp31 = __cil_tmp30 + 40;
-    ((pgprot_t *)__cil_tmp31)->pgprot = __constr_expr_0_pgprot47;
+    ((pgprot_t *)((void *)vma + 40))->pgprot = __constr_expr_0_pgprot47;
   } else {
-    __cil_tmp32 = (unsigned long )vma;
-    __cil_tmp33 = __cil_tmp32 + 40;
-    __cil_tmp34 = (unsigned long )vma;
-    __cil_tmp35 = __cil_tmp34 + 40;
-    *((pgprot_t *)__cil_tmp33) = *((pgprot_t *)__cil_tmp35);
+    *((pgprot_t *)((void *)vma + 40)) = *((pgprot_t *)((void *)vma + 40));
   }
   }
   {
@@ -4318,14 +4274,10 @@ static int uv_mmtimer_mmap(struct file *file , struct vm_area_struct *vma )
   __cil_tmp38 = ~ __cil_tmp37;
   uv_mmtimer_addr = uv_mmtimer_addr & __cil_tmp38;
   uv_mmtimer_addr = uv_mmtimer_addr & 1152921504606846975UL;
-  __cil_tmp39 = (unsigned long )vma;
-  __cil_tmp40 = __cil_tmp39 + 8;
-  __cil_tmp41 = *((unsigned long *)__cil_tmp40);
+  __cil_tmp41 = *((unsigned long *)((void *)vma + 8));
   __cil_tmp42 = uv_mmtimer_addr >> 12;
   __cil_tmp43 = 1UL << 12;
-  __cil_tmp44 = (unsigned long )vma;
-  __cil_tmp45 = __cil_tmp44 + 40;
-  __cil_tmp49 = ((pgprot_t *)__cil_tmp45)->pgprot;
+  __cil_tmp49 = ((pgprot_t *)((void *)vma + 40))->pgprot;
   __cil_tmp46_pgprot48 = __cil_tmp49;
   tmp___10 = remap_pfn_range(vma, __cil_tmp41, __cil_tmp42, __cil_tmp43, __cil_tmp46_pgprot48);
   }
@@ -4355,8 +4307,6 @@ static int uv_mmtimer_init(void)
   unsigned long *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
@@ -4393,9 +4343,7 @@ static int uv_mmtimer_init(void)
   __cil_tmp8 = & sn_rtc_cycles_per_second;
   __cil_tmp9 = *__cil_tmp8;
   __cil_tmp10 = __cil_tmp9 / 2UL;
-  __cil_tmp11 = (unsigned long )1E15;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  *__cil_tmp5 = __cil_tmp12 / __cil_tmp7;
+  *__cil_tmp5 = ((void *)1E15 + __cil_tmp10) / __cil_tmp7;
   tmp___8 = misc_register(& uv_mmtimer_miscdev);
   }
   if (tmp___8) {

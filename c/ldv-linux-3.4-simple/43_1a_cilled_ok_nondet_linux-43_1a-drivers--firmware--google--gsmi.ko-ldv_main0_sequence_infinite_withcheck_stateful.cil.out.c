@@ -3136,33 +3136,19 @@ __inline static struct platform_device *platform_device_register_resndata(struct
 { struct platform_device_info pdevinfo ;
   struct platform_device *tmp ;
   struct platform_device_info *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct platform_device_info  const  *__cil_tmp18 ;
 
   {
   {
   __cil_tmp10 = & pdevinfo;
   *((struct device **)__cil_tmp10) = parent;
-  __cil_tmp11 = (unsigned long )(& pdevinfo) + 8;
-  *((char const   **)__cil_tmp11) = name;
-  __cil_tmp12 = (unsigned long )(& pdevinfo) + 16;
-  *((int *)__cil_tmp12) = id;
-  __cil_tmp13 = (unsigned long )(& pdevinfo) + 24;
-  *((struct resource  const  **)__cil_tmp13) = res;
-  __cil_tmp14 = (unsigned long )(& pdevinfo) + 32;
-  *((unsigned int *)__cil_tmp14) = num;
-  __cil_tmp15 = (unsigned long )(& pdevinfo) + 40;
-  *((void const   **)__cil_tmp15) = data;
-  __cil_tmp16 = (unsigned long )(& pdevinfo) + 48;
-  *((size_t *)__cil_tmp16) = size;
-  __cil_tmp17 = (unsigned long )(& pdevinfo) + 56;
-  *((u64 *)__cil_tmp17) = 0ULL;
+  *((char const   **)((void *)(&pdevinfo) + 8)) = name;
+  *((int *)((void *)(&pdevinfo) + 16)) = id;
+  *((struct resource  const  **)((void *)(&pdevinfo) + 24)) = res;
+  *((unsigned int *)((void *)(&pdevinfo) + 32)) = num;
+  *((void const   **)((void *)(&pdevinfo) + 40)) = data;
+  *((size_t *)((void *)(&pdevinfo) + 48)) = size;
+  *((u64 *)((void *)(&pdevinfo) + 56)) = 0ULL;
   __cil_tmp18 = (struct platform_device_info  const  *)(& pdevinfo);
   tmp = platform_device_register_full(__cil_tmp18);
   }
@@ -3213,22 +3199,15 @@ static struct gsmi_buf *gsmi_buf_alloc(void)
   struct gsmi_buf *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct dma_pool *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   dma_addr_t *__cil_tmp12 ;
   u8 *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   u8 *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   void const   *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u8 *__cil_tmp20 ;
   void volatile   *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
 
   {
   {
@@ -3249,11 +3228,8 @@ static struct gsmi_buf *gsmi_buf_alloc(void)
   }
   }
   {
-  __cil_tmp8 = (unsigned long )(& gsmi_dev) + 112;
-  __cil_tmp9 = *((struct dma_pool **)__cil_tmp8);
-  __cil_tmp10 = (unsigned long )smibuf;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = (dma_addr_t *)__cil_tmp11;
+  __cil_tmp9 = *((struct dma_pool **)((void *)(&gsmi_dev) + 112));
+  __cil_tmp12 = (dma_addr_t *)((void *)smibuf + 16);
   tmp___0 = ldv_dma_pool_alloc_19(__cil_tmp9, 208U, __cil_tmp12);
   *((u8 **)smibuf) = (u8 *)tmp___0;
   }
@@ -3274,15 +3250,11 @@ static struct gsmi_buf *gsmi_buf_alloc(void)
   }
   }
   {
-  __cil_tmp18 = (unsigned long )smibuf;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  *((size_t *)__cil_tmp19) = 1024UL;
+  *((size_t *)((void *)smibuf + 8)) = 1024UL;
   __cil_tmp20 = *((u8 **)smibuf);
   __cil_tmp21 = (void volatile   *)__cil_tmp20;
   tmp___1 = virt_to_phys(__cil_tmp21);
-  __cil_tmp22 = (unsigned long )smibuf;
-  __cil_tmp23 = __cil_tmp22 + 24;
-  *((u32 *)__cil_tmp23) = (unsigned int )tmp___1;
+  *((u32 *)((void *)smibuf + 24)) = (unsigned int )tmp___1;
   }
   return (smibuf);
 }
@@ -3295,12 +3267,9 @@ static void gsmi_buf_free(struct gsmi_buf *smibuf )
   unsigned long __cil_tmp6 ;
   u8 *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct dma_pool *__cil_tmp10 ;
   u8 *__cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   dma_addr_t __cil_tmp15 ;
   void const   *__cil_tmp16 ;
 
@@ -3317,13 +3286,10 @@ static void gsmi_buf_free(struct gsmi_buf *smibuf )
     __cil_tmp8 = (unsigned long )__cil_tmp7;
     if (__cil_tmp8 != __cil_tmp6) {
       {
-      __cil_tmp9 = (unsigned long )(& gsmi_dev) + 112;
-      __cil_tmp10 = *((struct dma_pool **)__cil_tmp9);
+      __cil_tmp10 = *((struct dma_pool **)((void *)(&gsmi_dev) + 112));
       __cil_tmp11 = *((u8 **)smibuf);
       __cil_tmp12 = (void *)__cil_tmp11;
-      __cil_tmp13 = (unsigned long )smibuf;
-      __cil_tmp14 = __cil_tmp13 + 16;
-      __cil_tmp15 = *((dma_addr_t *)__cil_tmp14);
+      __cil_tmp15 = *((dma_addr_t *)((void *)smibuf + 16));
       dma_pool_free(__cil_tmp10, __cil_tmp12, __cil_tmp15);
       }
     } else {
@@ -3352,26 +3318,12 @@ static int gsmi_exec(u8 func , u8 sub )
   short __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct gsmi_buf *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct gsmi_buf *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct gsmi_buf *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   int __cil_tmp33 ;
   int __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
@@ -3395,39 +3347,29 @@ static int gsmi_exec(u8 func , u8 sub )
   result = (u16 )0U;
   rc = 0;
   {
-  __cil_tmp13 = (unsigned long )(& gsmi_dev) + 108;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)(&gsmi_dev) + 108));
   if (__cil_tmp14 == 126) {
-    __cil_tmp15 = (unsigned long )(& gsmi_dev) + 104;
-    __cil_tmp16 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp17 = *((struct gsmi_buf **)__cil_tmp16);
-    __cil_tmp18 = (unsigned long )__cil_tmp17;
-    __cil_tmp19 = __cil_tmp18 + 24;
+    __cil_tmp17 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __asm__  volatile   ("stc\noutb %%al, %%dx\n1:      jc 1b\n": "=a" (result): "0" (cmd),
-                         "d" (*((u16 *)__cil_tmp15)), "b" (*((u32 *)__cil_tmp19)): "memory",
+                         "d" (*((u16 *)((void *)(&gsmi_dev) + 104))),
+                         "b" (*((u32 *)((void *)__cil_tmp17 + 24))): "memory",
                          "cc");
   } else {
     {
-    __cil_tmp20 = (unsigned long )(& gsmi_dev) + 108;
-    __cil_tmp21 = *((int *)__cil_tmp20);
+    __cil_tmp21 = *((int *)((void *)(&gsmi_dev) + 108));
     if (__cil_tmp21 == 125) {
-      __cil_tmp22 = (unsigned long )(& gsmi_dev) + 104;
-      __cil_tmp23 = (unsigned long )(& gsmi_dev) + 24;
-      __cil_tmp24 = *((struct gsmi_buf **)__cil_tmp23);
-      __cil_tmp25 = (unsigned long )__cil_tmp24;
-      __cil_tmp26 = __cil_tmp25 + 24;
+      __cil_tmp24 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
       __cil_tmp27 = & spincount;
       __asm__  volatile   ("outb %%al, %%dx\n1:      loop 1b\n": "=a" (result): "0" (cmd),
-                           "d" (*((u16 *)__cil_tmp22)), "b" (*((u32 *)__cil_tmp26)),
+                           "d" (*((u16 *)((void *)(&gsmi_dev) + 104))),
+                           "b" (*((u32 *)((void *)__cil_tmp24 + 24))),
                            "c" (*__cil_tmp27): "memory", "cc");
     } else {
-      __cil_tmp28 = (unsigned long )(& gsmi_dev) + 104;
-      __cil_tmp29 = (unsigned long )(& gsmi_dev) + 24;
-      __cil_tmp30 = *((struct gsmi_buf **)__cil_tmp29);
-      __cil_tmp31 = (unsigned long )__cil_tmp30;
-      __cil_tmp32 = __cil_tmp31 + 24;
-      __asm__  volatile   ("outb %%al, %%dx\n\t": "=a" (result): "0" (cmd), "d" (*((u16 *)__cil_tmp28)),
-                           "b" (*((u32 *)__cil_tmp32)): "memory", "cc");
+      __cil_tmp30 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
+      __asm__  volatile   ("outb %%al, %%dx\n\t": "=a" (result): "0" (cmd),
+                           "d" (*((u16 *)((void *)(&gsmi_dev) + 104))),
+                           "b" (*((u32 *)((void *)__cil_tmp30 + 24))): "memory",
+                           "cc");
     }
     }
   }
@@ -3615,80 +3557,54 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   unsigned long __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
   unsigned long __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   struct gsmi_buf *__cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
   struct gsmi_buf *__cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   struct gsmi_nvram_var_param *__cil_tmp105 ;
   efi_guid_t *__cil_tmp106 ;
   void *__cil_tmp107 ;
@@ -3697,44 +3613,29 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
   efi_guid_t *__cil_tmp110 ;
   void *__cil_tmp111 ;
   void const   *__cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   struct gsmi_buf *__cil_tmp114 ;
   u8 *__cil_tmp115 ;
   void *__cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
   struct gsmi_buf *__cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   size_t __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   struct gsmi_buf *__cil_tmp123 ;
   u8 *__cil_tmp124 ;
   void *__cil_tmp125 ;
   void const   *__cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
   struct gsmi_buf *__cil_tmp128 ;
   u8 *__cil_tmp129 ;
   void *__cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
   struct gsmi_buf *__cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
   size_t __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
   struct gsmi_buf *__cil_tmp137 ;
   u8 *__cil_tmp138 ;
   void *__cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
   struct gsmi_buf *__cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
   size_t __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
   struct gsmi_buf *__cil_tmp146 ;
   u8 *__cil_tmp147 ;
   void *__cil_tmp148 ;
   void const   *__cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
   struct gsmi_buf *__cil_tmp151 ;
   u8 *__cil_tmp152 ;
   void *__cil_tmp153 ;
@@ -3742,26 +3643,18 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
   u8 __cil_tmp155 ;
   u8 __cil_tmp156 ;
   void *__cil_tmp157 ;
-  unsigned long __cil_tmp158 ;
   struct gsmi_buf *__cil_tmp159 ;
   u8 *__cil_tmp160 ;
   void const   *__cil_tmp161 ;
   void *__cil_tmp162 ;
-  unsigned long __cil_tmp163 ;
   struct gsmi_buf *__cil_tmp164 ;
   u8 *__cil_tmp165 ;
   void const   *__cil_tmp166 ;
-  unsigned long __cil_tmp167 ;
   struct gsmi_buf *__cil_tmp168 ;
-  unsigned long __cil_tmp169 ;
-  unsigned long __cil_tmp170 ;
-  unsigned long __cil_tmp171 ;
   u32 __cil_tmp172 ;
-  unsigned long __cil_tmp173 ;
   struct gsmi_buf *__cil_tmp174 ;
   u8 *__cil_tmp175 ;
   void const   *__cil_tmp176 ;
-  unsigned long __cil_tmp177 ;
   spinlock_t *__cil_tmp178 ;
 
   {
@@ -3769,100 +3662,74 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
   __cil_tmp28 = 0 * 1UL;
   __cil_tmp29 = 0 + __cil_tmp28;
   __cil_tmp30 = 0 + __cil_tmp29;
-  __cil_tmp31 = (unsigned long )(& param) + __cil_tmp30;
-  *((u8 *)__cil_tmp31) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp30)) = (unsigned char)0;
   __cil_tmp32 = 1 * 1UL;
   __cil_tmp33 = 0 + __cil_tmp32;
   __cil_tmp34 = 0 + __cil_tmp33;
-  __cil_tmp35 = (unsigned long )(& param) + __cil_tmp34;
-  *((u8 *)__cil_tmp35) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp34)) = (unsigned char)0;
   __cil_tmp36 = 2 * 1UL;
   __cil_tmp37 = 0 + __cil_tmp36;
   __cil_tmp38 = 0 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )(& param) + __cil_tmp38;
-  *((u8 *)__cil_tmp39) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp38)) = (unsigned char)0;
   __cil_tmp40 = 3 * 1UL;
   __cil_tmp41 = 0 + __cil_tmp40;
   __cil_tmp42 = 0 + __cil_tmp41;
-  __cil_tmp43 = (unsigned long )(& param) + __cil_tmp42;
-  *((u8 *)__cil_tmp43) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp42)) = (unsigned char)0;
   __cil_tmp44 = 4 * 1UL;
   __cil_tmp45 = 0 + __cil_tmp44;
   __cil_tmp46 = 0 + __cil_tmp45;
-  __cil_tmp47 = (unsigned long )(& param) + __cil_tmp46;
-  *((u8 *)__cil_tmp47) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp46)) = (unsigned char)0;
   __cil_tmp48 = 5 * 1UL;
   __cil_tmp49 = 0 + __cil_tmp48;
   __cil_tmp50 = 0 + __cil_tmp49;
-  __cil_tmp51 = (unsigned long )(& param) + __cil_tmp50;
-  *((u8 *)__cil_tmp51) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp50)) = (unsigned char)0;
   __cil_tmp52 = 6 * 1UL;
   __cil_tmp53 = 0 + __cil_tmp52;
   __cil_tmp54 = 0 + __cil_tmp53;
-  __cil_tmp55 = (unsigned long )(& param) + __cil_tmp54;
-  *((u8 *)__cil_tmp55) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp54)) = (unsigned char)0;
   __cil_tmp56 = 7 * 1UL;
   __cil_tmp57 = 0 + __cil_tmp56;
   __cil_tmp58 = 0 + __cil_tmp57;
-  __cil_tmp59 = (unsigned long )(& param) + __cil_tmp58;
-  *((u8 *)__cil_tmp59) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp58)) = (unsigned char)0;
   __cil_tmp60 = 8 * 1UL;
   __cil_tmp61 = 0 + __cil_tmp60;
   __cil_tmp62 = 0 + __cil_tmp61;
-  __cil_tmp63 = (unsigned long )(& param) + __cil_tmp62;
-  *((u8 *)__cil_tmp63) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp62)) = (unsigned char)0;
   __cil_tmp64 = 9 * 1UL;
   __cil_tmp65 = 0 + __cil_tmp64;
   __cil_tmp66 = 0 + __cil_tmp65;
-  __cil_tmp67 = (unsigned long )(& param) + __cil_tmp66;
-  *((u8 *)__cil_tmp67) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp66)) = (unsigned char)0;
   __cil_tmp68 = 10 * 1UL;
   __cil_tmp69 = 0 + __cil_tmp68;
   __cil_tmp70 = 0 + __cil_tmp69;
-  __cil_tmp71 = (unsigned long )(& param) + __cil_tmp70;
-  *((u8 *)__cil_tmp71) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp70)) = (unsigned char)0;
   __cil_tmp72 = 11 * 1UL;
   __cil_tmp73 = 0 + __cil_tmp72;
   __cil_tmp74 = 0 + __cil_tmp73;
-  __cil_tmp75 = (unsigned long )(& param) + __cil_tmp74;
-  *((u8 *)__cil_tmp75) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp74)) = (unsigned char)0;
   __cil_tmp76 = 12 * 1UL;
   __cil_tmp77 = 0 + __cil_tmp76;
   __cil_tmp78 = 0 + __cil_tmp77;
-  __cil_tmp79 = (unsigned long )(& param) + __cil_tmp78;
-  *((u8 *)__cil_tmp79) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp78)) = (unsigned char)0;
   __cil_tmp80 = 13 * 1UL;
   __cil_tmp81 = 0 + __cil_tmp80;
   __cil_tmp82 = 0 + __cil_tmp81;
-  __cil_tmp83 = (unsigned long )(& param) + __cil_tmp82;
-  *((u8 *)__cil_tmp83) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp82)) = (unsigned char)0;
   __cil_tmp84 = 14 * 1UL;
   __cil_tmp85 = 0 + __cil_tmp84;
   __cil_tmp86 = 0 + __cil_tmp85;
-  __cil_tmp87 = (unsigned long )(& param) + __cil_tmp86;
-  *((u8 *)__cil_tmp87) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp86)) = (unsigned char)0;
   __cil_tmp88 = 15 * 1UL;
   __cil_tmp89 = 0 + __cil_tmp88;
   __cil_tmp90 = 0 + __cil_tmp89;
-  __cil_tmp91 = (unsigned long )(& param) + __cil_tmp90;
-  *((u8 *)__cil_tmp91) = (unsigned char)0;
-  __cil_tmp92 = (unsigned long )(& param) + 16;
-  __cil_tmp93 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp94 = *((struct gsmi_buf **)__cil_tmp93);
-  __cil_tmp95 = (unsigned long )__cil_tmp94;
-  __cil_tmp96 = __cil_tmp95 + 24;
-  *((u32 *)__cil_tmp92) = *((u32 *)__cil_tmp96);
-  __cil_tmp97 = (unsigned long )(& param) + 20;
-  *((u32 *)__cil_tmp97) = 0U;
-  __cil_tmp98 = (unsigned long )(& param) + 24;
+  *((u8 *)((void *)(&param) + __cil_tmp90)) = (unsigned char)0;
+  __cil_tmp94 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
+  *((u32 *)((void *)(&param) + 16)) = *((u32 *)((void *)__cil_tmp94 + 24));
+  *((u32 *)((void *)(&param) + 20)) = 0U;
   __cil_tmp99 = *data_size;
-  *((u32 *)__cil_tmp98) = (unsigned int )__cil_tmp99;
-  __cil_tmp100 = (unsigned long )(& param) + 28;
-  __cil_tmp101 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp102 = *((struct gsmi_buf **)__cil_tmp101);
-  __cil_tmp103 = (unsigned long )__cil_tmp102;
-  __cil_tmp104 = __cil_tmp103 + 24;
-  *((u32 *)__cil_tmp100) = *((u32 *)__cil_tmp104);
+  *((u32 *)((void *)(&param) + 24)) = (unsigned int )__cil_tmp99;
+  __cil_tmp102 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
+  *((u32 *)((void *)(&param) + 28)) = *((u32 *)((void *)__cil_tmp102 + 24));
   ret = 0UL;
   tmp = utf16_strlen(name, 512UL);
   name_len = tmp;
@@ -3894,49 +3761,35 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
     }
   }
   {
-  __cil_tmp113 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp114 = *((struct gsmi_buf **)__cil_tmp113);
+  __cil_tmp114 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
   __cil_tmp115 = *((u8 **)__cil_tmp114);
   __cil_tmp116 = (void *)__cil_tmp115;
-  __cil_tmp117 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp118 = *((struct gsmi_buf **)__cil_tmp117);
-  __cil_tmp119 = (unsigned long )__cil_tmp118;
-  __cil_tmp120 = __cil_tmp119 + 8;
-  __cil_tmp121 = *((size_t *)__cil_tmp120);
+  __cil_tmp118 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
+  __cil_tmp121 = *((size_t *)((void *)__cil_tmp118 + 8));
   memset(__cil_tmp116, 0, __cil_tmp121);
   __len___0 = name_len * 2UL;
-  __cil_tmp122 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp123 = *((struct gsmi_buf **)__cil_tmp122);
+  __cil_tmp123 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
   __cil_tmp124 = *((u8 **)__cil_tmp123);
   __cil_tmp125 = (void *)__cil_tmp124;
   __cil_tmp126 = (void const   *)name;
   __ret___0 = memcpy(__cil_tmp125, __cil_tmp126, __len___0);
-  __cil_tmp127 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp128 = *((struct gsmi_buf **)__cil_tmp127);
+  __cil_tmp128 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
   __cil_tmp129 = *((u8 **)__cil_tmp128);
   __cil_tmp130 = (void *)__cil_tmp129;
-  __cil_tmp131 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp132 = *((struct gsmi_buf **)__cil_tmp131);
-  __cil_tmp133 = (unsigned long )__cil_tmp132;
-  __cil_tmp134 = __cil_tmp133 + 8;
-  __cil_tmp135 = *((size_t *)__cil_tmp134);
+  __cil_tmp132 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
+  __cil_tmp135 = *((size_t *)((void *)__cil_tmp132 + 8));
   memset(__cil_tmp130, 0, __cil_tmp135);
-  __cil_tmp136 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp137 = *((struct gsmi_buf **)__cil_tmp136);
+  __cil_tmp137 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
   __cil_tmp138 = *((u8 **)__cil_tmp137);
   __cil_tmp139 = (void *)__cil_tmp138;
-  __cil_tmp140 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp141 = *((struct gsmi_buf **)__cil_tmp140);
-  __cil_tmp142 = (unsigned long )__cil_tmp141;
-  __cil_tmp143 = __cil_tmp142 + 8;
-  __cil_tmp144 = *((size_t *)__cil_tmp143);
+  __cil_tmp141 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
+  __cil_tmp144 = *((size_t *)((void *)__cil_tmp141 + 8));
   memset(__cil_tmp139, 0, __cil_tmp144);
   __len___1 = 32UL;
   }
   if (__len___1 > 63UL) {
     {
-    __cil_tmp145 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp146 = *((struct gsmi_buf **)__cil_tmp145);
+    __cil_tmp146 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp147 = *((u8 **)__cil_tmp146);
     __cil_tmp148 = (void *)__cil_tmp147;
     __cil_tmp149 = (void const   *)(& param);
@@ -3944,8 +3797,7 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
     }
   } else {
     {
-    __cil_tmp150 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp151 = *((struct gsmi_buf **)__cil_tmp150);
+    __cil_tmp151 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp152 = *((u8 **)__cil_tmp151);
     __cil_tmp153 = (void *)__cil_tmp152;
     __cil_tmp154 = (void const   *)(& param);
@@ -3970,8 +3822,7 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
     if (__len___2 > 63UL) {
       {
       __cil_tmp157 = (void *)(& param);
-      __cil_tmp158 = (unsigned long )(& gsmi_dev) + 24;
-      __cil_tmp159 = *((struct gsmi_buf **)__cil_tmp158);
+      __cil_tmp159 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
       __cil_tmp160 = *((u8 **)__cil_tmp159);
       __cil_tmp161 = (void const   *)__cil_tmp160;
       __ret___2 = memcpy(__cil_tmp157, __cil_tmp161, __len___2);
@@ -3979,19 +3830,15 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
     } else {
       {
       __cil_tmp162 = (void *)(& param);
-      __cil_tmp163 = (unsigned long )(& gsmi_dev) + 24;
-      __cil_tmp164 = *((struct gsmi_buf **)__cil_tmp163);
+      __cil_tmp164 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
       __cil_tmp165 = *((u8 **)__cil_tmp164);
       __cil_tmp166 = (void const   *)__cil_tmp165;
       __ret___2 = memcpy(__cil_tmp162, __cil_tmp166, __len___2);
       }
     }
     __min1 = *data_size;
-    __cil_tmp167 = (unsigned long )(& gsmi_dev) + 16;
-    __cil_tmp168 = *((struct gsmi_buf **)__cil_tmp167);
-    __cil_tmp169 = (unsigned long )__cil_tmp168;
-    __cil_tmp170 = __cil_tmp169 + 8;
-    __min2 = *((size_t *)__cil_tmp170);
+    __cil_tmp168 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
+    __min2 = *((size_t *)((void *)__cil_tmp168 + 8));
     if (__min1 < __min2) {
       tmp___0 = __min1;
     } else {
@@ -3999,8 +3846,7 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
     }
     *data_size = tmp___0;
     __min1___0 = *data_size;
-    __cil_tmp171 = (unsigned long )(& param) + 24;
-    __cil_tmp172 = *((u32 *)__cil_tmp171);
+    __cil_tmp172 = *((u32 *)((void *)(&param) + 24));
     __min2___0 = (unsigned long )__cil_tmp172;
     if (__min1___0 < __min2___0) {
       tmp___1 = __min1___0;
@@ -4010,8 +3856,7 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
     {
     *data_size = tmp___1;
     __len___3 = *data_size;
-    __cil_tmp173 = (unsigned long )(& gsmi_dev) + 16;
-    __cil_tmp174 = *((struct gsmi_buf **)__cil_tmp173);
+    __cil_tmp174 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
     __cil_tmp175 = *((u8 **)__cil_tmp174);
     __cil_tmp176 = (void const   *)__cil_tmp175;
     __ret___3 = memcpy(data, __cil_tmp176, __len___3);
@@ -4019,8 +3864,7 @@ static efi_status_t gsmi_get_variable(efi_char16_t *name , efi_guid_t *vendor , 
     }
   }
   {
-  __cil_tmp177 = (unsigned long )(& gsmi_dev) + 32;
-  __cil_tmp178 = (spinlock_t *)__cil_tmp177;
+  __cil_tmp178 = (spinlock_t *)((void *)(&gsmi_dev) + 32);
   spin_unlock_irqrestore(__cil_tmp178, flags);
   }
   return (ret);
@@ -4048,62 +3892,38 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
   void *__ret___4 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct gsmi_buf *__cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   struct gsmi_buf *__cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   size_t __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
   struct gsmi_get_next_var_param *__cil_tmp82 ;
@@ -4114,26 +3934,19 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
   u8 (*__cil_tmp87)[16U] ;
   void *__cil_tmp88 ;
   void const   *__cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   struct gsmi_buf *__cil_tmp91 ;
   u8 *__cil_tmp92 ;
   void *__cil_tmp93 ;
   void const   *__cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   struct gsmi_buf *__cil_tmp96 ;
   u8 *__cil_tmp97 ;
   void *__cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   struct gsmi_buf *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   size_t __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   struct gsmi_buf *__cil_tmp105 ;
   u8 *__cil_tmp106 ;
   void *__cil_tmp107 ;
   void const   *__cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
   struct gsmi_buf *__cil_tmp110 ;
   u8 *__cil_tmp111 ;
   void *__cil_tmp112 ;
@@ -4141,22 +3954,18 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
   u8 __cil_tmp114 ;
   u8 __cil_tmp115 ;
   void *__cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
   struct gsmi_buf *__cil_tmp118 ;
   u8 *__cil_tmp119 ;
   void const   *__cil_tmp120 ;
   void *__cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   struct gsmi_buf *__cil_tmp123 ;
   u8 *__cil_tmp124 ;
   void const   *__cil_tmp125 ;
   void *__cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
   struct gsmi_buf *__cil_tmp128 ;
   u8 *__cil_tmp129 ;
   void const   *__cil_tmp130 ;
   void *__cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
   struct gsmi_buf *__cil_tmp133 ;
   u8 *__cil_tmp134 ;
   void const   *__cil_tmp135 ;
@@ -4168,87 +3977,62 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
   struct gsmi_get_next_var_param *__cil_tmp141 ;
   u8 (*__cil_tmp142)[16U] ;
   void const   *__cil_tmp143 ;
-  unsigned long __cil_tmp144 ;
   spinlock_t *__cil_tmp145 ;
 
   {
   __cil_tmp22 = 0 * 1UL;
   __cil_tmp23 = 0 + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )(& param) + __cil_tmp23;
-  *((u8 *)__cil_tmp24) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp23)) = (unsigned char)0;
   __cil_tmp25 = 1 * 1UL;
   __cil_tmp26 = 0 + __cil_tmp25;
-  __cil_tmp27 = (unsigned long )(& param) + __cil_tmp26;
-  *((u8 *)__cil_tmp27) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp26)) = (unsigned char)0;
   __cil_tmp28 = 2 * 1UL;
   __cil_tmp29 = 0 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )(& param) + __cil_tmp29;
-  *((u8 *)__cil_tmp30) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp29)) = (unsigned char)0;
   __cil_tmp31 = 3 * 1UL;
   __cil_tmp32 = 0 + __cil_tmp31;
-  __cil_tmp33 = (unsigned long )(& param) + __cil_tmp32;
-  *((u8 *)__cil_tmp33) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp32)) = (unsigned char)0;
   __cil_tmp34 = 4 * 1UL;
   __cil_tmp35 = 0 + __cil_tmp34;
-  __cil_tmp36 = (unsigned long )(& param) + __cil_tmp35;
-  *((u8 *)__cil_tmp36) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp35)) = (unsigned char)0;
   __cil_tmp37 = 5 * 1UL;
   __cil_tmp38 = 0 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )(& param) + __cil_tmp38;
-  *((u8 *)__cil_tmp39) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp38)) = (unsigned char)0;
   __cil_tmp40 = 6 * 1UL;
   __cil_tmp41 = 0 + __cil_tmp40;
-  __cil_tmp42 = (unsigned long )(& param) + __cil_tmp41;
-  *((u8 *)__cil_tmp42) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp41)) = (unsigned char)0;
   __cil_tmp43 = 7 * 1UL;
   __cil_tmp44 = 0 + __cil_tmp43;
-  __cil_tmp45 = (unsigned long )(& param) + __cil_tmp44;
-  *((u8 *)__cil_tmp45) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp44)) = (unsigned char)0;
   __cil_tmp46 = 8 * 1UL;
   __cil_tmp47 = 0 + __cil_tmp46;
-  __cil_tmp48 = (unsigned long )(& param) + __cil_tmp47;
-  *((u8 *)__cil_tmp48) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp47)) = (unsigned char)0;
   __cil_tmp49 = 9 * 1UL;
   __cil_tmp50 = 0 + __cil_tmp49;
-  __cil_tmp51 = (unsigned long )(& param) + __cil_tmp50;
-  *((u8 *)__cil_tmp51) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp50)) = (unsigned char)0;
   __cil_tmp52 = 10 * 1UL;
   __cil_tmp53 = 0 + __cil_tmp52;
-  __cil_tmp54 = (unsigned long )(& param) + __cil_tmp53;
-  *((u8 *)__cil_tmp54) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp53)) = (unsigned char)0;
   __cil_tmp55 = 11 * 1UL;
   __cil_tmp56 = 0 + __cil_tmp55;
-  __cil_tmp57 = (unsigned long )(& param) + __cil_tmp56;
-  *((u8 *)__cil_tmp57) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp56)) = (unsigned char)0;
   __cil_tmp58 = 12 * 1UL;
   __cil_tmp59 = 0 + __cil_tmp58;
-  __cil_tmp60 = (unsigned long )(& param) + __cil_tmp59;
-  *((u8 *)__cil_tmp60) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp59)) = (unsigned char)0;
   __cil_tmp61 = 13 * 1UL;
   __cil_tmp62 = 0 + __cil_tmp61;
-  __cil_tmp63 = (unsigned long )(& param) + __cil_tmp62;
-  *((u8 *)__cil_tmp63) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp62)) = (unsigned char)0;
   __cil_tmp64 = 14 * 1UL;
   __cil_tmp65 = 0 + __cil_tmp64;
-  __cil_tmp66 = (unsigned long )(& param) + __cil_tmp65;
-  *((u8 *)__cil_tmp66) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp65)) = (unsigned char)0;
   __cil_tmp67 = 15 * 1UL;
   __cil_tmp68 = 0 + __cil_tmp67;
-  __cil_tmp69 = (unsigned long )(& param) + __cil_tmp68;
-  *((u8 *)__cil_tmp69) = (unsigned char)0;
-  __cil_tmp70 = (unsigned long )(& param) + 16;
-  __cil_tmp71 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp72 = *((struct gsmi_buf **)__cil_tmp71);
-  __cil_tmp73 = (unsigned long )__cil_tmp72;
-  __cil_tmp74 = __cil_tmp73 + 24;
-  *((u32 *)__cil_tmp70) = *((u32 *)__cil_tmp74);
-  __cil_tmp75 = (unsigned long )(& param) + 20;
-  __cil_tmp76 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp77 = *((struct gsmi_buf **)__cil_tmp76);
-  __cil_tmp78 = (unsigned long )__cil_tmp77;
-  __cil_tmp79 = __cil_tmp78 + 8;
-  __cil_tmp80 = *((size_t *)__cil_tmp79);
-  *((u32 *)__cil_tmp75) = (unsigned int )__cil_tmp80;
+  *((u8 *)((void *)(&param) + __cil_tmp68)) = (unsigned char)0;
+  __cil_tmp72 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
+  *((u32 *)((void *)(&param) + 16)) = *((u32 *)((void *)__cil_tmp72 + 24));
+  __cil_tmp77 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
+  __cil_tmp80 = *((size_t *)((void *)__cil_tmp77 + 8));
+  *((u32 *)((void *)(&param) + 20)) = (unsigned int )__cil_tmp80;
   ret = 0UL;
   {
   __cil_tmp81 = *name_size;
@@ -4289,28 +4073,22 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
   }
   {
   __len___0 = *name_size;
-  __cil_tmp90 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp91 = *((struct gsmi_buf **)__cil_tmp90);
+  __cil_tmp91 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
   __cil_tmp92 = *((u8 **)__cil_tmp91);
   __cil_tmp93 = (void *)__cil_tmp92;
   __cil_tmp94 = (void const   *)name;
   __ret___0 = memcpy(__cil_tmp93, __cil_tmp94, __len___0);
-  __cil_tmp95 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp96 = *((struct gsmi_buf **)__cil_tmp95);
+  __cil_tmp96 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
   __cil_tmp97 = *((u8 **)__cil_tmp96);
   __cil_tmp98 = (void *)__cil_tmp97;
-  __cil_tmp99 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp100 = *((struct gsmi_buf **)__cil_tmp99);
-  __cil_tmp101 = (unsigned long )__cil_tmp100;
-  __cil_tmp102 = __cil_tmp101 + 8;
-  __cil_tmp103 = *((size_t *)__cil_tmp102);
+  __cil_tmp100 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
+  __cil_tmp103 = *((size_t *)((void *)__cil_tmp100 + 8));
   memset(__cil_tmp98, 0, __cil_tmp103);
   __len___1 = 24UL;
   }
   if (__len___1 > 63UL) {
     {
-    __cil_tmp104 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp105 = *((struct gsmi_buf **)__cil_tmp104);
+    __cil_tmp105 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp106 = *((u8 **)__cil_tmp105);
     __cil_tmp107 = (void *)__cil_tmp106;
     __cil_tmp108 = (void const   *)(& param);
@@ -4318,8 +4096,7 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
     }
   } else {
     {
-    __cil_tmp109 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp110 = *((struct gsmi_buf **)__cil_tmp109);
+    __cil_tmp110 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp111 = *((u8 **)__cil_tmp110);
     __cil_tmp112 = (void *)__cil_tmp111;
     __cil_tmp113 = (void const   *)(& param);
@@ -4344,8 +4121,7 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
     if (__len___2 > 63UL) {
       {
       __cil_tmp116 = (void *)(& param);
-      __cil_tmp117 = (unsigned long )(& gsmi_dev) + 24;
-      __cil_tmp118 = *((struct gsmi_buf **)__cil_tmp117);
+      __cil_tmp118 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
       __cil_tmp119 = *((u8 **)__cil_tmp118);
       __cil_tmp120 = (void const   *)__cil_tmp119;
       __ret___2 = memcpy(__cil_tmp116, __cil_tmp120, __len___2);
@@ -4353,8 +4129,7 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
     } else {
       {
       __cil_tmp121 = (void *)(& param);
-      __cil_tmp122 = (unsigned long )(& gsmi_dev) + 24;
-      __cil_tmp123 = *((struct gsmi_buf **)__cil_tmp122);
+      __cil_tmp123 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
       __cil_tmp124 = *((u8 **)__cil_tmp123);
       __cil_tmp125 = (void const   *)__cil_tmp124;
       __ret___2 = memcpy(__cil_tmp121, __cil_tmp125, __len___2);
@@ -4364,8 +4139,7 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
     if (__len___3 > 63UL) {
       {
       __cil_tmp126 = (void *)name;
-      __cil_tmp127 = (unsigned long )(& gsmi_dev) + 8;
-      __cil_tmp128 = *((struct gsmi_buf **)__cil_tmp127);
+      __cil_tmp128 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
       __cil_tmp129 = *((u8 **)__cil_tmp128);
       __cil_tmp130 = (void const   *)__cil_tmp129;
       __ret___3 = memcpy(__cil_tmp126, __cil_tmp130, __len___3);
@@ -4373,8 +4147,7 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
     } else {
       {
       __cil_tmp131 = (void *)name;
-      __cil_tmp132 = (unsigned long )(& gsmi_dev) + 8;
-      __cil_tmp133 = *((struct gsmi_buf **)__cil_tmp132);
+      __cil_tmp133 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
       __cil_tmp134 = *((u8 **)__cil_tmp133);
       __cil_tmp135 = (void const   *)__cil_tmp134;
       __ret___3 = memcpy(__cil_tmp131, __cil_tmp135, __len___3);
@@ -4405,8 +4178,7 @@ static efi_status_t gsmi_get_next_variable(unsigned long *name_size , efi_char16
     ret = 0UL;
   }
   {
-  __cil_tmp144 = (unsigned long )(& gsmi_dev) + 32;
-  __cil_tmp145 = (spinlock_t *)__cil_tmp144;
+  __cil_tmp145 = (spinlock_t *)((void *)(&gsmi_dev) + 32);
   spin_unlock_irqrestore(__cil_tmp145, flags);
   }
   return (ret);
@@ -4431,79 +4203,53 @@ static efi_status_t gsmi_set_variable(efi_char16_t *name , efi_guid_t *vendor , 
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   unsigned long __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   struct gsmi_buf *__cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   struct gsmi_buf *__cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   struct gsmi_nvram_var_param *__cil_tmp96 ;
   efi_guid_t *__cil_tmp97 ;
   void *__cil_tmp98 ;
@@ -4512,56 +4258,39 @@ static efi_status_t gsmi_set_variable(efi_char16_t *name , efi_guid_t *vendor , 
   efi_guid_t *__cil_tmp101 ;
   void *__cil_tmp102 ;
   void const   *__cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   struct gsmi_buf *__cil_tmp105 ;
   u8 *__cil_tmp106 ;
   void *__cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   struct gsmi_buf *__cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   size_t __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   struct gsmi_buf *__cil_tmp114 ;
   u8 *__cil_tmp115 ;
   void *__cil_tmp116 ;
   void const   *__cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   struct gsmi_buf *__cil_tmp119 ;
   u8 *__cil_tmp120 ;
   void *__cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   struct gsmi_buf *__cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
   size_t __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
   struct gsmi_buf *__cil_tmp128 ;
   u8 *__cil_tmp129 ;
   void *__cil_tmp130 ;
   void const   *__cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
   struct gsmi_buf *__cil_tmp133 ;
   u8 *__cil_tmp134 ;
   void *__cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
   struct gsmi_buf *__cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
   size_t __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
   struct gsmi_buf *__cil_tmp142 ;
   u8 *__cil_tmp143 ;
   void *__cil_tmp144 ;
   void const   *__cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
   struct gsmi_buf *__cil_tmp147 ;
   u8 *__cil_tmp148 ;
   void *__cil_tmp149 ;
   void const   *__cil_tmp150 ;
   u8 __cil_tmp151 ;
   u8 __cil_tmp152 ;
-  unsigned long __cil_tmp153 ;
   spinlock_t *__cil_tmp154 ;
 
   {
@@ -4569,99 +4298,73 @@ static efi_status_t gsmi_set_variable(efi_char16_t *name , efi_guid_t *vendor , 
   __cil_tmp20 = 0 * 1UL;
   __cil_tmp21 = 0 + __cil_tmp20;
   __cil_tmp22 = 0 + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )(& param) + __cil_tmp22;
-  *((u8 *)__cil_tmp23) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp22)) = (unsigned char)0;
   __cil_tmp24 = 1 * 1UL;
   __cil_tmp25 = 0 + __cil_tmp24;
   __cil_tmp26 = 0 + __cil_tmp25;
-  __cil_tmp27 = (unsigned long )(& param) + __cil_tmp26;
-  *((u8 *)__cil_tmp27) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp26)) = (unsigned char)0;
   __cil_tmp28 = 2 * 1UL;
   __cil_tmp29 = 0 + __cil_tmp28;
   __cil_tmp30 = 0 + __cil_tmp29;
-  __cil_tmp31 = (unsigned long )(& param) + __cil_tmp30;
-  *((u8 *)__cil_tmp31) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp30)) = (unsigned char)0;
   __cil_tmp32 = 3 * 1UL;
   __cil_tmp33 = 0 + __cil_tmp32;
   __cil_tmp34 = 0 + __cil_tmp33;
-  __cil_tmp35 = (unsigned long )(& param) + __cil_tmp34;
-  *((u8 *)__cil_tmp35) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp34)) = (unsigned char)0;
   __cil_tmp36 = 4 * 1UL;
   __cil_tmp37 = 0 + __cil_tmp36;
   __cil_tmp38 = 0 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )(& param) + __cil_tmp38;
-  *((u8 *)__cil_tmp39) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp38)) = (unsigned char)0;
   __cil_tmp40 = 5 * 1UL;
   __cil_tmp41 = 0 + __cil_tmp40;
   __cil_tmp42 = 0 + __cil_tmp41;
-  __cil_tmp43 = (unsigned long )(& param) + __cil_tmp42;
-  *((u8 *)__cil_tmp43) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp42)) = (unsigned char)0;
   __cil_tmp44 = 6 * 1UL;
   __cil_tmp45 = 0 + __cil_tmp44;
   __cil_tmp46 = 0 + __cil_tmp45;
-  __cil_tmp47 = (unsigned long )(& param) + __cil_tmp46;
-  *((u8 *)__cil_tmp47) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp46)) = (unsigned char)0;
   __cil_tmp48 = 7 * 1UL;
   __cil_tmp49 = 0 + __cil_tmp48;
   __cil_tmp50 = 0 + __cil_tmp49;
-  __cil_tmp51 = (unsigned long )(& param) + __cil_tmp50;
-  *((u8 *)__cil_tmp51) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp50)) = (unsigned char)0;
   __cil_tmp52 = 8 * 1UL;
   __cil_tmp53 = 0 + __cil_tmp52;
   __cil_tmp54 = 0 + __cil_tmp53;
-  __cil_tmp55 = (unsigned long )(& param) + __cil_tmp54;
-  *((u8 *)__cil_tmp55) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp54)) = (unsigned char)0;
   __cil_tmp56 = 9 * 1UL;
   __cil_tmp57 = 0 + __cil_tmp56;
   __cil_tmp58 = 0 + __cil_tmp57;
-  __cil_tmp59 = (unsigned long )(& param) + __cil_tmp58;
-  *((u8 *)__cil_tmp59) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp58)) = (unsigned char)0;
   __cil_tmp60 = 10 * 1UL;
   __cil_tmp61 = 0 + __cil_tmp60;
   __cil_tmp62 = 0 + __cil_tmp61;
-  __cil_tmp63 = (unsigned long )(& param) + __cil_tmp62;
-  *((u8 *)__cil_tmp63) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp62)) = (unsigned char)0;
   __cil_tmp64 = 11 * 1UL;
   __cil_tmp65 = 0 + __cil_tmp64;
   __cil_tmp66 = 0 + __cil_tmp65;
-  __cil_tmp67 = (unsigned long )(& param) + __cil_tmp66;
-  *((u8 *)__cil_tmp67) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp66)) = (unsigned char)0;
   __cil_tmp68 = 12 * 1UL;
   __cil_tmp69 = 0 + __cil_tmp68;
   __cil_tmp70 = 0 + __cil_tmp69;
-  __cil_tmp71 = (unsigned long )(& param) + __cil_tmp70;
-  *((u8 *)__cil_tmp71) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp70)) = (unsigned char)0;
   __cil_tmp72 = 13 * 1UL;
   __cil_tmp73 = 0 + __cil_tmp72;
   __cil_tmp74 = 0 + __cil_tmp73;
-  __cil_tmp75 = (unsigned long )(& param) + __cil_tmp74;
-  *((u8 *)__cil_tmp75) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp74)) = (unsigned char)0;
   __cil_tmp76 = 14 * 1UL;
   __cil_tmp77 = 0 + __cil_tmp76;
   __cil_tmp78 = 0 + __cil_tmp77;
-  __cil_tmp79 = (unsigned long )(& param) + __cil_tmp78;
-  *((u8 *)__cil_tmp79) = (unsigned char)0;
+  *((u8 *)((void *)(&param) + __cil_tmp78)) = (unsigned char)0;
   __cil_tmp80 = 15 * 1UL;
   __cil_tmp81 = 0 + __cil_tmp80;
   __cil_tmp82 = 0 + __cil_tmp81;
-  __cil_tmp83 = (unsigned long )(& param) + __cil_tmp82;
-  *((u8 *)__cil_tmp83) = (unsigned char)0;
-  __cil_tmp84 = (unsigned long )(& param) + 16;
-  __cil_tmp85 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp86 = *((struct gsmi_buf **)__cil_tmp85);
-  __cil_tmp87 = (unsigned long )__cil_tmp86;
-  __cil_tmp88 = __cil_tmp87 + 24;
-  *((u32 *)__cil_tmp84) = *((u32 *)__cil_tmp88);
-  __cil_tmp89 = (unsigned long )(& param) + 20;
-  *((u32 *)__cil_tmp89) = 7U;
-  __cil_tmp90 = (unsigned long )(& param) + 24;
-  *((u32 *)__cil_tmp90) = (unsigned int )data_size;
-  __cil_tmp91 = (unsigned long )(& param) + 28;
-  __cil_tmp92 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp93 = *((struct gsmi_buf **)__cil_tmp92);
-  __cil_tmp94 = (unsigned long )__cil_tmp93;
-  __cil_tmp95 = __cil_tmp94 + 24;
-  *((u32 *)__cil_tmp91) = *((u32 *)__cil_tmp95);
+  *((u8 *)((void *)(&param) + __cil_tmp82)) = (unsigned char)0;
+  __cil_tmp86 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
+  *((u32 *)((void *)(&param) + 16)) = *((u32 *)((void *)__cil_tmp86 + 24));
+  *((u32 *)((void *)(&param) + 20)) = 7U;
+  *((u32 *)((void *)(&param) + 24)) = (unsigned int )data_size;
+  __cil_tmp93 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
+  *((u32 *)((void *)(&param) + 28)) = *((u32 *)((void *)__cil_tmp93 + 24));
   tmp = utf16_strlen(name, 512UL);
   name_len = tmp;
   ret = 0UL;
@@ -4693,56 +4396,41 @@ static efi_status_t gsmi_set_variable(efi_char16_t *name , efi_guid_t *vendor , 
     }
   }
   {
-  __cil_tmp104 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp105 = *((struct gsmi_buf **)__cil_tmp104);
+  __cil_tmp105 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
   __cil_tmp106 = *((u8 **)__cil_tmp105);
   __cil_tmp107 = (void *)__cil_tmp106;
-  __cil_tmp108 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp109 = *((struct gsmi_buf **)__cil_tmp108);
-  __cil_tmp110 = (unsigned long )__cil_tmp109;
-  __cil_tmp111 = __cil_tmp110 + 8;
-  __cil_tmp112 = *((size_t *)__cil_tmp111);
+  __cil_tmp109 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
+  __cil_tmp112 = *((size_t *)((void *)__cil_tmp109 + 8));
   memset(__cil_tmp107, 0, __cil_tmp112);
   __len___0 = name_len * 2UL;
-  __cil_tmp113 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp114 = *((struct gsmi_buf **)__cil_tmp113);
+  __cil_tmp114 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
   __cil_tmp115 = *((u8 **)__cil_tmp114);
   __cil_tmp116 = (void *)__cil_tmp115;
   __cil_tmp117 = (void const   *)name;
   __ret___0 = memcpy(__cil_tmp116, __cil_tmp117, __len___0);
-  __cil_tmp118 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp119 = *((struct gsmi_buf **)__cil_tmp118);
+  __cil_tmp119 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
   __cil_tmp120 = *((u8 **)__cil_tmp119);
   __cil_tmp121 = (void *)__cil_tmp120;
-  __cil_tmp122 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp123 = *((struct gsmi_buf **)__cil_tmp122);
-  __cil_tmp124 = (unsigned long )__cil_tmp123;
-  __cil_tmp125 = __cil_tmp124 + 8;
-  __cil_tmp126 = *((size_t *)__cil_tmp125);
+  __cil_tmp123 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
+  __cil_tmp126 = *((size_t *)((void *)__cil_tmp123 + 8));
   memset(__cil_tmp121, 0, __cil_tmp126);
   __len___1 = data_size;
-  __cil_tmp127 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp128 = *((struct gsmi_buf **)__cil_tmp127);
+  __cil_tmp128 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
   __cil_tmp129 = *((u8 **)__cil_tmp128);
   __cil_tmp130 = (void *)__cil_tmp129;
   __cil_tmp131 = (void const   *)data;
   __ret___1 = memcpy(__cil_tmp130, __cil_tmp131, __len___1);
-  __cil_tmp132 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp133 = *((struct gsmi_buf **)__cil_tmp132);
+  __cil_tmp133 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
   __cil_tmp134 = *((u8 **)__cil_tmp133);
   __cil_tmp135 = (void *)__cil_tmp134;
-  __cil_tmp136 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp137 = *((struct gsmi_buf **)__cil_tmp136);
-  __cil_tmp138 = (unsigned long )__cil_tmp137;
-  __cil_tmp139 = __cil_tmp138 + 8;
-  __cil_tmp140 = *((size_t *)__cil_tmp139);
+  __cil_tmp137 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
+  __cil_tmp140 = *((size_t *)((void *)__cil_tmp137 + 8));
   memset(__cil_tmp135, 0, __cil_tmp140);
   __len___2 = 32UL;
   }
   if (__len___2 > 63UL) {
     {
-    __cil_tmp141 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp142 = *((struct gsmi_buf **)__cil_tmp141);
+    __cil_tmp142 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp143 = *((u8 **)__cil_tmp142);
     __cil_tmp144 = (void *)__cil_tmp143;
     __cil_tmp145 = (void const   *)(& param);
@@ -4750,8 +4438,7 @@ static efi_status_t gsmi_set_variable(efi_char16_t *name , efi_guid_t *vendor , 
     }
   } else {
     {
-    __cil_tmp146 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp147 = *((struct gsmi_buf **)__cil_tmp146);
+    __cil_tmp147 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp148 = *((u8 **)__cil_tmp147);
     __cil_tmp149 = (void *)__cil_tmp148;
     __cil_tmp150 = (void const   *)(& param);
@@ -4772,8 +4459,7 @@ static efi_status_t gsmi_set_variable(efi_char16_t *name , efi_guid_t *vendor , 
 
   }
   {
-  __cil_tmp153 = (unsigned long )(& gsmi_dev) + 32;
-  __cil_tmp154 = (spinlock_t *)__cil_tmp153;
+  __cil_tmp154 = (spinlock_t *)((void *)(&gsmi_dev) + 32);
   spin_unlock_irqrestore(__cil_tmp154, flags);
   }
   return (ret);
@@ -4790,89 +4476,57 @@ static ssize_t eventlog_write(struct file *filp , struct kobject *kobj , struct 
   size_t __len___0 ;
   void *__ret___0 ;
   struct gsmi_set_eventlog_param *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct gsmi_buf *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u32 *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct gsmi_buf *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   size_t __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   u32 __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct gsmi_buf *__cil_tmp31 ;
   u8 *__cil_tmp32 ;
   void *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct gsmi_buf *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   size_t __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   u32 __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct gsmi_buf *__cil_tmp42 ;
   u8 *__cil_tmp43 ;
   void *__cil_tmp44 ;
   void const   *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct gsmi_buf *__cil_tmp47 ;
   u8 *__cil_tmp48 ;
   void *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct gsmi_buf *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   size_t __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct gsmi_buf *__cil_tmp56 ;
   u8 *__cil_tmp57 ;
   void *__cil_tmp58 ;
   void const   *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct gsmi_buf *__cil_tmp61 ;
   u8 *__cil_tmp62 ;
   void *__cil_tmp63 ;
   void const   *__cil_tmp64 ;
   u8 __cil_tmp65 ;
   u8 __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   spinlock_t *__cil_tmp68 ;
 
   {
   __cil_tmp14 = & param;
-  __cil_tmp15 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp16 = *((struct gsmi_buf **)__cil_tmp15);
-  __cil_tmp17 = (unsigned long )__cil_tmp16;
-  __cil_tmp18 = __cil_tmp17 + 24;
-  *((u32 *)__cil_tmp14) = *((u32 *)__cil_tmp18);
-  __cil_tmp19 = (unsigned long )(& param) + 4;
-  *((u32 *)__cil_tmp19) = 0U;
-  __cil_tmp20 = (unsigned long )(& param) + 8;
-  *((u32 *)__cil_tmp20) = 0U;
+  __cil_tmp16 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
+  *((u32 *)__cil_tmp14) = *((u32 *)((void *)__cil_tmp16 + 24));
+  *((u32 *)((void *)(&param) + 4)) = 0U;
+  *((u32 *)((void *)(&param) + 8)) = 0U;
   rc = 0;
   if (count <= 3UL) {
     return (-22L);
   } else {
 
   }
-  __cil_tmp21 = (unsigned long )(& param) + 8;
   __cil_tmp22 = (u32 *)buf;
-  *((u32 *)__cil_tmp21) = *__cil_tmp22;
+  *((u32 *)((void *)(&param) + 8)) = *__cil_tmp22;
   count = count - 4UL;
   buf = buf + 4UL;
   {
-  __cil_tmp23 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp24 = *((struct gsmi_buf **)__cil_tmp23);
-  __cil_tmp25 = (unsigned long )__cil_tmp24;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  __cil_tmp27 = *((size_t *)__cil_tmp26);
+  __cil_tmp24 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
+  __cil_tmp27 = *((size_t *)((void *)__cil_tmp24 + 8));
   if (__cil_tmp27 < count) {
     return (-22L);
   } else {
@@ -4880,45 +4534,33 @@ static ssize_t eventlog_write(struct file *filp , struct kobject *kobj , struct 
   }
   }
   {
-  __cil_tmp28 = (unsigned long )(& param) + 4;
   __cil_tmp29 = (u32 )count;
-  *((u32 *)__cil_tmp28) = __cil_tmp29 - 4U;
+  *((u32 *)((void *)(&param) + 4)) = __cil_tmp29 - 4U;
   ldv_spin_lock();
-  __cil_tmp30 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp31 = *((struct gsmi_buf **)__cil_tmp30);
+  __cil_tmp31 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
   __cil_tmp32 = *((u8 **)__cil_tmp31);
   __cil_tmp33 = (void *)__cil_tmp32;
-  __cil_tmp34 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp35 = *((struct gsmi_buf **)__cil_tmp34);
-  __cil_tmp36 = (unsigned long )__cil_tmp35;
-  __cil_tmp37 = __cil_tmp36 + 8;
-  __cil_tmp38 = *((size_t *)__cil_tmp37);
+  __cil_tmp35 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
+  __cil_tmp38 = *((size_t *)((void *)__cil_tmp35 + 8));
   memset(__cil_tmp33, 0, __cil_tmp38);
-  __cil_tmp39 = (unsigned long )(& param) + 4;
-  __cil_tmp40 = *((u32 *)__cil_tmp39);
+  __cil_tmp40 = *((u32 *)((void *)(&param) + 4));
   __len = (size_t )__cil_tmp40;
-  __cil_tmp41 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp42 = *((struct gsmi_buf **)__cil_tmp41);
+  __cil_tmp42 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
   __cil_tmp43 = *((u8 **)__cil_tmp42);
   __cil_tmp44 = (void *)__cil_tmp43;
   __cil_tmp45 = (void const   *)buf;
   __ret = memcpy(__cil_tmp44, __cil_tmp45, __len);
-  __cil_tmp46 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp47 = *((struct gsmi_buf **)__cil_tmp46);
+  __cil_tmp47 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
   __cil_tmp48 = *((u8 **)__cil_tmp47);
   __cil_tmp49 = (void *)__cil_tmp48;
-  __cil_tmp50 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp51 = *((struct gsmi_buf **)__cil_tmp50);
-  __cil_tmp52 = (unsigned long )__cil_tmp51;
-  __cil_tmp53 = __cil_tmp52 + 8;
-  __cil_tmp54 = *((size_t *)__cil_tmp53);
+  __cil_tmp51 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
+  __cil_tmp54 = *((size_t *)((void *)__cil_tmp51 + 8));
   memset(__cil_tmp49, 0, __cil_tmp54);
   __len___0 = 12UL;
   }
   if (__len___0 > 63UL) {
     {
-    __cil_tmp55 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp56 = *((struct gsmi_buf **)__cil_tmp55);
+    __cil_tmp56 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp57 = *((u8 **)__cil_tmp56);
     __cil_tmp58 = (void *)__cil_tmp57;
     __cil_tmp59 = (void const   *)(& param);
@@ -4926,8 +4568,7 @@ static ssize_t eventlog_write(struct file *filp , struct kobject *kobj , struct 
     }
   } else {
     {
-    __cil_tmp60 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp61 = *((struct gsmi_buf **)__cil_tmp60);
+    __cil_tmp61 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp62 = *((u8 **)__cil_tmp61);
     __cil_tmp63 = (void *)__cil_tmp62;
     __cil_tmp64 = (void const   *)(& param);
@@ -4947,8 +4588,7 @@ static ssize_t eventlog_write(struct file *filp , struct kobject *kobj , struct 
 
   }
   {
-  __cil_tmp67 = (unsigned long )(& gsmi_dev) + 32;
-  __cil_tmp68 = (spinlock_t *)__cil_tmp67;
+  __cil_tmp68 = (spinlock_t *)((void *)(&gsmi_dev) + 32);
   spin_unlock_irqrestore(__cil_tmp68, flags);
   }
   return ((ssize_t )rc);
@@ -4978,29 +4618,21 @@ static ssize_t gsmi_clear_eventlog_store(struct kobject *kobj , struct kobj_attr
   struct __anonstruct_param_203 *__cil_tmp13 ;
   unsigned long *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct gsmi_buf *__cil_tmp18 ;
   u8 *__cil_tmp19 ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct gsmi_buf *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   size_t __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct gsmi_buf *__cil_tmp27 ;
   u8 *__cil_tmp28 ;
   void *__cil_tmp29 ;
   void const   *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct gsmi_buf *__cil_tmp32 ;
   u8 *__cil_tmp33 ;
   void *__cil_tmp34 ;
   void const   *__cil_tmp35 ;
   u8 __cil_tmp36 ;
   u8 __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   spinlock_t *__cil_tmp39 ;
 
   {
@@ -5026,25 +4658,19 @@ static ssize_t gsmi_clear_eventlog_store(struct kobject *kobj , struct kobj_attr
   __cil_tmp14 = & val;
   __cil_tmp15 = *__cil_tmp14;
   *((u32 *)__cil_tmp13) = (u32 )__cil_tmp15;
-  __cil_tmp16 = (unsigned long )(& param) + 4;
-  *((u32 *)__cil_tmp16) = 0U;
+  *((u32 *)((void *)(&param) + 4)) = 0U;
   ldv_spin_lock();
-  __cil_tmp17 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp18 = *((struct gsmi_buf **)__cil_tmp17);
+  __cil_tmp18 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
   __cil_tmp19 = *((u8 **)__cil_tmp18);
   __cil_tmp20 = (void *)__cil_tmp19;
-  __cil_tmp21 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp22 = *((struct gsmi_buf **)__cil_tmp21);
-  __cil_tmp23 = (unsigned long )__cil_tmp22;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  __cil_tmp25 = *((size_t *)__cil_tmp24);
+  __cil_tmp22 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
+  __cil_tmp25 = *((size_t *)((void *)__cil_tmp22 + 8));
   memset(__cil_tmp20, 0, __cil_tmp25);
   __len = 8UL;
   }
   if (__len > 63UL) {
     {
-    __cil_tmp26 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp27 = *((struct gsmi_buf **)__cil_tmp26);
+    __cil_tmp27 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp28 = *((u8 **)__cil_tmp27);
     __cil_tmp29 = (void *)__cil_tmp28;
     __cil_tmp30 = (void const   *)(& param);
@@ -5052,8 +4678,7 @@ static ssize_t gsmi_clear_eventlog_store(struct kobject *kobj , struct kobj_attr
     }
   } else {
     {
-    __cil_tmp31 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp32 = *((struct gsmi_buf **)__cil_tmp31);
+    __cil_tmp32 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp33 = *((u8 **)__cil_tmp32);
     __cil_tmp34 = (void *)__cil_tmp33;
     __cil_tmp35 = (void const   *)(& param);
@@ -5064,8 +4689,7 @@ static ssize_t gsmi_clear_eventlog_store(struct kobject *kobj , struct kobj_attr
   __cil_tmp36 = (u8 )239;
   __cil_tmp37 = (u8 )9;
   rc = gsmi_exec(__cil_tmp36, __cil_tmp37);
-  __cil_tmp38 = (unsigned long )(& gsmi_dev) + 32;
-  __cil_tmp39 = (spinlock_t *)__cil_tmp38;
+  __cil_tmp39 = (spinlock_t *)((void *)(&gsmi_dev) + 32);
   spin_unlock_irqrestore(__cil_tmp39, flags);
   }
   if (rc != 0) {
@@ -5085,38 +4709,28 @@ static ssize_t gsmi_clear_config_store(struct kobject *kobj , struct kobj_attrib
                                        char const   *buf , size_t count ) 
 { int rc ;
   unsigned long flags ;
-  unsigned long __cil_tmp7 ;
   struct gsmi_buf *__cil_tmp8 ;
   u8 *__cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct gsmi_buf *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   size_t __cil_tmp15 ;
   u8 __cil_tmp16 ;
   u8 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   spinlock_t *__cil_tmp19 ;
 
   {
   {
   ldv_spin_lock();
-  __cil_tmp7 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp8 = *((struct gsmi_buf **)__cil_tmp7);
+  __cil_tmp8 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
   __cil_tmp9 = *((u8 **)__cil_tmp8);
   __cil_tmp10 = (void *)__cil_tmp9;
-  __cil_tmp11 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp12 = *((struct gsmi_buf **)__cil_tmp11);
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  __cil_tmp15 = *((size_t *)__cil_tmp14);
+  __cil_tmp12 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
+  __cil_tmp15 = *((size_t *)((void *)__cil_tmp12 + 8));
   memset(__cil_tmp10, 0, __cil_tmp15);
   __cil_tmp16 = (u8 )239;
   __cil_tmp17 = (u8 )32;
   rc = gsmi_exec(__cil_tmp16, __cil_tmp17);
-  __cil_tmp18 = (unsigned long )(& gsmi_dev) + 32;
-  __cil_tmp19 = (spinlock_t *)__cil_tmp18;
+  __cil_tmp19 = (spinlock_t *)((void *)(&gsmi_dev) + 32);
   spin_unlock_irqrestore(__cil_tmp19, flags);
   }
   if (rc != 0) {
@@ -5144,71 +4758,49 @@ static int gsmi_shutdown_reason(int reason )
   size_t __len___0 ;
   void *__ret___0 ;
   struct gsmi_log_entry_type_1 *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct gsmi_set_eventlog_param *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct gsmi_buf *__cil_tmp19 ;
   u8 *__cil_tmp20 ;
   void *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct gsmi_buf *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   size_t __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct gsmi_buf *__cil_tmp28 ;
   u8 *__cil_tmp29 ;
   void *__cil_tmp30 ;
   void const   *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct gsmi_buf *__cil_tmp33 ;
   u8 *__cil_tmp34 ;
   void *__cil_tmp35 ;
   void const   *__cil_tmp36 ;
   struct gsmi_set_eventlog_param *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct gsmi_buf *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct gsmi_buf *__cil_tmp43 ;
   u8 *__cil_tmp44 ;
   void *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct gsmi_buf *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   size_t __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct gsmi_buf *__cil_tmp52 ;
   u8 *__cil_tmp53 ;
   void *__cil_tmp54 ;
   void const   *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct gsmi_buf *__cil_tmp57 ;
   u8 *__cil_tmp58 ;
   void *__cil_tmp59 ;
   void const   *__cil_tmp60 ;
   u8 __cil_tmp61 ;
   u8 __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   spinlock_t *__cil_tmp64 ;
 
   {
   __cil_tmp11 = & entry;
   *((u16 *)__cil_tmp11) = (u16 )57005U;
-  __cil_tmp12 = (unsigned long )(& entry) + 4;
-  *((u32 *)__cil_tmp12) = (unsigned int )reason;
+  *((u32 *)((void *)(&entry) + 4)) = (unsigned int )reason;
   __cil_tmp13 = & param;
   *((u32 *)__cil_tmp13) = 0U;
-  __cil_tmp14 = (unsigned long )(& param) + 4;
-  *((u32 *)__cil_tmp14) = 6U;
-  __cil_tmp15 = (unsigned long )(& param) + 8;
-  *((u32 *)__cil_tmp15) = 1U;
+  *((u32 *)((void *)(&param) + 4)) = 6U;
+  *((u32 *)((void *)(&param) + 8)) = 1U;
   rc = 0;
   {
   __cil_tmp16 = saved_reason >> reason;
@@ -5222,22 +4814,17 @@ static int gsmi_shutdown_reason(int reason )
   ldv_spin_lock();
   __cil_tmp17 = 1 << reason;
   saved_reason = __cil_tmp17 | saved_reason;
-  __cil_tmp18 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp19 = *((struct gsmi_buf **)__cil_tmp18);
+  __cil_tmp19 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
   __cil_tmp20 = *((u8 **)__cil_tmp19);
   __cil_tmp21 = (void *)__cil_tmp20;
-  __cil_tmp22 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp23 = *((struct gsmi_buf **)__cil_tmp22);
-  __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  __cil_tmp26 = *((size_t *)__cil_tmp25);
+  __cil_tmp23 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
+  __cil_tmp26 = *((size_t *)((void *)__cil_tmp23 + 8));
   memset(__cil_tmp21, 0, __cil_tmp26);
   __len = 6UL;
   }
   if (__len > 63UL) {
     {
-    __cil_tmp27 = (unsigned long )(& gsmi_dev) + 16;
-    __cil_tmp28 = *((struct gsmi_buf **)__cil_tmp27);
+    __cil_tmp28 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
     __cil_tmp29 = *((u8 **)__cil_tmp28);
     __cil_tmp30 = (void *)__cil_tmp29;
     __cil_tmp31 = (void const   *)(& entry);
@@ -5245,8 +4832,7 @@ static int gsmi_shutdown_reason(int reason )
     }
   } else {
     {
-    __cil_tmp32 = (unsigned long )(& gsmi_dev) + 16;
-    __cil_tmp33 = *((struct gsmi_buf **)__cil_tmp32);
+    __cil_tmp33 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
     __cil_tmp34 = *((u8 **)__cil_tmp33);
     __cil_tmp35 = (void *)__cil_tmp34;
     __cil_tmp36 = (void const   *)(& entry);
@@ -5255,27 +4841,19 @@ static int gsmi_shutdown_reason(int reason )
   }
   {
   __cil_tmp37 = & param;
-  __cil_tmp38 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp39 = *((struct gsmi_buf **)__cil_tmp38);
-  __cil_tmp40 = (unsigned long )__cil_tmp39;
-  __cil_tmp41 = __cil_tmp40 + 24;
-  *((u32 *)__cil_tmp37) = *((u32 *)__cil_tmp41);
-  __cil_tmp42 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp43 = *((struct gsmi_buf **)__cil_tmp42);
+  __cil_tmp39 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
+  *((u32 *)__cil_tmp37) = *((u32 *)((void *)__cil_tmp39 + 24));
+  __cil_tmp43 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
   __cil_tmp44 = *((u8 **)__cil_tmp43);
   __cil_tmp45 = (void *)__cil_tmp44;
-  __cil_tmp46 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp47 = *((struct gsmi_buf **)__cil_tmp46);
-  __cil_tmp48 = (unsigned long )__cil_tmp47;
-  __cil_tmp49 = __cil_tmp48 + 8;
-  __cil_tmp50 = *((size_t *)__cil_tmp49);
+  __cil_tmp47 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
+  __cil_tmp50 = *((size_t *)((void *)__cil_tmp47 + 8));
   memset(__cil_tmp45, 0, __cil_tmp50);
   __len___0 = 12UL;
   }
   if (__len___0 > 63UL) {
     {
-    __cil_tmp51 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp52 = *((struct gsmi_buf **)__cil_tmp51);
+    __cil_tmp52 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp53 = *((u8 **)__cil_tmp52);
     __cil_tmp54 = (void *)__cil_tmp53;
     __cil_tmp55 = (void const   *)(& param);
@@ -5283,8 +4861,7 @@ static int gsmi_shutdown_reason(int reason )
     }
   } else {
     {
-    __cil_tmp56 = (unsigned long )(& gsmi_dev) + 24;
-    __cil_tmp57 = *((struct gsmi_buf **)__cil_tmp56);
+    __cil_tmp57 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
     __cil_tmp58 = *((u8 **)__cil_tmp57);
     __cil_tmp59 = (void *)__cil_tmp58;
     __cil_tmp60 = (void const   *)(& param);
@@ -5295,8 +4872,7 @@ static int gsmi_shutdown_reason(int reason )
   __cil_tmp61 = (u8 )239;
   __cil_tmp62 = (u8 )8;
   rc = gsmi_exec(__cil_tmp61, __cil_tmp62);
-  __cil_tmp63 = (unsigned long )(& gsmi_dev) + 32;
-  __cil_tmp64 = (spinlock_t *)__cil_tmp63;
+  __cil_tmp64 = (spinlock_t *)((void *)(&gsmi_dev) + 32);
   spin_unlock_irqrestore(__cil_tmp64, flags);
   }
   if (rc < 0) {
@@ -5920,14 +5496,11 @@ static int gsmi_system_valid(void)
   int tmp___2 ;
   struct dmi_system_id  const  *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   char (*__cil_tmp10)[8U] ;
   char const   *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   char (*__cil_tmp14)[8U] ;
   char *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u32 __cil_tmp17 ;
 
   {
@@ -5942,8 +5515,7 @@ static int gsmi_system_valid(void)
   }
   {
   __cil_tmp8 = 0 + 16;
-  __cil_tmp9 = (unsigned long )(& acpi_gbl_FADT) + __cil_tmp8;
-  __cil_tmp10 = (char (*)[8U])__cil_tmp9;
+  __cil_tmp10 = (char (*)[8U])((void *)(&acpi_gbl_FADT) + __cil_tmp8);
   __cil_tmp11 = (char const   *)__cil_tmp10;
   tmp___0 = strncmp(__cil_tmp11, "FACP", 4UL);
   }
@@ -5957,8 +5529,7 @@ static int gsmi_system_valid(void)
   }
   {
   __cil_tmp12 = 0 + 16;
-  __cil_tmp13 = (unsigned long )(& acpi_gbl_FADT) + __cil_tmp12;
-  __cil_tmp14 = (char (*)[8U])__cil_tmp13;
+  __cil_tmp14 = (char (*)[8U])((void *)(&acpi_gbl_FADT) + __cil_tmp12);
   __cil_tmp15 = (char *)__cil_tmp14;
   hash = hash_oem_table_id(__cil_tmp15);
   }
@@ -5980,8 +5551,7 @@ static int gsmi_system_valid(void)
 
   }
   {
-  __cil_tmp16 = (unsigned long )(& acpi_gbl_FADT) + 48;
-  __cil_tmp17 = *((u32 *)__cil_tmp16);
+  __cil_tmp17 = *((u32 *)((void *)(&acpi_gbl_FADT) + 48));
   if (__cil_tmp17 == 0U) {
     {
     printk("<6>gsmi: missing smi_command\n");
@@ -6002,8 +5572,6 @@ static int gsmi_init(void)
   long tmp ;
   long tmp___0 ;
   struct lock_class_key __key ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   u32 __cil_tmp8 ;
   struct gsmi_device *__cil_tmp9 ;
   struct resource  const  *__cil_tmp10 ;
@@ -6013,64 +5581,40 @@ static int gsmi_init(void)
   struct gsmi_device *__cil_tmp14 ;
   struct platform_device *__cil_tmp15 ;
   void const   *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   spinlock_t *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct raw_spinlock *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   struct gsmi_device *__cil_tmp22 ;
   struct platform_device *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   struct gsmi_device *__cil_tmp27 ;
   struct platform_device *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   struct gsmi_device *__cil_tmp32 ;
   struct platform_device *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct gsmi_device *__cil_tmp37 ;
   struct platform_device *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct device *__cil_tmp41 ;
   struct dma_pool *__cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct dma_pool *__cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct gsmi_buf *__cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct gsmi_buf *__cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct gsmi_buf *__cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct gsmi_buf *__cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   struct gsmi_buf *__cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   struct gsmi_buf *__cil_tmp63 ;
   unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   u8 __cil_tmp67 ;
   u8 __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   spinlock_t *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   int __cil_tmp75 ;
   struct kobject *__cil_tmp76 ;
   unsigned long __cil_tmp77 ;
@@ -6079,18 +5623,13 @@ static int gsmi_init(void)
   struct attribute  const  **__cil_tmp80 ;
   struct attribute  const  **__cil_tmp81 ;
   struct bin_attribute  const  *__cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   struct gsmi_buf *__cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   struct gsmi_buf *__cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   struct gsmi_buf *__cil_tmp88 ;
   struct dma_pool *__cil_tmp89 ;
   unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   struct dma_pool *__cil_tmp92 ;
   unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   struct dma_pool *__cil_tmp95 ;
   struct gsmi_device *__cil_tmp96 ;
   struct platform_device *__cil_tmp97 ;
@@ -6105,10 +5644,8 @@ static int gsmi_init(void)
 
   }
   {
-  __cil_tmp6 = (unsigned long )(& gsmi_dev) + 104;
-  __cil_tmp7 = (unsigned long )(& acpi_gbl_FADT) + 48;
-  __cil_tmp8 = *((u32 *)__cil_tmp7);
-  *((u16 *)__cil_tmp6) = (u16 )__cil_tmp8;
+  __cil_tmp8 = *((u32 *)((void *)(&acpi_gbl_FADT) + 48));
+  *((u16 *)((void *)(&gsmi_dev) + 104)) = (u16 )__cil_tmp8;
   __cil_tmp9 = & gsmi_dev;
   __cil_tmp10 = (struct resource  const  *)0;
   *((struct platform_device **)__cil_tmp9) = platform_device_register_simple("gsmi",
@@ -6132,44 +5669,32 @@ static int gsmi_init(void)
 
   }
   {
-  __cil_tmp17 = (unsigned long )(& gsmi_dev) + 32;
-  __cil_tmp18 = (spinlock_t *)__cil_tmp17;
+  __cil_tmp18 = (spinlock_t *)((void *)(&gsmi_dev) + 32);
   spinlock_check(__cil_tmp18);
-  __cil_tmp19 = (unsigned long )(& gsmi_dev) + 32;
-  __cil_tmp20 = (struct raw_spinlock *)__cil_tmp19;
+  __cil_tmp20 = (struct raw_spinlock *)((void *)(&gsmi_dev) + 32);
   __raw_spin_lock_init(__cil_tmp20, "&(&gsmi_dev.lock)->rlock", & __key);
   __cil_tmp21 = 16 + 928;
   __cil_tmp22 = & gsmi_dev;
   __cil_tmp23 = *((struct platform_device **)__cil_tmp22);
-  __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp21;
-  *((u64 *)__cil_tmp25) = 4294967295ULL;
+  *((u64 *)((void *)__cil_tmp23 + __cil_tmp21)) = 4294967295ULL;
   __cil_tmp26 = 16 + 920;
   __cil_tmp27 = & gsmi_dev;
   __cil_tmp28 = *((struct platform_device **)__cil_tmp27);
-  __cil_tmp29 = (unsigned long )__cil_tmp28;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp26;
   __cil_tmp31 = 16 + 928;
   __cil_tmp32 = & gsmi_dev;
   __cil_tmp33 = *((struct platform_device **)__cil_tmp32);
-  __cil_tmp34 = (unsigned long )__cil_tmp33;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp31;
-  *((u64 **)__cil_tmp30) = (u64 *)__cil_tmp35;
+  *((u64 **)((void *)__cil_tmp28 + __cil_tmp26)) = (u64 *)((void *)__cil_tmp33 + __cil_tmp31);
   ret = -12;
-  __cil_tmp36 = (unsigned long )(& gsmi_dev) + 112;
   __cil_tmp37 = & gsmi_dev;
   __cil_tmp38 = *((struct platform_device **)__cil_tmp37);
-  __cil_tmp39 = (unsigned long )__cil_tmp38;
-  __cil_tmp40 = __cil_tmp39 + 16;
-  __cil_tmp41 = (struct device *)__cil_tmp40;
-  *((struct dma_pool **)__cil_tmp36) = dma_pool_create("gsmi", __cil_tmp41, 1024UL,
+  __cil_tmp41 = (struct device *)((void *)__cil_tmp38 + 16);
+  *((struct dma_pool **)((void *)(&gsmi_dev) + 112)) = dma_pool_create("gsmi", __cil_tmp41, 1024UL,
                                                        8UL, 0UL);
   }
   {
   __cil_tmp42 = (struct dma_pool *)0;
   __cil_tmp43 = (unsigned long )__cil_tmp42;
-  __cil_tmp44 = (unsigned long )(& gsmi_dev) + 112;
-  __cil_tmp45 = *((struct dma_pool **)__cil_tmp44);
+  __cil_tmp45 = *((struct dma_pool **)((void *)(&gsmi_dev) + 112));
   __cil_tmp46 = (unsigned long )__cil_tmp45;
   if (__cil_tmp46 == __cil_tmp43) {
     goto out_err;
@@ -6178,14 +5703,12 @@ static int gsmi_init(void)
   }
   }
   {
-  __cil_tmp47 = (unsigned long )(& gsmi_dev) + 8;
-  *((struct gsmi_buf **)__cil_tmp47) = gsmi_buf_alloc();
+  *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8)) = gsmi_buf_alloc();
   }
   {
   __cil_tmp48 = (struct gsmi_buf *)0;
   __cil_tmp49 = (unsigned long )__cil_tmp48;
-  __cil_tmp50 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp51 = *((struct gsmi_buf **)__cil_tmp50);
+  __cil_tmp51 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
   __cil_tmp52 = (unsigned long )__cil_tmp51;
   if (__cil_tmp52 == __cil_tmp49) {
     {
@@ -6197,14 +5720,12 @@ static int gsmi_init(void)
   }
   }
   {
-  __cil_tmp53 = (unsigned long )(& gsmi_dev) + 16;
-  *((struct gsmi_buf **)__cil_tmp53) = gsmi_buf_alloc();
+  *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16)) = gsmi_buf_alloc();
   }
   {
   __cil_tmp54 = (struct gsmi_buf *)0;
   __cil_tmp55 = (unsigned long )__cil_tmp54;
-  __cil_tmp56 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp57 = *((struct gsmi_buf **)__cil_tmp56);
+  __cil_tmp57 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
   __cil_tmp58 = (unsigned long )__cil_tmp57;
   if (__cil_tmp58 == __cil_tmp55) {
     {
@@ -6216,14 +5737,12 @@ static int gsmi_init(void)
   }
   }
   {
-  __cil_tmp59 = (unsigned long )(& gsmi_dev) + 24;
-  *((struct gsmi_buf **)__cil_tmp59) = gsmi_buf_alloc();
+  *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24)) = gsmi_buf_alloc();
   }
   {
   __cil_tmp60 = (struct gsmi_buf *)0;
   __cil_tmp61 = (unsigned long )__cil_tmp60;
-  __cil_tmp62 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp63 = *((struct gsmi_buf **)__cil_tmp62);
+  __cil_tmp63 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
   __cil_tmp64 = (unsigned long )__cil_tmp63;
   if (__cil_tmp64 == __cil_tmp61) {
     {
@@ -6236,31 +5755,25 @@ static int gsmi_init(void)
   }
   {
   ldv_spin_lock();
-  __cil_tmp65 = (unsigned long )(& gsmi_dev) + 108;
-  *((int *)__cil_tmp65) = 125;
-  __cil_tmp66 = (unsigned long )(& gsmi_dev) + 108;
+  *((int *)((void *)(&gsmi_dev) + 108)) = 125;
   __cil_tmp67 = (u8 )239;
   __cil_tmp68 = (u8 )193;
-  *((int *)__cil_tmp66) = gsmi_exec(__cil_tmp67, __cil_tmp68);
+  *((int *)((void *)(&gsmi_dev) + 108)) = gsmi_exec(__cil_tmp67, __cil_tmp68);
   }
   {
-  __cil_tmp69 = (unsigned long )(& gsmi_dev) + 108;
-  __cil_tmp70 = *((int *)__cil_tmp69);
+  __cil_tmp70 = *((int *)((void *)(&gsmi_dev) + 108));
   if (__cil_tmp70 == -38) {
-    __cil_tmp71 = (unsigned long )(& gsmi_dev) + 108;
-    *((int *)__cil_tmp71) = 127;
+    *((int *)((void *)(&gsmi_dev) + 108)) = 127;
   } else {
 
   }
   }
   {
-  __cil_tmp72 = (unsigned long )(& gsmi_dev) + 32;
-  __cil_tmp73 = (spinlock_t *)__cil_tmp72;
+  __cil_tmp73 = (spinlock_t *)((void *)(&gsmi_dev) + 32);
   spin_unlock_irqrestore(__cil_tmp73, flags);
   }
   {
-  __cil_tmp74 = (unsigned long )(& gsmi_dev) + 108;
-  __cil_tmp75 = *((int *)__cil_tmp74);
+  __cil_tmp75 = *((int *)((void *)(&gsmi_dev) + 108));
   if (__cil_tmp75 == -6) {
     {
     printk("<6>gsmi version 1.0 failed to load\n");
@@ -6343,26 +5856,21 @@ static int gsmi_init(void)
   out_err: 
   {
   kobject_put(gsmi_kobj);
-  __cil_tmp83 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp84 = *((struct gsmi_buf **)__cil_tmp83);
+  __cil_tmp84 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
   gsmi_buf_free(__cil_tmp84);
-  __cil_tmp85 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp86 = *((struct gsmi_buf **)__cil_tmp85);
+  __cil_tmp86 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
   gsmi_buf_free(__cil_tmp86);
-  __cil_tmp87 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp88 = *((struct gsmi_buf **)__cil_tmp87);
+  __cil_tmp88 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
   gsmi_buf_free(__cil_tmp88);
   }
   {
   __cil_tmp89 = (struct dma_pool *)0;
   __cil_tmp90 = (unsigned long )__cil_tmp89;
-  __cil_tmp91 = (unsigned long )(& gsmi_dev) + 112;
-  __cil_tmp92 = *((struct dma_pool **)__cil_tmp91);
+  __cil_tmp92 = *((struct dma_pool **)((void *)(&gsmi_dev) + 112));
   __cil_tmp93 = (unsigned long )__cil_tmp92;
   if (__cil_tmp93 != __cil_tmp90) {
     {
-    __cil_tmp94 = (unsigned long )(& gsmi_dev) + 112;
-    __cil_tmp95 = *((struct dma_pool **)__cil_tmp94);
+    __cil_tmp95 = *((struct dma_pool **)((void *)(&gsmi_dev) + 112));
     dma_pool_destroy(__cil_tmp95);
     }
   } else {
@@ -6381,13 +5889,9 @@ static int gsmi_init(void)
 static void gsmi_exit(void) 
 { struct attribute  const  **__cil_tmp1 ;
   struct bin_attribute  const  *__cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
   struct gsmi_buf *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct gsmi_buf *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct gsmi_buf *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct dma_pool *__cil_tmp10 ;
   struct gsmi_device *__cil_tmp11 ;
   struct platform_device *__cil_tmp12 ;
@@ -6403,17 +5907,13 @@ static void gsmi_exit(void)
   __cil_tmp2 = (struct bin_attribute  const  *)(& eventlog_bin_attr);
   sysfs_remove_bin_file(gsmi_kobj, __cil_tmp2);
   kobject_put(gsmi_kobj);
-  __cil_tmp3 = (unsigned long )(& gsmi_dev) + 24;
-  __cil_tmp4 = *((struct gsmi_buf **)__cil_tmp3);
+  __cil_tmp4 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 24));
   gsmi_buf_free(__cil_tmp4);
-  __cil_tmp5 = (unsigned long )(& gsmi_dev) + 16;
-  __cil_tmp6 = *((struct gsmi_buf **)__cil_tmp5);
+  __cil_tmp6 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 16));
   gsmi_buf_free(__cil_tmp6);
-  __cil_tmp7 = (unsigned long )(& gsmi_dev) + 8;
-  __cil_tmp8 = *((struct gsmi_buf **)__cil_tmp7);
+  __cil_tmp8 = *((struct gsmi_buf **)((void *)(&gsmi_dev) + 8));
   gsmi_buf_free(__cil_tmp8);
-  __cil_tmp9 = (unsigned long )(& gsmi_dev) + 112;
-  __cil_tmp10 = *((struct dma_pool **)__cil_tmp9);
+  __cil_tmp10 = *((struct dma_pool **)((void *)(&gsmi_dev) + 112));
   dma_pool_destroy(__cil_tmp10);
   __cil_tmp11 = & gsmi_dev;
   __cil_tmp12 = *((struct platform_device **)__cil_tmp11);

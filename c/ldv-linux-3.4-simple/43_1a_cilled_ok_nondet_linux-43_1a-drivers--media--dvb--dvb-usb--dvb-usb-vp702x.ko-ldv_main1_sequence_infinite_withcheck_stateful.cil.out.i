@@ -5756,15 +5756,11 @@ extern void *dev_get_drvdata(struct device const * ) ;
 extern void msleep(unsigned int ) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -5829,11 +5825,7 @@ static int vp702x_usb_in_op_unlocked(struct dvb_usb_device *d , u8 req , u16 val
 { int ret ;
   unsigned int tmp ;
   int loop_ ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct usb_device *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct usb_device *__cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   int __cil_tmp17 ;
@@ -5865,13 +5857,9 @@ static int vp702x_usb_in_op_unlocked(struct dvb_usb_device *d , u8 req , u16 val
   int __cil_tmp43 ;
   {
   {
-  __cil_tmp10 = (unsigned long )d;
-  __cil_tmp11 = __cil_tmp10 + 3560;
-  __cil_tmp12 = *((struct usb_device **)__cil_tmp11);
+  __cil_tmp12 = *((struct usb_device **)((void *)d + 3560));
   tmp = __create_pipe(__cil_tmp12, 0U);
-  __cil_tmp13 = (unsigned long )d;
-  __cil_tmp14 = __cil_tmp13 + 3560;
-  __cil_tmp15 = *((struct usb_device **)__cil_tmp14);
+  __cil_tmp15 = *((struct usb_device **)((void *)d + 3560));
   __cil_tmp16 = tmp | 2147483776U;
   __cil_tmp17 = (int )req;
   __cil_tmp18 = (__u8 )__cil_tmp17;
@@ -5953,8 +5941,6 @@ static int vp702x_usb_in_op_unlocked(struct dvb_usb_device *d , u8 req , u16 val
 int vp702x_usb_in_op(struct dvb_usb_device *d , u8 req , u16 value , u16 index , u8 *b ,
                      int blen )
 { int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
   int __cil_tmp11 ;
   u8 __cil_tmp12 ;
@@ -5962,14 +5948,10 @@ int vp702x_usb_in_op(struct dvb_usb_device *d , u8 req , u16 value , u16 index ,
   u16 __cil_tmp14 ;
   int __cil_tmp15 ;
   u16 __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct mutex *__cil_tmp19 ;
   {
   {
-  __cil_tmp8 = (unsigned long )d;
-  __cil_tmp9 = __cil_tmp8 + 3576;
-  __cil_tmp10 = (struct mutex *)__cil_tmp9;
+  __cil_tmp10 = (struct mutex *)((void *)d + 3576);
   mutex_lock_nested(__cil_tmp10, 0U);
   __cil_tmp11 = (int )req;
   __cil_tmp12 = (u8 )__cil_tmp11;
@@ -5978,9 +5960,7 @@ int vp702x_usb_in_op(struct dvb_usb_device *d , u8 req , u16 value , u16 index ,
   __cil_tmp15 = (int )index;
   __cil_tmp16 = (u16 )__cil_tmp15;
   ret = vp702x_usb_in_op_unlocked(d, __cil_tmp12, __cil_tmp14, __cil_tmp16, b, blen);
-  __cil_tmp17 = (unsigned long )d;
-  __cil_tmp18 = __cil_tmp17 + 3576;
-  __cil_tmp19 = (struct mutex *)__cil_tmp18;
+  __cil_tmp19 = (struct mutex *)((void *)d + 3576);
   mutex_unlock(__cil_tmp19);
   }
   return (ret);
@@ -6007,11 +5987,7 @@ int vp702x_usb_out_op_unlocked(struct dvb_usb_device *d , u8 req , u16 value , u
   int *__cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct usb_device *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct usb_device *__cil_tmp31 ;
   unsigned int __cil_tmp32 ;
   int __cil_tmp33 ;
@@ -6079,13 +6055,9 @@ int vp702x_usb_out_op_unlocked(struct dvb_usb_device *d , u8 req , u16 value , u
   }
   }
   {
-  __cil_tmp26 = (unsigned long )d;
-  __cil_tmp27 = __cil_tmp26 + 3560;
-  __cil_tmp28 = *((struct usb_device **)__cil_tmp27);
+  __cil_tmp28 = *((struct usb_device **)((void *)d + 3560));
   tmp = __create_pipe(__cil_tmp28, 0U);
-  __cil_tmp29 = (unsigned long )d;
-  __cil_tmp30 = __cil_tmp29 + 3560;
-  __cil_tmp31 = *((struct usb_device **)__cil_tmp30);
+  __cil_tmp31 = *((struct usb_device **)((void *)d + 3560));
   __cil_tmp32 = tmp | 2147483648U;
   __cil_tmp33 = (int )req;
   __cil_tmp34 = (__u8 )__cil_tmp33;
@@ -6114,8 +6086,6 @@ int vp702x_usb_out_op_unlocked(struct dvb_usb_device *d , u8 req , u16 value , u
 int vp702x_usb_out_op(struct dvb_usb_device *d , u8 req , u16 value , u16 index ,
                       u8 *b , int blen )
 { int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
   int __cil_tmp11 ;
   u8 __cil_tmp12 ;
@@ -6123,14 +6093,10 @@ int vp702x_usb_out_op(struct dvb_usb_device *d , u8 req , u16 value , u16 index 
   u16 __cil_tmp14 ;
   int __cil_tmp15 ;
   u16 __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct mutex *__cil_tmp19 ;
   {
   {
-  __cil_tmp8 = (unsigned long )d;
-  __cil_tmp9 = __cil_tmp8 + 3576;
-  __cil_tmp10 = (struct mutex *)__cil_tmp9;
+  __cil_tmp10 = (struct mutex *)((void *)d + 3576);
   mutex_lock_nested(__cil_tmp10, 0U);
   __cil_tmp11 = (int )req;
   __cil_tmp12 = (u8 )__cil_tmp11;
@@ -6139,9 +6105,7 @@ int vp702x_usb_out_op(struct dvb_usb_device *d , u8 req , u16 value , u16 index 
   __cil_tmp15 = (int )index;
   __cil_tmp16 = (u16 )__cil_tmp15;
   ret = vp702x_usb_out_op_unlocked(d, __cil_tmp12, __cil_tmp14, __cil_tmp16, b, blen);
-  __cil_tmp17 = (unsigned long )d;
-  __cil_tmp18 = __cil_tmp17 + 3576;
-  __cil_tmp19 = (struct mutex *)__cil_tmp18;
+  __cil_tmp19 = (struct mutex *)((void *)d + 3576);
   mutex_unlock(__cil_tmp19);
   }
   return (ret);
@@ -6150,8 +6114,6 @@ int vp702x_usb_out_op(struct dvb_usb_device *d , u8 req , u16 value , u16 index 
 int vp702x_usb_inout_op(struct dvb_usb_device *d , u8 *o , int olen , u8 *i , int ilen ,
                         int msec )
 { int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
   u8 __cil_tmp11 ;
   u16 __cil_tmp12 ;
@@ -6160,14 +6122,10 @@ int vp702x_usb_inout_op(struct dvb_usb_device *d , u8 *o , int olen , u8 *i , in
   u8 __cil_tmp15 ;
   u16 __cil_tmp16 ;
   u16 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct mutex *__cil_tmp20 ;
   {
   {
-  __cil_tmp8 = (unsigned long )d;
-  __cil_tmp9 = __cil_tmp8 + 3576;
-  __cil_tmp10 = (struct mutex *)__cil_tmp9;
+  __cil_tmp10 = (struct mutex *)((void *)d + 3576);
   ret = mutex_lock_interruptible_nested(__cil_tmp10, 0U);
   }
   if (ret != 0) {
@@ -6185,9 +6143,7 @@ int vp702x_usb_inout_op(struct dvb_usb_device *d , u8 *o , int olen , u8 *i , in
   __cil_tmp16 = (u16 )0;
   __cil_tmp17 = (u16 )0;
   ret = vp702x_usb_in_op_unlocked(d, __cil_tmp15, __cil_tmp16, __cil_tmp17, i, ilen);
-  __cil_tmp18 = (unsigned long )d;
-  __cil_tmp19 = __cil_tmp18 + 3576;
-  __cil_tmp20 = (struct mutex *)__cil_tmp19;
+  __cil_tmp20 = (struct mutex *)((void *)d + 3576);
   mutex_unlock(__cil_tmp20);
   }
   return (ret);
@@ -6207,28 +6163,16 @@ static int vp702x_usb_inout_cmd(struct dvb_usb_device *d , u8 cmd , u8 *o , int 
   void *__ret ;
   size_t __len___0 ;
   void *__ret___0 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
   struct mutex *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int __cil_tmp26 ;
   size_t __cil_tmp27 ;
   u8 *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   struct mutex *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   u8 *__cil_tmp34 ;
   void const *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   u8 *__cil_tmp42 ;
   void *__cil_tmp43 ;
   void *__cil_tmp44 ;
@@ -6240,9 +6184,7 @@ static int vp702x_usb_inout_cmd(struct dvb_usb_device *d , u8 cmd , u8 *o , int 
   void const *__cil_tmp50 ;
   struct mutex *__cil_tmp51 ;
   {
-  __cil_tmp20 = (unsigned long )d;
-  __cil_tmp21 = __cil_tmp20 + 11520;
-  __cil_tmp22 = *((void **)__cil_tmp21);
+  __cil_tmp22 = *((void **)((void *)d + 11520));
   st = (struct vp702x_device_state *)__cil_tmp22;
   ret = 0;
   _max1 = olen + 2;
@@ -6262,9 +6204,7 @@ static int vp702x_usb_inout_cmd(struct dvb_usb_device *d , u8 cmd , u8 *o , int 
   } else {
   }
   {
-  __cil_tmp24 = (unsigned long )st;
-  __cil_tmp25 = __cil_tmp24 + 168;
-  __cil_tmp26 = *((int *)__cil_tmp25);
+  __cil_tmp26 = *((int *)((void *)st + 168));
   if (__cil_tmp26 < buflen) {
     {
     __cil_tmp27 = (size_t )buflen;
@@ -6286,22 +6226,14 @@ static int vp702x_usb_inout_cmd(struct dvb_usb_device *d , u8 cmd , u8 *o , int 
     }
     {
     printk("<6>vp702x: successfully reallocated a bigger buffer\n");
-    __cil_tmp32 = (unsigned long )st;
-    __cil_tmp33 = __cil_tmp32 + 176;
-    __cil_tmp34 = *((u8 **)__cil_tmp33);
+    __cil_tmp34 = *((u8 **)((void *)st + 176));
     __cil_tmp35 = (void const *)__cil_tmp34;
     kfree(__cil_tmp35);
-    __cil_tmp36 = (unsigned long )st;
-    __cil_tmp37 = __cil_tmp36 + 176;
-    *((u8 **)__cil_tmp37) = buf;
-    __cil_tmp38 = (unsigned long )st;
-    __cil_tmp39 = __cil_tmp38 + 168;
-    *((int *)__cil_tmp39) = buflen;
+    *((u8 **)((void *)st + 176)) = buf;
+    *((int *)((void *)st + 168)) = buflen;
     }
   } else {
-    __cil_tmp40 = (unsigned long )st;
-    __cil_tmp41 = __cil_tmp40 + 176;
-    buf = *((u8 **)__cil_tmp41);
+    buf = *((u8 **)((void *)st + 176));
   }
   }
   {
@@ -6339,12 +6271,8 @@ static int vp702x_set_pld_mode(struct dvb_usb_adapter *adap , u8 bypass )
   struct vp702x_device_state *st ;
   u8 *buf ;
   struct dvb_usb_device *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   struct dvb_usb_device *__cil_tmp14 ;
   u8 __cil_tmp15 ;
@@ -6361,15 +6289,11 @@ static int vp702x_set_pld_mode(struct dvb_usb_adapter *adap , u8 bypass )
   {
   {
   __cil_tmp6 = *((struct dvb_usb_device **)adap);
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 11520;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)__cil_tmp6 + 11520));
   st = (struct vp702x_device_state *)__cil_tmp9;
   __cil_tmp10 = (struct mutex *)st;
   mutex_lock_nested(__cil_tmp10, 0U);
-  __cil_tmp11 = (unsigned long )st;
-  __cil_tmp12 = __cil_tmp11 + 176;
-  buf = *((u8 **)__cil_tmp12);
+  buf = *((u8 **)((void *)st + 176));
   __cil_tmp13 = (void *)buf;
   memset(__cil_tmp13, 0, 16UL);
   __cil_tmp14 = *((struct dvb_usb_device **)adap);
@@ -6396,12 +6320,8 @@ static int vp702x_set_pld_state(struct dvb_usb_adapter *adap , u8 state )
   struct vp702x_device_state *st ;
   u8 *buf ;
   struct dvb_usb_device *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   struct dvb_usb_device *__cil_tmp14 ;
   u8 __cil_tmp15 ;
@@ -6418,15 +6338,11 @@ static int vp702x_set_pld_state(struct dvb_usb_adapter *adap , u8 state )
   {
   {
   __cil_tmp6 = *((struct dvb_usb_device **)adap);
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 11520;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)__cil_tmp6 + 11520));
   st = (struct vp702x_device_state *)__cil_tmp9;
   __cil_tmp10 = (struct mutex *)st;
   mutex_lock_nested(__cil_tmp10, 0U);
-  __cil_tmp11 = (unsigned long )st;
-  __cil_tmp12 = __cil_tmp11 + 176;
-  buf = *((u8 **)__cil_tmp12);
+  buf = *((u8 **)((void *)st + 176));
   __cil_tmp13 = (void *)buf;
   memset(__cil_tmp13, 0, 16UL);
   __cil_tmp14 = *((struct dvb_usb_device **)adap);
@@ -6452,34 +6368,22 @@ static int vp702x_set_pid(struct dvb_usb_adapter *adap , u16 pid , u8 id , int o
 { struct vp702x_adapter_state *st ;
   struct vp702x_device_state *dst ;
   u8 *buf ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   struct dvb_usb_device *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
   signed char __cil_tmp19 ;
   int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u8 __cil_tmp23 ;
   signed char __cil_tmp24 ;
   int __cil_tmp25 ;
   int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
   signed char __cil_tmp31 ;
   int __cil_tmp32 ;
   int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   u8 __cil_tmp36 ;
   signed char __cil_tmp37 ;
   int __cil_tmp38 ;
@@ -6489,14 +6393,10 @@ static int vp702x_set_pid(struct dvb_usb_adapter *adap , u16 pid , u8 id , int o
   u8 __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   u8 __cil_tmp47 ;
   int __cil_tmp48 ;
   u8 __cil_tmp49 ;
   struct mutex *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   void *__cil_tmp53 ;
   struct dvb_usb_device *__cil_tmp54 ;
   u8 __cil_tmp55 ;
@@ -6530,44 +6430,32 @@ static int vp702x_set_pid(struct dvb_usb_adapter *adap , u16 pid , u8 id , int o
   u16 __cil_tmp83 ;
   struct mutex *__cil_tmp84 ;
   {
-  __cil_tmp8 = (unsigned long )adap;
-  __cil_tmp9 = __cil_tmp8 + 2808;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)adap + 2808));
   st = (struct vp702x_adapter_state *)__cil_tmp10;
   __cil_tmp11 = *((struct dvb_usb_device **)adap);
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 11520;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  __cil_tmp14 = *((void **)((void *)__cil_tmp11 + 11520));
   dst = (struct vp702x_device_state *)__cil_tmp14;
   if (onoff != 0) {
-    __cil_tmp15 = (unsigned long )st;
-    __cil_tmp16 = __cil_tmp15 + 8;
     __cil_tmp17 = (int )id;
     __cil_tmp18 = 1 << __cil_tmp17;
     __cil_tmp19 = (signed char )__cil_tmp18;
     __cil_tmp20 = (int )__cil_tmp19;
-    __cil_tmp21 = (unsigned long )st;
-    __cil_tmp22 = __cil_tmp21 + 8;
-    __cil_tmp23 = *((u8 *)__cil_tmp22);
+    __cil_tmp23 = *((u8 *)((void *)st + 8));
     __cil_tmp24 = (signed char )__cil_tmp23;
     __cil_tmp25 = (int )__cil_tmp24;
     __cil_tmp26 = __cil_tmp25 | __cil_tmp20;
-    *((u8 *)__cil_tmp16) = (u8 )__cil_tmp26;
+    *((u8 *)((void *)st + 8)) = (u8 )__cil_tmp26;
   } else {
-    __cil_tmp27 = (unsigned long )st;
-    __cil_tmp28 = __cil_tmp27 + 8;
     __cil_tmp29 = (int )id;
     __cil_tmp30 = 1 << __cil_tmp29;
     __cil_tmp31 = (signed char )__cil_tmp30;
     __cil_tmp32 = (int )__cil_tmp31;
     __cil_tmp33 = ~ __cil_tmp32;
-    __cil_tmp34 = (unsigned long )st;
-    __cil_tmp35 = __cil_tmp34 + 8;
-    __cil_tmp36 = *((u8 *)__cil_tmp35);
+    __cil_tmp36 = *((u8 *)((void *)st + 8));
     __cil_tmp37 = (signed char )__cil_tmp36;
     __cil_tmp38 = (int )__cil_tmp37;
     __cil_tmp39 = __cil_tmp38 & __cil_tmp33;
-    *((u8 *)__cil_tmp28) = (u8 )__cil_tmp39;
+    *((u8 *)((void *)st + 8)) = (u8 )__cil_tmp39;
     pid = (u16 )65535U;
   }
   {
@@ -6577,17 +6465,13 @@ static int vp702x_set_pid(struct dvb_usb_adapter *adap , u16 pid , u8 id , int o
   __cil_tmp43 = (unsigned int )__cil_tmp42;
   __cil_tmp44 = __cil_tmp43 * 2U;
   id = (u8 )__cil_tmp44;
-  __cil_tmp45 = (unsigned long )st;
-  __cil_tmp46 = __cil_tmp45 + 8;
-  __cil_tmp47 = *((u8 *)__cil_tmp46);
+  __cil_tmp47 = *((u8 *)((void *)st + 8));
   __cil_tmp48 = (int )__cil_tmp47;
   __cil_tmp49 = (u8 )__cil_tmp48;
   vp702x_set_pld_state(adap, __cil_tmp49);
   __cil_tmp50 = (struct mutex *)dst;
   mutex_lock_nested(__cil_tmp50, 0U);
-  __cil_tmp51 = (unsigned long )dst;
-  __cil_tmp52 = __cil_tmp51 + 176;
-  buf = *((u8 **)__cil_tmp52);
+  buf = *((u8 **)((void *)dst + 176));
   __cil_tmp53 = (void *)buf;
   memset(__cil_tmp53, 0, 16UL);
   __cil_tmp54 = *((struct dvb_usb_device **)adap);
@@ -6633,17 +6517,9 @@ static int vp702x_init_pid_filter(struct dvb_usb_adapter *adap )
   struct vp702x_device_state *dst ;
   int i ;
   u8 *b ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   struct dvb_usb_device *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u8 __cil_tmp17 ;
   u16 __cil_tmp18 ;
   u8 __cil_tmp19 ;
@@ -6651,8 +6527,6 @@ static int vp702x_init_pid_filter(struct dvb_usb_adapter *adap )
   u8 __cil_tmp21 ;
   int __cil_tmp22 ;
   struct mutex *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   void *__cil_tmp26 ;
   struct dvb_usb_device *__cil_tmp27 ;
   u8 __cil_tmp28 ;
@@ -6669,22 +6543,14 @@ static int vp702x_init_pid_filter(struct dvb_usb_adapter *adap )
   struct mutex *__cil_tmp39 ;
   {
   {
-  __cil_tmp6 = (unsigned long )adap;
-  __cil_tmp7 = __cil_tmp6 + 2808;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)adap + 2808));
   st = (struct vp702x_adapter_state *)__cil_tmp8;
   __cil_tmp9 = *((struct dvb_usb_device **)adap);
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 11520;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)__cil_tmp9 + 11520));
   dst = (struct vp702x_device_state *)__cil_tmp12;
   *((int *)st) = 8;
-  __cil_tmp13 = (unsigned long )st;
-  __cil_tmp14 = __cil_tmp13 + 4;
-  *((int *)__cil_tmp14) = 1;
-  __cil_tmp15 = (unsigned long )st;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  *((u8 *)__cil_tmp16) = (u8 )0U;
+  *((int *)((void *)st + 4)) = 1;
+  *((u8 *)((void *)st + 8)) = (u8 )0U;
   __cil_tmp17 = (u8 )1;
   vp702x_set_pld_mode(adap, __cil_tmp17);
   i = 0;
@@ -6712,9 +6578,7 @@ static int vp702x_init_pid_filter(struct dvb_usb_adapter *adap )
   {
   __cil_tmp23 = (struct mutex *)dst;
   mutex_lock_nested(__cil_tmp23, 0U);
-  __cil_tmp24 = (unsigned long )dst;
-  __cil_tmp25 = __cil_tmp24 + 176;
-  b = *((u8 **)__cil_tmp25);
+  b = *((u8 **)((void *)dst + 176));
   __cil_tmp26 = (void *)b;
   memset(__cil_tmp26, 0, 10UL);
   __cil_tmp27 = *((struct dvb_usb_device **)adap);
@@ -6882,18 +6746,12 @@ static int vp702x_read_mac_addr(struct dvb_usb_device *d , u8 *mac )
   struct vp702x_device_state *st ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   struct mutex *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   u8 __cil_tmp14 ;
   int __cil_tmp15 ;
   u16 __cil_tmp16 ;
   u16 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u8 *__cil_tmp20 ;
   int __cil_tmp21 ;
   int __cil_tmp22 ;
@@ -6905,15 +6763,11 @@ static int vp702x_read_mac_addr(struct dvb_usb_device *d , u8 *mac )
   struct mutex *__cil_tmp28 ;
   {
   {
-  __cil_tmp8 = (unsigned long )d;
-  __cil_tmp9 = __cil_tmp8 + 11520;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)d + 11520));
   st = (struct vp702x_device_state *)__cil_tmp10;
   __cil_tmp11 = (struct mutex *)st;
   mutex_lock_nested(__cil_tmp11, 0U);
-  __cil_tmp12 = (unsigned long )st;
-  __cil_tmp13 = __cil_tmp12 + 176;
-  buf = *((u8 **)__cil_tmp13);
+  buf = *((u8 **)((void *)st + 176));
   i = (u8 )6U;
   }
   goto ldv_38931;
@@ -6923,9 +6777,7 @@ static int vp702x_read_mac_addr(struct dvb_usb_device *d , u8 *mac )
   __cil_tmp15 = (int )i;
   __cil_tmp16 = (u16 )__cil_tmp15;
   __cil_tmp17 = (u16 )1;
-  __cil_tmp18 = (unsigned long )i;
-  __cil_tmp19 = __cil_tmp18 + 0xfffffffffffffffaUL;
-  __cil_tmp20 = buf + __cil_tmp19;
+  __cil_tmp20 = buf + ((void *)i + 0xfffffffffffffffaUL);
   vp702x_usb_in_op(d, __cil_tmp14, __cil_tmp16, __cil_tmp17, __cil_tmp20, 1);
   __cil_tmp21 = (int )i;
   __cil_tmp22 = __cil_tmp21 + 1;
@@ -7000,8 +6852,6 @@ static int vp702x_frontend_attach(struct dvb_usb_adapter *adap )
   u8 *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct dvb_usb_device *__cil_tmp41 ;
   struct dvb_usb_device *__cil_tmp42 ;
   u8 __cil_tmp43 ;
@@ -7068,10 +6918,8 @@ static int vp702x_frontend_attach(struct dvb_usb_adapter *adap )
   vp702x_init_pid_filter(adap);
   __cil_tmp37 = 0 * 360UL;
   __cil_tmp38 = 2080 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )adap;
-  __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
   __cil_tmp41 = *((struct dvb_usb_device **)adap);
-  *((struct dvb_frontend **)__cil_tmp40) = vp702x_fe_attach(__cil_tmp41);
+  *((struct dvb_frontend **)((void *)adap + __cil_tmp38)) = vp702x_fe_attach(__cil_tmp41);
   __cil_tmp42 = *((struct dvb_usb_device **)adap);
   __cil_tmp43 = (u8 )188;
   __cil_tmp44 = (u16 )1;
@@ -7093,21 +6941,11 @@ static int vp702x_usb_probe(struct usb_interface *intf , struct usb_device_id co
   short *__cil_tmp8 ;
   struct dvb_usb_device **__cil_tmp9 ;
   struct dvb_usb_device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
   size_t __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u8 *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   u8 *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   struct mutex *__cil_tmp28 ;
@@ -7123,28 +6961,18 @@ static int vp702x_usb_probe(struct usb_interface *intf , struct usb_device_id co
   {
   __cil_tmp9 = & d;
   __cil_tmp10 = *__cil_tmp9;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 11520;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)__cil_tmp10 + 11520));
   st = (struct vp702x_device_state *)__cil_tmp13;
-  __cil_tmp14 = (unsigned long )st;
-  __cil_tmp15 = __cil_tmp14 + 168;
-  *((int *)__cil_tmp15) = 16;
-  __cil_tmp16 = (unsigned long )st;
-  __cil_tmp17 = __cil_tmp16 + 168;
-  __cil_tmp18 = *((int *)__cil_tmp17);
+  *((int *)((void *)st + 168)) = 16;
+  __cil_tmp18 = *((int *)((void *)st + 168));
   __cil_tmp19 = (size_t )__cil_tmp18;
   tmp = kmalloc(__cil_tmp19, 208U);
-  __cil_tmp20 = (unsigned long )st;
-  __cil_tmp21 = __cil_tmp20 + 176;
-  *((u8 **)__cil_tmp21) = (u8 *)tmp;
+  *((u8 **)((void *)st + 176)) = (u8 *)tmp;
   }
   {
   __cil_tmp22 = (u8 *)0;
   __cil_tmp23 = (unsigned long )__cil_tmp22;
-  __cil_tmp24 = (unsigned long )st;
-  __cil_tmp25 = __cil_tmp24 + 176;
-  __cil_tmp26 = *((u8 **)__cil_tmp25);
+  __cil_tmp26 = *((u8 **)((void *)st + 176));
   __cil_tmp27 = (unsigned long )__cil_tmp26;
   if (__cil_tmp27 == __cil_tmp23) {
     {
@@ -7167,12 +6995,8 @@ static void vp702x_usb_disconnect(struct usb_interface *intf )
 { struct dvb_usb_device *d ;
   void *tmp ;
   struct vp702x_device_state *st ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   struct mutex *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u8 *__cil_tmp11 ;
   void const *__cil_tmp12 ;
   struct mutex *__cil_tmp13 ;
@@ -7180,15 +7004,11 @@ static void vp702x_usb_disconnect(struct usb_interface *intf )
   {
   tmp = usb_get_intfdata(intf);
   d = (struct dvb_usb_device *)tmp;
-  __cil_tmp5 = (unsigned long )d;
-  __cil_tmp6 = __cil_tmp5 + 11520;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)d + 11520));
   st = (struct vp702x_device_state *)__cil_tmp7;
   __cil_tmp8 = (struct mutex *)st;
   mutex_lock_nested(__cil_tmp8, 0U);
-  __cil_tmp9 = (unsigned long )st;
-  __cil_tmp10 = __cil_tmp9 + 176;
-  __cil_tmp11 = *((u8 **)__cil_tmp10);
+  __cil_tmp11 = *((u8 **)((void *)st + 176));
   __cil_tmp12 = (void const *)__cil_tmp11;
   kfree(__cil_tmp12);
   __cil_tmp13 = (struct mutex *)st;
@@ -7883,119 +7703,71 @@ __inline static void *kzalloc(size_t size , gfp_t flags ) ;
 static int vp702x_fe_refresh_state(struct vp702x_fe_state *st )
 { struct vp702x_device_state *dst ;
   u8 *buf ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct dvb_usb_device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   long __cil_tmp18 ;
   long __cil_tmp19 ;
   struct mutex *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct dvb_usb_device *__cil_tmp25 ;
   u8 __cil_tmp26 ;
   u16 __cil_tmp27 ;
   u16 __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   u8 *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct dvb_usb_device *__cil_tmp34 ;
   u8 __cil_tmp35 ;
   u16 __cil_tmp36 ;
   u16 __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct dvb_usb_device *__cil_tmp42 ;
   u8 __cil_tmp43 ;
   u16 __cil_tmp44 ;
   u16 __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct mutex *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   {
-  __cil_tmp8 = (unsigned long )st;
-  __cil_tmp9 = __cil_tmp8 + 960;
-  __cil_tmp10 = *((struct dvb_usb_device **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 11520;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp10 = *((struct dvb_usb_device **)((void *)st + 960));
+  __cil_tmp13 = *((void **)((void *)__cil_tmp10 + 11520));
   dst = (struct vp702x_device_state *)__cil_tmp13;
   {
   __cil_tmp14 = (long )jiffies;
-  __cil_tmp15 = (unsigned long )st;
-  __cil_tmp16 = __cil_tmp15 + 1744;
-  __cil_tmp17 = *((unsigned long *)__cil_tmp16);
+  __cil_tmp17 = *((unsigned long *)((void *)st + 1744));
   __cil_tmp18 = (long )__cil_tmp17;
   __cil_tmp19 = __cil_tmp18 - __cil_tmp14;
   if (__cil_tmp19 < 0L) {
     {
     __cil_tmp20 = (struct mutex *)dst;
     mutex_lock_nested(__cil_tmp20, 0U);
-    __cil_tmp21 = (unsigned long )dst;
-    __cil_tmp22 = __cil_tmp21 + 176;
-    buf = *((u8 **)__cil_tmp22);
-    __cil_tmp23 = (unsigned long )st;
-    __cil_tmp24 = __cil_tmp23 + 960;
-    __cil_tmp25 = *((struct dvb_usb_device **)__cil_tmp24);
+    buf = *((u8 **)((void *)dst + 176));
+    __cil_tmp25 = *((struct dvb_usb_device **)((void *)st + 960));
     __cil_tmp26 = (u8 )184;
     __cil_tmp27 = (u16 )0;
     __cil_tmp28 = (u16 )0;
     vp702x_usb_in_op(__cil_tmp25, __cil_tmp26, __cil_tmp27, __cil_tmp28, buf, 10);
-    __cil_tmp29 = (unsigned long )st;
-    __cil_tmp30 = __cil_tmp29 + 1736;
     __cil_tmp31 = buf + 4UL;
-    *((u8 *)__cil_tmp30) = *__cil_tmp31;
-    __cil_tmp32 = (unsigned long )st;
-    __cil_tmp33 = __cil_tmp32 + 960;
-    __cil_tmp34 = *((struct dvb_usb_device **)__cil_tmp33);
+    *((u8 *)((void *)st + 1736)) = *__cil_tmp31;
+    __cil_tmp34 = *((struct dvb_usb_device **)((void *)st + 960));
     __cil_tmp35 = (u8 )185;
     __cil_tmp36 = (u16 )17;
     __cil_tmp37 = (u16 )0;
     vp702x_usb_in_op(__cil_tmp34, __cil_tmp35, __cil_tmp36, __cil_tmp37, buf, 1);
-    __cil_tmp38 = (unsigned long )st;
-    __cil_tmp39 = __cil_tmp38 + 1738;
-    *((u8 *)__cil_tmp39) = *buf;
-    __cil_tmp40 = (unsigned long )st;
-    __cil_tmp41 = __cil_tmp40 + 960;
-    __cil_tmp42 = *((struct dvb_usb_device **)__cil_tmp41);
+    *((u8 *)((void *)st + 1738)) = *buf;
+    __cil_tmp42 = *((struct dvb_usb_device **)((void *)st + 960));
     __cil_tmp43 = (u8 )185;
     __cil_tmp44 = (u16 )21;
     __cil_tmp45 = (u16 )0;
     vp702x_usb_in_op(__cil_tmp42, __cil_tmp43, __cil_tmp44, __cil_tmp45, buf, 1);
-    __cil_tmp46 = (unsigned long )st;
-    __cil_tmp47 = __cil_tmp46 + 1737;
-    *((u8 *)__cil_tmp47) = *buf;
+    *((u8 *)((void *)st + 1737)) = *buf;
     __cil_tmp48 = (struct mutex *)dst;
     mutex_unlock(__cil_tmp48);
-    __cil_tmp49 = (unsigned long )st;
-    __cil_tmp50 = __cil_tmp49 + 1744;
     __cil_tmp51 = (unsigned long )jiffies;
-    __cil_tmp52 = (unsigned long )st;
-    __cil_tmp53 = __cil_tmp52 + 1752;
-    __cil_tmp54 = *((unsigned long *)__cil_tmp53);
+    __cil_tmp54 = *((unsigned long *)((void *)st + 1752));
     __cil_tmp55 = __cil_tmp54 * 250UL;
     __cil_tmp56 = __cil_tmp55 / 1000UL;
-    *((unsigned long *)__cil_tmp50) = __cil_tmp56 + __cil_tmp51;
+    *((unsigned long *)((void *)st + 1744)) = __cil_tmp56 + __cil_tmp51;
     }
   } else {
   }
@@ -8047,28 +7819,18 @@ static u8 vp702x_chksum(u8 *buf , int f , int count )
 }
 static int vp702x_fe_read_status(struct dvb_frontend *fe , fe_status_t *status )
 { struct vp702x_fe_state *st ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   int *__cil_tmp7 ;
   int __cil_tmp8 ;
   int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u8 __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   fe_status_t __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   {
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 760;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp6;
   vp702x_fe_refresh_state(st);
   }
@@ -8084,9 +7846,7 @@ static int vp702x_fe_read_status(struct dvb_frontend *fe , fe_status_t *status )
   }
   }
   {
-  __cil_tmp10 = (unsigned long )st;
-  __cil_tmp11 = __cil_tmp10 + 1736;
-  __cil_tmp12 = *((u8 *)__cil_tmp11);
+  __cil_tmp12 = *((u8 *)((void *)st + 1736));
   __cil_tmp13 = (unsigned int )__cil_tmp12;
   if (__cil_tmp13 == 0U) {
     *status = (fe_status_t )31;
@@ -8099,13 +7859,9 @@ static int vp702x_fe_read_status(struct dvb_frontend *fe , fe_status_t *status )
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = __cil_tmp15 & 16U;
   if (__cil_tmp16 != 0U) {
-    __cil_tmp17 = (unsigned long )st;
-    __cil_tmp18 = __cil_tmp17 + 1752;
-    *((unsigned long *)__cil_tmp18) = 1000UL;
+    *((unsigned long *)((void *)st + 1752)) = 1000UL;
   } else {
-    __cil_tmp19 = (unsigned long )st;
-    __cil_tmp20 = __cil_tmp19 + 1752;
-    *((unsigned long *)__cil_tmp20) = 250UL;
+    *((unsigned long *)((void *)st + 1752)) = 250UL;
   }
   }
   return (0);
@@ -8113,14 +7869,10 @@ static int vp702x_fe_read_status(struct dvb_frontend *fe , fe_status_t *status )
 }
 static int vp702x_fe_read_ber(struct dvb_frontend *fe , u32 *ber )
 { struct vp702x_fe_state *st ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   {
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 760;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp6;
   vp702x_fe_refresh_state(st);
   *ber = 0U;
@@ -8130,14 +7882,10 @@ static int vp702x_fe_read_ber(struct dvb_frontend *fe , u32 *ber )
 }
 static int vp702x_fe_read_unc_blocks(struct dvb_frontend *fe , u32 *unc )
 { struct vp702x_fe_state *st ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   {
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 760;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp6;
   vp702x_fe_refresh_state(st);
   *unc = 0U;
@@ -8147,16 +7895,10 @@ static int vp702x_fe_read_unc_blocks(struct dvb_frontend *fe , u32 *unc )
 }
 static int vp702x_fe_read_signal_strength(struct dvb_frontend *fe , u16 *strength )
 { struct vp702x_fe_state *st ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   u8 __cil_tmp9 ;
   short __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   u8 __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -8165,19 +7907,13 @@ static int vp702x_fe_read_signal_strength(struct dvb_frontend *fe , u16 *strengt
   int __cil_tmp19 ;
   {
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 760;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp6;
   vp702x_fe_refresh_state(st);
-  __cil_tmp7 = (unsigned long )st;
-  __cil_tmp8 = __cil_tmp7 + 1737;
-  __cil_tmp9 = *((u8 *)__cil_tmp8);
+  __cil_tmp9 = *((u8 *)((void *)st + 1737));
   __cil_tmp10 = (short )__cil_tmp9;
   __cil_tmp11 = (int )__cil_tmp10;
-  __cil_tmp12 = (unsigned long )st;
-  __cil_tmp13 = __cil_tmp12 + 1737;
-  __cil_tmp14 = *((u8 *)__cil_tmp13);
+  __cil_tmp14 = *((u8 *)((void *)st + 1737));
   __cil_tmp15 = (int )__cil_tmp14;
   __cil_tmp16 = __cil_tmp15 << 8;
   __cil_tmp17 = (short )__cil_tmp16;
@@ -8191,11 +7927,7 @@ static int vp702x_fe_read_signal_strength(struct dvb_frontend *fe , u16 *strengt
 static int vp702x_fe_read_snr(struct dvb_frontend *fe , u16 *snr )
 { u8 _snr ;
   struct vp702x_fe_state *st ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u8 __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
@@ -8210,14 +7942,10 @@ static int vp702x_fe_read_snr(struct dvb_frontend *fe , u16 *snr )
   int __cil_tmp21 ;
   {
   {
-  __cil_tmp5 = (unsigned long )fe;
-  __cil_tmp6 = __cil_tmp5 + 760;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp7;
   vp702x_fe_refresh_state(st);
-  __cil_tmp8 = (unsigned long )st;
-  __cil_tmp9 = __cil_tmp8 + 1738;
-  __cil_tmp10 = *((u8 *)__cil_tmp9);
+  __cil_tmp10 = *((u8 *)((void *)st + 1738));
   __cil_tmp11 = (int )__cil_tmp10;
   __cil_tmp12 = __cil_tmp11 & 31;
   __cil_tmp13 = __cil_tmp12 * 255;
@@ -8264,23 +7992,11 @@ static int vp702x_fe_set_frontend(struct dvb_frontend *fe )
   u8 *cmd ;
   uint32_t __base ;
   uint32_t __rem ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct dvb_usb_device *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u32 __cil_tmp23 ;
   struct mutex *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   void *__cil_tmp27 ;
   u32 __cil_tmp28 ;
   u8 __cil_tmp29 ;
@@ -8288,8 +8004,6 @@ static int vp702x_fe_set_frontend(struct dvb_frontend *fe )
   unsigned int __cil_tmp31 ;
   u8 *__cil_tmp32 ;
   u8 *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   u32 __cil_tmp36 ;
   u32 __cil_tmp37 ;
   unsigned long long __cil_tmp38 ;
@@ -8307,16 +8021,10 @@ static int vp702x_fe_set_frontend(struct dvb_frontend *fe )
   int *__cil_tmp50 ;
   int __cil_tmp51 ;
   int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   u32 __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   u32 __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   fe_sec_voltage_t __cil_tmp63 ;
   unsigned int __cil_tmp64 ;
   u8 *__cil_tmp65 ;
@@ -8325,12 +8033,6 @@ static int vp702x_fe_set_frontend(struct dvb_frontend *fe )
   unsigned int __cil_tmp68 ;
   unsigned int __cil_tmp69 ;
   u8 *__cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   struct dvb_usb_device *__cil_tmp77 ;
   u8 *__cil_tmp78 ;
   u8 __cil_tmp79 ;
@@ -8347,29 +8049,17 @@ static int vp702x_fe_set_frontend(struct dvb_frontend *fe )
   struct mutex *__cil_tmp90 ;
   {
   {
-  __cil_tmp10 = (unsigned long )fe;
-  __cil_tmp11 = __cil_tmp10 + 800;
-  fep = (struct dtv_frontend_properties *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )fe;
-  __cil_tmp13 = __cil_tmp12 + 760;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  fep = (struct dtv_frontend_properties *)((void *)fe + 800);
+  __cil_tmp14 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp14;
-  __cil_tmp15 = (unsigned long )st;
-  __cil_tmp16 = __cil_tmp15 + 960;
-  __cil_tmp17 = *((struct dvb_usb_device **)__cil_tmp16);
-  __cil_tmp18 = (unsigned long )__cil_tmp17;
-  __cil_tmp19 = __cil_tmp18 + 11520;
-  __cil_tmp20 = *((void **)__cil_tmp19);
+  __cil_tmp17 = *((struct dvb_usb_device **)((void *)st + 960));
+  __cil_tmp20 = *((void **)((void *)__cil_tmp17 + 11520));
   dst = (struct vp702x_device_state *)__cil_tmp20;
-  __cil_tmp21 = (unsigned long )fep;
-  __cil_tmp22 = __cil_tmp21 + 4;
-  __cil_tmp23 = *((u32 *)__cil_tmp22);
+  __cil_tmp23 = *((u32 *)((void *)fep + 4));
   freq = __cil_tmp23 / 1000U;
   __cil_tmp24 = (struct mutex *)dst;
   mutex_lock_nested(__cil_tmp24, 0U);
-  __cil_tmp25 = (unsigned long )dst;
-  __cil_tmp26 = __cil_tmp25 + 176;
-  cmd = *((u8 **)__cil_tmp26);
+  cmd = *((u8 **)((void *)dst + 176));
   __cil_tmp27 = (void *)cmd;
   memset(__cil_tmp27, 0, 10UL);
   __cil_tmp28 = freq >> 8;
@@ -8381,9 +8071,7 @@ static int vp702x_fe_set_frontend(struct dvb_frontend *fe )
   *__cil_tmp32 = (u8 )freq;
   __cil_tmp33 = cmd + 2UL;
   *__cil_tmp33 = (u8 )1U;
-  __cil_tmp34 = (unsigned long )fep;
-  __cil_tmp35 = __cil_tmp34 + 44;
-  __cil_tmp36 = *((u32 *)__cil_tmp35);
+  __cil_tmp36 = *((u32 *)((void *)fep + 44));
   __cil_tmp37 = __cil_tmp36 / 1000U;
   __cil_tmp38 = (unsigned long long )__cil_tmp37;
   sr = __cil_tmp38 << 20;
@@ -8411,12 +8099,8 @@ static int vp702x_fe_set_frontend(struct dvb_frontend *fe )
   __cil_tmp52 = __cil_tmp51 & 8;
   if (__cil_tmp52 != 0) {
     {
-    __cil_tmp53 = (unsigned long )fep;
-    __cil_tmp54 = __cil_tmp53 + 4;
-    __cil_tmp55 = *((u32 *)__cil_tmp54);
-    __cil_tmp56 = (unsigned long )fep;
-    __cil_tmp57 = __cil_tmp56 + 44;
-    __cil_tmp58 = *((u32 *)__cil_tmp57);
+    __cil_tmp55 = *((u32 *)((void *)fep + 4));
+    __cil_tmp58 = *((u32 *)((void *)fep + 44));
     __cil_tmp59 = (unsigned long )sr;
     __cil_tmp60 = (unsigned long )sr;
     printk("setting frontend to: %u -> %u (%x) LNB-based GHz, symbolrate: %d -> %lu (%lx)\n",
@@ -8426,9 +8110,7 @@ static int vp702x_fe_set_frontend(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp61 = (unsigned long )st;
-  __cil_tmp62 = __cil_tmp61 + 1720;
-  __cil_tmp63 = *((fe_sec_voltage_t *)__cil_tmp62);
+  __cil_tmp63 = *((fe_sec_voltage_t *)((void *)st + 1720));
   __cil_tmp64 = (unsigned int )__cil_tmp63;
   if (__cil_tmp64 == 1U) {
     __cil_tmp65 = cmd + 6UL;
@@ -8443,15 +8125,9 @@ static int vp702x_fe_set_frontend(struct dvb_frontend *fe )
   {
   __cil_tmp70 = cmd + 7UL;
   *__cil_tmp70 = vp702x_chksum(cmd, 0, 7);
-  __cil_tmp71 = (unsigned long )st;
-  __cil_tmp72 = __cil_tmp71 + 1752;
-  *((unsigned long *)__cil_tmp72) = 250UL;
-  __cil_tmp73 = (unsigned long )st;
-  __cil_tmp74 = __cil_tmp73 + 1744;
-  *((unsigned long *)__cil_tmp74) = (unsigned long )jiffies;
-  __cil_tmp75 = (unsigned long )st;
-  __cil_tmp76 = __cil_tmp75 + 960;
-  __cil_tmp77 = *((struct dvb_usb_device **)__cil_tmp76);
+  *((unsigned long *)((void *)st + 1752)) = 250UL;
+  *((unsigned long *)((void *)st + 1744)) = (unsigned long )jiffies;
+  __cil_tmp77 = *((struct dvb_usb_device **)((void *)st + 960));
   vp702x_usb_inout_op(__cil_tmp77, cmd, 8, cmd, 10, 100);
   }
   {
@@ -8501,23 +8177,17 @@ static int vp702x_fe_set_frontend(struct dvb_frontend *fe )
 }
 static int vp702x_fe_init(struct dvb_frontend *fe )
 { struct vp702x_fe_state *st ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   int *__cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct dvb_usb_device *__cil_tmp11 ;
   u8 __cil_tmp12 ;
   u16 __cil_tmp13 ;
   u16 __cil_tmp14 ;
   u8 *__cil_tmp15 ;
   {
-  __cil_tmp3 = (unsigned long )fe;
-  __cil_tmp4 = __cil_tmp3 + 760;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp5;
   {
   __cil_tmp6 = & dvb_usb_vp702x_debug;
@@ -8531,9 +8201,7 @@ static int vp702x_fe_init(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp9 = (unsigned long )st;
-  __cil_tmp10 = __cil_tmp9 + 960;
-  __cil_tmp11 = *((struct dvb_usb_device **)__cil_tmp10);
+  __cil_tmp11 = *((struct dvb_usb_device **)((void *)st + 960));
   __cil_tmp12 = (u8 )190;
   __cil_tmp13 = (u16 )0;
   __cil_tmp14 = (u16 )0;
@@ -8569,39 +8237,23 @@ static int vp702x_fe_send_diseqc_msg(struct dvb_frontend *fe , struct dvb_diseqc
   struct vp702x_device_state *dst ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct dvb_usb_device *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   int *__cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   __u8 __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   struct mutex *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u8 *__cil_tmp27 ;
   u8 *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   __u8 __cil_tmp33 ;
   void *__cil_tmp34 ;
   void *__cil_tmp35 ;
   __u8 (*__cil_tmp36)[6U] ;
   void const *__cil_tmp37 ;
   u8 *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct dvb_usb_device *__cil_tmp41 ;
   u8 *__cil_tmp42 ;
   u8 __cil_tmp43 ;
@@ -8617,16 +8269,10 @@ static int vp702x_fe_send_diseqc_msg(struct dvb_frontend *fe , struct dvb_diseqc
   int __cil_tmp53 ;
   struct mutex *__cil_tmp54 ;
   {
-  __cil_tmp8 = (unsigned long )fe;
-  __cil_tmp9 = __cil_tmp8 + 760;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp10;
-  __cil_tmp11 = (unsigned long )st;
-  __cil_tmp12 = __cil_tmp11 + 960;
-  __cil_tmp13 = *((struct dvb_usb_device **)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 11520;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp13 = *((struct dvb_usb_device **)((void *)st + 960));
+  __cil_tmp16 = *((void **)((void *)__cil_tmp13 + 11520));
   dst = (struct vp702x_device_state *)__cil_tmp16;
   {
   __cil_tmp17 = & dvb_usb_vp702x_debug;
@@ -8640,9 +8286,7 @@ static int vp702x_fe_send_diseqc_msg(struct dvb_frontend *fe , struct dvb_diseqc
   }
   }
   {
-  __cil_tmp20 = (unsigned long )m;
-  __cil_tmp21 = __cil_tmp20 + 6;
-  __cil_tmp22 = *((__u8 *)__cil_tmp21);
+  __cil_tmp22 = *((__u8 *)((void *)m + 6));
   __cil_tmp23 = (unsigned int )__cil_tmp22;
   if (__cil_tmp23 > 4U) {
     return (-22);
@@ -8652,18 +8296,12 @@ static int vp702x_fe_send_diseqc_msg(struct dvb_frontend *fe , struct dvb_diseqc
   {
   __cil_tmp24 = (struct mutex *)dst;
   mutex_lock_nested(__cil_tmp24, 0U);
-  __cil_tmp25 = (unsigned long )dst;
-  __cil_tmp26 = __cil_tmp25 + 176;
-  cmd = *((u8 **)__cil_tmp26);
+  cmd = *((u8 **)((void *)dst + 176));
   __cil_tmp27 = cmd + 1UL;
   *__cil_tmp27 = (u8 )8U;
   __cil_tmp28 = cmd + 2UL;
-  __cil_tmp29 = (unsigned long )m;
-  __cil_tmp30 = __cil_tmp29 + 6;
-  *__cil_tmp28 = *((__u8 *)__cil_tmp30);
-  __cil_tmp31 = (unsigned long )m;
-  __cil_tmp32 = __cil_tmp31 + 6;
-  __cil_tmp33 = *((__u8 *)__cil_tmp32);
+  *__cil_tmp28 = *((__u8 *)((void *)m + 6));
+  __cil_tmp33 = *((__u8 *)((void *)m + 6));
   __len = (size_t )__cil_tmp33;
   __cil_tmp34 = (void *)cmd;
   __cil_tmp35 = __cil_tmp34 + 3U;
@@ -8672,9 +8310,7 @@ static int vp702x_fe_send_diseqc_msg(struct dvb_frontend *fe , struct dvb_diseqc
   __ret = memmove(__cil_tmp35, __cil_tmp37, __len);
   __cil_tmp38 = cmd + 7UL;
   *__cil_tmp38 = vp702x_chksum(cmd, 0, 7);
-  __cil_tmp39 = (unsigned long )st;
-  __cil_tmp40 = __cil_tmp39 + 960;
-  __cil_tmp41 = *((struct dvb_usb_device **)__cil_tmp40);
+  __cil_tmp41 = *((struct dvb_usb_device **)((void *)st + 960));
   vp702x_usb_inout_op(__cil_tmp41, cmd, 8, cmd, 10, 100);
   }
   {
@@ -8747,52 +8383,28 @@ static int vp702x_fe_set_tone(struct dvb_frontend *fe , fe_sec_tone_mode_t tone 
   u8 *buf ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct dvb_usb_device *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   int *__cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   u8 (*__cil_tmp37)[8U] ;
   u8 *__cil_tmp38 ;
   struct mutex *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   void *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   u8 (*__cil_tmp45)[8U] ;
   void const *__cil_tmp46 ;
   void *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   u8 (*__cil_tmp50)[8U] ;
   void const *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct dvb_usb_device *__cil_tmp54 ;
   u8 *__cil_tmp55 ;
   u8 __cil_tmp56 ;
@@ -8808,16 +8420,10 @@ static int vp702x_fe_set_tone(struct dvb_frontend *fe , fe_sec_tone_mode_t tone 
   int __cil_tmp66 ;
   struct mutex *__cil_tmp67 ;
   {
-  __cil_tmp8 = (unsigned long )fe;
-  __cil_tmp9 = __cil_tmp8 + 760;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp10;
-  __cil_tmp11 = (unsigned long )st;
-  __cil_tmp12 = __cil_tmp11 + 960;
-  __cil_tmp13 = *((struct dvb_usb_device **)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 11520;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp13 = *((struct dvb_usb_device **)((void *)st + 960));
+  __cil_tmp16 = *((void **)((void *)__cil_tmp13 + 11520));
   dst = (struct vp702x_device_state *)__cil_tmp16;
   {
   __cil_tmp17 = & dvb_usb_vp702x_debug;
@@ -8830,65 +8436,47 @@ static int vp702x_fe_set_tone(struct dvb_frontend *fe , fe_sec_tone_mode_t tone 
   } else {
   }
   }
-  __cil_tmp20 = (unsigned long )st;
-  __cil_tmp21 = __cil_tmp20 + 1724;
-  *((fe_sec_tone_mode_t *)__cil_tmp21) = tone;
+  *((fe_sec_tone_mode_t *)((void *)st + 1724)) = tone;
   {
   __cil_tmp22 = (unsigned int )tone;
   if (__cil_tmp22 == 0U) {
     __cil_tmp23 = 2 * 1UL;
     __cil_tmp24 = 1728 + __cil_tmp23;
-    __cil_tmp25 = (unsigned long )st;
-    __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-    *((u8 *)__cil_tmp26) = (u8 )2U;
+    *((u8 *)((void *)st + __cil_tmp24)) = (u8 )2U;
   } else {
     __cil_tmp27 = 2 * 1UL;
     __cil_tmp28 = 1728 + __cil_tmp27;
-    __cil_tmp29 = (unsigned long )st;
-    __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-    *((u8 *)__cil_tmp30) = (u8 )0U;
+    *((u8 *)((void *)st + __cil_tmp28)) = (u8 )0U;
   }
   }
   {
   __cil_tmp31 = 7 * 1UL;
   __cil_tmp32 = 1728 + __cil_tmp31;
-  __cil_tmp33 = (unsigned long )st;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  __cil_tmp35 = (unsigned long )st;
-  __cil_tmp36 = __cil_tmp35 + 1728;
-  __cil_tmp37 = (u8 (*)[8U])__cil_tmp36;
+  __cil_tmp37 = (u8 (*)[8U])((void *)st + 1728);
   __cil_tmp38 = (u8 *)__cil_tmp37;
-  *((u8 *)__cil_tmp34) = vp702x_chksum(__cil_tmp38, 0, 7);
+  *((u8 *)((void *)st + __cil_tmp32)) = vp702x_chksum(__cil_tmp38, 0, 7);
   __cil_tmp39 = (struct mutex *)dst;
   mutex_lock_nested(__cil_tmp39, 0U);
-  __cil_tmp40 = (unsigned long )dst;
-  __cil_tmp41 = __cil_tmp40 + 176;
-  buf = *((u8 **)__cil_tmp41);
+  buf = *((u8 **)((void *)dst + 176));
   __len = 8UL;
   }
   if (__len > 63UL) {
     {
     __cil_tmp42 = (void *)buf;
-    __cil_tmp43 = (unsigned long )st;
-    __cil_tmp44 = __cil_tmp43 + 1728;
-    __cil_tmp45 = (u8 (*)[8U])__cil_tmp44;
+    __cil_tmp45 = (u8 (*)[8U])((void *)st + 1728);
     __cil_tmp46 = (void const *)__cil_tmp45;
     __ret = memmove(__cil_tmp42, __cil_tmp46, __len);
     }
   } else {
     {
     __cil_tmp47 = (void *)buf;
-    __cil_tmp48 = (unsigned long )st;
-    __cil_tmp49 = __cil_tmp48 + 1728;
-    __cil_tmp50 = (u8 (*)[8U])__cil_tmp49;
+    __cil_tmp50 = (u8 (*)[8U])((void *)st + 1728);
     __cil_tmp51 = (void const *)__cil_tmp50;
     __ret = memmove(__cil_tmp47, __cil_tmp51, __len);
     }
   }
   {
-  __cil_tmp52 = (unsigned long )st;
-  __cil_tmp53 = __cil_tmp52 + 960;
-  __cil_tmp54 = *((struct dvb_usb_device **)__cil_tmp53);
+  __cil_tmp54 = *((struct dvb_usb_device **)((void *)st + 960));
   vp702x_usb_inout_op(__cil_tmp54, buf, 8, buf, 10, 100);
   }
   {
@@ -8942,52 +8530,28 @@ static int vp702x_fe_set_voltage(struct dvb_frontend *fe , fe_sec_voltage_t volt
   u8 *buf ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct dvb_usb_device *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   int *__cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   u8 (*__cil_tmp37)[8U] ;
   u8 *__cil_tmp38 ;
   struct mutex *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   void *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   u8 (*__cil_tmp45)[8U] ;
   void const *__cil_tmp46 ;
   void *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   u8 (*__cil_tmp50)[8U] ;
   void const *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct dvb_usb_device *__cil_tmp54 ;
   u8 *__cil_tmp55 ;
   u8 __cil_tmp56 ;
@@ -9003,16 +8567,10 @@ static int vp702x_fe_set_voltage(struct dvb_frontend *fe , fe_sec_voltage_t volt
   int __cil_tmp66 ;
   struct mutex *__cil_tmp67 ;
   {
-  __cil_tmp8 = (unsigned long )fe;
-  __cil_tmp9 = __cil_tmp8 + 760;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp10;
-  __cil_tmp11 = (unsigned long )st;
-  __cil_tmp12 = __cil_tmp11 + 960;
-  __cil_tmp13 = *((struct dvb_usb_device **)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 11520;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp13 = *((struct dvb_usb_device **)((void *)st + 960));
+  __cil_tmp16 = *((void **)((void *)__cil_tmp13 + 11520));
   dst = (struct vp702x_device_state *)__cil_tmp16;
   {
   __cil_tmp17 = & dvb_usb_vp702x_debug;
@@ -9025,65 +8583,47 @@ static int vp702x_fe_set_voltage(struct dvb_frontend *fe , fe_sec_voltage_t volt
   } else {
   }
   }
-  __cil_tmp20 = (unsigned long )st;
-  __cil_tmp21 = __cil_tmp20 + 1720;
-  *((fe_sec_voltage_t *)__cil_tmp21) = voltage;
+  *((fe_sec_voltage_t *)((void *)st + 1720)) = voltage;
   {
   __cil_tmp22 = (unsigned int )voltage;
   if (__cil_tmp22 != 2U) {
     __cil_tmp23 = 4 * 1UL;
     __cil_tmp24 = 1728 + __cil_tmp23;
-    __cil_tmp25 = (unsigned long )st;
-    __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-    *((u8 *)__cil_tmp26) = (u8 )1U;
+    *((u8 *)((void *)st + __cil_tmp24)) = (u8 )1U;
   } else {
     __cil_tmp27 = 4 * 1UL;
     __cil_tmp28 = 1728 + __cil_tmp27;
-    __cil_tmp29 = (unsigned long )st;
-    __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-    *((u8 *)__cil_tmp30) = (u8 )0U;
+    *((u8 *)((void *)st + __cil_tmp28)) = (u8 )0U;
   }
   }
   {
   __cil_tmp31 = 7 * 1UL;
   __cil_tmp32 = 1728 + __cil_tmp31;
-  __cil_tmp33 = (unsigned long )st;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  __cil_tmp35 = (unsigned long )st;
-  __cil_tmp36 = __cil_tmp35 + 1728;
-  __cil_tmp37 = (u8 (*)[8U])__cil_tmp36;
+  __cil_tmp37 = (u8 (*)[8U])((void *)st + 1728);
   __cil_tmp38 = (u8 *)__cil_tmp37;
-  *((u8 *)__cil_tmp34) = vp702x_chksum(__cil_tmp38, 0, 7);
+  *((u8 *)((void *)st + __cil_tmp32)) = vp702x_chksum(__cil_tmp38, 0, 7);
   __cil_tmp39 = (struct mutex *)dst;
   mutex_lock_nested(__cil_tmp39, 0U);
-  __cil_tmp40 = (unsigned long )dst;
-  __cil_tmp41 = __cil_tmp40 + 176;
-  buf = *((u8 **)__cil_tmp41);
+  buf = *((u8 **)((void *)dst + 176));
   __len = 8UL;
   }
   if (__len > 63UL) {
     {
     __cil_tmp42 = (void *)buf;
-    __cil_tmp43 = (unsigned long )st;
-    __cil_tmp44 = __cil_tmp43 + 1728;
-    __cil_tmp45 = (u8 (*)[8U])__cil_tmp44;
+    __cil_tmp45 = (u8 (*)[8U])((void *)st + 1728);
     __cil_tmp46 = (void const *)__cil_tmp45;
     __ret = memmove(__cil_tmp42, __cil_tmp46, __len);
     }
   } else {
     {
     __cil_tmp47 = (void *)buf;
-    __cil_tmp48 = (unsigned long )st;
-    __cil_tmp49 = __cil_tmp48 + 1728;
-    __cil_tmp50 = (u8 (*)[8U])__cil_tmp49;
+    __cil_tmp50 = (u8 (*)[8U])((void *)st + 1728);
     __cil_tmp51 = (void const *)__cil_tmp50;
     __ret = memmove(__cil_tmp47, __cil_tmp51, __len);
     }
   }
   {
-  __cil_tmp52 = (unsigned long )st;
-  __cil_tmp53 = __cil_tmp52 + 960;
-  __cil_tmp54 = *((struct dvb_usb_device **)__cil_tmp53);
+  __cil_tmp54 = *((struct dvb_usb_device **)((void *)st + 960));
   vp702x_usb_inout_op(__cil_tmp54, buf, 8, buf, 10, 100);
   }
   {
@@ -9133,15 +8673,11 @@ static int vp702x_fe_set_voltage(struct dvb_frontend *fe , fe_sec_voltage_t volt
 }
 static void vp702x_fe_release(struct dvb_frontend *fe )
 { struct vp702x_fe_state *st ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   void const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )fe;
-  __cil_tmp4 = __cil_tmp3 + 760;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)fe + 760));
   st = (struct vp702x_fe_state *)__cil_tmp5;
   __cil_tmp6 = (void const *)st;
   kfree(__cil_tmp6);
@@ -9158,8 +8694,6 @@ struct dvb_frontend *vp702x_fe_attach(struct dvb_usb_device *d )
   struct vp702x_fe_state *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct dvb_frontend_ops *__cil_tmp11 ;
   void *__cil_tmp12 ;
   void const *__cil_tmp13 ;
@@ -9167,16 +8701,10 @@ struct dvb_frontend *vp702x_fe_attach(struct dvb_usb_device *d )
   void *__cil_tmp15 ;
   void const *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   {
   {
   tmp = kzalloc(1760UL, 208U);
@@ -9191,9 +8719,7 @@ struct dvb_frontend *vp702x_fe_attach(struct dvb_usb_device *d )
   } else {
   }
   }
-  __cil_tmp9 = (unsigned long )s;
-  __cil_tmp10 = __cil_tmp9 + 960;
-  *((struct dvb_usb_device **)__cil_tmp10) = d;
+  *((struct dvb_usb_device **)((void *)s + 960)) = d;
   __len = 752UL;
   if (__len > 63UL) {
     {
@@ -9211,19 +8737,13 @@ struct dvb_frontend *vp702x_fe_attach(struct dvb_usb_device *d )
     }
   }
   __cil_tmp17 = 0 + 760;
-  __cil_tmp18 = (unsigned long )s;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  *((void **)__cil_tmp19) = (void *)s;
+  *((void **)((void *)s + __cil_tmp17)) = (void *)s;
   __cil_tmp20 = 1 * 1UL;
   __cil_tmp21 = 1728 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )s;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  *((u8 *)__cil_tmp23) = (u8 )9U;
+  *((u8 *)((void *)s + __cil_tmp21)) = (u8 )9U;
   __cil_tmp24 = 3 * 1UL;
   __cil_tmp25 = 1728 + __cil_tmp24;
-  __cil_tmp26 = (unsigned long )s;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  *((u8 *)__cil_tmp27) = (u8 )255U;
+  *((u8 *)((void *)s + __cil_tmp25)) = (u8 )255U;
   return ((struct dvb_frontend *)s);
   error: ;
   return ((struct dvb_frontend *)0);

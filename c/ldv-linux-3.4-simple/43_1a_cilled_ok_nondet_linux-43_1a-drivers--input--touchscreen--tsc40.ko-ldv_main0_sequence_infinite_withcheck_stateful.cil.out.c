@@ -1857,16 +1857,12 @@ extern int __serio_register_driver(struct serio_driver * , struct module * , cha
 extern void serio_unregister_driver(struct serio_driver * ) ;
 __inline static void *serio_get_drvdata(struct serio *serio ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 416);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1874,15 +1870,12 @@ __inline static void *serio_get_drvdata(struct serio *serio )
 }
 }
 __inline static void serio_set_drvdata(struct serio *serio , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 416);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1893,8 +1886,6 @@ static void tsc_process_data(struct tsc_ser *ptsc )
   u8 *data ;
   u32 x ;
   u32 y ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned char (*__cil_tmp8)[5U] ;
   u8 *__cil_tmp9 ;
   u8 __cil_tmp10 ;
@@ -1920,9 +1911,7 @@ static void tsc_process_data(struct tsc_ser *ptsc )
   {
   {
   dev = *((struct input_dev **)ptsc);
-  __cil_tmp6 = (unsigned long )ptsc;
-  __cil_tmp7 = __cil_tmp6 + 20;
-  __cil_tmp8 = (unsigned char (*)[5U])__cil_tmp7;
+  __cil_tmp8 = (unsigned char (*)[5U])((void *)ptsc + 20);
   data = (u8 *)__cil_tmp8;
   __cil_tmp9 = data + 2UL;
   __cil_tmp10 = *__cil_tmp9;
@@ -1965,95 +1954,49 @@ static irqreturn_t tsc_interrupt(struct serio *serio , unsigned char data , unsi
   struct _ddebug descriptor___0 ;
   long tmp___3 ;
   long tmp___4 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   u32 __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u32 __cil_tmp27 ;
   int __cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
   long __cil_tmp31 ;
   struct _ddebug *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned char __cil_tmp39 ;
   long __cil_tmp40 ;
   long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
   struct device  const  *__cil_tmp45 ;
   int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   int __cil_tmp49 ;
   int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   int __cil_tmp53 ;
   int __cil_tmp54 ;
   int __cil_tmp55 ;
   long __cil_tmp56 ;
   struct _ddebug *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned char __cil_tmp64 ;
   long __cil_tmp65 ;
   long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct device *__cil_tmp69 ;
   struct device  const  *__cil_tmp70 ;
   int __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   u32 __cil_tmp74 ;
   u32 __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
 
   {
   {
   tmp = serio_get_drvdata(serio);
   ptsc = (struct tsc_ser *)tmp;
   dev = *((struct input_dev **)ptsc);
-  __cil_tmp14 = (unsigned long )ptsc;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((u32 *)__cil_tmp15);
+  __cil_tmp16 = *((u32 *)((void *)ptsc + 16));
   __cil_tmp17 = __cil_tmp16 * 1UL;
   __cil_tmp18 = 20 + __cil_tmp17;
-  __cil_tmp19 = (unsigned long )ptsc;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-  *((unsigned char *)__cil_tmp20) = data;
-  __cil_tmp21 = (unsigned long )ptsc;
-  __cil_tmp22 = __cil_tmp21 + 16;
-  tmp___0 = *((u32 *)__cil_tmp22);
-  __cil_tmp23 = (unsigned long )ptsc;
-  __cil_tmp24 = __cil_tmp23 + 16;
-  __cil_tmp25 = (unsigned long )ptsc;
-  __cil_tmp26 = __cil_tmp25 + 16;
-  __cil_tmp27 = *((u32 *)__cil_tmp26);
-  *((u32 *)__cil_tmp24) = __cil_tmp27 + 1U;
+  *((unsigned char *)((void *)ptsc + __cil_tmp18)) = data;
+  tmp___0 = *((u32 *)((void *)ptsc + 16));
+  __cil_tmp27 = *((u32 *)((void *)ptsc + 16));
+  *((u32 *)((void *)ptsc + 16)) = __cil_tmp27 + 1U;
   }
   if ((int )tmp___0 == 0) {
     goto case_0;
@@ -2080,27 +2023,19 @@ static irqreturn_t tsc_interrupt(struct serio *serio , unsigned char data , unsi
       {
       __cil_tmp32 = & descriptor;
       *((char const   **)__cil_tmp32) = "tsc40";
-      __cil_tmp33 = (unsigned long )(& descriptor) + 8;
-      *((char const   **)__cil_tmp33) = "tsc_interrupt";
-      __cil_tmp34 = (unsigned long )(& descriptor) + 16;
-      *((char const   **)__cil_tmp34) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3126/dscv_tempdir/dscv/ri/43_1a/drivers/input/touchscreen/tsc40.c.p";
-      __cil_tmp35 = (unsigned long )(& descriptor) + 24;
-      *((char const   **)__cil_tmp35) = "unsynchronized packet start (0x%02x)\n";
-      __cil_tmp36 = (unsigned long )(& descriptor) + 32;
-      *((unsigned int *)__cil_tmp36) = 68U;
-      __cil_tmp37 = (unsigned long )(& descriptor) + 35;
-      *((unsigned char *)__cil_tmp37) = (unsigned char)0;
-      __cil_tmp38 = (unsigned long )(& descriptor) + 35;
-      __cil_tmp39 = *((unsigned char *)__cil_tmp38);
+      *((char const   **)((void *)(&descriptor) + 8)) = "tsc_interrupt";
+      *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3126/dscv_tempdir/dscv/ri/43_1a/drivers/input/touchscreen/tsc40.c.p";
+      *((char const   **)((void *)(&descriptor) + 24)) = "unsynchronized packet start (0x%02x)\n";
+      *((unsigned int *)((void *)(&descriptor) + 32)) = 68U;
+      *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+      __cil_tmp39 = *((unsigned char *)((void *)(&descriptor) + 35));
       __cil_tmp40 = (long )__cil_tmp39;
       __cil_tmp41 = __cil_tmp40 & 1L;
       tmp___1 = __builtin_expect(__cil_tmp41, 0L);
       }
       if (tmp___1 != 0L) {
         {
-        __cil_tmp42 = (unsigned long )serio;
-        __cil_tmp43 = __cil_tmp42 + 416;
-        __cil_tmp44 = (struct device *)__cil_tmp43;
+        __cil_tmp44 = (struct device *)((void *)serio + 416);
         __cil_tmp45 = (struct device  const  *)__cil_tmp44;
         __cil_tmp46 = (int )data;
         __dynamic_dev_dbg(& descriptor, __cil_tmp45, "unsynchronized packet start (0x%02x)\n",
@@ -2109,9 +2044,7 @@ static irqreturn_t tsc_interrupt(struct serio *serio , unsigned char data , unsi
       } else {
 
       }
-      __cil_tmp47 = (unsigned long )ptsc;
-      __cil_tmp48 = __cil_tmp47 + 16;
-      *((u32 *)__cil_tmp48) = 0U;
+      *((u32 *)((void *)ptsc + 16)) = 0U;
     } else {
       {
       __cil_tmp49 = (int )data;
@@ -2120,9 +2053,7 @@ static irqreturn_t tsc_interrupt(struct serio *serio , unsigned char data , unsi
         {
         input_report_key(dev, 330U, 0);
         input_sync(dev);
-        __cil_tmp51 = (unsigned long )ptsc;
-        __cil_tmp52 = __cil_tmp51 + 16;
-        *((u32 *)__cil_tmp52) = 0U;
+        *((u32 *)((void *)ptsc + 16)) = 0U;
         }
       } else {
 
@@ -2143,32 +2074,22 @@ static irqreturn_t tsc_interrupt(struct serio *serio , unsigned char data , unsi
       {
       __cil_tmp57 = & descriptor___0;
       *((char const   **)__cil_tmp57) = "tsc40";
-      __cil_tmp58 = (unsigned long )(& descriptor___0) + 8;
-      *((char const   **)__cil_tmp58) = "tsc_interrupt";
-      __cil_tmp59 = (unsigned long )(& descriptor___0) + 16;
-      *((char const   **)__cil_tmp59) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3126/dscv_tempdir/dscv/ri/43_1a/drivers/input/touchscreen/tsc40.c.p";
-      __cil_tmp60 = (unsigned long )(& descriptor___0) + 24;
-      *((char const   **)__cil_tmp60) = "unsynchronized data 0x%02x at offset %d\n";
-      __cil_tmp61 = (unsigned long )(& descriptor___0) + 32;
-      *((unsigned int *)__cil_tmp61) = 82U;
-      __cil_tmp62 = (unsigned long )(& descriptor___0) + 35;
-      *((unsigned char *)__cil_tmp62) = (unsigned char)0;
-      __cil_tmp63 = (unsigned long )(& descriptor___0) + 35;
-      __cil_tmp64 = *((unsigned char *)__cil_tmp63);
+      *((char const   **)((void *)(&descriptor___0) + 8)) = "tsc_interrupt";
+      *((char const   **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3126/dscv_tempdir/dscv/ri/43_1a/drivers/input/touchscreen/tsc40.c.p";
+      *((char const   **)((void *)(&descriptor___0) + 24)) = "unsynchronized data 0x%02x at offset %d\n";
+      *((unsigned int *)((void *)(&descriptor___0) + 32)) = 82U;
+      *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+      __cil_tmp64 = *((unsigned char *)((void *)(&descriptor___0) + 35));
       __cil_tmp65 = (long )__cil_tmp64;
       __cil_tmp66 = __cil_tmp65 & 1L;
       tmp___3 = __builtin_expect(__cil_tmp66, 0L);
       }
       if (tmp___3 != 0L) {
         {
-        __cil_tmp67 = (unsigned long )serio;
-        __cil_tmp68 = __cil_tmp67 + 416;
-        __cil_tmp69 = (struct device *)__cil_tmp68;
+        __cil_tmp69 = (struct device *)((void *)serio + 416);
         __cil_tmp70 = (struct device  const  *)__cil_tmp69;
         __cil_tmp71 = (int )data;
-        __cil_tmp72 = (unsigned long )ptsc;
-        __cil_tmp73 = __cil_tmp72 + 16;
-        __cil_tmp74 = *((u32 *)__cil_tmp73);
+        __cil_tmp74 = *((u32 *)((void *)ptsc + 16));
         __cil_tmp75 = __cil_tmp74 - 1U;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp70, "unsynchronized data 0x%02x at offset %d\n",
                           __cil_tmp71, __cil_tmp75);
@@ -2176,9 +2097,7 @@ static irqreturn_t tsc_interrupt(struct serio *serio , unsigned char data , unsi
       } else {
 
       }
-      __cil_tmp76 = (unsigned long )ptsc;
-      __cil_tmp77 = __cil_tmp76 + 16;
-      *((u32 *)__cil_tmp77) = 0U;
+      *((u32 *)((void *)ptsc + 16)) = 0U;
     } else {
 
     }
@@ -2186,9 +2105,7 @@ static irqreturn_t tsc_interrupt(struct serio *serio , unsigned char data , unsi
     case_4: /* CIL Label */ 
     {
     tsc_process_data(ptsc);
-    __cil_tmp78 = (unsigned long )ptsc;
-    __cil_tmp79 = __cil_tmp78 + 16;
-    *((u32 *)__cil_tmp79) = 0U;
+    *((u32 *)((void *)ptsc + 16)) = 0U;
     }
     goto ldv_20736;
   } else {
@@ -2209,42 +2126,16 @@ static int tsc_connect(struct serio *serio , struct serio_driver *drv )
   struct input_dev *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   char (*__cil_tmp17)[32U] ;
   char *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   char (*__cil_tmp21)[32U] ;
   char *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   char (*__cil_tmp27)[32U] ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long (*__cil_tmp49)[12U] ;
   unsigned long volatile   *__cil_tmp50 ;
   struct input_dev *__cil_tmp51 ;
@@ -2283,54 +2174,28 @@ static int tsc_connect(struct serio *serio , struct serio_driver *drv )
   }
   }
   {
-  __cil_tmp13 = (unsigned long )ptsc;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  *((struct serio **)__cil_tmp14) = serio;
+  *((struct serio **)((void *)ptsc + 8)) = serio;
   *((struct input_dev **)ptsc) = input_dev;
-  __cil_tmp15 = (unsigned long )ptsc;
-  __cil_tmp16 = __cil_tmp15 + 25;
-  __cil_tmp17 = (char (*)[32U])__cil_tmp16;
+  __cil_tmp17 = (char (*)[32U])((void *)ptsc + 25);
   __cil_tmp18 = (char *)__cil_tmp17;
-  __cil_tmp19 = (unsigned long )serio;
-  __cil_tmp20 = __cil_tmp19 + 40;
-  __cil_tmp21 = (char (*)[32U])__cil_tmp20;
+  __cil_tmp21 = (char (*)[32U])((void *)serio + 40);
   __cil_tmp22 = (char *)__cil_tmp21;
   snprintf(__cil_tmp18, 32UL, "%s/input0", __cil_tmp22);
   *((char const   **)input_dev) = "TSC-10/25/40 Serial TouchScreen";
-  __cil_tmp23 = (unsigned long )input_dev;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  __cil_tmp25 = (unsigned long )ptsc;
-  __cil_tmp26 = __cil_tmp25 + 25;
-  __cil_tmp27 = (char (*)[32U])__cil_tmp26;
-  *((char const   **)__cil_tmp24) = (char const   *)__cil_tmp27;
-  __cil_tmp28 = (unsigned long )input_dev;
-  __cil_tmp29 = __cil_tmp28 + 24;
-  *((__u16 *)__cil_tmp29) = (__u16 )19U;
+  __cil_tmp27 = (char (*)[32U])((void *)ptsc + 25);
+  *((char const   **)((void *)input_dev + 8)) = (char const   *)__cil_tmp27;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )19U;
   __cil_tmp30 = 24 + 2;
-  __cil_tmp31 = (unsigned long )input_dev;
-  __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-  *((__u16 *)__cil_tmp32) = (__u16 )61U;
+  *((__u16 *)((void *)input_dev + __cil_tmp30)) = (__u16 )61U;
   __cil_tmp33 = 24 + 4;
-  __cil_tmp34 = (unsigned long )input_dev;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  *((__u16 *)__cil_tmp35) = (__u16 )40U;
+  *((__u16 *)((void *)input_dev + __cil_tmp33)) = (__u16 )40U;
   __cil_tmp36 = 24 + 6;
-  __cil_tmp37 = (unsigned long )input_dev;
-  __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-  *((__u16 *)__cil_tmp38) = (__u16 )1U;
-  __cil_tmp39 = (unsigned long )input_dev;
-  __cil_tmp40 = __cil_tmp39 + 840;
-  __cil_tmp41 = (unsigned long )serio;
-  __cil_tmp42 = __cil_tmp41 + 416;
-  *((struct device **)__cil_tmp40) = (struct device *)__cil_tmp42;
+  *((__u16 *)((void *)input_dev + __cil_tmp36)) = (__u16 )1U;
+  *((struct device **)((void *)input_dev + 840)) = (struct device *)((void *)serio + 416);
   __cil_tmp43 = 0 * 8UL;
   __cil_tmp44 = 40 + __cil_tmp43;
-  __cil_tmp45 = (unsigned long )input_dev;
-  __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
-  *((unsigned long *)__cil_tmp46) = 10UL;
-  __cil_tmp47 = (unsigned long )input_dev;
-  __cil_tmp48 = __cil_tmp47 + 48;
-  __cil_tmp49 = (unsigned long (*)[12U])__cil_tmp48;
+  *((unsigned long *)((void *)input_dev + __cil_tmp44)) = 10UL;
+  __cil_tmp49 = (unsigned long (*)[12U])((void *)input_dev + 48);
   __cil_tmp50 = (unsigned long volatile   *)__cil_tmp49;
   __set_bit(330, __cil_tmp50);
   __cil_tmp51 = *((struct input_dev **)ptsc);

@@ -4145,18 +4145,10 @@ static int netcell_init_one(struct pci_dev *pdev , struct pci_device_id  const  
   bool __print_once ;
   int tmp ;
   struct ata_port_info *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device  const  *__cil_tmp22 ;
   struct ata_port_info  const  * const  *__cil_tmp23 ;
@@ -4165,18 +4157,12 @@ static int netcell_init_one(struct pci_dev *pdev , struct pci_device_id  const  
   {
   __cil_tmp8 = & info;
   *((unsigned long *)__cil_tmp8) = 1UL;
-  __cil_tmp9 = (unsigned long )(& info) + 8;
-  *((unsigned long *)__cil_tmp9) = 0UL;
-  __cil_tmp10 = (unsigned long )(& info) + 16;
-  *((unsigned long *)__cil_tmp10) = 31UL;
-  __cil_tmp11 = (unsigned long )(& info) + 24;
-  *((unsigned long *)__cil_tmp11) = 7UL;
-  __cil_tmp12 = (unsigned long )(& info) + 32;
-  *((unsigned long *)__cil_tmp12) = 63UL;
-  __cil_tmp13 = (unsigned long )(& info) + 40;
-  *((struct ata_port_operations **)__cil_tmp13) = & netcell_ops;
-  __cil_tmp14 = (unsigned long )(& info) + 48;
-  *((void **)__cil_tmp14) = (void *)0;
+  *((unsigned long *)((void *)(&info) + 8)) = 0UL;
+  *((unsigned long *)((void *)(&info) + 16)) = 31UL;
+  *((unsigned long *)((void *)(&info) + 24)) = 7UL;
+  *((unsigned long *)((void *)(&info) + 32)) = 63UL;
+  *((struct ata_port_operations **)((void *)(&info) + 40)) = & netcell_ops;
+  *((void **)((void *)(&info) + 48)) = (void *)0;
   __cil_tmp15 = 0 * 8UL;
   __cil_tmp16 = (unsigned long )(port_info) + __cil_tmp15;
   *((struct ata_port_info  const  **)__cil_tmp16) = (struct ata_port_info  const  *)(& info);
@@ -4186,9 +4172,7 @@ static int netcell_init_one(struct pci_dev *pdev , struct pci_device_id  const  
   if (! __print_once) {
     {
     __print_once = (bool )1;
-    __cil_tmp19 = (unsigned long )pdev;
-    __cil_tmp20 = __cil_tmp19 + 144;
-    __cil_tmp21 = (struct device *)__cil_tmp20;
+    __cil_tmp21 = (struct device *)((void *)pdev + 144);
     __cil_tmp22 = (struct device  const  *)__cil_tmp21;
     ata_print_version(__cil_tmp22, "0.1.7");
     }

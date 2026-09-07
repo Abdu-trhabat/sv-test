@@ -1847,16 +1847,12 @@ extern int __serio_register_driver(struct serio_driver * , struct module * , cha
 extern void serio_unregister_driver(struct serio_driver * ) ;
 __inline static void *serio_get_drvdata(struct serio *serio ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 416);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1864,15 +1860,12 @@ __inline static void *serio_get_drvdata(struct serio *serio )
 }
 }
 __inline static void serio_set_drvdata(struct serio *serio , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 416);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1895,11 +1888,7 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
   int axes[6U] ;
   int i ;
   int tmp ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned char (*__cil_tmp10)[64U] ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
@@ -1907,47 +1896,29 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
   unsigned char __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   unsigned char __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
   int __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   int __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned char __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
   char const   *__cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned char (*__cil_tmp46)[64U] ;
   unsigned char *__cil_tmp47 ;
   unsigned char *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   char (*__cil_tmp51)[32U] ;
   char *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   int __cil_tmp55 ;
   int __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned char __cil_tmp63 ;
@@ -1955,8 +1926,6 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
   int __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned char __cil_tmp70 ;
   int __cil_tmp71 ;
   int __cil_tmp72 ;
@@ -2056,8 +2025,6 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
   int __cil_tmp166 ;
   int __cil_tmp167 ;
   int __cil_tmp168 ;
-  unsigned long __cil_tmp169 ;
-  unsigned long __cil_tmp170 ;
   int __cil_tmp171 ;
   unsigned long __cil_tmp172 ;
   unsigned long __cil_tmp173 ;
@@ -2068,8 +2035,6 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
   int __cil_tmp178 ;
   int __cil_tmp179 ;
   int __cil_tmp180 ;
-  unsigned long __cil_tmp181 ;
-  unsigned long __cil_tmp182 ;
   int __cil_tmp183 ;
   unsigned char *__cil_tmp184 ;
   unsigned char __cil_tmp185 ;
@@ -2081,15 +2046,11 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
 
   {
   dev = *((struct input_dev **)spaceorb);
-  __cil_tmp8 = (unsigned long )spaceorb;
-  __cil_tmp9 = __cil_tmp8 + 12;
-  __cil_tmp10 = (unsigned char (*)[64U])__cil_tmp9;
+  __cil_tmp10 = (unsigned char (*)[64U])((void *)spaceorb + 12);
   data = (unsigned char *)__cil_tmp10;
   c = (unsigned char)0;
   {
-  __cil_tmp11 = (unsigned long )spaceorb;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((int *)__cil_tmp12);
+  __cil_tmp13 = *((int *)((void *)spaceorb + 8));
   if (__cil_tmp13 <= 1) {
     return;
   } else {
@@ -2109,9 +2070,7 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
   i = i + 1;
   ldv_20734: ;
   {
-  __cil_tmp20 = (unsigned long )spaceorb;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  __cil_tmp22 = *((int *)__cil_tmp21);
+  __cil_tmp22 = *((int *)((void *)spaceorb + 8));
   if (__cil_tmp22 > i) {
     goto ldv_20733;
   } else {
@@ -2143,31 +2102,23 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
   } else
   if (0) {
     case_82: /* CIL Label */ 
-    __cil_tmp25 = (unsigned long )spaceorb;
-    __cil_tmp26 = __cil_tmp25 + 8;
-    __cil_tmp27 = *((int *)__cil_tmp26);
+    __cil_tmp27 = *((int *)((void *)spaceorb + 8));
     __cil_tmp28 = __cil_tmp27 + -1;
     __cil_tmp29 = __cil_tmp28 * 1UL;
     __cil_tmp30 = 12 + __cil_tmp29;
-    __cil_tmp31 = (unsigned long )spaceorb;
-    __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-    *((unsigned char *)__cil_tmp32) = (unsigned char)0;
+    *((unsigned char *)((void *)spaceorb + __cil_tmp30)) = (unsigned char)0;
     i = 1;
     goto ldv_20738;
     ldv_20737: 
     i = i + 1;
     ldv_20738: ;
     {
-    __cil_tmp33 = (unsigned long )spaceorb;
-    __cil_tmp34 = __cil_tmp33 + 8;
-    __cil_tmp35 = *((int *)__cil_tmp34);
+    __cil_tmp35 = *((int *)((void *)spaceorb + 8));
     if (__cil_tmp35 > i) {
       {
       __cil_tmp36 = i * 1UL;
       __cil_tmp37 = 12 + __cil_tmp36;
-      __cil_tmp38 = (unsigned long )spaceorb;
-      __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-      __cil_tmp40 = *((unsigned char *)__cil_tmp39);
+      __cil_tmp40 = *((unsigned char *)((void *)spaceorb + __cil_tmp37));
       __cil_tmp41 = (unsigned int )__cil_tmp40;
       if (__cil_tmp41 == 32U) {
         goto ldv_20737;
@@ -2183,23 +2134,17 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
     {
     __cil_tmp42 = *((char const   **)dev);
     __cil_tmp43 = (unsigned long )i;
-    __cil_tmp44 = (unsigned long )spaceorb;
-    __cil_tmp45 = __cil_tmp44 + 12;
-    __cil_tmp46 = (unsigned char (*)[64U])__cil_tmp45;
+    __cil_tmp46 = (unsigned char (*)[64U])((void *)spaceorb + 12);
     __cil_tmp47 = (unsigned char *)__cil_tmp46;
     __cil_tmp48 = __cil_tmp47 + __cil_tmp43;
-    __cil_tmp49 = (unsigned long )spaceorb;
-    __cil_tmp50 = __cil_tmp49 + 76;
-    __cil_tmp51 = (char (*)[32U])__cil_tmp50;
+    __cil_tmp51 = (char (*)[32U])((void *)spaceorb + 76);
     __cil_tmp52 = (char *)__cil_tmp51;
     printk("<6>input: %s [%s] is %s\n", __cil_tmp42, __cil_tmp48, __cil_tmp52);
     }
     goto ldv_20740;
     case_68: /* CIL Label */ ;
     {
-    __cil_tmp53 = (unsigned long )spaceorb;
-    __cil_tmp54 = __cil_tmp53 + 8;
-    __cil_tmp55 = *((int *)__cil_tmp54);
+    __cil_tmp55 = *((int *)((void *)spaceorb + 8));
     if (__cil_tmp55 != 12) {
       return;
     } else {
@@ -2212,8 +2157,6 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
     __cil_tmp56 = i + 2;
     __cil_tmp57 = __cil_tmp56 * 1UL;
     __cil_tmp58 = 12 + __cil_tmp57;
-    __cil_tmp59 = (unsigned long )spaceorb;
-    __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
     __cil_tmp61 = i * 1UL;
     __cil_tmp62 = (unsigned long )(spaceorb_xor) + __cil_tmp61;
     __cil_tmp63 = *((unsigned char *)__cil_tmp62);
@@ -2221,12 +2164,10 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
     __cil_tmp65 = i + 2;
     __cil_tmp66 = __cil_tmp65 * 1UL;
     __cil_tmp67 = 12 + __cil_tmp66;
-    __cil_tmp68 = (unsigned long )spaceorb;
-    __cil_tmp69 = __cil_tmp68 + __cil_tmp67;
-    __cil_tmp70 = *((unsigned char *)__cil_tmp69);
+    __cil_tmp70 = *((unsigned char *)((void *)spaceorb + __cil_tmp67));
     __cil_tmp71 = (int )__cil_tmp70;
     __cil_tmp72 = __cil_tmp71 ^ __cil_tmp64;
-    *((unsigned char *)__cil_tmp60) = (unsigned char )__cil_tmp72;
+    *((unsigned char *)((void *)spaceorb + __cil_tmp58)) = (unsigned char )__cil_tmp72;
     i = i + 1;
     ldv_20743: ;
     if (i <= 8) {
@@ -2375,9 +2316,7 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
     goto ldv_20740;
     case_75: /* CIL Label */ ;
     {
-    __cil_tmp169 = (unsigned long )spaceorb;
-    __cil_tmp170 = __cil_tmp169 + 8;
-    __cil_tmp171 = *((int *)__cil_tmp170);
+    __cil_tmp171 = *((int *)((void *)spaceorb + 8));
     if (__cil_tmp171 != 5) {
       return;
     } else {
@@ -2410,9 +2349,7 @@ static void spaceorb_process_packet(struct spaceorb *spaceorb )
     goto ldv_20740;
     case_69: /* CIL Label */ ;
     {
-    __cil_tmp181 = (unsigned long )spaceorb;
-    __cil_tmp182 = __cil_tmp181 + 8;
-    __cil_tmp183 = *((int *)__cil_tmp182);
+    __cil_tmp183 = *((int *)((void *)spaceorb + 8));
     if (__cil_tmp183 != 4) {
       return;
     } else {
@@ -2470,25 +2407,11 @@ static irqreturn_t spaceorb_interrupt(struct serio *serio , unsigned char data ,
   int tmp___0 ;
   signed char __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   int __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
 
@@ -2502,9 +2425,7 @@ static irqreturn_t spaceorb_interrupt(struct serio *serio , unsigned char data ,
   __cil_tmp8 = (int )__cil_tmp7;
   if (__cil_tmp8 >= 0) {
     {
-    __cil_tmp9 = (unsigned long )spaceorb;
-    __cil_tmp10 = __cil_tmp9 + 8;
-    __cil_tmp11 = *((int *)__cil_tmp10);
+    __cil_tmp11 = *((int *)((void *)spaceorb + 8));
     if (__cil_tmp11 != 0) {
       {
       spaceorb_process_packet(spaceorb);
@@ -2513,34 +2434,22 @@ static irqreturn_t spaceorb_interrupt(struct serio *serio , unsigned char data ,
 
     }
     }
-    __cil_tmp12 = (unsigned long )spaceorb;
-    __cil_tmp13 = __cil_tmp12 + 8;
-    *((int *)__cil_tmp13) = 0;
+    *((int *)((void *)spaceorb + 8)) = 0;
   } else {
 
   }
   }
   {
-  __cil_tmp14 = (unsigned long )spaceorb;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((int *)__cil_tmp15);
+  __cil_tmp16 = *((int *)((void *)spaceorb + 8));
   if (__cil_tmp16 <= 63) {
-    __cil_tmp17 = (unsigned long )spaceorb;
-    __cil_tmp18 = __cil_tmp17 + 8;
-    tmp___0 = *((int *)__cil_tmp18);
-    __cil_tmp19 = (unsigned long )spaceorb;
-    __cil_tmp20 = __cil_tmp19 + 8;
-    __cil_tmp21 = (unsigned long )spaceorb;
-    __cil_tmp22 = __cil_tmp21 + 8;
-    __cil_tmp23 = *((int *)__cil_tmp22);
-    *((int *)__cil_tmp20) = __cil_tmp23 + 1;
+    tmp___0 = *((int *)((void *)spaceorb + 8));
+    __cil_tmp23 = *((int *)((void *)spaceorb + 8));
+    *((int *)((void *)spaceorb + 8)) = __cil_tmp23 + 1;
     __cil_tmp24 = tmp___0 * 1UL;
     __cil_tmp25 = 12 + __cil_tmp24;
-    __cil_tmp26 = (unsigned long )spaceorb;
-    __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
     __cil_tmp28 = (unsigned int )data;
     __cil_tmp29 = __cil_tmp28 & 127U;
-    *((unsigned char *)__cil_tmp27) = (unsigned char )__cil_tmp29;
+    *((unsigned char *)((void *)spaceorb + __cil_tmp25)) = (unsigned char )__cil_tmp29;
   } else {
 
   }
@@ -2582,44 +2491,20 @@ static int spaceorb_connect(struct serio *serio , struct serio_driver *drv )
   struct input_dev *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   char (*__cil_tmp16)[32U] ;
   char *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   char (*__cil_tmp20)[32U] ;
   char *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   char (*__cil_tmp26)[32U] ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   int __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long (*__cil_tmp52)[12U] ;
   unsigned long volatile   *__cil_tmp53 ;
   unsigned long __cil_tmp54 ;
@@ -2659,47 +2544,25 @@ static int spaceorb_connect(struct serio *serio , struct serio_driver *drv )
   }
   {
   *((struct input_dev **)spaceorb) = input_dev;
-  __cil_tmp14 = (unsigned long )spaceorb;
-  __cil_tmp15 = __cil_tmp14 + 76;
-  __cil_tmp16 = (char (*)[32U])__cil_tmp15;
+  __cil_tmp16 = (char (*)[32U])((void *)spaceorb + 76);
   __cil_tmp17 = (char *)__cil_tmp16;
-  __cil_tmp18 = (unsigned long )serio;
-  __cil_tmp19 = __cil_tmp18 + 40;
-  __cil_tmp20 = (char (*)[32U])__cil_tmp19;
+  __cil_tmp20 = (char (*)[32U])((void *)serio + 40);
   __cil_tmp21 = (char *)__cil_tmp20;
   snprintf(__cil_tmp17, 32UL, "%s/input0", __cil_tmp21);
   *((char const   **)input_dev) = "SpaceTec SpaceOrb 360 / Avenger";
-  __cil_tmp22 = (unsigned long )input_dev;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  __cil_tmp24 = (unsigned long )spaceorb;
-  __cil_tmp25 = __cil_tmp24 + 76;
-  __cil_tmp26 = (char (*)[32U])__cil_tmp25;
-  *((char const   **)__cil_tmp23) = (char const   *)__cil_tmp26;
-  __cil_tmp27 = (unsigned long )input_dev;
-  __cil_tmp28 = __cil_tmp27 + 24;
-  *((__u16 *)__cil_tmp28) = (__u16 )19U;
+  __cil_tmp26 = (char (*)[32U])((void *)spaceorb + 76);
+  *((char const   **)((void *)input_dev + 8)) = (char const   *)__cil_tmp26;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )19U;
   __cil_tmp29 = 24 + 2;
-  __cil_tmp30 = (unsigned long )input_dev;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  *((__u16 *)__cil_tmp31) = (__u16 )25U;
+  *((__u16 *)((void *)input_dev + __cil_tmp29)) = (__u16 )25U;
   __cil_tmp32 = 24 + 4;
-  __cil_tmp33 = (unsigned long )input_dev;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  *((__u16 *)__cil_tmp34) = (__u16 )1U;
+  *((__u16 *)((void *)input_dev + __cil_tmp32)) = (__u16 )1U;
   __cil_tmp35 = 24 + 6;
-  __cil_tmp36 = (unsigned long )input_dev;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  *((__u16 *)__cil_tmp37) = (__u16 )256U;
-  __cil_tmp38 = (unsigned long )input_dev;
-  __cil_tmp39 = __cil_tmp38 + 840;
-  __cil_tmp40 = (unsigned long )serio;
-  __cil_tmp41 = __cil_tmp40 + 416;
-  *((struct device **)__cil_tmp39) = (struct device *)__cil_tmp41;
+  *((__u16 *)((void *)input_dev + __cil_tmp35)) = (__u16 )256U;
+  *((struct device **)((void *)input_dev + 840)) = (struct device *)((void *)serio + 416);
   __cil_tmp42 = 0 * 8UL;
   __cil_tmp43 = 40 + __cil_tmp42;
-  __cil_tmp44 = (unsigned long )input_dev;
-  __cil_tmp45 = __cil_tmp44 + __cil_tmp43;
-  *((unsigned long *)__cil_tmp45) = 10UL;
+  *((unsigned long *)((void *)input_dev + __cil_tmp43)) = 10UL;
   i = 0;
   }
   goto ldv_20779;
@@ -2709,9 +2572,7 @@ static int spaceorb_connect(struct serio *serio , struct serio_driver *drv )
   __cil_tmp47 = (unsigned long )(spaceorb_buttons) + __cil_tmp46;
   __cil_tmp48 = *((int *)__cil_tmp47);
   __cil_tmp49 = (unsigned int )__cil_tmp48;
-  __cil_tmp50 = (unsigned long )input_dev;
-  __cil_tmp51 = __cil_tmp50 + 48;
-  __cil_tmp52 = (unsigned long (*)[12U])__cil_tmp51;
+  __cil_tmp52 = (unsigned long (*)[12U])((void *)input_dev + 48);
   __cil_tmp53 = (unsigned long volatile   *)__cil_tmp52;
   set_bit(__cil_tmp49, __cil_tmp53);
   i = i + 1;

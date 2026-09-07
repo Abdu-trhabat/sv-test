@@ -4887,11 +4887,7 @@ static int pl_reset(struct usbnet *dev )
   int __cil_tmp7 ;
   int __cil_tmp8 ;
   int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp16 ;
   unsigned int __cil_tmp17 ;
@@ -4899,8 +4895,6 @@ static int pl_reset(struct usbnet *dev )
   int __cil_tmp19 ;
   int __cil_tmp20 ;
   long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct net_device *__cil_tmp24 ;
   struct net_device  const  *__cil_tmp25 ;
 
@@ -4916,17 +4910,13 @@ static int pl_reset(struct usbnet *dev )
   }
   if (status != 0) {
     {
-    __cil_tmp10 = (unsigned long )dev;
-    __cil_tmp11 = __cil_tmp10 + 240;
-    __cil_tmp12 = *((int *)__cil_tmp11);
+    __cil_tmp12 = *((int *)((void *)dev + 240));
     if (__cil_tmp12 & 2) {
       {
       while (1) {
         while_continue: /* CIL Label */ ;
         {
-        __cil_tmp13 = (unsigned long )dev;
-        __cil_tmp14 = __cil_tmp13 + 240;
-        __cil_tmp15 = *((int *)__cil_tmp14);
+        __cil_tmp15 = *((int *)((void *)dev + 240));
         if (__cil_tmp15 & 4) {
           {
           while (1) {
@@ -4942,9 +4932,7 @@ static int pl_reset(struct usbnet *dev )
             }
             if (tmp___7) {
               {
-              __cil_tmp22 = (unsigned long )dev;
-              __cil_tmp23 = __cil_tmp22 + 232;
-              __cil_tmp24 = *((struct net_device **)__cil_tmp23);
+              __cil_tmp24 = *((struct net_device **)((void *)dev + 232));
               __cil_tmp25 = (struct net_device  const  *)__cil_tmp24;
               __dynamic_netdev_dbg(& descriptor, __cil_tmp25, "pl_reset --> %d\n",
                                    status);

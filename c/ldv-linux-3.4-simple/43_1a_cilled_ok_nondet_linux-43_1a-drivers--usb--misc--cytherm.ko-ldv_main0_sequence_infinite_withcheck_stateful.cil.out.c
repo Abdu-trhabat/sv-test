@@ -3050,16 +3050,12 @@ extern int dev_err(struct device  const  * , char const   *  , ...) ;
 extern int _dev_info(struct device  const  * , char const   *  , ...) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -3067,15 +3063,12 @@ __inline static void *usb_get_intfdata(struct usb_interface *intf )
 }
 }
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3083,15 +3076,11 @@ __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
 }
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf ) 
 { struct device  const  *__mptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct usb_device *__cil_tmp6 ;
 
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = *((struct device **)__cil_tmp4);
+  __cil_tmp5 = *((struct device **)((void *)intf + 48));
   __mptr = (struct device  const  *)__cil_tmp5;
   {
   __cil_tmp6 = (struct usb_device *)__mptr;
@@ -3166,8 +3155,6 @@ static ssize_t show_brightness(struct device *dev , struct device_attribute *att
   void *tmp ;
   int tmp___0 ;
   struct usb_interface *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
 
   {
@@ -3177,9 +3164,7 @@ static ssize_t show_brightness(struct device *dev , struct device_attribute *att
   intf = __cil_tmp9 + 0xffffffffffffffd0UL;
   tmp = usb_get_intfdata(intf);
   cytherm = (struct usb_cytherm *)tmp;
-  __cil_tmp10 = (unsigned long )cytherm;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp12 = *((int *)((void *)cytherm + 16));
   tmp___0 = sprintf(buf, "%i", __cil_tmp12);
   }
   return ((ssize_t )tmp___0);
@@ -3204,61 +3189,31 @@ static ssize_t set_brightness(struct device *dev , struct device_attribute *attr
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   struct usb_device *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device  const  *__cil_tmp25 ;
   char **__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct usb_device *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   int __cil_tmp42 ;
   unsigned char __cil_tmp43 ;
   int __cil_tmp44 ;
   unsigned char __cil_tmp45 ;
   void *__cil_tmp46 ;
   struct _ddebug *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned char __cil_tmp54 ;
   long __cil_tmp55 ;
   long __cil_tmp56 ;
   struct usb_device *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   struct device *__cil_tmp60 ;
   struct device  const  *__cil_tmp61 ;
   struct usb_device *__cil_tmp62 ;
   void *__cil_tmp63 ;
   struct _ddebug *__cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned char __cil_tmp71 ;
   long __cil_tmp72 ;
   long __cil_tmp73 ;
   struct usb_device *__cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   struct device *__cil_tmp77 ;
   struct device  const  *__cil_tmp78 ;
   void const   *__cil_tmp79 ;
@@ -3280,9 +3235,7 @@ static ssize_t set_brightness(struct device *dev , struct device_attribute *attr
   if (__cil_tmp20 == __cil_tmp19) {
     {
     __cil_tmp21 = *((struct usb_device **)cytherm);
-    __cil_tmp22 = (unsigned long )__cil_tmp21;
-    __cil_tmp23 = __cil_tmp22 + 136;
-    __cil_tmp24 = (struct device *)__cil_tmp23;
+    __cil_tmp24 = (struct device *)((void *)__cil_tmp21 + 136);
     __cil_tmp25 = (struct device  const  *)__cil_tmp24;
     dev_err(__cil_tmp25, "out of memory\n");
     }
@@ -3294,27 +3247,17 @@ static ssize_t set_brightness(struct device *dev , struct device_attribute *attr
   {
   __cil_tmp26 = (char **)0;
   tmp___1 = simple_strtoul(buf, __cil_tmp26, 10U);
-  __cil_tmp27 = (unsigned long )cytherm;
-  __cil_tmp28 = __cil_tmp27 + 16;
-  *((int *)__cil_tmp28) = (int )tmp___1;
+  *((int *)((void *)cytherm + 16)) = (int )tmp___1;
   }
   {
-  __cil_tmp29 = (unsigned long )cytherm;
-  __cil_tmp30 = __cil_tmp29 + 16;
-  __cil_tmp31 = *((int *)__cil_tmp30);
+  __cil_tmp31 = *((int *)((void *)cytherm + 16));
   if (__cil_tmp31 > 255) {
-    __cil_tmp32 = (unsigned long )cytherm;
-    __cil_tmp33 = __cil_tmp32 + 16;
-    *((int *)__cil_tmp33) = 255;
+    *((int *)((void *)cytherm + 16)) = 255;
   } else {
     {
-    __cil_tmp34 = (unsigned long )cytherm;
-    __cil_tmp35 = __cil_tmp34 + 16;
-    __cil_tmp36 = *((int *)__cil_tmp35);
+    __cil_tmp36 = *((int *)((void *)cytherm + 16));
     if (__cil_tmp36 < 0) {
-      __cil_tmp37 = (unsigned long )cytherm;
-      __cil_tmp38 = __cil_tmp37 + 16;
-      *((int *)__cil_tmp38) = 0;
+      *((int *)((void *)cytherm + 16)) = 0;
     } else {
 
     }
@@ -3323,9 +3266,7 @@ static ssize_t set_brightness(struct device *dev , struct device_attribute *attr
   }
   {
   __cil_tmp39 = *((struct usb_device **)cytherm);
-  __cil_tmp40 = (unsigned long )cytherm;
-  __cil_tmp41 = __cil_tmp40 + 16;
-  __cil_tmp42 = *((int *)__cil_tmp41);
+  __cil_tmp42 = *((int *)((void *)cytherm + 16));
   __cil_tmp43 = (unsigned char )__cil_tmp42;
   __cil_tmp44 = (int )__cil_tmp43;
   __cil_tmp45 = (unsigned char )__cil_tmp44;
@@ -3337,18 +3278,12 @@ static ssize_t set_brightness(struct device *dev , struct device_attribute *attr
     {
     __cil_tmp47 = & descriptor;
     *((char const   **)__cil_tmp47) = "cytherm";
-    __cil_tmp48 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp48) = "set_brightness";
-    __cil_tmp49 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp49) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
-    __cil_tmp50 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp50) = "retval = %d\n";
-    __cil_tmp51 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp51) = 136U;
-    __cil_tmp52 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp52) = (unsigned char)1;
-    __cil_tmp53 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp54 = *((unsigned char *)__cil_tmp53);
+    *((char const   **)((void *)(&descriptor) + 8)) = "set_brightness";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "retval = %d\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 136U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+    __cil_tmp54 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp55 = (long )__cil_tmp54;
     __cil_tmp56 = __cil_tmp55 & 1L;
     tmp___2 = __builtin_expect(__cil_tmp56, 0L);
@@ -3356,9 +3291,7 @@ static ssize_t set_brightness(struct device *dev , struct device_attribute *attr
     if (tmp___2 != 0L) {
       {
       __cil_tmp57 = *((struct usb_device **)cytherm);
-      __cil_tmp58 = (unsigned long )__cil_tmp57;
-      __cil_tmp59 = __cil_tmp58 + 136;
-      __cil_tmp60 = (struct device *)__cil_tmp59;
+      __cil_tmp60 = (struct device *)((void *)__cil_tmp57 + 136);
       __cil_tmp61 = (struct device  const  *)__cil_tmp60;
       __dynamic_dev_dbg(& descriptor, __cil_tmp61, "retval = %d\n", retval);
       }
@@ -3378,18 +3311,12 @@ static ssize_t set_brightness(struct device *dev , struct device_attribute *attr
     {
     __cil_tmp64 = & descriptor___0;
     *((char const   **)__cil_tmp64) = "cytherm";
-    __cil_tmp65 = (unsigned long )(& descriptor___0) + 8;
-    *((char const   **)__cil_tmp65) = "set_brightness";
-    __cil_tmp66 = (unsigned long )(& descriptor___0) + 16;
-    *((char const   **)__cil_tmp66) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
-    __cil_tmp67 = (unsigned long )(& descriptor___0) + 24;
-    *((char const   **)__cil_tmp67) = "retval = %d\n";
-    __cil_tmp68 = (unsigned long )(& descriptor___0) + 32;
-    *((unsigned int *)__cil_tmp68) = 141U;
-    __cil_tmp69 = (unsigned long )(& descriptor___0) + 35;
-    *((unsigned char *)__cil_tmp69) = (unsigned char)1;
-    __cil_tmp70 = (unsigned long )(& descriptor___0) + 35;
-    __cil_tmp71 = *((unsigned char *)__cil_tmp70);
+    *((char const   **)((void *)(&descriptor___0) + 8)) = "set_brightness";
+    *((char const   **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
+    *((char const   **)((void *)(&descriptor___0) + 24)) = "retval = %d\n";
+    *((unsigned int *)((void *)(&descriptor___0) + 32)) = 141U;
+    *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)1;
+    __cil_tmp71 = *((unsigned char *)((void *)(&descriptor___0) + 35));
     __cil_tmp72 = (long )__cil_tmp71;
     __cil_tmp73 = __cil_tmp72 & 1L;
     tmp___3 = __builtin_expect(__cil_tmp73, 0L);
@@ -3397,9 +3324,7 @@ static ssize_t set_brightness(struct device *dev , struct device_attribute *attr
     if (tmp___3 != 0L) {
       {
       __cil_tmp74 = *((struct usb_device **)cytherm);
-      __cil_tmp75 = (unsigned long )__cil_tmp74;
-      __cil_tmp76 = __cil_tmp75 + 136;
-      __cil_tmp77 = (struct device *)__cil_tmp76;
+      __cil_tmp77 = (struct device *)((void *)__cil_tmp74 + 136);
       __cil_tmp78 = (struct device  const  *)__cil_tmp77;
       __dynamic_dev_dbg(& descriptor___0, __cil_tmp78, "retval = %d\n", retval);
       }
@@ -3442,25 +3367,15 @@ static ssize_t show_temp(struct device *dev , struct device_attribute *attr , ch
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   struct usb_device *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct device *__cil_tmp26 ;
   struct device  const  *__cil_tmp27 ;
   struct usb_device *__cil_tmp28 ;
   void *__cil_tmp29 ;
   struct _ddebug *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned char __cil_tmp37 ;
   long __cil_tmp38 ;
   long __cil_tmp39 ;
   struct usb_device *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct device *__cil_tmp43 ;
   struct device  const  *__cil_tmp44 ;
   unsigned char *__cil_tmp45 ;
@@ -3468,18 +3383,10 @@ static ssize_t show_temp(struct device *dev , struct device_attribute *attr , ch
   struct usb_device *__cil_tmp47 ;
   void *__cil_tmp48 ;
   struct _ddebug *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned char __cil_tmp56 ;
   long __cil_tmp57 ;
   long __cil_tmp58 ;
   struct usb_device *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   struct device *__cil_tmp62 ;
   struct device  const  *__cil_tmp63 ;
   unsigned char *__cil_tmp64 ;
@@ -3506,9 +3413,7 @@ static ssize_t show_temp(struct device *dev , struct device_attribute *attr , ch
   if (__cil_tmp22 == __cil_tmp21) {
     {
     __cil_tmp23 = *((struct usb_device **)cytherm);
-    __cil_tmp24 = (unsigned long )__cil_tmp23;
-    __cil_tmp25 = __cil_tmp24 + 136;
-    __cil_tmp26 = (struct device *)__cil_tmp25;
+    __cil_tmp26 = (struct device *)((void *)__cil_tmp23 + 136);
     __cil_tmp27 = (struct device  const  *)__cil_tmp26;
     dev_err(__cil_tmp27, "out of memory\n");
     }
@@ -3527,18 +3432,12 @@ static ssize_t show_temp(struct device *dev , struct device_attribute *attr , ch
     {
     __cil_tmp30 = & descriptor;
     *((char const   **)__cil_tmp30) = "cytherm";
-    __cil_tmp31 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp31) = "show_temp";
-    __cil_tmp32 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp32) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
-    __cil_tmp33 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp33) = "retval = %d\n";
-    __cil_tmp34 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp34) = 175U;
-    __cil_tmp35 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp35) = (unsigned char)1;
-    __cil_tmp36 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp37 = *((unsigned char *)__cil_tmp36);
+    *((char const   **)((void *)(&descriptor) + 8)) = "show_temp";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "retval = %d\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 175U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+    __cil_tmp37 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp38 = (long )__cil_tmp37;
     __cil_tmp39 = __cil_tmp38 & 1L;
     tmp___1 = __builtin_expect(__cil_tmp39, 0L);
@@ -3546,9 +3445,7 @@ static ssize_t show_temp(struct device *dev , struct device_attribute *attr , ch
     if (tmp___1 != 0L) {
       {
       __cil_tmp40 = *((struct usb_device **)cytherm);
-      __cil_tmp41 = (unsigned long )__cil_tmp40;
-      __cil_tmp42 = __cil_tmp41 + 136;
-      __cil_tmp43 = (struct device *)__cil_tmp42;
+      __cil_tmp43 = (struct device *)((void *)__cil_tmp40 + 136);
       __cil_tmp44 = (struct device  const  *)__cil_tmp43;
       __dynamic_dev_dbg(& descriptor, __cil_tmp44, "retval = %d\n", retval);
       }
@@ -3571,18 +3468,12 @@ static ssize_t show_temp(struct device *dev , struct device_attribute *attr , ch
     {
     __cil_tmp49 = & descriptor___0;
     *((char const   **)__cil_tmp49) = "cytherm";
-    __cil_tmp50 = (unsigned long )(& descriptor___0) + 8;
-    *((char const   **)__cil_tmp50) = "show_temp";
-    __cil_tmp51 = (unsigned long )(& descriptor___0) + 16;
-    *((char const   **)__cil_tmp51) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
-    __cil_tmp52 = (unsigned long )(& descriptor___0) + 24;
-    *((char const   **)__cil_tmp52) = "retval = %d\n";
-    __cil_tmp53 = (unsigned long )(& descriptor___0) + 32;
-    *((unsigned int *)__cil_tmp53) = 181U;
-    __cil_tmp54 = (unsigned long )(& descriptor___0) + 35;
-    *((unsigned char *)__cil_tmp54) = (unsigned char)1;
-    __cil_tmp55 = (unsigned long )(& descriptor___0) + 35;
-    __cil_tmp56 = *((unsigned char *)__cil_tmp55);
+    *((char const   **)((void *)(&descriptor___0) + 8)) = "show_temp";
+    *((char const   **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
+    *((char const   **)((void *)(&descriptor___0) + 24)) = "retval = %d\n";
+    *((unsigned int *)((void *)(&descriptor___0) + 32)) = 181U;
+    *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)1;
+    __cil_tmp56 = *((unsigned char *)((void *)(&descriptor___0) + 35));
     __cil_tmp57 = (long )__cil_tmp56;
     __cil_tmp58 = __cil_tmp57 & 1L;
     tmp___2 = __builtin_expect(__cil_tmp58, 0L);
@@ -3590,9 +3481,7 @@ static ssize_t show_temp(struct device *dev , struct device_attribute *attr , ch
     if (tmp___2 != 0L) {
       {
       __cil_tmp59 = *((struct usb_device **)cytherm);
-      __cil_tmp60 = (unsigned long )__cil_tmp59;
-      __cil_tmp61 = __cil_tmp60 + 136;
-      __cil_tmp62 = (struct device *)__cil_tmp61;
+      __cil_tmp62 = (struct device *)((void *)__cil_tmp59 + 136);
       __cil_tmp63 = (struct device  const  *)__cil_tmp62;
       __dynamic_dev_dbg(& descriptor___0, __cil_tmp63, "retval = %d\n", retval);
       }
@@ -3652,25 +3541,15 @@ static ssize_t show_button(struct device *dev , struct device_attribute *attr , 
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   struct usb_device *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device  const  *__cil_tmp23 ;
   struct usb_device *__cil_tmp24 ;
   void *__cil_tmp25 ;
   struct _ddebug *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned char __cil_tmp33 ;
   long __cil_tmp34 ;
   long __cil_tmp35 ;
   struct usb_device *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
   struct device  const  *__cil_tmp40 ;
   unsigned char *__cil_tmp41 ;
@@ -3694,9 +3573,7 @@ static ssize_t show_button(struct device *dev , struct device_attribute *attr , 
   if (__cil_tmp18 == __cil_tmp17) {
     {
     __cil_tmp19 = *((struct usb_device **)cytherm);
-    __cil_tmp20 = (unsigned long )__cil_tmp19;
-    __cil_tmp21 = __cil_tmp20 + 136;
-    __cil_tmp22 = (struct device *)__cil_tmp21;
+    __cil_tmp22 = (struct device *)((void *)__cil_tmp19 + 136);
     __cil_tmp23 = (struct device  const  *)__cil_tmp22;
     dev_err(__cil_tmp23, "out of memory\n");
     }
@@ -3715,18 +3592,12 @@ static ssize_t show_button(struct device *dev , struct device_attribute *attr , 
     {
     __cil_tmp26 = & descriptor;
     *((char const   **)__cil_tmp26) = "cytherm";
-    __cil_tmp27 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp27) = "show_button";
-    __cil_tmp28 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp28) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
-    __cil_tmp29 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp29) = "retval = %d\n";
-    __cil_tmp30 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp30) = 219U;
-    __cil_tmp31 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp31) = (unsigned char)1;
-    __cil_tmp32 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp33 = *((unsigned char *)__cil_tmp32);
+    *((char const   **)((void *)(&descriptor) + 8)) = "show_button";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "retval = %d\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 219U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+    __cil_tmp33 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp34 = (long )__cil_tmp33;
     __cil_tmp35 = __cil_tmp34 & 1L;
     tmp___1 = __builtin_expect(__cil_tmp35, 0L);
@@ -3734,9 +3605,7 @@ static ssize_t show_button(struct device *dev , struct device_attribute *attr , 
     if (tmp___1 != 0L) {
       {
       __cil_tmp36 = *((struct usb_device **)cytherm);
-      __cil_tmp37 = (unsigned long )__cil_tmp36;
-      __cil_tmp38 = __cil_tmp37 + 136;
-      __cil_tmp39 = (struct device *)__cil_tmp38;
+      __cil_tmp39 = (struct device *)((void *)__cil_tmp36 + 136);
       __cil_tmp40 = (struct device  const  *)__cil_tmp39;
       __dynamic_dev_dbg(& descriptor, __cil_tmp40, "retval = %d\n", retval);
       }
@@ -3795,25 +3664,15 @@ static ssize_t show_port0(struct device *dev , struct device_attribute *attr , c
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   struct usb_device *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device  const  *__cil_tmp22 ;
   struct usb_device *__cil_tmp23 ;
   void *__cil_tmp24 ;
   struct _ddebug *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned char __cil_tmp32 ;
   long __cil_tmp33 ;
   long __cil_tmp34 ;
   struct usb_device *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct device *__cil_tmp38 ;
   struct device  const  *__cil_tmp39 ;
   unsigned char *__cil_tmp40 ;
@@ -3837,9 +3696,7 @@ static ssize_t show_port0(struct device *dev , struct device_attribute *attr , c
   if (__cil_tmp17 == __cil_tmp16) {
     {
     __cil_tmp18 = *((struct usb_device **)cytherm);
-    __cil_tmp19 = (unsigned long )__cil_tmp18;
-    __cil_tmp20 = __cil_tmp19 + 136;
-    __cil_tmp21 = (struct device *)__cil_tmp20;
+    __cil_tmp21 = (struct device *)((void *)__cil_tmp18 + 136);
     __cil_tmp22 = (struct device  const  *)__cil_tmp21;
     dev_err(__cil_tmp22, "out of memory\n");
     }
@@ -3858,18 +3715,12 @@ static ssize_t show_port0(struct device *dev , struct device_attribute *attr , c
     {
     __cil_tmp25 = & descriptor;
     *((char const   **)__cil_tmp25) = "cytherm";
-    __cil_tmp26 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp26) = "show_port0";
-    __cil_tmp27 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp27) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
-    __cil_tmp28 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp28) = "retval = %d\n";
-    __cil_tmp29 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp29) = 256U;
-    __cil_tmp30 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp30) = (unsigned char)1;
-    __cil_tmp31 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp32 = *((unsigned char *)__cil_tmp31);
+    *((char const   **)((void *)(&descriptor) + 8)) = "show_port0";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "retval = %d\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 256U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+    __cil_tmp32 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp33 = (long )__cil_tmp32;
     __cil_tmp34 = __cil_tmp33 & 1L;
     tmp___1 = __builtin_expect(__cil_tmp34, 0L);
@@ -3877,9 +3728,7 @@ static ssize_t show_port0(struct device *dev , struct device_attribute *attr , c
     if (tmp___1 != 0L) {
       {
       __cil_tmp35 = *((struct usb_device **)cytherm);
-      __cil_tmp36 = (unsigned long )__cil_tmp35;
-      __cil_tmp37 = __cil_tmp36 + 136;
-      __cil_tmp38 = (struct device *)__cil_tmp37;
+      __cil_tmp38 = (struct device *)((void *)__cil_tmp35 + 136);
       __cil_tmp39 = (struct device  const  *)__cil_tmp38;
       __dynamic_dev_dbg(& descriptor, __cil_tmp39, "retval = %d\n", retval);
       }
@@ -3918,8 +3767,6 @@ static ssize_t set_port0(struct device *dev , struct device_attribute *attr , ch
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   struct usb_device *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct device  const  *__cil_tmp24 ;
   char **__cil_tmp25 ;
@@ -3929,18 +3776,10 @@ static ssize_t set_port0(struct device *dev , struct device_attribute *attr , ch
   unsigned char __cil_tmp29 ;
   void *__cil_tmp30 ;
   struct _ddebug *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned char __cil_tmp38 ;
   long __cil_tmp39 ;
   long __cil_tmp40 ;
   struct usb_device *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
   struct device  const  *__cil_tmp45 ;
   void const   *__cil_tmp46 ;
@@ -3962,9 +3801,7 @@ static ssize_t set_port0(struct device *dev , struct device_attribute *attr , ch
   if (__cil_tmp19 == __cil_tmp18) {
     {
     __cil_tmp20 = *((struct usb_device **)cytherm);
-    __cil_tmp21 = (unsigned long )__cil_tmp20;
-    __cil_tmp22 = __cil_tmp21 + 136;
-    __cil_tmp23 = (struct device *)__cil_tmp22;
+    __cil_tmp23 = (struct device *)((void *)__cil_tmp20 + 136);
     __cil_tmp24 = (struct device  const  *)__cil_tmp23;
     dev_err(__cil_tmp24, "out of memory\n");
     }
@@ -3999,18 +3836,12 @@ static ssize_t set_port0(struct device *dev , struct device_attribute *attr , ch
     {
     __cil_tmp31 = & descriptor;
     *((char const   **)__cil_tmp31) = "cytherm";
-    __cil_tmp32 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp32) = "set_port0";
-    __cil_tmp33 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp33) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
-    __cil_tmp34 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp34) = "retval = %d\n";
-    __cil_tmp35 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp35) = 291U;
-    __cil_tmp36 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp36) = (unsigned char)1;
-    __cil_tmp37 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp38 = *((unsigned char *)__cil_tmp37);
+    *((char const   **)((void *)(&descriptor) + 8)) = "set_port0";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "retval = %d\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 291U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+    __cil_tmp38 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp39 = (long )__cil_tmp38;
     __cil_tmp40 = __cil_tmp39 & 1L;
     tmp___3 = __builtin_expect(__cil_tmp40, 0L);
@@ -4018,9 +3849,7 @@ static ssize_t set_port0(struct device *dev , struct device_attribute *attr , ch
     if (tmp___3 != 0L) {
       {
       __cil_tmp41 = *((struct usb_device **)cytherm);
-      __cil_tmp42 = (unsigned long )__cil_tmp41;
-      __cil_tmp43 = __cil_tmp42 + 136;
-      __cil_tmp44 = (struct device *)__cil_tmp43;
+      __cil_tmp44 = (struct device *)((void *)__cil_tmp41 + 136);
       __cil_tmp45 = (struct device  const  *)__cil_tmp44;
       __dynamic_dev_dbg(& descriptor, __cil_tmp45, "retval = %d\n", retval);
       }
@@ -4058,25 +3887,15 @@ static ssize_t show_port1(struct device *dev , struct device_attribute *attr , c
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   struct usb_device *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device  const  *__cil_tmp22 ;
   struct usb_device *__cil_tmp23 ;
   void *__cil_tmp24 ;
   struct _ddebug *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned char __cil_tmp32 ;
   long __cil_tmp33 ;
   long __cil_tmp34 ;
   struct usb_device *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct device *__cil_tmp38 ;
   struct device  const  *__cil_tmp39 ;
   unsigned char *__cil_tmp40 ;
@@ -4100,9 +3919,7 @@ static ssize_t show_port1(struct device *dev , struct device_attribute *attr , c
   if (__cil_tmp17 == __cil_tmp16) {
     {
     __cil_tmp18 = *((struct usb_device **)cytherm);
-    __cil_tmp19 = (unsigned long )__cil_tmp18;
-    __cil_tmp20 = __cil_tmp19 + 136;
-    __cil_tmp21 = (struct device *)__cil_tmp20;
+    __cil_tmp21 = (struct device *)((void *)__cil_tmp18 + 136);
     __cil_tmp22 = (struct device  const  *)__cil_tmp21;
     dev_err(__cil_tmp22, "out of memory\n");
     }
@@ -4121,18 +3938,12 @@ static ssize_t show_port1(struct device *dev , struct device_attribute *attr , c
     {
     __cil_tmp25 = & descriptor;
     *((char const   **)__cil_tmp25) = "cytherm";
-    __cil_tmp26 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp26) = "show_port1";
-    __cil_tmp27 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp27) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
-    __cil_tmp28 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp28) = "retval = %d\n";
-    __cil_tmp29 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp29) = 316U;
-    __cil_tmp30 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp30) = (unsigned char)1;
-    __cil_tmp31 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp32 = *((unsigned char *)__cil_tmp31);
+    *((char const   **)((void *)(&descriptor) + 8)) = "show_port1";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "retval = %d\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 316U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+    __cil_tmp32 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp33 = (long )__cil_tmp32;
     __cil_tmp34 = __cil_tmp33 & 1L;
     tmp___1 = __builtin_expect(__cil_tmp34, 0L);
@@ -4140,9 +3951,7 @@ static ssize_t show_port1(struct device *dev , struct device_attribute *attr , c
     if (tmp___1 != 0L) {
       {
       __cil_tmp35 = *((struct usb_device **)cytherm);
-      __cil_tmp36 = (unsigned long )__cil_tmp35;
-      __cil_tmp37 = __cil_tmp36 + 136;
-      __cil_tmp38 = (struct device *)__cil_tmp37;
+      __cil_tmp38 = (struct device *)((void *)__cil_tmp35 + 136);
       __cil_tmp39 = (struct device  const  *)__cil_tmp38;
       __dynamic_dev_dbg(& descriptor, __cil_tmp39, "retval = %d\n", retval);
       }
@@ -4181,8 +3990,6 @@ static ssize_t set_port1(struct device *dev , struct device_attribute *attr , ch
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   struct usb_device *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct device  const  *__cil_tmp24 ;
   char **__cil_tmp25 ;
@@ -4192,18 +3999,10 @@ static ssize_t set_port1(struct device *dev , struct device_attribute *attr , ch
   unsigned char __cil_tmp29 ;
   void *__cil_tmp30 ;
   struct _ddebug *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned char __cil_tmp38 ;
   long __cil_tmp39 ;
   long __cil_tmp40 ;
   struct usb_device *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
   struct device  const  *__cil_tmp45 ;
   void const   *__cil_tmp46 ;
@@ -4225,9 +4024,7 @@ static ssize_t set_port1(struct device *dev , struct device_attribute *attr , ch
   if (__cil_tmp19 == __cil_tmp18) {
     {
     __cil_tmp20 = *((struct usb_device **)cytherm);
-    __cil_tmp21 = (unsigned long )__cil_tmp20;
-    __cil_tmp22 = __cil_tmp21 + 136;
-    __cil_tmp23 = (struct device *)__cil_tmp22;
+    __cil_tmp23 = (struct device *)((void *)__cil_tmp20 + 136);
     __cil_tmp24 = (struct device  const  *)__cil_tmp23;
     dev_err(__cil_tmp24, "out of memory\n");
     }
@@ -4262,18 +4059,12 @@ static ssize_t set_port1(struct device *dev , struct device_attribute *attr , ch
     {
     __cil_tmp31 = & descriptor;
     *((char const   **)__cil_tmp31) = "cytherm";
-    __cil_tmp32 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp32) = "set_port1";
-    __cil_tmp33 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp33) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
-    __cil_tmp34 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp34) = "retval = %d\n";
-    __cil_tmp35 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp35) = 351U;
-    __cil_tmp36 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp36) = (unsigned char)1;
-    __cil_tmp37 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp38 = *((unsigned char *)__cil_tmp37);
+    *((char const   **)((void *)(&descriptor) + 8)) = "set_port1";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1911/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cytherm.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "retval = %d\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 351U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+    __cil_tmp38 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp39 = (long )__cil_tmp38;
     __cil_tmp40 = __cil_tmp39 & 1L;
     tmp___3 = __builtin_expect(__cil_tmp40, 0L);
@@ -4281,9 +4072,7 @@ static ssize_t set_port1(struct device *dev , struct device_attribute *attr , ch
     if (tmp___3 != 0L) {
       {
       __cil_tmp41 = *((struct usb_device **)cytherm);
-      __cil_tmp42 = (unsigned long )__cil_tmp41;
-      __cil_tmp43 = __cil_tmp42 + 136;
-      __cil_tmp44 = (struct device *)__cil_tmp43;
+      __cil_tmp44 = (struct device *)((void *)__cil_tmp41 + 136);
       __cil_tmp45 = (struct device  const  *)__cil_tmp44;
       __dynamic_dev_dbg(& descriptor, __cil_tmp45, "retval = %d\n", retval);
       }
@@ -4314,55 +4103,29 @@ static int cytherm_probe(struct usb_interface *interface , struct usb_device_id 
   struct usb_cytherm *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device  const  *__cil_tmp14 ;
   void *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device_attribute  const  *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device_attribute  const  *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct device *__cil_tmp28 ;
   struct device_attribute  const  *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device *__cil_tmp32 ;
   struct device_attribute  const  *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct device *__cil_tmp36 ;
   struct device_attribute  const  *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct device *__cil_tmp40 ;
   struct device  const  *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
   struct device_attribute  const  *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct device *__cil_tmp48 ;
   struct device_attribute  const  *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct device *__cil_tmp52 ;
   struct device_attribute  const  *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct device *__cil_tmp56 ;
   struct device_attribute  const  *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   struct device *__cil_tmp60 ;
   struct device_attribute  const  *__cil_tmp61 ;
   void *__cil_tmp62 ;
@@ -4384,9 +4147,7 @@ static int cytherm_probe(struct usb_interface *interface , struct usb_device_id 
   __cil_tmp10 = (unsigned long )dev;
   if (__cil_tmp10 == __cil_tmp9) {
     {
-    __cil_tmp11 = (unsigned long )interface;
-    __cil_tmp12 = __cil_tmp11 + 48;
-    __cil_tmp13 = (struct device *)__cil_tmp12;
+    __cil_tmp13 = (struct device *)((void *)interface + 48);
     __cil_tmp14 = (struct device  const  *)__cil_tmp13;
     dev_err(__cil_tmp14, "Out of memory\n");
     }
@@ -4399,12 +4160,8 @@ static int cytherm_probe(struct usb_interface *interface , struct usb_device_id 
   *((struct usb_device **)dev) = usb_get_dev(udev);
   __cil_tmp15 = (void *)dev;
   usb_set_intfdata(interface, __cil_tmp15);
-  __cil_tmp16 = (unsigned long )dev;
-  __cil_tmp17 = __cil_tmp16 + 16;
-  *((int *)__cil_tmp17) = 255;
-  __cil_tmp18 = (unsigned long )interface;
-  __cil_tmp19 = __cil_tmp18 + 48;
-  __cil_tmp20 = (struct device *)__cil_tmp19;
+  *((int *)((void *)dev + 16)) = 255;
+  __cil_tmp20 = (struct device *)((void *)interface + 48);
   __cil_tmp21 = (struct device_attribute  const  *)(& dev_attr_brightness);
   retval = device_create_file(__cil_tmp20, __cil_tmp21);
   }
@@ -4414,9 +4171,7 @@ static int cytherm_probe(struct usb_interface *interface , struct usb_device_id 
 
   }
   {
-  __cil_tmp22 = (unsigned long )interface;
-  __cil_tmp23 = __cil_tmp22 + 48;
-  __cil_tmp24 = (struct device *)__cil_tmp23;
+  __cil_tmp24 = (struct device *)((void *)interface + 48);
   __cil_tmp25 = (struct device_attribute  const  *)(& dev_attr_temp);
   retval = device_create_file(__cil_tmp24, __cil_tmp25);
   }
@@ -4426,9 +4181,7 @@ static int cytherm_probe(struct usb_interface *interface , struct usb_device_id 
 
   }
   {
-  __cil_tmp26 = (unsigned long )interface;
-  __cil_tmp27 = __cil_tmp26 + 48;
-  __cil_tmp28 = (struct device *)__cil_tmp27;
+  __cil_tmp28 = (struct device *)((void *)interface + 48);
   __cil_tmp29 = (struct device_attribute  const  *)(& dev_attr_button);
   retval = device_create_file(__cil_tmp28, __cil_tmp29);
   }
@@ -4438,9 +4191,7 @@ static int cytherm_probe(struct usb_interface *interface , struct usb_device_id 
 
   }
   {
-  __cil_tmp30 = (unsigned long )interface;
-  __cil_tmp31 = __cil_tmp30 + 48;
-  __cil_tmp32 = (struct device *)__cil_tmp31;
+  __cil_tmp32 = (struct device *)((void *)interface + 48);
   __cil_tmp33 = (struct device_attribute  const  *)(& dev_attr_port0);
   retval = device_create_file(__cil_tmp32, __cil_tmp33);
   }
@@ -4450,9 +4201,7 @@ static int cytherm_probe(struct usb_interface *interface , struct usb_device_id 
 
   }
   {
-  __cil_tmp34 = (unsigned long )interface;
-  __cil_tmp35 = __cil_tmp34 + 48;
-  __cil_tmp36 = (struct device *)__cil_tmp35;
+  __cil_tmp36 = (struct device *)((void *)interface + 48);
   __cil_tmp37 = (struct device_attribute  const  *)(& dev_attr_port1);
   retval = device_create_file(__cil_tmp36, __cil_tmp37);
   }
@@ -4462,38 +4211,26 @@ static int cytherm_probe(struct usb_interface *interface , struct usb_device_id 
 
   }
   {
-  __cil_tmp38 = (unsigned long )interface;
-  __cil_tmp39 = __cil_tmp38 + 48;
-  __cil_tmp40 = (struct device *)__cil_tmp39;
+  __cil_tmp40 = (struct device *)((void *)interface + 48);
   __cil_tmp41 = (struct device  const  *)__cil_tmp40;
   _dev_info(__cil_tmp41, "Cypress thermometer device now attached\n");
   }
   return (0);
   error: 
   {
-  __cil_tmp42 = (unsigned long )interface;
-  __cil_tmp43 = __cil_tmp42 + 48;
-  __cil_tmp44 = (struct device *)__cil_tmp43;
+  __cil_tmp44 = (struct device *)((void *)interface + 48);
   __cil_tmp45 = (struct device_attribute  const  *)(& dev_attr_brightness);
   device_remove_file(__cil_tmp44, __cil_tmp45);
-  __cil_tmp46 = (unsigned long )interface;
-  __cil_tmp47 = __cil_tmp46 + 48;
-  __cil_tmp48 = (struct device *)__cil_tmp47;
+  __cil_tmp48 = (struct device *)((void *)interface + 48);
   __cil_tmp49 = (struct device_attribute  const  *)(& dev_attr_temp);
   device_remove_file(__cil_tmp48, __cil_tmp49);
-  __cil_tmp50 = (unsigned long )interface;
-  __cil_tmp51 = __cil_tmp50 + 48;
-  __cil_tmp52 = (struct device *)__cil_tmp51;
+  __cil_tmp52 = (struct device *)((void *)interface + 48);
   __cil_tmp53 = (struct device_attribute  const  *)(& dev_attr_button);
   device_remove_file(__cil_tmp52, __cil_tmp53);
-  __cil_tmp54 = (unsigned long )interface;
-  __cil_tmp55 = __cil_tmp54 + 48;
-  __cil_tmp56 = (struct device *)__cil_tmp55;
+  __cil_tmp56 = (struct device *)((void *)interface + 48);
   __cil_tmp57 = (struct device_attribute  const  *)(& dev_attr_port0);
   device_remove_file(__cil_tmp56, __cil_tmp57);
-  __cil_tmp58 = (unsigned long )interface;
-  __cil_tmp59 = __cil_tmp58 + 48;
-  __cil_tmp60 = (struct device *)__cil_tmp59;
+  __cil_tmp60 = (struct device *)((void *)interface + 48);
   __cil_tmp61 = (struct device_attribute  const  *)(& dev_attr_port1);
   device_remove_file(__cil_tmp60, __cil_tmp61);
   __cil_tmp62 = (void *)0;
@@ -4510,31 +4247,19 @@ static int cytherm_probe(struct usb_interface *interface , struct usb_device_id 
 static void cytherm_disconnect(struct usb_interface *interface ) 
 { struct usb_cytherm *dev ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device_attribute  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device_attribute  const  *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device_attribute  const  *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device_attribute  const  *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device_attribute  const  *__cil_tmp23 ;
   void *__cil_tmp24 ;
   struct usb_device *__cil_tmp25 ;
   void const   *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct device *__cil_tmp29 ;
   struct device  const  *__cil_tmp30 ;
 
@@ -4542,29 +4267,19 @@ static void cytherm_disconnect(struct usb_interface *interface )
   {
   tmp = usb_get_intfdata(interface);
   dev = (struct usb_cytherm *)tmp;
-  __cil_tmp4 = (unsigned long )interface;
-  __cil_tmp5 = __cil_tmp4 + 48;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)interface + 48);
   __cil_tmp7 = (struct device_attribute  const  *)(& dev_attr_brightness);
   device_remove_file(__cil_tmp6, __cil_tmp7);
-  __cil_tmp8 = (unsigned long )interface;
-  __cil_tmp9 = __cil_tmp8 + 48;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)interface + 48);
   __cil_tmp11 = (struct device_attribute  const  *)(& dev_attr_temp);
   device_remove_file(__cil_tmp10, __cil_tmp11);
-  __cil_tmp12 = (unsigned long )interface;
-  __cil_tmp13 = __cil_tmp12 + 48;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)interface + 48);
   __cil_tmp15 = (struct device_attribute  const  *)(& dev_attr_button);
   device_remove_file(__cil_tmp14, __cil_tmp15);
-  __cil_tmp16 = (unsigned long )interface;
-  __cil_tmp17 = __cil_tmp16 + 48;
-  __cil_tmp18 = (struct device *)__cil_tmp17;
+  __cil_tmp18 = (struct device *)((void *)interface + 48);
   __cil_tmp19 = (struct device_attribute  const  *)(& dev_attr_port0);
   device_remove_file(__cil_tmp18, __cil_tmp19);
-  __cil_tmp20 = (unsigned long )interface;
-  __cil_tmp21 = __cil_tmp20 + 48;
-  __cil_tmp22 = (struct device *)__cil_tmp21;
+  __cil_tmp22 = (struct device *)((void *)interface + 48);
   __cil_tmp23 = (struct device_attribute  const  *)(& dev_attr_port1);
   device_remove_file(__cil_tmp22, __cil_tmp23);
   __cil_tmp24 = (void *)0;
@@ -4573,9 +4288,7 @@ static void cytherm_disconnect(struct usb_interface *interface )
   usb_put_dev(__cil_tmp25);
   __cil_tmp26 = (void const   *)dev;
   kfree(__cil_tmp26);
-  __cil_tmp27 = (unsigned long )interface;
-  __cil_tmp28 = __cil_tmp27 + 48;
-  __cil_tmp29 = (struct device *)__cil_tmp28;
+  __cil_tmp29 = (struct device *)((void *)interface + 48);
   __cil_tmp30 = (struct device  const  *)__cil_tmp29;
   _dev_info(__cil_tmp30, "Cypress thermometer now disconnected\n");
   }

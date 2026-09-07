@@ -4178,12 +4178,8 @@ __inline static void ide_std_init_ports(struct ide_hw *hw , unsigned long io_add
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
 
   {
   i = 0U;
@@ -4200,18 +4196,14 @@ __inline static void ide_std_init_ports(struct ide_hw *hw , unsigned long io_add
     __cil_tmp6 = i * 8UL;
     __cil_tmp7 = 0 + __cil_tmp6;
     __cil_tmp8 = 0 + __cil_tmp7;
-    __cil_tmp9 = (unsigned long )hw;
-    __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-    *((unsigned long *)__cil_tmp10) = tmp___7;
+    *((unsigned long *)((void *)hw + __cil_tmp8)) = tmp___7;
     i = i + 1U;
   }
   while_break: /* CIL Label */ ;
   }
   __cil_tmp11 = 0 + 64;
   __cil_tmp12 = 0 + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )hw;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  *((unsigned long *)__cil_tmp14) = ctl_addr;
+  *((unsigned long *)((void *)hw + __cil_tmp12)) = ctl_addr;
   return;
 }
 }
@@ -4259,7 +4251,6 @@ static int idepnp_probe(struct pnp_dev *dev , struct pnp_device_id  const  *dev_
   resource_size_t __cil_tmp24 ;
   resource_size_t __cil_tmp25 ;
   void *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   struct ide_hw **__cil_tmp30 ;
@@ -4339,8 +4330,7 @@ static int idepnp_probe(struct pnp_dev *dev , struct pnp_device_id  const  *dev_
   memset(__cil_tmp26, 0, 112UL);
   ide_std_init_ports(& hw, base, ctl);
   tmp___14 = pnp_irq(dev, 0U);
-  __cil_tmp27 = (unsigned long )(& hw) + 80;
-  *((int *)__cil_tmp27) = (int )tmp___14;
+  *((int *)((void *)(&hw) + 80)) = (int )tmp___14;
   __cil_tmp28 = 0 * 8UL;
   __cil_tmp29 = (unsigned long )(hws) + __cil_tmp28;
   __cil_tmp30 = (struct ide_hw **)__cil_tmp29;

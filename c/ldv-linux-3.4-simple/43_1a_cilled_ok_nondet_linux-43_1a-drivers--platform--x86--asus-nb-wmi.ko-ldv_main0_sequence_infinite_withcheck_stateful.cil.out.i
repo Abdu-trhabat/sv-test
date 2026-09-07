@@ -3072,32 +3072,17 @@ extern void asus_wmi_unregister_driver(struct asus_wmi_driver * ) ;
 static uint wapf ;
 static struct quirk_entry quirk_asus_unknown = {(_Bool)0, (_Bool)0, (_Bool)0, 0};
 static void asus_nb_wmi_quirks(struct asus_wmi_driver *driver )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   struct quirk_entry *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   uint *__cil_tmp9 ;
   uint __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   {
-  __cil_tmp2 = (unsigned long )driver;
-  __cil_tmp3 = __cil_tmp2 + 56;
-  *((struct quirk_entry **)__cil_tmp3) = & quirk_asus_unknown;
-  __cil_tmp4 = (unsigned long )driver;
-  __cil_tmp5 = __cil_tmp4 + 56;
-  __cil_tmp6 = *((struct quirk_entry **)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 4;
+  *((struct quirk_entry **)((void *)driver + 56)) = & quirk_asus_unknown;
+  __cil_tmp6 = *((struct quirk_entry **)((void *)driver + 56));
   __cil_tmp9 = & wapf;
   __cil_tmp10 = *__cil_tmp9;
-  *((int *)__cil_tmp8) = (int )__cil_tmp10;
-  __cil_tmp11 = (unsigned long )driver;
-  __cil_tmp12 = __cil_tmp11 + 4;
-  *((int *)__cil_tmp12) = 0;
+  *((int *)((void *)__cil_tmp6 + 4)) = (int )__cil_tmp10;
+  *((int *)((void *)driver + 4)) = 0;
   return;
 }
 }

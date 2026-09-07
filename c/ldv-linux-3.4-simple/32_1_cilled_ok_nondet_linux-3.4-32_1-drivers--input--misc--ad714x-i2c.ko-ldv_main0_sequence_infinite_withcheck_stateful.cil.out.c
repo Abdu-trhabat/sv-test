@@ -2879,15 +2879,11 @@ extern int i2c_master_recv(struct i2c_client  const  *client , char *buf , int c
 __inline static void *i2c_get_clientdata(struct i2c_client  const  *dev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_clientdata(struct i2c_client  const  *dev ) 
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)dev + 40);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -2895,15 +2891,12 @@ __inline static void *i2c_get_clientdata(struct i2c_client  const  *dev )
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2927,8 +2920,6 @@ static int ad714x_i2c_suspend(struct device *dev )
   void *tmp___7 ;
   int tmp___8 ;
   struct i2c_client *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   char *__cil_tmp10 ;
@@ -2941,9 +2932,7 @@ static int ad714x_i2c_suspend(struct device *dev )
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp5 = (struct i2c_client *)0;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 40;
-  __cil_tmp8 = (struct device *)__cil_tmp7;
+  __cil_tmp8 = (struct device *)((void *)__cil_tmp5 + 40);
   __cil_tmp9 = (unsigned int )__cil_tmp8;
   __cil_tmp10 = (char *)__mptr;
   __cil_tmp11 = __cil_tmp10 - __cil_tmp9;
@@ -2961,8 +2950,6 @@ static int ad714x_i2c_resume(struct device *dev )
   void *tmp___7 ;
   int tmp___8 ;
   struct i2c_client *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   char *__cil_tmp10 ;
@@ -2975,9 +2962,7 @@ static int ad714x_i2c_resume(struct device *dev )
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp5 = (struct i2c_client *)0;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 40;
-  __cil_tmp8 = (struct device *)__cil_tmp7;
+  __cil_tmp8 = (struct device *)((void *)__cil_tmp5 + 40);
   __cil_tmp9 = (unsigned int )__cil_tmp8;
   __cil_tmp10 = (char *)__mptr;
   __cil_tmp11 = __cil_tmp10 - __cil_tmp9;
@@ -3006,31 +2991,21 @@ static int ad714x_i2c_write(struct ad714x_chip *chip , unsigned short reg , unsi
   __u16 tmp___7 ;
   __u16 tmp___8 ;
   long tmp___9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct i2c_client *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   unsigned int __cil_tmp17 ;
   char *__cil_tmp18 ;
   char *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   int __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
   struct i2c_client  const  *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   __be16 *__cil_tmp35 ;
   u8 *__cil_tmp36 ;
   char const   *__cil_tmp37 ;
@@ -3040,21 +3015,15 @@ static int ad714x_i2c_write(struct ad714x_chip *chip , unsigned short reg , unsi
   int __cil_tmp41 ;
   int __cil_tmp42 ;
   long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct device *__cil_tmp46 ;
   struct device  const  *__cil_tmp47 ;
 
   {
   {
-  __cil_tmp10 = (unsigned long )chip;
-  __cil_tmp11 = __cil_tmp10 + 104;
-  __cil_tmp12 = *((struct device **)__cil_tmp11);
+  __cil_tmp12 = *((struct device **)((void *)chip + 104));
   __mptr = (struct device  const  *)__cil_tmp12;
   __cil_tmp13 = (struct i2c_client *)0;
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 40;
-  __cil_tmp16 = (struct device *)__cil_tmp15;
+  __cil_tmp16 = (struct device *)((void *)__cil_tmp13 + 40);
   __cil_tmp17 = (unsigned int )__cil_tmp16;
   __cil_tmp18 = (char *)__mptr;
   __cil_tmp19 = __cil_tmp18 - __cil_tmp17;
@@ -3062,23 +3031,17 @@ static int ad714x_i2c_write(struct ad714x_chip *chip , unsigned short reg , unsi
   tmp___7 = __fswab16(reg);
   __cil_tmp20 = 0 * 2UL;
   __cil_tmp21 = 208 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )chip;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
   __cil_tmp24 = (int )tmp___7;
-  *((__be16 *)__cil_tmp23) = (__be16 )__cil_tmp24;
+  *((__be16 *)((void *)chip + __cil_tmp21)) = (__be16 )__cil_tmp24;
   tmp___8 = __fswab16(data);
   __cil_tmp25 = 1 * 2UL;
   __cil_tmp26 = 208 + __cil_tmp25;
-  __cil_tmp27 = (unsigned long )chip;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
   __cil_tmp29 = (int )tmp___8;
-  *((__be16 *)__cil_tmp28) = (__be16 )__cil_tmp29;
+  *((__be16 *)((void *)chip + __cil_tmp26)) = (__be16 )__cil_tmp29;
   __cil_tmp30 = (struct i2c_client  const  *)client;
   __cil_tmp31 = 0 * 2UL;
   __cil_tmp32 = 208 + __cil_tmp31;
-  __cil_tmp33 = (unsigned long )chip;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  __cil_tmp35 = (__be16 *)__cil_tmp34;
+  __cil_tmp35 = (__be16 *)((void *)chip + __cil_tmp32);
   __cil_tmp36 = (u8 *)__cil_tmp35;
   __cil_tmp37 = (char const   *)__cil_tmp36;
   __cil_tmp38 = 2UL * 2UL;
@@ -3092,9 +3055,7 @@ static int ad714x_i2c_write(struct ad714x_chip *chip , unsigned short reg , unsi
   }
   if (tmp___9) {
     {
-    __cil_tmp44 = (unsigned long )client;
-    __cil_tmp45 = __cil_tmp44 + 40;
-    __cil_tmp46 = (struct device *)__cil_tmp45;
+    __cil_tmp46 = (struct device *)((void *)client + 40);
     __cil_tmp47 = (struct device  const  *)__cil_tmp46;
     dev_err(__cil_tmp47, "I2C write error: %d\n", error);
     }
@@ -3114,26 +3075,18 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   __u16 tmp___7 ;
   long tmp___8 ;
   __u16 tmp___9 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct i2c_client *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   char *__cil_tmp20 ;
   char *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int __cil_tmp26 ;
   struct i2c_client  const  *__cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   __be16 *__cil_tmp32 ;
   u8 *__cil_tmp33 ;
   char const   *__cil_tmp34 ;
@@ -3141,8 +3094,6 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   struct i2c_client  const  *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   __be16 *__cil_tmp41 ;
   u8 *__cil_tmp42 ;
   char *__cil_tmp43 ;
@@ -3152,29 +3103,21 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   int __cil_tmp47 ;
   int __cil_tmp48 ;
   long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct device *__cil_tmp52 ;
   struct device  const  *__cil_tmp53 ;
   size_t __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   __be16 __cil_tmp59 ;
   unsigned short *__cil_tmp60 ;
   int __cil_tmp61 ;
 
   {
   {
-  __cil_tmp12 = (unsigned long )chip;
-  __cil_tmp13 = __cil_tmp12 + 104;
-  __cil_tmp14 = *((struct device **)__cil_tmp13);
+  __cil_tmp14 = *((struct device **)((void *)chip + 104));
   __mptr = (struct device  const  *)__cil_tmp14;
   __cil_tmp15 = (struct i2c_client *)0;
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + 40;
-  __cil_tmp18 = (struct device *)__cil_tmp17;
+  __cil_tmp18 = (struct device *)((void *)__cil_tmp15 + 40);
   __cil_tmp19 = (unsigned int )__cil_tmp18;
   __cil_tmp20 = (char *)__mptr;
   __cil_tmp21 = __cil_tmp20 - __cil_tmp19;
@@ -3182,16 +3125,12 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   tmp___7 = __fswab16(reg);
   __cil_tmp22 = 0 * 2UL;
   __cil_tmp23 = 208 + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )chip;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
   __cil_tmp26 = (int )tmp___7;
-  *((__be16 *)__cil_tmp25) = (__be16 )__cil_tmp26;
+  *((__be16 *)((void *)chip + __cil_tmp23)) = (__be16 )__cil_tmp26;
   __cil_tmp27 = (struct i2c_client  const  *)client;
   __cil_tmp28 = 0 * 2UL;
   __cil_tmp29 = 208 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )chip;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = (__be16 *)__cil_tmp31;
+  __cil_tmp32 = (__be16 *)((void *)chip + __cil_tmp29);
   __cil_tmp33 = (u8 *)__cil_tmp32;
   __cil_tmp34 = (char const   *)__cil_tmp33;
   __cil_tmp35 = (int )2UL;
@@ -3202,9 +3141,7 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
     __cil_tmp36 = (struct i2c_client  const  *)client;
     __cil_tmp37 = 0 * 2UL;
     __cil_tmp38 = 208 + __cil_tmp37;
-    __cil_tmp39 = (unsigned long )chip;
-    __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-    __cil_tmp41 = (__be16 *)__cil_tmp40;
+    __cil_tmp41 = (__be16 *)((void *)chip + __cil_tmp38);
     __cil_tmp42 = (u8 *)__cil_tmp41;
     __cil_tmp43 = (char *)__cil_tmp42;
     __cil_tmp44 = len * 2UL;
@@ -3223,9 +3160,7 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
   }
   if (tmp___8) {
     {
-    __cil_tmp50 = (unsigned long )client;
-    __cil_tmp51 = __cil_tmp50 + 40;
-    __cil_tmp52 = (struct device *)__cil_tmp51;
+    __cil_tmp52 = (struct device *)((void *)client + 40);
     __cil_tmp53 = (struct device  const  *)__cil_tmp52;
     dev_err(__cil_tmp53, "I2C read error: %d\n", error);
     }
@@ -3248,9 +3183,7 @@ static int ad714x_i2c_read(struct ad714x_chip *chip , unsigned short reg , unsig
     {
     __cil_tmp55 = i * 2UL;
     __cil_tmp56 = 208 + __cil_tmp55;
-    __cil_tmp57 = (unsigned long )chip;
-    __cil_tmp58 = __cil_tmp57 + __cil_tmp56;
-    __cil_tmp59 = *((__be16 *)__cil_tmp58);
+    __cil_tmp59 = *((__be16 *)((void *)chip + __cil_tmp56));
     tmp___9 = __fswab16(__cil_tmp59);
     __cil_tmp60 = data + i;
     __cil_tmp61 = (int )tmp___9;
@@ -3269,12 +3202,8 @@ static int ad714x_i2c_probe(struct i2c_client *client , struct i2c_device_id  co
 { struct ad714x_chip *chip ;
   long tmp___7 ;
   long tmp___8 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   u16 __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   void const   *__cil_tmp13 ;
   void const   *__cil_tmp14 ;
@@ -3282,13 +3211,9 @@ static int ad714x_i2c_probe(struct i2c_client *client , struct i2c_device_id  co
 
   {
   {
-  __cil_tmp6 = (unsigned long )client;
-  __cil_tmp7 = __cil_tmp6 + 40;
-  __cil_tmp8 = (struct device *)__cil_tmp7;
+  __cil_tmp8 = (struct device *)((void *)client + 40);
   __cil_tmp9 = (u16 )24;
-  __cil_tmp10 = (unsigned long )client;
-  __cil_tmp11 = __cil_tmp10 + 808;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp12 = *((int *)((void *)client + 808));
   chip = ad714x_probe(__cil_tmp8, __cil_tmp9, __cil_tmp12, & ad714x_i2c_read, & ad714x_i2c_write);
   __cil_tmp13 = (void const   *)chip;
   tmp___8 = (long )IS_ERR(__cil_tmp13);

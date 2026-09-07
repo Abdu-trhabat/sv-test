@@ -1928,14 +1928,10 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -1943,14 +1939,11 @@ __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1991,37 +1984,21 @@ static void gpio_keys_polled_check_state(struct input_dev *input , struct gpio_k
   int tmp___2 ;
   unsigned int type ;
   unsigned int tmp___3 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
   int __cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   {
   {
-  __cil_tmp11 = (unsigned long )bdata;
-  __cil_tmp12 = __cil_tmp11 + 12;
-  if (*((int *)__cil_tmp12)) {
+  if (*((int *)((void *)bdata + 12))) {
     {
-    __cil_tmp13 = (unsigned long )button;
-    __cil_tmp14 = __cil_tmp13 + 4;
-    __cil_tmp15 = *((int *)__cil_tmp14);
+    __cil_tmp15 = *((int *)((void *)button + 4));
     __cil_tmp16 = (unsigned int )__cil_tmp15;
     tmp = gpio_get_value_cansleep(__cil_tmp16);
     }
@@ -2033,9 +2010,7 @@ static void gpio_keys_polled_check_state(struct input_dev *input , struct gpio_k
     state = tmp___0;
   } else {
     {
-    __cil_tmp17 = (unsigned long )button;
-    __cil_tmp18 = __cil_tmp17 + 4;
-    __cil_tmp19 = *((int *)__cil_tmp18);
+    __cil_tmp19 = *((int *)((void *)button + 4));
     __cil_tmp20 = (unsigned int )__cil_tmp19;
     tmp___1 = gpio_get_value(__cil_tmp20);
     }
@@ -2050,9 +2025,7 @@ static void gpio_keys_polled_check_state(struct input_dev *input , struct gpio_k
   {
   __cil_tmp21 = *((int *)bdata);
   if (state != __cil_tmp21) {
-    __cil_tmp22 = (unsigned long )button;
-    __cil_tmp23 = __cil_tmp22 + 24;
-    tmp___3 = *((unsigned int *)__cil_tmp23);
+    tmp___3 = *((unsigned int *)((void *)button + 24));
     if (tmp___3) {
     } else {
       tmp___3 = 1U;
@@ -2060,17 +2033,13 @@ static void gpio_keys_polled_check_state(struct input_dev *input , struct gpio_k
     {
     type = tmp___3;
     __cil_tmp24 = *((unsigned int *)button);
-    __cil_tmp25 = (unsigned long )button;
-    __cil_tmp26 = __cil_tmp25 + 8;
-    __cil_tmp27 = *((int *)__cil_tmp26);
+    __cil_tmp27 = *((int *)((void *)button + 8));
     __cil_tmp28 = state ^ __cil_tmp27;
     __cil_tmp29 = ! __cil_tmp28;
     __cil_tmp30 = ! __cil_tmp29;
     input_event(input, type, __cil_tmp24, __cil_tmp30);
     input_sync(input);
-    __cil_tmp31 = (unsigned long )bdata;
-    __cil_tmp32 = __cil_tmp31 + 4;
-    *((int *)__cil_tmp32) = 0;
+    *((int *)((void *)bdata + 4)) = 0;
     *((int *)bdata) = state;
     }
   } else {
@@ -2086,53 +2055,27 @@ static void gpio_keys_polled_poll(struct input_polled_dev *dev )
   int i ;
   struct gpio_keys_button_data *bdata ;
   void *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct gpio_keys_platform_data *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
   struct gpio_keys_button *__cil_tmp33 ;
   struct gpio_keys_button *__cil_tmp34 ;
   {
   __cil_tmp7 = *((void **)dev);
   bdev = (struct gpio_keys_polled_dev *)__cil_tmp7;
-  __cil_tmp8 = (unsigned long )bdev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  pdata = *((struct gpio_keys_platform_data **)__cil_tmp9);
-  __cil_tmp10 = (unsigned long )dev;
-  __cil_tmp11 = __cil_tmp10 + 48;
-  input = *((struct input_dev **)__cil_tmp11);
+  pdata = *((struct gpio_keys_platform_data **)((void *)bdev + 16));
+  input = *((struct input_dev **)((void *)dev + 48));
   i = 0;
   {
   while (1) {
     while_continue: ;
     {
-    __cil_tmp12 = (unsigned long )bdev;
-    __cil_tmp13 = __cil_tmp12 + 16;
-    __cil_tmp14 = *((struct gpio_keys_platform_data **)__cil_tmp13);
-    __cil_tmp15 = (unsigned long )__cil_tmp14;
-    __cil_tmp16 = __cil_tmp15 + 8;
-    __cil_tmp17 = *((int *)__cil_tmp16);
+    __cil_tmp14 = *((struct gpio_keys_platform_data **)((void *)bdev + 16));
+    __cil_tmp17 = *((int *)((void *)__cil_tmp14 + 8));
     if (i < __cil_tmp17) {
     } else {
       goto while_break;
@@ -2140,23 +2083,13 @@ static void gpio_keys_polled_poll(struct input_polled_dev *dev )
     }
     __cil_tmp18 = i * 16UL;
     __cil_tmp19 = 24 + __cil_tmp18;
-    __cil_tmp20 = (unsigned long )bdev;
-    __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-    bdata = (struct gpio_keys_button_data *)__cil_tmp21;
+    bdata = (struct gpio_keys_button_data *)((void *)bdev + __cil_tmp19);
     {
-    __cil_tmp22 = (unsigned long )bdata;
-    __cil_tmp23 = __cil_tmp22 + 8;
-    __cil_tmp24 = *((int *)__cil_tmp23);
-    __cil_tmp25 = (unsigned long )bdata;
-    __cil_tmp26 = __cil_tmp25 + 4;
-    __cil_tmp27 = *((int *)__cil_tmp26);
+    __cil_tmp24 = *((int *)((void *)bdata + 8));
+    __cil_tmp27 = *((int *)((void *)bdata + 4));
     if (__cil_tmp27 < __cil_tmp24) {
-      __cil_tmp28 = (unsigned long )bdata;
-      __cil_tmp29 = __cil_tmp28 + 4;
-      __cil_tmp30 = (unsigned long )bdata;
-      __cil_tmp31 = __cil_tmp30 + 4;
-      __cil_tmp32 = *((int *)__cil_tmp31);
-      *((int *)__cil_tmp29) = __cil_tmp32 + 1;
+      __cil_tmp32 = *((int *)((void *)bdata + 4));
+      *((int *)((void *)bdata + 4)) = __cil_tmp32 + 1;
     } else {
       {
       __cil_tmp33 = *((struct gpio_keys_button **)pdata);
@@ -2176,33 +2109,17 @@ static void gpio_keys_polled_open(struct input_polled_dev *dev )
 { struct gpio_keys_polled_dev *bdev ;
   struct gpio_keys_platform_data *pdata ;
   void *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int (*__cil_tmp11)(struct device *dev ) ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   {
   __cil_tmp4 = *((void **)dev);
   bdev = (struct gpio_keys_polled_dev *)__cil_tmp4;
-  __cil_tmp5 = (unsigned long )bdev;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  pdata = *((struct gpio_keys_platform_data **)__cil_tmp6);
+  pdata = *((struct gpio_keys_platform_data **)((void *)bdev + 16));
   {
-  __cil_tmp7 = (unsigned long )pdata;
-  __cil_tmp8 = __cil_tmp7 + 24;
-  if (*((int (**)(struct device *dev ))__cil_tmp8)) {
+  if (*((int (**)(struct device *dev ))((void *)pdata + 24))) {
     {
-    __cil_tmp9 = (unsigned long )pdata;
-    __cil_tmp10 = __cil_tmp9 + 24;
-    __cil_tmp11 = *((int (**)(struct device *dev ))__cil_tmp10);
-    __cil_tmp12 = (unsigned long )bdev;
-    __cil_tmp13 = __cil_tmp12 + 8;
-    __cil_tmp14 = *((struct device **)__cil_tmp13);
+    __cil_tmp11 = *((int (**)(struct device *dev ))((void *)pdata + 24));
+    __cil_tmp14 = *((struct device **)((void *)bdev + 8));
     (*__cil_tmp11)(__cil_tmp14);
     }
   } else {
@@ -2215,33 +2132,17 @@ static void gpio_keys_polled_close(struct input_polled_dev *dev )
 { struct gpio_keys_polled_dev *bdev ;
   struct gpio_keys_platform_data *pdata ;
   void *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void (*__cil_tmp11)(struct device *dev ) ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   {
   __cil_tmp4 = *((void **)dev);
   bdev = (struct gpio_keys_polled_dev *)__cil_tmp4;
-  __cil_tmp5 = (unsigned long )bdev;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  pdata = *((struct gpio_keys_platform_data **)__cil_tmp6);
+  pdata = *((struct gpio_keys_platform_data **)((void *)bdev + 16));
   {
-  __cil_tmp7 = (unsigned long )pdata;
-  __cil_tmp8 = __cil_tmp7 + 32;
-  if (*((void (**)(struct device *dev ))__cil_tmp8)) {
+  if (*((void (**)(struct device *dev ))((void *)pdata + 32))) {
     {
-    __cil_tmp9 = (unsigned long )pdata;
-    __cil_tmp10 = __cil_tmp9 + 32;
-    __cil_tmp11 = *((void (**)(struct device *dev ))__cil_tmp10);
-    __cil_tmp12 = (unsigned long )bdev;
-    __cil_tmp13 = __cil_tmp12 + 8;
-    __cil_tmp14 = *((struct device **)__cil_tmp13);
+    __cil_tmp11 = *((void (**)(struct device *dev ))((void *)pdata + 32));
+    __cil_tmp14 = *((struct device **)((void *)bdev + 8));
     (*__cil_tmp11)(__cil_tmp14);
     }
   } else {
@@ -2268,135 +2169,59 @@ static int gpio_keys_polled_probe(struct platform_device *pdev )
   unsigned int tmp___0 ;
   char const *tmp___1 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   struct device const *__cil_tmp31 ;
   struct device const *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   int __cil_tmp68 ;
   struct gpio_keys_button *__cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   int __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   struct device const *__cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   struct device const *__cil_tmp86 ;
   struct device const *__cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   unsigned int __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   unsigned int __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   int __cil_tmp100 ;
   unsigned int __cil_tmp101 ;
   unsigned int __cil_tmp102 ;
   unsigned int __cil_tmp103 ;
   unsigned int __cil_tmp104 ;
   unsigned int __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
   void *__cil_tmp110 ;
   struct device const *__cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   int __cil_tmp114 ;
   struct gpio_keys_button *__cil_tmp115 ;
   struct gpio_keys_button *__cil_tmp116 ;
   unsigned long __cil_tmp117 ;
   unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   struct gpio_keys_button_data *__cil_tmp121 ;
   struct gpio_keys_button *__cil_tmp122 ;
   struct gpio_keys_button *__cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
   int __cil_tmp126 ;
   unsigned int __cil_tmp127 ;
   void const *__cil_tmp128 ;
   void *__cil_tmp129 ;
   {
   __cil_tmp16 = 16 + 184;
-  __cil_tmp17 = (unsigned long )pdev;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = *((void **)__cil_tmp18);
+  __cil_tmp19 = *((void **)((void *)pdev + __cil_tmp16));
   pdata = (struct gpio_keys_platform_data *)__cil_tmp19;
-  __cil_tmp20 = (unsigned long )pdev;
-  __cil_tmp21 = __cil_tmp20 + 16;
-  dev = (struct device *)__cil_tmp21;
+  dev = (struct device *)((void *)pdev + 16);
   if (! pdata) {
     return (-22);
   } else {
     {
-    __cil_tmp22 = (unsigned long )pdata;
-    __cil_tmp23 = __cil_tmp22 + 12;
-    __cil_tmp24 = *((unsigned int *)__cil_tmp23);
+    __cil_tmp24 = *((unsigned int *)((void *)pdata + 12));
     if (! __cil_tmp24) {
       return (-22);
     } else {
@@ -2404,9 +2229,7 @@ static int gpio_keys_polled_probe(struct platform_device *pdev )
     }
   }
   {
-  __cil_tmp25 = (unsigned long )pdata;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  __cil_tmp27 = *((int *)__cil_tmp26);
+  __cil_tmp27 = *((int *)((void *)pdata + 8));
   __cil_tmp28 = (unsigned long )__cil_tmp27;
   __cil_tmp29 = __cil_tmp28 * 16UL;
   __cil_tmp30 = 24UL + __cil_tmp29;
@@ -2434,60 +2257,30 @@ static int gpio_keys_polled_probe(struct platform_device *pdev )
   } else {
   }
   *((void **)poll_dev) = (void *)bdev;
-  __cil_tmp33 = (unsigned long )poll_dev;
-  __cil_tmp34 = __cil_tmp33 + 24;
-  *((void (**)(struct input_polled_dev *dev ))__cil_tmp34) = & gpio_keys_polled_poll;
-  __cil_tmp35 = (unsigned long )poll_dev;
-  __cil_tmp36 = __cil_tmp35 + 32;
-  __cil_tmp37 = (unsigned long )pdata;
-  __cil_tmp38 = __cil_tmp37 + 12;
-  *((unsigned int *)__cil_tmp36) = *((unsigned int *)__cil_tmp38);
-  __cil_tmp39 = (unsigned long )poll_dev;
-  __cil_tmp40 = __cil_tmp39 + 8;
-  *((void (**)(struct input_polled_dev *dev ))__cil_tmp40) = & gpio_keys_polled_open;
-  __cil_tmp41 = (unsigned long )poll_dev;
-  __cil_tmp42 = __cil_tmp41 + 16;
-  *((void (**)(struct input_polled_dev *dev ))__cil_tmp42) = & gpio_keys_polled_close;
-  __cil_tmp43 = (unsigned long )poll_dev;
-  __cil_tmp44 = __cil_tmp43 + 48;
-  input = *((struct input_dev **)__cil_tmp44);
+  *((void (**)(struct input_polled_dev *dev ))((void *)poll_dev + 24)) = & gpio_keys_polled_poll;
+  *((unsigned int *)((void *)poll_dev + 32)) = *((unsigned int *)((void *)pdata + 12));
+  *((void (**)(struct input_polled_dev *dev ))((void *)poll_dev + 8)) = & gpio_keys_polled_open;
+  *((void (**)(struct input_polled_dev *dev ))((void *)poll_dev + 16)) = & gpio_keys_polled_close;
+  input = *((struct input_dev **)((void *)poll_dev + 48));
   __cil_tmp45 = 0 * 8UL;
   __cil_tmp46 = 40 + __cil_tmp45;
-  __cil_tmp47 = (unsigned long )input;
-  __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-  *((unsigned long *)__cil_tmp48) = 1UL << 1;
+  *((unsigned long *)((void *)input + __cil_tmp46)) = 1UL << 1;
   *((char const **)input) = *((char const **)pdev);
-  __cil_tmp49 = (unsigned long )input;
-  __cil_tmp50 = __cil_tmp49 + 8;
-  *((char const **)__cil_tmp50) = "gpio-keys-polled/input0";
-  __cil_tmp51 = (unsigned long )input;
-  __cil_tmp52 = __cil_tmp51 + 648;
-  __cil_tmp53 = (unsigned long )pdev;
-  __cil_tmp54 = __cil_tmp53 + 16;
-  *((struct device **)__cil_tmp52) = (struct device *)__cil_tmp54;
-  __cil_tmp55 = (unsigned long )input;
-  __cil_tmp56 = __cil_tmp55 + 24;
-  *((__u16 *)__cil_tmp56) = (__u16 )25;
+  *((char const **)((void *)input + 8)) = "gpio-keys-polled/input0";
+  *((struct device **)((void *)input + 648)) = (struct device *)((void *)pdev + 16);
+  *((__u16 *)((void *)input + 24)) = (__u16 )25;
   __cil_tmp57 = 24 + 2;
-  __cil_tmp58 = (unsigned long )input;
-  __cil_tmp59 = __cil_tmp58 + __cil_tmp57;
-  *((__u16 *)__cil_tmp59) = (__u16 )1;
+  *((__u16 *)((void *)input + __cil_tmp57)) = (__u16 )1;
   __cil_tmp60 = 24 + 4;
-  __cil_tmp61 = (unsigned long )input;
-  __cil_tmp62 = __cil_tmp61 + __cil_tmp60;
-  *((__u16 *)__cil_tmp62) = (__u16 )1;
+  *((__u16 *)((void *)input + __cil_tmp60)) = (__u16 )1;
   __cil_tmp63 = 24 + 6;
-  __cil_tmp64 = (unsigned long )input;
-  __cil_tmp65 = __cil_tmp64 + __cil_tmp63;
-  *((__u16 *)__cil_tmp65) = (__u16 )256;
+  *((__u16 *)((void *)input + __cil_tmp63)) = (__u16 )256;
   i = 0;
   {
   while (1) {
     while_continue: ;
     {
-    __cil_tmp66 = (unsigned long )pdata;
-    __cil_tmp67 = __cil_tmp66 + 8;
-    __cil_tmp68 = *((int *)__cil_tmp67);
+    __cil_tmp68 = *((int *)((void *)pdata + 8));
     if (i < __cil_tmp68) {
     } else {
       goto while_break;
@@ -2497,25 +2290,17 @@ static int gpio_keys_polled_probe(struct platform_device *pdev )
     button = __cil_tmp69 + i;
     __cil_tmp70 = i * 16UL;
     __cil_tmp71 = 24 + __cil_tmp70;
-    __cil_tmp72 = (unsigned long )bdev;
-    __cil_tmp73 = __cil_tmp72 + __cil_tmp71;
-    bdata = (struct gpio_keys_button_data *)__cil_tmp73;
-    __cil_tmp74 = (unsigned long )button;
-    __cil_tmp75 = __cil_tmp74 + 4;
-    __cil_tmp76 = *((int *)__cil_tmp75);
+    bdata = (struct gpio_keys_button_data *)((void *)bdev + __cil_tmp71);
+    __cil_tmp76 = *((int *)((void *)button + 4));
     gpio = (unsigned int )__cil_tmp76;
-    __cil_tmp77 = (unsigned long )button;
-    __cil_tmp78 = __cil_tmp77 + 24;
-    tmp___0 = *((unsigned int *)__cil_tmp78);
+    tmp___0 = *((unsigned int *)((void *)button + 24));
     if (tmp___0) {
     } else {
       tmp___0 = 1U;
     }
     type = tmp___0;
     {
-    __cil_tmp79 = (unsigned long )button;
-    __cil_tmp80 = __cil_tmp79 + 28;
-    if (*((int *)__cil_tmp80)) {
+    if (*((int *)((void *)button + 28))) {
       {
       __cil_tmp81 = (struct device const *)dev;
       dev_err(__cil_tmp81, "gpio-keys-polled does not support wakeup\n");
@@ -2526,12 +2311,8 @@ static int gpio_keys_polled_probe(struct platform_device *pdev )
     }
     }
     {
-    __cil_tmp82 = (unsigned long )button;
-    __cil_tmp83 = __cil_tmp82 + 16;
-    if (*((char const **)__cil_tmp83)) {
-      __cil_tmp84 = (unsigned long )button;
-      __cil_tmp85 = __cil_tmp84 + 16;
-      tmp___1 = *((char const **)__cil_tmp85);
+    if (*((char const **)((void *)button + 16))) {
+      tmp___1 = *((char const **)((void *)button + 16));
     } else {
       tmp___1 = "gpio-keys-polled";
     }
@@ -2559,26 +2340,16 @@ static int gpio_keys_polled_probe(struct platform_device *pdev )
     } else {
     }
     {
-    __cil_tmp88 = (unsigned long )bdata;
-    __cil_tmp89 = __cil_tmp88 + 12;
-    *((int *)__cil_tmp89) = gpio_cansleep(gpio);
+    *((int *)((void *)bdata + 12)) = gpio_cansleep(gpio);
     *((int *)bdata) = -1;
-    __cil_tmp90 = (unsigned long )bdata;
-    __cil_tmp91 = __cil_tmp90 + 8;
-    __cil_tmp92 = (unsigned long )pdata;
-    __cil_tmp93 = __cil_tmp92 + 12;
-    __cil_tmp94 = *((unsigned int *)__cil_tmp93);
-    __cil_tmp95 = (unsigned long )pdata;
-    __cil_tmp96 = __cil_tmp95 + 12;
-    __cil_tmp97 = *((unsigned int *)__cil_tmp96);
-    __cil_tmp98 = (unsigned long )button;
-    __cil_tmp99 = __cil_tmp98 + 32;
-    __cil_tmp100 = *((int *)__cil_tmp99);
+    __cil_tmp94 = *((unsigned int *)((void *)pdata + 12));
+    __cil_tmp97 = *((unsigned int *)((void *)pdata + 12));
+    __cil_tmp100 = *((int *)((void *)button + 32));
     __cil_tmp101 = (unsigned int )__cil_tmp100;
     __cil_tmp102 = __cil_tmp101 + __cil_tmp97;
     __cil_tmp103 = __cil_tmp102 - 1U;
     __cil_tmp104 = __cil_tmp103 / __cil_tmp94;
-    *((int *)__cil_tmp91) = (int )__cil_tmp104;
+    *((int *)((void *)bdata + 8)) = (int )__cil_tmp104;
     __cil_tmp105 = *((unsigned int *)button);
     input_set_capability(input, type, __cil_tmp105);
     i = i + 1;
@@ -2588,12 +2359,8 @@ static int gpio_keys_polled_probe(struct platform_device *pdev )
   }
   {
   *((struct input_polled_dev **)bdev) = poll_dev;
-  __cil_tmp106 = (unsigned long )bdev;
-  __cil_tmp107 = __cil_tmp106 + 8;
-  *((struct device **)__cil_tmp107) = dev;
-  __cil_tmp108 = (unsigned long )bdev;
-  __cil_tmp109 = __cil_tmp108 + 16;
-  *((struct gpio_keys_platform_data **)__cil_tmp109) = pdata;
+  *((struct device **)((void *)bdev + 8)) = dev;
+  *((struct gpio_keys_platform_data **)((void *)bdev + 16)) = pdata;
   __cil_tmp110 = (void *)bdev;
   platform_set_drvdata(pdev, __cil_tmp110);
   error = input_register_polled_device(poll_dev);
@@ -2611,9 +2378,7 @@ static int gpio_keys_polled_probe(struct platform_device *pdev )
   while (1) {
     while_continue___0: ;
     {
-    __cil_tmp112 = (unsigned long )pdata;
-    __cil_tmp113 = __cil_tmp112 + 8;
-    __cil_tmp114 = *((int *)__cil_tmp113);
+    __cil_tmp114 = *((int *)((void *)pdata + 8));
     if (i < __cil_tmp114) {
     } else {
       goto while_break___0;
@@ -2624,9 +2389,7 @@ static int gpio_keys_polled_probe(struct platform_device *pdev )
     __cil_tmp116 = __cil_tmp115 + i;
     __cil_tmp117 = i * 16UL;
     __cil_tmp118 = 24 + __cil_tmp117;
-    __cil_tmp119 = (unsigned long )bdev;
-    __cil_tmp120 = __cil_tmp119 + __cil_tmp118;
-    __cil_tmp121 = (struct gpio_keys_button_data *)__cil_tmp120;
+    __cil_tmp121 = (struct gpio_keys_button_data *)((void *)bdev + __cil_tmp118);
     gpio_keys_polled_check_state(input, __cil_tmp116, __cil_tmp121);
     i = i + 1;
     }
@@ -2646,9 +2409,7 @@ static int gpio_keys_polled_probe(struct platform_device *pdev )
     {
     __cil_tmp122 = *((struct gpio_keys_button **)pdata);
     __cil_tmp123 = __cil_tmp122 + i;
-    __cil_tmp124 = (unsigned long )__cil_tmp123;
-    __cil_tmp125 = __cil_tmp124 + 4;
-    __cil_tmp126 = *((int *)__cil_tmp125);
+    __cil_tmp126 = *((int *)((void *)__cil_tmp123 + 4));
     __cil_tmp127 = (unsigned int )__cil_tmp126;
     gpio_free(__cil_tmp127);
     }
@@ -2676,16 +2437,10 @@ static int gpio_keys_polled_remove(struct platform_device *pdev )
   struct gpio_keys_platform_data *pdata ;
   int i ;
   struct platform_device const *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct input_polled_dev *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   struct gpio_keys_button *__cil_tmp13 ;
   struct gpio_keys_button *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   struct input_polled_dev *__cil_tmp19 ;
@@ -2696,9 +2451,7 @@ static int gpio_keys_polled_remove(struct platform_device *pdev )
   __cil_tmp6 = (struct platform_device const *)pdev;
   tmp = platform_get_drvdata(__cil_tmp6);
   bdev = (struct gpio_keys_polled_dev *)tmp;
-  __cil_tmp7 = (unsigned long )bdev;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  pdata = *((struct gpio_keys_platform_data **)__cil_tmp8);
+  pdata = *((struct gpio_keys_platform_data **)((void *)bdev + 16));
   __cil_tmp9 = *((struct input_polled_dev **)bdev);
   input_unregister_polled_device(__cil_tmp9);
   i = 0;
@@ -2707,9 +2460,7 @@ static int gpio_keys_polled_remove(struct platform_device *pdev )
   while (1) {
     while_continue: ;
     {
-    __cil_tmp10 = (unsigned long )pdata;
-    __cil_tmp11 = __cil_tmp10 + 8;
-    __cil_tmp12 = *((int *)__cil_tmp11);
+    __cil_tmp12 = *((int *)((void *)pdata + 8));
     if (i < __cil_tmp12) {
     } else {
       goto while_break;
@@ -2718,9 +2469,7 @@ static int gpio_keys_polled_remove(struct platform_device *pdev )
     {
     __cil_tmp13 = *((struct gpio_keys_button **)pdata);
     __cil_tmp14 = __cil_tmp13 + i;
-    __cil_tmp15 = (unsigned long )__cil_tmp14;
-    __cil_tmp16 = __cil_tmp15 + 4;
-    __cil_tmp17 = *((int *)__cil_tmp16);
+    __cil_tmp17 = *((int *)((void *)__cil_tmp14 + 4));
     __cil_tmp18 = (unsigned int )__cil_tmp17;
     gpio_free(__cil_tmp18);
     i = i + 1;

@@ -3326,8 +3326,6 @@ static int tda18218_wr_regs(struct tda18218_priv *priv , u8 reg , u8 *val , u8 l
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   struct tda18218_config *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   u8 __cil_tmp36 ;
   int __cil_tmp37 ;
   int __cil_tmp38 ;
@@ -3359,8 +3357,6 @@ static int tda18218_wr_regs(struct tda18218_priv *priv , u8 reg , u8 *val , u8 l
   int __cil_tmp64 ;
   u8 *__cil_tmp65 ;
   void const *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct i2c_adapter *__cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
@@ -3396,9 +3392,7 @@ static int tda18218_wr_regs(struct tda18218_priv *priv , u8 reg , u8 *val , u8 l
   __cil_tmp32 = (unsigned long )(msg) + __cil_tmp31;
   *((__u8 **)__cil_tmp32) = buf;
   __cil_tmp33 = *((struct tda18218_config **)priv);
-  __cil_tmp34 = (unsigned long )__cil_tmp33;
-  __cil_tmp35 = __cil_tmp34 + 1;
-  __cil_tmp36 = *((u8 *)__cil_tmp35);
+  __cil_tmp36 = *((u8 *)((void *)__cil_tmp33 + 1));
   __cil_tmp37 = (int )__cil_tmp36;
   __cil_tmp38 = __cil_tmp37 - 1;
   msg_len_max = (u8 )__cil_tmp38;
@@ -3459,9 +3453,7 @@ static int tda18218_wr_regs(struct tda18218_priv *priv , u8 reg , u8 *val , u8 l
     __cil_tmp65 = val + __cil_tmp64;
     __cil_tmp66 = (void const *)__cil_tmp65;
     __ret = memcpy(__cil_tmp61, __cil_tmp66, __len);
-    __cil_tmp67 = (unsigned long )priv;
-    __cil_tmp68 = __cil_tmp67 + 8;
-    __cil_tmp69 = *((struct i2c_adapter **)__cil_tmp68);
+    __cil_tmp69 = *((struct i2c_adapter **)((void *)priv + 8));
     __cil_tmp70 = 0 * 16UL;
     __cil_tmp71 = (unsigned long )(msg) + __cil_tmp70;
     __cil_tmp72 = (struct i2c_msg *)__cil_tmp71;
@@ -3530,8 +3522,6 @@ static int tda18218_rd_regs(struct tda18218_priv *priv , u8 reg , u8 *val , u8 l
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct i2c_adapter *__cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
@@ -3585,9 +3575,7 @@ static int tda18218_rd_regs(struct tda18218_priv *priv , u8 reg , u8 *val , u8 l
   __cil_tmp41 = __cil_tmp40 + 8;
   __cil_tmp42 = (unsigned long )(msg) + __cil_tmp41;
   *((__u8 **)__cil_tmp42) = buf;
-  __cil_tmp43 = (unsigned long )priv;
-  __cil_tmp44 = __cil_tmp43 + 8;
-  __cil_tmp45 = *((struct i2c_adapter **)__cil_tmp44);
+  __cil_tmp45 = *((struct i2c_adapter **)((void *)priv + 8));
   __cil_tmp46 = 0 * 16UL;
   __cil_tmp47 = (unsigned long )(msg) + __cil_tmp46;
   __cil_tmp48 = (struct i2c_msg *)__cil_tmp47;
@@ -3647,13 +3635,7 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   u8 LP_Fc ;
   u32 LO_Frac ;
   u8 agc[14][2] ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
@@ -3767,31 +3749,15 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   unsigned long __cil_tmp129 ;
   unsigned long __cil_tmp130 ;
   unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
   unsigned long __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
   int (*__cil_tmp137)(struct dvb_frontend *fe , int enable ) ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
-  unsigned long __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
   u32 __cil_tmp146 ;
-  unsigned long __cil_tmp147 ;
-  unsigned long __cil_tmp148 ;
   u32 __cil_tmp149 ;
   unsigned long __cil_tmp150 ;
   unsigned long __cil_tmp151 ;
   int __cil_tmp152 ;
   unsigned long __cil_tmp153 ;
   unsigned long __cil_tmp154 ;
-  unsigned long __cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
   u8 __cil_tmp157 ;
   int __cil_tmp158 ;
   int __cil_tmp159 ;
@@ -3801,8 +3767,6 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   int __cil_tmp163 ;
   unsigned long __cil_tmp164 ;
   unsigned long __cil_tmp165 ;
-  unsigned long __cil_tmp166 ;
-  unsigned long __cil_tmp167 ;
   u8 __cil_tmp168 ;
   int __cil_tmp169 ;
   int __cil_tmp170 ;
@@ -3811,8 +3775,6 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   unsigned long __cil_tmp173 ;
   unsigned long __cil_tmp174 ;
   unsigned long __cil_tmp175 ;
-  unsigned long __cil_tmp176 ;
-  unsigned long __cil_tmp177 ;
   u8 __cil_tmp178 ;
   unsigned long __cil_tmp179 ;
   unsigned long __cil_tmp180 ;
@@ -3830,8 +3792,6 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   unsigned long __cil_tmp192 ;
   unsigned long __cil_tmp193 ;
   unsigned long __cil_tmp194 ;
-  unsigned long __cil_tmp195 ;
-  unsigned long __cil_tmp196 ;
   u8 __cil_tmp197 ;
   int __cil_tmp198 ;
   int __cil_tmp199 ;
@@ -3849,8 +3809,6 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   int __cil_tmp211 ;
   unsigned long __cil_tmp212 ;
   unsigned long __cil_tmp213 ;
-  unsigned long __cil_tmp214 ;
-  unsigned long __cil_tmp215 ;
   u8 __cil_tmp216 ;
   int __cil_tmp217 ;
   int __cil_tmp218 ;
@@ -3865,8 +3823,6 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   int __cil_tmp227 ;
   unsigned long __cil_tmp228 ;
   unsigned long __cil_tmp229 ;
-  unsigned long __cil_tmp230 ;
-  unsigned long __cil_tmp231 ;
   u8 __cil_tmp232 ;
   int __cil_tmp233 ;
   int __cil_tmp234 ;
@@ -3891,24 +3847,14 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   int __cil_tmp253 ;
   int __cil_tmp254 ;
   unsigned long __cil_tmp255 ;
-  unsigned long __cil_tmp256 ;
-  unsigned long __cil_tmp257 ;
   unsigned long __cil_tmp258 ;
-  unsigned long __cil_tmp259 ;
-  unsigned long __cil_tmp260 ;
   int (*__cil_tmp261)(struct dvb_frontend *fe , int enable ) ;
   int *__cil_tmp262 ;
   {
-  __cil_tmp12 = (unsigned long )fe;
-  __cil_tmp13 = __cil_tmp12 + 768;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  __cil_tmp14 = *((void **)((void *)fe + 768));
   priv = (struct tda18218_priv *)__cil_tmp14;
-  __cil_tmp15 = (unsigned long )fe;
-  __cil_tmp16 = __cil_tmp15 + 800;
-  c = (struct dtv_frontend_properties *)__cil_tmp16;
-  __cil_tmp17 = (unsigned long )c;
-  __cil_tmp18 = __cil_tmp17 + 32;
-  bw = *((u32 *)__cil_tmp18);
+  c = (struct dtv_frontend_properties *)((void *)fe + 800);
+  bw = *((u32 *)((void *)c + 32));
   __cil_tmp19 = 0 * 1UL;
   __cil_tmp20 = 0 * 2UL;
   __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
@@ -4051,14 +3997,10 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   *((u8 *)__cil_tmp130) = (u8 )12;
   {
   __cil_tmp131 = 0 + 360;
-  __cil_tmp132 = (unsigned long )fe;
-  __cil_tmp133 = __cil_tmp132 + __cil_tmp131;
-  if (*((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp133)) {
+  if (*((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp131))) {
     {
     __cil_tmp134 = 0 + 360;
-    __cil_tmp135 = (unsigned long )fe;
-    __cil_tmp136 = __cil_tmp135 + __cil_tmp134;
-    __cil_tmp137 = *((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp136);
+    __cil_tmp137 = *((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp134));
     (*__cil_tmp137)(fe, 1);
     }
   } else {
@@ -4066,27 +4008,17 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   }
   if (bw <= 6000000U) {
     LP_Fc = (u8 )0;
-    __cil_tmp138 = (unsigned long )priv;
-    __cil_tmp139 = __cil_tmp138 + 16;
-    *((u32 *)__cil_tmp139) = (u32 )3000000;
+    *((u32 *)((void *)priv + 16)) = (u32 )3000000;
   } else
   if (bw <= 7000000U) {
     LP_Fc = (u8 )1;
-    __cil_tmp140 = (unsigned long )priv;
-    __cil_tmp141 = __cil_tmp140 + 16;
-    *((u32 *)__cil_tmp141) = (u32 )3500000;
+    *((u32 *)((void *)priv + 16)) = (u32 )3500000;
   } else {
     LP_Fc = (u8 )2;
-    __cil_tmp142 = (unsigned long )priv;
-    __cil_tmp143 = __cil_tmp142 + 16;
-    *((u32 *)__cil_tmp143) = (u32 )4000000;
+    *((u32 *)((void *)priv + 16)) = (u32 )4000000;
   }
-  __cil_tmp144 = (unsigned long )priv;
-  __cil_tmp145 = __cil_tmp144 + 16;
-  __cil_tmp146 = *((u32 *)__cil_tmp145);
-  __cil_tmp147 = (unsigned long )c;
-  __cil_tmp148 = __cil_tmp147 + 4;
-  __cil_tmp149 = *((u32 *)__cil_tmp148);
+  __cil_tmp146 = *((u32 *)((void *)priv + 16));
+  __cil_tmp149 = *((u32 *)((void *)c + 4));
   LO_Frac = __cil_tmp149 + __cil_tmp146;
   if (LO_Frac < 188000000U) {
     BP_Filter = (u8 )3;
@@ -4105,9 +4037,7 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   __cil_tmp152 = (int )BP_Filter;
   __cil_tmp153 = 26 * 1UL;
   __cil_tmp154 = 20 + __cil_tmp153;
-  __cil_tmp155 = (unsigned long )priv;
-  __cil_tmp156 = __cil_tmp155 + __cil_tmp154;
-  __cil_tmp157 = *((u8 *)__cil_tmp156);
+  __cil_tmp157 = *((u8 *)((void *)priv + __cil_tmp154));
   __cil_tmp158 = (int )__cil_tmp157;
   __cil_tmp159 = __cil_tmp158 & -8;
   __cil_tmp160 = __cil_tmp159 | __cil_tmp152;
@@ -4117,9 +4047,7 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   __cil_tmp163 = (int )LP_Fc;
   __cil_tmp164 = 27 * 1UL;
   __cil_tmp165 = 20 + __cil_tmp164;
-  __cil_tmp166 = (unsigned long )priv;
-  __cil_tmp167 = __cil_tmp166 + __cil_tmp165;
-  __cil_tmp168 = *((u8 *)__cil_tmp167);
+  __cil_tmp168 = *((u8 *)((void *)priv + __cil_tmp165));
   __cil_tmp169 = (int )__cil_tmp168;
   __cil_tmp170 = __cil_tmp169 & -4;
   __cil_tmp171 = __cil_tmp170 | __cil_tmp163;
@@ -4128,9 +4056,7 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   __cil_tmp173 = (unsigned long )(buf) + __cil_tmp172;
   __cil_tmp174 = 28 * 1UL;
   __cil_tmp175 = 20 + __cil_tmp174;
-  __cil_tmp176 = (unsigned long )priv;
-  __cil_tmp177 = __cil_tmp176 + __cil_tmp175;
-  *((u8 *)__cil_tmp173) = *((u8 *)__cil_tmp177);
+  *((u8 *)__cil_tmp173) = *((u8 *)((void *)priv + __cil_tmp175));
   __cil_tmp178 = (u8 )26;
   __cil_tmp179 = 0 * 1UL;
   __cil_tmp180 = (unsigned long )(buf) + __cil_tmp179;
@@ -4157,9 +4083,7 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   __cil_tmp192 = (unsigned long )(buf) + __cil_tmp191;
   __cil_tmp193 = 12 * 1UL;
   __cil_tmp194 = 20 + __cil_tmp193;
-  __cil_tmp195 = (unsigned long )priv;
-  __cil_tmp196 = __cil_tmp195 + __cil_tmp194;
-  __cil_tmp197 = *((u8 *)__cil_tmp196);
+  __cil_tmp197 = *((u8 *)((void *)priv + __cil_tmp194));
   __cil_tmp198 = (int )__cil_tmp197;
   __cil_tmp199 = __cil_tmp198 & 15;
   __cil_tmp200 = (unsigned int )__cil_tmp199;
@@ -4184,9 +4108,7 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   __cil_tmp211 = 1 << 6;
   __cil_tmp212 = 15 * 1UL;
   __cil_tmp213 = 20 + __cil_tmp212;
-  __cil_tmp214 = (unsigned long )priv;
-  __cil_tmp215 = __cil_tmp214 + __cil_tmp213;
-  __cil_tmp216 = *((u8 *)__cil_tmp215);
+  __cil_tmp216 = *((u8 *)((void *)priv + __cil_tmp213));
   __cil_tmp217 = (int )__cil_tmp216;
   __cil_tmp218 = __cil_tmp217 | __cil_tmp211;
   *((u8 *)__cil_tmp210) = (u8 )__cil_tmp218;
@@ -4208,9 +4130,7 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   __cil_tmp227 = ~ __cil_tmp226;
   __cil_tmp228 = 15 * 1UL;
   __cil_tmp229 = 20 + __cil_tmp228;
-  __cil_tmp230 = (unsigned long )priv;
-  __cil_tmp231 = __cil_tmp230 + __cil_tmp229;
-  __cil_tmp232 = *((u8 *)__cil_tmp231);
+  __cil_tmp232 = *((u8 *)((void *)priv + __cil_tmp229));
   __cil_tmp233 = (int )__cil_tmp232;
   __cil_tmp234 = __cil_tmp233 & __cil_tmp227;
   *((u8 *)__cil_tmp225) = (u8 )__cil_tmp234;
@@ -4264,14 +4184,10 @@ static int tda18218_set_params(struct dvb_frontend *fe )
   error:
   {
   __cil_tmp255 = 0 + 360;
-  __cil_tmp256 = (unsigned long )fe;
-  __cil_tmp257 = __cil_tmp256 + __cil_tmp255;
-  if (*((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp257)) {
+  if (*((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp255))) {
     {
     __cil_tmp258 = 0 + 360;
-    __cil_tmp259 = (unsigned long )fe;
-    __cil_tmp260 = __cil_tmp259 + __cil_tmp258;
-    __cil_tmp261 = *((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp260);
+    __cil_tmp261 = *((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp258));
     (*__cil_tmp261)(fe, 0);
     }
   } else {
@@ -4294,21 +4210,13 @@ static int tda18218_set_params(struct dvb_frontend *fe )
 }
 static int tda18218_get_if_frequency(struct dvb_frontend *fe , u32 *frequency )
 { struct tda18218_priv *priv ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int *__cil_tmp9 ;
   u32 __cil_tmp10 ;
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 768;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)fe + 768));
   priv = (struct tda18218_priv *)__cil_tmp6;
-  __cil_tmp7 = (unsigned long )priv;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  *frequency = *((u32 *)__cil_tmp8);
+  *frequency = *((u32 *)((void *)priv + 16));
   {
   __cil_tmp9 = & debug;
   if (*__cil_tmp9) {
@@ -4325,48 +4233,30 @@ static int tda18218_get_if_frequency(struct dvb_frontend *fe , u32 *frequency )
 static int tda18218_sleep(struct dvb_frontend *fe )
 { struct tda18218_priv *priv ;
   int ret ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int (*__cil_tmp13)(struct dvb_frontend *fe , int enable ) ;
   u8 __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   u8 __cil_tmp19 ;
   int __cil_tmp20 ;
   int __cil_tmp21 ;
   u8 __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int (*__cil_tmp29)(struct dvb_frontend *fe , int enable ) ;
   int *__cil_tmp30 ;
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 768;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)fe + 768));
   priv = (struct tda18218_priv *)__cil_tmp6;
   {
   __cil_tmp7 = 0 + 360;
-  __cil_tmp8 = (unsigned long )fe;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  if (*((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp9)) {
+  if (*((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp7))) {
     {
     __cil_tmp10 = 0 + 360;
-    __cil_tmp11 = (unsigned long )fe;
-    __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-    __cil_tmp13 = *((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp12);
+    __cil_tmp13 = *((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp10));
     (*__cil_tmp13)(fe, 1);
     }
   } else {
@@ -4376,9 +4266,7 @@ static int tda18218_sleep(struct dvb_frontend *fe )
   __cil_tmp14 = (u8 )23;
   __cil_tmp15 = 23 * 1UL;
   __cil_tmp16 = 20 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )priv;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = *((u8 *)__cil_tmp18);
+  __cil_tmp19 = *((u8 *)((void *)priv + __cil_tmp16));
   __cil_tmp20 = (int )__cil_tmp19;
   __cil_tmp21 = __cil_tmp20 | 1;
   __cil_tmp22 = (u8 )__cil_tmp21;
@@ -4386,14 +4274,10 @@ static int tda18218_sleep(struct dvb_frontend *fe )
   }
   {
   __cil_tmp23 = 0 + 360;
-  __cil_tmp24 = (unsigned long )fe;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  if (*((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp25)) {
+  if (*((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp23))) {
     {
     __cil_tmp26 = 0 + 360;
-    __cil_tmp27 = (unsigned long )fe;
-    __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-    __cil_tmp29 = *((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp28);
+    __cil_tmp29 = *((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp26));
     (*__cil_tmp29)(fe, 0);
     }
   } else {
@@ -4417,46 +4301,28 @@ static int tda18218_sleep(struct dvb_frontend *fe )
 static int tda18218_init(struct dvb_frontend *fe )
 { struct tda18218_priv *priv ;
   int ret ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int (*__cil_tmp13)(struct dvb_frontend *fe , int enable ) ;
   u8 __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   u8 *__cil_tmp19 ;
   u8 __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int (*__cil_tmp27)(struct dvb_frontend *fe , int enable ) ;
   int *__cil_tmp28 ;
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 768;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)fe + 768));
   priv = (struct tda18218_priv *)__cil_tmp6;
   {
   __cil_tmp7 = 0 + 360;
-  __cil_tmp8 = (unsigned long )fe;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  if (*((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp9)) {
+  if (*((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp7))) {
     {
     __cil_tmp10 = 0 + 360;
-    __cil_tmp11 = (unsigned long )fe;
-    __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-    __cil_tmp13 = *((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp12);
+    __cil_tmp13 = *((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp10));
     (*__cil_tmp13)(fe, 1);
     }
   } else {
@@ -4466,22 +4332,16 @@ static int tda18218_init(struct dvb_frontend *fe )
   __cil_tmp14 = (u8 )0;
   __cil_tmp15 = 0 * 1UL;
   __cil_tmp16 = 20 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )priv;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = (u8 *)__cil_tmp18;
+  __cil_tmp19 = (u8 *)((void *)priv + __cil_tmp16);
   __cil_tmp20 = (u8 )59;
   ret = tda18218_wr_regs(priv, __cil_tmp14, __cil_tmp19, __cil_tmp20);
   }
   {
   __cil_tmp21 = 0 + 360;
-  __cil_tmp22 = (unsigned long )fe;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  if (*((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp23)) {
+  if (*((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp21))) {
     {
     __cil_tmp24 = 0 + 360;
-    __cil_tmp25 = (unsigned long )fe;
-    __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-    __cil_tmp27 = *((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp26);
+    __cil_tmp27 = *((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp24));
     (*__cil_tmp27)(fe, 0);
     }
   } else {
@@ -4503,22 +4363,15 @@ static int tda18218_init(struct dvb_frontend *fe )
 }
 }
 static int tda18218_release(struct dvb_frontend *fe )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   void *__cil_tmp4 ;
   void const *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   {
   {
-  __cil_tmp2 = (unsigned long )fe;
-  __cil_tmp3 = __cil_tmp2 + 768;
-  __cil_tmp4 = *((void **)__cil_tmp3);
+  __cil_tmp4 = *((void **)((void *)fe + 768));
   __cil_tmp5 = (void const *)__cil_tmp4;
   kfree(__cil_tmp5);
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 768;
-  *((void **)__cil_tmp7) = (void *)0;
+  *((void **)((void *)fe + 768)) = (void *)0;
   }
   return (0);
 }
@@ -4573,16 +4426,8 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int (*__cil_tmp27)(struct dvb_frontend *fe , int enable ) ;
   u8 __cil_tmp28 ;
   int *__cil_tmp29 ;
@@ -4601,21 +4446,15 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
   void const *__cil_tmp42 ;
   void *__cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct dvb_tuner_ops *__cil_tmp47 ;
   void *__cil_tmp48 ;
   void const *__cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct dvb_tuner_ops *__cil_tmp53 ;
   void *__cil_tmp54 ;
   void const *__cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   u8 *__cil_tmp60 ;
   void *__cil_tmp61 ;
   unsigned long __cil_tmp62 ;
@@ -4624,8 +4463,6 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
   void const *__cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   u8 *__cil_tmp70 ;
   void *__cil_tmp71 ;
   unsigned long __cil_tmp72 ;
@@ -4633,32 +4470,20 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
   u8 *__cil_tmp74 ;
   void const *__cil_tmp75 ;
   struct tda18218_config *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   u8 __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
   unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   u8 __cil_tmp92 ;
   int __cil_tmp93 ;
   int __cil_tmp94 ;
   u8 __cil_tmp95 ;
   int *__cil_tmp96 ;
   unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   int (*__cil_tmp103)(struct dvb_frontend *fe , int enable ) ;
   {
   {
@@ -4680,22 +4505,14 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
   }
   }
   *((struct tda18218_config **)priv) = cfg;
-  __cil_tmp17 = (unsigned long )priv;
-  __cil_tmp18 = __cil_tmp17 + 8;
-  *((struct i2c_adapter **)__cil_tmp18) = i2c;
-  __cil_tmp19 = (unsigned long )fe;
-  __cil_tmp20 = __cil_tmp19 + 768;
-  *((void **)__cil_tmp20) = (void *)priv;
+  *((struct i2c_adapter **)((void *)priv + 8)) = i2c;
+  *((void **)((void *)fe + 768)) = (void *)priv;
   {
   __cil_tmp21 = 0 + 360;
-  __cil_tmp22 = (unsigned long )fe;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  if (*((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp23)) {
+  if (*((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp21))) {
     {
     __cil_tmp24 = 0 + 360;
-    __cil_tmp25 = (unsigned long )fe;
-    __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-    __cil_tmp27 = *((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp26);
+    __cil_tmp27 = *((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp24));
     (*__cil_tmp27)(fe, 1);
     }
   } else {
@@ -4755,9 +4572,7 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
   if (__len >= 64UL) {
     {
     __cil_tmp44 = 0 + 384;
-    __cil_tmp45 = (unsigned long )fe;
-    __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
-    __cil_tmp47 = (struct dvb_tuner_ops *)__cil_tmp46;
+    __cil_tmp47 = (struct dvb_tuner_ops *)((void *)fe + __cil_tmp44);
     __cil_tmp48 = (void *)__cil_tmp47;
     __cil_tmp49 = (void const *)(& tda18218_tuner_ops);
     __ret = memcpy(__cil_tmp48, __cil_tmp49, __len);
@@ -4765,9 +4580,7 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
   } else {
     {
     __cil_tmp50 = 0 + 384;
-    __cil_tmp51 = (unsigned long )fe;
-    __cil_tmp52 = __cil_tmp51 + __cil_tmp50;
-    __cil_tmp53 = (struct dvb_tuner_ops *)__cil_tmp52;
+    __cil_tmp53 = (struct dvb_tuner_ops *)((void *)fe + __cil_tmp50);
     __cil_tmp54 = (void *)__cil_tmp53;
     __cil_tmp55 = (void const *)(& tda18218_tuner_ops);
     __ret = memcpy(__cil_tmp54, __cil_tmp55, __len);
@@ -4778,9 +4591,7 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
     {
     __cil_tmp56 = 0 * 1UL;
     __cil_tmp57 = 20 + __cil_tmp56;
-    __cil_tmp58 = (unsigned long )priv;
-    __cil_tmp59 = __cil_tmp58 + __cil_tmp57;
-    __cil_tmp60 = (u8 *)__cil_tmp59;
+    __cil_tmp60 = (u8 *)((void *)priv + __cil_tmp57);
     __cil_tmp61 = (void *)__cil_tmp60;
     __cil_tmp62 = 0 * 1UL;
     __cil_tmp63 = (unsigned long )(def_regs) + __cil_tmp62;
@@ -4792,9 +4603,7 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
     {
     __cil_tmp66 = 0 * 1UL;
     __cil_tmp67 = 20 + __cil_tmp66;
-    __cil_tmp68 = (unsigned long )priv;
-    __cil_tmp69 = __cil_tmp68 + __cil_tmp67;
-    __cil_tmp70 = (u8 *)__cil_tmp69;
+    __cil_tmp70 = (u8 *)((void *)priv + __cil_tmp67);
     __cil_tmp71 = (void *)__cil_tmp70;
     __cil_tmp72 = 0 * 1UL;
     __cil_tmp73 = (unsigned long )(def_regs) + __cil_tmp72;
@@ -4805,19 +4614,13 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
   }
   {
   __cil_tmp76 = *((struct tda18218_config **)priv);
-  __cil_tmp77 = (unsigned long )__cil_tmp76;
-  __cil_tmp78 = __cil_tmp77 + 2;
-  if (*((u8 *)__cil_tmp78)) {
+  if (*((u8 *)((void *)__cil_tmp76 + 2))) {
     __cil_tmp79 = 23 * 1UL;
     __cil_tmp80 = 20 + __cil_tmp79;
-    __cil_tmp81 = (unsigned long )priv;
-    __cil_tmp82 = __cil_tmp81 + __cil_tmp80;
-    *((u8 *)__cil_tmp82) = (u8 )176;
+    *((u8 *)((void *)priv + __cil_tmp80)) = (u8 )176;
     __cil_tmp83 = 24 * 1UL;
     __cil_tmp84 = 20 + __cil_tmp83;
-    __cil_tmp85 = (unsigned long )priv;
-    __cil_tmp86 = __cil_tmp85 + __cil_tmp84;
-    *((u8 *)__cil_tmp86) = (u8 )89;
+    *((u8 *)((void *)priv + __cil_tmp84)) = (u8 )89;
   } else {
   }
   }
@@ -4825,9 +4628,7 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
   __cil_tmp87 = (u8 )23;
   __cil_tmp88 = 23 * 1UL;
   __cil_tmp89 = 20 + __cil_tmp88;
-  __cil_tmp90 = (unsigned long )priv;
-  __cil_tmp91 = __cil_tmp90 + __cil_tmp89;
-  __cil_tmp92 = *((u8 *)__cil_tmp91);
+  __cil_tmp92 = *((u8 *)((void *)priv + __cil_tmp89));
   __cil_tmp93 = (int )__cil_tmp92;
   __cil_tmp94 = __cil_tmp93 | 1;
   __cil_tmp95 = (u8 )__cil_tmp94;
@@ -4847,14 +4648,10 @@ struct dvb_frontend *tda18218_attach(struct dvb_frontend *fe , struct i2c_adapte
   }
   {
   __cil_tmp97 = 0 + 360;
-  __cil_tmp98 = (unsigned long )fe;
-  __cil_tmp99 = __cil_tmp98 + __cil_tmp97;
-  if (*((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp99)) {
+  if (*((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp97))) {
     {
     __cil_tmp100 = 0 + 360;
-    __cil_tmp101 = (unsigned long )fe;
-    __cil_tmp102 = __cil_tmp101 + __cil_tmp100;
-    __cil_tmp103 = *((int (**)(struct dvb_frontend *fe , int enable ))__cil_tmp102);
+    __cil_tmp103 = *((int (**)(struct dvb_frontend *fe , int enable ))((void *)fe + __cil_tmp100));
     (*__cil_tmp103)(fe, 0);
     }
   } else {

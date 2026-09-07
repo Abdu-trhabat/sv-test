@@ -2008,27 +2008,21 @@ struct adt7316_bus {
 long ldv__builtin_expect(long val , long res ) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
 extern void __list_add(struct list_head *new , struct list_head *prev , struct list_head *next ) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head ) __attribute__((__no_instrument_function__)) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )head;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((struct list_head **)__cil_tmp4);
+  __cil_tmp5 = *((struct list_head **)((void *)head + 8));
   __list_add(new, __cil_tmp5, head);
   }
   return;
@@ -2050,15 +2044,12 @@ void cleanup_module(void) ;
 extern int spi_register_driver(struct spi_driver *sdrv ) ;
 __inline static void spi_unregister_driver(struct spi_driver *sdrv ) __attribute__((__no_instrument_function__)) ;
 __inline static void spi_unregister_driver(struct spi_driver *sdrv )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device_driver *__cil_tmp4 ;
   {
   if (sdrv) {
     {
-    __cil_tmp2 = (unsigned long )sdrv;
-    __cil_tmp3 = __cil_tmp2 + 48;
-    __cil_tmp4 = (struct device_driver *)__cil_tmp3;
+    __cil_tmp4 = (struct device_driver *)((void *)sdrv + 48);
     driver_unregister(__cil_tmp4);
     }
   } else {
@@ -2082,15 +2073,12 @@ __inline static void spi_message_init(struct spi_message *m )
 }
 __inline static void spi_message_add_tail(struct spi_transfer *t , struct spi_message *m ) __attribute__((__no_instrument_function__)) ;
 __inline static void spi_message_add_tail(struct spi_transfer *t , struct spi_message *m )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   struct list_head *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )t;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct list_head *)__cil_tmp4;
+  __cil_tmp5 = (struct list_head *)((void *)t + 48);
   __cil_tmp6 = (struct list_head *)m;
   list_add_tail(__cil_tmp5, __cil_tmp6);
   }
@@ -2104,42 +2092,22 @@ __inline static int spi_write(struct spi_device *spi , void const *buf , size_t 
   struct spi_message m ;
   int tmp___7 ;
   struct spi_transfer *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   {
   {
   __cil_tmp7 = & t;
   *((void const **)__cil_tmp7) = buf;
-  __cil_tmp8 = (unsigned long )(& t) + 8;
-  *((void **)__cil_tmp8) = (void *)0;
-  __cil_tmp9 = (unsigned long )(& t) + 16;
-  *((unsigned int *)__cil_tmp9) = (unsigned int )len;
-  __cil_tmp10 = (unsigned long )(& t) + 24;
-  *((dma_addr_t *)__cil_tmp10) = 0ULL;
-  __cil_tmp11 = (unsigned long )(& t) + 32;
-  *((dma_addr_t *)__cil_tmp11) = 0ULL;
-  __cil_tmp12 = (unsigned long )(& t) + 40;
-  *((unsigned int *)__cil_tmp12) = 0U;
-  __cil_tmp13 = (unsigned long )(& t) + 41;
-  *((u8 *)__cil_tmp13) = (unsigned char)0;
-  __cil_tmp14 = (unsigned long )(& t) + 42;
-  *((u16 *)__cil_tmp14) = (unsigned short)0;
-  __cil_tmp15 = (unsigned long )(& t) + 44;
-  *((u32 *)__cil_tmp15) = 0U;
-  __cil_tmp16 = (unsigned long )(& t) + 48;
-  *((struct list_head **)__cil_tmp16) = (struct list_head *)0;
+  *((void **)((void *)(&t) + 8)) = (void *)0;
+  *((unsigned int *)((void *)(&t) + 16)) = (unsigned int )len;
+  *((dma_addr_t *)((void *)(&t) + 24)) = 0ULL;
+  *((dma_addr_t *)((void *)(&t) + 32)) = 0ULL;
+  *((unsigned int *)((void *)(&t) + 40)) = 0U;
+  *((u8 *)((void *)(&t) + 41)) = (unsigned char)0;
+  *((u16 *)((void *)(&t) + 42)) = (unsigned short)0;
+  *((u32 *)((void *)(&t) + 44)) = 0U;
+  *((struct list_head **)((void *)(&t) + 48)) = (struct list_head *)0;
   __cil_tmp17 = 48 + 8;
-  __cil_tmp18 = (unsigned long )(& t) + __cil_tmp17;
-  *((struct list_head **)__cil_tmp18) = (struct list_head *)0;
+  *((struct list_head **)((void *)(&t) + __cil_tmp17)) = (struct list_head *)0;
   spi_message_init(& m);
   spi_message_add_tail(& t, & m);
   tmp___7 = spi_sync(spi, & m);
@@ -2345,21 +2313,9 @@ static int adt7316_spi_probe(struct spi_device *spi_dev )
 { struct adt7316_bus bus ;
   int tmp___7 ;
   struct adt7316_bus *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   u32 __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u32 __cil_tmp20 ;
   void *__cil_tmp21 ;
   u8 __cil_tmp22 ;
@@ -2373,38 +2329,24 @@ static int adt7316_spi_probe(struct spi_device *spi_dev )
   struct device *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   char *__cil_tmp35 ;
   char const *__cil_tmp36 ;
   {
   __cil_tmp4 = & bus;
   *((void **)__cil_tmp4) = (void *)spi_dev;
-  __cil_tmp5 = (unsigned long )(& bus) + 8;
-  __cil_tmp6 = (unsigned long )spi_dev;
-  __cil_tmp7 = __cil_tmp6 + 784;
-  *((int *)__cil_tmp5) = *((int *)__cil_tmp7);
-  __cil_tmp8 = (unsigned long )(& bus) + 12;
-  *((int *)__cil_tmp8) = 8;
-  __cil_tmp9 = (unsigned long )(& bus) + 16;
-  *((int (**)(void *client , u8 reg , u8 *data ))__cil_tmp9) = & adt7316_spi_read;
-  __cil_tmp10 = (unsigned long )(& bus) + 24;
-  *((int (**)(void *client , u8 reg , u8 val ))__cil_tmp10) = & adt7316_spi_write;
-  __cil_tmp11 = (unsigned long )(& bus) + 32;
-  *((int (**)(void *client , u8 first_reg , u8 count , u8 *data ))__cil_tmp11) = & adt7316_spi_multi_read;
-  __cil_tmp12 = (unsigned long )(& bus) + 40;
-  *((int (**)(void *client , u8 first_reg , u8 count , u8 *data ))__cil_tmp12) = & adt7316_spi_multi_write;
+  *((int *)((void *)(&bus) + 8)) = *((int *)((void *)spi_dev + 784));
+  *((int *)((void *)(&bus) + 12)) = 8;
+  *((int (**)(void *client , u8 reg , u8 *data ))((void *)(&bus) + 16)) = & adt7316_spi_read;
+  *((int (**)(void *client , u8 reg , u8 val ))((void *)(&bus) + 24)) = & adt7316_spi_write;
+  *((int (**)(void *client , u8 first_reg , u8 count , u8 *data ))((void *)(&bus) + 32)) = & adt7316_spi_multi_read;
+  *((int (**)(void *client , u8 first_reg , u8 count , u8 *data ))((void *)(&bus) + 40)) = & adt7316_spi_multi_write;
   {
-  __cil_tmp13 = (unsigned long )spi_dev;
-  __cil_tmp14 = __cil_tmp13 + 776;
-  __cil_tmp15 = *((u32 *)__cil_tmp14);
+  __cil_tmp15 = *((u32 *)((void *)spi_dev + 776));
   if (__cil_tmp15 > 5000000U) {
     {
     __cil_tmp16 = (struct device *)spi_dev;
     __cil_tmp17 = (struct device const *)__cil_tmp16;
-    __cil_tmp18 = (unsigned long )spi_dev;
-    __cil_tmp19 = __cil_tmp18 + 776;
-    __cil_tmp20 = *((u32 *)__cil_tmp19);
+    __cil_tmp20 = *((u32 *)((void *)spi_dev + 776));
     dev_err(__cil_tmp17, "SPI CLK %d Hz?\n", __cil_tmp20);
     }
     return (-22);
@@ -2427,9 +2369,7 @@ static int adt7316_spi_probe(struct spi_device *spi_dev )
   __cil_tmp30 = (struct device *)spi_dev;
   __cil_tmp31 = 0 * 1UL;
   __cil_tmp32 = 808 + __cil_tmp31;
-  __cil_tmp33 = (unsigned long )spi_dev;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  __cil_tmp35 = (char *)__cil_tmp34;
+  __cil_tmp35 = (char *)((void *)spi_dev + __cil_tmp32);
   __cil_tmp36 = (char const *)__cil_tmp35;
   tmp___7 = adt7316_probe(__cil_tmp30, & bus, __cil_tmp36);
   }

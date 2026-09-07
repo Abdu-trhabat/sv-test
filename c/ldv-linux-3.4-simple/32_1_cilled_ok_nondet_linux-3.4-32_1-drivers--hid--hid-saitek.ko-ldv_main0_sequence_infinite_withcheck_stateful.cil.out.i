@@ -1888,8 +1888,6 @@ static __u8 *saitek_report_fixup(struct hid_device *hdev , __u8 *rdesc , unsigne
   __u8 *__cil_tmp20 ;
   __u8 __cil_tmp21 ;
   int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct device *__cil_tmp25 ;
   struct device const *__cil_tmp26 ;
   __u8 *__cil_tmp27 ;
@@ -1931,9 +1929,7 @@ static __u8 *saitek_report_fixup(struct hid_device *hdev , __u8 *rdesc , unsigne
               __cil_tmp22 = (int )__cil_tmp21;
               if (__cil_tmp22 == 3) {
                 {
-                __cil_tmp23 = (unsigned long )hdev;
-                __cil_tmp24 = __cil_tmp23 + 6328;
-                __cil_tmp25 = (struct device *)__cil_tmp24;
+                __cil_tmp25 = (struct device *)((void *)hdev + 6328);
                 __cil_tmp26 = (struct device const *)__cil_tmp25;
                 _dev_info(__cil_tmp26, "Fixing up Saitek PS1000 report descriptor\n");
                 __cil_tmp27 = rdesc + 20;

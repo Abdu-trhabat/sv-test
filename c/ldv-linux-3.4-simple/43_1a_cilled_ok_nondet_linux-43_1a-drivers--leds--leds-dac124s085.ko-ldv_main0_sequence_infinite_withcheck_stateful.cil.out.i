@@ -2056,26 +2056,20 @@ void ldv_spin_unlock(void) ;
 int ldv_spin_trylock(void) ;
 extern int snprintf(char * , size_t , char const * , ...) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
 extern void __list_add(struct list_head * , struct list_head * , struct list_head * ) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )head;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((struct list_head **)__cil_tmp4);
+  __cil_tmp5 = *((struct list_head **)((void *)head + 8));
   __list_add(new, __cil_tmp5, head);
   }
   return;
@@ -2169,15 +2163,12 @@ __inline static void spi_message_init(struct spi_message *m )
 }
 }
 __inline static void spi_message_add_tail(struct spi_transfer *t , struct spi_message *m )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   struct list_head *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )t;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct list_head *)__cil_tmp4;
+  __cil_tmp5 = (struct list_head *)((void *)t + 48);
   __cil_tmp6 = (struct list_head *)m;
   list_add_tail(__cil_tmp5, __cil_tmp6);
   }
@@ -2190,42 +2181,22 @@ __inline static int spi_write(struct spi_device *spi , void const *buf , size_t 
   struct spi_message m ;
   int tmp ;
   struct spi_transfer *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   {
   {
   __cil_tmp7 = & t;
   *((void const **)__cil_tmp7) = buf;
-  __cil_tmp8 = (unsigned long )(& t) + 8;
-  *((void **)__cil_tmp8) = (void *)0;
-  __cil_tmp9 = (unsigned long )(& t) + 16;
-  *((unsigned int *)__cil_tmp9) = (unsigned int )len;
-  __cil_tmp10 = (unsigned long )(& t) + 24;
-  *((dma_addr_t *)__cil_tmp10) = 0ULL;
-  __cil_tmp11 = (unsigned long )(& t) + 32;
-  *((dma_addr_t *)__cil_tmp11) = 0ULL;
-  __cil_tmp12 = (unsigned long )(& t) + 40;
-  *((unsigned char *)__cil_tmp12) = (unsigned char)0;
-  __cil_tmp13 = (unsigned long )(& t) + 41;
-  *((u8 *)__cil_tmp13) = (unsigned char)0;
-  __cil_tmp14 = (unsigned long )(& t) + 42;
-  *((u16 *)__cil_tmp14) = (unsigned short)0;
-  __cil_tmp15 = (unsigned long )(& t) + 44;
-  *((u32 *)__cil_tmp15) = 0U;
-  __cil_tmp16 = (unsigned long )(& t) + 48;
-  *((struct list_head **)__cil_tmp16) = (struct list_head *)0;
+  *((void **)((void *)(&t) + 8)) = (void *)0;
+  *((unsigned int *)((void *)(&t) + 16)) = (unsigned int )len;
+  *((dma_addr_t *)((void *)(&t) + 24)) = 0ULL;
+  *((dma_addr_t *)((void *)(&t) + 32)) = 0ULL;
+  *((unsigned char *)((void *)(&t) + 40)) = (unsigned char)0;
+  *((u8 *)((void *)(&t) + 41)) = (unsigned char)0;
+  *((u16 *)((void *)(&t) + 42)) = (unsigned short)0;
+  *((u32 *)((void *)(&t) + 44)) = 0U;
+  *((struct list_head **)((void *)(&t) + 48)) = (struct list_head *)0;
   __cil_tmp17 = 48 + 8;
-  __cil_tmp18 = (unsigned long )(& t) + __cil_tmp17;
-  *((struct list_head **)__cil_tmp18) = (struct list_head *)0;
+  *((struct list_head **)((void *)(&t) + __cil_tmp17)) = (struct list_head *)0;
   spi_message_init(& m);
   spi_message_add_tail(& t, & m);
   tmp = spi_sync(spi, & m);
@@ -2238,64 +2209,44 @@ static void dac124s085_led_work(struct work_struct *work )
   struct work_struct const *__mptr ;
   u16 word ;
   struct dac124s085_led *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct mutex *__cil_tmp8 ;
   u16 *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   short __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
   short __cil_tmp20 ;
   int __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct spi_device *__cil_tmp26 ;
   void const *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct mutex *__cil_tmp30 ;
   {
   {
   __mptr = (struct work_struct const *)work;
   __cil_tmp5 = (struct dac124s085_led *)__mptr;
   led = __cil_tmp5 + 0xfffffffffffffda0UL;
-  __cil_tmp6 = (unsigned long )led;
-  __cil_tmp7 = __cil_tmp6 + 440;
-  __cil_tmp8 = (struct mutex *)__cil_tmp7;
+  __cil_tmp8 = (struct mutex *)((void *)led + 440);
   mutex_lock_nested(__cil_tmp8, 0U);
   __cil_tmp9 = & word;
-  __cil_tmp10 = (unsigned long )led;
-  __cil_tmp11 = __cil_tmp10 + 420;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp12 = *((int *)((void *)led + 420));
   __cil_tmp13 = (short )__cil_tmp12;
   __cil_tmp14 = (int )__cil_tmp13;
   __cil_tmp15 = __cil_tmp14 & 4095;
-  __cil_tmp16 = (unsigned long )led;
-  __cil_tmp17 = __cil_tmp16 + 416;
-  __cil_tmp18 = *((int *)__cil_tmp17);
+  __cil_tmp18 = *((int *)((void *)led + 416));
   __cil_tmp19 = __cil_tmp18 << 14;
   __cil_tmp20 = (short )__cil_tmp19;
   __cil_tmp21 = (int )__cil_tmp20;
   __cil_tmp22 = __cil_tmp21 | 4096;
   __cil_tmp23 = __cil_tmp22 | __cil_tmp15;
   *__cil_tmp9 = (unsigned short )__cil_tmp23;
-  __cil_tmp24 = (unsigned long )led;
-  __cil_tmp25 = __cil_tmp24 + 408;
-  __cil_tmp26 = *((struct spi_device **)__cil_tmp25);
+  __cil_tmp26 = *((struct spi_device **)((void *)led + 408));
   __cil_tmp27 = (void const *)(& word);
   spi_write(__cil_tmp26, __cil_tmp27, 2UL);
-  __cil_tmp28 = (unsigned long )led;
-  __cil_tmp29 = __cil_tmp28 + 440;
-  __cil_tmp30 = (struct mutex *)__cil_tmp29;
+  __cil_tmp30 = (struct mutex *)((void *)led + 440);
   mutex_unlock(__cil_tmp30);
   }
   return;
@@ -2304,35 +2255,19 @@ static void dac124s085_led_work(struct work_struct *work )
 static void dac124s085_set_brightness(struct led_classdev *ldev , enum led_brightness brightness )
 { struct dac124s085_led *led ;
   struct led_classdev const *__mptr ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   spinlock_t *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct work_struct *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   spinlock_t *__cil_tmp15 ;
   {
   {
   __mptr = (struct led_classdev const *)ldev;
   led = (struct dac124s085_led *)__mptr;
-  __cil_tmp5 = (unsigned long )led;
-  __cil_tmp6 = __cil_tmp5 + 688;
-  __cil_tmp7 = (spinlock_t *)__cil_tmp6;
+  __cil_tmp7 = (spinlock_t *)((void *)led + 688);
   spin_lock(__cil_tmp7);
-  __cil_tmp8 = (unsigned long )led;
-  __cil_tmp9 = __cil_tmp8 + 420;
-  *((int *)__cil_tmp9) = (int )brightness;
-  __cil_tmp10 = (unsigned long )led;
-  __cil_tmp11 = __cil_tmp10 + 608;
-  __cil_tmp12 = (struct work_struct *)__cil_tmp11;
+  *((int *)((void *)led + 420)) = (int )brightness;
+  __cil_tmp12 = (struct work_struct *)((void *)led + 608);
   schedule_work(__cil_tmp12);
-  __cil_tmp13 = (unsigned long )led;
-  __cil_tmp14 = __cil_tmp13 + 688;
-  __cil_tmp15 = (spinlock_t *)__cil_tmp14;
+  __cil_tmp15 = (spinlock_t *)((void *)led + 688);
   spin_unlock(__cil_tmp15);
   }
   return;
@@ -2352,66 +2287,30 @@ static int dac124s085_probe(struct spi_device *spi )
   struct dac124s085 *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   struct dac124s085_led (*__cil_tmp18)[4U] ;
   struct dac124s085_led *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   char (*__cil_tmp28)[13U] ;
   char *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   spinlock_t *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct raw_spinlock *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct work_struct *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct lockdep_map *__cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct list_head *__cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct mutex *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   char (*__cil_tmp57)[13U] ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   struct device *__cil_tmp67 ;
   struct led_classdev *__cil_tmp68 ;
   unsigned int __cil_tmp69 ;
   void *__cil_tmp70 ;
   unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   struct led_classdev *__cil_tmp75 ;
   void *__cil_tmp76 ;
   void const *__cil_tmp77 ;
@@ -2430,9 +2329,7 @@ static int dac124s085_probe(struct spi_device *spi )
   } else {
   }
   }
-  __cil_tmp15 = (unsigned long )spi;
-  __cil_tmp16 = __cil_tmp15 + 1166;
-  *((u8 *)__cil_tmp16) = (u8 )16U;
+  *((u8 *)((void *)spi + 1166)) = (u8 )16U;
   i = 0;
   goto ldv_18834;
   ldv_18833:
@@ -2441,70 +2338,38 @@ static int dac124s085_probe(struct spi_device *spi )
   __cil_tmp18 = (struct dac124s085_led (*)[4U])dac;
   __cil_tmp19 = (struct dac124s085_led *)__cil_tmp18;
   led = __cil_tmp19 + __cil_tmp17;
-  __cil_tmp20 = (unsigned long )led;
-  __cil_tmp21 = __cil_tmp20 + 416;
-  *((int *)__cil_tmp21) = i;
-  __cil_tmp22 = (unsigned long )led;
-  __cil_tmp23 = __cil_tmp22 + 420;
-  *((int *)__cil_tmp23) = 0;
-  __cil_tmp24 = (unsigned long )led;
-  __cil_tmp25 = __cil_tmp24 + 408;
-  *((struct spi_device **)__cil_tmp25) = spi;
-  __cil_tmp26 = (unsigned long )led;
-  __cil_tmp27 = __cil_tmp26 + 424;
-  __cil_tmp28 = (char (*)[13U])__cil_tmp27;
+  *((int *)((void *)led + 416)) = i;
+  *((int *)((void *)led + 420)) = 0;
+  *((struct spi_device **)((void *)led + 408)) = spi;
+  __cil_tmp28 = (char (*)[13U])((void *)led + 424);
   __cil_tmp29 = (char *)__cil_tmp28;
   snprintf(__cil_tmp29, 13UL, "dac124s085-%d", i);
-  __cil_tmp30 = (unsigned long )led;
-  __cil_tmp31 = __cil_tmp30 + 688;
-  __cil_tmp32 = (spinlock_t *)__cil_tmp31;
+  __cil_tmp32 = (spinlock_t *)((void *)led + 688);
   spinlock_check(__cil_tmp32);
-  __cil_tmp33 = (unsigned long )led;
-  __cil_tmp34 = __cil_tmp33 + 688;
-  __cil_tmp35 = (struct raw_spinlock *)__cil_tmp34;
+  __cil_tmp35 = (struct raw_spinlock *)((void *)led + 688);
   __raw_spin_lock_init(__cil_tmp35, "&(&led->lock)->rlock", & __key);
-  __cil_tmp36 = (unsigned long )led;
-  __cil_tmp37 = __cil_tmp36 + 608;
-  __cil_tmp38 = (struct work_struct *)__cil_tmp37;
+  __cil_tmp38 = (struct work_struct *)((void *)led + 608);
   __init_work(__cil_tmp38, 0);
   __constr_expr_0_counter78 = 2097664L;
-  __cil_tmp39 = (unsigned long )led;
-  __cil_tmp40 = __cil_tmp39 + 608;
-  ((atomic_long_t *)__cil_tmp40)->counter = __constr_expr_0_counter78;
+  ((atomic_long_t *)((void *)led + 608))->counter = __constr_expr_0_counter78;
   __cil_tmp41 = 608 + 32;
-  __cil_tmp42 = (unsigned long )led;
-  __cil_tmp43 = __cil_tmp42 + __cil_tmp41;
-  __cil_tmp44 = (struct lockdep_map *)__cil_tmp43;
+  __cil_tmp44 = (struct lockdep_map *)((void *)led + __cil_tmp41);
   lockdep_init_map(__cil_tmp44, "(&led->work)", & __key___0, 0);
   __cil_tmp45 = 608 + 8;
-  __cil_tmp46 = (unsigned long )led;
-  __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-  __cil_tmp48 = (struct list_head *)__cil_tmp47;
+  __cil_tmp48 = (struct list_head *)((void *)led + __cil_tmp45);
   INIT_LIST_HEAD(__cil_tmp48);
   __cil_tmp49 = 608 + 24;
-  __cil_tmp50 = (unsigned long )led;
-  __cil_tmp51 = __cil_tmp50 + __cil_tmp49;
-  *((void (**)(struct work_struct * ))__cil_tmp51) = & dac124s085_led_work;
-  __cil_tmp52 = (unsigned long )led;
-  __cil_tmp53 = __cil_tmp52 + 440;
-  __cil_tmp54 = (struct mutex *)__cil_tmp53;
+  *((void (**)(struct work_struct * ))((void *)led + __cil_tmp49)) = & dac124s085_led_work;
+  __cil_tmp54 = (struct mutex *)((void *)led + 440);
   __mutex_init(__cil_tmp54, "&led->mutex", & __key___1);
-  __cil_tmp55 = (unsigned long )led;
-  __cil_tmp56 = __cil_tmp55 + 424;
-  __cil_tmp57 = (char (*)[13U])__cil_tmp56;
+  __cil_tmp57 = (char (*)[13U])((void *)led + 424);
   *((char const **)led) = (char const *)__cil_tmp57;
   __cil_tmp58 = 0 + 8;
-  __cil_tmp59 = (unsigned long )led;
-  __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
-  *((int *)__cil_tmp60) = 0;
+  *((int *)((void *)led + __cil_tmp58)) = 0;
   __cil_tmp61 = 0 + 12;
-  __cil_tmp62 = (unsigned long )led;
-  __cil_tmp63 = __cil_tmp62 + __cil_tmp61;
-  *((int *)__cil_tmp63) = 4095;
+  *((int *)((void *)led + __cil_tmp61)) = 4095;
   __cil_tmp64 = 0 + 24;
-  __cil_tmp65 = (unsigned long )led;
-  __cil_tmp66 = __cil_tmp65 + __cil_tmp64;
-  *((void (**)(struct led_classdev * , enum led_brightness ))__cil_tmp66) = & dac124s085_set_brightness;
+  *((void (**)(struct led_classdev * , enum led_brightness ))((void *)led + __cil_tmp64)) = & dac124s085_set_brightness;
   __cil_tmp67 = (struct device *)spi;
   __cil_tmp68 = (struct led_classdev *)led;
   ret = led_classdev_register(__cil_tmp67, __cil_tmp68);
@@ -2535,9 +2400,7 @@ static int dac124s085_probe(struct spi_device *spi )
   {
   __cil_tmp71 = i * 760UL;
   __cil_tmp72 = 0 + __cil_tmp71;
-  __cil_tmp73 = (unsigned long )dac;
-  __cil_tmp74 = __cil_tmp73 + __cil_tmp72;
-  __cil_tmp75 = (struct led_classdev *)__cil_tmp74;
+  __cil_tmp75 = (struct led_classdev *)((void *)dac + __cil_tmp72);
   led_classdev_unregister(__cil_tmp75);
   }
   ldv_18837:
@@ -2564,14 +2427,10 @@ static int dac124s085_remove(struct spi_device *spi )
   int i ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct led_classdev *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct work_struct *__cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   void *__cil_tmp17 ;
@@ -2587,16 +2446,12 @@ static int dac124s085_remove(struct spi_device *spi )
   {
   __cil_tmp5 = i * 760UL;
   __cil_tmp6 = 0 + __cil_tmp5;
-  __cil_tmp7 = (unsigned long )dac;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp6;
-  __cil_tmp9 = (struct led_classdev *)__cil_tmp8;
+  __cil_tmp9 = (struct led_classdev *)((void *)dac + __cil_tmp6);
   led_classdev_unregister(__cil_tmp9);
   __cil_tmp10 = i * 760UL;
   __cil_tmp11 = __cil_tmp10 + 608;
   __cil_tmp12 = 0 + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )dac;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = (struct work_struct *)__cil_tmp14;
+  __cil_tmp15 = (struct work_struct *)((void *)dac + __cil_tmp12);
   cancel_work_sync(__cil_tmp15);
   i = i + 1;
   }

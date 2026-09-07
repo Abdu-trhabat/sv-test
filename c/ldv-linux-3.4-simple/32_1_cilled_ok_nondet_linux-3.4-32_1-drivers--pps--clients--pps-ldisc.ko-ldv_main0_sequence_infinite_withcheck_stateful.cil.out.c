@@ -3019,8 +3019,6 @@ static void pps_tty_dcd_change(struct tty_struct *tty , unsigned int status , st
   int tmp___8 ;
   char const   *tmp___9 ;
   long tmp___10 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   void *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
@@ -3036,15 +3034,11 @@ static void pps_tty_dcd_change(struct tty_struct *tty , unsigned int status , st
   int __cil_tmp23 ;
   int __cil_tmp24 ;
   long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct device *__cil_tmp28 ;
   struct device  const  *__cil_tmp29 ;
 
   {
-  __cil_tmp9 = (unsigned long )tty;
-  __cil_tmp10 = __cil_tmp9 + 576;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)tty + 576));
   pps = (struct pps_device *)__cil_tmp11;
   {
   while (1) {
@@ -3118,9 +3112,7 @@ static void pps_tty_dcd_change(struct tty_struct *tty , unsigned int status , st
           tmp___9 = "clear";
         }
         {
-        __cil_tmp26 = (unsigned long )pps;
-        __cil_tmp27 = __cil_tmp26 + 336;
-        __cil_tmp28 = *((struct device **)__cil_tmp27);
+        __cil_tmp28 = *((struct device **)((void *)pps + 336));
         __cil_tmp29 = (struct device  const  *)__cil_tmp28;
         __dynamic_dev_dbg(& descriptor, __cil_tmp29, "PPS %s at %lu\n", tmp___9, jiffies);
         }
@@ -3145,95 +3137,56 @@ static int pps_tty_open(struct tty_struct *tty )
   int index ;
   struct pps_device *pps ;
   int ret ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   char *__cil_tmp21 ;
   size_t __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   char const   *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   char *__cil_tmp29 ;
   size_t __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   char const   *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   void *__cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   char *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   char *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct device *__cil_tmp50 ;
   struct device  const  *__cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   char *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
 
   {
   {
-  __cil_tmp7 = (unsigned long )tty;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  drv = *((struct tty_driver **)__cil_tmp8);
-  __cil_tmp9 = (unsigned long )drv;
-  __cil_tmp10 = __cil_tmp9 + 136;
-  __cil_tmp11 = *((int *)__cil_tmp10);
-  __cil_tmp12 = (unsigned long )tty;
-  __cil_tmp13 = __cil_tmp12 + 32;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  drv = *((struct tty_driver **)((void *)tty + 16));
+  __cil_tmp11 = *((int *)((void *)drv + 136));
+  __cil_tmp14 = *((int *)((void *)tty + 32));
   index = __cil_tmp14 + __cil_tmp11;
-  __cil_tmp15 = (unsigned long )(& info) + 80;
-  *((struct module **)__cil_tmp15) = & __this_module;
-  __cil_tmp16 = (unsigned long )(& info) + 88;
+  *((struct module **)((void *)(&info) + 80)) = & __this_module;
   __cil_tmp17 = (void *)0;
-  *((struct device **)__cil_tmp16) = (struct device *)__cil_tmp17;
+  *((struct device **)((void *)(&info) + 88)) = (struct device *)__cil_tmp17;
   __cil_tmp18 = 0 * 1UL;
   __cil_tmp19 = 0 + __cil_tmp18;
-  __cil_tmp20 = (unsigned long )(& info) + __cil_tmp19;
-  __cil_tmp21 = (char *)__cil_tmp20;
+  __cil_tmp21 = (char *)((void *)(&info) + __cil_tmp19);
   __cil_tmp22 = (size_t )32;
-  __cil_tmp23 = (unsigned long )drv;
-  __cil_tmp24 = __cil_tmp23 + 120;
-  __cil_tmp25 = *((char const   **)__cil_tmp24);
+  __cil_tmp25 = *((char const   **)((void *)drv + 120));
   snprintf(__cil_tmp21, __cil_tmp22, "%s%d", __cil_tmp25, index);
   __cil_tmp26 = 0 * 1UL;
   __cil_tmp27 = 32 + __cil_tmp26;
-  __cil_tmp28 = (unsigned long )(& info) + __cil_tmp27;
-  __cil_tmp29 = (char *)__cil_tmp28;
+  __cil_tmp29 = (char *)((void *)(&info) + __cil_tmp27);
   __cil_tmp30 = (size_t )32;
-  __cil_tmp31 = (unsigned long )drv;
-  __cil_tmp32 = __cil_tmp31 + 128;
-  __cil_tmp33 = *((char const   **)__cil_tmp32);
+  __cil_tmp33 = *((char const   **)((void *)drv + 128));
   snprintf(__cil_tmp29, __cil_tmp30, "/dev/%s%d", __cil_tmp33, index);
-  __cil_tmp34 = (unsigned long )(& info) + 64;
-  *((int *)__cil_tmp34) = 4403;
+  *((int *)((void *)(&info) + 64)) = 4403;
   pps = pps_register_source(& info, 51);
   }
   {
@@ -3244,8 +3197,7 @@ static int pps_tty_open(struct tty_struct *tty )
     {
     __cil_tmp38 = 0 * 1UL;
     __cil_tmp39 = 32 + __cil_tmp38;
-    __cil_tmp40 = (unsigned long )(& info) + __cil_tmp39;
-    __cil_tmp41 = (char *)__cil_tmp40;
+    __cil_tmp41 = (char *)((void *)(&info) + __cil_tmp39);
     printk("<3>pps_ldisc: cannot register PPS source \"%s\"\n", __cil_tmp41);
     }
     return (-12);
@@ -3254,17 +3206,14 @@ static int pps_tty_open(struct tty_struct *tty )
   }
   }
   {
-  __cil_tmp42 = (unsigned long )tty;
-  __cil_tmp43 = __cil_tmp42 + 576;
-  *((void **)__cil_tmp43) = (void *)pps;
+  *((void **)((void *)tty + 576)) = (void *)pps;
   ret = (*alias_n_tty_open)(tty);
   }
   if (ret < 0) {
     {
     __cil_tmp44 = 0 * 1UL;
     __cil_tmp45 = 32 + __cil_tmp44;
-    __cil_tmp46 = (unsigned long )(& info) + __cil_tmp45;
-    __cil_tmp47 = (char *)__cil_tmp46;
+    __cil_tmp47 = (char *)((void *)(&info) + __cil_tmp45);
     printk("<3>pps_ldisc: cannot open tty ldisc \"%s\"\n", __cil_tmp47);
     }
     goto err_unregister;
@@ -3272,22 +3221,17 @@ static int pps_tty_open(struct tty_struct *tty )
 
   }
   {
-  __cil_tmp48 = (unsigned long )pps;
-  __cil_tmp49 = __cil_tmp48 + 336;
-  __cil_tmp50 = *((struct device **)__cil_tmp49);
+  __cil_tmp50 = *((struct device **)((void *)pps + 336));
   __cil_tmp51 = (struct device  const  *)__cil_tmp50;
   __cil_tmp52 = 0 * 1UL;
   __cil_tmp53 = 32 + __cil_tmp52;
-  __cil_tmp54 = (unsigned long )(& info) + __cil_tmp53;
-  __cil_tmp55 = (char *)__cil_tmp54;
+  __cil_tmp55 = (char *)((void *)(&info) + __cil_tmp53);
   _dev_info(__cil_tmp51, "source \"%s\" added\n", __cil_tmp55);
   }
   return (0);
   err_unregister: 
   {
-  __cil_tmp56 = (unsigned long )tty;
-  __cil_tmp57 = __cil_tmp56 + 576;
-  *((void **)__cil_tmp57) = (void *)0;
+  *((void **)((void *)tty + 576)) = (void *)0;
   pps_unregister_source(pps);
   }
   return (ret);
@@ -3296,29 +3240,17 @@ static int pps_tty_open(struct tty_struct *tty )
 static void (*alias_n_tty_close)(struct tty_struct *tty )  ;
 static void pps_tty_close(struct tty_struct *tty ) 
 { struct pps_device *pps ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device  const  *__cil_tmp11 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )tty;
-  __cil_tmp4 = __cil_tmp3 + 576;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)tty + 576));
   pps = (struct pps_device *)__cil_tmp5;
   (*alias_n_tty_close)(tty);
-  __cil_tmp6 = (unsigned long )tty;
-  __cil_tmp7 = __cil_tmp6 + 576;
-  *((void **)__cil_tmp7) = (void *)0;
-  __cil_tmp8 = (unsigned long )pps;
-  __cil_tmp9 = __cil_tmp8 + 336;
-  __cil_tmp10 = *((struct device **)__cil_tmp9);
+  *((void **)((void *)tty + 576)) = (void *)0;
+  __cil_tmp10 = *((struct device **)((void *)pps + 336));
   __cil_tmp11 = (struct device  const  *)__cil_tmp10;
   _dev_info(__cil_tmp11, "removed\n");
   pps_unregister_source(pps);
@@ -3330,34 +3262,20 @@ static struct tty_ldisc_ops pps_ldisc_ops  ;
 static int pps_tty_init(void)  __attribute__((__section__(".init.text"), __no_instrument_function__)) ;
 static int pps_tty_init(void) 
 { int err ;
-  unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct tty_ldisc_ops *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
 
   {
   {
   n_tty_inherit_ops(& pps_ldisc_ops);
-  __cil_tmp2 = (unsigned long )(& pps_ldisc_ops) + 24;
-  alias_n_tty_open = *((int (**)(struct tty_struct * ))__cil_tmp2);
-  __cil_tmp3 = (unsigned long )(& pps_ldisc_ops) + 32;
-  alias_n_tty_close = *((void (**)(struct tty_struct * ))__cil_tmp3);
-  __cil_tmp4 = (unsigned long )(& pps_ldisc_ops) + 136;
-  *((struct module **)__cil_tmp4) = & __this_module;
+  alias_n_tty_open = *((int (**)(struct tty_struct * ))((void *)(&pps_ldisc_ops) + 24));
+  alias_n_tty_close = *((void (**)(struct tty_struct * ))((void *)(&pps_ldisc_ops) + 32));
+  *((struct module **)((void *)(&pps_ldisc_ops) + 136)) = & __this_module;
   __cil_tmp5 = & pps_ldisc_ops;
   *((int *)__cil_tmp5) = 1;
-  __cil_tmp6 = (unsigned long )(& pps_ldisc_ops) + 8;
-  *((char **)__cil_tmp6) = (char *)"pps_tty";
-  __cil_tmp7 = (unsigned long )(& pps_ldisc_ops) + 128;
-  *((void (**)(struct tty_struct * , unsigned int  , struct pps_event_time * ))__cil_tmp7) = & pps_tty_dcd_change;
-  __cil_tmp8 = (unsigned long )(& pps_ldisc_ops) + 24;
-  *((int (**)(struct tty_struct * ))__cil_tmp8) = & pps_tty_open;
-  __cil_tmp9 = (unsigned long )(& pps_ldisc_ops) + 32;
-  *((void (**)(struct tty_struct * ))__cil_tmp9) = & pps_tty_close;
+  *((char **)((void *)(&pps_ldisc_ops) + 8)) = (char *)"pps_tty";
+  *((void (**)(struct tty_struct * , unsigned int  , struct pps_event_time * ))((void *)(&pps_ldisc_ops) + 128)) = & pps_tty_dcd_change;
+  *((int (**)(struct tty_struct * ))((void *)(&pps_ldisc_ops) + 24)) = & pps_tty_open;
+  *((void (**)(struct tty_struct * ))((void *)(&pps_ldisc_ops) + 32)) = & pps_tty_close;
   err = tty_register_ldisc(18, & pps_ldisc_ops);
   }
   if (err) {

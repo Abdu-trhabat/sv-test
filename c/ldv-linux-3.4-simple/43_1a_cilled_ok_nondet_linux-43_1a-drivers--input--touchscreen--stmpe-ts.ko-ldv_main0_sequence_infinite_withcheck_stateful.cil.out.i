@@ -3039,13 +3039,10 @@ void ldv_spin_lock(void) ;
 void ldv_spin_unlock(void) ;
 int ldv_spin_trylock(void) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -3071,14 +3068,11 @@ extern int dev_set_drvdata(struct device * , void * ) ;
 extern int dev_err(struct device const * , char const * , ...) ;
 extern int platform_get_irq_byname(struct platform_device * , char const * ) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3090,15 +3084,11 @@ struct input_dev *input_allocate_device(void) {
 extern void input_free_device(struct input_dev * ) ;
 __inline static void *input_get_drvdata(struct input_dev *dev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 840;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 840);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -3106,14 +3096,11 @@ __inline static void *input_get_drvdata(struct input_dev *dev )
 }
 }
 __inline static void input_set_drvdata(struct input_dev *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 840;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 840);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3188,11 +3175,7 @@ static void stmpe_work(struct work_struct *work )
   struct stmpe *__cil_tmp9 ;
   u8 __cil_tmp10 ;
   struct stmpe *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct input_dev *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct input_dev *__cil_tmp17 ;
   {
   {
@@ -3227,13 +3210,9 @@ static void stmpe_work(struct work_struct *work )
   {
   __cil_tmp11 = *((struct stmpe **)ts);
   __stmpe_reset_fifo(__cil_tmp11);
-  __cil_tmp12 = (unsigned long )ts;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = *((struct input_dev **)__cil_tmp13);
+  __cil_tmp14 = *((struct input_dev **)((void *)ts + 8));
   input_report_abs(__cil_tmp14, 24U, 0);
-  __cil_tmp15 = (unsigned long )ts;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  __cil_tmp17 = *((struct input_dev **)__cil_tmp16);
+  __cil_tmp17 = *((struct input_dev **)((void *)ts + 8));
   input_sync(__cil_tmp17);
   }
   return;
@@ -3245,8 +3224,6 @@ static irqreturn_t stmpe_ts_handler(int irq , void *data )
   int y ;
   int z ;
   struct stmpe_touch *ts ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct delayed_work *__cil_tmp10 ;
   struct stmpe *__cil_tmp11 ;
   u8 __cil_tmp12 ;
@@ -3279,32 +3256,20 @@ static irqreturn_t stmpe_ts_handler(int irq , void *data )
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   u8 __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct input_dev *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct input_dev *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct input_dev *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct input_dev *__cil_tmp53 ;
   struct stmpe *__cil_tmp54 ;
   struct stmpe *__cil_tmp55 ;
   u8 __cil_tmp56 ;
   u8 __cil_tmp57 ;
   u8 __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct delayed_work *__cil_tmp61 ;
   {
   {
   ts = (struct stmpe_touch *)data;
-  __cil_tmp8 = (unsigned long )ts;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = (struct delayed_work *)__cil_tmp9;
+  __cil_tmp10 = (struct delayed_work *)((void *)ts + 16);
   cancel_delayed_work_sync(__cil_tmp10);
   __cil_tmp11 = *((struct stmpe **)ts);
   __cil_tmp12 = (u8 )64;
@@ -3342,21 +3307,13 @@ static irqreturn_t stmpe_ts_handler(int irq , void *data )
   __cil_tmp40 = (unsigned long )(data_set) + __cil_tmp39;
   __cil_tmp41 = *((u8 *)__cil_tmp40);
   z = (int )__cil_tmp41;
-  __cil_tmp42 = (unsigned long )ts;
-  __cil_tmp43 = __cil_tmp42 + 8;
-  __cil_tmp44 = *((struct input_dev **)__cil_tmp43);
+  __cil_tmp44 = *((struct input_dev **)((void *)ts + 8));
   input_report_abs(__cil_tmp44, 0U, x);
-  __cil_tmp45 = (unsigned long )ts;
-  __cil_tmp46 = __cil_tmp45 + 8;
-  __cil_tmp47 = *((struct input_dev **)__cil_tmp46);
+  __cil_tmp47 = *((struct input_dev **)((void *)ts + 8));
   input_report_abs(__cil_tmp47, 1U, y);
-  __cil_tmp48 = (unsigned long )ts;
-  __cil_tmp49 = __cil_tmp48 + 8;
-  __cil_tmp50 = *((struct input_dev **)__cil_tmp49);
+  __cil_tmp50 = *((struct input_dev **)((void *)ts + 8));
   input_report_abs(__cil_tmp50, 24U, z);
-  __cil_tmp51 = (unsigned long )ts;
-  __cil_tmp52 = __cil_tmp51 + 8;
-  __cil_tmp53 = *((struct input_dev **)__cil_tmp52);
+  __cil_tmp53 = *((struct input_dev **)((void *)ts + 8));
   input_sync(__cil_tmp53);
   __cil_tmp54 = *((struct stmpe **)ts);
   __stmpe_reset_fifo(__cil_tmp54);
@@ -3365,9 +3322,7 @@ static irqreturn_t stmpe_ts_handler(int irq , void *data )
   __cil_tmp57 = (u8 )1;
   __cil_tmp58 = (u8 )1;
   stmpe_set_bits(__cil_tmp55, __cil_tmp56, __cil_tmp57, __cil_tmp58);
-  __cil_tmp59 = (unsigned long )ts;
-  __cil_tmp60 = __cil_tmp59 + 16;
-  __cil_tmp61 = (struct delayed_work *)__cil_tmp60;
+  __cil_tmp61 = (struct delayed_work *)((void *)ts + 16);
   schedule_delayed_work(__cil_tmp61, 5UL);
   }
   return ((irqreturn_t )1);
@@ -3381,27 +3336,19 @@ static int stmpe_init_hw(struct stmpe_touch *ts )
   u8 tsc_cfg_mask ;
   struct stmpe *stmpe ;
   struct device *dev ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device const *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   u8 __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
   int __cil_tmp17 ;
   signed char __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u8 __cil_tmp22 ;
   int __cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
   signed char __cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   u8 __cil_tmp30 ;
   int __cil_tmp31 ;
   int __cil_tmp32 ;
@@ -3417,29 +3364,21 @@ static int stmpe_init_hw(struct stmpe_touch *ts )
   struct device const *__cil_tmp42 ;
   u8 __cil_tmp43 ;
   u8 __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   u8 __cil_tmp47 ;
   int __cil_tmp48 ;
   int __cil_tmp49 ;
   u8 __cil_tmp50 ;
   struct device const *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   u8 __cil_tmp54 ;
   signed char __cil_tmp55 ;
   int __cil_tmp56 ;
   int __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   u8 __cil_tmp60 ;
   int __cil_tmp61 ;
   int __cil_tmp62 ;
   int __cil_tmp63 ;
   signed char __cil_tmp64 ;
   int __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   u8 __cil_tmp68 ;
   int __cil_tmp69 ;
   int __cil_tmp70 ;
@@ -3455,8 +3394,6 @@ static int stmpe_init_hw(struct stmpe_touch *ts )
   struct device const *__cil_tmp80 ;
   u8 __cil_tmp81 ;
   u8 __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   u8 __cil_tmp85 ;
   int __cil_tmp86 ;
   int __cil_tmp87 ;
@@ -3464,8 +3401,6 @@ static int stmpe_init_hw(struct stmpe_touch *ts )
   struct device const *__cil_tmp89 ;
   u8 __cil_tmp90 ;
   u8 __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   u8 __cil_tmp94 ;
   int __cil_tmp95 ;
   int __cil_tmp96 ;
@@ -3481,9 +3416,7 @@ static int stmpe_init_hw(struct stmpe_touch *ts )
   {
   {
   stmpe = *((struct stmpe **)ts);
-  __cil_tmp9 = (unsigned long )ts;
-  __cil_tmp10 = __cil_tmp9 + 224;
-  dev = *((struct device **)__cil_tmp10);
+  dev = *((struct device **)((void *)ts + 224));
   ret = stmpe_enable(stmpe, 12U);
   }
   if (ret != 0) {
@@ -3495,25 +3428,19 @@ static int stmpe_init_hw(struct stmpe_touch *ts )
   } else {
   }
   {
-  __cil_tmp12 = (unsigned long )ts;
-  __cil_tmp13 = __cil_tmp12 + 234;
-  __cil_tmp14 = *((u8 *)__cil_tmp13);
+  __cil_tmp14 = *((u8 *)((void *)ts + 234));
   __cil_tmp15 = (int )__cil_tmp14;
   __cil_tmp16 = __cil_tmp15 & 1;
   __cil_tmp17 = __cil_tmp16 << 1;
   __cil_tmp18 = (signed char )__cil_tmp17;
   __cil_tmp19 = (int )__cil_tmp18;
-  __cil_tmp20 = (unsigned long )ts;
-  __cil_tmp21 = __cil_tmp20 + 233;
-  __cil_tmp22 = *((u8 *)__cil_tmp21);
+  __cil_tmp22 = *((u8 *)((void *)ts + 233));
   __cil_tmp23 = (int )__cil_tmp22;
   __cil_tmp24 = __cil_tmp23 & 1;
   __cil_tmp25 = __cil_tmp24 << 3;
   __cil_tmp26 = (signed char )__cil_tmp25;
   __cil_tmp27 = (int )__cil_tmp26;
-  __cil_tmp28 = (unsigned long )ts;
-  __cil_tmp29 = __cil_tmp28 + 232;
-  __cil_tmp30 = *((u8 *)__cil_tmp29);
+  __cil_tmp30 = *((u8 *)((void *)ts + 232));
   __cil_tmp31 = (int )__cil_tmp30;
   __cil_tmp32 = __cil_tmp31 << 4;
   __cil_tmp33 = (signed char )__cil_tmp32;
@@ -3540,9 +3467,7 @@ static int stmpe_init_hw(struct stmpe_touch *ts )
   {
   __cil_tmp43 = (u8 )33;
   __cil_tmp44 = (u8 )3;
-  __cil_tmp45 = (unsigned long )ts;
-  __cil_tmp46 = __cil_tmp45 + 235;
-  __cil_tmp47 = *((u8 *)__cil_tmp46);
+  __cil_tmp47 = *((u8 *)((void *)ts + 235));
   __cil_tmp48 = (int )__cil_tmp47;
   __cil_tmp49 = __cil_tmp48 & 3;
   __cil_tmp50 = (u8 )__cil_tmp49;
@@ -3557,23 +3482,17 @@ static int stmpe_init_hw(struct stmpe_touch *ts )
   } else {
   }
   {
-  __cil_tmp52 = (unsigned long )ts;
-  __cil_tmp53 = __cil_tmp52 + 238;
-  __cil_tmp54 = *((u8 *)__cil_tmp53);
+  __cil_tmp54 = *((u8 *)((void *)ts + 238));
   __cil_tmp55 = (signed char )__cil_tmp54;
   __cil_tmp56 = (int )__cil_tmp55;
   __cil_tmp57 = __cil_tmp56 & 7;
-  __cil_tmp58 = (unsigned long )ts;
-  __cil_tmp59 = __cil_tmp58 + 237;
-  __cil_tmp60 = *((u8 *)__cil_tmp59);
+  __cil_tmp60 = *((u8 *)((void *)ts + 237));
   __cil_tmp61 = (int )__cil_tmp60;
   __cil_tmp62 = __cil_tmp61 & 7;
   __cil_tmp63 = __cil_tmp62 << 3;
   __cil_tmp64 = (signed char )__cil_tmp63;
   __cil_tmp65 = (int )__cil_tmp64;
-  __cil_tmp66 = (unsigned long )ts;
-  __cil_tmp67 = __cil_tmp66 + 236;
-  __cil_tmp68 = *((u8 *)__cil_tmp67);
+  __cil_tmp68 = *((u8 *)((void *)ts + 236));
   __cil_tmp69 = (int )__cil_tmp68;
   __cil_tmp70 = __cil_tmp69 << 6;
   __cil_tmp71 = (signed char )__cil_tmp70;
@@ -3600,9 +3519,7 @@ static int stmpe_init_hw(struct stmpe_touch *ts )
   {
   __cil_tmp81 = (u8 )86;
   __cil_tmp82 = (u8 )7;
-  __cil_tmp83 = (unsigned long )ts;
-  __cil_tmp84 = __cil_tmp83 + 239;
-  __cil_tmp85 = *((u8 *)__cil_tmp84);
+  __cil_tmp85 = *((u8 *)((void *)ts + 239));
   __cil_tmp86 = (int )__cil_tmp85;
   __cil_tmp87 = __cil_tmp86 & 7;
   __cil_tmp88 = (u8 )__cil_tmp87;
@@ -3619,9 +3536,7 @@ static int stmpe_init_hw(struct stmpe_touch *ts )
   {
   __cil_tmp90 = (u8 )88;
   __cil_tmp91 = (u8 )1;
-  __cil_tmp92 = (unsigned long )ts;
-  __cil_tmp93 = __cil_tmp92 + 240;
-  __cil_tmp94 = *((u8 *)__cil_tmp93);
+  __cil_tmp94 = *((u8 *)((void *)ts + 240));
   __cil_tmp95 = (int )__cil_tmp94;
   __cil_tmp96 = __cil_tmp95 & 1;
   __cil_tmp97 = (u8 )__cil_tmp96;
@@ -3700,8 +3615,6 @@ static int stmpe_ts_open(struct input_dev *dev )
 static void stmpe_ts_close(struct input_dev *dev )
 { struct stmpe_touch *ts ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct delayed_work *__cil_tmp6 ;
   struct stmpe *__cil_tmp7 ;
   u8 __cil_tmp8 ;
@@ -3711,9 +3624,7 @@ static void stmpe_ts_close(struct input_dev *dev )
   {
   tmp = input_get_drvdata(dev);
   ts = (struct stmpe_touch *)tmp;
-  __cil_tmp4 = (unsigned long )ts;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  __cil_tmp6 = (struct delayed_work *)__cil_tmp5;
+  __cil_tmp6 = (struct delayed_work *)((void *)ts + 16);
   cancel_delayed_work_sync(__cil_tmp6);
   __cil_tmp7 = *((struct stmpe **)ts);
   __cil_tmp8 = (u8 )64;
@@ -3737,12 +3648,8 @@ static int stmpe_input_probe(struct platform_device *pdev )
   struct lock_class_key __key ;
   atomic_long_t __constr_expr_0 ;
   struct lock_class_key __key___0 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct stmpe_touch *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
@@ -3750,101 +3657,33 @@ static int stmpe_input_probe(struct platform_device *pdev )
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   void *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct stmpe_platform_data *__cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct stmpe_ts_platform_data *__cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   struct work_struct *__cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   struct lockdep_map *__cil_tmp84 ;
   unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   struct list_head *__cil_tmp89 ;
   unsigned long __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   struct timer_list *__cil_tmp97 ;
   unsigned int __cil_tmp98 ;
   irqreturn_t (*__cil_tmp99)(int , void * ) ;
   void *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   struct device *__cil_tmp103 ;
   struct device const *__cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   unsigned long __cil_tmp107 ;
   unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   unsigned long __cil_tmp111 ;
   unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   void *__cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   struct device *__cil_tmp122 ;
   struct device const *__cil_tmp123 ;
   unsigned int __cil_tmp124 ;
@@ -3854,15 +3693,11 @@ static int stmpe_input_probe(struct platform_device *pdev )
   long __constr_expr_0_counter128 ;
   {
   {
-  __cil_tmp14 = (unsigned long )pdev;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((struct device **)__cil_tmp15);
+  __cil_tmp16 = *((struct device **)((void *)pdev + 16));
   __cil_tmp17 = (struct device const *)__cil_tmp16;
   tmp = dev_get_drvdata(__cil_tmp17);
   stmpe = (struct stmpe *)tmp;
-  __cil_tmp18 = (unsigned long )stmpe;
-  __cil_tmp19 = __cil_tmp18 + 400;
-  pdata = *((struct stmpe_platform_data **)__cil_tmp19);
+  pdata = *((struct stmpe_platform_data **)((void *)stmpe + 400));
   ts_pdata = (struct stmpe_ts_platform_data *)0;
   ts_irq = platform_get_irq_byname(pdev, "FIFO_TH");
   }
@@ -3901,23 +3736,15 @@ static int stmpe_input_probe(struct platform_device *pdev )
   __cil_tmp26 = (void *)ts;
   platform_set_drvdata(pdev, __cil_tmp26);
   *((struct stmpe **)ts) = stmpe;
-  __cil_tmp27 = (unsigned long )ts;
-  __cil_tmp28 = __cil_tmp27 + 8;
-  *((struct input_dev **)__cil_tmp28) = idev;
-  __cil_tmp29 = (unsigned long )ts;
-  __cil_tmp30 = __cil_tmp29 + 224;
-  __cil_tmp31 = (unsigned long )pdev;
-  __cil_tmp32 = __cil_tmp31 + 16;
-  *((struct device **)__cil_tmp30) = (struct device *)__cil_tmp32;
+  *((struct input_dev **)((void *)ts + 8)) = idev;
+  *((struct device **)((void *)ts + 224)) = (struct device *)((void *)pdev + 16);
   }
   {
   __cil_tmp33 = (struct stmpe_platform_data *)0;
   __cil_tmp34 = (unsigned long )__cil_tmp33;
   __cil_tmp35 = (unsigned long )pdata;
   if (__cil_tmp35 != __cil_tmp34) {
-    __cil_tmp36 = (unsigned long )pdata;
-    __cil_tmp37 = __cil_tmp36 + 48;
-    ts_pdata = *((struct stmpe_ts_platform_data **)__cil_tmp37);
+    ts_pdata = *((struct stmpe_ts_platform_data **)((void *)pdata + 48));
   } else {
   }
   }
@@ -3926,82 +3753,36 @@ static int stmpe_input_probe(struct platform_device *pdev )
   __cil_tmp39 = (unsigned long )__cil_tmp38;
   __cil_tmp40 = (unsigned long )ts_pdata;
   if (__cil_tmp40 != __cil_tmp39) {
-    __cil_tmp41 = (unsigned long )ts;
-    __cil_tmp42 = __cil_tmp41 + 232;
-    *((u8 *)__cil_tmp42) = *((u8 *)ts_pdata);
-    __cil_tmp43 = (unsigned long )ts;
-    __cil_tmp44 = __cil_tmp43 + 233;
-    __cil_tmp45 = (unsigned long )ts_pdata;
-    __cil_tmp46 = __cil_tmp45 + 1;
-    *((u8 *)__cil_tmp44) = *((u8 *)__cil_tmp46);
-    __cil_tmp47 = (unsigned long )ts;
-    __cil_tmp48 = __cil_tmp47 + 234;
-    __cil_tmp49 = (unsigned long )ts_pdata;
-    __cil_tmp50 = __cil_tmp49 + 2;
-    *((u8 *)__cil_tmp48) = *((u8 *)__cil_tmp50);
-    __cil_tmp51 = (unsigned long )ts;
-    __cil_tmp52 = __cil_tmp51 + 235;
-    __cil_tmp53 = (unsigned long )ts_pdata;
-    __cil_tmp54 = __cil_tmp53 + 3;
-    *((u8 *)__cil_tmp52) = *((u8 *)__cil_tmp54);
-    __cil_tmp55 = (unsigned long )ts;
-    __cil_tmp56 = __cil_tmp55 + 236;
-    __cil_tmp57 = (unsigned long )ts_pdata;
-    __cil_tmp58 = __cil_tmp57 + 4;
-    *((u8 *)__cil_tmp56) = *((u8 *)__cil_tmp58);
-    __cil_tmp59 = (unsigned long )ts;
-    __cil_tmp60 = __cil_tmp59 + 237;
-    __cil_tmp61 = (unsigned long )ts_pdata;
-    __cil_tmp62 = __cil_tmp61 + 5;
-    *((u8 *)__cil_tmp60) = *((u8 *)__cil_tmp62);
-    __cil_tmp63 = (unsigned long )ts;
-    __cil_tmp64 = __cil_tmp63 + 238;
-    __cil_tmp65 = (unsigned long )ts_pdata;
-    __cil_tmp66 = __cil_tmp65 + 6;
-    *((u8 *)__cil_tmp64) = *((u8 *)__cil_tmp66);
-    __cil_tmp67 = (unsigned long )ts;
-    __cil_tmp68 = __cil_tmp67 + 239;
-    __cil_tmp69 = (unsigned long )ts_pdata;
-    __cil_tmp70 = __cil_tmp69 + 7;
-    *((u8 *)__cil_tmp68) = *((u8 *)__cil_tmp70);
-    __cil_tmp71 = (unsigned long )ts;
-    __cil_tmp72 = __cil_tmp71 + 240;
-    __cil_tmp73 = (unsigned long )ts_pdata;
-    __cil_tmp74 = __cil_tmp73 + 8;
-    *((u8 *)__cil_tmp72) = *((u8 *)__cil_tmp74);
+    *((u8 *)((void *)ts + 232)) = *((u8 *)ts_pdata);
+    *((u8 *)((void *)ts + 233)) = *((u8 *)((void *)ts_pdata + 1));
+    *((u8 *)((void *)ts + 234)) = *((u8 *)((void *)ts_pdata + 2));
+    *((u8 *)((void *)ts + 235)) = *((u8 *)((void *)ts_pdata + 3));
+    *((u8 *)((void *)ts + 236)) = *((u8 *)((void *)ts_pdata + 4));
+    *((u8 *)((void *)ts + 237)) = *((u8 *)((void *)ts_pdata + 5));
+    *((u8 *)((void *)ts + 238)) = *((u8 *)((void *)ts_pdata + 6));
+    *((u8 *)((void *)ts + 239)) = *((u8 *)((void *)ts_pdata + 7));
+    *((u8 *)((void *)ts + 240)) = *((u8 *)((void *)ts_pdata + 8));
   } else {
   }
   }
   {
-  __cil_tmp75 = (unsigned long )ts;
-  __cil_tmp76 = __cil_tmp75 + 16;
-  __cil_tmp77 = (struct work_struct *)__cil_tmp76;
+  __cil_tmp77 = (struct work_struct *)((void *)ts + 16);
   __init_work(__cil_tmp77, 0);
   __constr_expr_0_counter128 = 2097664L;
-  __cil_tmp78 = (unsigned long )ts;
-  __cil_tmp79 = __cil_tmp78 + 16;
-  ((atomic_long_t *)__cil_tmp79)->counter = __constr_expr_0_counter128;
+  ((atomic_long_t *)((void *)ts + 16))->counter = __constr_expr_0_counter128;
   __cil_tmp80 = 0 + 32;
   __cil_tmp81 = 16 + __cil_tmp80;
-  __cil_tmp82 = (unsigned long )ts;
-  __cil_tmp83 = __cil_tmp82 + __cil_tmp81;
-  __cil_tmp84 = (struct lockdep_map *)__cil_tmp83;
+  __cil_tmp84 = (struct lockdep_map *)((void *)ts + __cil_tmp81);
   lockdep_init_map(__cil_tmp84, "(&(&ts->work)->work)", & __key, 0);
   __cil_tmp85 = 0 + 8;
   __cil_tmp86 = 16 + __cil_tmp85;
-  __cil_tmp87 = (unsigned long )ts;
-  __cil_tmp88 = __cil_tmp87 + __cil_tmp86;
-  __cil_tmp89 = (struct list_head *)__cil_tmp88;
+  __cil_tmp89 = (struct list_head *)((void *)ts + __cil_tmp86);
   INIT_LIST_HEAD(__cil_tmp89);
   __cil_tmp90 = 0 + 24;
   __cil_tmp91 = 16 + __cil_tmp90;
-  __cil_tmp92 = (unsigned long )ts;
-  __cil_tmp93 = __cil_tmp92 + __cil_tmp91;
-  *((void (**)(struct work_struct * ))__cil_tmp93) = & stmpe_work;
+  *((void (**)(struct work_struct * ))((void *)ts + __cil_tmp91)) = & stmpe_work;
   __cil_tmp94 = 16 + 80;
-  __cil_tmp95 = (unsigned long )ts;
-  __cil_tmp96 = __cil_tmp95 + __cil_tmp94;
-  __cil_tmp97 = (struct timer_list *)__cil_tmp96;
+  __cil_tmp97 = (struct timer_list *)((void *)ts + __cil_tmp94);
   init_timer_key(__cil_tmp97, "&(&ts->work)->timer", & __key___0);
   __cil_tmp98 = (unsigned int )ts_irq;
   __cil_tmp99 = (irqreturn_t (*)(int , void * ))0;
@@ -4011,9 +3792,7 @@ static int stmpe_input_probe(struct platform_device *pdev )
   }
   if (ret != 0) {
     {
-    __cil_tmp101 = (unsigned long )pdev;
-    __cil_tmp102 = __cil_tmp101 + 16;
-    __cil_tmp103 = (struct device *)__cil_tmp102;
+    __cil_tmp103 = (struct device *)((void *)pdev + 16);
     __cil_tmp104 = (struct device const *)__cil_tmp103;
     dev_err(__cil_tmp104, "Failed to request IRQ %d\n", ts_irq);
     }
@@ -4029,25 +3808,15 @@ static int stmpe_input_probe(struct platform_device *pdev )
   }
   {
   *((char const **)idev) = "stmpe-ts";
-  __cil_tmp105 = (unsigned long )idev;
-  __cil_tmp106 = __cil_tmp105 + 24;
-  *((__u16 *)__cil_tmp106) = (__u16 )24U;
+  *((__u16 *)((void *)idev + 24)) = (__u16 )24U;
   __cil_tmp107 = 0 * 8UL;
   __cil_tmp108 = 40 + __cil_tmp107;
-  __cil_tmp109 = (unsigned long )idev;
-  __cil_tmp110 = __cil_tmp109 + __cil_tmp108;
-  *((unsigned long *)__cil_tmp110) = 10UL;
+  *((unsigned long *)((void *)idev + __cil_tmp108)) = 10UL;
   __cil_tmp111 = 5 * 8UL;
   __cil_tmp112 = 48 + __cil_tmp111;
-  __cil_tmp113 = (unsigned long )idev;
-  __cil_tmp114 = __cil_tmp113 + __cil_tmp112;
-  *((unsigned long *)__cil_tmp114) = 1024UL;
-  __cil_tmp115 = (unsigned long )idev;
-  __cil_tmp116 = __cil_tmp115 + 552;
-  *((int (**)(struct input_dev * ))__cil_tmp116) = & stmpe_ts_open;
-  __cil_tmp117 = (unsigned long )idev;
-  __cil_tmp118 = __cil_tmp117 + 560;
-  *((void (**)(struct input_dev * ))__cil_tmp118) = & stmpe_ts_close;
+  *((unsigned long *)((void *)idev + __cil_tmp112)) = 1024UL;
+  *((int (**)(struct input_dev * ))((void *)idev + 552)) = & stmpe_ts_open;
+  *((void (**)(struct input_dev * ))((void *)idev + 560)) = & stmpe_ts_close;
   __cil_tmp119 = (void *)ts;
   input_set_drvdata(idev, __cil_tmp119);
   input_set_abs_params(idev, 0U, 0, 4095, 0, 0);
@@ -4057,9 +3826,7 @@ static int stmpe_input_probe(struct platform_device *pdev )
   }
   if (ret != 0) {
     {
-    __cil_tmp120 = (unsigned long )pdev;
-    __cil_tmp121 = __cil_tmp120 + 16;
-    __cil_tmp122 = (struct device *)__cil_tmp121;
+    __cil_tmp122 = (struct device *)((void *)pdev + 16);
     __cil_tmp123 = (struct device const *)__cil_tmp122;
     dev_err(__cil_tmp123, "Could not register input device\n");
     }

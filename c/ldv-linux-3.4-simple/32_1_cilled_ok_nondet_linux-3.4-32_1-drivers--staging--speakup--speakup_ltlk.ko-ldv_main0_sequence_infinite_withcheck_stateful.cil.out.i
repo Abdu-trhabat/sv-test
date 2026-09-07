@@ -408,8 +408,6 @@ static void synth_interrogate(struct spk_synth *synth___0 )
   int __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   char const *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
@@ -490,9 +488,7 @@ static void synth_interrogate(struct spk_synth *synth___0 )
   __cil_tmp25 = i * 1UL;
   __cil_tmp26 = (unsigned long )(rom_v) + __cil_tmp25;
   *((unsigned char *)__cil_tmp26) = (unsigned char)0;
-  __cil_tmp27 = (unsigned long )synth___0;
-  __cil_tmp28 = __cil_tmp27 + 16;
-  __cil_tmp29 = *((char const **)__cil_tmp28);
+  __cil_tmp29 = *((char const **)((void *)synth___0 + 16));
   __cil_tmp30 = 0 * 1UL;
   __cil_tmp31 = (unsigned long )(rom_v) + __cil_tmp30;
   __cil_tmp32 = (unsigned char *)__cil_tmp31;
@@ -503,8 +499,6 @@ static void synth_interrogate(struct spk_synth *synth___0 )
 }
 static int synth_probe(struct spk_synth *synth___0 )
 { int failed ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   {
   {
   failed = 0;
@@ -516,9 +510,7 @@ static int synth_probe(struct spk_synth *synth___0 )
     }
   } else {
   }
-  __cil_tmp3 = (unsigned long )synth___0;
-  __cil_tmp4 = __cil_tmp3 + 176;
-  *((int *)__cil_tmp4) = ! failed;
+  *((int *)((void *)synth___0 + 176)) = ! failed;
   return (failed);
 }
 }

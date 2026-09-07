@@ -2981,13 +2981,10 @@ extern struct thermal_cooling_device *thermal_cooling_device_register(char * , v
 extern void thermal_cooling_device_unregister(struct thermal_cooling_device * ) ;
 __inline static void *acpi_driver_data(struct acpi_device *d ) __attribute__((__no_instrument_function__)) ;
 __inline static void *acpi_driver_data(struct acpi_device *d )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   {
-  __cil_tmp2 = (unsigned long )d;
-  __cil_tmp3 = __cil_tmp2 + 936;
-  return (*((void **)__cil_tmp3));
+  return (*((void **)((void *)d + 936)));
   }
 }
 }
@@ -3055,29 +3052,21 @@ static int fan_get_cur_state(struct thermal_cooling_device *cdev , unsigned long
   int result ;
   int acpi_state ;
   int tmp___7 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   acpi_handle __cil_tmp12 ;
   int *__cil_tmp13 ;
   int __cil_tmp14 ;
   int *__cil_tmp15 ;
   int __cil_tmp16 ;
   {
-  __cil_tmp7 = (unsigned long )cdev;
-  __cil_tmp8 = __cil_tmp7 + 792;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)cdev + 792));
   device = (struct acpi_device *)__cil_tmp9;
   if (! device) {
     return (-22);
   } else {
   }
   {
-  __cil_tmp10 = (unsigned long )device;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  __cil_tmp12 = *((acpi_handle *)__cil_tmp11);
+  __cil_tmp12 = *((acpi_handle *)((void *)device + 8));
   result = acpi_bus_update_power(__cil_tmp12, & acpi_state);
   }
   if (result) {
@@ -3109,18 +3098,12 @@ static int fan_set_cur_state(struct thermal_cooling_device *cdev , unsigned long
 { struct acpi_device *device ;
   int result ;
   int tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 __cil_tmp9 ;
   u8 __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   acpi_handle __cil_tmp13 ;
   {
-  __cil_tmp6 = (unsigned long )cdev;
-  __cil_tmp7 = __cil_tmp6 + 792;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)cdev + 792));
   device = (struct acpi_device *)__cil_tmp8;
   if (! device) {
     return (-22);
@@ -3140,9 +3123,7 @@ static int fan_set_cur_state(struct thermal_cooling_device *cdev , unsigned long
     tmp___7 = (int )__cil_tmp10;
   }
   {
-  __cil_tmp11 = (unsigned long )device;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((acpi_handle *)__cil_tmp12);
+  __cil_tmp13 = *((acpi_handle *)((void *)device + 8));
   result = acpi_bus_set_power(__cil_tmp13, tmp___7);
   }
   return (result);
@@ -3163,17 +3144,11 @@ static int acpi_fan_add(struct acpi_device *device )
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   char *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   char *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   acpi_handle __cil_tmp22 ;
   void *__cil_tmp23 ;
   int *__cil_tmp24 ;
@@ -3187,51 +3162,29 @@ static int acpi_fan_add(struct acpi_device *device )
   int __cil_tmp32 ;
   int __cil_tmp33 ;
   long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct device *__cil_tmp37 ;
   struct device const *__cil_tmp38 ;
   int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct kobject *__cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct kobject *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct device *__cil_tmp52 ;
   struct device const *__cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct kobject *__cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct kobject *__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   struct device *__cil_tmp64 ;
   struct device const *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   int __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   char *__cil_tmp74 ;
   unsigned long __cil_tmp75 ;
   unsigned long __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   char *__cil_tmp80 ;
   {
   result = 0;
@@ -3243,20 +3196,14 @@ static int acpi_fan_add(struct acpi_device *device )
   __cil_tmp8 = 0 * 1UL;
   __cil_tmp9 = 40 + __cil_tmp8;
   __cil_tmp10 = 80 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )device;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = (char *)__cil_tmp12;
+  __cil_tmp13 = (char *)((void *)device + __cil_tmp10);
   strcpy(__cil_tmp13, "Fan");
   __cil_tmp14 = 0 * 1UL;
   __cil_tmp15 = 80 + __cil_tmp14;
   __cil_tmp16 = 80 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )device;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = (char *)__cil_tmp18;
+  __cil_tmp19 = (char *)((void *)device + __cil_tmp16);
   strcpy(__cil_tmp19, "fan");
-  __cil_tmp20 = (unsigned long )device;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  __cil_tmp22 = *((acpi_handle *)__cil_tmp21);
+  __cil_tmp22 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp23 = (void *)0;
   __cil_tmp24 = (int *)__cil_tmp23;
   result = acpi_bus_update_power(__cil_tmp22, __cil_tmp24);
@@ -3301,9 +3248,7 @@ static int acpi_fan_add(struct acpi_device *device )
       }
       if (tmp___9) {
         {
-        __cil_tmp35 = (unsigned long )device;
-        __cil_tmp36 = __cil_tmp35 + 944;
-        __cil_tmp37 = (struct device *)__cil_tmp36;
+        __cil_tmp37 = (struct device *)((void *)device + 944);
         __cil_tmp38 = (struct device const *)__cil_tmp37;
         __cil_tmp39 = *((int *)cdev);
         __dynamic_dev_dbg(& descriptor, __cil_tmp38, "registered as cooling_device%d\n",
@@ -3320,24 +3265,16 @@ static int acpi_fan_add(struct acpi_device *device )
   while_break: ;
   }
   {
-  __cil_tmp40 = (unsigned long )device;
-  __cil_tmp41 = __cil_tmp40 + 936;
-  *((void **)__cil_tmp41) = (void *)cdev;
+  *((void **)((void *)device + 936)) = (void *)cdev;
   __cil_tmp42 = 944 + 16;
-  __cil_tmp43 = (unsigned long )device;
-  __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
-  __cil_tmp45 = (struct kobject *)__cil_tmp44;
+  __cil_tmp45 = (struct kobject *)((void *)device + __cil_tmp42);
   __cil_tmp46 = 24 + 16;
-  __cil_tmp47 = (unsigned long )cdev;
-  __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-  __cil_tmp49 = (struct kobject *)__cil_tmp48;
+  __cil_tmp49 = (struct kobject *)((void *)cdev + __cil_tmp46);
   result = (int )sysfs_create_link(__cil_tmp45, __cil_tmp49, "thermal_cooling");
   }
   if (result) {
     {
-    __cil_tmp50 = (unsigned long )device;
-    __cil_tmp51 = __cil_tmp50 + 944;
-    __cil_tmp52 = (struct device *)__cil_tmp51;
+    __cil_tmp52 = (struct device *)((void *)device + 944);
     __cil_tmp53 = (struct device const *)__cil_tmp52;
     dev_err(__cil_tmp53, "Failed to create sysfs link \'thermal_cooling\'\n");
     }
@@ -3345,29 +3282,21 @@ static int acpi_fan_add(struct acpi_device *device )
   }
   {
   __cil_tmp54 = 24 + 16;
-  __cil_tmp55 = (unsigned long )cdev;
-  __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-  __cil_tmp57 = (struct kobject *)__cil_tmp56;
+  __cil_tmp57 = (struct kobject *)((void *)cdev + __cil_tmp54);
   __cil_tmp58 = 944 + 16;
-  __cil_tmp59 = (unsigned long )device;
-  __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
-  __cil_tmp61 = (struct kobject *)__cil_tmp60;
+  __cil_tmp61 = (struct kobject *)((void *)device + __cil_tmp58);
   result = (int )sysfs_create_link(__cil_tmp57, __cil_tmp61, "device");
   }
   if (result) {
     {
-    __cil_tmp62 = (unsigned long )device;
-    __cil_tmp63 = __cil_tmp62 + 944;
-    __cil_tmp64 = (struct device *)__cil_tmp63;
+    __cil_tmp64 = (struct device *)((void *)device + 944);
     __cil_tmp65 = (struct device const *)__cil_tmp64;
     dev_err(__cil_tmp65, "Failed to create sysfs link \'device\'\n");
     }
   } else {
   }
   {
-  __cil_tmp66 = (unsigned long )device;
-  __cil_tmp67 = __cil_tmp66 + 184;
-  __cil_tmp68 = *((int *)__cil_tmp67);
+  __cil_tmp68 = *((int *)((void *)device + 184));
   if (! __cil_tmp68) {
     tmp___10 = "on";
   } else {
@@ -3378,15 +3307,11 @@ static int acpi_fan_add(struct acpi_device *device )
   __cil_tmp69 = 0 * 1UL;
   __cil_tmp70 = 40 + __cil_tmp69;
   __cil_tmp71 = 80 + __cil_tmp70;
-  __cil_tmp72 = (unsigned long )device;
-  __cil_tmp73 = __cil_tmp72 + __cil_tmp71;
-  __cil_tmp74 = (char *)__cil_tmp73;
+  __cil_tmp74 = (char *)((void *)device + __cil_tmp71);
   __cil_tmp75 = 0 * 1UL;
   __cil_tmp76 = 0 + __cil_tmp75;
   __cil_tmp77 = 80 + __cil_tmp76;
-  __cil_tmp78 = (unsigned long )device;
-  __cil_tmp79 = __cil_tmp78 + __cil_tmp77;
-  __cil_tmp80 = (char *)__cil_tmp79;
+  __cil_tmp80 = (char *)((void *)device + __cil_tmp77);
   printk("<6>ACPI: %s [%s] (%s)\n", __cil_tmp74, __cil_tmp80, tmp___10);
   }
   end:
@@ -3397,12 +3322,8 @@ static int acpi_fan_remove(struct acpi_device *device , int type )
 { struct thermal_cooling_device *cdev ;
   void *tmp___7 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct kobject *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct kobject *__cil_tmp12 ;
   {
   {
@@ -3418,14 +3339,10 @@ static int acpi_fan_remove(struct acpi_device *device , int type )
   }
   {
   __cil_tmp5 = 944 + 16;
-  __cil_tmp6 = (unsigned long )device;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  __cil_tmp8 = (struct kobject *)__cil_tmp7;
+  __cil_tmp8 = (struct kobject *)((void *)device + __cil_tmp5);
   sysfs_remove_link(__cil_tmp8, "thermal_cooling");
   __cil_tmp9 = 24 + 16;
-  __cil_tmp10 = (unsigned long )cdev;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  __cil_tmp12 = (struct kobject *)__cil_tmp11;
+  __cil_tmp12 = (struct kobject *)((void *)cdev + __cil_tmp9);
   sysfs_remove_link(__cil_tmp12, "device");
   thermal_cooling_device_unregister(cdev);
   }
@@ -3433,8 +3350,7 @@ static int acpi_fan_remove(struct acpi_device *device , int type )
 }
 }
 static int acpi_fan_suspend(struct acpi_device *device , int state_event9 )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   acpi_handle __cil_tmp5 ;
   u8 __cil_tmp6 ;
   int __cil_tmp7 ;
@@ -3445,9 +3361,7 @@ static int acpi_fan_suspend(struct acpi_device *device , int state_event9 )
   } else {
   }
   {
-  __cil_tmp3 = (unsigned long )device;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((acpi_handle *)__cil_tmp4);
+  __cil_tmp5 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp6 = (u8 )0;
   __cil_tmp7 = (int )__cil_tmp6;
   acpi_bus_set_power(__cil_tmp5, __cil_tmp7);
@@ -3460,8 +3374,6 @@ static int acpi_fan_suspend(struct acpi_device *device , int state_event9 )
 }
 static int acpi_fan_resume(struct acpi_device *device )
 { int result ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   acpi_handle __cil_tmp5 ;
   void *__cil_tmp6 ;
   int *__cil_tmp7 ;
@@ -3471,9 +3383,7 @@ static int acpi_fan_resume(struct acpi_device *device )
   } else {
   }
   {
-  __cil_tmp3 = (unsigned long )device;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((acpi_handle *)__cil_tmp4);
+  __cil_tmp5 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp6 = (void *)0;
   __cil_tmp7 = (int *)__cil_tmp6;
   result = acpi_bus_update_power(__cil_tmp5, __cil_tmp7);

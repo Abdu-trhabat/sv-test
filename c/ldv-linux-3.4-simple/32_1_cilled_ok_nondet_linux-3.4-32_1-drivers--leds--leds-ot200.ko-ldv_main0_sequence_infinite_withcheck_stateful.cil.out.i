@@ -1027,31 +1027,21 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
   unsigned int __cil_tmp12 ;
   char *__cil_tmp13 ;
   char *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   u8 __cil_tmp24 ;
   int __cil_tmp25 ;
   int __cil_tmp26 ;
   u8 __cil_tmp27 ;
   int __cil_tmp28 ;
   int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   u8 __cil_tmp32 ;
   int __cil_tmp33 ;
   u8 __cil_tmp34 ;
   int __cil_tmp35 ;
   int __cil_tmp36 ;
   u8 __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   int __cil_tmp41 ;
   {
@@ -1081,16 +1071,12 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
   while_break: ;
   }
   {
-  __cil_tmp15 = (unsigned long )led;
-  __cil_tmp16 = __cil_tmp15 + 272;
-  __cil_tmp17 = *((unsigned long *)__cil_tmp16);
+  __cil_tmp17 = *((unsigned long *)((void *)led + 272));
   if (__cil_tmp17 == 73UL) {
     val = & leds_front;
   } else {
     {
-    __cil_tmp18 = (unsigned long )led;
-    __cil_tmp19 = __cil_tmp18 + 272;
-    __cil_tmp20 = *((unsigned long *)__cil_tmp19);
+    __cil_tmp20 = *((unsigned long *)((void *)led + 272));
     if (__cil_tmp20 == 90UL) {
       val = & leds_back;
     } else {
@@ -1121,9 +1107,7 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
   {
   __cil_tmp21 = (unsigned int )value;
   if (__cil_tmp21 == 0U) {
-    __cil_tmp22 = (unsigned long )led;
-    __cil_tmp23 = __cil_tmp22 + 280;
-    __cil_tmp24 = *((u8 *)__cil_tmp23);
+    __cil_tmp24 = *((u8 *)((void *)led + 280));
     __cil_tmp25 = (int )__cil_tmp24;
     __cil_tmp26 = ~ __cil_tmp25;
     __cil_tmp27 = *val;
@@ -1131,9 +1115,7 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
     __cil_tmp29 = __cil_tmp28 & __cil_tmp26;
     *val = (u8 )__cil_tmp29;
   } else {
-    __cil_tmp30 = (unsigned long )led;
-    __cil_tmp31 = __cil_tmp30 + 280;
-    __cil_tmp32 = *((u8 *)__cil_tmp31);
+    __cil_tmp32 = *((u8 *)((void *)led + 280));
     __cil_tmp33 = (int )__cil_tmp32;
     __cil_tmp34 = *val;
     __cil_tmp35 = (int )__cil_tmp34;
@@ -1143,9 +1125,7 @@ static void ot200_led_brightness_set(struct led_classdev *led_cdev , enum led_br
   }
   {
   __cil_tmp37 = *val;
-  __cil_tmp38 = (unsigned long )led;
-  __cil_tmp39 = __cil_tmp38 + 272;
-  __cil_tmp40 = *((unsigned long *)__cil_tmp39);
+  __cil_tmp40 = *((unsigned long *)((void *)led + 272));
   __cil_tmp41 = (int )__cil_tmp40;
   outb(__cil_tmp37, __cil_tmp41);
   spin_unlock_irqrestore(& value_lock, flags);
@@ -1170,8 +1150,6 @@ static int ot200_led_probe(struct platform_device *pdev )
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
@@ -1212,9 +1190,7 @@ static int ot200_led_probe(struct platform_device *pdev )
     __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
     __cil_tmp15 = (unsigned long )(leds) + __cil_tmp14;
     *((void (**)(struct led_classdev *led_cdev , enum led_brightness brightness ))__cil_tmp15) = & ot200_led_brightness_set;
-    __cil_tmp16 = (unsigned long )pdev;
-    __cil_tmp17 = __cil_tmp16 + 16;
-    __cil_tmp18 = (struct device *)__cil_tmp17;
+    __cil_tmp18 = (struct device *)((void *)pdev + 16);
     __cil_tmp19 = i * 288UL;
     __cil_tmp20 = (unsigned long )(leds) + __cil_tmp19;
     __cil_tmp21 = (struct led_classdev *)__cil_tmp20;

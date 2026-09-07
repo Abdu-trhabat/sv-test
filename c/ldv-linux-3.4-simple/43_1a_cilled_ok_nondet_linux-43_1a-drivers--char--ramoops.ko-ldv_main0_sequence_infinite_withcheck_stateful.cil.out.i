@@ -954,30 +954,19 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper , enum kmsg_dump_reason r
   unsigned int __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   int __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   void *__cil_tmp44 ;
   void *__cil_tmp45 ;
   void *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   char *__cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   struct timeval *__cil_tmp52 ;
   __kernel_time_t __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   __kernel_suseconds_t __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   long __cil_tmp57 ;
@@ -986,12 +975,8 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper , enum kmsg_dump_reason r
   unsigned int __cil_tmp60 ;
   unsigned int __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   void *__cil_tmp71 ;
@@ -1001,13 +986,7 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper , enum kmsg_dump_reason r
   void *__cil_tmp75 ;
   char const *__cil_tmp76 ;
   void const *__cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   int __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   int __cil_tmp85 ;
   int __cil_tmp86 ;
   {
@@ -1030,9 +1009,7 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper , enum kmsg_dump_reason r
   __cil_tmp30 = (unsigned int )reason;
   if (__cil_tmp30 == 1U) {
     {
-    __cil_tmp31 = (unsigned long )cxt;
-    __cil_tmp32 = __cil_tmp31 + 64;
-    __cil_tmp33 = *((int *)__cil_tmp32);
+    __cil_tmp33 = *((int *)((void *)cxt + 64));
     if (__cil_tmp33 == 0) {
       return;
     } else {
@@ -1042,24 +1019,16 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper , enum kmsg_dump_reason r
   }
   }
   {
-  __cil_tmp34 = (unsigned long )cxt;
-  __cil_tmp35 = __cil_tmp34 + 56;
-  __cil_tmp36 = *((unsigned long *)__cil_tmp35);
-  __cil_tmp37 = (unsigned long )cxt;
-  __cil_tmp38 = __cil_tmp37 + 68;
-  __cil_tmp39 = *((int *)__cil_tmp38);
+  __cil_tmp36 = *((unsigned long *)((void *)cxt + 56));
+  __cil_tmp39 = *((int *)((void *)cxt + 68));
   __cil_tmp40 = (unsigned long )__cil_tmp39;
   __cil_tmp41 = __cil_tmp40 * __cil_tmp36;
-  __cil_tmp42 = (unsigned long )cxt;
-  __cil_tmp43 = __cil_tmp42 + 32;
-  __cil_tmp44 = *((void **)__cil_tmp43);
+  __cil_tmp44 = *((void **)((void *)cxt + 32));
   __cil_tmp45 = __cil_tmp44 + __cil_tmp41;
   buf = (char *)__cil_tmp45;
   buf_orig = buf;
   __cil_tmp46 = (void *)buf;
-  __cil_tmp47 = (unsigned long )cxt;
-  __cil_tmp48 = __cil_tmp47 + 56;
-  __cil_tmp49 = *((unsigned long *)__cil_tmp48);
+  __cil_tmp49 = *((unsigned long *)((void *)cxt + 56));
   memset(__cil_tmp46, 0, __cil_tmp49);
   __cil_tmp50 = (char *)"====";
   res = sprintf(buf, "%s", __cil_tmp50);
@@ -1068,8 +1037,7 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper , enum kmsg_dump_reason r
   do_gettimeofday(& timestamp);
   __cil_tmp52 = & timestamp;
   __cil_tmp53 = *((__kernel_time_t *)__cil_tmp52);
-  __cil_tmp54 = (unsigned long )(& timestamp) + 8;
-  __cil_tmp55 = *((__kernel_suseconds_t *)__cil_tmp54);
+  __cil_tmp55 = *((__kernel_suseconds_t *)((void *)(&timestamp) + 8));
   res = sprintf(buf, "%lu.%lu\n", __cil_tmp53, __cil_tmp55);
   __cil_tmp56 = (unsigned long )res;
   buf = buf + __cil_tmp56;
@@ -1081,9 +1049,7 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper , enum kmsg_dump_reason r
   hdr_size = (int )__cil_tmp61;
   _min1 = l2;
   __cil_tmp62 = (unsigned long )hdr_size;
-  __cil_tmp63 = (unsigned long )cxt;
-  __cil_tmp64 = __cil_tmp63 + 56;
-  __cil_tmp65 = *((unsigned long *)__cil_tmp64);
+  __cil_tmp65 = *((unsigned long *)((void *)cxt + 56));
   _min2 = __cil_tmp65 - __cil_tmp62;
   }
   if (_min1 < _min2) {
@@ -1094,9 +1060,7 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper , enum kmsg_dump_reason r
   l2_cpy = tmp;
   _min1___0 = l1;
   __cil_tmp66 = (unsigned long )hdr_size;
-  __cil_tmp67 = (unsigned long )cxt;
-  __cil_tmp68 = __cil_tmp67 + 56;
-  __cil_tmp69 = *((unsigned long *)__cil_tmp68);
+  __cil_tmp69 = *((unsigned long *)((void *)cxt + 56));
   __cil_tmp70 = __cil_tmp69 - __cil_tmp66;
   _min2___0 = __cil_tmp70 - l2_cpy;
   if (_min1___0 < _min2___0) {
@@ -1119,16 +1083,10 @@ static void ramoops_do_dump(struct kmsg_dumper *dumper , enum kmsg_dump_reason r
   __cil_tmp76 = s2 + s2_start;
   __cil_tmp77 = (void const *)__cil_tmp76;
   __ret___0 = memcpy(__cil_tmp75, __cil_tmp77, __len___0);
-  __cil_tmp78 = (unsigned long )cxt;
-  __cil_tmp79 = __cil_tmp78 + 68;
-  __cil_tmp80 = (unsigned long )cxt;
-  __cil_tmp81 = __cil_tmp80 + 72;
-  __cil_tmp82 = *((int *)__cil_tmp81);
-  __cil_tmp83 = (unsigned long )cxt;
-  __cil_tmp84 = __cil_tmp83 + 68;
-  __cil_tmp85 = *((int *)__cil_tmp84);
+  __cil_tmp82 = *((int *)((void *)cxt + 72));
+  __cil_tmp85 = *((int *)((void *)cxt + 68));
   __cil_tmp86 = __cil_tmp85 + 1;
-  *((int *)__cil_tmp79) = __cil_tmp86 % __cil_tmp82;
+  *((int *)((void *)cxt + 68)) = __cil_tmp86 % __cil_tmp82;
   }
   return;
 }
@@ -1139,102 +1097,44 @@ static int ramoops_probe(struct platform_device *pdev )
   int err ;
   struct resource *tmp ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   phys_addr_t __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   resource_size_t __cil_tmp58 ;
   struct resource *__cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   phys_addr_t __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   void *__cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   void *__cil_tmp74 ;
   unsigned long __cil_tmp75 ;
   struct kmsg_dumper *__cil_tmp76 ;
   ulong *__cil_tmp77 ;
   ulong *__cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   ulong *__cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   int *__cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   void *__cil_tmp89 ;
   void volatile *__cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   phys_addr_t __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   unsigned long __cil_tmp96 ;
   resource_size_t __cil_tmp97 ;
   {
   __cil_tmp6 = 16 + 280;
-  __cil_tmp7 = (unsigned long )pdev;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp6;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)pdev + __cil_tmp6));
   pdata = (struct ramoops_platform_data *)__cil_tmp9;
   cxt = & oops_cxt;
   err = -22;
@@ -1247,9 +1147,7 @@ static int ramoops_probe(struct platform_device *pdev )
     goto fail3;
   } else {
     {
-    __cil_tmp11 = (unsigned long )pdata;
-    __cil_tmp12 = __cil_tmp11 + 16;
-    __cil_tmp13 = *((unsigned long *)__cil_tmp12);
+    __cil_tmp13 = *((unsigned long *)((void *)pdata + 16));
     if (__cil_tmp13 == 0UL) {
       {
       printk("<3>ramoops: The memory size and the record size must be non-zero\n");
@@ -1263,20 +1161,14 @@ static int ramoops_probe(struct platform_device *pdev )
   {
   __cil_tmp14 = *((unsigned long *)pdata);
   *((unsigned long *)pdata) = __rounddown_pow_of_two(__cil_tmp14);
-  __cil_tmp15 = (unsigned long )pdata;
-  __cil_tmp16 = __cil_tmp15 + 16;
-  __cil_tmp17 = (unsigned long )pdata;
-  __cil_tmp18 = __cil_tmp17 + 16;
-  __cil_tmp19 = *((unsigned long *)__cil_tmp18);
-  *((unsigned long *)__cil_tmp16) = __rounddown_pow_of_two(__cil_tmp19);
+  __cil_tmp19 = *((unsigned long *)((void *)pdata + 16));
+  *((unsigned long *)((void *)pdata + 16)) = __rounddown_pow_of_two(__cil_tmp19);
   }
   {
   __cil_tmp20 = *((unsigned long *)pdata);
   if (__cil_tmp20 <= 4095UL) {
     {
-    __cil_tmp21 = (unsigned long )pdata;
-    __cil_tmp22 = __cil_tmp21 + 16;
-    __cil_tmp23 = *((unsigned long *)__cil_tmp22);
+    __cil_tmp23 = *((unsigned long *)((void *)pdata + 16));
     if (__cil_tmp23 <= 4095UL) {
       {
       printk("<3>ramoops: memory size too small, minium is %lu\n", 4096UL);
@@ -1289,9 +1181,7 @@ static int ramoops_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp24 = (unsigned long )pdata;
-  __cil_tmp25 = __cil_tmp24 + 16;
-  __cil_tmp26 = *((unsigned long *)__cil_tmp25);
+  __cil_tmp26 = *((unsigned long *)((void *)pdata + 16));
   __cil_tmp27 = *((unsigned long *)pdata);
   if (__cil_tmp27 < __cil_tmp26) {
     {
@@ -1302,42 +1192,18 @@ static int ramoops_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp28 = (unsigned long )cxt;
-  __cil_tmp29 = __cil_tmp28 + 72;
-  __cil_tmp30 = (unsigned long )pdata;
-  __cil_tmp31 = __cil_tmp30 + 16;
-  __cil_tmp32 = *((unsigned long *)__cil_tmp31);
+  __cil_tmp32 = *((unsigned long *)((void *)pdata + 16));
   __cil_tmp33 = *((unsigned long *)pdata);
   __cil_tmp34 = __cil_tmp33 / __cil_tmp32;
-  *((int *)__cil_tmp29) = (int )__cil_tmp34;
-  __cil_tmp35 = (unsigned long )cxt;
-  __cil_tmp36 = __cil_tmp35 + 68;
-  *((int *)__cil_tmp36) = 0;
-  __cil_tmp37 = (unsigned long )cxt;
-  __cil_tmp38 = __cil_tmp37 + 48;
-  *((unsigned long *)__cil_tmp38) = *((unsigned long *)pdata);
-  __cil_tmp39 = (unsigned long )cxt;
-  __cil_tmp40 = __cil_tmp39 + 40;
-  __cil_tmp41 = (unsigned long )pdata;
-  __cil_tmp42 = __cil_tmp41 + 8;
-  __cil_tmp43 = *((unsigned long *)__cil_tmp42);
-  *((phys_addr_t *)__cil_tmp40) = (phys_addr_t )__cil_tmp43;
-  __cil_tmp44 = (unsigned long )cxt;
-  __cil_tmp45 = __cil_tmp44 + 56;
-  __cil_tmp46 = (unsigned long )pdata;
-  __cil_tmp47 = __cil_tmp46 + 16;
-  *((unsigned long *)__cil_tmp45) = *((unsigned long *)__cil_tmp47);
-  __cil_tmp48 = (unsigned long )cxt;
-  __cil_tmp49 = __cil_tmp48 + 64;
-  __cil_tmp50 = (unsigned long )pdata;
-  __cil_tmp51 = __cil_tmp50 + 24;
-  *((int *)__cil_tmp49) = *((int *)__cil_tmp51);
-  __cil_tmp52 = (unsigned long )cxt;
-  __cil_tmp53 = __cil_tmp52 + 40;
-  __cil_tmp54 = *((phys_addr_t *)__cil_tmp53);
-  __cil_tmp55 = (unsigned long )cxt;
-  __cil_tmp56 = __cil_tmp55 + 48;
-  __cil_tmp57 = *((unsigned long *)__cil_tmp56);
+  *((int *)((void *)cxt + 72)) = (int )__cil_tmp34;
+  *((int *)((void *)cxt + 68)) = 0;
+  *((unsigned long *)((void *)cxt + 48)) = *((unsigned long *)pdata);
+  __cil_tmp43 = *((unsigned long *)((void *)pdata + 8));
+  *((phys_addr_t *)((void *)cxt + 40)) = (phys_addr_t )__cil_tmp43;
+  *((unsigned long *)((void *)cxt + 56)) = *((unsigned long *)((void *)pdata + 16));
+  *((int *)((void *)cxt + 64)) = *((int *)((void *)pdata + 24));
+  __cil_tmp54 = *((phys_addr_t *)((void *)cxt + 40));
+  __cil_tmp57 = *((unsigned long *)((void *)cxt + 48));
   __cil_tmp58 = (resource_size_t )__cil_tmp57;
   tmp = __request_region(& iomem_resource, __cil_tmp54, __cil_tmp58, "ramoops", 0);
   }
@@ -1355,22 +1221,14 @@ static int ramoops_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp62 = (unsigned long )cxt;
-  __cil_tmp63 = __cil_tmp62 + 32;
-  __cil_tmp64 = (unsigned long )cxt;
-  __cil_tmp65 = __cil_tmp64 + 40;
-  __cil_tmp66 = *((phys_addr_t *)__cil_tmp65);
-  __cil_tmp67 = (unsigned long )cxt;
-  __cil_tmp68 = __cil_tmp67 + 48;
-  __cil_tmp69 = *((unsigned long *)__cil_tmp68);
-  *((void **)__cil_tmp63) = ioremap(__cil_tmp66, __cil_tmp69);
+  __cil_tmp66 = *((phys_addr_t *)((void *)cxt + 40));
+  __cil_tmp69 = *((unsigned long *)((void *)cxt + 48));
+  *((void **)((void *)cxt + 32)) = ioremap(__cil_tmp66, __cil_tmp69);
   }
   {
   __cil_tmp70 = (void *)0;
   __cil_tmp71 = (unsigned long )__cil_tmp70;
-  __cil_tmp72 = (unsigned long )cxt;
-  __cil_tmp73 = __cil_tmp72 + 32;
-  __cil_tmp74 = *((void **)__cil_tmp73);
+  __cil_tmp74 = *((void **)((void *)cxt + 32));
   __cil_tmp75 = (unsigned long )__cil_tmp74;
   if (__cil_tmp75 == __cil_tmp71) {
     {
@@ -1396,34 +1254,22 @@ static int ramoops_probe(struct platform_device *pdev )
   __cil_tmp77 = & mem_size;
   *__cil_tmp77 = *((unsigned long *)pdata);
   __cil_tmp78 = & mem_address;
-  __cil_tmp79 = (unsigned long )pdata;
-  __cil_tmp80 = __cil_tmp79 + 8;
-  *__cil_tmp78 = *((unsigned long *)__cil_tmp80);
+  *__cil_tmp78 = *((unsigned long *)((void *)pdata + 8));
   __cil_tmp81 = & record_size;
-  __cil_tmp82 = (unsigned long )pdata;
-  __cil_tmp83 = __cil_tmp82 + 16;
-  *__cil_tmp81 = *((unsigned long *)__cil_tmp83);
+  *__cil_tmp81 = *((unsigned long *)((void *)pdata + 16));
   __cil_tmp84 = & dump_oops;
-  __cil_tmp85 = (unsigned long )pdata;
-  __cil_tmp86 = __cil_tmp85 + 24;
-  *__cil_tmp84 = *((int *)__cil_tmp86);
+  *__cil_tmp84 = *((int *)((void *)pdata + 24));
   return (0);
   fail1:
   {
-  __cil_tmp87 = (unsigned long )cxt;
-  __cil_tmp88 = __cil_tmp87 + 32;
-  __cil_tmp89 = *((void **)__cil_tmp88);
+  __cil_tmp89 = *((void **)((void *)cxt + 32));
   __cil_tmp90 = (void volatile *)__cil_tmp89;
   iounmap(__cil_tmp90);
   }
   fail2:
   {
-  __cil_tmp91 = (unsigned long )cxt;
-  __cil_tmp92 = __cil_tmp91 + 40;
-  __cil_tmp93 = *((phys_addr_t *)__cil_tmp92);
-  __cil_tmp94 = (unsigned long )cxt;
-  __cil_tmp95 = __cil_tmp94 + 48;
-  __cil_tmp96 = *((unsigned long *)__cil_tmp95);
+  __cil_tmp93 = *((phys_addr_t *)((void *)cxt + 40));
+  __cil_tmp96 = *((unsigned long *)((void *)cxt + 48));
   __cil_tmp97 = (resource_size_t )__cil_tmp96;
   __release_region(& iomem_resource, __cil_tmp93, __cil_tmp97);
   }
@@ -1435,15 +1281,9 @@ static int ramoops_remove(struct platform_device *pdev )
 { struct ramoops_context *cxt ;
   int tmp ;
   struct kmsg_dumper *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   void volatile *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   phys_addr_t __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   resource_size_t __cil_tmp15 ;
   {
@@ -1459,17 +1299,11 @@ static int ramoops_remove(struct platform_device *pdev )
   } else {
   }
   {
-  __cil_tmp5 = (unsigned long )cxt;
-  __cil_tmp6 = __cil_tmp5 + 32;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)cxt + 32));
   __cil_tmp8 = (void volatile *)__cil_tmp7;
   iounmap(__cil_tmp8);
-  __cil_tmp9 = (unsigned long )cxt;
-  __cil_tmp10 = __cil_tmp9 + 40;
-  __cil_tmp11 = *((phys_addr_t *)__cil_tmp10);
-  __cil_tmp12 = (unsigned long )cxt;
-  __cil_tmp13 = __cil_tmp12 + 48;
-  __cil_tmp14 = *((unsigned long *)__cil_tmp13);
+  __cil_tmp11 = *((phys_addr_t *)((void *)cxt + 40));
+  __cil_tmp14 = *((unsigned long *)((void *)cxt + 48));
   __cil_tmp15 = (resource_size_t )__cil_tmp14;
   __release_region(& iomem_resource, __cil_tmp11, __cil_tmp15);
   }
@@ -1492,14 +1326,8 @@ static int ramoops_init(void)
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   ulong *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   ulong *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   ulong *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int *__cil_tmp17 ;
   struct resource *__cil_tmp18 ;
   void const *__cil_tmp19 ;
@@ -1527,18 +1355,12 @@ static int ramoops_init(void)
     {
     __cil_tmp8 = & mem_size;
     *((unsigned long *)dummy_data) = *__cil_tmp8;
-    __cil_tmp9 = (unsigned long )dummy_data;
-    __cil_tmp10 = __cil_tmp9 + 8;
     __cil_tmp11 = & mem_address;
-    *((unsigned long *)__cil_tmp10) = *__cil_tmp11;
-    __cil_tmp12 = (unsigned long )dummy_data;
-    __cil_tmp13 = __cil_tmp12 + 16;
+    *((unsigned long *)((void *)dummy_data + 8)) = *__cil_tmp11;
     __cil_tmp14 = & record_size;
-    *((unsigned long *)__cil_tmp13) = *__cil_tmp14;
-    __cil_tmp15 = (unsigned long )dummy_data;
-    __cil_tmp16 = __cil_tmp15 + 24;
+    *((unsigned long *)((void *)dummy_data + 16)) = *__cil_tmp14;
     __cil_tmp17 = & dump_oops;
-    *((int *)__cil_tmp16) = *__cil_tmp17;
+    *((int *)((void *)dummy_data + 24)) = *__cil_tmp17;
     __cil_tmp18 = (struct resource *)0;
     __cil_tmp19 = (void const *)dummy_data;
     dummy = platform_create_bundle(& ramoops_driver, & ramoops_probe, __cil_tmp18,

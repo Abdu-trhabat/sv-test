@@ -3564,16 +3564,13 @@ void cleanup_module(void) ;
 extern int spi_register_driver(struct spi_driver *sdrv ) ;
 __inline static void spi_unregister_driver(struct spi_driver *sdrv )  __attribute__((__no_instrument_function__)) ;
 __inline static void spi_unregister_driver(struct spi_driver *sdrv ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device_driver *__cil_tmp4 ;
 
   {
   if (sdrv) {
     {
-    __cil_tmp2 = (unsigned long )sdrv;
-    __cil_tmp3 = __cil_tmp2 + 48;
-    __cil_tmp4 = (struct device_driver *)__cil_tmp3;
+    __cil_tmp4 = (struct device_driver *)((void *)sdrv + 48);
     driver_unregister(__cil_tmp4);
     }
   } else {
@@ -3630,24 +3627,14 @@ static int vgg2432a4_lcd_init(struct ili9320 *lcd , struct ili9320_platdata *cfg
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned short __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned short __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned short __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned short __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned short __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
@@ -3672,14 +3659,10 @@ static int vgg2432a4_lcd_init(struct ili9320 *lcd , struct ili9320_platdata *cfg
   int __cil_tmp60 ;
   int __cil_tmp61 ;
   unsigned int __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned short __cil_tmp65 ;
   int __cil_tmp66 ;
   int __cil_tmp67 ;
   unsigned int __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned short __cil_tmp71 ;
   int __cil_tmp72 ;
   int __cil_tmp73 ;
@@ -3687,28 +3670,16 @@ static int vgg2432a4_lcd_init(struct ili9320 *lcd , struct ili9320_platdata *cfg
   int __cil_tmp75 ;
   int __cil_tmp76 ;
   unsigned int __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   unsigned short __cil_tmp80 ;
   unsigned int __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   unsigned short __cil_tmp84 ;
   unsigned int __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   unsigned short __cil_tmp88 ;
   unsigned int __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   unsigned short __cil_tmp92 ;
   unsigned int __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   unsigned short __cil_tmp96 ;
   unsigned int __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   int __cil_tmp100 ;
   int __cil_tmp101 ;
   int __cil_tmp102 ;
@@ -3716,8 +3687,6 @@ static int vgg2432a4_lcd_init(struct ili9320 *lcd , struct ili9320_platdata *cfg
   int __cil_tmp104 ;
   int __cil_tmp105 ;
   int __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   unsigned short __cil_tmp109 ;
   unsigned int __cil_tmp110 ;
 
@@ -3770,30 +3739,20 @@ static int vgg2432a4_lcd_init(struct ili9320 *lcd , struct ili9320_platdata *cfg
 
   }
   {
-  __cil_tmp21 = (unsigned long )cfg;
-  __cil_tmp22 = __cil_tmp21 + 18;
-  __cil_tmp23 = *((unsigned short *)__cil_tmp22);
+  __cil_tmp23 = *((unsigned short *)((void *)cfg + 18));
   __cil_tmp24 = (unsigned int )__cil_tmp23;
   ili9320_write(lcd, 8U, __cil_tmp24);
-  __cil_tmp25 = (unsigned long )cfg;
-  __cil_tmp26 = __cil_tmp25 + 20;
-  __cil_tmp27 = *((unsigned short *)__cil_tmp26);
+  __cil_tmp27 = *((unsigned short *)((void *)cfg + 20));
   __cil_tmp28 = (unsigned int )__cil_tmp27;
   ili9320_write(lcd, 9U, __cil_tmp28);
-  __cil_tmp29 = (unsigned long )cfg;
-  __cil_tmp30 = __cil_tmp29 + 22;
-  __cil_tmp31 = *((unsigned short *)__cil_tmp30);
+  __cil_tmp31 = *((unsigned short *)((void *)cfg + 22));
   __cil_tmp32 = (unsigned int )__cil_tmp31;
   ili9320_write(lcd, 10U, __cil_tmp32);
-  __cil_tmp33 = (unsigned long )cfg;
-  __cil_tmp34 = __cil_tmp33 + 24;
-  __cil_tmp35 = *((unsigned short *)__cil_tmp34);
+  __cil_tmp35 = *((unsigned short *)((void *)cfg + 24));
   __cil_tmp36 = (unsigned int )__cil_tmp35;
   ili9320_write(lcd, 12U, __cil_tmp36);
   ili9320_write(lcd, 13U, 0U);
-  __cil_tmp37 = (unsigned long )cfg;
-  __cil_tmp38 = __cil_tmp37 + 26;
-  __cil_tmp39 = *((unsigned short *)__cil_tmp38);
+  __cil_tmp39 = *((unsigned short *)((void *)cfg + 26));
   __cil_tmp40 = (unsigned int )__cil_tmp39;
   ili9320_write(lcd, 15U, __cil_tmp40);
   __cil_tmp41 = 0 * 4UL;
@@ -3922,16 +3881,12 @@ static int vgg2432a4_lcd_init(struct ili9320 *lcd , struct ili9320_platdata *cfg
   __cil_tmp62 = (unsigned int )__cil_tmp61;
   ili9320_write(lcd, 81U, __cil_tmp62);
   ili9320_write(lcd, 82U, 0U);
-  __cil_tmp63 = (unsigned long )cfg;
-  __cil_tmp64 = __cil_tmp63 + 2;
-  __cil_tmp65 = *((unsigned short *)__cil_tmp64);
+  __cil_tmp65 = *((unsigned short *)((void *)cfg + 2));
   __cil_tmp66 = (int )__cil_tmp65;
   __cil_tmp67 = __cil_tmp66 - 1;
   __cil_tmp68 = (unsigned int )__cil_tmp67;
   ili9320_write(lcd, 83U, __cil_tmp68);
-  __cil_tmp69 = (unsigned long )cfg;
-  __cil_tmp70 = __cil_tmp69 + 2;
-  __cil_tmp71 = *((unsigned short *)__cil_tmp70);
+  __cil_tmp71 = *((unsigned short *)((void *)cfg + 2));
   __cil_tmp72 = (int )__cil_tmp71;
   __cil_tmp73 = __cil_tmp72 - 240;
   __cil_tmp74 = __cil_tmp73 / 8;
@@ -3960,33 +3915,21 @@ static int vgg2432a4_lcd_init(struct ili9320 *lcd , struct ili9320_platdata *cfg
   }
   {
   ili9320_write(lcd, 144U, 16U);
-  __cil_tmp78 = (unsigned long )cfg;
-  __cil_tmp79 = __cil_tmp78 + 28;
-  __cil_tmp80 = *((unsigned short *)__cil_tmp79);
+  __cil_tmp80 = *((unsigned short *)((void *)cfg + 28));
   __cil_tmp81 = (unsigned int )__cil_tmp80;
   ili9320_write(lcd, 146U, __cil_tmp81);
-  __cil_tmp82 = (unsigned long )cfg;
-  __cil_tmp83 = __cil_tmp82 + 30;
-  __cil_tmp84 = *((unsigned short *)__cil_tmp83);
+  __cil_tmp84 = *((unsigned short *)((void *)cfg + 30));
   __cil_tmp85 = (unsigned int )__cil_tmp84;
   ili9320_write(lcd, 147U, __cil_tmp85);
-  __cil_tmp86 = (unsigned long )cfg;
-  __cil_tmp87 = __cil_tmp86 + 32;
-  __cil_tmp88 = *((unsigned short *)__cil_tmp87);
+  __cil_tmp88 = *((unsigned short *)((void *)cfg + 32));
   __cil_tmp89 = (unsigned int )__cil_tmp88;
   ili9320_write(lcd, 149U, __cil_tmp89);
-  __cil_tmp90 = (unsigned long )cfg;
-  __cil_tmp91 = __cil_tmp90 + 34;
-  __cil_tmp92 = *((unsigned short *)__cil_tmp91);
+  __cil_tmp92 = *((unsigned short *)((void *)cfg + 34));
   __cil_tmp93 = (unsigned int )__cil_tmp92;
   ili9320_write(lcd, 151U, __cil_tmp93);
-  __cil_tmp94 = (unsigned long )cfg;
-  __cil_tmp95 = __cil_tmp94 + 36;
-  __cil_tmp96 = *((unsigned short *)__cil_tmp95);
+  __cil_tmp96 = *((unsigned short *)((void *)cfg + 36));
   __cil_tmp97 = (unsigned int )__cil_tmp96;
   ili9320_write(lcd, 152U, __cil_tmp97);
-  __cil_tmp98 = (unsigned long )lcd;
-  __cil_tmp99 = __cil_tmp98 + 272;
   __cil_tmp100 = 1 << 8;
   __cil_tmp101 = 1 << 5;
   __cil_tmp102 = 1 << 4;
@@ -3994,10 +3937,8 @@ static int vgg2432a4_lcd_init(struct ili9320 *lcd , struct ili9320_platdata *cfg
   __cil_tmp104 = __cil_tmp103 | __cil_tmp101;
   __cil_tmp105 = __cil_tmp104 | __cil_tmp100;
   __cil_tmp106 = __cil_tmp105 | 64;
-  *((unsigned short *)__cil_tmp99) = (unsigned short )__cil_tmp106;
-  __cil_tmp107 = (unsigned long )lcd;
-  __cil_tmp108 = __cil_tmp107 + 272;
-  __cil_tmp109 = *((unsigned short *)__cil_tmp108);
+  *((unsigned short *)((void *)lcd + 272)) = (unsigned short )__cil_tmp106;
+  __cil_tmp109 = *((unsigned short *)((void *)lcd + 272));
   __cil_tmp110 = (unsigned int )__cil_tmp109;
   ili9320_write(lcd, 7U, __cil_tmp110);
   }

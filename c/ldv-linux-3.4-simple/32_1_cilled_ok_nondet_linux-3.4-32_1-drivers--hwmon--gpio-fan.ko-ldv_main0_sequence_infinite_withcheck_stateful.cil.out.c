@@ -855,14 +855,10 @@ struct gpio_fan_data {
 long ldv__builtin_expect(long val , long res ) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )  __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -1050,15 +1046,11 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -1066,15 +1058,12 @@ __inline static void *platform_get_drvdata(struct platform_device  const  *pdev 
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1126,23 +1115,17 @@ static void fan_alarm_notify(struct work_struct *ws )
 { struct gpio_fan_data *fan_data ;
   struct work_struct  const  *__mptr ;
   struct gpio_fan_data *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct work_struct *__cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   char *__cil_tmp9 ;
   char *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   struct platform_device *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct kobject *__cil_tmp15 ;
   void *__cil_tmp16 ;
   char const   *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   struct platform_device *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct kobject *__cil_tmp22 ;
   enum kobject_action __cil_tmp23 ;
 
@@ -1150,26 +1133,20 @@ static void fan_alarm_notify(struct work_struct *ws )
   {
   __mptr = (struct work_struct  const  *)ws;
   __cil_tmp4 = (struct gpio_fan_data *)0;
-  __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = __cil_tmp5 + 144;
-  __cil_tmp7 = (struct work_struct *)__cil_tmp6;
+  __cil_tmp7 = (struct work_struct *)((void *)__cil_tmp4 + 144);
   __cil_tmp8 = (unsigned int )__cil_tmp7;
   __cil_tmp9 = (char *)__mptr;
   __cil_tmp10 = __cil_tmp9 - __cil_tmp8;
   fan_data = (struct gpio_fan_data *)__cil_tmp10;
   __cil_tmp11 = 16 + 16;
   __cil_tmp12 = *((struct platform_device **)fan_data);
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp11;
-  __cil_tmp15 = (struct kobject *)__cil_tmp14;
+  __cil_tmp15 = (struct kobject *)((void *)__cil_tmp12 + __cil_tmp11);
   __cil_tmp16 = (void *)0;
   __cil_tmp17 = (char const   *)__cil_tmp16;
   sysfs_notify(__cil_tmp15, __cil_tmp17, "fan1_alarm");
   __cil_tmp18 = 16 + 16;
   __cil_tmp19 = *((struct platform_device **)fan_data);
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp18;
-  __cil_tmp22 = (struct kobject *)__cil_tmp21;
+  __cil_tmp22 = (struct kobject *)((void *)__cil_tmp19 + __cil_tmp18);
   __cil_tmp23 = (enum kobject_action )2;
   kobject_uevent(__cil_tmp22, __cil_tmp23);
   }
@@ -1178,16 +1155,12 @@ static void fan_alarm_notify(struct work_struct *ws )
 }
 static irqreturn_t fan_alarm_irq_handler(int irq , void *dev_id ) 
 { struct gpio_fan_data *fan_data ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct work_struct *__cil_tmp6 ;
 
   {
   {
   fan_data = (struct gpio_fan_data *)dev_id;
-  __cil_tmp4 = (unsigned long )fan_data;
-  __cil_tmp5 = __cil_tmp4 + 144;
-  __cil_tmp6 = (struct work_struct *)__cil_tmp5;
+  __cil_tmp6 = (struct work_struct *)((void *)fan_data + 144);
   schedule_work(__cil_tmp6);
   }
   return ((irqreturn_t )0);
@@ -1202,28 +1175,20 @@ static ssize_t show_fan_alarm(struct device *dev , struct device_attribute *attr
   int tmp___0 ;
   int tmp___1 ;
   struct device  const  *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
 
   {
   {
   __cil_tmp10 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp10);
   fan_data = (struct gpio_fan_data *)tmp;
-  __cil_tmp11 = (unsigned long )fan_data;
-  __cil_tmp12 = __cil_tmp11 + 136;
-  alarm = *((struct gpio_fan_alarm **)__cil_tmp12);
+  alarm = *((struct gpio_fan_alarm **)((void *)fan_data + 136));
   __cil_tmp13 = *((unsigned int *)alarm);
   tmp___0 = gpio_get_value(__cil_tmp13);
   value = tmp___0;
   }
   {
-  __cil_tmp14 = (unsigned long )alarm;
-  __cil_tmp15 = __cil_tmp14 + 4;
-  if (*((unsigned int *)__cil_tmp15)) {
+  if (*((unsigned int *)((void *)alarm + 4))) {
     value = ! value;
   } else {
 
@@ -1244,32 +1209,18 @@ static int fan_alarm_init(struct gpio_fan_data *fan_data , struct gpio_fan_alarm
   int alarm_irq ;
   struct platform_device *pdev ;
   atomic_long_t __constr_expr_0 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device_attribute  const  *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct work_struct *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct list_head *__cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
   void *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct device *__cil_tmp33 ;
   struct device_attribute  const  *__cil_tmp34 ;
   unsigned int __cil_tmp35 ;
@@ -1278,9 +1229,7 @@ static int fan_alarm_init(struct gpio_fan_data *fan_data , struct gpio_fan_alarm
   {
   {
   pdev = *((struct platform_device **)fan_data);
-  __cil_tmp7 = (unsigned long )fan_data;
-  __cil_tmp8 = __cil_tmp7 + 136;
-  *((struct gpio_fan_alarm **)__cil_tmp8) = alarm;
+  *((struct gpio_fan_alarm **)((void *)fan_data + 136)) = alarm;
   __cil_tmp9 = *((unsigned int *)alarm);
   err = gpio_request(__cil_tmp9, "GPIO fan alarm");
   }
@@ -1299,9 +1248,7 @@ static int fan_alarm_init(struct gpio_fan_data *fan_data , struct gpio_fan_alarm
 
   }
   {
-  __cil_tmp11 = (unsigned long )pdev;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)pdev + 16);
   __cil_tmp14 = (struct device_attribute  const  *)(& dev_attr_fan1_alarm);
   err = device_create_file(__cil_tmp13, __cil_tmp14);
   }
@@ -1326,27 +1273,19 @@ static int fan_alarm_init(struct gpio_fan_data *fan_data , struct gpio_fan_alarm
     while (1) {
       while_continue___0: /* CIL Label */ ;
       {
-      __cil_tmp16 = (unsigned long )fan_data;
-      __cil_tmp17 = __cil_tmp16 + 144;
-      __cil_tmp18 = (struct work_struct *)__cil_tmp17;
+      __cil_tmp18 = (struct work_struct *)((void *)fan_data + 144);
       __init_work(__cil_tmp18, 0);
       __constr_expr_0_counter36 = 2097664L;
-      __cil_tmp19 = (unsigned long )fan_data;
-      __cil_tmp20 = __cil_tmp19 + 144;
-      ((atomic_long_t *)__cil_tmp20)->counter = __constr_expr_0_counter36;
+      ((atomic_long_t *)((void *)fan_data + 144))->counter = __constr_expr_0_counter36;
       __cil_tmp21 = 144 + 8;
-      __cil_tmp22 = (unsigned long )fan_data;
-      __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-      __cil_tmp24 = (struct list_head *)__cil_tmp23;
+      __cil_tmp24 = (struct list_head *)((void *)fan_data + __cil_tmp21);
       INIT_LIST_HEAD(__cil_tmp24);
       }
       {
       while (1) {
         while_continue___1: /* CIL Label */ ;
         __cil_tmp25 = 144 + 24;
-        __cil_tmp26 = (unsigned long )fan_data;
-        __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-        *((void (**)(struct work_struct *work ))__cil_tmp27) = & fan_alarm_notify;
+        *((void (**)(struct work_struct *work ))((void *)fan_data + __cil_tmp25)) = & fan_alarm_notify;
         goto while_break___1;
       }
       while_break___1: /* CIL Label */ ;
@@ -1375,9 +1314,7 @@ static int fan_alarm_init(struct gpio_fan_data *fan_data , struct gpio_fan_alarm
   return (0);
   err_free_sysfs: 
   {
-  __cil_tmp31 = (unsigned long )pdev;
-  __cil_tmp32 = __cil_tmp31 + 16;
-  __cil_tmp33 = (struct device *)__cil_tmp32;
+  __cil_tmp33 = (struct device *)((void *)pdev + 16);
   __cil_tmp34 = (struct device_attribute  const  *)(& dev_attr_fan1_alarm);
   device_remove_file(__cil_tmp33, __cil_tmp34);
   }
@@ -1393,27 +1330,19 @@ static void fan_alarm_free(struct gpio_fan_data *fan_data )
 { struct platform_device *pdev ;
   int alarm_irq ;
   int tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct gpio_fan_alarm *__cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device_attribute  const  *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct gpio_fan_alarm *__cil_tmp17 ;
   unsigned int __cil_tmp18 ;
 
   {
   {
   pdev = *((struct platform_device **)fan_data);
-  __cil_tmp5 = (unsigned long )fan_data;
-  __cil_tmp6 = __cil_tmp5 + 136;
-  __cil_tmp7 = *((struct gpio_fan_alarm **)__cil_tmp6);
+  __cil_tmp7 = *((struct gpio_fan_alarm **)((void *)fan_data + 136));
   __cil_tmp8 = *((unsigned int *)__cil_tmp7);
   tmp = gpio_to_irq(__cil_tmp8);
   alarm_irq = tmp;
@@ -1428,14 +1357,10 @@ static void fan_alarm_free(struct gpio_fan_data *fan_data )
 
   }
   {
-  __cil_tmp11 = (unsigned long )pdev;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)pdev + 16);
   __cil_tmp14 = (struct device_attribute  const  *)(& dev_attr_fan1_alarm);
   device_remove_file(__cil_tmp13, __cil_tmp14);
-  __cil_tmp15 = (unsigned long )fan_data;
-  __cil_tmp16 = __cil_tmp15 + 136;
-  __cil_tmp17 = *((struct gpio_fan_alarm **)__cil_tmp16);
+  __cil_tmp17 = *((struct gpio_fan_alarm **)((void *)fan_data + 136));
   __cil_tmp18 = *((unsigned int *)__cil_tmp17);
   gpio_free(__cil_tmp18);
   }
@@ -1444,11 +1369,7 @@ static void fan_alarm_free(struct gpio_fan_data *fan_data )
 }
 static void __set_fan_ctrl(struct gpio_fan_data *fan_data , int ctrl_val ) 
 { int i ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned int *__cil_tmp9 ;
   unsigned int *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
@@ -1461,9 +1382,7 @@ static void __set_fan_ctrl(struct gpio_fan_data *fan_data , int ctrl_val )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp4 = (unsigned long )fan_data;
-    __cil_tmp5 = __cil_tmp4 + 88;
-    __cil_tmp6 = *((int *)__cil_tmp5);
+    __cil_tmp6 = *((int *)((void *)fan_data + 88));
     if (i < __cil_tmp6) {
 
     } else {
@@ -1471,9 +1390,7 @@ static void __set_fan_ctrl(struct gpio_fan_data *fan_data , int ctrl_val )
     }
     }
     {
-    __cil_tmp7 = (unsigned long )fan_data;
-    __cil_tmp8 = __cil_tmp7 + 96;
-    __cil_tmp9 = *((unsigned int **)__cil_tmp8);
+    __cil_tmp9 = *((unsigned int **)((void *)fan_data + 96));
     __cil_tmp10 = __cil_tmp9 + i;
     __cil_tmp11 = *__cil_tmp10;
     __cil_tmp12 = ctrl_val >> i;
@@ -1491,11 +1408,7 @@ static int __get_fan_ctrl(struct gpio_fan_data *fan_data )
 { int i ;
   int ctrl_val ;
   int value ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned int *__cil_tmp10 ;
   unsigned int *__cil_tmp11 ;
   unsigned int __cil_tmp12 ;
@@ -1508,9 +1421,7 @@ static int __get_fan_ctrl(struct gpio_fan_data *fan_data )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp5 = (unsigned long )fan_data;
-    __cil_tmp6 = __cil_tmp5 + 88;
-    __cil_tmp7 = *((int *)__cil_tmp6);
+    __cil_tmp7 = *((int *)((void *)fan_data + 88));
     if (i < __cil_tmp7) {
 
     } else {
@@ -1518,9 +1429,7 @@ static int __get_fan_ctrl(struct gpio_fan_data *fan_data )
     }
     }
     {
-    __cil_tmp8 = (unsigned long )fan_data;
-    __cil_tmp9 = __cil_tmp8 + 96;
-    __cil_tmp10 = *((unsigned int **)__cil_tmp9);
+    __cil_tmp10 = *((unsigned int **)((void *)fan_data + 96));
     __cil_tmp11 = __cil_tmp10 + i;
     __cil_tmp12 = *__cil_tmp11;
     value = gpio_get_value(__cil_tmp12);
@@ -1535,24 +1444,15 @@ static int __get_fan_ctrl(struct gpio_fan_data *fan_data )
 }
 }
 static void set_fan_speed(struct gpio_fan_data *fan_data , int speed_index ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   int __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct gpio_fan_speed *__cil_tmp8 ;
   struct gpio_fan_speed *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )fan_data;
-  __cil_tmp4 = __cil_tmp3 + 120;
-  __cil_tmp5 = *((int *)__cil_tmp4);
+  __cil_tmp5 = *((int *)((void *)fan_data + 120));
   if (__cil_tmp5 == speed_index) {
     return;
   } else {
@@ -1560,17 +1460,11 @@ static void set_fan_speed(struct gpio_fan_data *fan_data , int speed_index )
   }
   }
   {
-  __cil_tmp6 = (unsigned long )fan_data;
-  __cil_tmp7 = __cil_tmp6 + 112;
-  __cil_tmp8 = *((struct gpio_fan_speed **)__cil_tmp7);
+  __cil_tmp8 = *((struct gpio_fan_speed **)((void *)fan_data + 112));
   __cil_tmp9 = __cil_tmp8 + speed_index;
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 4;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp12 = *((int *)((void *)__cil_tmp9 + 4));
   __set_fan_ctrl(fan_data, __cil_tmp12);
-  __cil_tmp13 = (unsigned long )fan_data;
-  __cil_tmp14 = __cil_tmp13 + 120;
-  *((int *)__cil_tmp14) = speed_index;
+  *((int *)((void *)fan_data + 120)) = speed_index;
   }
   return;
 }
@@ -1579,19 +1473,11 @@ static int get_fan_speed_index(struct gpio_fan_data *fan_data )
 { int ctrl_val ;
   int tmp ;
   int i ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct gpio_fan_speed *__cil_tmp10 ;
   struct gpio_fan_speed *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   struct platform_device *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device  const  *__cil_tmp19 ;
 
@@ -1605,9 +1491,7 @@ static int get_fan_speed_index(struct gpio_fan_data *fan_data )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp5 = (unsigned long )fan_data;
-    __cil_tmp6 = __cil_tmp5 + 104;
-    __cil_tmp7 = *((int *)__cil_tmp6);
+    __cil_tmp7 = *((int *)((void *)fan_data + 104));
     if (i < __cil_tmp7) {
 
     } else {
@@ -1615,13 +1499,9 @@ static int get_fan_speed_index(struct gpio_fan_data *fan_data )
     }
     }
     {
-    __cil_tmp8 = (unsigned long )fan_data;
-    __cil_tmp9 = __cil_tmp8 + 112;
-    __cil_tmp10 = *((struct gpio_fan_speed **)__cil_tmp9);
+    __cil_tmp10 = *((struct gpio_fan_speed **)((void *)fan_data + 112));
     __cil_tmp11 = __cil_tmp10 + i;
-    __cil_tmp12 = (unsigned long )__cil_tmp11;
-    __cil_tmp13 = __cil_tmp12 + 4;
-    __cil_tmp14 = *((int *)__cil_tmp13);
+    __cil_tmp14 = *((int *)((void *)__cil_tmp11 + 4));
     if (__cil_tmp14 == ctrl_val) {
       return (i);
     } else {
@@ -1634,9 +1514,7 @@ static int get_fan_speed_index(struct gpio_fan_data *fan_data )
   }
   {
   __cil_tmp15 = *((struct platform_device **)fan_data);
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + 16;
-  __cil_tmp18 = (struct device *)__cil_tmp17;
+  __cil_tmp18 = (struct device *)((void *)__cil_tmp15 + 16);
   __cil_tmp19 = (struct device  const  *)__cil_tmp18;
   dev_warn(__cil_tmp19, "missing speed array entry for GPIO value 0x%x\n", ctrl_val);
   }
@@ -1646,29 +1524,19 @@ static int get_fan_speed_index(struct gpio_fan_data *fan_data )
 static int rpm_to_speed_index(struct gpio_fan_data *fan_data , int rpm ) 
 { struct gpio_fan_speed *speed ;
   int i ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
   struct gpio_fan_speed *__cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
 
   {
-  __cil_tmp5 = (unsigned long )fan_data;
-  __cil_tmp6 = __cil_tmp5 + 112;
-  speed = *((struct gpio_fan_speed **)__cil_tmp6);
+  speed = *((struct gpio_fan_speed **)((void *)fan_data + 112));
   i = 0;
   {
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp7 = (unsigned long )fan_data;
-    __cil_tmp8 = __cil_tmp7 + 104;
-    __cil_tmp9 = *((int *)__cil_tmp8);
+    __cil_tmp9 = *((int *)((void *)fan_data + 104));
     if (i < __cil_tmp9) {
 
     } else {
@@ -1689,9 +1557,7 @@ static int rpm_to_speed_index(struct gpio_fan_data *fan_data , int rpm )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp12 = (unsigned long )fan_data;
-  __cil_tmp13 = __cil_tmp12 + 104;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)fan_data + 104));
   return (__cil_tmp14 - 1);
   }
 }
@@ -1702,12 +1568,8 @@ static ssize_t show_pwm(struct device *dev , struct device_attribute *attr , cha
   u8 pwm ;
   int tmp___0 ;
   struct device  const  *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
   int __cil_tmp17 ;
@@ -1718,13 +1580,9 @@ static ssize_t show_pwm(struct device *dev , struct device_attribute *attr , cha
   __cil_tmp8 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp8);
   fan_data = (struct gpio_fan_data *)tmp;
-  __cil_tmp9 = (unsigned long )fan_data;
-  __cil_tmp10 = __cil_tmp9 + 104;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)fan_data + 104));
   __cil_tmp12 = __cil_tmp11 - 1;
-  __cil_tmp13 = (unsigned long )fan_data;
-  __cil_tmp14 = __cil_tmp13 + 120;
-  __cil_tmp15 = *((int *)__cil_tmp14);
+  __cil_tmp15 = *((int *)((void *)fan_data + 120));
   __cil_tmp16 = __cil_tmp15 * 255;
   __cil_tmp17 = __cil_tmp16 / __cil_tmp12;
   pwm = (u8 )__cil_tmp17;
@@ -1745,14 +1603,8 @@ static ssize_t set_pwm(struct device *dev , struct device_attribute *attr , char
   struct device  const  *__cil_tmp11 ;
   unsigned long *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct mutex *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   bool __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
@@ -1762,8 +1614,6 @@ static ssize_t set_pwm(struct device *dev , struct device_attribute *attr , char
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct mutex *__cil_tmp33 ;
 
   {
@@ -1788,15 +1638,11 @@ static ssize_t set_pwm(struct device *dev , struct device_attribute *attr , char
     }
   }
   {
-  __cil_tmp14 = (unsigned long )fan_data;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = (struct mutex *)__cil_tmp15;
+  __cil_tmp16 = (struct mutex *)((void *)fan_data + 16);
   mutex_lock(__cil_tmp16);
   }
   {
-  __cil_tmp17 = (unsigned long )fan_data;
-  __cil_tmp18 = __cil_tmp17 + 128;
-  __cil_tmp19 = *((bool *)__cil_tmp18);
+  __cil_tmp19 = *((bool *)((void *)fan_data + 128));
   if (! __cil_tmp19) {
     ret = -1;
     goto exit_unlock;
@@ -1805,9 +1651,7 @@ static ssize_t set_pwm(struct device *dev , struct device_attribute *attr , char
   }
   }
   {
-  __cil_tmp20 = (unsigned long )fan_data;
-  __cil_tmp21 = __cil_tmp20 + 104;
-  __cil_tmp22 = *((int *)__cil_tmp21);
+  __cil_tmp22 = *((int *)((void *)fan_data + 104));
   __cil_tmp23 = __cil_tmp22 - 1;
   __cil_tmp24 = (unsigned long )__cil_tmp23;
   __cil_tmp25 = & pwm;
@@ -1821,9 +1665,7 @@ static ssize_t set_pwm(struct device *dev , struct device_attribute *attr , char
   }
   exit_unlock: 
   {
-  __cil_tmp31 = (unsigned long )fan_data;
-  __cil_tmp32 = __cil_tmp31 + 16;
-  __cil_tmp33 = (struct mutex *)__cil_tmp32;
+  __cil_tmp33 = (struct mutex *)((void *)fan_data + 16);
   mutex_unlock(__cil_tmp33);
   }
   return ((ssize_t )ret);
@@ -1835,8 +1677,6 @@ static ssize_t show_pwm_enable(struct device *dev , struct device_attribute *att
   void *tmp ;
   int tmp___0 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   bool __cil_tmp10 ;
   int __cil_tmp11 ;
 
@@ -1845,9 +1685,7 @@ static ssize_t show_pwm_enable(struct device *dev , struct device_attribute *att
   __cil_tmp7 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   fan_data = (struct gpio_fan_data *)tmp;
-  __cil_tmp8 = (unsigned long )fan_data;
-  __cil_tmp9 = __cil_tmp8 + 128;
-  __cil_tmp10 = *((bool *)__cil_tmp9);
+  __cil_tmp10 = *((bool *)((void *)fan_data + 128));
   __cil_tmp11 = (int )__cil_tmp10;
   tmp___0 = sprintf(buf, "%d\n", __cil_tmp11);
   }
@@ -1865,25 +1703,15 @@ static ssize_t set_pwm_enable(struct device *dev , struct device_attribute *attr
   unsigned long __cil_tmp11 ;
   unsigned long *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   bool __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct mutex *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct mutex *__cil_tmp33 ;
 
   {
@@ -1909,9 +1737,7 @@ static ssize_t set_pwm_enable(struct device *dev , struct device_attribute *attr
   {
   __cil_tmp12 = & val;
   __cil_tmp13 = *__cil_tmp12;
-  __cil_tmp14 = (unsigned long )fan_data;
-  __cil_tmp15 = __cil_tmp14 + 128;
-  __cil_tmp16 = *((bool *)__cil_tmp15);
+  __cil_tmp16 = *((bool *)((void *)fan_data + 128));
   __cil_tmp17 = (unsigned long )__cil_tmp16;
   if (__cil_tmp17 == __cil_tmp13) {
     return ((ssize_t )count);
@@ -1920,24 +1746,18 @@ static ssize_t set_pwm_enable(struct device *dev , struct device_attribute *attr
   }
   }
   {
-  __cil_tmp18 = (unsigned long )fan_data;
-  __cil_tmp19 = __cil_tmp18 + 16;
-  __cil_tmp20 = (struct mutex *)__cil_tmp19;
+  __cil_tmp20 = (struct mutex *)((void *)fan_data + 16);
   mutex_lock(__cil_tmp20);
-  __cil_tmp21 = (unsigned long )fan_data;
-  __cil_tmp22 = __cil_tmp21 + 128;
   __cil_tmp23 = & val;
   __cil_tmp24 = *__cil_tmp23;
-  *((bool *)__cil_tmp22) = (bool )__cil_tmp24;
+  *((bool *)((void *)fan_data + 128)) = (bool )__cil_tmp24;
   }
   {
   __cil_tmp25 = & val;
   __cil_tmp26 = *__cil_tmp25;
   if (__cil_tmp26 == 0UL) {
     {
-    __cil_tmp27 = (unsigned long )fan_data;
-    __cil_tmp28 = __cil_tmp27 + 104;
-    __cil_tmp29 = *((int *)__cil_tmp28);
+    __cil_tmp29 = *((int *)((void *)fan_data + 104));
     __cil_tmp30 = __cil_tmp29 - 1;
     set_fan_speed(fan_data, __cil_tmp30);
     }
@@ -1946,9 +1766,7 @@ static ssize_t set_pwm_enable(struct device *dev , struct device_attribute *attr
   }
   }
   {
-  __cil_tmp31 = (unsigned long )fan_data;
-  __cil_tmp32 = __cil_tmp31 + 16;
-  __cil_tmp33 = (struct mutex *)__cil_tmp32;
+  __cil_tmp33 = (struct mutex *)((void *)fan_data + 16);
   mutex_unlock(__cil_tmp33);
   }
   return ((ssize_t )count);
@@ -1970,8 +1788,6 @@ static ssize_t show_rpm_min(struct device *dev , struct device_attribute *attr ,
   void *tmp ;
   int tmp___0 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct gpio_fan_speed *__cil_tmp10 ;
   struct gpio_fan_speed *__cil_tmp11 ;
   int __cil_tmp12 ;
@@ -1981,9 +1797,7 @@ static ssize_t show_rpm_min(struct device *dev , struct device_attribute *attr ,
   __cil_tmp7 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   fan_data = (struct gpio_fan_data *)tmp;
-  __cil_tmp8 = (unsigned long )fan_data;
-  __cil_tmp9 = __cil_tmp8 + 112;
-  __cil_tmp10 = *((struct gpio_fan_speed **)__cil_tmp9);
+  __cil_tmp10 = *((struct gpio_fan_speed **)((void *)fan_data + 112));
   __cil_tmp11 = __cil_tmp10 + 0;
   __cil_tmp12 = *((int *)__cil_tmp11);
   tmp___0 = sprintf(buf, "%d\n", __cil_tmp12);
@@ -1996,12 +1810,8 @@ static ssize_t show_rpm_max(struct device *dev , struct device_attribute *attr ,
   void *tmp ;
   int tmp___0 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct gpio_fan_speed *__cil_tmp14 ;
   struct gpio_fan_speed *__cil_tmp15 ;
   int __cil_tmp16 ;
@@ -2011,13 +1821,9 @@ static ssize_t show_rpm_max(struct device *dev , struct device_attribute *attr ,
   __cil_tmp7 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   fan_data = (struct gpio_fan_data *)tmp;
-  __cil_tmp8 = (unsigned long )fan_data;
-  __cil_tmp9 = __cil_tmp8 + 104;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)fan_data + 104));
   __cil_tmp11 = __cil_tmp10 - 1;
-  __cil_tmp12 = (unsigned long )fan_data;
-  __cil_tmp13 = __cil_tmp12 + 112;
-  __cil_tmp14 = *((struct gpio_fan_speed **)__cil_tmp13);
+  __cil_tmp14 = *((struct gpio_fan_speed **)((void *)fan_data + 112));
   __cil_tmp15 = __cil_tmp14 + __cil_tmp11;
   __cil_tmp16 = *((int *)__cil_tmp15);
   tmp___0 = sprintf(buf, "%d\n", __cil_tmp16);
@@ -2030,11 +1836,7 @@ static ssize_t show_rpm(struct device *dev , struct device_attribute *attr , cha
   void *tmp ;
   int tmp___0 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct gpio_fan_speed *__cil_tmp13 ;
   struct gpio_fan_speed *__cil_tmp14 ;
   int __cil_tmp15 ;
@@ -2044,12 +1846,8 @@ static ssize_t show_rpm(struct device *dev , struct device_attribute *attr , cha
   __cil_tmp7 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   fan_data = (struct gpio_fan_data *)tmp;
-  __cil_tmp8 = (unsigned long )fan_data;
-  __cil_tmp9 = __cil_tmp8 + 120;
-  __cil_tmp10 = *((int *)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )fan_data;
-  __cil_tmp12 = __cil_tmp11 + 112;
-  __cil_tmp13 = *((struct gpio_fan_speed **)__cil_tmp12);
+  __cil_tmp10 = *((int *)((void *)fan_data + 120));
+  __cil_tmp13 = *((struct gpio_fan_speed **)((void *)fan_data + 112));
   __cil_tmp14 = __cil_tmp13 + __cil_tmp10;
   __cil_tmp15 = *((int *)__cil_tmp14);
   tmp___0 = sprintf(buf, "%d\n", __cil_tmp15);
@@ -2066,17 +1864,11 @@ static ssize_t set_rpm(struct device *dev , struct device_attribute *attr , char
   int tmp___0 ;
   int tmp___1 ;
   struct device  const  *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct mutex *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   bool __cil_tmp17 ;
   unsigned long *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct mutex *__cil_tmp23 ;
 
   {
@@ -2093,15 +1885,11 @@ static ssize_t set_rpm(struct device *dev , struct device_attribute *attr , char
 
   }
   {
-  __cil_tmp12 = (unsigned long )fan_data;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = (struct mutex *)__cil_tmp13;
+  __cil_tmp14 = (struct mutex *)((void *)fan_data + 16);
   mutex_lock(__cil_tmp14);
   }
   {
-  __cil_tmp15 = (unsigned long )fan_data;
-  __cil_tmp16 = __cil_tmp15 + 128;
-  __cil_tmp17 = *((bool *)__cil_tmp16);
+  __cil_tmp17 = *((bool *)((void *)fan_data + 128));
   if (! __cil_tmp17) {
     ret = -1;
     goto exit_unlock;
@@ -2118,9 +1906,7 @@ static ssize_t set_rpm(struct device *dev , struct device_attribute *attr , char
   }
   exit_unlock: 
   {
-  __cil_tmp21 = (unsigned long )fan_data;
-  __cil_tmp22 = __cil_tmp21 + 16;
-  __cil_tmp23 = (struct mutex *)__cil_tmp22;
+  __cil_tmp23 = (struct mutex *)((void *)fan_data + 16);
   mutex_unlock(__cil_tmp23);
   }
   return ((ssize_t )ret);
@@ -2155,8 +1941,6 @@ static int fan_ctrl_init(struct gpio_fan_data *fan_data , struct gpio_fan_platfo
   int i ;
   int err ;
   int tmp ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int *__cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   unsigned int *__cil_tmp13 ;
@@ -2165,28 +1949,8 @@ static int fan_ctrl_init(struct gpio_fan_data *fan_data , struct gpio_fan_platfo
   unsigned int __cil_tmp16 ;
   unsigned int *__cil_tmp17 ;
   unsigned int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   int __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct kobject *__cil_tmp41 ;
   unsigned int *__cil_tmp42 ;
   unsigned int __cil_tmp43 ;
@@ -2194,9 +1958,7 @@ static int fan_ctrl_init(struct gpio_fan_data *fan_data , struct gpio_fan_platfo
   {
   pdev = *((struct platform_device **)fan_data);
   num_ctrl = *((int *)pdata);
-  __cil_tmp9 = (unsigned long )pdata;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  ctrl = *((unsigned int **)__cil_tmp10);
+  ctrl = *((unsigned int **)((void *)pdata + 8));
   i = 0;
   {
   while (1) {
@@ -2239,33 +2001,15 @@ static int fan_ctrl_init(struct gpio_fan_data *fan_data , struct gpio_fan_platfo
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp19 = (unsigned long )fan_data;
-  __cil_tmp20 = __cil_tmp19 + 88;
-  *((int *)__cil_tmp20) = num_ctrl;
-  __cil_tmp21 = (unsigned long )fan_data;
-  __cil_tmp22 = __cil_tmp21 + 96;
-  *((unsigned int **)__cil_tmp22) = ctrl;
-  __cil_tmp23 = (unsigned long )fan_data;
-  __cil_tmp24 = __cil_tmp23 + 104;
-  __cil_tmp25 = (unsigned long )pdata;
-  __cil_tmp26 = __cil_tmp25 + 24;
-  *((int *)__cil_tmp24) = *((int *)__cil_tmp26);
-  __cil_tmp27 = (unsigned long )fan_data;
-  __cil_tmp28 = __cil_tmp27 + 112;
-  __cil_tmp29 = (unsigned long )pdata;
-  __cil_tmp30 = __cil_tmp29 + 32;
-  *((struct gpio_fan_speed **)__cil_tmp28) = *((struct gpio_fan_speed **)__cil_tmp30);
-  __cil_tmp31 = (unsigned long )fan_data;
-  __cil_tmp32 = __cil_tmp31 + 128;
-  *((bool *)__cil_tmp32) = (bool )1;
-  __cil_tmp33 = (unsigned long )fan_data;
-  __cil_tmp34 = __cil_tmp33 + 120;
-  *((int *)__cil_tmp34) = get_fan_speed_index(fan_data);
+  *((int *)((void *)fan_data + 88)) = num_ctrl;
+  *((unsigned int **)((void *)fan_data + 96)) = ctrl;
+  *((int *)((void *)fan_data + 104)) = *((int *)((void *)pdata + 24));
+  *((struct gpio_fan_speed **)((void *)fan_data + 112)) = *((struct gpio_fan_speed **)((void *)pdata + 32));
+  *((bool *)((void *)fan_data + 128)) = (bool )1;
+  *((int *)((void *)fan_data + 120)) = get_fan_speed_index(fan_data);
   }
   {
-  __cil_tmp35 = (unsigned long )fan_data;
-  __cil_tmp36 = __cil_tmp35 + 120;
-  __cil_tmp37 = *((int *)__cil_tmp36);
+  __cil_tmp37 = *((int *)((void *)fan_data + 120));
   if (__cil_tmp37 < 0) {
     err = -19;
     goto err_free_gpio;
@@ -2275,9 +2019,7 @@ static int fan_ctrl_init(struct gpio_fan_data *fan_data , struct gpio_fan_platfo
   }
   {
   __cil_tmp38 = 16 + 16;
-  __cil_tmp39 = (unsigned long )pdev;
-  __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-  __cil_tmp41 = (struct kobject *)__cil_tmp40;
+  __cil_tmp41 = (struct kobject *)((void *)pdev + __cil_tmp38);
   err = (int )sysfs_create_group(__cil_tmp41, & gpio_fan_ctrl_group);
   }
   if (err) {
@@ -2312,14 +2054,8 @@ static void fan_ctrl_free(struct gpio_fan_data *fan_data )
 { struct platform_device *pdev ;
   int i ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct kobject *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned int *__cil_tmp13 ;
   unsigned int *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
@@ -2328,9 +2064,7 @@ static void fan_ctrl_free(struct gpio_fan_data *fan_data )
   {
   pdev = *((struct platform_device **)fan_data);
   __cil_tmp4 = 16 + 16;
-  __cil_tmp5 = (unsigned long )pdev;
-  __cil_tmp6 = __cil_tmp5 + __cil_tmp4;
-  __cil_tmp7 = (struct kobject *)__cil_tmp6;
+  __cil_tmp7 = (struct kobject *)((void *)pdev + __cil_tmp4);
   sysfs_remove_group(__cil_tmp7, & gpio_fan_ctrl_group);
   i = 0;
   }
@@ -2338,9 +2072,7 @@ static void fan_ctrl_free(struct gpio_fan_data *fan_data )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp8 = (unsigned long )fan_data;
-    __cil_tmp9 = __cil_tmp8 + 88;
-    __cil_tmp10 = *((int *)__cil_tmp9);
+    __cil_tmp10 = *((int *)((void *)fan_data + 88));
     if (i < __cil_tmp10) {
 
     } else {
@@ -2348,9 +2080,7 @@ static void fan_ctrl_free(struct gpio_fan_data *fan_data )
     }
     }
     {
-    __cil_tmp11 = (unsigned long )fan_data;
-    __cil_tmp12 = __cil_tmp11 + 96;
-    __cil_tmp13 = *((unsigned int **)__cil_tmp12);
+    __cil_tmp13 = *((unsigned int **)((void *)fan_data + 96));
     __cil_tmp14 = __cil_tmp13 + i;
     __cil_tmp15 = *__cil_tmp14;
     gpio_free(__cil_tmp15);
@@ -2385,64 +2115,30 @@ static int gpio_fan_probe(struct platform_device *pdev )
   long tmp___0 ;
   long tmp___1 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct gpio_fan_alarm *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct gpio_fan_speed *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device *__cil_tmp32 ;
   struct device_attribute  const  *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct device *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct device *__cil_tmp41 ;
   void const   *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct device *__cil_tmp45 ;
   void const   *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct device *__cil_tmp49 ;
   struct device  const  *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct device *__cil_tmp53 ;
   struct device_attribute  const  *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   void *__cil_tmp59 ;
   void const   *__cil_tmp60 ;
 
   {
   __cil_tmp8 = 16 + 184;
-  __cil_tmp9 = (unsigned long )pdev;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)pdev + __cil_tmp8));
   pdata = (struct gpio_fan_platform_data *)__cil_tmp11;
   if (! pdata) {
     return (-22);
@@ -2467,9 +2163,7 @@ static int gpio_fan_probe(struct platform_device *pdev )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp13 = (unsigned long )fan_data;
-    __cil_tmp14 = __cil_tmp13 + 16;
-    __cil_tmp15 = (struct mutex *)__cil_tmp14;
+    __cil_tmp15 = (struct mutex *)((void *)fan_data + 16);
     __mutex_init(__cil_tmp15, "&fan_data->lock", & __key___2);
     }
     goto while_break;
@@ -2477,13 +2171,9 @@ static int gpio_fan_probe(struct platform_device *pdev )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp16 = (unsigned long )pdata;
-  __cil_tmp17 = __cil_tmp16 + 16;
-  if (*((struct gpio_fan_alarm **)__cil_tmp17)) {
+  if (*((struct gpio_fan_alarm **)((void *)pdata + 16))) {
     {
-    __cil_tmp18 = (unsigned long )pdata;
-    __cil_tmp19 = __cil_tmp18 + 16;
-    __cil_tmp20 = *((struct gpio_fan_alarm **)__cil_tmp19);
+    __cil_tmp20 = *((struct gpio_fan_alarm **)((void *)pdata + 16));
     err = fan_alarm_init(fan_data, __cil_tmp20);
     }
     if (err) {
@@ -2496,24 +2186,18 @@ static int gpio_fan_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp21 = (unsigned long )pdata;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  if (*((unsigned int **)__cil_tmp22)) {
+  if (*((unsigned int **)((void *)pdata + 8))) {
     {
     __cil_tmp23 = *((int *)pdata);
     if (__cil_tmp23 > 0) {
       {
-      __cil_tmp24 = (unsigned long )pdata;
-      __cil_tmp25 = __cil_tmp24 + 32;
-      __cil_tmp26 = *((struct gpio_fan_speed **)__cil_tmp25);
+      __cil_tmp26 = *((struct gpio_fan_speed **)((void *)pdata + 32));
       if (! __cil_tmp26) {
         err = -22;
         goto err_free_alarm;
       } else {
         {
-        __cil_tmp27 = (unsigned long )pdata;
-        __cil_tmp28 = __cil_tmp27 + 24;
-        __cil_tmp29 = *((int *)__cil_tmp28);
+        __cil_tmp29 = *((int *)((void *)pdata + 24));
         if (__cil_tmp29 <= 1) {
           err = -22;
           goto err_free_alarm;
@@ -2540,9 +2224,7 @@ static int gpio_fan_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp30 = (unsigned long )pdev;
-  __cil_tmp31 = __cil_tmp30 + 16;
-  __cil_tmp32 = (struct device *)__cil_tmp31;
+  __cil_tmp32 = (struct device *)((void *)pdev + 16);
   __cil_tmp33 = (struct device_attribute  const  *)(& dev_attr_name);
   err = device_create_file(__cil_tmp32, __cil_tmp33);
   }
@@ -2552,23 +2234,15 @@ static int gpio_fan_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp34 = (unsigned long )fan_data;
-  __cil_tmp35 = __cil_tmp34 + 8;
-  __cil_tmp36 = (unsigned long )pdev;
-  __cil_tmp37 = __cil_tmp36 + 16;
-  __cil_tmp38 = (struct device *)__cil_tmp37;
-  *((struct device **)__cil_tmp35) = hwmon_device_register(__cil_tmp38);
-  __cil_tmp39 = (unsigned long )fan_data;
-  __cil_tmp40 = __cil_tmp39 + 8;
-  __cil_tmp41 = *((struct device **)__cil_tmp40);
+  __cil_tmp38 = (struct device *)((void *)pdev + 16);
+  *((struct device **)((void *)fan_data + 8)) = hwmon_device_register(__cil_tmp38);
+  __cil_tmp41 = *((struct device **)((void *)fan_data + 8));
   __cil_tmp42 = (void const   *)__cil_tmp41;
   tmp___1 = (long )IS_ERR(__cil_tmp42);
   }
   if (tmp___1) {
     {
-    __cil_tmp43 = (unsigned long )fan_data;
-    __cil_tmp44 = __cil_tmp43 + 8;
-    __cil_tmp45 = *((struct device **)__cil_tmp44);
+    __cil_tmp45 = *((struct device **)((void *)fan_data + 8));
     __cil_tmp46 = (void const   *)__cil_tmp45;
     tmp___0 = (long )PTR_ERR(__cil_tmp46);
     err = (int )tmp___0;
@@ -2578,26 +2252,20 @@ static int gpio_fan_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp47 = (unsigned long )pdev;
-  __cil_tmp48 = __cil_tmp47 + 16;
-  __cil_tmp49 = (struct device *)__cil_tmp48;
+  __cil_tmp49 = (struct device *)((void *)pdev + 16);
   __cil_tmp50 = (struct device  const  *)__cil_tmp49;
   _dev_info(__cil_tmp50, "GPIO fan initialized\n");
   }
   return (0);
   err_remove_name: 
   {
-  __cil_tmp51 = (unsigned long )pdev;
-  __cil_tmp52 = __cil_tmp51 + 16;
-  __cil_tmp53 = (struct device *)__cil_tmp52;
+  __cil_tmp53 = (struct device *)((void *)pdev + 16);
   __cil_tmp54 = (struct device_attribute  const  *)(& dev_attr_name);
   device_remove_file(__cil_tmp53, __cil_tmp54);
   }
   err_free_ctrl: 
   {
-  __cil_tmp55 = (unsigned long )fan_data;
-  __cil_tmp56 = __cil_tmp55 + 96;
-  if (*((unsigned int **)__cil_tmp56)) {
+  if (*((unsigned int **)((void *)fan_data + 96))) {
     {
     fan_ctrl_free(fan_data);
     }
@@ -2607,9 +2275,7 @@ static int gpio_fan_probe(struct platform_device *pdev )
   }
   err_free_alarm: 
   {
-  __cil_tmp57 = (unsigned long )fan_data;
-  __cil_tmp58 = __cil_tmp57 + 136;
-  if (*((struct gpio_fan_alarm **)__cil_tmp58)) {
+  if (*((struct gpio_fan_alarm **)((void *)fan_data + 136))) {
     {
     fan_alarm_free(fan_data);
     }
@@ -2633,17 +2299,9 @@ static int gpio_fan_remove(struct platform_device *pdev )
 { struct gpio_fan_data *fan_data ;
   void *tmp ;
   struct platform_device  const  *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device_attribute  const  *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void const   *__cil_tmp16 ;
 
   {
@@ -2651,20 +2309,14 @@ static int gpio_fan_remove(struct platform_device *pdev )
   __cil_tmp4 = (struct platform_device  const  *)pdev;
   tmp = platform_get_drvdata(__cil_tmp4);
   fan_data = (struct gpio_fan_data *)tmp;
-  __cil_tmp5 = (unsigned long )fan_data;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((struct device **)__cil_tmp6);
+  __cil_tmp7 = *((struct device **)((void *)fan_data + 8));
   hwmon_device_unregister(__cil_tmp7);
-  __cil_tmp8 = (unsigned long )pdev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)pdev + 16);
   __cil_tmp11 = (struct device_attribute  const  *)(& dev_attr_name);
   device_remove_file(__cil_tmp10, __cil_tmp11);
   }
   {
-  __cil_tmp12 = (unsigned long )fan_data;
-  __cil_tmp13 = __cil_tmp12 + 136;
-  if (*((struct gpio_fan_alarm **)__cil_tmp13)) {
+  if (*((struct gpio_fan_alarm **)((void *)fan_data + 136))) {
     {
     fan_alarm_free(fan_data);
     }
@@ -2673,9 +2325,7 @@ static int gpio_fan_remove(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp14 = (unsigned long )fan_data;
-  __cil_tmp15 = __cil_tmp14 + 96;
-  if (*((unsigned int **)__cil_tmp15)) {
+  if (*((unsigned int **)((void *)fan_data + 96))) {
     {
     fan_ctrl_free(fan_data);
     }
@@ -2694,12 +2344,6 @@ static int gpio_fan_suspend(struct platform_device *pdev , int state_event12 )
 { struct gpio_fan_data *fan_data ;
   void *tmp ;
   struct platform_device  const  *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
 
   {
   {
@@ -2708,15 +2352,9 @@ static int gpio_fan_suspend(struct platform_device *pdev , int state_event12 )
   fan_data = (struct gpio_fan_data *)tmp;
   }
   {
-  __cil_tmp6 = (unsigned long )fan_data;
-  __cil_tmp7 = __cil_tmp6 + 96;
-  if (*((unsigned int **)__cil_tmp7)) {
+  if (*((unsigned int **)((void *)fan_data + 96))) {
     {
-    __cil_tmp8 = (unsigned long )fan_data;
-    __cil_tmp9 = __cil_tmp8 + 124;
-    __cil_tmp10 = (unsigned long )fan_data;
-    __cil_tmp11 = __cil_tmp10 + 120;
-    *((int *)__cil_tmp9) = *((int *)__cil_tmp11);
+    *((int *)((void *)fan_data + 124)) = *((int *)((void *)fan_data + 120));
     set_fan_speed(fan_data, 0);
     }
   } else {
@@ -2730,10 +2368,6 @@ static int gpio_fan_resume(struct platform_device *pdev )
 { struct gpio_fan_data *fan_data ;
   void *tmp ;
   struct platform_device  const  *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
 
   {
@@ -2743,13 +2377,9 @@ static int gpio_fan_resume(struct platform_device *pdev )
   fan_data = (struct gpio_fan_data *)tmp;
   }
   {
-  __cil_tmp5 = (unsigned long )fan_data;
-  __cil_tmp6 = __cil_tmp5 + 96;
-  if (*((unsigned int **)__cil_tmp6)) {
+  if (*((unsigned int **)((void *)fan_data + 96))) {
     {
-    __cil_tmp7 = (unsigned long )fan_data;
-    __cil_tmp8 = __cil_tmp7 + 124;
-    __cil_tmp9 = *((int *)__cil_tmp8);
+    __cil_tmp9 = *((int *)((void *)fan_data + 124));
     set_fan_speed(fan_data, __cil_tmp9);
     }
   } else {

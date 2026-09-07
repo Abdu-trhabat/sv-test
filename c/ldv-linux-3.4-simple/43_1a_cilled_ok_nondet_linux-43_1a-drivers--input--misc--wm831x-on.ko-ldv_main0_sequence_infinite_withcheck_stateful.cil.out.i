@@ -1813,13 +1813,10 @@ int ldv_spin_trylock(void) ;
 extern int __dynamic_dev_dbg(struct _ddebug * , struct device const * , char const *
                              , ...) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -1870,14 +1867,11 @@ extern int request_threaded_irq(unsigned int , irqreturn_t (*)(int , void * ) ,
 extern void free_irq(unsigned int , void * ) ;
 extern int platform_get_irq(struct platform_device * , unsigned int ) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1891,26 +1885,18 @@ static void wm831x_poll_on(struct work_struct *work )
   int poll ;
   int ret ;
   struct wm831x_on *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   struct input_dev *__cil_tmp11 ;
   struct input_dev *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct delayed_work *__cil_tmp19 ;
   {
   {
   __mptr = (struct work_struct const *)work;
   __cil_tmp7 = (struct wm831x_on *)__mptr;
   wm831x_on = __cil_tmp7 + 0xfffffffffffffff8UL;
-  __cil_tmp8 = (unsigned long )wm831x_on;
-  __cil_tmp9 = __cil_tmp8 + 216;
-  wm831x = *((struct wm831x **)__cil_tmp9);
+  wm831x = *((struct wm831x **)((void *)wm831x_on + 216));
   ret = wm831x_reg_read(wm831x, (unsigned short)16389);
   }
   if (ret >= 0) {
@@ -1924,9 +1910,7 @@ static void wm831x_poll_on(struct work_struct *work )
     }
   } else {
     {
-    __cil_tmp13 = (unsigned long )wm831x;
-    __cil_tmp14 = __cil_tmp13 + 168;
-    __cil_tmp15 = *((struct device **)__cil_tmp14);
+    __cil_tmp15 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp16 = (struct device const *)__cil_tmp15;
     dev_err(__cil_tmp16, "Failed to read ON status: %d\n", ret);
     poll = 1;
@@ -1934,9 +1918,7 @@ static void wm831x_poll_on(struct work_struct *work )
   }
   if (poll != 0) {
     {
-    __cil_tmp17 = (unsigned long )wm831x_on;
-    __cil_tmp18 = __cil_tmp17 + 8;
-    __cil_tmp19 = (struct delayed_work *)__cil_tmp18;
+    __cil_tmp19 = (struct delayed_work *)((void *)wm831x_on + 8);
     schedule_delayed_work(__cil_tmp19, 100UL);
     }
   } else {
@@ -1946,15 +1928,11 @@ static void wm831x_poll_on(struct work_struct *work )
 }
 static irqreturn_t wm831x_on_irq(int irq , void *data )
 { struct wm831x_on *wm831x_on ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct delayed_work *__cil_tmp6 ;
   {
   {
   wm831x_on = (struct wm831x_on *)data;
-  __cil_tmp4 = (unsigned long )wm831x_on;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = (struct delayed_work *)__cil_tmp5;
+  __cil_tmp6 = (struct delayed_work *)((void *)wm831x_on + 8);
   schedule_delayed_work(__cil_tmp6, 0UL);
   }
   return ((irqreturn_t )1);
@@ -1973,89 +1951,49 @@ static int wm831x_on_probe(struct platform_device *pdev )
   struct lock_class_key __key___0 ;
   struct _ddebug descriptor ;
   long tmp___2 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
   struct wm831x_on *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct device const *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct work_struct *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct lockdep_map *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct list_head *__cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct timer_list *__cil_tmp49 ;
   struct input_dev *__cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   struct input_dev *__cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct device *__cil_tmp56 ;
   struct device const *__cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   struct input_dev *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   struct input_dev *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct input_dev *__cil_tmp68 ;
   struct input_dev *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct input_dev *__cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   unsigned int __cil_tmp77 ;
   irqreturn_t (*__cil_tmp78)(int , void * ) ;
   void *__cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   struct device *__cil_tmp82 ;
   struct device const *__cil_tmp83 ;
   struct input_dev *__cil_tmp84 ;
   struct _ddebug *__cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   unsigned char __cil_tmp92 ;
   long __cil_tmp93 ;
   long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   struct device *__cil_tmp97 ;
   struct device const *__cil_tmp98 ;
   void *__cil_tmp99 ;
@@ -2066,9 +2004,7 @@ static int wm831x_on_probe(struct platform_device *pdev )
   long __constr_expr_0_counter104 ;
   {
   {
-  __cil_tmp14 = (unsigned long )pdev;
-  __cil_tmp15 = __cil_tmp14 + 16;
-  __cil_tmp16 = *((struct device **)__cil_tmp15);
+  __cil_tmp16 = *((struct device **)((void *)pdev + 16));
   __cil_tmp17 = (struct device const *)__cil_tmp16;
   tmp = dev_get_drvdata(__cil_tmp17);
   wm831x = (struct wm831x *)tmp;
@@ -2083,9 +2019,7 @@ static int wm831x_on_probe(struct platform_device *pdev )
   __cil_tmp20 = (unsigned long )wm831x_on;
   if (__cil_tmp20 == __cil_tmp19) {
     {
-    __cil_tmp21 = (unsigned long )pdev;
-    __cil_tmp22 = __cil_tmp21 + 16;
-    __cil_tmp23 = (struct device *)__cil_tmp22;
+    __cil_tmp23 = (struct device *)((void *)pdev + 16);
     __cil_tmp24 = (struct device const *)__cil_tmp23;
     dev_err(__cil_tmp24, "Can\'t allocate data\n");
     }
@@ -2094,38 +2028,24 @@ static int wm831x_on_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp25 = (unsigned long )wm831x_on;
-  __cil_tmp26 = __cil_tmp25 + 216;
-  *((struct wm831x **)__cil_tmp26) = wm831x;
-  __cil_tmp27 = (unsigned long )wm831x_on;
-  __cil_tmp28 = __cil_tmp27 + 8;
-  __cil_tmp29 = (struct work_struct *)__cil_tmp28;
+  *((struct wm831x **)((void *)wm831x_on + 216)) = wm831x;
+  __cil_tmp29 = (struct work_struct *)((void *)wm831x_on + 8);
   __init_work(__cil_tmp29, 0);
   __constr_expr_0_counter104 = 2097664L;
-  __cil_tmp30 = (unsigned long )wm831x_on;
-  __cil_tmp31 = __cil_tmp30 + 8;
-  ((atomic_long_t *)__cil_tmp31)->counter = __constr_expr_0_counter104;
+  ((atomic_long_t *)((void *)wm831x_on + 8))->counter = __constr_expr_0_counter104;
   __cil_tmp32 = 0 + 32;
   __cil_tmp33 = 8 + __cil_tmp32;
-  __cil_tmp34 = (unsigned long )wm831x_on;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  __cil_tmp36 = (struct lockdep_map *)__cil_tmp35;
+  __cil_tmp36 = (struct lockdep_map *)((void *)wm831x_on + __cil_tmp33);
   lockdep_init_map(__cil_tmp36, "(&(&wm831x_on->work)->work)", & __key, 0);
   __cil_tmp37 = 0 + 8;
   __cil_tmp38 = 8 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )wm831x_on;
-  __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-  __cil_tmp41 = (struct list_head *)__cil_tmp40;
+  __cil_tmp41 = (struct list_head *)((void *)wm831x_on + __cil_tmp38);
   INIT_LIST_HEAD(__cil_tmp41);
   __cil_tmp42 = 0 + 24;
   __cil_tmp43 = 8 + __cil_tmp42;
-  __cil_tmp44 = (unsigned long )wm831x_on;
-  __cil_tmp45 = __cil_tmp44 + __cil_tmp43;
-  *((void (**)(struct work_struct * ))__cil_tmp45) = & wm831x_poll_on;
+  *((void (**)(struct work_struct * ))((void *)wm831x_on + __cil_tmp43)) = & wm831x_poll_on;
   __cil_tmp46 = 8 + 80;
-  __cil_tmp47 = (unsigned long )wm831x_on;
-  __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-  __cil_tmp49 = (struct timer_list *)__cil_tmp48;
+  __cil_tmp49 = (struct timer_list *)((void *)wm831x_on + __cil_tmp46);
   init_timer_key(__cil_tmp49, "&(&wm831x_on->work)->timer", & __key___0);
   *((struct input_dev **)wm831x_on) = input_allocate_device();
   }
@@ -2136,9 +2056,7 @@ static int wm831x_on_probe(struct platform_device *pdev )
   __cil_tmp53 = (unsigned long )__cil_tmp52;
   if (__cil_tmp53 == __cil_tmp51) {
     {
-    __cil_tmp54 = (unsigned long )pdev;
-    __cil_tmp55 = __cil_tmp54 + 16;
-    __cil_tmp56 = (struct device *)__cil_tmp55;
+    __cil_tmp56 = (struct device *)((void *)pdev + 16);
     __cil_tmp57 = (struct device const *)__cil_tmp56;
     dev_err(__cil_tmp57, "Can\'t allocate input dev\n");
     ret = -12;
@@ -2151,27 +2069,17 @@ static int wm831x_on_probe(struct platform_device *pdev )
   __cil_tmp58 = 0 * 8UL;
   __cil_tmp59 = 40 + __cil_tmp58;
   __cil_tmp60 = *((struct input_dev **)wm831x_on);
-  __cil_tmp61 = (unsigned long )__cil_tmp60;
-  __cil_tmp62 = __cil_tmp61 + __cil_tmp59;
-  *((unsigned long *)__cil_tmp62) = 2UL;
+  *((unsigned long *)((void *)__cil_tmp60 + __cil_tmp59)) = 2UL;
   __cil_tmp63 = 1 * 8UL;
   __cil_tmp64 = 48 + __cil_tmp63;
   __cil_tmp65 = *((struct input_dev **)wm831x_on);
-  __cil_tmp66 = (unsigned long )__cil_tmp65;
-  __cil_tmp67 = __cil_tmp66 + __cil_tmp64;
-  *((unsigned long *)__cil_tmp67) = 4503599627370496UL;
+  *((unsigned long *)((void *)__cil_tmp65 + __cil_tmp64)) = 4503599627370496UL;
   __cil_tmp68 = *((struct input_dev **)wm831x_on);
   *((char const **)__cil_tmp68) = "wm831x_on";
   __cil_tmp69 = *((struct input_dev **)wm831x_on);
-  __cil_tmp70 = (unsigned long )__cil_tmp69;
-  __cil_tmp71 = __cil_tmp70 + 8;
-  *((char const **)__cil_tmp71) = "wm831x_on/input0";
+  *((char const **)((void *)__cil_tmp69 + 8)) = "wm831x_on/input0";
   __cil_tmp72 = *((struct input_dev **)wm831x_on);
-  __cil_tmp73 = (unsigned long )__cil_tmp72;
-  __cil_tmp74 = __cil_tmp73 + 840;
-  __cil_tmp75 = (unsigned long )pdev;
-  __cil_tmp76 = __cil_tmp75 + 16;
-  *((struct device **)__cil_tmp74) = (struct device *)__cil_tmp76;
+  *((struct device **)((void *)__cil_tmp72 + 840)) = (struct device *)((void *)pdev + 16);
   __cil_tmp77 = (unsigned int )irq;
   __cil_tmp78 = (irqreturn_t (*)(int , void * ))0;
   __cil_tmp79 = (void *)wm831x_on;
@@ -2180,9 +2088,7 @@ static int wm831x_on_probe(struct platform_device *pdev )
   }
   if (ret < 0) {
     {
-    __cil_tmp80 = (unsigned long )pdev;
-    __cil_tmp81 = __cil_tmp80 + 16;
-    __cil_tmp82 = (struct device *)__cil_tmp81;
+    __cil_tmp82 = (struct device *)((void *)pdev + 16);
     __cil_tmp83 = (struct device const *)__cil_tmp82;
     dev_err(__cil_tmp83, "Unable to request IRQ: %d\n", ret);
     }
@@ -2197,27 +2103,19 @@ static int wm831x_on_probe(struct platform_device *pdev )
     {
     __cil_tmp85 = & descriptor;
     *((char const **)__cil_tmp85) = "wm831x_on";
-    __cil_tmp86 = (unsigned long )(& descriptor) + 8;
-    *((char const **)__cil_tmp86) = "wm831x_on_probe";
-    __cil_tmp87 = (unsigned long )(& descriptor) + 16;
-    *((char const **)__cil_tmp87) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3039/dscv_tempdir/dscv/ri/43_1a/drivers/input/misc/wm831x-on.c.p";
-    __cil_tmp88 = (unsigned long )(& descriptor) + 24;
-    *((char const **)__cil_tmp88) = "Can\'t register input device: %d\n";
-    __cil_tmp89 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp89) = 125U;
-    __cil_tmp90 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp90) = (unsigned char)0;
-    __cil_tmp91 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp92 = *((unsigned char *)__cil_tmp91);
+    *((char const **)((void *)(&descriptor) + 8)) = "wm831x_on_probe";
+    *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3039/dscv_tempdir/dscv/ri/43_1a/drivers/input/misc/wm831x-on.c.p";
+    *((char const **)((void *)(&descriptor) + 24)) = "Can\'t register input device: %d\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 125U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+    __cil_tmp92 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp93 = (long )__cil_tmp92;
     __cil_tmp94 = __cil_tmp93 & 1L;
     tmp___2 = __builtin_expect(__cil_tmp94, 0L);
     }
     if (tmp___2 != 0L) {
       {
-      __cil_tmp95 = (unsigned long )pdev;
-      __cil_tmp96 = __cil_tmp95 + 16;
-      __cil_tmp97 = (struct device *)__cil_tmp96;
+      __cil_tmp97 = (struct device *)((void *)pdev + 16);
       __cil_tmp98 = (struct device const *)__cil_tmp97;
       __dynamic_dev_dbg(& descriptor, __cil_tmp98, "Can\'t register input device: %d\n",
                         ret);

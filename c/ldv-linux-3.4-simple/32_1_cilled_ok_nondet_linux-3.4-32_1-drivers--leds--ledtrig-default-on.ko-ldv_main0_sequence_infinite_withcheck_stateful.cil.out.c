@@ -739,53 +739,34 @@ extern int led_trigger_register(struct led_trigger *trigger ) ;
 extern void led_trigger_unregister(struct led_trigger *trigger ) ;
 __inline static void led_set_brightness(struct led_classdev *led_cdev , enum led_brightness value )  __attribute__((__no_instrument_function__)) ;
 __inline static void led_set_brightness(struct led_classdev *led_cdev , enum led_brightness value ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   int __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void (*__cil_tmp19)(struct led_classdev *led_cdev , enum led_brightness brightness ) ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )led_cdev;
-  __cil_tmp4 = __cil_tmp3 + 12;
-  __cil_tmp5 = *((int *)__cil_tmp4);
+  __cil_tmp5 = *((int *)((void *)led_cdev + 12));
   __cil_tmp6 = (unsigned int )__cil_tmp5;
   __cil_tmp7 = (unsigned int )value;
   if (__cil_tmp7 > __cil_tmp6) {
-    __cil_tmp8 = (unsigned long )led_cdev;
-    __cil_tmp9 = __cil_tmp8 + 12;
-    __cil_tmp10 = *((int *)__cil_tmp9);
+    __cil_tmp10 = *((int *)((void *)led_cdev + 12));
     value = (enum led_brightness )__cil_tmp10;
   } else {
 
   }
   }
-  __cil_tmp11 = (unsigned long )led_cdev;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  *((int *)__cil_tmp12) = (int )value;
+  *((int *)((void *)led_cdev + 8)) = (int )value;
   {
-  __cil_tmp13 = (unsigned long )led_cdev;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((int *)__cil_tmp14);
+  __cil_tmp15 = *((int *)((void *)led_cdev + 16));
   __cil_tmp16 = __cil_tmp15 & 1;
   if (! __cil_tmp16) {
     {
-    __cil_tmp17 = (unsigned long )led_cdev;
-    __cil_tmp18 = __cil_tmp17 + 24;
-    __cil_tmp19 = *((void (**)(struct led_classdev *led_cdev , enum led_brightness brightness ))__cil_tmp18);
+    __cil_tmp19 = *((void (**)(struct led_classdev *led_cdev , enum led_brightness brightness ))((void *)led_cdev + 24));
     (*__cil_tmp19)(led_cdev, value);
     }
   } else {
@@ -796,16 +777,13 @@ __inline static void led_set_brightness(struct led_classdev *led_cdev , enum led
 }
 }
 static void defon_trig_activate(struct led_classdev *led_cdev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   int __cil_tmp4 ;
   enum led_brightness __cil_tmp5 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )led_cdev;
-  __cil_tmp3 = __cil_tmp2 + 12;
-  __cil_tmp4 = *((int *)__cil_tmp3);
+  __cil_tmp4 = *((int *)((void *)led_cdev + 12));
   __cil_tmp5 = (enum led_brightness )__cil_tmp4;
   led_set_brightness(led_cdev, __cil_tmp5);
   }

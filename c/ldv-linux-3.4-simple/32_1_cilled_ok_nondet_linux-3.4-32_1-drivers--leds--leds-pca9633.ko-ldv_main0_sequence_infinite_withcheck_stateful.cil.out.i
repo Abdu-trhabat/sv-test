@@ -2086,13 +2086,10 @@ struct pca9633_led {
 long ldv__builtin_expect(long val , long res ) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -2122,14 +2119,10 @@ extern s32 i2c_smbus_write_byte_data(struct i2c_client const *client , u8 comman
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)dev + 40);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -2137,14 +2130,11 @@ __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2226,8 +2216,6 @@ static void pca9633_led_work(struct work_struct *work )
   int shift ;
   u8 mask ;
   struct pca9633_led *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct work_struct *__cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   char *__cil_tmp13 ;
@@ -2235,12 +2223,8 @@ static void pca9633_led_work(struct work_struct *work )
   struct i2c_client *__cil_tmp15 ;
   struct i2c_client const *__cil_tmp16 ;
   u8 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   enum led_brightness __cil_tmp24 ;
   struct i2c_client *__cil_tmp25 ;
   struct i2c_client const *__cil_tmp26 ;
@@ -2262,13 +2246,9 @@ static void pca9633_led_work(struct work_struct *work )
   u8 __cil_tmp42 ;
   struct i2c_client *__cil_tmp43 ;
   struct i2c_client const *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   int __cil_tmp47 ;
   int __cil_tmp48 ;
   u8 __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   enum led_brightness __cil_tmp52 ;
   u8 __cil_tmp53 ;
   struct i2c_client *__cil_tmp54 ;
@@ -2285,9 +2265,7 @@ static void pca9633_led_work(struct work_struct *work )
   {
   __mptr = (struct work_struct const *)work;
   __cil_tmp8 = (struct pca9633_led *)0;
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = (struct work_struct *)__cil_tmp10;
+  __cil_tmp11 = (struct work_struct *)((void *)__cil_tmp8 + 8);
   __cil_tmp12 = (unsigned int )__cil_tmp11;
   __cil_tmp13 = (char *)__mptr;
   __cil_tmp14 = __cil_tmp13 - __cil_tmp12;
@@ -2297,17 +2275,13 @@ static void pca9633_led_work(struct work_struct *work )
   __cil_tmp17 = (u8 )8;
   tmp___7 = i2c_smbus_read_byte_data(__cil_tmp16, __cil_tmp17);
   ledout = (u8 )tmp___7;
-  __cil_tmp18 = (unsigned long )pca9633;
-  __cil_tmp19 = __cil_tmp18 + 312;
-  __cil_tmp20 = *((int *)__cil_tmp19);
+  __cil_tmp20 = *((int *)((void *)pca9633 + 312));
   shift = 2 * __cil_tmp20;
   __cil_tmp21 = 3 << shift;
   mask = (u8 )__cil_tmp21;
   }
   {
-  __cil_tmp22 = (unsigned long )pca9633;
-  __cil_tmp23 = __cil_tmp22 + 40;
-  __cil_tmp24 = *((enum led_brightness *)__cil_tmp23);
+  __cil_tmp24 = *((enum led_brightness *)((void *)pca9633 + 40));
   if ((int )__cil_tmp24 == 255) {
     goto case_255;
   } else
@@ -2349,14 +2323,10 @@ static void pca9633_led_work(struct work_struct *work )
       {
       __cil_tmp43 = *((struct i2c_client **)pca9633);
       __cil_tmp44 = (struct i2c_client const *)__cil_tmp43;
-      __cil_tmp45 = (unsigned long )pca9633;
-      __cil_tmp46 = __cil_tmp45 + 312;
-      __cil_tmp47 = *((int *)__cil_tmp46);
+      __cil_tmp47 = *((int *)((void *)pca9633 + 312));
       __cil_tmp48 = 2 + __cil_tmp47;
       __cil_tmp49 = (u8 )__cil_tmp48;
-      __cil_tmp50 = (unsigned long )pca9633;
-      __cil_tmp51 = __cil_tmp50 + 40;
-      __cil_tmp52 = *((enum led_brightness *)__cil_tmp51);
+      __cil_tmp52 = *((enum led_brightness *)((void *)pca9633 + 40));
       __cil_tmp53 = (u8 )__cil_tmp52;
       i2c_smbus_write_byte_data(__cil_tmp44, __cil_tmp49, __cil_tmp53);
       __cil_tmp54 = *((struct i2c_client **)pca9633);
@@ -2385,34 +2355,22 @@ static void pca9633_led_set(struct led_classdev *led_cdev , enum led_brightness 
 { struct pca9633_led *pca9633 ;
   struct led_classdev const *__mptr ;
   struct pca9633_led *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct led_classdev *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   char *__cil_tmp10 ;
   char *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct work_struct *__cil_tmp16 ;
   {
   {
   __mptr = (struct led_classdev const *)led_cdev;
   __cil_tmp5 = (struct pca9633_led *)0;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 48;
-  __cil_tmp8 = (struct led_classdev *)__cil_tmp7;
+  __cil_tmp8 = (struct led_classdev *)((void *)__cil_tmp5 + 48);
   __cil_tmp9 = (unsigned int )__cil_tmp8;
   __cil_tmp10 = (char *)__mptr;
   __cil_tmp11 = __cil_tmp10 - __cil_tmp9;
   pca9633 = (struct pca9633_led *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )pca9633;
-  __cil_tmp13 = __cil_tmp12 + 40;
-  *((enum led_brightness *)__cil_tmp13) = value;
-  __cil_tmp14 = (unsigned long )pca9633;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = (struct work_struct *)__cil_tmp15;
+  *((enum led_brightness *)((void *)pca9633 + 40)) = value;
+  __cil_tmp16 = (struct work_struct *)((void *)pca9633 + 8);
   schedule_work(__cil_tmp16);
   }
   return;
@@ -2429,104 +2387,58 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
   atomic_long_t __constr_expr_0 ;
   int tmp___8 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   struct device const *__cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device const *__cil_tmp23 ;
   size_t __cil_tmp24 ;
   void *__cil_tmp25 ;
   struct pca9633_led *__cil_tmp26 ;
   struct pca9633_led *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct led_info *__cil_tmp33 ;
   struct led_info *__cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   struct pca9633_led *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   char *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct led_info *__cil_tmp43 ;
   struct led_info *__cil_tmp44 ;
   char const *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct led_info *__cil_tmp48 ;
   struct led_info *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   struct pca9633_led *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct led_info *__cil_tmp58 ;
   struct led_info *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
   struct pca9633_led *__cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   char *__cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   struct pca9633_led *__cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   char *__cil_tmp73 ;
   struct pca9633_led *__cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   struct pca9633_led *__cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   char *__cil_tmp82 ;
   unsigned long __cil_tmp83 ;
   struct pca9633_led *__cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   struct pca9633_led *__cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   struct work_struct *__cil_tmp90 ;
   struct pca9633_led *__cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
   struct pca9633_led *__cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   struct list_head *__cil_tmp98 ;
   unsigned long __cil_tmp99 ;
   struct pca9633_led *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   struct device *__cil_tmp105 ;
   struct pca9633_led *__cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   struct led_classdev *__cil_tmp109 ;
   struct i2c_client const *__cil_tmp110 ;
   u8 __cil_tmp111 ;
@@ -2535,29 +2447,21 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
   u8 __cil_tmp114 ;
   u8 __cil_tmp115 ;
   struct pca9633_led *__cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   struct led_classdev *__cil_tmp119 ;
   struct pca9633_led *__cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   struct work_struct *__cil_tmp123 ;
   void const *__cil_tmp124 ;
   long __constr_expr_0_counter125 ;
   {
   __cil_tmp10 = 40 + 184;
-  __cil_tmp11 = (unsigned long )client;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)client + __cil_tmp10));
   pdata = (struct led_platform_data *)__cil_tmp13;
   if (pdata) {
     {
     __cil_tmp14 = *((int *)pdata);
     if (__cil_tmp14 <= 0) {
       {
-      __cil_tmp15 = (unsigned long )client;
-      __cil_tmp16 = __cil_tmp15 + 40;
-      __cil_tmp17 = (struct device *)__cil_tmp16;
+      __cil_tmp17 = (struct device *)((void *)client + 40);
       __cil_tmp18 = (struct device const *)__cil_tmp17;
       dev_err(__cil_tmp18, "board info must claim at most 4 LEDs");
       }
@@ -2567,9 +2471,7 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
       __cil_tmp19 = *((int *)pdata);
       if (__cil_tmp19 > 4) {
         {
-        __cil_tmp20 = (unsigned long )client;
-        __cil_tmp21 = __cil_tmp20 + 40;
-        __cil_tmp22 = (struct device *)__cil_tmp21;
+        __cil_tmp22 = (struct device *)((void *)client + 40);
         __cil_tmp23 = (struct device const *)__cil_tmp22;
         dev_err(__cil_tmp23, "board info must claim at most 4 LEDs");
         }
@@ -2605,29 +2507,21 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
     __cil_tmp26 = pca9633 + i;
     *((struct i2c_client **)__cil_tmp26) = client;
     __cil_tmp27 = pca9633 + i;
-    __cil_tmp28 = (unsigned long )__cil_tmp27;
-    __cil_tmp29 = __cil_tmp28 + 312;
-    *((int *)__cil_tmp29) = i;
+    *((int *)((void *)__cil_tmp27 + 312)) = i;
     if (pdata) {
       {
       __cil_tmp30 = *((int *)pdata);
       if (i < __cil_tmp30) {
         {
-        __cil_tmp31 = (unsigned long )pdata;
-        __cil_tmp32 = __cil_tmp31 + 8;
-        __cil_tmp33 = *((struct led_info **)__cil_tmp32);
+        __cil_tmp33 = *((struct led_info **)((void *)pdata + 8));
         __cil_tmp34 = __cil_tmp33 + i;
         if (*((char const **)__cil_tmp34)) {
           {
           __cil_tmp35 = 0 * 1UL;
           __cil_tmp36 = 316 + __cil_tmp35;
           __cil_tmp37 = pca9633 + i;
-          __cil_tmp38 = (unsigned long )__cil_tmp37;
-          __cil_tmp39 = __cil_tmp38 + __cil_tmp36;
-          __cil_tmp40 = (char *)__cil_tmp39;
-          __cil_tmp41 = (unsigned long )pdata;
-          __cil_tmp42 = __cil_tmp41 + 8;
-          __cil_tmp43 = *((struct led_info **)__cil_tmp42);
+          __cil_tmp40 = (char *)((void *)__cil_tmp37 + __cil_tmp36);
+          __cil_tmp43 = *((struct led_info **)((void *)pdata + 8));
           __cil_tmp44 = __cil_tmp43 + i;
           __cil_tmp45 = *((char const **)__cil_tmp44);
           snprintf(__cil_tmp40, 32UL, "pca9633:%s", __cil_tmp45);
@@ -2636,24 +2530,14 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
         }
         }
         {
-        __cil_tmp46 = (unsigned long )pdata;
-        __cil_tmp47 = __cil_tmp46 + 8;
-        __cil_tmp48 = *((struct led_info **)__cil_tmp47);
+        __cil_tmp48 = *((struct led_info **)((void *)pdata + 8));
         __cil_tmp49 = __cil_tmp48 + i;
-        __cil_tmp50 = (unsigned long )__cil_tmp49;
-        __cil_tmp51 = __cil_tmp50 + 8;
-        if (*((char const **)__cil_tmp51)) {
+        if (*((char const **)((void *)__cil_tmp49 + 8))) {
           __cil_tmp52 = 48 + 72;
           __cil_tmp53 = pca9633 + i;
-          __cil_tmp54 = (unsigned long )__cil_tmp53;
-          __cil_tmp55 = __cil_tmp54 + __cil_tmp52;
-          __cil_tmp56 = (unsigned long )pdata;
-          __cil_tmp57 = __cil_tmp56 + 8;
-          __cil_tmp58 = *((struct led_info **)__cil_tmp57);
+          __cil_tmp58 = *((struct led_info **)((void *)pdata + 8));
           __cil_tmp59 = __cil_tmp58 + i;
-          __cil_tmp60 = (unsigned long )__cil_tmp59;
-          __cil_tmp61 = __cil_tmp60 + 8;
-          *((char const **)__cil_tmp55) = *((char const **)__cil_tmp61);
+          *((char const **)((void *)__cil_tmp53 + __cil_tmp52)) = *((char const **)((void *)__cil_tmp59 + 8));
         } else {
         }
         }
@@ -2662,9 +2546,7 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
         __cil_tmp62 = 0 * 1UL;
         __cil_tmp63 = 316 + __cil_tmp62;
         __cil_tmp64 = pca9633 + i;
-        __cil_tmp65 = (unsigned long )__cil_tmp64;
-        __cil_tmp66 = __cil_tmp65 + __cil_tmp63;
-        __cil_tmp67 = (char *)__cil_tmp66;
+        __cil_tmp67 = (char *)((void *)__cil_tmp64 + __cil_tmp63);
         snprintf(__cil_tmp67, 32UL, "pca9633:%d", i);
         }
       }
@@ -2674,27 +2556,19 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
       __cil_tmp68 = 0 * 1UL;
       __cil_tmp69 = 316 + __cil_tmp68;
       __cil_tmp70 = pca9633 + i;
-      __cil_tmp71 = (unsigned long )__cil_tmp70;
-      __cil_tmp72 = __cil_tmp71 + __cil_tmp69;
-      __cil_tmp73 = (char *)__cil_tmp72;
+      __cil_tmp73 = (char *)((void *)__cil_tmp70 + __cil_tmp69);
       snprintf(__cil_tmp73, 32UL, "pca9633:%d", i);
       }
     }
     __cil_tmp74 = pca9633 + i;
-    __cil_tmp75 = (unsigned long )__cil_tmp74;
-    __cil_tmp76 = __cil_tmp75 + 48;
     __cil_tmp77 = 0 * 1UL;
     __cil_tmp78 = 316 + __cil_tmp77;
     __cil_tmp79 = pca9633 + i;
-    __cil_tmp80 = (unsigned long )__cil_tmp79;
-    __cil_tmp81 = __cil_tmp80 + __cil_tmp78;
-    __cil_tmp82 = (char *)__cil_tmp81;
-    *((char const **)__cil_tmp76) = (char const *)__cil_tmp82;
+    __cil_tmp82 = (char *)((void *)__cil_tmp79 + __cil_tmp78);
+    *((char const **)((void *)__cil_tmp74 + 48)) = (char const *)__cil_tmp82;
     __cil_tmp83 = 48 + 24;
     __cil_tmp84 = pca9633 + i;
-    __cil_tmp85 = (unsigned long )__cil_tmp84;
-    __cil_tmp86 = __cil_tmp85 + __cil_tmp83;
-    *((void (**)(struct led_classdev *led_cdev , enum led_brightness brightness ))__cil_tmp86) = & pca9633_led_set;
+    *((void (**)(struct led_classdev *led_cdev , enum led_brightness brightness ))((void *)__cil_tmp84 + __cil_tmp83)) = & pca9633_led_set;
     {
     while (1) {
       while_continue___0: ;
@@ -2703,20 +2577,14 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
         while_continue___1: ;
         {
         __cil_tmp87 = pca9633 + i;
-        __cil_tmp88 = (unsigned long )__cil_tmp87;
-        __cil_tmp89 = __cil_tmp88 + 8;
-        __cil_tmp90 = (struct work_struct *)__cil_tmp89;
+        __cil_tmp90 = (struct work_struct *)((void *)__cil_tmp87 + 8);
         __init_work(__cil_tmp90, 0);
         __constr_expr_0_counter125 = 2097664L;
         __cil_tmp91 = pca9633 + i;
-        __cil_tmp92 = (unsigned long )__cil_tmp91;
-        __cil_tmp93 = __cil_tmp92 + 8;
-        ((atomic_long_t *)__cil_tmp93)->counter = __constr_expr_0_counter125;
+        ((atomic_long_t *)((void *)__cil_tmp91 + 8))->counter = __constr_expr_0_counter125;
         __cil_tmp94 = 8 + 8;
         __cil_tmp95 = pca9633 + i;
-        __cil_tmp96 = (unsigned long )__cil_tmp95;
-        __cil_tmp97 = __cil_tmp96 + __cil_tmp94;
-        __cil_tmp98 = (struct list_head *)__cil_tmp97;
+        __cil_tmp98 = (struct list_head *)((void *)__cil_tmp95 + __cil_tmp94);
         INIT_LIST_HEAD(__cil_tmp98);
         }
         {
@@ -2724,9 +2592,7 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
           while_continue___2: ;
           __cil_tmp99 = 8 + 24;
           __cil_tmp100 = pca9633 + i;
-          __cil_tmp101 = (unsigned long )__cil_tmp100;
-          __cil_tmp102 = __cil_tmp101 + __cil_tmp99;
-          *((void (**)(struct work_struct *work ))__cil_tmp102) = & pca9633_led_work;
+          *((void (**)(struct work_struct *work ))((void *)__cil_tmp100 + __cil_tmp99)) = & pca9633_led_work;
           goto while_break___2;
         }
         while_break___2: ;
@@ -2740,13 +2606,9 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
     while_break___0: ;
     }
     {
-    __cil_tmp103 = (unsigned long )client;
-    __cil_tmp104 = __cil_tmp103 + 40;
-    __cil_tmp105 = (struct device *)__cil_tmp104;
+    __cil_tmp105 = (struct device *)((void *)client + 40);
     __cil_tmp106 = pca9633 + i;
-    __cil_tmp107 = (unsigned long )__cil_tmp106;
-    __cil_tmp108 = __cil_tmp107 + 48;
-    __cil_tmp109 = (struct led_classdev *)__cil_tmp108;
+    __cil_tmp109 = (struct led_classdev *)((void *)__cil_tmp106 + 48);
     err = led_classdev_register(__cil_tmp105, __cil_tmp109);
     }
     if (err < 0) {
@@ -2780,14 +2642,10 @@ static int pca9633_probe(struct i2c_client *client , struct i2c_device_id const 
     }
     {
     __cil_tmp116 = pca9633 + i;
-    __cil_tmp117 = (unsigned long )__cil_tmp116;
-    __cil_tmp118 = __cil_tmp117 + 48;
-    __cil_tmp119 = (struct led_classdev *)__cil_tmp118;
+    __cil_tmp119 = (struct led_classdev *)((void *)__cil_tmp116 + 48);
     led_classdev_unregister(__cil_tmp119);
     __cil_tmp120 = pca9633 + i;
-    __cil_tmp121 = (unsigned long )__cil_tmp120;
-    __cil_tmp122 = __cil_tmp121 + 8;
-    __cil_tmp123 = (struct work_struct *)__cil_tmp122;
+    __cil_tmp123 = (struct work_struct *)((void *)__cil_tmp120 + 8);
     cancel_work_sync(__cil_tmp123);
     }
   }
@@ -2808,12 +2666,8 @@ static int pca9633_remove(struct i2c_client *client )
   int i ;
   struct i2c_client const *__cil_tmp5 ;
   struct pca9633_led *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct led_classdev *__cil_tmp9 ;
   struct pca9633_led *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct work_struct *__cil_tmp13 ;
   void const *__cil_tmp14 ;
   {
@@ -2832,14 +2686,10 @@ static int pca9633_remove(struct i2c_client *client )
     }
     {
     __cil_tmp6 = pca9633 + i;
-    __cil_tmp7 = (unsigned long )__cil_tmp6;
-    __cil_tmp8 = __cil_tmp7 + 48;
-    __cil_tmp9 = (struct led_classdev *)__cil_tmp8;
+    __cil_tmp9 = (struct led_classdev *)((void *)__cil_tmp6 + 48);
     led_classdev_unregister(__cil_tmp9);
     __cil_tmp10 = pca9633 + i;
-    __cil_tmp11 = (unsigned long )__cil_tmp10;
-    __cil_tmp12 = __cil_tmp11 + 8;
-    __cil_tmp13 = (struct work_struct *)__cil_tmp12;
+    __cil_tmp13 = (struct work_struct *)((void *)__cil_tmp10 + 8);
     cancel_work_sync(__cil_tmp13);
     i = i + 1;
     }

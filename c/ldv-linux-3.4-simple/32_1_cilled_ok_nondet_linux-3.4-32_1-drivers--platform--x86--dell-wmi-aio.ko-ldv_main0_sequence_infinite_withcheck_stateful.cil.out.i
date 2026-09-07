@@ -3069,25 +3069,15 @@ static void dell_wmi_aio_notify(u32 value , void *context )
   acpi_status status ;
   unsigned int scancode ;
   struct acpi_buffer *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   acpi_object_type __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   u64 __cil_tmp15 ;
   bool __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u32 __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u8 *__cil_tmp27 ;
   u8 *__cil_tmp28 ;
   u8 __cil_tmp29 ;
@@ -3097,8 +3087,7 @@ static void dell_wmi_aio_notify(u32 value , void *context )
   {
   __cil_tmp7 = & response;
   *((acpi_size *)__cil_tmp7) = (acpi_size )-1;
-  __cil_tmp8 = (unsigned long )(& response) + 8;
-  *((void **)__cil_tmp8) = (void *)0;
+  *((void **)((void *)(&response) + 8)) = (void *)0;
   status = wmi_get_event_data(value, & response);
   }
   if (status != 0U) {
@@ -3108,8 +3097,7 @@ static void dell_wmi_aio_notify(u32 value , void *context )
     return;
   } else {
   }
-  __cil_tmp9 = (unsigned long )(& response) + 8;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)(&response) + 8));
   obj = (union acpi_object *)__cil_tmp10;
   if (obj) {
     {
@@ -3124,9 +3112,7 @@ static void dell_wmi_aio_notify(u32 value , void *context )
       case_1:
       {
       __cil_tmp12 = 0 + 8;
-      __cil_tmp13 = (unsigned long )obj;
-      __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-      __cil_tmp15 = *((u64 *)__cil_tmp14);
+      __cil_tmp15 = *((u64 *)((void *)obj + __cil_tmp12));
       scancode = (unsigned int )__cil_tmp15;
       __cil_tmp16 = (bool )1;
       sparse_keymap_report_event(dell_wmi_aio_input_dev, scancode, 1U, __cil_tmp16);
@@ -3135,20 +3121,14 @@ static void dell_wmi_aio_notify(u32 value , void *context )
       case_3:
       {
       __cil_tmp17 = 0 + 8;
-      __cil_tmp18 = (unsigned long )obj;
-      __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-      if (*((u8 **)__cil_tmp19)) {
+      if (*((u8 **)((void *)obj + __cil_tmp17))) {
         {
         __cil_tmp20 = 0 + 4;
-        __cil_tmp21 = (unsigned long )obj;
-        __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-        __cil_tmp23 = *((u32 *)__cil_tmp22);
+        __cil_tmp23 = *((u32 *)((void *)obj + __cil_tmp20));
         if (__cil_tmp23 > 0U) {
           {
           __cil_tmp24 = 0 + 8;
-          __cil_tmp25 = (unsigned long )obj;
-          __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-          __cil_tmp27 = *((u8 **)__cil_tmp26);
+          __cil_tmp27 = *((u8 **)((void *)obj + __cil_tmp24));
           __cil_tmp28 = __cil_tmp27 + 0;
           __cil_tmp29 = *__cil_tmp28;
           scancode = (unsigned int )__cil_tmp29;
@@ -3179,10 +3159,6 @@ static int dell_wmi_aio_input_setup(void) __attribute__((__section__(".init.text
 __no_instrument_function__)) ;
 static int dell_wmi_aio_input_setup(void)
 { int err ;
-  unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   struct key_entry const *__cil_tmp8 ;
@@ -3198,12 +3174,8 @@ static int dell_wmi_aio_input_setup(void)
   }
   {
   *((char const **)dell_wmi_aio_input_dev) = "Dell AIO WMI hotkeys";
-  __cil_tmp2 = (unsigned long )dell_wmi_aio_input_dev;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((char const **)__cil_tmp3) = "wmi/input0";
-  __cil_tmp4 = (unsigned long )dell_wmi_aio_input_dev;
-  __cil_tmp5 = __cil_tmp4 + 24;
-  *((__u16 *)__cil_tmp5) = (__u16 )25;
+  *((char const **)((void *)dell_wmi_aio_input_dev + 8)) = "wmi/input0";
+  *((__u16 *)((void *)dell_wmi_aio_input_dev + 24)) = (__u16 )25;
   __cil_tmp6 = 0 * 12UL;
   __cil_tmp7 = (unsigned long )(dell_wmi_aio_keymap) + __cil_tmp6;
   __cil_tmp8 = (struct key_entry const *)__cil_tmp7;

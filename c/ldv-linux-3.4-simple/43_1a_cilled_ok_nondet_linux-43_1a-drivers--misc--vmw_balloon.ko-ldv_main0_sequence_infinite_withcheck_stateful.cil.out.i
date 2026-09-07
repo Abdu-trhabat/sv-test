@@ -2558,13 +2558,10 @@ extern int printk(char const * , ...) ;
 extern int __dynamic_pr_debug(struct _ddebug * , char const * , ...) ;
 extern void __might_sleep(char const * , int , int ) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -2657,38 +2654,20 @@ static bool vmballoon_send_start(struct vmballoon *b )
   struct _ddebug descriptor ;
   long tmp ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   struct _ddebug *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned char __cil_tmp23 ;
   long __cil_tmp24 ;
   long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
   {
   __cil_tmp9 = 60 + 56;
-  __cil_tmp10 = (unsigned long )b;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
   __cil_tmp12 = 60 + 56;
-  __cil_tmp13 = (unsigned long )b;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
-  *((unsigned int *)__cil_tmp11) = __cil_tmp15 + 1U;
+  __cil_tmp15 = *((unsigned int *)((void *)b + __cil_tmp12));
+  *((unsigned int *)((void *)b + __cil_tmp9)) = __cil_tmp15 + 1U;
   __asm__ volatile ("inl (%%dx)": "=a" (__stat), "=c" (__dummy1), "=d" (__dummy2),
                        "=b" (dummy): "0" (1164733807), "1" (0), "2" (22128), "3" (2): "memory");
   dummy = dummy;
@@ -2700,18 +2679,12 @@ static bool vmballoon_send_start(struct vmballoon *b )
   {
   __cil_tmp16 = & descriptor;
   *((char const **)__cil_tmp16) = "vmw_balloon";
-  __cil_tmp17 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp17) = "vmballoon_send_start";
-  __cil_tmp18 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp18) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
-  __cil_tmp19 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp19) = "%s - failed, hv returns %ld\n";
-  __cil_tmp20 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp20) = 248U;
-  __cil_tmp21 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp21) = (unsigned char)0;
-  __cil_tmp22 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp23 = *((unsigned char *)__cil_tmp22);
+  *((char const **)((void *)(&descriptor) + 8)) = "vmballoon_send_start";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s - failed, hv returns %ld\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 248U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp23 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp24 = (long )__cil_tmp23;
   __cil_tmp25 = __cil_tmp24 & 1L;
   tmp = __builtin_expect(__cil_tmp25, 0L);
@@ -2724,19 +2697,14 @@ static bool vmballoon_send_start(struct vmballoon *b )
   } else {
   }
   __cil_tmp26 = 60 + 60;
-  __cil_tmp27 = (unsigned long )b;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
   __cil_tmp29 = 60 + 60;
-  __cil_tmp30 = (unsigned long )b;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = *((unsigned int *)__cil_tmp31);
-  *((unsigned int *)__cil_tmp28) = __cil_tmp32 + 1U;
+  __cil_tmp32 = *((unsigned int *)((void *)b + __cil_tmp29));
+  *((unsigned int *)((void *)b + __cil_tmp26)) = __cil_tmp32 + 1U;
   return ((bool )0);
 }
 }
 static bool vmballoon_check_status(struct vmballoon *b , unsigned long status )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   {
   if ((int )status == 0) {
     goto case_0;
@@ -2750,9 +2718,7 @@ static bool vmballoon_check_status(struct vmballoon *b , unsigned long status )
       case_0: ;
       return ((bool )1);
       case_7:
-      __cil_tmp3 = (unsigned long )b;
-      __cil_tmp4 = __cil_tmp3 + 44;
-      *((bool *)__cil_tmp4) = (bool )1;
+      *((bool *)((void *)b + 44)) = (bool )1;
       switch_default: ;
       return ((bool )0);
     } else {
@@ -2772,28 +2738,14 @@ static bool vmballoon_send_guest_id(struct vmballoon *b )
   struct _ddebug descriptor ;
   long tmp___0 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   struct _ddebug *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned char __cil_tmp24 ;
   long __cil_tmp25 ;
   long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned int __cil_tmp33 ;
   {
   {
@@ -2802,13 +2754,9 @@ static bool vmballoon_send_guest_id(struct vmballoon *b )
   dummy = dummy;
   status = __stat;
   __cil_tmp10 = 60 + 64;
-  __cil_tmp11 = (unsigned long )b;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
   __cil_tmp13 = 60 + 64;
-  __cil_tmp14 = (unsigned long )b;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = *((unsigned int *)__cil_tmp15);
-  *((unsigned int *)__cil_tmp12) = __cil_tmp16 + 1U;
+  __cil_tmp16 = *((unsigned int *)((void *)b + __cil_tmp13));
+  *((unsigned int *)((void *)b + __cil_tmp10)) = __cil_tmp16 + 1U;
   tmp = vmballoon_check_status(b, status);
   }
   if ((int )tmp) {
@@ -2818,18 +2766,12 @@ static bool vmballoon_send_guest_id(struct vmballoon *b )
   {
   __cil_tmp17 = & descriptor;
   *((char const **)__cil_tmp17) = "vmw_balloon";
-  __cil_tmp18 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp18) = "vmballoon_send_guest_id";
-  __cil_tmp19 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp19) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
-  __cil_tmp20 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp20) = "%s - failed, hv returns %ld\n";
-  __cil_tmp21 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp21) = 285U;
-  __cil_tmp22 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp22) = (unsigned char)0;
-  __cil_tmp23 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp24 = *((unsigned char *)__cil_tmp23);
+  *((char const **)((void *)(&descriptor) + 8)) = "vmballoon_send_guest_id";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s - failed, hv returns %ld\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 285U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp24 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp25 = (long )__cil_tmp24;
   __cil_tmp26 = __cil_tmp25 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp26, 0L);
@@ -2842,13 +2784,9 @@ static bool vmballoon_send_guest_id(struct vmballoon *b )
   } else {
   }
   __cil_tmp27 = 60 + 68;
-  __cil_tmp28 = (unsigned long )b;
-  __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
   __cil_tmp30 = 60 + 68;
-  __cil_tmp31 = (unsigned long )b;
-  __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-  __cil_tmp33 = *((unsigned int *)__cil_tmp32);
-  *((unsigned int *)__cil_tmp29) = __cil_tmp33 + 1U;
+  __cil_tmp33 = *((unsigned int *)((void *)b + __cil_tmp30));
+  *((unsigned int *)((void *)b + __cil_tmp27)) = __cil_tmp33 + 1U;
   return ((bool )0);
 }
 }
@@ -2863,47 +2801,25 @@ static bool vmballoon_send_get_target(struct vmballoon *b , u32 *new_target )
   bool tmp ;
   struct _ddebug descriptor ;
   long tmp___0 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct sysinfo *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   struct _ddebug *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned char __cil_tmp34 ;
   long __cil_tmp35 ;
   long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
   {
   {
-  __cil_tmp13 = (unsigned long )b;
-  __cil_tmp14 = __cil_tmp13 + 144;
-  __cil_tmp15 = (struct sysinfo *)__cil_tmp14;
+  __cil_tmp15 = (struct sysinfo *)((void *)b + 144);
   si_meminfo(__cil_tmp15);
   __cil_tmp16 = 144 + 32;
-  __cil_tmp17 = (unsigned long )b;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  limit = *((__kernel_ulong_t *)__cil_tmp18);
+  limit = *((__kernel_ulong_t *)((void *)b + __cil_tmp16));
   limit32 = (unsigned int )limit;
   }
   {
@@ -2915,13 +2831,9 @@ static bool vmballoon_send_get_target(struct vmballoon *b , u32 *new_target )
   }
   {
   __cil_tmp20 = 60 + 48;
-  __cil_tmp21 = (unsigned long )b;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
   __cil_tmp23 = 60 + 48;
-  __cil_tmp24 = (unsigned long )b;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  __cil_tmp26 = *((unsigned int *)__cil_tmp25);
-  *((unsigned int *)__cil_tmp22) = __cil_tmp26 + 1U;
+  __cil_tmp26 = *((unsigned int *)((void *)b + __cil_tmp23));
+  *((unsigned int *)((void *)b + __cil_tmp20)) = __cil_tmp26 + 1U;
   __asm__ volatile ("inl (%%dx)": "=a" (__stat), "=c" (__dummy1), "=d" (__dummy2),
                        "=b" (target): "0" (1164733807), "1" (1), "2" (22128), "3" (limit): "memory");
   target = target;
@@ -2936,18 +2848,12 @@ static bool vmballoon_send_get_target(struct vmballoon *b , u32 *new_target )
   {
   __cil_tmp27 = & descriptor;
   *((char const **)__cil_tmp27) = "vmw_balloon";
-  __cil_tmp28 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp28) = "vmballoon_send_get_target";
-  __cil_tmp29 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp29) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
-  __cil_tmp30 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp30) = "%s - failed, hv returns %ld\n";
-  __cil_tmp31 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp31) = 322U;
-  __cil_tmp32 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp32) = (unsigned char)0;
-  __cil_tmp33 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp34 = *((unsigned char *)__cil_tmp33);
+  *((char const **)((void *)(&descriptor) + 8)) = "vmballoon_send_get_target";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s - failed, hv returns %ld\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 322U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp34 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp35 = (long )__cil_tmp34;
   __cil_tmp36 = __cil_tmp35 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp36, 0L);
@@ -2960,13 +2866,9 @@ static bool vmballoon_send_get_target(struct vmballoon *b , u32 *new_target )
   } else {
   }
   __cil_tmp37 = 60 + 52;
-  __cil_tmp38 = (unsigned long )b;
-  __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
   __cil_tmp40 = 60 + 52;
-  __cil_tmp41 = (unsigned long )b;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-  __cil_tmp43 = *((unsigned int *)__cil_tmp42);
-  *((unsigned int *)__cil_tmp39) = __cil_tmp43 + 1U;
+  __cil_tmp43 = *((unsigned int *)((void *)b + __cil_tmp40));
+  *((unsigned int *)((void *)b + __cil_tmp37)) = __cil_tmp43 + 1U;
   return ((bool )0);
 }
 }
@@ -2982,28 +2884,14 @@ static int vmballoon_send_lock_page(struct vmballoon *b , unsigned long pfn , un
   long tmp___0 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   struct _ddebug *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned char __cil_tmp28 ;
   long __cil_tmp29 ;
   long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   {
   pfn32 = (unsigned int )pfn;
@@ -3016,13 +2904,9 @@ static int vmballoon_send_lock_page(struct vmballoon *b , unsigned long pfn , un
   }
   {
   __cil_tmp14 = 60 + 32;
-  __cil_tmp15 = (unsigned long )b;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
   __cil_tmp17 = 60 + 32;
-  __cil_tmp18 = (unsigned long )b;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = *((unsigned int *)__cil_tmp19);
-  *((unsigned int *)__cil_tmp16) = __cil_tmp20 + 1U;
+  __cil_tmp20 = *((unsigned int *)((void *)b + __cil_tmp17));
+  *((unsigned int *)((void *)b + __cil_tmp14)) = __cil_tmp20 + 1U;
   __asm__ volatile ("inl (%%dx)": "=a" (__stat), "=c" (__dummy1), "=d" (__dummy2),
                        "=b" (dummy): "0" (1164733807), "1" (2), "2" (22128), "3" (pfn): "memory");
   dummy = dummy;
@@ -3037,18 +2921,12 @@ static int vmballoon_send_lock_page(struct vmballoon *b , unsigned long pfn , un
   {
   __cil_tmp21 = & descriptor;
   *((char const **)__cil_tmp21) = "vmw_balloon";
-  __cil_tmp22 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp22) = "vmballoon_send_lock_page";
-  __cil_tmp23 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp23) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
-  __cil_tmp24 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp24) = "%s - ppn %lx, hv returns %ld\n";
-  __cil_tmp25 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp25) = 348U;
-  __cil_tmp26 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp26) = (unsigned char)0;
-  __cil_tmp27 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp28 = *((unsigned char *)__cil_tmp27);
+  *((char const **)((void *)(&descriptor) + 8)) = "vmballoon_send_lock_page";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s - ppn %lx, hv returns %ld\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 348U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp28 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp29 = (long )__cil_tmp28;
   __cil_tmp30 = __cil_tmp29 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp30, 0L);
@@ -3061,13 +2939,9 @@ static int vmballoon_send_lock_page(struct vmballoon *b , unsigned long pfn , un
   } else {
   }
   __cil_tmp31 = 60 + 36;
-  __cil_tmp32 = (unsigned long )b;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
   __cil_tmp34 = 60 + 36;
-  __cil_tmp35 = (unsigned long )b;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  __cil_tmp37 = *((unsigned int *)__cil_tmp36);
-  *((unsigned int *)__cil_tmp33) = __cil_tmp37 + 1U;
+  __cil_tmp37 = *((unsigned int *)((void *)b + __cil_tmp34));
+  *((unsigned int *)((void *)b + __cil_tmp31)) = __cil_tmp37 + 1U;
   return (1);
 }
 }
@@ -3083,28 +2957,14 @@ static bool vmballoon_send_unlock_page(struct vmballoon *b , unsigned long pfn )
   long tmp___0 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   struct _ddebug *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned char __cil_tmp27 ;
   long __cil_tmp28 ;
   long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
   {
   pfn32 = (unsigned int )pfn;
@@ -3117,13 +2977,9 @@ static bool vmballoon_send_unlock_page(struct vmballoon *b , unsigned long pfn )
   }
   {
   __cil_tmp13 = 60 + 40;
-  __cil_tmp14 = (unsigned long )b;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
   __cil_tmp16 = 60 + 40;
-  __cil_tmp17 = (unsigned long )b;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = *((unsigned int *)__cil_tmp18);
-  *((unsigned int *)__cil_tmp15) = __cil_tmp19 + 1U;
+  __cil_tmp19 = *((unsigned int *)((void *)b + __cil_tmp16));
+  *((unsigned int *)((void *)b + __cil_tmp13)) = __cil_tmp19 + 1U;
   __asm__ volatile ("inl (%%dx)": "=a" (__stat), "=c" (__dummy1), "=d" (__dummy2),
                        "=b" (dummy): "0" (1164733807), "1" (3), "2" (22128), "3" (pfn): "memory");
   dummy = dummy;
@@ -3137,18 +2993,12 @@ static bool vmballoon_send_unlock_page(struct vmballoon *b , unsigned long pfn )
   {
   __cil_tmp20 = & descriptor;
   *((char const **)__cil_tmp20) = "vmw_balloon";
-  __cil_tmp21 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp21) = "vmballoon_send_unlock_page";
-  __cil_tmp22 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp22) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
-  __cil_tmp23 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp23) = "%s - ppn %lx, hv returns %ld\n";
-  __cil_tmp24 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp24) = 372U;
-  __cil_tmp25 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp25) = (unsigned char)0;
-  __cil_tmp26 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp27 = *((unsigned char *)__cil_tmp26);
+  *((char const **)((void *)(&descriptor) + 8)) = "vmballoon_send_unlock_page";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s - ppn %lx, hv returns %ld\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 372U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp27 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp28 = (long )__cil_tmp27;
   __cil_tmp29 = __cil_tmp28 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp29, 0L);
@@ -3161,13 +3011,9 @@ static bool vmballoon_send_unlock_page(struct vmballoon *b , unsigned long pfn )
   } else {
   }
   __cil_tmp30 = 60 + 44;
-  __cil_tmp31 = (unsigned long )b;
-  __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
   __cil_tmp33 = 60 + 44;
-  __cil_tmp34 = (unsigned long )b;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  __cil_tmp36 = *((unsigned int *)__cil_tmp35);
-  *((unsigned int *)__cil_tmp32) = __cil_tmp36 + 1U;
+  __cil_tmp36 = *((unsigned int *)((void *)b + __cil_tmp33));
+  *((unsigned int *)((void *)b + __cil_tmp30)) = __cil_tmp36 + 1U;
   return ((bool )0);
 }
 }
@@ -3180,36 +3026,18 @@ static void vmballoon_pop(struct vmballoon *b )
   struct list_head const *__mptr___1 ;
   struct list_head *__cil_tmp8 ;
   struct page *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct list_head *__cil_tmp12 ;
   struct page *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct list_head *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct list_head *__cil_tmp34 ;
   struct page *__cil_tmp35 ;
   struct list_head *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct list_head *__cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   {
@@ -3218,40 +3046,26 @@ static void vmballoon_pop(struct vmballoon *b )
   __mptr = (struct list_head const *)__cil_tmp8;
   __cil_tmp9 = (struct page *)__mptr;
   page = __cil_tmp9 + 0xffffffffffffffe0UL;
-  __cil_tmp10 = (unsigned long )page;
-  __cil_tmp11 = __cil_tmp10 + 32;
-  __cil_tmp12 = *((struct list_head **)__cil_tmp11);
+  __cil_tmp12 = *((struct list_head **)((void *)page + 32));
   __mptr___0 = (struct list_head const *)__cil_tmp12;
   __cil_tmp13 = (struct page *)__mptr___0;
   next = __cil_tmp13 + 0xffffffffffffffe0UL;
   goto ldv_23443;
   ldv_23442:
   {
-  __cil_tmp14 = (unsigned long )page;
-  __cil_tmp15 = __cil_tmp14 + 32;
-  __cil_tmp16 = (struct list_head *)__cil_tmp15;
+  __cil_tmp16 = (struct list_head *)((void *)page + 32);
   list_del(__cil_tmp16);
   __free_pages(page, 0U);
   __cil_tmp17 = 60 + 28;
-  __cil_tmp18 = (unsigned long )b;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
   __cil_tmp20 = 60 + 28;
-  __cil_tmp21 = (unsigned long )b;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  __cil_tmp23 = *((unsigned int *)__cil_tmp22);
-  *((unsigned int *)__cil_tmp19) = __cil_tmp23 + 1U;
-  __cil_tmp24 = (unsigned long )b;
-  __cil_tmp25 = __cil_tmp24 + 36;
-  __cil_tmp26 = (unsigned long )b;
-  __cil_tmp27 = __cil_tmp26 + 36;
-  __cil_tmp28 = *((unsigned int *)__cil_tmp27);
-  *((unsigned int *)__cil_tmp25) = __cil_tmp28 - 1U;
+  __cil_tmp23 = *((unsigned int *)((void *)b + __cil_tmp20));
+  *((unsigned int *)((void *)b + __cil_tmp17)) = __cil_tmp23 + 1U;
+  __cil_tmp28 = *((unsigned int *)((void *)b + 36));
+  *((unsigned int *)((void *)b + 36)) = __cil_tmp28 - 1U;
   count = count + 1U;
   }
   {
-  __cil_tmp29 = (unsigned long )b;
-  __cil_tmp30 = __cil_tmp29 + 52;
-  __cil_tmp31 = *((unsigned int *)__cil_tmp30);
+  __cil_tmp31 = *((unsigned int *)((void *)b + 52));
   if (count >= __cil_tmp31) {
     {
     count = 0U;
@@ -3263,9 +3077,7 @@ static void vmballoon_pop(struct vmballoon *b )
   }
   }
   page = next;
-  __cil_tmp32 = (unsigned long )next;
-  __cil_tmp33 = __cil_tmp32 + 32;
-  __cil_tmp34 = *((struct list_head **)__cil_tmp33);
+  __cil_tmp34 = *((struct list_head **)((void *)next + 32));
   __mptr___1 = (struct list_head const *)__cil_tmp34;
   __cil_tmp35 = (struct page *)__mptr___1;
   next = __cil_tmp35 + 0xffffffffffffffe0UL;
@@ -3273,9 +3085,7 @@ static void vmballoon_pop(struct vmballoon *b )
   {
   __cil_tmp36 = (struct list_head *)b;
   __cil_tmp37 = (unsigned long )__cil_tmp36;
-  __cil_tmp38 = (unsigned long )page;
-  __cil_tmp39 = __cil_tmp38 + 32;
-  __cil_tmp40 = (struct list_head *)__cil_tmp39;
+  __cil_tmp40 = (struct list_head *)((void *)page + 32);
   __cil_tmp41 = (unsigned long )__cil_tmp40;
   if (__cil_tmp41 != __cil_tmp37) {
     goto ldv_23442;
@@ -3291,8 +3101,6 @@ static void vmballoon_reset(struct vmballoon *b )
 { bool tmp ;
   int tmp___0 ;
   bool tmp___1 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   {
   {
   vmballoon_pop(b);
@@ -3300,9 +3108,7 @@ static void vmballoon_reset(struct vmballoon *b )
   }
   if ((int )tmp___1) {
     {
-    __cil_tmp5 = (unsigned long )b;
-    __cil_tmp6 = __cil_tmp5 + 44;
-    *((bool *)__cil_tmp6) = (bool )0;
+    *((bool *)((void *)b + 44)) = (bool )0;
     tmp = vmballoon_send_guest_id(b);
     }
     if (tmp) {
@@ -3327,73 +3133,37 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
   unsigned int hv_status ;
   int locked ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   struct page *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   long __cil_tmp38 ;
   long __cil_tmp39 ;
   long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned int __cil_tmp48 ;
   unsigned int *__cil_tmp49 ;
   unsigned int __cil_tmp50 ;
   unsigned int *__cil_tmp51 ;
   unsigned int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct list_head *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct list_head *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   unsigned int __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned int __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct list_head *__cil_tmp69 ;
   struct list_head *__cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   unsigned int __cil_tmp75 ;
   {
   if ((int )can_sleep) {
@@ -3404,22 +3174,14 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
   ldv_23456: ;
   if (! can_sleep) {
     __cil_tmp7 = 60 + 4;
-    __cil_tmp8 = (unsigned long )b;
-    __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
     __cil_tmp10 = 60 + 4;
-    __cil_tmp11 = (unsigned long )b;
-    __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-    __cil_tmp13 = *((unsigned int *)__cil_tmp12);
-    *((unsigned int *)__cil_tmp9) = __cil_tmp13 + 1U;
+    __cil_tmp13 = *((unsigned int *)((void *)b + __cil_tmp10));
+    *((unsigned int *)((void *)b + __cil_tmp7)) = __cil_tmp13 + 1U;
   } else {
     __cil_tmp14 = 60 + 12;
-    __cil_tmp15 = (unsigned long )b;
-    __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
     __cil_tmp17 = 60 + 12;
-    __cil_tmp18 = (unsigned long )b;
-    __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-    __cil_tmp20 = *((unsigned int *)__cil_tmp19);
-    *((unsigned int *)__cil_tmp16) = __cil_tmp20 + 1U;
+    __cil_tmp20 = *((unsigned int *)((void *)b + __cil_tmp17));
+    *((unsigned int *)((void *)b + __cil_tmp14)) = __cil_tmp20 + 1U;
   }
   {
   page = alloc_pages(flags, 0U);
@@ -3431,22 +3193,14 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
   if (__cil_tmp23 == __cil_tmp22) {
     if (! can_sleep) {
       __cil_tmp24 = 60 + 8;
-      __cil_tmp25 = (unsigned long )b;
-      __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
       __cil_tmp27 = 60 + 8;
-      __cil_tmp28 = (unsigned long )b;
-      __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-      __cil_tmp30 = *((unsigned int *)__cil_tmp29);
-      *((unsigned int *)__cil_tmp26) = __cil_tmp30 + 1U;
+      __cil_tmp30 = *((unsigned int *)((void *)b + __cil_tmp27));
+      *((unsigned int *)((void *)b + __cil_tmp24)) = __cil_tmp30 + 1U;
     } else {
       __cil_tmp31 = 60 + 16;
-      __cil_tmp32 = (unsigned long )b;
-      __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
       __cil_tmp34 = 60 + 16;
-      __cil_tmp35 = (unsigned long )b;
-      __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-      __cil_tmp37 = *((unsigned int *)__cil_tmp36);
-      *((unsigned int *)__cil_tmp33) = __cil_tmp37 + 1U;
+      __cil_tmp37 = *((unsigned int *)((void *)b + __cil_tmp34));
+      *((unsigned int *)((void *)b + __cil_tmp31)) = __cil_tmp37 + 1U;
     }
     return (-12);
   } else {
@@ -3461,13 +3215,9 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
   }
   if (locked > 0) {
     __cil_tmp42 = 60 + 20;
-    __cil_tmp43 = (unsigned long )b;
-    __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
     __cil_tmp45 = 60 + 20;
-    __cil_tmp46 = (unsigned long )b;
-    __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-    __cil_tmp48 = *((unsigned int *)__cil_tmp47);
-    *((unsigned int *)__cil_tmp44) = __cil_tmp48 + 1U;
+    __cil_tmp48 = *((unsigned int *)((void *)b + __cil_tmp45));
+    *((unsigned int *)((void *)b + __cil_tmp42)) = __cil_tmp48 + 1U;
     {
     __cil_tmp49 = & hv_status;
     __cil_tmp50 = *__cil_tmp49;
@@ -3491,24 +3241,14 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
     }
     }
     {
-    __cil_tmp53 = (unsigned long )page;
-    __cil_tmp54 = __cil_tmp53 + 32;
-    __cil_tmp55 = (struct list_head *)__cil_tmp54;
-    __cil_tmp56 = (unsigned long )b;
-    __cil_tmp57 = __cil_tmp56 + 16;
-    __cil_tmp58 = (struct list_head *)__cil_tmp57;
+    __cil_tmp55 = (struct list_head *)((void *)page + 32);
+    __cil_tmp58 = (struct list_head *)((void *)b + 16);
     list_add(__cil_tmp55, __cil_tmp58);
-    __cil_tmp59 = (unsigned long )b;
-    __cil_tmp60 = __cil_tmp59 + 32;
-    __cil_tmp61 = (unsigned long )b;
-    __cil_tmp62 = __cil_tmp61 + 32;
-    __cil_tmp63 = *((unsigned int *)__cil_tmp62);
-    *((unsigned int *)__cil_tmp60) = __cil_tmp63 + 1U;
+    __cil_tmp63 = *((unsigned int *)((void *)b + 32));
+    *((unsigned int *)((void *)b + 32)) = __cil_tmp63 + 1U;
     }
     {
-    __cil_tmp64 = (unsigned long )b;
-    __cil_tmp65 = __cil_tmp64 + 32;
-    __cil_tmp66 = *((unsigned int *)__cil_tmp65);
+    __cil_tmp66 = *((unsigned int *)((void *)b + 32));
     if (__cil_tmp66 > 15U) {
       return (-5);
     } else {
@@ -3523,17 +3263,11 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
   }
   ldv_23457:
   {
-  __cil_tmp67 = (unsigned long )page;
-  __cil_tmp68 = __cil_tmp67 + 32;
-  __cil_tmp69 = (struct list_head *)__cil_tmp68;
+  __cil_tmp69 = (struct list_head *)((void *)page + 32);
   __cil_tmp70 = (struct list_head *)b;
   list_add(__cil_tmp69, __cil_tmp70);
-  __cil_tmp71 = (unsigned long )b;
-  __cil_tmp72 = __cil_tmp71 + 36;
-  __cil_tmp73 = (unsigned long )b;
-  __cil_tmp74 = __cil_tmp73 + 36;
-  __cil_tmp75 = *((unsigned int *)__cil_tmp74);
-  *((unsigned int *)__cil_tmp72) = __cil_tmp75 + 1U;
+  __cil_tmp75 = *((unsigned int *)((void *)b + 36));
+  *((unsigned int *)((void *)b + 36)) = __cil_tmp75 + 1U;
   }
   return (0);
 }
@@ -3545,20 +3279,10 @@ static int vmballoon_release_page(struct vmballoon *b , struct page *page )
   long __cil_tmp6 ;
   long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct list_head *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   {
   {
@@ -3578,25 +3302,15 @@ static int vmballoon_release_page(struct vmballoon *b , struct page *page )
   } else {
   }
   {
-  __cil_tmp9 = (unsigned long )page;
-  __cil_tmp10 = __cil_tmp9 + 32;
-  __cil_tmp11 = (struct list_head *)__cil_tmp10;
+  __cil_tmp11 = (struct list_head *)((void *)page + 32);
   list_del(__cil_tmp11);
   __free_pages(page, 0U);
   __cil_tmp12 = 60 + 28;
-  __cil_tmp13 = (unsigned long )b;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
   __cil_tmp15 = 60 + 28;
-  __cil_tmp16 = (unsigned long )b;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = *((unsigned int *)__cil_tmp17);
-  *((unsigned int *)__cil_tmp14) = __cil_tmp18 + 1U;
-  __cil_tmp19 = (unsigned long )b;
-  __cil_tmp20 = __cil_tmp19 + 36;
-  __cil_tmp21 = (unsigned long )b;
-  __cil_tmp22 = __cil_tmp21 + 36;
-  __cil_tmp23 = *((unsigned int *)__cil_tmp22);
-  *((unsigned int *)__cil_tmp20) = __cil_tmp23 - 1U;
+  __cil_tmp18 = *((unsigned int *)((void *)b + __cil_tmp15));
+  *((unsigned int *)((void *)b + __cil_tmp12)) = __cil_tmp18 + 1U;
+  __cil_tmp23 = *((unsigned int *)((void *)b + 36));
+  *((unsigned int *)((void *)b + 36)) = __cil_tmp23 - 1U;
   }
   return (0);
 }
@@ -3607,84 +3321,50 @@ static void vmballoon_release_refused_pages(struct vmballoon *b )
   struct list_head const *__mptr ;
   struct list_head const *__mptr___0 ;
   struct list_head const *__mptr___1 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct list_head *__cil_tmp9 ;
   struct page *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct list_head *__cil_tmp13 ;
   struct page *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct list_head *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct list_head *__cil_tmp27 ;
   struct page *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct list_head *__cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct list_head *__cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   {
-  __cil_tmp7 = (unsigned long )b;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  __cil_tmp9 = *((struct list_head **)__cil_tmp8);
+  __cil_tmp9 = *((struct list_head **)((void *)b + 16));
   __mptr = (struct list_head const *)__cil_tmp9;
   __cil_tmp10 = (struct page *)__mptr;
   page = __cil_tmp10 + 0xffffffffffffffe0UL;
-  __cil_tmp11 = (unsigned long )page;
-  __cil_tmp12 = __cil_tmp11 + 32;
-  __cil_tmp13 = *((struct list_head **)__cil_tmp12);
+  __cil_tmp13 = *((struct list_head **)((void *)page + 32));
   __mptr___0 = (struct list_head const *)__cil_tmp13;
   __cil_tmp14 = (struct page *)__mptr___0;
   next = __cil_tmp14 + 0xffffffffffffffe0UL;
   goto ldv_23474;
   ldv_23473:
   {
-  __cil_tmp15 = (unsigned long )page;
-  __cil_tmp16 = __cil_tmp15 + 32;
-  __cil_tmp17 = (struct list_head *)__cil_tmp16;
+  __cil_tmp17 = (struct list_head *)((void *)page + 32);
   list_del(__cil_tmp17);
   __free_pages(page, 0U);
   __cil_tmp18 = 60 + 24;
-  __cil_tmp19 = (unsigned long )b;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
   __cil_tmp21 = 60 + 24;
-  __cil_tmp22 = (unsigned long )b;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  __cil_tmp24 = *((unsigned int *)__cil_tmp23);
-  *((unsigned int *)__cil_tmp20) = __cil_tmp24 + 1U;
+  __cil_tmp24 = *((unsigned int *)((void *)b + __cil_tmp21));
+  *((unsigned int *)((void *)b + __cil_tmp18)) = __cil_tmp24 + 1U;
   page = next;
-  __cil_tmp25 = (unsigned long )next;
-  __cil_tmp26 = __cil_tmp25 + 32;
-  __cil_tmp27 = *((struct list_head **)__cil_tmp26);
+  __cil_tmp27 = *((struct list_head **)((void *)next + 32));
   __mptr___1 = (struct list_head const *)__cil_tmp27;
   __cil_tmp28 = (struct page *)__mptr___1;
   next = __cil_tmp28 + 0xffffffffffffffe0UL;
   }
   ldv_23474: ;
   {
-  __cil_tmp29 = (unsigned long )b;
-  __cil_tmp30 = __cil_tmp29 + 16;
-  __cil_tmp31 = (struct list_head *)__cil_tmp30;
+  __cil_tmp31 = (struct list_head *)((void *)b + 16);
   __cil_tmp32 = (unsigned long )__cil_tmp31;
-  __cil_tmp33 = (unsigned long )page;
-  __cil_tmp34 = __cil_tmp33 + 32;
-  __cil_tmp35 = (struct list_head *)__cil_tmp34;
+  __cil_tmp35 = (struct list_head *)((void *)page + 32);
   __cil_tmp36 = (unsigned long )__cil_tmp35;
   if (__cil_tmp36 != __cil_tmp32) {
     goto ldv_23473;
@@ -3693,9 +3373,7 @@ static void vmballoon_release_refused_pages(struct vmballoon *b )
   }
   }
   ldv_23475:
-  __cil_tmp37 = (unsigned long )b;
-  __cil_tmp38 = __cil_tmp37 + 32;
-  *((unsigned int *)__cil_tmp38) = 0U;
+  *((unsigned int *)((void *)b + 32)) = 0U;
   return;
 }
 }
@@ -3718,71 +3396,27 @@ static void vmballoon_inflate(struct vmballoon *b )
   unsigned int _min2 ;
   unsigned int tmp___2 ;
   struct _ddebug *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned char __cil_tmp26 ;
   long __cil_tmp27 ;
   long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct _ddebug *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned char __cil_tmp53 ;
   long __cil_tmp54 ;
   long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
   int __cil_tmp59 ;
   bool __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   unsigned int __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   unsigned int __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   unsigned int __cil_tmp78 ;
   unsigned int __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   unsigned int __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   {
   {
   allocations = 0U;
@@ -3790,50 +3424,32 @@ static void vmballoon_inflate(struct vmballoon *b )
   alloc_can_sleep = (bool )0;
   __cil_tmp19 = & descriptor;
   *((char const **)__cil_tmp19) = "vmw_balloon";
-  __cil_tmp20 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp20) = "vmballoon_inflate";
-  __cil_tmp21 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp21) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
-  __cil_tmp22 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp22) = "%s - size: %d, target %d\n";
-  __cil_tmp23 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp23) = 531U;
-  __cil_tmp24 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp24) = (unsigned char)0;
-  __cil_tmp25 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp26 = *((unsigned char *)__cil_tmp25);
+  *((char const **)((void *)(&descriptor) + 8)) = "vmballoon_inflate";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s - size: %d, target %d\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 531U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp26 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp27 = (long )__cil_tmp26;
   __cil_tmp28 = __cil_tmp27 & 1L;
   tmp = __builtin_expect(__cil_tmp28, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp29 = (unsigned long )b;
-    __cil_tmp30 = __cil_tmp29 + 36;
-    __cil_tmp31 = *((unsigned int *)__cil_tmp30);
-    __cil_tmp32 = (unsigned long )b;
-    __cil_tmp33 = __cil_tmp32 + 40;
-    __cil_tmp34 = *((unsigned int *)__cil_tmp33);
+    __cil_tmp31 = *((unsigned int *)((void *)b + 36));
+    __cil_tmp34 = *((unsigned int *)((void *)b + 40));
     __dynamic_pr_debug(& descriptor, "vmw_balloon: %s - size: %d, target %d\n", "vmballoon_inflate",
                        __cil_tmp31, __cil_tmp34);
     }
   } else {
   }
-  __cil_tmp35 = (unsigned long )b;
-  __cil_tmp36 = __cil_tmp35 + 36;
-  __cil_tmp37 = *((unsigned int *)__cil_tmp36);
-  __cil_tmp38 = (unsigned long )b;
-  __cil_tmp39 = __cil_tmp38 + 40;
-  __cil_tmp40 = *((unsigned int *)__cil_tmp39);
+  __cil_tmp37 = *((unsigned int *)((void *)b + 36));
+  __cil_tmp40 = *((unsigned int *)((void *)b + 40));
   goal = __cil_tmp40 - __cil_tmp37;
   {
-  __cil_tmp41 = (unsigned long )b;
-  __cil_tmp42 = __cil_tmp41 + 56;
-  __cil_tmp43 = *((unsigned int *)__cil_tmp42);
+  __cil_tmp43 = *((unsigned int *)((void *)b + 56));
   if (__cil_tmp43 != 0U) {
-    __cil_tmp44 = (unsigned long )b;
-    __cil_tmp45 = __cil_tmp44 + 48;
-    rate = *((unsigned int *)__cil_tmp45);
+    rate = *((unsigned int *)((void *)b + 48));
   } else {
     rate = 16384U;
   }
@@ -3841,27 +3457,19 @@ static void vmballoon_inflate(struct vmballoon *b )
   {
   __cil_tmp46 = & descriptor___0;
   *((char const **)__cil_tmp46) = "vmw_balloon";
-  __cil_tmp47 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp47) = "vmballoon_inflate";
-  __cil_tmp48 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp48) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
-  __cil_tmp49 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp49) = "%s - goal: %d, no-sleep rate: %d, sleep rate: %d\n";
-  __cil_tmp50 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp50) = 557U;
-  __cil_tmp51 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp51) = (unsigned char)0;
-  __cil_tmp52 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp53 = *((unsigned char *)__cil_tmp52);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "vmballoon_inflate";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "%s - goal: %d, no-sleep rate: %d, sleep rate: %d\n";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 557U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+  __cil_tmp53 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp54 = (long )__cil_tmp53;
   __cil_tmp55 = __cil_tmp54 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp55, 0L);
   }
   if (tmp___0 != 0L) {
     {
-    __cil_tmp56 = (unsigned long )b;
-    __cil_tmp57 = __cil_tmp56 + 48;
-    __cil_tmp58 = *((unsigned int *)__cil_tmp57);
+    __cil_tmp58 = *((unsigned int *)((void *)b + 48));
     __dynamic_pr_debug(& descriptor___0, "vmw_balloon: %s - goal: %d, no-sleep rate: %d, sleep rate: %d\n",
                        "vmballoon_inflate", goal, rate, __cil_tmp58);
     }
@@ -3881,9 +3489,7 @@ static void vmballoon_inflate(struct vmballoon *b )
     } else {
     }
     if ((int )alloc_can_sleep) {
-      __cil_tmp61 = (unsigned long )b;
-      __cil_tmp62 = __cil_tmp61 + 48;
-      __cil_tmp63 = *((unsigned int *)__cil_tmp62);
+      __cil_tmp63 = *((unsigned int *)((void *)b + 48));
       _max1 = __cil_tmp63 / 2U;
       _max2 = 512U;
       if (_max1 > _max2) {
@@ -3891,28 +3497,20 @@ static void vmballoon_inflate(struct vmballoon *b )
       } else {
         tmp___1 = _max2;
       }
-      __cil_tmp64 = (unsigned long )b;
-      __cil_tmp65 = __cil_tmp64 + 48;
-      *((unsigned int *)__cil_tmp65) = tmp___1;
+      *((unsigned int *)((void *)b + 48)) = tmp___1;
       goto ldv_23488;
     } else {
     }
-    __cil_tmp66 = (unsigned long )b;
-    __cil_tmp67 = __cil_tmp66 + 56;
-    *((unsigned int *)__cil_tmp67) = 4U;
+    *((unsigned int *)((void *)b + 56)) = 4U;
     {
-    __cil_tmp68 = (unsigned long )b;
-    __cil_tmp69 = __cil_tmp68 + 48;
-    __cil_tmp70 = *((unsigned int *)__cil_tmp69);
+    __cil_tmp70 = *((unsigned int *)((void *)b + 48));
     if (__cil_tmp70 <= i) {
       goto ldv_23488;
     } else {
     }
     }
     alloc_can_sleep = (bool )1;
-    __cil_tmp71 = (unsigned long )b;
-    __cil_tmp72 = __cil_tmp71 + 48;
-    rate = *((unsigned int *)__cil_tmp72);
+    rate = *((unsigned int *)((void *)b + 48));
   } else {
   }
   allocations = allocations + 1U;
@@ -3939,18 +3537,12 @@ static void vmballoon_inflate(struct vmballoon *b )
   ldv_23488: ;
   if (error == 0) {
     {
-    __cil_tmp73 = (unsigned long )b;
-    __cil_tmp74 = __cil_tmp73 + 48;
-    __cil_tmp75 = *((unsigned int *)__cil_tmp74);
+    __cil_tmp75 = *((unsigned int *)((void *)b + 48));
     if (__cil_tmp75 <= i) {
-      __cil_tmp76 = (unsigned long )b;
-      __cil_tmp77 = __cil_tmp76 + 48;
-      __cil_tmp78 = *((unsigned int *)__cil_tmp77);
+      __cil_tmp78 = *((unsigned int *)((void *)b + 48));
       mult = i / __cil_tmp78;
       __cil_tmp79 = mult * 16U;
-      __cil_tmp80 = (unsigned long )b;
-      __cil_tmp81 = __cil_tmp80 + 48;
-      __cil_tmp82 = *((unsigned int *)__cil_tmp81);
+      __cil_tmp82 = *((unsigned int *)((void *)b + 48));
       _min1 = __cil_tmp82 + __cil_tmp79;
       _min2 = 2048U;
       if (_min1 < _min2) {
@@ -3958,9 +3550,7 @@ static void vmballoon_inflate(struct vmballoon *b )
       } else {
         tmp___2 = _min2;
       }
-      __cil_tmp83 = (unsigned long )b;
-      __cil_tmp84 = __cil_tmp83 + 48;
-      *((unsigned int *)__cil_tmp84) = tmp___2;
+      *((unsigned int *)((void *)b + 48)) = tmp___2;
     } else {
     }
     }
@@ -3995,112 +3585,58 @@ static void vmballoon_deflate(struct vmballoon *b )
   unsigned int _min2___0 ;
   unsigned int tmp___3 ;
   struct _ddebug *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned char __cil_tmp30 ;
   long __cil_tmp31 ;
   long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned int __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct _ddebug *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned char __cil_tmp54 ;
   long __cil_tmp55 ;
   long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   unsigned int __cil_tmp59 ;
   struct list_head *__cil_tmp60 ;
   struct page *__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   struct list_head *__cil_tmp64 ;
   struct page *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   unsigned int __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   struct list_head *__cil_tmp73 ;
   struct page *__cil_tmp74 ;
   struct list_head *__cil_tmp75 ;
   unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct list_head *__cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   unsigned int __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   {
   {
   i = 0U;
   __cil_tmp23 = & descriptor;
   *((char const **)__cil_tmp23) = "vmw_balloon";
-  __cil_tmp24 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp24) = "vmballoon_deflate";
-  __cil_tmp25 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp25) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
-  __cil_tmp26 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp26) = "%s - size: %d, target %d\n";
-  __cil_tmp27 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp27) = 637U;
-  __cil_tmp28 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp28) = (unsigned char)0;
-  __cil_tmp29 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp30 = *((unsigned char *)__cil_tmp29);
+  *((char const **)((void *)(&descriptor) + 8)) = "vmballoon_deflate";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s - size: %d, target %d\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 637U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp30 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp31 = (long )__cil_tmp30;
   __cil_tmp32 = __cil_tmp31 & 1L;
   tmp = __builtin_expect(__cil_tmp32, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp33 = (unsigned long )b;
-    __cil_tmp34 = __cil_tmp33 + 36;
-    __cil_tmp35 = *((unsigned int *)__cil_tmp34);
-    __cil_tmp36 = (unsigned long )b;
-    __cil_tmp37 = __cil_tmp36 + 40;
-    __cil_tmp38 = *((unsigned int *)__cil_tmp37);
+    __cil_tmp35 = *((unsigned int *)((void *)b + 36));
+    __cil_tmp38 = *((unsigned int *)((void *)b + 40));
     __dynamic_pr_debug(& descriptor, "vmw_balloon: %s - size: %d, target %d\n", "vmballoon_deflate",
                        __cil_tmp35, __cil_tmp38);
     }
   } else {
   }
-  __cil_tmp39 = (unsigned long )b;
-  __cil_tmp40 = __cil_tmp39 + 40;
-  __cil_tmp41 = *((unsigned int *)__cil_tmp40);
-  __cil_tmp42 = (unsigned long )b;
-  __cil_tmp43 = __cil_tmp42 + 36;
-  __cil_tmp44 = *((unsigned int *)__cil_tmp43);
+  __cil_tmp41 = *((unsigned int *)((void *)b + 40));
+  __cil_tmp44 = *((unsigned int *)((void *)b + 36));
   _min1 = __cil_tmp44 - __cil_tmp41;
-  __cil_tmp45 = (unsigned long )b;
-  __cil_tmp46 = __cil_tmp45 + 52;
-  _min2 = *((unsigned int *)__cil_tmp46);
+  _min2 = *((unsigned int *)((void *)b + 52));
   if (_min1 < _min2) {
     tmp___0 = _min1;
   } else {
@@ -4110,27 +3646,19 @@ static void vmballoon_deflate(struct vmballoon *b )
   goal = tmp___0;
   __cil_tmp47 = & descriptor___0;
   *((char const **)__cil_tmp47) = "vmw_balloon";
-  __cil_tmp48 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp48) = "vmballoon_deflate";
-  __cil_tmp49 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp49) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
-  __cil_tmp50 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp50) = "%s - goal: %d, rate: %d\n";
-  __cil_tmp51 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp51) = 642U;
-  __cil_tmp52 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp52) = (unsigned char)0;
-  __cil_tmp53 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp54 = *((unsigned char *)__cil_tmp53);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "vmballoon_deflate";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12650/dscv_tempdir/dscv/ri/43_1a/drivers/misc/vmw_balloon.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "%s - goal: %d, rate: %d\n";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 642U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+  __cil_tmp54 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp55 = (long )__cil_tmp54;
   __cil_tmp56 = __cil_tmp55 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp56, 0L);
   }
   if (tmp___1 != 0L) {
     {
-    __cil_tmp57 = (unsigned long )b;
-    __cil_tmp58 = __cil_tmp57 + 52;
-    __cil_tmp59 = *((unsigned int *)__cil_tmp58);
+    __cil_tmp59 = *((unsigned int *)((void *)b + 52));
     __dynamic_pr_debug(& descriptor___0, "vmw_balloon: %s - goal: %d, rate: %d\n",
                        "vmballoon_deflate", goal, __cil_tmp59);
     }
@@ -4140,9 +3668,7 @@ static void vmballoon_deflate(struct vmballoon *b )
   __mptr = (struct list_head const *)__cil_tmp60;
   __cil_tmp61 = (struct page *)__mptr;
   page = __cil_tmp61 + 0xffffffffffffffe0UL;
-  __cil_tmp62 = (unsigned long )page;
-  __cil_tmp63 = __cil_tmp62 + 32;
-  __cil_tmp64 = *((struct list_head **)__cil_tmp63);
+  __cil_tmp64 = *((struct list_head **)((void *)page + 32));
   __mptr___0 = (struct list_head const *)__cil_tmp64;
   __cil_tmp65 = (struct page *)__mptr___0;
   next = __cil_tmp65 + 0xffffffffffffffe0UL;
@@ -4152,9 +3678,7 @@ static void vmballoon_deflate(struct vmballoon *b )
   error = vmballoon_release_page(b, page);
   }
   if (error != 0) {
-    __cil_tmp66 = (unsigned long )b;
-    __cil_tmp67 = __cil_tmp66 + 52;
-    __cil_tmp68 = *((unsigned int *)__cil_tmp67);
+    __cil_tmp68 = *((unsigned int *)((void *)b + 52));
     _max1 = __cil_tmp68 / 2U;
     _max2 = 512U;
     if (_max1 > _max2) {
@@ -4162,9 +3686,7 @@ static void vmballoon_deflate(struct vmballoon *b )
     } else {
       tmp___2 = _max2;
     }
-    __cil_tmp69 = (unsigned long )b;
-    __cil_tmp70 = __cil_tmp69 + 52;
-    *((unsigned int *)__cil_tmp70) = tmp___2;
+    *((unsigned int *)((void *)b + 52)) = tmp___2;
     return;
   } else {
   }
@@ -4174,9 +3696,7 @@ static void vmballoon_deflate(struct vmballoon *b )
   } else {
   }
   page = next;
-  __cil_tmp71 = (unsigned long )next;
-  __cil_tmp72 = __cil_tmp71 + 32;
-  __cil_tmp73 = *((struct list_head **)__cil_tmp72);
+  __cil_tmp73 = *((struct list_head **)((void *)next + 32));
   __mptr___1 = (struct list_head const *)__cil_tmp73;
   __cil_tmp74 = (struct page *)__mptr___1;
   next = __cil_tmp74 + 0xffffffffffffffe0UL;
@@ -4184,9 +3704,7 @@ static void vmballoon_deflate(struct vmballoon *b )
   {
   __cil_tmp75 = (struct list_head *)b;
   __cil_tmp76 = (unsigned long )__cil_tmp75;
-  __cil_tmp77 = (unsigned long )page;
-  __cil_tmp78 = __cil_tmp77 + 32;
-  __cil_tmp79 = (struct list_head *)__cil_tmp78;
+  __cil_tmp79 = (struct list_head *)((void *)page + 32);
   __cil_tmp80 = (unsigned long )__cil_tmp79;
   if (__cil_tmp80 != __cil_tmp76) {
     goto ldv_23523;
@@ -4195,9 +3713,7 @@ static void vmballoon_deflate(struct vmballoon *b )
   }
   }
   ldv_23522:
-  __cil_tmp81 = (unsigned long )b;
-  __cil_tmp82 = __cil_tmp81 + 52;
-  __cil_tmp83 = *((unsigned int *)__cil_tmp82);
+  __cil_tmp83 = *((unsigned int *)((void *)b + 52));
   _min1___0 = __cil_tmp83 + 16U;
   _min2___0 = 16384U;
   if (_min1___0 < _min2___0) {
@@ -4205,9 +3721,7 @@ static void vmballoon_deflate(struct vmballoon *b )
   } else {
     tmp___3 = _min2___0;
   }
-  __cil_tmp84 = (unsigned long )b;
-  __cil_tmp85 = __cil_tmp84 + 52;
-  *((unsigned int *)__cil_tmp85) = tmp___3;
+  *((unsigned int *)((void *)b + 52)) = tmp___3;
   return;
 }
 }
@@ -4220,34 +3734,16 @@ static void vmballoon_work(struct work_struct *work )
   bool tmp___0 ;
   unsigned long tmp___1 ;
   struct vmballoon *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   bool __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int *__cil_tmp28 ;
   unsigned int *__cil_tmp29 ;
   unsigned int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned int __cil_tmp33 ;
   unsigned int *__cil_tmp34 ;
   unsigned int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned int __cil_tmp38 ;
   {
   {
@@ -4256,17 +3752,11 @@ static void vmballoon_work(struct work_struct *work )
   __mptr = (struct delayed_work const *)dwork;
   __cil_tmp9 = (struct vmballoon *)__mptr;
   b = __cil_tmp9 + 0xffffffffffffff00UL;
-  __cil_tmp10 = (unsigned long )b;
-  __cil_tmp11 = __cil_tmp10 + 60;
-  __cil_tmp12 = (unsigned long )b;
-  __cil_tmp13 = __cil_tmp12 + 60;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
-  *((unsigned int *)__cil_tmp11) = __cil_tmp14 + 1U;
+  __cil_tmp14 = *((unsigned int *)((void *)b + 60));
+  *((unsigned int *)((void *)b + 60)) = __cil_tmp14 + 1U;
   }
   {
-  __cil_tmp15 = (unsigned long )b;
-  __cil_tmp16 = __cil_tmp15 + 44;
-  __cil_tmp17 = *((bool *)__cil_tmp16);
+  __cil_tmp17 = *((bool *)((void *)b + 44));
   if ((int )__cil_tmp17) {
     {
     vmballoon_reset(b);
@@ -4275,16 +3765,10 @@ static void vmballoon_work(struct work_struct *work )
   }
   }
   {
-  __cil_tmp18 = (unsigned long )b;
-  __cil_tmp19 = __cil_tmp18 + 56;
-  __cil_tmp20 = *((unsigned int *)__cil_tmp19);
+  __cil_tmp20 = *((unsigned int *)((void *)b + 56));
   if (__cil_tmp20 != 0U) {
-    __cil_tmp21 = (unsigned long )b;
-    __cil_tmp22 = __cil_tmp21 + 56;
-    __cil_tmp23 = (unsigned long )b;
-    __cil_tmp24 = __cil_tmp23 + 56;
-    __cil_tmp25 = *((unsigned int *)__cil_tmp24);
-    *((unsigned int *)__cil_tmp22) = __cil_tmp25 - 1U;
+    __cil_tmp25 = *((unsigned int *)((void *)b + 56));
+    *((unsigned int *)((void *)b + 56)) = __cil_tmp25 - 1U;
   } else {
   }
   }
@@ -4292,16 +3776,12 @@ static void vmballoon_work(struct work_struct *work )
   tmp___0 = vmballoon_send_get_target(b, & target);
   }
   if ((int )tmp___0) {
-    __cil_tmp26 = (unsigned long )b;
-    __cil_tmp27 = __cil_tmp26 + 40;
     __cil_tmp28 = & target;
-    *((unsigned int *)__cil_tmp27) = *__cil_tmp28;
+    *((unsigned int *)((void *)b + 40)) = *__cil_tmp28;
     {
     __cil_tmp29 = & target;
     __cil_tmp30 = *__cil_tmp29;
-    __cil_tmp31 = (unsigned long )b;
-    __cil_tmp32 = __cil_tmp31 + 36;
-    __cil_tmp33 = *((unsigned int *)__cil_tmp32);
+    __cil_tmp33 = *((unsigned int *)((void *)b + 36));
     if (__cil_tmp33 < __cil_tmp30) {
       {
       vmballoon_inflate(b);
@@ -4310,9 +3790,7 @@ static void vmballoon_work(struct work_struct *work )
       {
       __cil_tmp34 = & target;
       __cil_tmp35 = *__cil_tmp34;
-      __cil_tmp36 = (unsigned long )b;
-      __cil_tmp37 = __cil_tmp36 + 36;
-      __cil_tmp38 = *((unsigned int *)__cil_tmp37);
+      __cil_tmp38 = *((unsigned int *)((void *)b + 36));
       if (__cil_tmp38 > __cil_tmp35) {
         {
         vmballoon_deflate(b);
@@ -4334,152 +3812,60 @@ static void vmballoon_work(struct work_struct *work )
 static int vmballoon_debug_show(struct seq_file *f , void *offset )
 { struct vmballoon *b ;
   struct vmballoon_stats *stats ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned int __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   unsigned int __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   unsigned int __cil_tmp73 ;
   {
   {
-  __cil_tmp5 = (unsigned long )f;
-  __cil_tmp6 = __cil_tmp5 + 240;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)f + 240));
   b = (struct vmballoon *)__cil_tmp7;
-  __cil_tmp8 = (unsigned long )b;
-  __cil_tmp9 = __cil_tmp8 + 60;
-  stats = (struct vmballoon_stats *)__cil_tmp9;
-  __cil_tmp10 = (unsigned long )b;
-  __cil_tmp11 = __cil_tmp10 + 40;
-  __cil_tmp12 = *((unsigned int *)__cil_tmp11);
-  __cil_tmp13 = (unsigned long )b;
-  __cil_tmp14 = __cil_tmp13 + 36;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
+  stats = (struct vmballoon_stats *)((void *)b + 60);
+  __cil_tmp12 = *((unsigned int *)((void *)b + 40));
+  __cil_tmp15 = *((unsigned int *)((void *)b + 36));
   seq_printf(f, "target:             %8d pages\ncurrent:            %8d pages\n",
              __cil_tmp12, __cil_tmp15);
-  __cil_tmp16 = (unsigned long )b;
-  __cil_tmp17 = __cil_tmp16 + 48;
-  __cil_tmp18 = *((unsigned int *)__cil_tmp17);
-  __cil_tmp19 = (unsigned long )b;
-  __cil_tmp20 = __cil_tmp19 + 52;
-  __cil_tmp21 = *((unsigned int *)__cil_tmp20);
+  __cil_tmp18 = *((unsigned int *)((void *)b + 48));
+  __cil_tmp21 = *((unsigned int *)((void *)b + 52));
   seq_printf(f, "rateNoSleepAlloc:   %8d pages/sec\nrateSleepAlloc:     %8d pages/sec\nrateFree:           %8d pages/sec\n",
              16384U, __cil_tmp18, __cil_tmp21);
   __cil_tmp22 = *((unsigned int *)stats);
-  __cil_tmp23 = (unsigned long )stats;
-  __cil_tmp24 = __cil_tmp23 + 56;
-  __cil_tmp25 = *((unsigned int *)__cil_tmp24);
-  __cil_tmp26 = (unsigned long )stats;
-  __cil_tmp27 = __cil_tmp26 + 60;
-  __cil_tmp28 = *((unsigned int *)__cil_tmp27);
-  __cil_tmp29 = (unsigned long )stats;
-  __cil_tmp30 = __cil_tmp29 + 64;
-  __cil_tmp31 = *((unsigned int *)__cil_tmp30);
-  __cil_tmp32 = (unsigned long )stats;
-  __cil_tmp33 = __cil_tmp32 + 68;
-  __cil_tmp34 = *((unsigned int *)__cil_tmp33);
-  __cil_tmp35 = (unsigned long )stats;
-  __cil_tmp36 = __cil_tmp35 + 32;
-  __cil_tmp37 = *((unsigned int *)__cil_tmp36);
-  __cil_tmp38 = (unsigned long )stats;
-  __cil_tmp39 = __cil_tmp38 + 36;
-  __cil_tmp40 = *((unsigned int *)__cil_tmp39);
-  __cil_tmp41 = (unsigned long )stats;
-  __cil_tmp42 = __cil_tmp41 + 40;
-  __cil_tmp43 = *((unsigned int *)__cil_tmp42);
-  __cil_tmp44 = (unsigned long )stats;
-  __cil_tmp45 = __cil_tmp44 + 44;
-  __cil_tmp46 = *((unsigned int *)__cil_tmp45);
-  __cil_tmp47 = (unsigned long )stats;
-  __cil_tmp48 = __cil_tmp47 + 48;
-  __cil_tmp49 = *((unsigned int *)__cil_tmp48);
-  __cil_tmp50 = (unsigned long )stats;
-  __cil_tmp51 = __cil_tmp50 + 52;
-  __cil_tmp52 = *((unsigned int *)__cil_tmp51);
-  __cil_tmp53 = (unsigned long )stats;
-  __cil_tmp54 = __cil_tmp53 + 4;
-  __cil_tmp55 = *((unsigned int *)__cil_tmp54);
-  __cil_tmp56 = (unsigned long )stats;
-  __cil_tmp57 = __cil_tmp56 + 8;
-  __cil_tmp58 = *((unsigned int *)__cil_tmp57);
-  __cil_tmp59 = (unsigned long )stats;
-  __cil_tmp60 = __cil_tmp59 + 12;
-  __cil_tmp61 = *((unsigned int *)__cil_tmp60);
-  __cil_tmp62 = (unsigned long )stats;
-  __cil_tmp63 = __cil_tmp62 + 16;
-  __cil_tmp64 = *((unsigned int *)__cil_tmp63);
-  __cil_tmp65 = (unsigned long )stats;
-  __cil_tmp66 = __cil_tmp65 + 28;
-  __cil_tmp67 = *((unsigned int *)__cil_tmp66);
-  __cil_tmp68 = (unsigned long )stats;
-  __cil_tmp69 = __cil_tmp68 + 20;
-  __cil_tmp70 = *((unsigned int *)__cil_tmp69);
-  __cil_tmp71 = (unsigned long )stats;
-  __cil_tmp72 = __cil_tmp71 + 24;
-  __cil_tmp73 = *((unsigned int *)__cil_tmp72);
+  __cil_tmp25 = *((unsigned int *)((void *)stats + 56));
+  __cil_tmp28 = *((unsigned int *)((void *)stats + 60));
+  __cil_tmp31 = *((unsigned int *)((void *)stats + 64));
+  __cil_tmp34 = *((unsigned int *)((void *)stats + 68));
+  __cil_tmp37 = *((unsigned int *)((void *)stats + 32));
+  __cil_tmp40 = *((unsigned int *)((void *)stats + 36));
+  __cil_tmp43 = *((unsigned int *)((void *)stats + 40));
+  __cil_tmp46 = *((unsigned int *)((void *)stats + 44));
+  __cil_tmp49 = *((unsigned int *)((void *)stats + 48));
+  __cil_tmp52 = *((unsigned int *)((void *)stats + 52));
+  __cil_tmp55 = *((unsigned int *)((void *)stats + 4));
+  __cil_tmp58 = *((unsigned int *)((void *)stats + 8));
+  __cil_tmp61 = *((unsigned int *)((void *)stats + 12));
+  __cil_tmp64 = *((unsigned int *)((void *)stats + 16));
+  __cil_tmp67 = *((unsigned int *)((void *)stats + 28));
+  __cil_tmp70 = *((unsigned int *)((void *)stats + 20));
+  __cil_tmp73 = *((unsigned int *)((void *)stats + 24));
   seq_printf(f, "\ntimer:              %8u\nstart:              %8u (%4u failed)\nguestType:          %8u (%4u failed)\nlock:               %8u (%4u failed)\nunlock:             %8u (%4u failed)\ntarget:             %8u (%4u failed)\nprimNoSleepAlloc:   %8u (%4u failed)\nprimCanSleepAlloc:  %8u (%4u failed)\nprimFree:           %8u\nerrAlloc:           %8u\nerrFree:            %8u\n",
              __cil_tmp22, __cil_tmp25, __cil_tmp28, __cil_tmp31, __cil_tmp34, __cil_tmp37,
              __cil_tmp40, __cil_tmp43, __cil_tmp46, __cil_tmp49, __cil_tmp52, __cil_tmp55,
@@ -4490,14 +3876,10 @@ static int vmballoon_debug_show(struct seq_file *f , void *offset )
 }
 static int vmballoon_debug_open(struct inode *inode , struct file *file )
 { int tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   {
   {
-  __cil_tmp4 = (unsigned long )inode;
-  __cil_tmp5 = __cil_tmp4 + 1032;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)inode + 1032));
   tmp = single_open(file, & vmballoon_debug_show, __cil_tmp6);
   }
   return (tmp);
@@ -4537,39 +3919,27 @@ static int vmballoon_debugfs_init(struct vmballoon *b )
 { int error ;
   long tmp ;
   long tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   umode_t __cil_tmp7 ;
   struct dentry *__cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct dentry *__cil_tmp12 ;
   void const *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct dentry *__cil_tmp16 ;
   void const *__cil_tmp17 ;
   {
   {
-  __cil_tmp5 = (unsigned long )b;
-  __cil_tmp6 = __cil_tmp5 + 136;
   __cil_tmp7 = (umode_t )292;
   __cil_tmp8 = (struct dentry *)0;
   __cil_tmp9 = (void *)b;
-  *((struct dentry **)__cil_tmp6) = debugfs_create_file("vmmemctl", __cil_tmp7, __cil_tmp8,
+  *((struct dentry **)((void *)b + 136)) = debugfs_create_file("vmmemctl", __cil_tmp7, __cil_tmp8,
                                                         __cil_tmp9, & vmballoon_debug_fops);
-  __cil_tmp10 = (unsigned long )b;
-  __cil_tmp11 = __cil_tmp10 + 136;
-  __cil_tmp12 = *((struct dentry **)__cil_tmp11);
+  __cil_tmp12 = *((struct dentry **)((void *)b + 136));
   __cil_tmp13 = (void const *)__cil_tmp12;
   tmp___0 = IS_ERR(__cil_tmp13);
   }
   if (tmp___0 != 0L) {
     {
-    __cil_tmp14 = (unsigned long )b;
-    __cil_tmp15 = __cil_tmp14 + 136;
-    __cil_tmp16 = *((struct dentry **)__cil_tmp15);
+    __cil_tmp16 = *((struct dentry **)((void *)b + 136));
     __cil_tmp17 = (void const *)__cil_tmp16;
     tmp = PTR_ERR(__cil_tmp17);
     error = (int )tmp;
@@ -4582,14 +3952,11 @@ static int vmballoon_debugfs_init(struct vmballoon *b )
 }
 }
 static void vmballoon_debugfs_exit(struct vmballoon *b )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct dentry *__cil_tmp4 ;
   {
   {
-  __cil_tmp2 = (unsigned long )b;
-  __cil_tmp3 = __cil_tmp2 + 136;
-  __cil_tmp4 = *((struct dentry **)__cil_tmp3);
+  __cil_tmp4 = *((struct dentry **)((void *)b + 136));
   debugfs_remove(__cil_tmp4);
   }
   return;
@@ -4608,28 +3975,18 @@ static int vmballoon_init(void)
   unsigned long __cil_tmp10 ;
   struct vmballoon *__cil_tmp11 ;
   struct list_head *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct list_head *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct work_struct *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct lockdep_map *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct list_head *__cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct timer_list *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct delayed_work *__cil_tmp35 ;
   long __constr_expr_0_counter36 ;
   {
@@ -4645,36 +4002,27 @@ static int vmballoon_init(void)
   __cil_tmp11 = & balloon;
   __cil_tmp12 = (struct list_head *)__cil_tmp11;
   INIT_LIST_HEAD(__cil_tmp12);
-  __cil_tmp13 = (unsigned long )(& balloon) + 16;
-  __cil_tmp14 = (struct list_head *)__cil_tmp13;
+  __cil_tmp14 = (struct list_head *)((void *)(&balloon) + 16);
   INIT_LIST_HEAD(__cil_tmp14);
-  __cil_tmp15 = (unsigned long )(& balloon) + 48;
-  *((unsigned int *)__cil_tmp15) = 2048U;
-  __cil_tmp16 = (unsigned long )(& balloon) + 52;
-  *((unsigned int *)__cil_tmp16) = 16384U;
-  __cil_tmp17 = (unsigned long )(& balloon) + 256;
-  __cil_tmp18 = (struct work_struct *)__cil_tmp17;
+  *((unsigned int *)((void *)(&balloon) + 48)) = 2048U;
+  *((unsigned int *)((void *)(&balloon) + 52)) = 16384U;
+  __cil_tmp18 = (struct work_struct *)((void *)(&balloon) + 256);
   __init_work(__cil_tmp18, 0);
   __constr_expr_0_counter36 = 2097664L;
-  __cil_tmp19 = (unsigned long )(& balloon) + 256;
-  ((atomic_long_t *)__cil_tmp19)->counter = __constr_expr_0_counter36;
+  ((atomic_long_t *)((void *)(&balloon) + 256))->counter = __constr_expr_0_counter36;
   __cil_tmp20 = 0 + 32;
   __cil_tmp21 = 256 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )(& balloon) + __cil_tmp21;
-  __cil_tmp23 = (struct lockdep_map *)__cil_tmp22;
+  __cil_tmp23 = (struct lockdep_map *)((void *)(&balloon) + __cil_tmp21);
   lockdep_init_map(__cil_tmp23, "(&(&balloon.dwork)->work)", & __key, 0);
   __cil_tmp24 = 0 + 8;
   __cil_tmp25 = 256 + __cil_tmp24;
-  __cil_tmp26 = (unsigned long )(& balloon) + __cil_tmp25;
-  __cil_tmp27 = (struct list_head *)__cil_tmp26;
+  __cil_tmp27 = (struct list_head *)((void *)(&balloon) + __cil_tmp25);
   INIT_LIST_HEAD(__cil_tmp27);
   __cil_tmp28 = 0 + 24;
   __cil_tmp29 = 256 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )(& balloon) + __cil_tmp29;
-  *((void (**)(struct work_struct * ))__cil_tmp30) = & vmballoon_work;
+  *((void (**)(struct work_struct * ))((void *)(&balloon) + __cil_tmp29)) = & vmballoon_work;
   __cil_tmp31 = 256 + 80;
-  __cil_tmp32 = (unsigned long )(& balloon) + __cil_tmp31;
-  __cil_tmp33 = (struct timer_list *)__cil_tmp32;
+  __cil_tmp33 = (struct timer_list *)((void *)(&balloon) + __cil_tmp31);
   init_timer_key(__cil_tmp33, "&(&balloon.dwork)->timer", & __key___0);
   tmp = vmballoon_send_start(& balloon);
   }
@@ -4713,20 +4061,18 @@ static int vmballoon_init(void)
   } else {
   }
   {
-  __cil_tmp34 = (unsigned long )(& balloon) + 256;
-  __cil_tmp35 = (struct delayed_work *)__cil_tmp34;
+  __cil_tmp35 = (struct delayed_work *)((void *)(&balloon) + 256);
   queue_delayed_work(system_freezable_wq, __cil_tmp35, 0UL);
   }
   return (0);
 }
 }
 static void vmballoon_exit(void)
-{ unsigned long __cil_tmp1 ;
+{
   struct delayed_work *__cil_tmp2 ;
   {
   {
-  __cil_tmp1 = (unsigned long )(& balloon) + 256;
-  __cil_tmp2 = (struct delayed_work *)__cil_tmp1;
+  __cil_tmp2 = (struct delayed_work *)((void *)(&balloon) + 256);
   cancel_delayed_work_sync(__cil_tmp2);
   vmballoon_debugfs_exit(& balloon);
   vmballoon_send_start(& balloon);

@@ -458,12 +458,8 @@ static int cs5535_mfgpt_init(void)
   int __cil_tmp11 ;
   int __cil_tmp12 ;
   uint16_t __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   u32 __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int *__cil_tmp20 ;
   int __cil_tmp21 ;
 
@@ -513,16 +509,12 @@ static int cs5535_mfgpt_init(void)
   val = (uint16_t )__cil_tmp12;
   __cil_tmp13 = (uint16_t )6;
   cs5535_mfgpt_write(cs5535_event_clock, __cil_tmp13, val);
-  __cil_tmp14 = (unsigned long )(& cs5535_clockevent) + 52;
-  __cil_tmp15 = *((u32 *)__cil_tmp14);
+  __cil_tmp15 = *((u32 *)((void *)(&cs5535_clockevent) + 52));
   __cil_tmp16 = (int )__cil_tmp15;
   tmp___0 = div_sc(2048UL, 1000000000UL, __cil_tmp16);
-  __cil_tmp17 = (unsigned long )(& cs5535_clockevent) + 48;
-  *((u32 *)__cil_tmp17) = (u32 )tmp___0;
-  __cil_tmp18 = (unsigned long )(& cs5535_clockevent) + 40;
-  *((u64 *)__cil_tmp18) = clockevent_delta2ns(15UL, & cs5535_clockevent);
-  __cil_tmp19 = (unsigned long )(& cs5535_clockevent) + 32;
-  *((u64 *)__cil_tmp19) = clockevent_delta2ns(65534UL, & cs5535_clockevent);
+  *((u32 *)((void *)(&cs5535_clockevent) + 48)) = (u32 )tmp___0;
+  *((u64 *)((void *)(&cs5535_clockevent) + 40)) = clockevent_delta2ns(15UL, & cs5535_clockevent);
+  *((u64 *)((void *)(&cs5535_clockevent) + 32)) = clockevent_delta2ns(65534UL, & cs5535_clockevent);
   __cil_tmp20 = & timer_irq;
   __cil_tmp21 = *__cil_tmp20;
   printk("<6>cs5535-clockevt: Registering MFGPT timer as a clock event, using IRQ %d\n",

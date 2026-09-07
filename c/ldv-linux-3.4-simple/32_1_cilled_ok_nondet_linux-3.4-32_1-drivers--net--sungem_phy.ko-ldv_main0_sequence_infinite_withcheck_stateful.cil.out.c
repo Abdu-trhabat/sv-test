@@ -4390,21 +4390,13 @@ static int const   phy_BCM5400_link_table[8][3]  =
 __inline static int __phy_read(struct mii_phy *phy , int id , int reg )  __attribute__((__no_instrument_function__)) ;
 __inline static int __phy_read(struct mii_phy *phy , int id , int reg ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int (*__cil_tmp7)(struct net_device *dev , int mii_id , int reg ) ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct net_device *__cil_tmp10 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )phy;
-  __cil_tmp6 = __cil_tmp5 + 40;
-  __cil_tmp7 = *((int (**)(struct net_device *dev , int mii_id , int reg ))__cil_tmp6);
-  __cil_tmp8 = (unsigned long )phy;
-  __cil_tmp9 = __cil_tmp8 + 32;
-  __cil_tmp10 = *((struct net_device **)__cil_tmp9);
+  __cil_tmp7 = *((int (**)(struct net_device *dev , int mii_id , int reg ))((void *)phy + 40));
+  __cil_tmp10 = *((struct net_device **)((void *)phy + 32));
   tmp___7 = (*__cil_tmp7)(__cil_tmp10, id, reg);
   }
   return (tmp___7);
@@ -4412,21 +4404,14 @@ __inline static int __phy_read(struct mii_phy *phy , int id , int reg )
 }
 __inline static void __phy_write(struct mii_phy *phy , int id , int reg , int val )  __attribute__((__no_instrument_function__)) ;
 __inline static void __phy_write(struct mii_phy *phy , int id , int reg , int val ) 
-{ unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
+{
   void (*__cil_tmp7)(struct net_device *dev , int mii_id , int reg , int val ) ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct net_device *__cil_tmp10 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )phy;
-  __cil_tmp6 = __cil_tmp5 + 48;
-  __cil_tmp7 = *((void (**)(struct net_device *dev , int mii_id , int reg , int val ))__cil_tmp6);
-  __cil_tmp8 = (unsigned long )phy;
-  __cil_tmp9 = __cil_tmp8 + 32;
-  __cil_tmp10 = *((struct net_device **)__cil_tmp9);
+  __cil_tmp7 = *((void (**)(struct net_device *dev , int mii_id , int reg , int val ))((void *)phy + 48));
+  __cil_tmp10 = *((struct net_device **)((void *)phy + 32));
   (*__cil_tmp7)(__cil_tmp10, id, reg, val);
   }
   return;
@@ -4435,27 +4420,15 @@ __inline static void __phy_write(struct mii_phy *phy , int id , int reg , int va
 __inline static int phy_read(struct mii_phy *phy , int reg )  __attribute__((__no_instrument_function__)) ;
 __inline static int phy_read(struct mii_phy *phy , int reg ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int (*__cil_tmp6)(struct net_device *dev , int mii_id , int reg ) ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct net_device *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )phy;
-  __cil_tmp5 = __cil_tmp4 + 40;
-  __cil_tmp6 = *((int (**)(struct net_device *dev , int mii_id , int reg ))__cil_tmp5);
-  __cil_tmp7 = (unsigned long )phy;
-  __cil_tmp8 = __cil_tmp7 + 32;
-  __cil_tmp9 = *((struct net_device **)__cil_tmp8);
-  __cil_tmp10 = (unsigned long )phy;
-  __cil_tmp11 = __cil_tmp10 + 12;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp6 = *((int (**)(struct net_device *dev , int mii_id , int reg ))((void *)phy + 40));
+  __cil_tmp9 = *((struct net_device **)((void *)phy + 32));
+  __cil_tmp12 = *((int *)((void *)phy + 12));
   tmp___7 = (*__cil_tmp6)(__cil_tmp9, __cil_tmp12, reg);
   }
   return (tmp___7);
@@ -4463,27 +4436,16 @@ __inline static int phy_read(struct mii_phy *phy , int reg )
 }
 __inline static void phy_write(struct mii_phy *phy , int reg , int val )  __attribute__((__no_instrument_function__)) ;
 __inline static void phy_write(struct mii_phy *phy , int reg , int val ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   void (*__cil_tmp6)(struct net_device *dev , int mii_id , int reg , int val ) ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct net_device *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )phy;
-  __cil_tmp5 = __cil_tmp4 + 48;
-  __cil_tmp6 = *((void (**)(struct net_device *dev , int mii_id , int reg , int val ))__cil_tmp5);
-  __cil_tmp7 = (unsigned long )phy;
-  __cil_tmp8 = __cil_tmp7 + 32;
-  __cil_tmp9 = *((struct net_device **)__cil_tmp8);
-  __cil_tmp10 = (unsigned long )phy;
-  __cil_tmp11 = __cil_tmp10 + 12;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp6 = *((void (**)(struct net_device *dev , int mii_id , int reg , int val ))((void *)phy + 48));
+  __cil_tmp9 = *((struct net_device **)((void *)phy + 32));
+  __cil_tmp12 = *((int *)((void *)phy + 12));
   (*__cil_tmp6)(__cil_tmp9, __cil_tmp12, reg, val);
   }
   return;
@@ -4892,16 +4854,6 @@ static int genmii_setup_aneg(struct mii_phy *phy , u32 advertise )
   u16 adv ;
   int tmp___7 ;
   int tmp___8 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
@@ -4925,21 +4877,11 @@ static int genmii_setup_aneg(struct mii_phy *phy , u32 advertise )
 
   {
   {
-  __cil_tmp7 = (unsigned long )phy;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  *((int *)__cil_tmp8) = 1;
-  __cil_tmp9 = (unsigned long )phy;
-  __cil_tmp10 = __cil_tmp9 + 20;
-  *((int *)__cil_tmp10) = 10;
-  __cil_tmp11 = (unsigned long )phy;
-  __cil_tmp12 = __cil_tmp11 + 24;
-  *((int *)__cil_tmp12) = 0;
-  __cil_tmp13 = (unsigned long )phy;
-  __cil_tmp14 = __cil_tmp13 + 28;
-  *((int *)__cil_tmp14) = 0;
-  __cil_tmp15 = (unsigned long )phy;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  *((u32 *)__cil_tmp16) = advertise;
+  *((int *)((void *)phy + 16)) = 1;
+  *((int *)((void *)phy + 20)) = 10;
+  *((int *)((void *)phy + 24)) = 0;
+  *((int *)((void *)phy + 28)) = 0;
+  *((u32 *)((void *)phy + 8)) = advertise;
   tmp___7 = phy_read(phy, 4);
   adv = (u16 )tmp___7;
   __cil_tmp17 = (int )adv;
@@ -5003,14 +4945,6 @@ static int genmii_setup_aneg(struct mii_phy *phy , u32 advertise )
 static int genmii_setup_forced(struct mii_phy *phy , int speed , int fd ) 
 { u16 ctl ;
   int tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -5023,18 +4957,10 @@ static int genmii_setup_forced(struct mii_phy *phy , int speed , int fd )
 
   {
   {
-  __cil_tmp6 = (unsigned long )phy;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  *((int *)__cil_tmp7) = 0;
-  __cil_tmp8 = (unsigned long )phy;
-  __cil_tmp9 = __cil_tmp8 + 20;
-  *((int *)__cil_tmp9) = speed;
-  __cil_tmp10 = (unsigned long )phy;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  *((int *)__cil_tmp11) = fd;
-  __cil_tmp12 = (unsigned long )phy;
-  __cil_tmp13 = __cil_tmp12 + 28;
-  *((int *)__cil_tmp13) = 0;
+  *((int *)((void *)phy + 16)) = 0;
+  *((int *)((void *)phy + 20)) = speed;
+  *((int *)((void *)phy + 24)) = fd;
+  *((int *)((void *)phy + 28)) = 0;
   tmp___7 = phy_read(phy, 0);
   ctl = (u16 )tmp___7;
   __cil_tmp14 = (int )ctl;
@@ -5086,8 +5012,6 @@ static int genmii_poll_link(struct mii_phy *phy )
   int tmp___7 ;
   int __cil_tmp4 ;
   int __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
   int __cil_tmp9 ;
 
@@ -5107,9 +5031,7 @@ static int genmii_poll_link(struct mii_phy *phy )
   }
   }
   {
-  __cil_tmp6 = (unsigned long )phy;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  if (*((int *)__cil_tmp7)) {
+  if (*((int *)((void *)phy + 16))) {
     {
     __cil_tmp8 = (int )status;
     __cil_tmp9 = __cil_tmp8 & 32;
@@ -5129,26 +5051,12 @@ static int genmii_poll_link(struct mii_phy *phy )
 static int genmii_read_link(struct mii_phy *phy ) 
 { u16 lpa ;
   int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )phy;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  if (*((int *)__cil_tmp5)) {
+  if (*((int *)((void *)phy + 16))) {
     {
     tmp___7 = phy_read(phy, 5);
     lpa = (u16 )tmp___7;
@@ -5156,30 +5064,20 @@ static int genmii_read_link(struct mii_phy *phy )
     {
     __cil_tmp6 = (int )lpa;
     if (__cil_tmp6 & 320) {
-      __cil_tmp7 = (unsigned long )phy;
-      __cil_tmp8 = __cil_tmp7 + 24;
-      *((int *)__cil_tmp8) = 1;
+      *((int *)((void *)phy + 24)) = 1;
     } else {
-      __cil_tmp9 = (unsigned long )phy;
-      __cil_tmp10 = __cil_tmp9 + 24;
-      *((int *)__cil_tmp10) = 0;
+      *((int *)((void *)phy + 24)) = 0;
     }
     }
     {
     __cil_tmp11 = (int )lpa;
     if (__cil_tmp11 & 384) {
-      __cil_tmp12 = (unsigned long )phy;
-      __cil_tmp13 = __cil_tmp12 + 20;
-      *((int *)__cil_tmp13) = 100;
+      *((int *)((void *)phy + 20)) = 100;
     } else {
-      __cil_tmp14 = (unsigned long )phy;
-      __cil_tmp15 = __cil_tmp14 + 20;
-      *((int *)__cil_tmp15) = 10;
+      *((int *)((void *)phy + 20)) = 10;
     }
     }
-    __cil_tmp16 = (unsigned long )phy;
-    __cil_tmp17 = __cil_tmp16 + 28;
-    *((int *)__cil_tmp17) = 0;
+    *((int *)((void *)phy + 28)) = 0;
   } else {
 
   }
@@ -5267,16 +5165,6 @@ static int bcm54xx_setup_aneg(struct mii_phy *phy , u32 advertise )
   int tmp___7 ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
   int __cil_tmp20 ;
@@ -5319,21 +5207,11 @@ static int bcm54xx_setup_aneg(struct mii_phy *phy , u32 advertise )
 
   {
   {
-  __cil_tmp8 = (unsigned long )phy;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  *((int *)__cil_tmp9) = 1;
-  __cil_tmp10 = (unsigned long )phy;
-  __cil_tmp11 = __cil_tmp10 + 20;
-  *((int *)__cil_tmp11) = 10;
-  __cil_tmp12 = (unsigned long )phy;
-  __cil_tmp13 = __cil_tmp12 + 24;
-  *((int *)__cil_tmp13) = 0;
-  __cil_tmp14 = (unsigned long )phy;
-  __cil_tmp15 = __cil_tmp14 + 28;
-  *((int *)__cil_tmp15) = 0;
-  __cil_tmp16 = (unsigned long )phy;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  *((u32 *)__cil_tmp17) = advertise;
+  *((int *)((void *)phy + 16)) = 1;
+  *((int *)((void *)phy + 20)) = 10;
+  *((int *)((void *)phy + 24)) = 0;
+  *((int *)((void *)phy + 28)) = 0;
+  *((u32 *)((void *)phy + 8)) = advertise;
   tmp___7 = phy_read(phy, 4);
   adv = (u16 )tmp___7;
   __cil_tmp18 = (int )adv;
@@ -5450,14 +5328,6 @@ static int bcm54xx_setup_aneg(struct mii_phy *phy , u32 advertise )
 static int bcm54xx_setup_forced(struct mii_phy *phy , int speed , int fd ) 
 { u16 ctl ;
   int tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -5472,18 +5342,10 @@ static int bcm54xx_setup_forced(struct mii_phy *phy , int speed , int fd )
 
   {
   {
-  __cil_tmp6 = (unsigned long )phy;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  *((int *)__cil_tmp7) = 0;
-  __cil_tmp8 = (unsigned long )phy;
-  __cil_tmp9 = __cil_tmp8 + 20;
-  *((int *)__cil_tmp9) = speed;
-  __cil_tmp10 = (unsigned long )phy;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  *((int *)__cil_tmp11) = fd;
-  __cil_tmp12 = (unsigned long )phy;
-  __cil_tmp13 = __cil_tmp12 + 28;
-  *((int *)__cil_tmp13) = 0;
+  *((int *)((void *)phy + 16)) = 0;
+  *((int *)((void *)phy + 20)) = speed;
+  *((int *)((void *)phy + 24)) = fd;
+  *((int *)((void *)phy + 28)) = 0;
   tmp___7 = phy_read(phy, 0);
   ctl = (u16 )tmp___7;
   __cil_tmp14 = (int )ctl;
@@ -5538,43 +5400,27 @@ static int bcm54xx_read_link(struct mii_phy *phy )
   int tmp___8 ;
   int tmp___9 ;
   int tmp___10 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
   int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
 
   {
   {
-  __cil_tmp8 = (unsigned long )phy;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  if (*((int *)__cil_tmp9)) {
+  if (*((int *)((void *)phy + 16))) {
     {
     tmp___7 = phy_read(phy, 25);
     val = (u16 )tmp___7;
@@ -5588,13 +5434,9 @@ static int bcm54xx_read_link(struct mii_phy *phy )
     __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
     __cil_tmp15 = (unsigned long )(phy_BCM5400_link_table) + __cil_tmp14;
     if (*((int const   *)__cil_tmp15)) {
-      __cil_tmp16 = (unsigned long )phy;
-      __cil_tmp17 = __cil_tmp16 + 24;
-      *((int *)__cil_tmp17) = 1;
+      *((int *)((void *)phy + 24)) = 1;
     } else {
-      __cil_tmp18 = (unsigned long )phy;
-      __cil_tmp19 = __cil_tmp18 + 24;
-      *((int *)__cil_tmp19) = 0;
+      *((int *)((void *)phy + 24)) = 0;
     }
     }
     {
@@ -5603,9 +5445,7 @@ static int bcm54xx_read_link(struct mii_phy *phy )
     __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
     __cil_tmp23 = (unsigned long )(phy_BCM5400_link_table) + __cil_tmp22;
     if (*((int const   *)__cil_tmp23)) {
-      __cil_tmp24 = (unsigned long )phy;
-      __cil_tmp25 = __cil_tmp24 + 20;
-      *((int *)__cil_tmp25) = 1000;
+      *((int *)((void *)phy + 20)) = 1000;
     } else {
       {
       __cil_tmp26 = 1 * 4UL;
@@ -5618,9 +5458,7 @@ static int bcm54xx_read_link(struct mii_phy *phy )
         tmp___8 = 10;
       }
       }
-      __cil_tmp30 = (unsigned long )phy;
-      __cil_tmp31 = __cil_tmp30 + 20;
-      *((int *)__cil_tmp31) = tmp___8;
+      *((int *)((void *)phy + 20)) = tmp___8;
     }
     }
     {
@@ -5628,9 +5466,7 @@ static int bcm54xx_read_link(struct mii_phy *phy )
     val = (u16 )tmp___9;
     }
     {
-    __cil_tmp32 = (unsigned long )phy;
-    __cil_tmp33 = __cil_tmp32 + 24;
-    __cil_tmp34 = *((int *)__cil_tmp33);
+    __cil_tmp34 = *((int *)((void *)phy + 24));
     if (__cil_tmp34 == 1) {
       {
       __cil_tmp35 = (int )val;
@@ -5645,9 +5481,7 @@ static int bcm54xx_read_link(struct mii_phy *phy )
       tmp___10 = 0;
     }
     }
-    __cil_tmp37 = (unsigned long )phy;
-    __cil_tmp38 = __cil_tmp37 + 28;
-    *((int *)__cil_tmp38) = tmp___10;
+    *((int *)((void *)phy + 28)) = tmp___10;
   } else {
 
   }
@@ -5739,17 +5573,7 @@ static int bcm5421_read_link(struct mii_phy *phy )
   unsigned int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
 
   {
@@ -5772,9 +5596,7 @@ static int bcm5421_read_link(struct mii_phy *phy )
 
   }
   {
-  __cil_tmp11 = (unsigned long )phy;
-  __cil_tmp12 = __cil_tmp11 + 20;
-  *((int *)__cil_tmp12) = 1000;
+  *((int *)((void *)phy + 20)) = 1000;
   phy_write(phy, 28, 8192);
   tmp___9 = phy_read(phy, 28);
   phy_reg = (u32 )tmp___9;
@@ -5782,27 +5604,17 @@ static int bcm5421_read_link(struct mii_phy *phy )
   {
   __cil_tmp13 = phy_reg & 128U;
   if (__cil_tmp13 >> 7) {
-    __cil_tmp14 = (unsigned long )phy;
-    __cil_tmp15 = __cil_tmp14 + 24;
-    __cil_tmp16 = (unsigned long )phy;
-    __cil_tmp17 = __cil_tmp16 + 24;
-    *((int *)__cil_tmp15) = *((int *)__cil_tmp17);
+    *((int *)((void *)phy + 24)) = *((int *)((void *)phy + 24));
   } else {
-    __cil_tmp18 = (unsigned long )phy;
-    __cil_tmp19 = __cil_tmp18 + 24;
-    __cil_tmp20 = (unsigned long )phy;
-    __cil_tmp21 = __cil_tmp20 + 24;
-    __cil_tmp22 = *((int *)__cil_tmp21);
-    *((int *)__cil_tmp19) = __cil_tmp22 | 1;
+    __cil_tmp22 = *((int *)((void *)phy + 24));
+    *((int *)((void *)phy + 24)) = __cil_tmp22 | 1;
   }
   }
   return (0);
 }
 }
 static int bcm5421_enable_fiber(struct mii_phy *phy , int autoneg ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-
+{
   {
   {
   phy_write(phy, 28, 36896);
@@ -5816,9 +5628,7 @@ static int bcm5421_enable_fiber(struct mii_phy *phy , int autoneg )
   } else {
 
   }
-  __cil_tmp3 = (unsigned long )phy;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  *((int *)__cil_tmp4) = autoneg;
+  *((int *)((void *)phy + 16)) = autoneg;
   return (0);
 }
 }
@@ -5880,19 +5690,9 @@ static int bcm5461_read_link(struct mii_phy *phy )
   unsigned int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
 
   {
   {
@@ -5914,9 +5714,7 @@ static int bcm5461_read_link(struct mii_phy *phy )
 
   }
   {
-  __cil_tmp11 = (unsigned long )phy;
-  __cil_tmp12 = __cil_tmp11 + 20;
-  *((int *)__cil_tmp12) = 1000;
+  *((int *)((void *)phy + 20)) = 1000;
   phy_write(phy, 28, 28672);
   tmp___9 = phy_read(phy, 28);
   phy_reg = (u32 )tmp___9;
@@ -5925,27 +5723,17 @@ static int bcm5461_read_link(struct mii_phy *phy )
   __cil_tmp13 = 1 << 3;
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   if (phy_reg & __cil_tmp14) {
-    __cil_tmp15 = (unsigned long )phy;
-    __cil_tmp16 = __cil_tmp15 + 24;
-    __cil_tmp17 = (unsigned long )phy;
-    __cil_tmp18 = __cil_tmp17 + 24;
-    __cil_tmp19 = *((int *)__cil_tmp18);
-    *((int *)__cil_tmp16) = __cil_tmp19 | 1;
+    __cil_tmp19 = *((int *)((void *)phy + 24));
+    *((int *)((void *)phy + 24)) = __cil_tmp19 | 1;
   } else {
-    __cil_tmp20 = (unsigned long )phy;
-    __cil_tmp21 = __cil_tmp20 + 24;
-    __cil_tmp22 = (unsigned long )phy;
-    __cil_tmp23 = __cil_tmp22 + 24;
-    *((int *)__cil_tmp21) = *((int *)__cil_tmp23);
+    *((int *)((void *)phy + 24)) = *((int *)((void *)phy + 24));
   }
   }
   return (0);
 }
 }
 static int bcm5461_enable_fiber(struct mii_phy *phy , int autoneg ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-
+{
   {
   {
   phy_write(phy, 28, 64523);
@@ -5960,9 +5748,7 @@ static int bcm5461_enable_fiber(struct mii_phy *phy , int autoneg )
     phy_write(phy, 0, 320);
     }
   }
-  __cil_tmp3 = (unsigned long )phy;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  *((int *)__cil_tmp4) = autoneg;
+  *((int *)((void *)phy + 16)) = autoneg;
   return (0);
 }
 }
@@ -5972,16 +5758,6 @@ static int marvell_setup_aneg(struct mii_phy *phy , u32 advertise )
   int tmp___7 ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
   int __cil_tmp20 ;
@@ -6026,21 +5802,11 @@ static int marvell_setup_aneg(struct mii_phy *phy , u32 advertise )
 
   {
   {
-  __cil_tmp8 = (unsigned long )phy;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  *((int *)__cil_tmp9) = 1;
-  __cil_tmp10 = (unsigned long )phy;
-  __cil_tmp11 = __cil_tmp10 + 20;
-  *((int *)__cil_tmp11) = 10;
-  __cil_tmp12 = (unsigned long )phy;
-  __cil_tmp13 = __cil_tmp12 + 24;
-  *((int *)__cil_tmp13) = 0;
-  __cil_tmp14 = (unsigned long )phy;
-  __cil_tmp15 = __cil_tmp14 + 28;
-  *((int *)__cil_tmp15) = 0;
-  __cil_tmp16 = (unsigned long )phy;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  *((u32 *)__cil_tmp17) = advertise;
+  *((int *)((void *)phy + 16)) = 1;
+  *((int *)((void *)phy + 20)) = 10;
+  *((int *)((void *)phy + 24)) = 0;
+  *((int *)((void *)phy + 28)) = 0;
+  *((u32 *)((void *)phy + 8)) = advertise;
   tmp___7 = phy_read(phy, 4);
   adv = (u16 )tmp___7;
   __cil_tmp18 = (int )adv;
@@ -6163,14 +5929,6 @@ static int marvell_setup_forced(struct mii_phy *phy , int speed , int fd )
   int tmp___7 ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
@@ -6190,18 +5948,10 @@ static int marvell_setup_forced(struct mii_phy *phy , int speed , int fd )
 
   {
   {
-  __cil_tmp9 = (unsigned long )phy;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  *((int *)__cil_tmp10) = 0;
-  __cil_tmp11 = (unsigned long )phy;
-  __cil_tmp12 = __cil_tmp11 + 20;
-  *((int *)__cil_tmp12) = speed;
-  __cil_tmp13 = (unsigned long )phy;
-  __cil_tmp14 = __cil_tmp13 + 24;
-  *((int *)__cil_tmp14) = fd;
-  __cil_tmp15 = (unsigned long )phy;
-  __cil_tmp16 = __cil_tmp15 + 28;
-  *((int *)__cil_tmp16) = 0;
+  *((int *)((void *)phy + 16)) = 0;
+  *((int *)((void *)phy + 20)) = speed;
+  *((int *)((void *)phy + 24)) = fd;
+  *((int *)((void *)phy + 28)) = 0;
   tmp___7 = phy_read(phy, 0);
   ctl = (u16 )tmp___7;
   __cil_tmp17 = (int )ctl;
@@ -6274,25 +6024,11 @@ static int marvell_read_link(struct mii_phy *phy )
 { u16 status ;
   u16 pmask ;
   int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
   int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
   int __cil_tmp26 ;
@@ -6300,9 +6036,7 @@ static int marvell_read_link(struct mii_phy *phy )
 
   {
   {
-  __cil_tmp5 = (unsigned long )phy;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  if (*((int *)__cil_tmp6)) {
+  if (*((int *)((void *)phy + 16))) {
     {
     tmp___7 = phy_read(phy, 17);
     status = (u16 )tmp___7;
@@ -6319,20 +6053,14 @@ static int marvell_read_link(struct mii_phy *phy )
     {
     __cil_tmp9 = (int )status;
     if (__cil_tmp9 & 32768) {
-      __cil_tmp10 = (unsigned long )phy;
-      __cil_tmp11 = __cil_tmp10 + 20;
-      *((int *)__cil_tmp11) = 1000;
+      *((int *)((void *)phy + 20)) = 1000;
     } else {
       {
       __cil_tmp12 = (int )status;
       if (__cil_tmp12 & 16384) {
-        __cil_tmp13 = (unsigned long )phy;
-        __cil_tmp14 = __cil_tmp13 + 20;
-        *((int *)__cil_tmp14) = 100;
+        *((int *)((void *)phy + 20)) = 100;
       } else {
-        __cil_tmp15 = (unsigned long )phy;
-        __cil_tmp16 = __cil_tmp15 + 20;
-        *((int *)__cil_tmp16) = 10;
+        *((int *)((void *)phy + 20)) = 10;
       }
       }
     }
@@ -6340,23 +6068,17 @@ static int marvell_read_link(struct mii_phy *phy )
     {
     __cil_tmp17 = (int )status;
     if (__cil_tmp17 & 8192) {
-      __cil_tmp18 = (unsigned long )phy;
-      __cil_tmp19 = __cil_tmp18 + 24;
-      *((int *)__cil_tmp19) = 1;
+      *((int *)((void *)phy + 24)) = 1;
     } else {
-      __cil_tmp20 = (unsigned long )phy;
-      __cil_tmp21 = __cil_tmp20 + 24;
-      *((int *)__cil_tmp21) = 0;
+      *((int *)((void *)phy + 24)) = 0;
     }
     }
     pmask = (u16 )12;
-    __cil_tmp22 = (unsigned long )phy;
-    __cil_tmp23 = __cil_tmp22 + 28;
     __cil_tmp24 = (int )pmask;
     __cil_tmp25 = (int )pmask;
     __cil_tmp26 = (int )status;
     __cil_tmp27 = __cil_tmp26 & __cil_tmp25;
-    *((int *)__cil_tmp23) = __cil_tmp27 == __cil_tmp24;
+    *((int *)((void *)phy + 28)) = __cil_tmp27 == __cil_tmp24;
   } else {
 
   }
@@ -6431,8 +6153,6 @@ int sungem_phy_probe(struct mii_phy *phy , int mii_id )
   int i ;
   int tmp___7 ;
   int tmp___8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
@@ -6441,27 +6161,15 @@ int sungem_phy_probe(struct mii_phy *phy , int mii_id )
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   u32 __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   u32 __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   void *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
 
   {
   {
-  __cil_tmp9 = (unsigned long )phy;
-  __cil_tmp10 = __cil_tmp9 + 12;
-  *((int *)__cil_tmp10) = mii_id;
+  *((int *)((void *)phy + 12)) = mii_id;
   rc = reset_one_mii_phy(phy, mii_id);
   }
   if (rc) {
@@ -6496,9 +6204,7 @@ int sungem_phy_probe(struct mii_phy *phy , int mii_id )
     }
     {
     __cil_tmp18 = *((u32 *)def);
-    __cil_tmp19 = (unsigned long )def;
-    __cil_tmp20 = __cil_tmp19 + 4;
-    __cil_tmp21 = *((u32 *)__cil_tmp20);
+    __cil_tmp21 = *((u32 *)((void *)def + 4));
     __cil_tmp22 = id & __cil_tmp21;
     if (__cil_tmp22 == __cil_tmp18) {
       goto while_break;
@@ -6523,18 +6229,10 @@ int sungem_phy_probe(struct mii_phy *phy , int mii_id )
   *((struct mii_phy_def **)phy) = def;
   return (0);
   fail: 
-  __cil_tmp26 = (unsigned long )phy;
-  __cil_tmp27 = __cil_tmp26 + 20;
-  *((int *)__cil_tmp27) = 0;
-  __cil_tmp28 = (unsigned long )phy;
-  __cil_tmp29 = __cil_tmp28 + 24;
-  *((int *)__cil_tmp29) = 0;
-  __cil_tmp30 = (unsigned long )phy;
-  __cil_tmp31 = __cil_tmp30 + 28;
-  *((int *)__cil_tmp31) = 0;
-  __cil_tmp32 = (unsigned long )phy;
-  __cil_tmp33 = __cil_tmp32 + 8;
-  *((u32 *)__cil_tmp33) = (u32 )0;
+  *((int *)((void *)phy + 20)) = 0;
+  *((int *)((void *)phy + 24)) = 0;
+  *((int *)((void *)phy + 28)) = 0;
+  *((u32 *)((void *)phy + 8)) = (u32 )0;
   return (-19);
 }
 }

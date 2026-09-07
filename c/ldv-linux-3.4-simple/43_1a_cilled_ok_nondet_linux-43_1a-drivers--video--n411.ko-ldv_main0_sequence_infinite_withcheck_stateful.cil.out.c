@@ -3592,19 +3592,11 @@ static int n411_init_control(struct hecubafb_par *par )
 }
 static int n411_init_board(struct hecubafb_par *par ) 
 { int retval ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void (*__cil_tmp5)(struct hecubafb_par * , unsigned char  ) ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void (*__cil_tmp8)(struct hecubafb_par * , unsigned char  ) ;
   unsigned int *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void (*__cil_tmp13)(struct hecubafb_par * , unsigned char  ) ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void (*__cil_tmp16)(struct hecubafb_par * , unsigned char  ) ;
   unsigned long *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
@@ -3622,13 +3614,9 @@ static int n411_init_board(struct hecubafb_par *par )
 
   }
   {
-  __cil_tmp3 = (unsigned long )par;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = *((void (**)(struct hecubafb_par * , unsigned char  ))__cil_tmp4);
+  __cil_tmp5 = *((void (**)(struct hecubafb_par * , unsigned char  ))((void *)par + 16));
   (*__cil_tmp5)(par, (unsigned char)164);
-  __cil_tmp6 = (unsigned long )par;
-  __cil_tmp7 = __cil_tmp6 + 24;
-  __cil_tmp8 = *((void (**)(struct hecubafb_par * , unsigned char  ))__cil_tmp7);
+  __cil_tmp8 = *((void (**)(struct hecubafb_par * , unsigned char  ))((void *)par + 24));
   (*__cil_tmp8)(par, (unsigned char)129);
   __const_udelay(4295000UL);
   }
@@ -3637,13 +3625,9 @@ static int n411_init_board(struct hecubafb_par *par )
   __cil_tmp10 = *__cil_tmp9;
   if (__cil_tmp10 == 0U) {
     {
-    __cil_tmp11 = (unsigned long )par;
-    __cil_tmp12 = __cil_tmp11 + 16;
-    __cil_tmp13 = *((void (**)(struct hecubafb_par * , unsigned char  ))__cil_tmp12);
+    __cil_tmp13 = *((void (**)(struct hecubafb_par * , unsigned char  ))((void *)par + 16));
     (*__cil_tmp13)(par, (unsigned char)163);
-    __cil_tmp14 = (unsigned long )par;
-    __cil_tmp15 = __cil_tmp14 + 24;
-    __cil_tmp16 = *((void (**)(struct hecubafb_par * , unsigned char  ))__cil_tmp15);
+    __cil_tmp16 = *((void (**)(struct hecubafb_par * , unsigned char  ))((void *)par + 24));
     __cil_tmp17 = & splashval;
     __cil_tmp18 = *__cil_tmp17;
     __cil_tmp19 = (unsigned char )__cil_tmp18;

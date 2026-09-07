@@ -4729,26 +4729,14 @@ static int pl_reset(struct usbnet *dev )
 { int status ;
   struct _ddebug descriptor ;
   long tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
   struct _ddebug *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned char __cil_tmp20 ;
   long __cil_tmp21 ;
   long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct net_device *__cil_tmp25 ;
   struct net_device  const  *__cil_tmp26 ;
 
@@ -4758,41 +4746,29 @@ static int pl_reset(struct usbnet *dev )
   }
   if (status != 0) {
     {
-    __cil_tmp5 = (unsigned long )dev;
-    __cil_tmp6 = __cil_tmp5 + 384;
-    __cil_tmp7 = *((int *)__cil_tmp6);
+    __cil_tmp7 = *((int *)((void *)dev + 384));
     __cil_tmp8 = __cil_tmp7 & 2;
     if (__cil_tmp8 != 0) {
       {
-      __cil_tmp9 = (unsigned long )dev;
-      __cil_tmp10 = __cil_tmp9 + 384;
-      __cil_tmp11 = *((int *)__cil_tmp10);
+      __cil_tmp11 = *((int *)((void *)dev + 384));
       __cil_tmp12 = __cil_tmp11 & 4;
       if (__cil_tmp12 != 0) {
         {
         __cil_tmp13 = & descriptor;
         *((char const   **)__cil_tmp13) = "plusb";
-        __cil_tmp14 = (unsigned long )(& descriptor) + 8;
-        *((char const   **)__cil_tmp14) = "pl_reset";
-        __cil_tmp15 = (unsigned long )(& descriptor) + 16;
-        *((char const   **)__cil_tmp15) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12747/dscv_tempdir/dscv/ri/43_1a/drivers/net/usb/plusb.c.p";
-        __cil_tmp16 = (unsigned long )(& descriptor) + 24;
-        *((char const   **)__cil_tmp16) = "pl_reset --> %d\n";
-        __cil_tmp17 = (unsigned long )(& descriptor) + 32;
-        *((unsigned int *)__cil_tmp17) = 120U;
-        __cil_tmp18 = (unsigned long )(& descriptor) + 35;
-        *((unsigned char *)__cil_tmp18) = (unsigned char)0;
-        __cil_tmp19 = (unsigned long )(& descriptor) + 35;
-        __cil_tmp20 = *((unsigned char *)__cil_tmp19);
+        *((char const   **)((void *)(&descriptor) + 8)) = "pl_reset";
+        *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12747/dscv_tempdir/dscv/ri/43_1a/drivers/net/usb/plusb.c.p";
+        *((char const   **)((void *)(&descriptor) + 24)) = "pl_reset --> %d\n";
+        *((unsigned int *)((void *)(&descriptor) + 32)) = 120U;
+        *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+        __cil_tmp20 = *((unsigned char *)((void *)(&descriptor) + 35));
         __cil_tmp21 = (long )__cil_tmp20;
         __cil_tmp22 = __cil_tmp21 & 1L;
         tmp = __builtin_expect(__cil_tmp22, 0L);
         }
         if (tmp != 0L) {
           {
-          __cil_tmp23 = (unsigned long )dev;
-          __cil_tmp24 = __cil_tmp23 + 376;
-          __cil_tmp25 = *((struct net_device **)__cil_tmp24);
+          __cil_tmp25 = *((struct net_device **)((void *)dev + 376));
           __cil_tmp26 = (struct net_device  const  *)__cil_tmp25;
           __dynamic_netdev_dbg(& descriptor, __cil_tmp26, "pl_reset --> %d\n", status);
           }

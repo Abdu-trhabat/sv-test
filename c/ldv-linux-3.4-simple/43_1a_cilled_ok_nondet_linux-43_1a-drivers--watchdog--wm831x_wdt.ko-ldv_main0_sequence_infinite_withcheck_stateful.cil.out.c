@@ -977,17 +977,14 @@ extern int dev_set_drvdata(struct device * , void * ) ;
 extern int dev_err(struct device  const  * , char const   *  , ...) ;
 extern int dev_warn(struct device  const  * , char const   *  , ...) ;
 __inline static void watchdog_set_nowayout(struct watchdog_device *wdd , bool nowayout ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   unsigned long *__cil_tmp5 ;
   unsigned long volatile   *__cil_tmp6 ;
 
   {
   if ((int )nowayout) {
     {
-    __cil_tmp3 = (unsigned long )wdd;
-    __cil_tmp4 = __cil_tmp3 + 40;
-    __cil_tmp5 = (unsigned long *)__cil_tmp4;
+    __cil_tmp5 = (unsigned long *)((void *)wdd + 40);
     __cil_tmp6 = (unsigned long volatile   *)__cil_tmp5;
     set_bit(3U, __cil_tmp6);
     }
@@ -998,25 +995,17 @@ __inline static void watchdog_set_nowayout(struct watchdog_device *wdd , bool no
 }
 }
 __inline static void watchdog_set_drvdata(struct watchdog_device *wdd , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-
+{
   {
-  __cil_tmp3 = (unsigned long )wdd;
-  __cil_tmp4 = __cil_tmp3 + 32;
-  *((void **)__cil_tmp4) = data;
+  *((void **)((void *)wdd + 32)) = data;
   return;
 }
 }
 __inline static void *watchdog_get_drvdata(struct watchdog_device *wdd ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )wdd;
-  __cil_tmp3 = __cil_tmp2 + 32;
-  return (*((void **)__cil_tmp3));
+  return (*((void **)((void *)wdd + 32)));
   }
 }
 }
@@ -1043,29 +1032,17 @@ static int wm831x_wdt_start(struct watchdog_device *wdt_dev )
   void *tmp ;
   struct wm831x *wm831x ;
   int ret ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device  const  *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mutex *__cil_tmp17 ;
 
   {
   {
   tmp = watchdog_get_drvdata(wdt_dev);
   driver_data = (struct wm831x_wdt_drvdata *)tmp;
-  __cil_tmp6 = (unsigned long )driver_data;
-  __cil_tmp7 = __cil_tmp6 + 48;
-  wm831x = *((struct wm831x **)__cil_tmp7);
-  __cil_tmp8 = (unsigned long )driver_data;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  __cil_tmp10 = (struct mutex *)__cil_tmp9;
+  wm831x = *((struct wm831x **)((void *)driver_data + 48));
+  __cil_tmp10 = (struct mutex *)((void *)driver_data + 56);
   mutex_lock_nested(__cil_tmp10, 0U);
   ret = wm831x_reg_unlock(wm831x);
   }
@@ -1076,17 +1053,13 @@ static int wm831x_wdt_start(struct watchdog_device *wdt_dev )
     }
   } else {
     {
-    __cil_tmp11 = (unsigned long )wm831x;
-    __cil_tmp12 = __cil_tmp11 + 168;
-    __cil_tmp13 = *((struct device **)__cil_tmp12);
+    __cil_tmp13 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp14 = (struct device  const  *)__cil_tmp13;
     dev_err(__cil_tmp14, "Failed to unlock security key: %d\n", ret);
     }
   }
   {
-  __cil_tmp15 = (unsigned long )driver_data;
-  __cil_tmp16 = __cil_tmp15 + 56;
-  __cil_tmp17 = (struct mutex *)__cil_tmp16;
+  __cil_tmp17 = (struct mutex *)((void *)driver_data + 56);
   mutex_unlock(__cil_tmp17);
   }
   return (ret);
@@ -1097,29 +1070,17 @@ static int wm831x_wdt_stop(struct watchdog_device *wdt_dev )
   void *tmp ;
   struct wm831x *wm831x ;
   int ret ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device  const  *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mutex *__cil_tmp17 ;
 
   {
   {
   tmp = watchdog_get_drvdata(wdt_dev);
   driver_data = (struct wm831x_wdt_drvdata *)tmp;
-  __cil_tmp6 = (unsigned long )driver_data;
-  __cil_tmp7 = __cil_tmp6 + 48;
-  wm831x = *((struct wm831x **)__cil_tmp7);
-  __cil_tmp8 = (unsigned long )driver_data;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  __cil_tmp10 = (struct mutex *)__cil_tmp9;
+  wm831x = *((struct wm831x **)((void *)driver_data + 48));
+  __cil_tmp10 = (struct mutex *)((void *)driver_data + 56);
   mutex_lock_nested(__cil_tmp10, 0U);
   ret = wm831x_reg_unlock(wm831x);
   }
@@ -1130,17 +1091,13 @@ static int wm831x_wdt_stop(struct watchdog_device *wdt_dev )
     }
   } else {
     {
-    __cil_tmp11 = (unsigned long )wm831x;
-    __cil_tmp12 = __cil_tmp11 + 168;
-    __cil_tmp13 = *((struct device **)__cil_tmp12);
+    __cil_tmp13 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp14 = (struct device  const  *)__cil_tmp13;
     dev_err(__cil_tmp14, "Failed to unlock security key: %d\n", ret);
     }
   }
   {
-  __cil_tmp15 = (unsigned long )driver_data;
-  __cil_tmp16 = __cil_tmp15 + 56;
-  __cil_tmp17 = (struct mutex *)__cil_tmp16;
+  __cil_tmp17 = (struct mutex *)((void *)driver_data + 56);
   mutex_unlock(__cil_tmp17);
   }
   return (ret);
@@ -1153,76 +1110,42 @@ static int wm831x_wdt_ping(struct watchdog_device *wdt_dev )
   int ret ;
   u16 reg ;
   int tmp___0 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct mutex *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
   int __cil_tmp28 ;
   int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device *__cil_tmp32 ;
   struct device  const  *__cil_tmp33 ;
   unsigned int __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
   int __cil_tmp36 ;
   unsigned short __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct device *__cil_tmp40 ;
   struct device  const  *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct mutex *__cil_tmp44 ;
 
   {
   {
   tmp = watchdog_get_drvdata(wdt_dev);
   driver_data = (struct wm831x_wdt_drvdata *)tmp;
-  __cil_tmp8 = (unsigned long )driver_data;
-  __cil_tmp9 = __cil_tmp8 + 48;
-  wm831x = *((struct wm831x **)__cil_tmp9);
-  __cil_tmp10 = (unsigned long )driver_data;
-  __cil_tmp11 = __cil_tmp10 + 56;
-  __cil_tmp12 = (struct mutex *)__cil_tmp11;
+  wm831x = *((struct wm831x **)((void *)driver_data + 48));
+  __cil_tmp12 = (struct mutex *)((void *)driver_data + 56);
   mutex_lock_nested(__cil_tmp12, 0U);
   }
   {
-  __cil_tmp13 = (unsigned long )driver_data;
-  __cil_tmp14 = __cil_tmp13 + 224;
-  __cil_tmp15 = *((int *)__cil_tmp14);
+  __cil_tmp15 = *((int *)((void *)driver_data + 224));
   if (__cil_tmp15 != 0) {
     {
-    __cil_tmp16 = (unsigned long )driver_data;
-    __cil_tmp17 = __cil_tmp16 + 224;
-    __cil_tmp18 = *((int *)__cil_tmp17);
+    __cil_tmp18 = *((int *)((void *)driver_data + 224));
     __cil_tmp19 = (unsigned int )__cil_tmp18;
-    __cil_tmp20 = (unsigned long )driver_data;
-    __cil_tmp21 = __cil_tmp20 + 228;
-    __cil_tmp22 = *((int *)__cil_tmp21);
+    __cil_tmp22 = *((int *)((void *)driver_data + 228));
     gpio_set_value_cansleep(__cil_tmp19, __cil_tmp22);
-    __cil_tmp23 = (unsigned long )driver_data;
-    __cil_tmp24 = __cil_tmp23 + 228;
-    __cil_tmp25 = (unsigned long )driver_data;
-    __cil_tmp26 = __cil_tmp25 + 228;
-    __cil_tmp27 = *((int *)__cil_tmp26);
-    *((int *)__cil_tmp24) = __cil_tmp27 == 0;
+    __cil_tmp27 = *((int *)((void *)driver_data + 228));
+    *((int *)((void *)driver_data + 228)) = __cil_tmp27 == 0;
     ret = 0;
     }
     goto out;
@@ -1239,9 +1162,7 @@ static int wm831x_wdt_ping(struct watchdog_device *wdt_dev )
   __cil_tmp29 = __cil_tmp28 & 8192;
   if (__cil_tmp29 == 0) {
     {
-    __cil_tmp30 = (unsigned long )wm831x;
-    __cil_tmp31 = __cil_tmp30 + 168;
-    __cil_tmp32 = *((struct device **)__cil_tmp31);
+    __cil_tmp32 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp33 = (struct device  const  *)__cil_tmp32;
     dev_err(__cil_tmp33, "Hardware watchdog update unsupported\n");
     ret = -22;
@@ -1266,18 +1187,14 @@ static int wm831x_wdt_ping(struct watchdog_device *wdt_dev )
     }
   } else {
     {
-    __cil_tmp38 = (unsigned long )wm831x;
-    __cil_tmp39 = __cil_tmp38 + 168;
-    __cil_tmp40 = *((struct device **)__cil_tmp39);
+    __cil_tmp40 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp41 = (struct device  const  *)__cil_tmp40;
     dev_err(__cil_tmp41, "Failed to unlock security key: %d\n", ret);
     }
   }
   out: 
   {
-  __cil_tmp42 = (unsigned long )driver_data;
-  __cil_tmp43 = __cil_tmp42 + 56;
-  __cil_tmp44 = (struct mutex *)__cil_tmp43;
+  __cil_tmp44 = (struct mutex *)((void *)driver_data + 56);
   mutex_unlock(__cil_tmp44);
   }
   return (ret);
@@ -1289,8 +1206,6 @@ static int wm831x_wdt_set_timeout(struct watchdog_device *wdt_dev , unsigned int
   struct wm831x *wm831x ;
   int ret ;
   int i ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
@@ -1301,20 +1216,14 @@ static int wm831x_wdt_set_timeout(struct watchdog_device *wdt_dev , unsigned int
   u16 __cil_tmp17 ;
   int __cil_tmp18 ;
   unsigned short __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device  const  *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
 
   {
   {
   tmp = watchdog_get_drvdata(wdt_dev);
   driver_data = (struct wm831x_wdt_drvdata *)tmp;
-  __cil_tmp8 = (unsigned long )driver_data;
-  __cil_tmp9 = __cil_tmp8 + 48;
-  wm831x = *((struct wm831x **)__cil_tmp9);
+  wm831x = *((struct wm831x **)((void *)driver_data + 48));
   i = 0;
   }
   goto ldv_17541;
@@ -1361,16 +1270,12 @@ static int wm831x_wdt_set_timeout(struct watchdog_device *wdt_dev , unsigned int
     }
   } else {
     {
-    __cil_tmp20 = (unsigned long )wm831x;
-    __cil_tmp21 = __cil_tmp20 + 168;
-    __cil_tmp22 = *((struct device **)__cil_tmp21);
+    __cil_tmp22 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp23 = (struct device  const  *)__cil_tmp22;
     dev_err(__cil_tmp23, "Failed to unlock security key: %d\n", ret);
     }
   }
-  __cil_tmp24 = (unsigned long )wdt_dev;
-  __cil_tmp25 = __cil_tmp24 + 20;
-  *((unsigned int *)__cil_tmp25) = timeout;
+  *((unsigned int *)((void *)wdt_dev + 20)) = timeout;
   return (ret);
 }
 }
@@ -1398,36 +1303,20 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
   int i ;
   void *tmp___0 ;
   struct lock_class_key __key ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device  const  *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   struct device  const  *__cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device  const  *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct device *__cil_tmp28 ;
   struct wm831x_wdt_drvdata *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   struct device  const  *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct mutex *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   bool *__cil_tmp43 ;
   bool __cil_tmp44 ;
   int __cil_tmp45 ;
@@ -1439,31 +1328,17 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
   u16 __cil_tmp51 ;
   int __cil_tmp52 ;
   unsigned int __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct device *__cil_tmp56 ;
   struct device  const  *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   void *__cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct device *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   void *__cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   struct device *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   void *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct wm831x_watchdog_pdata *__cil_tmp79 ;
   unsigned long __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
@@ -1473,69 +1348,39 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
   unsigned int __cil_tmp85 ;
   unsigned int __cil_tmp86 ;
   unsigned int __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   enum wm831x_watchdog_action __cil_tmp90 ;
   unsigned int __cil_tmp91 ;
   unsigned int __cil_tmp92 ;
   unsigned int __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   unsigned char __cil_tmp96 ;
   int __cil_tmp97 ;
   int __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
   int __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   int __cil_tmp104 ;
   unsigned int __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   struct device *__cil_tmp108 ;
   struct device  const  *__cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   int __cil_tmp112 ;
   unsigned int __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
   struct device *__cil_tmp116 ;
   struct device  const  *__cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   unsigned short __cil_tmp122 ;
   int __cil_tmp123 ;
   unsigned short __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   struct device *__cil_tmp127 ;
   struct device  const  *__cil_tmp128 ;
   struct watchdog_device *__cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
   struct device *__cil_tmp132 ;
   struct device  const  *__cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
   struct device *__cil_tmp136 ;
   void *__cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
   int __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
   int __cil_tmp143 ;
   unsigned int __cil_tmp144 ;
 
   {
   {
-  __cil_tmp13 = (unsigned long )pdev;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((struct device **)__cil_tmp14);
+  __cil_tmp15 = *((struct device **)((void *)pdev + 16));
   __cil_tmp16 = (struct device  const  *)__cil_tmp15;
   tmp = dev_get_drvdata(__cil_tmp16);
   wm831x = (struct wm831x *)tmp;
@@ -1543,9 +1388,7 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
   }
   if (ret < 0) {
     {
-    __cil_tmp17 = (unsigned long )wm831x;
-    __cil_tmp18 = __cil_tmp17 + 168;
-    __cil_tmp19 = *((struct device **)__cil_tmp18);
+    __cil_tmp19 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp20 = (struct device  const  *)__cil_tmp19;
     dev_err(__cil_tmp20, "Failed to read watchdog status: %d\n", ret);
     }
@@ -1558,9 +1401,7 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
   __cil_tmp21 = reg & 16384;
   if (__cil_tmp21 != 0) {
     {
-    __cil_tmp22 = (unsigned long )wm831x;
-    __cil_tmp23 = __cil_tmp22 + 168;
-    __cil_tmp24 = *((struct device **)__cil_tmp23);
+    __cil_tmp24 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp25 = (struct device  const  *)__cil_tmp24;
     dev_warn(__cil_tmp25, "Watchdog is paused\n");
     }
@@ -1569,9 +1410,7 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp26 = (unsigned long )pdev;
-  __cil_tmp27 = __cil_tmp26 + 16;
-  __cil_tmp28 = (struct device *)__cil_tmp27;
+  __cil_tmp28 = (struct device *)((void *)pdev + 16);
   tmp___0 = devm_kzalloc(__cil_tmp28, 232UL, 208U);
   driver_data = (struct wm831x_wdt_drvdata *)tmp___0;
   }
@@ -1581,9 +1420,7 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
   __cil_tmp31 = (unsigned long )driver_data;
   if (__cil_tmp31 == __cil_tmp30) {
     {
-    __cil_tmp32 = (unsigned long )wm831x;
-    __cil_tmp33 = __cil_tmp32 + 168;
-    __cil_tmp34 = *((struct device **)__cil_tmp33);
+    __cil_tmp34 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp35 = (struct device  const  *)__cil_tmp34;
     dev_err(__cil_tmp35, "Unable to alloacate watchdog device\n");
     ret = -12;
@@ -1594,18 +1431,12 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp36 = (unsigned long )driver_data;
-  __cil_tmp37 = __cil_tmp36 + 56;
-  __cil_tmp38 = (struct mutex *)__cil_tmp37;
+  __cil_tmp38 = (struct mutex *)((void *)driver_data + 56);
   __mutex_init(__cil_tmp38, "&driver_data->lock", & __key);
-  __cil_tmp39 = (unsigned long )driver_data;
-  __cil_tmp40 = __cil_tmp39 + 48;
-  *((struct wm831x **)__cil_tmp40) = wm831x;
+  *((struct wm831x **)((void *)driver_data + 48)) = wm831x;
   wm831x_wdt = (struct watchdog_device *)driver_data;
   *((struct watchdog_info  const  **)wm831x_wdt) = & wm831x_wdt_info;
-  __cil_tmp41 = (unsigned long )wm831x_wdt;
-  __cil_tmp42 = __cil_tmp41 + 8;
-  *((struct watchdog_ops  const  **)__cil_tmp42) = & wm831x_wdt_ops;
+  *((struct watchdog_ops  const  **)((void *)wm831x_wdt + 8)) = & wm831x_wdt_ops;
   __cil_tmp43 = & nowayout;
   __cil_tmp44 = *__cil_tmp43;
   __cil_tmp45 = (int )__cil_tmp44;
@@ -1644,40 +1475,26 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
   ldv_17561: ;
   if (i == 7) {
     {
-    __cil_tmp54 = (unsigned long )wm831x;
-    __cil_tmp55 = __cil_tmp54 + 168;
-    __cil_tmp56 = *((struct device **)__cil_tmp55);
+    __cil_tmp56 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp57 = (struct device  const  *)__cil_tmp56;
     dev_warn(__cil_tmp57, "Unknown watchdog timeout: %x\n", reg);
     }
   } else {
-    __cil_tmp58 = (unsigned long )wm831x_wdt;
-    __cil_tmp59 = __cil_tmp58 + 20;
     __cil_tmp60 = i * 8UL;
     __cil_tmp61 = (unsigned long )(wm831x_wdt_cfgs) + __cil_tmp60;
-    *((unsigned int *)__cil_tmp59) = *((unsigned int *)__cil_tmp61);
+    *((unsigned int *)((void *)wm831x_wdt + 20)) = *((unsigned int *)__cil_tmp61);
   }
   {
   __cil_tmp62 = (void *)0;
   __cil_tmp63 = (unsigned long )__cil_tmp62;
-  __cil_tmp64 = (unsigned long )pdev;
-  __cil_tmp65 = __cil_tmp64 + 16;
-  __cil_tmp66 = *((struct device **)__cil_tmp65);
-  __cil_tmp67 = (unsigned long )__cil_tmp66;
-  __cil_tmp68 = __cil_tmp67 + 280;
-  __cil_tmp69 = *((void **)__cil_tmp68);
+  __cil_tmp66 = *((struct device **)((void *)pdev + 16));
+  __cil_tmp69 = *((void **)((void *)__cil_tmp66 + 280));
   __cil_tmp70 = (unsigned long )__cil_tmp69;
   if (__cil_tmp70 != __cil_tmp63) {
-    __cil_tmp71 = (unsigned long )pdev;
-    __cil_tmp72 = __cil_tmp71 + 16;
-    __cil_tmp73 = *((struct device **)__cil_tmp72);
-    __cil_tmp74 = (unsigned long )__cil_tmp73;
-    __cil_tmp75 = __cil_tmp74 + 280;
-    __cil_tmp76 = *((void **)__cil_tmp75);
+    __cil_tmp73 = *((struct device **)((void *)pdev + 16));
+    __cil_tmp76 = *((void **)((void *)__cil_tmp73 + 280));
     chip_pdata = (struct wm831x_pdata *)__cil_tmp76;
-    __cil_tmp77 = (unsigned long )chip_pdata;
-    __cil_tmp78 = __cil_tmp77 + 136;
-    pdata = *((struct wm831x_watchdog_pdata **)__cil_tmp78);
+    pdata = *((struct wm831x_watchdog_pdata **)((void *)chip_pdata + 136));
   } else {
     pdata = (struct wm831x_watchdog_pdata *)0;
   }
@@ -1695,36 +1512,26 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
     __cil_tmp86 = __cil_tmp85 | __cil_tmp82;
     reg = (int )__cil_tmp86;
     __cil_tmp87 = (unsigned int )reg;
-    __cil_tmp88 = (unsigned long )pdata;
-    __cil_tmp89 = __cil_tmp88 + 4;
-    __cil_tmp90 = *((enum wm831x_watchdog_action *)__cil_tmp89);
+    __cil_tmp90 = *((enum wm831x_watchdog_action *)((void *)pdata + 4));
     __cil_tmp91 = (unsigned int )__cil_tmp90;
     __cil_tmp92 = __cil_tmp91 << 8;
     __cil_tmp93 = __cil_tmp92 | __cil_tmp87;
     reg = (int )__cil_tmp93;
-    __cil_tmp94 = (unsigned long )pdata;
-    __cil_tmp95 = __cil_tmp94 + 12;
-    __cil_tmp96 = *((unsigned char *)__cil_tmp95);
+    __cil_tmp96 = *((unsigned char *)((void *)pdata + 12));
     __cil_tmp97 = (int )__cil_tmp96;
     __cil_tmp98 = __cil_tmp97 << 13;
     reg = __cil_tmp98 | reg;
     {
-    __cil_tmp99 = (unsigned long )pdata;
-    __cil_tmp100 = __cil_tmp99 + 8;
-    __cil_tmp101 = *((int *)__cil_tmp100);
+    __cil_tmp101 = *((int *)((void *)pdata + 8));
     if (__cil_tmp101 != 0) {
       {
-      __cil_tmp102 = (unsigned long )pdata;
-      __cil_tmp103 = __cil_tmp102 + 8;
-      __cil_tmp104 = *((int *)__cil_tmp103);
+      __cil_tmp104 = *((int *)((void *)pdata + 8));
       __cil_tmp105 = (unsigned int )__cil_tmp104;
       ret = gpio_request(__cil_tmp105, "Watchdog update");
       }
       if (ret < 0) {
         {
-        __cil_tmp106 = (unsigned long )wm831x;
-        __cil_tmp107 = __cil_tmp106 + 168;
-        __cil_tmp108 = *((struct device **)__cil_tmp107);
+        __cil_tmp108 = *((struct device **)((void *)wm831x + 168));
         __cil_tmp109 = (struct device  const  *)__cil_tmp108;
         dev_err(__cil_tmp109, "Failed to request update GPIO: %d\n", ret);
         }
@@ -1733,17 +1540,13 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
 
       }
       {
-      __cil_tmp110 = (unsigned long )pdata;
-      __cil_tmp111 = __cil_tmp110 + 8;
-      __cil_tmp112 = *((int *)__cil_tmp111);
+      __cil_tmp112 = *((int *)((void *)pdata + 8));
       __cil_tmp113 = (unsigned int )__cil_tmp112;
       ret = gpio_direction_output(__cil_tmp113, 0);
       }
       if (ret != 0) {
         {
-        __cil_tmp114 = (unsigned long )wm831x;
-        __cil_tmp115 = __cil_tmp114 + 168;
-        __cil_tmp116 = *((struct device **)__cil_tmp115);
+        __cil_tmp116 = *((struct device **)((void *)wm831x + 168));
         __cil_tmp117 = (struct device  const  *)__cil_tmp116;
         dev_err(__cil_tmp117, "gpio_direction_output returned: %d\n", ret);
         }
@@ -1751,11 +1554,7 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
       } else {
 
       }
-      __cil_tmp118 = (unsigned long )driver_data;
-      __cil_tmp119 = __cil_tmp118 + 224;
-      __cil_tmp120 = (unsigned long )pdata;
-      __cil_tmp121 = __cil_tmp120 + 8;
-      *((int *)__cil_tmp119) = *((int *)__cil_tmp121);
+      *((int *)((void *)driver_data + 224)) = *((int *)((void *)pdata + 8));
       reg = reg | 8192;
     } else {
 
@@ -1774,9 +1573,7 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
       }
     } else {
       {
-      __cil_tmp125 = (unsigned long )wm831x;
-      __cil_tmp126 = __cil_tmp125 + 168;
-      __cil_tmp127 = *((struct device **)__cil_tmp126);
+      __cil_tmp127 = *((struct device **)((void *)wm831x + 168));
       __cil_tmp128 = (struct device  const  *)__cil_tmp127;
       dev_err(__cil_tmp128, "Failed to unlock security key: %d\n", ret);
       }
@@ -1792,9 +1589,7 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
   }
   if (ret != 0) {
     {
-    __cil_tmp130 = (unsigned long )wm831x;
-    __cil_tmp131 = __cil_tmp130 + 168;
-    __cil_tmp132 = *((struct device **)__cil_tmp131);
+    __cil_tmp132 = *((struct device **)((void *)wm831x + 168));
     __cil_tmp133 = (struct device  const  *)__cil_tmp132;
     dev_err(__cil_tmp133, "watchdog_register_device() failed: %d\n", ret);
     }
@@ -1803,23 +1598,17 @@ static int wm831x_wdt_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp134 = (unsigned long )pdev;
-  __cil_tmp135 = __cil_tmp134 + 16;
-  __cil_tmp136 = (struct device *)__cil_tmp135;
+  __cil_tmp136 = (struct device *)((void *)pdev + 16);
   __cil_tmp137 = (void *)driver_data;
   dev_set_drvdata(__cil_tmp136, __cil_tmp137);
   }
   return (0);
   err_gpio: ;
   {
-  __cil_tmp138 = (unsigned long )driver_data;
-  __cil_tmp139 = __cil_tmp138 + 224;
-  __cil_tmp140 = *((int *)__cil_tmp139);
+  __cil_tmp140 = *((int *)((void *)driver_data + 224));
   if (__cil_tmp140 != 0) {
     {
-    __cil_tmp141 = (unsigned long )driver_data;
-    __cil_tmp142 = __cil_tmp141 + 224;
-    __cil_tmp143 = *((int *)__cil_tmp142);
+    __cil_tmp143 = *((int *)((void *)driver_data + 224));
     __cil_tmp144 = (unsigned int )__cil_tmp143;
     gpio_free(__cil_tmp144);
     }

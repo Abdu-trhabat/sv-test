@@ -5346,15 +5346,11 @@ __inline static void random_ether_addr(u8 *addr )
 }
 __inline static void *usb_get_intfdata(struct usb_interface *intf )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -5362,14 +5358,11 @@ __inline static void *usb_get_intfdata(struct usb_interface *intf )
 }
 }
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -5377,14 +5370,10 @@ __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
 }
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf )
 { struct device const *__mptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct usb_device *__cil_tmp6 ;
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = *((struct device **)__cil_tmp4);
+  __cil_tmp5 = *((struct device **)((void *)intf + 48));
   __mptr = (struct device const *)__cil_tmp5;
   {
   __cil_tmp6 = (struct usb_device *)__mptr;
@@ -5429,11 +5418,7 @@ static struct usb_interface *xusbatm_find_intf(struct usb_device *usb_dev , int 
   int j ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct usb_host_config *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct usb_interface *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
@@ -5445,25 +5430,15 @@ static struct usb_interface *xusbatm_find_intf(struct usb_device *usb_dev , int 
   int __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct usb_host_endpoint *__cil_tmp28 ;
   struct usb_host_endpoint *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   __u8 __cil_tmp32 ;
   int __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   __u8 __cil_tmp37 ;
   int __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct usb_host_config *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   __u8 __cil_tmp45 ;
   int __cil_tmp46 ;
   {
@@ -5472,12 +5447,8 @@ static struct usb_interface *xusbatm_find_intf(struct usb_device *usb_dev , int 
   ldv_40773:
   __cil_tmp8 = i * 8UL;
   __cil_tmp9 = 152 + __cil_tmp8;
-  __cil_tmp10 = (unsigned long )usb_dev;
-  __cil_tmp11 = __cil_tmp10 + 1328;
-  __cil_tmp12 = *((struct usb_host_config **)__cil_tmp11);
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp9;
-  intf = *((struct usb_interface **)__cil_tmp14);
+  __cil_tmp12 = *((struct usb_host_config **)((void *)usb_dev + 1328));
+  intf = *((struct usb_interface **)((void *)__cil_tmp12 + __cil_tmp9));
   {
   __cil_tmp15 = (struct usb_interface *)0;
   __cil_tmp16 = (unsigned long )__cil_tmp15;
@@ -5500,13 +5471,9 @@ static struct usb_interface *xusbatm_find_intf(struct usb_device *usb_dev , int 
       __cil_tmp23 = (int )ep;
       __cil_tmp24 = 0 + 2;
       __cil_tmp25 = (unsigned long )j;
-      __cil_tmp26 = (unsigned long )alt;
-      __cil_tmp27 = __cil_tmp26 + 16;
-      __cil_tmp28 = *((struct usb_host_endpoint **)__cil_tmp27);
+      __cil_tmp28 = *((struct usb_host_endpoint **)((void *)alt + 16));
       __cil_tmp29 = __cil_tmp28 + __cil_tmp25;
-      __cil_tmp30 = (unsigned long )__cil_tmp29;
-      __cil_tmp31 = __cil_tmp30 + __cil_tmp24;
-      __cil_tmp32 = *((__u8 *)__cil_tmp31);
+      __cil_tmp32 = *((__u8 *)((void *)__cil_tmp29 + __cil_tmp24));
       __cil_tmp33 = (int )__cil_tmp32;
       if (__cil_tmp33 == __cil_tmp23) {
         return (intf);
@@ -5517,9 +5484,7 @@ static struct usb_interface *xusbatm_find_intf(struct usb_device *usb_dev , int 
       ldv_40771: ;
       {
       __cil_tmp34 = 0 + 4;
-      __cil_tmp35 = (unsigned long )alt;
-      __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-      __cil_tmp37 = *((__u8 *)__cil_tmp36);
+      __cil_tmp37 = *((__u8 *)((void *)alt + __cil_tmp34));
       __cil_tmp38 = (int )__cil_tmp37;
       if (__cil_tmp38 > j) {
         goto ldv_40770;
@@ -5538,12 +5503,8 @@ static struct usb_interface *xusbatm_find_intf(struct usb_device *usb_dev , int 
   ldv_40774: ;
   {
   __cil_tmp39 = 0 + 4;
-  __cil_tmp40 = (unsigned long )usb_dev;
-  __cil_tmp41 = __cil_tmp40 + 1328;
-  __cil_tmp42 = *((struct usb_host_config **)__cil_tmp41);
-  __cil_tmp43 = (unsigned long )__cil_tmp42;
-  __cil_tmp44 = __cil_tmp43 + __cil_tmp39;
-  __cil_tmp45 = *((__u8 *)__cil_tmp44);
+  __cil_tmp42 = *((struct usb_host_config **)((void *)usb_dev + 1328));
+  __cil_tmp45 = *((__u8 *)((void *)__cil_tmp42 + __cil_tmp39));
   __cil_tmp46 = (int )__cil_tmp45;
   if (__cil_tmp46 > i) {
     goto ldv_40773;
@@ -5561,30 +5522,18 @@ static int xusbatm_capture_intf(struct usbatm_data *usbatm , struct usb_device *
   int ret ;
   unsigned long __cil_tmp8 ;
   struct usb_host_interface *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   __u8 __cil_tmp12 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct usb_interface *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   struct device const *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct usb_interface *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct device *__cil_tmp26 ;
   struct device const *__cil_tmp27 ;
   {
   __cil_tmp8 = 0 + 2;
   __cil_tmp9 = *((struct usb_host_interface **)intf);
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp8;
-  __cil_tmp12 = *((__u8 *)__cil_tmp11);
+  __cil_tmp12 = *((__u8 *)((void *)__cil_tmp9 + __cil_tmp8));
   ifnum = (int )__cil_tmp12;
   if (claim != 0) {
     {
@@ -5593,12 +5542,8 @@ static int xusbatm_capture_intf(struct usbatm_data *usbatm , struct usb_device *
     }
     if (ret != 0) {
       {
-      __cil_tmp14 = (unsigned long )usbatm;
-      __cil_tmp15 = __cil_tmp14 + 48;
-      __cil_tmp16 = *((struct usb_interface **)__cil_tmp15);
-      __cil_tmp17 = (unsigned long )__cil_tmp16;
-      __cil_tmp18 = __cil_tmp17 + 48;
-      __cil_tmp19 = (struct device *)__cil_tmp18;
+      __cil_tmp16 = *((struct usb_interface **)((void *)usbatm + 48));
+      __cil_tmp19 = (struct device *)((void *)__cil_tmp16 + 48);
       __cil_tmp20 = (struct device const *)__cil_tmp19;
       dev_err(__cil_tmp20, "%s: failed to claim interface %2d (%d)!\n", "xusbatm_capture_intf",
               ifnum, ret);
@@ -5613,12 +5558,8 @@ static int xusbatm_capture_intf(struct usbatm_data *usbatm , struct usb_device *
   }
   if (ret != 0) {
     {
-    __cil_tmp21 = (unsigned long )usbatm;
-    __cil_tmp22 = __cil_tmp21 + 48;
-    __cil_tmp23 = *((struct usb_interface **)__cil_tmp22);
-    __cil_tmp24 = (unsigned long )__cil_tmp23;
-    __cil_tmp25 = __cil_tmp24 + 48;
-    __cil_tmp26 = (struct device *)__cil_tmp25;
+    __cil_tmp23 = *((struct usb_interface **)((void *)usbatm + 48));
+    __cil_tmp26 = (struct device *)((void *)__cil_tmp23 + 48);
     __cil_tmp27 = (struct device const *)__cil_tmp26;
     dev_err(__cil_tmp27, "%s: altsetting %2d for interface %2d failed (%d)!\n", "xusbatm_capture_intf",
             altsetting, ifnum, ret);
@@ -5676,11 +5617,7 @@ static int xusbatm_bind(struct usbatm_data *usbatm , struct usb_interface *intf 
   unsigned char __cil_tmp31 ;
   int __cil_tmp32 ;
   u8 __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct usb_interface *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
   struct device const *__cil_tmp40 ;
   unsigned long __cil_tmp41 ;
@@ -5716,11 +5653,7 @@ static int xusbatm_bind(struct usbatm_data *usbatm , struct usb_interface *intf 
   struct usb_interface *__cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   struct usb_interface *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct device *__cil_tmp79 ;
   struct device const *__cil_tmp80 ;
   unsigned long __cil_tmp81 ;
@@ -5730,11 +5663,7 @@ static int xusbatm_bind(struct usbatm_data *usbatm , struct usb_interface *intf 
   struct usb_interface *__cil_tmp85 ;
   unsigned long __cil_tmp86 ;
   unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   struct usb_interface *__cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   struct device *__cil_tmp93 ;
   struct device const *__cil_tmp94 ;
   unsigned long __cil_tmp95 ;
@@ -5747,36 +5676,22 @@ static int xusbatm_bind(struct usbatm_data *usbatm , struct usb_interface *intf 
   unsigned long __cil_tmp102 ;
   unsigned long __cil_tmp103 ;
   unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   struct usb_interface *__cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
   struct device *__cil_tmp110 ;
   struct device const *__cil_tmp111 ;
   unsigned long __cil_tmp112 ;
   struct usb_host_interface *__cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
   __u8 __cil_tmp116 ;
   int __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
   struct usb_interface *__cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   struct device *__cil_tmp123 ;
   struct device const *__cil_tmp124 ;
   unsigned long __cil_tmp125 ;
   struct usb_host_interface *__cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
   __u8 __cil_tmp129 ;
   int __cil_tmp130 ;
   unsigned long __cil_tmp131 ;
   struct usb_host_interface *__cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
   __u8 __cil_tmp135 ;
   int __cil_tmp136 ;
   unsigned long __cil_tmp137 ;
@@ -5821,12 +5736,8 @@ static int xusbatm_bind(struct usbatm_data *usbatm , struct usb_interface *intf 
   __cil_tmp33 = (u8 )__cil_tmp32;
   tmp___1 = xusbatm_find_intf(usb_dev, tx_alt, __cil_tmp33);
   tx_intf = tmp___1;
-  __cil_tmp34 = (unsigned long )usbatm;
-  __cil_tmp35 = __cil_tmp34 + 48;
-  __cil_tmp36 = *((struct usb_interface **)__cil_tmp35);
-  __cil_tmp37 = (unsigned long )__cil_tmp36;
-  __cil_tmp38 = __cil_tmp37 + 48;
-  __cil_tmp39 = (struct device *)__cil_tmp38;
+  __cil_tmp36 = *((struct usb_interface **)((void *)usbatm + 48));
+  __cil_tmp39 = (struct device *)((void *)__cil_tmp36 + 48);
   __cil_tmp40 = (struct device const *)__cil_tmp39;
   __cil_tmp41 = drv_ix * 2UL;
   __cil_tmp42 = (unsigned long )(vendor) + __cil_tmp41;
@@ -5875,12 +5786,8 @@ static int xusbatm_bind(struct usbatm_data *usbatm , struct usb_interface *intf 
       __cil_tmp73 = (unsigned long )rx_intf;
       if (__cil_tmp73 == __cil_tmp72) {
         {
-        __cil_tmp74 = (unsigned long )usbatm;
-        __cil_tmp75 = __cil_tmp74 + 48;
-        __cil_tmp76 = *((struct usb_interface **)__cil_tmp75);
-        __cil_tmp77 = (unsigned long )__cil_tmp76;
-        __cil_tmp78 = __cil_tmp77 + 48;
-        __cil_tmp79 = (struct device *)__cil_tmp78;
+        __cil_tmp76 = *((struct usb_interface **)((void *)usbatm + 48));
+        __cil_tmp79 = (struct device *)((void *)__cil_tmp76 + 48);
         __cil_tmp80 = (struct device const *)__cil_tmp79;
         __cil_tmp81 = drv_ix * 1UL;
         __cil_tmp82 = (unsigned long )(rx_endpoint) + __cil_tmp81;
@@ -5898,12 +5805,8 @@ static int xusbatm_bind(struct usbatm_data *usbatm , struct usb_interface *intf 
       __cil_tmp87 = (unsigned long )tx_intf;
       if (__cil_tmp87 == __cil_tmp86) {
         {
-        __cil_tmp88 = (unsigned long )usbatm;
-        __cil_tmp89 = __cil_tmp88 + 48;
-        __cil_tmp90 = *((struct usb_interface **)__cil_tmp89);
-        __cil_tmp91 = (unsigned long )__cil_tmp90;
-        __cil_tmp92 = __cil_tmp91 + 48;
-        __cil_tmp93 = (struct device *)__cil_tmp92;
+        __cil_tmp90 = *((struct usb_interface **)((void *)usbatm + 48));
+        __cil_tmp93 = (struct device *)((void *)__cil_tmp90 + 48);
         __cil_tmp94 = (struct device const *)__cil_tmp93;
         __cil_tmp95 = drv_ix * 1UL;
         __cil_tmp96 = (unsigned long )(tx_endpoint) + __cil_tmp95;
@@ -5942,18 +5845,12 @@ static int xusbatm_bind(struct usbatm_data *usbatm , struct usb_interface *intf 
   if (__cil_tmp104 == __cil_tmp103) {
     if (rx_alt != tx_alt) {
       {
-      __cil_tmp105 = (unsigned long )usbatm;
-      __cil_tmp106 = __cil_tmp105 + 48;
-      __cil_tmp107 = *((struct usb_interface **)__cil_tmp106);
-      __cil_tmp108 = (unsigned long )__cil_tmp107;
-      __cil_tmp109 = __cil_tmp108 + 48;
-      __cil_tmp110 = (struct device *)__cil_tmp109;
+      __cil_tmp107 = *((struct usb_interface **)((void *)usbatm + 48));
+      __cil_tmp110 = (struct device *)((void *)__cil_tmp107 + 48);
       __cil_tmp111 = (struct device const *)__cil_tmp110;
       __cil_tmp112 = 0 + 2;
       __cil_tmp113 = *((struct usb_host_interface **)rx_intf);
-      __cil_tmp114 = (unsigned long )__cil_tmp113;
-      __cil_tmp115 = __cil_tmp114 + __cil_tmp112;
-      __cil_tmp116 = *((__u8 *)__cil_tmp115);
+      __cil_tmp116 = *((__u8 *)((void *)__cil_tmp113 + __cil_tmp112));
       __cil_tmp117 = (int )__cil_tmp116;
       dev_err(__cil_tmp111, "%s: altsettings clash on interface %2d (%2d vs %2d)!\n",
               "xusbatm_bind", __cil_tmp117, rx_alt, tx_alt);
@@ -5965,24 +5862,16 @@ static int xusbatm_bind(struct usbatm_data *usbatm , struct usb_interface *intf 
   }
   }
   {
-  __cil_tmp118 = (unsigned long )usbatm;
-  __cil_tmp119 = __cil_tmp118 + 48;
-  __cil_tmp120 = *((struct usb_interface **)__cil_tmp119);
-  __cil_tmp121 = (unsigned long )__cil_tmp120;
-  __cil_tmp122 = __cil_tmp121 + 48;
-  __cil_tmp123 = (struct device *)__cil_tmp122;
+  __cil_tmp120 = *((struct usb_interface **)((void *)usbatm + 48));
+  __cil_tmp123 = (struct device *)((void *)__cil_tmp120 + 48);
   __cil_tmp124 = (struct device const *)__cil_tmp123;
   __cil_tmp125 = 0 + 2;
   __cil_tmp126 = *((struct usb_host_interface **)rx_intf);
-  __cil_tmp127 = (unsigned long )__cil_tmp126;
-  __cil_tmp128 = __cil_tmp127 + __cil_tmp125;
-  __cil_tmp129 = *((__u8 *)__cil_tmp128);
+  __cil_tmp129 = *((__u8 *)((void *)__cil_tmp126 + __cil_tmp125));
   __cil_tmp130 = (int )__cil_tmp129;
   __cil_tmp131 = 0 + 2;
   __cil_tmp132 = *((struct usb_host_interface **)tx_intf);
-  __cil_tmp133 = (unsigned long )__cil_tmp132;
-  __cil_tmp134 = __cil_tmp133 + __cil_tmp131;
-  __cil_tmp135 = *((__u8 *)__cil_tmp134);
+  __cil_tmp135 = *((__u8 *)((void *)__cil_tmp132 + __cil_tmp131));
   __cil_tmp136 = (int )__cil_tmp135;
   dev_printk("<7>", __cil_tmp124, "%s: rx If#=%2d; tx If#=%2d\n", "xusbatm_bind",
              __cil_tmp130, __cil_tmp136);
@@ -6027,20 +5916,12 @@ static void xusbatm_unbind(struct usbatm_data *usbatm , struct usb_interface *in
   int i ;
   struct usb_interface *cur_intf ;
   void *tmp___0 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct usb_interface *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device const *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct usb_host_config *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct usb_interface *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
@@ -6049,23 +5930,15 @@ static void xusbatm_unbind(struct usbatm_data *usbatm , struct usb_interface *in
   unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct usb_host_config *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   __u8 __cil_tmp35 ;
   int __cil_tmp36 ;
   {
   {
   tmp = interface_to_usbdev(intf);
   usb_dev = tmp;
-  __cil_tmp8 = (unsigned long )usbatm;
-  __cil_tmp9 = __cil_tmp8 + 48;
-  __cil_tmp10 = *((struct usb_interface **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 48;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp10 = *((struct usb_interface **)((void *)usbatm + 48));
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 48);
   __cil_tmp14 = (struct device const *)__cil_tmp13;
   dev_printk("<7>", __cil_tmp14, "%s entered\n", "xusbatm_unbind");
   i = 0;
@@ -6074,12 +5947,8 @@ static void xusbatm_unbind(struct usbatm_data *usbatm , struct usb_interface *in
   ldv_40812:
   __cil_tmp15 = i * 8UL;
   __cil_tmp16 = 152 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )usb_dev;
-  __cil_tmp18 = __cil_tmp17 + 1328;
-  __cil_tmp19 = *((struct usb_host_config **)__cil_tmp18);
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp16;
-  cur_intf = *((struct usb_interface **)__cil_tmp21);
+  __cil_tmp19 = *((struct usb_host_config **)((void *)usb_dev + 1328));
+  cur_intf = *((struct usb_interface **)((void *)__cil_tmp19 + __cil_tmp16));
   {
   __cil_tmp22 = (struct usb_interface *)0;
   __cil_tmp23 = (unsigned long )__cil_tmp22;
@@ -6108,12 +5977,8 @@ static void xusbatm_unbind(struct usbatm_data *usbatm , struct usb_interface *in
   ldv_40813: ;
   {
   __cil_tmp29 = 0 + 4;
-  __cil_tmp30 = (unsigned long )usb_dev;
-  __cil_tmp31 = __cil_tmp30 + 1328;
-  __cil_tmp32 = *((struct usb_host_config **)__cil_tmp31);
-  __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp29;
-  __cil_tmp35 = *((__u8 *)__cil_tmp34);
+  __cil_tmp32 = *((struct usb_host_config **)((void *)usb_dev + 1328));
+  __cil_tmp35 = *((__u8 *)((void *)__cil_tmp32 + __cil_tmp29));
   __cil_tmp36 = (int )__cil_tmp35;
   if (__cil_tmp36 > i) {
     goto ldv_40812;
@@ -6126,28 +5991,17 @@ static void xusbatm_unbind(struct usbatm_data *usbatm , struct usb_interface *in
 }
 }
 static int xusbatm_atm_start(struct usbatm_data *usbatm , struct atm_dev *atm_dev )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct atm_dev *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned char (*__cil_tmp11)[6U] ;
   u8 *__cil_tmp12 ;
   {
   {
-  __cil_tmp3 = (unsigned long )usbatm;
-  __cil_tmp4 = __cil_tmp3 + 120;
-  __cil_tmp5 = *((struct atm_dev **)__cil_tmp4);
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 24;
-  __cil_tmp8 = *((int *)__cil_tmp7);
+  __cil_tmp5 = *((struct atm_dev **)((void *)usbatm + 120));
+  __cil_tmp8 = *((int *)((void *)__cil_tmp5 + 24));
   printk("<7>ATM dev %d: %s entered\n", __cil_tmp8, "xusbatm_atm_start");
-  __cil_tmp9 = (unsigned long )atm_dev;
-  __cil_tmp10 = __cil_tmp9 + 88;
-  __cil_tmp11 = (unsigned char (*)[6U])__cil_tmp10;
+  __cil_tmp11 = (unsigned char (*)[6U])((void *)atm_dev + 88);
   __cil_tmp12 = (u8 *)__cil_tmp11;
   random_ether_addr(__cil_tmp12);
   }

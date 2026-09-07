@@ -2066,30 +2066,23 @@ extern s32 i2c_smbus_read_byte_data(struct i2c_client  const  * , u8  ) ;
 extern s32 i2c_smbus_write_byte_data(struct i2c_client  const  * , u8  , u8  ) ;
 __inline static void *i2c_get_clientdata(struct i2c_client  const  *dev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)dev + 40);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2512,19 +2505,13 @@ static int als_set_default_config(struct i2c_client *client )
   struct i2c_client  const  *__cil_tmp3 ;
   u8 __cil_tmp4 ;
   u8 __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   struct device  const  *__cil_tmp9 ;
   struct i2c_client  const  *__cil_tmp10 ;
   u8 __cil_tmp11 ;
   u8 __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device  const  *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
 
   {
@@ -2536,9 +2523,7 @@ static int als_set_default_config(struct i2c_client *client )
   }
   if (ret_val < 0) {
     {
-    __cil_tmp6 = (unsigned long )client;
-    __cil_tmp7 = __cil_tmp6 + 40;
-    __cil_tmp8 = (struct device *)__cil_tmp7;
+    __cil_tmp8 = (struct device *)((void *)client + 40);
     __cil_tmp9 = (struct device  const  *)__cil_tmp8;
     dev_err(__cil_tmp9, "failed default switch on write\n");
     }
@@ -2554,9 +2539,7 @@ static int als_set_default_config(struct i2c_client *client )
   }
   if (ret_val < 0) {
     {
-    __cil_tmp13 = (unsigned long )client;
-    __cil_tmp14 = __cil_tmp13 + 40;
-    __cil_tmp15 = (struct device *)__cil_tmp14;
+    __cil_tmp15 = (struct device *)((void *)client + 40);
     __cil_tmp16 = (struct device  const  *)__cil_tmp15;
     dev_err(__cil_tmp16, "failed default LUX on write\n");
     }
@@ -2564,9 +2547,7 @@ static int als_set_default_config(struct i2c_client *client )
 
   }
   {
-  __cil_tmp17 = (unsigned long )client;
-  __cil_tmp18 = __cil_tmp17 + 40;
-  __cil_tmp19 = (struct device *)__cil_tmp18;
+  __cil_tmp19 = (struct device *)((void *)client + 40);
   als_wait_for_data_ready(__cil_tmp19);
   }
   return (ret_val);
@@ -2580,30 +2561,18 @@ static int apds9802als_probe(struct i2c_client *client , struct i2c_device_id  c
   struct als_data *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device  const  *__cil_tmp13 ;
   void *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct kobject *__cil_tmp18 ;
   struct attribute_group  const  *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device  const  *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct device *__cil_tmp26 ;
   struct device  const  *__cil_tmp27 ;
   struct mutex *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct device *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   void const   *__cil_tmp35 ;
 
@@ -2618,9 +2587,7 @@ static int apds9802als_probe(struct i2c_client *client , struct i2c_device_id  c
   __cil_tmp9 = (unsigned long )data;
   if (__cil_tmp9 == __cil_tmp8) {
     {
-    __cil_tmp10 = (unsigned long )client;
-    __cil_tmp11 = __cil_tmp10 + 40;
-    __cil_tmp12 = (struct device *)__cil_tmp11;
+    __cil_tmp12 = (struct device *)((void *)client + 40);
     __cil_tmp13 = (struct device  const  *)__cil_tmp12;
     dev_err(__cil_tmp13, "Memory allocation failed\n");
     }
@@ -2633,17 +2600,13 @@ static int apds9802als_probe(struct i2c_client *client , struct i2c_device_id  c
   __cil_tmp14 = (void *)data;
   i2c_set_clientdata(client, __cil_tmp14);
   __cil_tmp15 = 40 + 16;
-  __cil_tmp16 = (unsigned long )client;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = (struct kobject *)__cil_tmp17;
+  __cil_tmp18 = (struct kobject *)((void *)client + __cil_tmp15);
   __cil_tmp19 = (struct attribute_group  const  *)(& m_als_gr);
   res = sysfs_create_group(__cil_tmp18, __cil_tmp19);
   }
   if (res != 0) {
     {
-    __cil_tmp20 = (unsigned long )client;
-    __cil_tmp21 = __cil_tmp20 + 40;
-    __cil_tmp22 = (struct device *)__cil_tmp21;
+    __cil_tmp22 = (struct device *)((void *)client + 40);
     __cil_tmp23 = (struct device  const  *)__cil_tmp22;
     dev_err(__cil_tmp23, "device create file failed\n");
     }
@@ -2652,21 +2615,15 @@ static int apds9802als_probe(struct i2c_client *client , struct i2c_device_id  c
 
   }
   {
-  __cil_tmp24 = (unsigned long )client;
-  __cil_tmp25 = __cil_tmp24 + 40;
-  __cil_tmp26 = (struct device *)__cil_tmp25;
+  __cil_tmp26 = (struct device *)((void *)client + 40);
   __cil_tmp27 = (struct device  const  *)__cil_tmp26;
   _dev_info(__cil_tmp27, "ALS chip found\n");
   als_set_default_config(client);
   __cil_tmp28 = (struct mutex *)data;
   __mutex_init(__cil_tmp28, "&data->mutex", & __key);
-  __cil_tmp29 = (unsigned long )client;
-  __cil_tmp30 = __cil_tmp29 + 40;
-  __cil_tmp31 = (struct device *)__cil_tmp30;
+  __cil_tmp31 = (struct device *)((void *)client + 40);
   pm_runtime_set_active(__cil_tmp31);
-  __cil_tmp32 = (unsigned long )client;
-  __cil_tmp33 = __cil_tmp32 + 40;
-  __cil_tmp34 = (struct device *)__cil_tmp33;
+  __cil_tmp34 = (struct device *)((void *)client + 40);
   pm_runtime_enable(__cil_tmp34);
   }
   return (res);

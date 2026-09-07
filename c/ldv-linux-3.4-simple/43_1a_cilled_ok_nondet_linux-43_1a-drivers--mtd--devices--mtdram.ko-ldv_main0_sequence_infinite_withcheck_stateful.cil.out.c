@@ -930,39 +930,24 @@ static unsigned long total_size  =    4096UL;
 static unsigned long erase_size  =    128UL;
 static struct mtd_info *mtd_info  ;
 static int ram_erase(struct mtd_info *mtd , struct erase_info *instr ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   uint64_t __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   uint64_t __cil_tmp13 ;
   size_t __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )instr;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((uint64_t *)__cil_tmp4);
+  __cil_tmp5 = *((uint64_t *)((void *)instr + 8));
   __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = (unsigned long )mtd;
-  __cil_tmp8 = __cil_tmp7 + 360;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)mtd + 360));
   __cil_tmp10 = __cil_tmp9 + __cil_tmp6;
-  __cil_tmp11 = (unsigned long )instr;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = *((uint64_t *)__cil_tmp12);
+  __cil_tmp13 = *((uint64_t *)((void *)instr + 16));
   __cil_tmp14 = (size_t )__cil_tmp13;
   memset(__cil_tmp10, 255, __cil_tmp14);
-  __cil_tmp15 = (unsigned long )instr;
-  __cil_tmp16 = __cil_tmp15 + 72;
-  *((u_char *)__cil_tmp16) = (u_char )8U;
+  *((u_char *)((void *)instr + 72)) = (u_char )8U;
   mtd_erase_callback(instr);
   }
   return (0);
@@ -971,15 +956,11 @@ static int ram_erase(struct mtd_info *mtd , struct erase_info *instr )
 static int ram_point(struct mtd_info *mtd , loff_t from , size_t len , size_t *retlen ,
                      void **virt , resource_size_t *phys ) 
 { unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
 
   {
   __cil_tmp7 = (unsigned long )from;
-  __cil_tmp8 = (unsigned long )mtd;
-  __cil_tmp9 = __cil_tmp8 + 360;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)mtd + 360));
   *virt = __cil_tmp10 + __cil_tmp7;
   *retlen = len;
   return (0);
@@ -994,16 +975,13 @@ static int ram_unpoint(struct mtd_info *mtd , loff_t from , size_t len )
 }
 static unsigned long ram_get_unmapped_area(struct mtd_info *mtd , unsigned long len ,
                                            unsigned long offset , unsigned long flags ) 
-{ unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
+{
   void *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )mtd;
-  __cil_tmp6 = __cil_tmp5 + 360;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)mtd + 360));
   __cil_tmp8 = (unsigned long )__cil_tmp7;
   return (__cil_tmp8 + offset);
   }
@@ -1016,8 +994,6 @@ static int ram_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *re
   void *__ret ;
   void *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   void const   *__cil_tmp13 ;
   void const   *__cil_tmp14 ;
@@ -1027,9 +1003,7 @@ static int ram_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *re
   __len = len;
   __cil_tmp8 = (void *)buf;
   __cil_tmp9 = (unsigned long )from;
-  __cil_tmp10 = (unsigned long )mtd;
-  __cil_tmp11 = __cil_tmp10 + 360;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)mtd + 360));
   __cil_tmp13 = (void const   *)__cil_tmp12;
   __cil_tmp14 = __cil_tmp13 + __cil_tmp9;
   __ret = memcpy(__cil_tmp8, __cil_tmp14, __len);
@@ -1043,8 +1017,6 @@ static int ram_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *ret
 { size_t __len ;
   void *__ret ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   void *__cil_tmp12 ;
   void const   *__cil_tmp13 ;
@@ -1053,9 +1025,7 @@ static int ram_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *ret
   {
   __len = len;
   __cil_tmp8 = (unsigned long )to;
-  __cil_tmp9 = (unsigned long )mtd;
-  __cil_tmp10 = __cil_tmp9 + 360;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)mtd + 360));
   __cil_tmp12 = __cil_tmp11 + __cil_tmp8;
   __cil_tmp13 = (void const   *)buf;
   __ret = memcpy(__cil_tmp12, __cil_tmp13, __len);
@@ -1068,8 +1038,6 @@ static void cleanup_mtdram(void)
 { struct mtd_info *__cil_tmp1 ;
   unsigned long __cil_tmp2 ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   void const   *__cil_tmp7 ;
   void const   *__cil_tmp8 ;
@@ -1082,9 +1050,7 @@ static void cleanup_mtdram(void)
   if (__cil_tmp3 != __cil_tmp2) {
     {
     mtd_device_unregister(mtd_info);
-    __cil_tmp4 = (unsigned long )mtd_info;
-    __cil_tmp5 = __cil_tmp4 + 360;
-    __cil_tmp6 = *((void **)__cil_tmp5);
+    __cil_tmp6 = *((void **)((void *)mtd_info + 360));
     __cil_tmp7 = (void const   *)__cil_tmp6;
     vfree(__cil_tmp7);
     __cil_tmp8 = (void const   *)mtd_info;
@@ -1101,37 +1067,9 @@ int mtdram_init_device(struct mtd_info *mtd , void *mapped_address , unsigned lo
                        char *name ) 
 { int tmp ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   uint32_t __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   char const   **__cil_tmp38 ;
   struct mtd_part_parser_data *__cil_tmp39 ;
   struct mtd_partition  const  *__cil_tmp40 ;
@@ -1140,52 +1078,24 @@ int mtdram_init_device(struct mtd_info *mtd , void *mapped_address , unsigned lo
   {
   __cil_tmp6 = (void *)mtd;
   memset(__cil_tmp6, 0, 1536UL);
-  __cil_tmp7 = (unsigned long )mtd;
-  __cil_tmp8 = __cil_tmp7 + 56;
-  *((char const   **)__cil_tmp8) = (char const   *)name;
+  *((char const   **)((void *)mtd + 56)) = (char const   *)name;
   *((u_char *)mtd) = (u_char )1U;
-  __cil_tmp9 = (unsigned long )mtd;
-  __cil_tmp10 = __cil_tmp9 + 4;
-  *((uint32_t *)__cil_tmp10) = 7168U;
-  __cil_tmp11 = (unsigned long )mtd;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  *((uint64_t *)__cil_tmp12) = (uint64_t )size;
-  __cil_tmp13 = (unsigned long )mtd;
-  __cil_tmp14 = __cil_tmp13 + 20;
-  *((uint32_t *)__cil_tmp14) = 1U;
-  __cil_tmp15 = (unsigned long )mtd;
-  __cil_tmp16 = __cil_tmp15 + 24;
-  *((uint32_t *)__cil_tmp16) = 64U;
-  __cil_tmp17 = (unsigned long )mtd;
-  __cil_tmp18 = __cil_tmp17 + 16;
+  *((uint32_t *)((void *)mtd + 4)) = 7168U;
+  *((uint64_t *)((void *)mtd + 8)) = (uint64_t )size;
+  *((uint32_t *)((void *)mtd + 20)) = 1U;
+  *((uint32_t *)((void *)mtd + 24)) = 64U;
   __cil_tmp19 = & erase_size;
   __cil_tmp20 = *__cil_tmp19;
   __cil_tmp21 = (uint32_t )__cil_tmp20;
-  *((uint32_t *)__cil_tmp18) = __cil_tmp21 * 1024U;
-  __cil_tmp22 = (unsigned long )mtd;
-  __cil_tmp23 = __cil_tmp22 + 360;
-  *((void **)__cil_tmp23) = mapped_address;
-  __cil_tmp24 = (unsigned long )mtd;
-  __cil_tmp25 = __cil_tmp24 + 368;
-  *((struct module **)__cil_tmp25) = & __this_module;
-  __cil_tmp26 = (unsigned long )mtd;
-  __cil_tmp27 = __cil_tmp26 + 96;
-  *((int (**)(struct mtd_info * , struct erase_info * ))__cil_tmp27) = & ram_erase;
-  __cil_tmp28 = (unsigned long )mtd;
-  __cil_tmp29 = __cil_tmp28 + 104;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , void ** , resource_size_t * ))__cil_tmp29) = & ram_point;
-  __cil_tmp30 = (unsigned long )mtd;
-  __cil_tmp31 = __cil_tmp30 + 112;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  ))__cil_tmp31) = & ram_unpoint;
-  __cil_tmp32 = (unsigned long )mtd;
-  __cil_tmp33 = __cil_tmp32 + 120;
-  *((unsigned long (**)(struct mtd_info * , unsigned long  , unsigned long  , unsigned long  ))__cil_tmp33) = & ram_get_unmapped_area;
-  __cil_tmp34 = (unsigned long )mtd;
-  __cil_tmp35 = __cil_tmp34 + 128;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char * ))__cil_tmp35) = & ram_read;
-  __cil_tmp36 = (unsigned long )mtd;
-  __cil_tmp37 = __cil_tmp36 + 136;
-  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char const   * ))__cil_tmp37) = & ram_write;
+  *((uint32_t *)((void *)mtd + 16)) = __cil_tmp21 * 1024U;
+  *((void **)((void *)mtd + 360)) = mapped_address;
+  *((struct module **)((void *)mtd + 368)) = & __this_module;
+  *((int (**)(struct mtd_info * , struct erase_info * ))((void *)mtd + 96)) = & ram_erase;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , void ** , resource_size_t * ))((void *)mtd + 104)) = & ram_point;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  ))((void *)mtd + 112)) = & ram_unpoint;
+  *((unsigned long (**)(struct mtd_info * , unsigned long  , unsigned long  , unsigned long  ))((void *)mtd + 120)) = & ram_get_unmapped_area;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char * ))((void *)mtd + 128)) = & ram_read;
+  *((int (**)(struct mtd_info * , loff_t  , size_t  , size_t * , u_char const   * ))((void *)mtd + 136)) = & ram_write;
   __cil_tmp38 = (char const   **)0;
   __cil_tmp39 = (struct mtd_part_parser_data *)0;
   __cil_tmp40 = (struct mtd_partition  const  *)0;
@@ -1221,8 +1131,6 @@ static int init_mtdram(void)
   char *__cil_tmp19 ;
   void const   *__cil_tmp20 ;
   void const   *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   void *__cil_tmp24 ;
   unsigned long *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
@@ -1293,9 +1201,7 @@ static int init_mtdram(void)
 
   }
   {
-  __cil_tmp22 = (unsigned long )mtd_info;
-  __cil_tmp23 = __cil_tmp22 + 360;
-  __cil_tmp24 = *((void **)__cil_tmp23);
+  __cil_tmp24 = *((void **)((void *)mtd_info + 360));
   __cil_tmp25 = & total_size;
   __cil_tmp26 = *__cil_tmp25;
   __cil_tmp27 = __cil_tmp26 * 1024UL;

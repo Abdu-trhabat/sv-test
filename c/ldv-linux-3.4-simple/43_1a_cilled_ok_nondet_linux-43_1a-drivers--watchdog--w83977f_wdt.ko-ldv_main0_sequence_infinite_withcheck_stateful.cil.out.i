@@ -1548,12 +1548,11 @@ extern int printk(char const * , ...) ;
 extern void might_fault(void) ;
 extern struct pv_cpu_ops pv_cpu_ops ;
 __inline static void slow_down_io(void)
-{ unsigned long __cil_tmp1 ;
+{
   void (*__cil_tmp2)(void) ;
   {
   {
-  __cil_tmp1 = (unsigned long )(& pv_cpu_ops) + 216;
-  __cil_tmp2 = *((void (**)(void))__cil_tmp1);
+  __cil_tmp2 = *((void (**)(void))((void *)(&pv_cpu_ops) + 216));
   (*__cil_tmp2)();
   }
   return;

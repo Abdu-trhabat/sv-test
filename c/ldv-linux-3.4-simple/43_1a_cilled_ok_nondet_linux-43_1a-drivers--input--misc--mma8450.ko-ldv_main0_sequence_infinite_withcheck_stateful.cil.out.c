@@ -3076,8 +3076,6 @@ static int mma8450_read(struct mma8450 *m , unsigned int off )
   u8 __cil_tmp6 ;
   int __cil_tmp7 ;
   u8 __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device  const  *__cil_tmp12 ;
 
@@ -3092,9 +3090,7 @@ static int mma8450_read(struct mma8450 *m , unsigned int off )
   }
   if (ret < 0) {
     {
-    __cil_tmp9 = (unsigned long )c;
-    __cil_tmp10 = __cil_tmp9 + 40;
-    __cil_tmp11 = (struct device *)__cil_tmp10;
+    __cil_tmp11 = (struct device *)((void *)c + 40);
     __cil_tmp12 = (struct device  const  *)__cil_tmp11;
     dev_err(__cil_tmp12, "failed to read register 0x%02x, error %d\n", off, ret);
     }
@@ -3113,8 +3109,6 @@ static int mma8450_write(struct mma8450 *m , unsigned int off , u8 v )
   u8 __cil_tmp9 ;
   int __cil_tmp10 ;
   u8 __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device  const  *__cil_tmp15 ;
 
@@ -3131,9 +3125,7 @@ static int mma8450_write(struct mma8450 *m , unsigned int off , u8 v )
   }
   if (error < 0) {
     {
-    __cil_tmp12 = (unsigned long )c;
-    __cil_tmp13 = __cil_tmp12 + 40;
-    __cil_tmp14 = (struct device *)__cil_tmp13;
+    __cil_tmp14 = (struct device *)((void *)c + 40);
     __cil_tmp15 = (struct device  const  *)__cil_tmp14;
     dev_err(__cil_tmp15, "failed to write to register 0x%02x, error %d\n", off, error);
     }
@@ -3154,8 +3146,6 @@ static int mma8450_read_block(struct mma8450 *m , unsigned int off , u8 *buf , s
   u8 __cil_tmp11 ;
   int __cil_tmp12 ;
   u8 __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device  const  *__cil_tmp17 ;
 
@@ -3173,9 +3163,7 @@ static int mma8450_read_block(struct mma8450 *m , unsigned int off , u8 *buf , s
   }
   if (err < 0) {
     {
-    __cil_tmp14 = (unsigned long )c;
-    __cil_tmp15 = __cil_tmp14 + 40;
-    __cil_tmp16 = (struct device *)__cil_tmp15;
+    __cil_tmp16 = (struct device *)((void *)c + 40);
     __cil_tmp17 = (struct device  const  *)__cil_tmp16;
     dev_err(__cil_tmp17, "failed to read block data at 0x%02x, error %d\n", 5, err);
     }
@@ -3229,17 +3217,9 @@ static void mma8450_poll(struct input_polled_dev *dev )
   int __cil_tmp41 ;
   int __cil_tmp42 ;
   int __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct input_dev *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct input_dev *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct input_dev *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct input_dev *__cil_tmp55 ;
 
   {
@@ -3307,21 +3287,13 @@ static void mma8450_poll(struct input_polled_dev *dev )
   __cil_tmp42 = __cil_tmp41 << 4;
   __cil_tmp43 = __cil_tmp42 & 4080;
   z = __cil_tmp43 | __cil_tmp37;
-  __cil_tmp44 = (unsigned long )dev;
-  __cil_tmp45 = __cil_tmp44 + 48;
-  __cil_tmp46 = *((struct input_dev **)__cil_tmp45);
+  __cil_tmp46 = *((struct input_dev **)((void *)dev + 48));
   input_report_abs(__cil_tmp46, 0U, x);
-  __cil_tmp47 = (unsigned long )dev;
-  __cil_tmp48 = __cil_tmp47 + 48;
-  __cil_tmp49 = *((struct input_dev **)__cil_tmp48);
+  __cil_tmp49 = *((struct input_dev **)((void *)dev + 48));
   input_report_abs(__cil_tmp49, 1U, y);
-  __cil_tmp50 = (unsigned long )dev;
-  __cil_tmp51 = __cil_tmp50 + 48;
-  __cil_tmp52 = *((struct input_dev **)__cil_tmp51);
+  __cil_tmp52 = *((struct input_dev **)((void *)dev + 48));
   input_report_abs(__cil_tmp52, 2U, z);
-  __cil_tmp53 = (unsigned long )dev;
-  __cil_tmp54 = __cil_tmp53 + 48;
-  __cil_tmp55 = *((struct input_dev **)__cil_tmp54);
+  __cil_tmp55 = *((struct input_dev **)((void *)dev + 48));
   input_sync(__cil_tmp55);
   }
   return;
@@ -3390,44 +3362,14 @@ static int mma8450_probe(struct i2c_client *c , struct i2c_device_id  const  *id
   struct input_polled_dev *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct input_dev *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct input_dev *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct input_dev *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned long (*__cil_tmp38)[1U] ;
   unsigned long volatile   *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct input_dev *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct input_dev *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct input_dev *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct device *__cil_tmp51 ;
   struct device  const  *__cil_tmp52 ;
   void const   *__cil_tmp53 ;
@@ -3461,62 +3403,32 @@ static int mma8450_probe(struct i2c_client *c , struct i2c_device_id  const  *id
   }
   {
   *((struct i2c_client **)m) = c;
-  __cil_tmp13 = (unsigned long )m;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  *((struct input_polled_dev **)__cil_tmp14) = idev;
+  *((struct input_polled_dev **)((void *)m + 8)) = idev;
   *((void **)idev) = (void *)m;
-  __cil_tmp15 = (unsigned long )idev;
-  __cil_tmp16 = __cil_tmp15 + 48;
-  __cil_tmp17 = *((struct input_dev **)__cil_tmp16);
+  __cil_tmp17 = *((struct input_dev **)((void *)idev + 48));
   *((char const   **)__cil_tmp17) = "mma8450";
-  __cil_tmp18 = (unsigned long )idev;
-  __cil_tmp19 = __cil_tmp18 + 48;
-  __cil_tmp20 = *((struct input_dev **)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 24;
-  *((__u16 *)__cil_tmp22) = (__u16 )24U;
-  __cil_tmp23 = (unsigned long )idev;
-  __cil_tmp24 = __cil_tmp23 + 24;
-  *((void (**)(struct input_polled_dev * ))__cil_tmp24) = & mma8450_poll;
-  __cil_tmp25 = (unsigned long )idev;
-  __cil_tmp26 = __cil_tmp25 + 32;
-  *((unsigned int *)__cil_tmp26) = 100U;
-  __cil_tmp27 = (unsigned long )idev;
-  __cil_tmp28 = __cil_tmp27 + 36;
-  *((unsigned int *)__cil_tmp28) = 500U;
-  __cil_tmp29 = (unsigned long )idev;
-  __cil_tmp30 = __cil_tmp29 + 8;
-  *((void (**)(struct input_polled_dev * ))__cil_tmp30) = & mma8450_open;
-  __cil_tmp31 = (unsigned long )idev;
-  __cil_tmp32 = __cil_tmp31 + 16;
-  *((void (**)(struct input_polled_dev * ))__cil_tmp32) = & mma8450_close;
-  __cil_tmp33 = (unsigned long )idev;
-  __cil_tmp34 = __cil_tmp33 + 48;
-  __cil_tmp35 = *((struct input_dev **)__cil_tmp34);
-  __cil_tmp36 = (unsigned long )__cil_tmp35;
-  __cil_tmp37 = __cil_tmp36 + 40;
-  __cil_tmp38 = (unsigned long (*)[1U])__cil_tmp37;
+  __cil_tmp20 = *((struct input_dev **)((void *)idev + 48));
+  *((__u16 *)((void *)__cil_tmp20 + 24)) = (__u16 )24U;
+  *((void (**)(struct input_polled_dev * ))((void *)idev + 24)) = & mma8450_poll;
+  *((unsigned int *)((void *)idev + 32)) = 100U;
+  *((unsigned int *)((void *)idev + 36)) = 500U;
+  *((void (**)(struct input_polled_dev * ))((void *)idev + 8)) = & mma8450_open;
+  *((void (**)(struct input_polled_dev * ))((void *)idev + 16)) = & mma8450_close;
+  __cil_tmp35 = *((struct input_dev **)((void *)idev + 48));
+  __cil_tmp38 = (unsigned long (*)[1U])((void *)__cil_tmp35 + 40);
   __cil_tmp39 = (unsigned long volatile   *)__cil_tmp38;
   __set_bit(3, __cil_tmp39);
-  __cil_tmp40 = (unsigned long )idev;
-  __cil_tmp41 = __cil_tmp40 + 48;
-  __cil_tmp42 = *((struct input_dev **)__cil_tmp41);
+  __cil_tmp42 = *((struct input_dev **)((void *)idev + 48));
   input_set_abs_params(__cil_tmp42, 0U, -2048, 2047, 32, 32);
-  __cil_tmp43 = (unsigned long )idev;
-  __cil_tmp44 = __cil_tmp43 + 48;
-  __cil_tmp45 = *((struct input_dev **)__cil_tmp44);
+  __cil_tmp45 = *((struct input_dev **)((void *)idev + 48));
   input_set_abs_params(__cil_tmp45, 1U, -2048, 2047, 32, 32);
-  __cil_tmp46 = (unsigned long )idev;
-  __cil_tmp47 = __cil_tmp46 + 48;
-  __cil_tmp48 = *((struct input_dev **)__cil_tmp47);
+  __cil_tmp48 = *((struct input_dev **)((void *)idev + 48));
   input_set_abs_params(__cil_tmp48, 2U, -2048, 2047, 32, 32);
   err = input_register_polled_device(idev);
   }
   if (err != 0) {
     {
-    __cil_tmp49 = (unsigned long )c;
-    __cil_tmp50 = __cil_tmp49 + 40;
-    __cil_tmp51 = (struct device *)__cil_tmp50;
+    __cil_tmp51 = (struct device *)((void *)c + 40);
     __cil_tmp52 = (struct device  const  *)__cil_tmp51;
     dev_err(__cil_tmp52, "failed to register polled input device\n");
     }

@@ -2199,12 +2199,6 @@ static int _DoC_WaitReady(void *docptr )
   struct _ddebug descriptor___0 ;
   long tmp___1 ;
   struct _ddebug *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned char __cil_tmp15 ;
   long __cil_tmp16 ;
   long __cil_tmp17 ;
@@ -2213,12 +2207,6 @@ static int _DoC_WaitReady(void *docptr )
   int __cil_tmp20 ;
   int __cil_tmp21 ;
   struct _ddebug *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned char __cil_tmp29 ;
   long __cil_tmp30 ;
   long __cil_tmp31 ;
@@ -2227,18 +2215,12 @@ static int _DoC_WaitReady(void *docptr )
   c = 65535U;
   __cil_tmp8 = & descriptor;
   *((char const **)__cil_tmp8) = "doc2001plus";
-  __cil_tmp9 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp9) = "_DoC_WaitReady";
-  __cil_tmp10 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp10) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11713/dscv_tempdir/dscv/ri/43_1a/drivers/mtd/devices/doc2001plus.c.p";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp11) = "_DoC_WaitReady called for out-of-line wait\n";
-  __cil_tmp12 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp12) = 79U;
-  __cil_tmp13 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp13) = (unsigned char)0;
-  __cil_tmp14 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp15 = *((unsigned char *)__cil_tmp14);
+  *((char const **)((void *)(&descriptor) + 8)) = "_DoC_WaitReady";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11713/dscv_tempdir/dscv/ri/43_1a/drivers/mtd/devices/doc2001plus.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "_DoC_WaitReady called for out-of-line wait\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 79U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp15 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp16 = (long )__cil_tmp15;
   __cil_tmp17 = __cil_tmp16 & 1L;
   tmp = __builtin_expect(__cil_tmp17, 0L);
@@ -2276,18 +2258,12 @@ static int _DoC_WaitReady(void *docptr )
     {
     __cil_tmp22 = & descriptor___0;
     *((char const **)__cil_tmp22) = "doc2001plus";
-    __cil_tmp23 = (unsigned long )(& descriptor___0) + 8;
-    *((char const **)__cil_tmp23) = "_DoC_WaitReady";
-    __cil_tmp24 = (unsigned long )(& descriptor___0) + 16;
-    *((char const **)__cil_tmp24) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11713/dscv_tempdir/dscv/ri/43_1a/drivers/mtd/devices/doc2001plus.c.p";
-    __cil_tmp25 = (unsigned long )(& descriptor___0) + 24;
-    *((char const **)__cil_tmp25) = "_DoC_WaitReady timed out.\n";
-    __cil_tmp26 = (unsigned long )(& descriptor___0) + 32;
-    *((unsigned int *)__cil_tmp26) = 86U;
-    __cil_tmp27 = (unsigned long )(& descriptor___0) + 35;
-    *((unsigned char *)__cil_tmp27) = (unsigned char)0;
-    __cil_tmp28 = (unsigned long )(& descriptor___0) + 35;
-    __cil_tmp29 = *((unsigned char *)__cil_tmp28);
+    *((char const **)((void *)(&descriptor___0) + 8)) = "_DoC_WaitReady";
+    *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11713/dscv_tempdir/dscv/ri/43_1a/drivers/mtd/devices/doc2001plus.c.p";
+    *((char const **)((void *)(&descriptor___0) + 24)) = "_DoC_WaitReady timed out.\n";
+    *((unsigned int *)((void *)(&descriptor___0) + 32)) = 86U;
+    *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+    __cil_tmp29 = *((unsigned char *)((void *)(&descriptor___0) + 35));
     __cil_tmp30 = (long )__cil_tmp29;
     __cil_tmp31 = __cil_tmp30 & 1L;
     tmp___1 = __builtin_expect(__cil_tmp31, 0L);
@@ -2402,10 +2378,6 @@ static void DoC_Command(void *docptr , unsigned char command , unsigned char xtr
 __inline static void DoC_Address(struct DiskOnChip *doc , int numbytes , unsigned long ofs ,
                                  unsigned char xtraflags1 , unsigned char xtraflags2 )
 { void *docptr ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   char __cil_tmp11 ;
   int __cil_tmp12 ;
   unsigned char __cil_tmp13 ;
@@ -2447,12 +2419,8 @@ __inline static void DoC_Address(struct DiskOnChip *doc , int numbytes , unsigne
   void volatile *__cil_tmp49 ;
   void volatile *__cil_tmp50 ;
   {
-  __cil_tmp7 = (unsigned long )doc;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  docptr = *((void **)__cil_tmp8);
-  __cil_tmp9 = (unsigned long )doc;
-  __cil_tmp10 = __cil_tmp9 + 54;
-  __cil_tmp11 = *((char *)__cil_tmp10);
+  docptr = *((void **)((void *)doc + 8));
+  __cil_tmp11 = *((char *)((void *)doc + 54));
   __cil_tmp12 = (int )__cil_tmp11;
   ofs = ofs >> __cil_tmp12;
   if (numbytes == 1) {
@@ -2568,11 +2536,7 @@ static unsigned int DoC_GetDataOffset(struct mtd_info *mtd , loff_t *from )
 { struct DiskOnChip *this ;
   unsigned int ofs ;
   unsigned int cmd ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   char __cil_tmp11 ;
   signed char __cil_tmp12 ;
   int __cil_tmp13 ;
@@ -2585,14 +2549,10 @@ static unsigned int DoC_GetDataOffset(struct mtd_info *mtd , loff_t *from )
   loff_t __cil_tmp20 ;
   long long __cil_tmp21 ;
   {
-  __cil_tmp6 = (unsigned long )mtd;
-  __cil_tmp7 = __cil_tmp6 + 360;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)mtd + 360));
   this = (struct DiskOnChip *)__cil_tmp8;
   {
-  __cil_tmp9 = (unsigned long )this;
-  __cil_tmp10 = __cil_tmp9 + 54;
-  __cil_tmp11 = *((char *)__cil_tmp10);
+  __cil_tmp11 = *((char *)((void *)this + 54));
   __cil_tmp12 = (signed char )__cil_tmp11;
   __cil_tmp13 = (int )__cil_tmp12;
   if (__cil_tmp13 != 0) {
@@ -2805,8 +2765,6 @@ static int DoC_IdentChip(struct DiskOnChip *doc , int floor , int chip )
   unsigned char tmp___5 ;
   unsigned char tmp___6 ;
   int tmp___7 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   void volatile *__cil_tmp21 ;
   void volatile *__cil_tmp22 ;
   void volatile *__cil_tmp23 ;
@@ -2817,8 +2775,6 @@ static int DoC_IdentChip(struct DiskOnChip *doc , int floor , int chip )
   void const volatile *__cil_tmp28 ;
   void const volatile *__cil_tmp29 ;
   void const volatile *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   char __cil_tmp33 ;
   signed char __cil_tmp34 ;
   int __cil_tmp35 ;
@@ -2826,8 +2782,6 @@ static int DoC_IdentChip(struct DiskOnChip *doc , int floor , int chip )
   void const volatile *__cil_tmp37 ;
   void const volatile *__cil_tmp38 ;
   void const volatile *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   char __cil_tmp42 ;
   signed char __cil_tmp43 ;
   int __cil_tmp44 ;
@@ -2856,22 +2810,12 @@ static int DoC_IdentChip(struct DiskOnChip *doc , int floor , int chip )
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   char *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
   unsigned long __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   int __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   char __cil_tmp86 ;
   int __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
@@ -2892,9 +2836,7 @@ static int DoC_IdentChip(struct DiskOnChip *doc , int floor , int chip )
   unsigned long __cil_tmp103 ;
   {
   {
-  __cil_tmp19 = (unsigned long )doc;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  docptr = *((void **)__cil_tmp20);
+  docptr = *((void **)((void *)doc + 8));
   DoC_SelectFloor(docptr, floor);
   DoC_SelectChip(docptr, chip);
   __cil_tmp21 = (void volatile *)docptr;
@@ -2922,9 +2864,7 @@ static int DoC_IdentChip(struct DiskOnChip *doc , int floor , int chip )
   mfr = (int )tmp___1;
   }
   {
-  __cil_tmp31 = (unsigned long )doc;
-  __cil_tmp32 = __cil_tmp31 + 54;
-  __cil_tmp33 = *((char *)__cil_tmp32);
+  __cil_tmp33 = *((char *)((void *)doc + 54));
   __cil_tmp34 = (signed char )__cil_tmp33;
   __cil_tmp35 = (int )__cil_tmp34;
   if (__cil_tmp35 != 0) {
@@ -2944,9 +2884,7 @@ static int DoC_IdentChip(struct DiskOnChip *doc , int floor , int chip )
   id = (int )tmp___3;
   }
   {
-  __cil_tmp40 = (unsigned long )doc;
-  __cil_tmp41 = __cil_tmp40 + 54;
-  __cil_tmp42 = *((char *)__cil_tmp41);
+  __cil_tmp42 = *((char *)((void *)doc + 54));
   __cil_tmp43 = (signed char )__cil_tmp42;
   __cil_tmp44 = (int )__cil_tmp43;
   if (__cil_tmp44 != 0) {
@@ -3023,12 +2961,8 @@ static int DoC_IdentChip(struct DiskOnChip *doc , int floor , int chip )
     __cil_tmp69 = *((char **)__cil_tmp68);
     printk("<6>Flash chip found: Manufacturer ID: %2.2X, Chip ID: %2.2X (%s:%s)\n",
            mfr, id, __cil_tmp66, __cil_tmp69);
-    __cil_tmp70 = (unsigned long )doc;
-    __cil_tmp71 = __cil_tmp70 + 32;
-    *((unsigned long *)__cil_tmp71) = (unsigned long )mfr;
-    __cil_tmp72 = (unsigned long )doc;
-    __cil_tmp73 = __cil_tmp72 + 40;
-    *((unsigned long *)__cil_tmp73) = (unsigned long )id;
+    *((unsigned long *)((void *)doc + 32)) = (unsigned long )mfr;
+    *((unsigned long *)((void *)doc + 40)) = (unsigned long )id;
     __cil_tmp74 = i * 48UL;
     __cil_tmp75 = __cil_tmp74 + 24;
     __cil_tmp76 = (unsigned long )(nand_flash_ids) + __cil_tmp75;
@@ -3036,20 +2970,14 @@ static int DoC_IdentChip(struct DiskOnChip *doc , int floor , int chip )
     __cil_tmp78 = __cil_tmp77 << 20;
     __cil_tmp79 = (int )__cil_tmp78;
     tmp___7 = ffs(__cil_tmp79);
-    __cil_tmp80 = (unsigned long )doc;
-    __cil_tmp81 = __cil_tmp80 + 48;
-    *((int *)__cil_tmp81) = tmp___7 + -1;
-    __cil_tmp82 = (unsigned long )doc;
-    __cil_tmp83 = __cil_tmp82 + 56;
-    __cil_tmp84 = (unsigned long )doc;
-    __cil_tmp85 = __cil_tmp84 + 54;
-    __cil_tmp86 = *((char *)__cil_tmp85);
+    *((int *)((void *)doc + 48)) = tmp___7 + -1;
+    __cil_tmp86 = *((char *)((void *)doc + 54));
     __cil_tmp87 = (int )__cil_tmp86;
     __cil_tmp88 = i * 48UL;
     __cil_tmp89 = __cil_tmp88 + 32;
     __cil_tmp90 = (unsigned long )(nand_flash_ids) + __cil_tmp89;
     __cil_tmp91 = *((unsigned long *)__cil_tmp90);
-    *((unsigned long *)__cil_tmp83) = __cil_tmp91 << __cil_tmp87;
+    *((unsigned long *)((void *)doc + 56)) = __cil_tmp91 << __cil_tmp87;
     }
     goto ldv_19377;
   } else {
@@ -3096,39 +3024,19 @@ static void DoC_ScanChips(struct DiskOnChip *this )
   char *tmp___0 ;
   unsigned char tmp___1 ;
   void *tmp___2 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned char __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   void *__cil_tmp27 ;
   void const volatile *__cil_tmp28 ;
   void const volatile *__cil_tmp29 ;
   int __cil_tmp30 ;
   int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   char __cil_tmp34 ;
   int __cil_tmp35 ;
   int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   void *__cil_tmp39 ;
   void const volatile *__cil_tmp40 ;
   void const volatile *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   char __cil_tmp44 ;
   signed char __cil_tmp45 ;
   int __cil_tmp46 ;
@@ -3136,8 +3044,6 @@ static void DoC_ScanChips(struct DiskOnChip *this )
   unsigned int __cil_tmp48 ;
   int __cil_tmp49 ;
   unsigned char __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   void *__cil_tmp53 ;
   void volatile *__cil_tmp54 ;
   void volatile *__cil_tmp55 ;
@@ -3148,101 +3054,51 @@ static void DoC_ScanChips(struct DiskOnChip *this )
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   int __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   int __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   int __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   struct Nand *__cil_tmp78 ;
   unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   struct Nand *__cil_tmp82 ;
   unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   struct Nand *__cil_tmp87 ;
   struct Nand *__cil_tmp88 ;
   unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   struct Nand *__cil_tmp92 ;
   struct Nand *__cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   struct Nand *__cil_tmp99 ;
   struct Nand *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
   struct Nand *__cil_tmp106 ;
   struct Nand *__cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
   unsigned long __cil_tmp110 ;
   unsigned long __cil_tmp111 ;
   int __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
   int __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
   int __cil_tmp120 ;
   int __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
   int __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   unsigned long __cil_tmp127 ;
   unsigned long __cil_tmp128 ;
   {
-  __cil_tmp11 = (unsigned long )this;
-  __cil_tmp12 = __cil_tmp11 + 72;
-  *((int *)__cil_tmp12) = 0;
-  __cil_tmp13 = (unsigned long )this;
-  __cil_tmp14 = __cil_tmp13 + 32;
-  *((unsigned long *)__cil_tmp14) = 0UL;
-  __cil_tmp15 = (unsigned long )this;
-  __cil_tmp16 = __cil_tmp15 + 40;
-  *((unsigned long *)__cil_tmp16) = 0UL;
-  __cil_tmp17 = (unsigned long )this;
-  __cil_tmp18 = __cil_tmp17 + 54;
-  *((char *)__cil_tmp18) = (char)0;
+  *((int *)((void *)this + 72)) = 0;
+  *((unsigned long *)((void *)this + 32)) = 0UL;
+  *((unsigned long *)((void *)this + 40)) = 0UL;
+  *((char *)((void *)this + 54)) = (char)0;
   {
-  __cil_tmp19 = (unsigned long )this;
-  __cil_tmp20 = __cil_tmp19 + 24;
-  __cil_tmp21 = *((unsigned char *)__cil_tmp20);
+  __cil_tmp21 = *((unsigned char *)((void *)this + 24));
   __cil_tmp22 = (unsigned int )__cil_tmp21;
   if (__cil_tmp22 == 64U) {
-    __cil_tmp23 = (unsigned long )this;
-    __cil_tmp24 = __cil_tmp23 + 54;
-    *((char *)__cil_tmp24) = (char)1;
+    *((char *)((void *)this + 54)) = (char)1;
   } else {
   }
   }
   {
-  __cil_tmp25 = (unsigned long )this;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  __cil_tmp27 = *((void **)__cil_tmp26);
+  __cil_tmp27 = *((void **)((void *)this + 8));
   __cil_tmp28 = (void const volatile *)__cil_tmp27;
   __cil_tmp29 = __cil_tmp28 + 4106U;
   tmp___1 = readb(__cil_tmp29);
@@ -3250,25 +3106,19 @@ static void DoC_ScanChips(struct DiskOnChip *this )
   {
   __cil_tmp30 = (int )tmp___1;
   __cil_tmp31 = __cil_tmp30 & 4;
-  __cil_tmp32 = (unsigned long )this;
-  __cil_tmp33 = __cil_tmp32 + 54;
-  __cil_tmp34 = *((char *)__cil_tmp33);
+  __cil_tmp34 = *((char *)((void *)this + 54));
   __cil_tmp35 = (int )__cil_tmp34;
   __cil_tmp36 = __cil_tmp35 << 2;
   if (__cil_tmp36 != __cil_tmp31) {
     {
-    __cil_tmp37 = (unsigned long )this;
-    __cil_tmp38 = __cil_tmp37 + 8;
-    __cil_tmp39 = *((void **)__cil_tmp38);
+    __cil_tmp39 = *((void **)((void *)this + 8));
     __cil_tmp40 = (void const volatile *)__cil_tmp39;
     __cil_tmp41 = __cil_tmp40 + 4106U;
     tmp = readb(__cil_tmp41);
     conf = tmp;
     }
     {
-    __cil_tmp42 = (unsigned long )this;
-    __cil_tmp43 = __cil_tmp42 + 54;
-    __cil_tmp44 = *((char *)__cil_tmp43);
+    __cil_tmp44 = *((char *)((void *)this + 54));
     __cil_tmp45 = (signed char )__cil_tmp44;
     __cil_tmp46 = (int )__cil_tmp45;
     if (__cil_tmp46 != 0) {
@@ -3284,9 +3134,7 @@ static void DoC_ScanChips(struct DiskOnChip *this )
     conf = (u_char )__cil_tmp48;
     __cil_tmp49 = (int )conf;
     __cil_tmp50 = (unsigned char )__cil_tmp49;
-    __cil_tmp51 = (unsigned long )this;
-    __cil_tmp52 = __cil_tmp51 + 8;
-    __cil_tmp53 = *((void **)__cil_tmp52);
+    __cil_tmp53 = *((void **)((void *)this + 8));
     __cil_tmp54 = (void volatile *)__cil_tmp53;
     __cil_tmp55 = __cil_tmp54 + 4106U;
     writeb(__cil_tmp50, __cil_tmp55);
@@ -3314,12 +3162,8 @@ static void DoC_ScanChips(struct DiskOnChip *this )
     __cil_tmp61 = (unsigned long )(numchips) + __cil_tmp60;
     __cil_tmp62 = *((int *)__cil_tmp61);
     *((int *)__cil_tmp59) = __cil_tmp62 + 1;
-    __cil_tmp63 = (unsigned long )this;
-    __cil_tmp64 = __cil_tmp63 + 72;
-    __cil_tmp65 = (unsigned long )this;
-    __cil_tmp66 = __cil_tmp65 + 72;
-    __cil_tmp67 = *((int *)__cil_tmp66);
-    *((int *)__cil_tmp64) = __cil_tmp67 + 1;
+    __cil_tmp67 = *((int *)((void *)this + 72));
+    *((int *)((void *)this + 72)) = __cil_tmp67 + 1;
   } else {
   }
   chip = chip + 1;
@@ -3343,9 +3187,7 @@ static void DoC_ScanChips(struct DiskOnChip *this )
   }
   ldv_19393: ;
   {
-  __cil_tmp68 = (unsigned long )this;
-  __cil_tmp69 = __cil_tmp68 + 72;
-  __cil_tmp70 = *((int *)__cil_tmp69);
+  __cil_tmp70 = *((int *)((void *)this + 72));
   if (__cil_tmp70 == 0) {
     {
     printk("No flash chips recognised.\n");
@@ -3355,22 +3197,16 @@ static void DoC_ScanChips(struct DiskOnChip *this )
   }
   }
   {
-  __cil_tmp71 = (unsigned long )this;
-  __cil_tmp72 = __cil_tmp71 + 72;
-  __cil_tmp73 = *((int *)__cil_tmp72);
+  __cil_tmp73 = *((int *)((void *)this + 72));
   __cil_tmp74 = (unsigned long )__cil_tmp73;
   __cil_tmp75 = __cil_tmp74 * 24UL;
   tmp___2 = kmalloc(__cil_tmp75, 208U);
-  __cil_tmp76 = (unsigned long )this;
-  __cil_tmp77 = __cil_tmp76 + 80;
-  *((struct Nand **)__cil_tmp77) = (struct Nand *)tmp___2;
+  *((struct Nand **)((void *)this + 80)) = (struct Nand *)tmp___2;
   }
   {
   __cil_tmp78 = (struct Nand *)0;
   __cil_tmp79 = (unsigned long )__cil_tmp78;
-  __cil_tmp80 = (unsigned long )this;
-  __cil_tmp81 = __cil_tmp80 + 80;
-  __cil_tmp82 = *((struct Nand **)__cil_tmp81);
+  __cil_tmp82 = *((struct Nand **)((void *)this + 80));
   __cil_tmp83 = (unsigned long )__cil_tmp82;
   if (__cil_tmp83 == __cil_tmp79) {
     {
@@ -3388,35 +3224,21 @@ static void DoC_ScanChips(struct DiskOnChip *this )
   goto ldv_19395;
   ldv_19394:
   __cil_tmp84 = (unsigned long )ret;
-  __cil_tmp85 = (unsigned long )this;
-  __cil_tmp86 = __cil_tmp85 + 80;
-  __cil_tmp87 = *((struct Nand **)__cil_tmp86);
+  __cil_tmp87 = *((struct Nand **)((void *)this + 80));
   __cil_tmp88 = __cil_tmp87 + __cil_tmp84;
   *((char *)__cil_tmp88) = (char )floor;
   __cil_tmp89 = (unsigned long )ret;
-  __cil_tmp90 = (unsigned long )this;
-  __cil_tmp91 = __cil_tmp90 + 80;
-  __cil_tmp92 = *((struct Nand **)__cil_tmp91);
+  __cil_tmp92 = *((struct Nand **)((void *)this + 80));
   __cil_tmp93 = __cil_tmp92 + __cil_tmp89;
-  __cil_tmp94 = (unsigned long )__cil_tmp93;
-  __cil_tmp95 = __cil_tmp94 + 1;
-  *((char *)__cil_tmp95) = (char )chip;
+  *((char *)((void *)__cil_tmp93 + 1)) = (char )chip;
   __cil_tmp96 = (unsigned long )ret;
-  __cil_tmp97 = (unsigned long )this;
-  __cil_tmp98 = __cil_tmp97 + 80;
-  __cil_tmp99 = *((struct Nand **)__cil_tmp98);
+  __cil_tmp99 = *((struct Nand **)((void *)this + 80));
   __cil_tmp100 = __cil_tmp99 + __cil_tmp96;
-  __cil_tmp101 = (unsigned long )__cil_tmp100;
-  __cil_tmp102 = __cil_tmp101 + 8;
-  *((unsigned long *)__cil_tmp102) = 0UL;
+  *((unsigned long *)((void *)__cil_tmp100 + 8)) = 0UL;
   __cil_tmp103 = (unsigned long )ret;
-  __cil_tmp104 = (unsigned long )this;
-  __cil_tmp105 = __cil_tmp104 + 80;
-  __cil_tmp106 = *((struct Nand **)__cil_tmp105);
+  __cil_tmp106 = *((struct Nand **)((void *)this + 80));
   __cil_tmp107 = __cil_tmp106 + __cil_tmp103;
-  __cil_tmp108 = (unsigned long )__cil_tmp107;
-  __cil_tmp109 = __cil_tmp108 + 16;
-  *((unsigned char *)__cil_tmp109) = (unsigned char)80;
+  *((unsigned char *)((void *)__cil_tmp107 + 16)) = (unsigned char)80;
   ret = ret + 1;
   chip = chip + 1;
   ldv_19395: ;
@@ -3440,22 +3262,12 @@ static void DoC_ScanChips(struct DiskOnChip *this )
   }
   ldv_19399:
   {
-  __cil_tmp113 = (unsigned long )this;
-  __cil_tmp114 = __cil_tmp113 + 16;
-  __cil_tmp115 = (unsigned long )this;
-  __cil_tmp116 = __cil_tmp115 + 48;
-  __cil_tmp117 = *((int *)__cil_tmp116);
-  __cil_tmp118 = (unsigned long )this;
-  __cil_tmp119 = __cil_tmp118 + 72;
-  __cil_tmp120 = *((int *)__cil_tmp119);
+  __cil_tmp117 = *((int *)((void *)this + 48));
+  __cil_tmp120 = *((int *)((void *)this + 72));
   __cil_tmp121 = __cil_tmp120 << __cil_tmp117;
-  *((unsigned long *)__cil_tmp114) = (unsigned long )__cil_tmp121;
-  __cil_tmp122 = (unsigned long )this;
-  __cil_tmp123 = __cil_tmp122 + 72;
-  __cil_tmp124 = *((int *)__cil_tmp123);
-  __cil_tmp125 = (unsigned long )this;
-  __cil_tmp126 = __cil_tmp125 + 16;
-  __cil_tmp127 = *((unsigned long *)__cil_tmp126);
+  *((unsigned long *)((void *)this + 16)) = (unsigned long )__cil_tmp121;
+  __cil_tmp124 = *((int *)((void *)this + 72));
+  __cil_tmp127 = *((unsigned long *)((void *)this + 16));
   __cil_tmp128 = __cil_tmp127 >> 20;
   printk("<6>%d flash chips found. Total DiskOnChip size: %ld MiB\n", __cil_tmp124,
          __cil_tmp128);
@@ -3472,13 +3284,9 @@ static int DoCMilPlus_is_alias(struct DiskOnChip *doc1 , struct DiskOnChip *doc2
   unsigned char tmp___1 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   void const volatile *__cil_tmp14 ;
   void const volatile *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   void *__cil_tmp18 ;
   void const volatile *__cil_tmp19 ;
   void const volatile *__cil_tmp20 ;
@@ -3487,13 +3295,9 @@ static int DoCMilPlus_is_alias(struct DiskOnChip *doc1 , struct DiskOnChip *doc2
   unsigned char __cil_tmp23 ;
   int __cil_tmp24 ;
   unsigned char __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
   void volatile *__cil_tmp29 ;
   void volatile *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   void *__cil_tmp33 ;
   void const volatile *__cil_tmp34 ;
   void const volatile *__cil_tmp35 ;
@@ -3502,8 +3306,6 @@ static int DoCMilPlus_is_alias(struct DiskOnChip *doc1 , struct DiskOnChip *doc2
   unsigned char __cil_tmp38 ;
   int __cil_tmp39 ;
   unsigned char __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   void *__cil_tmp43 ;
   void volatile *__cil_tmp44 ;
   void volatile *__cil_tmp45 ;
@@ -3517,16 +3319,12 @@ static int DoCMilPlus_is_alias(struct DiskOnChip *doc1 , struct DiskOnChip *doc2
   }
   }
   {
-  __cil_tmp11 = (unsigned long )doc1;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)doc1 + 8));
   __cil_tmp14 = (void const volatile *)__cil_tmp13;
   __cil_tmp15 = __cil_tmp14 + 4100U;
   tmp = readb(__cil_tmp15);
   tmp1 = (int )tmp;
-  __cil_tmp16 = (unsigned long )doc2;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  __cil_tmp18 = *((void **)__cil_tmp17);
+  __cil_tmp18 = *((void **)((void *)doc2 + 8));
   __cil_tmp19 = (void const volatile *)__cil_tmp18;
   __cil_tmp20 = __cil_tmp19 + 4100U;
   tmp___0 = readb(__cil_tmp20);
@@ -3542,15 +3340,11 @@ static int DoCMilPlus_is_alias(struct DiskOnChip *doc1 , struct DiskOnChip *doc2
   __cil_tmp23 = (unsigned char )__cil_tmp22;
   __cil_tmp24 = (int )__cil_tmp23;
   __cil_tmp25 = (unsigned char )__cil_tmp24;
-  __cil_tmp26 = (unsigned long )doc1;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = *((void **)__cil_tmp27);
+  __cil_tmp28 = *((void **)((void *)doc1 + 8));
   __cil_tmp29 = (void volatile *)__cil_tmp28;
   __cil_tmp30 = __cil_tmp29 + 4100U;
   writeb(__cil_tmp25, __cil_tmp30);
-  __cil_tmp31 = (unsigned long )doc2;
-  __cil_tmp32 = __cil_tmp31 + 8;
-  __cil_tmp33 = *((void **)__cil_tmp32);
+  __cil_tmp33 = *((void **)((void *)doc2 + 8));
   __cil_tmp34 = (void const volatile *)__cil_tmp33;
   __cil_tmp35 = __cil_tmp34 + 4100U;
   tmp___1 = readb(__cil_tmp35);
@@ -3569,9 +3363,7 @@ static int DoCMilPlus_is_alias(struct DiskOnChip *doc1 , struct DiskOnChip *doc2
   __cil_tmp38 = (unsigned char )tmp1;
   __cil_tmp39 = (int )__cil_tmp38;
   __cil_tmp40 = (unsigned char )__cil_tmp39;
-  __cil_tmp41 = (unsigned long )doc1;
-  __cil_tmp42 = __cil_tmp41 + 8;
-  __cil_tmp43 = *((void **)__cil_tmp42);
+  __cil_tmp43 = *((void **)((void *)doc1 + 8));
   __cil_tmp44 = (void volatile *)__cil_tmp43;
   __cil_tmp45 = __cil_tmp44 + 4100U;
   writeb(__cil_tmp40, __cil_tmp45);
@@ -3584,92 +3376,36 @@ void DoCMilPlus_init(struct mtd_info *mtd )
   struct DiskOnChip *old ;
   int tmp ;
   uint32_t tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   struct mtd_info *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   void *__cil_tmp18 ;
   void volatile *__cil_tmp19 ;
   void const *__cil_tmp20 ;
   struct mtd_info *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct mtd_info *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct mtd_info *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   void *__cil_tmp32 ;
   struct DiskOnChip *__cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   void const *__cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   void *__cil_tmp71 ;
   void volatile *__cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
   char const **__cil_tmp85 ;
   struct mtd_part_parser_data *__cil_tmp86 ;
   struct mtd_partition const *__cil_tmp87 ;
   {
-  __cil_tmp6 = (unsigned long )mtd;
-  __cil_tmp7 = __cil_tmp6 + 360;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)mtd + 360));
   this = (struct DiskOnChip *)__cil_tmp8;
   old = (struct DiskOnChip *)0;
   {
@@ -3677,9 +3413,7 @@ void DoCMilPlus_init(struct mtd_info *mtd )
   __cil_tmp10 = (unsigned long )__cil_tmp9;
   __cil_tmp11 = (unsigned long )docmilpluslist;
   if (__cil_tmp11 != __cil_tmp10) {
-    __cil_tmp12 = (unsigned long )docmilpluslist;
-    __cil_tmp13 = __cil_tmp12 + 360;
-    __cil_tmp14 = *((void **)__cil_tmp13);
+    __cil_tmp14 = *((void **)((void *)docmilpluslist + 360));
     old = (struct DiskOnChip *)__cil_tmp14;
   } else {
   }
@@ -3694,9 +3428,7 @@ void DoCMilPlus_init(struct mtd_info *mtd )
     __cil_tmp15 = *((unsigned long *)this);
     printk("<5>Ignoring DiskOnChip Millennium Plus at 0x%lX - already configured\n",
            __cil_tmp15);
-    __cil_tmp16 = (unsigned long )this;
-    __cil_tmp17 = __cil_tmp16 + 8;
-    __cil_tmp18 = *((void **)__cil_tmp17);
+    __cil_tmp18 = *((void **)((void *)this + 8));
     __cil_tmp19 = (void volatile *)__cil_tmp18;
     iounmap(__cil_tmp19);
     __cil_tmp20 = (void const *)mtd;
@@ -3708,17 +3440,11 @@ void DoCMilPlus_init(struct mtd_info *mtd )
   {
   __cil_tmp21 = (struct mtd_info *)0;
   __cil_tmp22 = (unsigned long )__cil_tmp21;
-  __cil_tmp23 = (unsigned long )old;
-  __cil_tmp24 = __cil_tmp23 + 88;
-  __cil_tmp25 = *((struct mtd_info **)__cil_tmp24);
+  __cil_tmp25 = *((struct mtd_info **)((void *)old + 88));
   __cil_tmp26 = (unsigned long )__cil_tmp25;
   if (__cil_tmp26 != __cil_tmp22) {
-    __cil_tmp27 = (unsigned long )old;
-    __cil_tmp28 = __cil_tmp27 + 88;
-    __cil_tmp29 = *((struct mtd_info **)__cil_tmp28);
-    __cil_tmp30 = (unsigned long )__cil_tmp29;
-    __cil_tmp31 = __cil_tmp30 + 360;
-    __cil_tmp32 = *((void **)__cil_tmp31);
+    __cil_tmp29 = *((struct mtd_info **)((void *)old + 88));
+    __cil_tmp32 = *((void **)((void *)__cil_tmp29 + 360));
     old = (struct DiskOnChip *)__cil_tmp32;
   } else {
     old = (struct DiskOnChip *)0;
@@ -3737,86 +3463,44 @@ void DoCMilPlus_init(struct mtd_info *mtd )
   }
   ldv_19414:
   {
-  __cil_tmp36 = (unsigned long )mtd;
-  __cil_tmp37 = __cil_tmp36 + 56;
-  *((char const **)__cil_tmp37) = "DiskOnChip Millennium Plus";
+  *((char const **)((void *)mtd + 56)) = "DiskOnChip Millennium Plus";
   __cil_tmp38 = *((unsigned long *)this);
   printk("<5>DiskOnChip Millennium Plus found at address 0x%lX\n", __cil_tmp38);
   *((u_char *)mtd) = (u_char )4U;
-  __cil_tmp39 = (unsigned long )mtd;
-  __cil_tmp40 = __cil_tmp39 + 4;
-  *((uint32_t *)__cil_tmp40) = 1024U;
+  *((uint32_t *)((void *)mtd + 4)) = 1024U;
   tmp___0 = 512U;
-  __cil_tmp41 = (unsigned long )mtd;
-  __cil_tmp42 = __cil_tmp41 + 20;
-  *((uint32_t *)__cil_tmp42) = tmp___0;
-  __cil_tmp43 = (unsigned long )mtd;
-  __cil_tmp44 = __cil_tmp43 + 24;
-  *((uint32_t *)__cil_tmp44) = tmp___0;
-  __cil_tmp45 = (unsigned long )mtd;
-  __cil_tmp46 = __cil_tmp45 + 28;
-  *((uint32_t *)__cil_tmp46) = 16U;
-  __cil_tmp47 = (unsigned long )mtd;
-  __cil_tmp48 = __cil_tmp47 + 80;
-  *((unsigned int *)__cil_tmp48) = 2U;
-  __cil_tmp49 = (unsigned long )mtd;
-  __cil_tmp50 = __cil_tmp49 + 368;
-  *((struct module **)__cil_tmp50) = & __this_module;
-  __cil_tmp51 = (unsigned long )mtd;
-  __cil_tmp52 = __cil_tmp51 + 96;
-  *((int (**)(struct mtd_info * , struct erase_info * ))__cil_tmp52) = & doc_erase;
-  __cil_tmp53 = (unsigned long )mtd;
-  __cil_tmp54 = __cil_tmp53 + 128;
-  *((int (**)(struct mtd_info * , loff_t , size_t , size_t * , u_char * ))__cil_tmp54) = & doc_read;
-  __cil_tmp55 = (unsigned long )mtd;
-  __cil_tmp56 = __cil_tmp55 + 136;
-  *((int (**)(struct mtd_info * , loff_t , size_t , size_t * , u_char const * ))__cil_tmp56) = & doc_write;
-  __cil_tmp57 = (unsigned long )mtd;
-  __cil_tmp58 = __cil_tmp57 + 152;
-  *((int (**)(struct mtd_info * , loff_t , struct mtd_oob_ops * ))__cil_tmp58) = & doc_read_oob;
-  __cil_tmp59 = (unsigned long )mtd;
-  __cil_tmp60 = __cil_tmp59 + 160;
-  *((int (**)(struct mtd_info * , loff_t , struct mtd_oob_ops * ))__cil_tmp60) = & doc_write_oob;
-  __cil_tmp61 = (unsigned long )this;
-  __cil_tmp62 = __cil_tmp61 + 64;
-  *((int *)__cil_tmp62) = -1;
-  __cil_tmp63 = (unsigned long )this;
-  __cil_tmp64 = __cil_tmp63 + 68;
-  *((int *)__cil_tmp64) = -1;
+  *((uint32_t *)((void *)mtd + 20)) = tmp___0;
+  *((uint32_t *)((void *)mtd + 24)) = tmp___0;
+  *((uint32_t *)((void *)mtd + 28)) = 16U;
+  *((unsigned int *)((void *)mtd + 80)) = 2U;
+  *((struct module **)((void *)mtd + 368)) = & __this_module;
+  *((int (**)(struct mtd_info * , struct erase_info * ))((void *)mtd + 96)) = & doc_erase;
+  *((int (**)(struct mtd_info * , loff_t , size_t , size_t * , u_char * ))((void *)mtd + 128)) = & doc_read;
+  *((int (**)(struct mtd_info * , loff_t , size_t , size_t * , u_char const * ))((void *)mtd + 136)) = & doc_write;
+  *((int (**)(struct mtd_info * , loff_t , struct mtd_oob_ops * ))((void *)mtd + 152)) = & doc_read_oob;
+  *((int (**)(struct mtd_info * , loff_t , struct mtd_oob_ops * ))((void *)mtd + 160)) = & doc_write_oob;
+  *((int *)((void *)this + 64)) = -1;
+  *((int *)((void *)this + 68)) = -1;
   DoC_ScanChips(this);
   }
   {
-  __cil_tmp65 = (unsigned long )this;
-  __cil_tmp66 = __cil_tmp65 + 16;
-  __cil_tmp67 = *((unsigned long *)__cil_tmp66);
+  __cil_tmp67 = *((unsigned long *)((void *)this + 16));
   if (__cil_tmp67 == 0UL) {
     {
     __cil_tmp68 = (void const *)mtd;
     kfree(__cil_tmp68);
-    __cil_tmp69 = (unsigned long )this;
-    __cil_tmp70 = __cil_tmp69 + 8;
-    __cil_tmp71 = *((void **)__cil_tmp70);
+    __cil_tmp71 = *((void **)((void *)this + 8));
     __cil_tmp72 = (void volatile *)__cil_tmp71;
     iounmap(__cil_tmp72);
     }
   } else {
     {
-    __cil_tmp73 = (unsigned long )this;
-    __cil_tmp74 = __cil_tmp73 + 88;
-    *((struct mtd_info **)__cil_tmp74) = docmilpluslist;
+    *((struct mtd_info **)((void *)this + 88)) = docmilpluslist;
     docmilpluslist = mtd;
-    __cil_tmp75 = (unsigned long )mtd;
-    __cil_tmp76 = __cil_tmp75 + 8;
-    __cil_tmp77 = (unsigned long )this;
-    __cil_tmp78 = __cil_tmp77 + 16;
-    __cil_tmp79 = *((unsigned long *)__cil_tmp78);
-    *((uint64_t *)__cil_tmp76) = (uint64_t )__cil_tmp79;
-    __cil_tmp80 = (unsigned long )mtd;
-    __cil_tmp81 = __cil_tmp80 + 16;
-    __cil_tmp82 = (unsigned long )this;
-    __cil_tmp83 = __cil_tmp82 + 56;
-    __cil_tmp84 = *((unsigned long *)__cil_tmp83);
-    *((uint32_t *)__cil_tmp81) = (uint32_t )__cil_tmp84;
+    __cil_tmp79 = *((unsigned long *)((void *)this + 16));
+    *((uint64_t *)((void *)mtd + 8)) = (uint64_t )__cil_tmp79;
+    __cil_tmp84 = *((unsigned long *)((void *)this + 56));
+    *((uint32_t *)((void *)mtd + 16)) = (uint32_t )__cil_tmp84;
     __cil_tmp85 = (char const **)0;
     __cil_tmp86 = (struct mtd_part_parser_data *)0;
     __cil_tmp87 = (struct mtd_partition const *)0;
@@ -3844,18 +3528,10 @@ static int doc_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *re
   unsigned char tmp___1 ;
   int nb_errors ;
   unsigned char tmp___2 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
   loff_t __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct Nand *__cil_tmp32 ;
   long long __cil_tmp33 ;
   long long __cil_tmp34 ;
@@ -3868,33 +3544,17 @@ static int doc_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *re
   long long __cil_tmp41 ;
   char __cil_tmp42 ;
   int __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   int __cil_tmp46 ;
   char __cil_tmp47 ;
   int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   char __cil_tmp51 ;
   int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   char __cil_tmp55 ;
   int __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   char __cil_tmp62 ;
   int __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   char __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   char __cil_tmp71 ;
   void volatile *__cil_tmp72 ;
   void volatile *__cil_tmp73 ;
@@ -3945,21 +3605,13 @@ static int doc_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *re
   void volatile *__cil_tmp118 ;
   void volatile *__cil_tmp119 ;
   {
-  __cil_tmp20 = (unsigned long )mtd;
-  __cil_tmp21 = __cil_tmp20 + 360;
-  __cil_tmp22 = *((void **)__cil_tmp21);
+  __cil_tmp22 = *((void **)((void *)mtd + 360));
   this = (struct DiskOnChip *)__cil_tmp22;
-  __cil_tmp23 = (unsigned long )this;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  docptr = *((void **)__cil_tmp24);
-  __cil_tmp25 = (unsigned long )this;
-  __cil_tmp26 = __cil_tmp25 + 48;
-  __cil_tmp27 = *((int *)__cil_tmp26);
+  docptr = *((void **)((void *)this + 8));
+  __cil_tmp27 = *((int *)((void *)this + 48));
   __cil_tmp28 = from >> __cil_tmp27;
   __cil_tmp29 = (unsigned long )__cil_tmp28;
-  __cil_tmp30 = (unsigned long )this;
-  __cil_tmp31 = __cil_tmp30 + 80;
-  __cil_tmp32 = *((struct Nand **)__cil_tmp31);
+  __cil_tmp32 = *((struct Nand **)((void *)this + 80));
   mychip = __cil_tmp32 + __cil_tmp29;
   {
   __cil_tmp33 = from | 511LL;
@@ -3982,34 +3634,24 @@ static int doc_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *re
   {
   __cil_tmp42 = *((char *)mychip);
   __cil_tmp43 = (int )__cil_tmp42;
-  __cil_tmp44 = (unsigned long )this;
-  __cil_tmp45 = __cil_tmp44 + 64;
-  __cil_tmp46 = *((int *)__cil_tmp45);
+  __cil_tmp46 = *((int *)((void *)this + 64));
   if (__cil_tmp46 != __cil_tmp43) {
     {
     __cil_tmp47 = *((char *)mychip);
     __cil_tmp48 = (int )__cil_tmp47;
     DoC_SelectFloor(docptr, __cil_tmp48);
-    __cil_tmp49 = (unsigned long )mychip;
-    __cil_tmp50 = __cil_tmp49 + 1;
-    __cil_tmp51 = *((char *)__cil_tmp50);
+    __cil_tmp51 = *((char *)((void *)mychip + 1));
     __cil_tmp52 = (int )__cil_tmp51;
     DoC_SelectChip(docptr, __cil_tmp52);
     }
   } else {
     {
-    __cil_tmp53 = (unsigned long )mychip;
-    __cil_tmp54 = __cil_tmp53 + 1;
-    __cil_tmp55 = *((char *)__cil_tmp54);
+    __cil_tmp55 = *((char *)((void *)mychip + 1));
     __cil_tmp56 = (int )__cil_tmp55;
-    __cil_tmp57 = (unsigned long )this;
-    __cil_tmp58 = __cil_tmp57 + 68;
-    __cil_tmp59 = *((int *)__cil_tmp58);
+    __cil_tmp59 = *((int *)((void *)this + 68));
     if (__cil_tmp59 != __cil_tmp56) {
       {
-      __cil_tmp60 = (unsigned long )mychip;
-      __cil_tmp61 = __cil_tmp60 + 1;
-      __cil_tmp62 = *((char *)__cil_tmp61);
+      __cil_tmp62 = *((char *)((void *)mychip + 1));
       __cil_tmp63 = (int )__cil_tmp62;
       DoC_SelectChip(docptr, __cil_tmp63);
       }
@@ -4019,16 +3661,10 @@ static int doc_read(struct mtd_info *mtd , loff_t from , size_t len , size_t *re
   }
   }
   {
-  __cil_tmp64 = (unsigned long )this;
-  __cil_tmp65 = __cil_tmp64 + 64;
   __cil_tmp66 = *((char *)mychip);
-  *((int *)__cil_tmp65) = (int )__cil_tmp66;
-  __cil_tmp67 = (unsigned long )this;
-  __cil_tmp68 = __cil_tmp67 + 68;
-  __cil_tmp69 = (unsigned long )mychip;
-  __cil_tmp70 = __cil_tmp69 + 1;
-  __cil_tmp71 = *((char *)__cil_tmp70);
-  *((int *)__cil_tmp68) = (int )__cil_tmp71;
+  *((int *)((void *)this + 64)) = (int )__cil_tmp66;
+  __cil_tmp71 = *((char *)((void *)mychip + 1));
+  *((int *)((void *)this + 68)) = (int )__cil_tmp71;
   __cil_tmp72 = (void volatile *)docptr;
   __cil_tmp73 = __cil_tmp72 + 4130U;
   writeb((unsigned char)192, __cil_tmp73);
@@ -4153,55 +3789,29 @@ static int doc_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *ret
   unsigned char tmp___3 ;
   unsigned char tmp___4 ;
   unsigned char tmp___5 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   void *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
   loff_t __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct Nand *__cil_tmp34 ;
   long long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   char __cil_tmp38 ;
   signed char __cil_tmp39 ;
   int __cil_tmp40 ;
   long long __cil_tmp41 ;
   char __cil_tmp42 ;
   int __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   int __cil_tmp46 ;
   char __cil_tmp47 ;
   int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   char __cil_tmp51 ;
   int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   char __cil_tmp55 ;
   int __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   char __cil_tmp62 ;
   int __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   char __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   char __cil_tmp71 ;
   void volatile *__cil_tmp72 ;
   void volatile *__cil_tmp73 ;
@@ -4259,21 +3869,13 @@ static int doc_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *ret
   void volatile *__cil_tmp125 ;
   {
   ret = 0;
-  __cil_tmp22 = (unsigned long )mtd;
-  __cil_tmp23 = __cil_tmp22 + 360;
-  __cil_tmp24 = *((void **)__cil_tmp23);
+  __cil_tmp24 = *((void **)((void *)mtd + 360));
   this = (struct DiskOnChip *)__cil_tmp24;
-  __cil_tmp25 = (unsigned long )this;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  docptr = *((void **)__cil_tmp26);
-  __cil_tmp27 = (unsigned long )this;
-  __cil_tmp28 = __cil_tmp27 + 48;
-  __cil_tmp29 = *((int *)__cil_tmp28);
+  docptr = *((void **)((void *)this + 8));
+  __cil_tmp29 = *((int *)((void *)this + 48));
   __cil_tmp30 = to >> __cil_tmp29;
   __cil_tmp31 = (unsigned long )__cil_tmp30;
-  __cil_tmp32 = (unsigned long )this;
-  __cil_tmp33 = __cil_tmp32 + 80;
-  __cil_tmp34 = *((struct Nand **)__cil_tmp33);
+  __cil_tmp34 = *((struct Nand **)((void *)this + 80));
   mychip = __cil_tmp34 + __cil_tmp31;
   {
   __cil_tmp35 = to & 511LL;
@@ -4286,9 +3888,7 @@ static int doc_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *ret
   }
   }
   {
-  __cil_tmp36 = (unsigned long )this;
-  __cil_tmp37 = __cil_tmp36 + 54;
-  __cil_tmp38 = *((char *)__cil_tmp37);
+  __cil_tmp38 = *((char *)((void *)this + 54));
   __cil_tmp39 = (signed char )__cil_tmp38;
   __cil_tmp40 = (int )__cil_tmp39;
   if (__cil_tmp40 != 0) {
@@ -4311,34 +3911,24 @@ static int doc_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *ret
   {
   __cil_tmp42 = *((char *)mychip);
   __cil_tmp43 = (int )__cil_tmp42;
-  __cil_tmp44 = (unsigned long )this;
-  __cil_tmp45 = __cil_tmp44 + 64;
-  __cil_tmp46 = *((int *)__cil_tmp45);
+  __cil_tmp46 = *((int *)((void *)this + 64));
   if (__cil_tmp46 != __cil_tmp43) {
     {
     __cil_tmp47 = *((char *)mychip);
     __cil_tmp48 = (int )__cil_tmp47;
     DoC_SelectFloor(docptr, __cil_tmp48);
-    __cil_tmp49 = (unsigned long )mychip;
-    __cil_tmp50 = __cil_tmp49 + 1;
-    __cil_tmp51 = *((char *)__cil_tmp50);
+    __cil_tmp51 = *((char *)((void *)mychip + 1));
     __cil_tmp52 = (int )__cil_tmp51;
     DoC_SelectChip(docptr, __cil_tmp52);
     }
   } else {
     {
-    __cil_tmp53 = (unsigned long )mychip;
-    __cil_tmp54 = __cil_tmp53 + 1;
-    __cil_tmp55 = *((char *)__cil_tmp54);
+    __cil_tmp55 = *((char *)((void *)mychip + 1));
     __cil_tmp56 = (int )__cil_tmp55;
-    __cil_tmp57 = (unsigned long )this;
-    __cil_tmp58 = __cil_tmp57 + 68;
-    __cil_tmp59 = *((int *)__cil_tmp58);
+    __cil_tmp59 = *((int *)((void *)this + 68));
     if (__cil_tmp59 != __cil_tmp56) {
       {
-      __cil_tmp60 = (unsigned long )mychip;
-      __cil_tmp61 = __cil_tmp60 + 1;
-      __cil_tmp62 = *((char *)__cil_tmp61);
+      __cil_tmp62 = *((char *)((void *)mychip + 1));
       __cil_tmp63 = (int )__cil_tmp62;
       DoC_SelectChip(docptr, __cil_tmp63);
       }
@@ -4348,16 +3938,10 @@ static int doc_write(struct mtd_info *mtd , loff_t to , size_t len , size_t *ret
   }
   }
   {
-  __cil_tmp64 = (unsigned long )this;
-  __cil_tmp65 = __cil_tmp64 + 64;
   __cil_tmp66 = *((char *)mychip);
-  *((int *)__cil_tmp65) = (int )__cil_tmp66;
-  __cil_tmp67 = (unsigned long )this;
-  __cil_tmp68 = __cil_tmp67 + 68;
-  __cil_tmp69 = (unsigned long )mychip;
-  __cil_tmp70 = __cil_tmp69 + 1;
-  __cil_tmp71 = *((char *)__cil_tmp70);
-  *((int *)__cil_tmp68) = (int )__cil_tmp71;
+  *((int *)((void *)this + 64)) = (int )__cil_tmp66;
+  __cil_tmp71 = *((char *)((void *)mychip + 1));
+  *((int *)((void *)this + 68)) = (int )__cil_tmp71;
   __cil_tmp72 = (void volatile *)docptr;
   __cil_tmp73 = __cil_tmp72 + 4130U;
   writeb((unsigned char)128, __cil_tmp73);
@@ -4514,67 +4098,35 @@ static int doc_read_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops *
   unsigned int tmp___0 ;
   unsigned int tmp___1 ;
   unsigned int tmp___2 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   void *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int __cil_tmp26 ;
   loff_t __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct Nand *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
   int __cil_tmp37 ;
   long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   uint32_t __cil_tmp41 ;
   loff_t __cil_tmp42 ;
   char __cil_tmp43 ;
   int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   int __cil_tmp47 ;
   char __cil_tmp48 ;
   int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   char __cil_tmp52 ;
   int __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   char __cil_tmp56 ;
   int __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   int __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   char __cil_tmp63 ;
   int __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   char __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   char __cil_tmp72 ;
   void volatile *__cil_tmp73 ;
   void volatile *__cil_tmp74 ;
   void volatile *__cil_tmp75 ;
   void volatile *__cil_tmp76 ;
   loff_t *__cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   char __cil_tmp80 ;
   signed char __cil_tmp81 ;
   int __cil_tmp82 ;
@@ -4619,32 +4171,18 @@ static int doc_read_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops *
   unsigned long long __cil_tmp121 ;
   void volatile *__cil_tmp122 ;
   void volatile *__cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
   {
   {
-  __cil_tmp19 = (unsigned long )mtd;
-  __cil_tmp20 = __cil_tmp19 + 360;
-  __cil_tmp21 = *((void **)__cil_tmp20);
+  __cil_tmp21 = *((void **)((void *)mtd + 360));
   this = (struct DiskOnChip *)__cil_tmp21;
-  __cil_tmp22 = (unsigned long )this;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  docptr = *((void **)__cil_tmp23);
-  __cil_tmp24 = (unsigned long )this;
-  __cil_tmp25 = __cil_tmp24 + 48;
-  __cil_tmp26 = *((int *)__cil_tmp25);
+  docptr = *((void **)((void *)this + 8));
+  __cil_tmp26 = *((int *)((void *)this + 48));
   __cil_tmp27 = ofs >> __cil_tmp26;
   __cil_tmp28 = (unsigned long )__cil_tmp27;
-  __cil_tmp29 = (unsigned long )this;
-  __cil_tmp30 = __cil_tmp29 + 80;
-  __cil_tmp31 = *((struct Nand **)__cil_tmp30);
+  __cil_tmp31 = *((struct Nand **)((void *)this + 80));
   mychip = __cil_tmp31 + __cil_tmp28;
-  __cil_tmp32 = (unsigned long )ops;
-  __cil_tmp33 = __cil_tmp32 + 56;
-  buf = *((uint8_t **)__cil_tmp33);
-  __cil_tmp34 = (unsigned long )ops;
-  __cil_tmp35 = __cil_tmp34 + 8;
-  len = *((size_t *)__cil_tmp35);
+  buf = *((uint8_t **)((void *)ops + 56));
+  len = *((size_t *)((void *)ops + 8));
   __cil_tmp36 = *((unsigned int *)ops);
   __cil_tmp37 = __cil_tmp36 != 0U;
   __cil_tmp38 = (long )__cil_tmp37;
@@ -4658,9 +4196,7 @@ static int doc_read_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops *
   } else {
   }
   {
-  __cil_tmp39 = (unsigned long )ops;
-  __cil_tmp40 = __cil_tmp39 + 40;
-  __cil_tmp41 = *((uint32_t *)__cil_tmp40);
+  __cil_tmp41 = *((uint32_t *)((void *)ops + 40));
   __cil_tmp42 = (loff_t )__cil_tmp41;
   ofs = __cil_tmp42 + ofs;
   DoC_CheckASIC(docptr);
@@ -4668,34 +4204,24 @@ static int doc_read_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops *
   {
   __cil_tmp43 = *((char *)mychip);
   __cil_tmp44 = (int )__cil_tmp43;
-  __cil_tmp45 = (unsigned long )this;
-  __cil_tmp46 = __cil_tmp45 + 64;
-  __cil_tmp47 = *((int *)__cil_tmp46);
+  __cil_tmp47 = *((int *)((void *)this + 64));
   if (__cil_tmp47 != __cil_tmp44) {
     {
     __cil_tmp48 = *((char *)mychip);
     __cil_tmp49 = (int )__cil_tmp48;
     DoC_SelectFloor(docptr, __cil_tmp49);
-    __cil_tmp50 = (unsigned long )mychip;
-    __cil_tmp51 = __cil_tmp50 + 1;
-    __cil_tmp52 = *((char *)__cil_tmp51);
+    __cil_tmp52 = *((char *)((void *)mychip + 1));
     __cil_tmp53 = (int )__cil_tmp52;
     DoC_SelectChip(docptr, __cil_tmp53);
     }
   } else {
     {
-    __cil_tmp54 = (unsigned long )mychip;
-    __cil_tmp55 = __cil_tmp54 + 1;
-    __cil_tmp56 = *((char *)__cil_tmp55);
+    __cil_tmp56 = *((char *)((void *)mychip + 1));
     __cil_tmp57 = (int )__cil_tmp56;
-    __cil_tmp58 = (unsigned long )this;
-    __cil_tmp59 = __cil_tmp58 + 68;
-    __cil_tmp60 = *((int *)__cil_tmp59);
+    __cil_tmp60 = *((int *)((void *)this + 68));
     if (__cil_tmp60 != __cil_tmp57) {
       {
-      __cil_tmp61 = (unsigned long )mychip;
-      __cil_tmp62 = __cil_tmp61 + 1;
-      __cil_tmp63 = *((char *)__cil_tmp62);
+      __cil_tmp63 = *((char *)((void *)mychip + 1));
       __cil_tmp64 = (int )__cil_tmp63;
       DoC_SelectChip(docptr, __cil_tmp64);
       }
@@ -4705,16 +4231,10 @@ static int doc_read_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops *
   }
   }
   {
-  __cil_tmp65 = (unsigned long )this;
-  __cil_tmp66 = __cil_tmp65 + 64;
   __cil_tmp67 = *((char *)mychip);
-  *((int *)__cil_tmp66) = (int )__cil_tmp67;
-  __cil_tmp68 = (unsigned long )this;
-  __cil_tmp69 = __cil_tmp68 + 68;
-  __cil_tmp70 = (unsigned long )mychip;
-  __cil_tmp71 = __cil_tmp70 + 1;
-  __cil_tmp72 = *((char *)__cil_tmp71);
-  *((int *)__cil_tmp69) = (int )__cil_tmp72;
+  *((int *)((void *)this + 64)) = (int )__cil_tmp67;
+  __cil_tmp72 = *((char *)((void *)mychip + 1));
+  *((int *)((void *)this + 68)) = (int )__cil_tmp72;
   __cil_tmp73 = (void volatile *)docptr;
   __cil_tmp74 = __cil_tmp73 + 4130U;
   writeb((unsigned char)192, __cil_tmp74);
@@ -4736,9 +4256,7 @@ static int doc_read_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops *
   *__cil_tmp77 = ofs;
   base = ofs & 15LL;
   {
-  __cil_tmp78 = (unsigned long )this;
-  __cil_tmp79 = __cil_tmp78 + 54;
-  __cil_tmp80 = *((char *)__cil_tmp79);
+  __cil_tmp80 = *((char *)((void *)this + 54));
   __cil_tmp81 = (signed char )__cil_tmp80;
   __cil_tmp82 = (int )__cil_tmp81;
   if (__cil_tmp82 == 0) {
@@ -4840,9 +4358,7 @@ static int doc_read_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops *
   __cil_tmp122 = (void volatile *)docptr;
   __cil_tmp123 = __cil_tmp122 + 4130U;
   writeb((unsigned char)0, __cil_tmp123);
-  __cil_tmp124 = (unsigned long )ops;
-  __cil_tmp125 = __cil_tmp124 + 16;
-  *((size_t *)__cil_tmp125) = len;
+  *((size_t *)((void *)ops + 16)) = len;
   }
   return (0);
 }
@@ -4869,65 +4385,33 @@ static int doc_write_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops 
   unsigned char tmp___4 ;
   unsigned char tmp___5 ;
   unsigned char tmp___6 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   void *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
   loff_t __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct Nand *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned int __cil_tmp42 ;
   int __cil_tmp43 ;
   long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   uint32_t __cil_tmp47 ;
   loff_t __cil_tmp48 ;
   char __cil_tmp49 ;
   int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   int __cil_tmp53 ;
   char __cil_tmp54 ;
   int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   char __cil_tmp58 ;
   int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   char __cil_tmp62 ;
   int __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   int __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   char __cil_tmp69 ;
   int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   char __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   char __cil_tmp78 ;
   void volatile *__cil_tmp79 ;
   void volatile *__cil_tmp80 ;
   loff_t *__cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   char __cil_tmp84 ;
   signed char __cil_tmp85 ;
   int __cil_tmp86 ;
@@ -4972,8 +4456,6 @@ static int doc_write_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops 
   int __cil_tmp125 ;
   int __cil_tmp126 ;
   int __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
   void const volatile *__cil_tmp130 ;
   void const volatile *__cil_tmp131 ;
   unsigned long long __cil_tmp132 ;
@@ -4981,33 +4463,19 @@ static int doc_write_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops 
   unsigned long long __cil_tmp134 ;
   void volatile *__cil_tmp135 ;
   void volatile *__cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
   {
   {
-  __cil_tmp25 = (unsigned long )mtd;
-  __cil_tmp26 = __cil_tmp25 + 360;
-  __cil_tmp27 = *((void **)__cil_tmp26);
+  __cil_tmp27 = *((void **)((void *)mtd + 360));
   this = (struct DiskOnChip *)__cil_tmp27;
-  __cil_tmp28 = (unsigned long )this;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  docptr = *((void **)__cil_tmp29);
-  __cil_tmp30 = (unsigned long )this;
-  __cil_tmp31 = __cil_tmp30 + 48;
-  __cil_tmp32 = *((int *)__cil_tmp31);
+  docptr = *((void **)((void *)this + 8));
+  __cil_tmp32 = *((int *)((void *)this + 48));
   __cil_tmp33 = ofs >> __cil_tmp32;
   __cil_tmp34 = (unsigned long )__cil_tmp33;
-  __cil_tmp35 = (unsigned long )this;
-  __cil_tmp36 = __cil_tmp35 + 80;
-  __cil_tmp37 = *((struct Nand **)__cil_tmp36);
+  __cil_tmp37 = *((struct Nand **)((void *)this + 80));
   mychip = __cil_tmp37 + __cil_tmp34;
   ret = 0;
-  __cil_tmp38 = (unsigned long )ops;
-  __cil_tmp39 = __cil_tmp38 + 56;
-  buf = *((uint8_t **)__cil_tmp39);
-  __cil_tmp40 = (unsigned long )ops;
-  __cil_tmp41 = __cil_tmp40 + 8;
-  len = *((size_t *)__cil_tmp41);
+  buf = *((uint8_t **)((void *)ops + 56));
+  len = *((size_t *)((void *)ops + 8));
   __cil_tmp42 = *((unsigned int *)ops);
   __cil_tmp43 = __cil_tmp42 != 0U;
   __cil_tmp44 = (long )__cil_tmp43;
@@ -5021,9 +4489,7 @@ static int doc_write_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops 
   } else {
   }
   {
-  __cil_tmp45 = (unsigned long )ops;
-  __cil_tmp46 = __cil_tmp45 + 40;
-  __cil_tmp47 = *((uint32_t *)__cil_tmp46);
+  __cil_tmp47 = *((uint32_t *)((void *)ops + 40));
   __cil_tmp48 = (loff_t )__cil_tmp47;
   ofs = __cil_tmp48 + ofs;
   DoC_CheckASIC(docptr);
@@ -5031,34 +4497,24 @@ static int doc_write_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops 
   {
   __cil_tmp49 = *((char *)mychip);
   __cil_tmp50 = (int )__cil_tmp49;
-  __cil_tmp51 = (unsigned long )this;
-  __cil_tmp52 = __cil_tmp51 + 64;
-  __cil_tmp53 = *((int *)__cil_tmp52);
+  __cil_tmp53 = *((int *)((void *)this + 64));
   if (__cil_tmp53 != __cil_tmp50) {
     {
     __cil_tmp54 = *((char *)mychip);
     __cil_tmp55 = (int )__cil_tmp54;
     DoC_SelectFloor(docptr, __cil_tmp55);
-    __cil_tmp56 = (unsigned long )mychip;
-    __cil_tmp57 = __cil_tmp56 + 1;
-    __cil_tmp58 = *((char *)__cil_tmp57);
+    __cil_tmp58 = *((char *)((void *)mychip + 1));
     __cil_tmp59 = (int )__cil_tmp58;
     DoC_SelectChip(docptr, __cil_tmp59);
     }
   } else {
     {
-    __cil_tmp60 = (unsigned long )mychip;
-    __cil_tmp61 = __cil_tmp60 + 1;
-    __cil_tmp62 = *((char *)__cil_tmp61);
+    __cil_tmp62 = *((char *)((void *)mychip + 1));
     __cil_tmp63 = (int )__cil_tmp62;
-    __cil_tmp64 = (unsigned long )this;
-    __cil_tmp65 = __cil_tmp64 + 68;
-    __cil_tmp66 = *((int *)__cil_tmp65);
+    __cil_tmp66 = *((int *)((void *)this + 68));
     if (__cil_tmp66 != __cil_tmp63) {
       {
-      __cil_tmp67 = (unsigned long )mychip;
-      __cil_tmp68 = __cil_tmp67 + 1;
-      __cil_tmp69 = *((char *)__cil_tmp68);
+      __cil_tmp69 = *((char *)((void *)mychip + 1));
       __cil_tmp70 = (int )__cil_tmp69;
       DoC_SelectChip(docptr, __cil_tmp70);
       }
@@ -5068,16 +4524,10 @@ static int doc_write_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops 
   }
   }
   {
-  __cil_tmp71 = (unsigned long )this;
-  __cil_tmp72 = __cil_tmp71 + 64;
   __cil_tmp73 = *((char *)mychip);
-  *((int *)__cil_tmp72) = (int )__cil_tmp73;
-  __cil_tmp74 = (unsigned long )this;
-  __cil_tmp75 = __cil_tmp74 + 68;
-  __cil_tmp76 = (unsigned long )mychip;
-  __cil_tmp77 = __cil_tmp76 + 1;
-  __cil_tmp78 = *((char *)__cil_tmp77);
-  *((int *)__cil_tmp75) = (int )__cil_tmp78;
+  *((int *)((void *)this + 64)) = (int )__cil_tmp73;
+  __cil_tmp78 = *((char *)((void *)mychip + 1));
+  *((int *)((void *)this + 68)) = (int )__cil_tmp78;
   __cil_tmp79 = (void volatile *)docptr;
   __cil_tmp80 = __cil_tmp79 + 4130U;
   writeb((unsigned char)128, __cil_tmp80);
@@ -5099,9 +4549,7 @@ static int doc_write_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops 
   base = ofs & 15LL;
   }
   {
-  __cil_tmp82 = (unsigned long )this;
-  __cil_tmp83 = __cil_tmp82 + 54;
-  __cil_tmp84 = *((char *)__cil_tmp83);
+  __cil_tmp84 = *((char *)((void *)this + 54));
   __cil_tmp85 = (signed char )__cil_tmp84;
   __cil_tmp86 = (int )__cil_tmp85;
   if (__cil_tmp86 == 0) {
@@ -5198,9 +4646,7 @@ static int doc_write_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops 
     __cil_tmp126 = (int )dummy;
     __cil_tmp127 = (int )ofs;
     printk("MTD: Error 0x%x programming oob at 0x%x\n", __cil_tmp126, __cil_tmp127);
-    __cil_tmp128 = (unsigned long )ops;
-    __cil_tmp129 = __cil_tmp128 + 16;
-    *((size_t *)__cil_tmp129) = 0UL;
+    *((size_t *)((void *)ops + 16)) = 0UL;
     ret = -5;
     }
   } else {
@@ -5234,9 +4680,7 @@ static int doc_write_oob(struct mtd_info *mtd , loff_t ofs , struct mtd_oob_ops 
   __cil_tmp135 = (void volatile *)docptr;
   __cil_tmp136 = __cil_tmp135 + 4130U;
   writeb((unsigned char)0, __cil_tmp136);
-  __cil_tmp137 = (unsigned long )ops;
-  __cil_tmp138 = __cil_tmp137 + 16;
-  *((size_t *)__cil_tmp138) = len;
+  *((size_t *)((void *)ops + 16)) = len;
   }
   return (ret);
 }
@@ -5252,68 +4696,32 @@ static int doc_erase(struct mtd_info *mtd , struct erase_info *instr )
   unsigned char tmp___0 ;
   unsigned char tmp___1 ;
   unsigned char tmp___2 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   uint64_t __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   uint64_t __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int __cil_tmp26 ;
   __u32 __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct Nand *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   uint32_t __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   uint32_t __cil_tmp37 ;
   char __cil_tmp38 ;
   int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   int __cil_tmp42 ;
   char __cil_tmp43 ;
   int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   char __cil_tmp47 ;
   int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   char __cil_tmp51 ;
   int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   char __cil_tmp58 ;
   int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   char __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   char __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   void volatile *__cil_tmp70 ;
   void volatile *__cil_tmp71 ;
   unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   void const volatile *__cil_tmp75 ;
   void const volatile *__cil_tmp76 ;
   void const volatile *__cil_tmp77 ;
@@ -5322,51 +4730,31 @@ static int doc_erase(struct mtd_info *mtd , struct erase_info *instr )
   void const volatile *__cil_tmp80 ;
   int __cil_tmp81 ;
   int __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   void const volatile *__cil_tmp87 ;
   void const volatile *__cil_tmp88 ;
   void volatile *__cil_tmp89 ;
   void volatile *__cil_tmp90 ;
   {
   {
-  __cil_tmp13 = (unsigned long )mtd;
-  __cil_tmp14 = __cil_tmp13 + 360;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)mtd + 360));
   this = (struct DiskOnChip *)__cil_tmp15;
-  __cil_tmp16 = (unsigned long )instr;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  __cil_tmp18 = *((uint64_t *)__cil_tmp17);
+  __cil_tmp18 = *((uint64_t *)((void *)instr + 8));
   ofs = (__u32 )__cil_tmp18;
-  __cil_tmp19 = (unsigned long )instr;
-  __cil_tmp20 = __cil_tmp19 + 16;
-  __cil_tmp21 = *((uint64_t *)__cil_tmp20);
+  __cil_tmp21 = *((uint64_t *)((void *)instr + 16));
   len = (__u32 )__cil_tmp21;
-  __cil_tmp22 = (unsigned long )this;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  docptr = *((void **)__cil_tmp23);
-  __cil_tmp24 = (unsigned long )this;
-  __cil_tmp25 = __cil_tmp24 + 48;
-  __cil_tmp26 = *((int *)__cil_tmp25);
+  docptr = *((void **)((void *)this + 8));
+  __cil_tmp26 = *((int *)((void *)this + 48));
   __cil_tmp27 = ofs >> __cil_tmp26;
   __cil_tmp28 = (unsigned long )__cil_tmp27;
-  __cil_tmp29 = (unsigned long )this;
-  __cil_tmp30 = __cil_tmp29 + 80;
-  __cil_tmp31 = *((struct Nand **)__cil_tmp30);
+  __cil_tmp31 = *((struct Nand **)((void *)this + 80));
   mychip = __cil_tmp31 + __cil_tmp28;
   DoC_CheckASIC(docptr);
   }
   {
-  __cil_tmp32 = (unsigned long )mtd;
-  __cil_tmp33 = __cil_tmp32 + 16;
-  __cil_tmp34 = *((uint32_t *)__cil_tmp33);
+  __cil_tmp34 = *((uint32_t *)((void *)mtd + 16));
   if (__cil_tmp34 != len) {
     {
-    __cil_tmp35 = (unsigned long )mtd;
-    __cil_tmp36 = __cil_tmp35 + 16;
-    __cil_tmp37 = *((uint32_t *)__cil_tmp36);
+    __cil_tmp37 = *((uint32_t *)((void *)mtd + 16));
     printk("<4>MTD: Erase not right size (%x != %x)n", len, __cil_tmp37);
     }
   } else {
@@ -5375,34 +4763,24 @@ static int doc_erase(struct mtd_info *mtd , struct erase_info *instr )
   {
   __cil_tmp38 = *((char *)mychip);
   __cil_tmp39 = (int )__cil_tmp38;
-  __cil_tmp40 = (unsigned long )this;
-  __cil_tmp41 = __cil_tmp40 + 64;
-  __cil_tmp42 = *((int *)__cil_tmp41);
+  __cil_tmp42 = *((int *)((void *)this + 64));
   if (__cil_tmp42 != __cil_tmp39) {
     {
     __cil_tmp43 = *((char *)mychip);
     __cil_tmp44 = (int )__cil_tmp43;
     DoC_SelectFloor(docptr, __cil_tmp44);
-    __cil_tmp45 = (unsigned long )mychip;
-    __cil_tmp46 = __cil_tmp45 + 1;
-    __cil_tmp47 = *((char *)__cil_tmp46);
+    __cil_tmp47 = *((char *)((void *)mychip + 1));
     __cil_tmp48 = (int )__cil_tmp47;
     DoC_SelectChip(docptr, __cil_tmp48);
     }
   } else {
     {
-    __cil_tmp49 = (unsigned long )mychip;
-    __cil_tmp50 = __cil_tmp49 + 1;
-    __cil_tmp51 = *((char *)__cil_tmp50);
+    __cil_tmp51 = *((char *)((void *)mychip + 1));
     __cil_tmp52 = (int )__cil_tmp51;
-    __cil_tmp53 = (unsigned long )this;
-    __cil_tmp54 = __cil_tmp53 + 68;
-    __cil_tmp55 = *((int *)__cil_tmp54);
+    __cil_tmp55 = *((int *)((void *)this + 68));
     if (__cil_tmp55 != __cil_tmp52) {
       {
-      __cil_tmp56 = (unsigned long )mychip;
-      __cil_tmp57 = __cil_tmp56 + 1;
-      __cil_tmp58 = *((char *)__cil_tmp57);
+      __cil_tmp58 = *((char *)((void *)mychip + 1));
       __cil_tmp59 = (int )__cil_tmp58;
       DoC_SelectChip(docptr, __cil_tmp59);
       }
@@ -5412,19 +4790,11 @@ static int doc_erase(struct mtd_info *mtd , struct erase_info *instr )
   }
   }
   {
-  __cil_tmp60 = (unsigned long )this;
-  __cil_tmp61 = __cil_tmp60 + 64;
   __cil_tmp62 = *((char *)mychip);
-  *((int *)__cil_tmp61) = (int )__cil_tmp62;
-  __cil_tmp63 = (unsigned long )this;
-  __cil_tmp64 = __cil_tmp63 + 68;
-  __cil_tmp65 = (unsigned long )mychip;
-  __cil_tmp66 = __cil_tmp65 + 1;
-  __cil_tmp67 = *((char *)__cil_tmp66);
-  *((int *)__cil_tmp64) = (int )__cil_tmp67;
-  __cil_tmp68 = (unsigned long )instr;
-  __cil_tmp69 = __cil_tmp68 + 72;
-  *((u_char *)__cil_tmp69) = (u_char )1U;
+  *((int *)((void *)this + 64)) = (int )__cil_tmp62;
+  __cil_tmp67 = *((char *)((void *)mychip + 1));
+  *((int *)((void *)this + 68)) = (int )__cil_tmp67;
+  *((u_char *)((void *)instr + 72)) = (u_char )1U;
   __cil_tmp70 = (void volatile *)docptr;
   __cil_tmp71 = __cil_tmp70 + 4130U;
   writeb((unsigned char)128, __cil_tmp71);
@@ -5435,9 +4805,7 @@ static int doc_erase(struct mtd_info *mtd , struct erase_info *instr )
   DoC_Address(this, 2, __cil_tmp72, (unsigned char)0, (unsigned char)0);
   DoC_Command(docptr, (unsigned char)208, (unsigned char)0);
   DoC_WaitReady(docptr);
-  __cil_tmp73 = (unsigned long )instr;
-  __cil_tmp74 = __cil_tmp73 + 72;
-  *((u_char *)__cil_tmp74) = (u_char )2U;
+  *((u_char *)((void *)instr + 72)) = (u_char )2U;
   DoC_Command(docptr, (unsigned char)112, (unsigned char)0);
   __cil_tmp75 = (void const volatile *)docptr;
   __cil_tmp76 = __cil_tmp75 + 4138U;
@@ -5458,14 +4826,10 @@ static int doc_erase(struct mtd_info *mtd , struct erase_info *instr )
     {
     __cil_tmp82 = (int )dummy;
     printk("MTD: Error 0x%x erasing at 0x%x\n", __cil_tmp82, ofs);
-    __cil_tmp83 = (unsigned long )instr;
-    __cil_tmp84 = __cil_tmp83 + 72;
-    *((u_char *)__cil_tmp84) = (u_char )16U;
+    *((u_char *)((void *)instr + 72)) = (u_char )16U;
     }
   } else {
-    __cil_tmp85 = (unsigned long )instr;
-    __cil_tmp86 = __cil_tmp85 + 72;
-    *((u_char *)__cil_tmp86) = (u_char )8U;
+    *((u_char *)((void *)instr + 72)) = (u_char )8U;
   }
   }
   {
@@ -5484,17 +4848,9 @@ static int doc_erase(struct mtd_info *mtd , struct erase_info *instr )
 static void cleanup_doc2001plus(void)
 { struct mtd_info *mtd ;
   struct DiskOnChip *this ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   void volatile *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct Nand *__cil_tmp14 ;
   void const *__cil_tmp15 ;
   void const *__cil_tmp16 ;
@@ -5505,22 +4861,14 @@ static void cleanup_doc2001plus(void)
   goto ldv_19518;
   ldv_19517:
   {
-  __cil_tmp3 = (unsigned long )mtd;
-  __cil_tmp4 = __cil_tmp3 + 360;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)mtd + 360));
   this = (struct DiskOnChip *)__cil_tmp5;
-  __cil_tmp6 = (unsigned long )this;
-  __cil_tmp7 = __cil_tmp6 + 88;
-  docmilpluslist = *((struct mtd_info **)__cil_tmp7);
+  docmilpluslist = *((struct mtd_info **)((void *)this + 88));
   mtd_device_unregister(mtd);
-  __cil_tmp8 = (unsigned long )this;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)this + 8));
   __cil_tmp11 = (void volatile *)__cil_tmp10;
   iounmap(__cil_tmp11);
-  __cil_tmp12 = (unsigned long )this;
-  __cil_tmp13 = __cil_tmp12 + 80;
-  __cil_tmp14 = *((struct Nand **)__cil_tmp13);
+  __cil_tmp14 = *((struct Nand **)((void *)this + 80));
   __cil_tmp15 = (void const *)__cil_tmp14;
   kfree(__cil_tmp15);
   __cil_tmp16 = (void const *)mtd;

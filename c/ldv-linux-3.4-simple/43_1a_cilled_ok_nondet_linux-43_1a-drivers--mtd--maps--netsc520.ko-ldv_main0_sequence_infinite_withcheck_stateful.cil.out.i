@@ -951,19 +951,14 @@ static struct map_info netsc520_map =
     0UL, 0UL, 0UL, (void *)0, (struct mtd_chip_driver *)0};
 static struct mtd_info *mymtd ;
 static int init_netsc520(void)
-{ unsigned long __cil_tmp1 ;
+{
   unsigned long __cil_tmp2 ;
   unsigned long long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   resource_size_t __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   resource_size_t __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   struct mtd_info *__cil_tmp16 ;
@@ -975,34 +970,25 @@ static int init_netsc520(void)
   struct mtd_info *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   void *__cil_tmp26 ;
   void volatile *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   char const **__cil_tmp30 ;
   struct mtd_part_parser_data *__cil_tmp31 ;
   struct mtd_partition const *__cil_tmp32 ;
   {
   {
-  __cil_tmp1 = (unsigned long )(& netsc520_map) + 8;
-  __cil_tmp2 = *((unsigned long *)__cil_tmp1);
+  __cil_tmp2 = *((unsigned long *)((void *)(&netsc520_map) + 8));
   __cil_tmp3 = (unsigned long long )__cil_tmp2;
-  __cil_tmp4 = (unsigned long )(& netsc520_map) + 16;
-  __cil_tmp5 = *((resource_size_t *)__cil_tmp4);
+  __cil_tmp5 = *((resource_size_t *)((void *)(&netsc520_map) + 16));
   printk("<5>NetSc520 flash device: 0x%Lx at 0x%Lx\n", __cil_tmp3, __cil_tmp5);
-  __cil_tmp6 = (unsigned long )(& netsc520_map) + 24;
-  __cil_tmp7 = (unsigned long )(& netsc520_map) + 16;
-  __cil_tmp8 = *((resource_size_t *)__cil_tmp7);
-  __cil_tmp9 = (unsigned long )(& netsc520_map) + 8;
-  __cil_tmp10 = *((unsigned long *)__cil_tmp9);
-  *((void **)__cil_tmp6) = ioremap_nocache(__cil_tmp8, __cil_tmp10);
+  __cil_tmp8 = *((resource_size_t *)((void *)(&netsc520_map) + 16));
+  __cil_tmp10 = *((unsigned long *)((void *)(&netsc520_map) + 8));
+  *((void **)((void *)(&netsc520_map) + 24)) = ioremap_nocache(__cil_tmp8, __cil_tmp10);
   }
   {
   __cil_tmp11 = (void *)0;
   __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = (unsigned long )(& netsc520_map) + 24;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  __cil_tmp14 = *((void **)((void *)(&netsc520_map) + 24));
   __cil_tmp15 = (unsigned long )__cil_tmp14;
   if (__cil_tmp15 == __cil_tmp12) {
     {
@@ -1044,8 +1030,7 @@ static int init_netsc520(void)
   __cil_tmp24 = (unsigned long )mymtd;
   if (__cil_tmp24 == __cil_tmp23) {
     {
-    __cil_tmp25 = (unsigned long )(& netsc520_map) + 24;
-    __cil_tmp26 = *((void **)__cil_tmp25);
+    __cil_tmp26 = *((void **)((void *)(&netsc520_map) + 24));
     __cil_tmp27 = (void volatile *)__cil_tmp26;
     iounmap(__cil_tmp27);
     }
@@ -1054,9 +1039,7 @@ static int init_netsc520(void)
   }
   }
   {
-  __cil_tmp28 = (unsigned long )mymtd;
-  __cil_tmp29 = __cil_tmp28 + 368;
-  *((struct module **)__cil_tmp29) = & __this_module;
+  *((struct module **)((void *)mymtd + 368)) = & __this_module;
   __cil_tmp30 = (char const **)0;
   __cil_tmp31 = (struct mtd_part_parser_data *)0;
   __cil_tmp32 = (struct mtd_partition const *)(& partition_info);
@@ -1071,13 +1054,10 @@ static void cleanup_netsc520(void)
   unsigned long __cil_tmp3 ;
   void *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   void volatile *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   {
   {
   __cil_tmp1 = (struct mtd_info *)0;
@@ -1094,17 +1074,14 @@ static void cleanup_netsc520(void)
   {
   __cil_tmp4 = (void *)0;
   __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = (unsigned long )(& netsc520_map) + 24;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)(&netsc520_map) + 24));
   __cil_tmp8 = (unsigned long )__cil_tmp7;
   if (__cil_tmp8 != __cil_tmp5) {
     {
-    __cil_tmp9 = (unsigned long )(& netsc520_map) + 24;
-    __cil_tmp10 = *((void **)__cil_tmp9);
+    __cil_tmp10 = *((void **)((void *)(&netsc520_map) + 24));
     __cil_tmp11 = (void volatile *)__cil_tmp10;
     iounmap(__cil_tmp11);
-    __cil_tmp12 = (unsigned long )(& netsc520_map) + 24;
-    *((void **)__cil_tmp12) = (void *)0;
+    *((void **)((void *)(&netsc520_map) + 24)) = (void *)0;
     }
   } else {
   }

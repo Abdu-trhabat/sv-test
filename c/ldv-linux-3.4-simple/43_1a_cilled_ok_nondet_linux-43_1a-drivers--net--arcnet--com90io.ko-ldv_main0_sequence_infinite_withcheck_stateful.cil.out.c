@@ -4442,8 +4442,6 @@ static void com90io_copy_from_card(struct net_device *dev , int bufnum , int off
 static u_char get_buffer_byte(struct net_device *dev , unsigned int offset ) 
 { int ioaddr ;
   unsigned char tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   unsigned char __cil_tmp9 ;
@@ -4458,9 +4456,7 @@ static u_char get_buffer_byte(struct net_device *dev , unsigned int offset )
 
   {
   {
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + 312;
-  __cil_tmp7 = *((unsigned long *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp7;
   __cil_tmp8 = offset >> 8;
   __cil_tmp9 = (unsigned char )__cil_tmp8;
@@ -4485,8 +4481,6 @@ static void get_whole_buffer(struct net_device *dev , unsigned int offset , unsi
   char *tmp ;
   unsigned char tmp___0 ;
   unsigned int tmp___1 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   unsigned char __cil_tmp13 ;
@@ -4503,9 +4497,7 @@ static void get_whole_buffer(struct net_device *dev , unsigned int offset , unsi
 
   {
   {
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 312;
-  __cil_tmp11 = *((unsigned long *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp11;
   __cil_tmp12 = offset >> 8;
   __cil_tmp13 = (unsigned char )__cil_tmp12;
@@ -4547,8 +4539,6 @@ static void put_whole_buffer(struct net_device *dev , unsigned int offset , unsi
 { int ioaddr ;
   char *tmp ;
   unsigned int tmp___0 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   unsigned char __cil_tmp12 ;
@@ -4569,9 +4559,7 @@ static void put_whole_buffer(struct net_device *dev , unsigned int offset , unsi
 
   {
   {
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + 312;
-  __cil_tmp10 = *((unsigned long *)__cil_tmp9);
+  __cil_tmp10 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp10;
   __cil_tmp11 = offset >> 8;
   __cil_tmp12 = (unsigned char )__cil_tmp11;
@@ -4624,8 +4612,6 @@ static int com90io_probe(struct net_device *dev )
   unsigned char tmp___4 ;
   int tmp___5 ;
   int tmp___6 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   char *__cil_tmp17 ;
   char (*__cil_tmp18)[16U] ;
@@ -4672,13 +4658,7 @@ static int com90io_probe(struct net_device *dev )
   char *__cil_tmp59 ;
   char (*__cil_tmp60)[16U] ;
   char *__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned int __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   unsigned int __cil_tmp69 ;
   int __cil_tmp70 ;
   int __cil_tmp71 ;
@@ -4689,9 +4669,7 @@ static int com90io_probe(struct net_device *dev )
   resource_size_t __cil_tmp76 ;
 
   {
-  __cil_tmp14 = (unsigned long )dev;
-  __cil_tmp15 = __cil_tmp14 + 312;
-  __cil_tmp16 = *((unsigned long *)__cil_tmp15);
+  __cil_tmp16 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp16;
   if (arcnet_debug & 1) {
     {
@@ -4907,9 +4885,7 @@ static int com90io_probe(struct net_device *dev )
 
   }
   {
-  __cil_tmp62 = (unsigned long )dev;
-  __cil_tmp63 = __cil_tmp62 + 320;
-  __cil_tmp64 = *((unsigned int *)__cil_tmp63);
+  __cil_tmp64 = *((unsigned int *)((void *)dev + 320));
   if (__cil_tmp64 == 0U) {
     {
     airqmask = probe_irq_on();
@@ -4917,14 +4893,10 @@ static int com90io_probe(struct net_device *dev )
     __const_udelay(4295UL);
     outb((unsigned char)0, ioaddr);
     tmp___5 = probe_irq_off(airqmask);
-    __cil_tmp65 = (unsigned long )dev;
-    __cil_tmp66 = __cil_tmp65 + 320;
-    *((unsigned int *)__cil_tmp66) = (unsigned int )tmp___5;
+    *((unsigned int *)((void *)dev + 320)) = (unsigned int )tmp___5;
     }
     {
-    __cil_tmp67 = (unsigned long )dev;
-    __cil_tmp68 = __cil_tmp67 + 320;
-    __cil_tmp69 = *((unsigned int *)__cil_tmp68);
+    __cil_tmp69 = *((unsigned int *)((void *)dev + 320));
     __cil_tmp70 = (int )__cil_tmp69;
     if (__cil_tmp70 <= 0) {
       {
@@ -4971,97 +4943,55 @@ static int com90io_found(struct net_device *dev )
   struct resource *tmp___0 ;
   void *tmp___1 ;
   unsigned char tmp___2 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   void *__cil_tmp15 ;
   char *__cil_tmp16 ;
   char (*__cil_tmp17)[16U] ;
   char *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   resource_size_t __cil_tmp25 ;
   struct resource *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
   void *__cil_tmp32 ;
   struct net_device  const  *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   uint8_t __cil_tmp56 ;
   int __cil_tmp57 ;
   unsigned char __cil_tmp58 ;
   int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned char *__cil_tmp62 ;
   int __cil_tmp63 ;
   int __cil_tmp64 ;
   int __cil_tmp65 ;
   unsigned char __cil_tmp66 ;
   int __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
   void *__cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   resource_size_t __cil_tmp75 ;
   char *__cil_tmp76 ;
   char (*__cil_tmp77)[16U] ;
   char *__cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   unsigned char *__cil_tmp81 ;
   unsigned char __cil_tmp82 ;
   int __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   unsigned int __cil_tmp89 ;
 
   {
   {
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 312;
-  __cil_tmp11 = *((unsigned long *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp11;
-  __cil_tmp12 = (unsigned long )dev;
-  __cil_tmp13 = __cil_tmp12 + 320;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)dev + 320));
   __cil_tmp15 = (void *)dev;
   tmp = request_irq(__cil_tmp14, & arcnet_interrupt, 0UL, "arcnet (COM90xx-IO)", __cil_tmp15);
   }
@@ -5071,9 +5001,7 @@ static int com90io_found(struct net_device *dev )
       __cil_tmp16 = (char *)"<4>";
       __cil_tmp17 = (char (*)[16U])dev;
       __cil_tmp18 = (char *)__cil_tmp17;
-      __cil_tmp19 = (unsigned long )dev;
-      __cil_tmp20 = __cil_tmp19 + 320;
-      __cil_tmp21 = *((unsigned int *)__cil_tmp20);
+      __cil_tmp21 = *((unsigned int *)((void *)dev + 320));
       printk("%s%6s: Can\'t get IRQ %d!\n", __cil_tmp16, __cil_tmp18, __cil_tmp21);
       }
     } else {
@@ -5084,9 +5012,7 @@ static int com90io_found(struct net_device *dev )
 
   }
   {
-  __cil_tmp22 = (unsigned long )dev;
-  __cil_tmp23 = __cil_tmp22 + 312;
-  __cil_tmp24 = *((unsigned long *)__cil_tmp23);
+  __cil_tmp24 = *((unsigned long *)((void *)dev + 312));
   __cil_tmp25 = (resource_size_t )__cil_tmp24;
   tmp___0 = __request_region(& ioport_resource, __cil_tmp25, 16ULL, "arcnet (COM90xx-IO)",
                              0);
@@ -5097,9 +5023,7 @@ static int com90io_found(struct net_device *dev )
   __cil_tmp28 = (unsigned long )tmp___0;
   if (__cil_tmp28 == __cil_tmp27) {
     {
-    __cil_tmp29 = (unsigned long )dev;
-    __cil_tmp30 = __cil_tmp29 + 320;
-    __cil_tmp31 = *((unsigned int *)__cil_tmp30);
+    __cil_tmp31 = *((unsigned int *)((void *)dev + 320));
     __cil_tmp32 = (void *)dev;
     free_irq(__cil_tmp31, __cil_tmp32);
     }
@@ -5112,45 +5036,27 @@ static int com90io_found(struct net_device *dev )
   __cil_tmp33 = (struct net_device  const  *)dev;
   tmp___1 = netdev_priv(__cil_tmp33);
   lp = (struct arcnet_local *)tmp___1;
-  __cil_tmp34 = (unsigned long )lp;
-  __cil_tmp35 = __cil_tmp34 + 296;
-  *((char **)__cil_tmp35) = (char *)"COM90xx I/O";
+  *((char **)((void *)lp + 296)) = (char *)"COM90xx I/O";
   __cil_tmp36 = 4584 + 8;
-  __cil_tmp37 = (unsigned long )lp;
-  __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-  *((void (**)(struct net_device * , int  ))__cil_tmp38) = & com90io_command;
+  *((void (**)(struct net_device * , int  ))((void *)lp + __cil_tmp36)) = & com90io_command;
   __cil_tmp39 = 4584 + 16;
-  __cil_tmp40 = (unsigned long )lp;
-  __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-  *((int (**)(struct net_device * ))__cil_tmp41) = & com90io_status;
+  *((int (**)(struct net_device * ))((void *)lp + __cil_tmp39)) = & com90io_status;
   __cil_tmp42 = 4584 + 24;
-  __cil_tmp43 = (unsigned long )lp;
-  __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
-  *((void (**)(struct net_device * , int  ))__cil_tmp44) = & com90io_setmask;
+  *((void (**)(struct net_device * , int  ))((void *)lp + __cil_tmp42)) = & com90io_setmask;
   __cil_tmp45 = 4584 + 32;
-  __cil_tmp46 = (unsigned long )lp;
-  __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-  *((int (**)(struct net_device * , int  ))__cil_tmp47) = & com90io_reset;
-  __cil_tmp48 = (unsigned long )lp;
-  __cil_tmp49 = __cil_tmp48 + 4584;
-  *((struct module **)__cil_tmp49) = & __this_module;
+  *((int (**)(struct net_device * , int  ))((void *)lp + __cil_tmp45)) = & com90io_reset;
+  *((struct module **)((void *)lp + 4584)) = & __this_module;
   __cil_tmp50 = 4584 + 56;
-  __cil_tmp51 = (unsigned long )lp;
-  __cil_tmp52 = __cil_tmp51 + __cil_tmp50;
-  *((void (**)(struct net_device * , int  , int  , void * , int  ))__cil_tmp52) = & com90io_copy_to_card;
+  *((void (**)(struct net_device * , int  , int  , void * , int  ))((void *)lp + __cil_tmp50)) = & com90io_copy_to_card;
   __cil_tmp53 = 4584 + 64;
-  __cil_tmp54 = (unsigned long )lp;
-  __cil_tmp55 = __cil_tmp54 + __cil_tmp53;
-  *((void (**)(struct net_device * , int  , int  , void * , int  ))__cil_tmp55) = & com90io_copy_from_card;
+  *((void (**)(struct net_device * , int  , int  , void * , int  ))((void *)lp + __cil_tmp53)) = & com90io_copy_from_card;
   *((uint8_t *)lp) = (uint8_t )22U;
   __cil_tmp56 = *((uint8_t *)lp);
   __cil_tmp57 = (int )__cil_tmp56;
   __cil_tmp58 = (unsigned char )__cil_tmp57;
   __cil_tmp59 = ioaddr + 2;
   outb(__cil_tmp58, __cil_tmp59);
-  __cil_tmp60 = (unsigned long )dev;
-  __cil_tmp61 = __cil_tmp60 + 952;
-  __cil_tmp62 = *((unsigned char **)__cil_tmp61);
+  __cil_tmp62 = *((unsigned char **)((void *)dev + 952));
   *__cil_tmp62 = get_buffer_byte(dev, 1U);
   err = register_netdev(dev);
   }
@@ -5163,14 +5069,10 @@ static int com90io_found(struct net_device *dev )
     __cil_tmp66 = (unsigned char )__cil_tmp65;
     __cil_tmp67 = ioaddr + 2;
     outb(__cil_tmp66, __cil_tmp67);
-    __cil_tmp68 = (unsigned long )dev;
-    __cil_tmp69 = __cil_tmp68 + 320;
-    __cil_tmp70 = *((unsigned int *)__cil_tmp69);
+    __cil_tmp70 = *((unsigned int *)((void *)dev + 320));
     __cil_tmp71 = (void *)dev;
     free_irq(__cil_tmp70, __cil_tmp71);
-    __cil_tmp72 = (unsigned long )dev;
-    __cil_tmp73 = __cil_tmp72 + 312;
-    __cil_tmp74 = *((unsigned long *)__cil_tmp73);
+    __cil_tmp74 = *((unsigned long *)((void *)dev + 312));
     __cil_tmp75 = (resource_size_t )__cil_tmp74;
     __release_region(& ioport_resource, __cil_tmp75, 16ULL);
     }
@@ -5183,17 +5085,11 @@ static int com90io_found(struct net_device *dev )
     __cil_tmp76 = (char *)"<4>";
     __cil_tmp77 = (char (*)[16U])dev;
     __cil_tmp78 = (char *)__cil_tmp77;
-    __cil_tmp79 = (unsigned long )dev;
-    __cil_tmp80 = __cil_tmp79 + 952;
-    __cil_tmp81 = *((unsigned char **)__cil_tmp80);
+    __cil_tmp81 = *((unsigned char **)((void *)dev + 952));
     __cil_tmp82 = *__cil_tmp81;
     __cil_tmp83 = (int )__cil_tmp82;
-    __cil_tmp84 = (unsigned long )dev;
-    __cil_tmp85 = __cil_tmp84 + 312;
-    __cil_tmp86 = *((unsigned long *)__cil_tmp85);
-    __cil_tmp87 = (unsigned long )dev;
-    __cil_tmp88 = __cil_tmp87 + 320;
-    __cil_tmp89 = *((unsigned int *)__cil_tmp88);
+    __cil_tmp86 = *((unsigned long *)((void *)dev + 312));
+    __cil_tmp89 = *((unsigned int *)((void *)dev + 320));
     printk("%s%6s: COM90IO: station %02Xh found at %03lXh, IRQ %d.\n", __cil_tmp76,
            __cil_tmp78, __cil_tmp83, __cil_tmp86, __cil_tmp89);
     }
@@ -5212,8 +5108,6 @@ static int com90io_reset(struct net_device *dev , int really_reset )
   unsigned long tmp___1 ;
   u_char tmp___2 ;
   struct net_device  const  *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
@@ -5246,9 +5140,7 @@ static int com90io_reset(struct net_device *dev , int really_reset )
   __cil_tmp10 = (struct net_device  const  *)dev;
   tmp = netdev_priv(__cil_tmp10);
   lp = (struct arcnet_local *)tmp;
-  __cil_tmp11 = (unsigned long )dev;
-  __cil_tmp12 = __cil_tmp11 + 312;
-  __cil_tmp13 = *((unsigned long *)__cil_tmp12);
+  __cil_tmp13 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (short )__cil_tmp13;
   }
   {
@@ -5338,8 +5230,6 @@ static int com90io_reset(struct net_device *dev , int really_reset )
 }
 static void com90io_command(struct net_device *dev , int cmd ) 
 { short ioaddr ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned char __cil_tmp7 ;
   int __cil_tmp8 ;
@@ -5349,9 +5239,7 @@ static void com90io_command(struct net_device *dev , int cmd )
 
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 312;
-  __cil_tmp6 = *((unsigned long *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (short )__cil_tmp6;
   __cil_tmp7 = (unsigned char )cmd;
   __cil_tmp8 = (int )__cil_tmp7;
@@ -5366,16 +5254,12 @@ static void com90io_command(struct net_device *dev , int cmd )
 static int com90io_status(struct net_device *dev ) 
 { short ioaddr ;
   unsigned char tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 312;
-  __cil_tmp6 = *((unsigned long *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (short )__cil_tmp6;
   __cil_tmp7 = (int )ioaddr;
   tmp = inb(__cil_tmp7);
@@ -5385,8 +5269,6 @@ static int com90io_status(struct net_device *dev )
 }
 static void com90io_setmask(struct net_device *dev , int mask ) 
 { short ioaddr ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned char __cil_tmp7 ;
   int __cil_tmp8 ;
@@ -5395,9 +5277,7 @@ static void com90io_setmask(struct net_device *dev , int mask )
 
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 312;
-  __cil_tmp6 = *((unsigned long *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (short )__cil_tmp6;
   __cil_tmp7 = (unsigned char )mask;
   __cil_tmp8 = (int )__cil_tmp7;
@@ -5459,19 +5339,11 @@ static int com90io_init(void)
   struct net_device *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int *__cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int *__cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
 
   {
   {
@@ -5488,24 +5360,16 @@ static int com90io_init(void)
 
   }
   }
-  __cil_tmp7 = (unsigned long )dev;
-  __cil_tmp8 = __cil_tmp7 + 312;
   __cil_tmp9 = & io;
   __cil_tmp10 = *__cil_tmp9;
-  *((unsigned long *)__cil_tmp8) = (unsigned long )__cil_tmp10;
-  __cil_tmp11 = (unsigned long )dev;
-  __cil_tmp12 = __cil_tmp11 + 320;
+  *((unsigned long *)((void *)dev + 312)) = (unsigned long )__cil_tmp10;
   __cil_tmp13 = & irq;
   __cil_tmp14 = *__cil_tmp13;
-  *((unsigned int *)__cil_tmp12) = (unsigned int )__cil_tmp14;
+  *((unsigned int *)((void *)dev + 320)) = (unsigned int )__cil_tmp14;
   {
-  __cil_tmp15 = (unsigned long )dev;
-  __cil_tmp16 = __cil_tmp15 + 320;
-  __cil_tmp17 = *((unsigned int *)__cil_tmp16);
+  __cil_tmp17 = *((unsigned int *)((void *)dev + 320));
   if (__cil_tmp17 == 2U) {
-    __cil_tmp18 = (unsigned long )dev;
-    __cil_tmp19 = __cil_tmp18 + 320;
-    *((unsigned int *)__cil_tmp19) = 9U;
+    *((unsigned int *)((void *)dev + 320)) = 9U;
   } else {
 
   }
@@ -5529,29 +5393,21 @@ static void com90io_exit(void)
 { struct net_device *dev ;
   int ioaddr ;
   unsigned char tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
   int __cil_tmp9 ;
   unsigned char __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   void *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   resource_size_t __cil_tmp19 ;
 
   {
   {
   dev = my_dev;
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 312;
-  __cil_tmp6 = *((unsigned long *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned long *)((void *)dev + 312));
   ioaddr = (int )__cil_tmp6;
   unregister_netdev(dev);
   __cil_tmp7 = ioaddr + 2;
@@ -5561,14 +5417,10 @@ static void com90io_exit(void)
   __cil_tmp10 = (unsigned char )__cil_tmp9;
   __cil_tmp11 = ioaddr + 2;
   outb(__cil_tmp10, __cil_tmp11);
-  __cil_tmp12 = (unsigned long )dev;
-  __cil_tmp13 = __cil_tmp12 + 320;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)dev + 320));
   __cil_tmp15 = (void *)dev;
   free_irq(__cil_tmp14, __cil_tmp15);
-  __cil_tmp16 = (unsigned long )dev;
-  __cil_tmp17 = __cil_tmp16 + 312;
-  __cil_tmp18 = *((unsigned long *)__cil_tmp17);
+  __cil_tmp18 = *((unsigned long *)((void *)dev + 312));
   __cil_tmp19 = (resource_size_t )__cil_tmp18;
   __release_region(& ioport_resource, __cil_tmp19, 16ULL);
   free_netdev(dev);

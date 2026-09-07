@@ -2323,14 +2323,10 @@ extern int ( _dev_info)(struct device const *dev , char const *fmt
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)dev + 40);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -2338,14 +2334,11 @@ __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2472,8 +2465,6 @@ static int wm8400_read(struct wm8400 *wm8400 , u8 reg , int num_regs , u16 *dest
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct regmap *__cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   void *__cil_tmp28 ;
@@ -2482,8 +2473,6 @@ static int wm8400_read(struct wm8400 *wm8400 , u8 reg , int num_regs , u16 *dest
   void *__cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   u16 *__cil_tmp36 ;
   void const *__cil_tmp37 ;
   {
@@ -2548,9 +2537,7 @@ static int wm8400_read(struct wm8400 *wm8400 , u8 reg , int num_regs , u16 *dest
     __cil_tmp23 = (unsigned long )(reg_data) + __cil_tmp22;
     if (*((u16 *)__cil_tmp23)) {
       {
-      __cil_tmp24 = (unsigned long )wm8400;
-      __cil_tmp25 = __cil_tmp24 + 80;
-      __cil_tmp26 = *((struct regmap **)__cil_tmp25);
+      __cil_tmp26 = *((struct regmap **)((void *)wm8400 + 80));
       __cil_tmp27 = (unsigned int )reg;
       __cil_tmp28 = (void *)dest;
       __cil_tmp29 = (size_t )num_regs;
@@ -2570,9 +2557,7 @@ static int wm8400_read(struct wm8400 *wm8400 , u8 reg , int num_regs , u16 *dest
   __cil_tmp31 = (void *)dest;
   __cil_tmp32 = reg * 2UL;
   __cil_tmp33 = 88 + __cil_tmp32;
-  __cil_tmp34 = (unsigned long )wm8400;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  __cil_tmp36 = (u16 *)__cil_tmp35;
+  __cil_tmp36 = (u16 *)((void *)wm8400 + __cil_tmp33);
   __cil_tmp37 = (void const *)__cil_tmp36;
   __ret = memcpy(__cil_tmp31, __cil_tmp37, __len);
   }
@@ -2607,11 +2592,7 @@ static int wm8400_write(struct wm8400 *wm8400 , u8 reg , int num_regs , u16 *src
   int __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   u16 *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct regmap *__cil_tmp37 ;
   unsigned int __cil_tmp38 ;
   u16 *__cil_tmp39 ;
@@ -2716,13 +2697,9 @@ static int wm8400_write(struct wm8400 *wm8400 , u8 reg , int num_regs , u16 *src
     __cil_tmp29 = __cil_tmp28 + i;
     __cil_tmp30 = __cil_tmp29 * 2UL;
     __cil_tmp31 = 88 + __cil_tmp30;
-    __cil_tmp32 = (unsigned long )wm8400;
-    __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
     __cil_tmp34 = src + i;
-    *((u16 *)__cil_tmp33) = *__cil_tmp34;
-    __cil_tmp35 = (unsigned long )wm8400;
-    __cil_tmp36 = __cil_tmp35 + 80;
-    __cil_tmp37 = *((struct regmap **)__cil_tmp36);
+    *((u16 *)((void *)wm8400 + __cil_tmp31)) = *__cil_tmp34;
+    __cil_tmp37 = *((struct regmap **)((void *)wm8400 + 80));
     __cil_tmp38 = (unsigned int )reg;
     __cil_tmp39 = src + i;
     __cil_tmp40 = *__cil_tmp39;
@@ -2742,23 +2719,15 @@ static int wm8400_write(struct wm8400 *wm8400 , u8 reg , int num_regs , u16 *src
 }
 u16 wm8400_reg_read(struct wm8400 *wm8400 , u8 reg )
 { u16 val ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct mutex *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct mutex *__cil_tmp9 ;
   u16 *__cil_tmp10 ;
   {
   {
-  __cil_tmp4 = (unsigned long )wm8400;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = (struct mutex *)__cil_tmp5;
+  __cil_tmp6 = (struct mutex *)((void *)wm8400 + 8);
   mutex_lock(__cil_tmp6);
   wm8400_read(wm8400, reg, 1, & val);
-  __cil_tmp7 = (unsigned long )wm8400;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = (struct mutex *)__cil_tmp8;
+  __cil_tmp9 = (struct mutex *)((void *)wm8400 + 8);
   mutex_unlock(__cil_tmp9);
   }
   {
@@ -2780,22 +2749,14 @@ static struct kernel_symbol const __ksymtab_wm8400_reg_read __attribute__((__use
 __unused__, __section__("___ksymtab_gpl+wm8400_reg_read"))) = {(unsigned long )(& wm8400_reg_read), __kstrtab_wm8400_reg_read};
 int wm8400_block_read(struct wm8400 *wm8400 , u8 reg , int count , u16 *data )
 { int ret ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct mutex *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct mutex *__cil_tmp11 ;
   {
   {
-  __cil_tmp6 = (unsigned long )wm8400;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = (struct mutex *)__cil_tmp7;
+  __cil_tmp8 = (struct mutex *)((void *)wm8400 + 8);
   mutex_lock(__cil_tmp8);
   ret = wm8400_read(wm8400, reg, count, data);
-  __cil_tmp9 = (unsigned long )wm8400;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = (struct mutex *)__cil_tmp10;
+  __cil_tmp11 = (struct mutex *)((void *)wm8400 + 8);
   mutex_unlock(__cil_tmp11);
   }
   return (ret);
@@ -2816,8 +2777,6 @@ __unused__, __section__("___ksymtab_gpl+wm8400_block_read"))) = {(unsigned long 
 int wm8400_set_bits(struct wm8400 *wm8400 , u8 reg , u16 mask , u16 val )
 { u16 tmp___7 ;
   int ret ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct mutex *__cil_tmp9 ;
   u16 *__cil_tmp10 ;
   int __cil_tmp11 ;
@@ -2828,14 +2787,10 @@ int wm8400_set_bits(struct wm8400 *wm8400 , u8 reg , u16 mask , u16 val )
   int __cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct mutex *__cil_tmp21 ;
   {
   {
-  __cil_tmp7 = (unsigned long )wm8400;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = (struct mutex *)__cil_tmp8;
+  __cil_tmp9 = (struct mutex *)((void *)wm8400 + 8);
   mutex_lock(__cil_tmp9);
   ret = wm8400_read(wm8400, reg, 1, & tmp___7);
   __cil_tmp10 = & tmp___7;
@@ -2856,9 +2811,7 @@ int wm8400_set_bits(struct wm8400 *wm8400 , u8 reg , u16 mask , u16 val )
   } else {
   }
   {
-  __cil_tmp19 = (unsigned long )wm8400;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  __cil_tmp21 = (struct mutex *)__cil_tmp20;
+  __cil_tmp21 = (struct mutex *)((void *)wm8400 + 8);
   mutex_unlock(__cil_tmp21);
   }
   return (ret);
@@ -2877,8 +2830,6 @@ static struct kernel_symbol const __ksymtab_wm8400_set_bits __attribute__((__use
 __unused__, __section__("___ksymtab_gpl+wm8400_set_bits"))) = {(unsigned long )(& wm8400_set_bits), __kstrtab_wm8400_set_bits};
 void wm8400_reset_codec_reg_cache(struct wm8400 *wm8400 )
 { int i ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct mutex *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
@@ -2888,19 +2839,13 @@ void wm8400_reset_codec_reg_cache(struct wm8400 *wm8400 )
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct mutex *__cil_tmp21 ;
   {
   {
-  __cil_tmp3 = (unsigned long )wm8400;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = (struct mutex *)__cil_tmp4;
+  __cil_tmp5 = (struct mutex *)((void *)wm8400 + 8);
   mutex_lock(__cil_tmp5);
   i = 0;
   }
@@ -2923,12 +2868,10 @@ void wm8400_reset_codec_reg_cache(struct wm8400 *wm8400 )
     if (*((int *)__cil_tmp11)) {
       __cil_tmp12 = i * 2UL;
       __cil_tmp13 = 88 + __cil_tmp12;
-      __cil_tmp14 = (unsigned long )wm8400;
-      __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
       __cil_tmp16 = i * 16UL;
       __cil_tmp17 = __cil_tmp16 + 12;
       __cil_tmp18 = (unsigned long )(reg_data) + __cil_tmp17;
-      *((u16 *)__cil_tmp15) = *((u16 *)__cil_tmp18);
+      *((u16 *)((void *)wm8400 + __cil_tmp13)) = *((u16 *)__cil_tmp18);
     } else {
     }
     }
@@ -2937,9 +2880,7 @@ void wm8400_reset_codec_reg_cache(struct wm8400 *wm8400 )
   while_break: ;
   }
   {
-  __cil_tmp19 = (unsigned long )wm8400;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  __cil_tmp21 = (struct mutex *)__cil_tmp20;
+  __cil_tmp21 = (struct mutex *)((void *)wm8400 + 8);
   mutex_unlock(__cil_tmp21);
   }
   return;
@@ -2964,18 +2905,6 @@ static int wm8400_register_codec(struct wm8400 *wm8400 )
 { struct mfd_cell cell ;
   int tmp___7 ;
   struct mfd_cell *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   void *__cil_tmp18 ;
   struct resource *__cil_tmp19 ;
@@ -2983,30 +2912,18 @@ static int wm8400_register_codec(struct wm8400 *wm8400 )
   {
   __cil_tmp4 = & cell;
   *((char const **)__cil_tmp4) = "wm8400-codec";
-  __cil_tmp5 = (unsigned long )(& cell) + 8;
-  *((int *)__cil_tmp5) = 0;
-  __cil_tmp6 = (unsigned long )(& cell) + 16;
-  *((atomic_t **)__cil_tmp6) = (atomic_t *)0;
-  __cil_tmp7 = (unsigned long )(& cell) + 24;
-  *((int (**)(struct platform_device *dev ))__cil_tmp7) = (int (*)(struct platform_device *dev ))0;
-  __cil_tmp8 = (unsigned long )(& cell) + 32;
-  *((int (**)(struct platform_device *dev ))__cil_tmp8) = (int (*)(struct platform_device *dev ))0;
-  __cil_tmp9 = (unsigned long )(& cell) + 40;
-  *((int (**)(struct platform_device *dev ))__cil_tmp9) = (int (*)(struct platform_device *dev ))0;
-  __cil_tmp10 = (unsigned long )(& cell) + 48;
-  *((int (**)(struct platform_device *dev ))__cil_tmp10) = (int (*)(struct platform_device *dev ))0;
-  __cil_tmp11 = (unsigned long )(& cell) + 56;
-  *((void **)__cil_tmp11) = (void *)wm8400;
-  __cil_tmp12 = (unsigned long )(& cell) + 64;
-  *((size_t *)__cil_tmp12) = 5160UL;
-  __cil_tmp13 = (unsigned long )(& cell) + 72;
-  *((int *)__cil_tmp13) = 0;
-  __cil_tmp14 = (unsigned long )(& cell) + 80;
-  *((struct resource const **)__cil_tmp14) = (struct resource const *)0;
-  __cil_tmp15 = (unsigned long )(& cell) + 88;
-  *((bool *)__cil_tmp15) = (_Bool)0;
-  __cil_tmp16 = (unsigned long )(& cell) + 89;
-  *((bool *)__cil_tmp16) = (_Bool)0;
+  *((int *)((void *)(&cell) + 8)) = 0;
+  *((atomic_t **)((void *)(&cell) + 16)) = (atomic_t *)0;
+  *((int (**)(struct platform_device *dev ))((void *)(&cell) + 24)) = (int (*)(struct platform_device *dev ))0;
+  *((int (**)(struct platform_device *dev ))((void *)(&cell) + 32)) = (int (*)(struct platform_device *dev ))0;
+  *((int (**)(struct platform_device *dev ))((void *)(&cell) + 40)) = (int (*)(struct platform_device *dev ))0;
+  *((int (**)(struct platform_device *dev ))((void *)(&cell) + 48)) = (int (*)(struct platform_device *dev ))0;
+  *((void **)((void *)(&cell) + 56)) = (void *)wm8400;
+  *((size_t *)((void *)(&cell) + 64)) = 5160UL;
+  *((int *)((void *)(&cell) + 72)) = 0;
+  *((struct resource const **)((void *)(&cell) + 80)) = (struct resource const *)0;
+  *((bool *)((void *)(&cell) + 88)) = (_Bool)0;
+  *((bool *)((void *)(&cell) + 89)) = (_Bool)0;
   __cil_tmp17 = *((struct device **)wm8400);
   __cil_tmp18 = (void *)0;
   __cil_tmp19 = (struct resource *)__cil_tmp18;
@@ -3021,13 +2938,9 @@ static int wm8400_init(struct wm8400 *wm8400 , struct wm8400_platform_data *pdat
   int ret ;
   int i ;
   __u16 tmp___7 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct mutex *__cil_tmp9 ;
   struct device *__cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct regmap *__cil_tmp14 ;
   unsigned int *__cil_tmp15 ;
   struct device *__cil_tmp16 ;
@@ -3043,13 +2956,9 @@ static int wm8400_init(struct wm8400 *wm8400 , struct wm8400_platform_data *pdat
   struct device const *__cil_tmp26 ;
   int *__cil_tmp27 ;
   int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct regmap *__cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   u16 *__cil_tmp36 ;
   void *__cil_tmp37 ;
   unsigned long __cil_tmp38 ;
@@ -3066,23 +2975,17 @@ static int wm8400_init(struct wm8400 *wm8400 , struct wm8400_platform_data *pdat
   int __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   u16 __cil_tmp54 ;
   int *__cil_tmp55 ;
   int __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   int __cil_tmp61 ;
   int *__cil_tmp62 ;
   int *__cil_tmp63 ;
   int __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   u16 __cil_tmp69 ;
   int __cil_tmp70 ;
   int __cil_tmp71 ;
@@ -3101,8 +3004,6 @@ static int wm8400_init(struct wm8400 *wm8400 , struct wm8400_platform_data *pdat
   int __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   int *__cil_tmp89 ;
   int __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
@@ -3141,9 +3042,7 @@ static int wm8400_init(struct wm8400 *wm8400 , struct wm8400_platform_data *pdat
   while (1) {
     while_continue: ;
     {
-    __cil_tmp7 = (unsigned long )wm8400;
-    __cil_tmp8 = __cil_tmp7 + 8;
-    __cil_tmp9 = (struct mutex *)__cil_tmp8;
+    __cil_tmp9 = (struct mutex *)((void *)wm8400 + 8);
     __mutex_init(__cil_tmp9, "&wm8400->io_lock", & __key___3);
     }
     goto while_break;
@@ -3154,9 +3053,7 @@ static int wm8400_init(struct wm8400 *wm8400 , struct wm8400_platform_data *pdat
   __cil_tmp10 = *((struct device **)wm8400);
   __cil_tmp11 = (void *)wm8400;
   dev_set_drvdata(__cil_tmp10, __cil_tmp11);
-  __cil_tmp12 = (unsigned long )wm8400;
-  __cil_tmp13 = __cil_tmp12 + 80;
-  __cil_tmp14 = *((struct regmap **)__cil_tmp13);
+  __cil_tmp14 = *((struct regmap **)((void *)wm8400 + 80));
   __cil_tmp15 = (unsigned int *)(& i);
   ret = regmap_read(__cil_tmp14, 0U, __cil_tmp15);
   }
@@ -3190,14 +3087,10 @@ static int wm8400_init(struct wm8400 *wm8400 , struct wm8400_platform_data *pdat
   }
   }
   {
-  __cil_tmp29 = (unsigned long )wm8400;
-  __cil_tmp30 = __cil_tmp29 + 80;
-  __cil_tmp31 = *((struct regmap **)__cil_tmp30);
+  __cil_tmp31 = *((struct regmap **)((void *)wm8400 + 80));
   __cil_tmp32 = 0 * 2UL;
   __cil_tmp33 = 88 + __cil_tmp32;
-  __cil_tmp34 = (unsigned long )wm8400;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  __cil_tmp36 = (u16 *)__cil_tmp35;
+  __cil_tmp36 = (u16 *)((void *)wm8400 + __cil_tmp33);
   __cil_tmp37 = (void *)__cil_tmp36;
   __cil_tmp38 = 170UL / 2UL;
   __cil_tmp39 = __cil_tmp38 + 0UL;
@@ -3233,18 +3126,14 @@ static int wm8400_init(struct wm8400 *wm8400 , struct wm8400_platform_data *pdat
     __cil_tmp49 = *__cil_tmp48;
     __cil_tmp50 = __cil_tmp49 * 2UL;
     __cil_tmp51 = 88 + __cil_tmp50;
-    __cil_tmp52 = (unsigned long )wm8400;
-    __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-    __cil_tmp54 = *((u16 *)__cil_tmp53);
+    __cil_tmp54 = *((u16 *)((void *)wm8400 + __cil_tmp51));
     tmp___7 = __fswab16(__cil_tmp54);
     __cil_tmp55 = & i;
     __cil_tmp56 = *__cil_tmp55;
     __cil_tmp57 = __cil_tmp56 * 2UL;
     __cil_tmp58 = 88 + __cil_tmp57;
-    __cil_tmp59 = (unsigned long )wm8400;
-    __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
     __cil_tmp61 = (int )tmp___7;
-    *((u16 *)__cil_tmp60) = (u16 )__cil_tmp61;
+    *((u16 *)((void *)wm8400 + __cil_tmp58)) = (u16 )__cil_tmp61;
     __cil_tmp62 = & i;
     __cil_tmp63 = & i;
     __cil_tmp64 = *__cil_tmp63;
@@ -3256,9 +3145,7 @@ static int wm8400_init(struct wm8400 *wm8400 , struct wm8400_platform_data *pdat
   {
   __cil_tmp65 = 2 * 2UL;
   __cil_tmp66 = 88 + __cil_tmp65;
-  __cil_tmp67 = (unsigned long )wm8400;
-  __cil_tmp68 = __cil_tmp67 + __cil_tmp66;
-  __cil_tmp69 = *((u16 *)__cil_tmp68);
+  __cil_tmp69 = *((u16 *)((void *)wm8400 + __cil_tmp66));
   __cil_tmp70 = (int )__cil_tmp69;
   __cil_tmp71 = __cil_tmp70 & 32768;
   if (! __cil_tmp71) {
@@ -3289,14 +3176,12 @@ static int wm8400_init(struct wm8400 *wm8400 , struct wm8400_platform_data *pdat
         __cil_tmp84 = *__cil_tmp83;
         __cil_tmp85 = __cil_tmp84 * 2UL;
         __cil_tmp86 = 88 + __cil_tmp85;
-        __cil_tmp87 = (unsigned long )wm8400;
-        __cil_tmp88 = __cil_tmp87 + __cil_tmp86;
         __cil_tmp89 = & i;
         __cil_tmp90 = *__cil_tmp89;
         __cil_tmp91 = __cil_tmp90 * 16UL;
         __cil_tmp92 = __cil_tmp91 + 12;
         __cil_tmp93 = (unsigned long )(reg_data) + __cil_tmp92;
-        *((u16 *)__cil_tmp88) = *((u16 *)__cil_tmp93);
+        *((u16 *)((void *)wm8400 + __cil_tmp86)) = *((u16 *)__cil_tmp93);
       } else {
       }
       }
@@ -3410,35 +3295,21 @@ static int wm8400_i2c_probe(struct i2c_client *i2c , struct i2c_device_id const 
   void *tmp___7 ;
   long tmp___8 ;
   long tmp___9 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   void *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct regmap *__cil_tmp18 ;
   void const *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct regmap *__cil_tmp22 ;
   void const *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   void *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   void *__cil_tmp30 ;
   struct wm8400_platform_data *__cil_tmp31 ;
   {
   {
-  __cil_tmp8 = (unsigned long )i2c;
-  __cil_tmp9 = __cil_tmp8 + 40;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)i2c + 40);
   tmp___7 = devm_kzalloc(__cil_tmp10, 5160UL, 208U);
   wm8400 = (struct wm8400 *)tmp___7;
   }
@@ -3453,20 +3324,14 @@ static int wm8400_i2c_probe(struct i2c_client *i2c , struct i2c_device_id const 
   }
   }
   {
-  __cil_tmp14 = (unsigned long )wm8400;
-  __cil_tmp15 = __cil_tmp14 + 80;
-  *((struct regmap **)__cil_tmp15) = devm_regmap_init_i2c(i2c, & wm8400_regmap_config);
-  __cil_tmp16 = (unsigned long )wm8400;
-  __cil_tmp17 = __cil_tmp16 + 80;
-  __cil_tmp18 = *((struct regmap **)__cil_tmp17);
+  *((struct regmap **)((void *)wm8400 + 80)) = devm_regmap_init_i2c(i2c, & wm8400_regmap_config);
+  __cil_tmp18 = *((struct regmap **)((void *)wm8400 + 80));
   __cil_tmp19 = (void const *)__cil_tmp18;
   tmp___9 = (long )IS_ERR(__cil_tmp19);
   }
   if (tmp___9) {
     {
-    __cil_tmp20 = (unsigned long )wm8400;
-    __cil_tmp21 = __cil_tmp20 + 80;
-    __cil_tmp22 = *((struct regmap **)__cil_tmp21);
+    __cil_tmp22 = *((struct regmap **)((void *)wm8400 + 80));
     __cil_tmp23 = (void const *)__cil_tmp22;
     tmp___8 = (long )PTR_ERR(__cil_tmp23);
     ret = (int )tmp___8;
@@ -3475,15 +3340,11 @@ static int wm8400_i2c_probe(struct i2c_client *i2c , struct i2c_device_id const 
   } else {
   }
   {
-  __cil_tmp24 = (unsigned long )i2c;
-  __cil_tmp25 = __cil_tmp24 + 40;
-  *((struct device **)wm8400) = (struct device *)__cil_tmp25;
+  *((struct device **)wm8400) = (struct device *)((void *)i2c + 40);
   __cil_tmp26 = (void *)wm8400;
   i2c_set_clientdata(i2c, __cil_tmp26);
   __cil_tmp27 = 40 + 184;
-  __cil_tmp28 = (unsigned long )i2c;
-  __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-  __cil_tmp30 = *((void **)__cil_tmp29);
+  __cil_tmp30 = *((void **)((void *)i2c + __cil_tmp27));
   __cil_tmp31 = (struct wm8400_platform_data *)__cil_tmp30;
   ret = wm8400_init(wm8400, __cil_tmp31);
   }

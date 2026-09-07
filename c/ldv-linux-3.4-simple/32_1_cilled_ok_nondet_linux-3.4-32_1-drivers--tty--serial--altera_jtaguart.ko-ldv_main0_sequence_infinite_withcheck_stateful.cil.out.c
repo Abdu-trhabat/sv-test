@@ -3318,17 +3318,13 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 static unsigned int altera_jtaguart_tx_empty(struct uart_port *port ) 
 { int tmp___8 ;
   unsigned int tmp___9 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned char *__cil_tmp7 ;
   unsigned char *__cil_tmp8 ;
   void const volatile   *__cil_tmp9 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )port;
-  __cil_tmp6 = __cil_tmp5 + 32;
-  __cil_tmp7 = *((unsigned char **)__cil_tmp6);
+  __cil_tmp7 = *((unsigned char **)((void *)port + 32));
   __cil_tmp8 = __cil_tmp7 + 4;
   __cil_tmp9 = (void const volatile   *)__cil_tmp8;
   tmp___9 = readl(__cil_tmp9);
@@ -3363,17 +3359,9 @@ static void altera_jtaguart_start_tx(struct uart_port *port )
   unsigned int __cil_tmp6 ;
   char *__cil_tmp7 ;
   char *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned char *__cil_tmp20 ;
   unsigned char *__cil_tmp21 ;
   void volatile   *__cil_tmp22 ;
@@ -3387,19 +3375,11 @@ static void altera_jtaguart_start_tx(struct uart_port *port )
   __cil_tmp7 = (char *)__mptr;
   __cil_tmp8 = __cil_tmp7 - __cil_tmp6;
   pp = (struct altera_jtaguart *)__cil_tmp8;
-  __cil_tmp9 = (unsigned long )pp;
-  __cil_tmp10 = __cil_tmp9 + 264;
-  __cil_tmp11 = (unsigned long )pp;
-  __cil_tmp12 = __cil_tmp11 + 264;
-  __cil_tmp13 = *((unsigned long *)__cil_tmp12);
-  *((unsigned long *)__cil_tmp10) = __cil_tmp13 | 2UL;
-  __cil_tmp14 = (unsigned long )pp;
-  __cil_tmp15 = __cil_tmp14 + 264;
-  __cil_tmp16 = *((unsigned long *)__cil_tmp15);
+  __cil_tmp13 = *((unsigned long *)((void *)pp + 264));
+  *((unsigned long *)((void *)pp + 264)) = __cil_tmp13 | 2UL;
+  __cil_tmp16 = *((unsigned long *)((void *)pp + 264));
   __cil_tmp17 = (unsigned int )__cil_tmp16;
-  __cil_tmp18 = (unsigned long )port;
-  __cil_tmp19 = __cil_tmp18 + 32;
-  __cil_tmp20 = *((unsigned char **)__cil_tmp19);
+  __cil_tmp20 = *((unsigned char **)((void *)port + 32));
   __cil_tmp21 = __cil_tmp20 + 4;
   __cil_tmp22 = (void volatile   *)__cil_tmp21;
   writel(__cil_tmp17, __cil_tmp22);
@@ -3415,17 +3395,9 @@ static void altera_jtaguart_stop_tx(struct uart_port *port )
   unsigned int __cil_tmp6 ;
   char *__cil_tmp7 ;
   char *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned char *__cil_tmp20 ;
   unsigned char *__cil_tmp21 ;
   void volatile   *__cil_tmp22 ;
@@ -3439,19 +3411,11 @@ static void altera_jtaguart_stop_tx(struct uart_port *port )
   __cil_tmp7 = (char *)__mptr;
   __cil_tmp8 = __cil_tmp7 - __cil_tmp6;
   pp = (struct altera_jtaguart *)__cil_tmp8;
-  __cil_tmp9 = (unsigned long )pp;
-  __cil_tmp10 = __cil_tmp9 + 264;
-  __cil_tmp11 = (unsigned long )pp;
-  __cil_tmp12 = __cil_tmp11 + 264;
-  __cil_tmp13 = *((unsigned long *)__cil_tmp12);
-  *((unsigned long *)__cil_tmp10) = __cil_tmp13 & 0xfffffffffffffffdUL;
-  __cil_tmp14 = (unsigned long )pp;
-  __cil_tmp15 = __cil_tmp14 + 264;
-  __cil_tmp16 = *((unsigned long *)__cil_tmp15);
+  __cil_tmp13 = *((unsigned long *)((void *)pp + 264));
+  *((unsigned long *)((void *)pp + 264)) = __cil_tmp13 & 0xfffffffffffffffdUL;
+  __cil_tmp16 = *((unsigned long *)((void *)pp + 264));
   __cil_tmp17 = (unsigned int )__cil_tmp16;
-  __cil_tmp18 = (unsigned long )port;
-  __cil_tmp19 = __cil_tmp18 + 32;
-  __cil_tmp20 = *((unsigned char **)__cil_tmp19);
+  __cil_tmp20 = *((unsigned char **)((void *)port + 32));
   __cil_tmp21 = __cil_tmp20 + 4;
   __cil_tmp22 = (void volatile   *)__cil_tmp21;
   writel(__cil_tmp17, __cil_tmp22);
@@ -3467,17 +3431,9 @@ static void altera_jtaguart_stop_rx(struct uart_port *port )
   unsigned int __cil_tmp6 ;
   char *__cil_tmp7 ;
   char *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned char *__cil_tmp20 ;
   unsigned char *__cil_tmp21 ;
   void volatile   *__cil_tmp22 ;
@@ -3491,19 +3447,11 @@ static void altera_jtaguart_stop_rx(struct uart_port *port )
   __cil_tmp7 = (char *)__mptr;
   __cil_tmp8 = __cil_tmp7 - __cil_tmp6;
   pp = (struct altera_jtaguart *)__cil_tmp8;
-  __cil_tmp9 = (unsigned long )pp;
-  __cil_tmp10 = __cil_tmp9 + 264;
-  __cil_tmp11 = (unsigned long )pp;
-  __cil_tmp12 = __cil_tmp11 + 264;
-  __cil_tmp13 = *((unsigned long *)__cil_tmp12);
-  *((unsigned long *)__cil_tmp10) = __cil_tmp13 & 0xfffffffffffffffeUL;
-  __cil_tmp14 = (unsigned long )pp;
-  __cil_tmp15 = __cil_tmp14 + 264;
-  __cil_tmp16 = *((unsigned long *)__cil_tmp15);
+  __cil_tmp13 = *((unsigned long *)((void *)pp + 264));
+  *((unsigned long *)((void *)pp + 264)) = __cil_tmp13 & 0xfffffffffffffffeUL;
+  __cil_tmp16 = *((unsigned long *)((void *)pp + 264));
   __cil_tmp17 = (unsigned int )__cil_tmp16;
-  __cil_tmp18 = (unsigned long )port;
-  __cil_tmp19 = __cil_tmp18 + 32;
-  __cil_tmp20 = *((unsigned char **)__cil_tmp19);
+  __cil_tmp20 = *((unsigned char **)((void *)port + 32));
   __cil_tmp21 = __cil_tmp20 + 4;
   __cil_tmp22 = (void volatile   *)__cil_tmp21;
   writel(__cil_tmp17, __cil_tmp22);
@@ -3546,23 +3494,15 @@ static void altera_jtaguart_rx_chars(struct altera_jtaguart *pp )
   unsigned char flag ;
   unsigned long status ;
   unsigned int tmp___7 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned char *__cil_tmp9 ;
   unsigned char *__cil_tmp10 ;
   void const volatile   *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   __u32 __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct uart_state *__cil_tmp24 ;
   struct tty_struct *__cil_tmp25 ;
 
@@ -3572,9 +3512,7 @@ static void altera_jtaguart_rx_chars(struct altera_jtaguart *pp )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp7 = (unsigned long )port;
-    __cil_tmp8 = __cil_tmp7 + 32;
-    __cil_tmp9 = *((unsigned char **)__cil_tmp8);
+    __cil_tmp9 = *((unsigned char **)((void *)port + 32));
     __cil_tmp10 = __cil_tmp9 + 0;
     __cil_tmp11 = (void const volatile   *)__cil_tmp10;
     tmp___7 = readl(__cil_tmp11);
@@ -3590,13 +3528,9 @@ static void altera_jtaguart_rx_chars(struct altera_jtaguart *pp )
     ch = (unsigned char )__cil_tmp12;
     flag = (unsigned char)0;
     __cil_tmp13 = 128 + 16;
-    __cil_tmp14 = (unsigned long )port;
-    __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
     __cil_tmp16 = 128 + 16;
-    __cil_tmp17 = (unsigned long )port;
-    __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-    __cil_tmp19 = *((__u32 *)__cil_tmp18);
-    *((__u32 *)__cil_tmp15) = __cil_tmp19 + 1U;
+    __cil_tmp19 = *((__u32 *)((void *)port + __cil_tmp16));
+    *((__u32 *)((void *)port + __cil_tmp13)) = __cil_tmp19 + 1U;
     __cil_tmp20 = (unsigned int )ch;
     __cil_tmp21 = (unsigned int )flag;
     uart_insert_char(port, 0U, 0U, __cil_tmp20, __cil_tmp21);
@@ -3605,9 +3539,7 @@ static void altera_jtaguart_rx_chars(struct altera_jtaguart *pp )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp22 = (unsigned long )port;
-  __cil_tmp23 = __cil_tmp22 + 120;
-  __cil_tmp24 = *((struct uart_state **)__cil_tmp23);
+  __cil_tmp24 = *((struct uart_state **)((void *)port + 120));
   __cil_tmp25 = *((struct tty_struct **)__cil_tmp24);
   tty_flip_buffer_push(__cil_tmp25);
   }
@@ -3621,126 +3553,68 @@ static void altera_jtaguart_tx_chars(struct altera_jtaguart *pp )
   unsigned int count ;
   unsigned int tmp___7 ;
   unsigned int tmp___8 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct uart_state *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned char __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned char *__cil_tmp21 ;
   unsigned char *__cil_tmp22 ;
   void volatile   *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   __u32 __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   int __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   int __cil_tmp40 ;
   int __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned char *__cil_tmp46 ;
   unsigned char *__cil_tmp47 ;
   void const volatile   *__cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   int __cil_tmp52 ;
   char *__cil_tmp53 ;
   char *__cil_tmp54 ;
   char __cil_tmp55 ;
   unsigned int __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   unsigned char *__cil_tmp59 ;
   unsigned char *__cil_tmp60 ;
   void volatile   *__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   int __cil_tmp68 ;
   int __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   __u32 __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
   unsigned int __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   unsigned char *__cil_tmp90 ;
   unsigned char *__cil_tmp91 ;
   void volatile   *__cil_tmp92 ;
 
   {
   port = (struct uart_port *)pp;
-  __cil_tmp8 = (unsigned long )port;
-  __cil_tmp9 = __cil_tmp8 + 120;
-  __cil_tmp10 = *((struct uart_state **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 360;
-  xmit = (struct circ_buf *)__cil_tmp12;
+  __cil_tmp10 = *((struct uart_state **)((void *)port + 120));
+  xmit = (struct circ_buf *)((void *)__cil_tmp10 + 360);
   {
-  __cil_tmp13 = (unsigned long )port;
-  __cil_tmp14 = __cil_tmp13 + 104;
-  if (*((unsigned char *)__cil_tmp14)) {
+  if (*((unsigned char *)((void *)port + 104))) {
     {
-    __cil_tmp15 = (unsigned long )port;
-    __cil_tmp16 = __cil_tmp15 + 104;
-    __cil_tmp17 = *((unsigned char *)__cil_tmp16);
+    __cil_tmp17 = *((unsigned char *)((void *)port + 104));
     __cil_tmp18 = (unsigned int )__cil_tmp17;
-    __cil_tmp19 = (unsigned long )port;
-    __cil_tmp20 = __cil_tmp19 + 32;
-    __cil_tmp21 = *((unsigned char **)__cil_tmp20);
+    __cil_tmp21 = *((unsigned char **)((void *)port + 32));
     __cil_tmp22 = __cil_tmp21 + 0;
     __cil_tmp23 = (void volatile   *)__cil_tmp22;
     writel(__cil_tmp18, __cil_tmp23);
-    __cil_tmp24 = (unsigned long )port;
-    __cil_tmp25 = __cil_tmp24 + 104;
-    *((unsigned char *)__cil_tmp25) = (unsigned char)0;
+    *((unsigned char *)((void *)port + 104)) = (unsigned char)0;
     __cil_tmp26 = 128 + 20;
-    __cil_tmp27 = (unsigned long )port;
-    __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
     __cil_tmp29 = 128 + 20;
-    __cil_tmp30 = (unsigned long )port;
-    __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-    __cil_tmp32 = *((__u32 *)__cil_tmp31);
-    *((__u32 *)__cil_tmp28) = __cil_tmp32 + 1U;
+    __cil_tmp32 = *((__u32 *)((void *)port + __cil_tmp29));
+    *((__u32 *)((void *)port + __cil_tmp26)) = __cil_tmp32 + 1U;
     }
     return;
   } else {
@@ -3749,21 +3623,15 @@ static void altera_jtaguart_tx_chars(struct altera_jtaguart *pp )
   }
   __cil_tmp33 = 1UL << 12;
   __cil_tmp34 = __cil_tmp33 - 1UL;
-  __cil_tmp35 = (unsigned long )xmit;
-  __cil_tmp36 = __cil_tmp35 + 12;
-  __cil_tmp37 = *((int *)__cil_tmp36);
-  __cil_tmp38 = (unsigned long )xmit;
-  __cil_tmp39 = __cil_tmp38 + 8;
-  __cil_tmp40 = *((int *)__cil_tmp39);
+  __cil_tmp37 = *((int *)((void *)xmit + 12));
+  __cil_tmp40 = *((int *)((void *)xmit + 8));
   __cil_tmp41 = __cil_tmp40 - __cil_tmp37;
   __cil_tmp42 = (unsigned long )__cil_tmp41;
   __cil_tmp43 = __cil_tmp42 & __cil_tmp34;
   pending = (unsigned int )__cil_tmp43;
   if (pending > 0U) {
     {
-    __cil_tmp44 = (unsigned long )port;
-    __cil_tmp45 = __cil_tmp44 + 32;
-    __cil_tmp46 = *((unsigned char **)__cil_tmp45);
+    __cil_tmp46 = *((unsigned char **)((void *)port + 32));
     __cil_tmp47 = __cil_tmp46 + 4;
     __cil_tmp48 = (void const volatile   *)__cil_tmp47;
     tmp___7 = readl(__cil_tmp48);
@@ -3788,38 +3656,26 @@ static void altera_jtaguart_tx_chars(struct altera_jtaguart *pp )
           goto while_break;
         }
         {
-        __cil_tmp50 = (unsigned long )xmit;
-        __cil_tmp51 = __cil_tmp50 + 12;
-        __cil_tmp52 = *((int *)__cil_tmp51);
+        __cil_tmp52 = *((int *)((void *)xmit + 12));
         __cil_tmp53 = *((char **)xmit);
         __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
         __cil_tmp55 = *__cil_tmp54;
         __cil_tmp56 = (unsigned int )__cil_tmp55;
-        __cil_tmp57 = (unsigned long )port;
-        __cil_tmp58 = __cil_tmp57 + 32;
-        __cil_tmp59 = *((unsigned char **)__cil_tmp58);
+        __cil_tmp59 = *((unsigned char **)((void *)port + 32));
         __cil_tmp60 = __cil_tmp59 + 0;
         __cil_tmp61 = (void volatile   *)__cil_tmp60;
         writel(__cil_tmp56, __cil_tmp61);
-        __cil_tmp62 = (unsigned long )xmit;
-        __cil_tmp63 = __cil_tmp62 + 12;
         __cil_tmp64 = 1UL << 12;
         __cil_tmp65 = __cil_tmp64 - 1UL;
-        __cil_tmp66 = (unsigned long )xmit;
-        __cil_tmp67 = __cil_tmp66 + 12;
-        __cil_tmp68 = *((int *)__cil_tmp67);
+        __cil_tmp68 = *((int *)((void *)xmit + 12));
         __cil_tmp69 = __cil_tmp68 + 1;
         __cil_tmp70 = (unsigned long )__cil_tmp69;
         __cil_tmp71 = __cil_tmp70 & __cil_tmp65;
-        *((int *)__cil_tmp63) = (int )__cil_tmp71;
+        *((int *)((void *)xmit + 12)) = (int )__cil_tmp71;
         __cil_tmp72 = 128 + 20;
-        __cil_tmp73 = (unsigned long )port;
-        __cil_tmp74 = __cil_tmp73 + __cil_tmp72;
         __cil_tmp75 = 128 + 20;
-        __cil_tmp76 = (unsigned long )port;
-        __cil_tmp77 = __cil_tmp76 + __cil_tmp75;
-        __cil_tmp78 = *((__u32 *)__cil_tmp77);
-        *((__u32 *)__cil_tmp74) = __cil_tmp78 + 1U;
+        __cil_tmp78 = *((__u32 *)((void *)port + __cil_tmp75));
+        *((__u32 *)((void *)port + __cil_tmp72)) = __cil_tmp78 + 1U;
         }
       }
       while_break: /* CIL Label */ ;
@@ -3839,19 +3695,11 @@ static void altera_jtaguart_tx_chars(struct altera_jtaguart *pp )
   }
   if (pending == 0U) {
     {
-    __cil_tmp79 = (unsigned long )pp;
-    __cil_tmp80 = __cil_tmp79 + 264;
-    __cil_tmp81 = (unsigned long )pp;
-    __cil_tmp82 = __cil_tmp81 + 264;
-    __cil_tmp83 = *((unsigned long *)__cil_tmp82);
-    *((unsigned long *)__cil_tmp80) = __cil_tmp83 & 0xfffffffffffffffdUL;
-    __cil_tmp84 = (unsigned long )pp;
-    __cil_tmp85 = __cil_tmp84 + 264;
-    __cil_tmp86 = *((unsigned long *)__cil_tmp85);
+    __cil_tmp83 = *((unsigned long *)((void *)pp + 264));
+    *((unsigned long *)((void *)pp + 264)) = __cil_tmp83 & 0xfffffffffffffffdUL;
+    __cil_tmp86 = *((unsigned long *)((void *)pp + 264));
     __cil_tmp87 = (unsigned int )__cil_tmp86;
-    __cil_tmp88 = (unsigned long )port;
-    __cil_tmp89 = __cil_tmp88 + 32;
-    __cil_tmp90 = *((unsigned char **)__cil_tmp89);
+    __cil_tmp90 = *((unsigned char **)((void *)port + 32));
     __cil_tmp91 = __cil_tmp90 + 4;
     __cil_tmp92 = (void volatile   *)__cil_tmp91;
     writel(__cil_tmp87, __cil_tmp92);
@@ -3873,13 +3721,9 @@ static irqreturn_t altera_jtaguart_interrupt(int irq , void *data )
   unsigned int __cil_tmp10 ;
   char *__cil_tmp11 ;
   char *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned char *__cil_tmp15 ;
   unsigned char *__cil_tmp16 ;
   void const volatile   *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
@@ -3898,15 +3742,11 @@ static irqreturn_t altera_jtaguart_interrupt(int irq , void *data )
   __cil_tmp11 = (char *)__mptr;
   __cil_tmp12 = __cil_tmp11 - __cil_tmp10;
   pp = (struct altera_jtaguart *)__cil_tmp12;
-  __cil_tmp13 = (unsigned long )port;
-  __cil_tmp14 = __cil_tmp13 + 32;
-  __cil_tmp15 = *((unsigned char **)__cil_tmp14);
+  __cil_tmp15 = *((unsigned char **)((void *)port + 32));
   __cil_tmp16 = __cil_tmp15 + 4;
   __cil_tmp17 = (void const volatile   *)__cil_tmp16;
   tmp___7 = readl(__cil_tmp17);
-  __cil_tmp18 = (unsigned long )pp;
-  __cil_tmp19 = __cil_tmp18 + 264;
-  __cil_tmp20 = *((unsigned long *)__cil_tmp19);
+  __cil_tmp20 = *((unsigned long *)((void *)pp + 264));
   __cil_tmp21 = tmp___7 >> 8;
   __cil_tmp22 = (unsigned long )__cil_tmp21;
   __cil_tmp23 = __cil_tmp22 & __cil_tmp20;
@@ -3939,22 +3779,15 @@ static irqreturn_t altera_jtaguart_interrupt(int irq , void *data )
 }
 }
 static void altera_jtaguart_config_port(struct uart_port *port , int flags ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
+{
   unsigned char *__cil_tmp7 ;
   unsigned char *__cil_tmp8 ;
   void volatile   *__cil_tmp9 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )port;
-  __cil_tmp4 = __cil_tmp3 + 204;
-  *((unsigned int *)__cil_tmp4) = 91U;
-  __cil_tmp5 = (unsigned long )port;
-  __cil_tmp6 = __cil_tmp5 + 32;
-  __cil_tmp7 = *((unsigned char **)__cil_tmp6);
+  *((unsigned int *)((void *)port + 204)) = 91U;
+  __cil_tmp7 = *((unsigned char **)((void *)port + 32));
   __cil_tmp8 = __cil_tmp7 + 4;
   __cil_tmp9 = (void volatile   *)__cil_tmp8;
   writel(0U, __cil_tmp9);
@@ -3973,25 +3806,13 @@ static int altera_jtaguart_startup(struct uart_port *port )
   unsigned int __cil_tmp11 ;
   char *__cil_tmp12 ;
   char *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   void *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   spinlock_t *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned char *__cil_tmp33 ;
   unsigned char *__cil_tmp34 ;
   void volatile   *__cil_tmp35 ;
@@ -4006,21 +3827,15 @@ static int altera_jtaguart_startup(struct uart_port *port )
   __cil_tmp12 = (char *)__mptr;
   __cil_tmp13 = __cil_tmp12 - __cil_tmp11;
   pp = (struct altera_jtaguart *)__cil_tmp13;
-  __cil_tmp14 = (unsigned long )port;
-  __cil_tmp15 = __cil_tmp14 + 80;
-  __cil_tmp16 = *((unsigned int *)__cil_tmp15);
+  __cil_tmp16 = *((unsigned int *)((void *)port + 80));
   __cil_tmp17 = (void *)port;
   ret = (int )request_irq(__cil_tmp16, & altera_jtaguart_interrupt, 0UL, "altera_jtaguart",
                           __cil_tmp17);
   }
   if (ret) {
     {
-    __cil_tmp18 = (unsigned long )port;
-    __cil_tmp19 = __cil_tmp18 + 220;
-    __cil_tmp20 = *((unsigned int *)__cil_tmp19);
-    __cil_tmp21 = (unsigned long )port;
-    __cil_tmp22 = __cil_tmp21 + 80;
-    __cil_tmp23 = *((unsigned int *)__cil_tmp22);
+    __cil_tmp20 = *((unsigned int *)((void *)port + 220));
+    __cil_tmp23 = *((unsigned int *)((void *)port + 80));
     printk("<3>altera_jtaguart: unable to attach Altera JTAG UART %d interrupt vector=%d\n",
            __cil_tmp20, __cil_tmp23);
     }
@@ -4048,16 +3863,10 @@ static int altera_jtaguart_startup(struct uart_port *port )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp25 = (unsigned long )pp;
-  __cil_tmp26 = __cil_tmp25 + 264;
-  *((unsigned long *)__cil_tmp26) = 1UL;
-  __cil_tmp27 = (unsigned long )pp;
-  __cil_tmp28 = __cil_tmp27 + 264;
-  __cil_tmp29 = *((unsigned long *)__cil_tmp28);
+  *((unsigned long *)((void *)pp + 264)) = 1UL;
+  __cil_tmp29 = *((unsigned long *)((void *)pp + 264));
   __cil_tmp30 = (unsigned int )__cil_tmp29;
-  __cil_tmp31 = (unsigned long )port;
-  __cil_tmp32 = __cil_tmp31 + 32;
-  __cil_tmp33 = *((unsigned char **)__cil_tmp32);
+  __cil_tmp33 = *((unsigned char **)((void *)port + 32));
   __cil_tmp34 = __cil_tmp33 + 4;
   __cil_tmp35 = (void volatile   *)__cil_tmp34;
   writel(__cil_tmp30, __cil_tmp35);
@@ -4078,20 +3887,12 @@ static void altera_jtaguart_shutdown(struct uart_port *port )
   char *__cil_tmp11 ;
   char *__cil_tmp12 ;
   spinlock_t *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned char *__cil_tmp22 ;
   unsigned char *__cil_tmp23 ;
   void volatile   *__cil_tmp24 ;
   spinlock_t *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
   void *__cil_tmp29 ;
 
@@ -4123,24 +3924,16 @@ static void altera_jtaguart_shutdown(struct uart_port *port )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp14 = (unsigned long )pp;
-  __cil_tmp15 = __cil_tmp14 + 264;
-  *((unsigned long *)__cil_tmp15) = 0UL;
-  __cil_tmp16 = (unsigned long )pp;
-  __cil_tmp17 = __cil_tmp16 + 264;
-  __cil_tmp18 = *((unsigned long *)__cil_tmp17);
+  *((unsigned long *)((void *)pp + 264)) = 0UL;
+  __cil_tmp18 = *((unsigned long *)((void *)pp + 264));
   __cil_tmp19 = (unsigned int )__cil_tmp18;
-  __cil_tmp20 = (unsigned long )port;
-  __cil_tmp21 = __cil_tmp20 + 32;
-  __cil_tmp22 = *((unsigned char **)__cil_tmp21);
+  __cil_tmp22 = *((unsigned char **)((void *)port + 32));
   __cil_tmp23 = __cil_tmp22 + 4;
   __cil_tmp24 = (void volatile   *)__cil_tmp23;
   writel(__cil_tmp19, __cil_tmp24);
   __cil_tmp25 = (spinlock_t *)port;
   spin_unlock_irqrestore(__cil_tmp25, flags);
-  __cil_tmp26 = (unsigned long )port;
-  __cil_tmp27 = __cil_tmp26 + 80;
-  __cil_tmp28 = *((unsigned int *)__cil_tmp27);
+  __cil_tmp28 = *((unsigned int *)((void *)port + 80));
   __cil_tmp29 = (void *)port;
   free_irq(__cil_tmp28, __cil_tmp29);
   }
@@ -4149,16 +3942,12 @@ static void altera_jtaguart_shutdown(struct uart_port *port )
 }
 static char const   *altera_jtaguart_type(struct uart_port *port ) 
 { char const   *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
   void *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )port;
-  __cil_tmp4 = __cil_tmp3 + 204;
-  __cil_tmp5 = *((unsigned int *)__cil_tmp4);
+  __cil_tmp5 = *((unsigned int *)((void *)port + 204));
   if (__cil_tmp5 == 91U) {
     tmp___7 = "Altera JTAG UART";
   } else {
@@ -4233,54 +4022,20 @@ static int altera_jtaguart_probe(struct platform_device *pdev )
   int i ;
   void *tmp___7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   resource_size_t __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   resource_size_t __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned char *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   int __cil_tmp46 ;
 
   {
   __cil_tmp8 = 16 + 184;
-  __cil_tmp9 = (unsigned long )pdev;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)pdev + __cil_tmp8));
   platp = (struct altera_jtaguart_platform_uart *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )pdev;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  i = *((int *)__cil_tmp13);
+  i = *((int *)((void *)pdev + 8));
   if (i == -1) {
     i = 0;
   } else {
@@ -4298,15 +4053,11 @@ static int altera_jtaguart_probe(struct platform_device *pdev )
   res_mem = platform_get_resource(pdev, 512U, 0U);
   }
   if (res_mem) {
-    __cil_tmp16 = (unsigned long )port;
-    __cil_tmp17 = __cil_tmp16 + 224;
-    *((resource_size_t *)__cil_tmp17) = *((resource_size_t *)res_mem);
+    *((resource_size_t *)((void *)port + 224)) = *((resource_size_t *)res_mem);
   } else
   if (platp) {
-    __cil_tmp18 = (unsigned long )port;
-    __cil_tmp19 = __cil_tmp18 + 224;
     __cil_tmp20 = *((unsigned long *)platp);
-    *((resource_size_t *)__cil_tmp19) = (resource_size_t )__cil_tmp20;
+    *((resource_size_t *)((void *)port + 224)) = (resource_size_t )__cil_tmp20;
   } else {
     return (-19);
   }
@@ -4314,33 +4065,21 @@ static int altera_jtaguart_probe(struct platform_device *pdev )
   res_irq = platform_get_resource(pdev, 1024U, 0U);
   }
   if (res_irq) {
-    __cil_tmp21 = (unsigned long )port;
-    __cil_tmp22 = __cil_tmp21 + 80;
     __cil_tmp23 = *((resource_size_t *)res_irq);
-    *((unsigned int *)__cil_tmp22) = (unsigned int )__cil_tmp23;
+    *((unsigned int *)((void *)port + 80)) = (unsigned int )__cil_tmp23;
   } else
   if (platp) {
-    __cil_tmp24 = (unsigned long )port;
-    __cil_tmp25 = __cil_tmp24 + 80;
-    __cil_tmp26 = (unsigned long )platp;
-    __cil_tmp27 = __cil_tmp26 + 8;
-    *((unsigned int *)__cil_tmp25) = *((unsigned int *)__cil_tmp27);
+    *((unsigned int *)((void *)port + 80)) = *((unsigned int *)((void *)platp + 8));
   } else {
     return (-19);
   }
   {
-  __cil_tmp28 = (unsigned long )port;
-  __cil_tmp29 = __cil_tmp28 + 224;
-  __cil_tmp30 = *((resource_size_t *)__cil_tmp29);
+  __cil_tmp30 = *((resource_size_t *)((void *)port + 224));
   tmp___7 = ioremap(__cil_tmp30, 8UL);
-  __cil_tmp31 = (unsigned long )port;
-  __cil_tmp32 = __cil_tmp31 + 32;
-  *((unsigned char **)__cil_tmp32) = (unsigned char *)tmp___7;
+  *((unsigned char **)((void *)port + 32)) = (unsigned char *)tmp___7;
   }
   {
-  __cil_tmp33 = (unsigned long )port;
-  __cil_tmp34 = __cil_tmp33 + 32;
-  __cil_tmp35 = *((unsigned char **)__cil_tmp34);
+  __cil_tmp35 = *((unsigned char **)((void *)port + 32));
   if (! __cil_tmp35) {
     return (-12);
   } else {
@@ -4348,22 +4087,12 @@ static int altera_jtaguart_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp36 = (unsigned long )port;
-  __cil_tmp37 = __cil_tmp36 + 220;
-  *((unsigned int *)__cil_tmp37) = (unsigned int )i;
-  __cil_tmp38 = (unsigned long )port;
-  __cil_tmp39 = __cil_tmp38 + 204;
-  *((unsigned int *)__cil_tmp39) = 91U;
-  __cil_tmp40 = (unsigned long )port;
-  __cil_tmp41 = __cil_tmp40 + 106;
-  *((unsigned char *)__cil_tmp41) = (unsigned char)2;
-  __cil_tmp42 = (unsigned long )port;
-  __cil_tmp43 = __cil_tmp42 + 208;
-  *((struct uart_ops  const  **)__cil_tmp43) = (struct uart_ops  const  *)(& altera_jtaguart_ops);
-  __cil_tmp44 = (unsigned long )port;
-  __cil_tmp45 = __cil_tmp44 + 192;
+  *((unsigned int *)((void *)port + 220)) = (unsigned int )i;
+  *((unsigned int *)((void *)port + 204)) = 91U;
+  *((unsigned char *)((void *)port + 106)) = (unsigned char)2;
+  *((struct uart_ops  const  **)((void *)port + 208)) = (struct uart_ops  const  *)(& altera_jtaguart_ops);
   __cil_tmp46 = 1 << 28;
-  *((upf_t *)__cil_tmp45) = (upf_t )__cil_tmp46;
+  *((upf_t *)((void *)port + 192)) = (upf_t )__cil_tmp46;
   uart_add_one_port(& altera_jtaguart_driver, port);
   }
   return (0);
@@ -4374,15 +4103,11 @@ __no_instrument_function__)) ;
 static int altera_jtaguart_remove(struct platform_device *pdev ) 
 { struct uart_port *port ;
   int i ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
 
   {
-  __cil_tmp4 = (unsigned long )pdev;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  i = *((int *)__cil_tmp5);
+  i = *((int *)((void *)pdev + 8));
   if (i == -1) {
     i = 0;
   } else {

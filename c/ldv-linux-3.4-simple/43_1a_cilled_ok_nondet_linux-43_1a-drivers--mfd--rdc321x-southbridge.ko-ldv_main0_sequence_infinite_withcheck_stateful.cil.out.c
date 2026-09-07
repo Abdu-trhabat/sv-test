@@ -1285,14 +1285,10 @@ static struct mfd_cell rdc321x_sb_cells[2U]  = {      {"rdc321x-wdt", 0, (atomic
 static int rdc321x_sb_probe(struct pci_dev *pdev , struct pci_device_id  const  *ent ) 
 { int err ;
   int tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct device  const  *__cil_tmp8 ;
   struct rdc321x_gpio_pdata *__cil_tmp9 ;
   struct rdc321x_wdt_pdata *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct mfd_cell *__cil_tmp14 ;
   struct resource *__cil_tmp15 ;
@@ -1303,9 +1299,7 @@ static int rdc321x_sb_probe(struct pci_dev *pdev , struct pci_device_id  const  
   }
   if (err != 0) {
     {
-    __cil_tmp5 = (unsigned long )pdev;
-    __cil_tmp6 = __cil_tmp5 + 144;
-    __cil_tmp7 = (struct device *)__cil_tmp6;
+    __cil_tmp7 = (struct device *)((void *)pdev + 144);
     __cil_tmp8 = (struct device  const  *)__cil_tmp7;
     dev_err(__cil_tmp8, "failed to enable device\n");
     }
@@ -1318,9 +1312,7 @@ static int rdc321x_sb_probe(struct pci_dev *pdev , struct pci_device_id  const  
   *((struct pci_dev **)__cil_tmp9) = pdev;
   __cil_tmp10 = & rdc321x_wdt_pdata;
   *((struct pci_dev **)__cil_tmp10) = pdev;
-  __cil_tmp11 = (unsigned long )pdev;
-  __cil_tmp12 = __cil_tmp11 + 144;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)pdev + 144);
   __cil_tmp14 = (struct mfd_cell *)(& rdc321x_sb_cells);
   __cil_tmp15 = (struct resource *)0;
   tmp = mfd_add_devices(__cil_tmp13, -1, __cil_tmp14, 2, __cil_tmp15, 0);
@@ -1329,15 +1321,12 @@ static int rdc321x_sb_probe(struct pci_dev *pdev , struct pci_device_id  const  
 }
 }
 static void rdc321x_sb_remove(struct pci_dev *pdev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device *__cil_tmp4 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )pdev;
-  __cil_tmp3 = __cil_tmp2 + 144;
-  __cil_tmp4 = (struct device *)__cil_tmp3;
+  __cil_tmp4 = (struct device *)((void *)pdev + 144);
   mfd_remove_devices(__cil_tmp4);
   }
   return;

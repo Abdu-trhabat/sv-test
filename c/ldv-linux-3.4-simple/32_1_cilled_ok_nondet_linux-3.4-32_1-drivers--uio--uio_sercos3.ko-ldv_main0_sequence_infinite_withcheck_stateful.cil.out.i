@@ -2208,15 +2208,11 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 __inline static void *pci_get_drvdata(struct pci_dev *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -2225,14 +2221,11 @@ __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2248,8 +2241,6 @@ static void sercos3_disable_interrupts(struct uio_info *info , struct sercos3_pr
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   u32 __cil_tmp11 ;
   u32 __cil_tmp12 ;
@@ -2258,9 +2249,7 @@ static void sercos3_disable_interrupts(struct uio_info *info , struct sercos3_pr
   __cil_tmp5 = 3 * 48UL;
   __cil_tmp6 = __cil_tmp5 + 32;
   __cil_tmp7 = 24 + __cil_tmp6;
-  __cil_tmp8 = (unsigned long )info;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)info + __cil_tmp7));
   ier0 = __cil_tmp10 + 8;
   tmp = ioread32(ier0);
   __cil_tmp11 = *((u32 *)priv);
@@ -2277,8 +2266,6 @@ static void sercos3_enable_interrupts(struct uio_info *info , struct sercos3_pri
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   u32 __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
@@ -2287,9 +2274,7 @@ static void sercos3_enable_interrupts(struct uio_info *info , struct sercos3_pri
   __cil_tmp5 = 3 * 48UL;
   __cil_tmp6 = __cil_tmp5 + 32;
   __cil_tmp7 = 24 + __cil_tmp6;
-  __cil_tmp8 = (unsigned long )info;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)info + __cil_tmp7));
   ier0 = __cil_tmp10 + 8;
   tmp = ioread32(ier0);
   __cil_tmp11 = *((u32 *)priv);
@@ -2306,46 +2291,30 @@ static irqreturn_t sercos3_handler(int irq , struct uio_info *info )
   void *ier0 ;
   unsigned int tmp ;
   unsigned int tmp___0 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   spinlock_t *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   spinlock_t *__cil_tmp28 ;
   {
   {
-  __cil_tmp8 = (unsigned long )info;
-  __cil_tmp9 = __cil_tmp8 + 480;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)info + 480));
   priv = (struct sercos3_priv *)__cil_tmp10;
   __cil_tmp11 = 3 * 48UL;
   __cil_tmp12 = __cil_tmp11 + 32;
   __cil_tmp13 = 24 + __cil_tmp12;
-  __cil_tmp14 = (unsigned long )info;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp16 = *((void **)((void *)info + __cil_tmp13));
   isr0 = __cil_tmp16 + 24;
   __cil_tmp17 = 3 * 48UL;
   __cil_tmp18 = __cil_tmp17 + 32;
   __cil_tmp19 = 24 + __cil_tmp18;
-  __cil_tmp20 = (unsigned long )info;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  __cil_tmp22 = *((void **)__cil_tmp21);
+  __cil_tmp22 = *((void **)((void *)info + __cil_tmp19));
   ier0 = __cil_tmp22 + 8;
   tmp = ioread32(isr0);
   tmp___0 = ioread32(ier0);
@@ -2355,14 +2324,10 @@ static irqreturn_t sercos3_handler(int irq , struct uio_info *info )
     return ((irqreturn_t )0);
   }
   {
-  __cil_tmp23 = (unsigned long )priv;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  __cil_tmp25 = (spinlock_t *)__cil_tmp24;
+  __cil_tmp25 = (spinlock_t *)((void *)priv + 8);
   spin_lock(__cil_tmp25);
   sercos3_disable_interrupts(info, priv);
-  __cil_tmp26 = (unsigned long )priv;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = (spinlock_t *)__cil_tmp27;
+  __cil_tmp28 = (spinlock_t *)((void *)priv + 8);
   spin_unlock(__cil_tmp28);
   }
   return ((irqreturn_t )1);
@@ -2370,24 +2335,14 @@ static irqreturn_t sercos3_handler(int irq , struct uio_info *info )
 }
 static int sercos3_irqcontrol(struct uio_info *info , s32 irq_on )
 { struct sercos3_priv *priv ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   spinlock_t *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   spinlock_t *__cil_tmp12 ;
   {
   {
-  __cil_tmp4 = (unsigned long )info;
-  __cil_tmp5 = __cil_tmp4 + 480;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)info + 480));
   priv = (struct sercos3_priv *)__cil_tmp6;
-  __cil_tmp7 = (unsigned long )priv;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = (spinlock_t *)__cil_tmp8;
+  __cil_tmp9 = (spinlock_t *)((void *)priv + 8);
   spin_lock_irq(__cil_tmp9);
   }
   if (irq_on) {
@@ -2400,9 +2355,7 @@ static int sercos3_irqcontrol(struct uio_info *info , s32 irq_on )
     }
   }
   {
-  __cil_tmp10 = (unsigned long )priv;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  __cil_tmp12 = (spinlock_t *)__cil_tmp11;
+  __cil_tmp12 = (spinlock_t *)((void *)priv + 8);
   spin_unlock_irq(__cil_tmp12);
   }
   return (0);
@@ -2414,155 +2367,101 @@ static int sercos3_setup_iomem(struct pci_dev *dev , struct uio_info *info , int
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   phys_addr_t __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   resource_size_t __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   resource_size_t __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   resource_size_t __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   resource_size_t __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   resource_size_t __cil_tmp47 ;
   resource_size_t __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   resource_size_t __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   resource_size_t __cil_tmp59 ;
   resource_size_t __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   resource_size_t __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   void *__cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   resource_size_t __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   resource_size_t __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
   unsigned long __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   resource_size_t __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
   unsigned long __cil_tmp95 ;
   unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   unsigned long __cil_tmp99 ;
   unsigned long __cil_tmp100 ;
   unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   unsigned long __cil_tmp104 ;
   unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   resource_size_t __cil_tmp108 ;
   unsigned long __cil_tmp109 ;
   unsigned long __cil_tmp110 ;
   unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   resource_size_t __cil_tmp114 ;
   resource_size_t __cil_tmp115 ;
   resource_size_t __cil_tmp116 ;
   unsigned long __cil_tmp117 ;
   unsigned long __cil_tmp118 ;
   unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   unsigned long __cil_tmp122 ;
   unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
   resource_size_t __cil_tmp126 ;
   unsigned long __cil_tmp127 ;
   unsigned long __cil_tmp128 ;
   unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
   resource_size_t __cil_tmp132 ;
   resource_size_t __cil_tmp133 ;
   resource_size_t __cil_tmp134 ;
   unsigned long __cil_tmp135 ;
   unsigned long __cil_tmp136 ;
   unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
   {
   __cil_tmp6 = n * 48UL;
   __cil_tmp7 = __cil_tmp6 + 8;
   __cil_tmp8 = 24 + __cil_tmp7;
-  __cil_tmp9 = (unsigned long )info;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
   __cil_tmp11 = pci_bar * 56UL;
   __cil_tmp12 = 920 + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )dev;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  *((phys_addr_t *)__cil_tmp10) = *((resource_size_t *)__cil_tmp14);
+  *((phys_addr_t *)((void *)info + __cil_tmp8)) = *((resource_size_t *)((void *)dev + __cil_tmp12));
   {
   __cil_tmp15 = n * 48UL;
   __cil_tmp16 = __cil_tmp15 + 8;
   __cil_tmp17 = 24 + __cil_tmp16;
-  __cil_tmp18 = (unsigned long )info;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = *((phys_addr_t *)__cil_tmp19);
+  __cil_tmp20 = *((phys_addr_t *)((void *)info + __cil_tmp17));
   if (! __cil_tmp20) {
     return (-1);
   } else {
@@ -2571,36 +2470,26 @@ static int sercos3_setup_iomem(struct pci_dev *dev , struct uio_info *info , int
   {
   __cil_tmp21 = pci_bar * 56UL;
   __cil_tmp22 = 920 + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )dev;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  __cil_tmp25 = *((resource_size_t *)__cil_tmp24);
+  __cil_tmp25 = *((resource_size_t *)((void *)dev + __cil_tmp22));
   if (__cil_tmp25 == 0ULL) {
     {
     __cil_tmp26 = pci_bar * 56UL;
     __cil_tmp27 = 920 + __cil_tmp26;
-    __cil_tmp28 = (unsigned long )dev;
-    __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-    __cil_tmp30 = *((resource_size_t *)__cil_tmp29);
+    __cil_tmp30 = *((resource_size_t *)((void *)dev + __cil_tmp27));
     __cil_tmp31 = pci_bar * 56UL;
     __cil_tmp32 = __cil_tmp31 + 8;
     __cil_tmp33 = 920 + __cil_tmp32;
-    __cil_tmp34 = (unsigned long )dev;
-    __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-    __cil_tmp36 = *((resource_size_t *)__cil_tmp35);
+    __cil_tmp36 = *((resource_size_t *)((void *)dev + __cil_tmp33));
     if (__cil_tmp36 == __cil_tmp30) {
       tmp = (resource_size_t )0;
     } else {
       __cil_tmp37 = pci_bar * 56UL;
       __cil_tmp38 = 920 + __cil_tmp37;
-      __cil_tmp39 = (unsigned long )dev;
-      __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-      __cil_tmp41 = *((resource_size_t *)__cil_tmp40);
+      __cil_tmp41 = *((resource_size_t *)((void *)dev + __cil_tmp38));
       __cil_tmp42 = pci_bar * 56UL;
       __cil_tmp43 = __cil_tmp42 + 8;
       __cil_tmp44 = 920 + __cil_tmp43;
-      __cil_tmp45 = (unsigned long )dev;
-      __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
-      __cil_tmp47 = *((resource_size_t *)__cil_tmp46);
+      __cil_tmp47 = *((resource_size_t *)((void *)dev + __cil_tmp44));
       __cil_tmp48 = __cil_tmp47 - __cil_tmp41;
       tmp = __cil_tmp48 + 1ULL;
     }
@@ -2608,15 +2497,11 @@ static int sercos3_setup_iomem(struct pci_dev *dev , struct uio_info *info , int
   } else {
     __cil_tmp49 = pci_bar * 56UL;
     __cil_tmp50 = 920 + __cil_tmp49;
-    __cil_tmp51 = (unsigned long )dev;
-    __cil_tmp52 = __cil_tmp51 + __cil_tmp50;
-    __cil_tmp53 = *((resource_size_t *)__cil_tmp52);
+    __cil_tmp53 = *((resource_size_t *)((void *)dev + __cil_tmp50));
     __cil_tmp54 = pci_bar * 56UL;
     __cil_tmp55 = __cil_tmp54 + 8;
     __cil_tmp56 = 920 + __cil_tmp55;
-    __cil_tmp57 = (unsigned long )dev;
-    __cil_tmp58 = __cil_tmp57 + __cil_tmp56;
-    __cil_tmp59 = *((resource_size_t *)__cil_tmp58);
+    __cil_tmp59 = *((resource_size_t *)((void *)dev + __cil_tmp56));
     __cil_tmp60 = __cil_tmp59 - __cil_tmp53;
     tmp = __cil_tmp60 + 1ULL;
   }
@@ -2625,23 +2510,17 @@ static int sercos3_setup_iomem(struct pci_dev *dev , struct uio_info *info , int
   __cil_tmp61 = n * 48UL;
   __cil_tmp62 = __cil_tmp61 + 32;
   __cil_tmp63 = 24 + __cil_tmp62;
-  __cil_tmp64 = (unsigned long )info;
-  __cil_tmp65 = __cil_tmp64 + __cil_tmp63;
   __cil_tmp66 = pci_bar * 56UL;
   __cil_tmp67 = 920 + __cil_tmp66;
-  __cil_tmp68 = (unsigned long )dev;
-  __cil_tmp69 = __cil_tmp68 + __cil_tmp67;
-  __cil_tmp70 = *((resource_size_t *)__cil_tmp69);
+  __cil_tmp70 = *((resource_size_t *)((void *)dev + __cil_tmp67));
   __cil_tmp71 = (unsigned long )tmp;
-  *((void **)__cil_tmp65) = ioremap(__cil_tmp70, __cil_tmp71);
+  *((void **)((void *)info + __cil_tmp63)) = ioremap(__cil_tmp70, __cil_tmp71);
   }
   {
   __cil_tmp72 = n * 48UL;
   __cil_tmp73 = __cil_tmp72 + 32;
   __cil_tmp74 = 24 + __cil_tmp73;
-  __cil_tmp75 = (unsigned long )info;
-  __cil_tmp76 = __cil_tmp75 + __cil_tmp74;
-  __cil_tmp77 = *((void **)__cil_tmp76);
+  __cil_tmp77 = *((void **)((void *)info + __cil_tmp74));
   if (! __cil_tmp77) {
     return (-1);
   } else {
@@ -2650,79 +2529,57 @@ static int sercos3_setup_iomem(struct pci_dev *dev , struct uio_info *info , int
   {
   __cil_tmp78 = pci_bar * 56UL;
   __cil_tmp79 = 920 + __cil_tmp78;
-  __cil_tmp80 = (unsigned long )dev;
-  __cil_tmp81 = __cil_tmp80 + __cil_tmp79;
-  __cil_tmp82 = *((resource_size_t *)__cil_tmp81);
+  __cil_tmp82 = *((resource_size_t *)((void *)dev + __cil_tmp79));
   if (__cil_tmp82 == 0ULL) {
     {
     __cil_tmp83 = pci_bar * 56UL;
     __cil_tmp84 = 920 + __cil_tmp83;
-    __cil_tmp85 = (unsigned long )dev;
-    __cil_tmp86 = __cil_tmp85 + __cil_tmp84;
-    __cil_tmp87 = *((resource_size_t *)__cil_tmp86);
+    __cil_tmp87 = *((resource_size_t *)((void *)dev + __cil_tmp84));
     __cil_tmp88 = pci_bar * 56UL;
     __cil_tmp89 = __cil_tmp88 + 8;
     __cil_tmp90 = 920 + __cil_tmp89;
-    __cil_tmp91 = (unsigned long )dev;
-    __cil_tmp92 = __cil_tmp91 + __cil_tmp90;
-    __cil_tmp93 = *((resource_size_t *)__cil_tmp92);
+    __cil_tmp93 = *((resource_size_t *)((void *)dev + __cil_tmp90));
     if (__cil_tmp93 == __cil_tmp87) {
       __cil_tmp94 = n * 48UL;
       __cil_tmp95 = __cil_tmp94 + 16;
       __cil_tmp96 = 24 + __cil_tmp95;
-      __cil_tmp97 = (unsigned long )info;
-      __cil_tmp98 = __cil_tmp97 + __cil_tmp96;
-      *((unsigned long *)__cil_tmp98) = 0UL;
+      *((unsigned long *)((void *)info + __cil_tmp96)) = 0UL;
     } else {
       __cil_tmp99 = n * 48UL;
       __cil_tmp100 = __cil_tmp99 + 16;
       __cil_tmp101 = 24 + __cil_tmp100;
-      __cil_tmp102 = (unsigned long )info;
-      __cil_tmp103 = __cil_tmp102 + __cil_tmp101;
       __cil_tmp104 = pci_bar * 56UL;
       __cil_tmp105 = 920 + __cil_tmp104;
-      __cil_tmp106 = (unsigned long )dev;
-      __cil_tmp107 = __cil_tmp106 + __cil_tmp105;
-      __cil_tmp108 = *((resource_size_t *)__cil_tmp107);
+      __cil_tmp108 = *((resource_size_t *)((void *)dev + __cil_tmp105));
       __cil_tmp109 = pci_bar * 56UL;
       __cil_tmp110 = __cil_tmp109 + 8;
       __cil_tmp111 = 920 + __cil_tmp110;
-      __cil_tmp112 = (unsigned long )dev;
-      __cil_tmp113 = __cil_tmp112 + __cil_tmp111;
-      __cil_tmp114 = *((resource_size_t *)__cil_tmp113);
+      __cil_tmp114 = *((resource_size_t *)((void *)dev + __cil_tmp111));
       __cil_tmp115 = __cil_tmp114 - __cil_tmp108;
       __cil_tmp116 = __cil_tmp115 + 1ULL;
-      *((unsigned long *)__cil_tmp103) = (unsigned long )__cil_tmp116;
+      *((unsigned long *)((void *)info + __cil_tmp101)) = (unsigned long )__cil_tmp116;
     }
     }
   } else {
     __cil_tmp117 = n * 48UL;
     __cil_tmp118 = __cil_tmp117 + 16;
     __cil_tmp119 = 24 + __cil_tmp118;
-    __cil_tmp120 = (unsigned long )info;
-    __cil_tmp121 = __cil_tmp120 + __cil_tmp119;
     __cil_tmp122 = pci_bar * 56UL;
     __cil_tmp123 = 920 + __cil_tmp122;
-    __cil_tmp124 = (unsigned long )dev;
-    __cil_tmp125 = __cil_tmp124 + __cil_tmp123;
-    __cil_tmp126 = *((resource_size_t *)__cil_tmp125);
+    __cil_tmp126 = *((resource_size_t *)((void *)dev + __cil_tmp123));
     __cil_tmp127 = pci_bar * 56UL;
     __cil_tmp128 = __cil_tmp127 + 8;
     __cil_tmp129 = 920 + __cil_tmp128;
-    __cil_tmp130 = (unsigned long )dev;
-    __cil_tmp131 = __cil_tmp130 + __cil_tmp129;
-    __cil_tmp132 = *((resource_size_t *)__cil_tmp131);
+    __cil_tmp132 = *((resource_size_t *)((void *)dev + __cil_tmp129));
     __cil_tmp133 = __cil_tmp132 - __cil_tmp126;
     __cil_tmp134 = __cil_tmp133 + 1ULL;
-    *((unsigned long *)__cil_tmp121) = (unsigned long )__cil_tmp134;
+    *((unsigned long *)((void *)info + __cil_tmp119)) = (unsigned long )__cil_tmp134;
   }
   }
   __cil_tmp135 = n * 48UL;
   __cil_tmp136 = __cil_tmp135 + 24;
   __cil_tmp137 = 24 + __cil_tmp136;
-  __cil_tmp138 = (unsigned long )info;
-  __cil_tmp139 = __cil_tmp138 + __cil_tmp137;
-  *((int *)__cil_tmp139) = 1;
+  *((int *)((void *)info + __cil_tmp137)) = 1;
   return (0);
 }
 }
@@ -2743,43 +2600,17 @@ static int sercos3_pci_probe(struct pci_dev *dev , struct pci_device_id const *i
   int tmp___6 ;
   int tmp___7 ;
   int tmp___8 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   spinlock_t *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct raw_spinlock *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   void *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct device *__cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   void *__cil_tmp53 ;
   void volatile *__cil_tmp54 ;
   void const *__cil_tmp55 ;
@@ -2854,18 +2685,14 @@ static int sercos3_pci_probe(struct pci_dev *dev , struct pci_device_id const *i
   while (1) {
     while_continue: ;
     {
-    __cil_tmp16 = (unsigned long )priv;
-    __cil_tmp17 = __cil_tmp16 + 8;
-    __cil_tmp18 = (spinlock_t *)__cil_tmp17;
+    __cil_tmp18 = (spinlock_t *)((void *)priv + 8);
     spinlock_check(__cil_tmp18);
     }
     {
     while (1) {
       while_continue___0: ;
       {
-      __cil_tmp19 = (unsigned long )priv;
-      __cil_tmp20 = __cil_tmp19 + 8;
-      __cil_tmp21 = (struct raw_spinlock *)__cil_tmp20;
+      __cil_tmp21 = (struct raw_spinlock *)((void *)priv + 8);
       __raw_spin_lock_init(__cil_tmp21, "&(&priv->ier0_cache_lock)->rlock", & __key___3);
       }
       goto while_break___0;
@@ -2877,35 +2704,17 @@ static int sercos3_pci_probe(struct pci_dev *dev , struct pci_device_id const *i
   while_break: ;
   }
   {
-  __cil_tmp22 = (unsigned long )info;
-  __cil_tmp23 = __cil_tmp22 + 480;
-  *((void **)__cil_tmp23) = (void *)priv;
-  __cil_tmp24 = (unsigned long )info;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  *((char const **)__cil_tmp25) = "Sercos_III_PCI";
-  __cil_tmp26 = (unsigned long )info;
-  __cil_tmp27 = __cil_tmp26 + 16;
-  *((char const **)__cil_tmp27) = "0.0.1";
-  __cil_tmp28 = (unsigned long )info;
-  __cil_tmp29 = __cil_tmp28 + 464;
-  __cil_tmp30 = (unsigned long )dev;
-  __cil_tmp31 = __cil_tmp30 + 916;
-  __cil_tmp32 = *((unsigned int *)__cil_tmp31);
-  *((long *)__cil_tmp29) = (long )__cil_tmp32;
-  __cil_tmp33 = (unsigned long )info;
-  __cil_tmp34 = __cil_tmp33 + 472;
-  *((unsigned long *)__cil_tmp34) = 128UL;
-  __cil_tmp35 = (unsigned long )info;
-  __cil_tmp36 = __cil_tmp35 + 488;
-  *((irqreturn_t (**)(int irq , struct uio_info *dev_info ))__cil_tmp36) = & sercos3_handler;
-  __cil_tmp37 = (unsigned long )info;
-  __cil_tmp38 = __cil_tmp37 + 520;
-  *((int (**)(struct uio_info *info , s32 irq_on ))__cil_tmp38) = & sercos3_irqcontrol;
+  *((void **)((void *)info + 480)) = (void *)priv;
+  *((char const **)((void *)info + 8)) = "Sercos_III_PCI";
+  *((char const **)((void *)info + 16)) = "0.0.1";
+  __cil_tmp32 = *((unsigned int *)((void *)dev + 916));
+  *((long *)((void *)info + 464)) = (long )__cil_tmp32;
+  *((unsigned long *)((void *)info + 472)) = 128UL;
+  *((irqreturn_t (**)(int irq , struct uio_info *dev_info ))((void *)info + 488)) = & sercos3_handler;
+  *((int (**)(struct uio_info *info , s32 irq_on ))((void *)info + 520)) = & sercos3_irqcontrol;
   __cil_tmp39 = (void *)info;
   pci_set_drvdata(dev, __cil_tmp39);
-  __cil_tmp40 = (unsigned long )dev;
-  __cil_tmp41 = __cil_tmp40 + 144;
-  __cil_tmp42 = (struct device *)__cil_tmp41;
+  __cil_tmp42 = (struct device *)((void *)dev + 144);
   tmp___8 = (int )__uio_register_device(& __this_module, __cil_tmp42, info);
   }
   if (tmp___8) {
@@ -2926,16 +2735,12 @@ static int sercos3_pci_probe(struct pci_dev *dev , struct pci_device_id const *i
     __cil_tmp43 = i * 48UL;
     __cil_tmp44 = __cil_tmp43 + 32;
     __cil_tmp45 = 24 + __cil_tmp44;
-    __cil_tmp46 = (unsigned long )info;
-    __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-    if (*((void **)__cil_tmp47)) {
+    if (*((void **)((void *)info + __cil_tmp45))) {
       {
       __cil_tmp48 = i * 48UL;
       __cil_tmp49 = __cil_tmp48 + 32;
       __cil_tmp50 = 24 + __cil_tmp49;
-      __cil_tmp51 = (unsigned long )info;
-      __cil_tmp52 = __cil_tmp51 + __cil_tmp50;
-      __cil_tmp53 = *((void **)__cil_tmp52);
+      __cil_tmp53 = *((void **)((void *)info + __cil_tmp50));
       __cil_tmp54 = (void volatile *)__cil_tmp53;
       iounmap(__cil_tmp54);
       }
@@ -2974,17 +2779,11 @@ static void sercos3_pci_remove(struct pci_dev *dev )
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   void volatile *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
   void const *__cil_tmp21 ;
   void const *__cil_tmp22 ;
@@ -3010,16 +2809,12 @@ static void sercos3_pci_remove(struct pci_dev *dev )
     __cil_tmp6 = i * 48UL;
     __cil_tmp7 = __cil_tmp6 + 32;
     __cil_tmp8 = 24 + __cil_tmp7;
-    __cil_tmp9 = (unsigned long )info;
-    __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-    if (*((void **)__cil_tmp10)) {
+    if (*((void **)((void *)info + __cil_tmp8))) {
       {
       __cil_tmp11 = i * 48UL;
       __cil_tmp12 = __cil_tmp11 + 32;
       __cil_tmp13 = 24 + __cil_tmp12;
-      __cil_tmp14 = (unsigned long )info;
-      __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-      __cil_tmp16 = *((void **)__cil_tmp15);
+      __cil_tmp16 = *((void **)((void *)info + __cil_tmp13));
       __cil_tmp17 = (void volatile *)__cil_tmp16;
       iounmap(__cil_tmp17);
       }
@@ -3031,9 +2826,7 @@ static void sercos3_pci_remove(struct pci_dev *dev )
   while_break: ;
   }
   {
-  __cil_tmp18 = (unsigned long )info;
-  __cil_tmp19 = __cil_tmp18 + 480;
-  __cil_tmp20 = *((void **)__cil_tmp19);
+  __cil_tmp20 = *((void **)((void *)info + 480));
   __cil_tmp21 = (void const *)__cil_tmp20;
   kfree(__cil_tmp21);
   __cil_tmp22 = (void const *)info;

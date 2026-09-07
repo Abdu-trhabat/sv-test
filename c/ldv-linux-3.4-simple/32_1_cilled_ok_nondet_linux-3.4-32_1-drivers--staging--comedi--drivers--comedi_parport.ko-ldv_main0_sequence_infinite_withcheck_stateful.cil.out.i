@@ -1343,59 +1343,29 @@ __inline static int alloc_subdevices(struct comedi_device *dev , unsigned int nu
 __inline static int alloc_subdevices(struct comedi_device *dev , unsigned int num_subdevices )
 { unsigned int i ;
   void *tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   size_t __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct comedi_subdevice *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct comedi_subdevice *__cil_tmp15 ;
   struct comedi_subdevice *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct comedi_subdevice *__cil_tmp19 ;
   struct comedi_subdevice *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct comedi_subdevice *__cil_tmp25 ;
   struct comedi_subdevice *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   spinlock_t *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct comedi_subdevice *__cil_tmp32 ;
   struct comedi_subdevice *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct raw_spinlock *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct comedi_subdevice *__cil_tmp39 ;
   struct comedi_subdevice *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   {
   {
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + 172;
-  *((int *)__cil_tmp6) = (int )num_subdevices;
+  *((int *)((void *)dev + 172)) = (int )num_subdevices;
   __cil_tmp7 = (size_t )num_subdevices;
   tmp = kcalloc(__cil_tmp7, 256UL, 208U);
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + 176;
-  *((struct comedi_subdevice **)__cil_tmp9) = (struct comedi_subdevice *)tmp;
+  *((struct comedi_subdevice **)((void *)dev + 176)) = (struct comedi_subdevice *)tmp;
   }
   {
-  __cil_tmp10 = (unsigned long )dev;
-  __cil_tmp11 = __cil_tmp10 + 176;
-  __cil_tmp12 = *((struct comedi_subdevice **)__cil_tmp11);
+  __cil_tmp12 = *((struct comedi_subdevice **)((void *)dev + 176));
   if (! __cil_tmp12) {
     return (-12);
   } else {
@@ -1409,42 +1379,28 @@ __inline static int alloc_subdevices(struct comedi_device *dev , unsigned int nu
     } else {
       goto while_break;
     }
-    __cil_tmp13 = (unsigned long )dev;
-    __cil_tmp14 = __cil_tmp13 + 176;
-    __cil_tmp15 = *((struct comedi_subdevice **)__cil_tmp14);
+    __cil_tmp15 = *((struct comedi_subdevice **)((void *)dev + 176));
     __cil_tmp16 = __cil_tmp15 + i;
     *((struct comedi_device **)__cil_tmp16) = dev;
-    __cil_tmp17 = (unsigned long )dev;
-    __cil_tmp18 = __cil_tmp17 + 176;
-    __cil_tmp19 = *((struct comedi_subdevice **)__cil_tmp18);
+    __cil_tmp19 = *((struct comedi_subdevice **)((void *)dev + 176));
     __cil_tmp20 = __cil_tmp19 + i;
-    __cil_tmp21 = (unsigned long )__cil_tmp20;
-    __cil_tmp22 = __cil_tmp21 + 232;
-    *((enum dma_data_direction *)__cil_tmp22) = (enum dma_data_direction )3;
+    *((enum dma_data_direction *)((void *)__cil_tmp20 + 232)) = (enum dma_data_direction )3;
     {
     while (1) {
       while_continue___0: ;
       {
-      __cil_tmp23 = (unsigned long )dev;
-      __cil_tmp24 = __cil_tmp23 + 176;
-      __cil_tmp25 = *((struct comedi_subdevice **)__cil_tmp24);
+      __cil_tmp25 = *((struct comedi_subdevice **)((void *)dev + 176));
       __cil_tmp26 = __cil_tmp25 + i;
-      __cil_tmp27 = (unsigned long )__cil_tmp26;
-      __cil_tmp28 = __cil_tmp27 + 64;
-      __cil_tmp29 = (spinlock_t *)__cil_tmp28;
+      __cil_tmp29 = (spinlock_t *)((void *)__cil_tmp26 + 64);
       spinlock_check(__cil_tmp29);
       }
       {
       while (1) {
         while_continue___1: ;
         {
-        __cil_tmp30 = (unsigned long )dev;
-        __cil_tmp31 = __cil_tmp30 + 176;
-        __cil_tmp32 = *((struct comedi_subdevice **)__cil_tmp31);
+        __cil_tmp32 = *((struct comedi_subdevice **)((void *)dev + 176));
         __cil_tmp33 = __cil_tmp32 + i;
-        __cil_tmp34 = (unsigned long )__cil_tmp33;
-        __cil_tmp35 = __cil_tmp34 + 64;
-        __cil_tmp36 = (struct raw_spinlock *)__cil_tmp35;
+        __cil_tmp36 = (struct raw_spinlock *)((void *)__cil_tmp33 + 64);
         __raw_spin_lock_init(__cil_tmp36, "&(&dev->subdevices[i].spin_lock)->rlock",
                              & __key___2);
         }
@@ -1456,13 +1412,9 @@ __inline static int alloc_subdevices(struct comedi_device *dev , unsigned int nu
     }
     while_break___0: ;
     }
-    __cil_tmp37 = (unsigned long )dev;
-    __cil_tmp38 = __cil_tmp37 + 176;
-    __cil_tmp39 = *((struct comedi_subdevice **)__cil_tmp38);
+    __cil_tmp39 = *((struct comedi_subdevice **)((void *)dev + 176));
     __cil_tmp40 = __cil_tmp39 + i;
-    __cil_tmp41 = (unsigned long )__cil_tmp40;
-    __cil_tmp42 = __cil_tmp41 + 248;
-    *((int *)__cil_tmp42) = -1;
+    *((int *)((void *)__cil_tmp40 + 248)) = -1;
     i = i + 1U;
   }
   while_break: ;
@@ -1472,23 +1424,16 @@ __inline static int alloc_subdevices(struct comedi_device *dev , unsigned int nu
 }
 __inline static int alloc_private(struct comedi_device *dev , int size ) __attribute__((__no_instrument_function__)) ;
 __inline static int alloc_private(struct comedi_device *dev , int size )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   size_t __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 16;
   __cil_tmp5 = (size_t )size;
-  *((void **)__cil_tmp4) = kzalloc(__cil_tmp5, 208U);
+  *((void **)((void *)dev + 16)) = kzalloc(__cil_tmp5, 208U);
   }
   {
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)dev + 16));
   if (! __cil_tmp8) {
     return (-12);
   } else {
@@ -1580,20 +1525,14 @@ static int parport_insn_a(struct comedi_device *dev , struct comedi_subdevice *s
                           struct comedi_insn *insn , unsigned int *data )
 { unsigned char tmp ;
   unsigned int *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   struct parport_private *__cil_tmp10 ;
   unsigned int *__cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   struct parport_private *__cil_tmp17 ;
   unsigned int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   void *__cil_tmp21 ;
   struct parport_private *__cil_tmp22 ;
   unsigned int *__cil_tmp23 ;
@@ -1601,23 +1540,15 @@ static int parport_insn_a(struct comedi_device *dev , struct comedi_subdevice *s
   unsigned int *__cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   void *__cil_tmp30 ;
   struct parport_private *__cil_tmp31 ;
   unsigned int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   void *__cil_tmp35 ;
   struct parport_private *__cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   unsigned char __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   int __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   int __cil_tmp46 ;
   unsigned int *__cil_tmp47 ;
@@ -1626,43 +1557,31 @@ static int parport_insn_a(struct comedi_device *dev , struct comedi_subdevice *s
   __cil_tmp6 = data + 0;
   if (*__cil_tmp6) {
     {
-    __cil_tmp7 = (unsigned long )dev;
-    __cil_tmp8 = __cil_tmp7 + 16;
-    __cil_tmp9 = *((void **)__cil_tmp8);
+    __cil_tmp9 = *((void **)((void *)dev + 16));
     __cil_tmp10 = (struct parport_private *)__cil_tmp9;
     __cil_tmp11 = data + 0;
     __cil_tmp12 = *__cil_tmp11;
     __cil_tmp13 = ~ __cil_tmp12;
-    __cil_tmp14 = (unsigned long )dev;
-    __cil_tmp15 = __cil_tmp14 + 16;
-    __cil_tmp16 = *((void **)__cil_tmp15);
+    __cil_tmp16 = *((void **)((void *)dev + 16));
     __cil_tmp17 = (struct parport_private *)__cil_tmp16;
     __cil_tmp18 = *((unsigned int *)__cil_tmp17);
     *((unsigned int *)__cil_tmp10) = __cil_tmp18 & __cil_tmp13;
-    __cil_tmp19 = (unsigned long )dev;
-    __cil_tmp20 = __cil_tmp19 + 16;
-    __cil_tmp21 = *((void **)__cil_tmp20);
+    __cil_tmp21 = *((void **)((void *)dev + 16));
     __cil_tmp22 = (struct parport_private *)__cil_tmp21;
     __cil_tmp23 = data + 1;
     __cil_tmp24 = *__cil_tmp23;
     __cil_tmp25 = data + 0;
     __cil_tmp26 = *__cil_tmp25;
     __cil_tmp27 = __cil_tmp26 & __cil_tmp24;
-    __cil_tmp28 = (unsigned long )dev;
-    __cil_tmp29 = __cil_tmp28 + 16;
-    __cil_tmp30 = *((void **)__cil_tmp29);
+    __cil_tmp30 = *((void **)((void *)dev + 16));
     __cil_tmp31 = (struct parport_private *)__cil_tmp30;
     __cil_tmp32 = *((unsigned int *)__cil_tmp31);
     *((unsigned int *)__cil_tmp22) = __cil_tmp32 | __cil_tmp27;
-    __cil_tmp33 = (unsigned long )dev;
-    __cil_tmp34 = __cil_tmp33 + 16;
-    __cil_tmp35 = *((void **)__cil_tmp34);
+    __cil_tmp35 = *((void **)((void *)dev + 16));
     __cil_tmp36 = (struct parport_private *)__cil_tmp35;
     __cil_tmp37 = *((unsigned int *)__cil_tmp36);
     __cil_tmp38 = (unsigned char )__cil_tmp37;
-    __cil_tmp39 = (unsigned long )dev;
-    __cil_tmp40 = __cil_tmp39 + 184;
-    __cil_tmp41 = *((unsigned long *)__cil_tmp40);
+    __cil_tmp41 = *((unsigned long *)((void *)dev + 184));
     __cil_tmp42 = (int )__cil_tmp41;
     outb(__cil_tmp38, __cil_tmp42);
     }
@@ -1670,9 +1589,7 @@ static int parport_insn_a(struct comedi_device *dev , struct comedi_subdevice *s
   }
   }
   {
-  __cil_tmp43 = (unsigned long )dev;
-  __cil_tmp44 = __cil_tmp43 + 184;
-  __cil_tmp45 = *((unsigned long *)__cil_tmp44);
+  __cil_tmp45 = *((unsigned long *)((void *)dev + 184));
   __cil_tmp46 = (int )__cil_tmp45;
   tmp = inb(__cil_tmp46);
   __cil_tmp47 = data + 1;
@@ -1684,51 +1601,25 @@ static int parport_insn_a(struct comedi_device *dev , struct comedi_subdevice *s
 static int parport_insn_config_a(struct comedi_device *dev , struct comedi_subdevice *s ,
                                  struct comedi_insn *insn , unsigned int *data )
 { unsigned int *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   struct parport_private *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void *__cil_tmp19 ;
   struct parport_private *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
   struct parport_private *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
   unsigned int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   void *__cil_tmp36 ;
   struct parport_private *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   void *__cil_tmp43 ;
   struct parport_private *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned int __cil_tmp47 ;
   unsigned char __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   int __cil_tmp53 ;
@@ -1736,60 +1627,34 @@ static int parport_insn_config_a(struct comedi_device *dev , struct comedi_subde
   {
   __cil_tmp5 = data + 0;
   if (*__cil_tmp5) {
-    __cil_tmp6 = (unsigned long )s;
-    __cil_tmp7 = __cil_tmp6 + 88;
-    *((int *)__cil_tmp7) = 255;
-    __cil_tmp8 = (unsigned long )dev;
-    __cil_tmp9 = __cil_tmp8 + 16;
-    __cil_tmp10 = *((void **)__cil_tmp9);
+    *((int *)((void *)s + 88)) = 255;
+    __cil_tmp10 = *((void **)((void *)dev + 16));
     __cil_tmp11 = (struct parport_private *)__cil_tmp10;
-    __cil_tmp12 = (unsigned long )__cil_tmp11;
-    __cil_tmp13 = __cil_tmp12 + 4;
     __cil_tmp14 = 1 << 5;
     __cil_tmp15 = ~ __cil_tmp14;
     __cil_tmp16 = (unsigned int )__cil_tmp15;
-    __cil_tmp17 = (unsigned long )dev;
-    __cil_tmp18 = __cil_tmp17 + 16;
-    __cil_tmp19 = *((void **)__cil_tmp18);
+    __cil_tmp19 = *((void **)((void *)dev + 16));
     __cil_tmp20 = (struct parport_private *)__cil_tmp19;
-    __cil_tmp21 = (unsigned long )__cil_tmp20;
-    __cil_tmp22 = __cil_tmp21 + 4;
-    __cil_tmp23 = *((unsigned int *)__cil_tmp22);
-    *((unsigned int *)__cil_tmp13) = __cil_tmp23 & __cil_tmp16;
+    __cil_tmp23 = *((unsigned int *)((void *)__cil_tmp20 + 4));
+    *((unsigned int *)((void *)__cil_tmp11 + 4)) = __cil_tmp23 & __cil_tmp16;
   } else {
-    __cil_tmp24 = (unsigned long )s;
-    __cil_tmp25 = __cil_tmp24 + 88;
-    *((int *)__cil_tmp25) = 0;
-    __cil_tmp26 = (unsigned long )dev;
-    __cil_tmp27 = __cil_tmp26 + 16;
-    __cil_tmp28 = *((void **)__cil_tmp27);
+    *((int *)((void *)s + 88)) = 0;
+    __cil_tmp28 = *((void **)((void *)dev + 16));
     __cil_tmp29 = (struct parport_private *)__cil_tmp28;
-    __cil_tmp30 = (unsigned long )__cil_tmp29;
-    __cil_tmp31 = __cil_tmp30 + 4;
     __cil_tmp32 = 1 << 5;
     __cil_tmp33 = (unsigned int )__cil_tmp32;
-    __cil_tmp34 = (unsigned long )dev;
-    __cil_tmp35 = __cil_tmp34 + 16;
-    __cil_tmp36 = *((void **)__cil_tmp35);
+    __cil_tmp36 = *((void **)((void *)dev + 16));
     __cil_tmp37 = (struct parport_private *)__cil_tmp36;
-    __cil_tmp38 = (unsigned long )__cil_tmp37;
-    __cil_tmp39 = __cil_tmp38 + 4;
-    __cil_tmp40 = *((unsigned int *)__cil_tmp39);
-    *((unsigned int *)__cil_tmp31) = __cil_tmp40 | __cil_tmp33;
+    __cil_tmp40 = *((unsigned int *)((void *)__cil_tmp37 + 4));
+    *((unsigned int *)((void *)__cil_tmp29 + 4)) = __cil_tmp40 | __cil_tmp33;
   }
   }
   {
-  __cil_tmp41 = (unsigned long )dev;
-  __cil_tmp42 = __cil_tmp41 + 16;
-  __cil_tmp43 = *((void **)__cil_tmp42);
+  __cil_tmp43 = *((void **)((void *)dev + 16));
   __cil_tmp44 = (struct parport_private *)__cil_tmp43;
-  __cil_tmp45 = (unsigned long )__cil_tmp44;
-  __cil_tmp46 = __cil_tmp45 + 4;
-  __cil_tmp47 = *((unsigned int *)__cil_tmp46);
+  __cil_tmp47 = *((unsigned int *)((void *)__cil_tmp44 + 4));
   __cil_tmp48 = (unsigned char )__cil_tmp47;
-  __cil_tmp49 = (unsigned long )dev;
-  __cil_tmp50 = __cil_tmp49 + 184;
-  __cil_tmp51 = *((unsigned long *)__cil_tmp50);
+  __cil_tmp51 = *((unsigned long *)((void *)dev + 184));
   __cil_tmp52 = __cil_tmp51 + 2UL;
   __cil_tmp53 = (int )__cil_tmp52;
   outb(__cil_tmp48, __cil_tmp53);
@@ -1800,8 +1665,6 @@ static int parport_insn_config_a(struct comedi_device *dev , struct comedi_subde
 static int parport_insn_b(struct comedi_device *dev , struct comedi_subdevice *s ,
                           struct comedi_insn *insn , unsigned int *data )
 { unsigned char tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
@@ -1810,9 +1673,7 @@ static int parport_insn_b(struct comedi_device *dev , struct comedi_subdevice *s
   int __cil_tmp13 ;
   {
   {
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 184;
-  __cil_tmp8 = *((unsigned long *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned long *)((void *)dev + 184));
   __cil_tmp9 = __cil_tmp8 + 1UL;
   __cil_tmp10 = (int )__cil_tmp9;
   tmp = inb(__cil_tmp10);
@@ -1830,60 +1691,34 @@ static int parport_insn_c(struct comedi_device *dev , struct comedi_subdevice *s
   unsigned int *__cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   unsigned int *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   struct parport_private *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int *__cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
   struct parport_private *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   void *__cil_tmp27 ;
   struct parport_private *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int *__cil_tmp31 ;
   unsigned int __cil_tmp32 ;
   unsigned int *__cil_tmp33 ;
   unsigned int __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   void *__cil_tmp38 ;
   struct parport_private *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned int __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   void *__cil_tmp45 ;
   struct parport_private *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
   unsigned char __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   int __cil_tmp55 ;
   unsigned int *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   void *__cil_tmp59 ;
   struct parport_private *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   unsigned int __cil_tmp63 ;
   {
   __cil_tmp5 = data + 0;
@@ -1894,53 +1729,31 @@ static int parport_insn_c(struct comedi_device *dev , struct comedi_subdevice *s
   __cil_tmp8 = data + 0;
   if (*__cil_tmp8) {
     {
-    __cil_tmp9 = (unsigned long )dev;
-    __cil_tmp10 = __cil_tmp9 + 16;
-    __cil_tmp11 = *((void **)__cil_tmp10);
+    __cil_tmp11 = *((void **)((void *)dev + 16));
     __cil_tmp12 = (struct parport_private *)__cil_tmp11;
-    __cil_tmp13 = (unsigned long )__cil_tmp12;
-    __cil_tmp14 = __cil_tmp13 + 4;
     __cil_tmp15 = data + 0;
     __cil_tmp16 = *__cil_tmp15;
     __cil_tmp17 = ~ __cil_tmp16;
-    __cil_tmp18 = (unsigned long )dev;
-    __cil_tmp19 = __cil_tmp18 + 16;
-    __cil_tmp20 = *((void **)__cil_tmp19);
+    __cil_tmp20 = *((void **)((void *)dev + 16));
     __cil_tmp21 = (struct parport_private *)__cil_tmp20;
-    __cil_tmp22 = (unsigned long )__cil_tmp21;
-    __cil_tmp23 = __cil_tmp22 + 4;
-    __cil_tmp24 = *((unsigned int *)__cil_tmp23);
-    *((unsigned int *)__cil_tmp14) = __cil_tmp24 & __cil_tmp17;
-    __cil_tmp25 = (unsigned long )dev;
-    __cil_tmp26 = __cil_tmp25 + 16;
-    __cil_tmp27 = *((void **)__cil_tmp26);
+    __cil_tmp24 = *((unsigned int *)((void *)__cil_tmp21 + 4));
+    *((unsigned int *)((void *)__cil_tmp12 + 4)) = __cil_tmp24 & __cil_tmp17;
+    __cil_tmp27 = *((void **)((void *)dev + 16));
     __cil_tmp28 = (struct parport_private *)__cil_tmp27;
-    __cil_tmp29 = (unsigned long )__cil_tmp28;
-    __cil_tmp30 = __cil_tmp29 + 4;
     __cil_tmp31 = data + 1;
     __cil_tmp32 = *__cil_tmp31;
     __cil_tmp33 = data + 0;
     __cil_tmp34 = *__cil_tmp33;
     __cil_tmp35 = __cil_tmp34 & __cil_tmp32;
-    __cil_tmp36 = (unsigned long )dev;
-    __cil_tmp37 = __cil_tmp36 + 16;
-    __cil_tmp38 = *((void **)__cil_tmp37);
+    __cil_tmp38 = *((void **)((void *)dev + 16));
     __cil_tmp39 = (struct parport_private *)__cil_tmp38;
-    __cil_tmp40 = (unsigned long )__cil_tmp39;
-    __cil_tmp41 = __cil_tmp40 + 4;
-    __cil_tmp42 = *((unsigned int *)__cil_tmp41);
-    *((unsigned int *)__cil_tmp30) = __cil_tmp42 | __cil_tmp35;
-    __cil_tmp43 = (unsigned long )dev;
-    __cil_tmp44 = __cil_tmp43 + 16;
-    __cil_tmp45 = *((void **)__cil_tmp44);
+    __cil_tmp42 = *((unsigned int *)((void *)__cil_tmp39 + 4));
+    *((unsigned int *)((void *)__cil_tmp28 + 4)) = __cil_tmp42 | __cil_tmp35;
+    __cil_tmp45 = *((void **)((void *)dev + 16));
     __cil_tmp46 = (struct parport_private *)__cil_tmp45;
-    __cil_tmp47 = (unsigned long )__cil_tmp46;
-    __cil_tmp48 = __cil_tmp47 + 4;
-    __cil_tmp49 = *((unsigned int *)__cil_tmp48);
+    __cil_tmp49 = *((unsigned int *)((void *)__cil_tmp46 + 4));
     __cil_tmp50 = (unsigned char )__cil_tmp49;
-    __cil_tmp51 = (unsigned long )dev;
-    __cil_tmp52 = __cil_tmp51 + 184;
-    __cil_tmp53 = *((unsigned long *)__cil_tmp52);
+    __cil_tmp53 = *((unsigned long *)((void *)dev + 184));
     __cil_tmp54 = __cil_tmp53 + 2UL;
     __cil_tmp55 = (int )__cil_tmp54;
     outb(__cil_tmp50, __cil_tmp55);
@@ -1949,28 +1762,21 @@ static int parport_insn_c(struct comedi_device *dev , struct comedi_subdevice *s
   }
   }
   __cil_tmp56 = data + 1;
-  __cil_tmp57 = (unsigned long )dev;
-  __cil_tmp58 = __cil_tmp57 + 16;
-  __cil_tmp59 = *((void **)__cil_tmp58);
+  __cil_tmp59 = *((void **)((void *)dev + 16));
   __cil_tmp60 = (struct parport_private *)__cil_tmp59;
-  __cil_tmp61 = (unsigned long )__cil_tmp60;
-  __cil_tmp62 = __cil_tmp61 + 4;
-  __cil_tmp63 = *((unsigned int *)__cil_tmp62);
+  __cil_tmp63 = *((unsigned int *)((void *)__cil_tmp60 + 4));
   *__cil_tmp56 = __cil_tmp63 & 15U;
   return (2);
 }
 }
 static int parport_intr_insn(struct comedi_device *dev , struct comedi_subdevice *s ,
                              struct comedi_insn *insn , unsigned int *data )
-{ unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
+{
   unsigned int __cil_tmp7 ;
   unsigned int *__cil_tmp8 ;
   {
   {
-  __cil_tmp5 = (unsigned long )insn;
-  __cil_tmp6 = __cil_tmp5 + 4;
-  __cil_tmp7 = *((unsigned int *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned int *)((void *)insn + 4));
   if (__cil_tmp7 < 1U) {
     return (-22);
   } else {
@@ -1985,129 +1791,49 @@ static int parport_intr_cmdtest(struct comedi_device *dev , struct comedi_subdev
                                 struct comedi_cmd *cmd )
 { int err ;
   int tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned int __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned int __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned int __cil_tmp64 ;
   unsigned int __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   unsigned int __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   unsigned int __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   unsigned int __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   unsigned int __cil_tmp79 ;
   unsigned int __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   unsigned int __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   unsigned int __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   unsigned int __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   unsigned int __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   unsigned int __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
   {
   err = 0;
-  __cil_tmp6 = (unsigned long )cmd;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)cmd + 8));
   tmp = (int )__cil_tmp8;
-  __cil_tmp9 = (unsigned long )cmd;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = (unsigned long )cmd;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((unsigned int *)__cil_tmp12);
-  *((unsigned int *)__cil_tmp10) = __cil_tmp13 & 2U;
+  __cil_tmp13 = *((unsigned int *)((void *)cmd + 8));
+  *((unsigned int *)((void *)cmd + 8)) = __cil_tmp13 & 2U;
   {
-  __cil_tmp14 = (unsigned long )cmd;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((unsigned int *)__cil_tmp15);
+  __cil_tmp16 = *((unsigned int *)((void *)cmd + 8));
   if (! __cil_tmp16) {
     err = err + 1;
   } else {
     {
-    __cil_tmp17 = (unsigned long )cmd;
-    __cil_tmp18 = __cil_tmp17 + 8;
-    __cil_tmp19 = *((unsigned int *)__cil_tmp18);
+    __cil_tmp19 = *((unsigned int *)((void *)cmd + 8));
     __cil_tmp20 = (unsigned int )tmp;
     if (__cil_tmp20 != __cil_tmp19) {
       err = err + 1;
@@ -2116,27 +1842,17 @@ static int parport_intr_cmdtest(struct comedi_device *dev , struct comedi_subdev
     }
   }
   }
-  __cil_tmp21 = (unsigned long )cmd;
-  __cil_tmp22 = __cil_tmp21 + 16;
-  __cil_tmp23 = *((unsigned int *)__cil_tmp22);
+  __cil_tmp23 = *((unsigned int *)((void *)cmd + 16));
   tmp = (int )__cil_tmp23;
-  __cil_tmp24 = (unsigned long )cmd;
-  __cil_tmp25 = __cil_tmp24 + 16;
-  __cil_tmp26 = (unsigned long )cmd;
-  __cil_tmp27 = __cil_tmp26 + 16;
-  __cil_tmp28 = *((unsigned int *)__cil_tmp27);
-  *((unsigned int *)__cil_tmp25) = __cil_tmp28 & 64U;
+  __cil_tmp28 = *((unsigned int *)((void *)cmd + 16));
+  *((unsigned int *)((void *)cmd + 16)) = __cil_tmp28 & 64U;
   {
-  __cil_tmp29 = (unsigned long )cmd;
-  __cil_tmp30 = __cil_tmp29 + 16;
-  __cil_tmp31 = *((unsigned int *)__cil_tmp30);
+  __cil_tmp31 = *((unsigned int *)((void *)cmd + 16));
   if (! __cil_tmp31) {
     err = err + 1;
   } else {
     {
-    __cil_tmp32 = (unsigned long )cmd;
-    __cil_tmp33 = __cil_tmp32 + 16;
-    __cil_tmp34 = *((unsigned int *)__cil_tmp33);
+    __cil_tmp34 = *((unsigned int *)((void *)cmd + 16));
     __cil_tmp35 = (unsigned int )tmp;
     if (__cil_tmp35 != __cil_tmp34) {
       err = err + 1;
@@ -2145,27 +1861,17 @@ static int parport_intr_cmdtest(struct comedi_device *dev , struct comedi_subdev
     }
   }
   }
-  __cil_tmp36 = (unsigned long )cmd;
-  __cil_tmp37 = __cil_tmp36 + 24;
-  __cil_tmp38 = *((unsigned int *)__cil_tmp37);
+  __cil_tmp38 = *((unsigned int *)((void *)cmd + 24));
   tmp = (int )__cil_tmp38;
-  __cil_tmp39 = (unsigned long )cmd;
-  __cil_tmp40 = __cil_tmp39 + 24;
-  __cil_tmp41 = (unsigned long )cmd;
-  __cil_tmp42 = __cil_tmp41 + 24;
-  __cil_tmp43 = *((unsigned int *)__cil_tmp42);
-  *((unsigned int *)__cil_tmp40) = __cil_tmp43 & 4U;
+  __cil_tmp43 = *((unsigned int *)((void *)cmd + 24));
+  *((unsigned int *)((void *)cmd + 24)) = __cil_tmp43 & 4U;
   {
-  __cil_tmp44 = (unsigned long )cmd;
-  __cil_tmp45 = __cil_tmp44 + 24;
-  __cil_tmp46 = *((unsigned int *)__cil_tmp45);
+  __cil_tmp46 = *((unsigned int *)((void *)cmd + 24));
   if (! __cil_tmp46) {
     err = err + 1;
   } else {
     {
-    __cil_tmp47 = (unsigned long )cmd;
-    __cil_tmp48 = __cil_tmp47 + 24;
-    __cil_tmp49 = *((unsigned int *)__cil_tmp48);
+    __cil_tmp49 = *((unsigned int *)((void *)cmd + 24));
     __cil_tmp50 = (unsigned int )tmp;
     if (__cil_tmp50 != __cil_tmp49) {
       err = err + 1;
@@ -2174,27 +1880,17 @@ static int parport_intr_cmdtest(struct comedi_device *dev , struct comedi_subdev
     }
   }
   }
-  __cil_tmp51 = (unsigned long )cmd;
-  __cil_tmp52 = __cil_tmp51 + 32;
-  __cil_tmp53 = *((unsigned int *)__cil_tmp52);
+  __cil_tmp53 = *((unsigned int *)((void *)cmd + 32));
   tmp = (int )__cil_tmp53;
-  __cil_tmp54 = (unsigned long )cmd;
-  __cil_tmp55 = __cil_tmp54 + 32;
-  __cil_tmp56 = (unsigned long )cmd;
-  __cil_tmp57 = __cil_tmp56 + 32;
-  __cil_tmp58 = *((unsigned int *)__cil_tmp57);
-  *((unsigned int *)__cil_tmp55) = __cil_tmp58 & 32U;
+  __cil_tmp58 = *((unsigned int *)((void *)cmd + 32));
+  *((unsigned int *)((void *)cmd + 32)) = __cil_tmp58 & 32U;
   {
-  __cil_tmp59 = (unsigned long )cmd;
-  __cil_tmp60 = __cil_tmp59 + 32;
-  __cil_tmp61 = *((unsigned int *)__cil_tmp60);
+  __cil_tmp61 = *((unsigned int *)((void *)cmd + 32));
   if (! __cil_tmp61) {
     err = err + 1;
   } else {
     {
-    __cil_tmp62 = (unsigned long )cmd;
-    __cil_tmp63 = __cil_tmp62 + 32;
-    __cil_tmp64 = *((unsigned int *)__cil_tmp63);
+    __cil_tmp64 = *((unsigned int *)((void *)cmd + 32));
     __cil_tmp65 = (unsigned int )tmp;
     if (__cil_tmp65 != __cil_tmp64) {
       err = err + 1;
@@ -2203,27 +1899,17 @@ static int parport_intr_cmdtest(struct comedi_device *dev , struct comedi_subdev
     }
   }
   }
-  __cil_tmp66 = (unsigned long )cmd;
-  __cil_tmp67 = __cil_tmp66 + 40;
-  __cil_tmp68 = *((unsigned int *)__cil_tmp67);
+  __cil_tmp68 = *((unsigned int *)((void *)cmd + 40));
   tmp = (int )__cil_tmp68;
-  __cil_tmp69 = (unsigned long )cmd;
-  __cil_tmp70 = __cil_tmp69 + 40;
-  __cil_tmp71 = (unsigned long )cmd;
-  __cil_tmp72 = __cil_tmp71 + 40;
-  __cil_tmp73 = *((unsigned int *)__cil_tmp72);
-  *((unsigned int *)__cil_tmp70) = __cil_tmp73 & 1U;
+  __cil_tmp73 = *((unsigned int *)((void *)cmd + 40));
+  *((unsigned int *)((void *)cmd + 40)) = __cil_tmp73 & 1U;
   {
-  __cil_tmp74 = (unsigned long )cmd;
-  __cil_tmp75 = __cil_tmp74 + 40;
-  __cil_tmp76 = *((unsigned int *)__cil_tmp75);
+  __cil_tmp76 = *((unsigned int *)((void *)cmd + 40));
   if (! __cil_tmp76) {
     err = err + 1;
   } else {
     {
-    __cil_tmp77 = (unsigned long )cmd;
-    __cil_tmp78 = __cil_tmp77 + 40;
-    __cil_tmp79 = *((unsigned int *)__cil_tmp78);
+    __cil_tmp79 = *((unsigned int *)((void *)cmd + 40));
     __cil_tmp80 = (unsigned int )tmp;
     if (__cil_tmp80 != __cil_tmp79) {
       err = err + 1;
@@ -2241,61 +1927,41 @@ static int parport_intr_cmdtest(struct comedi_device *dev , struct comedi_subdev
   } else {
   }
   {
-  __cil_tmp81 = (unsigned long )cmd;
-  __cil_tmp82 = __cil_tmp81 + 12;
-  __cil_tmp83 = *((unsigned int *)__cil_tmp82);
+  __cil_tmp83 = *((unsigned int *)((void *)cmd + 12));
   if (__cil_tmp83 != 0U) {
-    __cil_tmp84 = (unsigned long )cmd;
-    __cil_tmp85 = __cil_tmp84 + 12;
-    *((unsigned int *)__cil_tmp85) = 0U;
+    *((unsigned int *)((void *)cmd + 12)) = 0U;
     err = err + 1;
   } else {
   }
   }
   {
-  __cil_tmp86 = (unsigned long )cmd;
-  __cil_tmp87 = __cil_tmp86 + 20;
-  __cil_tmp88 = *((unsigned int *)__cil_tmp87);
+  __cil_tmp88 = *((unsigned int *)((void *)cmd + 20));
   if (__cil_tmp88 != 0U) {
-    __cil_tmp89 = (unsigned long )cmd;
-    __cil_tmp90 = __cil_tmp89 + 20;
-    *((unsigned int *)__cil_tmp90) = 0U;
+    *((unsigned int *)((void *)cmd + 20)) = 0U;
     err = err + 1;
   } else {
   }
   }
   {
-  __cil_tmp91 = (unsigned long )cmd;
-  __cil_tmp92 = __cil_tmp91 + 28;
-  __cil_tmp93 = *((unsigned int *)__cil_tmp92);
+  __cil_tmp93 = *((unsigned int *)((void *)cmd + 28));
   if (__cil_tmp93 != 0U) {
-    __cil_tmp94 = (unsigned long )cmd;
-    __cil_tmp95 = __cil_tmp94 + 28;
-    *((unsigned int *)__cil_tmp95) = 0U;
+    *((unsigned int *)((void *)cmd + 28)) = 0U;
     err = err + 1;
   } else {
   }
   }
   {
-  __cil_tmp96 = (unsigned long )cmd;
-  __cil_tmp97 = __cil_tmp96 + 36;
-  __cil_tmp98 = *((unsigned int *)__cil_tmp97);
+  __cil_tmp98 = *((unsigned int *)((void *)cmd + 36));
   if (__cil_tmp98 != 1U) {
-    __cil_tmp99 = (unsigned long )cmd;
-    __cil_tmp100 = __cil_tmp99 + 36;
-    *((unsigned int *)__cil_tmp100) = 1U;
+    *((unsigned int *)((void *)cmd + 36)) = 1U;
     err = err + 1;
   } else {
   }
   }
   {
-  __cil_tmp101 = (unsigned long )cmd;
-  __cil_tmp102 = __cil_tmp101 + 44;
-  __cil_tmp103 = *((unsigned int *)__cil_tmp102);
+  __cil_tmp103 = *((unsigned int *)((void *)cmd + 44));
   if (__cil_tmp103 != 0U) {
-    __cil_tmp104 = (unsigned long )cmd;
-    __cil_tmp105 = __cil_tmp104 + 44;
-    *((unsigned int *)__cil_tmp105) = 0U;
+    *((unsigned int *)((void *)cmd + 44)) = 0U;
     err = err + 1;
   } else {
   }
@@ -2312,150 +1978,80 @@ static int parport_intr_cmdtest(struct comedi_device *dev , struct comedi_subdev
 }
 }
 static int parport_intr_cmd(struct comedi_device *dev , struct comedi_subdevice *s )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   void *__cil_tmp5 ;
   struct parport_private *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   struct parport_private *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   void *__cil_tmp18 ;
   struct parport_private *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   unsigned char __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   void *__cil_tmp31 ;
   struct parport_private *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)dev + 16));
   __cil_tmp6 = (struct parport_private *)__cil_tmp5;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 4;
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)dev + 16));
   __cil_tmp12 = (struct parport_private *)__cil_tmp11;
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + 4;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
-  *((unsigned int *)__cil_tmp8) = __cil_tmp15 | 16U;
-  __cil_tmp16 = (unsigned long )dev;
-  __cil_tmp17 = __cil_tmp16 + 16;
-  __cil_tmp18 = *((void **)__cil_tmp17);
+  __cil_tmp15 = *((unsigned int *)((void *)__cil_tmp12 + 4));
+  *((unsigned int *)((void *)__cil_tmp6 + 4)) = __cil_tmp15 | 16U;
+  __cil_tmp18 = *((void **)((void *)dev + 16));
   __cil_tmp19 = (struct parport_private *)__cil_tmp18;
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 4;
-  __cil_tmp22 = *((unsigned int *)__cil_tmp21);
+  __cil_tmp22 = *((unsigned int *)((void *)__cil_tmp19 + 4));
   __cil_tmp23 = (unsigned char )__cil_tmp22;
-  __cil_tmp24 = (unsigned long )dev;
-  __cil_tmp25 = __cil_tmp24 + 184;
-  __cil_tmp26 = *((unsigned long *)__cil_tmp25);
+  __cil_tmp26 = *((unsigned long *)((void *)dev + 184));
   __cil_tmp27 = __cil_tmp26 + 2UL;
   __cil_tmp28 = (int )__cil_tmp27;
   outb(__cil_tmp23, __cil_tmp28);
-  __cil_tmp29 = (unsigned long )dev;
-  __cil_tmp30 = __cil_tmp29 + 16;
-  __cil_tmp31 = *((void **)__cil_tmp30);
+  __cil_tmp31 = *((void **)((void *)dev + 16));
   __cil_tmp32 = (struct parport_private *)__cil_tmp31;
-  __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = __cil_tmp33 + 8;
-  *((int *)__cil_tmp34) = 1;
+  *((int *)((void *)__cil_tmp32 + 8)) = 1;
   }
   return (0);
 }
 }
 static int parport_intr_cancel(struct comedi_device *dev , struct comedi_subdevice *s )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   void *__cil_tmp5 ;
   struct parport_private *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   struct parport_private *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   void *__cil_tmp18 ;
   struct parport_private *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   unsigned char __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   void *__cil_tmp31 ;
   struct parport_private *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   {
   {
   printk("<7>parport_intr_cancel()\n");
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)dev + 16));
   __cil_tmp6 = (struct parport_private *)__cil_tmp5;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 4;
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)dev + 16));
   __cil_tmp12 = (struct parport_private *)__cil_tmp11;
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + 4;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
-  *((unsigned int *)__cil_tmp8) = __cil_tmp15 & 4294967279U;
-  __cil_tmp16 = (unsigned long )dev;
-  __cil_tmp17 = __cil_tmp16 + 16;
-  __cil_tmp18 = *((void **)__cil_tmp17);
+  __cil_tmp15 = *((unsigned int *)((void *)__cil_tmp12 + 4));
+  *((unsigned int *)((void *)__cil_tmp6 + 4)) = __cil_tmp15 & 4294967279U;
+  __cil_tmp18 = *((void **)((void *)dev + 16));
   __cil_tmp19 = (struct parport_private *)__cil_tmp18;
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 4;
-  __cil_tmp22 = *((unsigned int *)__cil_tmp21);
+  __cil_tmp22 = *((unsigned int *)((void *)__cil_tmp19 + 4));
   __cil_tmp23 = (unsigned char )__cil_tmp22;
-  __cil_tmp24 = (unsigned long )dev;
-  __cil_tmp25 = __cil_tmp24 + 184;
-  __cil_tmp26 = *((unsigned long *)__cil_tmp25);
+  __cil_tmp26 = *((unsigned long *)((void *)dev + 184));
   __cil_tmp27 = __cil_tmp26 + 2UL;
   __cil_tmp28 = (int )__cil_tmp27;
   outb(__cil_tmp23, __cil_tmp28);
-  __cil_tmp29 = (unsigned long )dev;
-  __cil_tmp30 = __cil_tmp29 + 16;
-  __cil_tmp31 = *((void **)__cil_tmp30);
+  __cil_tmp31 = *((void **)((void *)dev + 16));
   __cil_tmp32 = (struct parport_private *)__cil_tmp31;
-  __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = __cil_tmp33 + 8;
-  *((int *)__cil_tmp34) = 0;
+  *((int *)((void *)__cil_tmp32 + 8)) = 0;
   }
   return (0);
 }
@@ -2463,44 +2059,22 @@ static int parport_intr_cancel(struct comedi_device *dev , struct comedi_subdevi
 static irqreturn_t parport_interrupt(int irq , void *d )
 { struct comedi_device *dev ;
   struct comedi_subdevice *s ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct comedi_subdevice *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   struct parport_private *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct comedi_async *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct comedi_async *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct comedi_async *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
   {
   dev = (struct comedi_device *)d;
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + 176;
-  __cil_tmp7 = *((struct comedi_subdevice **)__cil_tmp6);
+  __cil_tmp7 = *((struct comedi_subdevice **)((void *)dev + 176));
   s = __cil_tmp7 + 3;
   {
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)dev + 16));
   __cil_tmp11 = (struct parport_private *)__cil_tmp10;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)__cil_tmp11 + 8));
   if (! __cil_tmp14) {
     {
     printk("<3>comedi_parport: bogus irq, ignored\n");
@@ -2510,22 +2084,12 @@ static irqreturn_t parport_interrupt(int irq , void *d )
   }
   }
   {
-  __cil_tmp15 = (unsigned long )s;
-  __cil_tmp16 = __cil_tmp15 + 32;
-  __cil_tmp17 = *((struct comedi_async **)__cil_tmp16);
+  __cil_tmp17 = *((struct comedi_async **)((void *)s + 32));
   comedi_buf_put(__cil_tmp17, (short)0);
-  __cil_tmp18 = (unsigned long )s;
-  __cil_tmp19 = __cil_tmp18 + 32;
-  __cil_tmp20 = *((struct comedi_async **)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 88;
-  __cil_tmp23 = (unsigned long )s;
-  __cil_tmp24 = __cil_tmp23 + 32;
-  __cil_tmp25 = *((struct comedi_async **)__cil_tmp24);
-  __cil_tmp26 = (unsigned long )__cil_tmp25;
-  __cil_tmp27 = __cil_tmp26 + 88;
-  __cil_tmp28 = *((unsigned int *)__cil_tmp27);
-  *((unsigned int *)__cil_tmp22) = __cil_tmp28 | 5U;
+  __cil_tmp20 = *((struct comedi_async **)((void *)s + 32));
+  __cil_tmp25 = *((struct comedi_async **)((void *)s + 32));
+  __cil_tmp28 = *((unsigned int *)((void *)__cil_tmp25 + 88));
+  *((unsigned int *)((void *)__cil_tmp20 + 88)) = __cil_tmp28 | 5U;
   comedi_event(dev, s);
   }
   return ((irqreturn_t )1);
@@ -2539,129 +2103,33 @@ static int parport_attach(struct comedi_device *dev , struct comedi_devconfig *i
   struct resource *tmp ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   resource_size_t __cil_tmp16 ;
   resource_size_t __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   int __cil_tmp24 ;
   void *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct comedi_subdevice *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct comedi_subdevice *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   struct comedi_subdevice *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   struct comedi_subdevice *__cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   void *__cil_tmp105 ;
   struct parport_private *__cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   void *__cil_tmp109 ;
   struct parport_private *__cil_tmp110 ;
   unsigned int __cil_tmp111 ;
   unsigned char __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   unsigned long __cil_tmp115 ;
   int __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   void *__cil_tmp119 ;
   struct parport_private *__cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
   void *__cil_tmp125 ;
   struct parport_private *__cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
   unsigned int __cil_tmp129 ;
   unsigned char __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
   unsigned long __cil_tmp133 ;
   unsigned long __cil_tmp134 ;
   int __cil_tmp135 ;
@@ -2669,13 +2137,9 @@ static int parport_attach(struct comedi_device *dev , struct comedi_devconfig *i
   {
   __cil_tmp8 = 0 * 4UL;
   __cil_tmp9 = 20 + __cil_tmp8;
-  __cil_tmp10 = (unsigned long )it;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp12 = *((int *)((void *)it + __cil_tmp9));
   iobase = (unsigned long )__cil_tmp12;
-  __cil_tmp13 = (unsigned long )dev;
-  __cil_tmp14 = __cil_tmp13 + 32;
-  __cil_tmp15 = *((int *)__cil_tmp14);
+  __cil_tmp15 = *((int *)((void *)dev + 32));
   printk("<6>comedi%d: parport: 0x%04lx ", __cil_tmp15, iobase);
   __cil_tmp16 = (resource_size_t )iobase;
   __cil_tmp17 = (resource_size_t )3;
@@ -2689,14 +2153,10 @@ static int parport_attach(struct comedi_device *dev , struct comedi_devconfig *i
     }
     return (-5);
   }
-  __cil_tmp18 = (unsigned long )dev;
-  __cil_tmp19 = __cil_tmp18 + 184;
-  *((unsigned long *)__cil_tmp19) = iobase;
+  *((unsigned long *)((void *)dev + 184)) = iobase;
   __cil_tmp20 = 1 * 4UL;
   __cil_tmp21 = 20 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )it;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  __cil_tmp24 = *((int *)__cil_tmp23);
+  __cil_tmp24 = *((int *)((void *)it + __cil_tmp21));
   irq = (unsigned int )__cil_tmp24;
   if (irq) {
     {
@@ -2711,15 +2171,11 @@ static int parport_attach(struct comedi_device *dev , struct comedi_devconfig *i
       return (-22);
     } else {
     }
-    __cil_tmp26 = (unsigned long )dev;
-    __cil_tmp27 = __cil_tmp26 + 192;
-    *((unsigned int *)__cil_tmp27) = irq;
+    *((unsigned int *)((void *)dev + 192)) = irq;
   } else {
   }
   {
-  __cil_tmp28 = (unsigned long )dev;
-  __cil_tmp29 = __cil_tmp28 + 48;
-  *((char const **)__cil_tmp29) = "parport";
+  *((char const **)((void *)dev + 48)) = "parport";
   ret = alloc_subdevices(dev, 4U);
   }
   if (ret < 0) {
@@ -2734,155 +2190,71 @@ static int parport_attach(struct comedi_device *dev , struct comedi_devconfig *i
     return (ret);
   } else {
   }
-  __cil_tmp31 = (unsigned long )dev;
-  __cil_tmp32 = __cil_tmp31 + 176;
-  __cil_tmp33 = *((struct comedi_subdevice **)__cil_tmp32);
+  __cil_tmp33 = *((struct comedi_subdevice **)((void *)dev + 176));
   s = __cil_tmp33 + 0;
-  __cil_tmp34 = (unsigned long )s;
-  __cil_tmp35 = __cil_tmp34 + 8;
-  *((int *)__cil_tmp35) = 5;
-  __cil_tmp36 = (unsigned long )s;
-  __cil_tmp37 = __cil_tmp36 + 16;
-  *((int *)__cil_tmp37) = 196608;
-  __cil_tmp38 = (unsigned long )s;
-  __cil_tmp39 = __cil_tmp38 + 12;
-  *((int *)__cil_tmp39) = 8;
-  __cil_tmp40 = (unsigned long )s;
-  __cil_tmp41 = __cil_tmp40 + 92;
-  *((unsigned int *)__cil_tmp41) = 1U;
-  __cil_tmp42 = (unsigned long )s;
-  __cil_tmp43 = __cil_tmp42 + 128;
-  *((struct comedi_lrange const **)__cil_tmp43) = & range_unipolar5;
-  __cil_tmp44 = (unsigned long )s;
-  __cil_tmp45 = __cil_tmp44 + 168;
+  *((int *)((void *)s + 8)) = 5;
+  *((int *)((void *)s + 16)) = 196608;
+  *((int *)((void *)s + 12)) = 8;
+  *((unsigned int *)((void *)s + 92)) = 1U;
+  *((struct comedi_lrange const **)((void *)s + 128)) = & range_unipolar5;
   *((int (**)(struct comedi_device * , struct comedi_subdevice * , struct comedi_insn * ,
-              unsigned int * ))__cil_tmp45) = & parport_insn_a;
-  __cil_tmp46 = (unsigned long )s;
-  __cil_tmp47 = __cil_tmp46 + 176;
+              unsigned int * ))((void *)s + 168)) = & parport_insn_a;
   *((int (**)(struct comedi_device * , struct comedi_subdevice * , struct comedi_insn * ,
-              unsigned int * ))__cil_tmp47) = & parport_insn_config_a;
-  __cil_tmp48 = (unsigned long )dev;
-  __cil_tmp49 = __cil_tmp48 + 176;
-  __cil_tmp50 = *((struct comedi_subdevice **)__cil_tmp49);
+              unsigned int * ))((void *)s + 176)) = & parport_insn_config_a;
+  __cil_tmp50 = *((struct comedi_subdevice **)((void *)dev + 176));
   s = __cil_tmp50 + 1;
-  __cil_tmp51 = (unsigned long )s;
-  __cil_tmp52 = __cil_tmp51 + 8;
-  *((int *)__cil_tmp52) = 3;
-  __cil_tmp53 = (unsigned long )s;
-  __cil_tmp54 = __cil_tmp53 + 16;
-  *((int *)__cil_tmp54) = 65536;
-  __cil_tmp55 = (unsigned long )s;
-  __cil_tmp56 = __cil_tmp55 + 12;
-  *((int *)__cil_tmp56) = 5;
-  __cil_tmp57 = (unsigned long )s;
-  __cil_tmp58 = __cil_tmp57 + 92;
-  *((unsigned int *)__cil_tmp58) = 1U;
-  __cil_tmp59 = (unsigned long )s;
-  __cil_tmp60 = __cil_tmp59 + 128;
-  *((struct comedi_lrange const **)__cil_tmp60) = & range_unipolar5;
-  __cil_tmp61 = (unsigned long )s;
-  __cil_tmp62 = __cil_tmp61 + 168;
+  *((int *)((void *)s + 8)) = 3;
+  *((int *)((void *)s + 16)) = 65536;
+  *((int *)((void *)s + 12)) = 5;
+  *((unsigned int *)((void *)s + 92)) = 1U;
+  *((struct comedi_lrange const **)((void *)s + 128)) = & range_unipolar5;
   *((int (**)(struct comedi_device * , struct comedi_subdevice * , struct comedi_insn * ,
-              unsigned int * ))__cil_tmp62) = & parport_insn_b;
-  __cil_tmp63 = (unsigned long )dev;
-  __cil_tmp64 = __cil_tmp63 + 176;
-  __cil_tmp65 = *((struct comedi_subdevice **)__cil_tmp64);
+              unsigned int * ))((void *)s + 168)) = & parport_insn_b;
+  __cil_tmp65 = *((struct comedi_subdevice **)((void *)dev + 176));
   s = __cil_tmp65 + 2;
-  __cil_tmp66 = (unsigned long )s;
-  __cil_tmp67 = __cil_tmp66 + 8;
-  *((int *)__cil_tmp67) = 4;
-  __cil_tmp68 = (unsigned long )s;
-  __cil_tmp69 = __cil_tmp68 + 16;
-  *((int *)__cil_tmp69) = 131072;
-  __cil_tmp70 = (unsigned long )s;
-  __cil_tmp71 = __cil_tmp70 + 12;
-  *((int *)__cil_tmp71) = 4;
-  __cil_tmp72 = (unsigned long )s;
-  __cil_tmp73 = __cil_tmp72 + 92;
-  *((unsigned int *)__cil_tmp73) = 1U;
-  __cil_tmp74 = (unsigned long )s;
-  __cil_tmp75 = __cil_tmp74 + 128;
-  *((struct comedi_lrange const **)__cil_tmp75) = & range_unipolar5;
-  __cil_tmp76 = (unsigned long )s;
-  __cil_tmp77 = __cil_tmp76 + 168;
+  *((int *)((void *)s + 8)) = 4;
+  *((int *)((void *)s + 16)) = 131072;
+  *((int *)((void *)s + 12)) = 4;
+  *((unsigned int *)((void *)s + 92)) = 1U;
+  *((struct comedi_lrange const **)((void *)s + 128)) = & range_unipolar5;
   *((int (**)(struct comedi_device * , struct comedi_subdevice * , struct comedi_insn * ,
-              unsigned int * ))__cil_tmp77) = & parport_insn_c;
-  __cil_tmp78 = (unsigned long )dev;
-  __cil_tmp79 = __cil_tmp78 + 176;
-  __cil_tmp80 = *((struct comedi_subdevice **)__cil_tmp79);
+              unsigned int * ))((void *)s + 168)) = & parport_insn_c;
+  __cil_tmp80 = *((struct comedi_subdevice **)((void *)dev + 176));
   s = __cil_tmp80 + 3;
   if (irq) {
-    __cil_tmp81 = (unsigned long )dev;
-    __cil_tmp82 = __cil_tmp81 + 200;
-    *((struct comedi_subdevice **)__cil_tmp82) = s;
-    __cil_tmp83 = (unsigned long )s;
-    __cil_tmp84 = __cil_tmp83 + 8;
-    *((int *)__cil_tmp84) = 3;
-    __cil_tmp85 = (unsigned long )s;
-    __cil_tmp86 = __cil_tmp85 + 16;
-    *((int *)__cil_tmp86) = 98304;
-    __cil_tmp87 = (unsigned long )s;
-    __cil_tmp88 = __cil_tmp87 + 12;
-    *((int *)__cil_tmp88) = 1;
-    __cil_tmp89 = (unsigned long )s;
-    __cil_tmp90 = __cil_tmp89 + 92;
-    *((unsigned int *)__cil_tmp90) = 1U;
-    __cil_tmp91 = (unsigned long )s;
-    __cil_tmp92 = __cil_tmp91 + 128;
-    *((struct comedi_lrange const **)__cil_tmp92) = & range_unipolar5;
-    __cil_tmp93 = (unsigned long )s;
-    __cil_tmp94 = __cil_tmp93 + 168;
+    *((struct comedi_subdevice **)((void *)dev + 200)) = s;
+    *((int *)((void *)s + 8)) = 3;
+    *((int *)((void *)s + 16)) = 98304;
+    *((int *)((void *)s + 12)) = 1;
+    *((unsigned int *)((void *)s + 92)) = 1U;
+    *((struct comedi_lrange const **)((void *)s + 128)) = & range_unipolar5;
     *((int (**)(struct comedi_device * , struct comedi_subdevice * , struct comedi_insn * ,
-                unsigned int * ))__cil_tmp94) = & parport_intr_insn;
-    __cil_tmp95 = (unsigned long )s;
-    __cil_tmp96 = __cil_tmp95 + 192;
-    *((int (**)(struct comedi_device * , struct comedi_subdevice * , struct comedi_cmd * ))__cil_tmp96) = & parport_intr_cmdtest;
-    __cil_tmp97 = (unsigned long )s;
-    __cil_tmp98 = __cil_tmp97 + 184;
-    *((int (**)(struct comedi_device * , struct comedi_subdevice * ))__cil_tmp98) = & parport_intr_cmd;
-    __cil_tmp99 = (unsigned long )s;
-    __cil_tmp100 = __cil_tmp99 + 208;
-    *((int (**)(struct comedi_device * , struct comedi_subdevice * ))__cil_tmp100) = & parport_intr_cancel;
+                unsigned int * ))((void *)s + 168)) = & parport_intr_insn;
+    *((int (**)(struct comedi_device * , struct comedi_subdevice * , struct comedi_cmd * ))((void *)s + 192)) = & parport_intr_cmdtest;
+    *((int (**)(struct comedi_device * , struct comedi_subdevice * ))((void *)s + 184)) = & parport_intr_cmd;
+    *((int (**)(struct comedi_device * , struct comedi_subdevice * ))((void *)s + 208)) = & parport_intr_cancel;
   } else {
-    __cil_tmp101 = (unsigned long )s;
-    __cil_tmp102 = __cil_tmp101 + 8;
-    *((int *)__cil_tmp102) = 0;
+    *((int *)((void *)s + 8)) = 0;
   }
   {
-  __cil_tmp103 = (unsigned long )dev;
-  __cil_tmp104 = __cil_tmp103 + 16;
-  __cil_tmp105 = *((void **)__cil_tmp104);
+  __cil_tmp105 = *((void **)((void *)dev + 16));
   __cil_tmp106 = (struct parport_private *)__cil_tmp105;
   *((unsigned int *)__cil_tmp106) = 0U;
-  __cil_tmp107 = (unsigned long )dev;
-  __cil_tmp108 = __cil_tmp107 + 16;
-  __cil_tmp109 = *((void **)__cil_tmp108);
+  __cil_tmp109 = *((void **)((void *)dev + 16));
   __cil_tmp110 = (struct parport_private *)__cil_tmp109;
   __cil_tmp111 = *((unsigned int *)__cil_tmp110);
   __cil_tmp112 = (unsigned char )__cil_tmp111;
-  __cil_tmp113 = (unsigned long )dev;
-  __cil_tmp114 = __cil_tmp113 + 184;
-  __cil_tmp115 = *((unsigned long *)__cil_tmp114);
+  __cil_tmp115 = *((unsigned long *)((void *)dev + 184));
   __cil_tmp116 = (int )__cil_tmp115;
   outb(__cil_tmp112, __cil_tmp116);
-  __cil_tmp117 = (unsigned long )dev;
-  __cil_tmp118 = __cil_tmp117 + 16;
-  __cil_tmp119 = *((void **)__cil_tmp118);
+  __cil_tmp119 = *((void **)((void *)dev + 16));
   __cil_tmp120 = (struct parport_private *)__cil_tmp119;
-  __cil_tmp121 = (unsigned long )__cil_tmp120;
-  __cil_tmp122 = __cil_tmp121 + 4;
-  *((unsigned int *)__cil_tmp122) = 0U;
-  __cil_tmp123 = (unsigned long )dev;
-  __cil_tmp124 = __cil_tmp123 + 16;
-  __cil_tmp125 = *((void **)__cil_tmp124);
+  *((unsigned int *)((void *)__cil_tmp120 + 4)) = 0U;
+  __cil_tmp125 = *((void **)((void *)dev + 16));
   __cil_tmp126 = (struct parport_private *)__cil_tmp125;
-  __cil_tmp127 = (unsigned long )__cil_tmp126;
-  __cil_tmp128 = __cil_tmp127 + 4;
-  __cil_tmp129 = *((unsigned int *)__cil_tmp128);
+  __cil_tmp129 = *((unsigned int *)((void *)__cil_tmp126 + 4));
   __cil_tmp130 = (unsigned char )__cil_tmp129;
-  __cil_tmp131 = (unsigned long )dev;
-  __cil_tmp132 = __cil_tmp131 + 184;
-  __cil_tmp133 = *((unsigned long *)__cil_tmp132);
+  __cil_tmp133 = *((unsigned long *)((void *)dev + 184));
   __cil_tmp134 = __cil_tmp133 + 2UL;
   __cil_tmp135 = (int )__cil_tmp134;
   outb(__cil_tmp130, __cil_tmp135);
@@ -2892,37 +2264,22 @@ static int parport_attach(struct comedi_device *dev , struct comedi_devconfig *i
 }
 }
 static int parport_detach(struct comedi_device *dev )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   int __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   resource_size_t __cil_tmp10 ;
   resource_size_t __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   void *__cil_tmp17 ;
   {
   {
-  __cil_tmp2 = (unsigned long )dev;
-  __cil_tmp3 = __cil_tmp2 + 32;
-  __cil_tmp4 = *((int *)__cil_tmp3);
+  __cil_tmp4 = *((int *)((void *)dev + 32));
   printk("<6>comedi%d: parport: remove\n", __cil_tmp4);
   }
   {
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + 184;
-  if (*((unsigned long *)__cil_tmp6)) {
+  if (*((unsigned long *)((void *)dev + 184))) {
     {
-    __cil_tmp7 = (unsigned long )dev;
-    __cil_tmp8 = __cil_tmp7 + 184;
-    __cil_tmp9 = *((unsigned long *)__cil_tmp8);
+    __cil_tmp9 = *((unsigned long *)((void *)dev + 184));
     __cil_tmp10 = (resource_size_t )__cil_tmp9;
     __cil_tmp11 = (resource_size_t )3;
     __release_region(& ioport_resource, __cil_tmp10, __cil_tmp11);
@@ -2931,13 +2288,9 @@ static int parport_detach(struct comedi_device *dev )
   }
   }
   {
-  __cil_tmp12 = (unsigned long )dev;
-  __cil_tmp13 = __cil_tmp12 + 192;
-  if (*((unsigned int *)__cil_tmp13)) {
+  if (*((unsigned int *)((void *)dev + 192))) {
     {
-    __cil_tmp14 = (unsigned long )dev;
-    __cil_tmp15 = __cil_tmp14 + 192;
-    __cil_tmp16 = *((unsigned int *)__cil_tmp15);
+    __cil_tmp16 = *((unsigned int *)((void *)dev + 192));
     __cil_tmp17 = (void *)dev;
     free_irq(__cil_tmp16, __cil_tmp17);
     }

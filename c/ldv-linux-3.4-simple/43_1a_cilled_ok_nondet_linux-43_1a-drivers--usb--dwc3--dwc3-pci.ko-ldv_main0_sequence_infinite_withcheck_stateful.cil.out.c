@@ -2034,8 +2034,6 @@ extern int pci_set_power_state(struct pci_dev * , pci_power_t  ) ;
 extern int dma_supported(struct device * , u64  ) ;
 __inline static int dma_set_coherent_mask(struct device *dev , u64 mask ) 
 { int tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
 
   {
   {
@@ -2046,22 +2044,17 @@ __inline static int dma_set_coherent_mask(struct device *dev , u64 mask )
   } else {
 
   }
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 928;
-  *((u64 *)__cil_tmp5) = mask;
+  *((u64 *)((void *)dev + 928)) = mask;
   return (0);
 }
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2082,8 +2075,6 @@ static int dwc3_pci_probe(struct pci_dev *pci , struct pci_device_id  const  *id
   int devid ;
   struct device *dev ;
   void *tmp ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct dwc3_pci *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
@@ -2098,16 +2089,12 @@ static int dwc3_pci_probe(struct pci_dev *pci , struct pci_device_id  const  *id
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
@@ -2116,8 +2103,6 @@ static int dwc3_pci_probe(struct pci_dev *pci , struct pci_device_id  const  *id
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned int __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
@@ -2128,35 +2113,17 @@ static int dwc3_pci_probe(struct pci_dev *pci , struct pci_device_id  const  *id
   struct resource  const  *__cil_tmp53 ;
   struct device  const  *__cil_tmp54 ;
   void *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct device *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   u64 __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   struct device  const  *__cil_tmp76 ;
   void *__cil_tmp77 ;
 
   {
   {
   ret = -12;
-  __cil_tmp10 = (unsigned long )pci;
-  __cil_tmp11 = __cil_tmp10 + 144;
-  dev = (struct device *)__cil_tmp11;
+  dev = (struct device *)((void *)pci + 144);
   tmp = devm_kzalloc(dev, 16UL, 208U);
   glue = (struct dwc3_pci *)tmp;
   }
@@ -2223,18 +2190,14 @@ static int dwc3_pci_probe(struct pci_dev *pci , struct pci_device_id  const  *id
   __cil_tmp23 = (unsigned long )(res) + __cil_tmp22;
   __cil_tmp24 = 0 * 56UL;
   __cil_tmp25 = 1304 + __cil_tmp24;
-  __cil_tmp26 = (unsigned long )pci;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  *((resource_size_t *)__cil_tmp23) = *((resource_size_t *)__cil_tmp27);
+  *((resource_size_t *)__cil_tmp23) = *((resource_size_t *)((void *)pci + __cil_tmp25));
   __cil_tmp28 = 0 * 56UL;
   __cil_tmp29 = __cil_tmp28 + 8;
   __cil_tmp30 = (unsigned long )(res) + __cil_tmp29;
   __cil_tmp31 = 0 * 56UL;
   __cil_tmp32 = __cil_tmp31 + 8;
   __cil_tmp33 = 1304 + __cil_tmp32;
-  __cil_tmp34 = (unsigned long )pci;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  *((resource_size_t *)__cil_tmp30) = *((resource_size_t *)__cil_tmp35);
+  *((resource_size_t *)__cil_tmp30) = *((resource_size_t *)((void *)pci + __cil_tmp33));
   __cil_tmp36 = 0 * 56UL;
   __cil_tmp37 = __cil_tmp36 + 16;
   __cil_tmp38 = (unsigned long )(res) + __cil_tmp37;
@@ -2245,9 +2208,7 @@ static int dwc3_pci_probe(struct pci_dev *pci , struct pci_device_id  const  *id
   *((unsigned long *)__cil_tmp41) = 512UL;
   __cil_tmp42 = 1 * 56UL;
   __cil_tmp43 = (unsigned long )(res) + __cil_tmp42;
-  __cil_tmp44 = (unsigned long )pci;
-  __cil_tmp45 = __cil_tmp44 + 1300;
-  __cil_tmp46 = *((unsigned int *)__cil_tmp45);
+  __cil_tmp46 = *((unsigned int *)((void *)pci + 1300));
   *((resource_size_t *)__cil_tmp43) = (resource_size_t )__cil_tmp46;
   __cil_tmp47 = 1 * 56UL;
   __cil_tmp48 = __cil_tmp47 + 16;
@@ -2272,31 +2233,15 @@ static int dwc3_pci_probe(struct pci_dev *pci , struct pci_device_id  const  *id
   {
   __cil_tmp55 = (void *)glue;
   pci_set_drvdata(pci, __cil_tmp55);
-  __cil_tmp56 = (unsigned long )dwc3;
-  __cil_tmp57 = __cil_tmp56 + 16;
-  __cil_tmp58 = (struct device *)__cil_tmp57;
-  __cil_tmp59 = (unsigned long )dev;
-  __cil_tmp60 = __cil_tmp59 + 928;
-  __cil_tmp61 = *((u64 *)__cil_tmp60);
+  __cil_tmp58 = (struct device *)((void *)dwc3 + 16);
+  __cil_tmp61 = *((u64 *)((void *)dev + 928));
   dma_set_coherent_mask(__cil_tmp58, __cil_tmp61);
   __cil_tmp62 = 16 + 920;
-  __cil_tmp63 = (unsigned long )dwc3;
-  __cil_tmp64 = __cil_tmp63 + __cil_tmp62;
-  __cil_tmp65 = (unsigned long )dev;
-  __cil_tmp66 = __cil_tmp65 + 920;
-  *((u64 **)__cil_tmp64) = *((u64 **)__cil_tmp66);
+  *((u64 **)((void *)dwc3 + __cil_tmp62)) = *((u64 **)((void *)dev + 920));
   __cil_tmp67 = 16 + 936;
-  __cil_tmp68 = (unsigned long )dwc3;
-  __cil_tmp69 = __cil_tmp68 + __cil_tmp67;
-  __cil_tmp70 = (unsigned long )dev;
-  __cil_tmp71 = __cil_tmp70 + 936;
-  *((struct device_dma_parameters **)__cil_tmp69) = *((struct device_dma_parameters **)__cil_tmp71);
-  __cil_tmp72 = (unsigned long )dwc3;
-  __cil_tmp73 = __cil_tmp72 + 16;
-  *((struct device **)__cil_tmp73) = dev;
-  __cil_tmp74 = (unsigned long )glue;
-  __cil_tmp75 = __cil_tmp74 + 8;
-  *((struct platform_device **)__cil_tmp75) = dwc3;
+  *((struct device_dma_parameters **)((void *)dwc3 + __cil_tmp67)) = *((struct device_dma_parameters **)((void *)dev + 936));
+  *((struct device **)((void *)dwc3 + 16)) = dev;
+  *((struct platform_device **)((void *)glue + 8)) = dwc3;
   ret = platform_device_add(dwc3);
   }
   if (ret != 0) {

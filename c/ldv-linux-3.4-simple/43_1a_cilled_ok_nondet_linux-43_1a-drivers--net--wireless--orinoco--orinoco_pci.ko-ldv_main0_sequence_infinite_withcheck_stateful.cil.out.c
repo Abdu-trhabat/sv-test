@@ -5007,16 +5007,12 @@ extern int __pci_register_driver(struct pci_driver * , struct module * , char co
 extern void pci_unregister_driver(struct pci_driver * ) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -5024,15 +5020,12 @@ __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 }
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -5083,8 +5076,6 @@ extern irqreturn_t orinoco_interrupt(int  , void * ) ;
 static int orinoco_pci_suspend(struct pci_dev *pdev , int state_event9 ) 
 { struct orinoco_private *priv ;
   void *tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   void *__cil_tmp8 ;
 
@@ -5093,9 +5084,7 @@ static int orinoco_pci_suspend(struct pci_dev *pdev , int state_event9 )
   tmp = pci_get_drvdata(pdev);
   priv = (struct orinoco_private *)tmp;
   orinoco_down(priv);
-  __cil_tmp5 = (unsigned long )pdev;
-  __cil_tmp6 = __cil_tmp5 + 1300;
-  __cil_tmp7 = *((unsigned int *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned int *)((void *)pdev + 1300));
   __cil_tmp8 = (void *)priv;
   free_irq(__cil_tmp7, __cil_tmp8);
   pci_save_state(pdev);
@@ -5110,12 +5099,8 @@ static int orinoco_pci_resume(struct pci_dev *pdev )
   void *tmp ;
   struct net_device *dev ;
   int err ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   char (*__cil_tmp8)[16U] ;
   char *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   char (*__cil_tmp13)[16U] ;
   char const   *__cil_tmp14 ;
@@ -5127,9 +5112,7 @@ static int orinoco_pci_resume(struct pci_dev *pdev )
   {
   tmp = pci_get_drvdata(pdev);
   priv = (struct orinoco_private *)tmp;
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 1048;
-  dev = *((struct net_device **)__cil_tmp7);
+  dev = *((struct net_device **)((void *)priv + 1048));
   pci_set_power_state(pdev, 0);
   err = pci_enable_device(pdev);
   }
@@ -5145,9 +5128,7 @@ static int orinoco_pci_resume(struct pci_dev *pdev )
   }
   {
   pci_restore_state(pdev);
-  __cil_tmp10 = (unsigned long )pdev;
-  __cil_tmp11 = __cil_tmp10 + 1300;
-  __cil_tmp12 = *((unsigned int *)__cil_tmp11);
+  __cil_tmp12 = *((unsigned int *)((void *)pdev + 1300));
   __cil_tmp13 = (char (*)[16U])dev;
   __cil_tmp14 = (char const   *)__cil_tmp13;
   __cil_tmp15 = (void *)priv;
@@ -5182,19 +5163,13 @@ static int orinoco_pci_cor_reset(struct orinoco_private *priv )
   unsigned long __ms___1 ;
   unsigned long tmp___2 ;
   unsigned int tmp___3 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   u16 __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   void *__cil_tmp25 ;
   void *__cil_tmp26 ;
   u16 __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
   int __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
@@ -5213,13 +5188,9 @@ static int orinoco_pci_cor_reset(struct orinoco_private *priv )
 
   {
   {
-  __cil_tmp17 = (unsigned long )priv;
-  __cil_tmp18 = __cil_tmp17 + 1272;
-  hw = (struct hermes *)__cil_tmp18;
+  hw = (struct hermes *)((void *)priv + 1272);
   __cil_tmp19 = (u16 )128;
-  __cil_tmp20 = (unsigned long )hw;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  __cil_tmp22 = *((int *)__cil_tmp21);
+  __cil_tmp22 = *((int *)((void *)hw + 8));
   __cil_tmp23 = 38 << __cil_tmp22;
   __cil_tmp24 = (unsigned long )__cil_tmp23;
   __cil_tmp25 = *((void **)hw);
@@ -5243,9 +5214,7 @@ static int orinoco_pci_cor_reset(struct orinoco_private *priv )
   ldv_40237: 
   {
   __cil_tmp27 = (u16 )0;
-  __cil_tmp28 = (unsigned long )hw;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  __cil_tmp30 = *((int *)__cil_tmp29);
+  __cil_tmp30 = *((int *)((void *)hw + 8));
   __cil_tmp31 = 38 << __cil_tmp30;
   __cil_tmp32 = (unsigned long )__cil_tmp31;
   __cil_tmp33 = *((void **)hw);
@@ -5345,28 +5314,18 @@ static int orinoco_pci_init_one(struct pci_dev *pdev , struct pci_device_id  con
   void *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   int (*__cil_tmp13)(struct orinoco_private * , int  ) ;
   struct orinoco_private *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   void *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct hermes *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   void *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   struct net_device_ops  const  *__cil_tmp28 ;
   void *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
   void *__cil_tmp33 ;
   void *__cil_tmp34 ;
@@ -5412,9 +5371,7 @@ static int orinoco_pci_init_one(struct pci_dev *pdev , struct pci_device_id  con
   }
   }
   {
-  __cil_tmp10 = (unsigned long )pdev;
-  __cil_tmp11 = __cil_tmp10 + 144;
-  __cil_tmp12 = (struct device *)__cil_tmp11;
+  __cil_tmp12 = (struct device *)((void *)pdev + 144);
   __cil_tmp13 = (int (*)(struct orinoco_private * , int  ))0;
   priv = alloc_orinocodev(16, __cil_tmp12, & orinoco_pci_cor_reset, __cil_tmp13);
   }
@@ -5435,21 +5392,15 @@ static int orinoco_pci_init_one(struct pci_dev *pdev , struct pci_device_id  con
   {
   __cil_tmp17 = *((void **)priv);
   card = (struct orinoco_pci_card *)__cil_tmp17;
-  __cil_tmp18 = (unsigned long )priv;
-  __cil_tmp19 = __cil_tmp18 + 1272;
-  __cil_tmp20 = (struct hermes *)__cil_tmp19;
+  __cil_tmp20 = (struct hermes *)((void *)priv + 1272);
   hermes_struct_init(__cil_tmp20, hermes_io, 1);
-  __cil_tmp21 = (unsigned long )pdev;
-  __cil_tmp22 = __cil_tmp21 + 1300;
-  __cil_tmp23 = *((unsigned int *)__cil_tmp22);
+  __cil_tmp23 = *((unsigned int *)((void *)pdev + 1300));
   __cil_tmp24 = (void *)priv;
   err = request_irq(__cil_tmp23, & orinoco_interrupt, 128UL, "orinoco_pci", __cil_tmp24);
   }
   if (err != 0) {
     {
-    __cil_tmp25 = (unsigned long )pdev;
-    __cil_tmp26 = __cil_tmp25 + 1300;
-    __cil_tmp27 = *((unsigned int *)__cil_tmp26);
+    __cil_tmp27 = *((unsigned int *)((void *)pdev + 1300));
     printk("<3>orinoco_pci: Cannot allocate IRQ %d\n", __cil_tmp27);
     err = -16;
     }
@@ -5498,9 +5449,7 @@ static int orinoco_pci_init_one(struct pci_dev *pdev , struct pci_device_id  con
   return (0);
   fail: 
   {
-  __cil_tmp30 = (unsigned long )pdev;
-  __cil_tmp31 = __cil_tmp30 + 1300;
-  __cil_tmp32 = *((unsigned int *)__cil_tmp31);
+  __cil_tmp32 = *((unsigned int *)((void *)pdev + 1300));
   __cil_tmp33 = (void *)priv;
   free_irq(__cil_tmp32, __cil_tmp33);
   }
@@ -5528,13 +5477,9 @@ static int orinoco_pci_init_one(struct pci_dev *pdev , struct pci_device_id  con
 static void orinoco_pci_remove_one(struct pci_dev *pdev ) 
 { struct orinoco_private *priv ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
   void *__cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
 
   {
@@ -5542,17 +5487,13 @@ static void orinoco_pci_remove_one(struct pci_dev *pdev )
   tmp = pci_get_drvdata(pdev);
   priv = (struct orinoco_private *)tmp;
   orinoco_if_del(priv);
-  __cil_tmp4 = (unsigned long )pdev;
-  __cil_tmp5 = __cil_tmp4 + 1300;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned int *)((void *)pdev + 1300));
   __cil_tmp7 = (void *)priv;
   free_irq(__cil_tmp6, __cil_tmp7);
   __cil_tmp8 = (void *)0;
   pci_set_drvdata(pdev, __cil_tmp8);
   free_orinocodev(priv);
-  __cil_tmp9 = (unsigned long )priv;
-  __cil_tmp10 = __cil_tmp9 + 1272;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)priv + 1272));
   pci_iounmap(pdev, __cil_tmp11);
   pci_release_regions(pdev);
   pci_disable_device(pdev);

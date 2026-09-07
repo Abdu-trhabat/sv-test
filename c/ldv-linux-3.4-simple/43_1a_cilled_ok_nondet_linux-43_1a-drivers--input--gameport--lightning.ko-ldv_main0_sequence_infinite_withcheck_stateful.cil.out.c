@@ -844,16 +844,13 @@ __inline static void gameport_free_port(struct gameport *gameport )
 }
 }
 __inline static void gameport_set_name(struct gameport *gameport , char const   *name ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   char (*__cil_tmp5)[32U] ;
   char *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )gameport;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = (char (*)[32U])__cil_tmp4;
+  __cil_tmp5 = (char (*)[32U])((void *)gameport + 8);
   __cil_tmp6 = (char *)__cil_tmp5;
   strlcpy(__cil_tmp6, name, 32UL);
   }
@@ -907,8 +904,6 @@ static int l4_cooked_read(struct gameport *gameport , int *axes , int *buttons )
   int tmp___3 ;
   unsigned char tmp___4 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned char __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
@@ -917,8 +912,6 @@ static int l4_cooked_read(struct gameport *gameport , int *axes , int *buttons )
   int __cil_tmp22 ;
   unsigned char __cil_tmp23 ;
   int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned char __cil_tmp27 ;
   int __cil_tmp28 ;
   int __cil_tmp29 ;
@@ -942,9 +935,7 @@ static int l4_cooked_read(struct gameport *gameport , int *axes , int *buttons )
   l4 = (struct l4 *)__cil_tmp14;
   result = -1;
   outb((unsigned char)164, 513);
-  __cil_tmp15 = (unsigned long )l4;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  __cil_tmp17 = *((unsigned char *)__cil_tmp16);
+  __cil_tmp17 = *((unsigned char *)((void *)l4 + 8));
   __cil_tmp18 = (int )__cil_tmp17;
   __cil_tmp19 = __cil_tmp18 >> 2;
   __cil_tmp20 = (unsigned int )__cil_tmp19;
@@ -963,9 +954,7 @@ static int l4_cooked_read(struct gameport *gameport , int *axes , int *buttons )
   }
   }
   {
-  __cil_tmp25 = (unsigned long )l4;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  __cil_tmp27 = *((unsigned char *)__cil_tmp26);
+  __cil_tmp27 = *((unsigned char *)((void *)l4 + 8));
   __cil_tmp28 = (int )__cil_tmp27;
   __cil_tmp29 = __cil_tmp28 & 3;
   __cil_tmp30 = (unsigned char )__cil_tmp29;
@@ -1057,8 +1046,6 @@ static int l4_cooked_read(struct gameport *gameport , int *axes , int *buttons )
 static int l4_open(struct gameport *gameport , int mode ) 
 { struct l4 *l4 ;
   void *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned char __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
 
@@ -1066,9 +1053,7 @@ static int l4_open(struct gameport *gameport , int mode )
   __cil_tmp4 = *((void **)gameport);
   l4 = (struct l4 *)__cil_tmp4;
   {
-  __cil_tmp5 = (unsigned long )l4;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((unsigned char *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned char *)((void *)l4 + 8));
   __cil_tmp8 = (unsigned int )__cil_tmp7;
   if (__cil_tmp8 != 0U) {
     if (mode != 2) {
@@ -1335,8 +1320,6 @@ static int l4_calibrate(struct gameport *gameport , int *axes , int *max )
   int tmp___0 ;
   int tmp___1 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned char __cil_tmp14 ;
   int __cil_tmp15 ;
   int *__cil_tmp16 ;
@@ -1372,8 +1355,6 @@ static int l4_calibrate(struct gameport *gameport , int *axes , int *max )
   int *__cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned char __cil_tmp51 ;
   int __cil_tmp52 ;
   int *__cil_tmp53 ;
@@ -1382,9 +1363,7 @@ static int l4_calibrate(struct gameport *gameport , int *axes , int *max )
   {
   __cil_tmp11 = *((void **)gameport);
   l4 = (struct l4 *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )l4;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = *((unsigned char *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned char *)((void *)l4 + 8));
   __cil_tmp15 = (int )__cil_tmp14;
   __cil_tmp16 = (int *)(& cal);
   tmp = l4_getcal(__cil_tmp15, __cil_tmp16);
@@ -1464,9 +1443,7 @@ static int l4_calibrate(struct gameport *gameport , int *axes , int *max )
   }
   ldv_15127: 
   {
-  __cil_tmp49 = (unsigned long )l4;
-  __cil_tmp50 = __cil_tmp49 + 8;
-  __cil_tmp51 = *((unsigned char *)__cil_tmp50);
+  __cil_tmp51 = *((unsigned char *)((void *)l4 + 8));
   __cil_tmp52 = (int )__cil_tmp51;
   __cil_tmp53 = (int *)(& cal);
   tmp___1 = l4_setcal(__cil_tmp52, __cil_tmp53);
@@ -1492,16 +1469,6 @@ static int l4_create_ports(int card_no )
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   struct gameport *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
 
   {
   i = 0;
@@ -1546,26 +1513,16 @@ static int l4_create_ports(int card_no )
   }
   }
   {
-  __cil_tmp14 = (unsigned long )l4;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  *((unsigned char *)__cil_tmp15) = (unsigned char )idx;
+  *((unsigned char *)((void *)l4 + 8)) = (unsigned char )idx;
   *((void **)port) = (void *)l4;
-  __cil_tmp16 = (unsigned long )port;
-  __cil_tmp17 = __cil_tmp16 + 120;
-  *((int (**)(struct gameport * , int  ))__cil_tmp17) = & l4_open;
-  __cil_tmp18 = (unsigned long )port;
-  __cil_tmp19 = __cil_tmp18 + 104;
-  *((int (**)(struct gameport * , int * , int * ))__cil_tmp19) = & l4_cooked_read;
-  __cil_tmp20 = (unsigned long )port;
-  __cil_tmp21 = __cil_tmp20 + 112;
-  *((int (**)(struct gameport * , int * , int * ))__cil_tmp21) = & l4_calibrate;
+  *((int (**)(struct gameport * , int  ))((void *)port + 120)) = & l4_open;
+  *((int (**)(struct gameport * , int * , int * ))((void *)port + 104)) = & l4_cooked_read;
+  *((int (**)(struct gameport * , int * , int * ))((void *)port + 112)) = & l4_calibrate;
   gameport_set_name(port, "PDPI Lightning 4");
   gameport_set_phys(port, "isa%04x/gameport%d", 513, idx);
   }
   if (idx == 0) {
-    __cil_tmp22 = (unsigned long )port;
-    __cil_tmp23 = __cil_tmp22 + 72;
-    *((int *)__cil_tmp23) = 513;
+    *((int *)((void *)port + 72)) = 513;
   } else {
 
   }
@@ -1616,8 +1573,6 @@ static int l4_add_card(int card_no )
   int __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   struct l4 *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned char __cil_tmp39 ;
   int __cil_tmp40 ;
   int *__cil_tmp41 ;
@@ -1739,9 +1694,7 @@ static int l4_add_card(int card_no )
   l4 = __cil_tmp36 + __cil_tmp35;
   if (rev > 40) {
     {
-    __cil_tmp37 = (unsigned long )l4;
-    __cil_tmp38 = __cil_tmp37 + 8;
-    __cil_tmp39 = *((unsigned char *)__cil_tmp38);
+    __cil_tmp39 = *((unsigned char *)((void *)l4 + 8));
     __cil_tmp40 = (int )__cil_tmp39;
     __cil_tmp41 = (int *)(& cal);
     l4_setcal(__cil_tmp40, __cil_tmp41);

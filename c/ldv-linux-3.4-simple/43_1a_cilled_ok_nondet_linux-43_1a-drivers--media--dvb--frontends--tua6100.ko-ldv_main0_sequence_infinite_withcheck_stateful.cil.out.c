@@ -3199,23 +3199,16 @@ struct page *ldv_check_alloc_flags_and_return_some_page(gfp_t flags ) ;
 extern int i2c_transfer(struct i2c_adapter * , struct i2c_msg * , int  ) ;
 struct dvb_frontend *tua6100_attach(struct dvb_frontend *fe , int addr , struct i2c_adapter *i2c ) ;
 static int tua6100_release(struct dvb_frontend *fe ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   void *__cil_tmp4 ;
   void const   *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )fe;
-  __cil_tmp3 = __cil_tmp2 + 768;
-  __cil_tmp4 = *((void **)__cil_tmp3);
+  __cil_tmp4 = *((void **)((void *)fe + 768));
   __cil_tmp5 = (void const   *)__cil_tmp4;
   kfree(__cil_tmp5);
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 768;
-  *((void **)__cil_tmp7) = (void *)0;
+  *((void **)((void *)fe + 768)) = (void *)0;
   }
   return (0);
 }
@@ -3226,8 +3219,6 @@ static int tua6100_sleep(struct dvb_frontend *fe )
   u8 reg0[2U] ;
   struct i2c_msg msg ;
   int tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
@@ -3235,39 +3226,24 @@ static int tua6100_sleep(struct dvb_frontend *fe )
   unsigned long __cil_tmp13 ;
   struct i2c_msg *__cil_tmp14 ;
   int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int (*__cil_tmp19)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   int (*__cil_tmp24)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int (*__cil_tmp29)(struct dvb_frontend * , int  ) ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct i2c_adapter *__cil_tmp32 ;
   int (*__cil_tmp33)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   int (*__cil_tmp38)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   int (*__cil_tmp43)(struct dvb_frontend * , int  ) ;
 
   {
-  __cil_tmp7 = (unsigned long )fe;
-  __cil_tmp8 = __cil_tmp7 + 768;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)fe + 768));
   priv = (struct tua6100_priv *)__cil_tmp9;
   __cil_tmp10 = 0 * 1UL;
   __cil_tmp11 = (unsigned long )(reg0) + __cil_tmp10;
@@ -3278,26 +3254,19 @@ static int tua6100_sleep(struct dvb_frontend *fe )
   __cil_tmp14 = & msg;
   __cil_tmp15 = *((int *)priv);
   *((__u16 *)__cil_tmp14) = (unsigned short )__cil_tmp15;
-  __cil_tmp16 = (unsigned long )(& msg) + 2;
-  *((__u16 *)__cil_tmp16) = (__u16 )0U;
-  __cil_tmp17 = (unsigned long )(& msg) + 4;
-  *((__u16 *)__cil_tmp17) = (__u16 )2U;
-  __cil_tmp18 = (unsigned long )(& msg) + 8;
-  *((__u8 **)__cil_tmp18) = (__u8 *)(& reg0);
+  *((__u16 *)((void *)(&msg) + 2)) = (__u16 )0U;
+  *((__u16 *)((void *)(&msg) + 4)) = (__u16 )2U;
+  *((__u8 **)((void *)(&msg) + 8)) = (__u8 *)(& reg0);
   {
   __cil_tmp19 = (int (*)(struct dvb_frontend * , int  ))0;
   __cil_tmp20 = (unsigned long )__cil_tmp19;
   __cil_tmp21 = 0 + 360;
-  __cil_tmp22 = (unsigned long )fe;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  __cil_tmp24 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp23);
+  __cil_tmp24 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp21));
   __cil_tmp25 = (unsigned long )__cil_tmp24;
   if (__cil_tmp25 != __cil_tmp20) {
     {
     __cil_tmp26 = 0 + 360;
-    __cil_tmp27 = (unsigned long )fe;
-    __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-    __cil_tmp29 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp28);
+    __cil_tmp29 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp26));
     (*__cil_tmp29)(fe, 1);
     }
   } else {
@@ -3305,9 +3274,7 @@ static int tua6100_sleep(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp30 = (unsigned long )priv;
-  __cil_tmp31 = __cil_tmp30 + 8;
-  __cil_tmp32 = *((struct i2c_adapter **)__cil_tmp31);
+  __cil_tmp32 = *((struct i2c_adapter **)((void *)priv + 8));
   ret = i2c_transfer(__cil_tmp32, & msg, 1);
   }
   if (ret != 1) {
@@ -3321,16 +3288,12 @@ static int tua6100_sleep(struct dvb_frontend *fe )
   __cil_tmp33 = (int (*)(struct dvb_frontend * , int  ))0;
   __cil_tmp34 = (unsigned long )__cil_tmp33;
   __cil_tmp35 = 0 + 360;
-  __cil_tmp36 = (unsigned long )fe;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  __cil_tmp38 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp37);
+  __cil_tmp38 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp35));
   __cil_tmp39 = (unsigned long )__cil_tmp38;
   if (__cil_tmp39 != __cil_tmp34) {
     {
     __cil_tmp40 = 0 + 360;
-    __cil_tmp41 = (unsigned long )fe;
-    __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-    __cil_tmp43 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp42);
+    __cil_tmp43 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp40));
     (*__cil_tmp43)(fe, 0);
     }
   } else {
@@ -3359,10 +3322,6 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   int tmp ;
   int tmp___0 ;
   int tmp___1 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
@@ -3384,35 +3343,20 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   unsigned long __cil_tmp37 ;
   struct i2c_msg *__cil_tmp38 ;
   int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct i2c_msg *__cil_tmp43 ;
   int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct i2c_msg *__cil_tmp48 ;
   int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   u32 __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   u32 __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   u32 __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
@@ -3425,8 +3369,6 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   u32 __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
@@ -3435,8 +3377,6 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   u8 __cil_tmp88 ;
   unsigned int __cil_tmp89 ;
   unsigned int __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   u32 __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
   unsigned long __cil_tmp95 ;
@@ -3452,8 +3392,6 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   u8 __cil_tmp105 ;
   unsigned int __cil_tmp106 ;
   unsigned int __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
   u32 __cil_tmp110 ;
   u32 __cil_tmp111 ;
   unsigned long __cil_tmp112 ;
@@ -3475,8 +3413,6 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   u8 __cil_tmp128 ;
   int __cil_tmp129 ;
   int __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
   u32 __cil_tmp133 ;
   unsigned long __cil_tmp134 ;
   unsigned long __cil_tmp135 ;
@@ -3495,64 +3431,38 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   int (*__cil_tmp148)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp149 ;
   unsigned long __cil_tmp150 ;
-  unsigned long __cil_tmp151 ;
-  unsigned long __cil_tmp152 ;
   int (*__cil_tmp153)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp154 ;
   unsigned long __cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
-  unsigned long __cil_tmp157 ;
   int (*__cil_tmp158)(struct dvb_frontend * , int  ) ;
-  unsigned long __cil_tmp159 ;
-  unsigned long __cil_tmp160 ;
   struct i2c_adapter *__cil_tmp161 ;
   int (*__cil_tmp162)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp163 ;
   unsigned long __cil_tmp164 ;
-  unsigned long __cil_tmp165 ;
-  unsigned long __cil_tmp166 ;
   int (*__cil_tmp167)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp168 ;
   unsigned long __cil_tmp169 ;
-  unsigned long __cil_tmp170 ;
-  unsigned long __cil_tmp171 ;
   int (*__cil_tmp172)(struct dvb_frontend * , int  ) ;
-  unsigned long __cil_tmp173 ;
-  unsigned long __cil_tmp174 ;
   struct i2c_adapter *__cil_tmp175 ;
   int (*__cil_tmp176)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp177 ;
   unsigned long __cil_tmp178 ;
-  unsigned long __cil_tmp179 ;
-  unsigned long __cil_tmp180 ;
   int (*__cil_tmp181)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp182 ;
   unsigned long __cil_tmp183 ;
-  unsigned long __cil_tmp184 ;
-  unsigned long __cil_tmp185 ;
   int (*__cil_tmp186)(struct dvb_frontend * , int  ) ;
-  unsigned long __cil_tmp187 ;
-  unsigned long __cil_tmp188 ;
   struct i2c_adapter *__cil_tmp189 ;
   int (*__cil_tmp190)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp191 ;
   unsigned long __cil_tmp192 ;
-  unsigned long __cil_tmp193 ;
-  unsigned long __cil_tmp194 ;
   int (*__cil_tmp195)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp196 ;
   unsigned long __cil_tmp197 ;
-  unsigned long __cil_tmp198 ;
-  unsigned long __cil_tmp199 ;
   int (*__cil_tmp200)(struct dvb_frontend * , int  ) ;
 
   {
-  __cil_tmp15 = (unsigned long )fe;
-  __cil_tmp16 = __cil_tmp15 + 800;
-  c = (struct dtv_frontend_properties *)__cil_tmp16;
-  __cil_tmp17 = (unsigned long )fe;
-  __cil_tmp18 = __cil_tmp17 + 768;
-  __cil_tmp19 = *((void **)__cil_tmp18);
+  c = (struct dtv_frontend_properties *)((void *)fe + 800);
+  __cil_tmp19 = *((void **)((void *)fe + 768));
   priv = (struct tua6100_priv *)__cil_tmp19;
   __cil_tmp20 = 0 * 1UL;
   __cil_tmp21 = (unsigned long )(reg0) + __cil_tmp20;
@@ -3584,34 +3494,23 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   __cil_tmp38 = & msg0;
   __cil_tmp39 = *((int *)priv);
   *((__u16 *)__cil_tmp38) = (unsigned short )__cil_tmp39;
-  __cil_tmp40 = (unsigned long )(& msg0) + 2;
-  *((__u16 *)__cil_tmp40) = (__u16 )0U;
-  __cil_tmp41 = (unsigned long )(& msg0) + 4;
-  *((__u16 *)__cil_tmp41) = (__u16 )2U;
-  __cil_tmp42 = (unsigned long )(& msg0) + 8;
-  *((__u8 **)__cil_tmp42) = (__u8 *)(& reg0);
+  *((__u16 *)((void *)(&msg0) + 2)) = (__u16 )0U;
+  *((__u16 *)((void *)(&msg0) + 4)) = (__u16 )2U;
+  *((__u8 **)((void *)(&msg0) + 8)) = (__u8 *)(& reg0);
   __cil_tmp43 = & msg1;
   __cil_tmp44 = *((int *)priv);
   *((__u16 *)__cil_tmp43) = (unsigned short )__cil_tmp44;
-  __cil_tmp45 = (unsigned long )(& msg1) + 2;
-  *((__u16 *)__cil_tmp45) = (__u16 )0U;
-  __cil_tmp46 = (unsigned long )(& msg1) + 4;
-  *((__u16 *)__cil_tmp46) = (__u16 )4U;
-  __cil_tmp47 = (unsigned long )(& msg1) + 8;
-  *((__u8 **)__cil_tmp47) = (__u8 *)(& reg1);
+  *((__u16 *)((void *)(&msg1) + 2)) = (__u16 )0U;
+  *((__u16 *)((void *)(&msg1) + 4)) = (__u16 )4U;
+  *((__u8 **)((void *)(&msg1) + 8)) = (__u8 *)(& reg1);
   __cil_tmp48 = & msg2;
   __cil_tmp49 = *((int *)priv);
   *((__u16 *)__cil_tmp48) = (unsigned short )__cil_tmp49;
-  __cil_tmp50 = (unsigned long )(& msg2) + 2;
-  *((__u16 *)__cil_tmp50) = (__u16 )0U;
-  __cil_tmp51 = (unsigned long )(& msg2) + 4;
-  *((__u16 *)__cil_tmp51) = (__u16 )3U;
-  __cil_tmp52 = (unsigned long )(& msg2) + 8;
-  *((__u8 **)__cil_tmp52) = (__u8 *)(& reg2);
+  *((__u16 *)((void *)(&msg2) + 2)) = (__u16 )0U;
+  *((__u16 *)((void *)(&msg2) + 4)) = (__u16 )3U;
+  *((__u8 **)((void *)(&msg2) + 8)) = (__u8 *)(& reg2);
   {
-  __cil_tmp53 = (unsigned long )c;
-  __cil_tmp54 = __cil_tmp53 + 4;
-  __cil_tmp55 = *((u32 *)__cil_tmp54);
+  __cil_tmp55 = *((u32 *)((void *)c + 4));
   if (__cil_tmp55 <= 1999999U) {
     __cil_tmp56 = 1 * 1UL;
     __cil_tmp57 = (unsigned long )(reg0) + __cil_tmp56;
@@ -3623,9 +3522,7 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp60 = (unsigned long )c;
-  __cil_tmp61 = __cil_tmp60 + 4;
-  __cil_tmp62 = *((u32 *)__cil_tmp61);
+  __cil_tmp62 = *((u32 *)((void *)c + 4));
   if (__cil_tmp62 <= 1629999U) {
     __cil_tmp63 = 1 * 1UL;
     __cil_tmp64 = (unsigned long )(reg1) + __cil_tmp63;
@@ -3637,9 +3534,7 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp67 = (unsigned long )c;
-  __cil_tmp68 = __cil_tmp67 + 4;
-  __cil_tmp69 = *((u32 *)__cil_tmp68);
+  __cil_tmp69 = *((u32 *)((void *)c + 4));
   if (__cil_tmp69 > 1524999U) {
     __cil_tmp70 = 1 * 1UL;
     __cil_tmp71 = (unsigned long )(reg1) + __cil_tmp70;
@@ -3660,9 +3555,7 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   __cil_tmp80 = (unsigned long )(reg2) + __cil_tmp79;
   *((u8 *)__cil_tmp80) = (u8 )4U;
   {
-  __cil_tmp81 = (unsigned long )c;
-  __cil_tmp82 = __cil_tmp81 + 4;
-  __cil_tmp83 = *((u32 *)__cil_tmp82);
+  __cil_tmp83 = *((u32 *)((void *)c + 4));
   if (__cil_tmp83 <= 1454999U) {
     __cil_tmp84 = 1 * 1UL;
     __cil_tmp85 = (unsigned long )(reg2) + __cil_tmp84;
@@ -3674,9 +3567,7 @@ static int tua6100_set_params(struct dvb_frontend *fe )
     *((u8 *)__cil_tmp85) = (u8 )__cil_tmp90;
   } else {
     {
-    __cil_tmp91 = (unsigned long )c;
-    __cil_tmp92 = __cil_tmp91 + 4;
-    __cil_tmp93 = *((u32 *)__cil_tmp92);
+    __cil_tmp93 = *((u32 *)((void *)c + 4));
     if (__cil_tmp93 <= 1629999U) {
       __cil_tmp94 = 1 * 1UL;
       __cil_tmp95 = (unsigned long )(reg2) + __cil_tmp94;
@@ -3699,9 +3590,7 @@ static int tua6100_set_params(struct dvb_frontend *fe )
     }
   }
   }
-  __cil_tmp108 = (unsigned long )c;
-  __cil_tmp109 = __cil_tmp108 + 4;
-  __cil_tmp110 = *((u32 *)__cil_tmp109);
+  __cil_tmp110 = *((u32 *)((void *)c + 4));
   __cil_tmp111 = __cil_tmp110 * 4U;
   prediv = __cil_tmp111 / 4000U;
   div = prediv / 32U;
@@ -3727,10 +3616,8 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   __cil_tmp129 = (int )__cil_tmp128;
   __cil_tmp130 = __cil_tmp129 << 7U;
   *((u8 *)__cil_tmp127) = (u8 )__cil_tmp130;
-  __cil_tmp131 = (unsigned long )priv;
-  __cil_tmp132 = __cil_tmp131 + 16;
   __cil_tmp133 = div * 128000U;
-  *((u32 *)__cil_tmp132) = __cil_tmp133 / 4U;
+  *((u32 *)((void *)priv + 16)) = __cil_tmp133 / 4U;
   __cil_tmp134 = 3 * 1UL;
   __cil_tmp135 = (unsigned long )(reg1) + __cil_tmp134;
   __cil_tmp136 = (u8 )div;
@@ -3750,16 +3637,12 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   __cil_tmp148 = (int (*)(struct dvb_frontend * , int  ))0;
   __cil_tmp149 = (unsigned long )__cil_tmp148;
   __cil_tmp150 = 0 + 360;
-  __cil_tmp151 = (unsigned long )fe;
-  __cil_tmp152 = __cil_tmp151 + __cil_tmp150;
-  __cil_tmp153 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp152);
+  __cil_tmp153 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp150));
   __cil_tmp154 = (unsigned long )__cil_tmp153;
   if (__cil_tmp154 != __cil_tmp149) {
     {
     __cil_tmp155 = 0 + 360;
-    __cil_tmp156 = (unsigned long )fe;
-    __cil_tmp157 = __cil_tmp156 + __cil_tmp155;
-    __cil_tmp158 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp157);
+    __cil_tmp158 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp155));
     (*__cil_tmp158)(fe, 1);
     }
   } else {
@@ -3767,9 +3650,7 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp159 = (unsigned long )priv;
-  __cil_tmp160 = __cil_tmp159 + 8;
-  __cil_tmp161 = *((struct i2c_adapter **)__cil_tmp160);
+  __cil_tmp161 = *((struct i2c_adapter **)((void *)priv + 8));
   tmp = i2c_transfer(__cil_tmp161, & msg0, 1);
   }
   if (tmp != 1) {
@@ -3781,16 +3662,12 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   __cil_tmp162 = (int (*)(struct dvb_frontend * , int  ))0;
   __cil_tmp163 = (unsigned long )__cil_tmp162;
   __cil_tmp164 = 0 + 360;
-  __cil_tmp165 = (unsigned long )fe;
-  __cil_tmp166 = __cil_tmp165 + __cil_tmp164;
-  __cil_tmp167 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp166);
+  __cil_tmp167 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp164));
   __cil_tmp168 = (unsigned long )__cil_tmp167;
   if (__cil_tmp168 != __cil_tmp163) {
     {
     __cil_tmp169 = 0 + 360;
-    __cil_tmp170 = (unsigned long )fe;
-    __cil_tmp171 = __cil_tmp170 + __cil_tmp169;
-    __cil_tmp172 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp171);
+    __cil_tmp172 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp169));
     (*__cil_tmp172)(fe, 1);
     }
   } else {
@@ -3798,9 +3675,7 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp173 = (unsigned long )priv;
-  __cil_tmp174 = __cil_tmp173 + 8;
-  __cil_tmp175 = *((struct i2c_adapter **)__cil_tmp174);
+  __cil_tmp175 = *((struct i2c_adapter **)((void *)priv + 8));
   tmp___0 = i2c_transfer(__cil_tmp175, & msg2, 1);
   }
   if (tmp___0 != 1) {
@@ -3812,16 +3687,12 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   __cil_tmp176 = (int (*)(struct dvb_frontend * , int  ))0;
   __cil_tmp177 = (unsigned long )__cil_tmp176;
   __cil_tmp178 = 0 + 360;
-  __cil_tmp179 = (unsigned long )fe;
-  __cil_tmp180 = __cil_tmp179 + __cil_tmp178;
-  __cil_tmp181 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp180);
+  __cil_tmp181 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp178));
   __cil_tmp182 = (unsigned long )__cil_tmp181;
   if (__cil_tmp182 != __cil_tmp177) {
     {
     __cil_tmp183 = 0 + 360;
-    __cil_tmp184 = (unsigned long )fe;
-    __cil_tmp185 = __cil_tmp184 + __cil_tmp183;
-    __cil_tmp186 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp185);
+    __cil_tmp186 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp183));
     (*__cil_tmp186)(fe, 1);
     }
   } else {
@@ -3829,9 +3700,7 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp187 = (unsigned long )priv;
-  __cil_tmp188 = __cil_tmp187 + 8;
-  __cil_tmp189 = *((struct i2c_adapter **)__cil_tmp188);
+  __cil_tmp189 = *((struct i2c_adapter **)((void *)priv + 8));
   tmp___1 = i2c_transfer(__cil_tmp189, & msg1, 1);
   }
   if (tmp___1 != 1) {
@@ -3843,16 +3712,12 @@ static int tua6100_set_params(struct dvb_frontend *fe )
   __cil_tmp190 = (int (*)(struct dvb_frontend * , int  ))0;
   __cil_tmp191 = (unsigned long )__cil_tmp190;
   __cil_tmp192 = 0 + 360;
-  __cil_tmp193 = (unsigned long )fe;
-  __cil_tmp194 = __cil_tmp193 + __cil_tmp192;
-  __cil_tmp195 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp194);
+  __cil_tmp195 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp192));
   __cil_tmp196 = (unsigned long )__cil_tmp195;
   if (__cil_tmp196 != __cil_tmp191) {
     {
     __cil_tmp197 = 0 + 360;
-    __cil_tmp198 = (unsigned long )fe;
-    __cil_tmp199 = __cil_tmp198 + __cil_tmp197;
-    __cil_tmp200 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp199);
+    __cil_tmp200 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp197));
     (*__cil_tmp200)(fe, 0);
     }
   } else {
@@ -3864,20 +3729,12 @@ static int tua6100_set_params(struct dvb_frontend *fe )
 }
 static int tua6100_get_frequency(struct dvb_frontend *fe , u32 *frequency ) 
 { struct tua6100_priv *priv ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
 
   {
-  __cil_tmp4 = (unsigned long )fe;
-  __cil_tmp5 = __cil_tmp4 + 768;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)fe + 768));
   priv = (struct tua6100_priv *)__cil_tmp6;
-  __cil_tmp7 = (unsigned long )priv;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  *frequency = *((u32 *)__cil_tmp8);
+  *frequency = *((u32 *)((void *)priv + 16));
   return (0);
 }
 }
@@ -3934,45 +3791,29 @@ struct dvb_frontend *tua6100_attach(struct dvb_frontend *fe , int addr , struct 
   int (*__cil_tmp38)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   int (*__cil_tmp43)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   int (*__cil_tmp48)(struct dvb_frontend * , int  ) ;
   struct i2c_msg *__cil_tmp49 ;
   int (*__cil_tmp50)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   int (*__cil_tmp55)(struct dvb_frontend * , int  ) ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   int (*__cil_tmp60)(struct dvb_frontend * , int  ) ;
   struct tua6100_priv *__cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct dvb_tuner_ops *__cil_tmp69 ;
   void *__cil_tmp70 ;
   void const   *__cil_tmp71 ;
   unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   struct dvb_tuner_ops *__cil_tmp75 ;
   void *__cil_tmp76 ;
   void const   *__cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
 
   {
   priv = (struct tua6100_priv *)0;
@@ -4016,16 +3857,12 @@ struct dvb_frontend *tua6100_attach(struct dvb_frontend *fe , int addr , struct 
   __cil_tmp38 = (int (*)(struct dvb_frontend * , int  ))0;
   __cil_tmp39 = (unsigned long )__cil_tmp38;
   __cil_tmp40 = 0 + 360;
-  __cil_tmp41 = (unsigned long )fe;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-  __cil_tmp43 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp42);
+  __cil_tmp43 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp40));
   __cil_tmp44 = (unsigned long )__cil_tmp43;
   if (__cil_tmp44 != __cil_tmp39) {
     {
     __cil_tmp45 = 0 + 360;
-    __cil_tmp46 = (unsigned long )fe;
-    __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-    __cil_tmp48 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp47);
+    __cil_tmp48 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp45));
     (*__cil_tmp48)(fe, 1);
     }
   } else {
@@ -4040,16 +3877,12 @@ struct dvb_frontend *tua6100_attach(struct dvb_frontend *fe , int addr , struct 
   __cil_tmp50 = (int (*)(struct dvb_frontend * , int  ))0;
   __cil_tmp51 = (unsigned long )__cil_tmp50;
   __cil_tmp52 = 0 + 360;
-  __cil_tmp53 = (unsigned long )fe;
-  __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-  __cil_tmp55 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp54);
+  __cil_tmp55 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp52));
   __cil_tmp56 = (unsigned long )__cil_tmp55;
   if (__cil_tmp56 != __cil_tmp51) {
     {
     __cil_tmp57 = 0 + 360;
-    __cil_tmp58 = (unsigned long )fe;
-    __cil_tmp59 = __cil_tmp58 + __cil_tmp57;
-    __cil_tmp60 = *((int (**)(struct dvb_frontend * , int  ))__cil_tmp59);
+    __cil_tmp60 = *((int (**)(struct dvb_frontend * , int  ))((void *)fe + __cil_tmp57));
     (*__cil_tmp60)(fe, 0);
     }
   } else {
@@ -4076,16 +3909,12 @@ struct dvb_frontend *tua6100_attach(struct dvb_frontend *fe , int addr , struct 
   }
   }
   *((int *)priv) = addr;
-  __cil_tmp64 = (unsigned long )priv;
-  __cil_tmp65 = __cil_tmp64 + 8;
-  *((struct i2c_adapter **)__cil_tmp65) = i2c;
+  *((struct i2c_adapter **)((void *)priv + 8)) = i2c;
   __len = 280UL;
   if (__len > 63UL) {
     {
     __cil_tmp66 = 0 + 384;
-    __cil_tmp67 = (unsigned long )fe;
-    __cil_tmp68 = __cil_tmp67 + __cil_tmp66;
-    __cil_tmp69 = (struct dvb_tuner_ops *)__cil_tmp68;
+    __cil_tmp69 = (struct dvb_tuner_ops *)((void *)fe + __cil_tmp66);
     __cil_tmp70 = (void *)__cil_tmp69;
     __cil_tmp71 = (void const   *)(& tua6100_tuner_ops);
     __ret = memcpy(__cil_tmp70, __cil_tmp71, __len);
@@ -4093,17 +3922,13 @@ struct dvb_frontend *tua6100_attach(struct dvb_frontend *fe , int addr , struct 
   } else {
     {
     __cil_tmp72 = 0 + 384;
-    __cil_tmp73 = (unsigned long )fe;
-    __cil_tmp74 = __cil_tmp73 + __cil_tmp72;
-    __cil_tmp75 = (struct dvb_tuner_ops *)__cil_tmp74;
+    __cil_tmp75 = (struct dvb_tuner_ops *)((void *)fe + __cil_tmp72);
     __cil_tmp76 = (void *)__cil_tmp75;
     __cil_tmp77 = (void const   *)(& tua6100_tuner_ops);
     __ret = memcpy(__cil_tmp76, __cil_tmp77, __len);
     }
   }
-  __cil_tmp78 = (unsigned long )fe;
-  __cil_tmp79 = __cil_tmp78 + 768;
-  *((void **)__cil_tmp79) = (void *)priv;
+  *((void **)((void *)fe + 768)) = (void *)priv;
   return (fe);
 }
 }

@@ -1920,15 +1920,11 @@ extern void serio_unregister_driver(struct serio_driver *drv ) ;
 __inline static void *serio_get_drvdata(struct serio *serio ) __attribute__((__no_instrument_function__)) ;
 __inline static void *serio_get_drvdata(struct serio *serio )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 272;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 272);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1937,14 +1933,11 @@ __inline static void *serio_get_drvdata(struct serio *serio )
 }
 __inline static void serio_set_drvdata(struct serio *serio , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void serio_set_drvdata(struct serio *serio , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 272;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 272);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1995,10 +1988,6 @@ static void warrior_process_packet(struct warrior *warrior )
   int tmp___2 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned char *__cil_tmp15 ;
   unsigned char __cil_tmp16 ;
@@ -2101,13 +2090,9 @@ static void warrior_process_packet(struct warrior *warrior )
   dev = *((struct input_dev **)warrior);
   __cil_tmp8 = 0 * 1UL;
   __cil_tmp9 = 16 + __cil_tmp8;
-  __cil_tmp10 = (unsigned long )warrior;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  data = (unsigned char *)__cil_tmp11;
+  data = (unsigned char *)((void *)warrior + __cil_tmp9);
   {
-  __cil_tmp12 = (unsigned long )warrior;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)warrior + 8));
   if (! __cil_tmp14) {
     return;
   } else {
@@ -2290,47 +2275,19 @@ static irqreturn_t warrior_interrupt(struct serio *serio , unsigned char data , 
   void *tmp ;
   int tmp___0 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   char __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   int __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   {
   {
   tmp = serio_get_drvdata(serio);
@@ -2340,79 +2297,51 @@ static irqreturn_t warrior_interrupt(struct serio *serio , unsigned char data , 
   __cil_tmp7 = (int )data;
   if (__cil_tmp7 & 128) {
     {
-    __cil_tmp8 = (unsigned long )warrior;
-    __cil_tmp9 = __cil_tmp8 + 8;
-    if (*((int *)__cil_tmp9)) {
+    if (*((int *)((void *)warrior + 8))) {
       {
       warrior_process_packet(warrior);
       }
     } else {
     }
     }
-    __cil_tmp10 = (unsigned long )warrior;
-    __cil_tmp11 = __cil_tmp10 + 8;
-    *((int *)__cil_tmp11) = 0;
-    __cil_tmp12 = (unsigned long )warrior;
-    __cil_tmp13 = __cil_tmp12 + 12;
+    *((int *)((void *)warrior + 8)) = 0;
     __cil_tmp14 = (int )data;
     __cil_tmp15 = __cil_tmp14 >> 4;
     __cil_tmp16 = __cil_tmp15 & 7;
     __cil_tmp17 = __cil_tmp16 * 1UL;
     __cil_tmp18 = (unsigned long )(warrior_lengths) + __cil_tmp17;
     __cil_tmp19 = *((char *)__cil_tmp18);
-    *((int *)__cil_tmp13) = (int )__cil_tmp19;
+    *((int *)((void *)warrior + 12)) = (int )__cil_tmp19;
   } else {
   }
   }
   {
-  __cil_tmp20 = (unsigned long )warrior;
-  __cil_tmp21 = __cil_tmp20 + 12;
-  __cil_tmp22 = *((int *)__cil_tmp21);
-  __cil_tmp23 = (unsigned long )warrior;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  __cil_tmp25 = *((int *)__cil_tmp24);
+  __cil_tmp22 = *((int *)((void *)warrior + 12));
+  __cil_tmp25 = *((int *)((void *)warrior + 8));
   if (__cil_tmp25 < __cil_tmp22) {
-    __cil_tmp26 = (unsigned long )warrior;
-    __cil_tmp27 = __cil_tmp26 + 8;
-    tmp___0 = *((int *)__cil_tmp27);
-    __cil_tmp28 = (unsigned long )warrior;
-    __cil_tmp29 = __cil_tmp28 + 8;
-    __cil_tmp30 = (unsigned long )warrior;
-    __cil_tmp31 = __cil_tmp30 + 8;
-    __cil_tmp32 = *((int *)__cil_tmp31);
-    *((int *)__cil_tmp29) = __cil_tmp32 + 1;
+    tmp___0 = *((int *)((void *)warrior + 8));
+    __cil_tmp32 = *((int *)((void *)warrior + 8));
+    *((int *)((void *)warrior + 8)) = __cil_tmp32 + 1;
     __cil_tmp33 = tmp___0 * 1UL;
     __cil_tmp34 = 16 + __cil_tmp33;
-    __cil_tmp35 = (unsigned long )warrior;
-    __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-    *((unsigned char *)__cil_tmp36) = data;
+    *((unsigned char *)((void *)warrior + __cil_tmp34)) = data;
   } else {
   }
   }
   {
-  __cil_tmp37 = (unsigned long )warrior;
-  __cil_tmp38 = __cil_tmp37 + 12;
-  __cil_tmp39 = *((int *)__cil_tmp38);
-  __cil_tmp40 = (unsigned long )warrior;
-  __cil_tmp41 = __cil_tmp40 + 8;
-  __cil_tmp42 = *((int *)__cil_tmp41);
+  __cil_tmp39 = *((int *)((void *)warrior + 12));
+  __cil_tmp42 = *((int *)((void *)warrior + 8));
   if (__cil_tmp42 == __cil_tmp39) {
     {
-    __cil_tmp43 = (unsigned long )warrior;
-    __cil_tmp44 = __cil_tmp43 + 8;
-    if (*((int *)__cil_tmp44)) {
+    if (*((int *)((void *)warrior + 8))) {
       {
       warrior_process_packet(warrior);
       }
     } else {
     }
     }
-    __cil_tmp45 = (unsigned long )warrior;
-    __cil_tmp46 = __cil_tmp45 + 8;
-    *((int *)__cil_tmp46) = 0;
-    __cil_tmp47 = (unsigned long )warrior;
-    __cil_tmp48 = __cil_tmp47 + 12;
-    *((int *)__cil_tmp48) = 0;
+    *((int *)((void *)warrior + 8)) = 0;
+    *((int *)((void *)warrior + 12)) = 0;
   } else {
   }
   }
@@ -2447,48 +2376,24 @@ static int warrior_connect(struct serio *serio , struct serio_driver *drv )
   void *tmp ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   char *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   char *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   char *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
@@ -2497,8 +2402,6 @@ static int warrior_connect(struct serio *serio , struct serio_driver *drv )
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   void *__cil_tmp61 ;
   struct input_dev *__cil_tmp62 ;
   void *__cil_tmp63 ;
@@ -2521,69 +2424,43 @@ static int warrior_connect(struct serio *serio , struct serio_driver *drv )
   *((struct input_dev **)warrior) = input_dev;
   __cil_tmp7 = 0 * 1UL;
   __cil_tmp8 = 32 + __cil_tmp7;
-  __cil_tmp9 = (unsigned long )warrior;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = (char *)__cil_tmp10;
+  __cil_tmp11 = (char *)((void *)warrior + __cil_tmp8);
   __cil_tmp12 = 0 * 1UL;
   __cil_tmp13 = 40 + __cil_tmp12;
-  __cil_tmp14 = (unsigned long )serio;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = (char *)__cil_tmp15;
+  __cil_tmp16 = (char *)((void *)serio + __cil_tmp13);
   snprintf(__cil_tmp11, 32UL, "%s/input0", __cil_tmp16);
   *((char const **)input_dev) = "Logitech WingMan Warrior";
-  __cil_tmp17 = (unsigned long )input_dev;
-  __cil_tmp18 = __cil_tmp17 + 8;
   __cil_tmp19 = 0 * 1UL;
   __cil_tmp20 = 32 + __cil_tmp19;
-  __cil_tmp21 = (unsigned long )warrior;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  __cil_tmp23 = (char *)__cil_tmp22;
-  *((char const **)__cil_tmp18) = (char const *)__cil_tmp23;
-  __cil_tmp24 = (unsigned long )input_dev;
-  __cil_tmp25 = __cil_tmp24 + 24;
-  *((__u16 *)__cil_tmp25) = (__u16 )19;
+  __cil_tmp23 = (char *)((void *)warrior + __cil_tmp20);
+  *((char const **)((void *)input_dev + 8)) = (char const *)__cil_tmp23;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )19;
   __cil_tmp26 = 24 + 2;
-  __cil_tmp27 = (unsigned long )input_dev;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-  *((__u16 *)__cil_tmp28) = (__u16 )24;
+  *((__u16 *)((void *)input_dev + __cil_tmp26)) = (__u16 )24;
   __cil_tmp29 = 24 + 4;
-  __cil_tmp30 = (unsigned long )input_dev;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  *((__u16 *)__cil_tmp31) = (__u16 )1;
+  *((__u16 *)((void *)input_dev + __cil_tmp29)) = (__u16 )1;
   __cil_tmp32 = 24 + 6;
-  __cil_tmp33 = (unsigned long )input_dev;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  *((__u16 *)__cil_tmp34) = (__u16 )256;
-  __cil_tmp35 = (unsigned long )input_dev;
-  __cil_tmp36 = __cil_tmp35 + 648;
-  __cil_tmp37 = (unsigned long )serio;
-  __cil_tmp38 = __cil_tmp37 + 272;
-  *((struct device **)__cil_tmp36) = (struct device *)__cil_tmp38;
+  *((__u16 *)((void *)input_dev + __cil_tmp32)) = (__u16 )256;
+  *((struct device **)((void *)input_dev + 648)) = (struct device *)((void *)serio + 272);
   __cil_tmp39 = 0 * 8UL;
   __cil_tmp40 = 40 + __cil_tmp39;
-  __cil_tmp41 = (unsigned long )input_dev;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
   __cil_tmp43 = 1UL << 3;
   __cil_tmp44 = 1UL << 2;
   __cil_tmp45 = 1UL << 1;
   __cil_tmp46 = __cil_tmp45 | __cil_tmp44;
-  *((unsigned long *)__cil_tmp42) = __cil_tmp46 | __cil_tmp43;
+  *((unsigned long *)((void *)input_dev + __cil_tmp40)) = __cil_tmp46 | __cil_tmp43;
   __cil_tmp47 = 4 * 8UL;
   __cil_tmp48 = 48 + __cil_tmp47;
-  __cil_tmp49 = (unsigned long )input_dev;
-  __cil_tmp50 = __cil_tmp49 + __cil_tmp48;
   __cil_tmp51 = 1UL << 36;
   __cil_tmp52 = 1UL << 35;
   __cil_tmp53 = 1UL << 33;
   __cil_tmp54 = 1UL << 32;
   __cil_tmp55 = __cil_tmp54 | __cil_tmp53;
   __cil_tmp56 = __cil_tmp55 | __cil_tmp52;
-  *((unsigned long *)__cil_tmp50) = __cil_tmp56 | __cil_tmp51;
+  *((unsigned long *)((void *)input_dev + __cil_tmp48)) = __cil_tmp56 | __cil_tmp51;
   __cil_tmp57 = 0 * 8UL;
   __cil_tmp58 = 144 + __cil_tmp57;
-  __cil_tmp59 = (unsigned long )input_dev;
-  __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
-  *((unsigned long *)__cil_tmp60) = 1UL << 7;
+  *((unsigned long *)((void *)input_dev + __cil_tmp58)) = 1UL << 7;
   input_set_abs_params(input_dev, 0U, -64, 64, 0, 8);
   input_set_abs_params(input_dev, 1U, -64, 64, 0, 8);
   input_set_abs_params(input_dev, 6U, -112, 112, 0, 0);

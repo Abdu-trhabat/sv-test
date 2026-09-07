@@ -2188,15 +2188,11 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -2204,15 +2200,12 @@ __inline static void *platform_get_drvdata(struct platform_device  const  *pdev 
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3039,30 +3032,20 @@ static int wm8400_regulator_probe(struct platform_device *pdev )
   struct regulator_dev *rdev ;
   long tmp___7 ;
   long tmp___8 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   struct wm8400 *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct platform_device *__cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   char *__cil_tmp17 ;
   char *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   struct regulator_desc *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct device *__cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   void *__cil_tmp31 ;
   struct regulator_init_data  const  *__cil_tmp32 ;
   void *__cil_tmp33 ;
@@ -3075,32 +3058,22 @@ static int wm8400_regulator_probe(struct platform_device *pdev )
   {
   {
   __mptr = (struct platform_device  const  *)pdev;
-  __cil_tmp7 = (unsigned long )pdev;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = *((int *)__cil_tmp8);
+  __cil_tmp9 = *((int *)((void *)pdev + 8));
   __cil_tmp10 = __cil_tmp9 * 816UL;
   __cil_tmp11 = 264 + __cil_tmp10;
   __cil_tmp12 = (struct wm8400 *)0;
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp11;
-  __cil_tmp15 = (struct platform_device *)__cil_tmp14;
+  __cil_tmp15 = (struct platform_device *)((void *)__cil_tmp12 + __cil_tmp11);
   __cil_tmp16 = (unsigned int )__cil_tmp15;
   __cil_tmp17 = (char *)__mptr;
   __cil_tmp18 = __cil_tmp17 - __cil_tmp16;
   wm8400 = (struct wm8400 *)__cil_tmp18;
-  __cil_tmp19 = (unsigned long )pdev;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  __cil_tmp21 = *((int *)__cil_tmp20);
+  __cil_tmp21 = *((int *)((void *)pdev + 8));
   __cil_tmp22 = __cil_tmp21 * 48UL;
   __cil_tmp23 = (unsigned long )(regulators) + __cil_tmp22;
   __cil_tmp24 = (struct regulator_desc *)__cil_tmp23;
-  __cil_tmp25 = (unsigned long )pdev;
-  __cil_tmp26 = __cil_tmp25 + 16;
-  __cil_tmp27 = (struct device *)__cil_tmp26;
+  __cil_tmp27 = (struct device *)((void *)pdev + 16);
   __cil_tmp28 = 16 + 184;
-  __cil_tmp29 = (unsigned long )pdev;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  __cil_tmp31 = *((void **)__cil_tmp30);
+  __cil_tmp31 = *((void **)((void *)pdev + __cil_tmp28));
   __cil_tmp32 = (struct regulator_init_data  const  *)__cil_tmp31;
   __cil_tmp33 = (void *)wm8400;
   __cil_tmp34 = (void *)0;
@@ -3160,34 +3133,20 @@ int wm8400_register_regulator(struct device *dev , int reg , struct regulator_in
   struct device  const  *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct platform_device *__cil_tmp38 ;
 
   {
@@ -3199,47 +3158,33 @@ int wm8400_register_regulator(struct device *dev , int reg , struct regulator_in
   {
   __cil_tmp8 = reg * 816UL;
   __cil_tmp9 = 264 + __cil_tmp8;
-  __cil_tmp10 = (unsigned long )wm8400;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-  if (*((char const   **)__cil_tmp11)) {
+  if (*((char const   **)((void *)wm8400 + __cil_tmp9))) {
     return (-16);
   } else {
 
   }
   }
   {
-  __cil_tmp12 = (unsigned long )initdata;
-  __cil_tmp13 = __cil_tmp12 + 136;
-  *((void **)__cil_tmp13) = (void *)wm8400;
+  *((void **)((void *)initdata + 136)) = (void *)wm8400;
   __cil_tmp14 = reg * 816UL;
   __cil_tmp15 = 264 + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )wm8400;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  *((char const   **)__cil_tmp17) = "wm8400-regulator";
+  *((char const   **)((void *)wm8400 + __cil_tmp15)) = "wm8400-regulator";
   __cil_tmp18 = reg * 816UL;
   __cil_tmp19 = __cil_tmp18 + 8;
   __cil_tmp20 = 264 + __cil_tmp19;
-  __cil_tmp21 = (unsigned long )wm8400;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  *((int *)__cil_tmp22) = reg;
+  *((int *)((void *)wm8400 + __cil_tmp20)) = reg;
   __cil_tmp23 = reg * 816UL;
   __cil_tmp24 = __cil_tmp23 + 16;
   __cil_tmp25 = 264 + __cil_tmp24;
-  __cil_tmp26 = (unsigned long )wm8400;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  *((struct device **)__cil_tmp27) = dev;
+  *((struct device **)((void *)wm8400 + __cil_tmp25)) = dev;
   __cil_tmp28 = 16 + 184;
   __cil_tmp29 = reg * 816UL;
   __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
   __cil_tmp31 = 264 + __cil_tmp30;
-  __cil_tmp32 = (unsigned long )wm8400;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  *((void **)__cil_tmp33) = (void *)initdata;
+  *((void **)((void *)wm8400 + __cil_tmp31)) = (void *)initdata;
   __cil_tmp34 = reg * 816UL;
   __cil_tmp35 = 264 + __cil_tmp34;
-  __cil_tmp36 = (unsigned long )wm8400;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  __cil_tmp38 = (struct platform_device *)__cil_tmp37;
+  __cil_tmp38 = (struct platform_device *)((void *)wm8400 + __cil_tmp35);
   tmp___8 = platform_device_register(__cil_tmp38);
   }
   return (tmp___8);

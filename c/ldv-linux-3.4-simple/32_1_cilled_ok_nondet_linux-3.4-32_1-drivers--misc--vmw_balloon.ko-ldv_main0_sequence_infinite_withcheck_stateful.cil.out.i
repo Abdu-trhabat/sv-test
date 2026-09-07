@@ -2560,13 +2560,10 @@ __inline static long __attribute__((__warn_unused_result__)) IS_ERR(void const *
 }
 __inline static void INIT_LIST_HEAD(struct list_head *list ) __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -2708,11 +2705,7 @@ static bool vmballoon_send_start(struct vmballoon *b )
   unsigned long __dummy2 ;
   long tmp___7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp15 ;
   unsigned int __cil_tmp16 ;
@@ -2721,21 +2714,13 @@ static bool vmballoon_send_start(struct vmballoon *b )
   int __cil_tmp19 ;
   long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   {
   __cil_tmp8 = 60 + 56;
-  __cil_tmp9 = (unsigned long )b;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
   __cil_tmp11 = 60 + 56;
-  __cil_tmp12 = (unsigned long )b;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
-  *((unsigned int *)__cil_tmp10) = __cil_tmp14 + 1U;
+  __cil_tmp14 = *((unsigned int *)((void *)b + __cil_tmp11));
+  *((unsigned int *)((void *)b + __cil_tmp8)) = __cil_tmp14 + 1U;
   __asm__ volatile ("inl (%%dx)": "=a" (__stat), "=c" (__dummy1), "=d" (__dummy2),
                        "=b" (dummy): "0" (1164733807), "1" (0), "2" (22128), "3" (2): "memory");
   dummy = dummy & 0xffffffffffffffffUL;
@@ -2768,19 +2753,14 @@ static bool vmballoon_send_start(struct vmballoon *b )
   while_break: ;
   }
   __cil_tmp21 = 60 + 60;
-  __cil_tmp22 = (unsigned long )b;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
   __cil_tmp24 = 60 + 60;
-  __cil_tmp25 = (unsigned long )b;
-  __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-  __cil_tmp27 = *((unsigned int *)__cil_tmp26);
-  *((unsigned int *)__cil_tmp23) = __cil_tmp27 + 1U;
+  __cil_tmp27 = *((unsigned int *)((void *)b + __cil_tmp24));
+  *((unsigned int *)((void *)b + __cil_tmp21)) = __cil_tmp27 + 1U;
   return ((bool )0);
 }
 }
 static bool vmballoon_check_status(struct vmballoon *b , unsigned long status )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   {
   if ((int )status == 0) {
     goto case_0;
@@ -2794,9 +2774,7 @@ static bool vmballoon_check_status(struct vmballoon *b , unsigned long status )
       case_0:
       return ((bool )1);
       case_7:
-      __cil_tmp3 = (unsigned long )b;
-      __cil_tmp4 = __cil_tmp3 + 44;
-      *((bool *)__cil_tmp4) = (bool )1;
+      *((bool *)((void *)b + 44)) = (bool )1;
       switch_default:
       return ((bool )0);
     } else {
@@ -2819,11 +2797,7 @@ static bool vmballoon_send_guest_id(struct vmballoon *b )
   bool tmp___7 ;
   long tmp___8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp16 ;
   unsigned int __cil_tmp17 ;
@@ -2832,11 +2806,7 @@ static bool vmballoon_send_guest_id(struct vmballoon *b )
   int __cil_tmp20 ;
   long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
   {
   {
@@ -2845,13 +2815,9 @@ static bool vmballoon_send_guest_id(struct vmballoon *b )
   dummy = dummy & 0xffffffffffffffffUL;
   status = __stat & 0xffffffffffffffffUL;
   __cil_tmp9 = 60 + 64;
-  __cil_tmp10 = (unsigned long )b;
-  __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
   __cil_tmp12 = 60 + 64;
-  __cil_tmp13 = (unsigned long )b;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
-  *((unsigned int *)__cil_tmp11) = __cil_tmp15 + 1U;
+  __cil_tmp15 = *((unsigned int *)((void *)b + __cil_tmp12));
+  *((unsigned int *)((void *)b + __cil_tmp9)) = __cil_tmp15 + 1U;
   tmp___7 = vmballoon_check_status(b, status);
   }
   if (tmp___7) {
@@ -2882,13 +2848,9 @@ static bool vmballoon_send_guest_id(struct vmballoon *b )
   while_break: ;
   }
   __cil_tmp22 = 60 + 68;
-  __cil_tmp23 = (unsigned long )b;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
   __cil_tmp25 = 60 + 68;
-  __cil_tmp26 = (unsigned long )b;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  __cil_tmp28 = *((unsigned int *)__cil_tmp27);
-  *((unsigned int *)__cil_tmp24) = __cil_tmp28 + 1U;
+  __cil_tmp28 = *((unsigned int *)((void *)b + __cil_tmp25));
+  *((unsigned int *)((void *)b + __cil_tmp22)) = __cil_tmp28 + 1U;
   return ((bool )0);
 }
 }
@@ -2906,19 +2868,11 @@ static bool vmballoon_send_get_target(struct vmballoon *b , u32 *new_target )
   unsigned long __dummy2 ;
   bool tmp___7 ;
   long tmp___8 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct sysinfo *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp26 ;
   unsigned int __cil_tmp27 ;
@@ -2927,22 +2881,14 @@ static bool vmballoon_send_get_target(struct vmballoon *b , u32 *new_target )
   int __cil_tmp30 ;
   long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned int __cil_tmp38 ;
   {
   {
-  __cil_tmp12 = (unsigned long )b;
-  __cil_tmp13 = __cil_tmp12 + 144;
-  __cil_tmp14 = (struct sysinfo *)__cil_tmp13;
+  __cil_tmp14 = (struct sysinfo *)((void *)b + 144);
   si_meminfo(__cil_tmp14);
   __cil_tmp15 = 144 + 32;
-  __cil_tmp16 = (unsigned long )b;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  limit = *((__kernel_ulong_t *)__cil_tmp17);
+  limit = *((__kernel_ulong_t *)((void *)b + __cil_tmp15));
   limit32 = (u32 )limit;
   }
   {
@@ -2954,13 +2900,9 @@ static bool vmballoon_send_get_target(struct vmballoon *b , u32 *new_target )
   }
   {
   __cil_tmp19 = 60 + 48;
-  __cil_tmp20 = (unsigned long )b;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
   __cil_tmp22 = 60 + 48;
-  __cil_tmp23 = (unsigned long )b;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  __cil_tmp25 = *((unsigned int *)__cil_tmp24);
-  *((unsigned int *)__cil_tmp21) = __cil_tmp25 + 1U;
+  __cil_tmp25 = *((unsigned int *)((void *)b + __cil_tmp22));
+  *((unsigned int *)((void *)b + __cil_tmp19)) = __cil_tmp25 + 1U;
   __asm__ volatile ("inl (%%dx)": "=a" (__stat), "=c" (__dummy1), "=d" (__dummy2),
                        "=b" (target): "0" (1164733807), "1" (1), "2" (22128), "3" (limit): "memory");
   target = target & 0xffffffffffffffffUL;
@@ -2996,13 +2938,9 @@ static bool vmballoon_send_get_target(struct vmballoon *b , u32 *new_target )
   while_break: ;
   }
   __cil_tmp32 = 60 + 52;
-  __cil_tmp33 = (unsigned long )b;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
   __cil_tmp35 = 60 + 52;
-  __cil_tmp36 = (unsigned long )b;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  __cil_tmp38 = *((unsigned int *)__cil_tmp37);
-  *((unsigned int *)__cil_tmp34) = __cil_tmp38 + 1U;
+  __cil_tmp38 = *((unsigned int *)((void *)b + __cil_tmp35));
+  *((unsigned int *)((void *)b + __cil_tmp32)) = __cil_tmp38 + 1U;
   return ((bool )0);
 }
 }
@@ -3021,11 +2959,7 @@ static int vmballoon_send_lock_page(struct vmballoon *b , unsigned long pfn , un
   long tmp___8 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp20 ;
   unsigned int __cil_tmp21 ;
@@ -3034,11 +2968,7 @@ static int vmballoon_send_lock_page(struct vmballoon *b , unsigned long pfn , un
   int __cil_tmp24 ;
   long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
   {
   pfn32 = (u32 )pfn;
@@ -3051,13 +2981,9 @@ static int vmballoon_send_lock_page(struct vmballoon *b , unsigned long pfn , un
   }
   {
   __cil_tmp13 = 60 + 32;
-  __cil_tmp14 = (unsigned long )b;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
   __cil_tmp16 = 60 + 32;
-  __cil_tmp17 = (unsigned long )b;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = *((unsigned int *)__cil_tmp18);
-  *((unsigned int *)__cil_tmp15) = __cil_tmp19 + 1U;
+  __cil_tmp19 = *((unsigned int *)((void *)b + __cil_tmp16));
+  *((unsigned int *)((void *)b + __cil_tmp13)) = __cil_tmp19 + 1U;
   __asm__ volatile ("inl (%%dx)": "=a" (__stat), "=c" (__dummy1), "=d" (__dummy2),
                        "=b" (dummy): "0" (1164733807), "1" (2), "2" (22128), "3" (pfn): "memory");
   dummy = dummy & 0xffffffffffffffffUL;
@@ -3093,13 +3019,9 @@ static int vmballoon_send_lock_page(struct vmballoon *b , unsigned long pfn , un
   while_break: ;
   }
   __cil_tmp26 = 60 + 36;
-  __cil_tmp27 = (unsigned long )b;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
   __cil_tmp29 = 60 + 36;
-  __cil_tmp30 = (unsigned long )b;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = *((unsigned int *)__cil_tmp31);
-  *((unsigned int *)__cil_tmp28) = __cil_tmp32 + 1U;
+  __cil_tmp32 = *((unsigned int *)((void *)b + __cil_tmp29));
+  *((unsigned int *)((void *)b + __cil_tmp26)) = __cil_tmp32 + 1U;
   return (1);
 }
 }
@@ -3118,11 +3040,7 @@ static bool vmballoon_send_unlock_page(struct vmballoon *b , unsigned long pfn )
   long tmp___8 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp19 ;
   unsigned int __cil_tmp20 ;
@@ -3131,11 +3049,7 @@ static bool vmballoon_send_unlock_page(struct vmballoon *b , unsigned long pfn )
   int __cil_tmp23 ;
   long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
   {
   pfn32 = (u32 )pfn;
@@ -3148,13 +3062,9 @@ static bool vmballoon_send_unlock_page(struct vmballoon *b , unsigned long pfn )
   }
   {
   __cil_tmp12 = 60 + 40;
-  __cil_tmp13 = (unsigned long )b;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
   __cil_tmp15 = 60 + 40;
-  __cil_tmp16 = (unsigned long )b;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = *((unsigned int *)__cil_tmp17);
-  *((unsigned int *)__cil_tmp14) = __cil_tmp18 + 1U;
+  __cil_tmp18 = *((unsigned int *)((void *)b + __cil_tmp15));
+  *((unsigned int *)((void *)b + __cil_tmp12)) = __cil_tmp18 + 1U;
   __asm__ volatile ("inl (%%dx)": "=a" (__stat), "=c" (__dummy1), "=d" (__dummy2),
                        "=b" (dummy): "0" (1164733807), "1" (3), "2" (22128), "3" (pfn): "memory");
   dummy = dummy & 0xffffffffffffffffUL;
@@ -3189,13 +3099,9 @@ static bool vmballoon_send_unlock_page(struct vmballoon *b , unsigned long pfn )
   while_break: ;
   }
   __cil_tmp25 = 60 + 44;
-  __cil_tmp26 = (unsigned long )b;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
   __cil_tmp28 = 60 + 44;
-  __cil_tmp29 = (unsigned long )b;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  __cil_tmp31 = *((unsigned int *)__cil_tmp30);
-  *((unsigned int *)__cil_tmp27) = __cil_tmp31 + 1U;
+  __cil_tmp31 = *((unsigned int *)((void *)b + __cil_tmp28));
+  *((unsigned int *)((void *)b + __cil_tmp25)) = __cil_tmp31 + 1U;
   return ((bool )0);
 }
 }
@@ -3208,52 +3114,28 @@ static void vmballoon_pop(struct vmballoon *b )
   struct list_head const *__mptr___1 ;
   struct list_head *__cil_tmp8 ;
   struct page *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct list_head *__cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   char *__cil_tmp14 ;
   char *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct list_head *__cil_tmp18 ;
   struct page *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct list_head *__cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   char *__cil_tmp24 ;
   char *__cil_tmp25 ;
   struct list_head *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct list_head *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct list_head *__cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct list_head *__cil_tmp52 ;
   struct page *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct list_head *__cil_tmp56 ;
   unsigned int __cil_tmp57 ;
   char *__cil_tmp58 ;
@@ -3263,21 +3145,15 @@ static void vmballoon_pop(struct vmballoon *b )
   __cil_tmp8 = *((struct list_head **)b);
   __mptr = (struct list_head const *)__cil_tmp8;
   __cil_tmp9 = (struct page *)0;
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 32;
-  __cil_tmp12 = (struct list_head *)__cil_tmp11;
+  __cil_tmp12 = (struct list_head *)((void *)__cil_tmp9 + 32);
   __cil_tmp13 = (unsigned int )__cil_tmp12;
   __cil_tmp14 = (char *)__mptr;
   __cil_tmp15 = __cil_tmp14 - __cil_tmp13;
   page = (struct page *)__cil_tmp15;
-  __cil_tmp16 = (unsigned long )page;
-  __cil_tmp17 = __cil_tmp16 + 32;
-  __cil_tmp18 = *((struct list_head **)__cil_tmp17);
+  __cil_tmp18 = *((struct list_head **)((void *)page + 32));
   __mptr___0 = (struct list_head const *)__cil_tmp18;
   __cil_tmp19 = (struct page *)0;
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 32;
-  __cil_tmp22 = (struct list_head *)__cil_tmp21;
+  __cil_tmp22 = (struct list_head *)((void *)__cil_tmp19 + 32);
   __cil_tmp23 = (unsigned int )__cil_tmp22;
   __cil_tmp24 = (char *)__mptr___0;
   __cil_tmp25 = __cil_tmp24 - __cil_tmp23;
@@ -3288,9 +3164,7 @@ static void vmballoon_pop(struct vmballoon *b )
     {
     __cil_tmp26 = (struct list_head *)b;
     __cil_tmp27 = (unsigned long )__cil_tmp26;
-    __cil_tmp28 = (unsigned long )page;
-    __cil_tmp29 = __cil_tmp28 + 32;
-    __cil_tmp30 = (struct list_head *)__cil_tmp29;
+    __cil_tmp30 = (struct list_head *)((void *)page + 32);
     __cil_tmp31 = (unsigned long )__cil_tmp30;
     if (__cil_tmp31 != __cil_tmp27) {
     } else {
@@ -3298,31 +3172,19 @@ static void vmballoon_pop(struct vmballoon *b )
     }
     }
     {
-    __cil_tmp32 = (unsigned long )page;
-    __cil_tmp33 = __cil_tmp32 + 32;
-    __cil_tmp34 = (struct list_head *)__cil_tmp33;
+    __cil_tmp34 = (struct list_head *)((void *)page + 32);
     list_del(__cil_tmp34);
     __free_pages(page, 0U);
     __cil_tmp35 = 60 + 28;
-    __cil_tmp36 = (unsigned long )b;
-    __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
     __cil_tmp38 = 60 + 28;
-    __cil_tmp39 = (unsigned long )b;
-    __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-    __cil_tmp41 = *((unsigned int *)__cil_tmp40);
-    *((unsigned int *)__cil_tmp37) = __cil_tmp41 + 1U;
-    __cil_tmp42 = (unsigned long )b;
-    __cil_tmp43 = __cil_tmp42 + 36;
-    __cil_tmp44 = (unsigned long )b;
-    __cil_tmp45 = __cil_tmp44 + 36;
-    __cil_tmp46 = *((unsigned int *)__cil_tmp45);
-    *((unsigned int *)__cil_tmp43) = __cil_tmp46 - 1U;
+    __cil_tmp41 = *((unsigned int *)((void *)b + __cil_tmp38));
+    *((unsigned int *)((void *)b + __cil_tmp35)) = __cil_tmp41 + 1U;
+    __cil_tmp46 = *((unsigned int *)((void *)b + 36));
+    *((unsigned int *)((void *)b + 36)) = __cil_tmp46 - 1U;
     count = count + 1U;
     }
     {
-    __cil_tmp47 = (unsigned long )b;
-    __cil_tmp48 = __cil_tmp47 + 52;
-    __cil_tmp49 = *((unsigned int *)__cil_tmp48);
+    __cil_tmp49 = *((unsigned int *)((void *)b + 52));
     if (count >= __cil_tmp49) {
       {
       count = 0U;
@@ -3334,14 +3196,10 @@ static void vmballoon_pop(struct vmballoon *b )
     }
     }
     page = next;
-    __cil_tmp50 = (unsigned long )next;
-    __cil_tmp51 = __cil_tmp50 + 32;
-    __cil_tmp52 = *((struct list_head **)__cil_tmp51);
+    __cil_tmp52 = *((struct list_head **)((void *)next + 32));
     __mptr___1 = (struct list_head const *)__cil_tmp52;
     __cil_tmp53 = (struct page *)0;
-    __cil_tmp54 = (unsigned long )__cil_tmp53;
-    __cil_tmp55 = __cil_tmp54 + 32;
-    __cil_tmp56 = (struct list_head *)__cil_tmp55;
+    __cil_tmp56 = (struct list_head *)((void *)__cil_tmp53 + 32);
     __cil_tmp57 = (unsigned int )__cil_tmp56;
     __cil_tmp58 = (char *)__mptr___1;
     __cil_tmp59 = __cil_tmp58 - __cil_tmp57;
@@ -3355,8 +3213,6 @@ static void vmballoon_pop(struct vmballoon *b )
 static void vmballoon_reset(struct vmballoon *b )
 { bool tmp___7 ;
   bool tmp___8 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   {
   {
   vmballoon_pop(b);
@@ -3364,9 +3220,7 @@ static void vmballoon_reset(struct vmballoon *b )
   }
   if (tmp___8) {
     {
-    __cil_tmp4 = (unsigned long )b;
-    __cil_tmp5 = __cil_tmp4 + 44;
-    *((bool *)__cil_tmp5) = (bool )0;
+    *((bool *)((void *)b + 44)) = (bool )0;
     tmp___7 = vmballoon_send_guest_id(b);
     }
     if (tmp___7) {
@@ -3386,69 +3240,33 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
   unsigned int hv_status ;
   int locked ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
   struct page *__cil_tmp35 ;
   int __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
   unsigned int *__cil_tmp45 ;
   unsigned int __cil_tmp46 ;
   unsigned int *__cil_tmp47 ;
   unsigned int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct list_head *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct list_head *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   unsigned int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned int __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   struct list_head *__cil_tmp65 ;
   struct list_head *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned int __cil_tmp71 ;
   {
   if (can_sleep) {
@@ -3461,22 +3279,14 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
     while_continue: ;
     if (! can_sleep) {
       __cil_tmp7 = 60 + 4;
-      __cil_tmp8 = (unsigned long )b;
-      __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
       __cil_tmp10 = 60 + 4;
-      __cil_tmp11 = (unsigned long )b;
-      __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-      __cil_tmp13 = *((unsigned int *)__cil_tmp12);
-      *((unsigned int *)__cil_tmp9) = __cil_tmp13 + 1U;
+      __cil_tmp13 = *((unsigned int *)((void *)b + __cil_tmp10));
+      *((unsigned int *)((void *)b + __cil_tmp7)) = __cil_tmp13 + 1U;
     } else {
       __cil_tmp14 = 60 + 12;
-      __cil_tmp15 = (unsigned long )b;
-      __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
       __cil_tmp17 = 60 + 12;
-      __cil_tmp18 = (unsigned long )b;
-      __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-      __cil_tmp20 = *((unsigned int *)__cil_tmp19);
-      *((unsigned int *)__cil_tmp16) = __cil_tmp20 + 1U;
+      __cil_tmp20 = *((unsigned int *)((void *)b + __cil_tmp17));
+      *((unsigned int *)((void *)b + __cil_tmp14)) = __cil_tmp20 + 1U;
     }
     {
     page = alloc_pages(flags, 0U);
@@ -3484,22 +3294,14 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
     if (! page) {
       if (! can_sleep) {
         __cil_tmp21 = 60 + 8;
-        __cil_tmp22 = (unsigned long )b;
-        __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
         __cil_tmp24 = 60 + 8;
-        __cil_tmp25 = (unsigned long )b;
-        __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-        __cil_tmp27 = *((unsigned int *)__cil_tmp26);
-        *((unsigned int *)__cil_tmp23) = __cil_tmp27 + 1U;
+        __cil_tmp27 = *((unsigned int *)((void *)b + __cil_tmp24));
+        *((unsigned int *)((void *)b + __cil_tmp21)) = __cil_tmp27 + 1U;
       } else {
         __cil_tmp28 = 60 + 16;
-        __cil_tmp29 = (unsigned long )b;
-        __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
         __cil_tmp31 = 60 + 16;
-        __cil_tmp32 = (unsigned long )b;
-        __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-        __cil_tmp34 = *((unsigned int *)__cil_tmp33);
-        *((unsigned int *)__cil_tmp30) = __cil_tmp34 + 1U;
+        __cil_tmp34 = *((unsigned int *)((void *)b + __cil_tmp31));
+        *((unsigned int *)((void *)b + __cil_tmp28)) = __cil_tmp34 + 1U;
       }
       return (-12);
     } else {
@@ -3512,13 +3314,9 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
     }
     if (locked > 0) {
       __cil_tmp38 = 60 + 20;
-      __cil_tmp39 = (unsigned long )b;
-      __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
       __cil_tmp41 = 60 + 20;
-      __cil_tmp42 = (unsigned long )b;
-      __cil_tmp43 = __cil_tmp42 + __cil_tmp41;
-      __cil_tmp44 = *((unsigned int *)__cil_tmp43);
-      *((unsigned int *)__cil_tmp40) = __cil_tmp44 + 1U;
+      __cil_tmp44 = *((unsigned int *)((void *)b + __cil_tmp41));
+      *((unsigned int *)((void *)b + __cil_tmp38)) = __cil_tmp44 + 1U;
       {
       __cil_tmp45 = & hv_status;
       __cil_tmp46 = *__cil_tmp45;
@@ -3542,24 +3340,14 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
       }
       }
       {
-      __cil_tmp49 = (unsigned long )page;
-      __cil_tmp50 = __cil_tmp49 + 32;
-      __cil_tmp51 = (struct list_head *)__cil_tmp50;
-      __cil_tmp52 = (unsigned long )b;
-      __cil_tmp53 = __cil_tmp52 + 16;
-      __cil_tmp54 = (struct list_head *)__cil_tmp53;
+      __cil_tmp51 = (struct list_head *)((void *)page + 32);
+      __cil_tmp54 = (struct list_head *)((void *)b + 16);
       list_add(__cil_tmp51, __cil_tmp54);
-      __cil_tmp55 = (unsigned long )b;
-      __cil_tmp56 = __cil_tmp55 + 32;
-      __cil_tmp57 = (unsigned long )b;
-      __cil_tmp58 = __cil_tmp57 + 32;
-      __cil_tmp59 = *((unsigned int *)__cil_tmp58);
-      *((unsigned int *)__cil_tmp56) = __cil_tmp59 + 1U;
+      __cil_tmp59 = *((unsigned int *)((void *)b + 32));
+      *((unsigned int *)((void *)b + 32)) = __cil_tmp59 + 1U;
       }
       {
-      __cil_tmp60 = (unsigned long )b;
-      __cil_tmp61 = __cil_tmp60 + 32;
-      __cil_tmp62 = *((unsigned int *)__cil_tmp61);
+      __cil_tmp62 = *((unsigned int *)((void *)b + 32));
       if (__cil_tmp62 >= 16U) {
         return (-5);
       } else {
@@ -3575,17 +3363,11 @@ static int vmballoon_reserve_page(struct vmballoon *b , bool can_sleep )
   while_break: ;
   }
   {
-  __cil_tmp63 = (unsigned long )page;
-  __cil_tmp64 = __cil_tmp63 + 32;
-  __cil_tmp65 = (struct list_head *)__cil_tmp64;
+  __cil_tmp65 = (struct list_head *)((void *)page + 32);
   __cil_tmp66 = (struct list_head *)b;
   list_add(__cil_tmp65, __cil_tmp66);
-  __cil_tmp67 = (unsigned long )b;
-  __cil_tmp68 = __cil_tmp67 + 36;
-  __cil_tmp69 = (unsigned long )b;
-  __cil_tmp70 = __cil_tmp69 + 36;
-  __cil_tmp71 = *((unsigned int *)__cil_tmp70);
-  *((unsigned int *)__cil_tmp68) = __cil_tmp71 + 1U;
+  __cil_tmp71 = *((unsigned int *)((void *)b + 36));
+  *((unsigned int *)((void *)b + 36)) = __cil_tmp71 + 1U;
   }
   return (0);
 }
@@ -3595,20 +3377,10 @@ static int vmballoon_release_page(struct vmballoon *b , struct page *page )
   struct page *__cil_tmp4 ;
   int __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct list_head *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   {
   {
@@ -3622,25 +3394,15 @@ static int vmballoon_release_page(struct vmballoon *b , struct page *page )
     return (-5);
   }
   {
-  __cil_tmp7 = (unsigned long )page;
-  __cil_tmp8 = __cil_tmp7 + 32;
-  __cil_tmp9 = (struct list_head *)__cil_tmp8;
+  __cil_tmp9 = (struct list_head *)((void *)page + 32);
   list_del(__cil_tmp9);
   __free_pages(page, 0U);
   __cil_tmp10 = 60 + 28;
-  __cil_tmp11 = (unsigned long )b;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
   __cil_tmp13 = 60 + 28;
-  __cil_tmp14 = (unsigned long )b;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = *((unsigned int *)__cil_tmp15);
-  *((unsigned int *)__cil_tmp12) = __cil_tmp16 + 1U;
-  __cil_tmp17 = (unsigned long )b;
-  __cil_tmp18 = __cil_tmp17 + 36;
-  __cil_tmp19 = (unsigned long )b;
-  __cil_tmp20 = __cil_tmp19 + 36;
-  __cil_tmp21 = *((unsigned int *)__cil_tmp20);
-  *((unsigned int *)__cil_tmp18) = __cil_tmp21 - 1U;
+  __cil_tmp16 = *((unsigned int *)((void *)b + __cil_tmp13));
+  *((unsigned int *)((void *)b + __cil_tmp10)) = __cil_tmp16 + 1U;
+  __cil_tmp21 = *((unsigned int *)((void *)b + 36));
+  *((unsigned int *)((void *)b + 36)) = __cil_tmp21 - 1U;
   }
   return (0);
 }
@@ -3651,77 +3413,45 @@ static void vmballoon_release_refused_pages(struct vmballoon *b )
   struct list_head const *__mptr ;
   struct list_head const *__mptr___0 ;
   struct list_head const *__mptr___1 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct list_head *__cil_tmp9 ;
   struct page *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct list_head *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
   char *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct list_head *__cil_tmp19 ;
   struct page *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct list_head *__cil_tmp23 ;
   unsigned int __cil_tmp24 ;
   char *__cil_tmp25 ;
   char *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct list_head *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct list_head *__cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct list_head *__cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct list_head *__cil_tmp47 ;
   struct page *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct list_head *__cil_tmp51 ;
   unsigned int __cil_tmp52 ;
   char *__cil_tmp53 ;
   char *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   {
-  __cil_tmp7 = (unsigned long )b;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  __cil_tmp9 = *((struct list_head **)__cil_tmp8);
+  __cil_tmp9 = *((struct list_head **)((void *)b + 16));
   __mptr = (struct list_head const *)__cil_tmp9;
   __cil_tmp10 = (struct page *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 32;
-  __cil_tmp13 = (struct list_head *)__cil_tmp12;
+  __cil_tmp13 = (struct list_head *)((void *)__cil_tmp10 + 32);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
   page = (struct page *)__cil_tmp16;
-  __cil_tmp17 = (unsigned long )page;
-  __cil_tmp18 = __cil_tmp17 + 32;
-  __cil_tmp19 = *((struct list_head **)__cil_tmp18);
+  __cil_tmp19 = *((struct list_head **)((void *)page + 32));
   __mptr___0 = (struct list_head const *)__cil_tmp19;
   __cil_tmp20 = (struct page *)0;
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 32;
-  __cil_tmp23 = (struct list_head *)__cil_tmp22;
+  __cil_tmp23 = (struct list_head *)((void *)__cil_tmp20 + 32);
   __cil_tmp24 = (unsigned int )__cil_tmp23;
   __cil_tmp25 = (char *)__mptr___0;
   __cil_tmp26 = __cil_tmp25 - __cil_tmp24;
@@ -3730,13 +3460,9 @@ static void vmballoon_release_refused_pages(struct vmballoon *b )
   while (1) {
     while_continue: ;
     {
-    __cil_tmp27 = (unsigned long )b;
-    __cil_tmp28 = __cil_tmp27 + 16;
-    __cil_tmp29 = (struct list_head *)__cil_tmp28;
+    __cil_tmp29 = (struct list_head *)((void *)b + 16);
     __cil_tmp30 = (unsigned long )__cil_tmp29;
-    __cil_tmp31 = (unsigned long )page;
-    __cil_tmp32 = __cil_tmp31 + 32;
-    __cil_tmp33 = (struct list_head *)__cil_tmp32;
+    __cil_tmp33 = (struct list_head *)((void *)page + 32);
     __cil_tmp34 = (unsigned long )__cil_tmp33;
     if (__cil_tmp34 != __cil_tmp30) {
     } else {
@@ -3744,28 +3470,18 @@ static void vmballoon_release_refused_pages(struct vmballoon *b )
     }
     }
     {
-    __cil_tmp35 = (unsigned long )page;
-    __cil_tmp36 = __cil_tmp35 + 32;
-    __cil_tmp37 = (struct list_head *)__cil_tmp36;
+    __cil_tmp37 = (struct list_head *)((void *)page + 32);
     list_del(__cil_tmp37);
     __free_pages(page, 0U);
     __cil_tmp38 = 60 + 24;
-    __cil_tmp39 = (unsigned long )b;
-    __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
     __cil_tmp41 = 60 + 24;
-    __cil_tmp42 = (unsigned long )b;
-    __cil_tmp43 = __cil_tmp42 + __cil_tmp41;
-    __cil_tmp44 = *((unsigned int *)__cil_tmp43);
-    *((unsigned int *)__cil_tmp40) = __cil_tmp44 + 1U;
+    __cil_tmp44 = *((unsigned int *)((void *)b + __cil_tmp41));
+    *((unsigned int *)((void *)b + __cil_tmp38)) = __cil_tmp44 + 1U;
     page = next;
-    __cil_tmp45 = (unsigned long )next;
-    __cil_tmp46 = __cil_tmp45 + 32;
-    __cil_tmp47 = *((struct list_head **)__cil_tmp46);
+    __cil_tmp47 = *((struct list_head **)((void *)next + 32));
     __mptr___1 = (struct list_head const *)__cil_tmp47;
     __cil_tmp48 = (struct page *)0;
-    __cil_tmp49 = (unsigned long )__cil_tmp48;
-    __cil_tmp50 = __cil_tmp49 + 32;
-    __cil_tmp51 = (struct list_head *)__cil_tmp50;
+    __cil_tmp51 = (struct list_head *)((void *)__cil_tmp48 + 32);
     __cil_tmp52 = (unsigned int )__cil_tmp51;
     __cil_tmp53 = (char *)__mptr___1;
     __cil_tmp54 = __cil_tmp53 - __cil_tmp52;
@@ -3774,9 +3490,7 @@ static void vmballoon_release_refused_pages(struct vmballoon *b )
   }
   while_break: ;
   }
-  __cil_tmp55 = (unsigned long )b;
-  __cil_tmp56 = __cil_tmp55 + 32;
-  *((unsigned int *)__cil_tmp56) = 0U;
+  *((unsigned int *)((void *)b + 32)) = 0U;
   return;
 }
 }
@@ -3810,34 +3524,18 @@ static void vmballoon_inflate(struct vmballoon *b )
   int __cil_tmp20 ;
   int __cil_tmp21 ;
   long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp39 ;
   unsigned int __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
   int __cil_tmp42 ;
   int __cil_tmp43 ;
   long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned int __cil_tmp47 ;
   unsigned int *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned int __cil_tmp51 ;
   unsigned int *__cil_tmp52 ;
   unsigned int *__cil_tmp53 ;
@@ -3846,25 +3544,11 @@ static void vmballoon_inflate(struct vmballoon *b )
   unsigned int __cil_tmp56 ;
   unsigned int *__cil_tmp57 ;
   unsigned int *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned int __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   unsigned int __cil_tmp73 ;
   unsigned int *__cil_tmp74 ;
   unsigned int __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   unsigned int __cil_tmp78 ;
   unsigned int *__cil_tmp79 ;
   unsigned int *__cil_tmp80 ;
@@ -3873,8 +3557,6 @@ static void vmballoon_inflate(struct vmballoon *b )
   unsigned int __cil_tmp83 ;
   unsigned int *__cil_tmp84 ;
   unsigned int *__cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   {
   allocations = 0U;
   error = 0;
@@ -3893,12 +3575,8 @@ static void vmballoon_inflate(struct vmballoon *b )
     }
     if (tmp___7) {
       {
-      __cil_tmp23 = (unsigned long )b;
-      __cil_tmp24 = __cil_tmp23 + 36;
-      __cil_tmp25 = *((unsigned int *)__cil_tmp24);
-      __cil_tmp26 = (unsigned long )b;
-      __cil_tmp27 = __cil_tmp26 + 40;
-      __cil_tmp28 = *((unsigned int *)__cil_tmp27);
+      __cil_tmp25 = *((unsigned int *)((void *)b + 36));
+      __cil_tmp28 = *((unsigned int *)((void *)b + 40));
       __dynamic_pr_debug(& descriptor___4, "vmw_balloon: %s - size: %d, target %d\n",
                          "vmballoon_inflate", __cil_tmp25, __cil_tmp28);
       }
@@ -3908,20 +3586,12 @@ static void vmballoon_inflate(struct vmballoon *b )
   }
   while_break: ;
   }
-  __cil_tmp29 = (unsigned long )b;
-  __cil_tmp30 = __cil_tmp29 + 36;
-  __cil_tmp31 = *((unsigned int *)__cil_tmp30);
-  __cil_tmp32 = (unsigned long )b;
-  __cil_tmp33 = __cil_tmp32 + 40;
-  __cil_tmp34 = *((unsigned int *)__cil_tmp33);
+  __cil_tmp31 = *((unsigned int *)((void *)b + 36));
+  __cil_tmp34 = *((unsigned int *)((void *)b + 40));
   goal = __cil_tmp34 - __cil_tmp31;
   {
-  __cil_tmp35 = (unsigned long )b;
-  __cil_tmp36 = __cil_tmp35 + 56;
-  if (*((unsigned int *)__cil_tmp36)) {
-    __cil_tmp37 = (unsigned long )b;
-    __cil_tmp38 = __cil_tmp37 + 48;
-    rate = *((unsigned int *)__cil_tmp38);
+  if (*((unsigned int *)((void *)b + 56))) {
+    rate = *((unsigned int *)((void *)b + 48));
   } else {
     rate = 16384U;
   }
@@ -3940,9 +3610,7 @@ static void vmballoon_inflate(struct vmballoon *b )
     }
     if (tmp___8) {
       {
-      __cil_tmp45 = (unsigned long )b;
-      __cil_tmp46 = __cil_tmp45 + 48;
-      __cil_tmp47 = *((unsigned int *)__cil_tmp46);
+      __cil_tmp47 = *((unsigned int *)((void *)b + 48));
       __dynamic_pr_debug(& descriptor___5, "vmw_balloon: %s - goal: %d, no-sleep rate: %d, sleep rate: %d\n",
                          "vmballoon_inflate", goal, rate, __cil_tmp47);
       }
@@ -3970,9 +3638,7 @@ static void vmballoon_inflate(struct vmballoon *b )
       }
       if (alloc_can_sleep) {
         __cil_tmp48 = & _max1;
-        __cil_tmp49 = (unsigned long )b;
-        __cil_tmp50 = __cil_tmp49 + 48;
-        __cil_tmp51 = *((unsigned int *)__cil_tmp50);
+        __cil_tmp51 = *((unsigned int *)((void *)b + 48));
         *__cil_tmp48 = __cil_tmp51 / 2U;
         __cil_tmp52 = & _max2;
         *__cil_tmp52 = 512U;
@@ -3989,28 +3655,20 @@ static void vmballoon_inflate(struct vmballoon *b )
           tmp___9 = *__cil_tmp58;
         }
         }
-        __cil_tmp59 = (unsigned long )b;
-        __cil_tmp60 = __cil_tmp59 + 48;
-        *((unsigned int *)__cil_tmp60) = tmp___9;
+        *((unsigned int *)((void *)b + 48)) = tmp___9;
         goto while_break___1;
       } else {
       }
-      __cil_tmp61 = (unsigned long )b;
-      __cil_tmp62 = __cil_tmp61 + 56;
-      *((unsigned int *)__cil_tmp62) = 4U;
+      *((unsigned int *)((void *)b + 56)) = 4U;
       {
-      __cil_tmp63 = (unsigned long )b;
-      __cil_tmp64 = __cil_tmp63 + 48;
-      __cil_tmp65 = *((unsigned int *)__cil_tmp64);
+      __cil_tmp65 = *((unsigned int *)((void *)b + 48));
       if (i >= __cil_tmp65) {
         goto while_break___1;
       } else {
       }
       }
       alloc_can_sleep = (bool )1;
-      __cil_tmp66 = (unsigned long )b;
-      __cil_tmp67 = __cil_tmp66 + 48;
-      rate = *((unsigned int *)__cil_tmp67);
+      rate = *((unsigned int *)((void *)b + 48));
     } else {
     }
     allocations = allocations + 1U;
@@ -4033,19 +3691,13 @@ static void vmballoon_inflate(struct vmballoon *b )
   }
   if (error == 0) {
     {
-    __cil_tmp68 = (unsigned long )b;
-    __cil_tmp69 = __cil_tmp68 + 48;
-    __cil_tmp70 = *((unsigned int *)__cil_tmp69);
+    __cil_tmp70 = *((unsigned int *)((void *)b + 48));
     if (i >= __cil_tmp70) {
-      __cil_tmp71 = (unsigned long )b;
-      __cil_tmp72 = __cil_tmp71 + 48;
-      __cil_tmp73 = *((unsigned int *)__cil_tmp72);
+      __cil_tmp73 = *((unsigned int *)((void *)b + 48));
       mult = i / __cil_tmp73;
       __cil_tmp74 = & _min1;
       __cil_tmp75 = mult * 16U;
-      __cil_tmp76 = (unsigned long )b;
-      __cil_tmp77 = __cil_tmp76 + 48;
-      __cil_tmp78 = *((unsigned int *)__cil_tmp77);
+      __cil_tmp78 = *((unsigned int *)((void *)b + 48));
       *__cil_tmp74 = __cil_tmp78 + __cil_tmp75;
       __cil_tmp79 = & _min2;
       *__cil_tmp79 = 2048U;
@@ -4062,9 +3714,7 @@ static void vmballoon_inflate(struct vmballoon *b )
         tmp___10 = *__cil_tmp85;
       }
       }
-      __cil_tmp86 = (unsigned long )b;
-      __cil_tmp87 = __cil_tmp86 + 48;
-      *((unsigned int *)__cil_tmp87) = tmp___10;
+      *((unsigned int *)((void *)b + 48)) = tmp___10;
     } else {
     }
     }
@@ -4110,22 +3760,12 @@ static void vmballoon_deflate(struct vmballoon *b )
   int __cil_tmp24 ;
   int __cil_tmp25 ;
   long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
   unsigned int *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned int __cil_tmp39 ;
   unsigned int *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int *__cil_tmp43 ;
   unsigned int __cil_tmp44 ;
   unsigned int *__cil_tmp45 ;
@@ -4138,36 +3778,24 @@ static void vmballoon_deflate(struct vmballoon *b )
   int __cil_tmp52 ;
   int __cil_tmp53 ;
   long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned int __cil_tmp57 ;
   struct list_head *__cil_tmp58 ;
   struct page *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   struct list_head *__cil_tmp62 ;
   unsigned int __cil_tmp63 ;
   char *__cil_tmp64 ;
   char *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct list_head *__cil_tmp68 ;
   struct page *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct list_head *__cil_tmp72 ;
   unsigned int __cil_tmp73 ;
   char *__cil_tmp74 ;
   char *__cil_tmp75 ;
   struct list_head *__cil_tmp76 ;
   unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   struct list_head *__cil_tmp80 ;
   unsigned long __cil_tmp81 ;
   unsigned int *__cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   unsigned int __cil_tmp85 ;
   unsigned int *__cil_tmp86 ;
   unsigned int *__cil_tmp87 ;
@@ -4176,21 +3804,13 @@ static void vmballoon_deflate(struct vmballoon *b )
   unsigned int __cil_tmp90 ;
   unsigned int *__cil_tmp91 ;
   unsigned int *__cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   struct list_head *__cil_tmp97 ;
   struct page *__cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
   struct list_head *__cil_tmp101 ;
   unsigned int __cil_tmp102 ;
   char *__cil_tmp103 ;
   char *__cil_tmp104 ;
   unsigned int *__cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   unsigned int __cil_tmp108 ;
   unsigned int *__cil_tmp109 ;
   unsigned int *__cil_tmp110 ;
@@ -4199,8 +3819,6 @@ static void vmballoon_deflate(struct vmballoon *b )
   unsigned int __cil_tmp113 ;
   unsigned int *__cil_tmp114 ;
   unsigned int *__cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
   {
   i = 0U;
   {
@@ -4217,12 +3835,8 @@ static void vmballoon_deflate(struct vmballoon *b )
     }
     if (tmp___7) {
       {
-      __cil_tmp27 = (unsigned long )b;
-      __cil_tmp28 = __cil_tmp27 + 36;
-      __cil_tmp29 = *((unsigned int *)__cil_tmp28);
-      __cil_tmp30 = (unsigned long )b;
-      __cil_tmp31 = __cil_tmp30 + 40;
-      __cil_tmp32 = *((unsigned int *)__cil_tmp31);
+      __cil_tmp29 = *((unsigned int *)((void *)b + 36));
+      __cil_tmp32 = *((unsigned int *)((void *)b + 40));
       __dynamic_pr_debug(& descriptor___6, "vmw_balloon: %s - size: %d, target %d\n",
                          "vmballoon_deflate", __cil_tmp29, __cil_tmp32);
       }
@@ -4233,17 +3847,11 @@ static void vmballoon_deflate(struct vmballoon *b )
   while_break: ;
   }
   __cil_tmp33 = & _min1;
-  __cil_tmp34 = (unsigned long )b;
-  __cil_tmp35 = __cil_tmp34 + 40;
-  __cil_tmp36 = *((unsigned int *)__cil_tmp35);
-  __cil_tmp37 = (unsigned long )b;
-  __cil_tmp38 = __cil_tmp37 + 36;
-  __cil_tmp39 = *((unsigned int *)__cil_tmp38);
+  __cil_tmp36 = *((unsigned int *)((void *)b + 40));
+  __cil_tmp39 = *((unsigned int *)((void *)b + 36));
   *__cil_tmp33 = __cil_tmp39 - __cil_tmp36;
   __cil_tmp40 = & _min2;
-  __cil_tmp41 = (unsigned long )b;
-  __cil_tmp42 = __cil_tmp41 + 52;
-  *__cil_tmp40 = *((unsigned int *)__cil_tmp42);
+  *__cil_tmp40 = *((unsigned int *)((void *)b + 52));
   {
   __cil_tmp43 = & _min2;
   __cil_tmp44 = *__cil_tmp43;
@@ -4272,9 +3880,7 @@ static void vmballoon_deflate(struct vmballoon *b )
     }
     if (tmp___9) {
       {
-      __cil_tmp55 = (unsigned long )b;
-      __cil_tmp56 = __cil_tmp55 + 52;
-      __cil_tmp57 = *((unsigned int *)__cil_tmp56);
+      __cil_tmp57 = *((unsigned int *)((void *)b + 52));
       __dynamic_pr_debug(& descriptor___7, "vmw_balloon: %s - goal: %d, rate: %d\n",
                          "vmballoon_deflate", goal, __cil_tmp57);
       }
@@ -4287,21 +3893,15 @@ static void vmballoon_deflate(struct vmballoon *b )
   __cil_tmp58 = *((struct list_head **)b);
   __mptr = (struct list_head const *)__cil_tmp58;
   __cil_tmp59 = (struct page *)0;
-  __cil_tmp60 = (unsigned long )__cil_tmp59;
-  __cil_tmp61 = __cil_tmp60 + 32;
-  __cil_tmp62 = (struct list_head *)__cil_tmp61;
+  __cil_tmp62 = (struct list_head *)((void *)__cil_tmp59 + 32);
   __cil_tmp63 = (unsigned int )__cil_tmp62;
   __cil_tmp64 = (char *)__mptr;
   __cil_tmp65 = __cil_tmp64 - __cil_tmp63;
   page = (struct page *)__cil_tmp65;
-  __cil_tmp66 = (unsigned long )page;
-  __cil_tmp67 = __cil_tmp66 + 32;
-  __cil_tmp68 = *((struct list_head **)__cil_tmp67);
+  __cil_tmp68 = *((struct list_head **)((void *)page + 32));
   __mptr___0 = (struct list_head const *)__cil_tmp68;
   __cil_tmp69 = (struct page *)0;
-  __cil_tmp70 = (unsigned long )__cil_tmp69;
-  __cil_tmp71 = __cil_tmp70 + 32;
-  __cil_tmp72 = (struct list_head *)__cil_tmp71;
+  __cil_tmp72 = (struct list_head *)((void *)__cil_tmp69 + 32);
   __cil_tmp73 = (unsigned int )__cil_tmp72;
   __cil_tmp74 = (char *)__mptr___0;
   __cil_tmp75 = __cil_tmp74 - __cil_tmp73;
@@ -4312,9 +3912,7 @@ static void vmballoon_deflate(struct vmballoon *b )
     {
     __cil_tmp76 = (struct list_head *)b;
     __cil_tmp77 = (unsigned long )__cil_tmp76;
-    __cil_tmp78 = (unsigned long )page;
-    __cil_tmp79 = __cil_tmp78 + 32;
-    __cil_tmp80 = (struct list_head *)__cil_tmp79;
+    __cil_tmp80 = (struct list_head *)((void *)page + 32);
     __cil_tmp81 = (unsigned long )__cil_tmp80;
     if (__cil_tmp81 != __cil_tmp77) {
     } else {
@@ -4326,9 +3924,7 @@ static void vmballoon_deflate(struct vmballoon *b )
     }
     if (error) {
       __cil_tmp82 = & _max1;
-      __cil_tmp83 = (unsigned long )b;
-      __cil_tmp84 = __cil_tmp83 + 52;
-      __cil_tmp85 = *((unsigned int *)__cil_tmp84);
+      __cil_tmp85 = *((unsigned int *)((void *)b + 52));
       *__cil_tmp82 = __cil_tmp85 / 2U;
       __cil_tmp86 = & _max2;
       *__cil_tmp86 = 512U;
@@ -4345,9 +3941,7 @@ static void vmballoon_deflate(struct vmballoon *b )
         tmp___10 = *__cil_tmp92;
       }
       }
-      __cil_tmp93 = (unsigned long )b;
-      __cil_tmp94 = __cil_tmp93 + 52;
-      *((unsigned int *)__cil_tmp94) = tmp___10;
+      *((unsigned int *)((void *)b + 52)) = tmp___10;
       return;
     } else {
     }
@@ -4357,14 +3951,10 @@ static void vmballoon_deflate(struct vmballoon *b )
     } else {
     }
     page = next;
-    __cil_tmp95 = (unsigned long )next;
-    __cil_tmp96 = __cil_tmp95 + 32;
-    __cil_tmp97 = *((struct list_head **)__cil_tmp96);
+    __cil_tmp97 = *((struct list_head **)((void *)next + 32));
     __mptr___1 = (struct list_head const *)__cil_tmp97;
     __cil_tmp98 = (struct page *)0;
-    __cil_tmp99 = (unsigned long )__cil_tmp98;
-    __cil_tmp100 = __cil_tmp99 + 32;
-    __cil_tmp101 = (struct list_head *)__cil_tmp100;
+    __cil_tmp101 = (struct list_head *)((void *)__cil_tmp98 + 32);
     __cil_tmp102 = (unsigned int )__cil_tmp101;
     __cil_tmp103 = (char *)__mptr___1;
     __cil_tmp104 = __cil_tmp103 - __cil_tmp102;
@@ -4373,9 +3963,7 @@ static void vmballoon_deflate(struct vmballoon *b )
   while_break___1: ;
   }
   __cil_tmp105 = & _min1___0;
-  __cil_tmp106 = (unsigned long )b;
-  __cil_tmp107 = __cil_tmp106 + 52;
-  __cil_tmp108 = *((unsigned int *)__cil_tmp107);
+  __cil_tmp108 = *((unsigned int *)((void *)b + 52));
   *__cil_tmp105 = __cil_tmp108 + 16U;
   __cil_tmp109 = & _min2___0;
   *__cil_tmp109 = 16384U;
@@ -4392,9 +3980,7 @@ static void vmballoon_deflate(struct vmballoon *b )
     tmp___11 = *__cil_tmp115;
   }
   }
-  __cil_tmp116 = (unsigned long )b;
-  __cil_tmp117 = __cil_tmp116 + 52;
-  *((unsigned int *)__cil_tmp117) = tmp___11;
+  *((unsigned int *)((void *)b + 52)) = tmp___11;
   return;
 }
 }
@@ -4407,39 +3993,19 @@ static void vmballoon_work(struct work_struct *work )
   bool tmp___8 ;
   unsigned long tmp___9 ;
   struct vmballoon *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct delayed_work *__cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   char *__cil_tmp14 ;
   char *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned int *__cil_tmp33 ;
   unsigned int *__cil_tmp34 ;
   unsigned int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned int __cil_tmp38 ;
   unsigned int *__cil_tmp39 ;
   unsigned int __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
   {
   {
@@ -4447,24 +4013,16 @@ static void vmballoon_work(struct work_struct *work )
   dwork = tmp___7;
   __mptr = (struct delayed_work const *)dwork;
   __cil_tmp9 = (struct vmballoon *)0;
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 256;
-  __cil_tmp12 = (struct delayed_work *)__cil_tmp11;
+  __cil_tmp12 = (struct delayed_work *)((void *)__cil_tmp9 + 256);
   __cil_tmp13 = (unsigned int )__cil_tmp12;
   __cil_tmp14 = (char *)__mptr;
   __cil_tmp15 = __cil_tmp14 - __cil_tmp13;
   b = (struct vmballoon *)__cil_tmp15;
-  __cil_tmp16 = (unsigned long )b;
-  __cil_tmp17 = __cil_tmp16 + 60;
-  __cil_tmp18 = (unsigned long )b;
-  __cil_tmp19 = __cil_tmp18 + 60;
-  __cil_tmp20 = *((unsigned int *)__cil_tmp19);
-  *((unsigned int *)__cil_tmp17) = __cil_tmp20 + 1U;
+  __cil_tmp20 = *((unsigned int *)((void *)b + 60));
+  *((unsigned int *)((void *)b + 60)) = __cil_tmp20 + 1U;
   }
   {
-  __cil_tmp21 = (unsigned long )b;
-  __cil_tmp22 = __cil_tmp21 + 44;
-  if (*((bool *)__cil_tmp22)) {
+  if (*((bool *)((void *)b + 44))) {
     {
     vmballoon_reset(b);
     }
@@ -4472,16 +4030,10 @@ static void vmballoon_work(struct work_struct *work )
   }
   }
   {
-  __cil_tmp23 = (unsigned long )b;
-  __cil_tmp24 = __cil_tmp23 + 56;
-  __cil_tmp25 = *((unsigned int *)__cil_tmp24);
+  __cil_tmp25 = *((unsigned int *)((void *)b + 56));
   if (__cil_tmp25 > 0U) {
-    __cil_tmp26 = (unsigned long )b;
-    __cil_tmp27 = __cil_tmp26 + 56;
-    __cil_tmp28 = (unsigned long )b;
-    __cil_tmp29 = __cil_tmp28 + 56;
-    __cil_tmp30 = *((unsigned int *)__cil_tmp29);
-    *((unsigned int *)__cil_tmp27) = __cil_tmp30 - 1U;
+    __cil_tmp30 = *((unsigned int *)((void *)b + 56));
+    *((unsigned int *)((void *)b + 56)) = __cil_tmp30 - 1U;
   } else {
   }
   }
@@ -4489,16 +4041,12 @@ static void vmballoon_work(struct work_struct *work )
   tmp___8 = vmballoon_send_get_target(b, & target);
   }
   if (tmp___8) {
-    __cil_tmp31 = (unsigned long )b;
-    __cil_tmp32 = __cil_tmp31 + 40;
     __cil_tmp33 = & target;
-    *((unsigned int *)__cil_tmp32) = *__cil_tmp33;
+    *((unsigned int *)((void *)b + 40)) = *__cil_tmp33;
     {
     __cil_tmp34 = & target;
     __cil_tmp35 = *__cil_tmp34;
-    __cil_tmp36 = (unsigned long )b;
-    __cil_tmp37 = __cil_tmp36 + 36;
-    __cil_tmp38 = *((unsigned int *)__cil_tmp37);
+    __cil_tmp38 = *((unsigned int *)((void *)b + 36));
     if (__cil_tmp38 < __cil_tmp35) {
       {
       vmballoon_inflate(b);
@@ -4507,9 +4055,7 @@ static void vmballoon_work(struct work_struct *work )
       {
       __cil_tmp39 = & target;
       __cil_tmp40 = *__cil_tmp39;
-      __cil_tmp41 = (unsigned long )b;
-      __cil_tmp42 = __cil_tmp41 + 36;
-      __cil_tmp43 = *((unsigned int *)__cil_tmp42);
+      __cil_tmp43 = *((unsigned int *)((void *)b + 36));
       if (__cil_tmp43 > __cil_tmp40) {
         {
         vmballoon_deflate(b);
@@ -4531,152 +4077,60 @@ static void vmballoon_work(struct work_struct *work )
 static int vmballoon_debug_show(struct seq_file *f , void *offset )
 { struct vmballoon *b ;
   struct vmballoon_stats *stats ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned int __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   unsigned int __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   unsigned int __cil_tmp73 ;
   {
   {
-  __cil_tmp5 = (unsigned long )f;
-  __cil_tmp6 = __cil_tmp5 + 144;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)f + 144));
   b = (struct vmballoon *)__cil_tmp7;
-  __cil_tmp8 = (unsigned long )b;
-  __cil_tmp9 = __cil_tmp8 + 60;
-  stats = (struct vmballoon_stats *)__cil_tmp9;
-  __cil_tmp10 = (unsigned long )b;
-  __cil_tmp11 = __cil_tmp10 + 40;
-  __cil_tmp12 = *((unsigned int *)__cil_tmp11);
-  __cil_tmp13 = (unsigned long )b;
-  __cil_tmp14 = __cil_tmp13 + 36;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
+  stats = (struct vmballoon_stats *)((void *)b + 60);
+  __cil_tmp12 = *((unsigned int *)((void *)b + 40));
+  __cil_tmp15 = *((unsigned int *)((void *)b + 36));
   seq_printf(f, "target:             %8d pages\ncurrent:            %8d pages\n",
              __cil_tmp12, __cil_tmp15);
-  __cil_tmp16 = (unsigned long )b;
-  __cil_tmp17 = __cil_tmp16 + 48;
-  __cil_tmp18 = *((unsigned int *)__cil_tmp17);
-  __cil_tmp19 = (unsigned long )b;
-  __cil_tmp20 = __cil_tmp19 + 52;
-  __cil_tmp21 = *((unsigned int *)__cil_tmp20);
+  __cil_tmp18 = *((unsigned int *)((void *)b + 48));
+  __cil_tmp21 = *((unsigned int *)((void *)b + 52));
   seq_printf(f, "rateNoSleepAlloc:   %8d pages/sec\nrateSleepAlloc:     %8d pages/sec\nrateFree:           %8d pages/sec\n",
              16384U, __cil_tmp18, __cil_tmp21);
   __cil_tmp22 = *((unsigned int *)stats);
-  __cil_tmp23 = (unsigned long )stats;
-  __cil_tmp24 = __cil_tmp23 + 56;
-  __cil_tmp25 = *((unsigned int *)__cil_tmp24);
-  __cil_tmp26 = (unsigned long )stats;
-  __cil_tmp27 = __cil_tmp26 + 60;
-  __cil_tmp28 = *((unsigned int *)__cil_tmp27);
-  __cil_tmp29 = (unsigned long )stats;
-  __cil_tmp30 = __cil_tmp29 + 64;
-  __cil_tmp31 = *((unsigned int *)__cil_tmp30);
-  __cil_tmp32 = (unsigned long )stats;
-  __cil_tmp33 = __cil_tmp32 + 68;
-  __cil_tmp34 = *((unsigned int *)__cil_tmp33);
-  __cil_tmp35 = (unsigned long )stats;
-  __cil_tmp36 = __cil_tmp35 + 32;
-  __cil_tmp37 = *((unsigned int *)__cil_tmp36);
-  __cil_tmp38 = (unsigned long )stats;
-  __cil_tmp39 = __cil_tmp38 + 36;
-  __cil_tmp40 = *((unsigned int *)__cil_tmp39);
-  __cil_tmp41 = (unsigned long )stats;
-  __cil_tmp42 = __cil_tmp41 + 40;
-  __cil_tmp43 = *((unsigned int *)__cil_tmp42);
-  __cil_tmp44 = (unsigned long )stats;
-  __cil_tmp45 = __cil_tmp44 + 44;
-  __cil_tmp46 = *((unsigned int *)__cil_tmp45);
-  __cil_tmp47 = (unsigned long )stats;
-  __cil_tmp48 = __cil_tmp47 + 48;
-  __cil_tmp49 = *((unsigned int *)__cil_tmp48);
-  __cil_tmp50 = (unsigned long )stats;
-  __cil_tmp51 = __cil_tmp50 + 52;
-  __cil_tmp52 = *((unsigned int *)__cil_tmp51);
-  __cil_tmp53 = (unsigned long )stats;
-  __cil_tmp54 = __cil_tmp53 + 4;
-  __cil_tmp55 = *((unsigned int *)__cil_tmp54);
-  __cil_tmp56 = (unsigned long )stats;
-  __cil_tmp57 = __cil_tmp56 + 8;
-  __cil_tmp58 = *((unsigned int *)__cil_tmp57);
-  __cil_tmp59 = (unsigned long )stats;
-  __cil_tmp60 = __cil_tmp59 + 12;
-  __cil_tmp61 = *((unsigned int *)__cil_tmp60);
-  __cil_tmp62 = (unsigned long )stats;
-  __cil_tmp63 = __cil_tmp62 + 16;
-  __cil_tmp64 = *((unsigned int *)__cil_tmp63);
-  __cil_tmp65 = (unsigned long )stats;
-  __cil_tmp66 = __cil_tmp65 + 28;
-  __cil_tmp67 = *((unsigned int *)__cil_tmp66);
-  __cil_tmp68 = (unsigned long )stats;
-  __cil_tmp69 = __cil_tmp68 + 20;
-  __cil_tmp70 = *((unsigned int *)__cil_tmp69);
-  __cil_tmp71 = (unsigned long )stats;
-  __cil_tmp72 = __cil_tmp71 + 24;
-  __cil_tmp73 = *((unsigned int *)__cil_tmp72);
+  __cil_tmp25 = *((unsigned int *)((void *)stats + 56));
+  __cil_tmp28 = *((unsigned int *)((void *)stats + 60));
+  __cil_tmp31 = *((unsigned int *)((void *)stats + 64));
+  __cil_tmp34 = *((unsigned int *)((void *)stats + 68));
+  __cil_tmp37 = *((unsigned int *)((void *)stats + 32));
+  __cil_tmp40 = *((unsigned int *)((void *)stats + 36));
+  __cil_tmp43 = *((unsigned int *)((void *)stats + 40));
+  __cil_tmp46 = *((unsigned int *)((void *)stats + 44));
+  __cil_tmp49 = *((unsigned int *)((void *)stats + 48));
+  __cil_tmp52 = *((unsigned int *)((void *)stats + 52));
+  __cil_tmp55 = *((unsigned int *)((void *)stats + 4));
+  __cil_tmp58 = *((unsigned int *)((void *)stats + 8));
+  __cil_tmp61 = *((unsigned int *)((void *)stats + 12));
+  __cil_tmp64 = *((unsigned int *)((void *)stats + 16));
+  __cil_tmp67 = *((unsigned int *)((void *)stats + 28));
+  __cil_tmp70 = *((unsigned int *)((void *)stats + 20));
+  __cil_tmp73 = *((unsigned int *)((void *)stats + 24));
   seq_printf(f, "\ntimer:              %8u\nstart:              %8u (%4u failed)\nguestType:          %8u (%4u failed)\nlock:               %8u (%4u failed)\nunlock:             %8u (%4u failed)\ntarget:             %8u (%4u failed)\nprimNoSleepAlloc:   %8u (%4u failed)\nprimCanSleepAlloc:  %8u (%4u failed)\nprimFree:           %8u\nerrAlloc:           %8u\nerrFree:            %8u\n",
              __cil_tmp22, __cil_tmp25, __cil_tmp28, __cil_tmp31, __cil_tmp34, __cil_tmp37,
              __cil_tmp40, __cil_tmp43, __cil_tmp46, __cil_tmp49, __cil_tmp52, __cil_tmp55,
@@ -4687,14 +4141,10 @@ static int vmballoon_debug_show(struct seq_file *f , void *offset )
 }
 static int vmballoon_debug_open(struct inode *inode , struct file *file )
 { int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   {
   {
-  __cil_tmp4 = (unsigned long )inode;
-  __cil_tmp5 = __cil_tmp4 + 696;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)inode + 696));
   tmp___7 = single_open(file, & vmballoon_debug_show, __cil_tmp6);
   }
   return (tmp___7);
@@ -4737,41 +4187,29 @@ static int vmballoon_debugfs_init(struct vmballoon *b )
 { int error ;
   long tmp___7 ;
   long tmp___8 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   umode_t __cil_tmp7 ;
   void *__cil_tmp8 ;
   struct dentry *__cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct dentry *__cil_tmp13 ;
   void const *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct dentry *__cil_tmp17 ;
   void const *__cil_tmp18 ;
   {
   {
-  __cil_tmp5 = (unsigned long )b;
-  __cil_tmp6 = __cil_tmp5 + 136;
   __cil_tmp7 = (umode_t )292;
   __cil_tmp8 = (void *)0;
   __cil_tmp9 = (struct dentry *)__cil_tmp8;
   __cil_tmp10 = (void *)b;
-  *((struct dentry **)__cil_tmp6) = debugfs_create_file("vmmemctl", __cil_tmp7, __cil_tmp9,
+  *((struct dentry **)((void *)b + 136)) = debugfs_create_file("vmmemctl", __cil_tmp7, __cil_tmp9,
                                                         __cil_tmp10, & vmballoon_debug_fops);
-  __cil_tmp11 = (unsigned long )b;
-  __cil_tmp12 = __cil_tmp11 + 136;
-  __cil_tmp13 = *((struct dentry **)__cil_tmp12);
+  __cil_tmp13 = *((struct dentry **)((void *)b + 136));
   __cil_tmp14 = (void const *)__cil_tmp13;
   tmp___8 = (long )IS_ERR(__cil_tmp14);
   }
   if (tmp___8) {
     {
-    __cil_tmp15 = (unsigned long )b;
-    __cil_tmp16 = __cil_tmp15 + 136;
-    __cil_tmp17 = *((struct dentry **)__cil_tmp16);
+    __cil_tmp17 = *((struct dentry **)((void *)b + 136));
     __cil_tmp18 = (void const *)__cil_tmp17;
     tmp___7 = (long )PTR_ERR(__cil_tmp18);
     error = (int )tmp___7;
@@ -4786,14 +4224,11 @@ static int vmballoon_debugfs_init(struct vmballoon *b )
 static void vmballoon_debugfs_exit(struct vmballoon *b ) __attribute__((__section__(".exit.text"),
 __no_instrument_function__)) ;
 static void vmballoon_debugfs_exit(struct vmballoon *b )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct dentry *__cil_tmp4 ;
   {
   {
-  __cil_tmp2 = (unsigned long )b;
-  __cil_tmp3 = __cil_tmp2 + 136;
-  __cil_tmp4 = *((struct dentry **)__cil_tmp3);
+  __cil_tmp4 = *((struct dentry **)((void *)b + 136));
   debugfs_remove(__cil_tmp4);
   }
   return;
@@ -4809,28 +4244,19 @@ static int vmballoon_init(void)
   unsigned long __cil_tmp6 ;
   struct vmballoon *__cil_tmp7 ;
   struct list_head *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct list_head *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct work_struct *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct list_head *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct timer_list *__cil_tmp25 ;
   void *__cil_tmp26 ;
   char const *__cil_tmp27 ;
   void *__cil_tmp28 ;
   struct lock_class_key *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct delayed_work *__cil_tmp31 ;
   long __constr_expr_0_counter32 ;
   {
@@ -4846,13 +4272,10 @@ static int vmballoon_init(void)
   __cil_tmp7 = & balloon;
   __cil_tmp8 = (struct list_head *)__cil_tmp7;
   INIT_LIST_HEAD(__cil_tmp8);
-  __cil_tmp9 = (unsigned long )(& balloon) + 16;
-  __cil_tmp10 = (struct list_head *)__cil_tmp9;
+  __cil_tmp10 = (struct list_head *)((void *)(&balloon) + 16);
   INIT_LIST_HEAD(__cil_tmp10);
-  __cil_tmp11 = (unsigned long )(& balloon) + 48;
-  *((unsigned int *)__cil_tmp11) = 2048U;
-  __cil_tmp12 = (unsigned long )(& balloon) + 52;
-  *((unsigned int *)__cil_tmp12) = 16384U;
+  *((unsigned int *)((void *)(&balloon) + 48)) = 2048U;
+  *((unsigned int *)((void *)(&balloon) + 52)) = 16384U;
   }
   {
   while (1) {
@@ -4864,16 +4287,13 @@ static int vmballoon_init(void)
       while (1) {
         while_continue___1: ;
         {
-        __cil_tmp13 = (unsigned long )(& balloon) + 256;
-        __cil_tmp14 = (struct work_struct *)__cil_tmp13;
+        __cil_tmp14 = (struct work_struct *)((void *)(&balloon) + 256);
         __init_work(__cil_tmp14, 0);
         __constr_expr_0_counter32 = 2097664L;
-        __cil_tmp15 = (unsigned long )(& balloon) + 256;
-        ((atomic_long_t *)__cil_tmp15)->counter = __constr_expr_0_counter32;
+        ((atomic_long_t *)((void *)(&balloon) + 256))->counter = __constr_expr_0_counter32;
         __cil_tmp16 = 0 + 8;
         __cil_tmp17 = 256 + __cil_tmp16;
-        __cil_tmp18 = (unsigned long )(& balloon) + __cil_tmp17;
-        __cil_tmp19 = (struct list_head *)__cil_tmp18;
+        __cil_tmp19 = (struct list_head *)((void *)(&balloon) + __cil_tmp17);
         INIT_LIST_HEAD(__cil_tmp19);
         }
         {
@@ -4881,8 +4301,7 @@ static int vmballoon_init(void)
           while_continue___2: ;
           __cil_tmp20 = 0 + 24;
           __cil_tmp21 = 256 + __cil_tmp20;
-          __cil_tmp22 = (unsigned long )(& balloon) + __cil_tmp21;
-          *((void (**)(struct work_struct *work ))__cil_tmp22) = & vmballoon_work;
+          *((void (**)(struct work_struct *work ))((void *)(&balloon) + __cil_tmp21)) = & vmballoon_work;
           goto while_break___2;
         }
         while_break___2: ;
@@ -4897,8 +4316,7 @@ static int vmballoon_init(void)
     }
     {
     __cil_tmp23 = 256 + 32;
-    __cil_tmp24 = (unsigned long )(& balloon) + __cil_tmp23;
-    __cil_tmp25 = (struct timer_list *)__cil_tmp24;
+    __cil_tmp25 = (struct timer_list *)((void *)(&balloon) + __cil_tmp23);
     __cil_tmp26 = (void *)0;
     __cil_tmp27 = (char const *)__cil_tmp26;
     __cil_tmp28 = (void *)0;
@@ -4937,8 +4355,7 @@ static int vmballoon_init(void)
   } else {
   }
   {
-  __cil_tmp30 = (unsigned long )(& balloon) + 256;
-  __cil_tmp31 = (struct delayed_work *)__cil_tmp30;
+  __cil_tmp31 = (struct delayed_work *)((void *)(&balloon) + 256);
   queue_delayed_work(system_freezable_wq, __cil_tmp31, 0UL);
   }
   return (0);
@@ -4955,12 +4372,11 @@ int init_module(void)
 }
 static void vmballoon_exit(void) __attribute__((__section__(".exit.text"), __no_instrument_function__)) ;
 static void vmballoon_exit(void)
-{ unsigned long __cil_tmp1 ;
+{
   struct delayed_work *__cil_tmp2 ;
   {
   {
-  __cil_tmp1 = (unsigned long )(& balloon) + 256;
-  __cil_tmp2 = (struct delayed_work *)__cil_tmp1;
+  __cil_tmp2 = (struct delayed_work *)((void *)(&balloon) + 256);
   cancel_delayed_work_sync(__cil_tmp2);
   vmballoon_debugfs_exit(& balloon);
   vmballoon_send_start(& balloon);

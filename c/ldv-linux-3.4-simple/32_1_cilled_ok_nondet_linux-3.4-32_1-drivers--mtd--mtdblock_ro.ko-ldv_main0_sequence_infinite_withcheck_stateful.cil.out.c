@@ -978,8 +978,6 @@ static int mtdblock_readsect(struct mtd_blktrans_dev *dev , unsigned long block 
                              char *buf ) 
 { size_t retlen ;
   int tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct mtd_info *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   loff_t __cil_tmp10 ;
@@ -988,9 +986,7 @@ static int mtdblock_readsect(struct mtd_blktrans_dev *dev , unsigned long block 
 
   {
   {
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 24;
-  __cil_tmp8 = *((struct mtd_info **)__cil_tmp7);
+  __cil_tmp8 = *((struct mtd_info **)((void *)dev + 24));
   __cil_tmp9 = block * 512UL;
   __cil_tmp10 = (loff_t )__cil_tmp9;
   __cil_tmp11 = (size_t )512;
@@ -1009,8 +1005,6 @@ static int mtdblock_writesect(struct mtd_blktrans_dev *dev , unsigned long block
                               char *buf ) 
 { size_t retlen ;
   int tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct mtd_info *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   loff_t __cil_tmp10 ;
@@ -1019,9 +1013,7 @@ static int mtdblock_writesect(struct mtd_blktrans_dev *dev , unsigned long block
 
   {
   {
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 24;
-  __cil_tmp8 = *((struct mtd_info **)__cil_tmp7);
+  __cil_tmp8 = *((struct mtd_info **)((void *)dev + 24));
   __cil_tmp9 = block * 512UL;
   __cil_tmp10 = (loff_t )__cil_tmp9;
   __cil_tmp11 = (size_t )512;
@@ -1040,20 +1032,8 @@ static void mtdblock_add_mtd(struct mtd_blktrans_ops *tr , struct mtd_info *mtd 
 { struct mtd_blktrans_dev *dev ;
   void *tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   uint64_t __cil_tmp16 ;
   uint64_t __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void const   *__cil_tmp20 ;
 
   {
@@ -1067,25 +1047,13 @@ static void mtdblock_add_mtd(struct mtd_blktrans_ops *tr , struct mtd_info *mtd 
 
   }
   {
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 24;
-  *((struct mtd_info **)__cil_tmp7) = mtd;
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + 104;
-  __cil_tmp10 = (unsigned long )mtd;
-  __cil_tmp11 = __cil_tmp10 + 64;
-  *((int *)__cil_tmp9) = *((int *)__cil_tmp11);
-  __cil_tmp12 = (unsigned long )dev;
-  __cil_tmp13 = __cil_tmp12 + 112;
-  __cil_tmp14 = (unsigned long )mtd;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((uint64_t *)__cil_tmp15);
+  *((struct mtd_info **)((void *)dev + 24)) = mtd;
+  *((int *)((void *)dev + 104)) = *((int *)((void *)mtd + 64));
+  __cil_tmp16 = *((uint64_t *)((void *)mtd + 8));
   __cil_tmp17 = __cil_tmp16 >> 9;
-  *((unsigned long *)__cil_tmp13) = (unsigned long )__cil_tmp17;
+  *((unsigned long *)((void *)dev + 112)) = (unsigned long )__cil_tmp17;
   *((struct mtd_blktrans_ops **)dev) = tr;
-  __cil_tmp18 = (unsigned long )dev;
-  __cil_tmp19 = __cil_tmp18 + 120;
-  *((int *)__cil_tmp19) = 1;
+  *((int *)((void *)dev + 120)) = 1;
   tmp___0 = add_mtd_blktrans_dev(dev);
   }
   if (tmp___0) {

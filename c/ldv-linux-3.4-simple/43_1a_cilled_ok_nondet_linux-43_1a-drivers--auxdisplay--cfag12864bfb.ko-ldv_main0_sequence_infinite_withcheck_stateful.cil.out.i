@@ -3398,28 +3398,21 @@ extern int platform_driver_register(struct platform_driver * ) ;
 extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3452,8 +3445,6 @@ static int cfag12864bfb_mmap(struct fb_info *info , struct vm_area_struct *vma )
 { unsigned long tmp ;
   int tmp___0 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
@@ -3462,9 +3453,7 @@ static int cfag12864bfb_mmap(struct fb_info *info , struct vm_area_struct *vma )
   {
   __cil_tmp5 = (unsigned long )cfag12864b_buffer;
   tmp = __phys_addr(__cil_tmp5);
-  __cil_tmp6 = (unsigned long )vma;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = *((unsigned long *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned long *)((void *)vma + 8));
   __cil_tmp9 = tmp >> 12;
   __cil_tmp10 = 0xffffea0000000000UL + __cil_tmp9;
   __cil_tmp11 = (struct page *)__cil_tmp10;
@@ -3492,42 +3481,18 @@ static int cfag12864bfb_probe(struct platform_device *device )
   struct fb_info *info ;
   struct fb_info *tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   struct fb_info *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   char (*__cil_tmp34)[16U] ;
   char *__cil_tmp35 ;
   {
   {
   ret = -22;
-  __cil_tmp6 = (unsigned long )device;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = (struct device *)__cil_tmp7;
+  __cil_tmp8 = (struct device *)((void *)device + 16);
   tmp = framebuffer_alloc(0UL, __cil_tmp8);
   info = tmp;
   }
@@ -3541,30 +3506,14 @@ static int cfag12864bfb_probe(struct platform_device *device )
   }
   }
   {
-  __cil_tmp12 = (unsigned long )info;
-  __cil_tmp13 = __cil_tmp12 + 1552;
-  *((char **)__cil_tmp13) = (char *)cfag12864b_buffer;
-  __cil_tmp14 = (unsigned long )info;
-  __cil_tmp15 = __cil_tmp14 + 1560;
-  *((unsigned long *)__cil_tmp15) = 1024UL;
-  __cil_tmp16 = (unsigned long )info;
-  __cil_tmp17 = __cil_tmp16 + 1512;
-  *((struct fb_ops **)__cil_tmp17) = & cfag12864bfb_ops;
-  __cil_tmp18 = (unsigned long )info;
-  __cil_tmp19 = __cil_tmp18 + 512;
-  *((struct fb_fix_screeninfo *)__cil_tmp19) = cfag12864bfb_fix;
-  __cil_tmp20 = (unsigned long )info;
-  __cil_tmp21 = __cil_tmp20 + 352;
-  *((struct fb_var_screeninfo *)__cil_tmp21) = cfag12864bfb_var;
-  __cil_tmp22 = (unsigned long )info;
-  __cil_tmp23 = __cil_tmp22 + 1568;
-  *((void **)__cil_tmp23) = (void *)0;
-  __cil_tmp24 = (unsigned long )info;
-  __cil_tmp25 = __cil_tmp24 + 1592;
-  *((void **)__cil_tmp25) = (void *)0;
-  __cil_tmp26 = (unsigned long )info;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  *((int *)__cil_tmp27) = 1;
+  *((char **)((void *)info + 1552)) = (char *)cfag12864b_buffer;
+  *((unsigned long *)((void *)info + 1560)) = 1024UL;
+  *((struct fb_ops **)((void *)info + 1512)) = & cfag12864bfb_ops;
+  *((struct fb_fix_screeninfo *)((void *)info + 512)) = cfag12864bfb_fix;
+  *((struct fb_var_screeninfo *)((void *)info + 352)) = cfag12864bfb_var;
+  *((void **)((void *)info + 1568)) = (void *)0;
+  *((void **)((void *)info + 1592)) = (void *)0;
+  *((int *)((void *)info + 8)) = 1;
   tmp___0 = register_framebuffer(info);
   }
   if (tmp___0 < 0) {
@@ -3574,12 +3523,8 @@ static int cfag12864bfb_probe(struct platform_device *device )
   {
   __cil_tmp28 = (void *)info;
   platform_set_drvdata(device, __cil_tmp28);
-  __cil_tmp29 = (unsigned long )info;
-  __cil_tmp30 = __cil_tmp29 + 4;
-  __cil_tmp31 = *((int *)__cil_tmp30);
-  __cil_tmp32 = (unsigned long )info;
-  __cil_tmp33 = __cil_tmp32 + 512;
-  __cil_tmp34 = (char (*)[16U])__cil_tmp33;
+  __cil_tmp31 = *((int *)((void *)info + 4));
+  __cil_tmp34 = (char (*)[16U])((void *)info + 512);
   __cil_tmp35 = (char *)__cil_tmp34;
   printk("<6>fb%d: %s frame buffer device\n", __cil_tmp31, __cil_tmp35);
   }

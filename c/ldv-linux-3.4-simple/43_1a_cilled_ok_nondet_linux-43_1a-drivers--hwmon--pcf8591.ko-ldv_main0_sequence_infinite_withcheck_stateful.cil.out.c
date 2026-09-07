@@ -2093,30 +2093,23 @@ extern s32 i2c_smbus_write_byte(struct i2c_client  const  * , u8  ) ;
 extern s32 i2c_smbus_write_byte_data(struct i2c_client  const  * , u8  , u8  ) ;
 __inline static void *i2c_get_clientdata(struct i2c_client  const  *dev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)dev + 40);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2214,8 +2207,6 @@ static ssize_t show_out0_ouput(struct device *dev , struct device_attribute *att
   struct i2c_client *__cil_tmp8 ;
   struct i2c_client *__cil_tmp9 ;
   struct i2c_client  const  *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u8 __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
@@ -2228,9 +2219,7 @@ static ssize_t show_out0_ouput(struct device *dev , struct device_attribute *att
   __cil_tmp10 = (struct i2c_client  const  *)__cil_tmp9;
   tmp = i2c_get_clientdata(__cil_tmp10);
   data = (struct pcf8591_data *)tmp;
-  __cil_tmp11 = (unsigned long )data;
-  __cil_tmp12 = __cil_tmp11 + 177;
-  __cil_tmp13 = *((u8 *)__cil_tmp12);
+  __cil_tmp13 = *((u8 *)((void *)data + 177));
   __cil_tmp14 = (int )__cil_tmp13;
   __cil_tmp15 = __cil_tmp14 * 10;
   tmp___0 = sprintf(buf, "%d\n", __cil_tmp15);
@@ -2253,18 +2242,12 @@ static ssize_t set_out0_output(struct device *dev , struct device_attribute *att
   unsigned long __cil_tmp15 ;
   unsigned long *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   struct i2c_client  const  *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   u8 __cil_tmp25 ;
   int __cil_tmp26 ;
   u8 __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   u8 __cil_tmp30 ;
   int __cil_tmp31 ;
   u8 __cil_tmp32 ;
@@ -2298,20 +2281,14 @@ static ssize_t set_out0_output(struct device *dev , struct device_attribute *att
   }
   }
   {
-  __cil_tmp18 = (unsigned long )data;
-  __cil_tmp19 = __cil_tmp18 + 177;
   __cil_tmp20 = & val;
   __cil_tmp21 = *__cil_tmp20;
-  *((u8 *)__cil_tmp19) = (u8 )__cil_tmp21;
+  *((u8 *)((void *)data + 177)) = (u8 )__cil_tmp21;
   __cil_tmp22 = (struct i2c_client  const  *)client;
-  __cil_tmp23 = (unsigned long )data;
-  __cil_tmp24 = __cil_tmp23 + 176;
-  __cil_tmp25 = *((u8 *)__cil_tmp24);
+  __cil_tmp25 = *((u8 *)((void *)data + 176));
   __cil_tmp26 = (int )__cil_tmp25;
   __cil_tmp27 = (u8 )__cil_tmp26;
-  __cil_tmp28 = (unsigned long )data;
-  __cil_tmp29 = __cil_tmp28 + 177;
-  __cil_tmp30 = *((u8 *)__cil_tmp29);
+  __cil_tmp30 = *((u8 *)((void *)data + 177));
   __cil_tmp31 = (int )__cil_tmp30;
   __cil_tmp32 = (u8 )__cil_tmp31;
   i2c_smbus_write_byte_data(__cil_tmp22, __cil_tmp27, __cil_tmp32);
@@ -2333,8 +2310,6 @@ static ssize_t show_out0_enable(struct device *dev , struct device_attribute *at
   struct i2c_client *__cil_tmp8 ;
   struct i2c_client *__cil_tmp9 ;
   struct i2c_client  const  *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u8 __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
@@ -2348,9 +2323,7 @@ static ssize_t show_out0_enable(struct device *dev , struct device_attribute *at
   __cil_tmp10 = (struct i2c_client  const  *)__cil_tmp9;
   tmp = i2c_get_clientdata(__cil_tmp10);
   data = (struct pcf8591_data *)tmp;
-  __cil_tmp11 = (unsigned long )data;
-  __cil_tmp12 = __cil_tmp11 + 176;
-  __cil_tmp13 = *((u8 *)__cil_tmp12);
+  __cil_tmp13 = *((u8 *)((void *)data + 176));
   __cil_tmp14 = (int )__cil_tmp13;
   __cil_tmp15 = __cil_tmp14 & 64;
   __cil_tmp16 = __cil_tmp15 != 0;
@@ -2369,33 +2342,19 @@ static ssize_t set_out0_enable(struct device *dev , struct device_attribute *att
   int err ;
   struct i2c_client *__cil_tmp11 ;
   struct i2c_client  const  *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
   unsigned long *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u8 __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   u8 __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
   struct i2c_client  const  *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   u8 __cil_tmp35 ;
   int __cil_tmp36 ;
   u8 __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct mutex *__cil_tmp40 ;
 
   {
@@ -2414,45 +2373,31 @@ static ssize_t set_out0_enable(struct device *dev , struct device_attribute *att
 
   }
   {
-  __cil_tmp13 = (unsigned long )data;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  __cil_tmp15 = (struct mutex *)__cil_tmp14;
+  __cil_tmp15 = (struct mutex *)((void *)data + 8);
   mutex_lock_nested(__cil_tmp15, 0U);
   }
   {
   __cil_tmp16 = & val;
   __cil_tmp17 = *__cil_tmp16;
   if (__cil_tmp17 != 0UL) {
-    __cil_tmp18 = (unsigned long )data;
-    __cil_tmp19 = __cil_tmp18 + 176;
-    __cil_tmp20 = (unsigned long )data;
-    __cil_tmp21 = __cil_tmp20 + 176;
-    __cil_tmp22 = *((u8 *)__cil_tmp21);
+    __cil_tmp22 = *((u8 *)((void *)data + 176));
     __cil_tmp23 = (unsigned int )__cil_tmp22;
     __cil_tmp24 = __cil_tmp23 | 64U;
-    *((u8 *)__cil_tmp19) = (u8 )__cil_tmp24;
+    *((u8 *)((void *)data + 176)) = (u8 )__cil_tmp24;
   } else {
-    __cil_tmp25 = (unsigned long )data;
-    __cil_tmp26 = __cil_tmp25 + 176;
-    __cil_tmp27 = (unsigned long )data;
-    __cil_tmp28 = __cil_tmp27 + 176;
-    __cil_tmp29 = *((u8 *)__cil_tmp28);
+    __cil_tmp29 = *((u8 *)((void *)data + 176));
     __cil_tmp30 = (unsigned int )__cil_tmp29;
     __cil_tmp31 = __cil_tmp30 & 191U;
-    *((u8 *)__cil_tmp26) = (u8 )__cil_tmp31;
+    *((u8 *)((void *)data + 176)) = (u8 )__cil_tmp31;
   }
   }
   {
   __cil_tmp32 = (struct i2c_client  const  *)client;
-  __cil_tmp33 = (unsigned long )data;
-  __cil_tmp34 = __cil_tmp33 + 176;
-  __cil_tmp35 = *((u8 *)__cil_tmp34);
+  __cil_tmp35 = *((u8 *)((void *)data + 176));
   __cil_tmp36 = (int )__cil_tmp35;
   __cil_tmp37 = (u8 )__cil_tmp36;
   i2c_smbus_write_byte(__cil_tmp32, __cil_tmp37);
-  __cil_tmp38 = (unsigned long )data;
-  __cil_tmp39 = __cil_tmp38 + 8;
-  __cil_tmp40 = (struct mutex *)__cil_tmp39;
+  __cil_tmp40 = (struct mutex *)((void *)data + 8);
   mutex_unlock(__cil_tmp40);
   }
   return ((ssize_t )count);
@@ -2481,39 +2426,25 @@ static int pcf8591_probe(struct i2c_client *client , struct i2c_device_id  const
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct kobject *__cil_tmp19 ;
   int *__cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device_attribute  const  *__cil_tmp25 ;
   int *__cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct device *__cil_tmp30 ;
   struct device_attribute  const  *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   struct device *__cil_tmp35 ;
   void const   *__cil_tmp36 ;
   struct device *__cil_tmp37 ;
   void const   *__cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct kobject *__cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct kobject *__cil_tmp46 ;
   void const   *__cil_tmp47 ;
 
@@ -2536,15 +2467,11 @@ static int pcf8591_probe(struct i2c_client *client , struct i2c_device_id  const
   {
   __cil_tmp12 = (void *)data;
   i2c_set_clientdata(client, __cil_tmp12);
-  __cil_tmp13 = (unsigned long )data;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  __cil_tmp15 = (struct mutex *)__cil_tmp14;
+  __cil_tmp15 = (struct mutex *)((void *)data + 8);
   __mutex_init(__cil_tmp15, "&data->update_lock", & __key);
   pcf8591_init_client(client);
   __cil_tmp16 = 40 + 16;
-  __cil_tmp17 = (unsigned long )client;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = (struct kobject *)__cil_tmp18;
+  __cil_tmp19 = (struct kobject *)((void *)client + __cil_tmp16);
   err = sysfs_create_group(__cil_tmp19, & pcf8591_attr_group);
   }
   if (err != 0) {
@@ -2557,9 +2484,7 @@ static int pcf8591_probe(struct i2c_client *client , struct i2c_device_id  const
   __cil_tmp21 = *__cil_tmp20;
   if (__cil_tmp21 != 3) {
     {
-    __cil_tmp22 = (unsigned long )client;
-    __cil_tmp23 = __cil_tmp22 + 40;
-    __cil_tmp24 = (struct device *)__cil_tmp23;
+    __cil_tmp24 = (struct device *)((void *)client + 40);
     __cil_tmp25 = (struct device_attribute  const  *)(& dev_attr_in2_input);
     err = device_create_file(__cil_tmp24, __cil_tmp25);
     }
@@ -2577,9 +2502,7 @@ static int pcf8591_probe(struct i2c_client *client , struct i2c_device_id  const
   __cil_tmp27 = *__cil_tmp26;
   if (__cil_tmp27 == 0) {
     {
-    __cil_tmp28 = (unsigned long )client;
-    __cil_tmp29 = __cil_tmp28 + 40;
-    __cil_tmp30 = (struct device *)__cil_tmp29;
+    __cil_tmp30 = (struct device *)((void *)client + 40);
     __cil_tmp31 = (struct device_attribute  const  *)(& dev_attr_in3_input);
     err = device_create_file(__cil_tmp30, __cil_tmp31);
     }
@@ -2593,9 +2516,7 @@ static int pcf8591_probe(struct i2c_client *client , struct i2c_device_id  const
   }
   }
   {
-  __cil_tmp32 = (unsigned long )client;
-  __cil_tmp33 = __cil_tmp32 + 40;
-  __cil_tmp34 = (struct device *)__cil_tmp33;
+  __cil_tmp34 = (struct device *)((void *)client + 40);
   *((struct device **)data) = hwmon_device_register(__cil_tmp34);
   __cil_tmp35 = *((struct device **)data);
   __cil_tmp36 = (void const   *)__cil_tmp35;
@@ -2616,14 +2537,10 @@ static int pcf8591_probe(struct i2c_client *client , struct i2c_device_id  const
   exit_sysfs_remove: 
   {
   __cil_tmp39 = 40 + 16;
-  __cil_tmp40 = (unsigned long )client;
-  __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-  __cil_tmp42 = (struct kobject *)__cil_tmp41;
+  __cil_tmp42 = (struct kobject *)((void *)client + __cil_tmp39);
   sysfs_remove_group(__cil_tmp42, & pcf8591_attr_group_opt);
   __cil_tmp43 = 40 + 16;
-  __cil_tmp44 = (unsigned long )client;
-  __cil_tmp45 = __cil_tmp44 + __cil_tmp43;
-  __cil_tmp46 = (struct kobject *)__cil_tmp45;
+  __cil_tmp46 = (struct kobject *)((void *)client + __cil_tmp43);
   sysfs_remove_group(__cil_tmp46, & pcf8591_attr_group);
   }
   exit_kfree: 
@@ -2642,12 +2559,8 @@ static int pcf8591_remove(struct i2c_client *client )
   struct i2c_client  const  *__cil_tmp5 ;
   struct device *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct kobject *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct kobject *__cil_tmp14 ;
   struct i2c_client  const  *__cil_tmp15 ;
   void const   *__cil_tmp16 ;
@@ -2660,14 +2573,10 @@ static int pcf8591_remove(struct i2c_client *client )
   __cil_tmp6 = *((struct device **)data);
   hwmon_device_unregister(__cil_tmp6);
   __cil_tmp7 = 40 + 16;
-  __cil_tmp8 = (unsigned long )client;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = (struct kobject *)__cil_tmp9;
+  __cil_tmp10 = (struct kobject *)((void *)client + __cil_tmp7);
   sysfs_remove_group(__cil_tmp10, & pcf8591_attr_group_opt);
   __cil_tmp11 = 40 + 16;
-  __cil_tmp12 = (unsigned long )client;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  __cil_tmp14 = (struct kobject *)__cil_tmp13;
+  __cil_tmp14 = (struct kobject *)((void *)client + __cil_tmp11);
   sysfs_remove_group(__cil_tmp14, & pcf8591_attr_group);
   __cil_tmp15 = (struct i2c_client  const  *)client;
   tmp___0 = i2c_get_clientdata(__cil_tmp15);
@@ -2681,24 +2590,16 @@ static void pcf8591_init_client(struct i2c_client *client )
 { struct pcf8591_data *data ;
   void *tmp ;
   struct i2c_client  const  *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int *__cil_tmp7 ;
   int __cil_tmp8 ;
   int __cil_tmp9 ;
   signed char __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct i2c_client  const  *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u8 __cil_tmp18 ;
   int __cil_tmp19 ;
   u8 __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u8 __cil_tmp23 ;
   int __cil_tmp24 ;
   u8 __cil_tmp25 ;
@@ -2709,27 +2610,19 @@ static void pcf8591_init_client(struct i2c_client *client )
   __cil_tmp4 = (struct i2c_client  const  *)client;
   tmp = i2c_get_clientdata(__cil_tmp4);
   data = (struct pcf8591_data *)tmp;
-  __cil_tmp5 = (unsigned long )data;
-  __cil_tmp6 = __cil_tmp5 + 176;
   __cil_tmp7 = & input_mode;
   __cil_tmp8 = *__cil_tmp7;
   __cil_tmp9 = __cil_tmp8 << 4;
   __cil_tmp10 = (signed char )__cil_tmp9;
   __cil_tmp11 = (int )__cil_tmp10;
   __cil_tmp12 = __cil_tmp11 | 64;
-  *((u8 *)__cil_tmp6) = (u8 )__cil_tmp12;
-  __cil_tmp13 = (unsigned long )data;
-  __cil_tmp14 = __cil_tmp13 + 177;
-  *((u8 *)__cil_tmp14) = (u8 )0U;
+  *((u8 *)((void *)data + 176)) = (u8 )__cil_tmp12;
+  *((u8 *)((void *)data + 177)) = (u8 )0U;
   __cil_tmp15 = (struct i2c_client  const  *)client;
-  __cil_tmp16 = (unsigned long )data;
-  __cil_tmp17 = __cil_tmp16 + 176;
-  __cil_tmp18 = *((u8 *)__cil_tmp17);
+  __cil_tmp18 = *((u8 *)((void *)data + 176));
   __cil_tmp19 = (int )__cil_tmp18;
   __cil_tmp20 = (u8 )__cil_tmp19;
-  __cil_tmp21 = (unsigned long )data;
-  __cil_tmp22 = __cil_tmp21 + 177;
-  __cil_tmp23 = *((u8 *)__cil_tmp22);
+  __cil_tmp23 = *((u8 *)((void *)data + 177));
   __cil_tmp24 = (int )__cil_tmp23;
   __cil_tmp25 = (u8 )__cil_tmp24;
   i2c_smbus_write_byte_data(__cil_tmp15, __cil_tmp20, __cil_tmp25);
@@ -2749,35 +2642,23 @@ static int pcf8591_read_channel(struct device *dev , int channel )
   int tmp___1 ;
   struct i2c_client *__cil_tmp10 ;
   struct i2c_client  const  *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct mutex *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u8 __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   signed char __cil_tmp22 ;
   int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   u8 __cil_tmp26 ;
   signed char __cil_tmp27 ;
   int __cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
   struct i2c_client  const  *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   u8 __cil_tmp34 ;
   int __cil_tmp35 ;
   u8 __cil_tmp36 ;
   struct i2c_client  const  *__cil_tmp37 ;
   struct i2c_client  const  *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct mutex *__cil_tmp41 ;
   int *__cil_tmp42 ;
   int __cil_tmp43 ;
@@ -2801,35 +2682,25 @@ static int pcf8591_read_channel(struct device *dev , int channel )
   __cil_tmp11 = (struct i2c_client  const  *)client;
   tmp = i2c_get_clientdata(__cil_tmp11);
   data = (struct pcf8591_data *)tmp;
-  __cil_tmp12 = (unsigned long )data;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = (struct mutex *)__cil_tmp13;
+  __cil_tmp14 = (struct mutex *)((void *)data + 8);
   mutex_lock_nested(__cil_tmp14, 0U);
   }
   {
-  __cil_tmp15 = (unsigned long )data;
-  __cil_tmp16 = __cil_tmp15 + 176;
-  __cil_tmp17 = *((u8 *)__cil_tmp16);
+  __cil_tmp17 = *((u8 *)((void *)data + 176));
   __cil_tmp18 = (int )__cil_tmp17;
   __cil_tmp19 = __cil_tmp18 & 3;
   if (__cil_tmp19 != channel) {
     {
-    __cil_tmp20 = (unsigned long )data;
-    __cil_tmp21 = __cil_tmp20 + 176;
     __cil_tmp22 = (signed char )channel;
     __cil_tmp23 = (int )__cil_tmp22;
-    __cil_tmp24 = (unsigned long )data;
-    __cil_tmp25 = __cil_tmp24 + 176;
-    __cil_tmp26 = *((u8 *)__cil_tmp25);
+    __cil_tmp26 = *((u8 *)((void *)data + 176));
     __cil_tmp27 = (signed char )__cil_tmp26;
     __cil_tmp28 = (int )__cil_tmp27;
     __cil_tmp29 = __cil_tmp28 & -4;
     __cil_tmp30 = __cil_tmp29 | __cil_tmp23;
-    *((u8 *)__cil_tmp21) = (u8 )__cil_tmp30;
+    *((u8 *)((void *)data + 176)) = (u8 )__cil_tmp30;
     __cil_tmp31 = (struct i2c_client  const  *)client;
-    __cil_tmp32 = (unsigned long )data;
-    __cil_tmp33 = __cil_tmp32 + 176;
-    __cil_tmp34 = *((u8 *)__cil_tmp33);
+    __cil_tmp34 = *((u8 *)((void *)data + 176));
     __cil_tmp35 = (int )__cil_tmp34;
     __cil_tmp36 = (u8 )__cil_tmp35;
     i2c_smbus_write_byte(__cil_tmp31, __cil_tmp36);
@@ -2844,9 +2715,7 @@ static int pcf8591_read_channel(struct device *dev , int channel )
   __cil_tmp38 = (struct i2c_client  const  *)client;
   tmp___0 = i2c_smbus_read_byte(__cil_tmp38);
   value = (u8 )tmp___0;
-  __cil_tmp39 = (unsigned long )data;
-  __cil_tmp40 = __cil_tmp39 + 8;
-  __cil_tmp41 = (struct mutex *)__cil_tmp40;
+  __cil_tmp41 = (struct mutex *)((void *)data + 8);
   mutex_unlock(__cil_tmp41);
   }
   if (channel == 2) {

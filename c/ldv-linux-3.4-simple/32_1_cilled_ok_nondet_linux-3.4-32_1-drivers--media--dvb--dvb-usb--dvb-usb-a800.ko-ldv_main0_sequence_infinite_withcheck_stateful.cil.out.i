@@ -6132,15 +6132,11 @@ static int a800_power_ctrl(struct dvb_usb_device *d , int onoff )
 static int a800_identify_state(struct usb_device *udev , struct dvb_usb_device_properties *props ,
                                struct dvb_usb_device_description **desc , int *cold )
 { unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   __u8 __cil_tmp8 ;
   int __cil_tmp9 ;
   {
   __cil_tmp5 = 904 + 14;
-  __cil_tmp6 = (unsigned long )udev;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  __cil_tmp8 = *((__u8 *)__cil_tmp7);
+  __cil_tmp8 = *((__u8 *)((void *)udev + __cil_tmp5));
   __cil_tmp9 = (int )__cil_tmp8;
   *cold = __cil_tmp9 != 1;
   return (0);
@@ -6188,11 +6184,7 @@ static int a800_rc_query(struct dvb_usb_device *d , u32 *event , int *state )
   unsigned int tmp___8 ;
   int tmp___9 ;
   size_t __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct usb_device *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct usb_device *__cil_tmp15 ;
   int __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
@@ -6238,13 +6230,9 @@ static int a800_rc_query(struct dvb_usb_device *d , u32 *event , int *state )
   } else {
   }
   {
-  __cil_tmp10 = (unsigned long )d;
-  __cil_tmp11 = __cil_tmp10 + 3560;
-  __cil_tmp12 = *((struct usb_device **)__cil_tmp11);
+  __cil_tmp12 = *((struct usb_device **)((void *)d + 3560));
   tmp___8 = __create_pipe(__cil_tmp12, 0U);
-  __cil_tmp13 = (unsigned long )d;
-  __cil_tmp14 = __cil_tmp13 + 3560;
-  __cil_tmp15 = *((struct usb_device **)__cil_tmp14);
+  __cil_tmp15 = *((struct usb_device **)((void *)d + 3560));
   __cil_tmp16 = 2 << 30;
   __cil_tmp17 = (unsigned int )__cil_tmp16;
   __cil_tmp18 = __cil_tmp17 | tmp___8;

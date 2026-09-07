@@ -5740,14 +5740,10 @@ extern void platform_device_del(struct platform_device * ) ;
 extern void platform_device_put(struct platform_device * ) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -5775,15 +5771,11 @@ extern int __pm_runtime_idle(struct device * , int ) ;
 extern int __pm_runtime_resume(struct device * , int ) ;
 __inline static void pm_runtime_get_noresume(struct device *dev )
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   atomic_t *__cil_tmp5 ;
   {
   {
   __cil_tmp2 = 288 + 512;
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  __cil_tmp5 = (atomic_t *)__cil_tmp4;
+  __cil_tmp5 = (atomic_t *)((void *)dev + __cil_tmp2);
   atomic_inc(__cil_tmp5);
   }
   return;
@@ -5791,15 +5783,11 @@ __inline static void pm_runtime_get_noresume(struct device *dev )
 }
 __inline static void pm_runtime_put_noidle(struct device *dev )
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   atomic_t *__cil_tmp5 ;
   {
   {
   __cil_tmp2 = 288 + 512;
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  __cil_tmp5 = (atomic_t *)__cil_tmp4;
+  __cil_tmp5 = (atomic_t *)((void *)dev + __cil_tmp2);
   atomic_add_unless(__cil_tmp5, -1, 0);
   }
   return;
@@ -5903,12 +5891,6 @@ static void wl12xx_sdio_raw_read(struct device *child , int addr , void *buf , s
   u8 *__cil_tmp22 ;
   unsigned int __cil_tmp23 ;
   struct _ddebug *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned char __cil_tmp31 ;
   long __cil_tmp32 ;
   long __cil_tmp33 ;
@@ -5924,12 +5906,6 @@ static void wl12xx_sdio_raw_read(struct device *child , int addr , void *buf , s
   unsigned int __cil_tmp43 ;
   int __cil_tmp44 ;
   struct _ddebug *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned char __cil_tmp52 ;
   long __cil_tmp53 ;
   long __cil_tmp54 ;
@@ -5963,18 +5939,12 @@ static void wl12xx_sdio_raw_read(struct device *child , int addr , void *buf , s
     *__cil_tmp22 = sdio_f0_readb(func, __cil_tmp23, & ret);
     __cil_tmp24 = & descriptor;
     *((char const **)__cil_tmp24) = "wl12xx_sdio";
-    __cil_tmp25 = (unsigned long )(& descriptor) + 8;
-    *((char const **)__cil_tmp25) = "wl12xx_sdio_raw_read";
-    __cil_tmp26 = (unsigned long )(& descriptor) + 16;
-    *((char const **)__cil_tmp26) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
-    __cil_tmp27 = (unsigned long )(& descriptor) + 24;
-    *((char const **)__cil_tmp27) = "sdio read 52 addr 0x%x, byte 0x%02x\n";
-    __cil_tmp28 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp28) = 97U;
-    __cil_tmp29 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp29) = (unsigned char)0;
-    __cil_tmp30 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp31 = *((unsigned char *)__cil_tmp30);
+    *((char const **)((void *)(&descriptor) + 8)) = "wl12xx_sdio_raw_read";
+    *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
+    *((char const **)((void *)(&descriptor) + 24)) = "sdio read 52 addr 0x%x, byte 0x%02x\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 97U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+    __cil_tmp31 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp32 = (long )__cil_tmp31;
     __cil_tmp33 = __cil_tmp32 & 1L;
     tmp___0 = __builtin_expect(__cil_tmp33, 0L);
@@ -6010,18 +5980,12 @@ static void wl12xx_sdio_raw_read(struct device *child , int addr , void *buf , s
     {
     __cil_tmp45 = & descriptor___0;
     *((char const **)__cil_tmp45) = "wl12xx_sdio";
-    __cil_tmp46 = (unsigned long )(& descriptor___0) + 8;
-    *((char const **)__cil_tmp46) = "wl12xx_sdio_raw_read";
-    __cil_tmp47 = (unsigned long )(& descriptor___0) + 16;
-    *((char const **)__cil_tmp47) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
-    __cil_tmp48 = (unsigned long )(& descriptor___0) + 24;
-    *((char const **)__cil_tmp48) = "sdio read 53 addr 0x%x, %zu bytes\n";
-    __cil_tmp49 = (unsigned long )(& descriptor___0) + 32;
-    *((unsigned int *)__cil_tmp49) = 105U;
-    __cil_tmp50 = (unsigned long )(& descriptor___0) + 35;
-    *((unsigned char *)__cil_tmp50) = (unsigned char)0;
-    __cil_tmp51 = (unsigned long )(& descriptor___0) + 35;
-    __cil_tmp52 = *((unsigned char *)__cil_tmp51);
+    *((char const **)((void *)(&descriptor___0) + 8)) = "wl12xx_sdio_raw_read";
+    *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
+    *((char const **)((void *)(&descriptor___0) + 24)) = "sdio read 53 addr 0x%x, %zu bytes\n";
+    *((unsigned int *)((void *)(&descriptor___0) + 32)) = 105U;
+    *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+    __cil_tmp52 = *((unsigned char *)((void *)(&descriptor___0) + 35));
     __cil_tmp53 = (long )__cil_tmp52;
     __cil_tmp54 = __cil_tmp53 & 1L;
     tmp___1 = __builtin_expect(__cil_tmp54, 0L);
@@ -6080,12 +6044,6 @@ static void wl12xx_sdio_raw_write(struct device *child , int addr , void *buf , 
   unsigned char __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   struct _ddebug *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned char __cil_tmp34 ;
   long __cil_tmp35 ;
   long __cil_tmp36 ;
@@ -6095,12 +6053,6 @@ static void wl12xx_sdio_raw_write(struct device *child , int addr , void *buf , 
   u8 __cil_tmp40 ;
   int __cil_tmp41 ;
   struct _ddebug *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned char __cil_tmp49 ;
   long __cil_tmp50 ;
   long __cil_tmp51 ;
@@ -6143,18 +6095,12 @@ static void wl12xx_sdio_raw_write(struct device *child , int addr , void *buf , 
     sdio_f0_writeb(func, __cil_tmp25, __cil_tmp26, & ret);
     __cil_tmp27 = & descriptor;
     *((char const **)__cil_tmp27) = "wl12xx_sdio";
-    __cil_tmp28 = (unsigned long )(& descriptor) + 8;
-    *((char const **)__cil_tmp28) = "wl12xx_sdio_raw_write";
-    __cil_tmp29 = (unsigned long )(& descriptor) + 16;
-    *((char const **)__cil_tmp29) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
-    __cil_tmp30 = (unsigned long )(& descriptor) + 24;
-    *((char const **)__cil_tmp30) = "sdio write 52 addr 0x%x, byte 0x%02x\n";
-    __cil_tmp31 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp31) = 126U;
-    __cil_tmp32 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp32) = (unsigned char)0;
-    __cil_tmp33 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp34 = *((unsigned char *)__cil_tmp33);
+    *((char const **)((void *)(&descriptor) + 8)) = "wl12xx_sdio_raw_write";
+    *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
+    *((char const **)((void *)(&descriptor) + 24)) = "sdio write 52 addr 0x%x, byte 0x%02x\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 126U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+    __cil_tmp34 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp35 = (long )__cil_tmp34;
     __cil_tmp36 = __cil_tmp35 & 1L;
     tmp___0 = __builtin_expect(__cil_tmp36, 0L);
@@ -6175,18 +6121,12 @@ static void wl12xx_sdio_raw_write(struct device *child , int addr , void *buf , 
     {
     __cil_tmp42 = & descriptor___0;
     *((char const **)__cil_tmp42) = "wl12xx_sdio";
-    __cil_tmp43 = (unsigned long )(& descriptor___0) + 8;
-    *((char const **)__cil_tmp43) = "wl12xx_sdio_raw_write";
-    __cil_tmp44 = (unsigned long )(& descriptor___0) + 16;
-    *((char const **)__cil_tmp44) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
-    __cil_tmp45 = (unsigned long )(& descriptor___0) + 24;
-    *((char const **)__cil_tmp45) = "sdio write 53 addr 0x%x, %zu bytes\n";
-    __cil_tmp46 = (unsigned long )(& descriptor___0) + 32;
-    *((unsigned int *)__cil_tmp46) = 129U;
-    __cil_tmp47 = (unsigned long )(& descriptor___0) + 35;
-    *((unsigned char *)__cil_tmp47) = (unsigned char)0;
-    __cil_tmp48 = (unsigned long )(& descriptor___0) + 35;
-    __cil_tmp49 = *((unsigned char *)__cil_tmp48);
+    *((char const **)((void *)(&descriptor___0) + 8)) = "wl12xx_sdio_raw_write";
+    *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
+    *((char const **)((void *)(&descriptor___0) + 24)) = "sdio write 53 addr 0x%x, %zu bytes\n";
+    *((unsigned int *)((void *)(&descriptor___0) + 32)) = 129U;
+    *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+    __cil_tmp49 = *((unsigned char *)((void *)(&descriptor___0) + 35));
     __cil_tmp50 = (long )__cil_tmp49;
     __cil_tmp51 = __cil_tmp50 & 1L;
     tmp___1 = __builtin_expect(__cil_tmp51, 0L);
@@ -6243,11 +6183,7 @@ static int wl12xx_sdio_power_on(struct wl12xx_sdio_glue *glue )
   bool tmp ;
   struct device *__cil_tmp6 ;
   struct sdio_func *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct mmc_card *__cil_tmp14 ;
   struct mmc_host *__cil_tmp15 ;
@@ -6257,16 +6193,12 @@ static int wl12xx_sdio_power_on(struct wl12xx_sdio_glue *glue )
   __mptr = (struct device const *)__cil_tmp6;
   __cil_tmp7 = (struct sdio_func *)__mptr;
   func = __cil_tmp7 + 0xfffffffffffffff8UL;
-  __cil_tmp8 = (unsigned long )func;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)func + 8);
   tmp = pm_runtime_enabled(__cil_tmp10);
   }
   if ((int )tmp) {
     {
-    __cil_tmp11 = (unsigned long )func;
-    __cil_tmp12 = __cil_tmp11 + 8;
-    __cil_tmp13 = (struct device *)__cil_tmp12;
+    __cil_tmp13 = (struct device *)((void *)func + 8);
     ret = pm_runtime_get_sync(__cil_tmp13);
     }
     if (ret < 0) {
@@ -6302,11 +6234,7 @@ static int wl12xx_sdio_power_off(struct wl12xx_sdio_glue *glue )
   struct sdio_func *__cil_tmp7 ;
   struct mmc_card *__cil_tmp8 ;
   struct mmc_host *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   {
   {
@@ -6326,16 +6254,12 @@ static int wl12xx_sdio_power_off(struct wl12xx_sdio_glue *glue )
   } else {
   }
   {
-  __cil_tmp10 = (unsigned long )func;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  __cil_tmp12 = (struct device *)__cil_tmp11;
+  __cil_tmp12 = (struct device *)((void *)func + 8);
   tmp = pm_runtime_enabled(__cil_tmp12);
   }
   if ((int )tmp) {
     {
-    __cil_tmp13 = (unsigned long )func;
-    __cil_tmp14 = __cil_tmp13 + 8;
-    __cil_tmp15 = (struct device *)__cil_tmp14;
+    __cil_tmp15 = (struct device *)((void *)func + 8);
     ret = pm_runtime_put_sync(__cil_tmp15);
     }
   } else {
@@ -6383,82 +6307,42 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   long tmp___1 ;
   struct _ddebug descriptor ;
   long tmp___2 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   struct wl12xx_sdio_glue *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device const *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct mmc_card *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct mmc_card *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
   struct mmc_card *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct mmc_card *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned int __cil_tmp38 ;
   void const *__cil_tmp39 ;
   void const *__cil_tmp40 ;
   struct device *__cil_tmp41 ;
   struct device const *__cil_tmp42 ;
   struct _ddebug *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned char __cil_tmp50 ;
   long __cil_tmp51 ;
   long __cil_tmp52 ;
   struct device *__cil_tmp53 ;
   struct device const *__cil_tmp54 ;
   int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   struct device *__cil_tmp62 ;
   void *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct device *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct platform_device *__cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   struct platform_device *__cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   struct device *__cil_tmp75 ;
   struct device const *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct platform_device *__cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   void *__cil_tmp84 ;
   unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   int __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
   unsigned long __cil_tmp91 ;
@@ -6466,33 +6350,23 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
   unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   struct platform_device *__cil_tmp98 ;
   struct resource const *__cil_tmp99 ;
   struct device *__cil_tmp100 ;
   struct device const *__cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   struct platform_device *__cil_tmp104 ;
   void const *__cil_tmp105 ;
   struct device *__cil_tmp106 ;
   struct device const *__cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
   struct platform_device *__cil_tmp110 ;
   struct device *__cil_tmp111 ;
   struct device const *__cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   struct platform_device *__cil_tmp115 ;
   void const *__cil_tmp116 ;
   {
   ret = -12;
   {
-  __cil_tmp13 = (unsigned long )func;
-  __cil_tmp14 = __cil_tmp13 + 1168;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
+  __cil_tmp15 = *((unsigned int *)((void *)func + 1168));
   if (__cil_tmp15 != 2U) {
     return (-19);
   } else {
@@ -6508,9 +6382,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   __cil_tmp18 = (unsigned long )glue;
   if (__cil_tmp18 == __cil_tmp17) {
     {
-    __cil_tmp19 = (unsigned long )func;
-    __cil_tmp20 = __cil_tmp19 + 8;
-    __cil_tmp21 = (struct device *)__cil_tmp20;
+    __cil_tmp21 = (struct device *)((void *)func + 8);
     __cil_tmp22 = (struct device const *)__cil_tmp21;
     dev_err(__cil_tmp22, "can\'t allocate glue\n");
     }
@@ -6519,25 +6391,15 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   }
   }
   {
-  __cil_tmp23 = (unsigned long )func;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  *((struct device **)glue) = (struct device *)__cil_tmp24;
+  *((struct device **)glue) = (struct device *)((void *)func + 8);
   __cil_tmp25 = *((struct mmc_card **)func);
-  __cil_tmp26 = (unsigned long )__cil_tmp25;
-  __cil_tmp27 = __cil_tmp26 + 1172;
   __cil_tmp28 = *((struct mmc_card **)func);
-  __cil_tmp29 = (unsigned long )__cil_tmp28;
-  __cil_tmp30 = __cil_tmp29 + 1172;
-  __cil_tmp31 = *((unsigned int *)__cil_tmp30);
-  *((unsigned int *)__cil_tmp27) = __cil_tmp31 | 1U;
+  __cil_tmp31 = *((unsigned int *)((void *)__cil_tmp28 + 1172));
+  *((unsigned int *)((void *)__cil_tmp25 + 1172)) = __cil_tmp31 | 1U;
   __cil_tmp32 = *((struct mmc_card **)func);
-  __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = __cil_tmp33 + 1172;
   __cil_tmp35 = *((struct mmc_card **)func);
-  __cil_tmp36 = (unsigned long )__cil_tmp35;
-  __cil_tmp37 = __cil_tmp36 + 1172;
-  __cil_tmp38 = *((unsigned int *)__cil_tmp37);
-  *((unsigned int *)__cil_tmp34) = __cil_tmp38 | 2U;
+  __cil_tmp38 = *((unsigned int *)((void *)__cil_tmp35 + 1172));
+  *((unsigned int *)((void *)__cil_tmp32 + 1172)) = __cil_tmp38 | 2U;
   wlan_data = wl12xx_get_platform_data();
   __cil_tmp39 = (void const *)wlan_data;
   tmp___1 = IS_ERR(__cil_tmp39);
@@ -6558,18 +6420,12 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   mmcflags = sdio_get_host_pm_caps(func);
   __cil_tmp43 = & descriptor;
   *((char const **)__cil_tmp43) = "wl12xx_sdio";
-  __cil_tmp44 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp44) = "wl1271_probe";
-  __cil_tmp45 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp45) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
-  __cil_tmp46 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp46) = "sdio PM caps = 0x%x\n";
-  __cil_tmp47 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp47) = 242U;
-  __cil_tmp48 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp48) = (unsigned char)0;
-  __cil_tmp49 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp50 = *((unsigned char *)__cil_tmp49);
+  *((char const **)((void *)(&descriptor) + 8)) = "wl1271_probe";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "sdio PM caps = 0x%x\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 242U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp50 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp51 = (long )__cil_tmp50;
   __cil_tmp52 = __cil_tmp51 & 1L;
   tmp___2 = __builtin_expect(__cil_tmp52, 0L);
@@ -6585,35 +6441,23 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   {
   __cil_tmp55 = (int )mmcflags;
   if (__cil_tmp55 & 1) {
-    __cil_tmp56 = (unsigned long )wlan_data;
-    __cil_tmp57 = __cil_tmp56 + 32;
-    *((bool *)__cil_tmp57) = (bool )1;
+    *((bool *)((void *)wlan_data + 32)) = (bool )1;
   } else {
   }
   }
   {
-  __cil_tmp58 = (unsigned long )wlan_data;
-  __cil_tmp59 = __cil_tmp58 + 40;
-  *((struct wl1271_if_operations **)__cil_tmp59) = & sdio_ops;
-  __cil_tmp60 = (unsigned long )func;
-  __cil_tmp61 = __cil_tmp60 + 8;
-  __cil_tmp62 = (struct device *)__cil_tmp61;
+  *((struct wl1271_if_operations **)((void *)wlan_data + 40)) = & sdio_ops;
+  __cil_tmp62 = (struct device *)((void *)func + 8);
   __cil_tmp63 = (void *)glue;
   dev_set_drvdata(__cil_tmp62, __cil_tmp63);
-  __cil_tmp64 = (unsigned long )func;
-  __cil_tmp65 = __cil_tmp64 + 8;
-  __cil_tmp66 = (struct device *)__cil_tmp65;
+  __cil_tmp66 = (struct device *)((void *)func + 8);
   pm_runtime_put_noidle(__cil_tmp66);
-  __cil_tmp67 = (unsigned long )glue;
-  __cil_tmp68 = __cil_tmp67 + 8;
-  *((struct platform_device **)__cil_tmp68) = platform_device_alloc("wl12xx", -1);
+  *((struct platform_device **)((void *)glue + 8)) = platform_device_alloc("wl12xx", -1);
   }
   {
   __cil_tmp69 = (struct platform_device *)0;
   __cil_tmp70 = (unsigned long )__cil_tmp69;
-  __cil_tmp71 = (unsigned long )glue;
-  __cil_tmp72 = __cil_tmp71 + 8;
-  __cil_tmp73 = *((struct platform_device **)__cil_tmp72);
+  __cil_tmp73 = *((struct platform_device **)((void *)glue + 8));
   __cil_tmp74 = (unsigned long )__cil_tmp73;
   if (__cil_tmp74 == __cil_tmp70) {
     {
@@ -6627,21 +6471,13 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   }
   }
   {
-  __cil_tmp77 = (unsigned long )glue;
-  __cil_tmp78 = __cil_tmp77 + 8;
-  __cil_tmp79 = *((struct platform_device **)__cil_tmp78);
-  __cil_tmp80 = (unsigned long )__cil_tmp79;
-  __cil_tmp81 = __cil_tmp80 + 16;
-  __cil_tmp82 = (unsigned long )func;
-  __cil_tmp83 = __cil_tmp82 + 8;
-  *((struct device **)__cil_tmp81) = (struct device *)__cil_tmp83;
+  __cil_tmp79 = *((struct platform_device **)((void *)glue + 8));
+  *((struct device **)((void *)__cil_tmp79 + 16)) = (struct device *)((void *)func + 8);
   __cil_tmp84 = (void *)(& res);
   memset(__cil_tmp84, 0, 56UL);
   __cil_tmp85 = 0 * 56UL;
   __cil_tmp86 = (unsigned long )(res) + __cil_tmp85;
-  __cil_tmp87 = (unsigned long )wlan_data;
-  __cil_tmp88 = __cil_tmp87 + 8;
-  __cil_tmp89 = *((int *)__cil_tmp88);
+  __cil_tmp89 = *((int *)((void *)wlan_data + 8));
   *((resource_size_t *)__cil_tmp86) = (resource_size_t )__cil_tmp89;
   __cil_tmp90 = 0 * 56UL;
   __cil_tmp91 = __cil_tmp90 + 24;
@@ -6651,9 +6487,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   __cil_tmp94 = __cil_tmp93 + 16;
   __cil_tmp95 = (unsigned long )(res) + __cil_tmp94;
   *((char const **)__cil_tmp95) = "irq";
-  __cil_tmp96 = (unsigned long )glue;
-  __cil_tmp97 = __cil_tmp96 + 8;
-  __cil_tmp98 = *((struct platform_device **)__cil_tmp97);
+  __cil_tmp98 = *((struct platform_device **)((void *)glue + 8));
   __cil_tmp99 = (struct resource const *)(& res);
   ret = platform_device_add_resources(__cil_tmp98, __cil_tmp99, 1U);
   }
@@ -6667,9 +6501,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   } else {
   }
   {
-  __cil_tmp102 = (unsigned long )glue;
-  __cil_tmp103 = __cil_tmp102 + 8;
-  __cil_tmp104 = *((struct platform_device **)__cil_tmp103);
+  __cil_tmp104 = *((struct platform_device **)((void *)glue + 8));
   __cil_tmp105 = (void const *)wlan_data;
   ret = platform_device_add_data(__cil_tmp104, __cil_tmp105, 48UL);
   }
@@ -6683,9 +6515,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   } else {
   }
   {
-  __cil_tmp108 = (unsigned long )glue;
-  __cil_tmp109 = __cil_tmp108 + 8;
-  __cil_tmp110 = *((struct platform_device **)__cil_tmp109);
+  __cil_tmp110 = *((struct platform_device **)((void *)glue + 8));
   ret = platform_device_add(__cil_tmp110);
   }
   if (ret != 0) {
@@ -6700,9 +6530,7 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
   return (0);
   out_dev_put:
   {
-  __cil_tmp113 = (unsigned long )glue;
-  __cil_tmp114 = __cil_tmp113 + 8;
-  __cil_tmp115 = *((struct platform_device **)__cil_tmp114);
+  __cil_tmp115 = *((struct platform_device **)((void *)glue + 8));
   platform_device_put(__cil_tmp115);
   }
   out_free_glue:
@@ -6717,39 +6545,23 @@ static int wl1271_probe(struct sdio_func *func , struct sdio_device_id const *id
 static void wl1271_remove(struct sdio_func *func )
 { struct wl12xx_sdio_glue *glue ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device const *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct platform_device *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct platform_device *__cil_tmp16 ;
   void const *__cil_tmp17 ;
   {
   {
-  __cil_tmp4 = (unsigned long )func;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)func + 8);
   __cil_tmp7 = (struct device const *)__cil_tmp6;
   tmp = dev_get_drvdata(__cil_tmp7);
   glue = (struct wl12xx_sdio_glue *)tmp;
-  __cil_tmp8 = (unsigned long )func;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)func + 8);
   pm_runtime_get_noresume(__cil_tmp10);
-  __cil_tmp11 = (unsigned long )glue;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((struct platform_device **)__cil_tmp12);
+  __cil_tmp13 = *((struct platform_device **)((void *)glue + 8));
   platform_device_del(__cil_tmp13);
-  __cil_tmp14 = (unsigned long )glue;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((struct platform_device **)__cil_tmp15);
+  __cil_tmp16 = *((struct platform_device **)((void *)glue + 8));
   platform_device_put(__cil_tmp16);
   __cil_tmp17 = (void const *)glue;
   kfree(__cil_tmp17);
@@ -6769,31 +6581,17 @@ static int wl1271_suspend(struct device *dev )
   struct _ddebug descriptor ;
   long tmp___1 ;
   struct sdio_func *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct platform_device *__cil_tmp19 ;
   struct platform_device const *__cil_tmp20 ;
   struct _ddebug *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned char __cil_tmp28 ;
   long __cil_tmp29 ;
   long __cil_tmp30 ;
   struct device const *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   bool __cil_tmp34 ;
   int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   bool __cil_tmp38 ;
   unsigned int __cil_tmp39 ;
   struct device const *__cil_tmp40 ;
@@ -6803,33 +6601,23 @@ static int wl1271_suspend(struct device *dev )
   __mptr = (struct device const *)dev;
   __cil_tmp12 = (struct sdio_func *)__mptr;
   func = __cil_tmp12 + 0xfffffffffffffff8UL;
-  __cil_tmp13 = (unsigned long )func;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  __cil_tmp15 = (struct device *)__cil_tmp14;
+  __cil_tmp15 = (struct device *)((void *)func + 8);
   __cil_tmp16 = (struct device const *)__cil_tmp15;
   tmp = dev_get_drvdata(__cil_tmp16);
   glue = (struct wl12xx_sdio_glue *)tmp;
-  __cil_tmp17 = (unsigned long )glue;
-  __cil_tmp18 = __cil_tmp17 + 8;
-  __cil_tmp19 = *((struct platform_device **)__cil_tmp18);
+  __cil_tmp19 = *((struct platform_device **)((void *)glue + 8));
   __cil_tmp20 = (struct platform_device const *)__cil_tmp19;
   tmp___0 = platform_get_drvdata(__cil_tmp20);
   wl = (struct wl1271 *)tmp___0;
   ret = 0;
   __cil_tmp21 = & descriptor;
   *((char const **)__cil_tmp21) = "wl12xx_sdio";
-  __cil_tmp22 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp22) = "wl1271_suspend";
-  __cil_tmp23 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp23) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
-  __cil_tmp24 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp24) = "wl1271 suspend. wow_enabled: %d\n";
-  __cil_tmp25 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp25) = 323U;
-  __cil_tmp26 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp26) = (unsigned char)0;
-  __cil_tmp27 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp28 = *((unsigned char *)__cil_tmp27);
+  *((char const **)((void *)(&descriptor) + 8)) = "wl1271_suspend";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "wl1271 suspend. wow_enabled: %d\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 323U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp28 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp29 = (long )__cil_tmp28;
   __cil_tmp30 = __cil_tmp29 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp30, 0L);
@@ -6837,9 +6625,7 @@ static int wl1271_suspend(struct device *dev )
   if (tmp___1 != 0L) {
     {
     __cil_tmp31 = (struct device const *)dev;
-    __cil_tmp32 = (unsigned long )wl;
-    __cil_tmp33 = __cil_tmp32 + 3052;
-    __cil_tmp34 = *((bool *)__cil_tmp33);
+    __cil_tmp34 = *((bool *)((void *)wl + 3052));
     __cil_tmp35 = (int )__cil_tmp34;
     __dynamic_dev_dbg(& descriptor, __cil_tmp31, "wl1271 suspend. wow_enabled: %d\n",
                       __cil_tmp35);
@@ -6847,9 +6633,7 @@ static int wl1271_suspend(struct device *dev )
   } else {
   }
   {
-  __cil_tmp36 = (unsigned long )wl;
-  __cil_tmp37 = __cil_tmp36 + 3052;
-  __cil_tmp38 = *((bool *)__cil_tmp37);
+  __cil_tmp38 = *((bool *)((void *)wl + 3052));
   if ((int )__cil_tmp38) {
     {
     sdio_flags = sdio_get_host_pm_caps(func);
@@ -6888,12 +6672,6 @@ static int wl1271_resume(struct device *dev )
 { struct _ddebug descriptor ;
   long tmp ;
   struct _ddebug *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned char __cil_tmp11 ;
   long __cil_tmp12 ;
   long __cil_tmp13 ;
@@ -6902,18 +6680,12 @@ static int wl1271_resume(struct device *dev )
   {
   __cil_tmp4 = & descriptor;
   *((char const **)__cil_tmp4) = "wl12xx_sdio";
-  __cil_tmp5 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp5) = "wl1271_resume";
-  __cil_tmp6 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp6) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
-  __cil_tmp7 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp7) = "wl1271 resume\n";
-  __cil_tmp8 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp8) = 349U;
-  __cil_tmp9 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp9) = (unsigned char)0;
-  __cil_tmp10 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp11 = *((unsigned char *)__cil_tmp10);
+  *((char const **)((void *)(&descriptor) + 8)) = "wl1271_resume";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/13972/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/wl12xx/sdio.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "wl1271 resume\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 349U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp11 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp12 = (long )__cil_tmp11;
   __cil_tmp13 = __cil_tmp12 & 1L;
   tmp = __builtin_expect(__cil_tmp13, 0L);

@@ -4916,8 +4916,6 @@ static int ipaq_open(struct tty_struct *tty , struct usb_serial_port *port )
   bool *__cil_tmp10 ;
   bool __cil_tmp11 ;
   char *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned char __cil_tmp15 ;
   int __cil_tmp16 ;
   int *__cil_tmp17 ;
@@ -4933,8 +4931,6 @@ static int ipaq_open(struct tty_struct *tty , struct usb_serial_port *port )
   __u16 __cil_tmp27 ;
   void *__cil_tmp28 ;
   __u16 __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device *__cil_tmp32 ;
   struct device const *__cil_tmp33 ;
   {
@@ -4948,9 +4944,7 @@ static int ipaq_open(struct tty_struct *tty , struct usb_serial_port *port )
   if ((int )__cil_tmp11) {
     {
     __cil_tmp12 = (char *)"/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1808/dscv_tempdir/dscv/ri/43_1a/drivers/usb/serial/ipaq.c.p";
-    __cil_tmp13 = (unsigned long )port;
-    __cil_tmp14 = __cil_tmp13 + 816;
-    __cil_tmp15 = *((unsigned char *)__cil_tmp14);
+    __cil_tmp15 = *((unsigned char *)((void *)port + 816));
     __cil_tmp16 = (int )__cil_tmp15;
     printk("<7>%s: %s - port %d\n", __cil_tmp12, "ipaq_open", __cil_tmp16);
     }
@@ -4999,9 +4993,7 @@ static int ipaq_open(struct tty_struct *tty , struct usb_serial_port *port )
   if (retries == 0) {
     if (result != 0) {
       {
-      __cil_tmp30 = (unsigned long )port;
-      __cil_tmp31 = __cil_tmp30 + 1240;
-      __cil_tmp32 = (struct device *)__cil_tmp31;
+      __cil_tmp32 = (struct device *)((void *)port + 1240);
       __cil_tmp33 = (struct device const *)__cil_tmp32;
       dev_err(__cil_tmp33, "%s - failed doing control urb, error %d\n", "ipaq_open",
               result);
@@ -5023,25 +5015,13 @@ static int ipaq_calc_num_ports(struct usb_serial *serial )
   bool __cil_tmp4 ;
   char *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct usb_interface *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct usb_host_interface *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   __u8 __cil_tmp15 ;
   int __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct usb_interface *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct usb_host_interface *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   __u8 __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   {
@@ -5053,15 +5033,9 @@ static int ipaq_calc_num_ports(struct usb_serial *serial )
     {
     __cil_tmp5 = (char *)"/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1808/dscv_tempdir/dscv/ri/43_1a/drivers/usb/serial/ipaq.c.p";
     __cil_tmp6 = 0 + 4;
-    __cil_tmp7 = (unsigned long )serial;
-    __cil_tmp8 = __cil_tmp7 + 16;
-    __cil_tmp9 = *((struct usb_interface **)__cil_tmp8);
-    __cil_tmp10 = (unsigned long )__cil_tmp9;
-    __cil_tmp11 = __cil_tmp10 + 8;
-    __cil_tmp12 = *((struct usb_host_interface **)__cil_tmp11);
-    __cil_tmp13 = (unsigned long )__cil_tmp12;
-    __cil_tmp14 = __cil_tmp13 + __cil_tmp6;
-    __cil_tmp15 = *((__u8 *)__cil_tmp14);
+    __cil_tmp9 = *((struct usb_interface **)((void *)serial + 16));
+    __cil_tmp12 = *((struct usb_host_interface **)((void *)__cil_tmp9 + 8));
+    __cil_tmp15 = *((__u8 *)((void *)__cil_tmp12 + __cil_tmp6));
     __cil_tmp16 = (int )__cil_tmp15;
     printk("<7>%s: %s - numberofendpoints: %d\n", __cil_tmp5, "ipaq_calc_num_ports",
            __cil_tmp16);
@@ -5071,15 +5045,9 @@ static int ipaq_calc_num_ports(struct usb_serial *serial )
   }
   {
   __cil_tmp17 = 0 + 4;
-  __cil_tmp18 = (unsigned long )serial;
-  __cil_tmp19 = __cil_tmp18 + 16;
-  __cil_tmp20 = *((struct usb_interface **)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  __cil_tmp23 = *((struct usb_host_interface **)__cil_tmp22);
-  __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp17;
-  __cil_tmp26 = *((__u8 *)__cil_tmp25);
+  __cil_tmp20 = *((struct usb_interface **)((void *)serial + 16));
+  __cil_tmp23 = *((struct usb_host_interface **)((void *)__cil_tmp20 + 8));
+  __cil_tmp26 = *((__u8 *)((void *)__cil_tmp23 + __cil_tmp17));
   __cil_tmp27 = (unsigned int )__cil_tmp26;
   if (__cil_tmp27 > 3U) {
     ipaq_num_ports = 2;
@@ -5094,50 +5062,30 @@ static int ipaq_startup(struct usb_serial *serial )
   bool *__cil_tmp3 ;
   bool __cil_tmp4 ;
   char *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned char __cil_tmp8 ;
   int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   char __cil_tmp12 ;
   int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned char __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   char __cil_tmp20 ;
   int __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   struct usb_device *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct usb_host_config *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   __u8 __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   struct usb_device *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   struct device const *__cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   struct usb_device *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct usb_host_config *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   __u8 __cil_tmp43 ;
   int __cil_tmp44 ;
   bool *__cil_tmp45 ;
   bool __cil_tmp46 ;
   char *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned char __cil_tmp50 ;
   int __cil_tmp51 ;
   struct usb_device *__cil_tmp52 ;
@@ -5154,25 +5102,17 @@ static int ipaq_startup(struct usb_serial *serial )
   }
   }
   {
-  __cil_tmp6 = (unsigned long )serial;
-  __cil_tmp7 = __cil_tmp6 + 26;
-  __cil_tmp8 = *((unsigned char *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned char *)((void *)serial + 26));
   __cil_tmp9 = (int )__cil_tmp8;
-  __cil_tmp10 = (unsigned long )serial;
-  __cil_tmp11 = __cil_tmp10 + 30;
-  __cil_tmp12 = *((char *)__cil_tmp11);
+  __cil_tmp12 = *((char *)((void *)serial + 30));
   __cil_tmp13 = (int )__cil_tmp12;
   if (__cil_tmp13 < __cil_tmp9) {
     return (-19);
   } else {
     {
-    __cil_tmp14 = (unsigned long )serial;
-    __cil_tmp15 = __cil_tmp14 + 26;
-    __cil_tmp16 = *((unsigned char *)__cil_tmp15);
+    __cil_tmp16 = *((unsigned char *)((void *)serial + 26));
     __cil_tmp17 = (int )__cil_tmp16;
-    __cil_tmp18 = (unsigned long )serial;
-    __cil_tmp19 = __cil_tmp18 + 31;
-    __cil_tmp20 = *((char *)__cil_tmp19);
+    __cil_tmp20 = *((char *)((void *)serial + 31));
     __cil_tmp21 = (int )__cil_tmp20;
     if (__cil_tmp21 < __cil_tmp17) {
       return (-19);
@@ -5184,28 +5124,18 @@ static int ipaq_startup(struct usb_serial *serial )
   {
   __cil_tmp22 = 0 + 5;
   __cil_tmp23 = *((struct usb_device **)serial);
-  __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = __cil_tmp24 + 1328;
-  __cil_tmp26 = *((struct usb_host_config **)__cil_tmp25);
-  __cil_tmp27 = (unsigned long )__cil_tmp26;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp22;
-  __cil_tmp29 = *((__u8 *)__cil_tmp28);
+  __cil_tmp26 = *((struct usb_host_config **)((void *)__cil_tmp23 + 1328));
+  __cil_tmp29 = *((__u8 *)((void *)__cil_tmp26 + __cil_tmp22));
   __cil_tmp30 = (unsigned int )__cil_tmp29;
   if (__cil_tmp30 != 1U) {
     {
     __cil_tmp31 = *((struct usb_device **)serial);
-    __cil_tmp32 = (unsigned long )__cil_tmp31;
-    __cil_tmp33 = __cil_tmp32 + 136;
-    __cil_tmp34 = (struct device *)__cil_tmp33;
+    __cil_tmp34 = (struct device *)((void *)__cil_tmp31 + 136);
     __cil_tmp35 = (struct device const *)__cil_tmp34;
     __cil_tmp36 = 0 + 5;
     __cil_tmp37 = *((struct usb_device **)serial);
-    __cil_tmp38 = (unsigned long )__cil_tmp37;
-    __cil_tmp39 = __cil_tmp38 + 1328;
-    __cil_tmp40 = *((struct usb_host_config **)__cil_tmp39);
-    __cil_tmp41 = (unsigned long )__cil_tmp40;
-    __cil_tmp42 = __cil_tmp41 + __cil_tmp36;
-    __cil_tmp43 = *((__u8 *)__cil_tmp42);
+    __cil_tmp40 = *((struct usb_host_config **)((void *)__cil_tmp37 + 1328));
+    __cil_tmp43 = *((__u8 *)((void *)__cil_tmp40 + __cil_tmp36));
     __cil_tmp44 = (int )__cil_tmp43;
     dev_err(__cil_tmp35, "active config #%d != 1 ??\n", __cil_tmp44);
     }
@@ -5219,9 +5149,7 @@ static int ipaq_startup(struct usb_serial *serial )
   if ((int )__cil_tmp46) {
     {
     __cil_tmp47 = (char *)"/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1808/dscv_tempdir/dscv/ri/43_1a/drivers/usb/serial/ipaq.c.p";
-    __cil_tmp48 = (unsigned long )serial;
-    __cil_tmp49 = __cil_tmp48 + 26;
-    __cil_tmp50 = *((unsigned char *)__cil_tmp49);
+    __cil_tmp50 = *((unsigned char *)((void *)serial + 26));
     __cil_tmp51 = (int )__cil_tmp50;
     printk("<7>%s: %s - iPAQ module configured for %d ports\n", __cil_tmp47, "ipaq_startup",
            __cil_tmp51);

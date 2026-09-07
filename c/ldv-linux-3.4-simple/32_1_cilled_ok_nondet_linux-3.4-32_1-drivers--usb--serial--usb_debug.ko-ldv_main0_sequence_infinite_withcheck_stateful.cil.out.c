@@ -3484,8 +3484,6 @@ static struct usb_driver debug_driver  =
       (struct driver_private *)0}, 0}, 0U, 0U, 0U};
 static void usb_debug_break_ctl(struct tty_struct *tty , int break_state ) 
 { struct usb_serial_port *port ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
@@ -3493,9 +3491,7 @@ static void usb_debug_break_ctl(struct tty_struct *tty , int break_state )
   unsigned char const   *__cil_tmp10 ;
 
   {
-  __cil_tmp4 = (unsigned long )tty;
-  __cil_tmp5 = __cil_tmp4 + 584;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)tty + 584));
   port = (struct usb_serial_port *)__cil_tmp6;
   if (! break_state) {
     return;
@@ -3515,14 +3511,8 @@ static void usb_debug_break_ctl(struct tty_struct *tty , int break_state )
 static void usb_debug_process_read_urb(struct urb *urb ) 
 { struct usb_serial_port *port ;
   int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   u32 __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   void const   *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
@@ -3531,19 +3521,13 @@ static void usb_debug_process_read_urb(struct urb *urb )
   void const   *__cil_tmp17 ;
 
   {
-  __cil_tmp4 = (unsigned long )urb;
-  __cil_tmp5 = __cil_tmp4 + 176;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)urb + 176));
   port = (struct usb_serial_port *)__cil_tmp6;
   {
-  __cil_tmp7 = (unsigned long )urb;
-  __cil_tmp8 = __cil_tmp7 + 140;
-  __cil_tmp9 = *((u32 *)__cil_tmp8);
+  __cil_tmp9 = *((u32 *)((void *)urb + 140));
   if (__cil_tmp9 == 8U) {
     {
-    __cil_tmp10 = (unsigned long )urb;
-    __cil_tmp11 = __cil_tmp10 + 104;
-    __cil_tmp12 = *((void **)__cil_tmp11);
+    __cil_tmp12 = *((void **)((void *)urb + 104));
     __cil_tmp13 = (void const   *)__cil_tmp12;
     __cil_tmp14 = 0 * 1UL;
     __cil_tmp15 = (unsigned long )(USB_DEBUG_BRK) + __cil_tmp14;

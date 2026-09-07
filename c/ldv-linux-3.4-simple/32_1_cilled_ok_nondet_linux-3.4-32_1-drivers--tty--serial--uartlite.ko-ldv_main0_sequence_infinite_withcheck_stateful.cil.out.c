@@ -3300,21 +3300,13 @@ extern int uart_remove_one_port(struct uart_driver *reg , struct uart_port *port
 __inline static int uart_tx_stopped(struct uart_port *port )  __attribute__((__no_instrument_function__)) ;
 __inline static int uart_tx_stopped(struct uart_port *port ) 
 { struct tty_struct *tty ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct uart_state *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
 
   {
-  __cil_tmp3 = (unsigned long )port;
-  __cil_tmp4 = __cil_tmp3 + 120;
-  __cil_tmp5 = *((struct uart_state **)__cil_tmp4);
+  __cil_tmp5 = *((struct uart_state **)((void *)port + 120));
   tty = *((struct tty_struct **)__cil_tmp5);
   {
-  __cil_tmp6 = (unsigned long )tty;
-  __cil_tmp7 = __cil_tmp6 + 340;
-  if (*((unsigned char *)__cil_tmp7)) {
+  if (*((unsigned char *)((void *)tty + 340))) {
     return (1);
   } else
   if (tty->hw_stopped) {
@@ -3336,32 +3328,14 @@ __inline static int tty_insert_flip_char(struct tty_struct *tty , unsigned char 
   int tmp___7 ;
   int tmp___8 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned char *__cil_tmp21 ;
   unsigned char *__cil_tmp22 ;
   char *__cil_tmp23 ;
   char __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   char *__cil_tmp34 ;
   char *__cil_tmp35 ;
   unsigned char *__cil_tmp36 ;
@@ -3372,40 +3346,22 @@ __inline static int tty_insert_flip_char(struct tty_struct *tty , unsigned char 
 
   {
   __cil_tmp7 = 368 + 64;
-  __cil_tmp8 = (unsigned long )tty;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  tb = *((struct tty_buffer **)__cil_tmp9);
+  tb = *((struct tty_buffer **)((void *)tty + __cil_tmp7));
   if (tb) {
     {
-    __cil_tmp10 = (unsigned long )tb;
-    __cil_tmp11 = __cil_tmp10 + 28;
-    __cil_tmp12 = *((int *)__cil_tmp11);
-    __cil_tmp13 = (unsigned long )tb;
-    __cil_tmp14 = __cil_tmp13 + 24;
-    __cil_tmp15 = *((int *)__cil_tmp14);
+    __cil_tmp12 = *((int *)((void *)tb + 28));
+    __cil_tmp15 = *((int *)((void *)tb + 24));
     if (__cil_tmp15 < __cil_tmp12) {
-      __cil_tmp16 = (unsigned long )tb;
-      __cil_tmp17 = __cil_tmp16 + 24;
-      __cil_tmp18 = *((int *)__cil_tmp17);
-      __cil_tmp19 = (unsigned long )tb;
-      __cil_tmp20 = __cil_tmp19 + 16;
-      __cil_tmp21 = *((unsigned char **)__cil_tmp20);
+      __cil_tmp18 = *((int *)((void *)tb + 24));
+      __cil_tmp21 = *((unsigned char **)((void *)tb + 16));
       __cil_tmp22 = __cil_tmp21 + __cil_tmp18;
       __cil_tmp23 = & flag;
       __cil_tmp24 = *__cil_tmp23;
       *__cil_tmp22 = (unsigned char )__cil_tmp24;
-      __cil_tmp25 = (unsigned long )tb;
-      __cil_tmp26 = __cil_tmp25 + 24;
-      tmp___7 = *((int *)__cil_tmp26);
-      __cil_tmp27 = (unsigned long )tb;
-      __cil_tmp28 = __cil_tmp27 + 24;
-      __cil_tmp29 = (unsigned long )tb;
-      __cil_tmp30 = __cil_tmp29 + 24;
-      __cil_tmp31 = *((int *)__cil_tmp30);
-      *((int *)__cil_tmp28) = __cil_tmp31 + 1;
-      __cil_tmp32 = (unsigned long )tb;
-      __cil_tmp33 = __cil_tmp32 + 8;
-      __cil_tmp34 = *((char **)__cil_tmp33);
+      tmp___7 = *((int *)((void *)tb + 24));
+      __cil_tmp31 = *((int *)((void *)tb + 24));
+      *((int *)((void *)tb + 24)) = __cil_tmp31 + 1;
+      __cil_tmp34 = *((char **)((void *)tb + 8));
       __cil_tmp35 = __cil_tmp34 + tmp___7;
       __cil_tmp36 = & ch;
       __cil_tmp37 = *__cil_tmp36;
@@ -3433,64 +3389,36 @@ static int ulite_receive(struct uart_port *port , int stat )
   unsigned char ch ;
   char flag ;
   unsigned int tmp___7 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct uart_state *__cil_tmp9 ;
   int __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   __u32 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned char *__cil_tmp20 ;
   unsigned char *__cil_tmp21 ;
   void *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   __u32 __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   __u32 __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   __u32 __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned int __cil_tmp46 ;
   unsigned int __cil_tmp47 ;
   unsigned int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned int __cil_tmp51 ;
   unsigned int __cil_tmp52 ;
   unsigned int __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned int __cil_tmp56 ;
   unsigned int __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
   unsigned int __cil_tmp59 ;
 
   {
-  __cil_tmp7 = (unsigned long )port;
-  __cil_tmp8 = __cil_tmp7 + 120;
-  __cil_tmp9 = *((struct uart_state **)__cil_tmp8);
+  __cil_tmp9 = *((struct uart_state **)((void *)port + 120));
   tty = *((struct tty_struct **)__cil_tmp9);
   ch = (unsigned char)0;
   flag = (char)0;
@@ -3505,16 +3433,10 @@ static int ulite_receive(struct uart_port *port , int stat )
   if (stat & 1) {
     {
     __cil_tmp11 = 128 + 16;
-    __cil_tmp12 = (unsigned long )port;
-    __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
     __cil_tmp14 = 128 + 16;
-    __cil_tmp15 = (unsigned long )port;
-    __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-    __cil_tmp17 = *((__u32 *)__cil_tmp16);
-    *((__u32 *)__cil_tmp13) = __cil_tmp17 + 1U;
-    __cil_tmp18 = (unsigned long )port;
-    __cil_tmp19 = __cil_tmp18 + 32;
-    __cil_tmp20 = *((unsigned char **)__cil_tmp19);
+    __cil_tmp17 = *((__u32 *)((void *)port + __cil_tmp14));
+    *((__u32 *)((void *)port + __cil_tmp11)) = __cil_tmp17 + 1U;
+    __cil_tmp20 = *((unsigned char **)((void *)port + 32));
     __cil_tmp21 = __cil_tmp20 + 0;
     __cil_tmp22 = (void *)__cil_tmp21;
     tmp___7 = ioread32be(__cil_tmp22);
@@ -3522,13 +3444,9 @@ static int ulite_receive(struct uart_port *port , int stat )
     }
     if (stat & 128) {
       __cil_tmp23 = 128 + 32;
-      __cil_tmp24 = (unsigned long )port;
-      __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
       __cil_tmp26 = 128 + 32;
-      __cil_tmp27 = (unsigned long )port;
-      __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-      __cil_tmp29 = *((__u32 *)__cil_tmp28);
-      *((__u32 *)__cil_tmp25) = __cil_tmp29 + 1U;
+      __cil_tmp29 = *((__u32 *)((void *)port + __cil_tmp26));
+      *((__u32 *)((void *)port + __cil_tmp23)) = __cil_tmp29 + 1U;
     } else {
 
     }
@@ -3537,32 +3455,22 @@ static int ulite_receive(struct uart_port *port , int stat )
   }
   if (stat & 32) {
     __cil_tmp30 = 128 + 28;
-    __cil_tmp31 = (unsigned long )port;
-    __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
     __cil_tmp33 = 128 + 28;
-    __cil_tmp34 = (unsigned long )port;
-    __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-    __cil_tmp36 = *((__u32 *)__cil_tmp35);
-    *((__u32 *)__cil_tmp32) = __cil_tmp36 + 1U;
+    __cil_tmp36 = *((__u32 *)((void *)port + __cil_tmp33));
+    *((__u32 *)((void *)port + __cil_tmp30)) = __cil_tmp36 + 1U;
   } else {
 
   }
   if (stat & 64) {
     __cil_tmp37 = 128 + 24;
-    __cil_tmp38 = (unsigned long )port;
-    __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
     __cil_tmp40 = 128 + 24;
-    __cil_tmp41 = (unsigned long )port;
-    __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-    __cil_tmp43 = *((__u32 *)__cil_tmp42);
-    *((__u32 *)__cil_tmp39) = __cil_tmp43 + 1U;
+    __cil_tmp43 = *((__u32 *)((void *)port + __cil_tmp40));
+    *((__u32 *)((void *)port + __cil_tmp37)) = __cil_tmp43 + 1U;
   } else {
 
   }
   {
-  __cil_tmp44 = (unsigned long )port;
-  __cil_tmp45 = __cil_tmp44 + 112;
-  __cil_tmp46 = *((unsigned int *)__cil_tmp45);
+  __cil_tmp46 = *((unsigned int *)((void *)port + 112));
   __cil_tmp47 = (unsigned int )stat;
   __cil_tmp48 = __cil_tmp47 & __cil_tmp46;
   if (__cil_tmp48 & 128U) {
@@ -3571,9 +3479,7 @@ static int ulite_receive(struct uart_port *port , int stat )
 
   }
   }
-  __cil_tmp49 = (unsigned long )port;
-  __cil_tmp50 = __cil_tmp49 + 108;
-  __cil_tmp51 = *((unsigned int *)__cil_tmp50);
+  __cil_tmp51 = *((unsigned int *)((void *)port + 108));
   __cil_tmp52 = (unsigned int )stat;
   __cil_tmp53 = __cil_tmp52 & __cil_tmp51;
   stat = (int )__cil_tmp53;
@@ -3582,9 +3488,7 @@ static int ulite_receive(struct uart_port *port , int stat )
   } else {
 
   }
-  __cil_tmp54 = (unsigned long )port;
-  __cil_tmp55 = __cil_tmp54 + 112;
-  __cil_tmp56 = *((unsigned int *)__cil_tmp55);
+  __cil_tmp56 = *((unsigned int *)((void *)port + 112));
   __cil_tmp57 = ~ __cil_tmp56;
   __cil_tmp58 = (unsigned int )stat;
   __cil_tmp59 = __cil_tmp58 & __cil_tmp57;
@@ -3616,116 +3520,64 @@ static int ulite_receive(struct uart_port *port , int stat )
 static int ulite_transmit(struct uart_port *port , int stat ) 
 { struct circ_buf *xmit ;
   int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct uart_state *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned char __cil_tmp14 ;
   u32 __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned char *__cil_tmp18 ;
   unsigned char *__cil_tmp19 ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   __u32 __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   int __cil_tmp38 ;
   char *__cil_tmp39 ;
   char *__cil_tmp40 ;
   char __cil_tmp41 ;
   u32 __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char *__cil_tmp45 ;
   unsigned char *__cil_tmp46 ;
   void *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   int __cil_tmp54 ;
   int __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   __u32 __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   int __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   int __cil_tmp72 ;
   int __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
 
   {
-  __cil_tmp5 = (unsigned long )port;
-  __cil_tmp6 = __cil_tmp5 + 120;
-  __cil_tmp7 = *((struct uart_state **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 360;
-  xmit = (struct circ_buf *)__cil_tmp9;
+  __cil_tmp7 = *((struct uart_state **)((void *)port + 120));
+  xmit = (struct circ_buf *)((void *)__cil_tmp7 + 360);
   if (stat & 8) {
     return (0);
   } else {
 
   }
   {
-  __cil_tmp10 = (unsigned long )port;
-  __cil_tmp11 = __cil_tmp10 + 104;
-  if (*((unsigned char *)__cil_tmp11)) {
+  if (*((unsigned char *)((void *)port + 104))) {
     {
-    __cil_tmp12 = (unsigned long )port;
-    __cil_tmp13 = __cil_tmp12 + 104;
-    __cil_tmp14 = *((unsigned char *)__cil_tmp13);
+    __cil_tmp14 = *((unsigned char *)((void *)port + 104));
     __cil_tmp15 = (u32 )__cil_tmp14;
-    __cil_tmp16 = (unsigned long )port;
-    __cil_tmp17 = __cil_tmp16 + 32;
-    __cil_tmp18 = *((unsigned char **)__cil_tmp17);
+    __cil_tmp18 = *((unsigned char **)((void *)port + 32));
     __cil_tmp19 = __cil_tmp18 + 4;
     __cil_tmp20 = (void *)__cil_tmp19;
     iowrite32be(__cil_tmp15, __cil_tmp20);
-    __cil_tmp21 = (unsigned long )port;
-    __cil_tmp22 = __cil_tmp21 + 104;
-    *((unsigned char *)__cil_tmp22) = (unsigned char)0;
+    *((unsigned char *)((void *)port + 104)) = (unsigned char)0;
     __cil_tmp23 = 128 + 20;
-    __cil_tmp24 = (unsigned long )port;
-    __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
     __cil_tmp26 = 128 + 20;
-    __cil_tmp27 = (unsigned long )port;
-    __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-    __cil_tmp29 = *((__u32 *)__cil_tmp28);
-    *((__u32 *)__cil_tmp25) = __cil_tmp29 + 1U;
+    __cil_tmp29 = *((__u32 *)((void *)port + __cil_tmp26));
+    *((__u32 *)((void *)port + __cil_tmp23)) = __cil_tmp29 + 1U;
     }
     return (1);
   } else {
@@ -3733,12 +3585,8 @@ static int ulite_transmit(struct uart_port *port , int stat )
   }
   }
   {
-  __cil_tmp30 = (unsigned long )xmit;
-  __cil_tmp31 = __cil_tmp30 + 12;
-  __cil_tmp32 = *((int *)__cil_tmp31);
-  __cil_tmp33 = (unsigned long )xmit;
-  __cil_tmp34 = __cil_tmp33 + 8;
-  __cil_tmp35 = *((int *)__cil_tmp34);
+  __cil_tmp32 = *((int *)((void *)xmit + 12));
+  __cil_tmp35 = *((int *)((void *)xmit + 8));
   if (__cil_tmp35 == __cil_tmp32) {
     return (0);
   } else {
@@ -3753,48 +3601,32 @@ static int ulite_transmit(struct uart_port *port , int stat )
   }
   }
   {
-  __cil_tmp36 = (unsigned long )xmit;
-  __cil_tmp37 = __cil_tmp36 + 12;
-  __cil_tmp38 = *((int *)__cil_tmp37);
+  __cil_tmp38 = *((int *)((void *)xmit + 12));
   __cil_tmp39 = *((char **)xmit);
   __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
   __cil_tmp41 = *__cil_tmp40;
   __cil_tmp42 = (u32 )__cil_tmp41;
-  __cil_tmp43 = (unsigned long )port;
-  __cil_tmp44 = __cil_tmp43 + 32;
-  __cil_tmp45 = *((unsigned char **)__cil_tmp44);
+  __cil_tmp45 = *((unsigned char **)((void *)port + 32));
   __cil_tmp46 = __cil_tmp45 + 4;
   __cil_tmp47 = (void *)__cil_tmp46;
   iowrite32be(__cil_tmp42, __cil_tmp47);
-  __cil_tmp48 = (unsigned long )xmit;
-  __cil_tmp49 = __cil_tmp48 + 12;
   __cil_tmp50 = 1UL << 12;
   __cil_tmp51 = __cil_tmp50 - 1UL;
-  __cil_tmp52 = (unsigned long )xmit;
-  __cil_tmp53 = __cil_tmp52 + 12;
-  __cil_tmp54 = *((int *)__cil_tmp53);
+  __cil_tmp54 = *((int *)((void *)xmit + 12));
   __cil_tmp55 = __cil_tmp54 + 1;
   __cil_tmp56 = (unsigned long )__cil_tmp55;
   __cil_tmp57 = __cil_tmp56 & __cil_tmp51;
-  *((int *)__cil_tmp49) = (int )__cil_tmp57;
+  *((int *)((void *)xmit + 12)) = (int )__cil_tmp57;
   __cil_tmp58 = 128 + 20;
-  __cil_tmp59 = (unsigned long )port;
-  __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
   __cil_tmp61 = 128 + 20;
-  __cil_tmp62 = (unsigned long )port;
-  __cil_tmp63 = __cil_tmp62 + __cil_tmp61;
-  __cil_tmp64 = *((__u32 *)__cil_tmp63);
-  *((__u32 *)__cil_tmp60) = __cil_tmp64 + 1U;
+  __cil_tmp64 = *((__u32 *)((void *)port + __cil_tmp61));
+  *((__u32 *)((void *)port + __cil_tmp58)) = __cil_tmp64 + 1U;
   }
   {
   __cil_tmp65 = 1UL << 12;
   __cil_tmp66 = __cil_tmp65 - 1UL;
-  __cil_tmp67 = (unsigned long )xmit;
-  __cil_tmp68 = __cil_tmp67 + 12;
-  __cil_tmp69 = *((int *)__cil_tmp68);
-  __cil_tmp70 = (unsigned long )xmit;
-  __cil_tmp71 = __cil_tmp70 + 8;
-  __cil_tmp72 = *((int *)__cil_tmp71);
+  __cil_tmp69 = *((int *)((void *)xmit + 12));
+  __cil_tmp72 = *((int *)((void *)xmit + 8));
   __cil_tmp73 = __cil_tmp72 - __cil_tmp69;
   __cil_tmp74 = (unsigned long )__cil_tmp73;
   __cil_tmp75 = __cil_tmp74 & __cil_tmp66;
@@ -3816,13 +3648,9 @@ static irqreturn_t ulite_isr(int irq , void *dev_id )
   int stat ;
   unsigned int tmp___7 ;
   int tmp___8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
   unsigned char *__cil_tmp12 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct uart_state *__cil_tmp16 ;
   struct tty_struct *__cil_tmp17 ;
 
@@ -3833,9 +3661,7 @@ static irqreturn_t ulite_isr(int irq , void *dev_id )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp9 = (unsigned long )port;
-    __cil_tmp10 = __cil_tmp9 + 32;
-    __cil_tmp11 = *((unsigned char **)__cil_tmp10);
+    __cil_tmp11 = *((unsigned char **)((void *)port + 32));
     __cil_tmp12 = __cil_tmp11 + 8;
     __cil_tmp13 = (void *)__cil_tmp12;
     tmp___7 = ioread32be(__cil_tmp13);
@@ -3855,9 +3681,7 @@ static irqreturn_t ulite_isr(int irq , void *dev_id )
   }
   if (n > 1) {
     {
-    __cil_tmp14 = (unsigned long )port;
-    __cil_tmp15 = __cil_tmp14 + 120;
-    __cil_tmp16 = *((struct uart_state **)__cil_tmp15);
+    __cil_tmp16 = *((struct uart_state **)((void *)port + 120));
     __cil_tmp17 = *((struct tty_struct **)__cil_tmp16);
     tty_flip_buffer_push(__cil_tmp17);
     }
@@ -3873,8 +3697,6 @@ static unsigned int ulite_tx_empty(struct uart_port *port )
   raw_spinlock_t *tmp___7 ;
   int tmp___8 ;
   spinlock_t *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
   unsigned char *__cil_tmp12 ;
   void *__cil_tmp13 ;
@@ -3901,9 +3723,7 @@ static unsigned int ulite_tx_empty(struct uart_port *port )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp9 = (unsigned long )port;
-  __cil_tmp10 = __cil_tmp9 + 32;
-  __cil_tmp11 = *((unsigned char **)__cil_tmp10);
+  __cil_tmp11 = *((unsigned char **)((void *)port + 32));
   __cil_tmp12 = __cil_tmp11 + 8;
   __cil_tmp13 = (void *)__cil_tmp12;
   ret = ioread32be(__cil_tmp13);
@@ -3941,8 +3761,6 @@ static void ulite_stop_tx(struct uart_port *port )
 }
 static void ulite_start_tx(struct uart_port *port ) 
 { unsigned int tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned char *__cil_tmp5 ;
   unsigned char *__cil_tmp6 ;
   void *__cil_tmp7 ;
@@ -3950,9 +3768,7 @@ static void ulite_start_tx(struct uart_port *port )
 
   {
   {
-  __cil_tmp3 = (unsigned long )port;
-  __cil_tmp4 = __cil_tmp3 + 32;
-  __cil_tmp5 = *((unsigned char **)__cil_tmp4);
+  __cil_tmp5 = *((unsigned char **)((void *)port + 32));
   __cil_tmp6 = __cil_tmp5 + 8;
   __cil_tmp7 = (void *)__cil_tmp6;
   tmp___7 = ioread32be(__cil_tmp7);
@@ -3963,13 +3779,9 @@ static void ulite_start_tx(struct uart_port *port )
 }
 }
 static void ulite_stop_rx(struct uart_port *port ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
-  __cil_tmp2 = (unsigned long )port;
-  __cil_tmp3 = __cil_tmp2 + 112;
-  *((unsigned int *)__cil_tmp3) = 225U;
+  *((unsigned int *)((void *)port + 112)) = 225U;
   return;
 }
 }
@@ -3989,28 +3801,20 @@ static void ulite_break_ctl(struct uart_port *port , int ctl )
 }
 static int ulite_startup(struct uart_port *port ) 
 { int ret ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
   void *__cil_tmp6 ;
   u32 __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned char *__cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
   void *__cil_tmp12 ;
   u32 __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned char *__cil_tmp16 ;
   unsigned char *__cil_tmp17 ;
   void *__cil_tmp18 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )port;
-  __cil_tmp4 = __cil_tmp3 + 80;
-  __cil_tmp5 = *((unsigned int *)__cil_tmp4);
+  __cil_tmp5 = *((unsigned int *)((void *)port + 80));
   __cil_tmp6 = (void *)port;
   ret = (int )request_irq(__cil_tmp5, & ulite_isr, 192UL, "uartlite", __cil_tmp6);
   }
@@ -4021,16 +3825,12 @@ static int ulite_startup(struct uart_port *port )
   }
   {
   __cil_tmp7 = (u32 )3;
-  __cil_tmp8 = (unsigned long )port;
-  __cil_tmp9 = __cil_tmp8 + 32;
-  __cil_tmp10 = *((unsigned char **)__cil_tmp9);
+  __cil_tmp10 = *((unsigned char **)((void *)port + 32));
   __cil_tmp11 = __cil_tmp10 + 12;
   __cil_tmp12 = (void *)__cil_tmp11;
   iowrite32be(__cil_tmp7, __cil_tmp12);
   __cil_tmp13 = (u32 )16;
-  __cil_tmp14 = (unsigned long )port;
-  __cil_tmp15 = __cil_tmp14 + 32;
-  __cil_tmp16 = *((unsigned char **)__cil_tmp15);
+  __cil_tmp16 = *((unsigned char **)((void *)port + 32));
   __cil_tmp17 = __cil_tmp16 + 12;
   __cil_tmp18 = (void *)__cil_tmp17;
   iowrite32be(__cil_tmp13, __cil_tmp18);
@@ -4040,39 +3840,27 @@ static int ulite_startup(struct uart_port *port )
 }
 static void ulite_shutdown(struct uart_port *port ) 
 { u32 __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned char *__cil_tmp5 ;
   unsigned char *__cil_tmp6 ;
   void *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned char *__cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   void *__cil_tmp16 ;
 
   {
   {
   __cil_tmp2 = (u32 )0;
-  __cil_tmp3 = (unsigned long )port;
-  __cil_tmp4 = __cil_tmp3 + 32;
-  __cil_tmp5 = *((unsigned char **)__cil_tmp4);
+  __cil_tmp5 = *((unsigned char **)((void *)port + 32));
   __cil_tmp6 = __cil_tmp5 + 12;
   __cil_tmp7 = (void *)__cil_tmp6;
   iowrite32be(__cil_tmp2, __cil_tmp7);
-  __cil_tmp8 = (unsigned long )port;
-  __cil_tmp9 = __cil_tmp8 + 32;
-  __cil_tmp10 = *((unsigned char **)__cil_tmp9);
+  __cil_tmp10 = *((unsigned char **)((void *)port + 32));
   __cil_tmp11 = __cil_tmp10 + 12;
   __cil_tmp12 = (void *)__cil_tmp11;
   ioread32be(__cil_tmp12);
-  __cil_tmp13 = (unsigned long )port;
-  __cil_tmp14 = __cil_tmp13 + 80;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
+  __cil_tmp15 = *((unsigned int *)((void *)port + 80));
   __cil_tmp16 = (void *)port;
   free_irq(__cil_tmp15, __cil_tmp16);
   }
@@ -4085,33 +3873,13 @@ static void ulite_set_termios(struct uart_port *port , struct ktermios *termios 
   unsigned int baud ;
   raw_spinlock_t *tmp___7 ;
   spinlock_t *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   tcflag_t __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   tcflag_t __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   tcflag_t __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   tcflag_t __cil_tmp37 ;
   spinlock_t *__cil_tmp38 ;
 
@@ -4135,59 +3903,39 @@ static void ulite_set_termios(struct uart_port *port , struct ktermios *termios 
   }
   while_break: /* CIL Label */ ;
   }
-  __cil_tmp10 = (unsigned long )port;
-  __cil_tmp11 = __cil_tmp10 + 108;
-  *((unsigned int *)__cil_tmp11) = 41U;
+  *((unsigned int *)((void *)port + 108)) = 41U;
   {
   __cil_tmp12 = *((tcflag_t *)termios);
   if (__cil_tmp12 & 16U) {
-    __cil_tmp13 = (unsigned long )port;
-    __cil_tmp14 = __cil_tmp13 + 108;
-    __cil_tmp15 = (unsigned long )port;
-    __cil_tmp16 = __cil_tmp15 + 108;
-    __cil_tmp17 = *((unsigned int *)__cil_tmp16);
-    *((unsigned int *)__cil_tmp14) = __cil_tmp17 | 192U;
+    __cil_tmp17 = *((unsigned int *)((void *)port + 108));
+    *((unsigned int *)((void *)port + 108)) = __cil_tmp17 | 192U;
   } else {
 
   }
   }
-  __cil_tmp18 = (unsigned long )port;
-  __cil_tmp19 = __cil_tmp18 + 112;
-  *((unsigned int *)__cil_tmp19) = 0U;
+  *((unsigned int *)((void *)port + 112)) = 0U;
   {
   __cil_tmp20 = *((tcflag_t *)termios);
   if (__cil_tmp20 & 4U) {
-    __cil_tmp21 = (unsigned long )port;
-    __cil_tmp22 = __cil_tmp21 + 112;
-    __cil_tmp23 = (unsigned long )port;
-    __cil_tmp24 = __cil_tmp23 + 112;
-    __cil_tmp25 = *((unsigned int *)__cil_tmp24);
-    *((unsigned int *)__cil_tmp22) = __cil_tmp25 | 224U;
+    __cil_tmp25 = *((unsigned int *)((void *)port + 112));
+    *((unsigned int *)((void *)port + 112)) = __cil_tmp25 | 224U;
   } else {
 
   }
   }
   {
-  __cil_tmp26 = (unsigned long )termios;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  __cil_tmp28 = *((tcflag_t *)__cil_tmp27);
+  __cil_tmp28 = *((tcflag_t *)((void *)termios + 8));
   __cil_tmp29 = __cil_tmp28 & 128U;
   if (__cil_tmp29 == 0U) {
-    __cil_tmp30 = (unsigned long )port;
-    __cil_tmp31 = __cil_tmp30 + 112;
-    __cil_tmp32 = (unsigned long )port;
-    __cil_tmp33 = __cil_tmp32 + 112;
-    __cil_tmp34 = *((unsigned int *)__cil_tmp33);
-    *((unsigned int *)__cil_tmp31) = __cil_tmp34 | 225U;
+    __cil_tmp34 = *((unsigned int *)((void *)port + 112));
+    *((unsigned int *)((void *)port + 112)) = __cil_tmp34 | 225U;
   } else {
 
   }
   }
   {
   baud = uart_get_baud_rate(port, termios, old, 0U, 460800U);
-  __cil_tmp35 = (unsigned long )termios;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = *((tcflag_t *)__cil_tmp36);
+  __cil_tmp37 = *((tcflag_t *)((void *)termios + 8));
   uart_update_timeout(port, __cil_tmp37, baud);
   __cil_tmp38 = (spinlock_t *)port;
   spin_unlock_irqrestore(__cil_tmp38, flags);
@@ -4197,16 +3945,12 @@ static void ulite_set_termios(struct uart_port *port , struct ktermios *termios 
 }
 static char const   *ulite_type(struct uart_port *port ) 
 { char const   *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
   void *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )port;
-  __cil_tmp4 = __cil_tmp3 + 204;
-  __cil_tmp5 = *((unsigned int *)__cil_tmp4);
+  __cil_tmp5 = *((unsigned int *)((void *)port + 204));
   if (__cil_tmp5 == 74U) {
     tmp___7 = "uartlite";
   } else {
@@ -4218,34 +3962,23 @@ static char const   *ulite_type(struct uart_port *port )
 }
 }
 static void ulite_release_port(struct uart_port *port ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   resource_size_t __cil_tmp4 ;
   resource_size_t __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned char *__cil_tmp8 ;
   void volatile   *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )port;
-  __cil_tmp3 = __cil_tmp2 + 224;
-  __cil_tmp4 = *((resource_size_t *)__cil_tmp3);
+  __cil_tmp4 = *((resource_size_t *)((void *)port + 224));
   __cil_tmp5 = (resource_size_t )16;
   __release_region(& iomem_resource, __cil_tmp4, __cil_tmp5);
-  __cil_tmp6 = (unsigned long )port;
-  __cil_tmp7 = __cil_tmp6 + 32;
-  __cil_tmp8 = *((unsigned char **)__cil_tmp7);
+  __cil_tmp8 = *((unsigned char **)((void *)port + 32));
   __cil_tmp9 = (void volatile   *)__cil_tmp8;
   iounmap(__cil_tmp9);
-  __cil_tmp10 = (unsigned long )port;
-  __cil_tmp11 = __cil_tmp10 + 32;
   __cil_tmp12 = (void *)0;
-  *((unsigned char **)__cil_tmp11) = (unsigned char *)__cil_tmp12;
+  *((unsigned char **)((void *)port + 32)) = (unsigned char *)__cil_tmp12;
   }
   return;
 }
@@ -4264,31 +3997,15 @@ static int ulite_request_port(struct uart_port *port )
   int __cil_tmp8 ;
   int __cil_tmp9 ;
   long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   resource_size_t __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   resource_size_t __cil_tmp16 ;
   resource_size_t __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device  const  *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   resource_size_t __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned char *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device *__cil_tmp32 ;
   struct device  const  *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   resource_size_t __cil_tmp36 ;
   resource_size_t __cil_tmp37 ;
 
@@ -4307,9 +4024,7 @@ static int ulite_request_port(struct uart_port *port )
     }
     if (tmp___7) {
       {
-      __cil_tmp11 = (unsigned long )port;
-      __cil_tmp12 = __cil_tmp11 + 224;
-      __cil_tmp13 = *((resource_size_t *)__cil_tmp12);
+      __cil_tmp13 = *((resource_size_t *)((void *)port + 224));
       __dynamic_pr_debug(& descriptor, "ulite console: port=%p; port->mapbase=%llx\n",
                          port, __cil_tmp13);
       }
@@ -4321,9 +4036,7 @@ static int ulite_request_port(struct uart_port *port )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp14 = (unsigned long )port;
-  __cil_tmp15 = __cil_tmp14 + 224;
-  __cil_tmp16 = *((resource_size_t *)__cil_tmp15);
+  __cil_tmp16 = *((resource_size_t *)((void *)port + 224));
   __cil_tmp17 = (resource_size_t )16;
   tmp___8 = __request_region(& iomem_resource, __cil_tmp16, __cil_tmp17, "uartlite",
                              0);
@@ -4332,37 +4045,25 @@ static int ulite_request_port(struct uart_port *port )
 
   } else {
     {
-    __cil_tmp18 = (unsigned long )port;
-    __cil_tmp19 = __cil_tmp18 + 232;
-    __cil_tmp20 = *((struct device **)__cil_tmp19);
+    __cil_tmp20 = *((struct device **)((void *)port + 232));
     __cil_tmp21 = (struct device  const  *)__cil_tmp20;
     dev_err(__cil_tmp21, "Memory region busy\n");
     }
     return (-16);
   }
   {
-  __cil_tmp22 = (unsigned long )port;
-  __cil_tmp23 = __cil_tmp22 + 224;
-  __cil_tmp24 = *((resource_size_t *)__cil_tmp23);
+  __cil_tmp24 = *((resource_size_t *)((void *)port + 224));
   tmp___9 = ioremap(__cil_tmp24, 16UL);
-  __cil_tmp25 = (unsigned long )port;
-  __cil_tmp26 = __cil_tmp25 + 32;
-  *((unsigned char **)__cil_tmp26) = (unsigned char *)tmp___9;
+  *((unsigned char **)((void *)port + 32)) = (unsigned char *)tmp___9;
   }
   {
-  __cil_tmp27 = (unsigned long )port;
-  __cil_tmp28 = __cil_tmp27 + 32;
-  __cil_tmp29 = *((unsigned char **)__cil_tmp28);
+  __cil_tmp29 = *((unsigned char **)((void *)port + 32));
   if (! __cil_tmp29) {
     {
-    __cil_tmp30 = (unsigned long )port;
-    __cil_tmp31 = __cil_tmp30 + 232;
-    __cil_tmp32 = *((struct device **)__cil_tmp31);
+    __cil_tmp32 = *((struct device **)((void *)port + 232));
     __cil_tmp33 = (struct device  const  *)__cil_tmp32;
     dev_err(__cil_tmp33, "Unable to map registers\n");
-    __cil_tmp34 = (unsigned long )port;
-    __cil_tmp35 = __cil_tmp34 + 224;
-    __cil_tmp36 = *((resource_size_t *)__cil_tmp35);
+    __cil_tmp36 = *((resource_size_t *)((void *)port + 224));
     __cil_tmp37 = (resource_size_t )16;
     __release_region(& iomem_resource, __cil_tmp36, __cil_tmp37);
     }
@@ -4376,8 +4077,6 @@ static int ulite_request_port(struct uart_port *port )
 }
 static void ulite_config_port(struct uart_port *port , int flags ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
 
   {
   {
@@ -4386,9 +4085,7 @@ static void ulite_config_port(struct uart_port *port , int flags )
   if (tmp___7) {
 
   } else {
-    __cil_tmp4 = (unsigned long )port;
-    __cil_tmp5 = __cil_tmp4 + 204;
-    *((unsigned int *)__cil_tmp5) = 74U;
+    *((unsigned int *)((void *)port + 204)) = 74U;
   }
   return;
 }
@@ -4403,22 +4100,16 @@ static int ulite_verify_port(struct uart_port *port , struct serial_struct *ser 
 static int ulite_get_poll_char(struct uart_port *port ) 
 { unsigned int tmp___7 ;
   unsigned int tmp___8 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned char *__cil_tmp6 ;
   unsigned char *__cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
   unsigned char *__cil_tmp12 ;
   void *__cil_tmp13 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )port;
-  __cil_tmp5 = __cil_tmp4 + 32;
-  __cil_tmp6 = *((unsigned char **)__cil_tmp5);
+  __cil_tmp6 = *((unsigned char **)((void *)port + 32));
   __cil_tmp7 = __cil_tmp6 + 8;
   __cil_tmp8 = (void *)__cil_tmp7;
   tmp___7 = ioread32be(__cil_tmp8);
@@ -4429,9 +4120,7 @@ static int ulite_get_poll_char(struct uart_port *port )
     return (16711680);
   }
   {
-  __cil_tmp9 = (unsigned long )port;
-  __cil_tmp10 = __cil_tmp9 + 32;
-  __cil_tmp11 = *((unsigned char **)__cil_tmp10);
+  __cil_tmp11 = *((unsigned char **)((void *)port + 32));
   __cil_tmp12 = __cil_tmp11 + 0;
   __cil_tmp13 = (void *)__cil_tmp12;
   tmp___8 = ioread32be(__cil_tmp13);
@@ -4441,14 +4130,10 @@ static int ulite_get_poll_char(struct uart_port *port )
 }
 static void ulite_put_poll_char(struct uart_port *port , unsigned char ch ) 
 { unsigned int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned char *__cil_tmp6 ;
   unsigned char *__cil_tmp7 ;
   void *__cil_tmp8 ;
   u32 __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned char *__cil_tmp12 ;
   unsigned char *__cil_tmp13 ;
   void *__cil_tmp14 ;
@@ -4458,9 +4143,7 @@ static void ulite_put_poll_char(struct uart_port *port , unsigned char ch )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp4 = (unsigned long )port;
-    __cil_tmp5 = __cil_tmp4 + 32;
-    __cil_tmp6 = *((unsigned char **)__cil_tmp5);
+    __cil_tmp6 = *((unsigned char **)((void *)port + 32));
     __cil_tmp7 = __cil_tmp6 + 8;
     __cil_tmp8 = (void *)__cil_tmp7;
     tmp___7 = ioread32be(__cil_tmp8);
@@ -4478,9 +4161,7 @@ static void ulite_put_poll_char(struct uart_port *port , unsigned char ch )
   }
   {
   __cil_tmp9 = (u32 )ch;
-  __cil_tmp10 = (unsigned long )port;
-  __cil_tmp11 = __cil_tmp10 + 32;
-  __cil_tmp12 = *((unsigned char **)__cil_tmp11);
+  __cil_tmp12 = *((unsigned char **)((void *)port + 32));
   __cil_tmp13 = __cil_tmp12 + 4;
   __cil_tmp14 = (void *)__cil_tmp13;
   iowrite32be(__cil_tmp9, __cil_tmp14);
@@ -4528,36 +4209,10 @@ static int ulite_assign(struct device *dev , int id , u32 base , int irq )
   unsigned long __cil_tmp23 ;
   spinlock_t *__cil_tmp24 ;
   struct raw_spinlock *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   void *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   int __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   void *__cil_tmp52 ;
   struct device  const  *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   void *__cil_tmp56 ;
 
   {
@@ -4657,44 +4312,20 @@ static int ulite_assign(struct device *dev , int id , u32 base , int irq )
   while_break___0: /* CIL Label */ ;
   }
   {
-  __cil_tmp26 = (unsigned long )port;
-  __cil_tmp27 = __cil_tmp26 + 100;
-  *((unsigned int *)__cil_tmp27) = 16U;
-  __cil_tmp28 = (unsigned long )port;
-  __cil_tmp29 = __cil_tmp28 + 105;
-  *((unsigned char *)__cil_tmp29) = (unsigned char)2;
-  __cil_tmp30 = (unsigned long )port;
-  __cil_tmp31 = __cil_tmp30 + 106;
-  *((unsigned char *)__cil_tmp31) = (unsigned char)2;
-  __cil_tmp32 = (unsigned long )port;
-  __cil_tmp33 = __cil_tmp32 + 24;
-  *((unsigned long *)__cil_tmp33) = 1UL;
-  __cil_tmp34 = (unsigned long )port;
-  __cil_tmp35 = __cil_tmp34 + 224;
-  *((resource_size_t *)__cil_tmp35) = (resource_size_t )base;
-  __cil_tmp36 = (unsigned long )port;
-  __cil_tmp37 = __cil_tmp36 + 32;
+  *((unsigned int *)((void *)port + 100)) = 16U;
+  *((unsigned char *)((void *)port + 105)) = (unsigned char)2;
+  *((unsigned char *)((void *)port + 106)) = (unsigned char)2;
+  *((unsigned long *)((void *)port + 24)) = 1UL;
+  *((resource_size_t *)((void *)port + 224)) = (resource_size_t )base;
   __cil_tmp38 = (void *)0;
-  *((unsigned char **)__cil_tmp37) = (unsigned char *)__cil_tmp38;
-  __cil_tmp39 = (unsigned long )port;
-  __cil_tmp40 = __cil_tmp39 + 208;
-  *((struct uart_ops  const  **)__cil_tmp40) = (struct uart_ops  const  *)(& ulite_ops);
-  __cil_tmp41 = (unsigned long )port;
-  __cil_tmp42 = __cil_tmp41 + 80;
-  *((unsigned int *)__cil_tmp42) = (unsigned int )irq;
-  __cil_tmp43 = (unsigned long )port;
-  __cil_tmp44 = __cil_tmp43 + 192;
+  *((unsigned char **)((void *)port + 32)) = (unsigned char *)__cil_tmp38;
+  *((struct uart_ops  const  **)((void *)port + 208)) = (struct uart_ops  const  *)(& ulite_ops);
+  *((unsigned int *)((void *)port + 80)) = (unsigned int )irq;
   __cil_tmp45 = 1 << 28;
-  *((upf_t *)__cil_tmp44) = (upf_t )__cil_tmp45;
-  __cil_tmp46 = (unsigned long )port;
-  __cil_tmp47 = __cil_tmp46 + 232;
-  *((struct device **)__cil_tmp47) = dev;
-  __cil_tmp48 = (unsigned long )port;
-  __cil_tmp49 = __cil_tmp48 + 204;
-  *((unsigned int *)__cil_tmp49) = 0U;
-  __cil_tmp50 = (unsigned long )port;
-  __cil_tmp51 = __cil_tmp50 + 220;
-  *((unsigned int *)__cil_tmp51) = (unsigned int )id;
+  *((upf_t *)((void *)port + 192)) = (upf_t )__cil_tmp45;
+  *((struct device **)((void *)port + 232)) = dev;
+  *((unsigned int *)((void *)port + 204)) = 0U;
+  *((unsigned int *)((void *)port + 220)) = (unsigned int )id;
   __cil_tmp52 = (void *)port;
   dev_set_drvdata(dev, __cil_tmp52);
   rc = uart_add_one_port(& ulite_uart_driver, port);
@@ -4703,9 +4334,7 @@ static int ulite_assign(struct device *dev , int id , u32 base , int irq )
     {
     __cil_tmp53 = (struct device  const  *)dev;
     dev_err(__cil_tmp53, "uart_add_one_port() failed; err=%i\n", rc);
-    __cil_tmp54 = (unsigned long )port;
-    __cil_tmp55 = __cil_tmp54 + 224;
-    *((resource_size_t *)__cil_tmp55) = (resource_size_t )0;
+    *((resource_size_t *)((void *)port + 224)) = (resource_size_t )0;
     __cil_tmp56 = (void *)0;
     dev_set_drvdata(dev, __cil_tmp56);
     }
@@ -4724,8 +4353,6 @@ static int ulite_release(struct device *dev )
   int rc ;
   struct device  const  *__cil_tmp5 ;
   void *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
 
   {
   {
@@ -4739,9 +4366,7 @@ static int ulite_release(struct device *dev )
     rc = uart_remove_one_port(& ulite_uart_driver, port);
     __cil_tmp6 = (void *)0;
     dev_set_drvdata(dev, __cil_tmp6);
-    __cil_tmp7 = (unsigned long )port;
-    __cil_tmp8 = __cil_tmp7 + 224;
-    *((resource_size_t *)__cil_tmp8) = (resource_size_t )0;
+    *((resource_size_t *)((void *)port + 224)) = (resource_size_t )0;
     }
   } else {
 
@@ -4756,10 +4381,6 @@ static int ulite_probe(struct platform_device *pdev )
   struct resource *res2 ;
   int id ;
   int tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   resource_size_t __cil_tmp11 ;
   u32 __cil_tmp12 ;
@@ -4768,9 +4389,7 @@ static int ulite_probe(struct platform_device *pdev )
 
   {
   {
-  __cil_tmp6 = (unsigned long )pdev;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  id = *((int *)__cil_tmp7);
+  id = *((int *)((void *)pdev + 8));
   res = platform_get_resource(pdev, 512U, 0U);
   }
   if (! res) {
@@ -4787,9 +4406,7 @@ static int ulite_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp8 = (unsigned long )pdev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)pdev + 16);
   __cil_tmp11 = *((resource_size_t *)res);
   __cil_tmp12 = (u32 )__cil_tmp11;
   __cil_tmp13 = *((resource_size_t *)res2);
@@ -4803,15 +4420,11 @@ static int ulite_remove(struct platform_device *pdev )  __attribute__((__section
 __no_instrument_function__)) ;
 static int ulite_remove(struct platform_device *pdev ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   tmp___7 = ulite_release(__cil_tmp5);
   }
   return (tmp___7);

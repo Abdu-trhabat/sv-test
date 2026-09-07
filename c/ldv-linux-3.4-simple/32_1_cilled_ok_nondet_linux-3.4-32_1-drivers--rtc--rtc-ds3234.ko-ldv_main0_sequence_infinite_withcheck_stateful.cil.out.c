@@ -3002,16 +3002,13 @@ __inline static void *spi_get_drvdata(struct spi_device *spi )
 extern int spi_register_driver(struct spi_driver *sdrv ) ;
 __inline static void spi_unregister_driver(struct spi_driver *sdrv )  __attribute__((__no_instrument_function__)) ;
 __inline static void spi_unregister_driver(struct spi_driver *sdrv ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device_driver *__cil_tmp4 ;
 
   {
   if (sdrv) {
     {
-    __cil_tmp2 = (unsigned long )sdrv;
-    __cil_tmp3 = __cil_tmp2 + 48;
-    __cil_tmp4 = (struct device_driver *)__cil_tmp3;
+    __cil_tmp4 = (struct device_driver *)((void *)sdrv + 48);
     driver_unregister(__cil_tmp4);
     }
   } else {
@@ -3116,35 +3113,25 @@ static int ds3234_read_time(struct device *dev , struct rtc_time *dt )
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned char __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned char __cil_tmp35 ;
   int __cil_tmp36 ;
   int __cil_tmp37 ;
   unsigned char __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned char __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned int __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned char __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned char __cil_tmp54 ;
   int __cil_tmp55 ;
   int __cil_tmp56 ;
   unsigned char __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   unsigned int __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
@@ -3152,8 +3139,6 @@ static int ds3234_read_time(struct device *dev , struct rtc_time *dt )
   int __cil_tmp64 ;
   int __cil_tmp65 ;
   unsigned char __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   unsigned int __cil_tmp69 ;
 
   {
@@ -3188,9 +3173,7 @@ static int ds3234_read_time(struct device *dev , struct rtc_time *dt )
   __cil_tmp29 = (unsigned long )(buf) + __cil_tmp28;
   __cil_tmp30 = *((unsigned char *)__cil_tmp29);
   tmp___9 = bcd2bin(__cil_tmp30);
-  __cil_tmp31 = (unsigned long )dt;
-  __cil_tmp32 = __cil_tmp31 + 4;
-  *((int *)__cil_tmp32) = (int )tmp___9;
+  *((int *)((void *)dt + 4)) = (int )tmp___9;
   __cil_tmp33 = 2 * 1UL;
   __cil_tmp34 = (unsigned long )(buf) + __cil_tmp33;
   __cil_tmp35 = *((unsigned char *)__cil_tmp34);
@@ -3198,24 +3181,18 @@ static int ds3234_read_time(struct device *dev , struct rtc_time *dt )
   __cil_tmp37 = __cil_tmp36 & 63;
   __cil_tmp38 = (unsigned char )__cil_tmp37;
   tmp___10 = bcd2bin(__cil_tmp38);
-  __cil_tmp39 = (unsigned long )dt;
-  __cil_tmp40 = __cil_tmp39 + 8;
-  *((int *)__cil_tmp40) = (int )tmp___10;
+  *((int *)((void *)dt + 8)) = (int )tmp___10;
   __cil_tmp41 = 3 * 1UL;
   __cil_tmp42 = (unsigned long )(buf) + __cil_tmp41;
   __cil_tmp43 = *((unsigned char *)__cil_tmp42);
   tmp___11 = bcd2bin(__cil_tmp43);
-  __cil_tmp44 = (unsigned long )dt;
-  __cil_tmp45 = __cil_tmp44 + 24;
   __cil_tmp46 = tmp___11 - 1U;
-  *((int *)__cil_tmp45) = (int )__cil_tmp46;
+  *((int *)((void *)dt + 24)) = (int )__cil_tmp46;
   __cil_tmp47 = 4 * 1UL;
   __cil_tmp48 = (unsigned long )(buf) + __cil_tmp47;
   __cil_tmp49 = *((unsigned char *)__cil_tmp48);
   tmp___12 = bcd2bin(__cil_tmp49);
-  __cil_tmp50 = (unsigned long )dt;
-  __cil_tmp51 = __cil_tmp50 + 12;
-  *((int *)__cil_tmp51) = (int )tmp___12;
+  *((int *)((void *)dt + 12)) = (int )tmp___12;
   __cil_tmp52 = 5 * 1UL;
   __cil_tmp53 = (unsigned long )(buf) + __cil_tmp52;
   __cil_tmp54 = *((unsigned char *)__cil_tmp53);
@@ -3223,10 +3200,8 @@ static int ds3234_read_time(struct device *dev , struct rtc_time *dt )
   __cil_tmp56 = __cil_tmp55 & 31;
   __cil_tmp57 = (unsigned char )__cil_tmp56;
   tmp___13 = bcd2bin(__cil_tmp57);
-  __cil_tmp58 = (unsigned long )dt;
-  __cil_tmp59 = __cil_tmp58 + 16;
   __cil_tmp60 = tmp___13 - 1U;
-  *((int *)__cil_tmp59) = (int )__cil_tmp60;
+  *((int *)((void *)dt + 16)) = (int )__cil_tmp60;
   __cil_tmp61 = 6 * 1UL;
   __cil_tmp62 = (unsigned long )(buf) + __cil_tmp61;
   __cil_tmp63 = *((unsigned char *)__cil_tmp62);
@@ -3234,10 +3209,8 @@ static int ds3234_read_time(struct device *dev , struct rtc_time *dt )
   __cil_tmp65 = __cil_tmp64 & 255;
   __cil_tmp66 = (unsigned char )__cil_tmp65;
   tmp___14 = bcd2bin(__cil_tmp66);
-  __cil_tmp67 = (unsigned long )dt;
-  __cil_tmp68 = __cil_tmp67 + 20;
   __cil_tmp69 = tmp___14 + 100U;
-  *((int *)__cil_tmp68) = (int )__cil_tmp69;
+  *((int *)((void *)dt + 20)) = (int )__cil_tmp69;
   tmp___15 = rtc_valid_tm(dt);
   }
   return (tmp___15);
@@ -3253,41 +3226,23 @@ static int ds3234_set_time(struct device *dev , struct rtc_time *dt )
   unsigned char tmp___13 ;
   int __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   int __cil_tmp20 ;
   int __cil_tmp21 ;
   unsigned char __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
   int __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   int __cil_tmp47 ;
   unsigned int __cil_tmp48 ;
 
@@ -3297,61 +3252,43 @@ static int ds3234_set_time(struct device *dev , struct rtc_time *dt )
   __cil_tmp11 = (unsigned int )__cil_tmp10;
   tmp___7 = bin2bcd(__cil_tmp11);
   ds3234_set_reg(dev, (unsigned char)0, tmp___7);
-  __cil_tmp12 = (unsigned long )dt;
-  __cil_tmp13 = __cil_tmp12 + 4;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)dt + 4));
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   tmp___8 = bin2bcd(__cil_tmp15);
   ds3234_set_reg(dev, (unsigned char)1, tmp___8);
-  __cil_tmp16 = (unsigned long )dt;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  __cil_tmp18 = *((int *)__cil_tmp17);
+  __cil_tmp18 = *((int *)((void *)dt + 8));
   __cil_tmp19 = (unsigned int )__cil_tmp18;
   tmp___9 = bin2bcd(__cil_tmp19);
   __cil_tmp20 = (int )tmp___9;
   __cil_tmp21 = __cil_tmp20 & 63;
   __cil_tmp22 = (unsigned char )__cil_tmp21;
   ds3234_set_reg(dev, (unsigned char)2, __cil_tmp22);
-  __cil_tmp23 = (unsigned long )dt;
-  __cil_tmp24 = __cil_tmp23 + 24;
-  __cil_tmp25 = *((int *)__cil_tmp24);
+  __cil_tmp25 = *((int *)((void *)dt + 24));
   __cil_tmp26 = __cil_tmp25 + 1;
   __cil_tmp27 = (unsigned int )__cil_tmp26;
   tmp___10 = bin2bcd(__cil_tmp27);
   ds3234_set_reg(dev, (unsigned char)3, tmp___10);
-  __cil_tmp28 = (unsigned long )dt;
-  __cil_tmp29 = __cil_tmp28 + 12;
-  __cil_tmp30 = *((int *)__cil_tmp29);
+  __cil_tmp30 = *((int *)((void *)dt + 12));
   __cil_tmp31 = (unsigned int )__cil_tmp30;
   tmp___11 = bin2bcd(__cil_tmp31);
   ds3234_set_reg(dev, (unsigned char)4, tmp___11);
-  __cil_tmp32 = (unsigned long )dt;
-  __cil_tmp33 = __cil_tmp32 + 16;
-  __cil_tmp34 = *((int *)__cil_tmp33);
+  __cil_tmp34 = *((int *)((void *)dt + 16));
   __cil_tmp35 = __cil_tmp34 + 1;
   __cil_tmp36 = (unsigned int )__cil_tmp35;
   tmp___12 = bin2bcd(__cil_tmp36);
   ds3234_set_reg(dev, (unsigned char)5, tmp___12);
   }
   {
-  __cil_tmp37 = (unsigned long )dt;
-  __cil_tmp38 = __cil_tmp37 + 20;
-  __cil_tmp39 = *((int *)__cil_tmp38);
+  __cil_tmp39 = *((int *)((void *)dt + 20));
   if (__cil_tmp39 > 100) {
-    __cil_tmp40 = (unsigned long )dt;
-    __cil_tmp41 = __cil_tmp40 + 20;
-    __cil_tmp42 = (unsigned long )dt;
-    __cil_tmp43 = __cil_tmp42 + 20;
-    __cil_tmp44 = *((int *)__cil_tmp43);
-    *((int *)__cil_tmp41) = __cil_tmp44 - 100;
+    __cil_tmp44 = *((int *)((void *)dt + 20));
+    *((int *)((void *)dt + 20)) = __cil_tmp44 - 100;
   } else {
 
   }
   }
   {
-  __cil_tmp45 = (unsigned long )dt;
-  __cil_tmp46 = __cil_tmp45 + 20;
-  __cil_tmp47 = *((int *)__cil_tmp46);
+  __cil_tmp47 = *((int *)((void *)dt + 20));
   __cil_tmp48 = (unsigned int )__cil_tmp47;
   tmp___13 = bin2bcd(__cil_tmp48);
   ds3234_set_reg(dev, (unsigned char)6, tmp___13);
@@ -3377,10 +3314,6 @@ static int ds3234_probe(struct spi_device *spi )
   int res ;
   long tmp___8 ;
   long tmp___9 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device *__cil_tmp13 ;
@@ -3416,12 +3349,8 @@ static int ds3234_probe(struct spi_device *spi )
 
   {
   {
-  __cil_tmp7 = (unsigned long )spi;
-  __cil_tmp8 = __cil_tmp7 + 781;
-  *((u8 *)__cil_tmp8) = (u8 )3;
-  __cil_tmp9 = (unsigned long )spi;
-  __cil_tmp10 = __cil_tmp9 + 782;
-  *((u8 *)__cil_tmp10) = (u8 )8;
+  *((u8 *)((void *)spi + 781)) = (u8 )3;
+  *((u8 *)((void *)spi + 782)) = (u8 )8;
   spi_setup(spi);
   __cil_tmp11 = (struct device *)spi;
   res = ds3234_get_reg(__cil_tmp11, (unsigned char)0, & tmp___7);

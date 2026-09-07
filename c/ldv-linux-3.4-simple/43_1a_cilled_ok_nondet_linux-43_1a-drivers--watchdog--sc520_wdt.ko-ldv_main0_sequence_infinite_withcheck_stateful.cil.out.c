@@ -1410,8 +1410,6 @@ static void wdt_timer_ping(unsigned long data )
   long __cil_tmp8 ;
   void volatile   *__cil_tmp9 ;
   void volatile   *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
 
   {
   {
@@ -1426,9 +1424,7 @@ static void wdt_timer_ping(unsigned long data )
     __cil_tmp10 = (void volatile   *)wdtmrctl;
     writew((unsigned short)21845, __cil_tmp10);
     spin_unlock(& wdt_spinlock);
-    __cil_tmp11 = (unsigned long )jiffies;
-    __cil_tmp12 = __cil_tmp11 + 63UL;
-    mod_timer(& timer, __cil_tmp12);
+    mod_timer(& timer, ((void *)jiffies + 63UL));
     }
   } else {
     {
@@ -1481,8 +1477,6 @@ static int wdt_startup(void)
   int __cil_tmp3 ;
   int __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
 
   {
   {
@@ -1492,9 +1486,7 @@ static int wdt_startup(void)
   __cil_tmp4 = __cil_tmp3 * 250;
   __cil_tmp5 = (unsigned long )__cil_tmp4;
   next_heartbeat = __cil_tmp5 + __cil_tmp1;
-  __cil_tmp6 = (unsigned long )jiffies;
-  __cil_tmp7 = __cil_tmp6 + 63UL;
-  mod_timer(& timer, __cil_tmp7);
+  mod_timer(& timer, ((void *)jiffies + 63UL));
   wdt_config(49160);
   printk("<6>sc520_wdt: Watchdog timer is now enabled\n");
   }
@@ -1724,25 +1716,18 @@ static long fop_ioctl(struct file *file , unsigned int cmd , unsigned long arg )
   int __ret_pu___0 ;
   int __pu_val___0 ;
   struct watchdog_info *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   void const   *__cil_tmp42 ;
   int __cil_tmp43 ;
   int *__cil_tmp44 ;
@@ -1752,32 +1737,25 @@ static long fop_ioctl(struct file *file , unsigned int cmd , unsigned long arg )
   p = (int *)argp;
   __cil_tmp22 = & ident;
   *((__u32 *)__cil_tmp22) = 33152U;
-  __cil_tmp23 = (unsigned long )(& ident) + 4;
-  *((__u32 *)__cil_tmp23) = 1U;
+  *((__u32 *)((void *)(&ident) + 4)) = 1U;
   __cil_tmp24 = 0 * 1UL;
   __cil_tmp25 = 8 + __cil_tmp24;
-  __cil_tmp26 = (unsigned long )(& ident) + __cil_tmp25;
-  *((__u8 *)__cil_tmp26) = (__u8 )'S';
+  *((__u8 *)((void *)(&ident) + __cil_tmp25)) = (__u8 )'S';
   __cil_tmp27 = 1 * 1UL;
   __cil_tmp28 = 8 + __cil_tmp27;
-  __cil_tmp29 = (unsigned long )(& ident) + __cil_tmp28;
-  *((__u8 *)__cil_tmp29) = (__u8 )'C';
+  *((__u8 *)((void *)(&ident) + __cil_tmp28)) = (__u8 )'C';
   __cil_tmp30 = 2 * 1UL;
   __cil_tmp31 = 8 + __cil_tmp30;
-  __cil_tmp32 = (unsigned long )(& ident) + __cil_tmp31;
-  *((__u8 *)__cil_tmp32) = (__u8 )'5';
+  *((__u8 *)((void *)(&ident) + __cil_tmp31)) = (__u8 )'5';
   __cil_tmp33 = 3 * 1UL;
   __cil_tmp34 = 8 + __cil_tmp33;
-  __cil_tmp35 = (unsigned long )(& ident) + __cil_tmp34;
-  *((__u8 *)__cil_tmp35) = (__u8 )'2';
+  *((__u8 *)((void *)(&ident) + __cil_tmp34)) = (__u8 )'2';
   __cil_tmp36 = 4 * 1UL;
   __cil_tmp37 = 8 + __cil_tmp36;
-  __cil_tmp38 = (unsigned long )(& ident) + __cil_tmp37;
-  *((__u8 *)__cil_tmp38) = (__u8 )'0';
+  *((__u8 *)((void *)(&ident) + __cil_tmp37)) = (__u8 )'0';
   __cil_tmp39 = 5 * 1UL;
   __cil_tmp40 = 8 + __cil_tmp39;
-  __cil_tmp41 = (unsigned long )(& ident) + __cil_tmp40;
-  *((__u8 *)__cil_tmp41) = (__u8 )'\000';
+  *((__u8 *)((void *)(&ident) + __cil_tmp40)) = (__u8 )'\000';
   if ((int )cmd == -2144839936) {
     goto case_neg_2144839936;
   } else

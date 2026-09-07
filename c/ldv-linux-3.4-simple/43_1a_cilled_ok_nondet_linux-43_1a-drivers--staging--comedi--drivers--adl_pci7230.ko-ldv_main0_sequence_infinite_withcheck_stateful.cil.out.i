@@ -1466,69 +1466,39 @@ __inline static int alloc_subdevices(struct comedi_device *dev , unsigned int nu
 { unsigned int i ;
   void *tmp ;
   struct lock_class_key __key ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   size_t __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct comedi_subdevice *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct comedi_subdevice *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct comedi_subdevice *__cil_tmp20 ;
   struct comedi_subdevice *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct comedi_subdevice *__cil_tmp25 ;
   struct comedi_subdevice *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct comedi_subdevice *__cil_tmp32 ;
   struct comedi_subdevice *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   spinlock_t *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct comedi_subdevice *__cil_tmp40 ;
   struct comedi_subdevice *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct raw_spinlock *__cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct comedi_subdevice *__cil_tmp48 ;
   struct comedi_subdevice *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   {
   {
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 316;
-  *((int *)__cil_tmp7) = (int )num_subdevices;
+  *((int *)((void *)dev + 316)) = (int )num_subdevices;
   __cil_tmp8 = (size_t )num_subdevices;
   tmp = kcalloc(__cil_tmp8, 304UL, 208U);
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 320;
-  *((struct comedi_subdevice **)__cil_tmp10) = (struct comedi_subdevice *)tmp;
+  *((struct comedi_subdevice **)((void *)dev + 320)) = (struct comedi_subdevice *)tmp;
   }
   {
   __cil_tmp11 = (struct comedi_subdevice *)0;
   __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = (unsigned long )dev;
-  __cil_tmp14 = __cil_tmp13 + 320;
-  __cil_tmp15 = *((struct comedi_subdevice **)__cil_tmp14);
+  __cil_tmp15 = *((struct comedi_subdevice **)((void *)dev + 320));
   __cil_tmp16 = (unsigned long )__cil_tmp15;
   if (__cil_tmp16 == __cil_tmp12) {
     return (-12);
@@ -1540,45 +1510,27 @@ __inline static int alloc_subdevices(struct comedi_device *dev , unsigned int nu
   ldv_19183:
   {
   __cil_tmp17 = (unsigned long )i;
-  __cil_tmp18 = (unsigned long )dev;
-  __cil_tmp19 = __cil_tmp18 + 320;
-  __cil_tmp20 = *((struct comedi_subdevice **)__cil_tmp19);
+  __cil_tmp20 = *((struct comedi_subdevice **)((void *)dev + 320));
   __cil_tmp21 = __cil_tmp20 + __cil_tmp17;
   *((struct comedi_device **)__cil_tmp21) = dev;
   __cil_tmp22 = (unsigned long )i;
-  __cil_tmp23 = (unsigned long )dev;
-  __cil_tmp24 = __cil_tmp23 + 320;
-  __cil_tmp25 = *((struct comedi_subdevice **)__cil_tmp24);
+  __cil_tmp25 = *((struct comedi_subdevice **)((void *)dev + 320));
   __cil_tmp26 = __cil_tmp25 + __cil_tmp22;
-  __cil_tmp27 = (unsigned long )__cil_tmp26;
-  __cil_tmp28 = __cil_tmp27 + 280;
-  *((enum dma_data_direction *)__cil_tmp28) = (enum dma_data_direction )3;
+  *((enum dma_data_direction *)((void *)__cil_tmp26 + 280)) = (enum dma_data_direction )3;
   __cil_tmp29 = (unsigned long )i;
-  __cil_tmp30 = (unsigned long )dev;
-  __cil_tmp31 = __cil_tmp30 + 320;
-  __cil_tmp32 = *((struct comedi_subdevice **)__cil_tmp31);
+  __cil_tmp32 = *((struct comedi_subdevice **)((void *)dev + 320));
   __cil_tmp33 = __cil_tmp32 + __cil_tmp29;
-  __cil_tmp34 = (unsigned long )__cil_tmp33;
-  __cil_tmp35 = __cil_tmp34 + 64;
-  __cil_tmp36 = (spinlock_t *)__cil_tmp35;
+  __cil_tmp36 = (spinlock_t *)((void *)__cil_tmp33 + 64);
   spinlock_check(__cil_tmp36);
   __cil_tmp37 = (unsigned long )i;
-  __cil_tmp38 = (unsigned long )dev;
-  __cil_tmp39 = __cil_tmp38 + 320;
-  __cil_tmp40 = *((struct comedi_subdevice **)__cil_tmp39);
+  __cil_tmp40 = *((struct comedi_subdevice **)((void *)dev + 320));
   __cil_tmp41 = __cil_tmp40 + __cil_tmp37;
-  __cil_tmp42 = (unsigned long )__cil_tmp41;
-  __cil_tmp43 = __cil_tmp42 + 64;
-  __cil_tmp44 = (struct raw_spinlock *)__cil_tmp43;
+  __cil_tmp44 = (struct raw_spinlock *)((void *)__cil_tmp41 + 64);
   __raw_spin_lock_init(__cil_tmp44, "&(&dev->subdevices[i].spin_lock)->rlock", & __key);
   __cil_tmp45 = (unsigned long )i;
-  __cil_tmp46 = (unsigned long )dev;
-  __cil_tmp47 = __cil_tmp46 + 320;
-  __cil_tmp48 = *((struct comedi_subdevice **)__cil_tmp47);
+  __cil_tmp48 = *((struct comedi_subdevice **)((void *)dev + 320));
   __cil_tmp49 = __cil_tmp48 + __cil_tmp45;
-  __cil_tmp50 = (unsigned long )__cil_tmp49;
-  __cil_tmp51 = __cil_tmp50 + 296;
-  *((int *)__cil_tmp51) = -1;
+  *((int *)((void *)__cil_tmp49 + 296)) = -1;
   i = i + 1U;
   }
   ldv_19184: ;
@@ -1592,28 +1544,21 @@ __inline static int alloc_subdevices(struct comedi_device *dev , unsigned int nu
 }
 }
 __inline static int alloc_private(struct comedi_device *dev , int size )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   size_t __cil_tmp5 ;
   void *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 16;
   __cil_tmp5 = (size_t )size;
-  *((void **)__cil_tmp4) = kzalloc(__cil_tmp5, 208U);
+  *((void **)((void *)dev + 16)) = kzalloc(__cil_tmp5, 208U);
   }
   {
   __cil_tmp6 = (void *)0;
   __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)dev + 16));
   __cil_tmp11 = (unsigned long )__cil_tmp10;
   if (__cil_tmp11 == __cil_tmp7) {
     return (-12);
@@ -1685,117 +1630,49 @@ static int adl_pci7230_attach(struct comedi_device *dev , struct comedi_devconfi
   int tmp ;
   int tmp___0 ;
   int tmp___1 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned short __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned short __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct pci_bus *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned char __cil_tmp36 ;
   int __cil_tmp37 ;
   unsigned int __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
   unsigned int __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   void *__cil_tmp46 ;
   struct adl_pci7230_private *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct pci_dev *__cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   struct pci_dev *__cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   resource_size_t __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   struct comedi_subdevice *__cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
   {
   {
   pcidev = (struct pci_dev *)0;
-  __cil_tmp10 = (unsigned long )dev;
-  __cil_tmp11 = __cil_tmp10 + 32;
-  __cil_tmp12 = *((int *)__cil_tmp11);
+  __cil_tmp12 = *((int *)((void *)dev + 32));
   printk("<6>comedi%d: adl_pci7230\n", __cil_tmp12);
-  __cil_tmp13 = (unsigned long )dev;
-  __cil_tmp14 = __cil_tmp13 + 48;
-  *((char const **)__cil_tmp14) = "pci7230";
+  *((char const **)((void *)dev + 48)) = "pci7230";
   __cil_tmp15 = 0 * 4UL;
   __cil_tmp16 = 20 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )it;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  bus = *((int *)__cil_tmp18);
+  bus = *((int *)((void *)it + __cil_tmp16));
   __cil_tmp19 = 1 * 4UL;
   __cil_tmp20 = 20 + __cil_tmp19;
-  __cil_tmp21 = (unsigned long )it;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  slot = *((int *)__cil_tmp22);
+  slot = *((int *)((void *)it + __cil_tmp20));
   tmp = alloc_private(dev, 16);
   }
   if (tmp < 0) {
@@ -1812,15 +1689,11 @@ static int adl_pci7230_attach(struct comedi_device *dev , struct comedi_devconfi
   goto ldv_20814;
   ldv_20816: ;
   {
-  __cil_tmp23 = (unsigned long )pcidev;
-  __cil_tmp24 = __cil_tmp23 + 60;
-  __cil_tmp25 = *((unsigned short *)__cil_tmp24);
+  __cil_tmp25 = *((unsigned short *)((void *)pcidev + 60));
   __cil_tmp26 = (unsigned int )__cil_tmp25;
   if (__cil_tmp26 == 5194U) {
     {
-    __cil_tmp27 = (unsigned long )pcidev;
-    __cil_tmp28 = __cil_tmp27 + 62;
-    __cil_tmp29 = *((unsigned short *)__cil_tmp28);
+    __cil_tmp29 = *((unsigned short *)((void *)pcidev + 62));
     __cil_tmp30 = (unsigned int )__cil_tmp29;
     if (__cil_tmp30 == 29232U) {
       if (bus != 0) {
@@ -1829,21 +1702,15 @@ static int adl_pci7230_attach(struct comedi_device *dev , struct comedi_devconfi
       if (slot != 0) {
         _L:
         {
-        __cil_tmp31 = (unsigned long )pcidev;
-        __cil_tmp32 = __cil_tmp31 + 16;
-        __cil_tmp33 = *((struct pci_bus **)__cil_tmp32);
-        __cil_tmp34 = (unsigned long )__cil_tmp33;
-        __cil_tmp35 = __cil_tmp34 + 152;
-        __cil_tmp36 = *((unsigned char *)__cil_tmp35);
+        __cil_tmp33 = *((struct pci_bus **)((void *)pcidev + 16));
+        __cil_tmp36 = *((unsigned char *)((void *)__cil_tmp33 + 152));
         __cil_tmp37 = (int )__cil_tmp36;
         if (__cil_tmp37 != bus) {
           goto ldv_20814;
         } else {
           {
           __cil_tmp38 = (unsigned int )slot;
-          __cil_tmp39 = (unsigned long )pcidev;
-          __cil_tmp40 = __cil_tmp39 + 56;
-          __cil_tmp41 = *((unsigned int *)__cil_tmp40);
+          __cil_tmp41 = *((unsigned int *)((void *)pcidev + 56));
           __cil_tmp42 = __cil_tmp41 >> 3;
           __cil_tmp43 = __cil_tmp42 & 31U;
           if (__cil_tmp43 != __cil_tmp38) {
@@ -1855,13 +1722,9 @@ static int adl_pci7230_attach(struct comedi_device *dev , struct comedi_devconfi
         }
       } else {
       }
-      __cil_tmp44 = (unsigned long )dev;
-      __cil_tmp45 = __cil_tmp44 + 16;
-      __cil_tmp46 = *((void **)__cil_tmp45);
+      __cil_tmp46 = *((void **)((void *)dev + 16));
       __cil_tmp47 = (struct adl_pci7230_private *)__cil_tmp46;
-      __cil_tmp48 = (unsigned long )__cil_tmp47;
-      __cil_tmp49 = __cil_tmp48 + 8;
-      *((struct pci_dev **)__cil_tmp49) = pcidev;
+      *((struct pci_dev **)((void *)__cil_tmp47 + 8)) = pcidev;
       goto ldv_20815;
     } else {
     }
@@ -1890,9 +1753,7 @@ static int adl_pci7230_attach(struct comedi_device *dev , struct comedi_devconfi
   __cil_tmp55 = (unsigned long )pcidev;
   if (__cil_tmp55 == __cil_tmp54) {
     {
-    __cil_tmp56 = (unsigned long )dev;
-    __cil_tmp57 = __cil_tmp56 + 32;
-    __cil_tmp58 = *((int *)__cil_tmp57);
+    __cil_tmp58 = *((int *)((void *)dev + 32));
     printk("<3>comedi%d: no supported board found! (req. bus/slot : %d/%d)\n", __cil_tmp58,
            bus, slot);
     }
@@ -1905,167 +1766,96 @@ static int adl_pci7230_attach(struct comedi_device *dev , struct comedi_devconfi
   }
   if (tmp___1 < 0) {
     {
-    __cil_tmp59 = (unsigned long )dev;
-    __cil_tmp60 = __cil_tmp59 + 32;
-    __cil_tmp61 = *((int *)__cil_tmp60);
+    __cil_tmp61 = *((int *)((void *)dev + 32));
     printk("<3>comedi%d: Failed to enable PCI device and request regions\n", __cil_tmp61);
     }
     return (-5);
   } else {
   }
   {
-  __cil_tmp62 = (unsigned long )dev;
-  __cil_tmp63 = __cil_tmp62 + 328;
   __cil_tmp64 = 2 * 56UL;
   __cil_tmp65 = 1304 + __cil_tmp64;
-  __cil_tmp66 = (unsigned long )pcidev;
-  __cil_tmp67 = __cil_tmp66 + __cil_tmp65;
-  __cil_tmp68 = *((resource_size_t *)__cil_tmp67);
-  *((unsigned long *)__cil_tmp63) = (unsigned long )__cil_tmp68;
-  __cil_tmp69 = (unsigned long )dev;
-  __cil_tmp70 = __cil_tmp69 + 328;
-  __cil_tmp71 = *((unsigned long *)__cil_tmp70);
+  __cil_tmp68 = *((resource_size_t *)((void *)pcidev + __cil_tmp65));
+  *((unsigned long *)((void *)dev + 328)) = (unsigned long )__cil_tmp68;
+  __cil_tmp71 = *((unsigned long *)((void *)dev + 328));
   printk("<7>comedi: base addr %4lx\n", __cil_tmp71);
-  __cil_tmp72 = (unsigned long )dev;
-  __cil_tmp73 = __cil_tmp72 + 320;
-  s = *((struct comedi_subdevice **)__cil_tmp73);
-  __cil_tmp74 = (unsigned long )s;
-  __cil_tmp75 = __cil_tmp74 + 8;
-  *((int *)__cil_tmp75) = 4;
-  __cil_tmp76 = (unsigned long )s;
-  __cil_tmp77 = __cil_tmp76 + 16;
-  *((int *)__cil_tmp77) = 3276800;
-  __cil_tmp78 = (unsigned long )s;
-  __cil_tmp79 = __cil_tmp78 + 12;
-  *((int *)__cil_tmp79) = 16;
-  __cil_tmp80 = (unsigned long )s;
-  __cil_tmp81 = __cil_tmp80 + 140;
-  *((unsigned int *)__cil_tmp81) = 1U;
-  __cil_tmp82 = (unsigned long )s;
-  __cil_tmp83 = __cil_tmp82 + 176;
-  *((struct comedi_lrange const **)__cil_tmp83) = & range_unipolar5;
-  __cil_tmp84 = (unsigned long )s;
-  __cil_tmp85 = __cil_tmp84 + 216;
+  s = *((struct comedi_subdevice **)((void *)dev + 320));
+  *((int *)((void *)s + 8)) = 4;
+  *((int *)((void *)s + 16)) = 3276800;
+  *((int *)((void *)s + 12)) = 16;
+  *((unsigned int *)((void *)s + 140)) = 1U;
+  *((struct comedi_lrange const **)((void *)s + 176)) = & range_unipolar5;
   *((int (**)(struct comedi_device * , struct comedi_subdevice * , struct comedi_insn * ,
-              unsigned int * ))__cil_tmp85) = & adl_pci7230_do_insn_bits;
-  __cil_tmp86 = (unsigned long )dev;
-  __cil_tmp87 = __cil_tmp86 + 320;
-  __cil_tmp88 = *((struct comedi_subdevice **)__cil_tmp87);
+              unsigned int * ))((void *)s + 216)) = & adl_pci7230_do_insn_bits;
+  __cil_tmp88 = *((struct comedi_subdevice **)((void *)dev + 320));
   s = __cil_tmp88 + 1UL;
-  __cil_tmp89 = (unsigned long )s;
-  __cil_tmp90 = __cil_tmp89 + 8;
-  *((int *)__cil_tmp90) = 3;
-  __cil_tmp91 = (unsigned long )s;
-  __cil_tmp92 = __cil_tmp91 + 16;
-  *((int *)__cil_tmp92) = 3211264;
-  __cil_tmp93 = (unsigned long )s;
-  __cil_tmp94 = __cil_tmp93 + 12;
-  *((int *)__cil_tmp94) = 16;
-  __cil_tmp95 = (unsigned long )s;
-  __cil_tmp96 = __cil_tmp95 + 140;
-  *((unsigned int *)__cil_tmp96) = 1U;
-  __cil_tmp97 = (unsigned long )s;
-  __cil_tmp98 = __cil_tmp97 + 176;
-  *((struct comedi_lrange const **)__cil_tmp98) = & range_unipolar5;
-  __cil_tmp99 = (unsigned long )s;
-  __cil_tmp100 = __cil_tmp99 + 216;
+  *((int *)((void *)s + 8)) = 3;
+  *((int *)((void *)s + 16)) = 3211264;
+  *((int *)((void *)s + 12)) = 16;
+  *((unsigned int *)((void *)s + 140)) = 1U;
+  *((struct comedi_lrange const **)((void *)s + 176)) = & range_unipolar5;
   *((int (**)(struct comedi_device * , struct comedi_subdevice * , struct comedi_insn * ,
-              unsigned int * ))__cil_tmp100) = & adl_pci7230_di_insn_bits;
+              unsigned int * ))((void *)s + 216)) = & adl_pci7230_di_insn_bits;
   printk("<7>comedi: attached\n");
   }
   return (1);
 }
 }
 static int adl_pci7230_detach(struct comedi_device *dev )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   int __cil_tmp4 ;
   void *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   struct pci_dev *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   struct adl_pci7230_private *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct pci_dev *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   void *__cil_tmp26 ;
   struct adl_pci7230_private *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct pci_dev *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   void *__cil_tmp33 ;
   struct adl_pci7230_private *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct pci_dev *__cil_tmp37 ;
   {
   {
-  __cil_tmp2 = (unsigned long )dev;
-  __cil_tmp3 = __cil_tmp2 + 32;
-  __cil_tmp4 = *((int *)__cil_tmp3);
+  __cil_tmp4 = *((int *)((void *)dev + 32));
   printk("<7>comedi%d: pci7230: remove\n", __cil_tmp4);
   }
   {
   __cil_tmp5 = (void *)0;
   __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = (unsigned long )dev;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)dev + 16));
   __cil_tmp10 = (unsigned long )__cil_tmp9;
   if (__cil_tmp10 != __cil_tmp6) {
     {
     __cil_tmp11 = (struct pci_dev *)0;
     __cil_tmp12 = (unsigned long )__cil_tmp11;
-    __cil_tmp13 = (unsigned long )dev;
-    __cil_tmp14 = __cil_tmp13 + 16;
-    __cil_tmp15 = *((void **)__cil_tmp14);
+    __cil_tmp15 = *((void **)((void *)dev + 16));
     __cil_tmp16 = (struct adl_pci7230_private *)__cil_tmp15;
-    __cil_tmp17 = (unsigned long )__cil_tmp16;
-    __cil_tmp18 = __cil_tmp17 + 8;
-    __cil_tmp19 = *((struct pci_dev **)__cil_tmp18);
+    __cil_tmp19 = *((struct pci_dev **)((void *)__cil_tmp16 + 8));
     __cil_tmp20 = (unsigned long )__cil_tmp19;
     if (__cil_tmp20 != __cil_tmp12) {
       {
-      __cil_tmp21 = (unsigned long )dev;
-      __cil_tmp22 = __cil_tmp21 + 328;
-      __cil_tmp23 = *((unsigned long *)__cil_tmp22);
+      __cil_tmp23 = *((unsigned long *)((void *)dev + 328));
       if (__cil_tmp23 != 0UL) {
         {
-        __cil_tmp24 = (unsigned long )dev;
-        __cil_tmp25 = __cil_tmp24 + 16;
-        __cil_tmp26 = *((void **)__cil_tmp25);
+        __cil_tmp26 = *((void **)((void *)dev + 16));
         __cil_tmp27 = (struct adl_pci7230_private *)__cil_tmp26;
-        __cil_tmp28 = (unsigned long )__cil_tmp27;
-        __cil_tmp29 = __cil_tmp28 + 8;
-        __cil_tmp30 = *((struct pci_dev **)__cil_tmp29);
+        __cil_tmp30 = *((struct pci_dev **)((void *)__cil_tmp27 + 8));
         comedi_pci_disable(__cil_tmp30);
         }
       } else {
       }
       }
       {
-      __cil_tmp31 = (unsigned long )dev;
-      __cil_tmp32 = __cil_tmp31 + 16;
-      __cil_tmp33 = *((void **)__cil_tmp32);
+      __cil_tmp33 = *((void **)((void *)dev + 16));
       __cil_tmp34 = (struct adl_pci7230_private *)__cil_tmp33;
-      __cil_tmp35 = (unsigned long )__cil_tmp34;
-      __cil_tmp36 = __cil_tmp35 + 8;
-      __cil_tmp37 = *((struct pci_dev **)__cil_tmp36);
+      __cil_tmp37 = *((struct pci_dev **)((void *)__cil_tmp34 + 8));
       pci_dev_put(__cil_tmp37);
       }
     } else {
@@ -2079,39 +1869,24 @@ static int adl_pci7230_detach(struct comedi_device *dev )
 }
 static int adl_pci7230_do_insn_bits(struct comedi_device *dev , struct comedi_subdevice *s ,
                                     struct comedi_insn *insn , unsigned int *data )
-{ unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
+{
   unsigned int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned int *__cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
   {
   {
-  __cil_tmp5 = (unsigned long )insn;
-  __cil_tmp6 = __cil_tmp5 + 4;
-  __cil_tmp7 = *((unsigned int *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned int *)((void *)insn + 4));
   if (__cil_tmp7 != 2U) {
     return (-22);
   } else {
@@ -2121,31 +1896,19 @@ static int adl_pci7230_do_insn_bits(struct comedi_device *dev , struct comedi_su
   __cil_tmp8 = *data;
   if (__cil_tmp8 != 0U) {
     {
-    __cil_tmp9 = (unsigned long )s;
-    __cil_tmp10 = __cil_tmp9 + 284;
     __cil_tmp11 = *data;
     __cil_tmp12 = ~ __cil_tmp11;
-    __cil_tmp13 = (unsigned long )s;
-    __cil_tmp14 = __cil_tmp13 + 284;
-    __cil_tmp15 = *((unsigned int *)__cil_tmp14);
-    *((unsigned int *)__cil_tmp10) = __cil_tmp15 & __cil_tmp12;
-    __cil_tmp16 = (unsigned long )s;
-    __cil_tmp17 = __cil_tmp16 + 284;
+    __cil_tmp15 = *((unsigned int *)((void *)s + 284));
+    *((unsigned int *)((void *)s + 284)) = __cil_tmp15 & __cil_tmp12;
     __cil_tmp18 = data + 1UL;
     __cil_tmp19 = *__cil_tmp18;
     __cil_tmp20 = *data;
     __cil_tmp21 = __cil_tmp20 & __cil_tmp19;
-    __cil_tmp22 = (unsigned long )s;
-    __cil_tmp23 = __cil_tmp22 + 284;
-    __cil_tmp24 = *((unsigned int *)__cil_tmp23);
-    *((unsigned int *)__cil_tmp17) = __cil_tmp24 | __cil_tmp21;
-    __cil_tmp25 = (unsigned long )s;
-    __cil_tmp26 = __cil_tmp25 + 284;
-    __cil_tmp27 = *((unsigned int *)__cil_tmp26);
+    __cil_tmp24 = *((unsigned int *)((void *)s + 284));
+    *((unsigned int *)((void *)s + 284)) = __cil_tmp24 | __cil_tmp21;
+    __cil_tmp27 = *((unsigned int *)((void *)s + 284));
     __cil_tmp28 = __cil_tmp27 << 16;
-    __cil_tmp29 = (unsigned long )dev;
-    __cil_tmp30 = __cil_tmp29 + 328;
-    __cil_tmp31 = *((unsigned long *)__cil_tmp30);
+    __cil_tmp31 = *((unsigned long *)((void *)dev + 328));
     __cil_tmp32 = (int )__cil_tmp31;
     outl(__cil_tmp28, __cil_tmp32);
     }
@@ -2157,19 +1920,14 @@ static int adl_pci7230_do_insn_bits(struct comedi_device *dev , struct comedi_su
 }
 static int adl_pci7230_di_insn_bits(struct comedi_device *dev , struct comedi_subdevice *s ,
                                     struct comedi_insn *insn , unsigned int *data )
-{ unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
+{
   unsigned int __cil_tmp7 ;
   unsigned int *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   {
   {
-  __cil_tmp5 = (unsigned long )insn;
-  __cil_tmp6 = __cil_tmp5 + 4;
-  __cil_tmp7 = *((unsigned int *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned int *)((void *)insn + 4));
   if (__cil_tmp7 != 2U) {
     return (-22);
   } else {
@@ -2177,9 +1935,7 @@ static int adl_pci7230_di_insn_bits(struct comedi_device *dev , struct comedi_su
   }
   {
   __cil_tmp8 = data + 1UL;
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 328;
-  __cil_tmp11 = *((unsigned long *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned long *)((void *)dev + 328));
   __cil_tmp12 = (int )__cil_tmp11;
   *__cil_tmp8 = inl(__cil_tmp12);
   }
@@ -2188,12 +1944,10 @@ static int adl_pci7230_di_insn_bits(struct comedi_device *dev , struct comedi_su
 }
 static int driver_adl_pci7230_pci_probe(struct pci_dev *dev , struct pci_device_id const *ent )
 { int tmp ;
-  unsigned long __cil_tmp4 ;
   char const *__cil_tmp5 ;
   {
   {
-  __cil_tmp4 = (unsigned long )(& driver_adl_pci7230) + 8;
-  __cil_tmp5 = *((char const **)__cil_tmp4);
+  __cil_tmp5 = *((char const **)((void *)(&driver_adl_pci7230) + 8));
   tmp = comedi_pci_auto_config(dev, __cil_tmp5);
   }
   return (tmp);
@@ -2227,8 +1981,6 @@ static struct pci_driver driver_adl_pci7230_pci_driver =
 static int driver_adl_pci7230_init_module(void)
 { int retval ;
   int tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   {
   {
   retval = comedi_driver_register(& driver_adl_pci7230);
@@ -2238,9 +1990,7 @@ static int driver_adl_pci7230_init_module(void)
   } else {
   }
   {
-  __cil_tmp3 = (unsigned long )(& driver_adl_pci7230_pci_driver) + 16;
-  __cil_tmp4 = (unsigned long )(& driver_adl_pci7230) + 8;
-  *((char const **)__cil_tmp3) = *((char const **)__cil_tmp4);
+  *((char const **)((void *)(&driver_adl_pci7230_pci_driver) + 16)) = *((char const **)((void *)(&driver_adl_pci7230) + 8));
   tmp = __pci_register_driver(& driver_adl_pci7230_pci_driver, & __this_module, "adl_pci7230");
   }
   return (tmp);

@@ -310,8 +310,6 @@ __inline static bool cancel_delayed_work(struct delayed_work *work )  __attribut
 __inline static bool cancel_delayed_work(struct delayed_work *work ) 
 { bool ret ;
   int tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct timer_list *__cil_tmp6 ;
   atomic_long_t *__cil_tmp7 ;
   unsigned long *__cil_tmp8 ;
@@ -319,9 +317,7 @@ __inline static bool cancel_delayed_work(struct delayed_work *work )
 
   {
   {
-  __cil_tmp4 = (unsigned long )work;
-  __cil_tmp5 = __cil_tmp4 + 32;
-  __cil_tmp6 = (struct timer_list *)__cil_tmp5;
+  __cil_tmp6 = (struct timer_list *)((void *)work + 32);
   tmp = del_timer_sync(__cil_tmp6);
   ret = (bool )tmp;
   }

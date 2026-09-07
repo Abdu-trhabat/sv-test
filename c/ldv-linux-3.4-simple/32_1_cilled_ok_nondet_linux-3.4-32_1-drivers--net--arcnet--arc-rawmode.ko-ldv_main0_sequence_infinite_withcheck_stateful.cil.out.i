@@ -4621,26 +4621,15 @@ extern unsigned char *skb_push(struct sk_buff *skb , unsigned int len ) ;
 extern unsigned char *skb_pull(struct sk_buff *skb , unsigned int len ) ;
 __inline static void skb_reset_mac_header(struct sk_buff *skb ) __attribute__((__no_instrument_function__)) ;
 __inline static void skb_reset_mac_header(struct sk_buff *skb )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   unsigned char *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned char *__cil_tmp9 ;
   int __cil_tmp10 ;
   {
-  __cil_tmp2 = (unsigned long )skb;
-  __cil_tmp3 = __cil_tmp2 + 200;
-  __cil_tmp4 = (unsigned long )skb;
-  __cil_tmp5 = __cil_tmp4 + 216;
-  __cil_tmp6 = *((unsigned char **)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )skb;
-  __cil_tmp8 = __cil_tmp7 + 224;
-  __cil_tmp9 = *((unsigned char **)__cil_tmp8);
+  __cil_tmp6 = *((unsigned char **)((void *)skb + 216));
+  __cil_tmp9 = *((unsigned char **)((void *)skb + 224));
   __cil_tmp10 = __cil_tmp9 - __cil_tmp6;
-  *((sk_buff_data_t *)__cil_tmp3) = (sk_buff_data_t )__cil_tmp10;
+  *((sk_buff_data_t *)((void *)skb + 200)) = (sk_buff_data_t )__cil_tmp10;
   return;
 }
 }
@@ -4772,8 +4761,6 @@ static void rx(struct net_device *dev , int bufnum , struct archdr *pkthdr , int
   int __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   char *__cil_tmp19 ;
   int __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
@@ -4783,22 +4770,12 @@ static void rx(struct net_device *dev , int bufnum , struct archdr *pkthdr , int
   int __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   char *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   int __cil_tmp38 ;
   unsigned int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned char *__cil_tmp44 ;
   void *__cil_tmp45 ;
   void const *__cil_tmp46 ;
@@ -4806,26 +4783,18 @@ static void rx(struct net_device *dev , int bufnum , struct archdr *pkthdr , int
   void const *__cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   void (*__cil_tmp53)(struct net_device *dev , int bufnum , int offset , void *buf ,
                       int count ) ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   int __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   __u8 *__cil_tmp62 ;
   __u8 *__cil_tmp63 ;
   void *__cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
   int __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   int __cil_tmp70 ;
   __u16 __cil_tmp71 ;
   int __cil_tmp72 ;
@@ -4845,9 +4814,7 @@ static void rx(struct net_device *dev , int bufnum , struct archdr *pkthdr , int
       {
       __cil_tmp15 = 0 * 1UL;
       __cil_tmp16 = 0 + __cil_tmp15;
-      __cil_tmp17 = (unsigned long )dev;
-      __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-      __cil_tmp19 = (char *)__cil_tmp18;
+      __cil_tmp19 = (char *)((void *)dev + __cil_tmp16);
       printk("%s%6s: it\'s a raw packet (length=%d)\n", "<7>", __cil_tmp19, length);
       }
     } else {
@@ -4881,9 +4848,7 @@ static void rx(struct net_device *dev , int bufnum , struct archdr *pkthdr , int
         {
         __cil_tmp26 = 0 * 1UL;
         __cil_tmp27 = 0 + __cil_tmp26;
-        __cil_tmp28 = (unsigned long )dev;
-        __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-        __cil_tmp30 = (char *)__cil_tmp29;
+        __cil_tmp30 = (char *)((void *)dev + __cil_tmp27);
         printk("%s%6s: Memory squeeze, dropping packet.\n", "<4>", __cil_tmp30);
         }
       } else {
@@ -4894,13 +4859,9 @@ static void rx(struct net_device *dev , int bufnum , struct archdr *pkthdr , int
     while_break___0: ;
     }
     __cil_tmp31 = 328 + 48;
-    __cil_tmp32 = (unsigned long )dev;
-    __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
     __cil_tmp34 = 328 + 48;
-    __cil_tmp35 = (unsigned long )dev;
-    __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-    __cil_tmp37 = *((unsigned long *)__cil_tmp36);
-    *((unsigned long *)__cil_tmp33) = __cil_tmp37 + 1UL;
+    __cil_tmp37 = *((unsigned long *)((void *)dev + __cil_tmp34));
+    *((unsigned long *)((void *)dev + __cil_tmp31)) = __cil_tmp37 + 1UL;
     return;
   } else {
   }
@@ -4909,12 +4870,8 @@ static void rx(struct net_device *dev , int bufnum , struct archdr *pkthdr , int
   __cil_tmp38 = length + 4;
   __cil_tmp39 = (unsigned int )__cil_tmp38;
   skb_put(skb, __cil_tmp39);
-  __cil_tmp40 = (unsigned long )skb;
-  __cil_tmp41 = __cil_tmp40 + 32;
-  *((struct net_device **)__cil_tmp41) = dev;
-  __cil_tmp42 = (unsigned long )skb;
-  __cil_tmp43 = __cil_tmp42 + 224;
-  __cil_tmp44 = *((unsigned char **)__cil_tmp43);
+  *((struct net_device **)((void *)skb + 32)) = dev;
+  __cil_tmp44 = *((unsigned char **)((void *)skb + 224));
   pkt = (struct archdr *)__cil_tmp44;
   skb_reset_mac_header(skb);
   skb_pull(skb, 4U);
@@ -4938,19 +4895,13 @@ static void rx(struct net_device *dev , int bufnum , struct archdr *pkthdr , int
   if (__cil_tmp49 > 16UL) {
     {
     __cil_tmp50 = 4536 + 64;
-    __cil_tmp51 = (unsigned long )lp;
-    __cil_tmp52 = __cil_tmp51 + __cil_tmp50;
     __cil_tmp53 = *((void (**)(struct net_device *dev , int bufnum , int offset ,
-                               void *buf , int count ))__cil_tmp52);
-    __cil_tmp54 = (unsigned long )ofs;
-    __cil_tmp55 = __cil_tmp54 + 16UL;
-    __cil_tmp56 = (int )__cil_tmp55;
+                               void *buf , int count ))((void *)lp + __cil_tmp50));
+    __cil_tmp56 = (int )((void *)ofs + 16UL);
     __cil_tmp57 = 0 * 1UL;
     __cil_tmp58 = 0 + __cil_tmp57;
     __cil_tmp59 = 4 + __cil_tmp58;
-    __cil_tmp60 = (unsigned long )pkt;
-    __cil_tmp61 = __cil_tmp60 + __cil_tmp59;
-    __cil_tmp62 = (__u8 *)__cil_tmp61;
+    __cil_tmp62 = (__u8 *)((void *)pkt + __cil_tmp59);
     __cil_tmp63 = __cil_tmp62 + 16UL;
     __cil_tmp64 = (void *)__cil_tmp63;
     __cil_tmp65 = (unsigned long )length;
@@ -4962,12 +4913,10 @@ static void rx(struct net_device *dev , int bufnum , struct archdr *pkthdr , int
   }
   }
   {
-  __cil_tmp68 = (unsigned long )skb;
-  __cil_tmp69 = __cil_tmp68 + 126;
   __cil_tmp70 = 26 << 8;
   __cil_tmp71 = (__u16 )__cil_tmp70;
   __cil_tmp72 = (int )__cil_tmp71;
-  *((__be16 *)__cil_tmp69) = (__be16 )__cil_tmp72;
+  *((__be16 *)((void *)skb + 126)) = (__be16 )__cil_tmp72;
   netif_rx(skb);
   }
   return;
@@ -4979,46 +4928,30 @@ static int build_header(struct sk_buff *skb , struct net_device *dev , unsigned 
   struct archdr *pkt ;
   unsigned char *tmp___7 ;
   unsigned int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   {
   {
   hdr_size = 4;
   __cil_tmp8 = (unsigned int )hdr_size;
   tmp___7 = skb_push(skb, __cil_tmp8);
   pkt = (struct archdr *)tmp___7;
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 808;
-  __cil_tmp11 = *((unsigned char **)__cil_tmp10);
+  __cil_tmp11 = *((unsigned char **)((void *)dev + 808));
   *((__u8 *)pkt) = *__cil_tmp11;
   }
   {
-  __cil_tmp12 = (unsigned long )dev;
-  __cil_tmp13 = __cil_tmp12 + 560;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)dev + 560));
   if (__cil_tmp14 & 136U) {
     __cil_tmp15 = 0 + 1;
-    __cil_tmp16 = (unsigned long )pkt;
-    __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-    *((__u8 *)__cil_tmp17) = (__u8 )0;
+    *((__u8 *)((void *)pkt + __cil_tmp15)) = (__u8 )0;
     return (hdr_size);
   } else {
   }
   }
   __cil_tmp18 = 0 + 1;
-  __cil_tmp19 = (unsigned long )pkt;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-  *((__u8 *)__cil_tmp20) = daddr;
+  *((__u8 *)((void *)pkt + __cil_tmp18)) = daddr;
   return (hdr_size);
 }
 }
@@ -5031,67 +4964,37 @@ static int prepare_tx(struct net_device *dev , struct archdr *pkt , int length ,
   int __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   char *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
   int __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   char *__cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   int __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   int __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   char *__cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   void (*__cil_tmp58)(struct net_device *dev , int bufnum , int offset , void *buf ,
                       int count ) ;
   void *__cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   void (*__cil_tmp63)(struct net_device *dev , int bufnum , int offset , void *buf ,
                       int count ) ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   union __anonunion_soft_349 *__cil_tmp66 ;
   void *__cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   __u8 __cil_tmp72 ;
   {
   {
@@ -5109,15 +5012,9 @@ static int prepare_tx(struct net_device *dev , struct archdr *pkt , int length ,
       {
       __cil_tmp11 = 0 * 1UL;
       __cil_tmp12 = 0 + __cil_tmp11;
-      __cil_tmp13 = (unsigned long )dev;
-      __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-      __cil_tmp15 = (char *)__cil_tmp14;
-      __cil_tmp16 = (unsigned long )lp;
-      __cil_tmp17 = __cil_tmp16 + 268;
-      __cil_tmp18 = *((int *)__cil_tmp17);
-      __cil_tmp19 = (unsigned long )lp;
-      __cil_tmp20 = __cil_tmp19 + 264;
-      __cil_tmp21 = *((int *)__cil_tmp20);
+      __cil_tmp15 = (char *)((void *)dev + __cil_tmp12);
+      __cil_tmp18 = *((int *)((void *)lp + 268));
+      __cil_tmp21 = *((int *)((void *)lp + 264));
       printk("%s%6s: prepare_tx: txbufs=%d/%d/%d\n", "<7>", __cil_tmp15, __cil_tmp18,
              __cil_tmp21, bufnum);
       }
@@ -5139,9 +5036,7 @@ static int prepare_tx(struct net_device *dev , struct archdr *pkt , int length ,
         {
         __cil_tmp23 = 0 * 1UL;
         __cil_tmp24 = 0 + __cil_tmp23;
-        __cil_tmp25 = (unsigned long )dev;
-        __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-        __cil_tmp27 = (char *)__cil_tmp26;
+        __cil_tmp27 = (char *)((void *)dev + __cil_tmp24);
         printk("%s%6s: Bug!  prepare_tx with size %d (> %d)\n", "<4>", __cil_tmp27,
                length, 508);
         }
@@ -5158,36 +5053,26 @@ static int prepare_tx(struct net_device *dev , struct archdr *pkt , int length ,
   if (length >= 257) {
     __cil_tmp28 = 0 * 1UL;
     __cil_tmp29 = 2 + __cil_tmp28;
-    __cil_tmp30 = (unsigned long )hard;
-    __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-    *((__u8 *)__cil_tmp31) = (__u8 )0;
+    *((__u8 *)((void *)hard + __cil_tmp29)) = (__u8 )0;
     ofs = 512 - length;
     __cil_tmp32 = 1 * 1UL;
     __cil_tmp33 = 2 + __cil_tmp32;
-    __cil_tmp34 = (unsigned long )hard;
-    __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-    *((__u8 *)__cil_tmp35) = (__u8 )ofs;
+    *((__u8 *)((void *)hard + __cil_tmp33)) = (__u8 )ofs;
   } else
   if (length > 253) {
     __cil_tmp36 = 0 * 1UL;
     __cil_tmp37 = 2 + __cil_tmp36;
-    __cil_tmp38 = (unsigned long )hard;
-    __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-    *((__u8 *)__cil_tmp39) = (__u8 )0;
+    *((__u8 *)((void *)hard + __cil_tmp37)) = (__u8 )0;
     __cil_tmp40 = 512 - length;
     ofs = __cil_tmp40 - 3;
     __cil_tmp41 = 1 * 1UL;
     __cil_tmp42 = 2 + __cil_tmp41;
-    __cil_tmp43 = (unsigned long )hard;
-    __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
-    *((__u8 *)__cil_tmp44) = (__u8 )ofs;
+    *((__u8 *)((void *)hard + __cil_tmp42)) = (__u8 )ofs;
   } else {
     ofs = 256 - length;
     __cil_tmp45 = 0 * 1UL;
     __cil_tmp46 = 2 + __cil_tmp45;
-    __cil_tmp47 = (unsigned long )hard;
-    __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-    *((__u8 *)__cil_tmp48) = (__u8 )ofs;
+    *((__u8 *)((void *)hard + __cil_tmp46)) = (__u8 )ofs;
   }
   {
   while (1) {
@@ -5198,9 +5083,7 @@ static int prepare_tx(struct net_device *dev , struct archdr *pkt , int length ,
       {
       __cil_tmp50 = 0 * 1UL;
       __cil_tmp51 = 0 + __cil_tmp50;
-      __cil_tmp52 = (unsigned long )dev;
-      __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-      __cil_tmp54 = (char *)__cil_tmp53;
+      __cil_tmp54 = (char *)((void *)dev + __cil_tmp51);
       printk("%s%6s: prepare_tx: length=%d ofs=%d\n", "<7>", __cil_tmp54, length,
              ofs);
       }
@@ -5213,28 +5096,18 @@ static int prepare_tx(struct net_device *dev , struct archdr *pkt , int length ,
   }
   {
   __cil_tmp55 = 4536 + 56;
-  __cil_tmp56 = (unsigned long )lp;
-  __cil_tmp57 = __cil_tmp56 + __cil_tmp55;
   __cil_tmp58 = *((void (**)(struct net_device *dev , int bufnum , int offset , void *buf ,
-                             int count ))__cil_tmp57);
+                             int count ))((void *)lp + __cil_tmp55));
   __cil_tmp59 = (void *)hard;
   (*__cil_tmp58)(dev, bufnum, 0, __cil_tmp59, 4);
   __cil_tmp60 = 4536 + 56;
-  __cil_tmp61 = (unsigned long )lp;
-  __cil_tmp62 = __cil_tmp61 + __cil_tmp60;
   __cil_tmp63 = *((void (**)(struct net_device *dev , int bufnum , int offset , void *buf ,
-                             int count ))__cil_tmp62);
-  __cil_tmp64 = (unsigned long )pkt;
-  __cil_tmp65 = __cil_tmp64 + 4;
-  __cil_tmp66 = (union __anonunion_soft_349 *)__cil_tmp65;
+                             int count ))((void *)lp + __cil_tmp60));
+  __cil_tmp66 = (union __anonunion_soft_349 *)((void *)pkt + 4);
   __cil_tmp67 = (void *)__cil_tmp66;
   (*__cil_tmp63)(dev, bufnum, ofs, __cil_tmp67, length);
-  __cil_tmp68 = (unsigned long )lp;
-  __cil_tmp69 = __cil_tmp68 + 276;
-  __cil_tmp70 = (unsigned long )hard;
-  __cil_tmp71 = __cil_tmp70 + 1;
-  __cil_tmp72 = *((__u8 *)__cil_tmp71);
-  *((int *)__cil_tmp69) = (int )__cil_tmp72;
+  __cil_tmp72 = *((__u8 *)((void *)hard + 1));
+  *((int *)((void *)lp + 276)) = (int )__cil_tmp72;
   }
   return (1);
 }

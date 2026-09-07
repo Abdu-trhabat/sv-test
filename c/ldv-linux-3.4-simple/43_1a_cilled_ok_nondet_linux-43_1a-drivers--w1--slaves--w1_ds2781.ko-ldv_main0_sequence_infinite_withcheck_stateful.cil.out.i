@@ -914,33 +914,21 @@ static int w1_ds2781_do_io(struct device *dev , char *buf , int addr , size_t co
   u8 tmp___0 ;
   int tmp___1 ;
   struct w1_slave *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct w1_master *__cil_tmp16 ;
   u8 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct w1_master *__cil_tmp20 ;
   u8 __cil_tmp21 ;
   int __cil_tmp22 ;
   u8 __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct w1_master *__cil_tmp26 ;
   u8 const *__cil_tmp27 ;
   int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct w1_master *__cil_tmp31 ;
   u8 __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct w1_master *__cil_tmp35 ;
   u8 __cil_tmp36 ;
   int __cil_tmp37 ;
   u8 __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct w1_master *__cil_tmp41 ;
   u8 *__cil_tmp42 ;
   int __cil_tmp43 ;
@@ -969,42 +957,30 @@ static int w1_ds2781_do_io(struct device *dev , char *buf , int addr , size_t co
   if (tmp___1 == 0) {
     if (io != 0) {
       {
-      __cil_tmp14 = (unsigned long )sl;
-      __cil_tmp15 = __cil_tmp14 + 88;
-      __cil_tmp16 = *((struct w1_master **)__cil_tmp15);
+      __cil_tmp16 = *((struct w1_master **)((void *)sl + 88));
       __cil_tmp17 = (u8 )108;
       w1_write_8(__cil_tmp16, __cil_tmp17);
-      __cil_tmp18 = (unsigned long )sl;
-      __cil_tmp19 = __cil_tmp18 + 88;
-      __cil_tmp20 = *((struct w1_master **)__cil_tmp19);
+      __cil_tmp20 = *((struct w1_master **)((void *)sl + 88));
       __cil_tmp21 = (u8 )addr;
       __cil_tmp22 = (int )__cil_tmp21;
       __cil_tmp23 = (u8 )__cil_tmp22;
       w1_write_8(__cil_tmp20, __cil_tmp23);
-      __cil_tmp24 = (unsigned long )sl;
-      __cil_tmp25 = __cil_tmp24 + 88;
-      __cil_tmp26 = *((struct w1_master **)__cil_tmp25);
+      __cil_tmp26 = *((struct w1_master **)((void *)sl + 88));
       __cil_tmp27 = (u8 const *)buf;
       __cil_tmp28 = (int )count;
       w1_write_block(__cil_tmp26, __cil_tmp27, __cil_tmp28);
       }
     } else {
       {
-      __cil_tmp29 = (unsigned long )sl;
-      __cil_tmp30 = __cil_tmp29 + 88;
-      __cil_tmp31 = *((struct w1_master **)__cil_tmp30);
+      __cil_tmp31 = *((struct w1_master **)((void *)sl + 88));
       __cil_tmp32 = (u8 )105;
       w1_write_8(__cil_tmp31, __cil_tmp32);
-      __cil_tmp33 = (unsigned long )sl;
-      __cil_tmp34 = __cil_tmp33 + 88;
-      __cil_tmp35 = *((struct w1_master **)__cil_tmp34);
+      __cil_tmp35 = *((struct w1_master **)((void *)sl + 88));
       __cil_tmp36 = (u8 )addr;
       __cil_tmp37 = (int )__cil_tmp36;
       __cil_tmp38 = (u8 )__cil_tmp37;
       w1_write_8(__cil_tmp35, __cil_tmp38);
-      __cil_tmp39 = (unsigned long )sl;
-      __cil_tmp40 = __cil_tmp39 + 88;
-      __cil_tmp41 = *((struct w1_master **)__cil_tmp40);
+      __cil_tmp41 = *((struct w1_master **)((void *)sl + 88));
       __cil_tmp42 = (u8 *)buf;
       __cil_tmp43 = (int )count;
       tmp___0 = w1_read_block(__cil_tmp41, __cil_tmp42, __cil_tmp43);
@@ -1024,17 +1000,9 @@ int w1_ds2781_io(struct device *dev , char *buf , int addr , size_t count , int 
   struct device *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct w1_master *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct mutex *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct w1_master *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct mutex *__cil_tmp24 ;
   {
   __mptr = (struct device const *)dev;
@@ -1050,20 +1018,12 @@ int w1_ds2781_io(struct device *dev , char *buf , int addr , size_t count , int 
   }
   }
   {
-  __cil_tmp13 = (unsigned long )sl;
-  __cil_tmp14 = __cil_tmp13 + 88;
-  __cil_tmp15 = *((struct w1_master **)__cil_tmp14);
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + 144;
-  __cil_tmp18 = (struct mutex *)__cil_tmp17;
+  __cil_tmp15 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp18 = (struct mutex *)((void *)__cil_tmp15 + 144);
   mutex_lock_nested(__cil_tmp18, 0U);
   ret = w1_ds2781_do_io(dev, buf, addr, count, io);
-  __cil_tmp19 = (unsigned long )sl;
-  __cil_tmp20 = __cil_tmp19 + 88;
-  __cil_tmp21 = *((struct w1_master **)__cil_tmp20);
-  __cil_tmp22 = (unsigned long )__cil_tmp21;
-  __cil_tmp23 = __cil_tmp22 + 144;
-  __cil_tmp24 = (struct mutex *)__cil_tmp23;
+  __cil_tmp21 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp24 = (struct mutex *)((void *)__cil_tmp21 + 144);
   mutex_unlock(__cil_tmp24);
   }
   return (ret);
@@ -1099,29 +1059,17 @@ int w1_ds2781_eeprom_cmd(struct device *dev , int addr , int cmd )
   struct device *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct w1_master *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct mutex *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct w1_master *__cil_tmp19 ;
   u8 __cil_tmp20 ;
   int __cil_tmp21 ;
   u8 __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct w1_master *__cil_tmp25 ;
   u8 __cil_tmp26 ;
   int __cil_tmp27 ;
   u8 __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct w1_master *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct mutex *__cil_tmp34 ;
   {
   __mptr = (struct device const *)dev;
@@ -1137,27 +1085,19 @@ int w1_ds2781_eeprom_cmd(struct device *dev , int addr , int cmd )
   }
   }
   {
-  __cil_tmp11 = (unsigned long )sl;
-  __cil_tmp12 = __cil_tmp11 + 88;
-  __cil_tmp13 = *((struct w1_master **)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 144;
-  __cil_tmp16 = (struct mutex *)__cil_tmp15;
+  __cil_tmp13 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp16 = (struct mutex *)((void *)__cil_tmp13 + 144);
   mutex_lock_nested(__cil_tmp16, 0U);
   tmp = w1_reset_select_slave(sl);
   }
   if (tmp == 0) {
     {
-    __cil_tmp17 = (unsigned long )sl;
-    __cil_tmp18 = __cil_tmp17 + 88;
-    __cil_tmp19 = *((struct w1_master **)__cil_tmp18);
+    __cil_tmp19 = *((struct w1_master **)((void *)sl + 88));
     __cil_tmp20 = (u8 )cmd;
     __cil_tmp21 = (int )__cil_tmp20;
     __cil_tmp22 = (u8 )__cil_tmp21;
     w1_write_8(__cil_tmp19, __cil_tmp22);
-    __cil_tmp23 = (unsigned long )sl;
-    __cil_tmp24 = __cil_tmp23 + 88;
-    __cil_tmp25 = *((struct w1_master **)__cil_tmp24);
+    __cil_tmp25 = *((struct w1_master **)((void *)sl + 88));
     __cil_tmp26 = (u8 )addr;
     __cil_tmp27 = (int )__cil_tmp26;
     __cil_tmp28 = (u8 )__cil_tmp27;
@@ -1166,12 +1106,8 @@ int w1_ds2781_eeprom_cmd(struct device *dev , int addr , int cmd )
   } else {
   }
   {
-  __cil_tmp29 = (unsigned long )sl;
-  __cil_tmp30 = __cil_tmp29 + 88;
-  __cil_tmp31 = *((struct w1_master **)__cil_tmp30);
-  __cil_tmp32 = (unsigned long )__cil_tmp31;
-  __cil_tmp33 = __cil_tmp32 + 144;
-  __cil_tmp34 = (struct mutex *)__cil_tmp33;
+  __cil_tmp31 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp34 = (struct mutex *)((void *)__cil_tmp31 + 144);
   mutex_unlock(__cil_tmp34);
   }
   return (0);
@@ -1217,17 +1153,9 @@ static int w1_ds2781_add_slave(struct w1_slave *sl )
   struct platform_device *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct kobject *__cil_tmp15 ;
   struct bin_attribute const *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   void *__cil_tmp20 ;
   unsigned int __cil_tmp21 ;
@@ -1254,11 +1182,7 @@ static int w1_ds2781_add_slave(struct w1_slave *sl )
   }
   }
   {
-  __cil_tmp8 = (unsigned long )pdev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = (unsigned long )sl;
-  __cil_tmp11 = __cil_tmp10 + 112;
-  *((struct device **)__cil_tmp9) = (struct device *)__cil_tmp11;
+  *((struct device **)((void *)pdev + 16)) = (struct device *)((void *)sl + 112);
   ret = platform_device_add(pdev);
   }
   if (ret != 0) {
@@ -1267,9 +1191,7 @@ static int w1_ds2781_add_slave(struct w1_slave *sl )
   }
   {
   __cil_tmp12 = 112 + 16;
-  __cil_tmp13 = (unsigned long )sl;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = (struct kobject *)__cil_tmp14;
+  __cil_tmp15 = (struct kobject *)((void *)sl + __cil_tmp12);
   __cil_tmp16 = (struct bin_attribute const *)(& w1_ds2781_bin_attr);
   ret = sysfs_create_bin_file(__cil_tmp15, __cil_tmp16);
   }
@@ -1278,9 +1200,7 @@ static int w1_ds2781_add_slave(struct w1_slave *sl )
   } else {
   }
   {
-  __cil_tmp17 = (unsigned long )sl;
-  __cil_tmp18 = __cil_tmp17 + 112;
-  __cil_tmp19 = (struct device *)__cil_tmp18;
+  __cil_tmp19 = (struct device *)((void *)sl + 112);
   __cil_tmp20 = (void *)pdev;
   dev_set_drvdata(__cil_tmp19, __cil_tmp20);
   }
@@ -1303,36 +1223,24 @@ static void w1_ds2781_remove_slave(struct w1_slave *sl )
 { struct platform_device *pdev ;
   void *tmp ;
   int id ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct device const *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct kobject *__cil_tmp15 ;
   struct bin_attribute const *__cil_tmp16 ;
   {
   {
-  __cil_tmp5 = (unsigned long )sl;
-  __cil_tmp6 = __cil_tmp5 + 112;
-  __cil_tmp7 = (struct device *)__cil_tmp6;
+  __cil_tmp7 = (struct device *)((void *)sl + 112);
   __cil_tmp8 = (struct device const *)__cil_tmp7;
   tmp = dev_get_drvdata(__cil_tmp8);
   pdev = (struct platform_device *)tmp;
-  __cil_tmp9 = (unsigned long )pdev;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  id = *((int *)__cil_tmp10);
+  id = *((int *)((void *)pdev + 8));
   platform_device_unregister(pdev);
   __cil_tmp11 = (unsigned int )id;
   ida_simple_remove(& bat_ida, __cil_tmp11);
   __cil_tmp12 = 112 + 16;
-  __cil_tmp13 = (unsigned long )sl;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = (struct kobject *)__cil_tmp14;
+  __cil_tmp15 = (struct kobject *)((void *)sl + __cil_tmp12);
   __cil_tmp16 = (struct bin_attribute const *)(& w1_ds2781_bin_attr);
   sysfs_remove_bin_file(__cil_tmp15, __cil_tmp16);
   }

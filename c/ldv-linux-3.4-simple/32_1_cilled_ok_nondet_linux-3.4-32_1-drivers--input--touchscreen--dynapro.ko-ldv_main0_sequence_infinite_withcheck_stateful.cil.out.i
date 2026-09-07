@@ -1874,12 +1874,8 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
 { struct device const *__mptr ;
   struct device *tmp ;
   struct input_dev *tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct input_dev *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   char *__cil_tmp13 ;
@@ -1888,15 +1884,11 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
   {
   if (dev) {
     {
-    __cil_tmp5 = (unsigned long )dev;
-    __cil_tmp6 = __cil_tmp5 + 648;
-    __cil_tmp7 = (struct device *)__cil_tmp6;
+    __cil_tmp7 = (struct device *)((void *)dev + 648);
     tmp = get_device(__cil_tmp7);
     __mptr = (struct device const *)tmp;
     __cil_tmp8 = (struct input_dev *)0;
-    __cil_tmp9 = (unsigned long )__cil_tmp8;
-    __cil_tmp10 = __cil_tmp9 + 648;
-    __cil_tmp11 = (struct device *)__cil_tmp10;
+    __cil_tmp11 = (struct device *)((void *)__cil_tmp8 + 648);
     __cil_tmp12 = (unsigned int )__cil_tmp11;
     __cil_tmp13 = (char *)__mptr;
     __cil_tmp14 = __cil_tmp13 - __cil_tmp12;
@@ -1911,15 +1903,12 @@ __inline static struct input_dev *input_get_device(struct input_dev *dev )
 }
 __inline static void input_put_device(struct input_dev *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void input_put_device(struct input_dev *dev )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device *__cil_tmp4 ;
   {
   if (dev) {
     {
-    __cil_tmp2 = (unsigned long )dev;
-    __cil_tmp3 = __cil_tmp2 + 648;
-    __cil_tmp4 = (struct device *)__cil_tmp3;
+    __cil_tmp4 = (struct device *)((void *)dev + 648);
     put_device(__cil_tmp4);
     }
   } else {
@@ -1979,15 +1968,11 @@ extern void serio_unregister_driver(struct serio_driver *drv ) ;
 __inline static void *serio_get_drvdata(struct serio *serio ) __attribute__((__no_instrument_function__)) ;
 __inline static void *serio_get_drvdata(struct serio *serio )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 272;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 272);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1996,14 +1981,11 @@ __inline static void *serio_get_drvdata(struct serio *serio )
 }
 __inline static void serio_set_drvdata(struct serio *serio , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void serio_set_drvdata(struct serio *serio , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 272;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 272);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2041,111 +2023,75 @@ __aligned__(1))) =
         (char const )'G', (char const )'P', (char const )'L', (char const )'\000'};
 static void dynapro_process_data(struct dynapro *pdynapro )
 { struct input_dev *dev ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned char __cil_tmp15 ;
   int __cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned char __cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned char __cil_tmp30 ;
   int __cil_tmp31 ;
   int __cil_tmp32 ;
   int __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned char __cil_tmp38 ;
   int __cil_tmp39 ;
   int __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char __cil_tmp45 ;
   int __cil_tmp46 ;
   int __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   {
   dev = *((struct input_dev **)pdynapro);
-  __cil_tmp3 = (unsigned long )pdynapro;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (unsigned long )pdynapro;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((int *)__cil_tmp6);
-  *((int *)__cil_tmp4) = __cil_tmp7 + 1;
+  __cil_tmp7 = *((int *)((void *)pdynapro + 16));
+  *((int *)((void *)pdynapro + 16)) = __cil_tmp7 + 1;
   {
-  __cil_tmp8 = (unsigned long )pdynapro;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)pdynapro + 16));
   if (3 == __cil_tmp10) {
     {
     __cil_tmp11 = 0 * 1UL;
     __cil_tmp12 = 20 + __cil_tmp11;
-    __cil_tmp13 = (unsigned long )pdynapro;
-    __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-    __cil_tmp15 = *((unsigned char *)__cil_tmp14);
+    __cil_tmp15 = *((unsigned char *)((void *)pdynapro + __cil_tmp12));
     __cil_tmp16 = (int )__cil_tmp15;
     __cil_tmp17 = __cil_tmp16 & 56;
     __cil_tmp18 = __cil_tmp17 << 4;
     __cil_tmp19 = 1 * 1UL;
     __cil_tmp20 = 20 + __cil_tmp19;
-    __cil_tmp21 = (unsigned long )pdynapro;
-    __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-    __cil_tmp23 = *((unsigned char *)__cil_tmp22);
+    __cil_tmp23 = *((unsigned char *)((void *)pdynapro + __cil_tmp20));
     __cil_tmp24 = (int )__cil_tmp23;
     __cil_tmp25 = __cil_tmp24 | __cil_tmp18;
     input_report_abs(dev, 0U, __cil_tmp25);
     __cil_tmp26 = 0 * 1UL;
     __cil_tmp27 = 20 + __cil_tmp26;
-    __cil_tmp28 = (unsigned long )pdynapro;
-    __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-    __cil_tmp30 = *((unsigned char *)__cil_tmp29);
+    __cil_tmp30 = *((unsigned char *)((void *)pdynapro + __cil_tmp27));
     __cil_tmp31 = (int )__cil_tmp30;
     __cil_tmp32 = __cil_tmp31 & 7;
     __cil_tmp33 = __cil_tmp32 << 7;
     __cil_tmp34 = 2 * 1UL;
     __cil_tmp35 = 20 + __cil_tmp34;
-    __cil_tmp36 = (unsigned long )pdynapro;
-    __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-    __cil_tmp38 = *((unsigned char *)__cil_tmp37);
+    __cil_tmp38 = *((unsigned char *)((void *)pdynapro + __cil_tmp35));
     __cil_tmp39 = (int )__cil_tmp38;
     __cil_tmp40 = __cil_tmp39 | __cil_tmp33;
     input_report_abs(dev, 1U, __cil_tmp40);
     __cil_tmp41 = 0 * 1UL;
     __cil_tmp42 = 20 + __cil_tmp41;
-    __cil_tmp43 = (unsigned long )pdynapro;
-    __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
-    __cil_tmp45 = *((unsigned char *)__cil_tmp44);
+    __cil_tmp45 = *((unsigned char *)((void *)pdynapro + __cil_tmp42));
     __cil_tmp46 = (int )__cil_tmp45;
     __cil_tmp47 = 64 & __cil_tmp46;
     input_report_key(dev, 330U, __cil_tmp47);
     input_sync(dev);
-    __cil_tmp48 = (unsigned long )pdynapro;
-    __cil_tmp49 = __cil_tmp48 + 16;
-    *((int *)__cil_tmp49) = 0;
+    *((int *)((void *)pdynapro + 16)) = 0;
     }
   } else {
   }
@@ -2161,17 +2107,11 @@ static irqreturn_t dynapro_interrupt(struct serio *serio , unsigned char data , 
 { struct dynapro *pdynapro ;
   void *tmp ;
   long tmp___0 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned char __cil_tmp18 ;
   int __cil_tmp19 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp20 ;
@@ -2180,35 +2120,25 @@ static irqreturn_t dynapro_interrupt(struct serio *serio , unsigned char data , 
   int __cil_tmp23 ;
   int __cil_tmp24 ;
   long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct device *__cil_tmp28 ;
   struct device const *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned char __cil_tmp34 ;
   int __cil_tmp35 ;
   {
   {
   tmp = serio_get_drvdata(serio);
   pdynapro = (struct dynapro *)tmp;
-  __cil_tmp7 = (unsigned long )pdynapro;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  __cil_tmp9 = *((int *)__cil_tmp8);
+  __cil_tmp9 = *((int *)((void *)pdynapro + 16));
   __cil_tmp10 = __cil_tmp9 * 1UL;
   __cil_tmp11 = 20 + __cil_tmp10;
-  __cil_tmp12 = (unsigned long )pdynapro;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  *((unsigned char *)__cil_tmp13) = data;
+  *((unsigned char *)((void *)pdynapro + __cil_tmp11)) = data;
   }
   {
   __cil_tmp14 = 0 * 1UL;
   __cil_tmp15 = 20 + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )pdynapro;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = *((unsigned char *)__cil_tmp17);
+  __cil_tmp18 = *((unsigned char *)((void *)pdynapro + __cil_tmp15));
   __cil_tmp19 = (int )__cil_tmp18;
   if (128 & __cil_tmp19) {
     {
@@ -2232,15 +2162,11 @@ static irqreturn_t dynapro_interrupt(struct serio *serio , unsigned char data , 
         }
         if (tmp___0) {
           {
-          __cil_tmp26 = (unsigned long )serio;
-          __cil_tmp27 = __cil_tmp26 + 272;
-          __cil_tmp28 = (struct device *)__cil_tmp27;
+          __cil_tmp28 = (struct device *)((void *)serio + 272);
           __cil_tmp29 = (struct device const *)__cil_tmp28;
           __cil_tmp30 = 0 * 1UL;
           __cil_tmp31 = 20 + __cil_tmp30;
-          __cil_tmp32 = (unsigned long )pdynapro;
-          __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-          __cil_tmp34 = *((unsigned char *)__cil_tmp33);
+          __cil_tmp34 = *((unsigned char *)((void *)pdynapro + __cil_tmp31));
           __cil_tmp35 = (int )__cil_tmp34;
           __dynamic_dev_dbg(& descriptor, __cil_tmp29, "unknown/unsynchronized data: %x\n",
                             __cil_tmp35);
@@ -2292,50 +2218,24 @@ static int dynapro_connect(struct serio *serio , struct serio_driver *drv )
   struct input_dev *input_dev ;
   int err ;
   void *tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   char *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   char *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   char *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct input_dev *__cil_tmp51 ;
   struct input_dev *__cil_tmp52 ;
   void *__cil_tmp53 ;
@@ -2358,62 +2258,36 @@ static int dynapro_connect(struct serio *serio , struct serio_driver *drv )
   } else {
   }
   {
-  __cil_tmp7 = (unsigned long )pdynapro;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  *((struct serio **)__cil_tmp8) = serio;
+  *((struct serio **)((void *)pdynapro + 8)) = serio;
   *((struct input_dev **)pdynapro) = input_dev;
   __cil_tmp9 = 0 * 1UL;
   __cil_tmp10 = 23 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )pdynapro;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = (char *)__cil_tmp12;
+  __cil_tmp13 = (char *)((void *)pdynapro + __cil_tmp10);
   __cil_tmp14 = 0 * 1UL;
   __cil_tmp15 = 40 + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )serio;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  __cil_tmp18 = (char *)__cil_tmp17;
+  __cil_tmp18 = (char *)((void *)serio + __cil_tmp15);
   snprintf(__cil_tmp13, 32UL, "%s/input0", __cil_tmp18);
   *((char const **)input_dev) = "Dynapro Serial TouchScreen";
-  __cil_tmp19 = (unsigned long )input_dev;
-  __cil_tmp20 = __cil_tmp19 + 8;
   __cil_tmp21 = 0 * 1UL;
   __cil_tmp22 = 23 + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )pdynapro;
-  __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-  __cil_tmp25 = (char *)__cil_tmp24;
-  *((char const **)__cil_tmp20) = (char const *)__cil_tmp25;
-  __cil_tmp26 = (unsigned long )input_dev;
-  __cil_tmp27 = __cil_tmp26 + 24;
-  *((__u16 *)__cil_tmp27) = (__u16 )19;
+  __cil_tmp25 = (char *)((void *)pdynapro + __cil_tmp22);
+  *((char const **)((void *)input_dev + 8)) = (char const *)__cil_tmp25;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )19;
   __cil_tmp28 = 24 + 2;
-  __cil_tmp29 = (unsigned long )input_dev;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  *((__u16 *)__cil_tmp30) = (__u16 )58;
+  *((__u16 *)((void *)input_dev + __cil_tmp28)) = (__u16 )58;
   __cil_tmp31 = 24 + 4;
-  __cil_tmp32 = (unsigned long )input_dev;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  *((__u16 *)__cil_tmp33) = (__u16 )0;
+  *((__u16 *)((void *)input_dev + __cil_tmp31)) = (__u16 )0;
   __cil_tmp34 = 24 + 6;
-  __cil_tmp35 = (unsigned long )input_dev;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  *((__u16 *)__cil_tmp36) = (__u16 )1;
-  __cil_tmp37 = (unsigned long )input_dev;
-  __cil_tmp38 = __cil_tmp37 + 648;
-  __cil_tmp39 = (unsigned long )serio;
-  __cil_tmp40 = __cil_tmp39 + 272;
-  *((struct device **)__cil_tmp38) = (struct device *)__cil_tmp40;
+  *((__u16 *)((void *)input_dev + __cil_tmp34)) = (__u16 )1;
+  *((struct device **)((void *)input_dev + 648)) = (struct device *)((void *)serio + 272);
   __cil_tmp41 = 0 * 8UL;
   __cil_tmp42 = 40 + __cil_tmp41;
-  __cil_tmp43 = (unsigned long )input_dev;
-  __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
   __cil_tmp45 = 1UL << 3;
   __cil_tmp46 = 1UL << 1;
-  *((unsigned long *)__cil_tmp44) = __cil_tmp46 | __cil_tmp45;
+  *((unsigned long *)((void *)input_dev + __cil_tmp42)) = __cil_tmp46 | __cil_tmp45;
   __cil_tmp47 = 5 * 8UL;
   __cil_tmp48 = 48 + __cil_tmp47;
-  __cil_tmp49 = (unsigned long )input_dev;
-  __cil_tmp50 = __cil_tmp49 + __cil_tmp48;
-  *((unsigned long *)__cil_tmp50) = 1UL << 10;
+  *((unsigned long *)((void *)input_dev + __cil_tmp48)) = 1UL << 10;
   __cil_tmp51 = *((struct input_dev **)pdynapro);
   input_set_abs_params(__cil_tmp51, 0U, 0, 1023, 0, 0);
   __cil_tmp52 = *((struct input_dev **)pdynapro);

@@ -1813,14 +1813,10 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -1828,14 +1824,11 @@ __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1912,115 +1905,71 @@ static void gpio_mouse_scan(struct input_polled_dev *dev )
   int tmp___4 ;
   int tmp___5 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   int __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   int __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   int __cil_tmp44 ;
   int __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   int __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   int __cil_tmp55 ;
   unsigned int __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
   int __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   int __cil_tmp65 ;
   unsigned int __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   int __cil_tmp71 ;
   unsigned int __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   int __cil_tmp75 ;
   int __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   int __cil_tmp79 ;
   int __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
   unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   int __cil_tmp85 ;
   unsigned int __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   int __cil_tmp89 ;
   unsigned int __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   int __cil_tmp93 ;
   int __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   int __cil_tmp97 ;
   int __cil_tmp98 ;
   {
   __cil_tmp13 = *((void **)dev);
   gpio = (struct gpio_mouse_platform_data *)__cil_tmp13;
-  __cil_tmp14 = (unsigned long )dev;
-  __cil_tmp15 = __cil_tmp14 + 48;
-  input = *((struct input_dev **)__cil_tmp15);
+  input = *((struct input_dev **)((void *)dev + 48));
   {
   __cil_tmp16 = 0 + 16;
   __cil_tmp17 = 8 + __cil_tmp16;
-  __cil_tmp18 = (unsigned long )gpio;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = *((int *)__cil_tmp19);
+  __cil_tmp20 = *((int *)((void *)gpio + __cil_tmp17));
   if (__cil_tmp20 >= 0) {
     {
     __cil_tmp21 = 0 + 16;
     __cil_tmp22 = 8 + __cil_tmp21;
-    __cil_tmp23 = (unsigned long )gpio;
-    __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-    __cil_tmp25 = *((int *)__cil_tmp24);
+    __cil_tmp25 = *((int *)((void *)gpio + __cil_tmp22));
     __cil_tmp26 = (unsigned int )__cil_tmp25;
     tmp = gpio_get_value(__cil_tmp26);
-    __cil_tmp27 = (unsigned long )gpio;
-    __cil_tmp28 = __cil_tmp27 + 4;
-    __cil_tmp29 = *((int *)__cil_tmp28);
+    __cil_tmp29 = *((int *)((void *)gpio + 4));
     __cil_tmp30 = tmp ^ __cil_tmp29;
     input_report_key(input, 272U, __cil_tmp30);
     }
@@ -2030,21 +1979,15 @@ static void gpio_mouse_scan(struct input_polled_dev *dev )
   {
   __cil_tmp31 = 0 + 20;
   __cil_tmp32 = 8 + __cil_tmp31;
-  __cil_tmp33 = (unsigned long )gpio;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  __cil_tmp35 = *((int *)__cil_tmp34);
+  __cil_tmp35 = *((int *)((void *)gpio + __cil_tmp32));
   if (__cil_tmp35 >= 0) {
     {
     __cil_tmp36 = 0 + 20;
     __cil_tmp37 = 8 + __cil_tmp36;
-    __cil_tmp38 = (unsigned long )gpio;
-    __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-    __cil_tmp40 = *((int *)__cil_tmp39);
+    __cil_tmp40 = *((int *)((void *)gpio + __cil_tmp37));
     __cil_tmp41 = (unsigned int )__cil_tmp40;
     tmp___0 = gpio_get_value(__cil_tmp41);
-    __cil_tmp42 = (unsigned long )gpio;
-    __cil_tmp43 = __cil_tmp42 + 4;
-    __cil_tmp44 = *((int *)__cil_tmp43);
+    __cil_tmp44 = *((int *)((void *)gpio + 4));
     __cil_tmp45 = tmp___0 ^ __cil_tmp44;
     input_report_key(input, 274U, __cil_tmp45);
     }
@@ -2054,21 +1997,15 @@ static void gpio_mouse_scan(struct input_polled_dev *dev )
   {
   __cil_tmp46 = 0 + 24;
   __cil_tmp47 = 8 + __cil_tmp46;
-  __cil_tmp48 = (unsigned long )gpio;
-  __cil_tmp49 = __cil_tmp48 + __cil_tmp47;
-  __cil_tmp50 = *((int *)__cil_tmp49);
+  __cil_tmp50 = *((int *)((void *)gpio + __cil_tmp47));
   if (__cil_tmp50 >= 0) {
     {
     __cil_tmp51 = 0 + 24;
     __cil_tmp52 = 8 + __cil_tmp51;
-    __cil_tmp53 = (unsigned long )gpio;
-    __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-    __cil_tmp55 = *((int *)__cil_tmp54);
+    __cil_tmp55 = *((int *)((void *)gpio + __cil_tmp52));
     __cil_tmp56 = (unsigned int )__cil_tmp55;
     tmp___1 = gpio_get_value(__cil_tmp56);
-    __cil_tmp57 = (unsigned long )gpio;
-    __cil_tmp58 = __cil_tmp57 + 4;
-    __cil_tmp59 = *((int *)__cil_tmp58);
+    __cil_tmp59 = *((int *)((void *)gpio + 4));
     __cil_tmp60 = tmp___1 ^ __cil_tmp59;
     input_report_key(input, 273U, __cil_tmp60);
     }
@@ -2078,46 +2015,30 @@ static void gpio_mouse_scan(struct input_polled_dev *dev )
   {
   __cil_tmp61 = 0 + 12;
   __cil_tmp62 = 8 + __cil_tmp61;
-  __cil_tmp63 = (unsigned long )gpio;
-  __cil_tmp64 = __cil_tmp63 + __cil_tmp62;
-  __cil_tmp65 = *((int *)__cil_tmp64);
+  __cil_tmp65 = *((int *)((void *)gpio + __cil_tmp62));
   __cil_tmp66 = (unsigned int )__cil_tmp65;
   tmp___2 = gpio_get_value(__cil_tmp66);
   __cil_tmp67 = 0 + 8;
   __cil_tmp68 = 8 + __cil_tmp67;
-  __cil_tmp69 = (unsigned long )gpio;
-  __cil_tmp70 = __cil_tmp69 + __cil_tmp68;
-  __cil_tmp71 = *((int *)__cil_tmp70);
+  __cil_tmp71 = *((int *)((void *)gpio + __cil_tmp68));
   __cil_tmp72 = (unsigned int )__cil_tmp71;
   tmp___3 = gpio_get_value(__cil_tmp72);
-  __cil_tmp73 = (unsigned long )gpio;
-  __cil_tmp74 = __cil_tmp73 + 4;
-  __cil_tmp75 = *((int *)__cil_tmp74);
+  __cil_tmp75 = *((int *)((void *)gpio + 4));
   __cil_tmp76 = tmp___3 ^ __cil_tmp75;
-  __cil_tmp77 = (unsigned long )gpio;
-  __cil_tmp78 = __cil_tmp77 + 4;
-  __cil_tmp79 = *((int *)__cil_tmp78);
+  __cil_tmp79 = *((int *)((void *)gpio + 4));
   __cil_tmp80 = tmp___2 ^ __cil_tmp79;
   x = __cil_tmp80 - __cil_tmp76;
   __cil_tmp81 = 0 + 4;
   __cil_tmp82 = 8 + __cil_tmp81;
-  __cil_tmp83 = (unsigned long )gpio;
-  __cil_tmp84 = __cil_tmp83 + __cil_tmp82;
-  __cil_tmp85 = *((int *)__cil_tmp84);
+  __cil_tmp85 = *((int *)((void *)gpio + __cil_tmp82));
   __cil_tmp86 = (unsigned int )__cil_tmp85;
   tmp___4 = gpio_get_value(__cil_tmp86);
-  __cil_tmp87 = (unsigned long )gpio;
-  __cil_tmp88 = __cil_tmp87 + 8;
-  __cil_tmp89 = *((int *)__cil_tmp88);
+  __cil_tmp89 = *((int *)((void *)gpio + 8));
   __cil_tmp90 = (unsigned int )__cil_tmp89;
   tmp___5 = gpio_get_value(__cil_tmp90);
-  __cil_tmp91 = (unsigned long )gpio;
-  __cil_tmp92 = __cil_tmp91 + 4;
-  __cil_tmp93 = *((int *)__cil_tmp92);
+  __cil_tmp93 = *((int *)((void *)gpio + 4));
   __cil_tmp94 = tmp___5 ^ __cil_tmp93;
-  __cil_tmp95 = (unsigned long )gpio;
-  __cil_tmp96 = __cil_tmp95 + 4;
-  __cil_tmp97 = *((int *)__cil_tmp96);
+  __cil_tmp97 = *((int *)((void *)gpio + 4));
   __cil_tmp98 = tmp___4 ^ __cil_tmp97;
   y = __cil_tmp98 - __cil_tmp94;
   input_report_rel(input, 0U, x);
@@ -2152,25 +2073,15 @@ static int gpio_mouse_probe(struct platform_device *pdev )
   char const *tmp___2 ;
   long tmp___3 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   struct device const *__cil_tmp20 ;
   int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device const *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct device *__cil_tmp33 ;
   struct device const *__cil_tmp34 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp35 ;
@@ -2179,51 +2090,25 @@ static int gpio_mouse_probe(struct platform_device *pdev )
   int __cil_tmp38 ;
   int __cil_tmp39 ;
   long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct device *__cil_tmp43 ;
   struct device const *__cil_tmp44 ;
   unsigned int __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct device *__cil_tmp48 ;
   struct device const *__cil_tmp49 ;
   unsigned int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct device *__cil_tmp53 ;
   struct device const *__cil_tmp54 ;
   void *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   int __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   int __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   int __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   int __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   struct device *__cil_tmp86 ;
   struct device const *__cil_tmp87 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp88 ;
@@ -2234,21 +2119,13 @@ static int gpio_mouse_probe(struct platform_device *pdev )
   long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
   unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   int __cil_tmp98 ;
   unsigned long __cil_tmp99 ;
   unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   int __cil_tmp103 ;
   unsigned long __cil_tmp104 ;
   unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   int __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   struct device *__cil_tmp111 ;
   struct device const *__cil_tmp112 ;
   int __cil_tmp113 ;
@@ -2256,20 +2133,14 @@ static int gpio_mouse_probe(struct platform_device *pdev )
   unsigned long __cil_tmp115 ;
   unsigned long __cil_tmp116 ;
   unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
   unsigned int __cil_tmp120 ;
   {
   __cil_tmp13 = 16 + 184;
-  __cil_tmp14 = (unsigned long )pdev;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp16 = *((void **)((void *)pdev + __cil_tmp13));
   pdata = (struct gpio_mouse_platform_data *)__cil_tmp16;
   if (! pdata) {
     {
-    __cil_tmp17 = (unsigned long )pdev;
-    __cil_tmp18 = __cil_tmp17 + 16;
-    __cil_tmp19 = (struct device *)__cil_tmp18;
+    __cil_tmp19 = (struct device *)((void *)pdev + 16);
     __cil_tmp20 = (struct device const *)__cil_tmp19;
     dev_err(__cil_tmp20, "no platform data\n");
     error = -6;
@@ -2281,9 +2152,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
   __cil_tmp21 = *((int *)pdata);
   if (__cil_tmp21 < 0) {
     {
-    __cil_tmp22 = (unsigned long )pdev;
-    __cil_tmp23 = __cil_tmp22 + 16;
-    __cil_tmp24 = (struct device *)__cil_tmp23;
+    __cil_tmp24 = (struct device *)((void *)pdev + 16);
     __cil_tmp25 = (struct device const *)__cil_tmp24;
     dev_err(__cil_tmp25, "invalid scan time\n");
     error = -22;
@@ -2303,15 +2172,11 @@ static int gpio_mouse_probe(struct platform_device *pdev )
     __cil_tmp26 = i * 4UL;
     __cil_tmp27 = 0 + __cil_tmp26;
     __cil_tmp28 = 8 + __cil_tmp27;
-    __cil_tmp29 = (unsigned long )pdata;
-    __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-    pin = *((int *)__cil_tmp30);
+    pin = *((int *)((void *)pdata + __cil_tmp28));
     if (pin < 0) {
       if (i <= 3) {
         {
-        __cil_tmp31 = (unsigned long )pdev;
-        __cil_tmp32 = __cil_tmp31 + 16;
-        __cil_tmp33 = (struct device *)__cil_tmp32;
+        __cil_tmp33 = (struct device *)((void *)pdev + 16);
         __cil_tmp34 = (struct device const *)__cil_tmp33;
         dev_err(__cil_tmp34, "missing GPIO for directions\n");
         error = -22;
@@ -2337,9 +2202,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
             }
             if (tmp) {
               {
-              __cil_tmp41 = (unsigned long )pdev;
-              __cil_tmp42 = __cil_tmp41 + 16;
-              __cil_tmp43 = (struct device *)__cil_tmp42;
+              __cil_tmp43 = (struct device *)((void *)pdev + 16);
               __cil_tmp44 = (struct device const *)__cil_tmp43;
               __dynamic_dev_dbg(& descriptor, __cil_tmp44, "no left button defined\n");
               }
@@ -2362,9 +2225,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
       }
       if (error) {
         {
-        __cil_tmp46 = (unsigned long )pdev;
-        __cil_tmp47 = __cil_tmp46 + 16;
-        __cil_tmp48 = (struct device *)__cil_tmp47;
+        __cil_tmp48 = (struct device *)((void *)pdev + 16);
         __cil_tmp49 = (struct device const *)__cil_tmp48;
         dev_err(__cil_tmp49, "fail %d pin (%d idx)\n", pin, i);
         }
@@ -2385,9 +2246,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
   }
   if (! input_poll) {
     {
-    __cil_tmp51 = (unsigned long )pdev;
-    __cil_tmp52 = __cil_tmp51 + 16;
-    __cil_tmp53 = (struct device *)__cil_tmp52;
+    __cil_tmp53 = (struct device *)((void *)pdev + 16);
     __cil_tmp54 = (struct device const *)__cil_tmp53;
     dev_err(__cil_tmp54, "not enough memory for input device\n");
     error = -12;
@@ -2399,34 +2258,20 @@ static int gpio_mouse_probe(struct platform_device *pdev )
   __cil_tmp55 = (void *)input_poll;
   platform_set_drvdata(pdev, __cil_tmp55);
   *((void **)input_poll) = (void *)pdata;
-  __cil_tmp56 = (unsigned long )input_poll;
-  __cil_tmp57 = __cil_tmp56 + 24;
-  *((void (**)(struct input_polled_dev *dev ))__cil_tmp57) = & gpio_mouse_scan;
-  __cil_tmp58 = (unsigned long )input_poll;
-  __cil_tmp59 = __cil_tmp58 + 32;
+  *((void (**)(struct input_polled_dev *dev ))((void *)input_poll + 24)) = & gpio_mouse_scan;
   __cil_tmp60 = *((int *)pdata);
-  *((unsigned int *)__cil_tmp59) = (unsigned int )__cil_tmp60;
-  __cil_tmp61 = (unsigned long )input_poll;
-  __cil_tmp62 = __cil_tmp61 + 48;
-  input = *((struct input_dev **)__cil_tmp62);
+  *((unsigned int *)((void *)input_poll + 32)) = (unsigned int )__cil_tmp60;
+  input = *((struct input_dev **)((void *)input_poll + 48));
   *((char const **)input) = *((char const **)pdev);
-  __cil_tmp63 = (unsigned long )input;
-  __cil_tmp64 = __cil_tmp63 + 24;
-  *((__u16 *)__cil_tmp64) = (__u16 )25;
-  __cil_tmp65 = (unsigned long )input;
-  __cil_tmp66 = __cil_tmp65 + 648;
-  __cil_tmp67 = (unsigned long )pdev;
-  __cil_tmp68 = __cil_tmp67 + 16;
-  *((struct device **)__cil_tmp66) = (struct device *)__cil_tmp68;
+  *((__u16 *)((void *)input + 24)) = (__u16 )25;
+  *((struct device **)((void *)input + 648)) = (struct device *)((void *)pdev + 16);
   input_set_capability(input, 2U, 0U);
   input_set_capability(input, 2U, 1U);
   }
   {
   __cil_tmp69 = 0 + 16;
   __cil_tmp70 = 8 + __cil_tmp69;
-  __cil_tmp71 = (unsigned long )pdata;
-  __cil_tmp72 = __cil_tmp71 + __cil_tmp70;
-  __cil_tmp73 = *((int *)__cil_tmp72);
+  __cil_tmp73 = *((int *)((void *)pdata + __cil_tmp70));
   if (__cil_tmp73 >= 0) {
     {
     input_set_capability(input, 1U, 272U);
@@ -2437,9 +2282,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
   {
   __cil_tmp74 = 0 + 20;
   __cil_tmp75 = 8 + __cil_tmp74;
-  __cil_tmp76 = (unsigned long )pdata;
-  __cil_tmp77 = __cil_tmp76 + __cil_tmp75;
-  __cil_tmp78 = *((int *)__cil_tmp77);
+  __cil_tmp78 = *((int *)((void *)pdata + __cil_tmp75));
   if (__cil_tmp78 >= 0) {
     {
     input_set_capability(input, 1U, 274U);
@@ -2450,9 +2293,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
   {
   __cil_tmp79 = 0 + 24;
   __cil_tmp80 = 8 + __cil_tmp79;
-  __cil_tmp81 = (unsigned long )pdata;
-  __cil_tmp82 = __cil_tmp81 + __cil_tmp80;
-  __cil_tmp83 = *((int *)__cil_tmp82);
+  __cil_tmp83 = *((int *)((void *)pdata + __cil_tmp80));
   if (__cil_tmp83 >= 0) {
     {
     input_set_capability(input, 1U, 273U);
@@ -2465,9 +2306,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
   }
   if (error) {
     {
-    __cil_tmp84 = (unsigned long )pdev;
-    __cil_tmp85 = __cil_tmp84 + 16;
-    __cil_tmp86 = (struct device *)__cil_tmp85;
+    __cil_tmp86 = (struct device *)((void *)pdev + 16);
     __cil_tmp87 = (struct device const *)__cil_tmp86;
     dev_err(__cil_tmp87, "could not register input device\n");
     }
@@ -2493,9 +2332,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
         {
         __cil_tmp94 = 0 + 24;
         __cil_tmp95 = 8 + __cil_tmp94;
-        __cil_tmp96 = (unsigned long )pdata;
-        __cil_tmp97 = __cil_tmp96 + __cil_tmp95;
-        __cil_tmp98 = *((int *)__cil_tmp97);
+        __cil_tmp98 = *((int *)((void *)pdata + __cil_tmp95));
         if (__cil_tmp98 < 0) {
           tmp___0 = "";
         } else {
@@ -2505,9 +2342,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
         {
         __cil_tmp99 = 0 + 20;
         __cil_tmp100 = 8 + __cil_tmp99;
-        __cil_tmp101 = (unsigned long )pdata;
-        __cil_tmp102 = __cil_tmp101 + __cil_tmp100;
-        __cil_tmp103 = *((int *)__cil_tmp102);
+        __cil_tmp103 = *((int *)((void *)pdata + __cil_tmp100));
         if (__cil_tmp103 < 0) {
           tmp___1 = "";
         } else {
@@ -2517,9 +2352,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
         {
         __cil_tmp104 = 0 + 16;
         __cil_tmp105 = 8 + __cil_tmp104;
-        __cil_tmp106 = (unsigned long )pdata;
-        __cil_tmp107 = __cil_tmp106 + __cil_tmp105;
-        __cil_tmp108 = *((int *)__cil_tmp107);
+        __cil_tmp108 = *((int *)((void *)pdata + __cil_tmp105));
         if (__cil_tmp108 < 0) {
           tmp___2 = "";
         } else {
@@ -2527,9 +2360,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
         }
         }
         {
-        __cil_tmp109 = (unsigned long )pdev;
-        __cil_tmp110 = __cil_tmp109 + 16;
-        __cil_tmp111 = (struct device *)__cil_tmp110;
+        __cil_tmp111 = (struct device *)((void *)pdev + 16);
         __cil_tmp112 = (struct device const *)__cil_tmp111;
         __cil_tmp113 = *((int *)pdata);
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp112, "%d ms scan time, buttons: %s%s%s\n",
@@ -2564,9 +2395,7 @@ static int gpio_mouse_probe(struct platform_device *pdev )
     __cil_tmp115 = i * 4UL;
     __cil_tmp116 = 0 + __cil_tmp115;
     __cil_tmp117 = 8 + __cil_tmp116;
-    __cil_tmp118 = (unsigned long )pdata;
-    __cil_tmp119 = __cil_tmp118 + __cil_tmp117;
-    pin = *((int *)__cil_tmp119);
+    pin = *((int *)((void *)pdata + __cil_tmp117));
     if (pin) {
       {
       __cil_tmp120 = (unsigned int )pin;
@@ -2594,8 +2423,6 @@ static int gpio_mouse_remove(struct platform_device *pdev )
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   void *__cil_tmp15 ;
   {
@@ -2619,9 +2446,7 @@ static int gpio_mouse_remove(struct platform_device *pdev )
     __cil_tmp9 = i * 4UL;
     __cil_tmp10 = 0 + __cil_tmp9;
     __cil_tmp11 = 8 + __cil_tmp10;
-    __cil_tmp12 = (unsigned long )pdata;
-    __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-    pin = *((int *)__cil_tmp13);
+    pin = *((int *)((void *)pdata + __cil_tmp11));
     if (pin >= 0) {
       {
       __cil_tmp14 = (unsigned int )pin;

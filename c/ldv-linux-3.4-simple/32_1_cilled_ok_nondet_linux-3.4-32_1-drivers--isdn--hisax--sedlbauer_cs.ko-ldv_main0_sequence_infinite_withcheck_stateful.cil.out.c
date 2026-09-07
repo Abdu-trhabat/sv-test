@@ -2511,14 +2511,8 @@ static int sedlbauer_probe(struct pcmcia_device *link )
   int __cil_tmp9 ;
   int __cil_tmp10 ;
   long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device  const  *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
 
   {
   {
@@ -2538,9 +2532,7 @@ static int sedlbauer_probe(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp12 = (unsigned long )link;
-        __cil_tmp13 = __cil_tmp12 + 184;
-        __cil_tmp14 = (struct device *)__cil_tmp13;
+        __cil_tmp14 = (struct device *)((void *)link + 184);
         __cil_tmp15 = (struct device  const  *)__cil_tmp14;
         __dynamic_dev_dbg(& descriptor, __cil_tmp15, "sedlbauer_attach()\n");
         }
@@ -2565,13 +2557,9 @@ static int sedlbauer_probe(struct pcmcia_device *link )
 
   }
   {
-  __cil_tmp16 = (unsigned long )local;
-  __cil_tmp17 = __cil_tmp16 + 12;
-  *((int *)__cil_tmp17) = -1;
+  *((int *)((void *)local + 12)) = -1;
   *((struct pcmcia_device **)local) = link;
-  __cil_tmp18 = (unsigned long )link;
-  __cil_tmp19 = __cil_tmp18 + 952;
-  *((void **)__cil_tmp19) = (void *)local;
+  *((void **)((void *)link + 952)) = (void *)local;
   tmp___9 = sedlbauer_config(link);
   }
   return (tmp___9);
@@ -2592,18 +2580,10 @@ static void sedlbauer_detach(struct pcmcia_device *link )
   int __cil_tmp6 ;
   int __cil_tmp7 ;
   long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device  const  *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   local_info_t *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   void *__cil_tmp21 ;
   void const   *__cil_tmp22 ;
 
@@ -2625,9 +2605,7 @@ static void sedlbauer_detach(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp9 = (unsigned long )link;
-        __cil_tmp10 = __cil_tmp9 + 184;
-        __cil_tmp11 = (struct device *)__cil_tmp10;
+        __cil_tmp11 = (struct device *)((void *)link + 184);
         __cil_tmp12 = (struct device  const  *)__cil_tmp11;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp12, "sedlbauer_detach(0x%p)\n",
                           link);
@@ -2644,17 +2622,11 @@ static void sedlbauer_detach(struct pcmcia_device *link )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp13 = (unsigned long )link;
-  __cil_tmp14 = __cil_tmp13 + 952;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)link + 952));
   __cil_tmp16 = (local_info_t *)__cil_tmp15;
-  __cil_tmp17 = (unsigned long )__cil_tmp16;
-  __cil_tmp18 = __cil_tmp17 + 8;
-  *((int *)__cil_tmp18) = 1;
+  *((int *)((void *)__cil_tmp16 + 8)) = 1;
   sedlbauer_release(link);
-  __cil_tmp19 = (unsigned long )link;
-  __cil_tmp20 = __cil_tmp19 + 952;
-  __cil_tmp21 = *((void **)__cil_tmp20);
+  __cil_tmp21 = *((void **)((void *)link + 952));
   __cil_tmp22 = (void const   *)__cil_tmp21;
   kfree(__cil_tmp22);
   }
@@ -2663,17 +2635,11 @@ static void sedlbauer_detach(struct pcmcia_device *link )
 }
 static int sedlbauer_config_check(struct pcmcia_device *p_dev , void *priv_data ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )p_dev;
-  __cil_tmp5 = __cil_tmp4 + 124;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned int *)((void *)p_dev + 124));
   if (__cil_tmp6 == 0U) {
     return (-22);
   } else {
@@ -2681,9 +2647,7 @@ static int sedlbauer_config_check(struct pcmcia_device *p_dev , void *priv_data 
   }
   }
   {
-  __cil_tmp7 = (unsigned long )p_dev;
-  __cil_tmp8 = __cil_tmp7 + 132;
-  *((unsigned int *)__cil_tmp8) = 3U;
+  *((unsigned int *)((void *)p_dev + 132)) = 3U;
   tmp___7 = pcmcia_request_io(p_dev);
   }
   return (tmp___7);
@@ -2706,53 +2670,30 @@ static int sedlbauer_config(struct pcmcia_device *link )
   int __cil_tmp8 ;
   int __cil_tmp9 ;
   long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device  const  *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   void *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct resource *__cil_tmp34 ;
   resource_size_t __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   int *__cil_tmp37 ;
   IsdnCard_t *__cil_tmp38 ;
   void *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   void *__cil_tmp42 ;
   local_info_t *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   int *__cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct resource *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   void *__cil_tmp54 ;
   local_info_t *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
 
   {
   {
@@ -2772,9 +2713,7 @@ static int sedlbauer_config(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp11 = (unsigned long )link;
-        __cil_tmp12 = __cil_tmp11 + 184;
-        __cil_tmp13 = (struct device *)__cil_tmp12;
+        __cil_tmp13 = (struct device *)((void *)link + 184);
         __cil_tmp14 = (struct device  const  *)__cil_tmp13;
         __dynamic_dev_dbg(& descriptor___1, __cil_tmp14, "sedlbauer_config(0x%p)\n",
                           link);
@@ -2791,12 +2730,8 @@ static int sedlbauer_config(struct pcmcia_device *link )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp15 = (unsigned long )link;
-  __cil_tmp16 = __cil_tmp15 + 116;
-  __cil_tmp17 = (unsigned long )link;
-  __cil_tmp18 = __cil_tmp17 + 116;
-  __cil_tmp19 = *((unsigned int *)__cil_tmp18);
-  *((unsigned int *)__cil_tmp16) = __cil_tmp19 | 3841U;
+  __cil_tmp19 = *((unsigned int *)((void *)link + 116));
+  *((unsigned int *)((void *)link + 116)) = __cil_tmp19 | 3841U;
   __cil_tmp20 = (void *)0;
   ret = pcmcia_loop_config(link, & sedlbauer_config_check, __cil_tmp20);
   }
@@ -2816,56 +2751,39 @@ static int sedlbauer_config(struct pcmcia_device *link )
   {
   __cil_tmp21 = 0 * 8UL;
   __cil_tmp22 = 8 + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )(& icard) + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )link;
-  __cil_tmp25 = __cil_tmp24 + 48;
-  __cil_tmp26 = *((unsigned int *)__cil_tmp25);
-  *((unsigned long *)__cil_tmp23) = (unsigned long )__cil_tmp26;
+  __cil_tmp26 = *((unsigned int *)((void *)link + 48));
+  *((unsigned long *)((void *)(&icard) + __cil_tmp22)) = (unsigned long )__cil_tmp26;
   __cil_tmp27 = 1 * 8UL;
   __cil_tmp28 = 8 + __cil_tmp27;
-  __cil_tmp29 = (unsigned long )(& icard) + __cil_tmp28;
   __cil_tmp30 = 0 * 8UL;
   __cil_tmp31 = 56 + __cil_tmp30;
-  __cil_tmp32 = (unsigned long )link;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  __cil_tmp34 = *((struct resource **)__cil_tmp33);
+  __cil_tmp34 = *((struct resource **)((void *)link + __cil_tmp31));
   __cil_tmp35 = *((resource_size_t *)__cil_tmp34);
-  *((unsigned long *)__cil_tmp29) = (unsigned long )__cil_tmp35;
-  __cil_tmp36 = (unsigned long )(& icard) + 4;
+  *((unsigned long *)((void *)(&icard) + __cil_tmp28)) = (unsigned long )__cil_tmp35;
   __cil_tmp37 = & protocol;
-  *((int *)__cil_tmp36) = *__cil_tmp37;
+  *((int *)((void *)(&icard) + 4)) = *__cil_tmp37;
   __cil_tmp38 = & icard;
   *((int *)__cil_tmp38) = 22;
   __cil_tmp39 = (void *)link;
-  __cil_tmp40 = (unsigned long )link;
-  __cil_tmp41 = __cil_tmp40 + 952;
-  __cil_tmp42 = *((void **)__cil_tmp41);
+  __cil_tmp42 = *((void **)((void *)link + 952));
   __cil_tmp43 = (local_info_t *)__cil_tmp42;
-  __cil_tmp44 = (unsigned long )__cil_tmp43;
-  __cil_tmp45 = __cil_tmp44 + 8;
-  __cil_tmp46 = (int *)__cil_tmp45;
+  __cil_tmp46 = (int *)((void *)__cil_tmp43 + 8);
   ret = hisax_init_pcmcia(__cil_tmp39, __cil_tmp46, & icard);
   }
   if (ret < 0) {
     {
     __cil_tmp47 = 0 * 8UL;
     __cil_tmp48 = 56 + __cil_tmp47;
-    __cil_tmp49 = (unsigned long )link;
-    __cil_tmp50 = __cil_tmp49 + __cil_tmp48;
-    __cil_tmp51 = *((struct resource **)__cil_tmp50);
+    __cil_tmp51 = *((struct resource **)((void *)link + __cil_tmp48));
     printk("<3>sedlbauer_cs: failed to initialize SEDLBAUER PCMCIA %d with %pR\n",
            ret, __cil_tmp51);
     sedlbauer_release(link);
     }
     return (-19);
   } else {
-    __cil_tmp52 = (unsigned long )link;
-    __cil_tmp53 = __cil_tmp52 + 952;
-    __cil_tmp54 = *((void **)__cil_tmp53);
+    __cil_tmp54 = *((void **)((void *)link + 952));
     __cil_tmp55 = (local_info_t *)__cil_tmp54;
-    __cil_tmp56 = (unsigned long )__cil_tmp55;
-    __cil_tmp57 = __cil_tmp56 + 12;
-    *((int *)__cil_tmp57) = ret;
+    *((int *)((void *)__cil_tmp55 + 12)) = ret;
   }
   return (0);
   failed: 
@@ -2882,8 +2800,6 @@ __section__("__verbose")))  =    {"sedlbauer_cs", "sedlbauer_release", "/home/za
 static void sedlbauer_release(struct pcmcia_device *link ) 
 { local_info_t *local ;
   long tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp7 ;
   unsigned int __cil_tmp8 ;
@@ -2891,21 +2807,13 @@ static void sedlbauer_release(struct pcmcia_device *link )
   int __cil_tmp10 ;
   int __cil_tmp11 ;
   long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device  const  *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
 
   {
-  __cil_tmp4 = (unsigned long )link;
-  __cil_tmp5 = __cil_tmp4 + 952;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)link + 952));
   local = (local_info_t *)__cil_tmp6;
   {
   while (1) {
@@ -2924,9 +2832,7 @@ static void sedlbauer_release(struct pcmcia_device *link )
       }
       if (tmp___7) {
         {
-        __cil_tmp13 = (unsigned long )link;
-        __cil_tmp14 = __cil_tmp13 + 184;
-        __cil_tmp15 = (struct device *)__cil_tmp14;
+        __cil_tmp15 = (struct device *)((void *)link + 184);
         __cil_tmp16 = (struct device  const  *)__cil_tmp15;
         __dynamic_dev_dbg(& descriptor___2, __cil_tmp16, "sedlbauer_release(0x%p)\n",
                           link);
@@ -2944,14 +2850,10 @@ static void sedlbauer_release(struct pcmcia_device *link )
   }
   if (local) {
     {
-    __cil_tmp17 = (unsigned long )local;
-    __cil_tmp18 = __cil_tmp17 + 12;
-    __cil_tmp19 = *((int *)__cil_tmp18);
+    __cil_tmp19 = *((int *)((void *)local + 12));
     if (__cil_tmp19 >= 0) {
       {
-      __cil_tmp20 = (unsigned long )local;
-      __cil_tmp21 = __cil_tmp20 + 12;
-      __cil_tmp22 = *((int *)__cil_tmp21);
+      __cil_tmp22 = *((int *)((void *)local + 12));
       HiSax_closecard(__cil_tmp22);
       }
     } else {
@@ -2969,39 +2871,23 @@ static void sedlbauer_release(struct pcmcia_device *link )
 }
 static int sedlbauer_suspend(struct pcmcia_device *link ) 
 { local_info_t *dev ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
 
   {
-  __cil_tmp3 = (unsigned long )link;
-  __cil_tmp4 = __cil_tmp3 + 952;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)link + 952));
   dev = (local_info_t *)__cil_tmp5;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  *((int *)__cil_tmp7) = 1;
+  *((int *)((void *)dev + 8)) = 1;
   return (0);
 }
 }
 static int sedlbauer_resume(struct pcmcia_device *link ) 
 { local_info_t *dev ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
 
   {
-  __cil_tmp3 = (unsigned long )link;
-  __cil_tmp4 = __cil_tmp3 + 952;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)link + 952));
   dev = (local_info_t *)__cil_tmp5;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  *((int *)__cil_tmp7) = 0;
+  *((int *)((void *)dev + 8)) = 0;
   return (0);
 }
 }

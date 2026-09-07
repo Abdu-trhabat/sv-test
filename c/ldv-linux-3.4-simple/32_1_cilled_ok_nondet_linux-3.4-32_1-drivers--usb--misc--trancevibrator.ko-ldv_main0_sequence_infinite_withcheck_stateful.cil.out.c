@@ -3112,16 +3112,12 @@ extern int ( /* format attribute */  dev_err)(struct device  const  *dev , char 
 __inline static void *usb_get_intfdata(struct usb_interface *intf )  __attribute__((__no_instrument_function__)) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf ) 
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp___7 = dev_get_drvdata(__cil_tmp6);
   }
@@ -3130,15 +3126,12 @@ __inline static void *usb_get_intfdata(struct usb_interface *intf )
 }
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3147,27 +3140,19 @@ __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf )  __attribute__((__no_instrument_function__)) ;
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf ) 
 { struct device  const  *__mptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct usb_device *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   char *__cil_tmp11 ;
   char *__cil_tmp12 ;
 
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = *((struct device **)__cil_tmp4);
+  __cil_tmp5 = *((struct device **)((void *)intf + 48));
   __mptr = (struct device  const  *)__cil_tmp5;
   {
   __cil_tmp6 = (struct usb_device *)0;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 136;
-  __cil_tmp9 = (struct device *)__cil_tmp8;
+  __cil_tmp9 = (struct device *)((void *)__cil_tmp6 + 136);
   __cil_tmp10 = (unsigned int )__cil_tmp9;
   __cil_tmp11 = (char *)__mptr;
   __cil_tmp12 = __cil_tmp11 - __cil_tmp10;
@@ -3211,32 +3196,24 @@ static ssize_t show_speed(struct device *dev , struct device_attribute *attr , c
   void *tmp___7 ;
   int tmp___8 ;
   struct usb_interface *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   char *__cil_tmp14 ;
   char *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
 
   {
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp9 = (struct usb_interface *)0;
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 48;
-  __cil_tmp12 = (struct device *)__cil_tmp11;
+  __cil_tmp12 = (struct device *)((void *)__cil_tmp9 + 48);
   __cil_tmp13 = (unsigned int )__cil_tmp12;
   __cil_tmp14 = (char *)__mptr;
   __cil_tmp15 = __cil_tmp14 - __cil_tmp13;
   intf = (struct usb_interface *)__cil_tmp15;
   tmp___7 = usb_get_intfdata(intf);
   tv = (struct trancevibrator *)tmp___7;
-  __cil_tmp16 = (unsigned long )tv;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  __cil_tmp18 = *((unsigned int *)__cil_tmp17);
+  __cil_tmp18 = *((unsigned int *)((void *)tv + 8));
   tmp___8 = sprintf(buf, "%d\n", __cil_tmp18);
   }
   return ((ssize_t )tmp___8);
@@ -3266,19 +3243,13 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   unsigned int tmp___10 ;
   long tmp___11 ;
   struct usb_interface *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   char *__cil_tmp21 ;
   char *__cil_tmp22 ;
   void *__cil_tmp23 ;
   char **__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp30 ;
   unsigned int __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
@@ -3286,12 +3257,8 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   int __cil_tmp34 ;
   long __cil_tmp35 ;
   struct usb_device *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
   struct device  const  *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
   struct usb_device *__cil_tmp44 ;
   struct usb_device *__cil_tmp45 ;
@@ -3303,15 +3270,11 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   int __cil_tmp51 ;
   int __cil_tmp52 ;
   __u8 __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned int __cil_tmp56 ;
   __u16 __cil_tmp57 ;
   __u16 __cil_tmp58 ;
   void *__cil_tmp59 ;
   __u16 __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp63 ;
   unsigned int __cil_tmp64 ;
   unsigned int __cil_tmp65 ;
@@ -3319,8 +3282,6 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   int __cil_tmp67 ;
   long __cil_tmp68 ;
   struct usb_device *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct device *__cil_tmp72 ;
   struct device  const  *__cil_tmp73 ;
 
@@ -3328,9 +3289,7 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp16 = (struct usb_interface *)0;
-  __cil_tmp17 = (unsigned long )__cil_tmp16;
-  __cil_tmp18 = __cil_tmp17 + 48;
-  __cil_tmp19 = (struct device *)__cil_tmp18;
+  __cil_tmp19 = (struct device *)((void *)__cil_tmp16 + 48);
   __cil_tmp20 = (unsigned int )__cil_tmp19;
   __cil_tmp21 = (char *)__mptr;
   __cil_tmp22 = __cil_tmp21 - __cil_tmp20;
@@ -3350,13 +3309,9 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   } else {
 
   }
-  __cil_tmp25 = (unsigned long )tv;
-  __cil_tmp26 = __cil_tmp25 + 8;
-  __cil_tmp27 = *((unsigned int *)__cil_tmp26);
+  __cil_tmp27 = *((unsigned int *)((void *)tv + 8));
   old = (int )__cil_tmp27;
-  __cil_tmp28 = (unsigned long )tv;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  *((unsigned int *)__cil_tmp29) = (unsigned int )temp;
+  *((unsigned int *)((void *)tv + 8)) = (unsigned int )temp;
   {
   while (1) {
     while_continue: /* CIL Label */ ;
@@ -3375,13 +3330,9 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
       if (tmp___9) {
         {
         __cil_tmp36 = *((struct usb_device **)tv);
-        __cil_tmp37 = (unsigned long )__cil_tmp36;
-        __cil_tmp38 = __cil_tmp37 + 136;
-        __cil_tmp39 = (struct device *)__cil_tmp38;
+        __cil_tmp39 = (struct device *)((void *)__cil_tmp36 + 136);
         __cil_tmp40 = (struct device  const  *)__cil_tmp39;
-        __cil_tmp41 = (unsigned long )tv;
-        __cil_tmp42 = __cil_tmp41 + 8;
-        __cil_tmp43 = *((unsigned int *)__cil_tmp42);
+        __cil_tmp43 = *((unsigned int *)((void *)tv + 8));
         __dynamic_dev_dbg(& descriptor, __cil_tmp40, "speed = %d\n", __cil_tmp43);
         }
       } else {
@@ -3407,9 +3358,7 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
   __cil_tmp51 = 128 | __cil_tmp50;
   __cil_tmp52 = __cil_tmp51 | 3;
   __cil_tmp53 = (__u8 )__cil_tmp52;
-  __cil_tmp54 = (unsigned long )tv;
-  __cil_tmp55 = __cil_tmp54 + 8;
-  __cil_tmp56 = *((unsigned int *)__cil_tmp55);
+  __cil_tmp56 = *((unsigned int *)((void *)tv + 8));
   __cil_tmp57 = (__u16 )__cil_tmp56;
   __cil_tmp58 = (__u16 )0;
   __cil_tmp59 = (void *)0;
@@ -3418,9 +3367,7 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
                            __cil_tmp58, __cil_tmp59, __cil_tmp60, 5000);
   }
   if (retval) {
-    __cil_tmp61 = (unsigned long )tv;
-    __cil_tmp62 = __cil_tmp61 + 8;
-    *((unsigned int *)__cil_tmp62) = (unsigned int )old;
+    *((unsigned int *)((void *)tv + 8)) = (unsigned int )old;
     {
     while (1) {
       while_continue___1: /* CIL Label */ ;
@@ -3439,9 +3386,7 @@ static ssize_t set_speed(struct device *dev , struct device_attribute *attr , ch
         if (tmp___11) {
           {
           __cil_tmp69 = *((struct usb_device **)tv);
-          __cil_tmp70 = (unsigned long )__cil_tmp69;
-          __cil_tmp71 = __cil_tmp70 + 136;
-          __cil_tmp72 = (struct device *)__cil_tmp71;
+          __cil_tmp72 = (struct device *)((void *)__cil_tmp69 + 136);
           __cil_tmp73 = (struct device  const  *)__cil_tmp72;
           __dynamic_dev_dbg(& descriptor___0, __cil_tmp73, "retval = %d\n", retval);
           }
@@ -3473,13 +3418,9 @@ static int tv_probe(struct usb_interface *interface , struct usb_device_id  cons
   void *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device  const  *__cil_tmp14 ;
   void *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device_attribute  const  *__cil_tmp19 ;
   void *__cil_tmp20 ;
@@ -3498,9 +3439,7 @@ static int tv_probe(struct usb_interface *interface , struct usb_device_id  cons
   __cil_tmp10 = (unsigned long )dev;
   if (__cil_tmp10 == __cil_tmp9) {
     {
-    __cil_tmp11 = (unsigned long )interface;
-    __cil_tmp12 = __cil_tmp11 + 48;
-    __cil_tmp13 = (struct device *)__cil_tmp12;
+    __cil_tmp13 = (struct device *)((void *)interface + 48);
     __cil_tmp14 = (struct device  const  *)__cil_tmp13;
     dev_err(__cil_tmp14, "Out of memory\n");
     retval = -12;
@@ -3514,9 +3453,7 @@ static int tv_probe(struct usb_interface *interface , struct usb_device_id  cons
   *((struct usb_device **)dev) = usb_get_dev(udev);
   __cil_tmp15 = (void *)dev;
   usb_set_intfdata(interface, __cil_tmp15);
-  __cil_tmp16 = (unsigned long )interface;
-  __cil_tmp17 = __cil_tmp16 + 48;
-  __cil_tmp18 = (struct device *)__cil_tmp17;
+  __cil_tmp18 = (struct device *)((void *)interface + 48);
   __cil_tmp19 = (struct device_attribute  const  *)(& dev_attr_speed);
   retval = device_create_file(__cil_tmp18, __cil_tmp19);
   }
@@ -3543,8 +3480,6 @@ static int tv_probe(struct usb_interface *interface , struct usb_device_id  cons
 static void tv_disconnect(struct usb_interface *interface ) 
 { struct trancevibrator *dev ;
   void *tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device_attribute  const  *__cil_tmp7 ;
   void *__cil_tmp8 ;
@@ -3555,9 +3490,7 @@ static void tv_disconnect(struct usb_interface *interface )
   {
   tmp___7 = usb_get_intfdata(interface);
   dev = (struct trancevibrator *)tmp___7;
-  __cil_tmp4 = (unsigned long )interface;
-  __cil_tmp5 = __cil_tmp4 + 48;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)interface + 48);
   __cil_tmp7 = (struct device_attribute  const  *)(& dev_attr_speed);
   device_remove_file(__cil_tmp6, __cil_tmp7);
   __cil_tmp8 = (void *)0;

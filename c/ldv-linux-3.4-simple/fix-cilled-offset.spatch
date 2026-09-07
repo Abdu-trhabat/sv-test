@@ -1,0 +1,32 @@
+// disable optional_qualifier to avoid matching cast on volatile jiffies
+// disable plus_comm to avoid matching add on jiffies
+
+@fix_cilled_ptr_offset disable optional_qualifier, plus_comm exists@
+identifier E1 =~ "__cil_tmp.*";
+identifier E3 =~ "__cil_tmp.*";
+type T;
+T* E0;
+expression E2;
+@@
+
+- unsigned long E1;
+- unsigned long E3;
+...
+- E1 = (unsigned long )E0;
+- E3 = E1 + E2;
+...
+- E3
++ ((void*)E0 + E2)
+
+
+@fix_cilled_addrof_offset disable optional_qualifier, plus_comm exists@
+identifier E3 =~ "__cil_tmp.*";
+expression E0, E2;
+@@
+
+- unsigned long E3;
+...
+- E3 = (unsigned long )(&E0) + E2;
+...
+- E3
++ ((void*)(&E0) + E2)

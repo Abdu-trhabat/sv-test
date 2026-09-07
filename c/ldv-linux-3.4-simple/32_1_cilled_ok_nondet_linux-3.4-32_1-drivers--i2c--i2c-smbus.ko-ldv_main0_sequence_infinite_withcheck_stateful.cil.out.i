@@ -2064,13 +2064,10 @@ extern int ( __dynamic_dev_dbg)(struct _ddebug *descriptor ,
                                                         char const *fmt , ...) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -2088,14 +2085,11 @@ int init_module(void) ;
 void cleanup_module(void) ;
 __inline static void device_lock(struct device *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void device_lock(struct device *dev )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct mutex *__cil_tmp4 ;
   {
   {
-  __cil_tmp2 = (unsigned long )dev;
-  __cil_tmp3 = __cil_tmp2 + 96;
-  __cil_tmp4 = (struct mutex *)__cil_tmp3;
+  __cil_tmp4 = (struct mutex *)((void *)dev + 96);
   mutex_lock(__cil_tmp4);
   }
   return;
@@ -2103,14 +2097,11 @@ __inline static void device_lock(struct device *dev )
 }
 __inline static void device_unlock(struct device *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void device_unlock(struct device *dev )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct mutex *__cil_tmp4 ;
   {
   {
-  __cil_tmp2 = (unsigned long )dev;
-  __cil_tmp3 = __cil_tmp2 + 96;
-  __cil_tmp4 = (struct mutex *)__cil_tmp3;
+  __cil_tmp4 = (struct mutex *)((void *)dev + 96);
   mutex_unlock(__cil_tmp4);
   }
   return;
@@ -2167,14 +2158,10 @@ extern struct i2c_client *i2c_verify_client(struct device *dev ) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)dev + 40);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -2182,14 +2169,11 @@ __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2261,31 +2245,15 @@ static int smbus_do_alert(struct device *dev , void *addrp )
   long tmp___8 ;
   unsigned short __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned short __cil_tmp11 ;
   int __cil_tmp12 ;
   unsigned short __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct i2c_driver *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct i2c_driver *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   void (*__cil_tmp27)(struct i2c_client * , unsigned int data ) ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   u8 __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   struct device const *__cil_tmp35 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp36 ;
@@ -2294,8 +2262,6 @@ static int smbus_do_alert(struct device *dev , void *addrp )
   int __cil_tmp39 ;
   int __cil_tmp40 ;
   long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
   struct device const *__cil_tmp45 ;
   {
@@ -2310,9 +2276,7 @@ static int smbus_do_alert(struct device *dev , void *addrp )
     {
     __cil_tmp7 = *((unsigned short *)data);
     __cil_tmp8 = (int )__cil_tmp7;
-    __cil_tmp9 = (unsigned long )client;
-    __cil_tmp10 = __cil_tmp9 + 2;
-    __cil_tmp11 = *((unsigned short *)__cil_tmp10);
+    __cil_tmp11 = *((unsigned short *)((void *)client + 2));
     __cil_tmp12 = (int )__cil_tmp11;
     if (__cil_tmp12 != __cil_tmp8) {
       return (0);
@@ -2332,34 +2296,20 @@ static int smbus_do_alert(struct device *dev , void *addrp )
   device_lock(dev);
   }
   {
-  __cil_tmp15 = (unsigned long )client;
-  __cil_tmp16 = __cil_tmp15 + 32;
-  if (*((struct i2c_driver **)__cil_tmp16)) {
+  if (*((struct i2c_driver **)((void *)client + 32))) {
     {
-    __cil_tmp17 = (unsigned long )client;
-    __cil_tmp18 = __cil_tmp17 + 32;
-    __cil_tmp19 = *((struct i2c_driver **)__cil_tmp18);
-    __cil_tmp20 = (unsigned long )__cil_tmp19;
-    __cil_tmp21 = __cil_tmp20 + 64;
-    if (*((void (**)(struct i2c_client * , unsigned int data ))__cil_tmp21)) {
+    __cil_tmp19 = *((struct i2c_driver **)((void *)client + 32));
+    if (*((void (**)(struct i2c_client * , unsigned int data ))((void *)__cil_tmp19 + 64))) {
       {
-      __cil_tmp22 = (unsigned long )client;
-      __cil_tmp23 = __cil_tmp22 + 32;
-      __cil_tmp24 = *((struct i2c_driver **)__cil_tmp23);
-      __cil_tmp25 = (unsigned long )__cil_tmp24;
-      __cil_tmp26 = __cil_tmp25 + 64;
-      __cil_tmp27 = *((void (**)(struct i2c_client * , unsigned int data ))__cil_tmp26);
-      __cil_tmp28 = (unsigned long )data;
-      __cil_tmp29 = __cil_tmp28 + 2;
-      __cil_tmp30 = *((u8 *)__cil_tmp29);
+      __cil_tmp24 = *((struct i2c_driver **)((void *)client + 32));
+      __cil_tmp27 = *((void (**)(struct i2c_client * , unsigned int data ))((void *)__cil_tmp24 + 64));
+      __cil_tmp30 = *((u8 *)((void *)data + 2));
       __cil_tmp31 = (unsigned int )__cil_tmp30;
       (*__cil_tmp27)(client, __cil_tmp31);
       }
     } else {
       {
-      __cil_tmp32 = (unsigned long )client;
-      __cil_tmp33 = __cil_tmp32 + 40;
-      __cil_tmp34 = (struct device *)__cil_tmp33;
+      __cil_tmp34 = (struct device *)((void *)client + 40);
       __cil_tmp35 = (struct device const *)__cil_tmp34;
       dev_warn(__cil_tmp35, "no driver alert()!\n");
       }
@@ -2383,9 +2333,7 @@ static int smbus_do_alert(struct device *dev , void *addrp )
         }
         if (tmp___8) {
           {
-          __cil_tmp42 = (unsigned long )client;
-          __cil_tmp43 = __cil_tmp42 + 40;
-          __cil_tmp44 = (struct device *)__cil_tmp43;
+          __cil_tmp44 = (struct device *)((void *)client + 40);
           __cil_tmp45 = (struct device const *)__cil_tmp44;
           __dynamic_dev_dbg(& descriptor, __cil_tmp45, "alert with no driver\n");
           }
@@ -2420,16 +2368,11 @@ static void smbus_alert(struct work_struct *work )
   struct alert_data data ;
   long tmp___7 ;
   struct i2c_smbus_alert *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct work_struct *__cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   char *__cil_tmp14 ;
   char *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct i2c_client const *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   struct alert_data *__cil_tmp21 ;
   s32 __cil_tmp22 ;
@@ -2437,8 +2380,6 @@ static void smbus_alert(struct work_struct *work )
   struct alert_data *__cil_tmp24 ;
   unsigned short __cil_tmp25 ;
   int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct device *__cil_tmp29 ;
   struct device const *__cil_tmp30 ;
   struct alert_data *__cil_tmp31 ;
@@ -2450,43 +2391,30 @@ static void smbus_alert(struct work_struct *work )
   int __cil_tmp37 ;
   int __cil_tmp38 ;
   long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct device *__cil_tmp42 ;
   struct device const *__cil_tmp43 ;
   struct alert_data *__cil_tmp44 ;
   unsigned short __cil_tmp45 ;
   int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   u8 __cil_tmp48 ;
   int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct i2c_adapter *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct device *__cil_tmp55 ;
   void *__cil_tmp56 ;
   struct alert_data *__cil_tmp57 ;
   unsigned int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   int __cil_tmp61 ;
   unsigned int __cil_tmp62 ;
   {
   prev_addr = (unsigned short)0;
   __mptr = (struct work_struct const *)work;
   __cil_tmp9 = (struct i2c_smbus_alert *)0;
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  __cil_tmp12 = (struct work_struct *)__cil_tmp11;
+  __cil_tmp12 = (struct work_struct *)((void *)__cil_tmp9 + 8);
   __cil_tmp13 = (unsigned int )__cil_tmp12;
   __cil_tmp14 = (char *)__mptr;
   __cil_tmp15 = __cil_tmp14 - __cil_tmp13;
   alert = (struct i2c_smbus_alert *)__cil_tmp15;
-  __cil_tmp16 = (unsigned long )alert;
-  __cil_tmp17 = __cil_tmp16 + 40;
-  ara = *((struct i2c_client **)__cil_tmp17);
+  ara = *((struct i2c_client **)((void *)alert + 40));
   {
   while (1) {
     while_continue: ;
@@ -2498,9 +2426,8 @@ static void smbus_alert(struct work_struct *work )
       goto while_break;
     } else {
     }
-    __cil_tmp19 = (unsigned long )(& data) + 2;
     __cil_tmp20 = status & 1;
-    *((u8 *)__cil_tmp19) = (u8 )__cil_tmp20;
+    *((u8 *)((void *)(&data) + 2)) = (u8 )__cil_tmp20;
     __cil_tmp21 = & data;
     __cil_tmp22 = status >> 1;
     *((unsigned short *)__cil_tmp21) = (unsigned short )__cil_tmp22;
@@ -2511,9 +2438,7 @@ static void smbus_alert(struct work_struct *work )
     __cil_tmp26 = (int )__cil_tmp25;
     if (__cil_tmp26 == __cil_tmp23) {
       {
-      __cil_tmp27 = (unsigned long )ara;
-      __cil_tmp28 = __cil_tmp27 + 40;
-      __cil_tmp29 = (struct device *)__cil_tmp28;
+      __cil_tmp29 = (struct device *)((void *)ara + 40);
       __cil_tmp30 = (struct device const *)__cil_tmp29;
       __cil_tmp31 = & data;
       __cil_tmp32 = *((unsigned short *)__cil_tmp31);
@@ -2541,15 +2466,12 @@ static void smbus_alert(struct work_struct *work )
         }
         if (tmp___7) {
           {
-          __cil_tmp40 = (unsigned long )ara;
-          __cil_tmp41 = __cil_tmp40 + 40;
-          __cil_tmp42 = (struct device *)__cil_tmp41;
+          __cil_tmp42 = (struct device *)((void *)ara + 40);
           __cil_tmp43 = (struct device const *)__cil_tmp42;
           __cil_tmp44 = & data;
           __cil_tmp45 = *((unsigned short *)__cil_tmp44);
           __cil_tmp46 = (int )__cil_tmp45;
-          __cil_tmp47 = (unsigned long )(& data) + 2;
-          __cil_tmp48 = *((u8 *)__cil_tmp47);
+          __cil_tmp48 = *((u8 *)((void *)(&data) + 2));
           __cil_tmp49 = (int )__cil_tmp48;
           __dynamic_dev_dbg(& descriptor___0, __cil_tmp43, "SMBALERT# from dev 0x%02x, flag %d\n",
                             __cil_tmp46, __cil_tmp49);
@@ -2565,12 +2487,8 @@ static void smbus_alert(struct work_struct *work )
     while_break___0: ;
     }
     {
-    __cil_tmp50 = (unsigned long )ara;
-    __cil_tmp51 = __cil_tmp50 + 24;
-    __cil_tmp52 = *((struct i2c_adapter **)__cil_tmp51);
-    __cil_tmp53 = (unsigned long )__cil_tmp52;
-    __cil_tmp54 = __cil_tmp53 + 128;
-    __cil_tmp55 = (struct device *)__cil_tmp54;
+    __cil_tmp52 = *((struct i2c_adapter **)((void *)ara + 24));
+    __cil_tmp55 = (struct device *)((void *)__cil_tmp52 + 128);
     __cil_tmp56 = (void *)(& data);
     device_for_each_child(__cil_tmp55, __cil_tmp56, & smbus_do_alert);
     __cil_tmp57 = & data;
@@ -2583,9 +2501,7 @@ static void smbus_alert(struct work_struct *work )
   __cil_tmp58 = *((unsigned int *)alert);
   if (! __cil_tmp58) {
     {
-    __cil_tmp59 = (unsigned long )alert;
-    __cil_tmp60 = __cil_tmp59 + 4;
-    __cil_tmp61 = *((int *)__cil_tmp60);
+    __cil_tmp61 = *((int *)((void *)alert + 4));
     __cil_tmp62 = (unsigned int )__cil_tmp61;
     enable_irq(__cil_tmp62);
     }
@@ -2599,8 +2515,6 @@ static irqreturn_t smbalert_irq(int irq , void *d )
 { struct i2c_smbus_alert *alert ;
   unsigned int __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct work_struct *__cil_tmp8 ;
   {
   alert = (struct i2c_smbus_alert *)d;
@@ -2615,9 +2529,7 @@ static irqreturn_t smbalert_irq(int irq , void *d )
   }
   }
   {
-  __cil_tmp6 = (unsigned long )alert;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = (struct work_struct *)__cil_tmp7;
+  __cil_tmp8 = (struct work_struct *)((void *)alert + 8);
   schedule_work(__cil_tmp8);
   }
   return ((irqreturn_t )1);
@@ -2632,57 +2544,27 @@ static int smbalert_probe(struct i2c_client *ara , struct i2c_device_id const *i
   atomic_long_t __constr_expr_0 ;
   char const *tmp___8 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct work_struct *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct list_head *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   int __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   int __cil_tmp42 ;
   unsigned int __cil_tmp43 ;
   void *__cil_tmp44 ;
   void const *__cil_tmp45 ;
   void *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct device *__cil_tmp49 ;
   struct device const *__cil_tmp50 ;
   long __constr_expr_0_counter51 ;
   {
   {
   __cil_tmp10 = 40 + 184;
-  __cil_tmp11 = (unsigned long )ara;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)ara + __cil_tmp10));
   setup = (struct i2c_smbus_alert_setup *)__cil_tmp13;
-  __cil_tmp14 = (unsigned long )ara;
-  __cil_tmp15 = __cil_tmp14 + 24;
-  adapter = *((struct i2c_adapter **)__cil_tmp15);
+  adapter = *((struct i2c_adapter **)((void *)ara + 24));
   tmp___7 = kzalloc(48UL, 208U);
   alert = (struct i2c_smbus_alert *)tmp___7;
   }
@@ -2691,11 +2573,7 @@ static int smbalert_probe(struct i2c_client *ara , struct i2c_device_id const *i
   } else {
   }
   *((unsigned int *)alert) = *((unsigned int *)setup);
-  __cil_tmp16 = (unsigned long )alert;
-  __cil_tmp17 = __cil_tmp16 + 4;
-  __cil_tmp18 = (unsigned long )setup;
-  __cil_tmp19 = __cil_tmp18 + 4;
-  *((int *)__cil_tmp17) = *((int *)__cil_tmp19);
+  *((int *)((void *)alert + 4)) = *((int *)((void *)setup + 4));
   {
   while (1) {
     while_continue: ;
@@ -2703,27 +2581,19 @@ static int smbalert_probe(struct i2c_client *ara , struct i2c_device_id const *i
     while (1) {
       while_continue___0: ;
       {
-      __cil_tmp20 = (unsigned long )alert;
-      __cil_tmp21 = __cil_tmp20 + 8;
-      __cil_tmp22 = (struct work_struct *)__cil_tmp21;
+      __cil_tmp22 = (struct work_struct *)((void *)alert + 8);
       __init_work(__cil_tmp22, 0);
       __constr_expr_0_counter51 = 2097664L;
-      __cil_tmp23 = (unsigned long )alert;
-      __cil_tmp24 = __cil_tmp23 + 8;
-      ((atomic_long_t *)__cil_tmp24)->counter = __constr_expr_0_counter51;
+      ((atomic_long_t *)((void *)alert + 8))->counter = __constr_expr_0_counter51;
       __cil_tmp25 = 8 + 8;
-      __cil_tmp26 = (unsigned long )alert;
-      __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-      __cil_tmp28 = (struct list_head *)__cil_tmp27;
+      __cil_tmp28 = (struct list_head *)((void *)alert + __cil_tmp25);
       INIT_LIST_HEAD(__cil_tmp28);
       }
       {
       while (1) {
         while_continue___1: ;
         __cil_tmp29 = 8 + 24;
-        __cil_tmp30 = (unsigned long )alert;
-        __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-        *((void (**)(struct work_struct *work ))__cil_tmp31) = & smbus_alert;
+        *((void (**)(struct work_struct *work ))((void *)alert + __cil_tmp29)) = & smbus_alert;
         goto while_break___1;
       }
       while_break___1: ;
@@ -2736,21 +2606,13 @@ static int smbalert_probe(struct i2c_client *ara , struct i2c_device_id const *i
   }
   while_break: ;
   }
-  __cil_tmp32 = (unsigned long )alert;
-  __cil_tmp33 = __cil_tmp32 + 40;
-  *((struct i2c_client **)__cil_tmp33) = ara;
+  *((struct i2c_client **)((void *)alert + 40)) = ara;
   {
-  __cil_tmp34 = (unsigned long )setup;
-  __cil_tmp35 = __cil_tmp34 + 4;
-  __cil_tmp36 = *((int *)__cil_tmp35);
+  __cil_tmp36 = *((int *)((void *)setup + 4));
   if (__cil_tmp36 > 0) {
     {
-    __cil_tmp37 = (unsigned long )ara;
-    __cil_tmp38 = __cil_tmp37 + 40;
-    __cil_tmp39 = (struct device *)__cil_tmp38;
-    __cil_tmp40 = (unsigned long )setup;
-    __cil_tmp41 = __cil_tmp40 + 4;
-    __cil_tmp42 = *((int *)__cil_tmp41);
+    __cil_tmp39 = (struct device *)((void *)ara + 40);
+    __cil_tmp42 = *((int *)((void *)setup + 4));
     __cil_tmp43 = (unsigned int )__cil_tmp42;
     __cil_tmp44 = (void *)alert;
     res = (int )devm_request_irq(__cil_tmp39, __cil_tmp43, & smbalert_irq, 0UL, "smbus_alert",
@@ -2777,9 +2639,7 @@ static int smbalert_probe(struct i2c_client *ara , struct i2c_device_id const *i
     tmp___8 = "level";
   }
   {
-  __cil_tmp47 = (unsigned long )adapter;
-  __cil_tmp48 = __cil_tmp47 + 128;
-  __cil_tmp49 = (struct device *)__cil_tmp48;
+  __cil_tmp49 = (struct device *)((void *)adapter + 128);
   __cil_tmp50 = (struct device const *)__cil_tmp49;
   _dev_info(__cil_tmp50, "supports SMBALERT#, %s trigger\n", tmp___8);
   }
@@ -2790,8 +2650,6 @@ static int smbalert_remove(struct i2c_client *ara )
 { struct i2c_smbus_alert *alert ;
   void *tmp___7 ;
   struct i2c_client const *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct work_struct *__cil_tmp7 ;
   void const *__cil_tmp8 ;
   {
@@ -2799,9 +2657,7 @@ static int smbalert_remove(struct i2c_client *ara )
   __cil_tmp4 = (struct i2c_client const *)ara;
   tmp___7 = i2c_get_clientdata(__cil_tmp4);
   alert = (struct i2c_smbus_alert *)tmp___7;
-  __cil_tmp5 = (unsigned long )alert;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = (struct work_struct *)__cil_tmp6;
+  __cil_tmp7 = (struct work_struct *)((void *)alert + 8);
   cancel_work_sync(__cil_tmp7);
   __cil_tmp8 = (void const *)alert;
   kfree(__cil_tmp8);
@@ -2841,165 +2697,113 @@ struct i2c_client *i2c_setup_smbus_alert(struct i2c_adapter *adapter , struct i2
   struct i2c_client *tmp___7 ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   struct i2c_board_info const *__cil_tmp71 ;
   {
   {
   __cil_tmp5 = 0 * 1UL;
   __cil_tmp6 = 0 + __cil_tmp5;
-  __cil_tmp7 = (unsigned long )(& ara_board_info) + __cil_tmp6;
-  *((char *)__cil_tmp7) = (char )'s';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp6)) = (char )'s';
   __cil_tmp8 = 1 * 1UL;
   __cil_tmp9 = 0 + __cil_tmp8;
-  __cil_tmp10 = (unsigned long )(& ara_board_info) + __cil_tmp9;
-  *((char *)__cil_tmp10) = (char )'m';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp9)) = (char )'m';
   __cil_tmp11 = 2 * 1UL;
   __cil_tmp12 = 0 + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )(& ara_board_info) + __cil_tmp12;
-  *((char *)__cil_tmp13) = (char )'b';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp12)) = (char )'b';
   __cil_tmp14 = 3 * 1UL;
   __cil_tmp15 = 0 + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )(& ara_board_info) + __cil_tmp15;
-  *((char *)__cil_tmp16) = (char )'u';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp15)) = (char )'u';
   __cil_tmp17 = 4 * 1UL;
   __cil_tmp18 = 0 + __cil_tmp17;
-  __cil_tmp19 = (unsigned long )(& ara_board_info) + __cil_tmp18;
-  *((char *)__cil_tmp19) = (char )'s';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp18)) = (char )'s';
   __cil_tmp20 = 5 * 1UL;
   __cil_tmp21 = 0 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )(& ara_board_info) + __cil_tmp21;
-  *((char *)__cil_tmp22) = (char )'_';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp21)) = (char )'_';
   __cil_tmp23 = 6 * 1UL;
   __cil_tmp24 = 0 + __cil_tmp23;
-  __cil_tmp25 = (unsigned long )(& ara_board_info) + __cil_tmp24;
-  *((char *)__cil_tmp25) = (char )'a';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp24)) = (char )'a';
   __cil_tmp26 = 7 * 1UL;
   __cil_tmp27 = 0 + __cil_tmp26;
-  __cil_tmp28 = (unsigned long )(& ara_board_info) + __cil_tmp27;
-  *((char *)__cil_tmp28) = (char )'l';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp27)) = (char )'l';
   __cil_tmp29 = 8 * 1UL;
   __cil_tmp30 = 0 + __cil_tmp29;
-  __cil_tmp31 = (unsigned long )(& ara_board_info) + __cil_tmp30;
-  *((char *)__cil_tmp31) = (char )'e';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp30)) = (char )'e';
   __cil_tmp32 = 9 * 1UL;
   __cil_tmp33 = 0 + __cil_tmp32;
-  __cil_tmp34 = (unsigned long )(& ara_board_info) + __cil_tmp33;
-  *((char *)__cil_tmp34) = (char )'r';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp33)) = (char )'r';
   __cil_tmp35 = 10 * 1UL;
   __cil_tmp36 = 0 + __cil_tmp35;
-  __cil_tmp37 = (unsigned long )(& ara_board_info) + __cil_tmp36;
-  *((char *)__cil_tmp37) = (char )'t';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp36)) = (char )'t';
   __cil_tmp38 = 11 * 1UL;
   __cil_tmp39 = 0 + __cil_tmp38;
-  __cil_tmp40 = (unsigned long )(& ara_board_info) + __cil_tmp39;
-  *((char *)__cil_tmp40) = (char )'\000';
+  *((char *)((void *)(&ara_board_info) + __cil_tmp39)) = (char )'\000';
   __cil_tmp41 = 12 * 1UL;
   __cil_tmp42 = 0 + __cil_tmp41;
-  __cil_tmp43 = (unsigned long )(& ara_board_info) + __cil_tmp42;
-  *((char *)__cil_tmp43) = (char)0;
+  *((char *)((void *)(&ara_board_info) + __cil_tmp42)) = (char)0;
   __cil_tmp44 = 13 * 1UL;
   __cil_tmp45 = 0 + __cil_tmp44;
-  __cil_tmp46 = (unsigned long )(& ara_board_info) + __cil_tmp45;
-  *((char *)__cil_tmp46) = (char)0;
+  *((char *)((void *)(&ara_board_info) + __cil_tmp45)) = (char)0;
   __cil_tmp47 = 14 * 1UL;
   __cil_tmp48 = 0 + __cil_tmp47;
-  __cil_tmp49 = (unsigned long )(& ara_board_info) + __cil_tmp48;
-  *((char *)__cil_tmp49) = (char)0;
+  *((char *)((void *)(&ara_board_info) + __cil_tmp48)) = (char)0;
   __cil_tmp50 = 15 * 1UL;
   __cil_tmp51 = 0 + __cil_tmp50;
-  __cil_tmp52 = (unsigned long )(& ara_board_info) + __cil_tmp51;
-  *((char *)__cil_tmp52) = (char)0;
+  *((char *)((void *)(&ara_board_info) + __cil_tmp51)) = (char)0;
   __cil_tmp53 = 16 * 1UL;
   __cil_tmp54 = 0 + __cil_tmp53;
-  __cil_tmp55 = (unsigned long )(& ara_board_info) + __cil_tmp54;
-  *((char *)__cil_tmp55) = (char)0;
+  *((char *)((void *)(&ara_board_info) + __cil_tmp54)) = (char)0;
   __cil_tmp56 = 17 * 1UL;
   __cil_tmp57 = 0 + __cil_tmp56;
-  __cil_tmp58 = (unsigned long )(& ara_board_info) + __cil_tmp57;
-  *((char *)__cil_tmp58) = (char)0;
+  *((char *)((void *)(&ara_board_info) + __cil_tmp57)) = (char)0;
   __cil_tmp59 = 18 * 1UL;
   __cil_tmp60 = 0 + __cil_tmp59;
-  __cil_tmp61 = (unsigned long )(& ara_board_info) + __cil_tmp60;
-  *((char *)__cil_tmp61) = (char)0;
+  *((char *)((void *)(&ara_board_info) + __cil_tmp60)) = (char)0;
   __cil_tmp62 = 19 * 1UL;
   __cil_tmp63 = 0 + __cil_tmp62;
-  __cil_tmp64 = (unsigned long )(& ara_board_info) + __cil_tmp63;
-  *((char *)__cil_tmp64) = (char)0;
-  __cil_tmp65 = (unsigned long )(& ara_board_info) + 20;
-  *((unsigned short *)__cil_tmp65) = (unsigned short)0;
-  __cil_tmp66 = (unsigned long )(& ara_board_info) + 22;
-  *((unsigned short *)__cil_tmp66) = (unsigned short)12;
-  __cil_tmp67 = (unsigned long )(& ara_board_info) + 24;
-  *((void **)__cil_tmp67) = (void *)setup;
-  __cil_tmp68 = (unsigned long )(& ara_board_info) + 32;
-  *((struct dev_archdata **)__cil_tmp68) = (struct dev_archdata *)0;
-  __cil_tmp69 = (unsigned long )(& ara_board_info) + 40;
-  *((struct device_node **)__cil_tmp69) = (struct device_node *)0;
-  __cil_tmp70 = (unsigned long )(& ara_board_info) + 48;
-  *((int *)__cil_tmp70) = 0;
+  *((char *)((void *)(&ara_board_info) + __cil_tmp63)) = (char)0;
+  *((unsigned short *)((void *)(&ara_board_info) + 20)) = (unsigned short)0;
+  *((unsigned short *)((void *)(&ara_board_info) + 22)) = (unsigned short)12;
+  *((void **)((void *)(&ara_board_info) + 24)) = (void *)setup;
+  *((struct dev_archdata **)((void *)(&ara_board_info) + 32)) = (struct dev_archdata *)0;
+  *((struct device_node **)((void *)(&ara_board_info) + 40)) = (struct device_node *)0;
+  *((int *)((void *)(&ara_board_info) + 48)) = 0;
   __cil_tmp71 = (struct i2c_board_info const *)(& ara_board_info);
   tmp___7 = i2c_new_device(adapter, __cil_tmp71);
   }
@@ -3024,17 +2828,13 @@ int i2c_handle_smbus_alert(struct i2c_client *ara )
   void *tmp___7 ;
   int tmp___8 ;
   struct i2c_client const *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct work_struct *__cil_tmp8 ;
   {
   {
   __cil_tmp5 = (struct i2c_client const *)ara;
   tmp___7 = i2c_get_clientdata(__cil_tmp5);
   alert = (struct i2c_smbus_alert *)tmp___7;
-  __cil_tmp6 = (unsigned long )alert;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = (struct work_struct *)__cil_tmp7;
+  __cil_tmp8 = (struct work_struct *)((void *)alert + 8);
   tmp___8 = schedule_work(__cil_tmp8);
   }
   return (tmp___8);

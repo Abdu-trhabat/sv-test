@@ -862,14 +862,10 @@ int ldv_spin_trylock(void) ;
 extern int __dynamic_dev_dbg(struct _ddebug * , struct device  const  * , char const   * 
                              , ...) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -915,15 +911,12 @@ extern int led_classdev_register(struct device * , struct led_classdev * ) ;
 extern int dev_set_drvdata(struct device * , void * ) ;
 extern int dev_err(struct device  const  * , char const   *  , ...) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -992,25 +985,15 @@ static int led_regulator_get_voltage(struct regulator *supply , enum led_brightn
 }
 static void regulator_led_enable(struct regulator_led *led ) 
 { int ret ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   int __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct regulator *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device  const  *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )led;
-  __cil_tmp4 = __cil_tmp3 + 412;
-  __cil_tmp5 = *((int *)__cil_tmp4);
+  __cil_tmp5 = *((int *)((void *)led + 412));
   if (__cil_tmp5 != 0) {
     return;
   } else {
@@ -1018,17 +1001,13 @@ static void regulator_led_enable(struct regulator_led *led )
   }
   }
   {
-  __cil_tmp6 = (unsigned long )led;
-  __cil_tmp7 = __cil_tmp6 + 664;
-  __cil_tmp8 = *((struct regulator **)__cil_tmp7);
+  __cil_tmp8 = *((struct regulator **)((void *)led + 664));
   ret = regulator_enable(__cil_tmp8);
   }
   if (ret != 0) {
     {
     __cil_tmp9 = 0 + 48;
-    __cil_tmp10 = (unsigned long )led;
-    __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-    __cil_tmp12 = *((struct device **)__cil_tmp11);
+    __cil_tmp12 = *((struct device **)((void *)led + __cil_tmp9));
     __cil_tmp13 = (struct device  const  *)__cil_tmp12;
     dev_err(__cil_tmp13, "Failed to enable vcc: %d\n", ret);
     }
@@ -1036,33 +1015,21 @@ static void regulator_led_enable(struct regulator_led *led )
   } else {
 
   }
-  __cil_tmp14 = (unsigned long )led;
-  __cil_tmp15 = __cil_tmp14 + 412;
-  *((int *)__cil_tmp15) = 1;
+  *((int *)((void *)led + 412)) = 1;
   return;
 }
 }
 static void regulator_led_disable(struct regulator_led *led ) 
 { int ret ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   int __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct regulator *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device  const  *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )led;
-  __cil_tmp4 = __cil_tmp3 + 412;
-  __cil_tmp5 = *((int *)__cil_tmp4);
+  __cil_tmp5 = *((int *)((void *)led + 412));
   if (__cil_tmp5 == 0) {
     return;
   } else {
@@ -1070,17 +1037,13 @@ static void regulator_led_disable(struct regulator_led *led )
   }
   }
   {
-  __cil_tmp6 = (unsigned long )led;
-  __cil_tmp7 = __cil_tmp6 + 664;
-  __cil_tmp8 = *((struct regulator **)__cil_tmp7);
+  __cil_tmp8 = *((struct regulator **)((void *)led + 664));
   ret = regulator_disable(__cil_tmp8);
   }
   if (ret != 0) {
     {
     __cil_tmp9 = 0 + 48;
-    __cil_tmp10 = (unsigned long )led;
-    __cil_tmp11 = __cil_tmp10 + __cil_tmp9;
-    __cil_tmp12 = *((struct device **)__cil_tmp11);
+    __cil_tmp12 = *((struct device **)((void *)led + __cil_tmp9));
     __cil_tmp13 = (struct device  const  *)__cil_tmp12;
     dev_err(__cil_tmp13, "Failed to disable vcc: %d\n", ret);
     }
@@ -1088,9 +1051,7 @@ static void regulator_led_disable(struct regulator_led *led )
   } else {
 
   }
-  __cil_tmp14 = (unsigned long )led;
-  __cil_tmp15 = __cil_tmp14 + 412;
-  *((int *)__cil_tmp15) = 0;
+  *((int *)((void *)led + 412)) = 0;
   return;
 }
 }
@@ -1099,65 +1060,35 @@ static void regulator_led_set_value(struct regulator_led *led )
   int ret ;
   struct _ddebug descriptor ;
   long tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct mutex *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   enum led_brightness __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct regulator *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   enum led_brightness __cil_tmp22 ;
   struct _ddebug *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned char __cil_tmp30 ;
   long __cil_tmp31 ;
   long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct device *__cil_tmp36 ;
   struct device  const  *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   enum led_brightness __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct regulator *__cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct device *__cil_tmp48 ;
   struct device  const  *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct mutex *__cil_tmp52 ;
 
   {
   {
-  __cil_tmp6 = (unsigned long )led;
-  __cil_tmp7 = __cil_tmp6 + 416;
-  __cil_tmp8 = (struct mutex *)__cil_tmp7;
+  __cil_tmp8 = (struct mutex *)((void *)led + 416);
   mutex_lock_nested(__cil_tmp8, 0U);
   }
   {
-  __cil_tmp9 = (unsigned long )led;
-  __cil_tmp10 = __cil_tmp9 + 408;
-  __cil_tmp11 = *((enum led_brightness *)__cil_tmp10);
+  __cil_tmp11 = *((enum led_brightness *)((void *)led + 408));
   __cil_tmp12 = (unsigned int )__cil_tmp11;
   if (__cil_tmp12 == 0U) {
     {
@@ -1170,32 +1101,20 @@ static void regulator_led_set_value(struct regulator_led *led )
   }
   {
   __cil_tmp13 = 0 + 12;
-  __cil_tmp14 = (unsigned long )led;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = *((int *)__cil_tmp15);
+  __cil_tmp16 = *((int *)((void *)led + __cil_tmp13));
   if (__cil_tmp16 > 1) {
     {
-    __cil_tmp17 = (unsigned long )led;
-    __cil_tmp18 = __cil_tmp17 + 664;
-    __cil_tmp19 = *((struct regulator **)__cil_tmp18);
-    __cil_tmp20 = (unsigned long )led;
-    __cil_tmp21 = __cil_tmp20 + 408;
-    __cil_tmp22 = *((enum led_brightness *)__cil_tmp21);
+    __cil_tmp19 = *((struct regulator **)((void *)led + 664));
+    __cil_tmp22 = *((enum led_brightness *)((void *)led + 408));
     voltage = led_regulator_get_voltage(__cil_tmp19, __cil_tmp22);
     __cil_tmp23 = & descriptor;
     *((char const   **)__cil_tmp23) = "leds_regulator";
-    __cil_tmp24 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp24) = "regulator_led_set_value";
-    __cil_tmp25 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp25) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12454/dscv_tempdir/dscv/ri/43_1a/drivers/leds/leds-regulator.c.p";
-    __cil_tmp26 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp26) = "brightness: %d voltage: %d\n";
-    __cil_tmp27 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp27) = 127U;
-    __cil_tmp28 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp28) = (unsigned char)0;
-    __cil_tmp29 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp30 = *((unsigned char *)__cil_tmp29);
+    *((char const   **)((void *)(&descriptor) + 8)) = "regulator_led_set_value";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12454/dscv_tempdir/dscv/ri/43_1a/drivers/leds/leds-regulator.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "brightness: %d voltage: %d\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 127U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+    __cil_tmp30 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp31 = (long )__cil_tmp30;
     __cil_tmp32 = __cil_tmp31 & 1L;
     tmp = __builtin_expect(__cil_tmp32, 0L);
@@ -1203,13 +1122,9 @@ static void regulator_led_set_value(struct regulator_led *led )
     if (tmp != 0L) {
       {
       __cil_tmp33 = 0 + 48;
-      __cil_tmp34 = (unsigned long )led;
-      __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-      __cil_tmp36 = *((struct device **)__cil_tmp35);
+      __cil_tmp36 = *((struct device **)((void *)led + __cil_tmp33));
       __cil_tmp37 = (struct device  const  *)__cil_tmp36;
-      __cil_tmp38 = (unsigned long )led;
-      __cil_tmp39 = __cil_tmp38 + 408;
-      __cil_tmp40 = *((enum led_brightness *)__cil_tmp39);
+      __cil_tmp40 = *((enum led_brightness *)((void *)led + 408));
       __cil_tmp41 = (unsigned int )__cil_tmp40;
       __dynamic_dev_dbg(& descriptor, __cil_tmp37, "brightness: %d voltage: %d\n",
                         __cil_tmp41, voltage);
@@ -1218,17 +1133,13 @@ static void regulator_led_set_value(struct regulator_led *led )
 
     }
     {
-    __cil_tmp42 = (unsigned long )led;
-    __cil_tmp43 = __cil_tmp42 + 664;
-    __cil_tmp44 = *((struct regulator **)__cil_tmp43);
+    __cil_tmp44 = *((struct regulator **)((void *)led + 664));
     ret = regulator_set_voltage(__cil_tmp44, voltage, voltage);
     }
     if (ret != 0) {
       {
       __cil_tmp45 = 0 + 48;
-      __cil_tmp46 = (unsigned long )led;
-      __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-      __cil_tmp48 = *((struct device **)__cil_tmp47);
+      __cil_tmp48 = *((struct device **)((void *)led + __cil_tmp45));
       __cil_tmp49 = (struct device  const  *)__cil_tmp48;
       dev_err(__cil_tmp49, "Failed to set voltage %d: %d\n", voltage, ret);
       }
@@ -1244,9 +1155,7 @@ static void regulator_led_set_value(struct regulator_led *led )
   }
   out: 
   {
-  __cil_tmp50 = (unsigned long )led;
-  __cil_tmp51 = __cil_tmp50 + 416;
-  __cil_tmp52 = (struct mutex *)__cil_tmp51;
+  __cil_tmp52 = (struct mutex *)((void *)led + 416);
   mutex_unlock(__cil_tmp52);
   }
   return;
@@ -1270,22 +1179,14 @@ static void led_work(struct work_struct *work )
 static void regulator_led_brightness_set(struct led_classdev *led_cdev , enum led_brightness value ) 
 { struct regulator_led *led ;
   struct led_classdev  const  *__mptr ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct work_struct *__cil_tmp9 ;
 
   {
   {
   __mptr = (struct led_classdev  const  *)led_cdev;
   led = (struct regulator_led *)__mptr;
-  __cil_tmp5 = (unsigned long )led;
-  __cil_tmp6 = __cil_tmp5 + 408;
-  *((enum led_brightness *)__cil_tmp6) = value;
-  __cil_tmp7 = (unsigned long )led;
-  __cil_tmp8 = __cil_tmp7 + 584;
-  __cil_tmp9 = (struct work_struct *)__cil_tmp8;
+  *((enum led_brightness *)((void *)led + 408)) = value;
+  __cil_tmp9 = (struct work_struct *)((void *)led + 584);
   schedule_work(__cil_tmp9);
   }
   return;
@@ -1304,22 +1205,14 @@ static int regulator_led_probe(struct platform_device *pdev )
   struct lock_class_key __key___0 ;
   atomic_long_t __constr_expr_0 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   struct led_regulator_platform_data *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device  const  *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct device *__cil_tmp26 ;
   void const   *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct device *__cil_tmp30 ;
   struct device  const  *__cil_tmp31 ;
   char *__cil_tmp32 ;
@@ -1328,88 +1221,40 @@ static int regulator_led_probe(struct platform_device *pdev )
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   int __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   enum led_brightness __cil_tmp47 ;
   unsigned int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct device *__cil_tmp51 ;
   struct device  const  *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   enum led_brightness __cil_tmp55 ;
   unsigned int __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   char *__cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   int __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   struct regulator *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   struct mutex *__cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   struct work_struct *__cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   struct lockdep_map *__cil_tmp90 ;
   unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   struct list_head *__cil_tmp94 ;
   unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   void *__cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
   struct device *__cil_tmp101 ;
   struct led_classdev *__cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
   struct work_struct *__cil_tmp105 ;
   unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   enum led_brightness __cil_tmp111 ;
   void const   *__cil_tmp112 ;
   long __constr_expr_0_counter113 ;
 
   {
   __cil_tmp13 = 16 + 280;
-  __cil_tmp14 = (unsigned long )pdev;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = *((void **)__cil_tmp15);
+  __cil_tmp16 = *((void **)((void *)pdev + __cil_tmp13));
   pdata = (struct led_regulator_platform_data *)__cil_tmp16;
   ret = 0;
   {
@@ -1418,9 +1263,7 @@ static int regulator_led_probe(struct platform_device *pdev )
   __cil_tmp19 = (unsigned long )pdata;
   if (__cil_tmp19 == __cil_tmp18) {
     {
-    __cil_tmp20 = (unsigned long )pdev;
-    __cil_tmp21 = __cil_tmp20 + 16;
-    __cil_tmp22 = (struct device *)__cil_tmp21;
+    __cil_tmp22 = (struct device *)((void *)pdev + 16);
     __cil_tmp23 = (struct device  const  *)__cil_tmp22;
     dev_err(__cil_tmp23, "no platform data\n");
     }
@@ -1430,18 +1273,14 @@ static int regulator_led_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp24 = (unsigned long )pdev;
-  __cil_tmp25 = __cil_tmp24 + 16;
-  __cil_tmp26 = (struct device *)__cil_tmp25;
+  __cil_tmp26 = (struct device *)((void *)pdev + 16);
   vcc = regulator_get_exclusive(__cil_tmp26, "vled");
   __cil_tmp27 = (void const   *)vcc;
   tmp___0 = IS_ERR(__cil_tmp27);
   }
   if (tmp___0 != 0L) {
     {
-    __cil_tmp28 = (unsigned long )pdev;
-    __cil_tmp29 = __cil_tmp28 + 16;
-    __cil_tmp30 = (struct device *)__cil_tmp29;
+    __cil_tmp30 = (struct device *)((void *)pdev + 16);
     __cil_tmp31 = (struct device  const  *)__cil_tmp30;
     __cil_tmp32 = *((char **)pdata);
     dev_err(__cil_tmp31, "Cannot get vcc for %s\n", __cil_tmp32);
@@ -1469,29 +1308,19 @@ static int regulator_led_probe(struct platform_device *pdev )
   }
   {
   __cil_tmp37 = 0 + 12;
-  __cil_tmp38 = (unsigned long )led;
-  __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-  *((int *)__cil_tmp39) = led_regulator_get_max_brightness(vcc);
+  *((int *)((void *)led + __cil_tmp37)) = led_regulator_get_max_brightness(vcc);
   }
   {
   __cil_tmp40 = 0 + 12;
-  __cil_tmp41 = (unsigned long )led;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-  __cil_tmp43 = *((int *)__cil_tmp42);
+  __cil_tmp43 = *((int *)((void *)led + __cil_tmp40));
   __cil_tmp44 = (unsigned int )__cil_tmp43;
-  __cil_tmp45 = (unsigned long )pdata;
-  __cil_tmp46 = __cil_tmp45 + 8;
-  __cil_tmp47 = *((enum led_brightness *)__cil_tmp46);
+  __cil_tmp47 = *((enum led_brightness *)((void *)pdata + 8));
   __cil_tmp48 = (unsigned int )__cil_tmp47;
   if (__cil_tmp48 > __cil_tmp44) {
     {
-    __cil_tmp49 = (unsigned long )pdev;
-    __cil_tmp50 = __cil_tmp49 + 16;
-    __cil_tmp51 = (struct device *)__cil_tmp50;
+    __cil_tmp51 = (struct device *)((void *)pdev + 16);
     __cil_tmp52 = (struct device  const  *)__cil_tmp51;
-    __cil_tmp53 = (unsigned long )pdata;
-    __cil_tmp54 = __cil_tmp53 + 8;
-    __cil_tmp55 = *((enum led_brightness *)__cil_tmp54);
+    __cil_tmp55 = *((enum led_brightness *)((void *)pdata + 8));
     __cil_tmp56 = (unsigned int )__cil_tmp55;
     dev_err(__cil_tmp52, "Invalid default brightness %d\n", __cil_tmp56);
     ret = -22;
@@ -1502,80 +1331,48 @@ static int regulator_led_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp57 = (unsigned long )led;
-  __cil_tmp58 = __cil_tmp57 + 408;
-  __cil_tmp59 = (unsigned long )pdata;
-  __cil_tmp60 = __cil_tmp59 + 8;
-  *((enum led_brightness *)__cil_tmp58) = *((enum led_brightness *)__cil_tmp60);
+  *((enum led_brightness *)((void *)led + 408)) = *((enum led_brightness *)((void *)pdata + 8));
   __cil_tmp61 = 0 + 24;
-  __cil_tmp62 = (unsigned long )led;
-  __cil_tmp63 = __cil_tmp62 + __cil_tmp61;
-  *((void (**)(struct led_classdev * , enum led_brightness  ))__cil_tmp63) = & regulator_led_brightness_set;
+  *((void (**)(struct led_classdev * , enum led_brightness  ))((void *)led + __cil_tmp61)) = & regulator_led_brightness_set;
   __cil_tmp64 = *((char **)pdata);
   *((char const   **)led) = (char const   *)__cil_tmp64;
   __cil_tmp65 = 0 + 16;
-  __cil_tmp66 = (unsigned long )led;
-  __cil_tmp67 = __cil_tmp66 + __cil_tmp65;
   __cil_tmp68 = 0 + 16;
-  __cil_tmp69 = (unsigned long )led;
-  __cil_tmp70 = __cil_tmp69 + __cil_tmp68;
-  __cil_tmp71 = *((int *)__cil_tmp70);
-  *((int *)__cil_tmp67) = __cil_tmp71 | 65536;
-  __cil_tmp72 = (unsigned long )led;
-  __cil_tmp73 = __cil_tmp72 + 664;
-  *((struct regulator **)__cil_tmp73) = vcc;
-  __cil_tmp74 = (unsigned long )led;
-  __cil_tmp75 = __cil_tmp74 + 664;
-  __cil_tmp76 = *((struct regulator **)__cil_tmp75);
+  __cil_tmp71 = *((int *)((void *)led + __cil_tmp68));
+  *((int *)((void *)led + __cil_tmp65)) = __cil_tmp71 | 65536;
+  *((struct regulator **)((void *)led + 664)) = vcc;
+  __cil_tmp76 = *((struct regulator **)((void *)led + 664));
   tmp___2 = regulator_is_enabled(__cil_tmp76);
   }
   if (tmp___2 != 0) {
-    __cil_tmp77 = (unsigned long )led;
-    __cil_tmp78 = __cil_tmp77 + 412;
-    *((int *)__cil_tmp78) = 1;
+    *((int *)((void *)led + 412)) = 1;
   } else {
 
   }
   {
-  __cil_tmp79 = (unsigned long )led;
-  __cil_tmp80 = __cil_tmp79 + 416;
-  __cil_tmp81 = (struct mutex *)__cil_tmp80;
+  __cil_tmp81 = (struct mutex *)((void *)led + 416);
   __mutex_init(__cil_tmp81, "&led->mutex", & __key);
-  __cil_tmp82 = (unsigned long )led;
-  __cil_tmp83 = __cil_tmp82 + 584;
-  __cil_tmp84 = (struct work_struct *)__cil_tmp83;
+  __cil_tmp84 = (struct work_struct *)((void *)led + 584);
   __init_work(__cil_tmp84, 0);
   __constr_expr_0_counter113 = 2097664L;
-  __cil_tmp85 = (unsigned long )led;
-  __cil_tmp86 = __cil_tmp85 + 584;
-  ((atomic_long_t *)__cil_tmp86)->counter = __constr_expr_0_counter113;
+  ((atomic_long_t *)((void *)led + 584))->counter = __constr_expr_0_counter113;
   __cil_tmp87 = 584 + 32;
-  __cil_tmp88 = (unsigned long )led;
-  __cil_tmp89 = __cil_tmp88 + __cil_tmp87;
-  __cil_tmp90 = (struct lockdep_map *)__cil_tmp89;
+  __cil_tmp90 = (struct lockdep_map *)((void *)led + __cil_tmp87);
   lockdep_init_map(__cil_tmp90, "(&led->work)", & __key___0, 0);
   __cil_tmp91 = 584 + 8;
-  __cil_tmp92 = (unsigned long )led;
-  __cil_tmp93 = __cil_tmp92 + __cil_tmp91;
-  __cil_tmp94 = (struct list_head *)__cil_tmp93;
+  __cil_tmp94 = (struct list_head *)((void *)led + __cil_tmp91);
   INIT_LIST_HEAD(__cil_tmp94);
   __cil_tmp95 = 584 + 24;
-  __cil_tmp96 = (unsigned long )led;
-  __cil_tmp97 = __cil_tmp96 + __cil_tmp95;
-  *((void (**)(struct work_struct * ))__cil_tmp97) = & led_work;
+  *((void (**)(struct work_struct * ))((void *)led + __cil_tmp95)) = & led_work;
   __cil_tmp98 = (void *)led;
   platform_set_drvdata(pdev, __cil_tmp98);
-  __cil_tmp99 = (unsigned long )pdev;
-  __cil_tmp100 = __cil_tmp99 + 16;
-  __cil_tmp101 = (struct device *)__cil_tmp100;
+  __cil_tmp101 = (struct device *)((void *)pdev + 16);
   __cil_tmp102 = (struct led_classdev *)led;
   ret = led_classdev_register(__cil_tmp101, __cil_tmp102);
   }
   if (ret < 0) {
     {
-    __cil_tmp103 = (unsigned long )led;
-    __cil_tmp104 = __cil_tmp103 + 584;
-    __cil_tmp105 = (struct work_struct *)__cil_tmp104;
+    __cil_tmp105 = (struct work_struct *)((void *)led + 584);
     cancel_work_sync(__cil_tmp105);
     }
     goto err_led;
@@ -1584,12 +1381,8 @@ static int regulator_led_probe(struct platform_device *pdev )
   }
   {
   __cil_tmp106 = 0 + 8;
-  __cil_tmp107 = (unsigned long )led;
-  __cil_tmp108 = __cil_tmp107 + __cil_tmp106;
-  __cil_tmp109 = (unsigned long )led;
-  __cil_tmp110 = __cil_tmp109 + 408;
-  __cil_tmp111 = *((enum led_brightness *)__cil_tmp110);
-  *((int *)__cil_tmp108) = (int )__cil_tmp111;
+  __cil_tmp111 = *((enum led_brightness *)((void *)led + 408));
+  *((int *)((void *)led + __cil_tmp106)) = (int )__cil_tmp111;
   regulator_led_set_value(led);
   }
   return (0);

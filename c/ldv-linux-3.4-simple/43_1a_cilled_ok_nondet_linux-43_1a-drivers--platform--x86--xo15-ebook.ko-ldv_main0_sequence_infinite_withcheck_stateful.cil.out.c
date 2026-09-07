@@ -3179,14 +3179,10 @@ extern acpi_status acpi_evaluate_integer(acpi_handle  , acpi_string  , struct ac
                                          unsigned long long * ) ;
 extern char const   *acpi_device_hid(struct acpi_device * ) ;
 __inline static void *acpi_driver_data(struct acpi_device *d ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )d;
-  __cil_tmp3 = __cil_tmp2 + 936;
-  return (*((void **)__cil_tmp3));
+  return (*((void **)((void *)d + 936)));
   }
 }
 }
@@ -3206,8 +3202,6 @@ static int ebook_send_state(struct acpi_device *device )
   void *tmp ;
   unsigned long long state ;
   acpi_status status ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   acpi_handle __cil_tmp8 ;
   char *__cil_tmp9 ;
   struct acpi_object_list *__cil_tmp10 ;
@@ -3221,9 +3215,7 @@ static int ebook_send_state(struct acpi_device *device )
   {
   tmp = acpi_driver_data(device);
   button = (struct ebook_switch *)tmp;
-  __cil_tmp6 = (unsigned long )device;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = *((acpi_handle *)__cil_tmp7);
+  __cil_tmp8 = *((acpi_handle *)((void *)device + 8));
   __cil_tmp9 = (char *)"EBK";
   __cil_tmp10 = (struct acpi_object_list *)0;
   status = acpi_evaluate_integer(__cil_tmp8, __cil_tmp9, __cil_tmp10, & state);
@@ -3298,58 +3290,30 @@ static int ebook_switch_add(struct acpi_device *device )
   struct ebook_switch *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct input_dev *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   acpi_device_name *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   acpi_device_class *__cil_tmp26 ;
   char *__cil_tmp27 ;
   char *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   char (*__cil_tmp31)[32U] ;
   char *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   char (*__cil_tmp37)[32U] ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned long (*__cil_tmp50)[1U] ;
   unsigned long volatile   *__cil_tmp51 ;
   unsigned char *__cil_tmp52 ;
   unsigned char *__cil_tmp53 ;
   unsigned char __cil_tmp54 ;
   unsigned int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   acpi_handle __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   u64 __cil_tmp62 ;
   u32 __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct device *__cil_tmp66 ;
   bool __cil_tmp67 ;
   void const   *__cil_tmp68 ;
@@ -3372,9 +3336,7 @@ static int ebook_switch_add(struct acpi_device *device )
   }
   }
   {
-  __cil_tmp14 = (unsigned long )device;
-  __cil_tmp15 = __cil_tmp14 + 936;
-  *((void **)__cil_tmp15) = (void *)button;
+  *((void **)((void *)device + 936)) = (void *)button;
   input = input_allocate_device();
   *((struct input_dev **)button) = input;
   }
@@ -3391,14 +3353,10 @@ static int ebook_switch_add(struct acpi_device *device )
   }
   {
   __cil_tmp19 = 80 + 40;
-  __cil_tmp20 = (unsigned long )device;
-  __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-  __cil_tmp22 = (acpi_device_name *)__cil_tmp21;
+  __cil_tmp22 = (acpi_device_name *)((void *)device + __cil_tmp19);
   name = (char *)__cil_tmp22;
   __cil_tmp23 = 80 + 80;
-  __cil_tmp24 = (unsigned long )device;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  __cil_tmp26 = (acpi_device_class *)__cil_tmp25;
+  __cil_tmp26 = (acpi_device_class *)((void *)device + __cil_tmp23);
   class = (char *)__cil_tmp26;
   tmp___1 = strcmp(hid, "XO15EBK");
   }
@@ -3416,34 +3374,18 @@ static int ebook_switch_add(struct acpi_device *device )
   __cil_tmp27 = (char *)"xo15-ebook";
   __cil_tmp28 = (char *)"ebook";
   sprintf(class, "%s/%s", __cil_tmp27, __cil_tmp28);
-  __cil_tmp29 = (unsigned long )button;
-  __cil_tmp30 = __cil_tmp29 + 8;
-  __cil_tmp31 = (char (*)[32U])__cil_tmp30;
+  __cil_tmp31 = (char (*)[32U])((void *)button + 8);
   __cil_tmp32 = (char *)__cil_tmp31;
   snprintf(__cil_tmp32, 32UL, "%s/button/input0", hid);
   *((char const   **)input) = (char const   *)name;
-  __cil_tmp33 = (unsigned long )input;
-  __cil_tmp34 = __cil_tmp33 + 8;
-  __cil_tmp35 = (unsigned long )button;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = (char (*)[32U])__cil_tmp36;
-  *((char const   **)__cil_tmp34) = (char const   *)__cil_tmp37;
-  __cil_tmp38 = (unsigned long )input;
-  __cil_tmp39 = __cil_tmp38 + 24;
-  *((__u16 *)__cil_tmp39) = (__u16 )25U;
-  __cil_tmp40 = (unsigned long )input;
-  __cil_tmp41 = __cil_tmp40 + 840;
-  __cil_tmp42 = (unsigned long )device;
-  __cil_tmp43 = __cil_tmp42 + 944;
-  *((struct device **)__cil_tmp41) = (struct device *)__cil_tmp43;
+  __cil_tmp37 = (char (*)[32U])((void *)button + 8);
+  *((char const   **)((void *)input + 8)) = (char const   *)__cil_tmp37;
+  *((__u16 *)((void *)input + 24)) = (__u16 )25U;
+  *((struct device **)((void *)input + 840)) = (struct device *)((void *)device + 944);
   __cil_tmp44 = 0 * 8UL;
   __cil_tmp45 = 40 + __cil_tmp44;
-  __cil_tmp46 = (unsigned long )input;
-  __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-  *((unsigned long *)__cil_tmp47) = 32UL;
-  __cil_tmp48 = (unsigned long )input;
-  __cil_tmp49 = __cil_tmp48 + 200;
-  __cil_tmp50 = (unsigned long (*)[1U])__cil_tmp49;
+  *((unsigned long *)((void *)input + __cil_tmp45)) = 32UL;
+  __cil_tmp50 = (unsigned long (*)[1U])((void *)input + 200);
   __cil_tmp51 = (unsigned long volatile   *)__cil_tmp50;
   set_bit(1U, __cil_tmp51);
   error = input_register_device(input);
@@ -3463,18 +3405,12 @@ static int ebook_switch_add(struct acpi_device *device )
   __cil_tmp55 = (unsigned int )__cil_tmp54;
   if (__cil_tmp55 != 0U) {
     {
-    __cil_tmp56 = (unsigned long )device;
-    __cil_tmp57 = __cil_tmp56 + 712;
-    __cil_tmp58 = *((acpi_handle *)__cil_tmp57);
+    __cil_tmp58 = *((acpi_handle *)((void *)device + 712));
     __cil_tmp59 = 712 + 8;
-    __cil_tmp60 = (unsigned long )device;
-    __cil_tmp61 = __cil_tmp60 + __cil_tmp59;
-    __cil_tmp62 = *((u64 *)__cil_tmp61);
+    __cil_tmp62 = *((u64 *)((void *)device + __cil_tmp59));
     __cil_tmp63 = (u32 )__cil_tmp62;
     acpi_enable_gpe(__cil_tmp58, __cil_tmp63);
-    __cil_tmp64 = (unsigned long )device;
-    __cil_tmp65 = __cil_tmp64 + 944;
-    __cil_tmp66 = (struct device *)__cil_tmp65;
+    __cil_tmp66 = (struct device *)((void *)device + 944);
     __cil_tmp67 = (bool )1;
     device_set_wakeup_enable(__cil_tmp66, __cil_tmp67);
     }

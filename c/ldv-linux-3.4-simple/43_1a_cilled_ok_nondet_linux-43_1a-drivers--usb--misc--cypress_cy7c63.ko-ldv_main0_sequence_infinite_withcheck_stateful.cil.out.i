@@ -3016,15 +3016,11 @@ extern int dev_err(struct device const * , char const * , ...) ;
 extern int _dev_info(struct device const * , char const * , ...) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -3032,14 +3028,11 @@ __inline static void *usb_get_intfdata(struct usb_interface *intf )
 }
 }
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3047,14 +3040,10 @@ __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
 }
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf )
 { struct device const *__mptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct usb_device *__cil_tmp6 ;
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = *((struct device **)__cil_tmp4);
+  __cil_tmp5 = *((struct device **)((void *)intf + 48));
   __mptr = (struct device const *)__cil_tmp5;
   {
   __cil_tmp6 = (struct usb_device *)__mptr;
@@ -3099,23 +3088,13 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   struct usb_device *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device const *__cil_tmp23 ;
   struct _ddebug *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned char __cil_tmp31 ;
   long __cil_tmp32 ;
   long __cil_tmp33 ;
   struct usb_device *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct device *__cil_tmp37 ;
   struct device const *__cil_tmp38 ;
   int __cil_tmp39 ;
@@ -3133,55 +3112,31 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   unsigned int __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned char *__cil_tmp56 ;
   struct _ddebug *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned char __cil_tmp64 ;
   long __cil_tmp65 ;
   long __cil_tmp66 ;
   struct usb_device *__cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   struct device *__cil_tmp70 ;
   struct device const *__cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   unsigned char __cil_tmp76 ;
   int __cil_tmp77 ;
   unsigned int __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   unsigned char *__cil_tmp83 ;
   struct _ddebug *__cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   unsigned char __cil_tmp91 ;
   long __cil_tmp92 ;
   long __cil_tmp93 ;
   struct usb_device *__cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   struct device *__cil_tmp97 ;
   struct device const *__cil_tmp98 ;
   unsigned long __cil_tmp99 ;
   unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   unsigned char __cil_tmp103 ;
   int __cil_tmp104 ;
   void const *__cil_tmp105 ;
@@ -3198,9 +3153,7 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   if (__cil_tmp18 == __cil_tmp17) {
     {
     __cil_tmp19 = *((struct usb_device **)dev);
-    __cil_tmp20 = (unsigned long )__cil_tmp19;
-    __cil_tmp21 = __cil_tmp20 + 136;
-    __cil_tmp22 = (struct device *)__cil_tmp21;
+    __cil_tmp22 = (struct device *)((void *)__cil_tmp19 + 136);
     __cil_tmp23 = (struct device const *)__cil_tmp22;
     dev_err(__cil_tmp23, "Out of memory!\n");
     retval = -12;
@@ -3212,18 +3165,12 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   {
   __cil_tmp24 = & descriptor;
   *((char const **)__cil_tmp24) = "cypress_cy7c63";
-  __cil_tmp25 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp25) = "vendor_command";
-  __cil_tmp26 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp26) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
-  __cil_tmp27 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp27) = "Sending usb_control_msg (data: %d)\n";
-  __cil_tmp28 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp28) = 103U;
-  __cil_tmp29 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp29) = (unsigned char)1;
-  __cil_tmp30 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp31 = *((unsigned char *)__cil_tmp30);
+  *((char const **)((void *)(&descriptor) + 8)) = "vendor_command";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "Sending usb_control_msg (data: %d)\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 103U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+  __cil_tmp31 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp32 = (long )__cil_tmp31;
   __cil_tmp33 = __cil_tmp32 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp33, 0L);
@@ -3231,9 +3178,7 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
   if (tmp___0 != 0L) {
     {
     __cil_tmp34 = *((struct usb_device **)dev);
-    __cil_tmp35 = (unsigned long )__cil_tmp34;
-    __cil_tmp36 = __cil_tmp35 + 136;
-    __cil_tmp37 = (struct device *)__cil_tmp36;
+    __cil_tmp37 = (struct device *)((void *)__cil_tmp34 + 136);
     __cil_tmp38 = (struct device const *)__cil_tmp37;
     __cil_tmp39 = (int )data;
     __dynamic_dev_dbg(& descriptor, __cil_tmp38, "Sending usb_control_msg (data: %d)\n",
@@ -3269,24 +3214,16 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
       {
       __cil_tmp52 = 0 * 1UL;
       __cil_tmp53 = 8 + __cil_tmp52;
-      __cil_tmp54 = (unsigned long )dev;
-      __cil_tmp55 = __cil_tmp54 + __cil_tmp53;
       __cil_tmp56 = iobuf + 1UL;
-      *((unsigned char *)__cil_tmp55) = *__cil_tmp56;
+      *((unsigned char *)((void *)dev + __cil_tmp53)) = *__cil_tmp56;
       __cil_tmp57 = & descriptor___0;
       *((char const **)__cil_tmp57) = "cypress_cy7c63";
-      __cil_tmp58 = (unsigned long )(& descriptor___0) + 8;
-      *((char const **)__cil_tmp58) = "vendor_command";
-      __cil_tmp59 = (unsigned long )(& descriptor___0) + 16;
-      *((char const **)__cil_tmp59) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
-      __cil_tmp60 = (unsigned long )(& descriptor___0) + 24;
-      *((char const **)__cil_tmp60) = "READ_PORT0 returned: %d\n";
-      __cil_tmp61 = (unsigned long )(& descriptor___0) + 32;
-      *((unsigned int *)__cil_tmp61) = 119U;
-      __cil_tmp62 = (unsigned long )(& descriptor___0) + 35;
-      *((unsigned char *)__cil_tmp62) = (unsigned char)1;
-      __cil_tmp63 = (unsigned long )(& descriptor___0) + 35;
-      __cil_tmp64 = *((unsigned char *)__cil_tmp63);
+      *((char const **)((void *)(&descriptor___0) + 8)) = "vendor_command";
+      *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
+      *((char const **)((void *)(&descriptor___0) + 24)) = "READ_PORT0 returned: %d\n";
+      *((unsigned int *)((void *)(&descriptor___0) + 32)) = 119U;
+      *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)1;
+      __cil_tmp64 = *((unsigned char *)((void *)(&descriptor___0) + 35));
       __cil_tmp65 = (long )__cil_tmp64;
       __cil_tmp66 = __cil_tmp65 & 1L;
       tmp___2 = __builtin_expect(__cil_tmp66, 0L);
@@ -3294,15 +3231,11 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
       if (tmp___2 != 0L) {
         {
         __cil_tmp67 = *((struct usb_device **)dev);
-        __cil_tmp68 = (unsigned long )__cil_tmp67;
-        __cil_tmp69 = __cil_tmp68 + 136;
-        __cil_tmp70 = (struct device *)__cil_tmp69;
+        __cil_tmp70 = (struct device *)((void *)__cil_tmp67 + 136);
         __cil_tmp71 = (struct device const *)__cil_tmp70;
         __cil_tmp72 = 0 * 1UL;
         __cil_tmp73 = 8 + __cil_tmp72;
-        __cil_tmp74 = (unsigned long )dev;
-        __cil_tmp75 = __cil_tmp74 + __cil_tmp73;
-        __cil_tmp76 = *((unsigned char *)__cil_tmp75);
+        __cil_tmp76 = *((unsigned char *)((void *)dev + __cil_tmp73));
         __cil_tmp77 = (int )__cil_tmp76;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp71, "READ_PORT0 returned: %d\n",
                           __cil_tmp77);
@@ -3316,24 +3249,16 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
         {
         __cil_tmp79 = 1 * 1UL;
         __cil_tmp80 = 8 + __cil_tmp79;
-        __cil_tmp81 = (unsigned long )dev;
-        __cil_tmp82 = __cil_tmp81 + __cil_tmp80;
         __cil_tmp83 = iobuf + 1UL;
-        *((unsigned char *)__cil_tmp82) = *__cil_tmp83;
+        *((unsigned char *)((void *)dev + __cil_tmp80)) = *__cil_tmp83;
         __cil_tmp84 = & descriptor___1;
         *((char const **)__cil_tmp84) = "cypress_cy7c63";
-        __cil_tmp85 = (unsigned long )(& descriptor___1) + 8;
-        *((char const **)__cil_tmp85) = "vendor_command";
-        __cil_tmp86 = (unsigned long )(& descriptor___1) + 16;
-        *((char const **)__cil_tmp86) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
-        __cil_tmp87 = (unsigned long )(& descriptor___1) + 24;
-        *((char const **)__cil_tmp87) = "READ_PORT1 returned: %d\n";
-        __cil_tmp88 = (unsigned long )(& descriptor___1) + 32;
-        *((unsigned int *)__cil_tmp88) = 125U;
-        __cil_tmp89 = (unsigned long )(& descriptor___1) + 35;
-        *((unsigned char *)__cil_tmp89) = (unsigned char)1;
-        __cil_tmp90 = (unsigned long )(& descriptor___1) + 35;
-        __cil_tmp91 = *((unsigned char *)__cil_tmp90);
+        *((char const **)((void *)(&descriptor___1) + 8)) = "vendor_command";
+        *((char const **)((void *)(&descriptor___1) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
+        *((char const **)((void *)(&descriptor___1) + 24)) = "READ_PORT1 returned: %d\n";
+        *((unsigned int *)((void *)(&descriptor___1) + 32)) = 125U;
+        *((unsigned char *)((void *)(&descriptor___1) + 35)) = (unsigned char)1;
+        __cil_tmp91 = *((unsigned char *)((void *)(&descriptor___1) + 35));
         __cil_tmp92 = (long )__cil_tmp91;
         __cil_tmp93 = __cil_tmp92 & 1L;
         tmp___3 = __builtin_expect(__cil_tmp93, 0L);
@@ -3341,15 +3266,11 @@ static int vendor_command(struct cypress *dev , unsigned char request , unsigned
         if (tmp___3 != 0L) {
           {
           __cil_tmp94 = *((struct usb_device **)dev);
-          __cil_tmp95 = (unsigned long )__cil_tmp94;
-          __cil_tmp96 = __cil_tmp95 + 136;
-          __cil_tmp97 = (struct device *)__cil_tmp96;
+          __cil_tmp97 = (struct device *)((void *)__cil_tmp94 + 136);
           __cil_tmp98 = (struct device const *)__cil_tmp97;
           __cil_tmp99 = 1 * 1UL;
           __cil_tmp100 = 8 + __cil_tmp99;
-          __cil_tmp101 = (unsigned long )dev;
-          __cil_tmp102 = __cil_tmp101 + __cil_tmp100;
-          __cil_tmp103 = *((unsigned char *)__cil_tmp102);
+          __cil_tmp103 = *((unsigned char *)((void *)dev + __cil_tmp100));
           __cil_tmp104 = (int )__cil_tmp103;
           __dynamic_dev_dbg(& descriptor___1, __cil_tmp98, "READ_PORT1 returned: %d\n",
                             __cil_tmp104);
@@ -3391,18 +3312,10 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
   int *__cil_tmp19 ;
   struct usb_interface *__cil_tmp20 ;
   struct _ddebug *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned char __cil_tmp28 ;
   long __cil_tmp29 ;
   long __cil_tmp30 ;
   struct usb_device *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   struct device const *__cil_tmp35 ;
   int *__cil_tmp36 ;
@@ -3418,18 +3331,10 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
   int __cil_tmp46 ;
   unsigned char __cil_tmp47 ;
   struct _ddebug *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned char __cil_tmp55 ;
   long __cil_tmp56 ;
   long __cil_tmp57 ;
   struct usb_device *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct device *__cil_tmp61 ;
   struct device const *__cil_tmp62 ;
   {
@@ -3444,18 +3349,12 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
   cyp = (struct cypress *)tmp;
   __cil_tmp21 = & descriptor;
   *((char const **)__cil_tmp21) = "cypress_cy7c63";
-  __cil_tmp22 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp22) = "write_port";
-  __cil_tmp23 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp23) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
-  __cil_tmp24 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp24) = "WRITE_PORT%d called\n";
-  __cil_tmp25 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp25) = 146U;
-  __cil_tmp26 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp26) = (unsigned char)1;
-  __cil_tmp27 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp28 = *((unsigned char *)__cil_tmp27);
+  *((char const **)((void *)(&descriptor) + 8)) = "write_port";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "WRITE_PORT%d called\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 146U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+  __cil_tmp28 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp29 = (long )__cil_tmp28;
   __cil_tmp30 = __cil_tmp29 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp30, 0L);
@@ -3463,9 +3362,7 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
   if (tmp___0 != 0L) {
     {
     __cil_tmp31 = *((struct usb_device **)cyp);
-    __cil_tmp32 = (unsigned long )__cil_tmp31;
-    __cil_tmp33 = __cil_tmp32 + 136;
-    __cil_tmp34 = (struct device *)__cil_tmp33;
+    __cil_tmp34 = (struct device *)((void *)__cil_tmp31 + 136);
     __cil_tmp35 = (struct device const *)__cil_tmp34;
     __dynamic_dev_dbg(& descriptor, __cil_tmp35, "WRITE_PORT%d called\n", port_num);
     }
@@ -3509,18 +3406,12 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
   result = vendor_command(cyp, (unsigned char)5, __cil_tmp42, __cil_tmp47);
   __cil_tmp48 = & descriptor___0;
   *((char const **)__cil_tmp48) = "cypress_cy7c63";
-  __cil_tmp49 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp49) = "write_port";
-  __cil_tmp50 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp50) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
-  __cil_tmp51 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp51) = "Result of vendor_command: %d\n\n";
-  __cil_tmp52 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp52) = 161U;
-  __cil_tmp53 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp53) = (unsigned char)1;
-  __cil_tmp54 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp55 = *((unsigned char *)__cil_tmp54);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "write_port";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "Result of vendor_command: %d\n\n";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 161U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)1;
+  __cil_tmp55 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp56 = (long )__cil_tmp55;
   __cil_tmp57 = __cil_tmp56 & 1L;
   tmp___2 = __builtin_expect(__cil_tmp57, 0L);
@@ -3528,9 +3419,7 @@ static ssize_t write_port(struct device *dev , struct device_attribute *attr , c
   if (tmp___2 != 0L) {
     {
     __cil_tmp58 = *((struct usb_device **)cyp);
-    __cil_tmp59 = (unsigned long )__cil_tmp58;
-    __cil_tmp60 = __cil_tmp59 + 136;
-    __cil_tmp61 = (struct device *)__cil_tmp60;
+    __cil_tmp61 = (struct device *)((void *)__cil_tmp58 + 136);
     __cil_tmp62 = (struct device const *)__cil_tmp61;
     __dynamic_dev_dbg(& descriptor___0, __cil_tmp62, "Result of vendor_command: %d\n\n",
                       result);
@@ -3580,42 +3469,24 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   int tmp___2 ;
   struct usb_interface *__cil_tmp16 ;
   struct _ddebug *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned char __cil_tmp24 ;
   long __cil_tmp25 ;
   long __cil_tmp26 ;
   struct usb_device *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct device *__cil_tmp30 ;
   struct device const *__cil_tmp31 ;
   unsigned char __cil_tmp32 ;
   int __cil_tmp33 ;
   unsigned char __cil_tmp34 ;
   struct _ddebug *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned char __cil_tmp42 ;
   long __cil_tmp43 ;
   long __cil_tmp44 ;
   struct usb_device *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct device *__cil_tmp48 ;
   struct device const *__cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned char __cil_tmp54 ;
   int __cil_tmp55 ;
   {
@@ -3628,18 +3499,12 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   cyp = (struct cypress *)tmp;
   __cil_tmp17 = & descriptor;
   *((char const **)__cil_tmp17) = "cypress_cy7c63";
-  __cil_tmp18 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp18) = "read_port";
-  __cil_tmp19 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp19) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
-  __cil_tmp20 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp20) = "READ_PORT%d called\n";
-  __cil_tmp21 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp21) = 191U;
-  __cil_tmp22 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp22) = (unsigned char)1;
-  __cil_tmp23 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp24 = *((unsigned char *)__cil_tmp23);
+  *((char const **)((void *)(&descriptor) + 8)) = "read_port";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "READ_PORT%d called\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 191U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+  __cil_tmp24 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp25 = (long )__cil_tmp24;
   __cil_tmp26 = __cil_tmp25 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp26, 0L);
@@ -3647,9 +3512,7 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   if (tmp___0 != 0L) {
     {
     __cil_tmp27 = *((struct usb_device **)cyp);
-    __cil_tmp28 = (unsigned long )__cil_tmp27;
-    __cil_tmp29 = __cil_tmp28 + 136;
-    __cil_tmp30 = (struct device *)__cil_tmp29;
+    __cil_tmp30 = (struct device *)((void *)__cil_tmp27 + 136);
     __cil_tmp31 = (struct device const *)__cil_tmp30;
     __dynamic_dev_dbg(& descriptor, __cil_tmp31, "READ_PORT%d called\n", port_num);
     }
@@ -3662,18 +3525,12 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   result = vendor_command(cyp, (unsigned char)4, __cil_tmp34, (unsigned char)0);
   __cil_tmp35 = & descriptor___0;
   *((char const **)__cil_tmp35) = "cypress_cy7c63";
-  __cil_tmp36 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp36) = "read_port";
-  __cil_tmp37 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp37) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
-  __cil_tmp38 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp38) = "Result of vendor_command: %d\n\n";
-  __cil_tmp39 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp39) = 195U;
-  __cil_tmp40 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp40) = (unsigned char)1;
-  __cil_tmp41 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp42 = *((unsigned char *)__cil_tmp41);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "read_port";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1910/dscv_tempdir/dscv/ri/43_1a/drivers/usb/misc/cypress_cy7c63.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "Result of vendor_command: %d\n\n";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 195U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)1;
+  __cil_tmp42 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp43 = (long )__cil_tmp42;
   __cil_tmp44 = __cil_tmp43 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp44, 0L);
@@ -3681,9 +3538,7 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   if (tmp___1 != 0L) {
     {
     __cil_tmp45 = *((struct usb_device **)cyp);
-    __cil_tmp46 = (unsigned long )__cil_tmp45;
-    __cil_tmp47 = __cil_tmp46 + 136;
-    __cil_tmp48 = (struct device *)__cil_tmp47;
+    __cil_tmp48 = (struct device *)((void *)__cil_tmp45 + 136);
     __cil_tmp49 = (struct device const *)__cil_tmp48;
     __dynamic_dev_dbg(& descriptor___0, __cil_tmp49, "Result of vendor_command: %d\n\n",
                       result);
@@ -3693,9 +3548,7 @@ static ssize_t read_port(struct device *dev , struct device_attribute *attr , ch
   {
   __cil_tmp50 = port_num * 1UL;
   __cil_tmp51 = 8 + __cil_tmp50;
-  __cil_tmp52 = (unsigned long )cyp;
-  __cil_tmp53 = __cil_tmp52 + __cil_tmp51;
-  __cil_tmp54 = *((unsigned char *)__cil_tmp53);
+  __cil_tmp54 = *((unsigned char *)((void *)cyp + __cil_tmp51));
   __cil_tmp55 = (int )__cil_tmp54;
   tmp___2 = sprintf(buf, "%d", __cil_tmp55);
   }
@@ -3740,29 +3593,17 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
   struct cypress *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device const *__cil_tmp13 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   struct device_attribute const *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device_attribute const *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct device *__cil_tmp25 ;
   struct device const *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct device *__cil_tmp29 ;
   struct device_attribute const *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct device *__cil_tmp33 ;
   struct device_attribute const *__cil_tmp34 ;
   void *__cil_tmp35 ;
@@ -3781,9 +3622,7 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
   __cil_tmp9 = (unsigned long )dev;
   if (__cil_tmp9 == __cil_tmp8) {
     {
-    __cil_tmp10 = (unsigned long )interface;
-    __cil_tmp11 = __cil_tmp10 + 48;
-    __cil_tmp12 = (struct device *)__cil_tmp11;
+    __cil_tmp12 = (struct device *)((void *)interface + 48);
     __cil_tmp13 = (struct device const *)__cil_tmp12;
     dev_err(__cil_tmp13, "Out of memory!\n");
     }
@@ -3796,9 +3635,7 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
   *((struct usb_device **)dev) = usb_get_dev(tmp___0);
   __cil_tmp14 = (void *)dev;
   usb_set_intfdata(interface, __cil_tmp14);
-  __cil_tmp15 = (unsigned long )interface;
-  __cil_tmp16 = __cil_tmp15 + 48;
-  __cil_tmp17 = (struct device *)__cil_tmp16;
+  __cil_tmp17 = (struct device *)((void *)interface + 48);
   __cil_tmp18 = (struct device_attribute const *)(& dev_attr_port0);
   retval = device_create_file(__cil_tmp17, __cil_tmp18);
   }
@@ -3807,9 +3644,7 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
   } else {
   }
   {
-  __cil_tmp19 = (unsigned long )interface;
-  __cil_tmp20 = __cil_tmp19 + 48;
-  __cil_tmp21 = (struct device *)__cil_tmp20;
+  __cil_tmp21 = (struct device *)((void *)interface + 48);
   __cil_tmp22 = (struct device_attribute const *)(& dev_attr_port1);
   retval = device_create_file(__cil_tmp21, __cil_tmp22);
   }
@@ -3818,23 +3653,17 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
   } else {
   }
   {
-  __cil_tmp23 = (unsigned long )interface;
-  __cil_tmp24 = __cil_tmp23 + 48;
-  __cil_tmp25 = (struct device *)__cil_tmp24;
+  __cil_tmp25 = (struct device *)((void *)interface + 48);
   __cil_tmp26 = (struct device const *)__cil_tmp25;
   _dev_info(__cil_tmp26, "Cypress CY7C63xxx device now attached\n");
   }
   return (0);
   error:
   {
-  __cil_tmp27 = (unsigned long )interface;
-  __cil_tmp28 = __cil_tmp27 + 48;
-  __cil_tmp29 = (struct device *)__cil_tmp28;
+  __cil_tmp29 = (struct device *)((void *)interface + 48);
   __cil_tmp30 = (struct device_attribute const *)(& dev_attr_port0);
   device_remove_file(__cil_tmp29, __cil_tmp30);
-  __cil_tmp31 = (unsigned long )interface;
-  __cil_tmp32 = __cil_tmp31 + 48;
-  __cil_tmp33 = (struct device *)__cil_tmp32;
+  __cil_tmp33 = (struct device *)((void *)interface + 48);
   __cil_tmp34 = (struct device_attribute const *)(& dev_attr_port1);
   device_remove_file(__cil_tmp33, __cil_tmp34);
   __cil_tmp35 = (void *)0;
@@ -3851,18 +3680,12 @@ static int cypress_probe(struct usb_interface *interface , struct usb_device_id 
 static void cypress_disconnect(struct usb_interface *interface )
 { struct cypress *dev ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device_attribute const *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device_attribute const *__cil_tmp11 ;
   void *__cil_tmp12 ;
   struct usb_device *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
   void const *__cil_tmp18 ;
@@ -3870,23 +3693,17 @@ static void cypress_disconnect(struct usb_interface *interface )
   {
   tmp = usb_get_intfdata(interface);
   dev = (struct cypress *)tmp;
-  __cil_tmp4 = (unsigned long )interface;
-  __cil_tmp5 = __cil_tmp4 + 48;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)interface + 48);
   __cil_tmp7 = (struct device_attribute const *)(& dev_attr_port0);
   device_remove_file(__cil_tmp6, __cil_tmp7);
-  __cil_tmp8 = (unsigned long )interface;
-  __cil_tmp9 = __cil_tmp8 + 48;
-  __cil_tmp10 = (struct device *)__cil_tmp9;
+  __cil_tmp10 = (struct device *)((void *)interface + 48);
   __cil_tmp11 = (struct device_attribute const *)(& dev_attr_port1);
   device_remove_file(__cil_tmp10, __cil_tmp11);
   __cil_tmp12 = (void *)0;
   usb_set_intfdata(interface, __cil_tmp12);
   __cil_tmp13 = *((struct usb_device **)dev);
   usb_put_dev(__cil_tmp13);
-  __cil_tmp14 = (unsigned long )interface;
-  __cil_tmp15 = __cil_tmp14 + 48;
-  __cil_tmp16 = (struct device *)__cil_tmp15;
+  __cil_tmp16 = (struct device *)((void *)interface + 48);
   __cil_tmp17 = (struct device const *)__cil_tmp16;
   _dev_info(__cil_tmp17, "Cypress CY7C63xxx device now disconnected\n");
   __cil_tmp18 = (void const *)dev;

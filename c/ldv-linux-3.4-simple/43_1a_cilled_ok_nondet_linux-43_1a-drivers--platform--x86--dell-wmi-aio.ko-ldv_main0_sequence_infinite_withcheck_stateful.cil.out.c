@@ -2990,32 +2990,22 @@ static void dell_wmi_aio_notify(u32 value , void *context )
   acpi_status status ;
   unsigned int scancode ;
   struct acpi_buffer *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   union acpi_object *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   acpi_object_type __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u64 __cil_tmp18 ;
   bool __cil_tmp19 ;
   u8 *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   u8 *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   u32 __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   u8 *__cil_tmp34 ;
   u8 __cil_tmp35 ;
   bool __cil_tmp36 ;
@@ -3025,8 +3015,7 @@ static void dell_wmi_aio_notify(u32 value , void *context )
   {
   __cil_tmp7 = & response;
   *((acpi_size *)__cil_tmp7) = 0xffffffffffffffffULL;
-  __cil_tmp8 = (unsigned long )(& response) + 8;
-  *((void **)__cil_tmp8) = (void *)0;
+  *((void **)((void *)(&response) + 8)) = (void *)0;
   status = wmi_get_event_data(value, & response);
   }
   if (status != 0U) {
@@ -3037,8 +3026,7 @@ static void dell_wmi_aio_notify(u32 value , void *context )
   } else {
 
   }
-  __cil_tmp9 = (unsigned long )(& response) + 8;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)(&response) + 8));
   obj = (union acpi_object *)__cil_tmp10;
   {
   __cil_tmp11 = (union acpi_object *)0;
@@ -3057,9 +3045,7 @@ static void dell_wmi_aio_notify(u32 value , void *context )
       case_1: /* CIL Label */ 
       {
       __cil_tmp15 = 0 + 8;
-      __cil_tmp16 = (unsigned long )obj;
-      __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-      __cil_tmp18 = *((u64 *)__cil_tmp17);
+      __cil_tmp18 = *((u64 *)((void *)obj + __cil_tmp15));
       scancode = (unsigned int )__cil_tmp18;
       __cil_tmp19 = (bool )1;
       sparse_keymap_report_event(dell_wmi_aio_input_dev, scancode, 1U, __cil_tmp19);
@@ -3070,22 +3056,16 @@ static void dell_wmi_aio_notify(u32 value , void *context )
       __cil_tmp20 = (u8 *)0;
       __cil_tmp21 = (unsigned long )__cil_tmp20;
       __cil_tmp22 = 0 + 8;
-      __cil_tmp23 = (unsigned long )obj;
-      __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
-      __cil_tmp25 = *((u8 **)__cil_tmp24);
+      __cil_tmp25 = *((u8 **)((void *)obj + __cil_tmp22));
       __cil_tmp26 = (unsigned long )__cil_tmp25;
       if (__cil_tmp26 != __cil_tmp21) {
         {
         __cil_tmp27 = 0 + 4;
-        __cil_tmp28 = (unsigned long )obj;
-        __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-        __cil_tmp30 = *((u32 *)__cil_tmp29);
+        __cil_tmp30 = *((u32 *)((void *)obj + __cil_tmp27));
         if (__cil_tmp30 != 0U) {
           {
           __cil_tmp31 = 0 + 8;
-          __cil_tmp32 = (unsigned long )obj;
-          __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-          __cil_tmp34 = *((u8 **)__cil_tmp33);
+          __cil_tmp34 = *((u8 **)((void *)obj + __cil_tmp31));
           __cil_tmp35 = *__cil_tmp34;
           scancode = (unsigned int )__cil_tmp35;
           __cil_tmp36 = (bool )1;
@@ -3121,10 +3101,6 @@ static int dell_wmi_aio_input_setup(void)
   struct input_dev *__cil_tmp2 ;
   unsigned long __cil_tmp3 ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct key_entry  const  *__cil_tmp9 ;
   int (*__cil_tmp10)(struct input_dev * , struct key_entry * ) ;
 
@@ -3144,12 +3120,8 @@ static int dell_wmi_aio_input_setup(void)
   }
   {
   *((char const   **)dell_wmi_aio_input_dev) = "Dell AIO WMI hotkeys";
-  __cil_tmp5 = (unsigned long )dell_wmi_aio_input_dev;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  *((char const   **)__cil_tmp6) = "wmi/input0";
-  __cil_tmp7 = (unsigned long )dell_wmi_aio_input_dev;
-  __cil_tmp8 = __cil_tmp7 + 24;
-  *((__u16 *)__cil_tmp8) = (__u16 )25U;
+  *((char const   **)((void *)dell_wmi_aio_input_dev + 8)) = "wmi/input0";
+  *((__u16 *)((void *)dell_wmi_aio_input_dev + 24)) = (__u16 )25U;
   __cil_tmp9 = (struct key_entry  const  *)(& dell_wmi_aio_keymap);
   __cil_tmp10 = (int (*)(struct input_dev * , struct key_entry * ))0;
   err = sparse_keymap_setup(dell_wmi_aio_input_dev, __cil_tmp9, __cil_tmp10);

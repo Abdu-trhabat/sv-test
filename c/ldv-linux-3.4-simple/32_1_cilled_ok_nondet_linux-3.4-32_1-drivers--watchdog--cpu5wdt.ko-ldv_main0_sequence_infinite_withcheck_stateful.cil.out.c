@@ -1368,8 +1368,7 @@ int atomic_dec_and_mutex_lock(atomic_t *cnt , struct mutex *lock ) ;
 static struct lock_class_key __key  ;
 __inline static void init_completion(struct completion *x )  __attribute__((__no_instrument_function__)) ;
 __inline static void init_completion(struct completion *x ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   wait_queue_head_t *__cil_tmp4 ;
 
   {
@@ -1378,9 +1377,7 @@ __inline static void init_completion(struct completion *x )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp2 = (unsigned long )x;
-    __cil_tmp3 = __cil_tmp2 + 8;
-    __cil_tmp4 = (wait_queue_head_t *)__cil_tmp3;
+    __cil_tmp4 = (wait_queue_head_t *)((void *)x + 8);
     __init_waitqueue_head(__cil_tmp4, "&x->wait", & __key);
     }
     goto while_break;
@@ -1405,19 +1402,11 @@ __inline static void setup_timer_key(struct timer_list *timer , char const   *na
 __inline static void setup_timer_key(struct timer_list *timer , char const   *name ,
                                      struct lock_class_key *key , void (*function)(unsigned long  ) ,
                                      unsigned long data ) 
-{ unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-
+{
   {
   {
-  __cil_tmp6 = (unsigned long )timer;
-  __cil_tmp7 = __cil_tmp6 + 32;
-  *((void (**)(unsigned long  ))__cil_tmp7) = function;
-  __cil_tmp8 = (unsigned long )timer;
-  __cil_tmp9 = __cil_tmp8 + 40;
-  *((unsigned long *)__cil_tmp9) = data;
+  *((void (**)(unsigned long  ))((void *)timer + 32)) = function;
+  *((unsigned long *)((void *)timer + 40)) = data;
   init_timer_key(timer, name, key);
   }
   return;
@@ -1498,16 +1487,13 @@ static void cpu5wdt_trigger(unsigned long unused )
   long __cil_tmp10 ;
   int *__cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int *__cil_tmp14 ;
   int *__cil_tmp15 ;
   int __cil_tmp16 ;
   int *__cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct timer_list *__cil_tmp23 ;
   unsigned long volatile   __cil_tmp24 ;
   unsigned long volatile   __cil_tmp25 ;
@@ -1552,8 +1538,7 @@ static void cpu5wdt_trigger(unsigned long unused )
   }
   }
   {
-  __cil_tmp13 = (unsigned long )(& cpu5wdt_device) + 48;
-  if (*((int *)__cil_tmp13)) {
+  if (*((int *)((void *)(&cpu5wdt_device) + 48))) {
     __cil_tmp14 = & ticks;
     __cil_tmp15 = & ticks;
     __cil_tmp16 = *__cil_tmp15;
@@ -1570,14 +1555,12 @@ static void cpu5wdt_trigger(unsigned long unused )
   outb((unsigned char)1, __cil_tmp19);
   }
   {
-  __cil_tmp20 = (unsigned long )(& cpu5wdt_device) + 136;
-  if (*((int *)__cil_tmp20)) {
+  if (*((int *)((void *)(&cpu5wdt_device) + 136))) {
     {
     __cil_tmp21 = & ticks;
     if (*__cil_tmp21) {
       {
-      __cil_tmp22 = (unsigned long )(& cpu5wdt_device) + 56;
-      __cil_tmp23 = (struct timer_list *)__cil_tmp22;
+      __cil_tmp23 = (struct timer_list *)((void *)(&cpu5wdt_device) + 56);
       __cil_tmp24 = (unsigned long volatile   )26;
       __cil_tmp25 = jiffies + __cil_tmp24;
       __cil_tmp26 = (unsigned long )__cil_tmp25;
@@ -1612,7 +1595,6 @@ __section__("__verbose")))  =    {"cpu5wdt", "cpu5wdt_reset", "/home/zakharov/la
 static void cpu5wdt_reset(void) 
 { long tmp ;
   int *__cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
   int *__cil_tmp4 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp5 ;
   unsigned int __cil_tmp6 ;
@@ -1625,8 +1607,7 @@ static void cpu5wdt_reset(void)
 
   {
   __cil_tmp2 = & ticks;
-  __cil_tmp3 = (unsigned long )(& cpu5wdt_device) + 140;
-  *__cil_tmp2 = *((int *)__cil_tmp3);
+  *__cil_tmp2 = *((int *)((void *)(&cpu5wdt_device) + 140));
   {
   __cil_tmp4 = & verbose;
   if (*__cil_tmp4) {
@@ -1665,9 +1646,7 @@ static void cpu5wdt_reset(void)
 static void cpu5wdt_start(void) 
 { unsigned long flags ;
   raw_spinlock_t *tmp ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int *__cil_tmp8 ;
   int __cil_tmp9 ;
   int __cil_tmp10 ;
@@ -1683,13 +1662,10 @@ static void cpu5wdt_start(void)
   int *__cil_tmp20 ;
   int __cil_tmp21 ;
   int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct timer_list *__cil_tmp24 ;
   unsigned long volatile   __cil_tmp25 ;
   unsigned long volatile   __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
 
   {
@@ -1712,12 +1688,10 @@ static void cpu5wdt_start(void)
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp5 = (unsigned long )(& cpu5wdt_device) + 136;
-  __cil_tmp6 = *((int *)__cil_tmp5);
+  __cil_tmp6 = *((int *)((void *)(&cpu5wdt_device) + 136));
   if (! __cil_tmp6) {
     {
-    __cil_tmp7 = (unsigned long )(& cpu5wdt_device) + 136;
-    *((int *)__cil_tmp7) = 1;
+    *((int *)((void *)(&cpu5wdt_device) + 136)) = 1;
     __cil_tmp8 = & port;
     __cil_tmp9 = *__cil_tmp8;
     __cil_tmp10 = __cil_tmp9 + 2;
@@ -1738,8 +1712,7 @@ static void cpu5wdt_start(void)
     __cil_tmp21 = *__cil_tmp20;
     __cil_tmp22 = __cil_tmp21 + 8;
     outb((unsigned char)0, __cil_tmp22);
-    __cil_tmp23 = (unsigned long )(& cpu5wdt_device) + 56;
-    __cil_tmp24 = (struct timer_list *)__cil_tmp23;
+    __cil_tmp24 = (struct timer_list *)((void *)(&cpu5wdt_device) + 56);
     __cil_tmp25 = (unsigned long volatile   )26;
     __cil_tmp26 = jiffies + __cil_tmp25;
     __cil_tmp27 = (unsigned long )__cil_tmp26;
@@ -1750,10 +1723,8 @@ static void cpu5wdt_start(void)
   }
   }
   {
-  __cil_tmp28 = (unsigned long )(& cpu5wdt_device) + 48;
-  __cil_tmp29 = (unsigned long )(& cpu5wdt_device) + 48;
-  __cil_tmp30 = *((int *)__cil_tmp29);
-  *((int *)__cil_tmp28) = __cil_tmp30 + 1;
+  __cil_tmp30 = *((int *)((void *)(&cpu5wdt_device) + 48));
+  *((int *)((void *)(&cpu5wdt_device) + 48)) = __cil_tmp30 + 1;
   spin_unlock_irqrestore(& cpu5wdt_lock, flags);
   }
   return;
@@ -1762,10 +1733,7 @@ static void cpu5wdt_start(void)
 static int cpu5wdt_stop(void) 
 { unsigned long flags ;
   raw_spinlock_t *tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int *__cil_tmp9 ;
 
   {
@@ -1788,18 +1756,15 @@ static int cpu5wdt_stop(void)
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp5 = (unsigned long )(& cpu5wdt_device) + 48;
-  if (*((int *)__cil_tmp5)) {
-    __cil_tmp6 = (unsigned long )(& cpu5wdt_device) + 48;
-    *((int *)__cil_tmp6) = 0;
+  if (*((int *)((void *)(&cpu5wdt_device) + 48))) {
+    *((int *)((void *)(&cpu5wdt_device) + 48)) = 0;
   } else {
 
   }
   }
   {
   __cil_tmp7 = & ticks;
-  __cil_tmp8 = (unsigned long )(& cpu5wdt_device) + 140;
-  *__cil_tmp7 = *((int *)__cil_tmp8);
+  *__cil_tmp7 = *((int *)((void *)(&cpu5wdt_device) + 140));
   spin_unlock_irqrestore(& cpu5wdt_lock, flags);
   }
   {
@@ -1818,14 +1783,12 @@ static int cpu5wdt_stop(void)
 static int cpu5wdt_open(struct inode *inode , struct file *file ) 
 { int tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp5 ;
   unsigned long *__cil_tmp6 ;
   unsigned long volatile   *__cil_tmp7 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )(& cpu5wdt_device) + 144;
-  __cil_tmp6 = (unsigned long *)__cil_tmp5;
+  __cil_tmp6 = (unsigned long *)((void *)(&cpu5wdt_device) + 144);
   __cil_tmp7 = (unsigned long volatile   *)__cil_tmp6;
   tmp = test_and_set_bit(0, __cil_tmp7);
   }
@@ -1841,14 +1804,13 @@ static int cpu5wdt_open(struct inode *inode , struct file *file )
 }
 }
 static int cpu5wdt_release(struct inode *inode , struct file *file ) 
-{ unsigned long __cil_tmp3 ;
+{
   unsigned long *__cil_tmp4 ;
   unsigned long volatile   *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )(& cpu5wdt_device) + 144;
-  __cil_tmp4 = (unsigned long *)__cil_tmp3;
+  __cil_tmp4 = (unsigned long *)((void *)(&cpu5wdt_device) + 144);
   __cil_tmp5 = (unsigned long volatile   *)__cil_tmp4;
   clear_bit(0, __cil_tmp5);
   }
@@ -2239,14 +2201,11 @@ static int cpu5wdt_init(void)
   int __cil_tmp16 ;
   struct __anonstruct_cpu5wdt_device_218 *__cil_tmp17 ;
   struct completion *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct timer_list *__cil_tmp21 ;
   void *__cil_tmp22 ;
   char const   *__cil_tmp23 ;
   void *__cil_tmp24 ;
   struct lock_class_key *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int *__cil_tmp27 ;
   int *__cil_tmp28 ;
   int __cil_tmp29 ;
@@ -2300,18 +2259,15 @@ static int cpu5wdt_init(void)
   __cil_tmp17 = & cpu5wdt_device;
   __cil_tmp18 = (struct completion *)__cil_tmp17;
   init_completion(__cil_tmp18);
-  __cil_tmp19 = (unsigned long )(& cpu5wdt_device) + 136;
-  *((int *)__cil_tmp19) = 0;
-  __cil_tmp20 = (unsigned long )(& cpu5wdt_device) + 56;
-  __cil_tmp21 = (struct timer_list *)__cil_tmp20;
+  *((int *)((void *)(&cpu5wdt_device) + 136)) = 0;
+  __cil_tmp21 = (struct timer_list *)((void *)(&cpu5wdt_device) + 56);
   __cil_tmp22 = (void *)0;
   __cil_tmp23 = (char const   *)__cil_tmp22;
   __cil_tmp24 = (void *)0;
   __cil_tmp25 = (struct lock_class_key *)__cil_tmp24;
   setup_timer_key(__cil_tmp21, __cil_tmp23, __cil_tmp25, & cpu5wdt_trigger, 0UL);
-  __cil_tmp26 = (unsigned long )(& cpu5wdt_device) + 140;
   __cil_tmp27 = & ticks;
-  *((int *)__cil_tmp26) = *__cil_tmp27;
+  *((int *)((void *)(&cpu5wdt_device) + 140)) = *__cil_tmp27;
   __cil_tmp28 = & port;
   __cil_tmp29 = *__cil_tmp28;
   __cil_tmp30 = (resource_size_t )__cil_tmp29;
@@ -2384,8 +2340,7 @@ static int cpu5wdt_init_module(void)
 }
 static void cpu5wdt_exit(void)  __attribute__((__section__(".devexit.text"), __no_instrument_function__)) ;
 static void cpu5wdt_exit(void) 
-{ unsigned long __cil_tmp1 ;
-  unsigned long __cil_tmp2 ;
+{
   struct __anonstruct_cpu5wdt_device_218 *__cil_tmp3 ;
   struct completion *__cil_tmp4 ;
   int *__cil_tmp5 ;
@@ -2395,11 +2350,9 @@ static void cpu5wdt_exit(void)
 
   {
   {
-  __cil_tmp1 = (unsigned long )(& cpu5wdt_device) + 136;
-  if (*((int *)__cil_tmp1)) {
+  if (*((int *)((void *)(&cpu5wdt_device) + 136))) {
     {
-    __cil_tmp2 = (unsigned long )(& cpu5wdt_device) + 136;
-    *((int *)__cil_tmp2) = 0;
+    *((int *)((void *)(&cpu5wdt_device) + 136)) = 0;
     __cil_tmp3 = & cpu5wdt_device;
     __cil_tmp4 = (struct completion *)__cil_tmp3;
     wait_for_completion(__cil_tmp4);

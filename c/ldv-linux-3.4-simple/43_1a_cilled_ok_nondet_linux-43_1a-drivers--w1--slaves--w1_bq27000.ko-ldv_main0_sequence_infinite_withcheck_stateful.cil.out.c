@@ -875,26 +875,14 @@ static int w1_bq27000_read(struct device *dev , unsigned int reg )
   struct device  const  *__mptr ;
   struct device *__cil_tmp6 ;
   struct w1_slave *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct w1_master *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct mutex *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct w1_master *__cil_tmp16 ;
   u8 __cil_tmp17 ;
   int __cil_tmp18 ;
   u8 __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct w1_master *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct w1_master *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct mutex *__cil_tmp28 ;
 
   {
@@ -903,30 +891,18 @@ static int w1_bq27000_read(struct device *dev , unsigned int reg )
   __mptr = (struct device  const  *)__cil_tmp6;
   __cil_tmp7 = (struct w1_slave *)__mptr;
   sl = __cil_tmp7 + 0xffffffffffffff90UL;
-  __cil_tmp8 = (unsigned long )sl;
-  __cil_tmp9 = __cil_tmp8 + 88;
-  __cil_tmp10 = *((struct w1_master **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 144;
-  __cil_tmp13 = (struct mutex *)__cil_tmp12;
+  __cil_tmp10 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp13 = (struct mutex *)((void *)__cil_tmp10 + 144);
   mutex_lock_nested(__cil_tmp13, 0U);
-  __cil_tmp14 = (unsigned long )sl;
-  __cil_tmp15 = __cil_tmp14 + 88;
-  __cil_tmp16 = *((struct w1_master **)__cil_tmp15);
+  __cil_tmp16 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp17 = (u8 )reg;
   __cil_tmp18 = (int )__cil_tmp17;
   __cil_tmp19 = (u8 )__cil_tmp18;
   w1_write_8(__cil_tmp16, __cil_tmp19);
-  __cil_tmp20 = (unsigned long )sl;
-  __cil_tmp21 = __cil_tmp20 + 88;
-  __cil_tmp22 = *((struct w1_master **)__cil_tmp21);
+  __cil_tmp22 = *((struct w1_master **)((void *)sl + 88));
   val = w1_read_8(__cil_tmp22);
-  __cil_tmp23 = (unsigned long )sl;
-  __cil_tmp24 = __cil_tmp23 + 88;
-  __cil_tmp25 = *((struct w1_master **)__cil_tmp24);
-  __cil_tmp26 = (unsigned long )__cil_tmp25;
-  __cil_tmp27 = __cil_tmp26 + 144;
-  __cil_tmp28 = (struct mutex *)__cil_tmp27;
+  __cil_tmp25 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp28 = (struct mutex *)((void *)__cil_tmp25 + 144);
   mutex_unlock(__cil_tmp28);
   }
   return ((int )val);
@@ -940,12 +916,6 @@ static int w1_bq27000_add_slave(struct w1_slave *sl )
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   void const   *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   void *__cil_tmp15 ;
 
@@ -967,11 +937,7 @@ static int w1_bq27000_add_slave(struct w1_slave *sl )
   {
   __cil_tmp7 = (void const   *)(& bq27000_battery_info);
   ret = platform_device_add_data(pdev, __cil_tmp7, 16UL);
-  __cil_tmp8 = (unsigned long )pdev;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = (unsigned long )sl;
-  __cil_tmp11 = __cil_tmp10 + 112;
-  *((struct device **)__cil_tmp9) = (struct device *)__cil_tmp11;
+  *((struct device **)((void *)pdev + 16)) = (struct device *)((void *)sl + 112);
   ret = platform_device_add(pdev);
   }
   if (ret != 0) {
@@ -980,9 +946,7 @@ static int w1_bq27000_add_slave(struct w1_slave *sl )
 
   }
   {
-  __cil_tmp12 = (unsigned long )sl;
-  __cil_tmp13 = __cil_tmp12 + 112;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)sl + 112);
   __cil_tmp15 = (void *)pdev;
   dev_set_drvdata(__cil_tmp14, __cil_tmp15);
   }
@@ -998,16 +962,12 @@ static int w1_bq27000_add_slave(struct w1_slave *sl )
 static void w1_bq27000_remove_slave(struct w1_slave *sl ) 
 { struct platform_device *pdev ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device  const  *__cil_tmp7 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )sl;
-  __cil_tmp5 = __cil_tmp4 + 112;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)sl + 112);
   __cil_tmp7 = (struct device  const  *)__cil_tmp6;
   tmp = dev_get_drvdata(__cil_tmp7);
   pdev = (struct platform_device *)tmp;
@@ -1022,7 +982,6 @@ static int w1_bq27000_init(void)
 { int tmp ;
   int *__cil_tmp2 ;
   int __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   int *__cil_tmp5 ;
   int __cil_tmp6 ;
 
@@ -1031,10 +990,9 @@ static int w1_bq27000_init(void)
   __cil_tmp2 = & F_ID;
   __cil_tmp3 = *__cil_tmp2;
   if (__cil_tmp3 != 0) {
-    __cil_tmp4 = (unsigned long )(& w1_bq27000_family) + 16;
     __cil_tmp5 = & F_ID;
     __cil_tmp6 = *__cil_tmp5;
-    *((u8 *)__cil_tmp4) = (u8 )__cil_tmp6;
+    *((u8 *)((void *)(&w1_bq27000_family) + 16)) = (u8 )__cil_tmp6;
   } else {
 
   }

@@ -2144,13 +2144,10 @@ struct __anonstruct_241 {
 long ldv__builtin_expect(long val , long res ) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -2224,14 +2221,10 @@ extern s32 i2c_smbus_write_i2c_block_data(struct i2c_client const *client , u8 c
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)dev + 40);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -2239,14 +2232,11 @@ __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2311,8 +2301,6 @@ __inline static struct lp5521_led *cdev_to_led(struct led_classdev *cdev ) __att
 __inline static struct lp5521_led *cdev_to_led(struct led_classdev *cdev )
 { struct led_classdev const *__mptr ;
   struct lp5521_led *__cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct led_classdev *__cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   char *__cil_tmp8 ;
@@ -2321,9 +2309,7 @@ __inline static struct lp5521_led *cdev_to_led(struct led_classdev *cdev )
   __mptr = (struct led_classdev const *)cdev;
   {
   __cil_tmp3 = (struct lp5521_led *)0;
-  __cil_tmp4 = (unsigned long )__cil_tmp3;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = (struct led_classdev *)__cil_tmp5;
+  __cil_tmp6 = (struct led_classdev *)((void *)__cil_tmp3 + 8);
   __cil_tmp7 = (unsigned int )__cil_tmp6;
   __cil_tmp8 = (char *)__mptr;
   __cil_tmp9 = __cil_tmp8 - __cil_tmp7;
@@ -2339,8 +2325,6 @@ __inline static struct lp5521_chip *engine_to_lp5521(struct lp5521_engine *engin
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   struct lp5521_chip *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct lp5521_engine *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   char *__cil_tmp12 ;
@@ -2353,9 +2337,7 @@ __inline static struct lp5521_chip *engine_to_lp5521(struct lp5521_engine *engin
   __cil_tmp5 = __cil_tmp4 * 8UL;
   __cil_tmp6 = 88 + __cil_tmp5;
   __cil_tmp7 = (struct lp5521_chip *)0;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp6;
-  __cil_tmp10 = (struct lp5521_engine *)__cil_tmp9;
+  __cil_tmp10 = (struct lp5521_engine *)((void *)__cil_tmp7 + __cil_tmp6);
   __cil_tmp11 = (unsigned int )__cil_tmp10;
   __cil_tmp12 = (char *)__mptr;
   __cil_tmp13 = __cil_tmp12 - __cil_tmp11;
@@ -2370,8 +2352,6 @@ __inline static struct lp5521_chip *led_to_lp5521(struct lp5521_led *led )
   unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
   struct lp5521_chip *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct lp5521_led *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   char *__cil_tmp11 ;
@@ -2383,9 +2363,7 @@ __inline static struct lp5521_chip *led_to_lp5521(struct lp5521_led *led )
   __cil_tmp4 = __cil_tmp3 * 312UL;
   __cil_tmp5 = 112 + __cil_tmp4;
   __cil_tmp6 = (struct lp5521_chip *)0;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp5;
-  __cil_tmp9 = (struct lp5521_led *)__cil_tmp8;
+  __cil_tmp9 = (struct lp5521_led *)((void *)__cil_tmp6 + __cil_tmp5);
   __cil_tmp10 = (unsigned int )__cil_tmp9;
   __cil_tmp11 = (char *)__mptr;
   __cil_tmp12 = __cil_tmp11 - __cil_tmp10;
@@ -2429,14 +2407,10 @@ static int lp5521_set_engine_mode(struct lp5521_engine *engine , u8 mode )
   int ret ;
   u8 engine_state ;
   int tmp___8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
   u8 __cil_tmp13 ;
   u8 *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u8 __cil_tmp17 ;
   int __cil_tmp18 ;
   int __cil_tmp19 ;
@@ -2444,8 +2418,6 @@ static int lp5521_set_engine_mode(struct lp5521_engine *engine , u8 mode )
   u8 __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   u8 __cil_tmp26 ;
   int __cil_tmp27 ;
   int __cil_tmp28 ;
@@ -2463,9 +2435,7 @@ static int lp5521_set_engine_mode(struct lp5521_engine *engine , u8 mode )
   {
   tmp___7 = engine_to_lp5521(engine);
   chip = tmp___7;
-  __cil_tmp9 = (unsigned long )chip;
-  __cil_tmp10 = __cil_tmp9 + 80;
-  client = *((struct i2c_client **)__cil_tmp10);
+  client = *((struct i2c_client **)((void *)chip + 80));
   }
   {
   __cil_tmp11 = (int )mode;
@@ -2491,9 +2461,7 @@ static int lp5521_set_engine_mode(struct lp5521_engine *engine , u8 mode )
   }
   {
   __cil_tmp14 = & engine_state;
-  __cil_tmp15 = (unsigned long )engine;
-  __cil_tmp16 = __cil_tmp15 + 6;
-  __cil_tmp17 = *((u8 *)__cil_tmp16);
+  __cil_tmp17 = *((u8 *)((void *)engine + 6));
   __cil_tmp18 = (int )__cil_tmp17;
   __cil_tmp19 = ~ __cil_tmp18;
   __cil_tmp20 = & engine_state;
@@ -2501,9 +2469,7 @@ static int lp5521_set_engine_mode(struct lp5521_engine *engine , u8 mode )
   __cil_tmp22 = (int )__cil_tmp21;
   __cil_tmp23 = __cil_tmp22 & __cil_tmp19;
   *__cil_tmp14 = (u8 )__cil_tmp23;
-  __cil_tmp24 = (unsigned long )engine;
-  __cil_tmp25 = __cil_tmp24 + 6;
-  __cil_tmp26 = *((u8 *)__cil_tmp25);
+  __cil_tmp26 = *((u8 *)((void *)engine + 6));
   __cil_tmp27 = (int )__cil_tmp26;
   __cil_tmp28 = (int )mode;
   __cil_tmp29 = __cil_tmp28 & __cil_tmp27;
@@ -2532,16 +2498,12 @@ static int lp5521_load_program(struct lp5521_engine *eng , u8 const *pattern )
   u8 mode ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u8 __cil_tmp13 ;
   u8 __cil_tmp14 ;
   u8 __cil_tmp15 ;
   u8 __cil_tmp16 ;
   u8 __cil_tmp17 ;
   u8 __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   u8 __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
@@ -2555,9 +2517,7 @@ static int lp5521_load_program(struct lp5521_engine *eng , u8 const *pattern )
   {
   tmp___7 = engine_to_lp5521(eng);
   chip = tmp___7;
-  __cil_tmp11 = (unsigned long )chip;
-  __cil_tmp12 = __cil_tmp11 + 80;
-  client = *((struct i2c_client **)__cil_tmp12);
+  client = *((struct i2c_client **)((void *)chip + 80));
   __cil_tmp13 = (u8 )63;
   ret = lp5521_set_engine_mode(eng, __cil_tmp13);
   usleep_range(1000UL, 2000UL);
@@ -2572,9 +2532,7 @@ static int lp5521_load_program(struct lp5521_engine *eng , u8 const *pattern )
   __cil_tmp18 = (u8 )21;
   lp5521_write(client, __cil_tmp17, __cil_tmp18);
   usleep_range(1000UL, 2000UL);
-  __cil_tmp19 = (unsigned long )eng;
-  __cil_tmp20 = __cil_tmp19 + 5;
-  __cil_tmp21 = *((u8 *)__cil_tmp20);
+  __cil_tmp21 = *((u8 *)((void *)eng + 5));
   __cil_tmp22 = (int )__cil_tmp21;
   __cil_tmp23 = __cil_tmp22 * 32;
   addr = 16 + __cil_tmp23;
@@ -2593,29 +2551,21 @@ static int lp5521_load_program(struct lp5521_engine *eng , u8 const *pattern )
 }
 static int lp5521_set_led_current(struct lp5521_chip *chip , int led , u8 curr )
 { int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct i2c_client *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u8 __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   u8 __cil_tmp16 ;
   {
   {
-  __cil_tmp5 = (unsigned long )chip;
-  __cil_tmp6 = __cil_tmp5 + 80;
-  __cil_tmp7 = *((struct i2c_client **)__cil_tmp6);
+  __cil_tmp7 = *((struct i2c_client **)((void *)chip + 80));
   __cil_tmp8 = led * 312UL;
   __cil_tmp9 = __cil_tmp8 + 4;
   __cil_tmp10 = 112 + __cil_tmp9;
-  __cil_tmp11 = (unsigned long )chip;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = *((u8 *)__cil_tmp12);
+  __cil_tmp13 = *((u8 *)((void *)chip + __cil_tmp10));
   __cil_tmp14 = (int )__cil_tmp13;
   __cil_tmp15 = 5 + __cil_tmp14;
   __cil_tmp16 = (u8 )__cil_tmp15;
@@ -2631,20 +2581,14 @@ static void lp5521_init_engine(struct lp5521_chip *chip )
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   {
   i = 0;
   {
@@ -2661,23 +2605,17 @@ static void lp5521_init_engine(struct lp5521_chip *chip )
     }
     __cil_tmp6 = i * 8UL;
     __cil_tmp7 = 88 + __cil_tmp6;
-    __cil_tmp8 = (unsigned long )chip;
-    __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-    *((int *)__cil_tmp9) = i + 1;
+    *((int *)((void *)chip + __cil_tmp7)) = i + 1;
     __cil_tmp10 = i * 8UL;
     __cil_tmp11 = __cil_tmp10 + 6;
     __cil_tmp12 = 88 + __cil_tmp11;
-    __cil_tmp13 = (unsigned long )chip;
-    __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
     __cil_tmp15 = i * 2;
     __cil_tmp16 = 48 >> __cil_tmp15;
-    *((u8 *)__cil_tmp14) = (u8 )__cil_tmp16;
+    *((u8 *)((void *)chip + __cil_tmp12)) = (u8 )__cil_tmp16;
     __cil_tmp17 = i * 8UL;
     __cil_tmp18 = __cil_tmp17 + 5;
     __cil_tmp19 = 88 + __cil_tmp18;
-    __cil_tmp20 = (unsigned long )chip;
-    __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-    *((u8 *)__cil_tmp21) = (u8 )i;
+    *((u8 *)((void *)chip + __cil_tmp19)) = (u8 )i;
     i = i + 1;
   }
   while_break: ;
@@ -2700,8 +2638,6 @@ static int lp5521_configure(struct i2c_client *client )
   u8 __cil_tmp13 ;
   u8 __cil_tmp14 ;
   struct lp5521_platform_data *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u8 __cil_tmp18 ;
   u8 __cil_tmp19 ;
   u8 __cil_tmp20 ;
@@ -2722,9 +2658,7 @@ static int lp5521_configure(struct i2c_client *client )
   __cil_tmp14 = (u8 )63;
   ret = lp5521_write(client, __cil_tmp13, __cil_tmp14);
   __cil_tmp15 = *((struct lp5521_platform_data **)chip);
-  __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = __cil_tmp16 + 48;
-  __cil_tmp18 = *((u8 *)__cil_tmp17);
+  __cil_tmp18 = *((u8 *)((void *)__cil_tmp15 + 48));
   tmp___8 = (int )__cil_tmp18;
   }
   if (tmp___8) {
@@ -2760,13 +2694,9 @@ static int lp5521_configure(struct i2c_client *client )
 static int lp5521_run_selftest(struct lp5521_chip *chip , char *buf )
 { int ret ;
   u8 status ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct i2c_client *__cil_tmp7 ;
   u8 __cil_tmp8 ;
   struct lp5521_platform_data *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u8 __cil_tmp12 ;
   int __cil_tmp13 ;
   u8 *__cil_tmp14 ;
@@ -2775,9 +2705,7 @@ static int lp5521_run_selftest(struct lp5521_chip *chip , char *buf )
   int __cil_tmp17 ;
   {
   {
-  __cil_tmp5 = (unsigned long )chip;
-  __cil_tmp6 = __cil_tmp5 + 80;
-  __cil_tmp7 = *((struct i2c_client **)__cil_tmp6);
+  __cil_tmp7 = *((struct i2c_client **)((void *)chip + 80));
   __cil_tmp8 = (u8 )12;
   ret = lp5521_read(__cil_tmp7, __cil_tmp8, & status);
   }
@@ -2788,9 +2716,7 @@ static int lp5521_run_selftest(struct lp5521_chip *chip , char *buf )
   if (*((struct lp5521_platform_data **)chip)) {
     {
     __cil_tmp9 = *((struct lp5521_platform_data **)chip);
-    __cil_tmp10 = (unsigned long )__cil_tmp9;
-    __cil_tmp11 = __cil_tmp10 + 9;
-    __cil_tmp12 = *((u8 *)__cil_tmp11);
+    __cil_tmp12 = *((u8 *)((void *)__cil_tmp9 + 9));
     __cil_tmp13 = (int )__cil_tmp12;
     if (__cil_tmp13 == 2) {
       {
@@ -2814,21 +2740,13 @@ static int lp5521_run_selftest(struct lp5521_chip *chip , char *buf )
 static void lp5521_set_brightness(struct led_classdev *cdev , enum led_brightness brightness )
 { struct lp5521_led *led ;
   struct lp5521_led *tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct work_struct *__cil_tmp9 ;
   {
   {
   tmp___7 = cdev_to_led(cdev);
   led = tmp___7;
-  __cil_tmp5 = (unsigned long )led;
-  __cil_tmp6 = __cil_tmp5 + 304;
-  *((u8 *)__cil_tmp6) = (u8 )brightness;
-  __cil_tmp7 = (unsigned long )led;
-  __cil_tmp8 = __cil_tmp7 + 272;
-  __cil_tmp9 = (struct work_struct *)__cil_tmp8;
+  *((u8 *)((void *)led + 304)) = (u8 )brightness;
+  __cil_tmp9 = (struct work_struct *)((void *)led + 272);
   schedule_work(__cil_tmp9);
   }
   return;
@@ -2841,62 +2759,38 @@ static void lp5521_led_brightness_work(struct work_struct *work )
   struct lp5521_chip *tmp___7 ;
   struct i2c_client *client ;
   struct lp5521_led *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct work_struct *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   char *__cil_tmp12 ;
   char *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct mutex *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   u8 __cil_tmp21 ;
   int __cil_tmp22 ;
   int __cil_tmp23 ;
   u8 __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u8 __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct mutex *__cil_tmp30 ;
   {
   {
   __mptr = (struct work_struct const *)work;
   __cil_tmp7 = (struct lp5521_led *)0;
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 272;
-  __cil_tmp10 = (struct work_struct *)__cil_tmp9;
+  __cil_tmp10 = (struct work_struct *)((void *)__cil_tmp7 + 272);
   __cil_tmp11 = (unsigned int )__cil_tmp10;
   __cil_tmp12 = (char *)__mptr;
   __cil_tmp13 = __cil_tmp12 - __cil_tmp11;
   led = (struct lp5521_led *)__cil_tmp13;
   tmp___7 = led_to_lp5521(led);
   chip = tmp___7;
-  __cil_tmp14 = (unsigned long )chip;
-  __cil_tmp15 = __cil_tmp14 + 80;
-  client = *((struct i2c_client **)__cil_tmp15);
-  __cil_tmp16 = (unsigned long )chip;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  __cil_tmp18 = (struct mutex *)__cil_tmp17;
+  client = *((struct i2c_client **)((void *)chip + 80));
+  __cil_tmp18 = (struct mutex *)((void *)chip + 8);
   mutex_lock(__cil_tmp18);
-  __cil_tmp19 = (unsigned long )led;
-  __cil_tmp20 = __cil_tmp19 + 4;
-  __cil_tmp21 = *((u8 *)__cil_tmp20);
+  __cil_tmp21 = *((u8 *)((void *)led + 4));
   __cil_tmp22 = (int )__cil_tmp21;
   __cil_tmp23 = 2 + __cil_tmp22;
   __cil_tmp24 = (u8 )__cil_tmp23;
-  __cil_tmp25 = (unsigned long )led;
-  __cil_tmp26 = __cil_tmp25 + 304;
-  __cil_tmp27 = *((u8 *)__cil_tmp26);
+  __cil_tmp27 = *((u8 *)((void *)led + 304));
   lp5521_write(client, __cil_tmp24, __cil_tmp27);
-  __cil_tmp28 = (unsigned long )chip;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  __cil_tmp30 = (struct mutex *)__cil_tmp29;
+  __cil_tmp30 = (struct mutex *)((void *)chip + 8);
   mutex_unlock(__cil_tmp30);
   }
   return;
@@ -2944,8 +2838,6 @@ static int lp5521_detect(struct i2c_client *client )
 }
 static int lp5521_set_mode(struct lp5521_engine *engine , u8 mode )
 { int ret ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   u8 __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
@@ -2957,14 +2849,10 @@ static int lp5521_set_mode(struct lp5521_engine *engine , u8 mode )
   u8 __cil_tmp14 ;
   int __cil_tmp15 ;
   u8 __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   {
   ret = 0;
   {
-  __cil_tmp4 = (unsigned long )engine;
-  __cil_tmp5 = __cil_tmp4 + 4;
-  __cil_tmp6 = *((u8 *)__cil_tmp5);
+  __cil_tmp6 = *((u8 *)((void *)engine + 4));
   __cil_tmp7 = (int )__cil_tmp6;
   __cil_tmp8 = (int )mode;
   if (__cil_tmp8 == __cil_tmp7) {
@@ -3010,9 +2898,7 @@ static int lp5521_set_mode(struct lp5521_engine *engine , u8 mode )
     }
   }
   }
-  __cil_tmp17 = (unsigned long )engine;
-  __cil_tmp18 = __cil_tmp17 + 4;
-  *((u8 *)__cil_tmp18) = mode;
+  *((u8 *)((void *)engine + 4)) = mode;
   return (ret);
 }
 }
@@ -3028,8 +2914,6 @@ static int lp5521_do_store_load(struct lp5521_engine *engine , char const *buf ,
   char c[3] ;
   unsigned int cmd ;
   u8 pattern[32] ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   size_t __cil_tmp18 ;
@@ -3048,35 +2932,23 @@ static int lp5521_do_store_load(struct lp5521_engine *engine , char const *buf ,
   unsigned int __cil_tmp31 ;
   int *__cil_tmp32 ;
   int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct mutex *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   u8 __cil_tmp39 ;
   int __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   u8 *__cil_tmp43 ;
   u8 const *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct mutex *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct device *__cil_tmp50 ;
   struct device const *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct device *__cil_tmp54 ;
   struct device const *__cil_tmp55 ;
   {
   {
   tmp___7 = engine_to_lp5521(engine);
   chip = tmp___7;
-  __cil_tmp14 = (unsigned long )chip;
-  __cil_tmp15 = __cil_tmp14 + 80;
-  client = *((struct i2c_client **)__cil_tmp15);
+  client = *((struct i2c_client **)((void *)chip + 80));
   offset = 0;
   i = 0;
   __cil_tmp16 = 0 * 1UL;
@@ -3137,15 +3009,11 @@ static int lp5521_do_store_load(struct lp5521_engine *engine , char const *buf ,
   } else {
   }
   {
-  __cil_tmp34 = (unsigned long )chip;
-  __cil_tmp35 = __cil_tmp34 + 8;
-  __cil_tmp36 = (struct mutex *)__cil_tmp35;
+  __cil_tmp36 = (struct mutex *)((void *)chip + 8);
   mutex_lock(__cil_tmp36);
   }
   {
-  __cil_tmp37 = (unsigned long )engine;
-  __cil_tmp38 = __cil_tmp37 + 4;
-  __cil_tmp39 = *((u8 *)__cil_tmp38);
+  __cil_tmp39 = *((u8 *)((void *)engine + 4));
   __cil_tmp40 = (int )__cil_tmp39;
   if (__cil_tmp40 == 21) {
     {
@@ -3160,16 +3028,12 @@ static int lp5521_do_store_load(struct lp5521_engine *engine , char const *buf ,
   }
   }
   {
-  __cil_tmp45 = (unsigned long )chip;
-  __cil_tmp46 = __cil_tmp45 + 8;
-  __cil_tmp47 = (struct mutex *)__cil_tmp46;
+  __cil_tmp47 = (struct mutex *)((void *)chip + 8);
   mutex_unlock(__cil_tmp47);
   }
   if (ret) {
     {
-    __cil_tmp48 = (unsigned long )client;
-    __cil_tmp49 = __cil_tmp48 + 40;
-    __cil_tmp50 = (struct device *)__cil_tmp49;
+    __cil_tmp50 = (struct device *)((void *)client + 40);
     __cil_tmp51 = (struct device const *)__cil_tmp50;
     dev_err(__cil_tmp51, "failed loading pattern\n");
     }
@@ -3179,9 +3043,7 @@ static int lp5521_do_store_load(struct lp5521_engine *engine , char const *buf ,
   return ((int )len);
   fail:
   {
-  __cil_tmp52 = (unsigned long )client;
-  __cil_tmp53 = __cil_tmp52 + 40;
-  __cil_tmp54 = (struct device *)__cil_tmp53;
+  __cil_tmp54 = (struct device *)((void *)client + 40);
   __cil_tmp55 = (struct device const *)__cil_tmp54;
   dev_err(__cil_tmp55, "wrong pattern format\n");
   }
@@ -3196,8 +3058,6 @@ static ssize_t store_engine_load(struct device *dev , struct device_attribute *a
   void *tmp___7 ;
   int tmp___8 ;
   struct i2c_client *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
@@ -3206,16 +3066,12 @@ static ssize_t store_engine_load(struct device *dev , struct device_attribute *a
   int __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct lp5521_engine *__cil_tmp24 ;
   {
   {
   __mptr = (struct device const *)dev;
   __cil_tmp11 = (struct i2c_client *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 40;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 40);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
@@ -3226,9 +3082,7 @@ static ssize_t store_engine_load(struct device *dev , struct device_attribute *a
   __cil_tmp19 = nr - 1;
   __cil_tmp20 = __cil_tmp19 * 8UL;
   __cil_tmp21 = 88 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )chip;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  __cil_tmp24 = (struct lp5521_engine *)__cil_tmp23;
+  __cil_tmp24 = (struct lp5521_engine *)((void *)chip + __cil_tmp21);
   tmp___8 = lp5521_do_store_load(__cil_tmp24, buf, len);
   }
   return ((ssize_t )tmp___8);
@@ -3275,8 +3129,6 @@ static ssize_t show_engine_mode(struct device *dev , struct device_attribute *at
   int tmp___10 ;
   int tmp___11 ;
   struct i2c_client *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   unsigned int __cil_tmp17 ;
   char *__cil_tmp18 ;
@@ -3286,16 +3138,12 @@ static ssize_t show_engine_mode(struct device *dev , struct device_attribute *at
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u8 __cil_tmp27 ;
   {
   {
   __mptr = (struct device const *)dev;
   __cil_tmp13 = (struct i2c_client *)0;
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 40;
-  __cil_tmp16 = (struct device *)__cil_tmp15;
+  __cil_tmp16 = (struct device *)((void *)__cil_tmp13 + 40);
   __cil_tmp17 = (unsigned int )__cil_tmp16;
   __cil_tmp18 = (char *)__mptr;
   __cil_tmp19 = __cil_tmp18 - __cil_tmp17;
@@ -3309,9 +3157,7 @@ static ssize_t show_engine_mode(struct device *dev , struct device_attribute *at
   __cil_tmp22 = __cil_tmp21 * 8UL;
   __cil_tmp23 = __cil_tmp22 + 4;
   __cil_tmp24 = 88 + __cil_tmp23;
-  __cil_tmp25 = (unsigned long )chip;
-  __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-  __cil_tmp27 = *((u8 *)__cil_tmp26);
+  __cil_tmp27 = *((u8 *)((void *)chip + __cil_tmp24));
   if ((int )__cil_tmp27 == 42) {
     goto case_42;
   } else
@@ -3393,8 +3239,6 @@ static ssize_t store_engine_mode(struct device *dev , struct device_attribute *a
   int tmp___9 ;
   int tmp___10 ;
   struct i2c_client *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   char *__cil_tmp19 ;
@@ -3403,10 +3247,6 @@ static ssize_t store_engine_mode(struct device *dev , struct device_attribute *a
   int __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct mutex *__cil_tmp29 ;
   __kernel_size_t __cil_tmp30 ;
   __kernel_size_t __cil_tmp31 ;
@@ -3414,16 +3254,12 @@ static ssize_t store_engine_mode(struct device *dev , struct device_attribute *a
   u8 __cil_tmp33 ;
   u8 __cil_tmp34 ;
   u8 __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct mutex *__cil_tmp38 ;
   {
   {
   __mptr = (struct device const *)dev;
   __cil_tmp14 = (struct i2c_client *)0;
-  __cil_tmp15 = (unsigned long )__cil_tmp14;
-  __cil_tmp16 = __cil_tmp15 + 40;
-  __cil_tmp17 = (struct device *)__cil_tmp16;
+  __cil_tmp17 = (struct device *)((void *)__cil_tmp14 + 40);
   __cil_tmp18 = (unsigned int )__cil_tmp17;
   __cil_tmp19 = (char *)__mptr;
   __cil_tmp20 = __cil_tmp19 - __cil_tmp18;
@@ -3434,12 +3270,8 @@ static ssize_t store_engine_mode(struct device *dev , struct device_attribute *a
   __cil_tmp22 = nr - 1;
   __cil_tmp23 = __cil_tmp22 * 8UL;
   __cil_tmp24 = 88 + __cil_tmp23;
-  __cil_tmp25 = (unsigned long )chip;
-  __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-  engine = (struct lp5521_engine *)__cil_tmp26;
-  __cil_tmp27 = (unsigned long )chip;
-  __cil_tmp28 = __cil_tmp27 + 8;
-  __cil_tmp29 = (struct mutex *)__cil_tmp28;
+  engine = (struct lp5521_engine *)((void *)chip + __cil_tmp24);
+  __cil_tmp29 = (struct mutex *)((void *)chip + 8);
   mutex_lock(__cil_tmp29);
   __cil_tmp30 = (__kernel_size_t )3;
   tmp___10 = strncmp(buf, "run", __cil_tmp30);
@@ -3474,9 +3306,7 @@ static ssize_t store_engine_mode(struct device *dev , struct device_attribute *a
     }
   }
   {
-  __cil_tmp36 = (unsigned long )chip;
-  __cil_tmp37 = __cil_tmp36 + 8;
-  __cil_tmp38 = (struct mutex *)__cil_tmp37;
+  __cil_tmp38 = (struct mutex *)((void *)chip + 8);
   mutex_unlock(__cil_tmp38);
   }
   return ((ssize_t )len);
@@ -3520,8 +3350,6 @@ static ssize_t show_max_current(struct device *dev , struct device_attribute *at
   struct lp5521_led *tmp___8 ;
   int tmp___9 ;
   struct device const *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u8 __cil_tmp12 ;
   int __cil_tmp13 ;
   {
@@ -3531,9 +3359,7 @@ static ssize_t show_max_current(struct device *dev , struct device_attribute *at
   led_cdev = (struct led_classdev *)tmp___7;
   tmp___8 = cdev_to_led(led_cdev);
   led = tmp___8;
-  __cil_tmp10 = (unsigned long )led;
-  __cil_tmp11 = __cil_tmp10 + 6;
-  __cil_tmp12 = *((u8 *)__cil_tmp11);
+  __cil_tmp12 = *((u8 *)((void *)led + 6));
   __cil_tmp13 = (int )__cil_tmp12;
   tmp___9 = sprintf(buf, "%d\n", __cil_tmp13);
   }
@@ -3547,8 +3373,6 @@ static ssize_t show_current(struct device *dev , struct device_attribute *attr ,
   struct lp5521_led *tmp___8 ;
   int tmp___9 ;
   struct device const *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u8 __cil_tmp12 ;
   int __cil_tmp13 ;
   {
@@ -3558,9 +3382,7 @@ static ssize_t show_current(struct device *dev , struct device_attribute *attr ,
   led_cdev = (struct led_classdev *)tmp___7;
   tmp___8 = cdev_to_led(led_cdev);
   led = tmp___8;
-  __cil_tmp10 = (unsigned long )led;
-  __cil_tmp11 = __cil_tmp10 + 5;
-  __cil_tmp12 = *((u8 *)__cil_tmp11);
+  __cil_tmp12 = *((u8 *)((void *)led + 5));
   __cil_tmp13 = (int )__cil_tmp12;
   tmp___9 = sprintf(buf, "%d\n", __cil_tmp13);
   }
@@ -3580,24 +3402,16 @@ static ssize_t store_current(struct device *dev , struct device_attribute *attr 
   int tmp___10 ;
   int tmp___11 ;
   struct device const *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u8 __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct mutex *__cil_tmp24 ;
   int __cil_tmp25 ;
   unsigned long *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   u8 __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct mutex *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long *__cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   {
@@ -3616,9 +3430,7 @@ static ssize_t store_current(struct device *dev , struct device_attribute *attr 
   } else {
   }
   {
-  __cil_tmp16 = (unsigned long )led;
-  __cil_tmp17 = __cil_tmp16 + 6;
-  __cil_tmp18 = *((u8 *)__cil_tmp17);
+  __cil_tmp18 = *((u8 *)((void *)led + 6));
   __cil_tmp19 = (unsigned long )__cil_tmp18;
   __cil_tmp20 = & curr;
   __cil_tmp21 = *__cil_tmp20;
@@ -3628,9 +3440,7 @@ static ssize_t store_current(struct device *dev , struct device_attribute *attr 
   }
   }
   {
-  __cil_tmp22 = (unsigned long )chip;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  __cil_tmp24 = (struct mutex *)__cil_tmp23;
+  __cil_tmp24 = (struct mutex *)((void *)chip + 8);
   mutex_lock(__cil_tmp24);
   __cil_tmp25 = *((int *)led);
   __cil_tmp26 = & curr;
@@ -3638,20 +3448,16 @@ static ssize_t store_current(struct device *dev , struct device_attribute *attr 
   __cil_tmp28 = (u8 )__cil_tmp27;
   tmp___11 = lp5521_set_led_current(chip, __cil_tmp25, __cil_tmp28);
   ret = (ssize_t )tmp___11;
-  __cil_tmp29 = (unsigned long )chip;
-  __cil_tmp30 = __cil_tmp29 + 8;
-  __cil_tmp31 = (struct mutex *)__cil_tmp30;
+  __cil_tmp31 = (struct mutex *)((void *)chip + 8);
   mutex_unlock(__cil_tmp31);
   }
   if (ret < 0L) {
     return (ret);
   } else {
   }
-  __cil_tmp32 = (unsigned long )led;
-  __cil_tmp33 = __cil_tmp32 + 5;
   __cil_tmp34 = & curr;
   __cil_tmp35 = *__cil_tmp34;
-  *((u8 *)__cil_tmp33) = (u8 )__cil_tmp35;
+  *((u8 *)((void *)led + 5)) = (u8 )__cil_tmp35;
   return ((ssize_t )len);
 }
 }
@@ -3665,26 +3471,18 @@ static ssize_t lp5521_selftest(struct device *dev , struct device_attribute *att
   char const *tmp___8 ;
   int tmp___9 ;
   struct i2c_client *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
   char *__cil_tmp17 ;
   struct i2c_client const *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct mutex *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct mutex *__cil_tmp24 ;
   {
   {
   __mptr = (struct device const *)dev;
   __cil_tmp11 = (struct i2c_client *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 40;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 40);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
@@ -3692,14 +3490,10 @@ static ssize_t lp5521_selftest(struct device *dev , struct device_attribute *att
   __cil_tmp18 = (struct i2c_client const *)client;
   tmp___7 = i2c_get_clientdata(__cil_tmp18);
   chip = (struct lp5521_chip *)tmp___7;
-  __cil_tmp19 = (unsigned long )chip;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  __cil_tmp21 = (struct mutex *)__cil_tmp20;
+  __cil_tmp21 = (struct mutex *)((void *)chip + 8);
   mutex_lock(__cil_tmp21);
   ret = lp5521_run_selftest(chip, buf);
-  __cil_tmp22 = (unsigned long )chip;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  __cil_tmp24 = (struct mutex *)__cil_tmp23;
+  __cil_tmp24 = (struct mutex *)((void *)chip + 8);
   mutex_unlock(__cil_tmp24);
   }
   if (ret) {
@@ -3850,16 +3644,12 @@ __inline static struct lp5521_led_pattern *lp5521_get_pattern(struct lp5521_chip
   int __cil_tmp4 ;
   int __cil_tmp5 ;
   struct lp5521_platform_data *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct lp5521_led_pattern *__cil_tmp9 ;
   {
   __cil_tmp4 = (int )offset;
   __cil_tmp5 = __cil_tmp4 - 1;
   __cil_tmp6 = *((struct lp5521_platform_data **)chip);
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 56;
-  __cil_tmp9 = *((struct lp5521_led_pattern **)__cil_tmp8);
+  __cil_tmp9 = *((struct lp5521_led_pattern **)((void *)__cil_tmp6 + 56));
   ptn = __cil_tmp9 + __cil_tmp5;
   return (ptn);
 }
@@ -3868,14 +3658,8 @@ static void lp5521_run_led_pattern(int mode , struct lp5521_chip *chip )
 { struct lp5521_led_pattern *ptn ;
   struct i2c_client *cl ;
   int num_patterns ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct lp5521_platform_data *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct lp5521_platform_data *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct lp5521_led_pattern *__cil_tmp14 ;
   u8 __cil_tmp15 ;
   u8 __cil_tmp16 ;
@@ -3886,24 +3670,14 @@ static void lp5521_run_led_pattern(int mode , struct lp5521_chip *chip )
   u8 __cil_tmp21 ;
   u8 __cil_tmp22 ;
   u8 *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   u8 __cil_tmp26 ;
   int __cil_tmp27 ;
   u8 __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   u8 *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   u8 __cil_tmp34 ;
   int __cil_tmp35 ;
   u8 __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   u8 *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   u8 __cil_tmp42 ;
   int __cil_tmp43 ;
   u8 __cil_tmp44 ;
@@ -3911,21 +3685,15 @@ static void lp5521_run_led_pattern(int mode , struct lp5521_chip *chip )
   u8 __cil_tmp46 ;
   u8 __cil_tmp47 ;
   {
-  __cil_tmp6 = (unsigned long )chip;
-  __cil_tmp7 = __cil_tmp6 + 80;
-  cl = *((struct i2c_client **)__cil_tmp7);
+  cl = *((struct i2c_client **)((void *)chip + 80));
   __cil_tmp8 = *((struct lp5521_platform_data **)chip);
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 64;
-  num_patterns = *((int *)__cil_tmp10);
+  num_patterns = *((int *)((void *)__cil_tmp8 + 64));
   if (mode > num_patterns) {
     return;
   } else {
     {
     __cil_tmp11 = *((struct lp5521_platform_data **)chip);
-    __cil_tmp12 = (unsigned long )__cil_tmp11;
-    __cil_tmp13 = __cil_tmp12 + 56;
-    __cil_tmp14 = *((struct lp5521_led_pattern **)__cil_tmp13);
+    __cil_tmp14 = *((struct lp5521_led_pattern **)((void *)__cil_tmp11 + 56));
     if (! __cil_tmp14) {
       return;
     } else {
@@ -3959,27 +3727,17 @@ static void lp5521_run_led_pattern(int mode , struct lp5521_chip *chip )
     lp5521_clear_program_memory(cl);
     __cil_tmp22 = (u8 )16;
     __cil_tmp23 = *((u8 **)ptn);
-    __cil_tmp24 = (unsigned long )ptn;
-    __cil_tmp25 = __cil_tmp24 + 24;
-    __cil_tmp26 = *((u8 *)__cil_tmp25);
+    __cil_tmp26 = *((u8 *)((void *)ptn + 24));
     __cil_tmp27 = (int )__cil_tmp26;
     lp5521_write_program_memory(cl, __cil_tmp22, __cil_tmp23, __cil_tmp27);
     __cil_tmp28 = (u8 )48;
-    __cil_tmp29 = (unsigned long )ptn;
-    __cil_tmp30 = __cil_tmp29 + 8;
-    __cil_tmp31 = *((u8 **)__cil_tmp30);
-    __cil_tmp32 = (unsigned long )ptn;
-    __cil_tmp33 = __cil_tmp32 + 25;
-    __cil_tmp34 = *((u8 *)__cil_tmp33);
+    __cil_tmp31 = *((u8 **)((void *)ptn + 8));
+    __cil_tmp34 = *((u8 *)((void *)ptn + 25));
     __cil_tmp35 = (int )__cil_tmp34;
     lp5521_write_program_memory(cl, __cil_tmp28, __cil_tmp31, __cil_tmp35);
     __cil_tmp36 = (u8 )80;
-    __cil_tmp37 = (unsigned long )ptn;
-    __cil_tmp38 = __cil_tmp37 + 16;
-    __cil_tmp39 = *((u8 **)__cil_tmp38);
-    __cil_tmp40 = (unsigned long )ptn;
-    __cil_tmp41 = __cil_tmp40 + 26;
-    __cil_tmp42 = *((u8 *)__cil_tmp41);
+    __cil_tmp39 = *((u8 **)((void *)ptn + 16));
+    __cil_tmp42 = *((u8 *)((void *)ptn + 26));
     __cil_tmp43 = (int )__cil_tmp42;
     lp5521_write_program_memory(cl, __cil_tmp36, __cil_tmp39, __cil_tmp43);
     __cil_tmp44 = (u8 )1;
@@ -4002,8 +3760,6 @@ static ssize_t store_led_pattern(struct device *dev , struct device_attribute *a
   unsigned long val ;
   int ret ;
   struct i2c_client *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
@@ -4017,9 +3773,7 @@ static ssize_t store_led_pattern(struct device *dev , struct device_attribute *a
   {
   __mptr = (struct device const *)dev;
   __cil_tmp10 = (struct i2c_client *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 40;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 40);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
@@ -4074,19 +3828,11 @@ static struct attribute_group const lp5521_group = {(char const *)0, (umode_t (*
 static int lp5521_register_sysfs(struct i2c_client *client )
 { struct device *dev ;
   int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct kobject *__cil_tmp8 ;
   {
   {
-  __cil_tmp4 = (unsigned long )client;
-  __cil_tmp5 = __cil_tmp4 + 40;
-  dev = (struct device *)__cil_tmp5;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = (struct kobject *)__cil_tmp7;
+  dev = (struct device *)((void *)client + 40);
+  __cil_tmp8 = (struct kobject *)((void *)dev + 16);
   tmp___7 = (int )sysfs_create_group(__cil_tmp8, & lp5521_group);
   }
   return (tmp___7);
@@ -4098,24 +3844,14 @@ static void lp5521_unregister_sysfs(struct i2c_client *client )
   struct device *dev ;
   int i ;
   struct i2c_client const *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct kobject *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   u8 __cil_tmp14 ;
   int __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct kobject *__cil_tmp25 ;
   struct attribute_group const *__cil_tmp26 ;
   {
@@ -4123,12 +3859,8 @@ static void lp5521_unregister_sysfs(struct i2c_client *client )
   __cil_tmp6 = (struct i2c_client const *)client;
   tmp___7 = i2c_get_clientdata(__cil_tmp6);
   chip = (struct lp5521_chip *)tmp___7;
-  __cil_tmp7 = (unsigned long )client;
-  __cil_tmp8 = __cil_tmp7 + 40;
-  dev = (struct device *)__cil_tmp8;
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = (struct kobject *)__cil_tmp10;
+  dev = (struct device *)((void *)client + 40);
+  __cil_tmp11 = (struct kobject *)((void *)dev + 16);
   sysfs_remove_group(__cil_tmp11, & lp5521_group);
   i = 0;
   }
@@ -4136,9 +3868,7 @@ static void lp5521_unregister_sysfs(struct i2c_client *client )
   while (1) {
     while_continue: ;
     {
-    __cil_tmp12 = (unsigned long )chip;
-    __cil_tmp13 = __cil_tmp12 + 1049;
-    __cil_tmp14 = *((u8 *)__cil_tmp13);
+    __cil_tmp14 = *((u8 *)((void *)chip + 1049));
     __cil_tmp15 = (int )__cil_tmp14;
     if (i < __cil_tmp15) {
     } else {
@@ -4150,12 +3880,8 @@ static void lp5521_unregister_sysfs(struct i2c_client *client )
     __cil_tmp17 = i * 312UL;
     __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
     __cil_tmp19 = 112 + __cil_tmp18;
-    __cil_tmp20 = (unsigned long )chip;
-    __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-    __cil_tmp22 = *((struct device **)__cil_tmp21);
-    __cil_tmp23 = (unsigned long )__cil_tmp22;
-    __cil_tmp24 = __cil_tmp23 + 16;
-    __cil_tmp25 = (struct kobject *)__cil_tmp24;
+    __cil_tmp22 = *((struct device **)((void *)chip + __cil_tmp19));
+    __cil_tmp25 = (struct kobject *)((void *)__cil_tmp22 + 16);
     __cil_tmp26 = (struct attribute_group const *)(& lp5521_led_attribute_group);
     sysfs_remove_group(__cil_tmp25, __cil_tmp26);
     i = i + 1;
@@ -4175,82 +3901,44 @@ static int lp5521_init_led(struct lp5521_led *led , struct i2c_client *client , 
   char name[32] ;
   int res ;
   char const *tmp___7 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct lp5521_led_config *__cil_tmp11 ;
   struct lp5521_led_config *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   u8 __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct lp5521_led_config *__cil_tmp19 ;
   struct lp5521_led_config *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct lp5521_led_config *__cil_tmp25 ;
   struct lp5521_led_config *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct lp5521_led_config *__cil_tmp31 ;
   struct lp5521_led_config *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   u8 __cil_tmp37 ;
   int __cil_tmp38 ;
   struct device const *__cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct lp5521_led_config *__cil_tmp43 ;
   struct lp5521_led_config *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct lp5521_led_config *__cil_tmp47 ;
   struct lp5521_led_config *__cil_tmp48 ;
   char *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   char *__cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   char *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
   char *__cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   struct led_classdev *__cil_tmp67 ;
   struct device const *__cil_tmp68 ;
   unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct device *__cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   struct kobject *__cil_tmp75 ;
   struct attribute_group const *__cil_tmp76 ;
   struct device const *__cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   struct led_classdev *__cil_tmp80 ;
   {
-  __cil_tmp9 = (unsigned long )client;
-  __cil_tmp10 = __cil_tmp9 + 40;
-  dev = (struct device *)__cil_tmp10;
+  dev = (struct device *)((void *)client + 40);
   if (chan >= 3) {
     return (-22);
   } else {
@@ -4258,40 +3946,24 @@ static int lp5521_init_led(struct lp5521_led *led , struct i2c_client *client , 
   {
   __cil_tmp11 = *((struct lp5521_led_config **)pdata);
   __cil_tmp12 = __cil_tmp11 + chan;
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + 9;
-  __cil_tmp15 = *((u8 *)__cil_tmp14);
+  __cil_tmp15 = *((u8 *)((void *)__cil_tmp12 + 9));
   __cil_tmp16 = (int )__cil_tmp15;
   if (__cil_tmp16 == 0) {
     return (0);
   } else {
   }
   }
-  __cil_tmp17 = (unsigned long )led;
-  __cil_tmp18 = __cil_tmp17 + 5;
   __cil_tmp19 = *((struct lp5521_led_config **)pdata);
   __cil_tmp20 = __cil_tmp19 + chan;
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 9;
-  *((u8 *)__cil_tmp18) = *((u8 *)__cil_tmp22);
-  __cil_tmp23 = (unsigned long )led;
-  __cil_tmp24 = __cil_tmp23 + 6;
+  *((u8 *)((void *)led + 5)) = *((u8 *)((void *)__cil_tmp20 + 9));
   __cil_tmp25 = *((struct lp5521_led_config **)pdata);
   __cil_tmp26 = __cil_tmp25 + chan;
-  __cil_tmp27 = (unsigned long )__cil_tmp26;
-  __cil_tmp28 = __cil_tmp27 + 10;
-  *((u8 *)__cil_tmp24) = *((u8 *)__cil_tmp28);
-  __cil_tmp29 = (unsigned long )led;
-  __cil_tmp30 = __cil_tmp29 + 4;
+  *((u8 *)((void *)led + 6)) = *((u8 *)((void *)__cil_tmp26 + 10));
   __cil_tmp31 = *((struct lp5521_led_config **)pdata);
   __cil_tmp32 = __cil_tmp31 + chan;
-  __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = __cil_tmp33 + 8;
-  *((u8 *)__cil_tmp30) = *((u8 *)__cil_tmp34);
+  *((u8 *)((void *)led + 4)) = *((u8 *)((void *)__cil_tmp32 + 8));
   {
-  __cil_tmp35 = (unsigned long )led;
-  __cil_tmp36 = __cil_tmp35 + 4;
-  __cil_tmp37 = *((u8 *)__cil_tmp36);
+  __cil_tmp37 = *((u8 *)((void *)led + 4));
   __cil_tmp38 = (int )__cil_tmp37;
   if (__cil_tmp38 >= 3) {
     {
@@ -4303,30 +3975,22 @@ static int lp5521_init_led(struct lp5521_led *led , struct i2c_client *client , 
   }
   }
   __cil_tmp40 = 8 + 24;
-  __cil_tmp41 = (unsigned long )led;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-  *((void (**)(struct led_classdev *led_cdev , enum led_brightness brightness ))__cil_tmp42) = & lp5521_set_brightness;
+  *((void (**)(struct led_classdev *led_cdev , enum led_brightness brightness ))((void *)led + __cil_tmp40)) = & lp5521_set_brightness;
   {
   __cil_tmp43 = *((struct lp5521_led_config **)pdata);
   __cil_tmp44 = __cil_tmp43 + chan;
   if (*((char **)__cil_tmp44)) {
-    __cil_tmp45 = (unsigned long )led;
-    __cil_tmp46 = __cil_tmp45 + 8;
     __cil_tmp47 = *((struct lp5521_led_config **)pdata);
     __cil_tmp48 = __cil_tmp47 + chan;
     __cil_tmp49 = *((char **)__cil_tmp48);
-    *((char const **)__cil_tmp46) = (char const *)__cil_tmp49;
+    *((char const **)((void *)led + 8)) = (char const *)__cil_tmp49;
   } else {
-    __cil_tmp50 = (unsigned long )pdata;
-    __cil_tmp51 = __cil_tmp50 + 40;
-    tmp___7 = *((char const **)__cil_tmp51);
+    tmp___7 = *((char const **)((void *)pdata + 40));
     if (tmp___7) {
     } else {
       __cil_tmp52 = 0 * 1UL;
       __cil_tmp53 = 4 + __cil_tmp52;
-      __cil_tmp54 = (unsigned long )client;
-      __cil_tmp55 = __cil_tmp54 + __cil_tmp53;
-      __cil_tmp56 = (char *)__cil_tmp55;
+      __cil_tmp56 = (char *)((void *)client + __cil_tmp53);
       tmp___7 = (char const *)__cil_tmp56;
     }
     {
@@ -4334,19 +3998,15 @@ static int lp5521_init_led(struct lp5521_led *led , struct i2c_client *client , 
     __cil_tmp58 = (unsigned long )(name) + __cil_tmp57;
     __cil_tmp59 = (char *)__cil_tmp58;
     snprintf(__cil_tmp59, 32UL, "%s:channel%d", tmp___7, chan);
-    __cil_tmp60 = (unsigned long )led;
-    __cil_tmp61 = __cil_tmp60 + 8;
     __cil_tmp62 = 0 * 1UL;
     __cil_tmp63 = (unsigned long )(name) + __cil_tmp62;
     __cil_tmp64 = (char *)__cil_tmp63;
-    *((char const **)__cil_tmp61) = (char const *)__cil_tmp64;
+    *((char const **)((void *)led + 8)) = (char const *)__cil_tmp64;
     }
   }
   }
   {
-  __cil_tmp65 = (unsigned long )led;
-  __cil_tmp66 = __cil_tmp65 + 8;
-  __cil_tmp67 = (struct led_classdev *)__cil_tmp66;
+  __cil_tmp67 = (struct led_classdev *)((void *)led + 8);
   res = led_classdev_register(dev, __cil_tmp67);
   }
   if (res < 0) {
@@ -4359,12 +4019,8 @@ static int lp5521_init_led(struct lp5521_led *led , struct i2c_client *client , 
   }
   {
   __cil_tmp69 = 8 + 48;
-  __cil_tmp70 = (unsigned long )led;
-  __cil_tmp71 = __cil_tmp70 + __cil_tmp69;
-  __cil_tmp72 = *((struct device **)__cil_tmp71);
-  __cil_tmp73 = (unsigned long )__cil_tmp72;
-  __cil_tmp74 = __cil_tmp73 + 16;
-  __cil_tmp75 = (struct kobject *)__cil_tmp74;
+  __cil_tmp72 = *((struct device **)((void *)led + __cil_tmp69));
+  __cil_tmp75 = (struct kobject *)((void *)__cil_tmp72 + 16);
   __cil_tmp76 = (struct attribute_group const *)(& lp5521_led_attribute_group);
   res = (int )sysfs_create_group(__cil_tmp75, __cil_tmp76);
   }
@@ -4372,9 +4028,7 @@ static int lp5521_init_led(struct lp5521_led *led , struct i2c_client *client , 
     {
     __cil_tmp77 = (struct device const *)dev;
     dev_err(__cil_tmp77, "couldn\'t register current attribute\n");
-    __cil_tmp78 = (unsigned long )led;
-    __cil_tmp79 = __cil_tmp78 + 8;
-    __cil_tmp80 = (struct led_classdev *)__cil_tmp79;
+    __cil_tmp80 = (struct led_classdev *)((void *)led + 8);
     led_classdev_unregister(__cil_tmp80);
     }
     return (res);
@@ -4396,32 +4050,14 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   void *tmp___7 ;
   atomic_long_t __constr_expr_0 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device const *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct mutex *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int (*__cil_tmp29)(void) ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   void (*__cil_tmp34)(bool state ) ;
   bool __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   void (*__cil_tmp38)(bool state ) ;
   bool __cil_tmp39 ;
   u8 __cil_tmp40 ;
@@ -4430,123 +4066,67 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   u8 *__cil_tmp43 ;
   u8 __cil_tmp44 ;
   int __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct device *__cil_tmp48 ;
   struct device const *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct device *__cil_tmp52 ;
   struct device const *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct device *__cil_tmp56 ;
   struct device const *__cil_tmp57 ;
   unsigned long __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   char const *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   struct device *__cil_tmp65 ;
   struct device const *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   u8 __cil_tmp75 ;
   int __cil_tmp76 ;
   struct lp5521_led_config *__cil_tmp77 ;
   struct lp5521_led_config *__cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   u8 __cil_tmp81 ;
   int __cil_tmp82 ;
   unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   struct lp5521_led *__cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   struct device *__cil_tmp90 ;
   struct device const *__cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   u8 __cil_tmp96 ;
   int __cil_tmp97 ;
   int __cil_tmp98 ;
   unsigned long __cil_tmp99 ;
   unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   unsigned long __cil_tmp103 ;
   unsigned long __cil_tmp104 ;
   unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   u8 __cil_tmp108 ;
   unsigned long __cil_tmp109 ;
   unsigned long __cil_tmp110 ;
   unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   struct work_struct *__cil_tmp114 ;
   unsigned long __cil_tmp115 ;
   unsigned long __cil_tmp116 ;
   unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
   unsigned long __cil_tmp120 ;
   unsigned long __cil_tmp121 ;
   unsigned long __cil_tmp122 ;
   unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
   struct list_head *__cil_tmp126 ;
   unsigned long __cil_tmp127 ;
   unsigned long __cil_tmp128 ;
   unsigned long __cil_tmp129 ;
   unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
   struct device *__cil_tmp135 ;
   struct device const *__cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
   u8 __cil_tmp139 ;
   int __cil_tmp140 ;
   unsigned long __cil_tmp141 ;
   unsigned long __cil_tmp142 ;
   unsigned long __cil_tmp143 ;
-  unsigned long __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
   struct led_classdev *__cil_tmp146 ;
   unsigned long __cil_tmp147 ;
   unsigned long __cil_tmp148 ;
   unsigned long __cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
-  unsigned long __cil_tmp151 ;
   struct work_struct *__cil_tmp152 ;
-  unsigned long __cil_tmp153 ;
-  unsigned long __cil_tmp154 ;
-  unsigned long __cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
   void (*__cil_tmp157)(bool state ) ;
   bool __cil_tmp158 ;
-  unsigned long __cil_tmp159 ;
-  unsigned long __cil_tmp160 ;
-  unsigned long __cil_tmp161 ;
-  unsigned long __cil_tmp162 ;
   void (*__cil_tmp163)(void) ;
   void const *__cil_tmp164 ;
   long __constr_expr_0_counter165 ;
@@ -4562,20 +4142,14 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   {
   __cil_tmp11 = (void *)chip;
   i2c_set_clientdata(client, __cil_tmp11);
-  __cil_tmp12 = (unsigned long )chip;
-  __cil_tmp13 = __cil_tmp12 + 80;
-  *((struct i2c_client **)__cil_tmp13) = client;
+  *((struct i2c_client **)((void *)chip + 80)) = client;
   __cil_tmp14 = 40 + 184;
-  __cil_tmp15 = (unsigned long )client;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  __cil_tmp17 = *((void **)__cil_tmp16);
+  __cil_tmp17 = *((void **)((void *)client + __cil_tmp14));
   pdata = (struct lp5521_platform_data *)__cil_tmp17;
   }
   if (! pdata) {
     {
-    __cil_tmp18 = (unsigned long )client;
-    __cil_tmp19 = __cil_tmp18 + 40;
-    __cil_tmp20 = (struct device *)__cil_tmp19;
+    __cil_tmp20 = (struct device *)((void *)client + 40);
     __cil_tmp21 = (struct device const *)__cil_tmp20;
     dev_err(__cil_tmp21, "no platform data\n");
     ret = -22;
@@ -4587,9 +4161,7 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   while (1) {
     while_continue: ;
     {
-    __cil_tmp22 = (unsigned long )chip;
-    __cil_tmp23 = __cil_tmp22 + 8;
-    __cil_tmp24 = (struct mutex *)__cil_tmp23;
+    __cil_tmp24 = (struct mutex *)((void *)chip + 8);
     __mutex_init(__cil_tmp24, "&chip->lock", & __key___3);
     }
     goto while_break;
@@ -4598,13 +4170,9 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   }
   *((struct lp5521_platform_data **)chip) = pdata;
   {
-  __cil_tmp25 = (unsigned long )pdata;
-  __cil_tmp26 = __cil_tmp25 + 16;
-  if (*((int (**)(void))__cil_tmp26)) {
+  if (*((int (**)(void))((void *)pdata + 16))) {
     {
-    __cil_tmp27 = (unsigned long )pdata;
-    __cil_tmp28 = __cil_tmp27 + 16;
-    __cil_tmp29 = *((int (**)(void))__cil_tmp28);
+    __cil_tmp29 = *((int (**)(void))((void *)pdata + 16));
     ret = (*__cil_tmp29)();
     }
     if (ret < 0) {
@@ -4615,19 +4183,13 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   }
   }
   {
-  __cil_tmp30 = (unsigned long )pdata;
-  __cil_tmp31 = __cil_tmp30 + 32;
-  if (*((void (**)(bool state ))__cil_tmp31)) {
+  if (*((void (**)(bool state ))((void *)pdata + 32))) {
     {
-    __cil_tmp32 = (unsigned long )pdata;
-    __cil_tmp33 = __cil_tmp32 + 32;
-    __cil_tmp34 = *((void (**)(bool state ))__cil_tmp33);
+    __cil_tmp34 = *((void (**)(bool state ))((void *)pdata + 32));
     __cil_tmp35 = (bool )0;
     (*__cil_tmp34)(__cil_tmp35);
     usleep_range(1000UL, 2000UL);
-    __cil_tmp36 = (unsigned long )pdata;
-    __cil_tmp37 = __cil_tmp36 + 32;
-    __cil_tmp38 = *((void (**)(bool state ))__cil_tmp37);
+    __cil_tmp38 = *((void (**)(bool state ))((void *)pdata + 32));
     __cil_tmp39 = (bool )1;
     (*__cil_tmp38)(__cil_tmp39);
     usleep_range(1000UL, 2000UL);
@@ -4649,9 +4211,7 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   __cil_tmp45 = (int )__cil_tmp44;
   if (__cil_tmp45 != 175) {
     {
-    __cil_tmp46 = (unsigned long )client;
-    __cil_tmp47 = __cil_tmp46 + 40;
-    __cil_tmp48 = (struct device *)__cil_tmp47;
+    __cil_tmp48 = (struct device *)((void *)client + 40);
     __cil_tmp49 = (struct device const *)__cil_tmp48;
     dev_err(__cil_tmp49, "error in resetting chip\n");
     }
@@ -4665,9 +4225,7 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   }
   if (ret) {
     {
-    __cil_tmp50 = (unsigned long )client;
-    __cil_tmp51 = __cil_tmp50 + 40;
-    __cil_tmp52 = (struct device *)__cil_tmp51;
+    __cil_tmp52 = (struct device *)((void *)client + 40);
     __cil_tmp53 = (struct device const *)__cil_tmp52;
     dev_err(__cil_tmp53, "Chip not found\n");
     }
@@ -4675,46 +4233,32 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   } else {
   }
   {
-  __cil_tmp54 = (unsigned long )client;
-  __cil_tmp55 = __cil_tmp54 + 40;
-  __cil_tmp56 = (struct device *)__cil_tmp55;
+  __cil_tmp56 = (struct device *)((void *)client + 40);
   __cil_tmp57 = (struct device const *)__cil_tmp56;
   __cil_tmp58 = 0 * 1UL;
   __cil_tmp59 = 0 + __cil_tmp58;
-  __cil_tmp60 = (unsigned long )id;
-  __cil_tmp61 = __cil_tmp60 + __cil_tmp59;
-  __cil_tmp62 = (char const *)__cil_tmp61;
+  __cil_tmp62 = (char const *)((void *)id + __cil_tmp59);
   _dev_info(__cil_tmp57, "%s programmable led chip found\n", __cil_tmp62);
   ret = lp5521_configure(client);
   }
   if (ret < 0) {
     {
-    __cil_tmp63 = (unsigned long )client;
-    __cil_tmp64 = __cil_tmp63 + 40;
-    __cil_tmp65 = (struct device *)__cil_tmp64;
+    __cil_tmp65 = (struct device *)((void *)client + 40);
     __cil_tmp66 = (struct device const *)__cil_tmp65;
     dev_err(__cil_tmp66, "error configuring chip\n");
     }
     goto fail2;
   } else {
   }
-  __cil_tmp67 = (unsigned long )chip;
-  __cil_tmp68 = __cil_tmp67 + 1048;
-  __cil_tmp69 = (unsigned long )pdata;
-  __cil_tmp70 = __cil_tmp69 + 8;
-  *((u8 *)__cil_tmp68) = *((u8 *)__cil_tmp70);
-  __cil_tmp71 = (unsigned long )chip;
-  __cil_tmp72 = __cil_tmp71 + 1049;
-  *((u8 *)__cil_tmp72) = (u8 )0;
+  *((u8 *)((void *)chip + 1048)) = *((u8 *)((void *)pdata + 8));
+  *((u8 *)((void *)chip + 1049)) = (u8 )0;
   led = 0;
   i = 0;
   {
   while (1) {
     while_continue___0: ;
     {
-    __cil_tmp73 = (unsigned long )pdata;
-    __cil_tmp74 = __cil_tmp73 + 8;
-    __cil_tmp75 = *((u8 *)__cil_tmp74);
+    __cil_tmp75 = *((u8 *)((void *)pdata + 8));
     __cil_tmp76 = (int )__cil_tmp75;
     if (i < __cil_tmp76) {
     } else {
@@ -4724,9 +4268,7 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
     {
     __cil_tmp77 = *((struct lp5521_led_config **)pdata);
     __cil_tmp78 = __cil_tmp77 + i;
-    __cil_tmp79 = (unsigned long )__cil_tmp78;
-    __cil_tmp80 = __cil_tmp79 + 9;
-    __cil_tmp81 = *((u8 *)__cil_tmp80);
+    __cil_tmp81 = *((u8 *)((void *)__cil_tmp78 + 9));
     __cil_tmp82 = (int )__cil_tmp81;
     if (__cil_tmp82 == 0) {
       goto __Cont;
@@ -4736,16 +4278,12 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
     {
     __cil_tmp83 = led * 312UL;
     __cil_tmp84 = 112 + __cil_tmp83;
-    __cil_tmp85 = (unsigned long )chip;
-    __cil_tmp86 = __cil_tmp85 + __cil_tmp84;
-    __cil_tmp87 = (struct lp5521_led *)__cil_tmp86;
+    __cil_tmp87 = (struct lp5521_led *)((void *)chip + __cil_tmp84);
     ret = lp5521_init_led(__cil_tmp87, client, i, pdata);
     }
     if (ret) {
       {
-      __cil_tmp88 = (unsigned long )client;
-      __cil_tmp89 = __cil_tmp88 + 40;
-      __cil_tmp90 = (struct device *)__cil_tmp89;
+      __cil_tmp90 = (struct device *)((void *)client + 40);
       __cil_tmp91 = (struct device const *)__cil_tmp90;
       dev_err(__cil_tmp91, "error initializing leds\n");
       }
@@ -4753,25 +4291,17 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
     } else {
     }
     {
-    __cil_tmp92 = (unsigned long )chip;
-    __cil_tmp93 = __cil_tmp92 + 1049;
-    __cil_tmp94 = (unsigned long )chip;
-    __cil_tmp95 = __cil_tmp94 + 1049;
-    __cil_tmp96 = *((u8 *)__cil_tmp95);
+    __cil_tmp96 = *((u8 *)((void *)chip + 1049));
     __cil_tmp97 = (int )__cil_tmp96;
     __cil_tmp98 = __cil_tmp97 + 1;
-    *((u8 *)__cil_tmp93) = (u8 )__cil_tmp98;
+    *((u8 *)((void *)chip + 1049)) = (u8 )__cil_tmp98;
     __cil_tmp99 = led * 312UL;
     __cil_tmp100 = 112 + __cil_tmp99;
-    __cil_tmp101 = (unsigned long )chip;
-    __cil_tmp102 = __cil_tmp101 + __cil_tmp100;
-    *((int *)__cil_tmp102) = led;
+    *((int *)((void *)chip + __cil_tmp100)) = led;
     __cil_tmp103 = led * 312UL;
     __cil_tmp104 = __cil_tmp103 + 5;
     __cil_tmp105 = 112 + __cil_tmp104;
-    __cil_tmp106 = (unsigned long )chip;
-    __cil_tmp107 = __cil_tmp106 + __cil_tmp105;
-    __cil_tmp108 = *((u8 *)__cil_tmp107);
+    __cil_tmp108 = *((u8 *)((void *)chip + __cil_tmp105));
     lp5521_set_led_current(chip, led, __cil_tmp108);
     }
     {
@@ -4784,24 +4314,18 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
         __cil_tmp109 = led * 312UL;
         __cil_tmp110 = __cil_tmp109 + 272;
         __cil_tmp111 = 112 + __cil_tmp110;
-        __cil_tmp112 = (unsigned long )chip;
-        __cil_tmp113 = __cil_tmp112 + __cil_tmp111;
-        __cil_tmp114 = (struct work_struct *)__cil_tmp113;
+        __cil_tmp114 = (struct work_struct *)((void *)chip + __cil_tmp111);
         __init_work(__cil_tmp114, 0);
         __constr_expr_0_counter165 = 2097664L;
         __cil_tmp115 = led * 312UL;
         __cil_tmp116 = __cil_tmp115 + 272;
         __cil_tmp117 = 112 + __cil_tmp116;
-        __cil_tmp118 = (unsigned long )chip;
-        __cil_tmp119 = __cil_tmp118 + __cil_tmp117;
-        ((atomic_long_t *)__cil_tmp119)->counter = __constr_expr_0_counter165;
+        ((atomic_long_t *)((void *)chip + __cil_tmp117))->counter = __constr_expr_0_counter165;
         __cil_tmp120 = 272 + 8;
         __cil_tmp121 = led * 312UL;
         __cil_tmp122 = __cil_tmp121 + __cil_tmp120;
         __cil_tmp123 = 112 + __cil_tmp122;
-        __cil_tmp124 = (unsigned long )chip;
-        __cil_tmp125 = __cil_tmp124 + __cil_tmp123;
-        __cil_tmp126 = (struct list_head *)__cil_tmp125;
+        __cil_tmp126 = (struct list_head *)((void *)chip + __cil_tmp123);
         INIT_LIST_HEAD(__cil_tmp126);
         }
         {
@@ -4811,9 +4335,7 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
           __cil_tmp128 = led * 312UL;
           __cil_tmp129 = __cil_tmp128 + __cil_tmp127;
           __cil_tmp130 = 112 + __cil_tmp129;
-          __cil_tmp131 = (unsigned long )chip;
-          __cil_tmp132 = __cil_tmp131 + __cil_tmp130;
-          *((void (**)(struct work_struct *work ))__cil_tmp132) = & lp5521_led_brightness_work;
+          *((void (**)(struct work_struct *work ))((void *)chip + __cil_tmp130)) = & lp5521_led_brightness_work;
           goto while_break___3;
         }
         while_break___3: ;
@@ -4837,9 +4359,7 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   }
   if (ret) {
     {
-    __cil_tmp133 = (unsigned long )client;
-    __cil_tmp134 = __cil_tmp133 + 40;
-    __cil_tmp135 = (struct device *)__cil_tmp134;
+    __cil_tmp135 = (struct device *)((void *)client + 40);
     __cil_tmp136 = (struct device const *)__cil_tmp135;
     dev_err(__cil_tmp136, "registering sysfs failed\n");
     }
@@ -4853,9 +4373,7 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   while (1) {
     while_continue___4: ;
     {
-    __cil_tmp137 = (unsigned long )chip;
-    __cil_tmp138 = __cil_tmp137 + 1049;
-    __cil_tmp139 = *((u8 *)__cil_tmp138);
+    __cil_tmp139 = *((u8 *)((void *)chip + 1049));
     __cil_tmp140 = (int )__cil_tmp139;
     if (i < __cil_tmp140) {
     } else {
@@ -4866,16 +4384,12 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
     __cil_tmp141 = i * 312UL;
     __cil_tmp142 = __cil_tmp141 + 8;
     __cil_tmp143 = 112 + __cil_tmp142;
-    __cil_tmp144 = (unsigned long )chip;
-    __cil_tmp145 = __cil_tmp144 + __cil_tmp143;
-    __cil_tmp146 = (struct led_classdev *)__cil_tmp145;
+    __cil_tmp146 = (struct led_classdev *)((void *)chip + __cil_tmp143);
     led_classdev_unregister(__cil_tmp146);
     __cil_tmp147 = i * 312UL;
     __cil_tmp148 = __cil_tmp147 + 272;
     __cil_tmp149 = 112 + __cil_tmp148;
-    __cil_tmp150 = (unsigned long )chip;
-    __cil_tmp151 = __cil_tmp150 + __cil_tmp149;
-    __cil_tmp152 = (struct work_struct *)__cil_tmp151;
+    __cil_tmp152 = (struct work_struct *)((void *)chip + __cil_tmp149);
     cancel_work_sync(__cil_tmp152);
     i = i + 1;
     }
@@ -4884,13 +4398,9 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   }
   fail2:
   {
-  __cil_tmp153 = (unsigned long )pdata;
-  __cil_tmp154 = __cil_tmp153 + 32;
-  if (*((void (**)(bool state ))__cil_tmp154)) {
+  if (*((void (**)(bool state ))((void *)pdata + 32))) {
     {
-    __cil_tmp155 = (unsigned long )pdata;
-    __cil_tmp156 = __cil_tmp155 + 32;
-    __cil_tmp157 = *((void (**)(bool state ))__cil_tmp156);
+    __cil_tmp157 = *((void (**)(bool state ))((void *)pdata + 32));
     __cil_tmp158 = (bool )0;
     (*__cil_tmp157)(__cil_tmp158);
     }
@@ -4898,13 +4408,9 @@ static int lp5521_probe(struct i2c_client *client , struct i2c_device_id const *
   }
   }
   {
-  __cil_tmp159 = (unsigned long )pdata;
-  __cil_tmp160 = __cil_tmp159 + 24;
-  if (*((void (**)(void))__cil_tmp160)) {
+  if (*((void (**)(void))((void *)pdata + 24))) {
     {
-    __cil_tmp161 = (unsigned long )pdata;
-    __cil_tmp162 = __cil_tmp161 + 24;
-    __cil_tmp163 = *((void (**)(void))__cil_tmp162);
+    __cil_tmp163 = *((void (**)(void))((void *)pdata + 24));
     (*__cil_tmp163)();
     }
   } else {
@@ -4925,36 +4431,22 @@ static int lp5521_remove(struct i2c_client *client )
   void *tmp___7 ;
   int i ;
   struct i2c_client const *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   u8 __cil_tmp8 ;
   int __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct led_classdev *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct work_struct *__cil_tmp21 ;
   struct lp5521_platform_data *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct lp5521_platform_data *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void (*__cil_tmp28)(bool state ) ;
   bool __cil_tmp29 ;
   struct lp5521_platform_data *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct lp5521_platform_data *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   void (*__cil_tmp36)(void) ;
   void const *__cil_tmp37 ;
   {
@@ -4970,9 +4462,7 @@ static int lp5521_remove(struct i2c_client *client )
   while (1) {
     while_continue: ;
     {
-    __cil_tmp6 = (unsigned long )chip;
-    __cil_tmp7 = __cil_tmp6 + 1049;
-    __cil_tmp8 = *((u8 *)__cil_tmp7);
+    __cil_tmp8 = *((u8 *)((void *)chip + 1049));
     __cil_tmp9 = (int )__cil_tmp8;
     if (i < __cil_tmp9) {
     } else {
@@ -4983,16 +4473,12 @@ static int lp5521_remove(struct i2c_client *client )
     __cil_tmp10 = i * 312UL;
     __cil_tmp11 = __cil_tmp10 + 8;
     __cil_tmp12 = 112 + __cil_tmp11;
-    __cil_tmp13 = (unsigned long )chip;
-    __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-    __cil_tmp15 = (struct led_classdev *)__cil_tmp14;
+    __cil_tmp15 = (struct led_classdev *)((void *)chip + __cil_tmp12);
     led_classdev_unregister(__cil_tmp15);
     __cil_tmp16 = i * 312UL;
     __cil_tmp17 = __cil_tmp16 + 272;
     __cil_tmp18 = 112 + __cil_tmp17;
-    __cil_tmp19 = (unsigned long )chip;
-    __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-    __cil_tmp21 = (struct work_struct *)__cil_tmp20;
+    __cil_tmp21 = (struct work_struct *)((void *)chip + __cil_tmp18);
     cancel_work_sync(__cil_tmp21);
     i = i + 1;
     }
@@ -5001,14 +4487,10 @@ static int lp5521_remove(struct i2c_client *client )
   }
   {
   __cil_tmp22 = *((struct lp5521_platform_data **)chip);
-  __cil_tmp23 = (unsigned long )__cil_tmp22;
-  __cil_tmp24 = __cil_tmp23 + 32;
-  if (*((void (**)(bool state ))__cil_tmp24)) {
+  if (*((void (**)(bool state ))((void *)__cil_tmp22 + 32))) {
     {
     __cil_tmp25 = *((struct lp5521_platform_data **)chip);
-    __cil_tmp26 = (unsigned long )__cil_tmp25;
-    __cil_tmp27 = __cil_tmp26 + 32;
-    __cil_tmp28 = *((void (**)(bool state ))__cil_tmp27);
+    __cil_tmp28 = *((void (**)(bool state ))((void *)__cil_tmp25 + 32));
     __cil_tmp29 = (bool )0;
     (*__cil_tmp28)(__cil_tmp29);
     }
@@ -5017,14 +4499,10 @@ static int lp5521_remove(struct i2c_client *client )
   }
   {
   __cil_tmp30 = *((struct lp5521_platform_data **)chip);
-  __cil_tmp31 = (unsigned long )__cil_tmp30;
-  __cil_tmp32 = __cil_tmp31 + 24;
-  if (*((void (**)(void))__cil_tmp32)) {
+  if (*((void (**)(void))((void *)__cil_tmp30 + 24))) {
     {
     __cil_tmp33 = *((struct lp5521_platform_data **)chip);
-    __cil_tmp34 = (unsigned long )__cil_tmp33;
-    __cil_tmp35 = __cil_tmp34 + 24;
-    __cil_tmp36 = *((void (**)(void))__cil_tmp35);
+    __cil_tmp36 = *((void (**)(void))((void *)__cil_tmp33 + 24));
     (*__cil_tmp36)();
     }
   } else {

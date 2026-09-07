@@ -3462,8 +3462,6 @@ __inline static void *lowmem_page_address(struct page  const  *page )
   long __cil_tmp4 ;
   unsigned long long __cil_tmp5 ;
   unsigned long long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
 
   {
   {
@@ -3472,29 +3470,19 @@ __inline static void *lowmem_page_address(struct page  const  *page )
   __cil_tmp4 = __cil_tmp3 / 64L;
   __cil_tmp5 = (unsigned long long )__cil_tmp4;
   __cil_tmp6 = __cil_tmp5 << 12;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 0xffff880000000000UL;
-  return ((void *)__cil_tmp8);
+  return ((void *)((void *)__cil_tmp6 + 0xffff880000000000UL));
   }
 }
 }
 __inline static void pagefault_disable(void) 
 { struct thread_info *tmp ;
-  unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
 
   {
   {
   tmp = current_thread_info();
-  __cil_tmp2 = (unsigned long )tmp;
-  __cil_tmp3 = __cil_tmp2 + 28;
-  __cil_tmp4 = (unsigned long )tmp;
-  __cil_tmp5 = __cil_tmp4 + 28;
-  __cil_tmp6 = *((int *)__cil_tmp5);
-  *((int *)__cil_tmp3) = __cil_tmp6 + 1;
+  __cil_tmp6 = *((int *)((void *)tmp + 28));
+  *((int *)((void *)tmp + 28)) = __cil_tmp6 + 1;
   __asm__  volatile   ("": : : "memory");
   }
   return;
@@ -3502,22 +3490,14 @@ __inline static void pagefault_disable(void)
 }
 __inline static void pagefault_enable(void) 
 { struct thread_info *tmp ;
-  unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
 
   {
   {
   __asm__  volatile   ("": : : "memory");
   tmp = current_thread_info();
-  __cil_tmp2 = (unsigned long )tmp;
-  __cil_tmp3 = __cil_tmp2 + 28;
-  __cil_tmp4 = (unsigned long )tmp;
-  __cil_tmp5 = __cil_tmp4 + 28;
-  __cil_tmp6 = *((int *)__cil_tmp5);
-  *((int *)__cil_tmp3) = __cil_tmp6 + -1;
+  __cil_tmp6 = *((int *)((void *)tmp + 28));
+  *((int *)((void *)tmp + 28)) = __cil_tmp6 + -1;
   __asm__  volatile   ("": : : "memory");
   }
   return;
@@ -3551,14 +3531,10 @@ extern void add_disk(struct gendisk * ) ;
 extern void del_gendisk(struct gendisk * ) ;
 __inline static void set_capacity(struct gendisk *disk , sector_t size ) 
 { unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
 
   {
   __cil_tmp3 = 72 + 8;
-  __cil_tmp4 = (unsigned long )disk;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  *((sector_t *)__cil_tmp5) = size;
+  *((sector_t *)((void *)disk + __cil_tmp3)) = size;
   return;
 }
 }
@@ -3566,17 +3542,13 @@ extern struct gendisk *alloc_disk(int  ) ;
 extern void put_disk(struct gendisk * ) ;
 __inline static void queue_flag_set_unlocked(unsigned int flag , struct request_queue *q ) 
 { int __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long *__cil_tmp6 ;
   unsigned long volatile   *__cil_tmp7 ;
 
   {
   {
   __cil_tmp3 = (int )flag;
-  __cil_tmp4 = (unsigned long )q;
-  __cil_tmp5 = __cil_tmp4 + 1816;
-  __cil_tmp6 = (unsigned long *)__cil_tmp5;
+  __cil_tmp6 = (unsigned long *)((void *)q + 1816);
   __cil_tmp7 = (unsigned long volatile   *)__cil_tmp6;
   __set_bit(__cil_tmp3, __cil_tmp7);
   }
@@ -3629,50 +3601,36 @@ static void zram_stat_dec(u32 *v )
 }
 }
 static void zram_stat64_add(struct zram *zram , u64 *v , u64 inc ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   spinlock_t *__cil_tmp6 ;
   u64 __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   spinlock_t *__cil_tmp10 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )zram;
-  __cil_tmp5 = __cil_tmp4 + 32;
-  __cil_tmp6 = (spinlock_t *)__cil_tmp5;
+  __cil_tmp6 = (spinlock_t *)((void *)zram + 32);
   spin_lock(__cil_tmp6);
   __cil_tmp7 = *v;
   *v = __cil_tmp7 + inc;
-  __cil_tmp8 = (unsigned long )zram;
-  __cil_tmp9 = __cil_tmp8 + 32;
-  __cil_tmp10 = (spinlock_t *)__cil_tmp9;
+  __cil_tmp10 = (spinlock_t *)((void *)zram + 32);
   spin_unlock(__cil_tmp10);
   }
   return;
 }
 }
 static void zram_stat64_sub(struct zram *zram , u64 *v , u64 dec ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   spinlock_t *__cil_tmp6 ;
   u64 __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   spinlock_t *__cil_tmp10 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )zram;
-  __cil_tmp5 = __cil_tmp4 + 32;
-  __cil_tmp6 = (spinlock_t *)__cil_tmp5;
+  __cil_tmp6 = (spinlock_t *)((void *)zram + 32);
   spin_lock(__cil_tmp6);
   __cil_tmp7 = *v;
   *v = __cil_tmp7 - dec;
-  __cil_tmp8 = (unsigned long )zram;
-  __cil_tmp9 = __cil_tmp8 + 32;
-  __cil_tmp10 = (spinlock_t *)__cil_tmp9;
+  __cil_tmp10 = (spinlock_t *)((void *)zram + 32);
   spin_unlock(__cil_tmp10);
   }
   return;
@@ -3693,12 +3651,8 @@ static int zram_test_flag(struct zram *zram , u32 index , enum zram_pageflags fl
   unsigned long __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct table *__cil_tmp10 ;
   struct table *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   u8 __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
@@ -3709,13 +3663,9 @@ static int zram_test_flag(struct zram *zram , u32 index , enum zram_pageflags fl
   __cil_tmp5 = 1UL << __cil_tmp4;
   __cil_tmp6 = (unsigned int )__cil_tmp5;
   __cil_tmp7 = (unsigned long )index;
-  __cil_tmp8 = (unsigned long )zram;
-  __cil_tmp9 = __cil_tmp8 + 24;
-  __cil_tmp10 = *((struct table **)__cil_tmp9);
+  __cil_tmp10 = *((struct table **)((void *)zram + 24));
   __cil_tmp11 = __cil_tmp10 + __cil_tmp7;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 11;
-  __cil_tmp14 = *((u8 *)__cil_tmp13);
+  __cil_tmp14 = *((u8 *)((void *)__cil_tmp11 + 11));
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = __cil_tmp15 & __cil_tmp6;
   return ((int )__cil_tmp16);
@@ -3724,101 +3674,69 @@ static int zram_test_flag(struct zram *zram , u32 index , enum zram_pageflags fl
 }
 static void zram_set_flag(struct zram *zram , u32 index , enum zram_pageflags flag ) 
 { unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct table *__cil_tmp7 ;
   struct table *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   u8 __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct table *__cil_tmp18 ;
   struct table *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u8 __cil_tmp22 ;
   int __cil_tmp23 ;
   int __cil_tmp24 ;
 
   {
   __cil_tmp4 = (unsigned long )index;
-  __cil_tmp5 = (unsigned long )zram;
-  __cil_tmp6 = __cil_tmp5 + 24;
-  __cil_tmp7 = *((struct table **)__cil_tmp6);
+  __cil_tmp7 = *((struct table **)((void *)zram + 24));
   __cil_tmp8 = __cil_tmp7 + __cil_tmp4;
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 11;
   __cil_tmp11 = (int )flag;
   __cil_tmp12 = 1UL << __cil_tmp11;
   __cil_tmp13 = (u8 )__cil_tmp12;
   __cil_tmp14 = (int )__cil_tmp13;
   __cil_tmp15 = (unsigned long )index;
-  __cil_tmp16 = (unsigned long )zram;
-  __cil_tmp17 = __cil_tmp16 + 24;
-  __cil_tmp18 = *((struct table **)__cil_tmp17);
+  __cil_tmp18 = *((struct table **)((void *)zram + 24));
   __cil_tmp19 = __cil_tmp18 + __cil_tmp15;
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 11;
-  __cil_tmp22 = *((u8 *)__cil_tmp21);
+  __cil_tmp22 = *((u8 *)((void *)__cil_tmp19 + 11));
   __cil_tmp23 = (int )__cil_tmp22;
   __cil_tmp24 = __cil_tmp23 | __cil_tmp14;
-  *((u8 *)__cil_tmp10) = (u8 )__cil_tmp24;
+  *((u8 *)((void *)__cil_tmp8 + 11)) = (u8 )__cil_tmp24;
   return;
 }
 }
 static void zram_clear_flag(struct zram *zram , u32 index , enum zram_pageflags flag ) 
 { unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct table *__cil_tmp7 ;
   struct table *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   u8 __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct table *__cil_tmp19 ;
   struct table *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u8 __cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
 
   {
   __cil_tmp4 = (unsigned long )index;
-  __cil_tmp5 = (unsigned long )zram;
-  __cil_tmp6 = __cil_tmp5 + 24;
-  __cil_tmp7 = *((struct table **)__cil_tmp6);
+  __cil_tmp7 = *((struct table **)((void *)zram + 24));
   __cil_tmp8 = __cil_tmp7 + __cil_tmp4;
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 11;
   __cil_tmp11 = (int )flag;
   __cil_tmp12 = 1UL << __cil_tmp11;
   __cil_tmp13 = (u8 )__cil_tmp12;
   __cil_tmp14 = (int )__cil_tmp13;
   __cil_tmp15 = ~ __cil_tmp14;
   __cil_tmp16 = (unsigned long )index;
-  __cil_tmp17 = (unsigned long )zram;
-  __cil_tmp18 = __cil_tmp17 + 24;
-  __cil_tmp19 = *((struct table **)__cil_tmp18);
+  __cil_tmp19 = *((struct table **)((void *)zram + 24));
   __cil_tmp20 = __cil_tmp19 + __cil_tmp16;
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 11;
-  __cil_tmp23 = *((u8 *)__cil_tmp22);
+  __cil_tmp23 = *((u8 *)((void *)__cil_tmp20 + 11));
   __cil_tmp24 = (int )__cil_tmp23;
   __cil_tmp25 = __cil_tmp24 & __cil_tmp15;
-  *((u8 *)__cil_tmp10) = (u8 )__cil_tmp25;
+  *((u8 *)((void *)__cil_tmp8 + 11)) = (u8 )__cil_tmp25;
   return;
 }
 }
@@ -3856,44 +3774,29 @@ static int page_zero_filled(void *ptr )
 }
 }
 static void zram_set_disksize(struct zram *zram , size_t totalram_bytes ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   u64 __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   size_t __cil_tmp8 ;
   size_t __cil_tmp9 ;
   size_t __cil_tmp10 ;
   size_t __cil_tmp11 ;
   unsigned long long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   u64 __cil_tmp15 ;
   size_t __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   u64 __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   u64 __cil_tmp24 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )zram;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = *((u64 *)__cil_tmp4);
+  __cil_tmp5 = *((u64 *)((void *)zram + 416));
   if (__cil_tmp5 == 0ULL) {
     {
     printk("<6>zram: disk size not provided. You can use disksize_kb module param to specify size.\nUsing default: (%u%% of RAM).\n",
            default_disksize_perc_ram);
-    __cil_tmp6 = (unsigned long )zram;
-    __cil_tmp7 = __cil_tmp6 + 416;
     __cil_tmp8 = totalram_bytes / 100UL;
     __cil_tmp9 = (size_t )default_disksize_perc_ram;
     __cil_tmp10 = __cil_tmp9 * __cil_tmp8;
-    *((u64 *)__cil_tmp7) = (u64 )__cil_tmp10;
+    *((u64 *)((void *)zram + 416)) = (u64 )__cil_tmp10;
     }
   } else {
 
@@ -3902,15 +3805,11 @@ static void zram_set_disksize(struct zram *zram , size_t totalram_bytes )
   {
   __cil_tmp11 = totalram_bytes * 2UL;
   __cil_tmp12 = (unsigned long long )__cil_tmp11;
-  __cil_tmp13 = (unsigned long )zram;
-  __cil_tmp14 = __cil_tmp13 + 416;
-  __cil_tmp15 = *((u64 *)__cil_tmp14);
+  __cil_tmp15 = *((u64 *)((void *)zram + 416));
   if (__cil_tmp15 > __cil_tmp12) {
     {
     __cil_tmp16 = totalram_bytes >> 10;
-    __cil_tmp17 = (unsigned long )zram;
-    __cil_tmp18 = __cil_tmp17 + 416;
-    __cil_tmp19 = *((u64 *)__cil_tmp18);
+    __cil_tmp19 = *((u64 *)((void *)zram + 416));
     printk("<6>zram: There is little point creating a zram of greater than twice the size of memory since we expect a 2:1 compression ratio. Note that zram uses about 0.1%% of the size of the disk when not in use so a huge zram is wasteful.\n\tMemory Size: %zu kB\n\tSize you selected: %llu kB\nContinuing anyway ...\n",
            __cil_tmp16, __cil_tmp19);
     }
@@ -3918,12 +3817,8 @@ static void zram_set_disksize(struct zram *zram , size_t totalram_bytes )
 
   }
   }
-  __cil_tmp20 = (unsigned long )zram;
-  __cil_tmp21 = __cil_tmp20 + 416;
-  __cil_tmp22 = (unsigned long )zram;
-  __cil_tmp23 = __cil_tmp22 + 416;
-  __cil_tmp24 = *((u64 *)__cil_tmp23);
-  *((u64 *)__cil_tmp21) = __cil_tmp24 & 0xfffffffffffff000ULL;
+  __cil_tmp24 = *((u64 *)((void *)zram + 416));
+  *((u64 *)((void *)zram + 416)) = __cil_tmp24 & 0xfffffffffffff000ULL;
   return;
 }
 }
@@ -3933,8 +3828,6 @@ static void zram_free_page(struct zram *zram , size_t index )
   long tmp___0 ;
   int tmp___1 ;
   long tmp___2 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct table *__cil_tmp10 ;
   struct table *__cil_tmp11 ;
   void *__cil_tmp12 ;
@@ -3947,8 +3840,6 @@ static void zram_free_page(struct zram *zram , size_t index )
   u32 __cil_tmp19 ;
   enum zram_pageflags __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   u32 *__cil_tmp24 ;
   u32 __cil_tmp25 ;
   enum zram_pageflags __cil_tmp26 ;
@@ -3958,53 +3849,29 @@ static void zram_free_page(struct zram *zram , size_t index )
   u32 __cil_tmp30 ;
   enum zram_pageflags __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   u32 *__cil_tmp35 ;
   struct zs_pool *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct table *__cil_tmp39 ;
   struct table *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   u16 __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   u32 *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   u64 *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct table *__cil_tmp54 ;
   struct table *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   u16 __cil_tmp58 ;
   u64 __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   u32 *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct table *__cil_tmp66 ;
   struct table *__cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   struct table *__cil_tmp70 ;
   struct table *__cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
 
   {
   {
-  __cil_tmp8 = (unsigned long )zram;
-  __cil_tmp9 = __cil_tmp8 + 24;
-  __cil_tmp10 = *((struct table **)__cil_tmp9);
+  __cil_tmp10 = *((struct table **)((void *)zram + 24));
   __cil_tmp11 = __cil_tmp10 + index;
   handle = *((void **)__cil_tmp11);
   __cil_tmp12 = (void *)0;
@@ -4026,9 +3893,7 @@ static void zram_free_page(struct zram *zram , size_t index )
       __cil_tmp20 = (enum zram_pageflags )1;
       zram_clear_flag(zram, __cil_tmp19, __cil_tmp20);
       __cil_tmp21 = 424 + 56;
-      __cil_tmp22 = (unsigned long )zram;
-      __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-      __cil_tmp24 = (u32 *)__cil_tmp23;
+      __cil_tmp24 = (u32 *)((void *)zram + __cil_tmp21);
       zram_stat_dec(__cil_tmp24);
       }
     } else {
@@ -4054,9 +3919,7 @@ static void zram_free_page(struct zram *zram , size_t index )
     __cil_tmp31 = (enum zram_pageflags )0;
     zram_clear_flag(zram, __cil_tmp30, __cil_tmp31);
     __cil_tmp32 = 424 + 68;
-    __cil_tmp33 = (unsigned long )zram;
-    __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-    __cil_tmp35 = (u32 *)__cil_tmp34;
+    __cil_tmp35 = (u32 *)((void *)zram + __cil_tmp32);
     zram_stat_dec(__cil_tmp35);
     }
     goto out;
@@ -4068,20 +3931,14 @@ static void zram_free_page(struct zram *zram , size_t index )
   zs_free(__cil_tmp36, handle);
   }
   {
-  __cil_tmp37 = (unsigned long )zram;
-  __cil_tmp38 = __cil_tmp37 + 24;
-  __cil_tmp39 = *((struct table **)__cil_tmp38);
+  __cil_tmp39 = *((struct table **)((void *)zram + 24));
   __cil_tmp40 = __cil_tmp39 + index;
-  __cil_tmp41 = (unsigned long )__cil_tmp40;
-  __cil_tmp42 = __cil_tmp41 + 8;
-  __cil_tmp43 = *((u16 *)__cil_tmp42);
+  __cil_tmp43 = *((u16 *)((void *)__cil_tmp40 + 8));
   __cil_tmp44 = (unsigned int )__cil_tmp43;
   if (__cil_tmp44 <= 2048U) {
     {
     __cil_tmp45 = 424 + 64;
-    __cil_tmp46 = (unsigned long )zram;
-    __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-    __cil_tmp48 = (u32 *)__cil_tmp47;
+    __cil_tmp48 = (u32 *)((void *)zram + __cil_tmp45);
     zram_stat_dec(__cil_tmp48);
     }
   } else {
@@ -4090,35 +3947,21 @@ static void zram_free_page(struct zram *zram , size_t index )
   }
   out: 
   {
-  __cil_tmp49 = (unsigned long )zram;
-  __cil_tmp50 = __cil_tmp49 + 424;
-  __cil_tmp51 = (u64 *)__cil_tmp50;
-  __cil_tmp52 = (unsigned long )zram;
-  __cil_tmp53 = __cil_tmp52 + 24;
-  __cil_tmp54 = *((struct table **)__cil_tmp53);
+  __cil_tmp51 = (u64 *)((void *)zram + 424);
+  __cil_tmp54 = *((struct table **)((void *)zram + 24));
   __cil_tmp55 = __cil_tmp54 + index;
-  __cil_tmp56 = (unsigned long )__cil_tmp55;
-  __cil_tmp57 = __cil_tmp56 + 8;
-  __cil_tmp58 = *((u16 *)__cil_tmp57);
+  __cil_tmp58 = *((u16 *)((void *)__cil_tmp55 + 8));
   __cil_tmp59 = (u64 )__cil_tmp58;
   zram_stat64_sub(zram, __cil_tmp51, __cil_tmp59);
   __cil_tmp60 = 424 + 60;
-  __cil_tmp61 = (unsigned long )zram;
-  __cil_tmp62 = __cil_tmp61 + __cil_tmp60;
-  __cil_tmp63 = (u32 *)__cil_tmp62;
+  __cil_tmp63 = (u32 *)((void *)zram + __cil_tmp60);
   zram_stat_dec(__cil_tmp63);
-  __cil_tmp64 = (unsigned long )zram;
-  __cil_tmp65 = __cil_tmp64 + 24;
-  __cil_tmp66 = *((struct table **)__cil_tmp65);
+  __cil_tmp66 = *((struct table **)((void *)zram + 24));
   __cil_tmp67 = __cil_tmp66 + index;
   *((void **)__cil_tmp67) = (void *)0;
-  __cil_tmp68 = (unsigned long )zram;
-  __cil_tmp69 = __cil_tmp68 + 24;
-  __cil_tmp70 = *((struct table **)__cil_tmp69);
+  __cil_tmp70 = *((struct table **)((void *)zram + 24));
   __cil_tmp71 = __cil_tmp70 + index;
-  __cil_tmp72 = (unsigned long )__cil_tmp71;
-  __cil_tmp73 = __cil_tmp72 + 8;
-  *((u16 *)__cil_tmp73) = (u16 )0U;
+  *((u16 *)((void *)__cil_tmp71 + 8)) = (u16 )0U;
   }
   return;
 }
@@ -4126,13 +3969,9 @@ static void zram_free_page(struct zram *zram , size_t index )
 static void handle_zero_page(struct bio_vec *bvec ) 
 { struct page *page ;
   void *user_mem ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   size_t __cil_tmp12 ;
 
@@ -4140,14 +3979,10 @@ static void handle_zero_page(struct bio_vec *bvec )
   {
   page = *((struct page **)bvec);
   user_mem = kmap_atomic(page);
-  __cil_tmp4 = (unsigned long )bvec;
-  __cil_tmp5 = __cil_tmp4 + 12;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned int *)((void *)bvec + 12));
   __cil_tmp7 = (unsigned long )__cil_tmp6;
   __cil_tmp8 = user_mem + __cil_tmp7;
-  __cil_tmp9 = (unsigned long )bvec;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = *((unsigned int *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned int *)((void *)bvec + 8));
   __cil_tmp12 = (size_t )__cil_tmp11;
   memset(__cil_tmp8, 0, __cil_tmp12);
   __kunmap_atomic(user_mem);
@@ -4165,17 +4000,11 @@ static void handle_uncompressed_page(struct zram *zram , struct bio_vec *bvec , 
   size_t __len ;
   void *__ret ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct table *__cil_tmp15 ;
   struct table *__cil_tmp16 ;
   void *__cil_tmp17 ;
   struct page *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   void *__cil_tmp26 ;
@@ -4192,21 +4021,15 @@ static void handle_uncompressed_page(struct zram *zram , struct bio_vec *bvec , 
   tmp = kmap_atomic(page);
   user_mem = (unsigned char *)tmp;
   __cil_tmp12 = (unsigned long )index;
-  __cil_tmp13 = (unsigned long )zram;
-  __cil_tmp14 = __cil_tmp13 + 24;
-  __cil_tmp15 = *((struct table **)__cil_tmp14);
+  __cil_tmp15 = *((struct table **)((void *)zram + 24));
   __cil_tmp16 = __cil_tmp15 + __cil_tmp12;
   __cil_tmp17 = *((void **)__cil_tmp16);
   __cil_tmp18 = (struct page *)__cil_tmp17;
   tmp___0 = kmap_atomic(__cil_tmp18);
   cmem = (unsigned char *)tmp___0;
-  __cil_tmp19 = (unsigned long )bvec;
-  __cil_tmp20 = __cil_tmp19 + 8;
-  __cil_tmp21 = *((unsigned int *)__cil_tmp20);
+  __cil_tmp21 = *((unsigned int *)((void *)bvec + 8));
   __len = (size_t )__cil_tmp21;
-  __cil_tmp22 = (unsigned long )bvec;
-  __cil_tmp23 = __cil_tmp22 + 12;
-  __cil_tmp24 = *((unsigned int *)__cil_tmp23);
+  __cil_tmp24 = *((unsigned int *)((void *)bvec + 12));
   __cil_tmp25 = (unsigned long )__cil_tmp24;
   __cil_tmp26 = (void *)user_mem;
   __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
@@ -4223,15 +4046,12 @@ static void handle_uncompressed_page(struct zram *zram , struct bio_vec *bvec , 
 }
 }
 __inline static int is_partial_io(struct bio_vec *bvec ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   unsigned int __cil_tmp4 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )bvec;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  __cil_tmp4 = *((unsigned int *)__cil_tmp3);
+  __cil_tmp4 = *((unsigned int *)((void *)bvec + 8));
   return (__cil_tmp4 != 4096U);
   }
 }
@@ -4263,8 +4083,6 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
   void *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct table *__cil_tmp34 ;
   struct table *__cil_tmp35 ;
   void *__cil_tmp36 ;
@@ -4272,18 +4090,10 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
   int __cil_tmp38 ;
   long __cil_tmp39 ;
   struct _ddebug *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned char __cil_tmp47 ;
   long __cil_tmp48 ;
   long __cil_tmp49 ;
   sector_t __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned int __cil_tmp53 ;
   enum zram_pageflags __cil_tmp54 ;
   int __cil_tmp55 ;
@@ -4294,26 +4104,16 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
   size_t *__cil_tmp60 ;
   struct zs_pool *__cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   struct table *__cil_tmp65 ;
   struct table *__cil_tmp66 ;
   void *__cil_tmp67 ;
   unsigned char const   *__cil_tmp68 ;
   unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct table *__cil_tmp72 ;
   struct table *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   u16 __cil_tmp76 ;
   size_t __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   unsigned int __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   unsigned int __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
   void *__cil_tmp85 ;
@@ -4324,8 +4124,6 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
   void const   *__cil_tmp90 ;
   struct zs_pool *__cil_tmp91 ;
   unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   struct table *__cil_tmp95 ;
   struct table *__cil_tmp96 ;
   void *__cil_tmp97 ;
@@ -4333,8 +4131,6 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
   int __cil_tmp99 ;
   long __cil_tmp100 ;
   unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   u64 *__cil_tmp104 ;
 
   {
@@ -4356,9 +4152,7 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
   __cil_tmp29 = (void *)0;
   __cil_tmp30 = (unsigned long )__cil_tmp29;
   __cil_tmp31 = (unsigned long )index;
-  __cil_tmp32 = (unsigned long )zram;
-  __cil_tmp33 = __cil_tmp32 + 24;
-  __cil_tmp34 = *((struct table **)__cil_tmp33);
+  __cil_tmp34 = *((struct table **)((void *)zram + 24));
   __cil_tmp35 = __cil_tmp34 + __cil_tmp31;
   __cil_tmp36 = *((void **)__cil_tmp35);
   __cil_tmp37 = (unsigned long )__cil_tmp36;
@@ -4370,18 +4164,12 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
     {
     __cil_tmp40 = & descriptor;
     *((char const   **)__cil_tmp40) = "zram";
-    __cil_tmp41 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp41) = "zram_bvec_read";
-    __cil_tmp42 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp42) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5798/dscv_tempdir/dscv/ri/43_1a/drivers/staging/zram/zram_drv.c.p";
-    __cil_tmp43 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp43) = "Read before write: sector=%lu, size=%u";
-    __cil_tmp44 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp44) = 240U;
-    __cil_tmp45 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp45) = (unsigned char)0;
-    __cil_tmp46 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp47 = *((unsigned char *)__cil_tmp46);
+    *((char const   **)((void *)(&descriptor) + 8)) = "zram_bvec_read";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5798/dscv_tempdir/dscv/ri/43_1a/drivers/staging/zram/zram_drv.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "Read before write: sector=%lu, size=%u";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 240U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+    __cil_tmp47 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp48 = (long )__cil_tmp47;
     __cil_tmp49 = __cil_tmp48 & 1L;
     tmp___0 = __builtin_expect(__cil_tmp49, 0L);
@@ -4389,9 +4177,7 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
     if (tmp___0 != 0L) {
       {
       __cil_tmp50 = *((sector_t *)bio);
-      __cil_tmp51 = (unsigned long )bio;
-      __cil_tmp52 = __cil_tmp51 + 48;
-      __cil_tmp53 = *((unsigned int *)__cil_tmp52);
+      __cil_tmp53 = *((unsigned int *)((void *)bio + 48));
       __dynamic_pr_debug(& descriptor, "zram: Read before write: sector=%lu, size=%u",
                          __cil_tmp50, __cil_tmp53);
       }
@@ -4459,35 +4245,25 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
   *__cil_tmp60 = 4096UL;
   __cil_tmp61 = *((struct zs_pool **)zram);
   __cil_tmp62 = (unsigned long )index;
-  __cil_tmp63 = (unsigned long )zram;
-  __cil_tmp64 = __cil_tmp63 + 24;
-  __cil_tmp65 = *((struct table **)__cil_tmp64);
+  __cil_tmp65 = *((struct table **)((void *)zram + 24));
   __cil_tmp66 = __cil_tmp65 + __cil_tmp62;
   __cil_tmp67 = *((void **)__cil_tmp66);
   tmp___8 = zs_map_object(__cil_tmp61, __cil_tmp67);
   cmem = (unsigned char *)tmp___8;
   __cil_tmp68 = (unsigned char const   *)cmem;
   __cil_tmp69 = (unsigned long )index;
-  __cil_tmp70 = (unsigned long )zram;
-  __cil_tmp71 = __cil_tmp70 + 24;
-  __cil_tmp72 = *((struct table **)__cil_tmp71);
+  __cil_tmp72 = *((struct table **)((void *)zram + 24));
   __cil_tmp73 = __cil_tmp72 + __cil_tmp69;
-  __cil_tmp74 = (unsigned long )__cil_tmp73;
-  __cil_tmp75 = __cil_tmp74 + 8;
-  __cil_tmp76 = *((u16 *)__cil_tmp75);
+  __cil_tmp76 = *((u16 *)((void *)__cil_tmp73 + 8));
   __cil_tmp77 = (size_t )__cil_tmp76;
   ret = lzo1x_decompress_safe(__cil_tmp68, __cil_tmp77, uncmem, & clen);
   tmp___9 = is_partial_io(bvec);
   }
   if (tmp___9 != 0) {
     {
-    __cil_tmp78 = (unsigned long )bvec;
-    __cil_tmp79 = __cil_tmp78 + 8;
-    __cil_tmp80 = *((unsigned int *)__cil_tmp79);
+    __cil_tmp80 = *((unsigned int *)((void *)bvec + 8));
     __len = (size_t )__cil_tmp80;
-    __cil_tmp81 = (unsigned long )bvec;
-    __cil_tmp82 = __cil_tmp81 + 12;
-    __cil_tmp83 = *((unsigned int *)__cil_tmp82);
+    __cil_tmp83 = *((unsigned int *)((void *)bvec + 12));
     __cil_tmp84 = (unsigned long )__cil_tmp83;
     __cil_tmp85 = (void *)user_mem;
     __cil_tmp86 = __cil_tmp85 + __cil_tmp84;
@@ -4504,9 +4280,7 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
   {
   __cil_tmp91 = *((struct zs_pool **)zram);
   __cil_tmp92 = (unsigned long )index;
-  __cil_tmp93 = (unsigned long )zram;
-  __cil_tmp94 = __cil_tmp93 + 24;
-  __cil_tmp95 = *((struct table **)__cil_tmp94);
+  __cil_tmp95 = *((struct table **)((void *)zram + 24));
   __cil_tmp96 = __cil_tmp95 + __cil_tmp92;
   __cil_tmp97 = *((void **)__cil_tmp96);
   zs_unmap_object(__cil_tmp91, __cil_tmp97);
@@ -4520,9 +4294,7 @@ static int zram_bvec_read(struct zram *zram , struct bio_vec *bvec , u32 index ,
     {
     printk("<3>zram: Decompression failed! err=%d, page=%u\n", ret, index);
     __cil_tmp101 = 424 + 24;
-    __cil_tmp102 = (unsigned long )zram;
-    __cil_tmp103 = __cil_tmp102 + __cil_tmp101;
-    __cil_tmp104 = (u64 *)__cil_tmp103;
+    __cil_tmp104 = (u64 *)((void *)zram + __cil_tmp101);
     zram_stat64_inc(zram, __cil_tmp104);
     }
     return (ret);
@@ -4549,8 +4321,6 @@ static int zram_read_before_write(struct zram *zram , char *mem , u32 index )
   void *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct table *__cil_tmp23 ;
   struct table *__cil_tmp24 ;
   void *__cil_tmp25 ;
@@ -4558,8 +4328,6 @@ static int zram_read_before_write(struct zram *zram , char *mem , u32 index )
   void *__cil_tmp27 ;
   struct zs_pool *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct table *__cil_tmp32 ;
   struct table *__cil_tmp33 ;
   void *__cil_tmp34 ;
@@ -4573,27 +4341,19 @@ static int zram_read_before_write(struct zram *zram , char *mem , u32 index )
   void *__cil_tmp42 ;
   unsigned char const   *__cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct table *__cil_tmp47 ;
   struct table *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   u16 __cil_tmp51 ;
   size_t __cil_tmp52 ;
   unsigned char *__cil_tmp53 ;
   struct zs_pool *__cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct table *__cil_tmp58 ;
   struct table *__cil_tmp59 ;
   void *__cil_tmp60 ;
   int __cil_tmp61 ;
   long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   u64 *__cil_tmp66 ;
 
   {
@@ -4614,9 +4374,7 @@ static int zram_read_before_write(struct zram *zram , char *mem , u32 index )
     __cil_tmp18 = (void *)0;
     __cil_tmp19 = (unsigned long )__cil_tmp18;
     __cil_tmp20 = (unsigned long )index;
-    __cil_tmp21 = (unsigned long )zram;
-    __cil_tmp22 = __cil_tmp21 + 24;
-    __cil_tmp23 = *((struct table **)__cil_tmp22);
+    __cil_tmp23 = *((struct table **)((void *)zram + 24));
     __cil_tmp24 = __cil_tmp23 + __cil_tmp20;
     __cil_tmp25 = *((void **)__cil_tmp24);
     __cil_tmp26 = (unsigned long )__cil_tmp25;
@@ -4634,9 +4392,7 @@ static int zram_read_before_write(struct zram *zram , char *mem , u32 index )
   {
   __cil_tmp28 = *((struct zs_pool **)zram);
   __cil_tmp29 = (unsigned long )index;
-  __cil_tmp30 = (unsigned long )zram;
-  __cil_tmp31 = __cil_tmp30 + 24;
-  __cil_tmp32 = *((struct table **)__cil_tmp31);
+  __cil_tmp32 = *((struct table **)((void *)zram + 24));
   __cil_tmp33 = __cil_tmp32 + __cil_tmp29;
   __cil_tmp34 = *((void **)__cil_tmp33);
   tmp___0 = zs_map_object(__cil_tmp28, __cil_tmp34);
@@ -4673,21 +4429,15 @@ static int zram_read_before_write(struct zram *zram , char *mem , u32 index )
   {
   __cil_tmp43 = (unsigned char const   *)cmem;
   __cil_tmp44 = (unsigned long )index;
-  __cil_tmp45 = (unsigned long )zram;
-  __cil_tmp46 = __cil_tmp45 + 24;
-  __cil_tmp47 = *((struct table **)__cil_tmp46);
+  __cil_tmp47 = *((struct table **)((void *)zram + 24));
   __cil_tmp48 = __cil_tmp47 + __cil_tmp44;
-  __cil_tmp49 = (unsigned long )__cil_tmp48;
-  __cil_tmp50 = __cil_tmp49 + 8;
-  __cil_tmp51 = *((u16 *)__cil_tmp50);
+  __cil_tmp51 = *((u16 *)((void *)__cil_tmp48 + 8));
   __cil_tmp52 = (size_t )__cil_tmp51;
   __cil_tmp53 = (unsigned char *)mem;
   ret = lzo1x_decompress_safe(__cil_tmp43, __cil_tmp52, __cil_tmp53, & clen);
   __cil_tmp54 = *((struct zs_pool **)zram);
   __cil_tmp55 = (unsigned long )index;
-  __cil_tmp56 = (unsigned long )zram;
-  __cil_tmp57 = __cil_tmp56 + 24;
-  __cil_tmp58 = *((struct table **)__cil_tmp57);
+  __cil_tmp58 = *((struct table **)((void *)zram + 24));
   __cil_tmp59 = __cil_tmp58 + __cil_tmp55;
   __cil_tmp60 = *((void **)__cil_tmp59);
   zs_unmap_object(__cil_tmp54, __cil_tmp60);
@@ -4699,9 +4449,7 @@ static int zram_read_before_write(struct zram *zram , char *mem , u32 index )
     {
     printk("<3>zram: Decompression failed! err=%d, page=%u\n", ret, index);
     __cil_tmp63 = 424 + 24;
-    __cil_tmp64 = (unsigned long )zram;
-    __cil_tmp65 = __cil_tmp64 + __cil_tmp63;
-    __cil_tmp66 = (u64 *)__cil_tmp65;
+    __cil_tmp66 = (u64 *)((void *)zram + __cil_tmp63);
     zram_stat64_inc(zram, __cil_tmp66);
     }
     return (ret);
@@ -4743,8 +4491,6 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   void *__ret___0 ;
   int tmp___13 ;
   long tmp___14 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   void *__cil_tmp38 ;
   unsigned char *__cil_tmp39 ;
   unsigned long __cil_tmp40 ;
@@ -4754,8 +4500,6 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   void *__cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct table *__cil_tmp49 ;
   struct table *__cil_tmp50 ;
   void *__cil_tmp51 ;
@@ -4763,14 +4507,10 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   size_t __cil_tmp53 ;
   enum zram_pageflags __cil_tmp54 ;
   size_t __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned int __cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   void *__cil_tmp60 ;
   void *__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned int __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   void const   *__cil_tmp66 ;
@@ -4779,13 +4519,9 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   void *__cil_tmp69 ;
   void const   *__cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   u32 *__cil_tmp74 ;
   enum zram_pageflags __cil_tmp75 ;
   unsigned char const   *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   void *__cil_tmp79 ;
   void *__cil_tmp80 ;
   void const   *__cil_tmp81 ;
@@ -4804,8 +4540,6 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   long __cil_tmp94 ;
   enum zram_pageflags __cil_tmp95 ;
   unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   u32 *__cil_tmp99 ;
   struct zs_pool *__cil_tmp100 ;
   size_t *__cil_tmp101 ;
@@ -4826,47 +4560,31 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   void *__cil_tmp116 ;
   struct zs_pool *__cil_tmp117 ;
   unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   struct table *__cil_tmp121 ;
   struct table *__cil_tmp122 ;
   unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
   struct table *__cil_tmp126 ;
   struct table *__cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
   size_t *__cil_tmp130 ;
   size_t __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
   u64 *__cil_tmp134 ;
   size_t *__cil_tmp135 ;
   size_t __cil_tmp136 ;
   u64 __cil_tmp137 ;
   unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
   u32 *__cil_tmp141 ;
   size_t *__cil_tmp142 ;
   size_t __cil_tmp143 ;
   unsigned long __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
   u32 *__cil_tmp147 ;
   unsigned long __cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
   u64 *__cil_tmp151 ;
 
   {
   {
   uncmem = (unsigned char *)0;
   page = *((struct page **)bvec);
-  __cil_tmp36 = (unsigned long )zram;
-  __cil_tmp37 = __cil_tmp36 + 16;
-  __cil_tmp38 = *((void **)__cil_tmp37);
+  __cil_tmp38 = *((void **)((void *)zram + 16));
   src = (unsigned char *)__cil_tmp38;
   tmp___0 = is_partial_io(bvec);
   }
@@ -4909,9 +4627,7 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   __cil_tmp44 = (void *)0;
   __cil_tmp45 = (unsigned long )__cil_tmp44;
   __cil_tmp46 = (unsigned long )index;
-  __cil_tmp47 = (unsigned long )zram;
-  __cil_tmp48 = __cil_tmp47 + 24;
-  __cil_tmp49 = *((struct table **)__cil_tmp48);
+  __cil_tmp49 = *((struct table **)((void *)zram + 24));
   __cil_tmp50 = __cil_tmp49 + __cil_tmp46;
   __cil_tmp51 = *((void **)__cil_tmp50);
   __cil_tmp52 = (unsigned long )__cil_tmp51;
@@ -4942,16 +4658,12 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   }
   if (tmp___3 != 0) {
     {
-    __cil_tmp56 = (unsigned long )bvec;
-    __cil_tmp57 = __cil_tmp56 + 8;
-    __cil_tmp58 = *((unsigned int *)__cil_tmp57);
+    __cil_tmp58 = *((unsigned int *)((void *)bvec + 8));
     __len = (size_t )__cil_tmp58;
     __cil_tmp59 = (unsigned long )offset;
     __cil_tmp60 = (void *)uncmem;
     __cil_tmp61 = __cil_tmp60 + __cil_tmp59;
-    __cil_tmp62 = (unsigned long )bvec;
-    __cil_tmp63 = __cil_tmp62 + 12;
-    __cil_tmp64 = *((unsigned int *)__cil_tmp63);
+    __cil_tmp64 = *((unsigned int *)((void *)bvec + 12));
     __cil_tmp65 = (unsigned long )__cil_tmp64;
     __cil_tmp66 = (void const   *)user_mem;
     __cil_tmp67 = __cil_tmp66 + __cil_tmp65;
@@ -4980,9 +4692,7 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
     }
     {
     __cil_tmp71 = 424 + 56;
-    __cil_tmp72 = (unsigned long )zram;
-    __cil_tmp73 = __cil_tmp72 + __cil_tmp71;
-    __cil_tmp74 = (u32 *)__cil_tmp73;
+    __cil_tmp74 = (u32 *)((void *)zram + __cil_tmp71);
     zram_stat_inc(__cil_tmp74);
     __cil_tmp75 = (enum zram_pageflags )1;
     zram_set_flag(zram, index, __cil_tmp75);
@@ -4994,9 +4704,7 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   }
   {
   __cil_tmp76 = (unsigned char const   *)uncmem;
-  __cil_tmp77 = (unsigned long )zram;
-  __cil_tmp78 = __cil_tmp77 + 8;
-  __cil_tmp79 = *((void **)__cil_tmp78);
+  __cil_tmp79 = *((void **)((void *)zram + 8));
   ret = lzo1x_1_compress(__cil_tmp76, 4096UL, src, & clen, __cil_tmp79);
   __cil_tmp80 = (void *)user_mem;
   __kunmap_atomic(__cil_tmp80);
@@ -5057,9 +4765,7 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
     __cil_tmp95 = (enum zram_pageflags )0;
     zram_set_flag(zram, index, __cil_tmp95);
     __cil_tmp96 = 424 + 68;
-    __cil_tmp97 = (unsigned long )zram;
-    __cil_tmp98 = __cil_tmp97 + __cil_tmp96;
-    __cil_tmp99 = (u32 *)__cil_tmp98;
+    __cil_tmp99 = (u32 *)((void *)zram + __cil_tmp96);
     zram_stat_inc(__cil_tmp99);
     handle = (void *)page_store;
     tmp___9 = kmap_atomic(page);
@@ -5127,32 +4833,22 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   }
   {
   __cil_tmp118 = (unsigned long )index;
-  __cil_tmp119 = (unsigned long )zram;
-  __cil_tmp120 = __cil_tmp119 + 24;
-  __cil_tmp121 = *((struct table **)__cil_tmp120);
+  __cil_tmp121 = *((struct table **)((void *)zram + 24));
   __cil_tmp122 = __cil_tmp121 + __cil_tmp118;
   *((void **)__cil_tmp122) = handle;
   __cil_tmp123 = (unsigned long )index;
-  __cil_tmp124 = (unsigned long )zram;
-  __cil_tmp125 = __cil_tmp124 + 24;
-  __cil_tmp126 = *((struct table **)__cil_tmp125);
+  __cil_tmp126 = *((struct table **)((void *)zram + 24));
   __cil_tmp127 = __cil_tmp126 + __cil_tmp123;
-  __cil_tmp128 = (unsigned long )__cil_tmp127;
-  __cil_tmp129 = __cil_tmp128 + 8;
   __cil_tmp130 = & clen;
   __cil_tmp131 = *__cil_tmp130;
-  *((u16 *)__cil_tmp129) = (u16 )__cil_tmp131;
-  __cil_tmp132 = (unsigned long )zram;
-  __cil_tmp133 = __cil_tmp132 + 424;
-  __cil_tmp134 = (u64 *)__cil_tmp133;
+  *((u16 *)((void *)__cil_tmp127 + 8)) = (u16 )__cil_tmp131;
+  __cil_tmp134 = (u64 *)((void *)zram + 424);
   __cil_tmp135 = & clen;
   __cil_tmp136 = *__cil_tmp135;
   __cil_tmp137 = (u64 )__cil_tmp136;
   zram_stat64_add(zram, __cil_tmp134, __cil_tmp137);
   __cil_tmp138 = 424 + 60;
-  __cil_tmp139 = (unsigned long )zram;
-  __cil_tmp140 = __cil_tmp139 + __cil_tmp138;
-  __cil_tmp141 = (u32 *)__cil_tmp140;
+  __cil_tmp141 = (u32 *)((void *)zram + __cil_tmp138);
   zram_stat_inc(__cil_tmp141);
   }
   {
@@ -5161,9 +4857,7 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   if (__cil_tmp143 <= 2048UL) {
     {
     __cil_tmp144 = 424 + 64;
-    __cil_tmp145 = (unsigned long )zram;
-    __cil_tmp146 = __cil_tmp145 + __cil_tmp144;
-    __cil_tmp147 = (u32 *)__cil_tmp146;
+    __cil_tmp147 = (u32 *)((void *)zram + __cil_tmp144);
     zram_stat_inc(__cil_tmp147);
     }
   } else {
@@ -5175,9 +4869,7 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
   if (ret != 0) {
     {
     __cil_tmp148 = 424 + 32;
-    __cil_tmp149 = (unsigned long )zram;
-    __cil_tmp150 = __cil_tmp149 + __cil_tmp148;
-    __cil_tmp151 = (u64 *)__cil_tmp150;
+    __cil_tmp151 = (u64 *)((void *)zram + __cil_tmp148);
     zram_stat64_inc(zram, __cil_tmp151);
     }
   } else {
@@ -5189,42 +4881,26 @@ static int zram_bvec_write(struct zram *zram , struct bio_vec *bvec , u32 index 
 static int zram_bvec_rw(struct zram *zram , struct bio_vec *bvec , u32 index , int offset ,
                         struct bio *bio , int rw ) 
 { int ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct rw_semaphore *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct rw_semaphore *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct rw_semaphore *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct rw_semaphore *__cil_tmp19 ;
 
   {
   if (rw == 0) {
     {
-    __cil_tmp8 = (unsigned long )zram;
-    __cil_tmp9 = __cil_tmp8 + 104;
-    __cil_tmp10 = (struct rw_semaphore *)__cil_tmp9;
+    __cil_tmp10 = (struct rw_semaphore *)((void *)zram + 104);
     down_read(__cil_tmp10);
     ret = zram_bvec_read(zram, bvec, index, offset, bio);
-    __cil_tmp11 = (unsigned long )zram;
-    __cil_tmp12 = __cil_tmp11 + 104;
-    __cil_tmp13 = (struct rw_semaphore *)__cil_tmp12;
+    __cil_tmp13 = (struct rw_semaphore *)((void *)zram + 104);
     up_read(__cil_tmp13);
     }
   } else {
     {
-    __cil_tmp14 = (unsigned long )zram;
-    __cil_tmp15 = __cil_tmp14 + 104;
-    __cil_tmp16 = (struct rw_semaphore *)__cil_tmp15;
+    __cil_tmp16 = (struct rw_semaphore *)((void *)zram + 104);
     down_write(__cil_tmp16);
     ret = zram_bvec_write(zram, bvec, index, offset);
-    __cil_tmp17 = (unsigned long )zram;
-    __cil_tmp18 = __cil_tmp17 + 104;
-    __cil_tmp19 = (struct rw_semaphore *)__cil_tmp18;
+    __cil_tmp19 = (struct rw_semaphore *)((void *)zram + 104);
     up_write(__cil_tmp19);
     }
   }
@@ -5232,15 +4908,12 @@ static int zram_bvec_rw(struct zram *zram , struct bio_vec *bvec , u32 index , i
 }
 }
 static void update_position(u32 *index , int *offset , struct bio_vec *bvec ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   unsigned int __cil_tmp6 ;
   int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   u32 __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
@@ -5249,9 +4922,7 @@ static void update_position(u32 *index , int *offset , struct bio_vec *bvec )
 
   {
   {
-  __cil_tmp4 = (unsigned long )bvec;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned int *)((void *)bvec + 8));
   __cil_tmp7 = *offset;
   __cil_tmp8 = (unsigned int )__cil_tmp7;
   __cil_tmp9 = __cil_tmp8 + __cil_tmp6;
@@ -5262,9 +4933,7 @@ static void update_position(u32 *index , int *offset , struct bio_vec *bvec )
 
   }
   }
-  __cil_tmp11 = (unsigned long )bvec;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((unsigned int *)__cil_tmp12);
+  __cil_tmp13 = *((unsigned int *)((void *)bvec + 8));
   __cil_tmp14 = *offset;
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = __cil_tmp15 + __cil_tmp13;
@@ -5284,12 +4953,8 @@ static void __zram_make_request(struct zram *zram , struct bio *bio , int rw )
   int tmp___0 ;
   int tmp___1 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   u64 *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u64 *__cil_tmp20 ;
   u32 *__cil_tmp21 ;
   sector_t __cil_tmp22 ;
@@ -5298,41 +4963,24 @@ static void __zram_make_request(struct zram *zram , struct bio *bio , int rw )
   sector_t __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned short __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct bio_vec *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned short __cil_tmp37 ;
   int *__cil_tmp38 ;
   int __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
   unsigned int __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned int __cil_tmp45 ;
   struct bio_vec *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   u32 *__cil_tmp51 ;
   u32 __cil_tmp52 ;
   int *__cil_tmp53 ;
   int __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   unsigned int __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   unsigned int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   unsigned int __cil_tmp63 ;
   u32 *__cil_tmp64 ;
   u32 __cil_tmp65 ;
@@ -5341,12 +4989,8 @@ static void __zram_make_request(struct zram *zram , struct bio *bio , int rw )
   u32 __cil_tmp68 ;
   int *__cil_tmp69 ;
   int __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   unsigned short __cil_tmp73 ;
   int __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   unsigned long *__cil_tmp77 ;
   unsigned long volatile   *__cil_tmp78 ;
 
@@ -5361,18 +5005,14 @@ static void __zram_make_request(struct zram *zram , struct bio *bio , int rw )
     case_0: /* CIL Label */ 
     {
     __cil_tmp13 = 424 + 8;
-    __cil_tmp14 = (unsigned long )zram;
-    __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-    __cil_tmp16 = (u64 *)__cil_tmp15;
+    __cil_tmp16 = (u64 *)((void *)zram + __cil_tmp13);
     zram_stat64_inc(zram, __cil_tmp16);
     }
     goto ldv_28302;
     case_1: /* CIL Label */ 
     {
     __cil_tmp17 = 424 + 16;
-    __cil_tmp18 = (unsigned long )zram;
-    __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-    __cil_tmp20 = (u64 *)__cil_tmp19;
+    __cil_tmp20 = (u64 *)((void *)zram + __cil_tmp17);
     zram_stat64_inc(zram, __cil_tmp20);
     }
     goto ldv_28302;
@@ -5389,17 +5029,11 @@ static void __zram_make_request(struct zram *zram , struct bio *bio , int rw )
   __cil_tmp26 = __cil_tmp25 & 7UL;
   __cil_tmp27 = __cil_tmp26 << 9;
   *__cil_tmp24 = (int )__cil_tmp27;
-  __cil_tmp28 = (unsigned long )bio;
-  __cil_tmp29 = __cil_tmp28 + 42;
-  __cil_tmp30 = *((unsigned short *)__cil_tmp29);
+  __cil_tmp30 = *((unsigned short *)((void *)bio + 42));
   __cil_tmp31 = (unsigned long )__cil_tmp30;
-  __cil_tmp32 = (unsigned long )bio;
-  __cil_tmp33 = __cil_tmp32 + 72;
-  __cil_tmp34 = *((struct bio_vec **)__cil_tmp33);
+  __cil_tmp34 = *((struct bio_vec **)((void *)bio + 72));
   bvec = __cil_tmp34 + __cil_tmp31;
-  __cil_tmp35 = (unsigned long )bio;
-  __cil_tmp36 = __cil_tmp35 + 42;
-  __cil_tmp37 = *((unsigned short *)__cil_tmp36);
+  __cil_tmp37 = *((unsigned short *)((void *)bio + 42));
   i = (int )__cil_tmp37;
   goto ldv_28308;
   ldv_28307: 
@@ -5410,19 +5044,13 @@ static void __zram_make_request(struct zram *zram , struct bio *bio , int rw )
   max_transfer_size = (int )__cil_tmp41;
   {
   __cil_tmp42 = (unsigned int )max_transfer_size;
-  __cil_tmp43 = (unsigned long )bvec;
-  __cil_tmp44 = __cil_tmp43 + 8;
-  __cil_tmp45 = *((unsigned int *)__cil_tmp44);
+  __cil_tmp45 = *((unsigned int *)((void *)bvec + 8));
   if (__cil_tmp45 > __cil_tmp42) {
     {
     __cil_tmp46 = & bv;
     *((struct page **)__cil_tmp46) = *((struct page **)bvec);
-    __cil_tmp47 = (unsigned long )(& bv) + 8;
-    *((unsigned int *)__cil_tmp47) = (unsigned int )max_transfer_size;
-    __cil_tmp48 = (unsigned long )(& bv) + 12;
-    __cil_tmp49 = (unsigned long )bvec;
-    __cil_tmp50 = __cil_tmp49 + 12;
-    *((unsigned int *)__cil_tmp48) = *((unsigned int *)__cil_tmp50);
+    *((unsigned int *)((void *)(&bv) + 8)) = (unsigned int )max_transfer_size;
+    *((unsigned int *)((void *)(&bv) + 12)) = *((unsigned int *)((void *)bvec + 12));
     __cil_tmp51 = & index;
     __cil_tmp52 = *__cil_tmp51;
     __cil_tmp53 = & offset;
@@ -5435,17 +5063,12 @@ static void __zram_make_request(struct zram *zram , struct bio *bio , int rw )
 
     }
     {
-    __cil_tmp55 = (unsigned long )(& bv) + 8;
     __cil_tmp56 = (unsigned int )max_transfer_size;
-    __cil_tmp57 = (unsigned long )bvec;
-    __cil_tmp58 = __cil_tmp57 + 8;
-    __cil_tmp59 = *((unsigned int *)__cil_tmp58);
-    *((unsigned int *)__cil_tmp55) = __cil_tmp59 - __cil_tmp56;
-    __cil_tmp60 = (unsigned long )(& bv) + 12;
+    __cil_tmp59 = *((unsigned int *)((void *)bvec + 8));
+    *((unsigned int *)((void *)(&bv) + 8)) = __cil_tmp59 - __cil_tmp56;
     __cil_tmp61 = (unsigned int )max_transfer_size;
-    __cil_tmp62 = (unsigned long )(& bv) + 12;
-    __cil_tmp63 = *((unsigned int *)__cil_tmp62);
-    *((unsigned int *)__cil_tmp60) = __cil_tmp63 + __cil_tmp61;
+    __cil_tmp63 = *((unsigned int *)((void *)(&bv) + 12));
+    *((unsigned int *)((void *)(&bv) + 12)) = __cil_tmp63 + __cil_tmp61;
     __cil_tmp64 = & index;
     __cil_tmp65 = *__cil_tmp64;
     __cil_tmp66 = __cil_tmp65 + 1U;
@@ -5478,9 +5101,7 @@ static void __zram_make_request(struct zram *zram , struct bio *bio , int rw )
   }
   ldv_28308: ;
   {
-  __cil_tmp71 = (unsigned long )bio;
-  __cil_tmp72 = __cil_tmp71 + 40;
-  __cil_tmp73 = *((unsigned short *)__cil_tmp72);
+  __cil_tmp73 = *((unsigned short *)((void *)bio + 40));
   __cil_tmp74 = (int )__cil_tmp73;
   if (__cil_tmp74 > i) {
     goto ldv_28307;
@@ -5490,9 +5111,7 @@ static void __zram_make_request(struct zram *zram , struct bio *bio , int rw )
   }
   ldv_28309: 
   {
-  __cil_tmp75 = (unsigned long )bio;
-  __cil_tmp76 = __cil_tmp75 + 24;
-  __cil_tmp77 = (unsigned long *)__cil_tmp76;
+  __cil_tmp77 = (unsigned long *)((void *)bio + 24);
   __cil_tmp78 = (unsigned long volatile   *)__cil_tmp77;
   set_bit(0U, __cil_tmp78);
   bio_endio(bio, 0);
@@ -5510,8 +5129,6 @@ __inline static int valid_io_request(struct zram *zram , struct bio *bio )
   long tmp___0 ;
   int tmp___1 ;
   long tmp___2 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   u64 __cil_tmp9 ;
   u64 __cil_tmp10 ;
   sector_t __cil_tmp11 ;
@@ -5522,8 +5139,6 @@ __inline static int valid_io_request(struct zram *zram , struct bio *bio )
   unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   int __cil_tmp23 ;
@@ -5531,9 +5146,7 @@ __inline static int valid_io_request(struct zram *zram , struct bio *bio )
 
   {
   {
-  __cil_tmp7 = (unsigned long )zram;
-  __cil_tmp8 = __cil_tmp7 + 416;
-  __cil_tmp9 = *((u64 *)__cil_tmp8);
+  __cil_tmp9 = *((u64 *)((void *)zram + 416));
   __cil_tmp10 = __cil_tmp9 >> 9;
   __cil_tmp11 = *((sector_t *)bio);
   __cil_tmp12 = (unsigned long long )__cil_tmp11;
@@ -5561,9 +5174,7 @@ __inline static int valid_io_request(struct zram *zram , struct bio *bio )
     return (0);
   } else {
     {
-    __cil_tmp19 = (unsigned long )bio;
-    __cil_tmp20 = __cil_tmp19 + 48;
-    __cil_tmp21 = *((unsigned int *)__cil_tmp20);
+    __cil_tmp21 = *((unsigned int *)((void *)bio + 48));
     __cil_tmp22 = __cil_tmp21 & 4095U;
     __cil_tmp23 = __cil_tmp22 != 0U;
     __cil_tmp24 = (long )__cil_tmp23;
@@ -5584,47 +5195,27 @@ static void zram_make_request(struct request_queue *queue , struct bio *bio )
   int tmp___0 ;
   long tmp___1 ;
   int tmp___2 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
   long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct rw_semaphore *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
   int __cil_tmp22 ;
   long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u64 *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
   int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct rw_semaphore *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct rw_semaphore *__cil_tmp38 ;
 
   {
   {
-  __cil_tmp8 = (unsigned long )queue;
-  __cil_tmp9 = __cil_tmp8 + 1808;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)queue + 1808));
   zram = (struct zram *)__cil_tmp10;
-  __cil_tmp11 = (unsigned long )zram;
-  __cil_tmp12 = __cil_tmp11 + 264;
-  __cil_tmp13 = *((int *)__cil_tmp12);
+  __cil_tmp13 = *((int *)((void *)zram + 264));
   __cil_tmp14 = __cil_tmp13 == 0;
   __cil_tmp15 = (long )__cil_tmp14;
   tmp = __builtin_expect(__cil_tmp15, 0L);
@@ -5642,13 +5233,9 @@ static void zram_make_request(struct request_queue *queue , struct bio *bio )
 
   }
   {
-  __cil_tmp16 = (unsigned long )zram;
-  __cil_tmp17 = __cil_tmp16 + 272;
-  __cil_tmp18 = (struct rw_semaphore *)__cil_tmp17;
+  __cil_tmp18 = (struct rw_semaphore *)((void *)zram + 272);
   down_read(__cil_tmp18);
-  __cil_tmp19 = (unsigned long )zram;
-  __cil_tmp20 = __cil_tmp19 + 264;
-  __cil_tmp21 = *((int *)__cil_tmp20);
+  __cil_tmp21 = *((int *)((void *)zram + 264));
   __cil_tmp22 = __cil_tmp21 == 0;
   __cil_tmp23 = (long )__cil_tmp22;
   tmp___1 = __builtin_expect(__cil_tmp23, 0L);
@@ -5664,9 +5251,7 @@ static void zram_make_request(struct request_queue *queue , struct bio *bio )
   if (tmp___2 == 0) {
     {
     __cil_tmp24 = 424 + 40;
-    __cil_tmp25 = (unsigned long )zram;
-    __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-    __cil_tmp27 = (u64 *)__cil_tmp26;
+    __cil_tmp27 = (u64 *)((void *)zram + __cil_tmp24);
     zram_stat64_inc(zram, __cil_tmp27);
     }
     goto error_unlock;
@@ -5674,23 +5259,17 @@ static void zram_make_request(struct request_queue *queue , struct bio *bio )
 
   }
   {
-  __cil_tmp28 = (unsigned long )bio;
-  __cil_tmp29 = __cil_tmp28 + 32;
-  __cil_tmp30 = *((unsigned long *)__cil_tmp29);
+  __cil_tmp30 = *((unsigned long *)((void *)bio + 32));
   __cil_tmp31 = (int )__cil_tmp30;
   __cil_tmp32 = __cil_tmp31 & 1;
   __zram_make_request(zram, bio, __cil_tmp32);
-  __cil_tmp33 = (unsigned long )zram;
-  __cil_tmp34 = __cil_tmp33 + 272;
-  __cil_tmp35 = (struct rw_semaphore *)__cil_tmp34;
+  __cil_tmp35 = (struct rw_semaphore *)((void *)zram + 272);
   up_read(__cil_tmp35);
   }
   return;
   error_unlock: 
   {
-  __cil_tmp36 = (unsigned long )zram;
-  __cil_tmp37 = __cil_tmp36 + 272;
-  __cil_tmp38 = (struct rw_semaphore *)__cil_tmp37;
+  __cil_tmp38 = (struct rw_semaphore *)((void *)zram + 272);
   up_read(__cil_tmp38);
   }
   error: 
@@ -5705,22 +5284,10 @@ void __zram_reset_device(struct zram *zram )
   void *handle ;
   int tmp ;
   long tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   void const   *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct table *__cil_tmp22 ;
   struct table *__cil_tmp23 ;
   void *__cil_tmp24 ;
@@ -5733,52 +5300,30 @@ void __zram_reset_device(struct zram *zram )
   struct page *__cil_tmp31 ;
   struct zs_pool *__cil_tmp32 ;
   unsigned long long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   u64 __cil_tmp36 ;
   u64 __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct table *__cil_tmp40 ;
   void const   *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct zs_pool *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct zram_stats *__cil_tmp47 ;
   void *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
 
   {
   {
-  __cil_tmp6 = (unsigned long )zram;
-  __cil_tmp7 = __cil_tmp6 + 264;
-  *((int *)__cil_tmp7) = 0;
-  __cil_tmp8 = (unsigned long )zram;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  *((int *)((void *)zram + 264)) = 0;
+  __cil_tmp10 = *((void **)((void *)zram + 8));
   __cil_tmp11 = (void const   *)__cil_tmp10;
   kfree(__cil_tmp11);
-  __cil_tmp12 = (unsigned long )zram;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  __cil_tmp14 = *((void **)((void *)zram + 16));
   __cil_tmp15 = (unsigned long )__cil_tmp14;
   free_pages(__cil_tmp15, 1U);
-  __cil_tmp16 = (unsigned long )zram;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  *((void **)__cil_tmp17) = (void *)0;
-  __cil_tmp18 = (unsigned long )zram;
-  __cil_tmp19 = __cil_tmp18 + 16;
-  *((void **)__cil_tmp19) = (void *)0;
+  *((void **)((void *)zram + 8)) = (void *)0;
+  *((void **)((void *)zram + 16)) = (void *)0;
   index = 0UL;
   }
   goto ldv_28328;
   ldv_28327: 
-  __cil_tmp20 = (unsigned long )zram;
-  __cil_tmp21 = __cil_tmp20 + 24;
-  __cil_tmp22 = *((struct table **)__cil_tmp21);
+  __cil_tmp22 = *((struct table **)((void *)zram + 24));
   __cil_tmp23 = __cil_tmp22 + index;
   handle = *((void **)__cil_tmp23);
   {
@@ -5815,9 +5360,7 @@ void __zram_reset_device(struct zram *zram )
   ldv_28328: ;
   {
   __cil_tmp33 = (unsigned long long )index;
-  __cil_tmp34 = (unsigned long )zram;
-  __cil_tmp35 = __cil_tmp34 + 416;
-  __cil_tmp36 = *((u64 *)__cil_tmp35);
+  __cil_tmp36 = *((u64 *)((void *)zram + 416));
   __cil_tmp37 = __cil_tmp36 >> 12;
   if (__cil_tmp37 > __cil_tmp33) {
     goto ldv_28327;
@@ -5827,47 +5370,32 @@ void __zram_reset_device(struct zram *zram )
   }
   ldv_28329: 
   {
-  __cil_tmp38 = (unsigned long )zram;
-  __cil_tmp39 = __cil_tmp38 + 24;
-  __cil_tmp40 = *((struct table **)__cil_tmp39);
+  __cil_tmp40 = *((struct table **)((void *)zram + 24));
   __cil_tmp41 = (void const   *)__cil_tmp40;
   vfree(__cil_tmp41);
-  __cil_tmp42 = (unsigned long )zram;
-  __cil_tmp43 = __cil_tmp42 + 24;
-  *((struct table **)__cil_tmp43) = (struct table *)0;
+  *((struct table **)((void *)zram + 24)) = (struct table *)0;
   __cil_tmp44 = *((struct zs_pool **)zram);
   zs_destroy_pool(__cil_tmp44);
   *((struct zs_pool **)zram) = (struct zs_pool *)0;
-  __cil_tmp45 = (unsigned long )zram;
-  __cil_tmp46 = __cil_tmp45 + 424;
-  __cil_tmp47 = (struct zram_stats *)__cil_tmp46;
+  __cil_tmp47 = (struct zram_stats *)((void *)zram + 424);
   __cil_tmp48 = (void *)__cil_tmp47;
   memset(__cil_tmp48, 0, 72UL);
-  __cil_tmp49 = (unsigned long )zram;
-  __cil_tmp50 = __cil_tmp49 + 416;
-  *((u64 *)__cil_tmp50) = 0ULL;
+  *((u64 *)((void *)zram + 416)) = 0ULL;
   }
   return;
 }
 }
 void zram_reset_device(struct zram *zram ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct rw_semaphore *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct rw_semaphore *__cil_tmp7 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )zram;
-  __cil_tmp3 = __cil_tmp2 + 272;
-  __cil_tmp4 = (struct rw_semaphore *)__cil_tmp3;
+  __cil_tmp4 = (struct rw_semaphore *)((void *)zram + 272);
   down_write(__cil_tmp4);
   __zram_reset_device(zram);
-  __cil_tmp5 = (unsigned long )zram;
-  __cil_tmp6 = __cil_tmp5 + 272;
-  __cil_tmp7 = (struct rw_semaphore *)__cil_tmp6;
+  __cil_tmp7 = (struct rw_semaphore *)((void *)zram + 272);
   up_write(__cil_tmp7);
   }
   return;
@@ -5880,100 +5408,52 @@ int zram_init_device(struct zram *zram )
   void *tmp___0 ;
   struct _ddebug descriptor ;
   long tmp___1 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct rw_semaphore *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct rw_semaphore *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   void *__cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   void *__cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   u64 __cil_tmp36 ;
   u64 __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct table *__cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct table *__cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct gendisk *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   u64 __cil_tmp52 ;
   u64 __cil_tmp53 ;
   sector_t __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct gendisk *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   struct request_queue *__cil_tmp60 ;
   struct zs_pool *__cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   struct zs_pool *__cil_tmp63 ;
   unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct rw_semaphore *__cil_tmp69 ;
   struct _ddebug *__cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   unsigned char __cil_tmp77 ;
   long __cil_tmp78 ;
   long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   struct rw_semaphore *__cil_tmp84 ;
 
   {
   {
-  __cil_tmp8 = (unsigned long )zram;
-  __cil_tmp9 = __cil_tmp8 + 272;
-  __cil_tmp10 = (struct rw_semaphore *)__cil_tmp9;
+  __cil_tmp10 = (struct rw_semaphore *)((void *)zram + 272);
   down_write(__cil_tmp10);
   }
   {
-  __cil_tmp11 = (unsigned long )zram;
-  __cil_tmp12 = __cil_tmp11 + 264;
-  __cil_tmp13 = *((int *)__cil_tmp12);
+  __cil_tmp13 = *((int *)((void *)zram + 264));
   if (__cil_tmp13 != 0) {
     {
-    __cil_tmp14 = (unsigned long )zram;
-    __cil_tmp15 = __cil_tmp14 + 272;
-    __cil_tmp16 = (struct rw_semaphore *)__cil_tmp15;
+    __cil_tmp16 = (struct rw_semaphore *)((void *)zram + 272);
     up_write(__cil_tmp16);
     }
     return (0);
@@ -5984,16 +5464,12 @@ int zram_init_device(struct zram *zram )
   {
   __cil_tmp17 = totalram_pages << 12;
   zram_set_disksize(zram, __cil_tmp17);
-  __cil_tmp18 = (unsigned long )zram;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  *((void **)__cil_tmp19) = kzalloc(131072UL, 208U);
+  *((void **)((void *)zram + 8)) = kzalloc(131072UL, 208U);
   }
   {
   __cil_tmp20 = (void *)0;
   __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = (unsigned long )zram;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  __cil_tmp24 = *((void **)__cil_tmp23);
+  __cil_tmp24 = *((void **)((void *)zram + 8));
   __cil_tmp25 = (unsigned long )__cil_tmp24;
   if (__cil_tmp25 == __cil_tmp21) {
     {
@@ -6007,16 +5483,12 @@ int zram_init_device(struct zram *zram )
   }
   {
   tmp = __get_free_pages(32976U, 1U);
-  __cil_tmp26 = (unsigned long )zram;
-  __cil_tmp27 = __cil_tmp26 + 16;
-  *((void **)__cil_tmp27) = (void *)tmp;
+  *((void **)((void *)zram + 16)) = (void *)tmp;
   }
   {
   __cil_tmp28 = (void *)0;
   __cil_tmp29 = (unsigned long )__cil_tmp28;
-  __cil_tmp30 = (unsigned long )zram;
-  __cil_tmp31 = __cil_tmp30 + 16;
-  __cil_tmp32 = *((void **)__cil_tmp31);
+  __cil_tmp32 = *((void **)((void *)zram + 16));
   __cil_tmp33 = (unsigned long )__cil_tmp32;
   if (__cil_tmp33 == __cil_tmp29) {
     {
@@ -6029,23 +5501,17 @@ int zram_init_device(struct zram *zram )
   }
   }
   {
-  __cil_tmp34 = (unsigned long )zram;
-  __cil_tmp35 = __cil_tmp34 + 416;
-  __cil_tmp36 = *((u64 *)__cil_tmp35);
+  __cil_tmp36 = *((u64 *)((void *)zram + 416));
   __cil_tmp37 = __cil_tmp36 >> 12;
   num_pages = (size_t )__cil_tmp37;
   __cil_tmp38 = num_pages * 16UL;
   tmp___0 = ldv_vzalloc_19(__cil_tmp38);
-  __cil_tmp39 = (unsigned long )zram;
-  __cil_tmp40 = __cil_tmp39 + 24;
-  *((struct table **)__cil_tmp40) = (struct table *)tmp___0;
+  *((struct table **)((void *)zram + 24)) = (struct table *)tmp___0;
   }
   {
   __cil_tmp41 = (struct table *)0;
   __cil_tmp42 = (unsigned long )__cil_tmp41;
-  __cil_tmp43 = (unsigned long )zram;
-  __cil_tmp44 = __cil_tmp43 + 24;
-  __cil_tmp45 = *((struct table **)__cil_tmp44);
+  __cil_tmp45 = *((struct table **)((void *)zram + 24));
   __cil_tmp46 = (unsigned long )__cil_tmp45;
   if (__cil_tmp46 == __cil_tmp42) {
     {
@@ -6058,21 +5524,13 @@ int zram_init_device(struct zram *zram )
   }
   }
   {
-  __cil_tmp47 = (unsigned long )zram;
-  __cil_tmp48 = __cil_tmp47 + 256;
-  __cil_tmp49 = *((struct gendisk **)__cil_tmp48);
-  __cil_tmp50 = (unsigned long )zram;
-  __cil_tmp51 = __cil_tmp50 + 416;
-  __cil_tmp52 = *((u64 *)__cil_tmp51);
+  __cil_tmp49 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp52 = *((u64 *)((void *)zram + 416));
   __cil_tmp53 = __cil_tmp52 >> 9;
   __cil_tmp54 = (sector_t )__cil_tmp53;
   set_capacity(__cil_tmp49, __cil_tmp54);
-  __cil_tmp55 = (unsigned long )zram;
-  __cil_tmp56 = __cil_tmp55 + 256;
-  __cil_tmp57 = *((struct gendisk **)__cil_tmp56);
-  __cil_tmp58 = (unsigned long )__cil_tmp57;
-  __cil_tmp59 = __cil_tmp58 + 1344;
-  __cil_tmp60 = *((struct request_queue **)__cil_tmp59);
+  __cil_tmp57 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp60 = *((struct request_queue **)((void *)__cil_tmp57 + 1344));
   queue_flag_set_unlocked(12U, __cil_tmp60);
   *((struct zs_pool **)zram) = zs_create_pool("zram", 18U);
   }
@@ -6092,27 +5550,17 @@ int zram_init_device(struct zram *zram )
   }
   }
   {
-  __cil_tmp65 = (unsigned long )zram;
-  __cil_tmp66 = __cil_tmp65 + 264;
-  *((int *)__cil_tmp66) = 1;
-  __cil_tmp67 = (unsigned long )zram;
-  __cil_tmp68 = __cil_tmp67 + 272;
-  __cil_tmp69 = (struct rw_semaphore *)__cil_tmp68;
+  *((int *)((void *)zram + 264)) = 1;
+  __cil_tmp69 = (struct rw_semaphore *)((void *)zram + 272);
   up_write(__cil_tmp69);
   __cil_tmp70 = & descriptor;
   *((char const   **)__cil_tmp70) = "zram";
-  __cil_tmp71 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp71) = "zram_init_device";
-  __cil_tmp72 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp72) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5798/dscv_tempdir/dscv/ri/43_1a/drivers/staging/zram/zram_drv.c.p";
-  __cil_tmp73 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp73) = "Initialization done!\n";
-  __cil_tmp74 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp74) = 691U;
-  __cil_tmp75 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp75) = (unsigned char)0;
-  __cil_tmp76 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp77 = *((unsigned char *)__cil_tmp76);
+  *((char const   **)((void *)(&descriptor) + 8)) = "zram_init_device";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5798/dscv_tempdir/dscv/ri/43_1a/drivers/staging/zram/zram_drv.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "Initialization done!\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 691U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp77 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp78 = (long )__cil_tmp77;
   __cil_tmp79 = __cil_tmp78 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp79, 0L);
@@ -6126,15 +5574,11 @@ int zram_init_device(struct zram *zram )
   }
   return (0);
   fail_no_table: 
-  __cil_tmp80 = (unsigned long )zram;
-  __cil_tmp81 = __cil_tmp80 + 416;
-  *((u64 *)__cil_tmp81) = 0ULL;
+  *((u64 *)((void *)zram + 416)) = 0ULL;
   fail: 
   {
   __zram_reset_device(zram);
-  __cil_tmp82 = (unsigned long )zram;
-  __cil_tmp83 = __cil_tmp82 + 272;
-  __cil_tmp84 = (struct rw_semaphore *)__cil_tmp83;
+  __cil_tmp84 = (struct rw_semaphore *)((void *)zram + 272);
   up_write(__cil_tmp84);
   printk("<3>zram: Initialization failed: err=%d\n", ret);
   }
@@ -6143,31 +5587,19 @@ int zram_init_device(struct zram *zram )
 }
 static void zram_slot_free_notify(struct block_device *bdev , unsigned long index ) 
 { struct zram *zram ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct gendisk *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u64 *__cil_tmp13 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )bdev;
-  __cil_tmp5 = __cil_tmp4 + 280;
-  __cil_tmp6 = *((struct gendisk **)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 1352;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp6 = *((struct gendisk **)((void *)bdev + 280));
+  __cil_tmp9 = *((void **)((void *)__cil_tmp6 + 1352));
   zram = (struct zram *)__cil_tmp9;
   zram_free_page(zram, index);
   __cil_tmp10 = 424 + 48;
-  __cil_tmp11 = (unsigned long )zram;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  __cil_tmp13 = (u64 *)__cil_tmp12;
+  __cil_tmp13 = (u64 *)((void *)zram + __cil_tmp10);
   zram_stat64_inc(zram, __cil_tmp13);
   }
   return;
@@ -6187,148 +5619,62 @@ static int create_device(struct zram *zram , int device_id )
   struct lock_class_key __key ;
   struct lock_class_key __key___0 ;
   struct lock_class_key __key___1 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct rw_semaphore *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct rw_semaphore *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   spinlock_t *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct raw_spinlock *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct request_queue *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct request_queue *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct request_queue *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct request_queue *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct gendisk *__cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct gendisk *__cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct request_queue *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct gendisk *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct gendisk *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct gendisk *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct gendisk *__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct gendisk *__cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   struct gendisk *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   char (*__cil_tmp76)[32U] ;
   char *__cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   struct gendisk *__cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   struct gendisk *__cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   struct request_queue *__cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   struct gendisk *__cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   struct request_queue *__cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   struct gendisk *__cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   struct request_queue *__cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
   struct gendisk *__cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   struct request_queue *__cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   struct gendisk *__cil_tmp107 ;
   unsigned long __cil_tmp108 ;
   unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   struct gendisk *__cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   struct kobject *__cil_tmp115 ;
   struct attribute_group  const  *__cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
 
   {
   {
   ret = 0;
-  __cil_tmp7 = (unsigned long )zram;
-  __cil_tmp8 = __cil_tmp7 + 104;
-  __cil_tmp9 = (struct rw_semaphore *)__cil_tmp8;
+  __cil_tmp9 = (struct rw_semaphore *)((void *)zram + 104);
   __init_rwsem(__cil_tmp9, "&zram->lock", & __key);
-  __cil_tmp10 = (unsigned long )zram;
-  __cil_tmp11 = __cil_tmp10 + 272;
-  __cil_tmp12 = (struct rw_semaphore *)__cil_tmp11;
+  __cil_tmp12 = (struct rw_semaphore *)((void *)zram + 272);
   __init_rwsem(__cil_tmp12, "&zram->init_lock", & __key___0);
-  __cil_tmp13 = (unsigned long )zram;
-  __cil_tmp14 = __cil_tmp13 + 32;
-  __cil_tmp15 = (spinlock_t *)__cil_tmp14;
+  __cil_tmp15 = (spinlock_t *)((void *)zram + 32);
   spinlock_check(__cil_tmp15);
-  __cil_tmp16 = (unsigned long )zram;
-  __cil_tmp17 = __cil_tmp16 + 32;
-  __cil_tmp18 = (struct raw_spinlock *)__cil_tmp17;
+  __cil_tmp18 = (struct raw_spinlock *)((void *)zram + 32);
   __raw_spin_lock_init(__cil_tmp18, "&(&zram->stat64_lock)->rlock", & __key___1);
-  __cil_tmp19 = (unsigned long )zram;
-  __cil_tmp20 = __cil_tmp19 + 248;
-  *((struct request_queue **)__cil_tmp20) = blk_alloc_queue(208U);
+  *((struct request_queue **)((void *)zram + 248)) = blk_alloc_queue(208U);
   }
   {
   __cil_tmp21 = (struct request_queue *)0;
   __cil_tmp22 = (unsigned long )__cil_tmp21;
-  __cil_tmp23 = (unsigned long )zram;
-  __cil_tmp24 = __cil_tmp23 + 248;
-  __cil_tmp25 = *((struct request_queue **)__cil_tmp24);
+  __cil_tmp25 = *((struct request_queue **)((void *)zram + 248));
   __cil_tmp26 = (unsigned long )__cil_tmp25;
   if (__cil_tmp26 == __cil_tmp22) {
     {
@@ -6341,32 +5687,20 @@ static int create_device(struct zram *zram , int device_id )
   }
   }
   {
-  __cil_tmp27 = (unsigned long )zram;
-  __cil_tmp28 = __cil_tmp27 + 248;
-  __cil_tmp29 = *((struct request_queue **)__cil_tmp28);
+  __cil_tmp29 = *((struct request_queue **)((void *)zram + 248));
   blk_queue_make_request(__cil_tmp29, & zram_make_request);
-  __cil_tmp30 = (unsigned long )zram;
-  __cil_tmp31 = __cil_tmp30 + 248;
-  __cil_tmp32 = *((struct request_queue **)__cil_tmp31);
-  __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = __cil_tmp33 + 1808;
-  *((void **)__cil_tmp34) = (void *)zram;
-  __cil_tmp35 = (unsigned long )zram;
-  __cil_tmp36 = __cil_tmp35 + 256;
-  *((struct gendisk **)__cil_tmp36) = alloc_disk(1);
+  __cil_tmp32 = *((struct request_queue **)((void *)zram + 248));
+  *((void **)((void *)__cil_tmp32 + 1808)) = (void *)zram;
+  *((struct gendisk **)((void *)zram + 256)) = alloc_disk(1);
   }
   {
   __cil_tmp37 = (struct gendisk *)0;
   __cil_tmp38 = (unsigned long )__cil_tmp37;
-  __cil_tmp39 = (unsigned long )zram;
-  __cil_tmp40 = __cil_tmp39 + 256;
-  __cil_tmp41 = *((struct gendisk **)__cil_tmp40);
+  __cil_tmp41 = *((struct gendisk **)((void *)zram + 256));
   __cil_tmp42 = (unsigned long )__cil_tmp41;
   if (__cil_tmp42 == __cil_tmp38) {
     {
-    __cil_tmp43 = (unsigned long )zram;
-    __cil_tmp44 = __cil_tmp43 + 248;
-    __cil_tmp45 = *((struct request_queue **)__cil_tmp44);
+    __cil_tmp45 = *((struct request_queue **)((void *)zram + 248));
     blk_cleanup_queue(__cil_tmp45);
     printk("<4>zram: Error allocating disk structure for device %d\n", device_id);
     ret = -12;
@@ -6377,88 +5711,40 @@ static int create_device(struct zram *zram , int device_id )
   }
   }
   {
-  __cil_tmp46 = (unsigned long )zram;
-  __cil_tmp47 = __cil_tmp46 + 256;
-  __cil_tmp48 = *((struct gendisk **)__cil_tmp47);
+  __cil_tmp48 = *((struct gendisk **)((void *)zram + 256));
   *((int *)__cil_tmp48) = zram_major;
-  __cil_tmp49 = (unsigned long )zram;
-  __cil_tmp50 = __cil_tmp49 + 256;
-  __cil_tmp51 = *((struct gendisk **)__cil_tmp50);
-  __cil_tmp52 = (unsigned long )__cil_tmp51;
-  __cil_tmp53 = __cil_tmp52 + 4;
-  *((int *)__cil_tmp53) = device_id;
-  __cil_tmp54 = (unsigned long )zram;
-  __cil_tmp55 = __cil_tmp54 + 256;
-  __cil_tmp56 = *((struct gendisk **)__cil_tmp55);
-  __cil_tmp57 = (unsigned long )__cil_tmp56;
-  __cil_tmp58 = __cil_tmp57 + 1336;
-  *((struct block_device_operations  const  **)__cil_tmp58) = & zram_devops;
-  __cil_tmp59 = (unsigned long )zram;
-  __cil_tmp60 = __cil_tmp59 + 256;
-  __cil_tmp61 = *((struct gendisk **)__cil_tmp60);
-  __cil_tmp62 = (unsigned long )__cil_tmp61;
-  __cil_tmp63 = __cil_tmp62 + 1344;
-  __cil_tmp64 = (unsigned long )zram;
-  __cil_tmp65 = __cil_tmp64 + 248;
-  *((struct request_queue **)__cil_tmp63) = *((struct request_queue **)__cil_tmp65);
-  __cil_tmp66 = (unsigned long )zram;
-  __cil_tmp67 = __cil_tmp66 + 256;
-  __cil_tmp68 = *((struct gendisk **)__cil_tmp67);
-  __cil_tmp69 = (unsigned long )__cil_tmp68;
-  __cil_tmp70 = __cil_tmp69 + 1352;
-  *((void **)__cil_tmp70) = (void *)zram;
-  __cil_tmp71 = (unsigned long )zram;
-  __cil_tmp72 = __cil_tmp71 + 256;
-  __cil_tmp73 = *((struct gendisk **)__cil_tmp72);
-  __cil_tmp74 = (unsigned long )__cil_tmp73;
-  __cil_tmp75 = __cil_tmp74 + 12;
-  __cil_tmp76 = (char (*)[32U])__cil_tmp75;
+  __cil_tmp51 = *((struct gendisk **)((void *)zram + 256));
+  *((int *)((void *)__cil_tmp51 + 4)) = device_id;
+  __cil_tmp56 = *((struct gendisk **)((void *)zram + 256));
+  *((struct block_device_operations  const  **)((void *)__cil_tmp56 + 1336)) = & zram_devops;
+  __cil_tmp61 = *((struct gendisk **)((void *)zram + 256));
+  *((struct request_queue **)((void *)__cil_tmp61 + 1344)) = *((struct request_queue **)((void *)zram + 248));
+  __cil_tmp68 = *((struct gendisk **)((void *)zram + 256));
+  *((void **)((void *)__cil_tmp68 + 1352)) = (void *)zram;
+  __cil_tmp73 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp76 = (char (*)[32U])((void *)__cil_tmp73 + 12);
   __cil_tmp77 = (char *)__cil_tmp76;
   snprintf(__cil_tmp77, 16UL, "zram%d", device_id);
-  __cil_tmp78 = (unsigned long )zram;
-  __cil_tmp79 = __cil_tmp78 + 256;
-  __cil_tmp80 = *((struct gendisk **)__cil_tmp79);
+  __cil_tmp80 = *((struct gendisk **)((void *)zram + 256));
   set_capacity(__cil_tmp80, 0UL);
-  __cil_tmp81 = (unsigned long )zram;
-  __cil_tmp82 = __cil_tmp81 + 256;
-  __cil_tmp83 = *((struct gendisk **)__cil_tmp82);
-  __cil_tmp84 = (unsigned long )__cil_tmp83;
-  __cil_tmp85 = __cil_tmp84 + 1344;
-  __cil_tmp86 = *((struct request_queue **)__cil_tmp85);
+  __cil_tmp83 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp86 = *((struct request_queue **)((void *)__cil_tmp83 + 1344));
   blk_queue_physical_block_size(__cil_tmp86, 4096U);
-  __cil_tmp87 = (unsigned long )zram;
-  __cil_tmp88 = __cil_tmp87 + 256;
-  __cil_tmp89 = *((struct gendisk **)__cil_tmp88);
-  __cil_tmp90 = (unsigned long )__cil_tmp89;
-  __cil_tmp91 = __cil_tmp90 + 1344;
-  __cil_tmp92 = *((struct request_queue **)__cil_tmp91);
+  __cil_tmp89 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp92 = *((struct request_queue **)((void *)__cil_tmp89 + 1344));
   blk_queue_logical_block_size(__cil_tmp92, (unsigned short)4096);
-  __cil_tmp93 = (unsigned long )zram;
-  __cil_tmp94 = __cil_tmp93 + 256;
-  __cil_tmp95 = *((struct gendisk **)__cil_tmp94);
-  __cil_tmp96 = (unsigned long )__cil_tmp95;
-  __cil_tmp97 = __cil_tmp96 + 1344;
-  __cil_tmp98 = *((struct request_queue **)__cil_tmp97);
+  __cil_tmp95 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp98 = *((struct request_queue **)((void *)__cil_tmp95 + 1344));
   blk_queue_io_min(__cil_tmp98, 4096U);
-  __cil_tmp99 = (unsigned long )zram;
-  __cil_tmp100 = __cil_tmp99 + 256;
-  __cil_tmp101 = *((struct gendisk **)__cil_tmp100);
-  __cil_tmp102 = (unsigned long )__cil_tmp101;
-  __cil_tmp103 = __cil_tmp102 + 1344;
-  __cil_tmp104 = *((struct request_queue **)__cil_tmp103);
+  __cil_tmp101 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp104 = *((struct request_queue **)((void *)__cil_tmp101 + 1344));
   blk_queue_io_opt(__cil_tmp104, 4096U);
-  __cil_tmp105 = (unsigned long )zram;
-  __cil_tmp106 = __cil_tmp105 + 256;
-  __cil_tmp107 = *((struct gendisk **)__cil_tmp106);
+  __cil_tmp107 = *((struct gendisk **)((void *)zram + 256));
   add_disk(__cil_tmp107);
   __cil_tmp108 = 32 + 16;
   __cil_tmp109 = 72 + __cil_tmp108;
-  __cil_tmp110 = (unsigned long )zram;
-  __cil_tmp111 = __cil_tmp110 + 256;
-  __cil_tmp112 = *((struct gendisk **)__cil_tmp111);
-  __cil_tmp113 = (unsigned long )__cil_tmp112;
-  __cil_tmp114 = __cil_tmp113 + __cil_tmp109;
-  __cil_tmp115 = (struct kobject *)__cil_tmp114;
+  __cil_tmp112 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp115 = (struct kobject *)((void *)__cil_tmp112 + __cil_tmp109);
   __cil_tmp116 = (struct attribute_group  const  *)(& zram_disk_attr_group);
   ret = sysfs_create_group(__cil_tmp115, __cil_tmp116);
   }
@@ -6470,9 +5756,7 @@ static int create_device(struct zram *zram , int device_id )
   } else {
 
   }
-  __cil_tmp117 = (unsigned long )zram;
-  __cil_tmp118 = __cil_tmp117 + 264;
-  *((int *)__cil_tmp118) = 0;
+  *((int *)((void *)zram + 264)) = 0;
   out: ;
   return (ret);
 }
@@ -6480,64 +5764,40 @@ static int create_device(struct zram *zram , int device_id )
 static void destroy_device(struct zram *zram ) 
 { unsigned long __cil_tmp2 ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct gendisk *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct kobject *__cil_tmp9 ;
   struct attribute_group  const  *__cil_tmp10 ;
   struct gendisk *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct gendisk *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct gendisk *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct gendisk *__cil_tmp22 ;
   struct request_queue *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct request_queue *__cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct request_queue *__cil_tmp31 ;
 
   {
   {
   __cil_tmp2 = 32 + 16;
   __cil_tmp3 = 72 + __cil_tmp2;
-  __cil_tmp4 = (unsigned long )zram;
-  __cil_tmp5 = __cil_tmp4 + 256;
-  __cil_tmp6 = *((struct gendisk **)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp3;
-  __cil_tmp9 = (struct kobject *)__cil_tmp8;
+  __cil_tmp6 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp9 = (struct kobject *)((void *)__cil_tmp6 + __cil_tmp3);
   __cil_tmp10 = (struct attribute_group  const  *)(& zram_disk_attr_group);
   sysfs_remove_group(__cil_tmp9, __cil_tmp10);
   }
   {
   __cil_tmp11 = (struct gendisk *)0;
   __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = (unsigned long )zram;
-  __cil_tmp14 = __cil_tmp13 + 256;
-  __cil_tmp15 = *((struct gendisk **)__cil_tmp14);
+  __cil_tmp15 = *((struct gendisk **)((void *)zram + 256));
   __cil_tmp16 = (unsigned long )__cil_tmp15;
   if (__cil_tmp16 != __cil_tmp12) {
     {
-    __cil_tmp17 = (unsigned long )zram;
-    __cil_tmp18 = __cil_tmp17 + 256;
-    __cil_tmp19 = *((struct gendisk **)__cil_tmp18);
+    __cil_tmp19 = *((struct gendisk **)((void *)zram + 256));
     del_gendisk(__cil_tmp19);
-    __cil_tmp20 = (unsigned long )zram;
-    __cil_tmp21 = __cil_tmp20 + 256;
-    __cil_tmp22 = *((struct gendisk **)__cil_tmp21);
+    __cil_tmp22 = *((struct gendisk **)((void *)zram + 256));
     put_disk(__cil_tmp22);
     }
   } else {
@@ -6547,15 +5807,11 @@ static void destroy_device(struct zram *zram )
   {
   __cil_tmp23 = (struct request_queue *)0;
   __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = (unsigned long )zram;
-  __cil_tmp26 = __cil_tmp25 + 248;
-  __cil_tmp27 = *((struct request_queue **)__cil_tmp26);
+  __cil_tmp27 = *((struct request_queue **)((void *)zram + 248));
   __cil_tmp28 = (unsigned long )__cil_tmp27;
   if (__cil_tmp28 != __cil_tmp24) {
     {
-    __cil_tmp29 = (unsigned long )zram;
-    __cil_tmp30 = __cil_tmp29 + 248;
-    __cil_tmp31 = *((struct request_queue **)__cil_tmp30);
+    __cil_tmp31 = *((struct request_queue **)((void *)zram + 248));
     blk_cleanup_queue(__cil_tmp31);
     }
   } else {
@@ -6732,8 +5988,6 @@ static void zram_exit(void)
   struct _ddebug descriptor ;
   long tmp ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
   unsigned int *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
@@ -6741,12 +5995,6 @@ static void zram_exit(void)
   unsigned int __cil_tmp12 ;
   void const   *__cil_tmp13 ;
   struct _ddebug *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned char __cil_tmp21 ;
   long __cil_tmp22 ;
   long __cil_tmp23 ;
@@ -6761,9 +6009,7 @@ static void zram_exit(void)
   destroy_device(zram);
   }
   {
-  __cil_tmp6 = (unsigned long )zram;
-  __cil_tmp7 = __cil_tmp6 + 264;
-  __cil_tmp8 = *((int *)__cil_tmp7);
+  __cil_tmp8 = *((int *)((void *)zram + 264));
   if (__cil_tmp8 != 0) {
     {
     zram_reset_device(zram);
@@ -6792,18 +6038,12 @@ static void zram_exit(void)
   kfree(__cil_tmp13);
   __cil_tmp14 = & descriptor;
   *((char const   **)__cil_tmp14) = "zram";
-  __cil_tmp15 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp15) = "zram_exit";
-  __cil_tmp16 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp16) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5798/dscv_tempdir/dscv/ri/43_1a/drivers/staging/zram/zram_drv.c.p";
-  __cil_tmp17 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp17) = "Cleanup done!\n";
-  __cil_tmp18 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp18) = 867U;
-  __cil_tmp19 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp19) = (unsigned char)0;
-  __cil_tmp20 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp21 = *((unsigned char *)__cil_tmp20);
+  *((char const   **)((void *)(&descriptor) + 8)) = "zram_exit";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5798/dscv_tempdir/dscv/ri/43_1a/drivers/staging/zram/zram_drv.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "Cleanup done!\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 867U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp21 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp22 = (long )__cil_tmp21;
   __cil_tmp23 = __cil_tmp22 & 1L;
   tmp = __builtin_expect(__cil_tmp23, 0L);
@@ -7074,23 +6314,15 @@ extern struct block_device *bdget_disk(struct gendisk * , int  ) ;
 extern u64 zs_get_total_size_bytes(struct zs_pool * ) ;
 static u64 zram_stat64_read(struct zram *zram , u64 *v ) 
 { u64 val ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   spinlock_t *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   spinlock_t *__cil_tmp9 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )zram;
-  __cil_tmp5 = __cil_tmp4 + 32;
-  __cil_tmp6 = (spinlock_t *)__cil_tmp5;
+  __cil_tmp6 = (spinlock_t *)((void *)zram + 32);
   spin_lock(__cil_tmp6);
   val = *v;
-  __cil_tmp7 = (unsigned long )zram;
-  __cil_tmp8 = __cil_tmp7 + 32;
-  __cil_tmp9 = (spinlock_t *)__cil_tmp8;
+  __cil_tmp9 = (spinlock_t *)((void *)zram + 32);
   spin_unlock(__cil_tmp9);
   }
   return (val);
@@ -7103,11 +6335,7 @@ static struct zram *dev_to_zram(struct device *dev )
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct gendisk *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
@@ -7122,12 +6350,8 @@ static struct zram *dev_to_zram(struct device *dev )
   {
   __cil_tmp6 = (unsigned long )dev;
   __cil_tmp7 = 72 + 32;
-  __cil_tmp8 = (unsigned long )zram;
-  __cil_tmp9 = __cil_tmp8 + 256;
-  __cil_tmp10 = *((struct gendisk **)__cil_tmp9);
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp7;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp10 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + __cil_tmp7);
   __cil_tmp14 = (unsigned long )__cil_tmp13;
   if (__cil_tmp14 == __cil_tmp6) {
     goto ldv_21446;
@@ -7157,17 +6381,13 @@ static ssize_t disksize_show(struct device *dev , struct device_attribute *attr 
 { struct zram *zram ;
   struct zram *tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   u64 __cil_tmp9 ;
 
   {
   {
   tmp = dev_to_zram(dev);
   zram = tmp;
-  __cil_tmp7 = (unsigned long )zram;
-  __cil_tmp8 = __cil_tmp7 + 416;
-  __cil_tmp9 = *((u64 *)__cil_tmp8);
+  __cil_tmp9 = *((u64 *)((void *)zram + 416));
   tmp___0 = sprintf(buf, "%llu\n", __cil_tmp9);
   }
   return ((ssize_t )tmp___0);
@@ -7179,30 +6399,16 @@ static ssize_t disksize_store(struct device *dev , struct device_attribute *attr
   u64 disksize ;
   struct zram *zram ;
   struct zram *tmp ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct rw_semaphore *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct rw_semaphore *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u64 *__cil_tmp20 ;
   u64 __cil_tmp21 ;
   unsigned long long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct gendisk *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   u64 __cil_tmp28 ;
   u64 __cil_tmp29 ;
   sector_t __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct rw_semaphore *__cil_tmp33 ;
 
   {
@@ -7217,20 +6423,14 @@ static ssize_t disksize_store(struct device *dev , struct device_attribute *attr
 
   }
   {
-  __cil_tmp9 = (unsigned long )zram;
-  __cil_tmp10 = __cil_tmp9 + 272;
-  __cil_tmp11 = (struct rw_semaphore *)__cil_tmp10;
+  __cil_tmp11 = (struct rw_semaphore *)((void *)zram + 272);
   down_write(__cil_tmp11);
   }
   {
-  __cil_tmp12 = (unsigned long )zram;
-  __cil_tmp13 = __cil_tmp12 + 264;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)zram + 264));
   if (__cil_tmp14 != 0) {
     {
-    __cil_tmp15 = (unsigned long )zram;
-    __cil_tmp16 = __cil_tmp15 + 272;
-    __cil_tmp17 = (struct rw_semaphore *)__cil_tmp16;
+    __cil_tmp17 = (struct rw_semaphore *)((void *)zram + 272);
     up_write(__cil_tmp17);
     printk("<6>Cannot change disksize for initialized device\n");
     }
@@ -7240,24 +6440,16 @@ static ssize_t disksize_store(struct device *dev , struct device_attribute *attr
   }
   }
   {
-  __cil_tmp18 = (unsigned long )zram;
-  __cil_tmp19 = __cil_tmp18 + 416;
   __cil_tmp20 = & disksize;
   __cil_tmp21 = *__cil_tmp20;
   __cil_tmp22 = __cil_tmp21 + 4095ULL;
-  *((u64 *)__cil_tmp19) = __cil_tmp22 & 0xfffffffffffff000ULL;
-  __cil_tmp23 = (unsigned long )zram;
-  __cil_tmp24 = __cil_tmp23 + 256;
-  __cil_tmp25 = *((struct gendisk **)__cil_tmp24);
-  __cil_tmp26 = (unsigned long )zram;
-  __cil_tmp27 = __cil_tmp26 + 416;
-  __cil_tmp28 = *((u64 *)__cil_tmp27);
+  *((u64 *)((void *)zram + 416)) = __cil_tmp22 & 0xfffffffffffff000ULL;
+  __cil_tmp25 = *((struct gendisk **)((void *)zram + 256));
+  __cil_tmp28 = *((u64 *)((void *)zram + 416));
   __cil_tmp29 = __cil_tmp28 >> 9;
   __cil_tmp30 = (sector_t )__cil_tmp29;
   set_capacity(__cil_tmp25, __cil_tmp30);
-  __cil_tmp31 = (unsigned long )zram;
-  __cil_tmp32 = __cil_tmp31 + 272;
-  __cil_tmp33 = (struct rw_semaphore *)__cil_tmp32;
+  __cil_tmp33 = (struct rw_semaphore *)((void *)zram + 272);
   up_write(__cil_tmp33);
   }
   return ((ssize_t )len);
@@ -7268,17 +6460,13 @@ static ssize_t initstate_show(struct device *dev , struct device_attribute *attr
 { struct zram *zram ;
   struct zram *tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
 
   {
   {
   tmp = dev_to_zram(dev);
   zram = tmp;
-  __cil_tmp7 = (unsigned long )zram;
-  __cil_tmp8 = __cil_tmp7 + 264;
-  __cil_tmp9 = *((int *)__cil_tmp8);
+  __cil_tmp9 = *((int *)((void *)zram + 264));
   tmp___0 = sprintf(buf, "%u\n", __cil_tmp9);
   }
   return ((ssize_t )tmp___0);
@@ -7290,11 +6478,7 @@ static ssize_t reset_store(struct device *dev , struct device_attribute *attr , 
   unsigned short do_reset ;
   struct zram *zram ;
   struct block_device *bdev ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct gendisk *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned short *__cil_tmp15 ;
   unsigned short __cil_tmp16 ;
@@ -7302,28 +6486,18 @@ static ssize_t reset_store(struct device *dev , struct device_attribute *attr , 
   struct block_device *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct rw_semaphore *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct rw_semaphore *__cil_tmp29 ;
 
   {
   {
   zram = dev_to_zram(dev);
-  __cil_tmp9 = (unsigned long )zram;
-  __cil_tmp10 = __cil_tmp9 + 256;
-  __cil_tmp11 = *((struct gendisk **)__cil_tmp10);
+  __cil_tmp11 = *((struct gendisk **)((void *)zram + 256));
   bdev = bdget_disk(__cil_tmp11, 0);
   }
   {
-  __cil_tmp12 = (unsigned long )bdev;
-  __cil_tmp13 = __cil_tmp12 + 224;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)bdev + 224));
   if (__cil_tmp14 != 0) {
     return (-16L);
   } else {
@@ -7361,15 +6535,11 @@ static ssize_t reset_store(struct device *dev , struct device_attribute *attr , 
   }
   }
   {
-  __cil_tmp21 = (unsigned long )zram;
-  __cil_tmp22 = __cil_tmp21 + 272;
-  __cil_tmp23 = (struct rw_semaphore *)__cil_tmp22;
+  __cil_tmp23 = (struct rw_semaphore *)((void *)zram + 272);
   down_write(__cil_tmp23);
   }
   {
-  __cil_tmp24 = (unsigned long )zram;
-  __cil_tmp25 = __cil_tmp24 + 264;
-  __cil_tmp26 = *((int *)__cil_tmp25);
+  __cil_tmp26 = *((int *)((void *)zram + 264));
   if (__cil_tmp26 != 0) {
     {
     __zram_reset_device(zram);
@@ -7379,9 +6549,7 @@ static ssize_t reset_store(struct device *dev , struct device_attribute *attr , 
   }
   }
   {
-  __cil_tmp27 = (unsigned long )zram;
-  __cil_tmp28 = __cil_tmp27 + 272;
-  __cil_tmp29 = (struct rw_semaphore *)__cil_tmp28;
+  __cil_tmp29 = (struct rw_semaphore *)((void *)zram + 272);
   up_write(__cil_tmp29);
   }
   return ((ssize_t )len);
@@ -7394,8 +6562,6 @@ static ssize_t num_reads_show(struct device *dev , struct device_attribute *attr
   u64 tmp___0 ;
   int tmp___1 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u64 *__cil_tmp11 ;
 
   {
@@ -7403,9 +6569,7 @@ static ssize_t num_reads_show(struct device *dev , struct device_attribute *attr
   tmp = dev_to_zram(dev);
   zram = tmp;
   __cil_tmp8 = 424 + 8;
-  __cil_tmp9 = (unsigned long )zram;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = (u64 *)__cil_tmp10;
+  __cil_tmp11 = (u64 *)((void *)zram + __cil_tmp8);
   tmp___0 = zram_stat64_read(zram, __cil_tmp11);
   tmp___1 = sprintf(buf, "%llu\n", tmp___0);
   }
@@ -7419,8 +6583,6 @@ static ssize_t num_writes_show(struct device *dev , struct device_attribute *att
   u64 tmp___0 ;
   int tmp___1 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u64 *__cil_tmp11 ;
 
   {
@@ -7428,9 +6590,7 @@ static ssize_t num_writes_show(struct device *dev , struct device_attribute *att
   tmp = dev_to_zram(dev);
   zram = tmp;
   __cil_tmp8 = 424 + 16;
-  __cil_tmp9 = (unsigned long )zram;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = (u64 *)__cil_tmp10;
+  __cil_tmp11 = (u64 *)((void *)zram + __cil_tmp8);
   tmp___0 = zram_stat64_read(zram, __cil_tmp11);
   tmp___1 = sprintf(buf, "%llu\n", tmp___0);
   }
@@ -7444,8 +6604,6 @@ static ssize_t invalid_io_show(struct device *dev , struct device_attribute *att
   u64 tmp___0 ;
   int tmp___1 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u64 *__cil_tmp11 ;
 
   {
@@ -7453,9 +6611,7 @@ static ssize_t invalid_io_show(struct device *dev , struct device_attribute *att
   tmp = dev_to_zram(dev);
   zram = tmp;
   __cil_tmp8 = 424 + 40;
-  __cil_tmp9 = (unsigned long )zram;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = (u64 *)__cil_tmp10;
+  __cil_tmp11 = (u64 *)((void *)zram + __cil_tmp8);
   tmp___0 = zram_stat64_read(zram, __cil_tmp11);
   tmp___1 = sprintf(buf, "%llu\n", tmp___0);
   }
@@ -7469,8 +6625,6 @@ static ssize_t notify_free_show(struct device *dev , struct device_attribute *at
   u64 tmp___0 ;
   int tmp___1 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u64 *__cil_tmp11 ;
 
   {
@@ -7478,9 +6632,7 @@ static ssize_t notify_free_show(struct device *dev , struct device_attribute *at
   tmp = dev_to_zram(dev);
   zram = tmp;
   __cil_tmp8 = 424 + 48;
-  __cil_tmp9 = (unsigned long )zram;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = (u64 *)__cil_tmp10;
+  __cil_tmp11 = (u64 *)((void *)zram + __cil_tmp8);
   tmp___0 = zram_stat64_read(zram, __cil_tmp11);
   tmp___1 = sprintf(buf, "%llu\n", tmp___0);
   }
@@ -7493,8 +6645,6 @@ static ssize_t zero_pages_show(struct device *dev , struct device_attribute *att
   struct zram *tmp ;
   int tmp___0 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u32 __cil_tmp10 ;
 
   {
@@ -7502,9 +6652,7 @@ static ssize_t zero_pages_show(struct device *dev , struct device_attribute *att
   tmp = dev_to_zram(dev);
   zram = tmp;
   __cil_tmp7 = 424 + 56;
-  __cil_tmp8 = (unsigned long )zram;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((u32 *)__cil_tmp9);
+  __cil_tmp10 = *((u32 *)((void *)zram + __cil_tmp7));
   tmp___0 = sprintf(buf, "%u\n", __cil_tmp10);
   }
   return ((ssize_t )tmp___0);
@@ -7516,8 +6664,6 @@ static ssize_t orig_data_size_show(struct device *dev , struct device_attribute 
   struct zram *tmp ;
   int tmp___0 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u32 __cil_tmp10 ;
   unsigned long long __cil_tmp11 ;
   unsigned long long __cil_tmp12 ;
@@ -7527,9 +6673,7 @@ static ssize_t orig_data_size_show(struct device *dev , struct device_attribute 
   tmp = dev_to_zram(dev);
   zram = tmp;
   __cil_tmp7 = 424 + 60;
-  __cil_tmp8 = (unsigned long )zram;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((u32 *)__cil_tmp9);
+  __cil_tmp10 = *((u32 *)((void *)zram + __cil_tmp7));
   __cil_tmp11 = (unsigned long long )__cil_tmp10;
   __cil_tmp12 = __cil_tmp11 << 12;
   tmp___0 = sprintf(buf, "%llu\n", __cil_tmp12);
@@ -7543,17 +6687,13 @@ static ssize_t compr_data_size_show(struct device *dev , struct device_attribute
   struct zram *tmp ;
   u64 tmp___0 ;
   int tmp___1 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u64 *__cil_tmp10 ;
 
   {
   {
   tmp = dev_to_zram(dev);
   zram = tmp;
-  __cil_tmp8 = (unsigned long )zram;
-  __cil_tmp9 = __cil_tmp8 + 424;
-  __cil_tmp10 = (u64 *)__cil_tmp9;
+  __cil_tmp10 = (u64 *)((void *)zram + 424);
   tmp___0 = zram_stat64_read(zram, __cil_tmp10);
   tmp___1 = sprintf(buf, "%llu\n", tmp___0);
   }
@@ -7567,13 +6707,9 @@ static ssize_t mem_used_total_show(struct device *dev , struct device_attribute 
   struct zram *tmp ;
   u64 tmp___0 ;
   int tmp___1 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   struct zs_pool *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   u32 __cil_tmp16 ;
   unsigned long long __cil_tmp17 ;
   unsigned long long __cil_tmp18 ;
@@ -7585,17 +6721,13 @@ static ssize_t mem_used_total_show(struct device *dev , struct device_attribute 
   zram = tmp;
   }
   {
-  __cil_tmp9 = (unsigned long )zram;
-  __cil_tmp10 = __cil_tmp9 + 264;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp11 = *((int *)((void *)zram + 264));
   if (__cil_tmp11 != 0) {
     {
     __cil_tmp12 = *((struct zs_pool **)zram);
     tmp___0 = zs_get_total_size_bytes(__cil_tmp12);
     __cil_tmp13 = 424 + 68;
-    __cil_tmp14 = (unsigned long )zram;
-    __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-    __cil_tmp16 = *((u32 *)__cil_tmp15);
+    __cil_tmp16 = *((u32 *)((void *)zram + __cil_tmp13));
     __cil_tmp17 = (unsigned long long )__cil_tmp16;
     __cil_tmp18 = __cil_tmp17 << 12;
     val = tmp___0 + __cil_tmp18;

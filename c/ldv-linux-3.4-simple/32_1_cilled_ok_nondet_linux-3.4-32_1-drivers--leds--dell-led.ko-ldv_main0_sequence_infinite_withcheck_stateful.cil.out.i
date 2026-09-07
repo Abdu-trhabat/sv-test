@@ -2875,51 +2875,32 @@ static int dell_led_perform_fn(u8 length , u8 result_code , u8 device_id , u8 co
   acpi_status status ;
   struct bios_args args ;
   struct acpi_buffer *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct bios_args *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct acpi_buffer *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   u8 __cil_tmp24 ;
   u32 __cil_tmp25 ;
   struct acpi_buffer const *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
   acpi_object_type __cil_tmp29 ;
   void const *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   u8 *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   void const *__cil_tmp37 ;
   {
   {
   __cil_tmp14 = & output;
   *((acpi_size *)__cil_tmp14) = (acpi_size )-1;
-  __cil_tmp15 = (unsigned long )(& output) + 8;
-  *((void **)__cil_tmp15) = (void *)0;
+  *((void **)((void *)(&output) + 8)) = (void *)0;
   __cil_tmp16 = & args;
   *((unsigned char *)__cil_tmp16) = length;
-  __cil_tmp17 = (unsigned long )(& args) + 1;
-  *((unsigned char *)__cil_tmp17) = result_code;
-  __cil_tmp18 = (unsigned long )(& args) + 2;
-  *((unsigned char *)__cil_tmp18) = device_id;
-  __cil_tmp19 = (unsigned long )(& args) + 3;
-  *((unsigned char *)__cil_tmp19) = command;
-  __cil_tmp20 = (unsigned long )(& args) + 4;
-  *((unsigned char *)__cil_tmp20) = on_time;
-  __cil_tmp21 = (unsigned long )(& args) + 5;
-  *((unsigned char *)__cil_tmp21) = off_time;
+  *((unsigned char *)((void *)(&args) + 1)) = result_code;
+  *((unsigned char *)((void *)(&args) + 2)) = device_id;
+  *((unsigned char *)((void *)(&args) + 3)) = command;
+  *((unsigned char *)((void *)(&args) + 4)) = on_time;
+  *((unsigned char *)((void *)(&args) + 5)) = off_time;
   __cil_tmp22 = & input;
   *((acpi_size *)__cil_tmp22) = (acpi_size )6UL;
-  __cil_tmp23 = (unsigned long )(& input) + 8;
-  *((void **)__cil_tmp23) = (void *)(& args);
+  *((void **)((void *)(&input) + 8)) = (void *)(& args);
   __cil_tmp24 = (u8 )1;
   __cil_tmp25 = (u32 )1;
   __cil_tmp26 = (struct acpi_buffer const *)(& input);
@@ -2930,8 +2911,7 @@ static int dell_led_perform_fn(u8 length , u8 result_code , u8 device_id , u8 co
     return ((int )status);
   } else {
   }
-  __cil_tmp27 = (unsigned long )(& output) + 8;
-  __cil_tmp28 = *((void **)__cil_tmp27);
+  __cil_tmp28 = *((void **)((void *)(&output) + 8));
   obj = (union acpi_object *)__cil_tmp28;
   if (! obj) {
     return (-22);
@@ -2950,13 +2930,9 @@ static int dell_led_perform_fn(u8 length , u8 result_code , u8 device_id , u8 co
   }
   {
   __cil_tmp31 = 0 + 8;
-  __cil_tmp32 = (unsigned long )obj;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  __cil_tmp34 = *((u8 **)__cil_tmp33);
+  __cil_tmp34 = *((u8 **)((void *)obj + __cil_tmp31));
   bios_return = (struct bios_args *)__cil_tmp34;
-  __cil_tmp35 = (unsigned long )bios_return;
-  __cil_tmp36 = __cil_tmp35 + 1;
-  return_code = *((unsigned char *)__cil_tmp36);
+  return_code = *((unsigned char *)((void *)bios_return + 1));
   __cil_tmp37 = (void const *)obj;
   kfree(__cil_tmp37);
   }

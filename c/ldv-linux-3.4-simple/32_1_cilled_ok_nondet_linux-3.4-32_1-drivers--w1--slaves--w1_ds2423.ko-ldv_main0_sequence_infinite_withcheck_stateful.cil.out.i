@@ -768,8 +768,6 @@ __inline static struct w1_slave *dev_to_w1_slave(struct device *dev ) __attribut
 __inline static struct w1_slave *dev_to_w1_slave(struct device *dev )
 { struct device const *__mptr ;
   struct w1_slave *__cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   char *__cil_tmp8 ;
@@ -778,9 +776,7 @@ __inline static struct w1_slave *dev_to_w1_slave(struct device *dev )
   __mptr = (struct device const *)dev;
   {
   __cil_tmp3 = (struct w1_slave *)0;
-  __cil_tmp4 = (unsigned long )__cil_tmp3;
-  __cil_tmp5 = __cil_tmp4 + 112;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)__cil_tmp3 + 112);
   __cil_tmp7 = (unsigned int )__cil_tmp6;
   __cil_tmp8 = (char *)__mptr;
   __cil_tmp9 = __cil_tmp8 - __cil_tmp7;
@@ -818,8 +814,6 @@ static ssize_t w1_counter_read(struct device *device , struct device_attribute *
   int tmp___7 ;
   int tmp___8 ;
   int tmp___9 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
@@ -830,8 +824,6 @@ static ssize_t w1_counter_read(struct device *device , struct device_attribute *
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   int __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct mutex *__cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   char *__cil_tmp42 ;
@@ -905,8 +897,6 @@ static ssize_t w1_counter_read(struct device *device , struct device_attribute *
   char *__cil_tmp110 ;
   size_t __cil_tmp111 ;
   ssize_t __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   struct mutex *__cil_tmp115 ;
   unsigned long __cil_tmp116 ;
   unsigned long __cil_tmp117 ;
@@ -915,9 +905,7 @@ static ssize_t w1_counter_read(struct device *device , struct device_attribute *
   {
   tmp = dev_to_w1_slave(device);
   sl = tmp;
-  __cil_tmp26 = (unsigned long )sl;
-  __cil_tmp27 = __cil_tmp26 + 88;
-  dev = *((struct w1_master **)__cil_tmp27);
+  dev = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp28 = 1UL << 12;
   c = (ssize_t )__cil_tmp28;
   __cil_tmp29 = 12 << 5;
@@ -933,9 +921,7 @@ static ssize_t w1_counter_read(struct device *device , struct device_attribute *
   __cil_tmp36 = (unsigned long )(wrbuf) + __cil_tmp35;
   __cil_tmp37 = rom_addr >> 8;
   *((u8 *)__cil_tmp36) = (u8 )__cil_tmp37;
-  __cil_tmp38 = (unsigned long )dev;
-  __cil_tmp39 = __cil_tmp38 + 144;
-  __cil_tmp40 = (struct mutex *)__cil_tmp39;
+  __cil_tmp40 = (struct mutex *)((void *)dev + 144);
   mutex_lock(__cil_tmp40);
   tmp___9 = w1_reset_select_slave(sl);
   }
@@ -1105,9 +1091,7 @@ static ssize_t w1_counter_read(struct device *device , struct device_attribute *
     }
   }
   {
-  __cil_tmp113 = (unsigned long )dev;
-  __cil_tmp114 = __cil_tmp113 + 144;
-  __cil_tmp115 = (struct mutex *)__cil_tmp114;
+  __cil_tmp115 = (struct mutex *)((void *)dev + 144);
   mutex_unlock(__cil_tmp115);
   }
   {
@@ -1120,15 +1104,11 @@ static ssize_t w1_counter_read(struct device *device , struct device_attribute *
 }
 static int w1_f1d_add_slave(struct w1_slave *sl )
 { int tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device_attribute const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )sl;
-  __cil_tmp4 = __cil_tmp3 + 112;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)sl + 112);
   __cil_tmp6 = (struct device_attribute const *)(& w1_counter_attr);
   tmp = device_create_file(__cil_tmp5, __cil_tmp6);
   }
@@ -1136,15 +1116,12 @@ static int w1_f1d_add_slave(struct w1_slave *sl )
 }
 }
 static void w1_f1d_remove_slave(struct w1_slave *sl )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device *__cil_tmp4 ;
   struct device_attribute const *__cil_tmp5 ;
   {
   {
-  __cil_tmp2 = (unsigned long )sl;
-  __cil_tmp3 = __cil_tmp2 + 112;
-  __cil_tmp4 = (struct device *)__cil_tmp3;
+  __cil_tmp4 = (struct device *)((void *)sl + 112);
   __cil_tmp5 = (struct device_attribute const *)(& w1_counter_attr);
   device_remove_file(__cil_tmp4, __cil_tmp5);
   }

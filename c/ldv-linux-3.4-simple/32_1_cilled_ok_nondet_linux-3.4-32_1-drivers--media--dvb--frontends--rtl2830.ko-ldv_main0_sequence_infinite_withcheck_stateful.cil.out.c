@@ -3261,15 +3261,11 @@ extern int i2c_transfer(struct i2c_adapter *adap , struct i2c_msg *msgs , int nu
 __inline static void *i2c_get_adapdata(struct i2c_adapter  const  *dev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_adapdata(struct i2c_adapter  const  *dev ) 
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 128;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)dev + 128);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -3277,15 +3273,12 @@ __inline static void *i2c_get_adapdata(struct i2c_adapter  const  *dev )
 }
 __inline static void i2c_set_adapdata(struct i2c_adapter *dev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_adapdata(struct i2c_adapter *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 128;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 128);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3392,8 +3385,6 @@ static int rtl2830_wr(struct rtl2830_priv *priv , u8 reg , u8 *val , int len )
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   u8 __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
@@ -3424,9 +3415,7 @@ static int rtl2830_wr(struct rtl2830_priv *priv , u8 reg , u8 *val , int len )
   buf = (u8 *)tmp___7;
   __cil_tmp14 = 0 * 16UL;
   __cil_tmp15 = (unsigned long )(msg) + __cil_tmp14;
-  __cil_tmp16 = (unsigned long )priv;
-  __cil_tmp17 = __cil_tmp16 + 968;
-  __cil_tmp18 = *((u8 *)__cil_tmp17);
+  __cil_tmp18 = *((u8 *)((void *)priv + 968));
   *((__u16 *)__cil_tmp15) = (__u16 )__cil_tmp18;
   __cil_tmp19 = 0 * 16UL;
   __cil_tmp20 = __cil_tmp19 + 2;
@@ -3471,8 +3460,6 @@ static int rtl2830_rd(struct rtl2830_priv *priv , u8 reg , u8 *val , int len )
   struct i2c_msg msg[2] ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u8 __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
@@ -3485,8 +3472,6 @@ static int rtl2830_rd(struct rtl2830_priv *priv , u8 reg , u8 *val , int len )
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   u8 __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
@@ -3509,9 +3494,7 @@ static int rtl2830_rd(struct rtl2830_priv *priv , u8 reg , u8 *val , int len )
   {
   __cil_tmp7 = 0 * 16UL;
   __cil_tmp8 = (unsigned long )(msg) + __cil_tmp7;
-  __cil_tmp9 = (unsigned long )priv;
-  __cil_tmp10 = __cil_tmp9 + 968;
-  __cil_tmp11 = *((u8 *)__cil_tmp10);
+  __cil_tmp11 = *((u8 *)((void *)priv + 968));
   *((__u16 *)__cil_tmp8) = (__u16 )__cil_tmp11;
   __cil_tmp12 = 0 * 16UL;
   __cil_tmp13 = __cil_tmp12 + 2;
@@ -3527,9 +3510,7 @@ static int rtl2830_rd(struct rtl2830_priv *priv , u8 reg , u8 *val , int len )
   *((__u8 **)__cil_tmp20) = & reg;
   __cil_tmp21 = 1 * 16UL;
   __cil_tmp22 = (unsigned long )(msg) + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )priv;
-  __cil_tmp24 = __cil_tmp23 + 968;
-  __cil_tmp25 = *((u8 *)__cil_tmp24);
+  __cil_tmp25 = *((u8 *)((void *)priv + 968));
   *((__u16 *)__cil_tmp22) = (__u16 )__cil_tmp25;
   __cil_tmp26 = 1 * 16UL;
   __cil_tmp27 = __cil_tmp26 + 2;
@@ -3574,16 +3555,12 @@ static int rtl2830_wr_regs(struct rtl2830_priv *priv , u16 reg , u8 *val , int l
   int __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u8 __cil_tmp17 ;
   int __cil_tmp18 ;
   u8 *__cil_tmp19 ;
   u8 __cil_tmp20 ;
   int __cil_tmp21 ;
   u8 __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   u8 *__cil_tmp25 ;
 
   {
@@ -3596,9 +3573,7 @@ static int rtl2830_wr_regs(struct rtl2830_priv *priv , u16 reg , u8 *val , int l
   __cil_tmp14 = __cil_tmp13 & 255;
   *__cil_tmp11 = (u8 )__cil_tmp14;
   {
-  __cil_tmp15 = (unsigned long )priv;
-  __cil_tmp16 = __cil_tmp15 + 2081;
-  __cil_tmp17 = *((u8 *)__cil_tmp16);
+  __cil_tmp17 = *((u8 *)((void *)priv + 2081));
   __cil_tmp18 = (int )__cil_tmp17;
   __cil_tmp19 = & page;
   __cil_tmp20 = *__cil_tmp19;
@@ -3613,10 +3588,8 @@ static int rtl2830_wr_regs(struct rtl2830_priv *priv , u16 reg , u8 *val , int l
     } else {
 
     }
-    __cil_tmp23 = (unsigned long )priv;
-    __cil_tmp24 = __cil_tmp23 + 2081;
     __cil_tmp25 = & page;
-    *((u8 *)__cil_tmp24) = *__cil_tmp25;
+    *((u8 *)((void *)priv + 2081)) = *__cil_tmp25;
   } else {
 
   }
@@ -3638,16 +3611,12 @@ static int rtl2830_rd_regs(struct rtl2830_priv *priv , u16 reg , u8 *val , int l
   int __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u8 __cil_tmp17 ;
   int __cil_tmp18 ;
   u8 *__cil_tmp19 ;
   u8 __cil_tmp20 ;
   int __cil_tmp21 ;
   u8 __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   u8 *__cil_tmp25 ;
 
   {
@@ -3660,9 +3629,7 @@ static int rtl2830_rd_regs(struct rtl2830_priv *priv , u16 reg , u8 *val , int l
   __cil_tmp14 = __cil_tmp13 & 255;
   *__cil_tmp11 = (u8 )__cil_tmp14;
   {
-  __cil_tmp15 = (unsigned long )priv;
-  __cil_tmp16 = __cil_tmp15 + 2081;
-  __cil_tmp17 = *((u8 *)__cil_tmp16);
+  __cil_tmp17 = *((u8 *)((void *)priv + 2081));
   __cil_tmp18 = (int )__cil_tmp17;
   __cil_tmp19 = & page;
   __cil_tmp20 = *__cil_tmp19;
@@ -3677,10 +3644,8 @@ static int rtl2830_rd_regs(struct rtl2830_priv *priv , u16 reg , u8 *val , int l
     } else {
 
     }
-    __cil_tmp23 = (unsigned long )priv;
-    __cil_tmp24 = __cil_tmp23 + 2081;
     __cil_tmp25 = & page;
-    *((u8 *)__cil_tmp24) = *__cil_tmp25;
+    *((u8 *)((void *)priv + 2081)) = *__cil_tmp25;
   } else {
 
   }
@@ -3846,8 +3811,6 @@ static int rtl2830_init(struct dvb_frontend *fe )
   u8 tmp___7 ;
   u32 if_ctl ;
   struct rtl2830_reg_val_mask tab[36] ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
@@ -3999,8 +3962,6 @@ static int rtl2830_init(struct dvb_frontend *fe )
   unsigned long __cil_tmp160 ;
   unsigned long __cil_tmp161 ;
   unsigned long __cil_tmp162 ;
-  unsigned long __cil_tmp163 ;
-  unsigned long __cil_tmp164 ;
   unsigned long __cil_tmp165 ;
   unsigned long __cil_tmp166 ;
   unsigned long __cil_tmp167 ;
@@ -4010,8 +3971,6 @@ static int rtl2830_init(struct dvb_frontend *fe )
   unsigned long __cil_tmp171 ;
   unsigned long __cil_tmp172 ;
   unsigned long __cil_tmp173 ;
-  unsigned long __cil_tmp174 ;
-  unsigned long __cil_tmp175 ;
   unsigned long __cil_tmp176 ;
   unsigned long __cil_tmp177 ;
   unsigned long __cil_tmp178 ;
@@ -4029,8 +3988,6 @@ static int rtl2830_init(struct dvb_frontend *fe )
   unsigned long __cil_tmp190 ;
   unsigned long __cil_tmp191 ;
   unsigned long __cil_tmp192 ;
-  unsigned long __cil_tmp193 ;
-  unsigned long __cil_tmp194 ;
   unsigned long __cil_tmp195 ;
   unsigned long __cil_tmp196 ;
   unsigned long __cil_tmp197 ;
@@ -4096,8 +4053,6 @@ static int rtl2830_init(struct dvb_frontend *fe )
   unsigned long __cil_tmp257 ;
   unsigned long __cil_tmp258 ;
   unsigned long __cil_tmp259 ;
-  unsigned long __cil_tmp260 ;
-  unsigned long __cil_tmp261 ;
   bool __cil_tmp262 ;
   unsigned long __cil_tmp263 ;
   unsigned long __cil_tmp264 ;
@@ -4169,17 +4124,11 @@ static int rtl2830_init(struct dvb_frontend *fe )
   u16 __cil_tmp330 ;
   u8 *__cil_tmp331 ;
   unsigned long __cil_tmp332 ;
-  unsigned long __cil_tmp333 ;
-  unsigned long __cil_tmp334 ;
   u32 __cil_tmp335 ;
   unsigned long __cil_tmp336 ;
-  unsigned long __cil_tmp337 ;
-  unsigned long __cil_tmp338 ;
   u32 __cil_tmp339 ;
   unsigned int __cil_tmp340 ;
   unsigned long __cil_tmp341 ;
-  unsigned long __cil_tmp342 ;
-  unsigned long __cil_tmp343 ;
   u32 __cil_tmp344 ;
   unsigned long long __cil_tmp345 ;
   int *__cil_tmp346 ;
@@ -4212,14 +4161,10 @@ static int rtl2830_init(struct dvb_frontend *fe )
   u16 __cil_tmp373 ;
   u8 __cil_tmp374 ;
   u8 __cil_tmp375 ;
-  unsigned long __cil_tmp376 ;
-  unsigned long __cil_tmp377 ;
   int *__cil_tmp378 ;
 
   {
-  __cil_tmp10 = (unsigned long )fe;
-  __cil_tmp11 = __cil_tmp10 + 760;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)fe + 760));
   priv = (struct rtl2830_priv *)__cil_tmp12;
   __cil_tmp13 = 0 * 4UL;
   __cil_tmp14 = (unsigned long )(tab) + __cil_tmp13;
@@ -4426,9 +4371,7 @@ static int rtl2830_init(struct dvb_frontend *fe )
   __cil_tmp160 = __cil_tmp159 + 2;
   __cil_tmp161 = (unsigned long )(tab) + __cil_tmp160;
   __cil_tmp162 = 968 + 16;
-  __cil_tmp163 = (unsigned long )priv;
-  __cil_tmp164 = __cil_tmp163 + __cil_tmp162;
-  *((u8 *)__cil_tmp161) = *((u8 *)__cil_tmp164);
+  *((u8 *)__cil_tmp161) = *((u8 *)((void *)priv + __cil_tmp162));
   __cil_tmp165 = 18 * 4UL;
   __cil_tmp166 = __cil_tmp165 + 3;
   __cil_tmp167 = (unsigned long )(tab) + __cil_tmp166;
@@ -4440,9 +4383,7 @@ static int rtl2830_init(struct dvb_frontend *fe )
   __cil_tmp171 = __cil_tmp170 + 2;
   __cil_tmp172 = (unsigned long )(tab) + __cil_tmp171;
   __cil_tmp173 = 968 + 17;
-  __cil_tmp174 = (unsigned long )priv;
-  __cil_tmp175 = __cil_tmp174 + __cil_tmp173;
-  *((u8 *)__cil_tmp172) = *((u8 *)__cil_tmp175);
+  *((u8 *)__cil_tmp172) = *((u8 *)((void *)priv + __cil_tmp173));
   __cil_tmp176 = 19 * 4UL;
   __cil_tmp177 = __cil_tmp176 + 3;
   __cil_tmp178 = (unsigned long )(tab) + __cil_tmp177;
@@ -4465,9 +4406,7 @@ static int rtl2830_init(struct dvb_frontend *fe )
   __cil_tmp190 = __cil_tmp189 + 2;
   __cil_tmp191 = (unsigned long )(tab) + __cil_tmp190;
   __cil_tmp192 = 968 + 18;
-  __cil_tmp193 = (unsigned long )priv;
-  __cil_tmp194 = __cil_tmp193 + __cil_tmp192;
-  *((u8 *)__cil_tmp191) = *((u8 *)__cil_tmp194);
+  *((u8 *)__cil_tmp191) = *((u8 *)((void *)priv + __cil_tmp192));
   __cil_tmp195 = 21 * 4UL;
   __cil_tmp196 = __cil_tmp195 + 3;
   __cil_tmp197 = (unsigned long )(tab) + __cil_tmp196;
@@ -4556,9 +4495,7 @@ static int rtl2830_init(struct dvb_frontend *fe )
   __cil_tmp257 = __cil_tmp256 + 2;
   __cil_tmp258 = (unsigned long )(tab) + __cil_tmp257;
   __cil_tmp259 = 968 + 9;
-  __cil_tmp260 = (unsigned long )priv;
-  __cil_tmp261 = __cil_tmp260 + __cil_tmp259;
-  __cil_tmp262 = *((bool *)__cil_tmp261);
+  __cil_tmp262 = *((bool *)((void *)priv + __cil_tmp259));
   *((u8 *)__cil_tmp258) = (u8 )__cil_tmp262;
   __cil_tmp263 = 29 * 4UL;
   __cil_tmp264 = __cil_tmp263 + 3;
@@ -4689,20 +4626,14 @@ static int rtl2830_init(struct dvb_frontend *fe )
   }
   {
   __cil_tmp332 = 968 + 4;
-  __cil_tmp333 = (unsigned long )priv;
-  __cil_tmp334 = __cil_tmp333 + __cil_tmp332;
-  __cil_tmp335 = *((u32 *)__cil_tmp334);
+  __cil_tmp335 = *((u32 *)((void *)priv + __cil_tmp332));
   __cil_tmp336 = 968 + 12;
-  __cil_tmp337 = (unsigned long )priv;
-  __cil_tmp338 = __cil_tmp337 + __cil_tmp336;
-  __cil_tmp339 = *((u32 *)__cil_tmp338);
+  __cil_tmp339 = *((u32 *)((void *)priv + __cil_tmp336));
   __cil_tmp340 = __cil_tmp339 % __cil_tmp335;
   num = (u64 )__cil_tmp340;
   num = num * 4194304ULL;
   __cil_tmp341 = 968 + 4;
-  __cil_tmp342 = (unsigned long )priv;
-  __cil_tmp343 = __cil_tmp342 + __cil_tmp341;
-  __cil_tmp344 = *((u32 *)__cil_tmp343);
+  __cil_tmp344 = *((u32 *)((void *)priv + __cil_tmp341));
   num = div_u64(num, __cil_tmp344);
   num = - num;
   __cil_tmp345 = num & 4194303ULL;
@@ -4783,9 +4714,7 @@ static int rtl2830_init(struct dvb_frontend *fe )
   } else {
 
   }
-  __cil_tmp376 = (unsigned long )priv;
-  __cil_tmp377 = __cil_tmp376 + 2080;
-  *((bool *)__cil_tmp377) = (bool )0;
+  *((bool *)((void *)priv + 2080)) = (bool )0;
   return (ret);
   err: 
   {
@@ -4803,63 +4732,40 @@ static int rtl2830_init(struct dvb_frontend *fe )
 }
 static int rtl2830_sleep(struct dvb_frontend *fe ) 
 { struct rtl2830_priv *priv ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
 
   {
-  __cil_tmp3 = (unsigned long )fe;
-  __cil_tmp4 = __cil_tmp3 + 760;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)fe + 760));
   priv = (struct rtl2830_priv *)__cil_tmp5;
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 2080;
-  *((bool *)__cil_tmp7) = (bool )1;
+  *((bool *)((void *)priv + 2080)) = (bool )1;
   return (0);
 }
 }
 int rtl2830_get_tune_settings(struct dvb_frontend *fe , struct dvb_frontend_tune_settings *s ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   __u32 __cil_tmp9 ;
   __u32 __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   __u32 __cil_tmp17 ;
   __u32 __cil_tmp18 ;
   __u32 __cil_tmp19 ;
 
   {
   *((int *)s) = 500;
-  __cil_tmp3 = (unsigned long )s;
-  __cil_tmp4 = __cil_tmp3 + 4;
   __cil_tmp5 = 0 + 140;
   __cil_tmp6 = 0 + __cil_tmp5;
-  __cil_tmp7 = (unsigned long )fe;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp6;
-  __cil_tmp9 = *((__u32 *)__cil_tmp8);
+  __cil_tmp9 = *((__u32 *)((void *)fe + __cil_tmp6));
   __cil_tmp10 = __cil_tmp9 * 2U;
-  *((int *)__cil_tmp4) = (int )__cil_tmp10;
-  __cil_tmp11 = (unsigned long )s;
-  __cil_tmp12 = __cil_tmp11 + 8;
+  *((int *)((void *)s + 4)) = (int )__cil_tmp10;
   __cil_tmp13 = 0 + 140;
   __cil_tmp14 = 0 + __cil_tmp13;
-  __cil_tmp15 = (unsigned long )fe;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  __cil_tmp17 = *((__u32 *)__cil_tmp16);
+  __cil_tmp17 = *((__u32 *)((void *)fe + __cil_tmp14));
   __cil_tmp18 = __cil_tmp17 * 2U;
   __cil_tmp19 = __cil_tmp18 + 1U;
-  *((int *)__cil_tmp12) = (int )__cil_tmp19;
+  *((int *)((void *)s + 8)) = (int )__cil_tmp19;
   return (0);
 }
 }
@@ -4903,33 +4809,17 @@ static int rtl2830_set_frontend(struct dvb_frontend *fe )
   struct dtv_frontend_properties *c ;
   int ret ;
   int i ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   u32 __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u32 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   fe_spectral_inversion_t __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int (*__cil_tmp30)(struct dvb_frontend *fe ) ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   u32 __cil_tmp33 ;
   int *__cil_tmp34 ;
   u16 __cil_tmp35 ;
@@ -4957,26 +4847,16 @@ static int rtl2830_set_frontend(struct dvb_frontend *fe )
   int *__cil_tmp57 ;
 
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 760;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)fe + 760));
   priv = (struct rtl2830_priv *)__cil_tmp8;
-  __cil_tmp9 = (unsigned long )fe;
-  __cil_tmp10 = __cil_tmp9 + 800;
-  c = (struct dtv_frontend_properties *)__cil_tmp10;
+  c = (struct dtv_frontend_properties *)((void *)fe + 800);
   {
   __cil_tmp11 = & rtl2830_debug;
   if (*__cil_tmp11) {
     {
-    __cil_tmp12 = (unsigned long )c;
-    __cil_tmp13 = __cil_tmp12 + 4;
-    __cil_tmp14 = *((u32 *)__cil_tmp13);
-    __cil_tmp15 = (unsigned long )c;
-    __cil_tmp16 = __cil_tmp15 + 32;
-    __cil_tmp17 = *((u32 *)__cil_tmp16);
-    __cil_tmp18 = (unsigned long )c;
-    __cil_tmp19 = __cil_tmp18 + 20;
-    __cil_tmp20 = *((fe_spectral_inversion_t *)__cil_tmp19);
+    __cil_tmp14 = *((u32 *)((void *)c + 4));
+    __cil_tmp17 = *((u32 *)((void *)c + 32));
+    __cil_tmp20 = *((fe_spectral_inversion_t *)((void *)c + 20));
     __cil_tmp21 = (unsigned int )__cil_tmp20;
     printk("<6>rtl2830: %s: frequency=%d bandwidth_hz=%d inversion=%d\n", "rtl2830_set_frontend",
            __cil_tmp14, __cil_tmp17, __cil_tmp21);
@@ -4988,15 +4868,11 @@ static int rtl2830_set_frontend(struct dvb_frontend *fe )
   {
   __cil_tmp22 = 384 + 176;
   __cil_tmp23 = 0 + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )fe;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  if (*((int (**)(struct dvb_frontend *fe ))__cil_tmp25)) {
+  if (*((int (**)(struct dvb_frontend *fe ))((void *)fe + __cil_tmp23))) {
     {
     __cil_tmp26 = 384 + 176;
     __cil_tmp27 = 0 + __cil_tmp26;
-    __cil_tmp28 = (unsigned long )fe;
-    __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-    __cil_tmp30 = *((int (**)(struct dvb_frontend *fe ))__cil_tmp29);
+    __cil_tmp30 = *((int (**)(struct dvb_frontend *fe ))((void *)fe + __cil_tmp27));
     (*__cil_tmp30)(fe);
     }
   } else {
@@ -5004,9 +4880,7 @@ static int rtl2830_set_frontend(struct dvb_frontend *fe )
   }
   }
   {
-  __cil_tmp31 = (unsigned long )c;
-  __cil_tmp32 = __cil_tmp31 + 32;
-  __cil_tmp33 = *((u32 *)__cil_tmp32);
+  __cil_tmp33 = *((u32 *)((void *)c + 32));
   if ((int )__cil_tmp33 == 6000000) {
     goto case_6000000;
   } else
@@ -5119,11 +4993,7 @@ static int rtl2830_read_status(struct dvb_frontend *fe , fe_status_t *status )
 { struct rtl2830_priv *priv ;
   int ret ;
   u8 tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   u16 __cil_tmp11 ;
   u8 __cil_tmp12 ;
   u8 *__cil_tmp13 ;
@@ -5141,15 +5011,11 @@ static int rtl2830_read_status(struct dvb_frontend *fe , fe_status_t *status )
   int *__cil_tmp25 ;
 
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 760;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)fe + 760));
   priv = (struct rtl2830_priv *)__cil_tmp8;
   *status = (fe_status_t )0;
   {
-  __cil_tmp9 = (unsigned long )priv;
-  __cil_tmp10 = __cil_tmp9 + 2080;
-  if (*((bool *)__cil_tmp10)) {
+  if (*((bool *)((void *)priv + 2080))) {
     return (0);
   } else {
 
@@ -5303,21 +5169,13 @@ static struct i2c_algorithm rtl2830_tuner_i2c_algo  =    {& rtl2830_tuner_i2c_xf
     & rtl2830_tuner_i2c_func};
 struct i2c_adapter *rtl2830_get_tuner_i2c_adapter(struct dvb_frontend *fe ) 
 { struct rtl2830_priv *priv ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
 
   {
-  __cil_tmp3 = (unsigned long )fe;
-  __cil_tmp4 = __cil_tmp3 + 760;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)fe + 760));
   priv = (struct rtl2830_priv *)__cil_tmp5;
   {
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 992;
-  return ((struct i2c_adapter *)__cil_tmp7);
+  return ((struct i2c_adapter *)((void *)priv + 992));
   }
 }
 }
@@ -5338,23 +5196,15 @@ static struct kernel_symbol  const  __ksymtab_rtl2830_get_tuner_i2c_adapter  __a
 __unused__, __section__("___ksymtab+rtl2830_get_tuner_i2c_adapter")))  =    {(unsigned long )(& rtl2830_get_tuner_i2c_adapter), __kstrtab_rtl2830_get_tuner_i2c_adapter};
 static void rtl2830_release(struct dvb_frontend *fe ) 
 { struct rtl2830_priv *priv ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct i2c_adapter *__cil_tmp8 ;
   void const   *__cil_tmp9 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )fe;
-  __cil_tmp4 = __cil_tmp3 + 760;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)fe + 760));
   priv = (struct rtl2830_priv *)__cil_tmp5;
-  __cil_tmp6 = (unsigned long )priv;
-  __cil_tmp7 = __cil_tmp6 + 992;
-  __cil_tmp8 = (struct i2c_adapter *)__cil_tmp7;
+  __cil_tmp8 = (struct i2c_adapter *)((void *)priv + 992);
   i2c_del_adapter(__cil_tmp8);
   __cil_tmp9 = (void const   *)priv;
   kfree(__cil_tmp9);
@@ -5376,53 +5226,29 @@ struct dvb_frontend *rtl2830_attach(struct rtl2830_config  const  *cfg , struct 
   void *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct rtl2830_config *__cil_tmp18 ;
   void *__cil_tmp19 ;
   void const   *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct rtl2830_config *__cil_tmp23 ;
   void *__cil_tmp24 ;
   void const   *__cil_tmp25 ;
   u16 __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct dvb_frontend_ops *__cil_tmp29 ;
   void *__cil_tmp30 ;
   void const   *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct dvb_frontend_ops *__cil_tmp34 ;
   void *__cil_tmp35 ;
   void const   *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   char *__cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct i2c_adapter *__cil_tmp54 ;
   void *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct i2c_adapter *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   int *__cil_tmp63 ;
   void const   *__cil_tmp64 ;
   void *__cil_tmp65 ;
@@ -5449,18 +5275,14 @@ struct dvb_frontend *rtl2830_attach(struct rtl2830_config  const  *cfg , struct 
   __len = 20UL;
   if (__len >= 64UL) {
     {
-    __cil_tmp16 = (unsigned long )priv;
-    __cil_tmp17 = __cil_tmp16 + 968;
-    __cil_tmp18 = (struct rtl2830_config *)__cil_tmp17;
+    __cil_tmp18 = (struct rtl2830_config *)((void *)priv + 968);
     __cil_tmp19 = (void *)__cil_tmp18;
     __cil_tmp20 = (void const   *)cfg;
     __ret = memcpy(__cil_tmp19, __cil_tmp20, __len);
     }
   } else {
     {
-    __cil_tmp21 = (unsigned long )priv;
-    __cil_tmp22 = __cil_tmp21 + 968;
-    __cil_tmp23 = (struct rtl2830_config *)__cil_tmp22;
+    __cil_tmp23 = (struct rtl2830_config *)((void *)priv + 968);
     __cil_tmp24 = (void *)__cil_tmp23;
     __cil_tmp25 = (void const   *)cfg;
     __ret = memcpy(__cil_tmp24, __cil_tmp25, __len);
@@ -5478,18 +5300,14 @@ struct dvb_frontend *rtl2830_attach(struct rtl2830_config  const  *cfg , struct 
   __len___0 = 752UL;
   if (__len___0 >= 64UL) {
     {
-    __cil_tmp27 = (unsigned long )priv;
-    __cil_tmp28 = __cil_tmp27 + 8;
-    __cil_tmp29 = (struct dvb_frontend_ops *)__cil_tmp28;
+    __cil_tmp29 = (struct dvb_frontend_ops *)((void *)priv + 8);
     __cil_tmp30 = (void *)__cil_tmp29;
     __cil_tmp31 = (void const   *)(& rtl2830_ops);
     __ret___0 = memcpy(__cil_tmp30, __cil_tmp31, __len___0);
     }
   } else {
     {
-    __cil_tmp32 = (unsigned long )priv;
-    __cil_tmp33 = __cil_tmp32 + 8;
-    __cil_tmp34 = (struct dvb_frontend_ops *)__cil_tmp33;
+    __cil_tmp34 = (struct dvb_frontend_ops *)((void *)priv + 8);
     __cil_tmp35 = (void *)__cil_tmp34;
     __cil_tmp36 = (void const   *)(& rtl2830_ops);
     __ret___0 = memcpy(__cil_tmp35, __cil_tmp36, __len___0);
@@ -5497,32 +5315,20 @@ struct dvb_frontend *rtl2830_attach(struct rtl2830_config  const  *cfg , struct 
   }
   {
   __cil_tmp37 = 8 + 760;
-  __cil_tmp38 = (unsigned long )priv;
-  __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-  *((void **)__cil_tmp39) = (void *)priv;
+  *((void **)((void *)priv + __cil_tmp37)) = (void *)priv;
   __cil_tmp40 = 0 * 1UL;
   __cil_tmp41 = 900 + __cil_tmp40;
   __cil_tmp42 = 992 + __cil_tmp41;
-  __cil_tmp43 = (unsigned long )priv;
-  __cil_tmp44 = __cil_tmp43 + __cil_tmp42;
-  __cil_tmp45 = (char *)__cil_tmp44;
+  __cil_tmp45 = (char *)((void *)priv + __cil_tmp42);
   strlcpy(__cil_tmp45, "RTL2830 tuner I2C adapter", 48UL);
   __cil_tmp46 = 992 + 16;
-  __cil_tmp47 = (unsigned long )priv;
-  __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-  *((struct i2c_algorithm  const  **)__cil_tmp48) = (struct i2c_algorithm  const  *)(& rtl2830_tuner_i2c_algo);
+  *((struct i2c_algorithm  const  **)((void *)priv + __cil_tmp46)) = (struct i2c_algorithm  const  *)(& rtl2830_tuner_i2c_algo);
   __cil_tmp49 = 992 + 24;
-  __cil_tmp50 = (unsigned long )priv;
-  __cil_tmp51 = __cil_tmp50 + __cil_tmp49;
-  *((void **)__cil_tmp51) = (void *)0;
-  __cil_tmp52 = (unsigned long )priv;
-  __cil_tmp53 = __cil_tmp52 + 992;
-  __cil_tmp54 = (struct i2c_adapter *)__cil_tmp53;
+  *((void **)((void *)priv + __cil_tmp49)) = (void *)0;
+  __cil_tmp54 = (struct i2c_adapter *)((void *)priv + 992);
   __cil_tmp55 = (void *)priv;
   i2c_set_adapdata(__cil_tmp54, __cil_tmp55);
-  __cil_tmp56 = (unsigned long )priv;
-  __cil_tmp57 = __cil_tmp56 + 992;
-  __cil_tmp58 = (struct i2c_adapter *)__cil_tmp57;
+  __cil_tmp58 = (struct i2c_adapter *)((void *)priv + 992);
   tmp___9 = i2c_add_adapter(__cil_tmp58);
   }
   if (tmp___9 < 0) {
@@ -5533,13 +5339,9 @@ struct dvb_frontend *rtl2830_attach(struct rtl2830_config  const  *cfg , struct 
   } else {
 
   }
-  __cil_tmp59 = (unsigned long )priv;
-  __cil_tmp60 = __cil_tmp59 + 2080;
-  *((bool *)__cil_tmp60) = (bool )1;
+  *((bool *)((void *)priv + 2080)) = (bool )1;
   {
-  __cil_tmp61 = (unsigned long )priv;
-  __cil_tmp62 = __cil_tmp61 + 8;
-  return ((struct dvb_frontend *)__cil_tmp62);
+  return ((struct dvb_frontend *)((void *)priv + 8));
   }
   err: 
   {

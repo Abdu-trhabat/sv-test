@@ -4814,15 +4814,11 @@ extern void pci_unregister_driver(struct pci_driver *dev ) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -4831,14 +4827,11 @@ __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -4945,17 +4938,13 @@ static unsigned char at24_readb(unsigned long regaddr , unsigned char addr ) ;
 static unsigned short abyss_sifreadb(struct net_device *dev , unsigned short reg )
 { unsigned char tmp___7 ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
   {
   {
   __cil_tmp4 = (unsigned long )reg;
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + 216;
-  __cil_tmp7 = *((unsigned long *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned long *)((void *)dev + 216));
   __cil_tmp8 = __cil_tmp7 + __cil_tmp4;
   __cil_tmp9 = (int )__cil_tmp8;
   tmp___7 = inb(__cil_tmp9);
@@ -4966,17 +4955,13 @@ static unsigned short abyss_sifreadb(struct net_device *dev , unsigned short reg
 static unsigned short abyss_sifreadw(struct net_device *dev , unsigned short reg )
 { unsigned short tmp___7 ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
   {
   {
   __cil_tmp4 = (unsigned long )reg;
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + 216;
-  __cil_tmp7 = *((unsigned long *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned long *)((void *)dev + 216));
   __cil_tmp8 = __cil_tmp7 + __cil_tmp4;
   __cil_tmp9 = (int )__cil_tmp8;
   tmp___7 = inw(__cil_tmp9);
@@ -4987,8 +4972,6 @@ static unsigned short abyss_sifreadw(struct net_device *dev , unsigned short reg
 static void abyss_sifwriteb(struct net_device *dev , unsigned short val , unsigned short reg )
 { unsigned char __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
@@ -4996,9 +4979,7 @@ static void abyss_sifwriteb(struct net_device *dev , unsigned short val , unsign
   {
   __cil_tmp4 = (unsigned char )val;
   __cil_tmp5 = (unsigned long )reg;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 216;
-  __cil_tmp8 = *((unsigned long *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned long *)((void *)dev + 216));
   __cil_tmp9 = __cil_tmp8 + __cil_tmp5;
   __cil_tmp10 = (int )__cil_tmp9;
   outb(__cil_tmp4, __cil_tmp10);
@@ -5008,17 +4989,13 @@ static void abyss_sifwriteb(struct net_device *dev , unsigned short val , unsign
 }
 static void abyss_sifwritew(struct net_device *dev , unsigned short val , unsigned short reg )
 { unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
   {
   {
   __cil_tmp4 = (unsigned long )reg;
-  __cil_tmp5 = (unsigned long )dev;
-  __cil_tmp6 = __cil_tmp5 + 216;
-  __cil_tmp7 = *((unsigned long *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned long *)((void *)dev + 216));
   __cil_tmp8 = __cil_tmp7 + __cil_tmp4;
   __cil_tmp9 = (int )__cil_tmp8;
   outw(val, __cil_tmp9);
@@ -5045,106 +5022,52 @@ static int abyss_attach(struct pci_dev *pdev , struct pci_device_id const *ent )
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   char *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   resource_size_t __cil_tmp24 ;
   int __cil_tmp25 ;
   resource_size_t __cil_tmp26 ;
   resource_size_t __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   char *__cil_tmp32 ;
   char const *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   char *__cil_tmp41 ;
   char const *__cil_tmp42 ;
   void *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   char *__cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   char *__cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   unsigned int __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct device *__cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   char *__cil_tmp73 ;
   unsigned long __cil_tmp74 ;
   unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   char *__cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   unsigned char *__cil_tmp81 ;
   struct net_device const *__cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   unsigned char *__cil_tmp97 ;
   void *__cil_tmp98 ;
   void const *__cil_tmp99 ;
   unsigned long __cil_tmp100 ;
   unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   unsigned char *__cil_tmp104 ;
   void *__cil_tmp105 ;
   void const *__cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   void *__cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   void *__cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
   unsigned int __cil_tmp117 ;
   void *__cil_tmp118 ;
   resource_size_t __cil_tmp119 ;
@@ -5169,15 +5092,11 @@ static int abyss_attach(struct pci_dev *pdev , struct pci_device_id const *ent )
   } else {
   }
   {
-  __cil_tmp17 = (unsigned long )pdev;
-  __cil_tmp18 = __cil_tmp17 + 916;
-  __cil_tmp19 = *((unsigned int *)__cil_tmp18);
+  __cil_tmp19 = *((unsigned int *)((void *)pdev + 916));
   pci_irq_line = (int )__cil_tmp19;
   __cil_tmp20 = 0 * 56UL;
   __cil_tmp21 = 920 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )pdev;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  __cil_tmp24 = *((resource_size_t *)__cil_tmp23);
+  __cil_tmp24 = *((resource_size_t *)((void *)pdev + __cil_tmp21));
   pci_ioaddr = (unsigned long )__cil_tmp24;
   __cil_tmp25 = (int )28008UL;
   dev = alloc_trdev(__cil_tmp25);
@@ -5191,9 +5110,7 @@ static int abyss_attach(struct pci_dev *pdev , struct pci_device_id const *ent )
   __cil_tmp27 = (resource_size_t )64;
   __cil_tmp28 = 0 * 1UL;
   __cil_tmp29 = 0 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )dev;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = (char *)__cil_tmp31;
+  __cil_tmp32 = (char *)((void *)dev + __cil_tmp29);
   __cil_tmp33 = (char const *)__cil_tmp32;
   tmp___9 = __request_region(& ioport_resource, __cil_tmp26, __cil_tmp27, __cil_tmp33,
                              0);
@@ -5204,14 +5121,10 @@ static int abyss_attach(struct pci_dev *pdev , struct pci_device_id const *ent )
     goto err_out_trdev;
   }
   {
-  __cil_tmp34 = (unsigned long )pdev;
-  __cil_tmp35 = __cil_tmp34 + 916;
-  __cil_tmp36 = *((unsigned int *)__cil_tmp35);
+  __cil_tmp36 = *((unsigned int *)((void *)pdev + 916));
   __cil_tmp37 = 0 * 1UL;
   __cil_tmp38 = 0 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )dev;
-  __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-  __cil_tmp41 = (char *)__cil_tmp40;
+  __cil_tmp41 = (char *)((void *)dev + __cil_tmp38);
   __cil_tmp42 = (char const *)__cil_tmp41;
   __cil_tmp43 = (void *)dev;
   ret = (int )request_irq(__cil_tmp36, & tms380tr_interrupt, 128UL, __cil_tmp42, __cil_tmp43);
@@ -5221,45 +5134,27 @@ static int abyss_attach(struct pci_dev *pdev , struct pci_device_id const *ent )
   } else {
   }
   {
-  __cil_tmp44 = (unsigned long )dev;
-  __cil_tmp45 = __cil_tmp44 + 216;
-  *((unsigned long *)__cil_tmp45) = pci_ioaddr;
-  __cil_tmp46 = (unsigned long )dev;
-  __cil_tmp47 = __cil_tmp46 + 224;
-  *((unsigned int *)__cil_tmp47) = (unsigned int )pci_irq_line;
+  *((unsigned long *)((void *)dev + 216)) = pci_ioaddr;
+  *((unsigned int *)((void *)dev + 224)) = (unsigned int )pci_irq_line;
   __cil_tmp48 = 0 * 1UL;
   __cil_tmp49 = 0 + __cil_tmp48;
-  __cil_tmp50 = (unsigned long )dev;
-  __cil_tmp51 = __cil_tmp50 + __cil_tmp49;
-  __cil_tmp52 = (char *)__cil_tmp51;
+  __cil_tmp52 = (char *)((void *)dev + __cil_tmp49);
   printk("%s: Madge Smart 16/4 PCI Mk2 (Abyss)\n", __cil_tmp52);
   __cil_tmp53 = 0 * 1UL;
   __cil_tmp54 = 0 + __cil_tmp53;
-  __cil_tmp55 = (unsigned long )dev;
-  __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
-  __cil_tmp57 = (char *)__cil_tmp56;
-  __cil_tmp58 = (unsigned long )dev;
-  __cil_tmp59 = __cil_tmp58 + 224;
-  __cil_tmp60 = *((unsigned int *)__cil_tmp59);
+  __cil_tmp57 = (char *)((void *)dev + __cil_tmp54);
+  __cil_tmp60 = *((unsigned int *)((void *)dev + 224));
   printk("%s:    IO: %#4lx  IRQ: %d\n", __cil_tmp57, pci_ioaddr, __cil_tmp60);
-  __cil_tmp61 = (unsigned long )dev;
-  __cil_tmp62 = __cil_tmp61 + 216;
-  __cil_tmp63 = (unsigned long )dev;
-  __cil_tmp64 = __cil_tmp63 + 216;
-  __cil_tmp65 = *((unsigned long *)__cil_tmp64);
-  *((unsigned long *)__cil_tmp62) = __cil_tmp65 + 16UL;
-  __cil_tmp66 = (unsigned long )pdev;
-  __cil_tmp67 = __cil_tmp66 + 144;
-  __cil_tmp68 = (struct device *)__cil_tmp67;
+  __cil_tmp65 = *((unsigned long *)((void *)dev + 216));
+  *((unsigned long *)((void *)dev + 216)) = __cil_tmp65 + 16UL;
+  __cil_tmp68 = (struct device *)((void *)pdev + 144);
   ret = tmsdev_init(dev, __cil_tmp68);
   }
   if (ret) {
     {
     __cil_tmp69 = 0 * 1UL;
     __cil_tmp70 = 0 + __cil_tmp69;
-    __cil_tmp71 = (unsigned long )dev;
-    __cil_tmp72 = __cil_tmp71 + __cil_tmp70;
-    __cil_tmp73 = (char *)__cil_tmp72;
+    __cil_tmp73 = (char *)((void *)dev + __cil_tmp70);
     printk("%s: unable to get memory for dev->priv.\n", __cil_tmp73);
     }
     goto err_out_irq;
@@ -5269,40 +5164,24 @@ static int abyss_attach(struct pci_dev *pdev , struct pci_device_id const *ent )
   abyss_read_eeprom(dev);
   __cil_tmp74 = 0 * 1UL;
   __cil_tmp75 = 0 + __cil_tmp74;
-  __cil_tmp76 = (unsigned long )dev;
-  __cil_tmp77 = __cil_tmp76 + __cil_tmp75;
-  __cil_tmp78 = (char *)__cil_tmp77;
-  __cil_tmp79 = (unsigned long )dev;
-  __cil_tmp80 = __cil_tmp79 + 808;
-  __cil_tmp81 = *((unsigned char **)__cil_tmp80);
+  __cil_tmp78 = (char *)((void *)dev + __cil_tmp75);
+  __cil_tmp81 = *((unsigned char **)((void *)dev + 808));
   printk("%s:    Ring Station Address: %pM\n", __cil_tmp78, __cil_tmp81);
   __cil_tmp82 = (struct net_device const *)dev;
   tmp___10 = netdev_priv(__cil_tmp82);
   tp = (struct net_local *)tmp___10;
-  __cil_tmp83 = (unsigned long )tp;
-  __cil_tmp84 = __cil_tmp83 + 27936;
-  *((unsigned short (**)(struct net_device * ))__cil_tmp84) = & abyss_setnselout_pins;
-  __cil_tmp85 = (unsigned long )tp;
-  __cil_tmp86 = __cil_tmp85 + 27944;
-  *((unsigned short (**)(struct net_device * , unsigned short ))__cil_tmp86) = & abyss_sifreadb;
-  __cil_tmp87 = (unsigned long )tp;
-  __cil_tmp88 = __cil_tmp87 + 27960;
-  *((unsigned short (**)(struct net_device * , unsigned short ))__cil_tmp88) = & abyss_sifreadw;
-  __cil_tmp89 = (unsigned long )tp;
-  __cil_tmp90 = __cil_tmp89 + 27952;
-  *((void (**)(struct net_device * , unsigned short , unsigned short ))__cil_tmp90) = & abyss_sifwriteb;
-  __cil_tmp91 = (unsigned long )tp;
-  __cil_tmp92 = __cil_tmp91 + 27968;
-  *((void (**)(struct net_device * , unsigned short , unsigned short ))__cil_tmp92) = & abyss_sifwritew;
+  *((unsigned short (**)(struct net_device * ))((void *)tp + 27936)) = & abyss_setnselout_pins;
+  *((unsigned short (**)(struct net_device * , unsigned short ))((void *)tp + 27944)) = & abyss_sifreadb;
+  *((unsigned short (**)(struct net_device * , unsigned short ))((void *)tp + 27960)) = & abyss_sifreadw;
+  *((void (**)(struct net_device * , unsigned short , unsigned short ))((void *)tp + 27952)) = & abyss_sifwriteb;
+  *((void (**)(struct net_device * , unsigned short , unsigned short ))((void *)tp + 27968)) = & abyss_sifwritew;
   __len = (size_t )19;
   }
   if (__len >= 64UL) {
     {
     __cil_tmp93 = 0 * 1UL;
     __cil_tmp94 = 86 + __cil_tmp93;
-    __cil_tmp95 = (unsigned long )tp;
-    __cil_tmp96 = __cil_tmp95 + __cil_tmp94;
-    __cil_tmp97 = (unsigned char *)__cil_tmp96;
+    __cil_tmp97 = (unsigned char *)((void *)tp + __cil_tmp94);
     __cil_tmp98 = (void *)__cil_tmp97;
     __cil_tmp99 = (void const *)"Madge PCI 16/4 Mk2";
     __ret = memcpy(__cil_tmp98, __cil_tmp99, __len);
@@ -5311,25 +5190,17 @@ static int abyss_attach(struct pci_dev *pdev , struct pci_device_id const *ent )
     {
     __cil_tmp100 = 0 * 1UL;
     __cil_tmp101 = 86 + __cil_tmp100;
-    __cil_tmp102 = (unsigned long )tp;
-    __cil_tmp103 = __cil_tmp102 + __cil_tmp101;
-    __cil_tmp104 = (unsigned char *)__cil_tmp103;
+    __cil_tmp104 = (unsigned char *)((void *)tp + __cil_tmp101);
     __cil_tmp105 = (void *)__cil_tmp104;
     __cil_tmp106 = (void const *)"Madge PCI 16/4 Mk2";
     __ret = memcpy(__cil_tmp105, __cil_tmp106, __len);
     }
   }
   {
-  __cil_tmp107 = (unsigned long )dev;
-  __cil_tmp108 = __cil_tmp107 + 536;
-  *((struct net_device_ops const **)__cil_tmp108) = (struct net_device_ops const *)(& abyss_netdev_ops);
+  *((struct net_device_ops const **)((void *)dev + 536)) = (struct net_device_ops const *)(& abyss_netdev_ops);
   __cil_tmp109 = (void *)dev;
   pci_set_drvdata(pdev, __cil_tmp109);
-  __cil_tmp110 = (unsigned long )dev;
-  __cil_tmp111 = __cil_tmp110 + 1192;
-  __cil_tmp112 = (unsigned long )pdev;
-  __cil_tmp113 = __cil_tmp112 + 144;
-  *((struct device **)__cil_tmp111) = (struct device *)__cil_tmp113;
+  *((struct device **)((void *)dev + 1192)) = (struct device *)((void *)pdev + 144);
   ret = register_netdev(dev);
   }
   if (ret) {
@@ -5345,9 +5216,7 @@ static int abyss_attach(struct pci_dev *pdev , struct pci_device_id const *ent )
   }
   err_out_irq:
   {
-  __cil_tmp115 = (unsigned long )pdev;
-  __cil_tmp116 = __cil_tmp115 + 916;
-  __cil_tmp117 = *((unsigned int *)__cil_tmp116);
+  __cil_tmp117 = *((unsigned int *)((void *)pdev + 916));
   __cil_tmp118 = (void *)dev;
   free_irq(__cil_tmp117, __cil_tmp118);
   }
@@ -5369,8 +5238,6 @@ static unsigned short abyss_setnselout_pins(struct net_device *dev )
   struct net_local *tp ;
   void *tmp___7 ;
   struct net_device const *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   int __cil_tmp8 ;
   int __cil_tmp9 ;
   int __cil_tmp10 ;
@@ -5383,9 +5250,7 @@ static unsigned short abyss_setnselout_pins(struct net_device *dev )
   tp = (struct net_local *)tmp___7;
   }
   {
-  __cil_tmp6 = (unsigned long )tp;
-  __cil_tmp7 = __cil_tmp6 + 27560;
-  __cil_tmp8 = *((int *)__cil_tmp7);
+  __cil_tmp8 = *((int *)((void *)tp + 27560));
   if (__cil_tmp8 == 4) {
     __cil_tmp9 = (int )val;
     __cil_tmp10 = __cil_tmp9 | 1;
@@ -5698,8 +5563,6 @@ static unsigned char at24_readb(unsigned long regaddr , unsigned char addr )
 static void abyss_enable(struct net_device *dev )
 { unsigned char reset_reg ;
   unsigned long ioaddr ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
@@ -5708,9 +5571,7 @@ static void abyss_enable(struct net_device *dev )
   int __cil_tmp11 ;
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 216;
-  ioaddr = *((unsigned long *)__cil_tmp5);
+  ioaddr = *((unsigned long *)((void *)dev + 216));
   __cil_tmp6 = ioaddr + 0xfffffffffffffff4UL;
   __cil_tmp7 = (int )__cil_tmp6;
   reset_reg = inb(__cil_tmp7);
@@ -5728,8 +5589,6 @@ static void abyss_enable(struct net_device *dev )
 static int abyss_chipset_init(struct net_device *dev )
 { unsigned char reset_reg ;
   unsigned long ioaddr ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
@@ -5758,9 +5617,7 @@ static int abyss_chipset_init(struct net_device *dev )
   int __cil_tmp31 ;
   {
   {
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 216;
-  ioaddr = *((unsigned long *)__cil_tmp5);
+  ioaddr = *((unsigned long *)((void *)dev + 216));
   __cil_tmp6 = ioaddr + 0xfffffffffffffff4UL;
   __cil_tmp7 = (int )__cil_tmp6;
   reset_reg = inb(__cil_tmp7);
@@ -5808,15 +5665,11 @@ static int abyss_chipset_init(struct net_device *dev )
 __inline static void abyss_chipset_close(struct net_device *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void abyss_chipset_close(struct net_device *dev )
 { unsigned long ioaddr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 216;
-  ioaddr = *((unsigned long *)__cil_tmp4);
+  ioaddr = *((unsigned long *)((void *)dev + 216));
   __cil_tmp5 = ioaddr + 0xfffffffffffffff4UL;
   __cil_tmp6 = (int )__cil_tmp5;
   outb((unsigned char)0, __cil_tmp6);
@@ -5833,34 +5686,18 @@ static void abyss_read_eeprom(struct net_device *dev )
   unsigned char tmp___8 ;
   unsigned char tmp___9 ;
   struct net_device const *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   char *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   int __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   int __cil_tmp26 ;
   int __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   char *__cil_tmp32 ;
   int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned char *__cil_tmp38 ;
   unsigned char *__cil_tmp39 ;
   unsigned long __cil_tmp40 ;
@@ -5871,32 +5708,22 @@ static void abyss_read_eeprom(struct net_device *dev )
   __cil_tmp9 = (struct net_device const *)dev;
   tmp___7 = netdev_priv(__cil_tmp9);
   tp = (struct net_local *)tmp___7;
-  __cil_tmp10 = (unsigned long )dev;
-  __cil_tmp11 = __cil_tmp10 + 216;
-  ioaddr = *((unsigned long *)__cil_tmp11);
+  ioaddr = *((unsigned long *)((void *)dev + 216));
   abyss_enable(dev);
   __cil_tmp12 = ioaddr + 0xfffffffffffffff7UL;
   tmp___8 = at24_readb(__cil_tmp12, (unsigned char)24);
   val = (unsigned short )tmp___8;
   }
   if (val) {
-    __cil_tmp13 = (unsigned long )tp;
-    __cil_tmp14 = __cil_tmp13 + 27560;
-    *((int *)__cil_tmp14) = 4;
+    *((int *)((void *)tp + 27560)) = 4;
   } else {
-    __cil_tmp15 = (unsigned long )tp;
-    __cil_tmp16 = __cil_tmp15 + 27560;
-    *((int *)__cil_tmp16) = 16;
+    *((int *)((void *)tp + 27560)) = 16;
   }
   {
   __cil_tmp17 = 0 * 1UL;
   __cil_tmp18 = 0 + __cil_tmp17;
-  __cil_tmp19 = (unsigned long )dev;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-  __cil_tmp21 = (char *)__cil_tmp20;
-  __cil_tmp22 = (unsigned long )tp;
-  __cil_tmp23 = __cil_tmp22 + 27560;
-  __cil_tmp24 = *((int *)__cil_tmp23);
+  __cil_tmp21 = (char *)((void *)dev + __cil_tmp18);
+  __cil_tmp24 = *((int *)((void *)tp + 27560));
   printk("%s:    SEEPROM: ring speed: %dMb/sec\n", __cil_tmp21, __cil_tmp24);
   __cil_tmp25 = ioaddr + 0xfffffffffffffff7UL;
   tmp___9 = at24_readb(__cil_tmp25, (unsigned char)26);
@@ -5905,14 +5732,10 @@ static void abyss_read_eeprom(struct net_device *dev )
   val = (unsigned short )__cil_tmp27;
   __cil_tmp28 = 0 * 1UL;
   __cil_tmp29 = 0 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )dev;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = (char *)__cil_tmp31;
+  __cil_tmp32 = (char *)((void *)dev + __cil_tmp29);
   __cil_tmp33 = (int )val;
   printk("%s:    SEEPROM: adapter RAM: %dkb\n", __cil_tmp32, __cil_tmp33);
-  __cil_tmp34 = (unsigned long )dev;
-  __cil_tmp35 = __cil_tmp34 + 621;
-  *((unsigned char *)__cil_tmp35) = (unsigned char)6;
+  *((unsigned char *)((void *)dev + 621)) = (unsigned char)6;
   i = 0;
   }
   {
@@ -5923,9 +5746,7 @@ static void abyss_read_eeprom(struct net_device *dev )
       goto while_break;
     }
     {
-    __cil_tmp36 = (unsigned long )dev;
-    __cil_tmp37 = __cil_tmp36 + 808;
-    __cil_tmp38 = *((unsigned char **)__cil_tmp37);
+    __cil_tmp38 = *((unsigned char **)((void *)dev + 808));
     __cil_tmp39 = __cil_tmp38 + i;
     __cil_tmp40 = ioaddr + 0xfffffffffffffff7UL;
     __cil_tmp41 = 18 + i;
@@ -5969,14 +5790,10 @@ static void abyss_detach(struct pci_dev *pdev )
   int __cil_tmp6 ;
   int __cil_tmp7 ;
   long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   resource_size_t __cil_tmp13 ;
   resource_size_t __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
   void *__cil_tmp18 ;
   void *__cil_tmp19 ;
@@ -6024,16 +5841,12 @@ static void abyss_detach(struct pci_dev *pdev )
   }
   {
   unregister_netdev(dev);
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 216;
-  __cil_tmp11 = *((unsigned long *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned long *)((void *)dev + 216));
   __cil_tmp12 = __cil_tmp11 - 16UL;
   __cil_tmp13 = (resource_size_t )__cil_tmp12;
   __cil_tmp14 = (resource_size_t )64;
   __release_region(& ioport_resource, __cil_tmp13, __cil_tmp14);
-  __cil_tmp15 = (unsigned long )dev;
-  __cil_tmp16 = __cil_tmp15 + 224;
-  __cil_tmp17 = *((unsigned int *)__cil_tmp16);
+  __cil_tmp17 = *((unsigned int *)((void *)dev + 224));
   __cil_tmp18 = (void *)dev;
   free_irq(__cil_tmp17, __cil_tmp18);
   tmsdev_term(dev);
@@ -6061,16 +5874,12 @@ static int abyss_init(void) __attribute__((__section__(".init.text"), __no_instr
 static int abyss_init(void)
 { int tmp___7 ;
   struct net_device_ops *__cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   {
   {
   __cil_tmp2 = & abyss_netdev_ops;
   *__cil_tmp2 = (struct net_device_ops )tms380tr_netdev_ops;
-  __cil_tmp3 = (unsigned long )(& abyss_netdev_ops) + 16;
-  *((int (**)(struct net_device *dev ))__cil_tmp3) = & abyss_open;
-  __cil_tmp4 = (unsigned long )(& abyss_netdev_ops) + 24;
-  *((int (**)(struct net_device *dev ))__cil_tmp4) = & abyss_close;
+  *((int (**)(struct net_device *dev ))((void *)(&abyss_netdev_ops) + 16)) = & abyss_open;
+  *((int (**)(struct net_device *dev ))((void *)(&abyss_netdev_ops) + 24)) = & abyss_close;
   tmp___7 = (int )__pci_register_driver(& abyss_driver, & __this_module, "abyss");
   }
   return (tmp___7);

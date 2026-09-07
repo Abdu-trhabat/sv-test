@@ -4631,49 +4631,31 @@ static int airo_probe(struct pcmcia_device *p_dev )
   void *tmp___0 ;
   int tmp___1 ;
   struct _ddebug *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned char __cil_tmp14 ;
   long __cil_tmp15 ;
   long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   struct device const *__cil_tmp20 ;
   local_info_t *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   {
   {
   __cil_tmp7 = & descriptor;
   *((char const **)__cil_tmp7) = "airo_cs";
-  __cil_tmp8 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp8) = "airo_probe";
-  __cil_tmp9 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp9) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/15009/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/airo_cs.c.p";
-  __cil_tmp10 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp10) = "airo_attach()\n";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp11) = 83U;
-  __cil_tmp12 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp12) = (unsigned char)0;
-  __cil_tmp13 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp14 = *((unsigned char *)__cil_tmp13);
+  *((char const **)((void *)(&descriptor) + 8)) = "airo_probe";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/15009/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/airo_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "airo_attach()\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 83U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp14 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp15 = (long )__cil_tmp14;
   __cil_tmp16 = __cil_tmp15 & 1L;
   tmp = __builtin_expect(__cil_tmp16, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp17 = (unsigned long )p_dev;
-    __cil_tmp18 = __cil_tmp17 + 184;
-    __cil_tmp19 = (struct device *)__cil_tmp18;
+    __cil_tmp19 = (struct device *)((void *)p_dev + 184);
     __cil_tmp20 = (struct device const *)__cil_tmp19;
     __dynamic_dev_dbg(& descriptor, __cil_tmp20, "airo_attach()\n");
     }
@@ -4696,9 +4678,7 @@ static int airo_probe(struct pcmcia_device *p_dev )
   }
   }
   {
-  __cil_tmp24 = (unsigned long )p_dev;
-  __cil_tmp25 = __cil_tmp24 + 1336;
-  *((void **)__cil_tmp25) = (void *)local;
+  *((void **)((void *)p_dev + 1336)) = (void *)local;
   tmp___1 = airo_config(p_dev);
   }
   return (tmp___1);
@@ -4708,65 +4688,41 @@ static void airo_detach(struct pcmcia_device *link )
 { struct _ddebug descriptor ;
   long tmp ;
   struct _ddebug *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned char __cil_tmp11 ;
   long __cil_tmp12 ;
   long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
   struct net_device *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
   local_info_t *__cil_tmp23 ;
   struct net_device *__cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
   local_info_t *__cil_tmp29 ;
   struct net_device *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   void *__cil_tmp33 ;
   local_info_t *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   void *__cil_tmp37 ;
   void const *__cil_tmp38 ;
   {
   {
   __cil_tmp4 = & descriptor;
   *((char const **)__cil_tmp4) = "airo_cs";
-  __cil_tmp5 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp5) = "airo_detach";
-  __cil_tmp6 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp6) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/15009/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/airo_cs.c.p";
-  __cil_tmp7 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp7) = "airo_detach\n";
-  __cil_tmp8 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp8) = 98U;
-  __cil_tmp9 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp9) = (unsigned char)0;
-  __cil_tmp10 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp11 = *((unsigned char *)__cil_tmp10);
+  *((char const **)((void *)(&descriptor) + 8)) = "airo_detach";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/15009/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/airo_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "airo_detach\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 98U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp11 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp12 = (long )__cil_tmp11;
   __cil_tmp13 = __cil_tmp12 & 1L;
   tmp = __builtin_expect(__cil_tmp13, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp14 = (unsigned long )link;
-    __cil_tmp15 = __cil_tmp14 + 184;
-    __cil_tmp16 = (struct device *)__cil_tmp15;
+    __cil_tmp16 = (struct device *)((void *)link + 184);
     __cil_tmp17 = (struct device const *)__cil_tmp16;
     __dynamic_dev_dbg(& descriptor, __cil_tmp17, "airo_detach\n");
     }
@@ -4778,17 +4734,13 @@ static void airo_detach(struct pcmcia_device *link )
   {
   __cil_tmp18 = (struct net_device *)0;
   __cil_tmp19 = (unsigned long )__cil_tmp18;
-  __cil_tmp20 = (unsigned long )link;
-  __cil_tmp21 = __cil_tmp20 + 1336;
-  __cil_tmp22 = *((void **)__cil_tmp21);
+  __cil_tmp22 = *((void **)((void *)link + 1336));
   __cil_tmp23 = (local_info_t *)__cil_tmp22;
   __cil_tmp24 = *((struct net_device **)__cil_tmp23);
   __cil_tmp25 = (unsigned long )__cil_tmp24;
   if (__cil_tmp25 != __cil_tmp19) {
     {
-    __cil_tmp26 = (unsigned long )link;
-    __cil_tmp27 = __cil_tmp26 + 1336;
-    __cil_tmp28 = *((void **)__cil_tmp27);
+    __cil_tmp28 = *((void **)((void *)link + 1336));
     __cil_tmp29 = (local_info_t *)__cil_tmp28;
     __cil_tmp30 = *((struct net_device **)__cil_tmp29);
     stop_airo_card(__cil_tmp30, 0);
@@ -4797,14 +4749,10 @@ static void airo_detach(struct pcmcia_device *link )
   }
   }
   {
-  __cil_tmp31 = (unsigned long )link;
-  __cil_tmp32 = __cil_tmp31 + 1336;
-  __cil_tmp33 = *((void **)__cil_tmp32);
+  __cil_tmp33 = *((void **)((void *)link + 1336));
   __cil_tmp34 = (local_info_t *)__cil_tmp33;
   *((struct net_device **)__cil_tmp34) = (struct net_device *)0;
-  __cil_tmp35 = (unsigned long )link;
-  __cil_tmp36 = __cil_tmp35 + 1336;
-  __cil_tmp37 = *((void **)__cil_tmp36);
+  __cil_tmp37 = *((void **)((void *)link + 1336));
   __cil_tmp38 = (void const *)__cil_tmp37;
   kfree(__cil_tmp38);
   }
@@ -4813,14 +4761,10 @@ static void airo_detach(struct pcmcia_device *link )
 }
 static int airo_cs_config_check(struct pcmcia_device *p_dev , void *priv_data )
 { int tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
   {
   {
-  __cil_tmp4 = (unsigned long )p_dev;
-  __cil_tmp5 = __cil_tmp4 + 124;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
+  __cil_tmp6 = *((unsigned int *)((void *)p_dev + 124));
   if (__cil_tmp6 == 0U) {
     return (-22);
   } else {
@@ -4837,101 +4781,61 @@ static int airo_config(struct pcmcia_device *link )
   int ret ;
   struct _ddebug descriptor ;
   long tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   struct _ddebug *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned char __cil_tmp16 ;
   long __cil_tmp17 ;
   long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device const *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   void *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   void *__cil_tmp34 ;
   local_info_t *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned int __cil_tmp38 ;
   unsigned short __cil_tmp39 ;
   int __cil_tmp40 ;
   unsigned short __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct resource *__cil_tmp46 ;
   resource_size_t __cil_tmp47 ;
   int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct device *__cil_tmp51 ;
   struct net_device *__cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   void *__cil_tmp56 ;
   local_info_t *__cil_tmp57 ;
   struct net_device *__cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   {
   {
-  __cil_tmp6 = (unsigned long )link;
-  __cil_tmp7 = __cil_tmp6 + 1336;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)link + 1336));
   dev = (local_info_t *)__cil_tmp8;
   __cil_tmp9 = & descriptor;
   *((char const **)__cil_tmp9) = "airo_cs";
-  __cil_tmp10 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp10) = "airo_config";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp11) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/15009/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/airo_cs.c.p";
-  __cil_tmp12 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp12) = "airo_config\n";
-  __cil_tmp13 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp13) = 126U;
-  __cil_tmp14 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp14) = (unsigned char)0;
-  __cil_tmp15 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp16 = *((unsigned char *)__cil_tmp15);
+  *((char const **)((void *)(&descriptor) + 8)) = "airo_config";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/15009/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/airo_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "airo_config\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 126U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp16 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp17 = (long )__cil_tmp16;
   __cil_tmp18 = __cil_tmp17 & 1L;
   tmp = __builtin_expect(__cil_tmp18, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp19 = (unsigned long )link;
-    __cil_tmp20 = __cil_tmp19 + 184;
-    __cil_tmp21 = (struct device *)__cil_tmp20;
+    __cil_tmp21 = (struct device *)((void *)link + 184);
     __cil_tmp22 = (struct device const *)__cil_tmp21;
     __dynamic_dev_dbg(& descriptor, __cil_tmp22, "airo_config\n");
     }
   } else {
   }
   {
-  __cil_tmp23 = (unsigned long )link;
-  __cil_tmp24 = __cil_tmp23 + 116;
-  __cil_tmp25 = (unsigned long )link;
-  __cil_tmp26 = __cil_tmp25 + 116;
-  __cil_tmp27 = *((unsigned int *)__cil_tmp26);
-  *((unsigned int *)__cil_tmp24) = __cil_tmp27 | 3585U;
+  __cil_tmp27 = *((unsigned int *)((void *)link + 116));
+  *((unsigned int *)((void *)link + 116)) = __cil_tmp27 | 3585U;
   __cil_tmp28 = (void *)0;
   ret = pcmcia_loop_config(link, & airo_cs_config_check, __cil_tmp28);
   }
@@ -4940,9 +4844,7 @@ static int airo_config(struct pcmcia_device *link )
   } else {
   }
   {
-  __cil_tmp29 = (unsigned long )link;
-  __cil_tmp30 = __cil_tmp29 + 48;
-  __cil_tmp31 = *((unsigned int *)__cil_tmp30);
+  __cil_tmp31 = *((unsigned int *)((void *)link + 48));
   if (__cil_tmp31 == 0U) {
     goto failed;
   } else {
@@ -4956,35 +4858,25 @@ static int airo_config(struct pcmcia_device *link )
   } else {
   }
   {
-  __cil_tmp32 = (unsigned long )link;
-  __cil_tmp33 = __cil_tmp32 + 1336;
-  __cil_tmp34 = *((void **)__cil_tmp33);
+  __cil_tmp34 = *((void **)((void *)link + 1336));
   __cil_tmp35 = (local_info_t *)__cil_tmp34;
-  __cil_tmp36 = (unsigned long )link;
-  __cil_tmp37 = __cil_tmp36 + 48;
-  __cil_tmp38 = *((unsigned int *)__cil_tmp37);
+  __cil_tmp38 = *((unsigned int *)((void *)link + 48));
   __cil_tmp39 = (unsigned short )__cil_tmp38;
   __cil_tmp40 = (int )__cil_tmp39;
   __cil_tmp41 = (unsigned short )__cil_tmp40;
   __cil_tmp42 = 0 * 8UL;
   __cil_tmp43 = 56 + __cil_tmp42;
-  __cil_tmp44 = (unsigned long )link;
-  __cil_tmp45 = __cil_tmp44 + __cil_tmp43;
-  __cil_tmp46 = *((struct resource **)__cil_tmp45);
+  __cil_tmp46 = *((struct resource **)((void *)link + __cil_tmp43));
   __cil_tmp47 = *((resource_size_t *)__cil_tmp46);
   __cil_tmp48 = (int )__cil_tmp47;
-  __cil_tmp49 = (unsigned long )link;
-  __cil_tmp50 = __cil_tmp49 + 184;
-  __cil_tmp51 = (struct device *)__cil_tmp50;
+  __cil_tmp51 = (struct device *)((void *)link + 184);
   *((struct net_device **)__cil_tmp35) = init_airo_card(__cil_tmp41, __cil_tmp48,
                                                         1, __cil_tmp51);
   }
   {
   __cil_tmp52 = (struct net_device *)0;
   __cil_tmp53 = (unsigned long )__cil_tmp52;
-  __cil_tmp54 = (unsigned long )link;
-  __cil_tmp55 = __cil_tmp54 + 1336;
-  __cil_tmp56 = *((void **)__cil_tmp55);
+  __cil_tmp56 = *((void **)((void *)link + 1336));
   __cil_tmp57 = (local_info_t *)__cil_tmp56;
   __cil_tmp58 = *((struct net_device **)__cil_tmp57);
   __cil_tmp59 = (unsigned long )__cil_tmp58;
@@ -5005,44 +4897,28 @@ static void airo_release(struct pcmcia_device *link )
 { struct _ddebug descriptor ;
   long tmp ;
   struct _ddebug *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned char __cil_tmp11 ;
   long __cil_tmp12 ;
   long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
   {
   {
   __cil_tmp4 = & descriptor;
   *((char const **)__cil_tmp4) = "airo_cs";
-  __cil_tmp5 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp5) = "airo_release";
-  __cil_tmp6 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp6) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/15009/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/airo_cs.c.p";
-  __cil_tmp7 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp7) = "airo_release\n";
-  __cil_tmp8 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp8) = 156U;
-  __cil_tmp9 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp9) = (unsigned char)0;
-  __cil_tmp10 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp11 = *((unsigned char *)__cil_tmp10);
+  *((char const **)((void *)(&descriptor) + 8)) = "airo_release";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/15009/dscv_tempdir/dscv/ri/43_1a/drivers/net/wireless/airo_cs.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "airo_release\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 156U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp11 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp12 = (long )__cil_tmp11;
   __cil_tmp13 = __cil_tmp12 & 1L;
   tmp = __builtin_expect(__cil_tmp13, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp14 = (unsigned long )link;
-    __cil_tmp15 = __cil_tmp14 + 184;
-    __cil_tmp16 = (struct device *)__cil_tmp15;
+    __cil_tmp16 = (struct device *)((void *)link + 184);
     __cil_tmp17 = (struct device const *)__cil_tmp16;
     __dynamic_dev_dbg(& descriptor, __cil_tmp17, "airo_release\n");
     }
@@ -5056,15 +4932,11 @@ static void airo_release(struct pcmcia_device *link )
 }
 static int airo_suspend(struct pcmcia_device *link )
 { local_info_t *local ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   struct net_device *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )link;
-  __cil_tmp4 = __cil_tmp3 + 1336;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)link + 1336));
   local = (local_info_t *)__cil_tmp5;
   __cil_tmp6 = *((struct net_device **)local);
   netif_device_detach(__cil_tmp6);
@@ -5074,23 +4946,15 @@ static int airo_suspend(struct pcmcia_device *link )
 }
 static int airo_resume(struct pcmcia_device *link )
 { local_info_t *local ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   struct net_device *__cil_tmp9 ;
   struct net_device *__cil_tmp10 ;
   {
-  __cil_tmp3 = (unsigned long )link;
-  __cil_tmp4 = __cil_tmp3 + 1336;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)link + 1336));
   local = (local_info_t *)__cil_tmp5;
   {
-  __cil_tmp6 = (unsigned long )link;
-  __cil_tmp7 = __cil_tmp6 + 1344;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)link + 1344));
   if (__cil_tmp8 != 0U) {
     {
     __cil_tmp9 = *((struct net_device **)local);

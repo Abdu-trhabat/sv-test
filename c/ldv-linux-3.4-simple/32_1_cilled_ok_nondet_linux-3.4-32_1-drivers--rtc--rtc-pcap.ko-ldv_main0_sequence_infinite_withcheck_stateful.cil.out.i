@@ -1893,14 +1893,10 @@ extern int platform_driver_probe(struct platform_driver *driver , int (*probe)(s
 __inline static void *platform_get_drvdata(struct platform_device const *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -1908,14 +1904,11 @@ __inline static void *platform_get_drvdata(struct platform_device const *pdev )
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1928,8 +1921,6 @@ static irqreturn_t pcap_rtc_irq(int irq , void *_pcap_rtc )
   int tmp___0 ;
   struct pcap_chip *__cil_tmp7 ;
   struct pcap_chip *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct rtc_device *__cil_tmp11 ;
   {
   {
@@ -1951,9 +1942,7 @@ static irqreturn_t pcap_rtc_irq(int irq , void *_pcap_rtc )
     }
   }
   {
-  __cil_tmp9 = (unsigned long )pcap_rtc;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = *((struct rtc_device **)__cil_tmp10);
+  __cil_tmp11 = *((struct rtc_device **)((void *)pcap_rtc + 8));
   rtc_update_irq(__cil_tmp11, 1UL, rtc_events);
   }
   return ((irqreturn_t )1);
@@ -1969,15 +1958,11 @@ static int pcap_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   u32 tod ;
   u32 days ;
   struct platform_device *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
   char *__cil_tmp17 ;
   struct platform_device const *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct pcap_chip *__cil_tmp21 ;
   u8 __cil_tmp22 ;
   u32 *__cil_tmp23 ;
@@ -1994,9 +1979,7 @@ static int pcap_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   {
   __mptr = (struct device const *)dev;
   __cil_tmp11 = (struct platform_device *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 16);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
@@ -2004,9 +1987,7 @@ static int pcap_rtc_read_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   __cil_tmp18 = (struct platform_device const *)pdev;
   tmp = platform_get_drvdata(__cil_tmp18);
   pcap_rtc = (struct pcap_rtc *)tmp;
-  __cil_tmp19 = (unsigned long )alrm;
-  __cil_tmp20 = __cil_tmp19 + 4;
-  tm = (struct rtc_time *)__cil_tmp20;
+  tm = (struct rtc_time *)((void *)alrm + 4);
   __cil_tmp21 = *((struct pcap_chip **)pcap_rtc);
   __cil_tmp22 = (u8 )15;
   ezx_pcap_read(__cil_tmp21, __cil_tmp22, & tod);
@@ -2038,15 +2019,11 @@ static int pcap_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   u32 tod ;
   u32 days ;
   struct platform_device *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
   char *__cil_tmp17 ;
   struct platform_device const *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
@@ -2061,9 +2038,7 @@ static int pcap_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   {
   __mptr = (struct device const *)dev;
   __cil_tmp11 = (struct platform_device *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 16);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
@@ -2071,9 +2046,7 @@ static int pcap_rtc_set_alarm(struct device *dev , struct rtc_wkalrm *alrm )
   __cil_tmp18 = (struct platform_device const *)pdev;
   tmp = platform_get_drvdata(__cil_tmp18);
   pcap_rtc = (struct pcap_rtc *)tmp;
-  __cil_tmp19 = (unsigned long )alrm;
-  __cil_tmp20 = __cil_tmp19 + 4;
-  tm = (struct rtc_time *)__cil_tmp20;
+  tm = (struct rtc_time *)((void *)alrm + 4);
   rtc_tm_to_time(tm, & secs);
   __cil_tmp21 = & secs;
   __cil_tmp22 = *__cil_tmp21;
@@ -2103,8 +2076,6 @@ static int pcap_rtc_read_time(struct device *dev , struct rtc_time *tm )
   u32 days ;
   int tmp___0 ;
   struct platform_device *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   char *__cil_tmp16 ;
@@ -2126,9 +2097,7 @@ static int pcap_rtc_read_time(struct device *dev , struct rtc_time *tm )
   {
   __mptr = (struct device const *)dev;
   __cil_tmp11 = (struct platform_device *)0;
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)__cil_tmp11 + 16);
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   __cil_tmp16 = (char *)__mptr;
   __cil_tmp17 = __cil_tmp16 - __cil_tmp15;
@@ -2166,8 +2135,6 @@ static int pcap_rtc_set_mmss(struct device *dev , unsigned long secs )
   u32 tod ;
   u32 days ;
   struct platform_device *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   char *__cil_tmp14 ;
@@ -2183,9 +2150,7 @@ static int pcap_rtc_set_mmss(struct device *dev , unsigned long secs )
   {
   __mptr = (struct device const *)dev;
   __cil_tmp9 = (struct platform_device *)0;
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = (struct device *)__cil_tmp11;
+  __cil_tmp12 = (struct device *)((void *)__cil_tmp9 + 16);
   __cil_tmp13 = (unsigned int )__cil_tmp12;
   __cil_tmp14 = (char *)__mptr;
   __cil_tmp15 = __cil_tmp14 - __cil_tmp13;
@@ -2215,8 +2180,6 @@ static int pcap_rtc_irq_enable(struct device *dev , int pirq , unsigned int en )
   int tmp___0 ;
   int tmp___1 ;
   struct platform_device *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   char *__cil_tmp15 ;
@@ -2230,9 +2193,7 @@ static int pcap_rtc_irq_enable(struct device *dev , int pirq , unsigned int en )
   {
   __mptr = (struct device const *)dev;
   __cil_tmp10 = (struct platform_device *)0;
-  __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = (struct device *)__cil_tmp12;
+  __cil_tmp13 = (struct device *)((void *)__cil_tmp10 + 16);
   __cil_tmp14 = (unsigned int )__cil_tmp13;
   __cil_tmp15 = (char *)__mptr;
   __cil_tmp16 = __cil_tmp15 - __cil_tmp14;
@@ -2286,22 +2247,12 @@ static int pcap_rtc_probe(struct platform_device *pdev )
   void *tmp___0 ;
   long tmp___1 ;
   long tmp___2 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device const *__cil_tmp13 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct rtc_device *__cil_tmp22 ;
   void const *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct rtc_device *__cil_tmp26 ;
   void const *__cil_tmp27 ;
   struct pcap_chip *__cil_tmp28 ;
@@ -2312,8 +2263,6 @@ static int pcap_rtc_probe(struct platform_device *pdev )
   void *__cil_tmp33 ;
   unsigned int __cil_tmp34 ;
   void *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct rtc_device *__cil_tmp38 ;
   void *__cil_tmp39 ;
   void const *__cil_tmp40 ;
@@ -2328,32 +2277,22 @@ static int pcap_rtc_probe(struct platform_device *pdev )
   } else {
   }
   {
-  __cil_tmp10 = (unsigned long )pdev;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = *((struct device **)__cil_tmp11);
+  __cil_tmp12 = *((struct device **)((void *)pdev + 16));
   __cil_tmp13 = (struct device const *)__cil_tmp12;
   tmp___0 = dev_get_drvdata(__cil_tmp13);
   *((struct pcap_chip **)pcap_rtc) = (struct pcap_chip *)tmp___0;
   __cil_tmp14 = (void *)pcap_rtc;
   platform_set_drvdata(pdev, __cil_tmp14);
-  __cil_tmp15 = (unsigned long )pcap_rtc;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  __cil_tmp17 = (unsigned long )pdev;
-  __cil_tmp18 = __cil_tmp17 + 16;
-  __cil_tmp19 = (struct device *)__cil_tmp18;
-  *((struct rtc_device **)__cil_tmp16) = rtc_device_register("pcap", __cil_tmp19,
+  __cil_tmp19 = (struct device *)((void *)pdev + 16);
+  *((struct rtc_device **)((void *)pcap_rtc + 8)) = rtc_device_register("pcap", __cil_tmp19,
                                                              & pcap_rtc_ops, & __this_module);
-  __cil_tmp20 = (unsigned long )pcap_rtc;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  __cil_tmp22 = *((struct rtc_device **)__cil_tmp21);
+  __cil_tmp22 = *((struct rtc_device **)((void *)pcap_rtc + 8));
   __cil_tmp23 = (void const *)__cil_tmp22;
   tmp___2 = (long )IS_ERR(__cil_tmp23);
   }
   if (tmp___2) {
     {
-    __cil_tmp24 = (unsigned long )pcap_rtc;
-    __cil_tmp25 = __cil_tmp24 + 8;
-    __cil_tmp26 = *((struct rtc_device **)__cil_tmp25);
+    __cil_tmp26 = *((struct rtc_device **)((void *)pcap_rtc + 8));
     __cil_tmp27 = (void const *)__cil_tmp26;
     tmp___1 = (long )PTR_ERR(__cil_tmp27);
     err = (int )tmp___1;
@@ -2392,9 +2331,7 @@ static int pcap_rtc_probe(struct platform_device *pdev )
   }
   fail_timer:
   {
-  __cil_tmp36 = (unsigned long )pcap_rtc;
-  __cil_tmp37 = __cil_tmp36 + 8;
-  __cil_tmp38 = *((struct rtc_device **)__cil_tmp37);
+  __cil_tmp38 = *((struct rtc_device **)((void *)pcap_rtc + 8));
   rtc_device_unregister(__cil_tmp38);
   }
   fail_rtc:
@@ -2421,8 +2358,6 @@ static int pcap_rtc_remove(struct platform_device *pdev )
   struct pcap_chip *__cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct rtc_device *__cil_tmp15 ;
   void const *__cil_tmp16 ;
   {
@@ -2440,9 +2375,7 @@ static int pcap_rtc_remove(struct platform_device *pdev )
   __cil_tmp11 = (unsigned int )tmp___1;
   __cil_tmp12 = (void *)pcap_rtc;
   free_irq(__cil_tmp11, __cil_tmp12);
-  __cil_tmp13 = (unsigned long )pcap_rtc;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  __cil_tmp15 = *((struct rtc_device **)__cil_tmp14);
+  __cil_tmp15 = *((struct rtc_device **)((void *)pcap_rtc + 8));
   rtc_device_unregister(__cil_tmp15);
   __cil_tmp16 = (void const *)pcap_rtc;
   kfree(__cil_tmp16);

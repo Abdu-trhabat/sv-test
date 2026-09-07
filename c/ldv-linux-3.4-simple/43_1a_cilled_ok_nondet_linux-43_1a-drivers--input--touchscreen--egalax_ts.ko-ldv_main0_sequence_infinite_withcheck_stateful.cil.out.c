@@ -3053,15 +3053,12 @@ extern int dev_err(struct device  const  * , char const   *  , ...) ;
 extern int i2c_master_send(struct i2c_client  const  * , char const   * , int  ) ;
 extern int i2c_master_recv(struct i2c_client  const  * , char * , int  ) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3077,15 +3074,12 @@ struct input_dev *input_allocate_device(void) {
 
 extern void input_free_device(struct input_dev * ) ;
 __inline static void input_set_drvdata(struct input_dev *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 840;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 840);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3171,8 +3165,6 @@ static irqreturn_t egalax_ts_interrupt(int irq , void *dev_id )
   struct _ddebug descriptor___0 ;
   char *tmp___1 ;
   long tmp___2 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct i2c_client  const  *__cil_tmp24 ;
   char *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
@@ -3217,42 +3209,24 @@ static irqreturn_t egalax_ts_interrupt(int irq , void *dev_id )
   int __cil_tmp65 ;
   int __cil_tmp66 ;
   struct _ddebug *__cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   unsigned char __cil_tmp74 ;
   long __cil_tmp75 ;
   long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct device *__cil_tmp79 ;
   struct device  const  *__cil_tmp80 ;
   int __cil_tmp81 ;
   bool __cil_tmp82 ;
   struct _ddebug *__cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   unsigned char __cil_tmp90 ;
   long __cil_tmp91 ;
   long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   struct device *__cil_tmp95 ;
   struct device  const  *__cil_tmp96 ;
   bool __cil_tmp97 ;
 
   {
   ts = (struct egalax_ts *)dev_id;
-  __cil_tmp22 = (unsigned long )ts;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  input_dev = *((struct input_dev **)__cil_tmp23);
+  input_dev = *((struct input_dev **)((void *)ts + 8));
   client = *((struct i2c_client **)ts);
   tries = 0;
   ldv_23870: 
@@ -3341,27 +3315,19 @@ static irqreturn_t egalax_ts_interrupt(int irq , void *dev_id )
     {
     __cil_tmp67 = & descriptor;
     *((char const   **)__cil_tmp67) = "egalax_ts";
-    __cil_tmp68 = (unsigned long )(& descriptor) + 8;
-    *((char const   **)__cil_tmp68) = "egalax_ts_interrupt";
-    __cil_tmp69 = (unsigned long )(& descriptor) + 16;
-    *((char const   **)__cil_tmp69) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3103/dscv_tempdir/dscv/ri/43_1a/drivers/input/touchscreen/egalax_ts.c.p";
-    __cil_tmp70 = (unsigned long )(& descriptor) + 24;
-    *((char const   **)__cil_tmp70) = "point invalid\n";
-    __cil_tmp71 = (unsigned long )(& descriptor) + 32;
-    *((unsigned int *)__cil_tmp71) = 115U;
-    __cil_tmp72 = (unsigned long )(& descriptor) + 35;
-    *((unsigned char *)__cil_tmp72) = (unsigned char)0;
-    __cil_tmp73 = (unsigned long )(& descriptor) + 35;
-    __cil_tmp74 = *((unsigned char *)__cil_tmp73);
+    *((char const   **)((void *)(&descriptor) + 8)) = "egalax_ts_interrupt";
+    *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3103/dscv_tempdir/dscv/ri/43_1a/drivers/input/touchscreen/egalax_ts.c.p";
+    *((char const   **)((void *)(&descriptor) + 24)) = "point invalid\n";
+    *((unsigned int *)((void *)(&descriptor) + 32)) = 115U;
+    *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+    __cil_tmp74 = *((unsigned char *)((void *)(&descriptor) + 35));
     __cil_tmp75 = (long )__cil_tmp74;
     __cil_tmp76 = __cil_tmp75 & 1L;
     tmp___0 = __builtin_expect(__cil_tmp76, 0L);
     }
     if (tmp___0 != 0L) {
       {
-      __cil_tmp77 = (unsigned long )client;
-      __cil_tmp78 = __cil_tmp77 + 40;
-      __cil_tmp79 = (struct device *)__cil_tmp78;
+      __cil_tmp79 = (struct device *)((void *)client + 40);
       __cil_tmp80 = (struct device  const  *)__cil_tmp79;
       __dynamic_dev_dbg(& descriptor, __cil_tmp80, "point invalid\n");
       }
@@ -3379,18 +3345,12 @@ static irqreturn_t egalax_ts_interrupt(int irq , void *dev_id )
   input_mt_report_slot_state(input_dev, 0U, __cil_tmp82);
   __cil_tmp83 = & descriptor___0;
   *((char const   **)__cil_tmp83) = "egalax_ts";
-  __cil_tmp84 = (unsigned long )(& descriptor___0) + 8;
-  *((char const   **)__cil_tmp84) = "egalax_ts_interrupt";
-  __cil_tmp85 = (unsigned long )(& descriptor___0) + 16;
-  *((char const   **)__cil_tmp85) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3103/dscv_tempdir/dscv/ri/43_1a/drivers/input/touchscreen/egalax_ts.c.p";
-  __cil_tmp86 = (unsigned long )(& descriptor___0) + 24;
-  *((char const   **)__cil_tmp86) = "%s id:%d x:%d y:%d z:%d";
-  __cil_tmp87 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp87) = 123U;
-  __cil_tmp88 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp88) = (unsigned char)0;
-  __cil_tmp89 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp90 = *((unsigned char *)__cil_tmp89);
+  *((char const   **)((void *)(&descriptor___0) + 8)) = "egalax_ts_interrupt";
+  *((char const   **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3103/dscv_tempdir/dscv/ri/43_1a/drivers/input/touchscreen/egalax_ts.c.p";
+  *((char const   **)((void *)(&descriptor___0) + 24)) = "%s id:%d x:%d y:%d z:%d";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 123U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+  __cil_tmp90 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp91 = (long )__cil_tmp90;
   __cil_tmp92 = __cil_tmp91 & 1L;
   tmp___2 = __builtin_expect(__cil_tmp92, 0L);
@@ -3402,9 +3362,7 @@ static irqreturn_t egalax_ts_interrupt(int irq , void *dev_id )
       tmp___1 = (char *)"up";
     }
     {
-    __cil_tmp93 = (unsigned long )client;
-    __cil_tmp94 = __cil_tmp93 + 40;
-    __cil_tmp95 = (struct device *)__cil_tmp94;
+    __cil_tmp95 = (struct device *)((void *)client + 40);
     __cil_tmp96 = (struct device  const  *)__cil_tmp95;
     __dynamic_dev_dbg(& descriptor___0, __cil_tmp96, "%s id:%d x:%d y:%d z:%d", tmp___1,
                       id, x, y, z);
@@ -3433,13 +3391,9 @@ static int egalax_wake_up_device(struct i2c_client *client )
 { int gpio ;
   int tmp ;
   int ret ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device  const  *__cil_tmp13 ;
   unsigned int __cil_tmp14 ;
@@ -3449,9 +3403,7 @@ static int egalax_wake_up_device(struct i2c_client *client )
 
   {
   {
-  __cil_tmp5 = (unsigned long )client;
-  __cil_tmp6 = __cil_tmp5 + 1192;
-  __cil_tmp7 = *((int *)__cil_tmp6);
+  __cil_tmp7 = *((int *)((void *)client + 1192));
   __cil_tmp8 = (unsigned int )__cil_tmp7;
   tmp = irq_to_gpio(__cil_tmp8);
   gpio = tmp;
@@ -3460,9 +3412,7 @@ static int egalax_wake_up_device(struct i2c_client *client )
   }
   if (ret < 0) {
     {
-    __cil_tmp10 = (unsigned long )client;
-    __cil_tmp11 = __cil_tmp10 + 40;
-    __cil_tmp12 = (struct device *)__cil_tmp11;
+    __cil_tmp12 = (struct device *)((void *)client + 40);
     __cil_tmp13 = (struct device  const  *)__cil_tmp12;
     dev_err(__cil_tmp13, "request gpio failed, cannot wake up controller: %d\n", ret);
     }
@@ -3562,58 +3512,30 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id  con
   struct egalax_ts *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device  const  *__cil_tmp14 ;
   struct input_dev *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device  const  *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct device *__cil_tmp26 ;
   struct device  const  *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long (*__cil_tmp36)[1U] ;
   unsigned long volatile   *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long (*__cil_tmp40)[1U] ;
   unsigned long volatile   *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned long (*__cil_tmp44)[12U] ;
   unsigned long volatile   *__cil_tmp45 ;
   void *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   int __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
   irqreturn_t (*__cil_tmp51)(int  , void * ) ;
   void *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct device *__cil_tmp55 ;
   struct device  const  *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct input_dev *__cil_tmp59 ;
   void *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   int __cil_tmp63 ;
   unsigned int __cil_tmp64 ;
   void *__cil_tmp65 ;
@@ -3630,9 +3552,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id  con
   __cil_tmp10 = (unsigned long )ts;
   if (__cil_tmp10 == __cil_tmp9) {
     {
-    __cil_tmp11 = (unsigned long )client;
-    __cil_tmp12 = __cil_tmp11 + 40;
-    __cil_tmp13 = (struct device *)__cil_tmp12;
+    __cil_tmp13 = (struct device *)((void *)client + 40);
     __cil_tmp14 = (struct device  const  *)__cil_tmp13;
     dev_err(__cil_tmp14, "Failed to allocate memory\n");
     }
@@ -3650,9 +3570,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id  con
   __cil_tmp17 = (unsigned long )input_dev;
   if (__cil_tmp17 == __cil_tmp16) {
     {
-    __cil_tmp18 = (unsigned long )client;
-    __cil_tmp19 = __cil_tmp18 + 40;
-    __cil_tmp20 = (struct device *)__cil_tmp19;
+    __cil_tmp20 = (struct device *)((void *)client + 40);
     __cil_tmp21 = (struct device  const  *)__cil_tmp20;
     dev_err(__cil_tmp21, "Failed to allocate memory\n");
     error = -12;
@@ -3664,17 +3582,13 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id  con
   }
   {
   *((struct i2c_client **)ts) = client;
-  __cil_tmp22 = (unsigned long )ts;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  *((struct input_dev **)__cil_tmp23) = input_dev;
+  *((struct input_dev **)((void *)ts + 8)) = input_dev;
   egalax_wake_up_device(client);
   ret = egalax_firmware_version(client);
   }
   if (ret < 0) {
     {
-    __cil_tmp24 = (unsigned long )client;
-    __cil_tmp25 = __cil_tmp24 + 40;
-    __cil_tmp26 = (struct device *)__cil_tmp25;
+    __cil_tmp26 = (struct device *)((void *)client + 40);
     __cil_tmp27 = (struct device  const  *)__cil_tmp26;
     dev_err(__cil_tmp27, "Failed to read firmware version\n");
     error = -5;
@@ -3685,27 +3599,15 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id  con
   }
   {
   *((char const   **)input_dev) = "EETI eGalax Touch Screen";
-  __cil_tmp28 = (unsigned long )input_dev;
-  __cil_tmp29 = __cil_tmp28 + 24;
-  *((__u16 *)__cil_tmp29) = (__u16 )24U;
-  __cil_tmp30 = (unsigned long )input_dev;
-  __cil_tmp31 = __cil_tmp30 + 840;
-  __cil_tmp32 = (unsigned long )client;
-  __cil_tmp33 = __cil_tmp32 + 40;
-  *((struct device **)__cil_tmp31) = (struct device *)__cil_tmp33;
-  __cil_tmp34 = (unsigned long )input_dev;
-  __cil_tmp35 = __cil_tmp34 + 40;
-  __cil_tmp36 = (unsigned long (*)[1U])__cil_tmp35;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )24U;
+  *((struct device **)((void *)input_dev + 840)) = (struct device *)((void *)client + 40);
+  __cil_tmp36 = (unsigned long (*)[1U])((void *)input_dev + 40);
   __cil_tmp37 = (unsigned long volatile   *)__cil_tmp36;
   __set_bit(3, __cil_tmp37);
-  __cil_tmp38 = (unsigned long )input_dev;
-  __cil_tmp39 = __cil_tmp38 + 40;
-  __cil_tmp40 = (unsigned long (*)[1U])__cil_tmp39;
+  __cil_tmp40 = (unsigned long (*)[1U])((void *)input_dev + 40);
   __cil_tmp41 = (unsigned long volatile   *)__cil_tmp40;
   __set_bit(1, __cil_tmp41);
-  __cil_tmp42 = (unsigned long )input_dev;
-  __cil_tmp43 = __cil_tmp42 + 48;
-  __cil_tmp44 = (unsigned long (*)[12U])__cil_tmp43;
+  __cil_tmp44 = (unsigned long (*)[12U])((void *)input_dev + 48);
   __cil_tmp45 = (unsigned long volatile   *)__cil_tmp44;
   __set_bit(330, __cil_tmp45);
   input_set_abs_params(input_dev, 0U, 0, 32760, 0, 0);
@@ -3715,9 +3617,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id  con
   input_mt_init_slots(input_dev, 5U);
   __cil_tmp46 = (void *)ts;
   input_set_drvdata(input_dev, __cil_tmp46);
-  __cil_tmp47 = (unsigned long )client;
-  __cil_tmp48 = __cil_tmp47 + 1192;
-  __cil_tmp49 = *((int *)__cil_tmp48);
+  __cil_tmp49 = *((int *)((void *)client + 1192));
   __cil_tmp50 = (unsigned int )__cil_tmp49;
   __cil_tmp51 = (irqreturn_t (*)(int  , void * ))0;
   __cil_tmp52 = (void *)ts;
@@ -3726,9 +3626,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id  con
   }
   if (error < 0) {
     {
-    __cil_tmp53 = (unsigned long )client;
-    __cil_tmp54 = __cil_tmp53 + 40;
-    __cil_tmp55 = (struct device *)__cil_tmp54;
+    __cil_tmp55 = (struct device *)((void *)client + 40);
     __cil_tmp56 = (struct device  const  *)__cil_tmp55;
     dev_err(__cil_tmp56, "Failed to register interrupt\n");
     }
@@ -3737,9 +3635,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id  con
 
   }
   {
-  __cil_tmp57 = (unsigned long )ts;
-  __cil_tmp58 = __cil_tmp57 + 8;
-  __cil_tmp59 = *((struct input_dev **)__cil_tmp58);
+  __cil_tmp59 = *((struct input_dev **)((void *)ts + 8));
   error = input_register_device(__cil_tmp59);
   }
   if (error != 0) {
@@ -3754,9 +3650,7 @@ static int egalax_ts_probe(struct i2c_client *client , struct i2c_device_id  con
   return (0);
   err_free_irq: 
   {
-  __cil_tmp61 = (unsigned long )client;
-  __cil_tmp62 = __cil_tmp61 + 1192;
-  __cil_tmp63 = *((int *)__cil_tmp62);
+  __cil_tmp63 = *((int *)((void *)client + 1192));
   __cil_tmp64 = (unsigned int )__cil_tmp63;
   __cil_tmp65 = (void *)ts;
   free_irq(__cil_tmp64, __cil_tmp65);

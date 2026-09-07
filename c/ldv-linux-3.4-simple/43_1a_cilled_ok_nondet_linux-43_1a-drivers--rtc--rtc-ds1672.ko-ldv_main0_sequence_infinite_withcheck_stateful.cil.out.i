@@ -2901,8 +2901,6 @@ static int ds1672_get_datetime(struct i2c_client *client , struct rtc_time *tm )
   unsigned char *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
@@ -2914,8 +2912,6 @@ static int ds1672_get_datetime(struct i2c_client *client , struct rtc_time *tm )
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
@@ -2925,26 +2921,14 @@ static int ds1672_get_datetime(struct i2c_client *client , struct rtc_time *tm )
   unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct i2c_adapter *__cil_tmp41 ;
   struct i2c_msg *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct device *__cil_tmp45 ;
   struct device const *__cil_tmp46 ;
   struct _ddebug *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned char __cil_tmp54 ;
   long __cil_tmp55 ;
   long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct device *__cil_tmp59 ;
   struct device const *__cil_tmp60 ;
   unsigned long __cil_tmp61 ;
@@ -2986,37 +2970,17 @@ static int ds1672_get_datetime(struct i2c_client *client , struct rtc_time *tm )
   int __cil_tmp97 ;
   int __cil_tmp98 ;
   struct _ddebug *__cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
   unsigned char __cil_tmp106 ;
   long __cil_tmp107 ;
   long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   struct device *__cil_tmp111 ;
   struct device const *__cil_tmp112 ;
   int __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
   int __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   int __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   int __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
   int __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
   int __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
   int __cil_tmp131 ;
   {
   {
@@ -3024,9 +2988,7 @@ static int ds1672_get_datetime(struct i2c_client *client , struct rtc_time *tm )
   *__cil_tmp12 = (unsigned char)0;
   __cil_tmp13 = 0 * 16UL;
   __cil_tmp14 = (unsigned long )(msgs) + __cil_tmp13;
-  __cil_tmp15 = (unsigned long )client;
-  __cil_tmp16 = __cil_tmp15 + 2;
-  *((__u16 *)__cil_tmp14) = *((unsigned short *)__cil_tmp16);
+  *((__u16 *)__cil_tmp14) = *((unsigned short *)((void *)client + 2));
   __cil_tmp17 = 0 * 16UL;
   __cil_tmp18 = __cil_tmp17 + 2;
   __cil_tmp19 = (unsigned long )(msgs) + __cil_tmp18;
@@ -3041,9 +3003,7 @@ static int ds1672_get_datetime(struct i2c_client *client , struct rtc_time *tm )
   *((__u8 **)__cil_tmp25) = & addr;
   __cil_tmp26 = 1 * 16UL;
   __cil_tmp27 = (unsigned long )(msgs) + __cil_tmp26;
-  __cil_tmp28 = (unsigned long )client;
-  __cil_tmp29 = __cil_tmp28 + 2;
-  *((__u16 *)__cil_tmp27) = *((unsigned short *)__cil_tmp29);
+  *((__u16 *)__cil_tmp27) = *((unsigned short *)((void *)client + 2));
   __cil_tmp30 = 1 * 16UL;
   __cil_tmp31 = __cil_tmp30 + 2;
   __cil_tmp32 = (unsigned long )(msgs) + __cil_tmp31;
@@ -3056,17 +3016,13 @@ static int ds1672_get_datetime(struct i2c_client *client , struct rtc_time *tm )
   __cil_tmp37 = __cil_tmp36 + 8;
   __cil_tmp38 = (unsigned long )(msgs) + __cil_tmp37;
   *((__u8 **)__cil_tmp38) = (__u8 *)(& buf);
-  __cil_tmp39 = (unsigned long )client;
-  __cil_tmp40 = __cil_tmp39 + 24;
-  __cil_tmp41 = *((struct i2c_adapter **)__cil_tmp40);
+  __cil_tmp41 = *((struct i2c_adapter **)((void *)client + 24));
   __cil_tmp42 = (struct i2c_msg *)(& msgs);
   tmp = i2c_transfer(__cil_tmp41, __cil_tmp42, 2);
   }
   if (tmp != 2) {
     {
-    __cil_tmp43 = (unsigned long )client;
-    __cil_tmp44 = __cil_tmp43 + 40;
-    __cil_tmp45 = (struct device *)__cil_tmp44;
+    __cil_tmp45 = (struct device *)((void *)client + 40);
     __cil_tmp46 = (struct device const *)__cil_tmp45;
     dev_err(__cil_tmp46, "%s: read error\n", "ds1672_get_datetime");
     }
@@ -3076,27 +3032,19 @@ static int ds1672_get_datetime(struct i2c_client *client , struct rtc_time *tm )
   {
   __cil_tmp47 = & descriptor;
   *((char const **)__cil_tmp47) = "rtc_ds1672";
-  __cil_tmp48 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp48) = "ds1672_get_datetime";
-  __cil_tmp49 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp49) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2640/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-ds1672.c.p";
-  __cil_tmp50 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp50) = "%s: raw read data - counters=%02x,%02x,%02x,%02x\n";
-  __cil_tmp51 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp51) = 67U;
-  __cil_tmp52 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp52) = (unsigned char)1;
-  __cil_tmp53 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp54 = *((unsigned char *)__cil_tmp53);
+  *((char const **)((void *)(&descriptor) + 8)) = "ds1672_get_datetime";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2640/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-ds1672.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s: raw read data - counters=%02x,%02x,%02x,%02x\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 67U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+  __cil_tmp54 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp55 = (long )__cil_tmp54;
   __cil_tmp56 = __cil_tmp55 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp56, 0L);
   }
   if (tmp___0 != 0L) {
     {
-    __cil_tmp57 = (unsigned long )client;
-    __cil_tmp58 = __cil_tmp57 + 40;
-    __cil_tmp59 = (struct device *)__cil_tmp58;
+    __cil_tmp59 = (struct device *)((void *)client + 40);
     __cil_tmp60 = (struct device const *)__cil_tmp59;
     __cil_tmp61 = 0 * 1UL;
     __cil_tmp62 = (unsigned long )(buf) + __cil_tmp61;
@@ -3147,47 +3095,27 @@ static int ds1672_get_datetime(struct i2c_client *client , struct rtc_time *tm )
   rtc_time_to_tm(time, tm);
   __cil_tmp99 = & descriptor___0;
   *((char const **)__cil_tmp99) = "rtc_ds1672";
-  __cil_tmp100 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp100) = "ds1672_get_datetime";
-  __cil_tmp101 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp101) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2640/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-ds1672.c.p";
-  __cil_tmp102 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp102) = "%s: tm is secs=%d, mins=%d, hours=%d, mday=%d, mon=%d, year=%d, wday=%d\n";
-  __cil_tmp103 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp103) = 76U;
-  __cil_tmp104 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp104) = (unsigned char)1;
-  __cil_tmp105 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp106 = *((unsigned char *)__cil_tmp105);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "ds1672_get_datetime";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/2640/dscv_tempdir/dscv/ri/43_1a/drivers/rtc/rtc-ds1672.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "%s: tm is secs=%d, mins=%d, hours=%d, mday=%d, mon=%d, year=%d, wday=%d\n";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 76U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)1;
+  __cil_tmp106 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp107 = (long )__cil_tmp106;
   __cil_tmp108 = __cil_tmp107 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp108, 0L);
   }
   if (tmp___1 != 0L) {
     {
-    __cil_tmp109 = (unsigned long )client;
-    __cil_tmp110 = __cil_tmp109 + 40;
-    __cil_tmp111 = (struct device *)__cil_tmp110;
+    __cil_tmp111 = (struct device *)((void *)client + 40);
     __cil_tmp112 = (struct device const *)__cil_tmp111;
     __cil_tmp113 = *((int *)tm);
-    __cil_tmp114 = (unsigned long )tm;
-    __cil_tmp115 = __cil_tmp114 + 4;
-    __cil_tmp116 = *((int *)__cil_tmp115);
-    __cil_tmp117 = (unsigned long )tm;
-    __cil_tmp118 = __cil_tmp117 + 8;
-    __cil_tmp119 = *((int *)__cil_tmp118);
-    __cil_tmp120 = (unsigned long )tm;
-    __cil_tmp121 = __cil_tmp120 + 12;
-    __cil_tmp122 = *((int *)__cil_tmp121);
-    __cil_tmp123 = (unsigned long )tm;
-    __cil_tmp124 = __cil_tmp123 + 16;
-    __cil_tmp125 = *((int *)__cil_tmp124);
-    __cil_tmp126 = (unsigned long )tm;
-    __cil_tmp127 = __cil_tmp126 + 20;
-    __cil_tmp128 = *((int *)__cil_tmp127);
-    __cil_tmp129 = (unsigned long )tm;
-    __cil_tmp130 = __cil_tmp129 + 24;
-    __cil_tmp131 = *((int *)__cil_tmp130);
+    __cil_tmp116 = *((int *)((void *)tm + 4));
+    __cil_tmp119 = *((int *)((void *)tm + 8));
+    __cil_tmp122 = *((int *)((void *)tm + 12));
+    __cil_tmp125 = *((int *)((void *)tm + 16));
+    __cil_tmp128 = *((int *)((void *)tm + 20));
+    __cil_tmp131 = *((int *)((void *)tm + 24));
     __dynamic_dev_dbg(& descriptor___0, __cil_tmp112, "%s: tm is secs=%d, mins=%d, hours=%d, mday=%d, mon=%d, year=%d, wday=%d\n",
                       "ds1672_get_datetime", __cil_tmp113, __cil_tmp116, __cil_tmp119,
                       __cil_tmp122, __cil_tmp125, __cil_tmp128, __cil_tmp131);
@@ -3220,8 +3148,6 @@ static int ds1672_set_mmss(struct i2c_client *client , unsigned long secs )
   unsigned long __cil_tmp22 ;
   struct i2c_client const *__cil_tmp23 ;
   char const *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct device *__cil_tmp27 ;
   struct device const *__cil_tmp28 ;
   {
@@ -3256,9 +3182,7 @@ static int ds1672_set_mmss(struct i2c_client *client , unsigned long secs )
   }
   if (xfer != 6) {
     {
-    __cil_tmp25 = (unsigned long )client;
-    __cil_tmp26 = __cil_tmp25 + 40;
-    __cil_tmp27 = (struct device *)__cil_tmp26;
+    __cil_tmp27 = (struct device *)((void *)client + 40);
     __cil_tmp28 = (struct device const *)__cil_tmp27;
     dev_err(__cil_tmp28, "%s: send: %d\n", "ds1672_set_mmss", xfer);
     }

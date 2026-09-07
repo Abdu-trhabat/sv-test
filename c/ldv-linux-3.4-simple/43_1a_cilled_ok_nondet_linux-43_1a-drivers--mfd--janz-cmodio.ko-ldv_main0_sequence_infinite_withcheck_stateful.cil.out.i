@@ -1314,15 +1314,11 @@ extern int __pci_register_driver(struct pci_driver * , struct module * , char co
 extern void pci_unregister_driver(struct pci_driver * ) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1330,14 +1326,11 @@ __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 }
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1358,171 +1351,83 @@ static int cmodio_setup_subdevice(struct cmodio_device *priv , char *name , unsi
   struct pci_dev *pci ;
   unsigned int tmp ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct mfd_cell (*__cil_tmp13)[4U] ;
   struct mfd_cell *__cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct resource (*__cil_tmp19)[12U] ;
   struct resource *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct janz_platform_data (*__cil_tmp24)[4U] ;
   struct janz_platform_data *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct resource (*__cil_tmp42)[17U] ;
   struct resource *__cil_tmp43 ;
   unsigned int __cil_tmp44 ;
   resource_size_t __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   resource_size_t __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   resource_size_t __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   struct resource (*__cil_tmp60)[17U] ;
   struct resource *__cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   {
   pci = *((struct pci_dev **)priv);
   __cil_tmp10 = (unsigned long )devno;
-  __cil_tmp11 = (unsigned long )priv;
-  __cil_tmp12 = __cil_tmp11 + 24;
-  __cil_tmp13 = (struct mfd_cell (*)[4U])__cil_tmp12;
+  __cil_tmp13 = (struct mfd_cell (*)[4U])((void *)priv + 24);
   __cil_tmp14 = (struct mfd_cell *)__cil_tmp13;
   cell = __cil_tmp14 + __cil_tmp10;
   __cil_tmp15 = devno * 3U;
   __cil_tmp16 = (unsigned long )__cil_tmp15;
-  __cil_tmp17 = (unsigned long )priv;
-  __cil_tmp18 = __cil_tmp17 + 408;
-  __cil_tmp19 = (struct resource (*)[12U])__cil_tmp18;
+  __cil_tmp19 = (struct resource (*)[12U])((void *)priv + 408);
   __cil_tmp20 = (struct resource *)__cil_tmp19;
   res = __cil_tmp20 + __cil_tmp16;
   __cil_tmp21 = (unsigned long )devno;
-  __cil_tmp22 = (unsigned long )priv;
-  __cil_tmp23 = __cil_tmp22 + 1080;
-  __cil_tmp24 = (struct janz_platform_data (*)[4U])__cil_tmp23;
+  __cil_tmp24 = (struct janz_platform_data (*)[4U])((void *)priv + 1080);
   __cil_tmp25 = (struct janz_platform_data *)__cil_tmp24;
   pdata = __cil_tmp25 + __cil_tmp21;
   *((char const **)cell) = (char const *)name;
-  __cil_tmp26 = (unsigned long )cell;
-  __cil_tmp27 = __cil_tmp26 + 80;
-  *((struct resource const **)__cil_tmp27) = (struct resource const *)res;
-  __cil_tmp28 = (unsigned long )cell;
-  __cil_tmp29 = __cil_tmp28 + 72;
-  *((int *)__cil_tmp29) = 3;
+  *((struct resource const **)((void *)cell + 80)) = (struct resource const *)res;
+  *((int *)((void *)cell + 72)) = 3;
   tmp = cmodio_id;
   cmodio_id = cmodio_id + 1U;
-  __cil_tmp30 = (unsigned long )cell;
-  __cil_tmp31 = __cil_tmp30 + 8;
-  *((int *)__cil_tmp31) = (int )tmp;
+  *((int *)((void *)cell + 8)) = (int )tmp;
   *((unsigned int *)pdata) = modno;
-  __cil_tmp32 = (unsigned long )cell;
-  __cil_tmp33 = __cil_tmp32 + 56;
-  *((void **)__cil_tmp33) = (void *)pdata;
-  __cil_tmp34 = (unsigned long )cell;
-  __cil_tmp35 = __cil_tmp34 + 64;
-  *((size_t *)__cil_tmp35) = 4UL;
-  __cil_tmp36 = (unsigned long )res;
-  __cil_tmp37 = __cil_tmp36 + 24;
-  *((unsigned long *)__cil_tmp37) = 512UL;
-  __cil_tmp38 = (unsigned long )res;
-  __cil_tmp39 = __cil_tmp38 + 32;
-  __cil_tmp40 = (unsigned long )pci;
-  __cil_tmp41 = __cil_tmp40 + 1304;
-  __cil_tmp42 = (struct resource (*)[17U])__cil_tmp41;
+  *((void **)((void *)cell + 56)) = (void *)pdata;
+  *((size_t *)((void *)cell + 64)) = 4UL;
+  *((unsigned long *)((void *)res + 24)) = 512UL;
+  __cil_tmp42 = (struct resource (*)[17U])((void *)pci + 1304);
   __cil_tmp43 = (struct resource *)__cil_tmp42;
-  *((struct resource **)__cil_tmp39) = __cil_tmp43 + 3UL;
+  *((struct resource **)((void *)res + 32)) = __cil_tmp43 + 3UL;
   __cil_tmp44 = modno * 512U;
   __cil_tmp45 = (resource_size_t )__cil_tmp44;
   __cil_tmp46 = 3 * 56UL;
   __cil_tmp47 = 1304 + __cil_tmp46;
-  __cil_tmp48 = (unsigned long )pci;
-  __cil_tmp49 = __cil_tmp48 + __cil_tmp47;
-  __cil_tmp50 = *((resource_size_t *)__cil_tmp49);
+  __cil_tmp50 = *((resource_size_t *)((void *)pci + __cil_tmp47));
   *((resource_size_t *)res) = __cil_tmp50 + __cil_tmp45;
-  __cil_tmp51 = (unsigned long )res;
-  __cil_tmp52 = __cil_tmp51 + 8;
   __cil_tmp53 = *((resource_size_t *)res);
-  *((resource_size_t *)__cil_tmp52) = __cil_tmp53 + 511ULL;
+  *((resource_size_t *)((void *)res + 8)) = __cil_tmp53 + 511ULL;
   res = res + 1;
-  __cil_tmp54 = (unsigned long )res;
-  __cil_tmp55 = __cil_tmp54 + 24;
-  *((unsigned long *)__cil_tmp55) = 512UL;
-  __cil_tmp56 = (unsigned long )res;
-  __cil_tmp57 = __cil_tmp56 + 32;
-  __cil_tmp58 = (unsigned long )pci;
-  __cil_tmp59 = __cil_tmp58 + 1304;
-  __cil_tmp60 = (struct resource (*)[17U])__cil_tmp59;
+  *((unsigned long *)((void *)res + 24)) = 512UL;
+  __cil_tmp60 = (struct resource (*)[17U])((void *)pci + 1304);
   __cil_tmp61 = (struct resource *)__cil_tmp60;
-  *((struct resource **)__cil_tmp57) = __cil_tmp61 + 4UL;
+  *((struct resource **)((void *)res + 32)) = __cil_tmp61 + 4UL;
   __cil_tmp62 = 4 * 56UL;
   __cil_tmp63 = 1304 + __cil_tmp62;
-  __cil_tmp64 = (unsigned long )pci;
-  __cil_tmp65 = __cil_tmp64 + __cil_tmp63;
-  *((resource_size_t *)res) = *((resource_size_t *)__cil_tmp65);
-  __cil_tmp66 = (unsigned long )res;
-  __cil_tmp67 = __cil_tmp66 + 8;
+  *((resource_size_t *)res) = *((resource_size_t *)((void *)pci + __cil_tmp63));
   __cil_tmp68 = 4 * 56UL;
   __cil_tmp69 = __cil_tmp68 + 8;
   __cil_tmp70 = 1304 + __cil_tmp69;
-  __cil_tmp71 = (unsigned long )pci;
-  __cil_tmp72 = __cil_tmp71 + __cil_tmp70;
-  *((resource_size_t *)__cil_tmp67) = *((resource_size_t *)__cil_tmp72);
+  *((resource_size_t *)((void *)res + 8)) = *((resource_size_t *)((void *)pci + __cil_tmp70));
   res = res + 1;
-  __cil_tmp73 = (unsigned long )res;
-  __cil_tmp74 = __cil_tmp73 + 24;
-  *((unsigned long *)__cil_tmp74) = 1024UL;
-  __cil_tmp75 = (unsigned long )res;
-  __cil_tmp76 = __cil_tmp75 + 32;
-  *((struct resource **)__cil_tmp76) = (struct resource *)0;
+  *((unsigned long *)((void *)res + 24)) = 1024UL;
+  *((struct resource **)((void *)res + 32)) = (struct resource *)0;
   *((resource_size_t *)res) = 0ULL;
-  __cil_tmp77 = (unsigned long )res;
-  __cil_tmp78 = __cil_tmp77 + 8;
-  *((resource_size_t *)__cil_tmp78) = 0ULL;
+  *((resource_size_t *)((void *)res + 8)) = 0ULL;
   res = res + 1;
   return (0);
 }
@@ -1542,18 +1447,10 @@ static int cmodio_probe_submodules(struct cmodio_device *priv )
   char const *__cil_tmp13 ;
   char const *__cil_tmp14 ;
   struct _ddebug *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned char __cil_tmp22 ;
   long __cil_tmp23 ;
   long __cil_tmp24 ;
   struct pci_dev *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct device *__cil_tmp28 ;
   struct device const *__cil_tmp29 ;
   unsigned int __cil_tmp30 ;
@@ -1561,21 +1458,13 @@ static int cmodio_probe_submodules(struct cmodio_device *priv )
   unsigned int __cil_tmp32 ;
   unsigned int __cil_tmp33 ;
   struct pci_dev *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct device *__cil_tmp37 ;
   struct device const *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct device *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct mfd_cell (*__cil_tmp44)[4U] ;
   struct mfd_cell *__cil_tmp45 ;
   int __cil_tmp46 ;
   struct resource *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
   int __cil_tmp51 ;
   {
@@ -1606,18 +1495,12 @@ static int cmodio_probe_submodules(struct cmodio_device *priv )
   {
   __cil_tmp15 = & descriptor;
   *((char const **)__cil_tmp15) = "janz_cmodio";
-  __cil_tmp16 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp16) = "cmodio_probe_submodules";
-  __cil_tmp17 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp17) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4996/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/janz-cmodio.c.p";
-  __cil_tmp18 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp18) = "MODULbus %d: name %s\n";
-  __cil_tmp19 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp19) = 150U;
-  __cil_tmp20 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp20) = (unsigned char)0;
-  __cil_tmp21 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp22 = *((unsigned char *)__cil_tmp21);
+  *((char const **)((void *)(&descriptor) + 8)) = "cmodio_probe_submodules";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4996/dscv_tempdir/dscv/ri/43_1a/drivers/mfd/janz-cmodio.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "MODULbus %d: name %s\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 150U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp22 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp23 = (long )__cil_tmp22;
   __cil_tmp24 = __cil_tmp23 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp24, 0L);
@@ -1625,9 +1508,7 @@ static int cmodio_probe_submodules(struct cmodio_device *priv )
   if (tmp___1 != 0L) {
     {
     __cil_tmp25 = *((struct pci_dev **)priv);
-    __cil_tmp26 = (unsigned long )__cil_tmp25;
-    __cil_tmp27 = __cil_tmp26 + 144;
-    __cil_tmp28 = (struct device *)__cil_tmp27;
+    __cil_tmp28 = (struct device *)((void *)__cil_tmp25 + 144);
     __cil_tmp29 = (struct device const *)__cil_tmp28;
     __dynamic_dev_dbg(& descriptor, __cil_tmp29, "MODULbus %d: name %s\n", i, name);
     }
@@ -1655,9 +1536,7 @@ static int cmodio_probe_submodules(struct cmodio_device *priv )
   if (num_probed == 0U) {
     {
     __cil_tmp34 = *((struct pci_dev **)priv);
-    __cil_tmp35 = (unsigned long )__cil_tmp34;
-    __cil_tmp36 = __cil_tmp35 + 144;
-    __cil_tmp37 = (struct device *)__cil_tmp36;
+    __cil_tmp37 = (struct device *)((void *)__cil_tmp34 + 144);
     __cil_tmp38 = (struct device const *)__cil_tmp37;
     dev_err(__cil_tmp38, "no MODULbus modules specified, please set the ``modules\'\' kernel parameter according to your hardware configuration\n");
     }
@@ -1665,18 +1544,12 @@ static int cmodio_probe_submodules(struct cmodio_device *priv )
   } else {
   }
   {
-  __cil_tmp39 = (unsigned long )pdev;
-  __cil_tmp40 = __cil_tmp39 + 144;
-  __cil_tmp41 = (struct device *)__cil_tmp40;
-  __cil_tmp42 = (unsigned long )priv;
-  __cil_tmp43 = __cil_tmp42 + 24;
-  __cil_tmp44 = (struct mfd_cell (*)[4U])__cil_tmp43;
+  __cil_tmp41 = (struct device *)((void *)pdev + 144);
+  __cil_tmp44 = (struct mfd_cell (*)[4U])((void *)priv + 24);
   __cil_tmp45 = (struct mfd_cell *)__cil_tmp44;
   __cil_tmp46 = (int )num_probed;
   __cil_tmp47 = (struct resource *)0;
-  __cil_tmp48 = (unsigned long )pdev;
-  __cil_tmp49 = __cil_tmp48 + 1300;
-  __cil_tmp50 = *((unsigned int *)__cil_tmp49);
+  __cil_tmp50 = *((unsigned int *)((void *)pdev + 1300));
   __cil_tmp51 = (int )__cil_tmp50;
   tmp___2 = mfd_add_devices(__cil_tmp41, 0, __cil_tmp45, __cil_tmp46, __cil_tmp47,
                             __cil_tmp51);
@@ -1689,8 +1562,6 @@ static ssize_t mbus_show(struct device *dev , struct device_attribute *attr , ch
   void *tmp ;
   int tmp___0 ;
   struct device const *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u8 __cil_tmp10 ;
   int __cil_tmp11 ;
   {
@@ -1698,9 +1569,7 @@ static ssize_t mbus_show(struct device *dev , struct device_attribute *attr , ch
   __cil_tmp7 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   priv = (struct cmodio_device *)tmp;
-  __cil_tmp8 = (unsigned long )priv;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((u8 *)__cil_tmp9);
+  __cil_tmp10 = *((u8 *)((void *)priv + 16));
   __cil_tmp11 = (int )__cil_tmp10;
   tmp___0 = snprintf(buf, 4096UL, "%x\n", __cil_tmp11);
   }
@@ -1725,66 +1594,34 @@ static int cmodio_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   struct cmodio_device *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device const *__cil_tmp14 ;
   void *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device const *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device const *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct janz_cmodio_onboard_regs *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct janz_cmodio_onboard_regs *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   struct device const *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct janz_cmodio_onboard_regs *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   u8 *__cil_tmp41 ;
   void *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct kobject *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct device *__cil_tmp51 ;
   struct device const *__cil_tmp52 ;
   u8 __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct janz_cmodio_onboard_regs *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   u8 *__cil_tmp59 ;
   void *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   struct device *__cil_tmp63 ;
   struct device const *__cil_tmp64 ;
   unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct kobject *__cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   struct janz_cmodio_onboard_regs *__cil_tmp71 ;
   void volatile *__cil_tmp72 ;
   void const *__cil_tmp73 ;
@@ -1799,9 +1636,7 @@ static int cmodio_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   __cil_tmp10 = (unsigned long )priv;
   if (__cil_tmp10 == __cil_tmp9) {
     {
-    __cil_tmp11 = (unsigned long )dev;
-    __cil_tmp12 = __cil_tmp11 + 144;
-    __cil_tmp13 = (struct device *)__cil_tmp12;
+    __cil_tmp13 = (struct device *)((void *)dev + 144);
     __cil_tmp14 = (struct device const *)__cil_tmp13;
     dev_err(__cil_tmp14, "unable to allocate private data\n");
     ret = -12;
@@ -1818,9 +1653,7 @@ static int cmodio_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   }
   if (ret != 0) {
     {
-    __cil_tmp16 = (unsigned long )dev;
-    __cil_tmp17 = __cil_tmp16 + 144;
-    __cil_tmp18 = (struct device *)__cil_tmp17;
+    __cil_tmp18 = (struct device *)((void *)dev + 144);
     __cil_tmp19 = (struct device const *)__cil_tmp18;
     dev_err(__cil_tmp19, "unable to enable device\n");
     }
@@ -1833,9 +1666,7 @@ static int cmodio_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   }
   if (ret != 0) {
     {
-    __cil_tmp20 = (unsigned long )dev;
-    __cil_tmp21 = __cil_tmp20 + 144;
-    __cil_tmp22 = (struct device *)__cil_tmp21;
+    __cil_tmp22 = (struct device *)((void *)dev + 144);
     __cil_tmp23 = (struct device const *)__cil_tmp22;
     dev_err(__cil_tmp23, "unable to request regions\n");
     }
@@ -1844,22 +1675,16 @@ static int cmodio_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   }
   {
   tmp___0 = pci_ioremap_bar(dev, 4);
-  __cil_tmp24 = (unsigned long )priv;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  *((struct janz_cmodio_onboard_regs **)__cil_tmp25) = (struct janz_cmodio_onboard_regs *)tmp___0;
+  *((struct janz_cmodio_onboard_regs **)((void *)priv + 8)) = (struct janz_cmodio_onboard_regs *)tmp___0;
   }
   {
   __cil_tmp26 = (struct janz_cmodio_onboard_regs *)0;
   __cil_tmp27 = (unsigned long )__cil_tmp26;
-  __cil_tmp28 = (unsigned long )priv;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  __cil_tmp30 = *((struct janz_cmodio_onboard_regs **)__cil_tmp29);
+  __cil_tmp30 = *((struct janz_cmodio_onboard_regs **)((void *)priv + 8));
   __cil_tmp31 = (unsigned long )__cil_tmp30;
   if (__cil_tmp31 == __cil_tmp27) {
     {
-    __cil_tmp32 = (unsigned long )dev;
-    __cil_tmp33 = __cil_tmp32 + 144;
-    __cil_tmp34 = (struct device *)__cil_tmp33;
+    __cil_tmp34 = (struct device *)((void *)dev + 144);
     __cil_tmp35 = (struct device const *)__cil_tmp34;
     dev_err(__cil_tmp35, "unable to remap onboard regs\n");
     ret = -12;
@@ -1869,28 +1694,18 @@ static int cmodio_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   }
   }
   {
-  __cil_tmp36 = (unsigned long )priv;
-  __cil_tmp37 = __cil_tmp36 + 8;
-  __cil_tmp38 = *((struct janz_cmodio_onboard_regs **)__cil_tmp37);
-  __cil_tmp39 = (unsigned long )__cil_tmp38;
-  __cil_tmp40 = __cil_tmp39 + 3;
-  __cil_tmp41 = (u8 *)__cil_tmp40;
+  __cil_tmp38 = *((struct janz_cmodio_onboard_regs **)((void *)priv + 8));
+  __cil_tmp41 = (u8 *)((void *)__cil_tmp38 + 3);
   __cil_tmp42 = (void *)__cil_tmp41;
   tmp___1 = ioread8(__cil_tmp42);
-  __cil_tmp43 = (unsigned long )priv;
-  __cil_tmp44 = __cil_tmp43 + 16;
-  *((u8 *)__cil_tmp44) = (u8 )tmp___1;
+  *((u8 *)((void *)priv + 16)) = (u8 )tmp___1;
   __cil_tmp45 = 144 + 16;
-  __cil_tmp46 = (unsigned long )dev;
-  __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-  __cil_tmp48 = (struct kobject *)__cil_tmp47;
+  __cil_tmp48 = (struct kobject *)((void *)dev + __cil_tmp45);
   ret = sysfs_create_group(__cil_tmp48, & cmodio_sysfs_attr_group);
   }
   if (ret != 0) {
     {
-    __cil_tmp49 = (unsigned long )dev;
-    __cil_tmp50 = __cil_tmp49 + 144;
-    __cil_tmp51 = (struct device *)__cil_tmp50;
+    __cil_tmp51 = (struct device *)((void *)dev + 144);
     __cil_tmp52 = (struct device const *)__cil_tmp51;
     dev_err(__cil_tmp52, "unable to create sysfs attributes\n");
     }
@@ -1899,21 +1714,15 @@ static int cmodio_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   }
   {
   __cil_tmp53 = (u8 )15;
-  __cil_tmp54 = (unsigned long )priv;
-  __cil_tmp55 = __cil_tmp54 + 8;
-  __cil_tmp56 = *((struct janz_cmodio_onboard_regs **)__cil_tmp55);
-  __cil_tmp57 = (unsigned long )__cil_tmp56;
-  __cil_tmp58 = __cil_tmp57 + 1;
-  __cil_tmp59 = (u8 *)__cil_tmp58;
+  __cil_tmp56 = *((struct janz_cmodio_onboard_regs **)((void *)priv + 8));
+  __cil_tmp59 = (u8 *)((void *)__cil_tmp56 + 1);
   __cil_tmp60 = (void *)__cil_tmp59;
   iowrite8(__cil_tmp53, __cil_tmp60);
   ret = cmodio_probe_submodules(priv);
   }
   if (ret != 0) {
     {
-    __cil_tmp61 = (unsigned long )dev;
-    __cil_tmp62 = __cil_tmp61 + 144;
-    __cil_tmp63 = (struct device *)__cil_tmp62;
+    __cil_tmp63 = (struct device *)((void *)dev + 144);
     __cil_tmp64 = (struct device const *)__cil_tmp63;
     dev_err(__cil_tmp64, "unable to probe submodules\n");
     }
@@ -1924,16 +1733,12 @@ static int cmodio_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   out_sysfs_remove_group:
   {
   __cil_tmp65 = 144 + 16;
-  __cil_tmp66 = (unsigned long )dev;
-  __cil_tmp67 = __cil_tmp66 + __cil_tmp65;
-  __cil_tmp68 = (struct kobject *)__cil_tmp67;
+  __cil_tmp68 = (struct kobject *)((void *)dev + __cil_tmp65);
   sysfs_remove_group(__cil_tmp68, & cmodio_sysfs_attr_group);
   }
   out_unmap_ctrl:
   {
-  __cil_tmp69 = (unsigned long )priv;
-  __cil_tmp70 = __cil_tmp69 + 8;
-  __cil_tmp71 = *((struct janz_cmodio_onboard_regs **)__cil_tmp70);
+  __cil_tmp71 = *((struct janz_cmodio_onboard_regs **)((void *)priv + 8));
   __cil_tmp72 = (void volatile *)__cil_tmp71;
   iounmap(__cil_tmp72);
   }
@@ -1957,15 +1762,9 @@ static int cmodio_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
 static void cmodio_pci_remove(struct pci_dev *dev )
 { struct cmodio_device *priv ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct kobject *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct janz_cmodio_onboard_regs *__cil_tmp13 ;
   void volatile *__cil_tmp14 ;
   void const *__cil_tmp15 ;
@@ -1973,18 +1772,12 @@ static void cmodio_pci_remove(struct pci_dev *dev )
   {
   tmp = pci_get_drvdata(dev);
   priv = (struct cmodio_device *)tmp;
-  __cil_tmp4 = (unsigned long )dev;
-  __cil_tmp5 = __cil_tmp4 + 144;
-  __cil_tmp6 = (struct device *)__cil_tmp5;
+  __cil_tmp6 = (struct device *)((void *)dev + 144);
   mfd_remove_devices(__cil_tmp6);
   __cil_tmp7 = 144 + 16;
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = (struct kobject *)__cil_tmp9;
+  __cil_tmp10 = (struct kobject *)((void *)dev + __cil_tmp7);
   sysfs_remove_group(__cil_tmp10, & cmodio_sysfs_attr_group);
-  __cil_tmp11 = (unsigned long )priv;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  __cil_tmp13 = *((struct janz_cmodio_onboard_regs **)__cil_tmp12);
+  __cil_tmp13 = *((struct janz_cmodio_onboard_regs **)((void *)priv + 8));
   __cil_tmp14 = (void volatile *)__cil_tmp13;
   iounmap(__cil_tmp14);
   pci_release_regions(dev);

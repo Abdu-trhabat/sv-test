@@ -910,27 +910,17 @@ static int w1_f2d_readblock(struct w1_slave *sl , int off , int count , char *bu
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct w1_master *__cil_tmp20 ;
   u8 const *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct w1_master *__cil_tmp24 ;
   u8 *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct w1_master *__cil_tmp28 ;
   u8 const *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct w1_master *__cil_tmp32 ;
   u8 *__cil_tmp33 ;
   void const *__cil_tmp34 ;
   void const *__cil_tmp35 ;
   size_t __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
   struct device const *__cil_tmp40 ;
   {
@@ -954,14 +944,10 @@ static int w1_f2d_readblock(struct w1_slave *sl , int off , int count , char *bu
   } else {
   }
   {
-  __cil_tmp18 = (unsigned long )sl;
-  __cil_tmp19 = __cil_tmp18 + 88;
-  __cil_tmp20 = *((struct w1_master **)__cil_tmp19);
+  __cil_tmp20 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp21 = (u8 const *)(& wrbuf);
   w1_write_block(__cil_tmp20, __cil_tmp21, 3);
-  __cil_tmp22 = (unsigned long )sl;
-  __cil_tmp23 = __cil_tmp22 + 88;
-  __cil_tmp24 = *((struct w1_master **)__cil_tmp23);
+  __cil_tmp24 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp25 = (u8 *)buf;
   w1_read_block(__cil_tmp24, __cil_tmp25, count);
   tmp___0 = w1_reset_select_slave(sl);
@@ -971,14 +957,10 @@ static int w1_f2d_readblock(struct w1_slave *sl , int off , int count , char *bu
   } else {
   }
   {
-  __cil_tmp26 = (unsigned long )sl;
-  __cil_tmp27 = __cil_tmp26 + 88;
-  __cil_tmp28 = *((struct w1_master **)__cil_tmp27);
+  __cil_tmp28 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp29 = (u8 const *)(& wrbuf);
   w1_write_block(__cil_tmp28, __cil_tmp29, 3);
-  __cil_tmp30 = (unsigned long )sl;
-  __cil_tmp31 = __cil_tmp30 + 88;
-  __cil_tmp32 = *((struct w1_master **)__cil_tmp31);
+  __cil_tmp32 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp33 = (u8 *)(& cmp);
   w1_read_block(__cil_tmp32, __cil_tmp33, count);
   __cil_tmp34 = (void const *)(& cmp);
@@ -998,9 +980,7 @@ static int w1_f2d_readblock(struct w1_slave *sl , int off , int count , char *bu
   }
   ldv_15145:
   {
-  __cil_tmp37 = (unsigned long )sl;
-  __cil_tmp38 = __cil_tmp37 + 112;
-  __cil_tmp39 = (struct device *)__cil_tmp38;
+  __cil_tmp39 = (struct device *)((void *)sl + 112);
   __cil_tmp40 = (struct device const *)__cil_tmp39;
   dev_err(__cil_tmp40, "proof reading failed %d times\n", 10);
   }
@@ -1014,18 +994,10 @@ static ssize_t w1_f2d_read_bin(struct file *filp , struct kobject *kobj , struct
   int todo ;
   int block_read ;
   int tmp___0 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct w1_master *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mutex *__cil_tmp17 ;
   int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct w1_master *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct mutex *__cil_tmp24 ;
   {
   {
@@ -1039,12 +1011,8 @@ static ssize_t w1_f2d_read_bin(struct file *filp , struct kobject *kobj , struct
   } else {
   }
   {
-  __cil_tmp12 = (unsigned long )sl;
-  __cil_tmp13 = __cil_tmp12 + 88;
-  __cil_tmp14 = *((struct w1_master **)__cil_tmp13);
-  __cil_tmp15 = (unsigned long )__cil_tmp14;
-  __cil_tmp16 = __cil_tmp15 + 144;
-  __cil_tmp17 = (struct mutex *)__cil_tmp16;
+  __cil_tmp14 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp17 = (struct mutex *)((void *)__cil_tmp14 + 144);
   mutex_lock_nested(__cil_tmp17, 0U);
   }
   goto ldv_15158;
@@ -1073,12 +1041,8 @@ static ssize_t w1_f2d_read_bin(struct file *filp , struct kobject *kobj , struct
   }
   ldv_15159:
   {
-  __cil_tmp19 = (unsigned long )sl;
-  __cil_tmp20 = __cil_tmp19 + 88;
-  __cil_tmp21 = *((struct w1_master **)__cil_tmp20);
-  __cil_tmp22 = (unsigned long )__cil_tmp21;
-  __cil_tmp23 = __cil_tmp22 + 144;
-  __cil_tmp24 = (struct mutex *)__cil_tmp23;
+  __cil_tmp21 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp24 = (struct mutex *)((void *)__cil_tmp21 + 144);
   mutex_unlock(__cil_tmp24);
   }
   return ((ssize_t )count);
@@ -1103,19 +1067,11 @@ static int w1_f2d_write(struct w1_slave *sl , int addr , int len , u8 const *dat
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct w1_master *__cil_tmp25 ;
   u8 const *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct w1_master *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct w1_master *__cil_tmp32 ;
   u8 __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct w1_master *__cil_tmp36 ;
   u8 *__cil_tmp37 ;
   int __cil_tmp38 ;
@@ -1144,20 +1100,14 @@ static int w1_f2d_write(struct w1_slave *sl , int addr , int len , u8 const *dat
   void const *__cil_tmp61 ;
   void const *__cil_tmp62 ;
   size_t __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct device *__cil_tmp66 ;
   struct device const *__cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   struct w1_master *__cil_tmp74 ;
   u8 const *__cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   struct w1_master *__cil_tmp78 ;
   {
   tries = 10;
@@ -1184,14 +1134,10 @@ static int w1_f2d_write(struct w1_slave *sl , int addr , int len , u8 const *dat
   __cil_tmp21 = (unsigned long )(wrbuf) + __cil_tmp20;
   __cil_tmp22 = addr >> 8;
   *((u8 *)__cil_tmp21) = (u8 )__cil_tmp22;
-  __cil_tmp23 = (unsigned long )sl;
-  __cil_tmp24 = __cil_tmp23 + 88;
-  __cil_tmp25 = *((struct w1_master **)__cil_tmp24);
+  __cil_tmp25 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp26 = (u8 const *)(& wrbuf);
   w1_write_block(__cil_tmp25, __cil_tmp26, 3);
-  __cil_tmp27 = (unsigned long )sl;
-  __cil_tmp28 = __cil_tmp27 + 88;
-  __cil_tmp29 = *((struct w1_master **)__cil_tmp28);
+  __cil_tmp29 = *((struct w1_master **)((void *)sl + 88));
   w1_write_block(__cil_tmp29, data, len);
   tmp___0 = w1_reset_select_slave(sl);
   }
@@ -1200,14 +1146,10 @@ static int w1_f2d_write(struct w1_slave *sl , int addr , int len , u8 const *dat
   } else {
   }
   {
-  __cil_tmp30 = (unsigned long )sl;
-  __cil_tmp31 = __cil_tmp30 + 88;
-  __cil_tmp32 = *((struct w1_master **)__cil_tmp31);
+  __cil_tmp32 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp33 = (u8 )170;
   w1_write_8(__cil_tmp32, __cil_tmp33);
-  __cil_tmp34 = (unsigned long )sl;
-  __cil_tmp35 = __cil_tmp34 + 88;
-  __cil_tmp36 = *((struct w1_master **)__cil_tmp35);
+  __cil_tmp36 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp37 = (u8 *)(& rdbuf);
   __cil_tmp38 = len + 3;
   w1_read_block(__cil_tmp36, __cil_tmp37, __cil_tmp38);
@@ -1260,9 +1202,7 @@ static int w1_f2d_write(struct w1_slave *sl , int addr , int len , u8 const *dat
           } else {
           }
           {
-          __cil_tmp64 = (unsigned long )sl;
-          __cil_tmp65 = __cil_tmp64 + 112;
-          __cil_tmp66 = (struct device *)__cil_tmp65;
+          __cil_tmp66 = (struct device *)((void *)sl + 112);
           __cil_tmp67 = (struct device const *)__cil_tmp66;
           dev_err(__cil_tmp67, "could not write to eeprom, scratchpad compare failed %d times\n",
                   10);
@@ -1290,15 +1230,11 @@ static int w1_f2d_write(struct w1_slave *sl , int addr , int len , u8 const *dat
   __cil_tmp70 = 3 * 1UL;
   __cil_tmp71 = (unsigned long )(wrbuf) + __cil_tmp70;
   *((u8 *)__cil_tmp71) = es;
-  __cil_tmp72 = (unsigned long )sl;
-  __cil_tmp73 = __cil_tmp72 + 88;
-  __cil_tmp74 = *((struct w1_master **)__cil_tmp73);
+  __cil_tmp74 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp75 = (u8 const *)(& wrbuf);
   w1_write_block(__cil_tmp74, __cil_tmp75, 4);
   msleep(11U);
-  __cil_tmp76 = (unsigned long )sl;
-  __cil_tmp77 = __cil_tmp76 + 88;
-  __cil_tmp78 = *((struct w1_master **)__cil_tmp77);
+  __cil_tmp78 = *((struct w1_master **)((void *)sl + 88));
   w1_reset_bus(__cil_tmp78);
   }
   return (0);
@@ -1318,11 +1254,7 @@ static ssize_t w1_f2d_write_bin(struct file *filp , struct kobject *kobj , struc
   void *__ret ;
   int tmp___2 ;
   int tmp___3 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct w1_master *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct mutex *__cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
@@ -1337,11 +1269,7 @@ static ssize_t w1_f2d_write_bin(struct file *filp , struct kobject *kobj , struc
   u8 const *__cil_tmp34 ;
   u8 const *__cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct w1_master *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct mutex *__cil_tmp42 ;
   {
   {
@@ -1354,12 +1282,8 @@ static ssize_t w1_f2d_write_bin(struct file *filp , struct kobject *kobj , struc
   } else {
   }
   {
-  __cil_tmp18 = (unsigned long )sl;
-  __cil_tmp19 = __cil_tmp18 + 88;
-  __cil_tmp20 = *((struct w1_master **)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + 144;
-  __cil_tmp23 = (struct mutex *)__cil_tmp22;
+  __cil_tmp20 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp23 = (struct mutex *)((void *)__cil_tmp20 + 144);
   mutex_lock_nested(__cil_tmp23, 0U);
   addr = (int )off;
   len = (int )count;
@@ -1433,12 +1357,8 @@ static ssize_t w1_f2d_write_bin(struct file *filp , struct kobject *kobj , struc
   ldv_15190: ;
   out_up:
   {
-  __cil_tmp37 = (unsigned long )sl;
-  __cil_tmp38 = __cil_tmp37 + 88;
-  __cil_tmp39 = *((struct w1_master **)__cil_tmp38);
-  __cil_tmp40 = (unsigned long )__cil_tmp39;
-  __cil_tmp41 = __cil_tmp40 + 144;
-  __cil_tmp42 = (struct mutex *)__cil_tmp41;
+  __cil_tmp39 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp42 = (struct mutex *)((void *)__cil_tmp39 + 144);
   mutex_unlock(__cil_tmp42);
   }
   return ((ssize_t )count);
@@ -1455,16 +1375,12 @@ static struct bin_attribute w1_f2d_bin_attr = {{"eeprom", (umode_t )420U, (struc
 static int w1_f2d_add_slave(struct w1_slave *sl )
 { int tmp ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct kobject *__cil_tmp6 ;
   struct bin_attribute const *__cil_tmp7 ;
   {
   {
   __cil_tmp3 = 112 + 16;
-  __cil_tmp4 = (unsigned long )sl;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  __cil_tmp6 = (struct kobject *)__cil_tmp5;
+  __cil_tmp6 = (struct kobject *)((void *)sl + __cil_tmp3);
   __cil_tmp7 = (struct bin_attribute const *)(& w1_f2d_bin_attr);
   tmp = sysfs_create_bin_file(__cil_tmp6, __cil_tmp7);
   }
@@ -1473,16 +1389,12 @@ static int w1_f2d_add_slave(struct w1_slave *sl )
 }
 static void w1_f2d_remove_slave(struct w1_slave *sl )
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct kobject *__cil_tmp5 ;
   struct bin_attribute const *__cil_tmp6 ;
   {
   {
   __cil_tmp2 = 112 + 16;
-  __cil_tmp3 = (unsigned long )sl;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  __cil_tmp5 = (struct kobject *)__cil_tmp4;
+  __cil_tmp5 = (struct kobject *)((void *)sl + __cil_tmp2);
   __cil_tmp6 = (struct bin_attribute const *)(& w1_f2d_bin_attr);
   sysfs_remove_bin_file(__cil_tmp5, __cil_tmp6);
   }

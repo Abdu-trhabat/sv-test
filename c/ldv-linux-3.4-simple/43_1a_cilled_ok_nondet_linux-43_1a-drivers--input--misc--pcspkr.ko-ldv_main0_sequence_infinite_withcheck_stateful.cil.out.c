@@ -2014,13 +2014,12 @@ void ldv_spin_unlock(void) ;
 int ldv_spin_trylock(void) ;
 extern struct pv_cpu_ops pv_cpu_ops ;
 __inline static void slow_down_io(void) 
-{ unsigned long __cil_tmp1 ;
+{
   void (*__cil_tmp2)(void) ;
 
   {
   {
-  __cil_tmp1 = (unsigned long )(& pv_cpu_ops) + 216;
-  __cil_tmp2 = *((void (**)(void))__cil_tmp1);
+  __cil_tmp2 = *((void (**)(void))((void *)(&pv_cpu_ops) + 216));
   (*__cil_tmp2)();
   }
   return;
@@ -2089,15 +2088,12 @@ struct input_dev *input_allocate_device(void) {
 extern void input_free_device(struct input_dev * ) ;
 extern int input_register_device(struct input_dev * ) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2212,33 +2208,13 @@ static int pcspkr_probe(struct platform_device *dev )
   struct input_dev *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   void *__cil_tmp34 ;
 
   {
@@ -2257,42 +2233,22 @@ static int pcspkr_probe(struct platform_device *dev )
   }
   {
   *((char const   **)pcspkr_dev) = "PC Speaker";
-  __cil_tmp7 = (unsigned long )pcspkr_dev;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  *((char const   **)__cil_tmp8) = "isa0061/input0";
-  __cil_tmp9 = (unsigned long )pcspkr_dev;
-  __cil_tmp10 = __cil_tmp9 + 24;
-  *((__u16 *)__cil_tmp10) = (__u16 )16U;
+  *((char const   **)((void *)pcspkr_dev + 8)) = "isa0061/input0";
+  *((__u16 *)((void *)pcspkr_dev + 24)) = (__u16 )16U;
   __cil_tmp11 = 24 + 2;
-  __cil_tmp12 = (unsigned long )pcspkr_dev;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  *((__u16 *)__cil_tmp13) = (__u16 )31U;
+  *((__u16 *)((void *)pcspkr_dev + __cil_tmp11)) = (__u16 )31U;
   __cil_tmp14 = 24 + 4;
-  __cil_tmp15 = (unsigned long )pcspkr_dev;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((__u16 *)__cil_tmp16) = (__u16 )1U;
+  *((__u16 *)((void *)pcspkr_dev + __cil_tmp14)) = (__u16 )1U;
   __cil_tmp17 = 24 + 6;
-  __cil_tmp18 = (unsigned long )pcspkr_dev;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  *((__u16 *)__cil_tmp19) = (__u16 )256U;
-  __cil_tmp20 = (unsigned long )pcspkr_dev;
-  __cil_tmp21 = __cil_tmp20 + 840;
-  __cil_tmp22 = (unsigned long )dev;
-  __cil_tmp23 = __cil_tmp22 + 16;
-  *((struct device **)__cil_tmp21) = (struct device *)__cil_tmp23;
+  *((__u16 *)((void *)pcspkr_dev + __cil_tmp17)) = (__u16 )256U;
+  *((struct device **)((void *)pcspkr_dev + 840)) = (struct device *)((void *)dev + 16);
   __cil_tmp24 = 0 * 8UL;
   __cil_tmp25 = 40 + __cil_tmp24;
-  __cil_tmp26 = (unsigned long )pcspkr_dev;
-  __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-  *((unsigned long *)__cil_tmp27) = 262144UL;
+  *((unsigned long *)((void *)pcspkr_dev + __cil_tmp25)) = 262144UL;
   __cil_tmp28 = 0 * 8UL;
   __cil_tmp29 = 176 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )pcspkr_dev;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  *((unsigned long *)__cil_tmp31) = 6UL;
-  __cil_tmp32 = (unsigned long )pcspkr_dev;
-  __cil_tmp33 = __cil_tmp32 + 576;
-  *((int (**)(struct input_dev * , unsigned int  , unsigned int  , int  ))__cil_tmp33) = & pcspkr_event;
+  *((unsigned long *)((void *)pcspkr_dev + __cil_tmp29)) = 6UL;
+  *((int (**)(struct input_dev * , unsigned int  , unsigned int  , int  ))((void *)pcspkr_dev + 576)) = & pcspkr_event;
   err = input_register_device(pcspkr_dev);
   }
   if (err != 0) {

@@ -4060,53 +4060,33 @@ static int phison_pre_reset(struct ata_link *link , unsigned long deadline )
   struct ata_port *ap ;
   struct _ddebug descriptor ;
   long tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct _ddebug *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned char __cil_tmp16 ;
   long __cil_tmp17 ;
   long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device  const  *__cil_tmp22 ;
 
   {
   {
   ap = *((struct ata_port **)link);
-  __cil_tmp7 = (unsigned long )ap;
-  __cil_tmp8 = __cil_tmp7 + 420;
-  *((unsigned int *)__cil_tmp8) = 0U;
+  *((unsigned int *)((void *)ap + 420)) = 0U;
   ret = ata_std_prereset(link, deadline);
   __cil_tmp9 = & descriptor;
   *((char const   **)__cil_tmp9) = "phison";
-  __cil_tmp10 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp10) = "phison_pre_reset";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp11) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5544/dscv_tempdir/dscv/ri/43_1a/drivers/staging/phison/phison.c.p";
-  __cil_tmp12 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp12) = "phison_pre_reset(), ret = %x\n";
-  __cil_tmp13 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp13) = 53U;
-  __cil_tmp14 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp14) = (unsigned char)0;
-  __cil_tmp15 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp16 = *((unsigned char *)__cil_tmp15);
+  *((char const   **)((void *)(&descriptor) + 8)) = "phison_pre_reset";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5544/dscv_tempdir/dscv/ri/43_1a/drivers/staging/phison/phison.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "phison_pre_reset(), ret = %x\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 53U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp16 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp17 = (long )__cil_tmp16;
   __cil_tmp18 = __cil_tmp17 & 1L;
   tmp = __builtin_expect(__cil_tmp18, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp19 = (unsigned long )ap;
-    __cil_tmp20 = __cil_tmp19 + 13888;
-    __cil_tmp21 = *((struct device **)__cil_tmp20);
+    __cil_tmp21 = *((struct device **)((void *)ap + 13888));
     __cil_tmp22 = (struct device  const  *)__cil_tmp21;
     __dynamic_dev_dbg(& descriptor, __cil_tmp22, "phison_pre_reset(), ret = %x\n",
                       ret);
@@ -4183,12 +4163,6 @@ static int phison_init_one(struct pci_dev *pdev , struct pci_device_id  const  *
   struct _ddebug descriptor ;
   long tmp ;
   struct ata_port_info *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
@@ -4196,17 +4170,9 @@ static int phison_init_one(struct pci_dev *pdev , struct pci_device_id  const  *
   struct ata_port_info  const  * const  *__cil_tmp19 ;
   void *__cil_tmp20 ;
   struct _ddebug *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned char __cil_tmp28 ;
   long __cil_tmp29 ;
   long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct device *__cil_tmp33 ;
   struct device  const  *__cil_tmp34 ;
 
@@ -4214,18 +4180,12 @@ static int phison_init_one(struct pci_dev *pdev , struct pci_device_id  const  *
   {
   __cil_tmp8 = & info;
   *((unsigned long *)__cil_tmp8) = 64UL;
-  __cil_tmp9 = (unsigned long )(& info) + 8;
-  *((unsigned long *)__cil_tmp9) = 0UL;
-  __cil_tmp10 = (unsigned long )(& info) + 16;
-  *((unsigned long *)__cil_tmp10) = 31UL;
-  __cil_tmp11 = (unsigned long )(& info) + 24;
-  *((unsigned long *)__cil_tmp11) = 7UL;
-  __cil_tmp12 = (unsigned long )(& info) + 32;
-  *((unsigned long *)__cil_tmp12) = 63UL;
-  __cil_tmp13 = (unsigned long )(& info) + 40;
-  *((struct ata_port_operations **)__cil_tmp13) = & phison_ops;
-  __cil_tmp14 = (unsigned long )(& info) + 48;
-  *((void **)__cil_tmp14) = (void *)0;
+  *((unsigned long *)((void *)(&info) + 8)) = 0UL;
+  *((unsigned long *)((void *)(&info) + 16)) = 31UL;
+  *((unsigned long *)((void *)(&info) + 24)) = 7UL;
+  *((unsigned long *)((void *)(&info) + 32)) = 63UL;
+  *((struct ata_port_operations **)((void *)(&info) + 40)) = & phison_ops;
+  *((void **)((void *)(&info) + 48)) = (void *)0;
   __cil_tmp15 = 0 * 8UL;
   __cil_tmp16 = (unsigned long )(ppi) + __cil_tmp15;
   *((struct ata_port_info  const  **)__cil_tmp16) = (struct ata_port_info  const  *)(& info);
@@ -4237,27 +4197,19 @@ static int phison_init_one(struct pci_dev *pdev , struct pci_device_id  const  *
   ret = ata_pci_bmdma_init_one(pdev, __cil_tmp19, & phison_sht, __cil_tmp20, 0);
   __cil_tmp21 = & descriptor;
   *((char const   **)__cil_tmp21) = "phison";
-  __cil_tmp22 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp22) = "phison_init_one";
-  __cil_tmp23 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp23) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5544/dscv_tempdir/dscv/ri/43_1a/drivers/staging/phison/phison.c.p";
-  __cil_tmp24 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp24) = "phison_init_one(), ret = %x\n";
-  __cil_tmp25 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp25) = 82U;
-  __cil_tmp26 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp26) = (unsigned char)0;
-  __cil_tmp27 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp28 = *((unsigned char *)__cil_tmp27);
+  *((char const   **)((void *)(&descriptor) + 8)) = "phison_init_one";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/5544/dscv_tempdir/dscv/ri/43_1a/drivers/staging/phison/phison.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "phison_init_one(), ret = %x\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 82U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp28 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp29 = (long )__cil_tmp28;
   __cil_tmp30 = __cil_tmp29 & 1L;
   tmp = __builtin_expect(__cil_tmp30, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp31 = (unsigned long )pdev;
-    __cil_tmp32 = __cil_tmp31 + 144;
-    __cil_tmp33 = (struct device *)__cil_tmp32;
+    __cil_tmp33 = (struct device *)((void *)pdev + 144);
     __cil_tmp34 = (struct device  const  *)__cil_tmp33;
     __dynamic_dev_dbg(& descriptor, __cil_tmp34, "phison_init_one(), ret = %x\n",
                       ret);

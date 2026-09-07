@@ -3557,15 +3557,11 @@ __inline static unsigned int __create_pipe(struct usb_device *dev , unsigned int
 }
 __inline static void *usb_get_serial_port_data(struct usb_serial_port *port )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )port;
-  __cil_tmp4 = __cil_tmp3 + 1240;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)port + 1240);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -3573,14 +3569,11 @@ __inline static void *usb_get_serial_port_data(struct usb_serial_port *port )
 }
 }
 __inline static void usb_set_serial_port_data(struct usb_serial_port *port , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )port;
-  __cil_tmp4 = __cil_tmp3 + 1240;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)port + 1240);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3625,8 +3618,6 @@ static int cp210x_get_config(struct usb_serial_port *port , u8 request , unsigne
   __le32 *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct device const *__cil_tmp24 ;
   struct usb_device *__cil_tmp25 ;
@@ -3671,9 +3662,7 @@ static int cp210x_get_config(struct usb_serial_port *port , u8 request , unsigne
   __cil_tmp20 = (unsigned long )buf;
   if (__cil_tmp20 == __cil_tmp19) {
     {
-    __cil_tmp21 = (unsigned long )port;
-    __cil_tmp22 = __cil_tmp21 + 1240;
-    __cil_tmp23 = (struct device *)__cil_tmp22;
+    __cil_tmp23 = (struct device *)((void *)port + 1240);
     __cil_tmp24 = (struct device const *)__cil_tmp23;
     dev_err(__cil_tmp24, "%s - out of memory.\n", "cp210x_get_config");
     }
@@ -3764,8 +3753,6 @@ static int cp210x_set_config(struct usb_serial_port *port , u8 request , unsigne
   __le32 *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct device *__cil_tmp25 ;
   struct device const *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
@@ -3826,9 +3813,7 @@ static int cp210x_set_config(struct usb_serial_port *port , u8 request , unsigne
   __cil_tmp22 = (unsigned long )buf;
   if (__cil_tmp22 == __cil_tmp21) {
     {
-    __cil_tmp23 = (unsigned long )port;
-    __cil_tmp24 = __cil_tmp23 + 1240;
-    __cil_tmp25 = (struct device *)__cil_tmp24;
+    __cil_tmp25 = (struct device *)((void *)port + 1240);
     __cil_tmp26 = (struct device const *)__cil_tmp25;
     dev_err(__cil_tmp26, "%s - out of memory.\n", "cp210x_set_config");
     }
@@ -4048,13 +4033,9 @@ static int cp210x_open(struct tty_struct *tty , struct usb_serial_port *port )
   bool *__cil_tmp5 ;
   bool __cil_tmp6 ;
   char *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned char __cil_tmp10 ;
   int __cil_tmp11 ;
   u8 __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
   struct tty_struct *__cil_tmp17 ;
@@ -4068,9 +4049,7 @@ static int cp210x_open(struct tty_struct *tty , struct usb_serial_port *port )
   if ((int )__cil_tmp6) {
     {
     __cil_tmp7 = (char *)"/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1796/dscv_tempdir/dscv/ri/43_1a/drivers/usb/serial/cp210x.c.p";
-    __cil_tmp8 = (unsigned long )port;
-    __cil_tmp9 = __cil_tmp8 + 816;
-    __cil_tmp10 = *((unsigned char *)__cil_tmp9);
+    __cil_tmp10 = *((unsigned char *)((void *)port + 816));
     __cil_tmp11 = (int )__cil_tmp10;
     printk("<7>%s: %s - port %d\n", __cil_tmp7, "cp210x_open", __cil_tmp11);
     }
@@ -4083,9 +4062,7 @@ static int cp210x_open(struct tty_struct *tty , struct usb_serial_port *port )
   }
   if (result != 0) {
     {
-    __cil_tmp13 = (unsigned long )port;
-    __cil_tmp14 = __cil_tmp13 + 1240;
-    __cil_tmp15 = (struct device *)__cil_tmp14;
+    __cil_tmp15 = (struct device *)((void *)port + 1240);
     __cil_tmp16 = (struct device const *)__cil_tmp15;
     dev_err(__cil_tmp16, "%s - Unable to enable UART\n", "cp210x_open");
     }
@@ -4117,13 +4094,9 @@ static void cp210x_close(struct usb_serial_port *port )
 { bool *__cil_tmp2 ;
   bool __cil_tmp3 ;
   char *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned char __cil_tmp7 ;
   int __cil_tmp8 ;
   struct usb_serial *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct mutex *__cil_tmp12 ;
   struct usb_serial *__cil_tmp13 ;
   unsigned char *__cil_tmp14 ;
@@ -4132,8 +4105,6 @@ static void cp210x_close(struct usb_serial_port *port )
   unsigned int __cil_tmp17 ;
   u8 __cil_tmp18 ;
   struct usb_serial *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct mutex *__cil_tmp22 ;
   {
   {
@@ -4142,9 +4113,7 @@ static void cp210x_close(struct usb_serial_port *port )
   if ((int )__cil_tmp3) {
     {
     __cil_tmp4 = (char *)"/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1796/dscv_tempdir/dscv/ri/43_1a/drivers/usb/serial/cp210x.c.p";
-    __cil_tmp5 = (unsigned long )port;
-    __cil_tmp6 = __cil_tmp5 + 816;
-    __cil_tmp7 = *((unsigned char *)__cil_tmp6);
+    __cil_tmp7 = *((unsigned char *)((void *)port + 816));
     __cil_tmp8 = (int )__cil_tmp7;
     printk("<7>%s: %s - port %d\n", __cil_tmp4, "cp210x_close", __cil_tmp8);
     }
@@ -4154,9 +4123,7 @@ static void cp210x_close(struct usb_serial_port *port )
   {
   usb_serial_generic_close(port);
   __cil_tmp9 = *((struct usb_serial **)port);
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 104;
-  __cil_tmp12 = (struct mutex *)__cil_tmp11;
+  __cil_tmp12 = (struct mutex *)((void *)__cil_tmp9 + 104);
   mutex_lock_nested(__cil_tmp12, 0U);
   }
   {
@@ -4175,9 +4142,7 @@ static void cp210x_close(struct usb_serial_port *port )
   }
   {
   __cil_tmp19 = *((struct usb_serial **)port);
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 104;
-  __cil_tmp22 = (struct mutex *)__cil_tmp21;
+  __cil_tmp22 = (struct mutex *)((void *)__cil_tmp19 + 104);
   mutex_unlock(__cil_tmp22);
   }
   return;
@@ -4189,15 +4154,9 @@ static void cp210x_get_termios(struct tty_struct *tty , struct usb_serial_port *
   struct tty_struct *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   struct usb_serial_port *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct ktermios *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   tcflag_t *__cil_tmp17 ;
   unsigned int *__cil_tmp18 ;
   unsigned int __cil_tmp19 ;
@@ -4211,16 +4170,10 @@ static void cp210x_get_termios(struct tty_struct *tty , struct usb_serial_port *
   __cil_tmp7 = (unsigned long )tty;
   if (__cil_tmp7 != __cil_tmp6) {
     {
-    __cil_tmp8 = (unsigned long )tty;
-    __cil_tmp9 = __cil_tmp8 + 1064;
-    __cil_tmp10 = *((void **)__cil_tmp9);
+    __cil_tmp10 = *((void **)((void *)tty + 1064));
     __cil_tmp11 = (struct usb_serial_port *)__cil_tmp10;
-    __cil_tmp12 = (unsigned long )tty;
-    __cil_tmp13 = __cil_tmp12 + 456;
-    __cil_tmp14 = *((struct ktermios **)__cil_tmp13);
-    __cil_tmp15 = (unsigned long )__cil_tmp14;
-    __cil_tmp16 = __cil_tmp15 + 8;
-    __cil_tmp17 = (tcflag_t *)__cil_tmp16;
+    __cil_tmp14 = *((struct ktermios **)((void *)tty + 456));
+    __cil_tmp17 = (tcflag_t *)((void *)__cil_tmp14 + 8);
     cp210x_get_termios_port(__cil_tmp11, __cil_tmp17, & baud);
     __cil_tmp18 = & baud;
     __cil_tmp19 = *__cil_tmp18;
@@ -4248,8 +4201,6 @@ static void cp210x_get_termios_port(struct usb_serial_port *port , unsigned int 
   bool *__cil_tmp8 ;
   bool __cil_tmp9 ;
   char *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned char __cil_tmp13 ;
   int __cil_tmp14 ;
   u8 __cil_tmp15 ;
@@ -4362,9 +4313,7 @@ static void cp210x_get_termios_port(struct usb_serial_port *port , unsigned int 
   if ((int )__cil_tmp9) {
     {
     __cil_tmp10 = (char *)"/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1796/dscv_tempdir/dscv/ri/43_1a/drivers/usb/serial/cp210x.c.p";
-    __cil_tmp11 = (unsigned long )port;
-    __cil_tmp12 = __cil_tmp11 + 816;
-    __cil_tmp13 = *((unsigned char *)__cil_tmp12);
+    __cil_tmp13 = *((unsigned char *)((void *)port + 816));
     __cil_tmp14 = (int )__cil_tmp13;
     printk("<7>%s: %s - port %d\n", __cil_tmp10, "cp210x_get_termios_port", __cil_tmp14);
     }
@@ -4802,11 +4751,7 @@ static void cp210x_change_speed(struct tty_struct *tty , struct usb_serial_port 
 { u32 baud ;
   int tmp ;
   u32 *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct ktermios *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u32 *__cil_tmp12 ;
   u32 *__cil_tmp13 ;
   u32 __cil_tmp14 ;
@@ -4816,8 +4761,6 @@ static void cp210x_change_speed(struct tty_struct *tty , struct usb_serial_port 
   u32 *__cil_tmp18 ;
   u32 __cil_tmp19 ;
   u8 __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct device const *__cil_tmp24 ;
   u32 *__cil_tmp25 ;
@@ -4826,8 +4769,6 @@ static void cp210x_change_speed(struct tty_struct *tty , struct usb_serial_port 
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   u32 *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   u32 *__cil_tmp33 ;
   u32 *__cil_tmp34 ;
   u32 __cil_tmp35 ;
@@ -4836,12 +4777,8 @@ static void cp210x_change_speed(struct tty_struct *tty , struct usb_serial_port 
   {
   {
   __cil_tmp6 = & baud;
-  __cil_tmp7 = (unsigned long )tty;
-  __cil_tmp8 = __cil_tmp7 + 456;
-  __cil_tmp9 = *((struct ktermios **)__cil_tmp8);
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 40;
-  *__cil_tmp6 = *((speed_t *)__cil_tmp11);
+  __cil_tmp9 = *((struct ktermios **)((void *)tty + 456));
+  *__cil_tmp6 = *((speed_t *)((void *)__cil_tmp9 + 40));
   __cil_tmp12 = & baud;
   __cil_tmp13 = & baud;
   __cil_tmp14 = *__cil_tmp13;
@@ -4867,9 +4804,7 @@ static void cp210x_change_speed(struct tty_struct *tty , struct usb_serial_port 
   }
   if (tmp != 0) {
     {
-    __cil_tmp21 = (unsigned long )port;
-    __cil_tmp22 = __cil_tmp21 + 1240;
-    __cil_tmp23 = (struct device *)__cil_tmp22;
+    __cil_tmp23 = (struct device *)((void *)port + 1240);
     __cil_tmp24 = (struct device const *)__cil_tmp23;
     __cil_tmp25 = & baud;
     __cil_tmp26 = *__cil_tmp25;
@@ -4881,9 +4816,7 @@ static void cp210x_change_speed(struct tty_struct *tty , struct usb_serial_port 
     __cil_tmp29 = (unsigned long )old_termios;
     if (__cil_tmp29 != __cil_tmp28) {
       __cil_tmp30 = & baud;
-      __cil_tmp31 = (unsigned long )old_termios;
-      __cil_tmp32 = __cil_tmp31 + 40;
-      *__cil_tmp30 = *((speed_t *)__cil_tmp32);
+      *__cil_tmp30 = *((speed_t *)((void *)old_termios + 40));
     } else {
       __cil_tmp33 = & baud;
       *__cil_tmp33 = 9600U;
@@ -4913,28 +4846,14 @@ static void cp210x_set_termios(struct tty_struct *tty , struct usb_serial_port *
   bool *__cil_tmp11 ;
   bool __cil_tmp12 ;
   char *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned char __cil_tmp16 ;
   int __cil_tmp17 ;
   struct tty_struct *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct ktermios *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   speed_t __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct ktermios *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   speed_t __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   unsigned int __cil_tmp38 ;
@@ -5114,9 +5033,7 @@ static void cp210x_set_termios(struct tty_struct *tty , struct usb_serial_port *
   if ((int )__cil_tmp12) {
     {
     __cil_tmp13 = (char *)"/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1796/dscv_tempdir/dscv/ri/43_1a/drivers/usb/serial/cp210x.c.p";
-    __cil_tmp14 = (unsigned long )port;
-    __cil_tmp15 = __cil_tmp14 + 816;
-    __cil_tmp16 = *((unsigned char *)__cil_tmp15);
+    __cil_tmp16 = *((unsigned char *)((void *)port + 816));
     __cil_tmp17 = (int )__cil_tmp16;
     printk("<7>%s: %s - port %d\n", __cil_tmp13, "cp210x_set_termios", __cil_tmp17);
     }
@@ -5132,25 +5049,13 @@ static void cp210x_set_termios(struct tty_struct *tty , struct usb_serial_port *
   } else {
   }
   }
-  __cil_tmp21 = (unsigned long )tty;
-  __cil_tmp22 = __cil_tmp21 + 456;
-  __cil_tmp23 = *((struct ktermios **)__cil_tmp22);
-  __cil_tmp24 = (unsigned long )__cil_tmp23;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  cflag = *((tcflag_t *)__cil_tmp25);
-  __cil_tmp26 = (unsigned long )old_termios;
-  __cil_tmp27 = __cil_tmp26 + 8;
-  old_cflag = *((tcflag_t *)__cil_tmp27);
+  __cil_tmp23 = *((struct ktermios **)((void *)tty + 456));
+  cflag = *((tcflag_t *)((void *)__cil_tmp23 + 8));
+  old_cflag = *((tcflag_t *)((void *)old_termios + 8));
   {
-  __cil_tmp28 = (unsigned long )old_termios;
-  __cil_tmp29 = __cil_tmp28 + 40;
-  __cil_tmp30 = *((speed_t *)__cil_tmp29);
-  __cil_tmp31 = (unsigned long )tty;
-  __cil_tmp32 = __cil_tmp31 + 456;
-  __cil_tmp33 = *((struct ktermios **)__cil_tmp32);
-  __cil_tmp34 = (unsigned long )__cil_tmp33;
-  __cil_tmp35 = __cil_tmp34 + 40;
-  __cil_tmp36 = *((speed_t *)__cil_tmp35);
+  __cil_tmp30 = *((speed_t *)((void *)old_termios + 40));
+  __cil_tmp33 = *((struct ktermios **)((void *)tty + 456));
+  __cil_tmp36 = *((speed_t *)((void *)__cil_tmp33 + 40));
   if (__cil_tmp36 != __cil_tmp30) {
     {
     cp210x_change_speed(tty, port, old_termios);
@@ -5618,14 +5523,10 @@ static void cp210x_set_termios(struct tty_struct *tty , struct usb_serial_port *
 static int cp210x_tiocmset(struct tty_struct *tty , unsigned int set , unsigned int clear )
 { struct usb_serial_port *port ;
   int tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   {
   {
-  __cil_tmp6 = (unsigned long )tty;
-  __cil_tmp7 = __cil_tmp6 + 1064;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)tty + 1064));
   port = (struct usb_serial_port *)__cil_tmp8;
   tmp = cp210x_tiocmset_port(port, set, clear);
   }
@@ -5640,8 +5541,6 @@ static int cp210x_tiocmset_port(struct usb_serial_port *port , unsigned int set 
   bool *__cil_tmp7 ;
   bool __cil_tmp8 ;
   char *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned char __cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
@@ -5687,9 +5586,7 @@ static int cp210x_tiocmset_port(struct usb_serial_port *port , unsigned int set 
   if ((int )__cil_tmp8) {
     {
     __cil_tmp9 = (char *)"/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1796/dscv_tempdir/dscv/ri/43_1a/drivers/usb/serial/cp210x.c.p";
-    __cil_tmp10 = (unsigned long )port;
-    __cil_tmp11 = __cil_tmp10 + 816;
-    __cil_tmp12 = *((unsigned char *)__cil_tmp11);
+    __cil_tmp12 = *((unsigned char *)((void *)port + 816));
     __cil_tmp13 = (int )__cil_tmp12;
     printk("<7>%s: %s - port %d\n", __cil_tmp9, "cp210x_tiocmset_port", __cil_tmp13);
     }
@@ -5798,14 +5695,10 @@ static int cp210x_tiocmget(struct tty_struct *tty )
   int tmp___2 ;
   int tmp___3 ;
   int tmp___4 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   bool *__cil_tmp14 ;
   bool __cil_tmp15 ;
   char *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned char __cil_tmp19 ;
   int __cil_tmp20 ;
   u8 __cil_tmp21 ;
@@ -5837,9 +5730,7 @@ static int cp210x_tiocmget(struct tty_struct *tty )
   unsigned int *__cil_tmp47 ;
   unsigned int __cil_tmp48 ;
   {
-  __cil_tmp11 = (unsigned long )tty;
-  __cil_tmp12 = __cil_tmp11 + 1064;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)tty + 1064));
   port = (struct usb_serial_port *)__cil_tmp13;
   {
   __cil_tmp14 = & debug;
@@ -5847,9 +5738,7 @@ static int cp210x_tiocmget(struct tty_struct *tty )
   if ((int )__cil_tmp15) {
     {
     __cil_tmp16 = (char *)"/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1796/dscv_tempdir/dscv/ri/43_1a/drivers/usb/serial/cp210x.c.p";
-    __cil_tmp17 = (unsigned long )port;
-    __cil_tmp18 = __cil_tmp17 + 816;
-    __cil_tmp19 = *((unsigned char *)__cil_tmp18);
+    __cil_tmp19 = *((unsigned char *)((void *)port + 816));
     __cil_tmp20 = (int )__cil_tmp19;
     printk("<7>%s: %s - port %d\n", __cil_tmp16, "cp210x_tiocmget", __cil_tmp20);
     }
@@ -5945,14 +5834,10 @@ static void cp210x_break_ctl(struct tty_struct *tty , int break_state )
 { struct usb_serial_port *port ;
   unsigned int state ;
   char *tmp ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   bool *__cil_tmp9 ;
   bool __cil_tmp10 ;
   char *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned char __cil_tmp14 ;
   int __cil_tmp15 ;
   unsigned int *__cil_tmp16 ;
@@ -5964,9 +5849,7 @@ static void cp210x_break_ctl(struct tty_struct *tty , int break_state )
   char *__cil_tmp22 ;
   u8 __cil_tmp23 ;
   {
-  __cil_tmp6 = (unsigned long )tty;
-  __cil_tmp7 = __cil_tmp6 + 1064;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)tty + 1064));
   port = (struct usb_serial_port *)__cil_tmp8;
   {
   __cil_tmp9 = & debug;
@@ -5974,9 +5857,7 @@ static void cp210x_break_ctl(struct tty_struct *tty , int break_state )
   if ((int )__cil_tmp10) {
     {
     __cil_tmp11 = (char *)"/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/1796/dscv_tempdir/dscv/ri/43_1a/drivers/usb/serial/cp210x.c.p";
-    __cil_tmp12 = (unsigned long )port;
-    __cil_tmp13 = __cil_tmp12 + 816;
-    __cil_tmp14 = *((unsigned char *)__cil_tmp13);
+    __cil_tmp14 = *((unsigned char *)((void *)port + 816));
     __cil_tmp15 = (int )__cil_tmp14;
     printk("<7>%s: %s - port %d\n", __cil_tmp11, "cp210x_break_ctl", __cil_tmp15);
     }
@@ -6027,22 +5908,12 @@ static int cp210x_startup(struct usb_serial *serial )
   unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct usb_interface *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct usb_host_interface *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct usb_serial_port *__cil_tmp23 ;
   void *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned char __cil_tmp27 ;
   int __cil_tmp28 ;
   {
@@ -6070,29 +5941,19 @@ static int cp210x_startup(struct usb_serial *serial )
   __cil_tmp9 = (void *)port_priv;
   memset(__cil_tmp9, 0, 1UL);
   __cil_tmp10 = 0 + 2;
-  __cil_tmp11 = (unsigned long )serial;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = *((struct usb_interface **)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((struct usb_host_interface **)__cil_tmp15);
-  __cil_tmp17 = (unsigned long )__cil_tmp16;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp10;
-  *((__u8 *)port_priv) = *((__u8 *)__cil_tmp18);
+  __cil_tmp13 = *((struct usb_interface **)((void *)serial + 16));
+  __cil_tmp16 = *((struct usb_host_interface **)((void *)__cil_tmp13 + 8));
+  *((__u8 *)port_priv) = *((__u8 *)((void *)__cil_tmp16 + __cil_tmp10));
   __cil_tmp19 = i * 8UL;
   __cil_tmp20 = 32 + __cil_tmp19;
-  __cil_tmp21 = (unsigned long )serial;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  __cil_tmp23 = *((struct usb_serial_port **)__cil_tmp22);
+  __cil_tmp23 = *((struct usb_serial_port **)((void *)serial + __cil_tmp20));
   __cil_tmp24 = (void *)port_priv;
   usb_set_serial_port_data(__cil_tmp23, __cil_tmp24);
   i = i + 1;
   }
   ldv_27915: ;
   {
-  __cil_tmp25 = (unsigned long )serial;
-  __cil_tmp26 = __cil_tmp25 + 26;
-  __cil_tmp27 = *((unsigned char *)__cil_tmp26);
+  __cil_tmp27 = *((unsigned char *)((void *)serial + 26));
   __cil_tmp28 = (int )__cil_tmp27;
   if (__cil_tmp28 > i) {
     goto ldv_27914;
@@ -6110,18 +5971,12 @@ static void cp210x_release(struct usb_serial *serial )
   void *tmp ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct usb_serial_port *__cil_tmp9 ;
   void const *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct usb_serial_port *__cil_tmp15 ;
   void *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned char __cil_tmp19 ;
   int __cil_tmp20 ;
   {
@@ -6131,27 +5986,21 @@ static void cp210x_release(struct usb_serial *serial )
   {
   __cil_tmp5 = i * 8UL;
   __cil_tmp6 = 32 + __cil_tmp5;
-  __cil_tmp7 = (unsigned long )serial;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp6;
-  __cil_tmp9 = *((struct usb_serial_port **)__cil_tmp8);
+  __cil_tmp9 = *((struct usb_serial_port **)((void *)serial + __cil_tmp6));
   tmp = usb_get_serial_port_data(__cil_tmp9);
   port_priv = (struct cp210x_port_private *)tmp;
   __cil_tmp10 = (void const *)port_priv;
   kfree(__cil_tmp10);
   __cil_tmp11 = i * 8UL;
   __cil_tmp12 = 32 + __cil_tmp11;
-  __cil_tmp13 = (unsigned long )serial;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((struct usb_serial_port **)__cil_tmp14);
+  __cil_tmp15 = *((struct usb_serial_port **)((void *)serial + __cil_tmp12));
   __cil_tmp16 = (void *)0;
   usb_set_serial_port_data(__cil_tmp15, __cil_tmp16);
   i = i + 1;
   }
   ldv_27923: ;
   {
-  __cil_tmp17 = (unsigned long )serial;
-  __cil_tmp18 = __cil_tmp17 + 26;
-  __cil_tmp19 = *((unsigned char *)__cil_tmp18);
+  __cil_tmp19 = *((unsigned char *)((void *)serial + 26));
   __cil_tmp20 = (int )__cil_tmp19;
   if (__cil_tmp20 > i) {
     goto ldv_27922;

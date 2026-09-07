@@ -2063,16 +2063,12 @@ extern void input_free_device(struct input_dev *dev ) ;
 __inline static void *input_get_drvdata(struct input_dev *dev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *input_get_drvdata(struct input_dev *dev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device  const  *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 648;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 648);
   __cil_tmp6 = (struct device  const  *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -2081,15 +2077,12 @@ __inline static void *input_get_drvdata(struct input_dev *dev )
 }
 __inline static void input_set_drvdata(struct input_dev *dev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void input_set_drvdata(struct input_dev *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 648;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 648);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2288,56 +2281,30 @@ static void tgfx_timer(unsigned long private )
   unsigned char tmp___0 ;
   void *__cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct pardevice *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct parport *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct parport_operations *__cil_tmp24 ;
   void (*__cil_tmp25)(struct parport * , unsigned char  ) ;
   struct pardevice *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct parport *__cil_tmp29 ;
   int __cil_tmp30 ;
   int __cil_tmp31 ;
   unsigned char __cil_tmp32 ;
   struct pardevice *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct parport *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct parport_operations *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   unsigned char (*__cil_tmp42)(struct parport * ) ;
   struct pardevice *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct parport *__cil_tmp46 ;
   int __cil_tmp47 ;
   struct pardevice *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct parport *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct parport_operations *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned char (*__cil_tmp57)(struct parport * ) ;
   struct pardevice *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct parport *__cil_tmp61 ;
   int __cil_tmp62 ;
   int __cil_tmp63 ;
@@ -2359,8 +2326,6 @@ static void tgfx_timer(unsigned long private )
   int __cil_tmp79 ;
   int __cil_tmp80 ;
   int __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   struct timer_list *__cil_tmp84 ;
   unsigned long volatile   __cil_tmp85 ;
   unsigned long volatile   __cil_tmp86 ;
@@ -2380,63 +2345,37 @@ static void tgfx_timer(unsigned long private )
     }
     {
     __cil_tmp10 = 1 << i;
-    __cil_tmp11 = (unsigned long )tgfx;
-    __cil_tmp12 = __cil_tmp11 + 816;
-    __cil_tmp13 = *((int *)__cil_tmp12);
+    __cil_tmp13 = *((int *)((void *)tgfx + 816));
     if (__cil_tmp13 & __cil_tmp10) {
       {
       __cil_tmp14 = i * 8UL;
       __cil_tmp15 = 88 + __cil_tmp14;
-      __cil_tmp16 = (unsigned long )tgfx;
-      __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-      dev = *((struct input_dev **)__cil_tmp17);
+      dev = *((struct input_dev **)((void *)tgfx + __cil_tmp15));
       __cil_tmp18 = *((struct pardevice **)tgfx);
-      __cil_tmp19 = (unsigned long )__cil_tmp18;
-      __cil_tmp20 = __cil_tmp19 + 8;
-      __cil_tmp21 = *((struct parport **)__cil_tmp20);
-      __cil_tmp22 = (unsigned long )__cil_tmp21;
-      __cil_tmp23 = __cil_tmp22 + 440;
-      __cil_tmp24 = *((struct parport_operations **)__cil_tmp23);
+      __cil_tmp21 = *((struct parport **)((void *)__cil_tmp18 + 8));
+      __cil_tmp24 = *((struct parport_operations **)((void *)__cil_tmp21 + 440));
       __cil_tmp25 = *((void (**)(struct parport * , unsigned char  ))__cil_tmp24);
       __cil_tmp26 = *((struct pardevice **)tgfx);
-      __cil_tmp27 = (unsigned long )__cil_tmp26;
-      __cil_tmp28 = __cil_tmp27 + 8;
-      __cil_tmp29 = *((struct parport **)__cil_tmp28);
+      __cil_tmp29 = *((struct parport **)((void *)__cil_tmp26 + 8));
       __cil_tmp30 = 1 << i;
       __cil_tmp31 = ~ __cil_tmp30;
       __cil_tmp32 = (unsigned char )__cil_tmp31;
       (*__cil_tmp25)(__cil_tmp29, __cil_tmp32);
       __cil_tmp33 = *((struct pardevice **)tgfx);
-      __cil_tmp34 = (unsigned long )__cil_tmp33;
-      __cil_tmp35 = __cil_tmp34 + 8;
-      __cil_tmp36 = *((struct parport **)__cil_tmp35);
-      __cil_tmp37 = (unsigned long )__cil_tmp36;
-      __cil_tmp38 = __cil_tmp37 + 440;
-      __cil_tmp39 = *((struct parport_operations **)__cil_tmp38);
-      __cil_tmp40 = (unsigned long )__cil_tmp39;
-      __cil_tmp41 = __cil_tmp40 + 40;
-      __cil_tmp42 = *((unsigned char (**)(struct parport * ))__cil_tmp41);
+      __cil_tmp36 = *((struct parport **)((void *)__cil_tmp33 + 8));
+      __cil_tmp39 = *((struct parport_operations **)((void *)__cil_tmp36 + 440));
+      __cil_tmp42 = *((unsigned char (**)(struct parport * ))((void *)__cil_tmp39 + 40));
       __cil_tmp43 = *((struct pardevice **)tgfx);
-      __cil_tmp44 = (unsigned long )__cil_tmp43;
-      __cil_tmp45 = __cil_tmp44 + 8;
-      __cil_tmp46 = *((struct parport **)__cil_tmp45);
+      __cil_tmp46 = *((struct parport **)((void *)__cil_tmp43 + 8));
       tmp = (*__cil_tmp42)(__cil_tmp46);
       __cil_tmp47 = (int )tmp;
       data1 = __cil_tmp47 ^ 127;
       __cil_tmp48 = *((struct pardevice **)tgfx);
-      __cil_tmp49 = (unsigned long )__cil_tmp48;
-      __cil_tmp50 = __cil_tmp49 + 8;
-      __cil_tmp51 = *((struct parport **)__cil_tmp50);
-      __cil_tmp52 = (unsigned long )__cil_tmp51;
-      __cil_tmp53 = __cil_tmp52 + 440;
-      __cil_tmp54 = *((struct parport_operations **)__cil_tmp53);
-      __cil_tmp55 = (unsigned long )__cil_tmp54;
-      __cil_tmp56 = __cil_tmp55 + 24;
-      __cil_tmp57 = *((unsigned char (**)(struct parport * ))__cil_tmp56);
+      __cil_tmp51 = *((struct parport **)((void *)__cil_tmp48 + 8));
+      __cil_tmp54 = *((struct parport_operations **)((void *)__cil_tmp51 + 440));
+      __cil_tmp57 = *((unsigned char (**)(struct parport * ))((void *)__cil_tmp54 + 24));
       __cil_tmp58 = *((struct pardevice **)tgfx);
-      __cil_tmp59 = (unsigned long )__cil_tmp58;
-      __cil_tmp60 = __cil_tmp59 + 8;
-      __cil_tmp61 = *((struct parport **)__cil_tmp60);
+      __cil_tmp61 = *((struct parport **)((void *)__cil_tmp58 + 8));
       tmp___0 = (*__cil_tmp57)(__cil_tmp61);
       __cil_tmp62 = (int )tmp___0;
       data2 = __cil_tmp62 ^ 4;
@@ -2477,9 +2416,7 @@ static void tgfx_timer(unsigned long private )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp82 = (unsigned long )tgfx;
-  __cil_tmp83 = __cil_tmp82 + 8;
-  __cil_tmp84 = (struct timer_list *)__cil_tmp83;
+  __cil_tmp84 = (struct timer_list *)((void *)tgfx + 8);
   __cil_tmp85 = (unsigned long volatile   )2;
   __cil_tmp86 = jiffies + __cil_tmp85;
   __cil_tmp87 = (unsigned long )__cil_tmp86;
@@ -2493,48 +2430,26 @@ static int tgfx_open(struct input_dev *dev )
   void *tmp ;
   int err ;
   int tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct mutex *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   struct pardevice *__cil_tmp16 ;
   struct pardevice *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct parport *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct parport_operations *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   void (*__cil_tmp26)(struct parport * , unsigned char  ) ;
   struct pardevice *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct parport *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct timer_list *__cil_tmp33 ;
   unsigned long volatile   __cil_tmp34 ;
   unsigned long volatile   __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct mutex *__cil_tmp39 ;
 
   {
   {
   tmp = input_get_drvdata(dev);
   tgfx = (struct tgfx *)tmp;
-  __cil_tmp6 = (unsigned long )tgfx;
-  __cil_tmp7 = __cil_tmp6 + 824;
-  __cil_tmp8 = (struct mutex *)__cil_tmp7;
+  __cil_tmp8 = (struct mutex *)((void *)tgfx + 824);
   err = (int )mutex_lock_interruptible(__cil_tmp8);
   }
   if (err) {
@@ -2542,15 +2457,9 @@ static int tgfx_open(struct input_dev *dev )
   } else {
 
   }
-  __cil_tmp9 = (unsigned long )tgfx;
-  __cil_tmp10 = __cil_tmp9 + 820;
-  tmp___0 = *((int *)__cil_tmp10);
-  __cil_tmp11 = (unsigned long )tgfx;
-  __cil_tmp12 = __cil_tmp11 + 820;
-  __cil_tmp13 = (unsigned long )tgfx;
-  __cil_tmp14 = __cil_tmp13 + 820;
-  __cil_tmp15 = *((int *)__cil_tmp14);
-  *((int *)__cil_tmp12) = __cil_tmp15 + 1;
+  tmp___0 = *((int *)((void *)tgfx + 820));
+  __cil_tmp15 = *((int *)((void *)tgfx + 820));
+  *((int *)((void *)tgfx + 820)) = __cil_tmp15 + 1;
   if (tmp___0) {
 
   } else {
@@ -2558,23 +2467,13 @@ static int tgfx_open(struct input_dev *dev )
     __cil_tmp16 = *((struct pardevice **)tgfx);
     parport_claim(__cil_tmp16);
     __cil_tmp17 = *((struct pardevice **)tgfx);
-    __cil_tmp18 = (unsigned long )__cil_tmp17;
-    __cil_tmp19 = __cil_tmp18 + 8;
-    __cil_tmp20 = *((struct parport **)__cil_tmp19);
-    __cil_tmp21 = (unsigned long )__cil_tmp20;
-    __cil_tmp22 = __cil_tmp21 + 440;
-    __cil_tmp23 = *((struct parport_operations **)__cil_tmp22);
-    __cil_tmp24 = (unsigned long )__cil_tmp23;
-    __cil_tmp25 = __cil_tmp24 + 16;
-    __cil_tmp26 = *((void (**)(struct parport * , unsigned char  ))__cil_tmp25);
+    __cil_tmp20 = *((struct parport **)((void *)__cil_tmp17 + 8));
+    __cil_tmp23 = *((struct parport_operations **)((void *)__cil_tmp20 + 440));
+    __cil_tmp26 = *((void (**)(struct parport * , unsigned char  ))((void *)__cil_tmp23 + 16));
     __cil_tmp27 = *((struct pardevice **)tgfx);
-    __cil_tmp28 = (unsigned long )__cil_tmp27;
-    __cil_tmp29 = __cil_tmp28 + 8;
-    __cil_tmp30 = *((struct parport **)__cil_tmp29);
+    __cil_tmp30 = *((struct parport **)((void *)__cil_tmp27 + 8));
     (*__cil_tmp26)(__cil_tmp30, (unsigned char)4);
-    __cil_tmp31 = (unsigned long )tgfx;
-    __cil_tmp32 = __cil_tmp31 + 8;
-    __cil_tmp33 = (struct timer_list *)__cil_tmp32;
+    __cil_tmp33 = (struct timer_list *)((void *)tgfx + 8);
     __cil_tmp34 = (unsigned long volatile   )2;
     __cil_tmp35 = jiffies + __cil_tmp34;
     __cil_tmp36 = (unsigned long )__cil_tmp35;
@@ -2582,9 +2481,7 @@ static int tgfx_open(struct input_dev *dev )
     }
   }
   {
-  __cil_tmp37 = (unsigned long )tgfx;
-  __cil_tmp38 = __cil_tmp37 + 824;
-  __cil_tmp39 = (struct mutex *)__cil_tmp38;
+  __cil_tmp39 = (struct mutex *)((void *)tgfx + 824);
   mutex_unlock(__cil_tmp39);
   }
   return (0);
@@ -2593,78 +2490,40 @@ static int tgfx_open(struct input_dev *dev )
 static void tgfx_close(struct input_dev *dev ) 
 { struct tgfx *tgfx ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct mutex *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct timer_list *__cil_tmp16 ;
   struct pardevice *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct parport *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct parport_operations *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   void (*__cil_tmp26)(struct parport * , unsigned char  ) ;
   struct pardevice *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct parport *__cil_tmp30 ;
   struct pardevice *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct mutex *__cil_tmp34 ;
 
   {
   {
   tmp = input_get_drvdata(dev);
   tgfx = (struct tgfx *)tmp;
-  __cil_tmp4 = (unsigned long )tgfx;
-  __cil_tmp5 = __cil_tmp4 + 824;
-  __cil_tmp6 = (struct mutex *)__cil_tmp5;
+  __cil_tmp6 = (struct mutex *)((void *)tgfx + 824);
   mutex_lock(__cil_tmp6);
-  __cil_tmp7 = (unsigned long )tgfx;
-  __cil_tmp8 = __cil_tmp7 + 820;
-  __cil_tmp9 = (unsigned long )tgfx;
-  __cil_tmp10 = __cil_tmp9 + 820;
-  __cil_tmp11 = *((int *)__cil_tmp10);
-  *((int *)__cil_tmp8) = __cil_tmp11 - 1;
+  __cil_tmp11 = *((int *)((void *)tgfx + 820));
+  *((int *)((void *)tgfx + 820)) = __cil_tmp11 - 1;
   }
   {
-  __cil_tmp12 = (unsigned long )tgfx;
-  __cil_tmp13 = __cil_tmp12 + 820;
-  if (*((int *)__cil_tmp13)) {
+  if (*((int *)((void *)tgfx + 820))) {
 
   } else {
     {
-    __cil_tmp14 = (unsigned long )tgfx;
-    __cil_tmp15 = __cil_tmp14 + 8;
-    __cil_tmp16 = (struct timer_list *)__cil_tmp15;
+    __cil_tmp16 = (struct timer_list *)((void *)tgfx + 8);
     del_timer_sync(__cil_tmp16);
     __cil_tmp17 = *((struct pardevice **)tgfx);
-    __cil_tmp18 = (unsigned long )__cil_tmp17;
-    __cil_tmp19 = __cil_tmp18 + 8;
-    __cil_tmp20 = *((struct parport **)__cil_tmp19);
-    __cil_tmp21 = (unsigned long )__cil_tmp20;
-    __cil_tmp22 = __cil_tmp21 + 440;
-    __cil_tmp23 = *((struct parport_operations **)__cil_tmp22);
-    __cil_tmp24 = (unsigned long )__cil_tmp23;
-    __cil_tmp25 = __cil_tmp24 + 16;
-    __cil_tmp26 = *((void (**)(struct parport * , unsigned char  ))__cil_tmp25);
+    __cil_tmp20 = *((struct parport **)((void *)__cil_tmp17 + 8));
+    __cil_tmp23 = *((struct parport_operations **)((void *)__cil_tmp20 + 440));
+    __cil_tmp26 = *((void (**)(struct parport * , unsigned char  ))((void *)__cil_tmp23 + 16));
     __cil_tmp27 = *((struct pardevice **)tgfx);
-    __cil_tmp28 = (unsigned long )__cil_tmp27;
-    __cil_tmp29 = __cil_tmp28 + 8;
-    __cil_tmp30 = *((struct parport **)__cil_tmp29);
+    __cil_tmp30 = *((struct parport **)((void *)__cil_tmp27 + 8));
     (*__cil_tmp26)(__cil_tmp30, (unsigned char)0);
     __cil_tmp31 = *((struct pardevice **)tgfx);
     parport_release(__cil_tmp31);
@@ -2672,9 +2531,7 @@ static void tgfx_close(struct input_dev *dev )
   }
   }
   {
-  __cil_tmp32 = (unsigned long )tgfx;
-  __cil_tmp33 = __cil_tmp32 + 824;
-  __cil_tmp34 = (struct mutex *)__cil_tmp33;
+  __cil_tmp34 = (struct mutex *)((void *)tgfx + 824);
   mutex_unlock(__cil_tmp34);
   }
   return;
@@ -2701,23 +2558,15 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
   void (*__cil_tmp18)(void * ) ;
   int __cil_tmp19 ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct mutex *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct timer_list *__cil_tmp26 ;
   void *__cil_tmp27 ;
   char const   *__cil_tmp28 ;
   void *__cil_tmp29 ;
   struct lock_class_key *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   int *__cil_tmp38 ;
   int __cil_tmp39 ;
   int *__cil_tmp40 ;
@@ -2726,20 +2575,12 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
   int __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   int __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   char *__cil_tmp60 ;
   int *__cil_tmp61 ;
   int __cil_tmp62 ;
@@ -2747,54 +2588,28 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
   unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   char *__cil_tmp69 ;
   struct pardevice *__cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   struct parport *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   char const   *__cil_tmp76 ;
   unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   char *__cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
   unsigned long __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
   unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   char *__cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
   unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
   int *__cil_tmp101 ;
   int __cil_tmp102 ;
   unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
   void *__cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   unsigned long __cil_tmp111 ;
   unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
   unsigned long __cil_tmp115 ;
   unsigned long __cil_tmp116 ;
   int *__cil_tmp117 ;
@@ -2805,31 +2620,19 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
   unsigned int __cil_tmp122 ;
   unsigned long __cil_tmp123 ;
   unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   unsigned long *__cil_tmp127 ;
   unsigned long volatile   *__cil_tmp128 ;
   unsigned long __cil_tmp129 ;
   unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
   struct input_dev *__cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
   int __cil_tmp136 ;
   unsigned long __cil_tmp137 ;
   unsigned long __cil_tmp138 ;
-  unsigned long __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
   struct input_dev *__cil_tmp141 ;
   unsigned long __cil_tmp142 ;
   unsigned long __cil_tmp143 ;
-  unsigned long __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
   unsigned long __cil_tmp146 ;
   unsigned long __cil_tmp147 ;
-  unsigned long __cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
   struct input_dev *__cil_tmp150 ;
   void const   *__cil_tmp151 ;
   long __cil_tmp152 ;
@@ -2885,9 +2688,7 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
   while (1) {
     while_continue: /* CIL Label */ ;
     {
-    __cil_tmp21 = (unsigned long )tgfx;
-    __cil_tmp22 = __cil_tmp21 + 824;
-    __cil_tmp23 = (struct mutex *)__cil_tmp22;
+    __cil_tmp23 = (struct mutex *)((void *)tgfx + 824);
     __mutex_init(__cil_tmp23, "&tgfx->sem", & __key___3);
     }
     goto while_break;
@@ -2896,23 +2697,17 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
   }
   {
   *((struct pardevice **)tgfx) = pd;
-  __cil_tmp24 = (unsigned long )tgfx;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  __cil_tmp26 = (struct timer_list *)__cil_tmp25;
+  __cil_tmp26 = (struct timer_list *)((void *)tgfx + 8);
   __cil_tmp27 = (void *)0;
   __cil_tmp28 = (char const   *)__cil_tmp27;
   __cil_tmp29 = (void *)0;
   __cil_tmp30 = (struct lock_class_key *)__cil_tmp29;
   init_timer_key(__cil_tmp26, __cil_tmp28, __cil_tmp30);
   __cil_tmp31 = 8 + 40;
-  __cil_tmp32 = (unsigned long )tgfx;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
   __cil_tmp34 = (long )tgfx;
-  *((unsigned long *)__cil_tmp33) = (unsigned long )__cil_tmp34;
+  *((unsigned long *)((void *)tgfx + __cil_tmp31)) = (unsigned long )__cil_tmp34;
   __cil_tmp35 = 8 + 32;
-  __cil_tmp36 = (unsigned long )tgfx;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  *((void (**)(unsigned long  ))__cil_tmp37) = & tgfx_timer;
+  *((void (**)(unsigned long  ))((void *)tgfx + __cil_tmp35)) = & tgfx_timer;
   i = 0;
   }
   {
@@ -2951,9 +2746,7 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
     input_dev = input_allocate_device();
     __cil_tmp44 = i * 8UL;
     __cil_tmp45 = 88 + __cil_tmp44;
-    __cil_tmp46 = (unsigned long )tgfx;
-    __cil_tmp47 = __cil_tmp46 + __cil_tmp45;
-    *((struct input_dev **)__cil_tmp47) = input_dev;
+    *((struct input_dev **)((void *)tgfx + __cil_tmp45)) = input_dev;
     }
     if (! input_dev) {
       {
@@ -2965,20 +2758,14 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
 
     }
     {
-    __cil_tmp48 = (unsigned long )tgfx;
-    __cil_tmp49 = __cil_tmp48 + 816;
     __cil_tmp50 = 1 << i;
-    __cil_tmp51 = (unsigned long )tgfx;
-    __cil_tmp52 = __cil_tmp51 + 816;
-    __cil_tmp53 = *((int *)__cil_tmp52);
-    *((int *)__cil_tmp49) = __cil_tmp53 | __cil_tmp50;
+    __cil_tmp53 = *((int *)((void *)tgfx + 816));
+    *((int *)((void *)tgfx + 816)) = __cil_tmp53 | __cil_tmp50;
     __cil_tmp54 = 0 * 1UL;
     __cil_tmp55 = i * 64UL;
     __cil_tmp56 = __cil_tmp55 + __cil_tmp54;
     __cil_tmp57 = 144 + __cil_tmp56;
-    __cil_tmp58 = (unsigned long )tgfx;
-    __cil_tmp59 = __cil_tmp58 + __cil_tmp57;
-    __cil_tmp60 = (char *)__cil_tmp59;
+    __cil_tmp60 = (char *)((void *)tgfx + __cil_tmp57);
     __cil_tmp61 = n_buttons + i;
     __cil_tmp62 = *__cil_tmp61;
     snprintf(__cil_tmp60, 64UL, "TurboGraFX %d-button Multisystem joystick", __cil_tmp62);
@@ -2986,67 +2773,41 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
     __cil_tmp64 = i * 32UL;
     __cil_tmp65 = __cil_tmp64 + __cil_tmp63;
     __cil_tmp66 = 592 + __cil_tmp65;
-    __cil_tmp67 = (unsigned long )tgfx;
-    __cil_tmp68 = __cil_tmp67 + __cil_tmp66;
-    __cil_tmp69 = (char *)__cil_tmp68;
+    __cil_tmp69 = (char *)((void *)tgfx + __cil_tmp66);
     __cil_tmp70 = *((struct pardevice **)tgfx);
-    __cil_tmp71 = (unsigned long )__cil_tmp70;
-    __cil_tmp72 = __cil_tmp71 + 8;
-    __cil_tmp73 = *((struct parport **)__cil_tmp72);
-    __cil_tmp74 = (unsigned long )__cil_tmp73;
-    __cil_tmp75 = __cil_tmp74 + 24;
-    __cil_tmp76 = *((char const   **)__cil_tmp75);
+    __cil_tmp73 = *((struct parport **)((void *)__cil_tmp70 + 8));
+    __cil_tmp76 = *((char const   **)((void *)__cil_tmp73 + 24));
     snprintf(__cil_tmp69, 32UL, "%s/input%d", __cil_tmp76, i);
     __cil_tmp77 = 0 * 1UL;
     __cil_tmp78 = i * 64UL;
     __cil_tmp79 = __cil_tmp78 + __cil_tmp77;
     __cil_tmp80 = 144 + __cil_tmp79;
-    __cil_tmp81 = (unsigned long )tgfx;
-    __cil_tmp82 = __cil_tmp81 + __cil_tmp80;
-    __cil_tmp83 = (char *)__cil_tmp82;
+    __cil_tmp83 = (char *)((void *)tgfx + __cil_tmp80);
     *((char const   **)input_dev) = (char const   *)__cil_tmp83;
-    __cil_tmp84 = (unsigned long )input_dev;
-    __cil_tmp85 = __cil_tmp84 + 8;
     __cil_tmp86 = 0 * 1UL;
     __cil_tmp87 = i * 32UL;
     __cil_tmp88 = __cil_tmp87 + __cil_tmp86;
     __cil_tmp89 = 592 + __cil_tmp88;
-    __cil_tmp90 = (unsigned long )tgfx;
-    __cil_tmp91 = __cil_tmp90 + __cil_tmp89;
-    __cil_tmp92 = (char *)__cil_tmp91;
-    *((char const   **)__cil_tmp85) = (char const   *)__cil_tmp92;
-    __cil_tmp93 = (unsigned long )input_dev;
-    __cil_tmp94 = __cil_tmp93 + 24;
-    *((__u16 *)__cil_tmp94) = (__u16 )21;
+    __cil_tmp92 = (char *)((void *)tgfx + __cil_tmp89);
+    *((char const   **)((void *)input_dev + 8)) = (char const   *)__cil_tmp92;
+    *((__u16 *)((void *)input_dev + 24)) = (__u16 )21;
     __cil_tmp95 = 24 + 2;
-    __cil_tmp96 = (unsigned long )input_dev;
-    __cil_tmp97 = __cil_tmp96 + __cil_tmp95;
-    *((__u16 *)__cil_tmp97) = (__u16 )3;
+    *((__u16 *)((void *)input_dev + __cil_tmp95)) = (__u16 )3;
     __cil_tmp98 = 24 + 4;
-    __cil_tmp99 = (unsigned long )input_dev;
-    __cil_tmp100 = __cil_tmp99 + __cil_tmp98;
     __cil_tmp101 = n_buttons + i;
     __cil_tmp102 = *__cil_tmp101;
-    *((__u16 *)__cil_tmp100) = (__u16 )__cil_tmp102;
+    *((__u16 *)((void *)input_dev + __cil_tmp98)) = (__u16 )__cil_tmp102;
     __cil_tmp103 = 24 + 6;
-    __cil_tmp104 = (unsigned long )input_dev;
-    __cil_tmp105 = __cil_tmp104 + __cil_tmp103;
-    *((__u16 *)__cil_tmp105) = (__u16 )256;
+    *((__u16 *)((void *)input_dev + __cil_tmp103)) = (__u16 )256;
     __cil_tmp106 = (void *)tgfx;
     input_set_drvdata(input_dev, __cil_tmp106);
-    __cil_tmp107 = (unsigned long )input_dev;
-    __cil_tmp108 = __cil_tmp107 + 504;
-    *((int (**)(struct input_dev *dev ))__cil_tmp108) = & tgfx_open;
-    __cil_tmp109 = (unsigned long )input_dev;
-    __cil_tmp110 = __cil_tmp109 + 512;
-    *((void (**)(struct input_dev *dev ))__cil_tmp110) = & tgfx_close;
+    *((int (**)(struct input_dev *dev ))((void *)input_dev + 504)) = & tgfx_open;
+    *((void (**)(struct input_dev *dev ))((void *)input_dev + 512)) = & tgfx_close;
     __cil_tmp111 = 0 * 8UL;
     __cil_tmp112 = 40 + __cil_tmp111;
-    __cil_tmp113 = (unsigned long )input_dev;
-    __cil_tmp114 = __cil_tmp113 + __cil_tmp112;
     __cil_tmp115 = 1UL << 3;
     __cil_tmp116 = 1UL << 1;
-    *((unsigned long *)__cil_tmp114) = __cil_tmp116 | __cil_tmp115;
+    *((unsigned long *)((void *)input_dev + __cil_tmp112)) = __cil_tmp116 | __cil_tmp115;
     input_set_abs_params(input_dev, 0U, -1, 1, 0, 0);
     input_set_abs_params(input_dev, 1U, -1, 1, 0, 0);
     j = 0;
@@ -3070,9 +2831,7 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
       __cil_tmp122 = (unsigned int )__cil_tmp121;
       __cil_tmp123 = 0 * 8UL;
       __cil_tmp124 = 48 + __cil_tmp123;
-      __cil_tmp125 = (unsigned long )input_dev;
-      __cil_tmp126 = __cil_tmp125 + __cil_tmp124;
-      __cil_tmp127 = (unsigned long *)__cil_tmp126;
+      __cil_tmp127 = (unsigned long *)((void *)input_dev + __cil_tmp124);
       __cil_tmp128 = (unsigned long volatile   *)__cil_tmp127;
       set_bit(__cil_tmp122, __cil_tmp128);
       j = j + 1;
@@ -3083,9 +2842,7 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
     {
     __cil_tmp129 = i * 8UL;
     __cil_tmp130 = 88 + __cil_tmp129;
-    __cil_tmp131 = (unsigned long )tgfx;
-    __cil_tmp132 = __cil_tmp131 + __cil_tmp130;
-    __cil_tmp133 = *((struct input_dev **)__cil_tmp132);
+    __cil_tmp133 = *((struct input_dev **)((void *)tgfx + __cil_tmp130));
     err = (int )input_register_device(__cil_tmp133);
     }
     if (err) {
@@ -3099,9 +2856,7 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
   while_break___0: /* CIL Label */ ;
   }
   {
-  __cil_tmp134 = (unsigned long )tgfx;
-  __cil_tmp135 = __cil_tmp134 + 816;
-  __cil_tmp136 = *((int *)__cil_tmp135);
+  __cil_tmp136 = *((int *)((void *)tgfx + 816));
   if (! __cil_tmp136) {
     {
     printk("<3>turbografx.c: No valid devices specified\n");
@@ -3120,9 +2875,7 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
   {
   __cil_tmp137 = i * 8UL;
   __cil_tmp138 = 88 + __cil_tmp137;
-  __cil_tmp139 = (unsigned long )tgfx;
-  __cil_tmp140 = __cil_tmp139 + __cil_tmp138;
-  __cil_tmp141 = *((struct input_dev **)__cil_tmp140);
+  __cil_tmp141 = *((struct input_dev **)((void *)tgfx + __cil_tmp138));
   input_free_device(__cil_tmp141);
   }
   err_unreg_devs: 
@@ -3138,15 +2891,11 @@ static struct tgfx *tgfx_probe(int parport , int *n_buttons , int n_devs )
     {
     __cil_tmp142 = i * 8UL;
     __cil_tmp143 = 88 + __cil_tmp142;
-    __cil_tmp144 = (unsigned long )tgfx;
-    __cil_tmp145 = __cil_tmp144 + __cil_tmp143;
-    if (*((struct input_dev **)__cil_tmp145)) {
+    if (*((struct input_dev **)((void *)tgfx + __cil_tmp143))) {
       {
       __cil_tmp146 = i * 8UL;
       __cil_tmp147 = 88 + __cil_tmp146;
-      __cil_tmp148 = (unsigned long )tgfx;
-      __cil_tmp149 = __cil_tmp148 + __cil_tmp147;
-      __cil_tmp150 = *((struct input_dev **)__cil_tmp149);
+      __cil_tmp150 = *((struct input_dev **)((void *)tgfx + __cil_tmp147));
       input_unregister_device(__cil_tmp150);
       }
     } else {
@@ -3181,12 +2930,8 @@ static void tgfx_remove(struct tgfx *tgfx )
 { int i ;
   unsigned long __cil_tmp3 ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct input_dev *__cil_tmp11 ;
   struct pardevice *__cil_tmp12 ;
   void const   *__cil_tmp13 ;
@@ -3204,15 +2949,11 @@ static void tgfx_remove(struct tgfx *tgfx )
     {
     __cil_tmp3 = i * 8UL;
     __cil_tmp4 = 88 + __cil_tmp3;
-    __cil_tmp5 = (unsigned long )tgfx;
-    __cil_tmp6 = __cil_tmp5 + __cil_tmp4;
-    if (*((struct input_dev **)__cil_tmp6)) {
+    if (*((struct input_dev **)((void *)tgfx + __cil_tmp4))) {
       {
       __cil_tmp7 = i * 8UL;
       __cil_tmp8 = 88 + __cil_tmp7;
-      __cil_tmp9 = (unsigned long )tgfx;
-      __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-      __cil_tmp11 = *((struct input_dev **)__cil_tmp10);
+      __cil_tmp11 = *((struct input_dev **)((void *)tgfx + __cil_tmp8));
       input_unregister_device(__cil_tmp11);
       }
     } else {

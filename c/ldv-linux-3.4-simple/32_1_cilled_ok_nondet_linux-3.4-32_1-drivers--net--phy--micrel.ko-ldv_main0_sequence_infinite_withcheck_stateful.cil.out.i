@@ -3119,20 +3119,12 @@ extern int mdiobus_write(struct mii_bus *bus , int addr , u32 regnum , u16 val )
 __inline static int phy_read(struct phy_device *phydev , u32 regnum ) __attribute__((__no_instrument_function__)) ;
 __inline static int phy_read(struct phy_device *phydev , u32 regnum )
 { int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct mii_bus *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
   {
   {
-  __cil_tmp4 = (unsigned long )phydev;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((struct mii_bus **)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )phydev;
-  __cil_tmp8 = __cil_tmp7 + 800;
-  __cil_tmp9 = *((int *)__cil_tmp8);
+  __cil_tmp6 = *((struct mii_bus **)((void *)phydev + 8));
+  __cil_tmp9 = *((int *)((void *)phydev + 800));
   tmp___7 = mdiobus_read(__cil_tmp6, __cil_tmp9, regnum);
   }
   return (tmp___7);
@@ -3141,20 +3133,12 @@ __inline static int phy_read(struct phy_device *phydev , u32 regnum )
 __inline static int phy_write(struct phy_device *phydev , u32 regnum , u16 val ) __attribute__((__no_instrument_function__)) ;
 __inline static int phy_write(struct phy_device *phydev , u32 regnum , u16 val )
 { int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct mii_bus *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   {
   {
-  __cil_tmp5 = (unsigned long )phydev;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((struct mii_bus **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )phydev;
-  __cil_tmp9 = __cil_tmp8 + 800;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp7 = *((struct mii_bus **)((void *)phydev + 8));
+  __cil_tmp10 = *((int *)((void *)phydev + 800));
   tmp___7 = mdiobus_write(__cil_tmp7, __cil_tmp10, regnum, val);
   }
   return (tmp___7);
@@ -3184,8 +3168,6 @@ static int kszphy_ack_interrupt(struct phy_device *phydev )
 static int kszphy_set_interrupt(struct phy_device *phydev )
 { int temp ;
   int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   u32 __cil_tmp6 ;
   int __cil_tmp7 ;
   int __cil_tmp8 ;
@@ -3193,9 +3175,7 @@ static int kszphy_set_interrupt(struct phy_device *phydev )
   u16 __cil_tmp10 ;
   {
   {
-  __cil_tmp4 = (unsigned long )phydev;
-  __cil_tmp5 = __cil_tmp4 + 824;
-  __cil_tmp6 = *((u32 *)__cil_tmp5);
+  __cil_tmp6 = *((u32 *)((void *)phydev + 824));
   if (2147483648U == __cil_tmp6) {
     __cil_tmp7 = 1 << 10;
     __cil_tmp8 = 1 << 8;
@@ -3307,8 +3287,6 @@ static int kszphy_config_init(struct phy_device *phydev )
 }
 static int ks8051_config_init(struct phy_device *phydev )
 { int regval ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   u32 __cil_tmp5 ;
   u32 __cil_tmp6 ;
   int __cil_tmp7 ;
@@ -3316,9 +3294,7 @@ static int ks8051_config_init(struct phy_device *phydev )
   u16 __cil_tmp9 ;
   {
   {
-  __cil_tmp3 = (unsigned long )phydev;
-  __cil_tmp4 = __cil_tmp3 + 792;
-  __cil_tmp5 = *((u32 *)__cil_tmp4);
+  __cil_tmp5 = *((u32 *)((void *)phydev + 792));
   if (__cil_tmp5 & 1U) {
     {
     __cil_tmp6 = (u32 )31;

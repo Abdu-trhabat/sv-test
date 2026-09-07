@@ -5287,15 +5287,12 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 extern int dev_set_drvdata(struct device *dev , void *data ) ;
 __inline static void i2c_set_adapdata(struct i2c_adapter *dev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_adapdata(struct i2c_adapter *dev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 128;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 128);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -5342,41 +5339,17 @@ static void vp3054_bit_setscl(void *data , int state )
 { struct cx8802_dev *dev ;
   struct cx88_core *core ;
   struct vp3054_i2c_state *vp3054_i2c ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u32 __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u32 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u32 __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u32 __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   u32 __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
   int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   u32 *__cil_tmp35 ;
   u32 *__cil_tmp36 ;
   void volatile   *__cil_tmp37 ;
   int __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   u32 *__cil_tmp41 ;
   u32 *__cil_tmp42 ;
   void const volatile   *__cil_tmp43 ;
@@ -5384,52 +5357,28 @@ static void vp3054_bit_setscl(void *data , int state )
   {
   dev = (struct cx8802_dev *)data;
   core = *((struct cx88_core **)dev);
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 672;
-  vp3054_i2c = *((struct vp3054_i2c_state **)__cil_tmp7);
+  vp3054_i2c = *((struct vp3054_i2c_state **)((void *)dev + 672));
   if (state) {
-    __cil_tmp8 = (unsigned long )vp3054_i2c;
-    __cil_tmp9 = __cil_tmp8 + 1152;
-    __cil_tmp10 = (unsigned long )vp3054_i2c;
-    __cil_tmp11 = __cil_tmp10 + 1152;
-    __cil_tmp12 = *((u32 *)__cil_tmp11);
-    *((u32 *)__cil_tmp9) = __cil_tmp12 | 1U;
-    __cil_tmp13 = (unsigned long )vp3054_i2c;
-    __cil_tmp14 = __cil_tmp13 + 1152;
-    __cil_tmp15 = (unsigned long )vp3054_i2c;
-    __cil_tmp16 = __cil_tmp15 + 1152;
-    __cil_tmp17 = *((u32 *)__cil_tmp16);
-    *((u32 *)__cil_tmp14) = __cil_tmp17 & 4294967039U;
+    __cil_tmp12 = *((u32 *)((void *)vp3054_i2c + 1152));
+    *((u32 *)((void *)vp3054_i2c + 1152)) = __cil_tmp12 | 1U;
+    __cil_tmp17 = *((u32 *)((void *)vp3054_i2c + 1152));
+    *((u32 *)((void *)vp3054_i2c + 1152)) = __cil_tmp17 & 4294967039U;
   } else {
-    __cil_tmp18 = (unsigned long )vp3054_i2c;
-    __cil_tmp19 = __cil_tmp18 + 1152;
-    __cil_tmp20 = (unsigned long )vp3054_i2c;
-    __cil_tmp21 = __cil_tmp20 + 1152;
-    __cil_tmp22 = *((u32 *)__cil_tmp21);
-    *((u32 *)__cil_tmp19) = __cil_tmp22 & 4294967294U;
-    __cil_tmp23 = (unsigned long )vp3054_i2c;
-    __cil_tmp24 = __cil_tmp23 + 1152;
-    __cil_tmp25 = (unsigned long )vp3054_i2c;
-    __cil_tmp26 = __cil_tmp25 + 1152;
-    __cil_tmp27 = *((u32 *)__cil_tmp26);
-    *((u32 *)__cil_tmp24) = __cil_tmp27 | 256U;
+    __cil_tmp22 = *((u32 *)((void *)vp3054_i2c + 1152));
+    *((u32 *)((void *)vp3054_i2c + 1152)) = __cil_tmp22 & 4294967294U;
+    __cil_tmp27 = *((u32 *)((void *)vp3054_i2c + 1152));
+    *((u32 *)((void *)vp3054_i2c + 1152)) = __cil_tmp27 | 256U;
   }
   {
-  __cil_tmp28 = (unsigned long )vp3054_i2c;
-  __cil_tmp29 = __cil_tmp28 + 1152;
-  __cil_tmp30 = *((u32 *)__cil_tmp29);
+  __cil_tmp30 = *((u32 *)((void *)vp3054_i2c + 1152));
   __cil_tmp31 = 65536U | __cil_tmp30;
   __cil_tmp32 = 3473424 >> 2;
-  __cil_tmp33 = (unsigned long )core;
-  __cil_tmp34 = __cil_tmp33 + 64;
-  __cil_tmp35 = *((u32 **)__cil_tmp34);
+  __cil_tmp35 = *((u32 **)((void *)core + 64));
   __cil_tmp36 = __cil_tmp35 + __cil_tmp32;
   __cil_tmp37 = (void volatile   *)__cil_tmp36;
   writel(__cil_tmp31, __cil_tmp37);
   __cil_tmp38 = 3473424 >> 2;
-  __cil_tmp39 = (unsigned long )core;
-  __cil_tmp40 = __cil_tmp39 + 64;
-  __cil_tmp41 = *((u32 **)__cil_tmp40);
+  __cil_tmp41 = *((u32 **)((void *)core + 64));
   __cil_tmp42 = __cil_tmp41 + __cil_tmp38;
   __cil_tmp43 = (void const volatile   *)__cil_tmp42;
   readl(__cil_tmp43);
@@ -5441,41 +5390,17 @@ static void vp3054_bit_setsda(void *data , int state )
 { struct cx8802_dev *dev ;
   struct cx88_core *core ;
   struct vp3054_i2c_state *vp3054_i2c ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u32 __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   u32 __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u32 __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   u32 __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   u32 __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
   int __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   u32 *__cil_tmp35 ;
   u32 *__cil_tmp36 ;
   void volatile   *__cil_tmp37 ;
   int __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   u32 *__cil_tmp41 ;
   u32 *__cil_tmp42 ;
   void const volatile   *__cil_tmp43 ;
@@ -5483,52 +5408,28 @@ static void vp3054_bit_setsda(void *data , int state )
   {
   dev = (struct cx8802_dev *)data;
   core = *((struct cx88_core **)dev);
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 672;
-  vp3054_i2c = *((struct vp3054_i2c_state **)__cil_tmp7);
+  vp3054_i2c = *((struct vp3054_i2c_state **)((void *)dev + 672));
   if (state) {
-    __cil_tmp8 = (unsigned long )vp3054_i2c;
-    __cil_tmp9 = __cil_tmp8 + 1152;
-    __cil_tmp10 = (unsigned long )vp3054_i2c;
-    __cil_tmp11 = __cil_tmp10 + 1152;
-    __cil_tmp12 = *((u32 *)__cil_tmp11);
-    *((u32 *)__cil_tmp9) = __cil_tmp12 | 2U;
-    __cil_tmp13 = (unsigned long )vp3054_i2c;
-    __cil_tmp14 = __cil_tmp13 + 1152;
-    __cil_tmp15 = (unsigned long )vp3054_i2c;
-    __cil_tmp16 = __cil_tmp15 + 1152;
-    __cil_tmp17 = *((u32 *)__cil_tmp16);
-    *((u32 *)__cil_tmp14) = __cil_tmp17 & 4294966783U;
+    __cil_tmp12 = *((u32 *)((void *)vp3054_i2c + 1152));
+    *((u32 *)((void *)vp3054_i2c + 1152)) = __cil_tmp12 | 2U;
+    __cil_tmp17 = *((u32 *)((void *)vp3054_i2c + 1152));
+    *((u32 *)((void *)vp3054_i2c + 1152)) = __cil_tmp17 & 4294966783U;
   } else {
-    __cil_tmp18 = (unsigned long )vp3054_i2c;
-    __cil_tmp19 = __cil_tmp18 + 1152;
-    __cil_tmp20 = (unsigned long )vp3054_i2c;
-    __cil_tmp21 = __cil_tmp20 + 1152;
-    __cil_tmp22 = *((u32 *)__cil_tmp21);
-    *((u32 *)__cil_tmp19) = __cil_tmp22 & 4294967293U;
-    __cil_tmp23 = (unsigned long )vp3054_i2c;
-    __cil_tmp24 = __cil_tmp23 + 1152;
-    __cil_tmp25 = (unsigned long )vp3054_i2c;
-    __cil_tmp26 = __cil_tmp25 + 1152;
-    __cil_tmp27 = *((u32 *)__cil_tmp26);
-    *((u32 *)__cil_tmp24) = __cil_tmp27 | 512U;
+    __cil_tmp22 = *((u32 *)((void *)vp3054_i2c + 1152));
+    *((u32 *)((void *)vp3054_i2c + 1152)) = __cil_tmp22 & 4294967293U;
+    __cil_tmp27 = *((u32 *)((void *)vp3054_i2c + 1152));
+    *((u32 *)((void *)vp3054_i2c + 1152)) = __cil_tmp27 | 512U;
   }
   {
-  __cil_tmp28 = (unsigned long )vp3054_i2c;
-  __cil_tmp29 = __cil_tmp28 + 1152;
-  __cil_tmp30 = *((u32 *)__cil_tmp29);
+  __cil_tmp30 = *((u32 *)((void *)vp3054_i2c + 1152));
   __cil_tmp31 = 131072U | __cil_tmp30;
   __cil_tmp32 = 3473424 >> 2;
-  __cil_tmp33 = (unsigned long )core;
-  __cil_tmp34 = __cil_tmp33 + 64;
-  __cil_tmp35 = *((u32 **)__cil_tmp34);
+  __cil_tmp35 = *((u32 **)((void *)core + 64));
   __cil_tmp36 = __cil_tmp35 + __cil_tmp32;
   __cil_tmp37 = (void volatile   *)__cil_tmp36;
   writel(__cil_tmp31, __cil_tmp37);
   __cil_tmp38 = 3473424 >> 2;
-  __cil_tmp39 = (unsigned long )core;
-  __cil_tmp40 = __cil_tmp39 + 64;
-  __cil_tmp41 = *((u32 **)__cil_tmp40);
+  __cil_tmp41 = *((u32 **)((void *)core + 64));
   __cil_tmp42 = __cil_tmp41 + __cil_tmp38;
   __cil_tmp43 = (void const volatile   *)__cil_tmp42;
   readl(__cil_tmp43);
@@ -5542,8 +5443,6 @@ static int vp3054_bit_getscl(void *data )
   u32 state ;
   int tmp___7 ;
   int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   u32 *__cil_tmp9 ;
   u32 *__cil_tmp10 ;
   void const volatile   *__cil_tmp11 ;
@@ -5553,9 +5452,7 @@ static int vp3054_bit_getscl(void *data )
   dev = (struct cx8802_dev *)data;
   core = *((struct cx88_core **)dev);
   __cil_tmp6 = 3473424 >> 2;
-  __cil_tmp7 = (unsigned long )core;
-  __cil_tmp8 = __cil_tmp7 + 64;
-  __cil_tmp9 = *((u32 **)__cil_tmp8);
+  __cil_tmp9 = *((u32 **)((void *)core + 64));
   __cil_tmp10 = __cil_tmp9 + __cil_tmp6;
   __cil_tmp11 = (void const volatile   *)__cil_tmp10;
   state = readl(__cil_tmp11);
@@ -5574,8 +5471,6 @@ static int vp3054_bit_getsda(void *data )
   u32 state ;
   int tmp___7 ;
   int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   u32 *__cil_tmp9 ;
   u32 *__cil_tmp10 ;
   void const volatile   *__cil_tmp11 ;
@@ -5585,9 +5480,7 @@ static int vp3054_bit_getsda(void *data )
   dev = (struct cx8802_dev *)data;
   core = *((struct cx88_core **)dev);
   __cil_tmp6 = 3473424 >> 2;
-  __cil_tmp7 = (unsigned long )core;
-  __cil_tmp8 = __cil_tmp7 + 64;
-  __cil_tmp9 = *((u32 **)__cil_tmp8);
+  __cil_tmp9 = *((u32 **)((void *)core + 64));
   __cil_tmp10 = __cil_tmp9 + __cil_tmp6;
   __cil_tmp11 = (void const volatile   *)__cil_tmp10;
   state = readl(__cil_tmp11);
@@ -5610,76 +5503,44 @@ int vp3054_i2c_probe(struct cx8802_dev *dev )
   void *tmp___7 ;
   size_t __len ;
   void *__ret ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   void *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct i2c_algo_bit_data *__cil_tmp18 ;
   void *__cil_tmp19 ;
   void const   *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct i2c_algo_bit_data *__cil_tmp23 ;
   void *__cil_tmp24 ;
   void const   *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct pci_dev *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   char *__cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   char *__cil_tmp44 ;
   char const   *__cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct i2c_adapter *__cil_tmp48 ;
   void *__cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct i2c_algo_bit_data *__cil_tmp55 ;
   void *__cil_tmp56 ;
   void *__cil_tmp57 ;
   struct i2c_adapter *__cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   char *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct vp3054_i2c_state *__cil_tmp66 ;
   void const   *__cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   void *__cil_tmp70 ;
 
   {
   core = *((struct cx88_core **)dev);
   {
-  __cil_tmp8 = (unsigned long )core;
-  __cil_tmp9 = __cil_tmp8 + 2312;
-  __cil_tmp10 = *((unsigned int *)__cil_tmp9);
+  __cil_tmp10 = *((unsigned int *)((void *)core + 2312));
   if (__cil_tmp10 != 42U) {
     return (0);
   } else {
@@ -5700,24 +5561,18 @@ int vp3054_i2c_probe(struct cx8802_dev *dev )
 
   }
   }
-  __cil_tmp14 = (unsigned long )dev;
-  __cil_tmp15 = __cil_tmp14 + 672;
-  *((struct vp3054_i2c_state **)__cil_tmp15) = vp3054_i2c;
+  *((struct vp3054_i2c_state **)((void *)dev + 672)) = vp3054_i2c;
   __len = 64UL;
   if (__len >= 64UL) {
     {
-    __cil_tmp16 = (unsigned long )vp3054_i2c;
-    __cil_tmp17 = __cil_tmp16 + 1088;
-    __cil_tmp18 = (struct i2c_algo_bit_data *)__cil_tmp17;
+    __cil_tmp18 = (struct i2c_algo_bit_data *)((void *)vp3054_i2c + 1088);
     __cil_tmp19 = (void *)__cil_tmp18;
     __cil_tmp20 = (void const   *)(& vp3054_i2c_algo_template);
     __ret = memcpy(__cil_tmp19, __cil_tmp20, __len);
     }
   } else {
     {
-    __cil_tmp21 = (unsigned long )vp3054_i2c;
-    __cil_tmp22 = __cil_tmp21 + 1088;
-    __cil_tmp23 = (struct i2c_algo_bit_data *)__cil_tmp22;
+    __cil_tmp23 = (struct i2c_algo_bit_data *)((void *)vp3054_i2c + 1088);
     __cil_tmp24 = (void *)__cil_tmp23;
     __cil_tmp25 = (void const   *)(& vp3054_i2c_algo_template);
     __ret = memcpy(__cil_tmp24, __cil_tmp25, __len);
@@ -5725,41 +5580,25 @@ int vp3054_i2c_probe(struct cx8802_dev *dev )
   }
   {
   __cil_tmp26 = 0 + 128;
-  __cil_tmp27 = (unsigned long )vp3054_i2c;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-  __cil_tmp29 = (unsigned long )dev;
-  __cil_tmp30 = __cil_tmp29 + 32;
-  __cil_tmp31 = *((struct pci_dev **)__cil_tmp30);
-  __cil_tmp32 = (unsigned long )__cil_tmp31;
-  __cil_tmp33 = __cil_tmp32 + 144;
-  *((struct device **)__cil_tmp28) = (struct device *)__cil_tmp33;
+  __cil_tmp31 = *((struct pci_dev **)((void *)dev + 32));
+  *((struct device **)((void *)vp3054_i2c + __cil_tmp26)) = (struct device *)((void *)__cil_tmp31 + 144);
   __cil_tmp34 = 0 * 1UL;
   __cil_tmp35 = 900 + __cil_tmp34;
   __cil_tmp36 = 0 + __cil_tmp35;
-  __cil_tmp37 = (unsigned long )vp3054_i2c;
-  __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-  __cil_tmp39 = (char *)__cil_tmp38;
+  __cil_tmp39 = (char *)((void *)vp3054_i2c + __cil_tmp36);
   __cil_tmp40 = 0 * 1UL;
   __cil_tmp41 = 24 + __cil_tmp40;
-  __cil_tmp42 = (unsigned long )core;
-  __cil_tmp43 = __cil_tmp42 + __cil_tmp41;
-  __cil_tmp44 = (char *)__cil_tmp43;
+  __cil_tmp44 = (char *)((void *)core + __cil_tmp41);
   __cil_tmp45 = (char const   *)__cil_tmp44;
   strlcpy(__cil_tmp39, __cil_tmp45, 48UL);
   *((struct module **)vp3054_i2c) = & __this_module;
-  __cil_tmp46 = (unsigned long )vp3054_i2c;
-  __cil_tmp47 = __cil_tmp46 + 1088;
-  *((void **)__cil_tmp47) = (void *)dev;
+  *((void **)((void *)vp3054_i2c + 1088)) = (void *)dev;
   __cil_tmp48 = (struct i2c_adapter *)vp3054_i2c;
   __cil_tmp49 = (void *)dev;
   i2c_set_adapdata(__cil_tmp48, __cil_tmp49);
   __cil_tmp50 = 0 + 24;
-  __cil_tmp51 = (unsigned long )vp3054_i2c;
-  __cil_tmp52 = __cil_tmp51 + __cil_tmp50;
-  __cil_tmp53 = (unsigned long )vp3054_i2c;
-  __cil_tmp54 = __cil_tmp53 + 1088;
-  __cil_tmp55 = (struct i2c_algo_bit_data *)__cil_tmp54;
-  *((void **)__cil_tmp52) = (void *)__cil_tmp55;
+  __cil_tmp55 = (struct i2c_algo_bit_data *)((void *)vp3054_i2c + 1088);
+  *((void **)((void *)vp3054_i2c + __cil_tmp50)) = (void *)__cil_tmp55;
   __cil_tmp56 = (void *)dev;
   vp3054_bit_setscl(__cil_tmp56, 1);
   __cil_tmp57 = (void *)dev;
@@ -5771,19 +5610,13 @@ int vp3054_i2c_probe(struct cx8802_dev *dev )
     {
     __cil_tmp59 = 0 * 1UL;
     __cil_tmp60 = 24 + __cil_tmp59;
-    __cil_tmp61 = (unsigned long )core;
-    __cil_tmp62 = __cil_tmp61 + __cil_tmp60;
-    __cil_tmp63 = (char *)__cil_tmp62;
+    __cil_tmp63 = (char *)((void *)core + __cil_tmp60);
     printk("%s: vp3054_i2c register FAILED\n", __cil_tmp63);
-    __cil_tmp64 = (unsigned long )dev;
-    __cil_tmp65 = __cil_tmp64 + 672;
-    __cil_tmp66 = *((struct vp3054_i2c_state **)__cil_tmp65);
+    __cil_tmp66 = *((struct vp3054_i2c_state **)((void *)dev + 672));
     __cil_tmp67 = (void const   *)__cil_tmp66;
     kfree(__cil_tmp67);
-    __cil_tmp68 = (unsigned long )dev;
-    __cil_tmp69 = __cil_tmp68 + 672;
     __cil_tmp70 = (void *)0;
-    *((struct vp3054_i2c_state **)__cil_tmp69) = (struct vp3054_i2c_state *)__cil_tmp70;
+    *((struct vp3054_i2c_state **)((void *)dev + 672)) = (struct vp3054_i2c_state *)__cil_tmp70;
     }
   } else {
 
@@ -5793,22 +5626,16 @@ int vp3054_i2c_probe(struct cx8802_dev *dev )
 }
 void vp3054_i2c_remove(struct cx8802_dev *dev ) 
 { struct vp3054_i2c_state *vp3054_i2c ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   struct cx88_core *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   struct i2c_adapter *__cil_tmp12 ;
   void const   *__cil_tmp13 ;
 
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 672;
-  vp3054_i2c = *((struct vp3054_i2c_state **)__cil_tmp4);
+  vp3054_i2c = *((struct vp3054_i2c_state **)((void *)dev + 672));
   {
   __cil_tmp5 = (void *)0;
   __cil_tmp6 = (unsigned long )__cil_tmp5;
@@ -5818,9 +5645,7 @@ void vp3054_i2c_remove(struct cx8802_dev *dev )
   } else {
     {
     __cil_tmp8 = *((struct cx88_core **)dev);
-    __cil_tmp9 = (unsigned long )__cil_tmp8;
-    __cil_tmp10 = __cil_tmp9 + 2312;
-    __cil_tmp11 = *((unsigned int *)__cil_tmp10);
+    __cil_tmp11 = *((unsigned int *)((void *)__cil_tmp8 + 2312));
     if (__cil_tmp11 != 42U) {
       return;
     } else {

@@ -1850,15 +1850,11 @@ extern int __serio_register_driver(struct serio_driver * , struct module * , cha
 extern void serio_unregister_driver(struct serio_driver * ) ;
 __inline static void *serio_get_drvdata(struct serio *serio )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 416);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -1866,14 +1862,11 @@ __inline static void *serio_get_drvdata(struct serio *serio )
 }
 }
 __inline static void serio_set_drvdata(struct serio *serio , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )serio;
-  __cil_tmp4 = __cil_tmp3 + 416;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)serio + 416);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1900,8 +1893,6 @@ static void twidjoy_process_packet(struct twidjoy *twidjoy )
   int abs_y ;
   int value ;
   int i ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned char (*__cil_tmp12)[5U] ;
   unsigned char __cil_tmp13 ;
   int __cil_tmp14 ;
@@ -1913,24 +1904,16 @@ static void twidjoy_process_packet(struct twidjoy *twidjoy )
   int __cil_tmp20 ;
   int __cil_tmp21 ;
   int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
   int __cil_tmp26 ;
   int __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
   unsigned int __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   int __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   int __cil_tmp41 ;
   unsigned char *__cil_tmp42 ;
   unsigned char __cil_tmp43 ;
@@ -1962,9 +1945,7 @@ static void twidjoy_process_packet(struct twidjoy *twidjoy )
   int __cil_tmp69 ;
   {
   dev = *((struct input_dev **)twidjoy);
-  __cil_tmp10 = (unsigned long )twidjoy;
-  __cil_tmp11 = __cil_tmp10 + 12;
-  __cil_tmp12 = (unsigned char (*)[5U])__cil_tmp11;
+  __cil_tmp12 = (unsigned char (*)[5U])((void *)twidjoy + 12);
   data = (unsigned char *)__cil_tmp12;
   __cil_tmp13 = *data;
   __cil_tmp14 = (int )__cil_tmp13;
@@ -1980,9 +1961,7 @@ static void twidjoy_process_packet(struct twidjoy *twidjoy )
   ldv_20739:
   __cil_tmp21 = *((int *)bp);
   __cil_tmp22 = *((int *)bp);
-  __cil_tmp23 = (unsigned long )bp;
-  __cil_tmp24 = __cil_tmp23 + 4;
-  __cil_tmp25 = *((int *)__cil_tmp24);
+  __cil_tmp25 = *((int *)((void *)bp + 4));
   __cil_tmp26 = __cil_tmp25 << __cil_tmp22;
   __cil_tmp27 = __cil_tmp26 & button_bits;
   value = __cil_tmp27 >> __cil_tmp21;
@@ -1992,9 +1971,7 @@ static void twidjoy_process_packet(struct twidjoy *twidjoy )
   {
   __cil_tmp28 = i * 4UL;
   __cil_tmp29 = 8 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )bp;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = *((int *)__cil_tmp31);
+  __cil_tmp32 = *((int *)((void *)bp + __cil_tmp29));
   __cil_tmp33 = (unsigned int )__cil_tmp32;
   __cil_tmp34 = i + 1;
   __cil_tmp35 = __cil_tmp34 == value;
@@ -2003,9 +1980,7 @@ static void twidjoy_process_packet(struct twidjoy *twidjoy )
   }
   ldv_20737: ;
   {
-  __cil_tmp36 = (unsigned long )bp;
-  __cil_tmp37 = __cil_tmp36 + 4;
-  __cil_tmp38 = *((int *)__cil_tmp37);
+  __cil_tmp38 = *((int *)((void *)bp + 4));
   if (__cil_tmp38 > i) {
     goto ldv_20736;
   } else {
@@ -2016,9 +1991,7 @@ static void twidjoy_process_packet(struct twidjoy *twidjoy )
   bp = bp + 1;
   ldv_20740: ;
   {
-  __cil_tmp39 = (unsigned long )bp;
-  __cil_tmp40 = __cil_tmp39 + 4;
-  __cil_tmp41 = *((int *)__cil_tmp40);
+  __cil_tmp41 = *((int *)((void *)bp + 4));
   if (__cil_tmp41 != 0) {
     goto ldv_20739;
   } else {
@@ -2082,30 +2055,12 @@ static irqreturn_t twidjoy_interrupt(struct serio *serio , unsigned char data , 
   int tmp___0 ;
   signed char __cil_tmp7 ;
   int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   int __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   {
   {
   tmp = serio_get_drvdata(serio);
@@ -2115,14 +2070,10 @@ static irqreturn_t twidjoy_interrupt(struct serio *serio , unsigned char data , 
   __cil_tmp7 = (signed char )data;
   __cil_tmp8 = (int )__cil_tmp7;
   if (__cil_tmp8 >= 0) {
-    __cil_tmp9 = (unsigned long )twidjoy;
-    __cil_tmp10 = __cil_tmp9 + 8;
-    *((int *)__cil_tmp10) = 0;
+    *((int *)((void *)twidjoy + 8)) = 0;
   } else {
     {
-    __cil_tmp11 = (unsigned long )twidjoy;
-    __cil_tmp12 = __cil_tmp11 + 8;
-    __cil_tmp13 = *((int *)__cil_tmp12);
+    __cil_tmp13 = *((int *)((void *)twidjoy + 8));
     if (__cil_tmp13 == 0) {
       return ((irqreturn_t )1);
     } else {
@@ -2131,37 +2082,23 @@ static irqreturn_t twidjoy_interrupt(struct serio *serio , unsigned char data , 
   }
   }
   {
-  __cil_tmp14 = (unsigned long )twidjoy;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((int *)__cil_tmp15);
+  __cil_tmp16 = *((int *)((void *)twidjoy + 8));
   if (__cil_tmp16 <= 4) {
-    __cil_tmp17 = (unsigned long )twidjoy;
-    __cil_tmp18 = __cil_tmp17 + 8;
-    tmp___0 = *((int *)__cil_tmp18);
-    __cil_tmp19 = (unsigned long )twidjoy;
-    __cil_tmp20 = __cil_tmp19 + 8;
-    __cil_tmp21 = (unsigned long )twidjoy;
-    __cil_tmp22 = __cil_tmp21 + 8;
-    __cil_tmp23 = *((int *)__cil_tmp22);
-    *((int *)__cil_tmp20) = __cil_tmp23 + 1;
+    tmp___0 = *((int *)((void *)twidjoy + 8));
+    __cil_tmp23 = *((int *)((void *)twidjoy + 8));
+    *((int *)((void *)twidjoy + 8)) = __cil_tmp23 + 1;
     __cil_tmp24 = tmp___0 * 1UL;
     __cil_tmp25 = 12 + __cil_tmp24;
-    __cil_tmp26 = (unsigned long )twidjoy;
-    __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-    *((unsigned char *)__cil_tmp27) = data;
+    *((unsigned char *)((void *)twidjoy + __cil_tmp25)) = data;
   } else {
   }
   }
   {
-  __cil_tmp28 = (unsigned long )twidjoy;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  __cil_tmp30 = *((int *)__cil_tmp29);
+  __cil_tmp30 = *((int *)((void *)twidjoy + 8));
   if (__cil_tmp30 == 5) {
     {
     twidjoy_process_packet(twidjoy);
-    __cil_tmp31 = (unsigned long )twidjoy;
-    __cil_tmp32 = __cil_tmp31 + 8;
-    *((int *)__cil_tmp32) = 0;
+    *((int *)((void *)twidjoy + 8)) = 0;
     }
   } else {
   }
@@ -2203,53 +2140,23 @@ static int twidjoy_connect(struct serio *serio , struct serio_driver *drv )
   struct input_dev *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   char (*__cil_tmp17)[32U] ;
   char *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   char (*__cil_tmp21)[32U] ;
   char *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   char (*__cil_tmp27)[32U] ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   int __cil_tmp51 ;
   unsigned int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned long (*__cil_tmp55)[12U] ;
   unsigned long volatile *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   int __cil_tmp62 ;
   void *__cil_tmp63 ;
   struct input_dev *__cil_tmp64 ;
@@ -2282,47 +2189,25 @@ static int twidjoy_connect(struct serio *serio , struct serio_driver *drv )
   }
   {
   *((struct input_dev **)twidjoy) = input_dev;
-  __cil_tmp15 = (unsigned long )twidjoy;
-  __cil_tmp16 = __cil_tmp15 + 17;
-  __cil_tmp17 = (char (*)[32U])__cil_tmp16;
+  __cil_tmp17 = (char (*)[32U])((void *)twidjoy + 17);
   __cil_tmp18 = (char *)__cil_tmp17;
-  __cil_tmp19 = (unsigned long )serio;
-  __cil_tmp20 = __cil_tmp19 + 40;
-  __cil_tmp21 = (char (*)[32U])__cil_tmp20;
+  __cil_tmp21 = (char (*)[32U])((void *)serio + 40);
   __cil_tmp22 = (char *)__cil_tmp21;
   snprintf(__cil_tmp18, 32UL, "%s/input0", __cil_tmp22);
   *((char const **)input_dev) = "Handykey Twiddler";
-  __cil_tmp23 = (unsigned long )input_dev;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  __cil_tmp25 = (unsigned long )twidjoy;
-  __cil_tmp26 = __cil_tmp25 + 17;
-  __cil_tmp27 = (char (*)[32U])__cil_tmp26;
-  *((char const **)__cil_tmp24) = (char const *)__cil_tmp27;
-  __cil_tmp28 = (unsigned long )input_dev;
-  __cil_tmp29 = __cil_tmp28 + 24;
-  *((__u16 *)__cil_tmp29) = (__u16 )19U;
+  __cil_tmp27 = (char (*)[32U])((void *)twidjoy + 17);
+  *((char const **)((void *)input_dev + 8)) = (char const *)__cil_tmp27;
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )19U;
   __cil_tmp30 = 24 + 2;
-  __cil_tmp31 = (unsigned long )input_dev;
-  __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-  *((__u16 *)__cil_tmp32) = (__u16 )36U;
+  *((__u16 *)((void *)input_dev + __cil_tmp30)) = (__u16 )36U;
   __cil_tmp33 = 24 + 4;
-  __cil_tmp34 = (unsigned long )input_dev;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  *((__u16 *)__cil_tmp35) = (__u16 )1U;
+  *((__u16 *)((void *)input_dev + __cil_tmp33)) = (__u16 )1U;
   __cil_tmp36 = 24 + 6;
-  __cil_tmp37 = (unsigned long )input_dev;
-  __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-  *((__u16 *)__cil_tmp38) = (__u16 )256U;
-  __cil_tmp39 = (unsigned long )input_dev;
-  __cil_tmp40 = __cil_tmp39 + 840;
-  __cil_tmp41 = (unsigned long )serio;
-  __cil_tmp42 = __cil_tmp41 + 416;
-  *((struct device **)__cil_tmp40) = (struct device *)__cil_tmp42;
+  *((__u16 *)((void *)input_dev + __cil_tmp36)) = (__u16 )256U;
+  *((struct device **)((void *)input_dev + 840)) = (struct device *)((void *)serio + 416);
   __cil_tmp43 = 0 * 8UL;
   __cil_tmp44 = 40 + __cil_tmp43;
-  __cil_tmp45 = (unsigned long )input_dev;
-  __cil_tmp46 = __cil_tmp45 + __cil_tmp44;
-  *((unsigned long *)__cil_tmp46) = 10UL;
+  *((unsigned long *)((void *)input_dev + __cil_tmp44)) = 10UL;
   input_set_abs_params(input_dev, 0U, -50, 50, 4, 4);
   input_set_abs_params(input_dev, 1U, -50, 50, 4, 4);
   bp = (struct twidjoy_button_spec *)(& twidjoy_buttons);
@@ -2335,22 +2220,16 @@ static int twidjoy_connect(struct serio *serio , struct serio_driver *drv )
   {
   __cil_tmp47 = i * 4UL;
   __cil_tmp48 = 8 + __cil_tmp47;
-  __cil_tmp49 = (unsigned long )bp;
-  __cil_tmp50 = __cil_tmp49 + __cil_tmp48;
-  __cil_tmp51 = *((int *)__cil_tmp50);
+  __cil_tmp51 = *((int *)((void *)bp + __cil_tmp48));
   __cil_tmp52 = (unsigned int )__cil_tmp51;
-  __cil_tmp53 = (unsigned long )input_dev;
-  __cil_tmp54 = __cil_tmp53 + 48;
-  __cil_tmp55 = (unsigned long (*)[12U])__cil_tmp54;
+  __cil_tmp55 = (unsigned long (*)[12U])((void *)input_dev + 48);
   __cil_tmp56 = (unsigned long volatile *)__cil_tmp55;
   set_bit(__cil_tmp52, __cil_tmp56);
   i = i + 1;
   }
   ldv_20763: ;
   {
-  __cil_tmp57 = (unsigned long )bp;
-  __cil_tmp58 = __cil_tmp57 + 4;
-  __cil_tmp59 = *((int *)__cil_tmp58);
+  __cil_tmp59 = *((int *)((void *)bp + 4));
   if (__cil_tmp59 > i) {
     goto ldv_20762;
   } else {
@@ -2361,9 +2240,7 @@ static int twidjoy_connect(struct serio *serio , struct serio_driver *drv )
   bp = bp + 1;
   ldv_20766: ;
   {
-  __cil_tmp60 = (unsigned long )bp;
-  __cil_tmp61 = __cil_tmp60 + 4;
-  __cil_tmp62 = *((int *)__cil_tmp61);
+  __cil_tmp62 = *((int *)((void *)bp + 4));
   if (__cil_tmp62 != 0) {
     goto ldv_20765;
   } else {

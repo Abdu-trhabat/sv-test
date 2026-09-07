@@ -1837,14 +1837,11 @@ extern void free_irq(unsigned int , void * ) ;
 extern void *dev_get_drvdata(struct device const * ) ;
 extern int dev_set_drvdata(struct device * , void * ) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1897,20 +1894,14 @@ static irqreturn_t pcap_keys_handler(int irq , void *_pcap_keys )
   u32 __cil_tmp12 ;
   int __cil_tmp13 ;
   u32 __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct input_dev *__cil_tmp17 ;
   u32 *__cil_tmp18 ;
   u32 __cil_tmp19 ;
   int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct input_dev *__cil_tmp23 ;
   u32 *__cil_tmp24 ;
   u32 __cil_tmp25 ;
   int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct input_dev *__cil_tmp29 ;
   {
   {
@@ -1937,9 +1928,7 @@ static irqreturn_t pcap_keys_handler(int irq , void *_pcap_keys )
   if (0) {
     case_7:
     {
-    __cil_tmp15 = (unsigned long )pcap_keys;
-    __cil_tmp16 = __cil_tmp15 + 8;
-    __cil_tmp17 = *((struct input_dev **)__cil_tmp16);
+    __cil_tmp17 = *((struct input_dev **)((void *)pcap_keys + 8));
     __cil_tmp18 = & pstat;
     __cil_tmp19 = *__cil_tmp18;
     __cil_tmp20 = __cil_tmp19 == 0U;
@@ -1948,9 +1937,7 @@ static irqreturn_t pcap_keys_handler(int irq , void *_pcap_keys )
     goto ldv_20838;
     case_11:
     {
-    __cil_tmp21 = (unsigned long )pcap_keys;
-    __cil_tmp22 = __cil_tmp21 + 8;
-    __cil_tmp23 = *((struct input_dev **)__cil_tmp22);
+    __cil_tmp23 = *((struct input_dev **)((void *)pcap_keys + 8));
     __cil_tmp24 = & pstat;
     __cil_tmp25 = *__cil_tmp24;
     __cil_tmp26 = __cil_tmp25 == 0U;
@@ -1962,9 +1949,7 @@ static irqreturn_t pcap_keys_handler(int irq , void *_pcap_keys )
   }
   ldv_20838:
   {
-  __cil_tmp27 = (unsigned long )pcap_keys;
-  __cil_tmp28 = __cil_tmp27 + 8;
-  __cil_tmp29 = *((struct input_dev **)__cil_tmp28);
+  __cil_tmp29 = *((struct input_dev **)((void *)pcap_keys + 8));
   input_sync(__cil_tmp29);
   }
   return ((irqreturn_t )1);
@@ -1982,34 +1967,16 @@ static int pcap_keys_probe(struct platform_device *pdev )
   struct pcap_keys *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device const *__cil_tmp16 ;
   struct input_dev *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   unsigned long (*__cil_tmp33)[1U] ;
   unsigned long volatile *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long (*__cil_tmp37)[12U] ;
   unsigned long volatile *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned long (*__cil_tmp41)[12U] ;
   unsigned long volatile *__cil_tmp42 ;
   struct pcap_chip *__cil_tmp43 ;
@@ -2038,9 +2005,7 @@ static int pcap_keys_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp13 = (unsigned long )pdev;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((struct device **)__cil_tmp14);
+  __cil_tmp15 = *((struct device **)((void *)pdev + 16));
   __cil_tmp16 = (struct device const *)__cil_tmp15;
   tmp___0 = dev_get_drvdata(__cil_tmp16);
   *((struct pcap_chip **)pcap_keys) = (struct pcap_chip *)tmp___0;
@@ -2056,36 +2021,20 @@ static int pcap_keys_probe(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp20 = (unsigned long )pcap_keys;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  *((struct input_dev **)__cil_tmp21) = input_dev;
+  *((struct input_dev **)((void *)pcap_keys + 8)) = input_dev;
   __cil_tmp22 = (void *)pcap_keys;
   platform_set_drvdata(pdev, __cil_tmp22);
   *((char const **)input_dev) = *((char const **)pdev);
-  __cil_tmp23 = (unsigned long )input_dev;
-  __cil_tmp24 = __cil_tmp23 + 8;
-  *((char const **)__cil_tmp24) = "pcap-keys/input0";
-  __cil_tmp25 = (unsigned long )input_dev;
-  __cil_tmp26 = __cil_tmp25 + 24;
-  *((__u16 *)__cil_tmp26) = (__u16 )25U;
-  __cil_tmp27 = (unsigned long )input_dev;
-  __cil_tmp28 = __cil_tmp27 + 840;
-  __cil_tmp29 = (unsigned long )pdev;
-  __cil_tmp30 = __cil_tmp29 + 16;
-  *((struct device **)__cil_tmp28) = (struct device *)__cil_tmp30;
-  __cil_tmp31 = (unsigned long )input_dev;
-  __cil_tmp32 = __cil_tmp31 + 40;
-  __cil_tmp33 = (unsigned long (*)[1U])__cil_tmp32;
+  *((char const **)((void *)input_dev + 8)) = "pcap-keys/input0";
+  *((__u16 *)((void *)input_dev + 24)) = (__u16 )25U;
+  *((struct device **)((void *)input_dev + 840)) = (struct device *)((void *)pdev + 16);
+  __cil_tmp33 = (unsigned long (*)[1U])((void *)input_dev + 40);
   __cil_tmp34 = (unsigned long volatile *)__cil_tmp33;
   __set_bit(1, __cil_tmp34);
-  __cil_tmp35 = (unsigned long )input_dev;
-  __cil_tmp36 = __cil_tmp35 + 48;
-  __cil_tmp37 = (unsigned long (*)[12U])__cil_tmp36;
+  __cil_tmp37 = (unsigned long (*)[12U])((void *)input_dev + 48);
   __cil_tmp38 = (unsigned long volatile *)__cil_tmp37;
   __set_bit(116, __cil_tmp38);
-  __cil_tmp39 = (unsigned long )input_dev;
-  __cil_tmp40 = __cil_tmp39 + 48;
-  __cil_tmp41 = (unsigned long (*)[12U])__cil_tmp40;
+  __cil_tmp41 = (unsigned long (*)[12U])((void *)input_dev + 48);
   __cil_tmp42 = (unsigned long volatile *)__cil_tmp41;
   __set_bit(211, __cil_tmp42);
   err = input_register_device(input_dev);

@@ -1775,15 +1775,11 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -1791,15 +1787,12 @@ __inline static void *platform_get_drvdata(struct platform_device  const  *pdev 
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1847,31 +1840,23 @@ static int test_rtc_proc(struct device *dev , struct seq_file *seq )
 { struct platform_device *plat_dev ;
   struct device  const  *__mptr ;
   struct platform_device *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   char *__cil_tmp10 ;
   char *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
 
   {
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp5 = (struct platform_device *)0;
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = (struct device *)__cil_tmp7;
+  __cil_tmp8 = (struct device *)((void *)__cil_tmp5 + 16);
   __cil_tmp9 = (unsigned int )__cil_tmp8;
   __cil_tmp10 = (char *)__mptr;
   __cil_tmp11 = __cil_tmp10 - __cil_tmp9;
   plat_dev = (struct platform_device *)__cil_tmp11;
   seq_printf(seq, "test\t\t: yes\n");
-  __cil_tmp12 = (unsigned long )plat_dev;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)plat_dev + 8));
   seq_printf(seq, "id\t\t: %d\n", __cil_tmp14);
   }
   return (0);
@@ -1917,30 +1902,22 @@ static ssize_t test_irq_store(struct device *dev , struct device_attribute *attr
   int tmp___2 ;
   int tmp___3 ;
   struct platform_device *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   char *__cil_tmp21 ;
   char *__cil_tmp22 ;
   struct platform_device  const  *__cil_tmp23 ;
   __kernel_size_t __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   __kernel_size_t __cil_tmp27 ;
   struct rtc_wkalrm *__cil_tmp28 ;
   __kernel_size_t __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
 
   {
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp16 = (struct platform_device *)0;
-  __cil_tmp17 = (unsigned long )__cil_tmp16;
-  __cil_tmp18 = __cil_tmp17 + 16;
-  __cil_tmp19 = (struct device *)__cil_tmp18;
+  __cil_tmp19 = (struct device *)((void *)__cil_tmp16 + 16);
   __cil_tmp20 = (unsigned int )__cil_tmp19;
   __cil_tmp21 = (char *)__mptr;
   __cil_tmp22 = __cil_tmp21 - __cil_tmp20;
@@ -1954,9 +1931,7 @@ static ssize_t test_irq_store(struct device *dev , struct device_attribute *attr
   }
   if (tmp___3 == 0) {
     {
-    __cil_tmp25 = (unsigned long )rtc;
-    __cil_tmp26 = __cil_tmp25 + 1352;
-    if (*((int *)__cil_tmp26)) {
+    if (*((int *)((void *)rtc + 1352))) {
       {
       rtc_update_irq(rtc, 1UL, 192UL);
       }
@@ -1997,9 +1972,7 @@ static ssize_t test_irq_store(struct device *dev , struct device_attribute *attr
       if (tmp___1 == 0) {
         {
         __cil_tmp30 = 1192 + 56;
-        __cil_tmp31 = (unsigned long )rtc;
-        __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-        if (*((int *)__cil_tmp32)) {
+        if (*((int *)((void *)rtc + __cil_tmp30))) {
           {
           rtc_update_irq(rtc, 1UL, 144UL);
           }
@@ -2022,22 +1995,16 @@ static int test_probe(struct platform_device *plat_dev )
   struct rtc_device *tmp ;
   long tmp___0 ;
   long tmp___1 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   void const   *__cil_tmp10 ;
   void const   *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device_attribute  const  *__cil_tmp15 ;
   void *__cil_tmp16 ;
 
   {
   {
-  __cil_tmp7 = (unsigned long )plat_dev;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  __cil_tmp9 = (struct device *)__cil_tmp8;
+  __cil_tmp9 = (struct device *)((void *)plat_dev + 16);
   tmp = rtc_device_register("test", __cil_tmp9, & test_rtc_ops, & __this_module);
   rtc = tmp;
   __cil_tmp10 = (void const   *)rtc;
@@ -2054,9 +2021,7 @@ static int test_probe(struct platform_device *plat_dev )
 
   }
   {
-  __cil_tmp12 = (unsigned long )plat_dev;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = (struct device *)__cil_tmp13;
+  __cil_tmp14 = (struct device *)((void *)plat_dev + 16);
   __cil_tmp15 = (struct device_attribute  const  *)(& dev_attr_irq);
   err = device_create_file(__cil_tmp14, __cil_tmp15);
   }
@@ -2083,8 +2048,6 @@ static int test_remove(struct platform_device *plat_dev )
 { struct rtc_device *rtc ;
   void *tmp ;
   struct platform_device  const  *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct device_attribute  const  *__cil_tmp8 ;
 
@@ -2094,9 +2057,7 @@ static int test_remove(struct platform_device *plat_dev )
   tmp = platform_get_drvdata(__cil_tmp4);
   rtc = (struct rtc_device *)tmp;
   rtc_device_unregister(rtc);
-  __cil_tmp5 = (unsigned long )plat_dev;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = (struct device *)__cil_tmp6;
+  __cil_tmp7 = (struct device *)((void *)plat_dev + 16);
   __cil_tmp8 = (struct device_attribute  const  *)(& dev_attr_irq);
   device_remove_file(__cil_tmp7, __cil_tmp8);
   }

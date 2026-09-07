@@ -875,15 +875,11 @@ extern void platform_driver_unregister(struct platform_driver * ) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev )  __attribute__((__no_instrument_function__)) ;
 __inline static void *platform_get_drvdata(struct platform_device  const  *pdev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device  const  *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device  const  *)__cil_tmp4;
+  __cil_tmp5 = (struct device  const  *)((void *)pdev + 16);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -891,15 +887,12 @@ __inline static void *platform_get_drvdata(struct platform_device  const  *pdev 
 }
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -989,15 +982,7 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
   long tmp ;
   long tmp___0 ;
   long tmp___1 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp17 ;
   unsigned int __cil_tmp18 ;
@@ -1006,28 +991,12 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
   int __cil_tmp21 ;
   long __cil_tmp22 ;
   struct device  const  *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct regulator *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   int __cil_tmp38 ;
   struct device  const  *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   bool __cil_tmp46 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp47 ;
   unsigned int __cil_tmp48 ;
@@ -1036,18 +1005,8 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
   int __cil_tmp51 ;
   long __cil_tmp52 ;
   struct device  const  *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct regulator *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct device  const  *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp66 ;
   unsigned int __cil_tmp67 ;
   unsigned int __cil_tmp68 ;
@@ -1055,29 +1014,17 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
   int __cil_tmp70 ;
   long __cil_tmp71 ;
   struct device  const  *__cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   struct regulator *__cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   struct device  const  *__cil_tmp78 ;
 
   {
   {
-  __cil_tmp7 = (unsigned long )data;
-  __cil_tmp8 = __cil_tmp7 + 84;
-  if (*((int *)__cil_tmp8)) {
+  if (*((int *)((void *)data + 84))) {
     {
-    __cil_tmp9 = (unsigned long )data;
-    __cil_tmp10 = __cil_tmp9 + 88;
-    if (*((int *)__cil_tmp10)) {
+    if (*((int *)((void *)data + 88))) {
       {
-      __cil_tmp11 = (unsigned long )data;
-      __cil_tmp12 = __cil_tmp11 + 88;
-      __cil_tmp13 = *((int *)__cil_tmp12);
-      __cil_tmp14 = (unsigned long )data;
-      __cil_tmp15 = __cil_tmp14 + 84;
-      __cil_tmp16 = *((int *)__cil_tmp15);
+      __cil_tmp13 = *((int *)((void *)data + 88));
+      __cil_tmp16 = *((int *)((void *)data + 84));
       if (__cil_tmp16 <= __cil_tmp13) {
         {
         while (1) {
@@ -1097,12 +1044,8 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
             if (tmp) {
               {
               __cil_tmp23 = (struct device  const  *)dev;
-              __cil_tmp24 = (unsigned long )data;
-              __cil_tmp25 = __cil_tmp24 + 84;
-              __cil_tmp26 = *((int *)__cil_tmp25);
-              __cil_tmp27 = (unsigned long )data;
-              __cil_tmp28 = __cil_tmp27 + 88;
-              __cil_tmp29 = *((int *)__cil_tmp28);
+              __cil_tmp26 = *((int *)((void *)data + 84));
+              __cil_tmp29 = *((int *)((void *)data + 88));
               __dynamic_dev_dbg(& descriptor, __cil_tmp23, "Requesting %d-%duV\n",
                                 __cil_tmp26, __cil_tmp29);
               }
@@ -1118,15 +1061,9 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
         while_break: /* CIL Label */ ;
         }
         {
-        __cil_tmp30 = (unsigned long )data;
-        __cil_tmp31 = __cil_tmp30 + 72;
-        __cil_tmp32 = *((struct regulator **)__cil_tmp31);
-        __cil_tmp33 = (unsigned long )data;
-        __cil_tmp34 = __cil_tmp33 + 84;
-        __cil_tmp35 = *((int *)__cil_tmp34);
-        __cil_tmp36 = (unsigned long )data;
-        __cil_tmp37 = __cil_tmp36 + 88;
-        __cil_tmp38 = *((int *)__cil_tmp37);
+        __cil_tmp32 = *((struct regulator **)((void *)data + 72));
+        __cil_tmp35 = *((int *)((void *)data + 84));
+        __cil_tmp38 = *((int *)((void *)data + 88));
         ret = regulator_set_voltage(__cil_tmp32, __cil_tmp35, __cil_tmp38);
         }
         if (ret != 0) {
@@ -1151,17 +1088,11 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
   }
   }
   {
-  __cil_tmp40 = (unsigned long )data;
-  __cil_tmp41 = __cil_tmp40 + 84;
-  if (*((int *)__cil_tmp41)) {
+  if (*((int *)((void *)data + 84))) {
     {
-    __cil_tmp42 = (unsigned long )data;
-    __cil_tmp43 = __cil_tmp42 + 88;
-    if (*((int *)__cil_tmp43)) {
+    if (*((int *)((void *)data + 88))) {
       {
-      __cil_tmp44 = (unsigned long )data;
-      __cil_tmp45 = __cil_tmp44 + 80;
-      __cil_tmp46 = *((bool *)__cil_tmp45);
+      __cil_tmp46 = *((bool *)((void *)data + 80));
       if (! __cil_tmp46) {
         {
         while (1) {
@@ -1195,15 +1126,11 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
         while_break___1: /* CIL Label */ ;
         }
         {
-        __cil_tmp54 = (unsigned long )data;
-        __cil_tmp55 = __cil_tmp54 + 72;
-        __cil_tmp56 = *((struct regulator **)__cil_tmp55);
+        __cil_tmp56 = *((struct regulator **)((void *)data + 72));
         ret = regulator_enable(__cil_tmp56);
         }
         if (ret == 0) {
-          __cil_tmp57 = (unsigned long )data;
-          __cil_tmp58 = __cil_tmp57 + 80;
-          *((bool *)__cil_tmp58) = (bool )1;
+          *((bool *)((void *)data + 80)) = (bool )1;
         } else {
           {
           __cil_tmp59 = (struct device  const  *)dev;
@@ -1223,13 +1150,9 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
   }
   }
   {
-  __cil_tmp60 = (unsigned long )data;
-  __cil_tmp61 = __cil_tmp60 + 84;
-  if (*((int *)__cil_tmp61)) {
+  if (*((int *)((void *)data + 84))) {
     {
-    __cil_tmp62 = (unsigned long )data;
-    __cil_tmp63 = __cil_tmp62 + 88;
-    if (*((int *)__cil_tmp63)) {
+    if (*((int *)((void *)data + 88))) {
 
     } else {
       goto _L;
@@ -1238,9 +1161,7 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
   } else {
     _L: /* CIL Label */ 
     {
-    __cil_tmp64 = (unsigned long )data;
-    __cil_tmp65 = __cil_tmp64 + 80;
-    if (*((bool *)__cil_tmp65)) {
+    if (*((bool *)((void *)data + 80))) {
       {
       while (1) {
         while_continue___3: /* CIL Label */ ;
@@ -1273,15 +1194,11 @@ static void update_voltage_constraints(struct device *dev , struct virtual_consu
       while_break___3: /* CIL Label */ ;
       }
       {
-      __cil_tmp73 = (unsigned long )data;
-      __cil_tmp74 = __cil_tmp73 + 72;
-      __cil_tmp75 = *((struct regulator **)__cil_tmp74);
+      __cil_tmp75 = *((struct regulator **)((void *)data + 72));
       ret = regulator_disable(__cil_tmp75);
       }
       if (ret == 0) {
-        __cil_tmp76 = (unsigned long )data;
-        __cil_tmp77 = __cil_tmp76 + 80;
-        *((bool *)__cil_tmp77) = (bool )0;
+        *((bool *)((void *)data + 80)) = (bool )0;
       } else {
         {
         __cil_tmp78 = (struct device  const  *)dev;
@@ -1314,13 +1231,7 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
   long tmp ;
   long tmp___0 ;
   long tmp___1 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp15 ;
   unsigned int __cil_tmp16 ;
@@ -1329,26 +1240,12 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
   int __cil_tmp19 ;
   long __cil_tmp20 ;
   struct device  const  *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct regulator *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   int __cil_tmp36 ;
   struct device  const  *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   bool __cil_tmp42 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp43 ;
   unsigned int __cil_tmp44 ;
@@ -1357,18 +1254,8 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
   int __cil_tmp47 ;
   long __cil_tmp48 ;
   struct device  const  *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct regulator *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct device  const  *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   struct _ddebug  __attribute__((__aligned__(8))) *__cil_tmp62 ;
   unsigned int __cil_tmp63 ;
   unsigned int __cil_tmp64 ;
@@ -1376,25 +1263,15 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
   int __cil_tmp66 ;
   long __cil_tmp67 ;
   struct device  const  *__cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   struct regulator *__cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   struct device  const  *__cil_tmp74 ;
 
   {
   {
-  __cil_tmp7 = (unsigned long )data;
-  __cil_tmp8 = __cil_tmp7 + 96;
-  if (*((int *)__cil_tmp8)) {
+  if (*((int *)((void *)data + 96))) {
     {
-    __cil_tmp9 = (unsigned long )data;
-    __cil_tmp10 = __cil_tmp9 + 96;
-    __cil_tmp11 = *((int *)__cil_tmp10);
-    __cil_tmp12 = (unsigned long )data;
-    __cil_tmp13 = __cil_tmp12 + 92;
-    __cil_tmp14 = *((int *)__cil_tmp13);
+    __cil_tmp11 = *((int *)((void *)data + 96));
+    __cil_tmp14 = *((int *)((void *)data + 92));
     if (__cil_tmp14 <= __cil_tmp11) {
       {
       while (1) {
@@ -1414,12 +1291,8 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
           if (tmp) {
             {
             __cil_tmp21 = (struct device  const  *)dev;
-            __cil_tmp22 = (unsigned long )data;
-            __cil_tmp23 = __cil_tmp22 + 92;
-            __cil_tmp24 = *((int *)__cil_tmp23);
-            __cil_tmp25 = (unsigned long )data;
-            __cil_tmp26 = __cil_tmp25 + 96;
-            __cil_tmp27 = *((int *)__cil_tmp26);
+            __cil_tmp24 = *((int *)((void *)data + 92));
+            __cil_tmp27 = *((int *)((void *)data + 96));
             __dynamic_dev_dbg(& descriptor___2, __cil_tmp21, "Requesting %d-%duA\n",
                               __cil_tmp24, __cil_tmp27);
             }
@@ -1435,15 +1308,9 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
       while_break: /* CIL Label */ ;
       }
       {
-      __cil_tmp28 = (unsigned long )data;
-      __cil_tmp29 = __cil_tmp28 + 72;
-      __cil_tmp30 = *((struct regulator **)__cil_tmp29);
-      __cil_tmp31 = (unsigned long )data;
-      __cil_tmp32 = __cil_tmp31 + 92;
-      __cil_tmp33 = *((int *)__cil_tmp32);
-      __cil_tmp34 = (unsigned long )data;
-      __cil_tmp35 = __cil_tmp34 + 96;
-      __cil_tmp36 = *((int *)__cil_tmp35);
+      __cil_tmp30 = *((struct regulator **)((void *)data + 72));
+      __cil_tmp33 = *((int *)((void *)data + 92));
+      __cil_tmp36 = *((int *)((void *)data + 96));
       ret = regulator_set_current_limit(__cil_tmp30, __cil_tmp33, __cil_tmp36);
       }
       if (ret != 0) {
@@ -1464,13 +1331,9 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
   }
   }
   {
-  __cil_tmp38 = (unsigned long )data;
-  __cil_tmp39 = __cil_tmp38 + 96;
-  if (*((int *)__cil_tmp39)) {
+  if (*((int *)((void *)data + 96))) {
     {
-    __cil_tmp40 = (unsigned long )data;
-    __cil_tmp41 = __cil_tmp40 + 80;
-    __cil_tmp42 = *((bool *)__cil_tmp41);
+    __cil_tmp42 = *((bool *)((void *)data + 80));
     if (! __cil_tmp42) {
       {
       while (1) {
@@ -1504,15 +1367,11 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
       while_break___1: /* CIL Label */ ;
       }
       {
-      __cil_tmp50 = (unsigned long )data;
-      __cil_tmp51 = __cil_tmp50 + 72;
-      __cil_tmp52 = *((struct regulator **)__cil_tmp51);
+      __cil_tmp52 = *((struct regulator **)((void *)data + 72));
       ret = regulator_enable(__cil_tmp52);
       }
       if (ret == 0) {
-        __cil_tmp53 = (unsigned long )data;
-        __cil_tmp54 = __cil_tmp53 + 80;
-        *((bool *)__cil_tmp54) = (bool )1;
+        *((bool *)((void *)data + 80)) = (bool )1;
       } else {
         {
         __cil_tmp55 = (struct device  const  *)dev;
@@ -1528,13 +1387,9 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
   }
   }
   {
-  __cil_tmp56 = (unsigned long )data;
-  __cil_tmp57 = __cil_tmp56 + 92;
-  if (*((int *)__cil_tmp57)) {
+  if (*((int *)((void *)data + 92))) {
     {
-    __cil_tmp58 = (unsigned long )data;
-    __cil_tmp59 = __cil_tmp58 + 96;
-    if (*((int *)__cil_tmp59)) {
+    if (*((int *)((void *)data + 96))) {
 
     } else {
       goto _L;
@@ -1543,9 +1398,7 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
   } else {
     _L: /* CIL Label */ 
     {
-    __cil_tmp60 = (unsigned long )data;
-    __cil_tmp61 = __cil_tmp60 + 80;
-    if (*((bool *)__cil_tmp61)) {
+    if (*((bool *)((void *)data + 80))) {
       {
       while (1) {
         while_continue___3: /* CIL Label */ ;
@@ -1578,15 +1431,11 @@ static void update_current_limit_constraints(struct device *dev , struct virtual
       while_break___3: /* CIL Label */ ;
       }
       {
-      __cil_tmp69 = (unsigned long )data;
-      __cil_tmp70 = __cil_tmp69 + 72;
-      __cil_tmp71 = *((struct regulator **)__cil_tmp70);
+      __cil_tmp71 = *((struct regulator **)((void *)data + 72));
       ret = regulator_disable(__cil_tmp71);
       }
       if (ret == 0) {
-        __cil_tmp72 = (unsigned long )data;
-        __cil_tmp73 = __cil_tmp72 + 80;
-        *((bool *)__cil_tmp73) = (bool )0;
+        *((bool *)((void *)data + 80)) = (bool )0;
       } else {
         {
         __cil_tmp74 = (struct device  const  *)dev;
@@ -1607,8 +1456,6 @@ static ssize_t show_min_uV(struct device *dev , struct device_attribute *attr , 
   void *tmp ;
   int tmp___0 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
 
   {
@@ -1616,9 +1463,7 @@ static ssize_t show_min_uV(struct device *dev , struct device_attribute *attr , 
   __cil_tmp7 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   data = (struct virtual_consumer_data *)tmp;
-  __cil_tmp8 = (unsigned long )data;
-  __cil_tmp9 = __cil_tmp8 + 84;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)data + 84));
   tmp___0 = sprintf(buf, "%d\n", __cil_tmp10);
   }
   return ((ssize_t )tmp___0);
@@ -1632,8 +1477,6 @@ static ssize_t set_min_uV(struct device *dev , struct device_attribute *attr , c
   int tmp___0 ;
   struct device  const  *__cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   long *__cil_tmp13 ;
   long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
@@ -1653,11 +1496,9 @@ static ssize_t set_min_uV(struct device *dev , struct device_attribute *attr , c
   {
   __cil_tmp10 = (struct mutex *)data;
   mutex_lock(__cil_tmp10);
-  __cil_tmp11 = (unsigned long )data;
-  __cil_tmp12 = __cil_tmp11 + 84;
   __cil_tmp13 = & val;
   __cil_tmp14 = *__cil_tmp13;
-  *((int *)__cil_tmp12) = (int )__cil_tmp14;
+  *((int *)((void *)data + 84)) = (int )__cil_tmp14;
   update_voltage_constraints(dev, data);
   __cil_tmp15 = (struct mutex *)data;
   mutex_unlock(__cil_tmp15);
@@ -1670,8 +1511,6 @@ static ssize_t show_max_uV(struct device *dev , struct device_attribute *attr , 
   void *tmp ;
   int tmp___0 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
 
   {
@@ -1679,9 +1518,7 @@ static ssize_t show_max_uV(struct device *dev , struct device_attribute *attr , 
   __cil_tmp7 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   data = (struct virtual_consumer_data *)tmp;
-  __cil_tmp8 = (unsigned long )data;
-  __cil_tmp9 = __cil_tmp8 + 88;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)data + 88));
   tmp___0 = sprintf(buf, "%d\n", __cil_tmp10);
   }
   return ((ssize_t )tmp___0);
@@ -1695,8 +1532,6 @@ static ssize_t set_max_uV(struct device *dev , struct device_attribute *attr , c
   int tmp___0 ;
   struct device  const  *__cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   long *__cil_tmp13 ;
   long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
@@ -1716,11 +1551,9 @@ static ssize_t set_max_uV(struct device *dev , struct device_attribute *attr , c
   {
   __cil_tmp10 = (struct mutex *)data;
   mutex_lock(__cil_tmp10);
-  __cil_tmp11 = (unsigned long )data;
-  __cil_tmp12 = __cil_tmp11 + 88;
   __cil_tmp13 = & val;
   __cil_tmp14 = *__cil_tmp13;
-  *((int *)__cil_tmp12) = (int )__cil_tmp14;
+  *((int *)((void *)data + 88)) = (int )__cil_tmp14;
   update_voltage_constraints(dev, data);
   __cil_tmp15 = (struct mutex *)data;
   mutex_unlock(__cil_tmp15);
@@ -1733,8 +1566,6 @@ static ssize_t show_min_uA(struct device *dev , struct device_attribute *attr , 
   void *tmp ;
   int tmp___0 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
 
   {
@@ -1742,9 +1573,7 @@ static ssize_t show_min_uA(struct device *dev , struct device_attribute *attr , 
   __cil_tmp7 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   data = (struct virtual_consumer_data *)tmp;
-  __cil_tmp8 = (unsigned long )data;
-  __cil_tmp9 = __cil_tmp8 + 92;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)data + 92));
   tmp___0 = sprintf(buf, "%d\n", __cil_tmp10);
   }
   return ((ssize_t )tmp___0);
@@ -1758,8 +1587,6 @@ static ssize_t set_min_uA(struct device *dev , struct device_attribute *attr , c
   int tmp___0 ;
   struct device  const  *__cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   long *__cil_tmp13 ;
   long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
@@ -1779,11 +1606,9 @@ static ssize_t set_min_uA(struct device *dev , struct device_attribute *attr , c
   {
   __cil_tmp10 = (struct mutex *)data;
   mutex_lock(__cil_tmp10);
-  __cil_tmp11 = (unsigned long )data;
-  __cil_tmp12 = __cil_tmp11 + 92;
   __cil_tmp13 = & val;
   __cil_tmp14 = *__cil_tmp13;
-  *((int *)__cil_tmp12) = (int )__cil_tmp14;
+  *((int *)((void *)data + 92)) = (int )__cil_tmp14;
   update_current_limit_constraints(dev, data);
   __cil_tmp15 = (struct mutex *)data;
   mutex_unlock(__cil_tmp15);
@@ -1796,8 +1621,6 @@ static ssize_t show_max_uA(struct device *dev , struct device_attribute *attr , 
   void *tmp ;
   int tmp___0 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
 
   {
@@ -1805,9 +1628,7 @@ static ssize_t show_max_uA(struct device *dev , struct device_attribute *attr , 
   __cil_tmp7 = (struct device  const  *)dev;
   tmp = dev_get_drvdata(__cil_tmp7);
   data = (struct virtual_consumer_data *)tmp;
-  __cil_tmp8 = (unsigned long )data;
-  __cil_tmp9 = __cil_tmp8 + 96;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp10 = *((int *)((void *)data + 96));
   tmp___0 = sprintf(buf, "%d\n", __cil_tmp10);
   }
   return ((ssize_t )tmp___0);
@@ -1821,8 +1642,6 @@ static ssize_t set_max_uA(struct device *dev , struct device_attribute *attr , c
   int tmp___0 ;
   struct device  const  *__cil_tmp9 ;
   struct mutex *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   long *__cil_tmp13 ;
   long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
@@ -1842,11 +1661,9 @@ static ssize_t set_max_uA(struct device *dev , struct device_attribute *attr , c
   {
   __cil_tmp10 = (struct mutex *)data;
   mutex_lock(__cil_tmp10);
-  __cil_tmp11 = (unsigned long )data;
-  __cil_tmp12 = __cil_tmp11 + 96;
   __cil_tmp13 = & val;
   __cil_tmp14 = *__cil_tmp13;
-  *((int *)__cil_tmp12) = (int )__cil_tmp14;
+  *((int *)((void *)data + 96)) = (int )__cil_tmp14;
   update_current_limit_constraints(dev, data);
   __cil_tmp15 = (struct mutex *)data;
   mutex_unlock(__cil_tmp15);
@@ -1863,8 +1680,6 @@ static ssize_t show_mode(struct device *dev , struct device_attribute *attr , ch
   int tmp___3 ;
   int tmp___4 ;
   struct device  const  *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
 
   {
@@ -1874,9 +1689,7 @@ static ssize_t show_mode(struct device *dev , struct device_attribute *attr , ch
   data = (struct virtual_consumer_data *)tmp;
   }
   {
-  __cil_tmp12 = (unsigned long )data;
-  __cil_tmp13 = __cil_tmp12 + 100;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)data + 100));
   if ((int )__cil_tmp14 == 1) {
     goto case_1;
   } else
@@ -1938,11 +1751,7 @@ static ssize_t set_mode(struct device *dev , struct device_attribute *attr , cha
   struct device  const  *__cil_tmp13 ;
   struct device  const  *__cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct regulator *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device  const  *__cil_tmp21 ;
   struct mutex *__cil_tmp22 ;
 
@@ -1986,15 +1795,11 @@ static ssize_t set_mode(struct device *dev , struct device_attribute *attr , cha
   {
   __cil_tmp15 = (struct mutex *)data;
   mutex_lock(__cil_tmp15);
-  __cil_tmp16 = (unsigned long )data;
-  __cil_tmp17 = __cil_tmp16 + 72;
-  __cil_tmp18 = *((struct regulator **)__cil_tmp17);
+  __cil_tmp18 = *((struct regulator **)((void *)data + 72));
   ret = regulator_set_mode(__cil_tmp18, mode);
   }
   if (ret == 0) {
-    __cil_tmp19 = (unsigned long )data;
-    __cil_tmp20 = __cil_tmp19 + 100;
-    *((unsigned int *)__cil_tmp20) = mode;
+    *((unsigned int *)((void *)data + 100)) = mode;
   } else {
     {
     __cil_tmp21 = (struct device  const  *)dev;
@@ -2028,56 +1833,32 @@ static int regulator_virtual_probe(struct platform_device *pdev )
   long tmp___0 ;
   long tmp___1 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   void *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   struct mutex *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   char const   *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct regulator *__cil_tmp24 ;
   void const   *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct regulator *__cil_tmp28 ;
   void const   *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device *__cil_tmp32 ;
   struct device  const  *__cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct kobject *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct device *__cil_tmp40 ;
   struct device  const  *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct regulator *__cil_tmp46 ;
   void *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct regulator *__cil_tmp50 ;
   void const   *__cil_tmp51 ;
 
   {
   {
   __cil_tmp8 = 16 + 184;
-  __cil_tmp9 = (unsigned long )pdev;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)pdev + __cil_tmp8));
   reg_id = (char *)__cil_tmp11;
   tmp = kzalloc(104UL, 208U);
   drvdata = (struct virtual_consumer_data *)tmp;
@@ -2104,31 +1885,21 @@ static int regulator_virtual_probe(struct platform_device *pdev )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp16 = (unsigned long )drvdata;
-  __cil_tmp17 = __cil_tmp16 + 72;
-  __cil_tmp18 = (unsigned long )pdev;
-  __cil_tmp19 = __cil_tmp18 + 16;
-  __cil_tmp20 = (struct device *)__cil_tmp19;
+  __cil_tmp20 = (struct device *)((void *)pdev + 16);
   __cil_tmp21 = (char const   *)reg_id;
-  *((struct regulator **)__cil_tmp17) = (struct regulator *)regulator_get(__cil_tmp20,
+  *((struct regulator **)((void *)drvdata + 72)) = (struct regulator *)regulator_get(__cil_tmp20,
                                                                           __cil_tmp21);
-  __cil_tmp22 = (unsigned long )drvdata;
-  __cil_tmp23 = __cil_tmp22 + 72;
-  __cil_tmp24 = *((struct regulator **)__cil_tmp23);
+  __cil_tmp24 = *((struct regulator **)((void *)drvdata + 72));
   __cil_tmp25 = (void const   *)__cil_tmp24;
   tmp___1 = (long )IS_ERR(__cil_tmp25);
   }
   if (tmp___1) {
     {
-    __cil_tmp26 = (unsigned long )drvdata;
-    __cil_tmp27 = __cil_tmp26 + 72;
-    __cil_tmp28 = *((struct regulator **)__cil_tmp27);
+    __cil_tmp28 = *((struct regulator **)((void *)drvdata + 72));
     __cil_tmp29 = (void const   *)__cil_tmp28;
     tmp___0 = (long )PTR_ERR(__cil_tmp29);
     ret = (int )tmp___0;
-    __cil_tmp30 = (unsigned long )pdev;
-    __cil_tmp31 = __cil_tmp30 + 16;
-    __cil_tmp32 = (struct device *)__cil_tmp31;
+    __cil_tmp32 = (struct device *)((void *)pdev + 16);
     __cil_tmp33 = (struct device  const  *)__cil_tmp32;
     dev_err(__cil_tmp33, "Failed to obtain supply \'%s\': %d\n", reg_id, ret);
     }
@@ -2138,16 +1909,12 @@ static int regulator_virtual_probe(struct platform_device *pdev )
   }
   {
   __cil_tmp34 = 16 + 16;
-  __cil_tmp35 = (unsigned long )pdev;
-  __cil_tmp36 = __cil_tmp35 + __cil_tmp34;
-  __cil_tmp37 = (struct kobject *)__cil_tmp36;
+  __cil_tmp37 = (struct kobject *)((void *)pdev + __cil_tmp34);
   ret = (int )sysfs_create_group(__cil_tmp37, & regulator_virtual_attr_group);
   }
   if (ret != 0) {
     {
-    __cil_tmp38 = (unsigned long )pdev;
-    __cil_tmp39 = __cil_tmp38 + 16;
-    __cil_tmp40 = (struct device *)__cil_tmp39;
+    __cil_tmp40 = (struct device *)((void *)pdev + 16);
     __cil_tmp41 = (struct device  const  *)__cil_tmp40;
     dev_err(__cil_tmp41, "Failed to create attribute group: %d\n", ret);
     }
@@ -2156,21 +1923,15 @@ static int regulator_virtual_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp42 = (unsigned long )drvdata;
-  __cil_tmp43 = __cil_tmp42 + 100;
-  __cil_tmp44 = (unsigned long )drvdata;
-  __cil_tmp45 = __cil_tmp44 + 72;
-  __cil_tmp46 = *((struct regulator **)__cil_tmp45);
-  *((unsigned int *)__cil_tmp43) = regulator_get_mode(__cil_tmp46);
+  __cil_tmp46 = *((struct regulator **)((void *)drvdata + 72));
+  *((unsigned int *)((void *)drvdata + 100)) = regulator_get_mode(__cil_tmp46);
   __cil_tmp47 = (void *)drvdata;
   platform_set_drvdata(pdev, __cil_tmp47);
   }
   return (0);
   err_regulator: 
   {
-  __cil_tmp48 = (unsigned long )drvdata;
-  __cil_tmp49 = __cil_tmp48 + 72;
-  __cil_tmp50 = *((struct regulator **)__cil_tmp49);
+  __cil_tmp50 = *((struct regulator **)((void *)drvdata + 72));
   regulator_put(__cil_tmp50);
   }
   err: 
@@ -2188,16 +1949,8 @@ static int regulator_virtual_remove(struct platform_device *pdev )
   void *tmp ;
   struct platform_device  const  *__cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct kobject *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct regulator *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct regulator *__cil_tmp16 ;
   void const   *__cil_tmp17 ;
   void *__cil_tmp18 ;
@@ -2208,19 +1961,13 @@ static int regulator_virtual_remove(struct platform_device *pdev )
   tmp = platform_get_drvdata(__cil_tmp4);
   drvdata = (struct virtual_consumer_data *)tmp;
   __cil_tmp5 = 16 + 16;
-  __cil_tmp6 = (unsigned long )pdev;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
-  __cil_tmp8 = (struct kobject *)__cil_tmp7;
+  __cil_tmp8 = (struct kobject *)((void *)pdev + __cil_tmp5);
   sysfs_remove_group(__cil_tmp8, & regulator_virtual_attr_group);
   }
   {
-  __cil_tmp9 = (unsigned long )drvdata;
-  __cil_tmp10 = __cil_tmp9 + 80;
-  if (*((bool *)__cil_tmp10)) {
+  if (*((bool *)((void *)drvdata + 80))) {
     {
-    __cil_tmp11 = (unsigned long )drvdata;
-    __cil_tmp12 = __cil_tmp11 + 72;
-    __cil_tmp13 = *((struct regulator **)__cil_tmp12);
+    __cil_tmp13 = *((struct regulator **)((void *)drvdata + 72));
     regulator_disable(__cil_tmp13);
     }
   } else {
@@ -2228,9 +1975,7 @@ static int regulator_virtual_remove(struct platform_device *pdev )
   }
   }
   {
-  __cil_tmp14 = (unsigned long )drvdata;
-  __cil_tmp15 = __cil_tmp14 + 72;
-  __cil_tmp16 = *((struct regulator **)__cil_tmp15);
+  __cil_tmp16 = *((struct regulator **)((void *)drvdata + 72));
   regulator_put(__cil_tmp16);
   __cil_tmp17 = (void const   *)drvdata;
   kfree(__cil_tmp17);

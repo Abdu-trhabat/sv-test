@@ -2373,15 +2373,11 @@ extern int __pci_register_driver(struct pci_driver * , struct module * , char co
 extern void pci_unregister_driver(struct pci_driver * ) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -2389,14 +2385,11 @@ __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 }
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2409,14 +2402,11 @@ extern struct mtd_info *do_map_probe(char const * , struct map_info * ) ;
 extern void map_destroy(struct mtd_info * ) ;
 extern void simple_map_init(struct map_info * ) ;
 static void vr_nor_destroy_partitions(struct vr_nor_mtd *p )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct mtd_info *__cil_tmp4 ;
   {
   {
-  __cil_tmp2 = (unsigned long )p;
-  __cil_tmp3 = __cil_tmp2 + 144;
-  __cil_tmp4 = *((struct mtd_info **)__cil_tmp3);
+  __cil_tmp4 = *((struct mtd_info **)((void *)p + 144));
   mtd_device_unregister(__cil_tmp4);
   }
   return;
@@ -2424,17 +2414,13 @@ static void vr_nor_destroy_partitions(struct vr_nor_mtd *p )
 }
 static int vr_nor_init_partitions(struct vr_nor_mtd *p )
 { int tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct mtd_info *__cil_tmp5 ;
   char const **__cil_tmp6 ;
   struct mtd_part_parser_data *__cil_tmp7 ;
   struct mtd_partition const *__cil_tmp8 ;
   {
   {
-  __cil_tmp3 = (unsigned long )p;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = *((struct mtd_info **)__cil_tmp4);
+  __cil_tmp5 = *((struct mtd_info **)((void *)p + 144));
   __cil_tmp6 = (char const **)0;
   __cil_tmp7 = (struct mtd_part_parser_data *)0;
   __cil_tmp8 = (struct mtd_partition const *)0;
@@ -2445,14 +2431,11 @@ static int vr_nor_init_partitions(struct vr_nor_mtd *p )
 }
 }
 static void vr_nor_destroy_mtd_setup(struct vr_nor_mtd *p )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct mtd_info *__cil_tmp4 ;
   {
   {
-  __cil_tmp2 = (unsigned long )p;
-  __cil_tmp3 = __cil_tmp2 + 144;
-  __cil_tmp4 = *((struct mtd_info **)__cil_tmp3);
+  __cil_tmp4 = *((struct mtd_info **)((void *)p + 144));
   map_destroy(__cil_tmp4);
   }
   return;
@@ -2467,16 +2450,10 @@ static int vr_nor_mtd_setup(struct vr_nor_mtd *p )
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   char const *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct map_info *__cil_tmp15 ;
   struct mtd_info *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct mtd_info *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   char const *__cil_tmp22 ;
@@ -2485,15 +2462,9 @@ static int vr_nor_mtd_setup(struct vr_nor_mtd *p )
   unsigned long __cil_tmp25 ;
   struct mtd_info *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct mtd_info *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct mtd_info *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   {
   __cil_tmp4 = 0 * 8UL;
   __cil_tmp5 = (unsigned long )(probe_types) + __cil_tmp4;
@@ -2508,22 +2479,16 @@ static int vr_nor_mtd_setup(struct vr_nor_mtd *p )
   goto ldv_25287;
   ldv_25286:
   {
-  __cil_tmp10 = (unsigned long )p;
-  __cil_tmp11 = __cil_tmp10 + 144;
   __cil_tmp12 = *type;
-  __cil_tmp13 = (unsigned long )p;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  __cil_tmp15 = (struct map_info *)__cil_tmp14;
-  *((struct mtd_info **)__cil_tmp11) = do_map_probe(__cil_tmp12, __cil_tmp15);
+  __cil_tmp15 = (struct map_info *)((void *)p + 8);
+  *((struct mtd_info **)((void *)p + 144)) = do_map_probe(__cil_tmp12, __cil_tmp15);
   type = type + 1;
   }
   ldv_25287: ;
   {
   __cil_tmp16 = (struct mtd_info *)0;
   __cil_tmp17 = (unsigned long )__cil_tmp16;
-  __cil_tmp18 = (unsigned long )p;
-  __cil_tmp19 = __cil_tmp18 + 144;
-  __cil_tmp20 = *((struct mtd_info **)__cil_tmp19);
+  __cil_tmp20 = *((struct mtd_info **)((void *)p + 144));
   __cil_tmp21 = (unsigned long )__cil_tmp20;
   if (__cil_tmp21 == __cil_tmp17) {
     {
@@ -2545,21 +2510,15 @@ static int vr_nor_mtd_setup(struct vr_nor_mtd *p )
   {
   __cil_tmp26 = (struct mtd_info *)0;
   __cil_tmp27 = (unsigned long )__cil_tmp26;
-  __cil_tmp28 = (unsigned long )p;
-  __cil_tmp29 = __cil_tmp28 + 144;
-  __cil_tmp30 = *((struct mtd_info **)__cil_tmp29);
+  __cil_tmp30 = *((struct mtd_info **)((void *)p + 144));
   __cil_tmp31 = (unsigned long )__cil_tmp30;
   if (__cil_tmp31 == __cil_tmp27) {
     return (-19);
   } else {
   }
   }
-  __cil_tmp32 = (unsigned long )p;
-  __cil_tmp33 = __cil_tmp32 + 144;
-  __cil_tmp34 = *((struct mtd_info **)__cil_tmp33);
-  __cil_tmp35 = (unsigned long )__cil_tmp34;
-  __cil_tmp36 = __cil_tmp35 + 368;
-  *((struct module **)__cil_tmp36) = & __this_module;
+  __cil_tmp34 = *((struct mtd_info **)((void *)p + 144));
+  *((struct module **)((void *)__cil_tmp34 + 368)) = & __this_module;
   return (0);
 }
 }
@@ -2570,8 +2529,6 @@ static void vr_nor_destroy_maps(struct vr_nor_mtd *p )
   void *__cil_tmp5 ;
   void volatile *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   void volatile *__cil_tmp11 ;
   void *__cil_tmp12 ;
@@ -2586,9 +2543,7 @@ static void vr_nor_destroy_maps(struct vr_nor_mtd *p )
   __cil_tmp6 = (void volatile *)__cil_tmp5;
   writel(exp_timing_cs0, __cil_tmp6);
   __cil_tmp7 = 8 + 24;
-  __cil_tmp8 = (unsigned long )p;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)p + __cil_tmp7));
   __cil_tmp11 = (void volatile *)__cil_tmp10;
   iounmap(__cil_tmp11);
   __cil_tmp12 = *((void **)p);
@@ -2607,143 +2562,79 @@ static int vr_nor_init_maps(struct vr_nor_mtd *p )
   int err ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct pci_dev *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   resource_size_t __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct pci_dev *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   resource_size_t __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct pci_dev *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   resource_size_t __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct pci_dev *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   resource_size_t __cil_tmp40 ;
   resource_size_t __cil_tmp41 ;
   resource_size_t __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct pci_dev *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   resource_size_t __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
   unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct pci_dev *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   resource_size_t __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   struct pci_dev *__cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   resource_size_t __cil_tmp67 ;
   unsigned long __cil_tmp68 ;
   unsigned long __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
   struct pci_dev *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   resource_size_t __cil_tmp76 ;
   resource_size_t __cil_tmp77 ;
   resource_size_t __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   struct pci_dev *__cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   resource_size_t __cil_tmp86 ;
   unsigned long __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   struct pci_dev *__cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   resource_size_t __cil_tmp94 ;
   unsigned long __cil_tmp95 ;
   unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   struct pci_dev *__cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
   resource_size_t __cil_tmp102 ;
   unsigned long __cil_tmp103 ;
   unsigned long __cil_tmp104 ;
   unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   struct pci_dev *__cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
   resource_size_t __cil_tmp111 ;
   resource_size_t __cil_tmp112 ;
   resource_size_t __cil_tmp113 ;
   unsigned long __cil_tmp114 ;
   unsigned long __cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
   struct pci_dev *__cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   resource_size_t __cil_tmp121 ;
   unsigned long __cil_tmp122 ;
   unsigned long __cil_tmp123 ;
   unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   struct pci_dev *__cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
   resource_size_t __cil_tmp130 ;
   unsigned long __cil_tmp131 ;
   unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
   struct pci_dev *__cil_tmp135 ;
-  unsigned long __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
   resource_size_t __cil_tmp138 ;
   unsigned long __cil_tmp139 ;
   unsigned long __cil_tmp140 ;
   unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
   struct pci_dev *__cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
   resource_size_t __cil_tmp147 ;
   resource_size_t __cil_tmp148 ;
   resource_size_t __cil_tmp149 ;
@@ -2755,56 +2646,28 @@ static int vr_nor_init_maps(struct vr_nor_mtd *p )
   void *__cil_tmp155 ;
   void const volatile *__cil_tmp156 ;
   int __cil_tmp157 ;
-  unsigned long __cil_tmp158 ;
-  unsigned long __cil_tmp159 ;
   struct pci_dev *__cil_tmp160 ;
-  unsigned long __cil_tmp161 ;
-  unsigned long __cil_tmp162 ;
   struct device *__cil_tmp163 ;
   struct device const *__cil_tmp164 ;
   unsigned int __cil_tmp165 ;
-  unsigned long __cil_tmp166 ;
-  unsigned long __cil_tmp167 ;
   struct pci_dev *__cil_tmp168 ;
-  unsigned long __cil_tmp169 ;
-  unsigned long __cil_tmp170 ;
   struct device *__cil_tmp171 ;
   struct device const *__cil_tmp172 ;
-  unsigned long __cil_tmp173 ;
-  unsigned long __cil_tmp174 ;
   int __cil_tmp175 ;
   unsigned long __cil_tmp176 ;
-  unsigned long __cil_tmp177 ;
-  unsigned long __cil_tmp178 ;
   unsigned long __cil_tmp179 ;
-  unsigned long __cil_tmp180 ;
-  unsigned long __cil_tmp181 ;
   unsigned long __cil_tmp182 ;
-  unsigned long __cil_tmp183 ;
-  unsigned long __cil_tmp184 ;
   unsigned long __cil_tmp185 ;
-  unsigned long __cil_tmp186 ;
-  unsigned long __cil_tmp187 ;
   unsigned long __cil_tmp188 ;
-  unsigned long __cil_tmp189 ;
-  unsigned long __cil_tmp190 ;
   unsigned long __cil_tmp191 ;
-  unsigned long __cil_tmp192 ;
-  unsigned long __cil_tmp193 ;
   resource_size_t __cil_tmp194 ;
   unsigned long __cil_tmp195 ;
-  unsigned long __cil_tmp196 ;
-  unsigned long __cil_tmp197 ;
   unsigned long __cil_tmp198 ;
   void *__cil_tmp199 ;
   unsigned long __cil_tmp200 ;
   unsigned long __cil_tmp201 ;
-  unsigned long __cil_tmp202 ;
-  unsigned long __cil_tmp203 ;
   void *__cil_tmp204 ;
   unsigned long __cil_tmp205 ;
-  unsigned long __cil_tmp206 ;
-  unsigned long __cil_tmp207 ;
   struct map_info *__cil_tmp208 ;
   void *__cil_tmp209 ;
   void volatile *__cil_tmp210 ;
@@ -2813,40 +2676,24 @@ static int vr_nor_init_maps(struct vr_nor_mtd *p )
   {
   __cil_tmp8 = 0 * 56UL;
   __cil_tmp9 = 1304 + __cil_tmp8;
-  __cil_tmp10 = (unsigned long )p;
-  __cil_tmp11 = __cil_tmp10 + 152;
-  __cil_tmp12 = *((struct pci_dev **)__cil_tmp11);
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp9;
-  __cil_tmp15 = *((resource_size_t *)__cil_tmp14);
+  __cil_tmp12 = *((struct pci_dev **)((void *)p + 152));
+  __cil_tmp15 = *((resource_size_t *)((void *)__cil_tmp12 + __cil_tmp9));
   csr_phys = (unsigned long )__cil_tmp15;
   {
   __cil_tmp16 = 0 * 56UL;
   __cil_tmp17 = 1304 + __cil_tmp16;
-  __cil_tmp18 = (unsigned long )p;
-  __cil_tmp19 = __cil_tmp18 + 152;
-  __cil_tmp20 = *((struct pci_dev **)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )__cil_tmp20;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp17;
-  __cil_tmp23 = *((resource_size_t *)__cil_tmp22);
+  __cil_tmp20 = *((struct pci_dev **)((void *)p + 152));
+  __cil_tmp23 = *((resource_size_t *)((void *)__cil_tmp20 + __cil_tmp17));
   if (__cil_tmp23 != 0ULL) {
     __cil_tmp24 = 0 * 56UL;
     __cil_tmp25 = 1304 + __cil_tmp24;
-    __cil_tmp26 = (unsigned long )p;
-    __cil_tmp27 = __cil_tmp26 + 152;
-    __cil_tmp28 = *((struct pci_dev **)__cil_tmp27);
-    __cil_tmp29 = (unsigned long )__cil_tmp28;
-    __cil_tmp30 = __cil_tmp29 + __cil_tmp25;
-    __cil_tmp31 = *((resource_size_t *)__cil_tmp30);
+    __cil_tmp28 = *((struct pci_dev **)((void *)p + 152));
+    __cil_tmp31 = *((resource_size_t *)((void *)__cil_tmp28 + __cil_tmp25));
     __cil_tmp32 = 0 * 56UL;
     __cil_tmp33 = __cil_tmp32 + 8;
     __cil_tmp34 = 1304 + __cil_tmp33;
-    __cil_tmp35 = (unsigned long )p;
-    __cil_tmp36 = __cil_tmp35 + 152;
-    __cil_tmp37 = *((struct pci_dev **)__cil_tmp36);
-    __cil_tmp38 = (unsigned long )__cil_tmp37;
-    __cil_tmp39 = __cil_tmp38 + __cil_tmp34;
-    __cil_tmp40 = *((resource_size_t *)__cil_tmp39);
+    __cil_tmp37 = *((struct pci_dev **)((void *)p + 152));
+    __cil_tmp40 = *((resource_size_t *)((void *)__cil_tmp37 + __cil_tmp34));
     __cil_tmp41 = __cil_tmp40 - __cil_tmp31;
     __cil_tmp42 = __cil_tmp41 + 1ULL;
     csr_len = (unsigned long )__cil_tmp42;
@@ -2854,39 +2701,23 @@ static int vr_nor_init_maps(struct vr_nor_mtd *p )
     {
     __cil_tmp43 = 0 * 56UL;
     __cil_tmp44 = 1304 + __cil_tmp43;
-    __cil_tmp45 = (unsigned long )p;
-    __cil_tmp46 = __cil_tmp45 + 152;
-    __cil_tmp47 = *((struct pci_dev **)__cil_tmp46);
-    __cil_tmp48 = (unsigned long )__cil_tmp47;
-    __cil_tmp49 = __cil_tmp48 + __cil_tmp44;
-    __cil_tmp50 = *((resource_size_t *)__cil_tmp49);
+    __cil_tmp47 = *((struct pci_dev **)((void *)p + 152));
+    __cil_tmp50 = *((resource_size_t *)((void *)__cil_tmp47 + __cil_tmp44));
     __cil_tmp51 = 0 * 56UL;
     __cil_tmp52 = __cil_tmp51 + 8;
     __cil_tmp53 = 1304 + __cil_tmp52;
-    __cil_tmp54 = (unsigned long )p;
-    __cil_tmp55 = __cil_tmp54 + 152;
-    __cil_tmp56 = *((struct pci_dev **)__cil_tmp55);
-    __cil_tmp57 = (unsigned long )__cil_tmp56;
-    __cil_tmp58 = __cil_tmp57 + __cil_tmp53;
-    __cil_tmp59 = *((resource_size_t *)__cil_tmp58);
+    __cil_tmp56 = *((struct pci_dev **)((void *)p + 152));
+    __cil_tmp59 = *((resource_size_t *)((void *)__cil_tmp56 + __cil_tmp53));
     if (__cil_tmp59 != __cil_tmp50) {
       __cil_tmp60 = 0 * 56UL;
       __cil_tmp61 = 1304 + __cil_tmp60;
-      __cil_tmp62 = (unsigned long )p;
-      __cil_tmp63 = __cil_tmp62 + 152;
-      __cil_tmp64 = *((struct pci_dev **)__cil_tmp63);
-      __cil_tmp65 = (unsigned long )__cil_tmp64;
-      __cil_tmp66 = __cil_tmp65 + __cil_tmp61;
-      __cil_tmp67 = *((resource_size_t *)__cil_tmp66);
+      __cil_tmp64 = *((struct pci_dev **)((void *)p + 152));
+      __cil_tmp67 = *((resource_size_t *)((void *)__cil_tmp64 + __cil_tmp61));
       __cil_tmp68 = 0 * 56UL;
       __cil_tmp69 = __cil_tmp68 + 8;
       __cil_tmp70 = 1304 + __cil_tmp69;
-      __cil_tmp71 = (unsigned long )p;
-      __cil_tmp72 = __cil_tmp71 + 152;
-      __cil_tmp73 = *((struct pci_dev **)__cil_tmp72);
-      __cil_tmp74 = (unsigned long )__cil_tmp73;
-      __cil_tmp75 = __cil_tmp74 + __cil_tmp70;
-      __cil_tmp76 = *((resource_size_t *)__cil_tmp75);
+      __cil_tmp73 = *((struct pci_dev **)((void *)p + 152));
+      __cil_tmp76 = *((resource_size_t *)((void *)__cil_tmp73 + __cil_tmp70));
       __cil_tmp77 = __cil_tmp76 - __cil_tmp67;
       __cil_tmp78 = __cil_tmp77 + 1ULL;
       csr_len = (unsigned long )__cil_tmp78;
@@ -2898,40 +2729,24 @@ static int vr_nor_init_maps(struct vr_nor_mtd *p )
   }
   __cil_tmp79 = 1 * 56UL;
   __cil_tmp80 = 1304 + __cil_tmp79;
-  __cil_tmp81 = (unsigned long )p;
-  __cil_tmp82 = __cil_tmp81 + 152;
-  __cil_tmp83 = *((struct pci_dev **)__cil_tmp82);
-  __cil_tmp84 = (unsigned long )__cil_tmp83;
-  __cil_tmp85 = __cil_tmp84 + __cil_tmp80;
-  __cil_tmp86 = *((resource_size_t *)__cil_tmp85);
+  __cil_tmp83 = *((struct pci_dev **)((void *)p + 152));
+  __cil_tmp86 = *((resource_size_t *)((void *)__cil_tmp83 + __cil_tmp80));
   win_phys = (unsigned long )__cil_tmp86;
   {
   __cil_tmp87 = 1 * 56UL;
   __cil_tmp88 = 1304 + __cil_tmp87;
-  __cil_tmp89 = (unsigned long )p;
-  __cil_tmp90 = __cil_tmp89 + 152;
-  __cil_tmp91 = *((struct pci_dev **)__cil_tmp90);
-  __cil_tmp92 = (unsigned long )__cil_tmp91;
-  __cil_tmp93 = __cil_tmp92 + __cil_tmp88;
-  __cil_tmp94 = *((resource_size_t *)__cil_tmp93);
+  __cil_tmp91 = *((struct pci_dev **)((void *)p + 152));
+  __cil_tmp94 = *((resource_size_t *)((void *)__cil_tmp91 + __cil_tmp88));
   if (__cil_tmp94 != 0ULL) {
     __cil_tmp95 = 1 * 56UL;
     __cil_tmp96 = 1304 + __cil_tmp95;
-    __cil_tmp97 = (unsigned long )p;
-    __cil_tmp98 = __cil_tmp97 + 152;
-    __cil_tmp99 = *((struct pci_dev **)__cil_tmp98);
-    __cil_tmp100 = (unsigned long )__cil_tmp99;
-    __cil_tmp101 = __cil_tmp100 + __cil_tmp96;
-    __cil_tmp102 = *((resource_size_t *)__cil_tmp101);
+    __cil_tmp99 = *((struct pci_dev **)((void *)p + 152));
+    __cil_tmp102 = *((resource_size_t *)((void *)__cil_tmp99 + __cil_tmp96));
     __cil_tmp103 = 1 * 56UL;
     __cil_tmp104 = __cil_tmp103 + 8;
     __cil_tmp105 = 1304 + __cil_tmp104;
-    __cil_tmp106 = (unsigned long )p;
-    __cil_tmp107 = __cil_tmp106 + 152;
-    __cil_tmp108 = *((struct pci_dev **)__cil_tmp107);
-    __cil_tmp109 = (unsigned long )__cil_tmp108;
-    __cil_tmp110 = __cil_tmp109 + __cil_tmp105;
-    __cil_tmp111 = *((resource_size_t *)__cil_tmp110);
+    __cil_tmp108 = *((struct pci_dev **)((void *)p + 152));
+    __cil_tmp111 = *((resource_size_t *)((void *)__cil_tmp108 + __cil_tmp105));
     __cil_tmp112 = __cil_tmp111 - __cil_tmp102;
     __cil_tmp113 = __cil_tmp112 + 1ULL;
     win_len = (unsigned long )__cil_tmp113;
@@ -2939,39 +2754,23 @@ static int vr_nor_init_maps(struct vr_nor_mtd *p )
     {
     __cil_tmp114 = 1 * 56UL;
     __cil_tmp115 = 1304 + __cil_tmp114;
-    __cil_tmp116 = (unsigned long )p;
-    __cil_tmp117 = __cil_tmp116 + 152;
-    __cil_tmp118 = *((struct pci_dev **)__cil_tmp117);
-    __cil_tmp119 = (unsigned long )__cil_tmp118;
-    __cil_tmp120 = __cil_tmp119 + __cil_tmp115;
-    __cil_tmp121 = *((resource_size_t *)__cil_tmp120);
+    __cil_tmp118 = *((struct pci_dev **)((void *)p + 152));
+    __cil_tmp121 = *((resource_size_t *)((void *)__cil_tmp118 + __cil_tmp115));
     __cil_tmp122 = 1 * 56UL;
     __cil_tmp123 = __cil_tmp122 + 8;
     __cil_tmp124 = 1304 + __cil_tmp123;
-    __cil_tmp125 = (unsigned long )p;
-    __cil_tmp126 = __cil_tmp125 + 152;
-    __cil_tmp127 = *((struct pci_dev **)__cil_tmp126);
-    __cil_tmp128 = (unsigned long )__cil_tmp127;
-    __cil_tmp129 = __cil_tmp128 + __cil_tmp124;
-    __cil_tmp130 = *((resource_size_t *)__cil_tmp129);
+    __cil_tmp127 = *((struct pci_dev **)((void *)p + 152));
+    __cil_tmp130 = *((resource_size_t *)((void *)__cil_tmp127 + __cil_tmp124));
     if (__cil_tmp130 != __cil_tmp121) {
       __cil_tmp131 = 1 * 56UL;
       __cil_tmp132 = 1304 + __cil_tmp131;
-      __cil_tmp133 = (unsigned long )p;
-      __cil_tmp134 = __cil_tmp133 + 152;
-      __cil_tmp135 = *((struct pci_dev **)__cil_tmp134);
-      __cil_tmp136 = (unsigned long )__cil_tmp135;
-      __cil_tmp137 = __cil_tmp136 + __cil_tmp132;
-      __cil_tmp138 = *((resource_size_t *)__cil_tmp137);
+      __cil_tmp135 = *((struct pci_dev **)((void *)p + 152));
+      __cil_tmp138 = *((resource_size_t *)((void *)__cil_tmp135 + __cil_tmp132));
       __cil_tmp139 = 1 * 56UL;
       __cil_tmp140 = __cil_tmp139 + 8;
       __cil_tmp141 = 1304 + __cil_tmp140;
-      __cil_tmp142 = (unsigned long )p;
-      __cil_tmp143 = __cil_tmp142 + 152;
-      __cil_tmp144 = *((struct pci_dev **)__cil_tmp143);
-      __cil_tmp145 = (unsigned long )__cil_tmp144;
-      __cil_tmp146 = __cil_tmp145 + __cil_tmp141;
-      __cil_tmp147 = *((resource_size_t *)__cil_tmp146);
+      __cil_tmp144 = *((struct pci_dev **)((void *)p + 152));
+      __cil_tmp147 = *((resource_size_t *)((void *)__cil_tmp144 + __cil_tmp141));
       __cil_tmp148 = __cil_tmp147 - __cil_tmp138;
       __cil_tmp149 = __cil_tmp148 + 1ULL;
       win_len = (unsigned long )__cil_tmp149;
@@ -3021,12 +2820,8 @@ static int vr_nor_init_maps(struct vr_nor_mtd *p )
   __cil_tmp157 = (int )exp_timing_cs0;
   if (__cil_tmp157 >= 0) {
     {
-    __cil_tmp158 = (unsigned long )p;
-    __cil_tmp159 = __cil_tmp158 + 152;
-    __cil_tmp160 = *((struct pci_dev **)__cil_tmp159);
-    __cil_tmp161 = (unsigned long )__cil_tmp160;
-    __cil_tmp162 = __cil_tmp161 + 144;
-    __cil_tmp163 = (struct device *)__cil_tmp162;
+    __cil_tmp160 = *((struct pci_dev **)((void *)p + 152));
+    __cil_tmp163 = (struct device *)((void *)__cil_tmp160 + 144);
     __cil_tmp164 = (struct device const *)__cil_tmp163;
     dev_warn(__cil_tmp164, "Expansion Bus Chip Select 0 is disabled.\n");
     err = -19;
@@ -3039,64 +2834,42 @@ static int vr_nor_init_maps(struct vr_nor_mtd *p )
   __cil_tmp165 = exp_timing_cs0 & 1073676288U;
   if (__cil_tmp165 == 1073676288U) {
     {
-    __cil_tmp166 = (unsigned long )p;
-    __cil_tmp167 = __cil_tmp166 + 152;
-    __cil_tmp168 = *((struct pci_dev **)__cil_tmp167);
-    __cil_tmp169 = (unsigned long )__cil_tmp168;
-    __cil_tmp170 = __cil_tmp169 + 144;
-    __cil_tmp171 = (struct device *)__cil_tmp170;
+    __cil_tmp168 = *((struct pci_dev **)((void *)p + 152));
+    __cil_tmp171 = (struct device *)((void *)__cil_tmp168 + 144);
     __cil_tmp172 = (struct device const *)__cil_tmp171;
     dev_warn(__cil_tmp172, "Expansion Bus Chip Select 0 is configured for maximally slow access times.\n");
     }
   } else {
   }
   }
-  __cil_tmp173 = (unsigned long )p;
-  __cil_tmp174 = __cil_tmp173 + 8;
-  *((char const **)__cil_tmp174) = "vr_nor";
+  *((char const **)((void *)p + 8)) = "vr_nor";
   {
   __cil_tmp175 = (int )exp_timing_cs0;
   if (__cil_tmp175 & 1) {
     __cil_tmp176 = 8 + 44;
-    __cil_tmp177 = (unsigned long )p;
-    __cil_tmp178 = __cil_tmp177 + __cil_tmp176;
-    *((int *)__cil_tmp178) = 1;
+    *((int *)((void *)p + __cil_tmp176)) = 1;
   } else {
     __cil_tmp179 = 8 + 44;
-    __cil_tmp180 = (unsigned long )p;
-    __cil_tmp181 = __cil_tmp180 + __cil_tmp179;
-    *((int *)__cil_tmp181) = 2;
+    *((int *)((void *)p + __cil_tmp179)) = 2;
   }
   }
   {
   __cil_tmp182 = 8 + 16;
-  __cil_tmp183 = (unsigned long )p;
-  __cil_tmp184 = __cil_tmp183 + __cil_tmp182;
-  *((resource_size_t *)__cil_tmp184) = (resource_size_t )win_phys;
+  *((resource_size_t *)((void *)p + __cil_tmp182)) = (resource_size_t )win_phys;
   __cil_tmp185 = 8 + 8;
-  __cil_tmp186 = (unsigned long )p;
-  __cil_tmp187 = __cil_tmp186 + __cil_tmp185;
-  *((unsigned long *)__cil_tmp187) = 67108864UL;
+  *((unsigned long *)((void *)p + __cil_tmp185)) = 67108864UL;
   __cil_tmp188 = 8 + 24;
-  __cil_tmp189 = (unsigned long )p;
-  __cil_tmp190 = __cil_tmp189 + __cil_tmp188;
   __cil_tmp191 = 8 + 16;
-  __cil_tmp192 = (unsigned long )p;
-  __cil_tmp193 = __cil_tmp192 + __cil_tmp191;
-  __cil_tmp194 = *((resource_size_t *)__cil_tmp193);
+  __cil_tmp194 = *((resource_size_t *)((void *)p + __cil_tmp191));
   __cil_tmp195 = 8 + 8;
-  __cil_tmp196 = (unsigned long )p;
-  __cil_tmp197 = __cil_tmp196 + __cil_tmp195;
-  __cil_tmp198 = *((unsigned long *)__cil_tmp197);
-  *((void **)__cil_tmp190) = ioremap_nocache(__cil_tmp194, __cil_tmp198);
+  __cil_tmp198 = *((unsigned long *)((void *)p + __cil_tmp195));
+  *((void **)((void *)p + __cil_tmp188)) = ioremap_nocache(__cil_tmp194, __cil_tmp198);
   }
   {
   __cil_tmp199 = (void *)0;
   __cil_tmp200 = (unsigned long )__cil_tmp199;
   __cil_tmp201 = 8 + 24;
-  __cil_tmp202 = (unsigned long )p;
-  __cil_tmp203 = __cil_tmp202 + __cil_tmp201;
-  __cil_tmp204 = *((void **)__cil_tmp203);
+  __cil_tmp204 = *((void **)((void *)p + __cil_tmp201));
   __cil_tmp205 = (unsigned long )__cil_tmp204;
   if (__cil_tmp205 == __cil_tmp200) {
     err = -12;
@@ -3105,9 +2878,7 @@ static int vr_nor_init_maps(struct vr_nor_mtd *p )
   }
   }
   {
-  __cil_tmp206 = (unsigned long )p;
-  __cil_tmp207 = __cil_tmp206 + 8;
-  __cil_tmp208 = (struct map_info *)__cil_tmp207;
+  __cil_tmp208 = (struct map_info *)((void *)p + 8);
   simple_map_init(__cil_tmp208);
   exp_timing_cs0 = exp_timing_cs0 | 258U;
   __cil_tmp209 = *((void **)p);
@@ -3156,19 +2927,13 @@ static int vr_nor_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   struct vr_nor_mtd *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct mtd_info *__cil_tmp15 ;
   void *__cil_tmp16 ;
   void const volatile *__cil_tmp17 ;
   void *__cil_tmp18 ;
   void volatile *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   void *__cil_tmp23 ;
   void volatile *__cil_tmp24 ;
   void *__cil_tmp25 ;
@@ -3205,9 +2970,7 @@ static int vr_nor_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   }
   }
   {
-  __cil_tmp10 = (unsigned long )p;
-  __cil_tmp11 = __cil_tmp10 + 152;
-  *((struct pci_dev **)__cil_tmp11) = dev;
+  *((struct pci_dev **)((void *)p + 152)) = dev;
   err = vr_nor_init_maps(p);
   }
   if (err != 0) {
@@ -3235,9 +2998,7 @@ static int vr_nor_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   return (0);
   destroy_mtd_setup:
   {
-  __cil_tmp13 = (unsigned long )p;
-  __cil_tmp14 = __cil_tmp13 + 144;
-  __cil_tmp15 = *((struct mtd_info **)__cil_tmp14);
+  __cil_tmp15 = *((struct mtd_info **)((void *)p + 144));
   map_destroy(__cil_tmp15);
   }
   destroy_maps:
@@ -3250,9 +3011,7 @@ static int vr_nor_pci_probe(struct pci_dev *dev , struct pci_device_id const *id
   __cil_tmp19 = (void volatile *)__cil_tmp18;
   writel(exp_timing_cs0, __cil_tmp19);
   __cil_tmp20 = 8 + 24;
-  __cil_tmp21 = (unsigned long )p;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  __cil_tmp23 = *((void **)__cil_tmp22);
+  __cil_tmp23 = *((void **)((void *)p + __cil_tmp20));
   __cil_tmp24 = (void volatile *)__cil_tmp23;
   iounmap(__cil_tmp24);
   __cil_tmp25 = *((void **)p);

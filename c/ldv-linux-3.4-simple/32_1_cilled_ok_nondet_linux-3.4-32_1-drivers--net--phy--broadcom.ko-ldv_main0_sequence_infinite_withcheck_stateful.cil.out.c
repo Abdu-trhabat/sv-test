@@ -3116,21 +3116,13 @@ extern int mdiobus_write(struct mii_bus *bus , int addr , u32 regnum , u16 val )
 __inline static int phy_read(struct phy_device *phydev , u32 regnum )  __attribute__((__no_instrument_function__)) ;
 __inline static int phy_read(struct phy_device *phydev , u32 regnum ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct mii_bus *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   int __cil_tmp9 ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )phydev;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((struct mii_bus **)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )phydev;
-  __cil_tmp8 = __cil_tmp7 + 800;
-  __cil_tmp9 = *((int *)__cil_tmp8);
+  __cil_tmp6 = *((struct mii_bus **)((void *)phydev + 8));
+  __cil_tmp9 = *((int *)((void *)phydev + 800));
   tmp___7 = mdiobus_read(__cil_tmp6, __cil_tmp9, regnum);
   }
   return (tmp___7);
@@ -3139,21 +3131,13 @@ __inline static int phy_read(struct phy_device *phydev , u32 regnum )
 __inline static int phy_write(struct phy_device *phydev , u32 regnum , u16 val )  __attribute__((__no_instrument_function__)) ;
 __inline static int phy_write(struct phy_device *phydev , u32 regnum , u16 val ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct mii_bus *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )phydev;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((struct mii_bus **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )phydev;
-  __cil_tmp9 = __cil_tmp8 + 800;
-  __cil_tmp10 = *((int *)__cil_tmp9);
+  __cil_tmp7 = *((struct mii_bus **)((void *)phydev + 8));
+  __cil_tmp10 = *((int *)((void *)phydev + 800));
   tmp___7 = mdiobus_write(__cil_tmp7, __cil_tmp10, regnum, val);
   }
   return (tmp___7);
@@ -3382,15 +3366,11 @@ static int bcm54xx_phydsp_config(struct phy_device *phydev )
   u16 __cil_tmp6 ;
   u16 __cil_tmp7 ;
   struct phy_driver *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   struct phy_driver *__cil_tmp12 ;
   u32 __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   struct phy_driver *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   struct phy_driver *__cil_tmp19 ;
   u32 __cil_tmp20 ;
@@ -3400,8 +3380,6 @@ static int bcm54xx_phydsp_config(struct phy_device *phydev )
   struct phy_driver *__cil_tmp24 ;
   u32 __cil_tmp25 ;
   struct phy_driver *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
   struct phy_driver *__cil_tmp30 ;
   u32 __cil_tmp31 ;
@@ -3425,9 +3403,7 @@ static int bcm54xx_phydsp_config(struct phy_device *phydev )
   }
   {
   __cil_tmp8 = *((struct phy_driver **)phydev);
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = *((unsigned int *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned int *)((void *)__cil_tmp8 + 16));
   __cil_tmp12 = *((struct phy_driver **)phydev);
   __cil_tmp13 = *((u32 *)__cil_tmp12);
   __cil_tmp14 = __cil_tmp13 & __cil_tmp11;
@@ -3436,9 +3412,7 @@ static int bcm54xx_phydsp_config(struct phy_device *phydev )
   } else {
     {
     __cil_tmp15 = *((struct phy_driver **)phydev);
-    __cil_tmp16 = (unsigned long )__cil_tmp15;
-    __cil_tmp17 = __cil_tmp16 + 16;
-    __cil_tmp18 = *((unsigned int *)__cil_tmp17);
+    __cil_tmp18 = *((unsigned int *)((void *)__cil_tmp15 + 16));
     __cil_tmp19 = *((struct phy_driver **)phydev);
     __cil_tmp20 = *((u32 *)__cil_tmp19);
     __cil_tmp21 = __cil_tmp20 & __cil_tmp18;
@@ -3478,9 +3452,7 @@ static int bcm54xx_phydsp_config(struct phy_device *phydev )
   }
   {
   __cil_tmp26 = *((struct phy_driver **)phydev);
-  __cil_tmp27 = (unsigned long )__cil_tmp26;
-  __cil_tmp28 = __cil_tmp27 + 16;
-  __cil_tmp29 = *((unsigned int *)__cil_tmp28);
+  __cil_tmp29 = *((unsigned int *)((void *)__cil_tmp26 + 16));
   __cil_tmp30 = *((struct phy_driver **)phydev);
   __cil_tmp31 = *((u32 *)__cil_tmp30);
   __cil_tmp32 = __cil_tmp31 & __cil_tmp29;
@@ -3523,64 +3495,44 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev )
   int val ;
   bool clk125en ;
   struct phy_driver *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   struct phy_driver *__cil_tmp9 ;
   u32 __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   struct phy_driver *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   struct phy_driver *__cil_tmp16 ;
   u32 __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
   struct phy_driver *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   struct phy_driver *__cil_tmp23 ;
   u32 __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
   u16 __cil_tmp26 ;
   struct phy_driver *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   struct phy_driver *__cil_tmp31 ;
   u32 __cil_tmp32 ;
   unsigned int __cil_tmp33 ;
   struct phy_driver *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   struct phy_driver *__cil_tmp38 ;
   u32 __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
   struct phy_driver *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
   unsigned int __cil_tmp45 ;
   struct phy_driver *__cil_tmp46 ;
   u32 __cil_tmp47 ;
   unsigned int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   u32 __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   u32 __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   u32 __cil_tmp57 ;
   u32 __cil_tmp58 ;
   u16 __cil_tmp59 ;
   u16 __cil_tmp60 ;
   u16 __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   u32 __cil_tmp64 ;
   u32 __cil_tmp65 ;
   u16 __cil_tmp66 ;
@@ -3590,27 +3542,21 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev )
   clk125en = (bool )1;
   {
   __cil_tmp5 = *((struct phy_driver **)phydev);
-  __cil_tmp6 = (unsigned long )__cil_tmp5;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)__cil_tmp5 + 16));
   __cil_tmp9 = *((struct phy_driver **)phydev);
   __cil_tmp10 = *((u32 *)__cil_tmp9);
   __cil_tmp11 = __cil_tmp10 & __cil_tmp8;
   if (__cil_tmp11 != 56778128U) {
     {
     __cil_tmp12 = *((struct phy_driver **)phydev);
-    __cil_tmp13 = (unsigned long )__cil_tmp12;
-    __cil_tmp14 = __cil_tmp13 + 16;
-    __cil_tmp15 = *((unsigned int *)__cil_tmp14);
+    __cil_tmp15 = *((unsigned int *)((void *)__cil_tmp12 + 16));
     __cil_tmp16 = *((struct phy_driver **)phydev);
     __cil_tmp17 = *((u32 *)__cil_tmp16);
     __cil_tmp18 = __cil_tmp17 & __cil_tmp15;
     if (__cil_tmp18 != 21216608U) {
       {
       __cil_tmp19 = *((struct phy_driver **)phydev);
-      __cil_tmp20 = (unsigned long )__cil_tmp19;
-      __cil_tmp21 = __cil_tmp20 + 16;
-      __cil_tmp22 = *((unsigned int *)__cil_tmp21);
+      __cil_tmp22 = *((unsigned int *)((void *)__cil_tmp19 + 16));
       __cil_tmp23 = *((struct phy_driver **)phydev);
       __cil_tmp24 = *((u32 *)__cil_tmp23);
       __cil_tmp25 = __cil_tmp24 & __cil_tmp22;
@@ -3640,9 +3586,7 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev )
   orig = (u32 )val;
   {
   __cil_tmp27 = *((struct phy_driver **)phydev);
-  __cil_tmp28 = (unsigned long )__cil_tmp27;
-  __cil_tmp29 = __cil_tmp28 + 16;
-  __cil_tmp30 = *((unsigned int *)__cil_tmp29);
+  __cil_tmp30 = *((unsigned int *)((void *)__cil_tmp27 + 16));
   __cil_tmp31 = *((struct phy_driver **)phydev);
   __cil_tmp32 = *((u32 *)__cil_tmp31);
   __cil_tmp33 = __cil_tmp32 & __cil_tmp30;
@@ -3651,9 +3595,7 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev )
   } else {
     {
     __cil_tmp34 = *((struct phy_driver **)phydev);
-    __cil_tmp35 = (unsigned long )__cil_tmp34;
-    __cil_tmp36 = __cil_tmp35 + 16;
-    __cil_tmp37 = *((unsigned int *)__cil_tmp36);
+    __cil_tmp37 = *((unsigned int *)((void *)__cil_tmp34 + 16));
     __cil_tmp38 = *((struct phy_driver **)phydev);
     __cil_tmp39 = *((u32 *)__cil_tmp38);
     __cil_tmp40 = __cil_tmp39 & __cil_tmp37;
@@ -3661,9 +3603,7 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev )
       _L___0: /* CIL Label */ 
       {
       __cil_tmp41 = *((struct phy_driver **)phydev);
-      __cil_tmp42 = (unsigned long )__cil_tmp41;
-      __cil_tmp43 = __cil_tmp42 + 16;
-      __cil_tmp44 = *((unsigned int *)__cil_tmp43);
+      __cil_tmp44 = *((unsigned int *)((void *)__cil_tmp41 + 16));
       __cil_tmp45 = ~ __cil_tmp44;
       __cil_tmp46 = *((struct phy_driver **)phydev);
       __cil_tmp47 = *((u32 *)__cil_tmp46);
@@ -3677,9 +3617,7 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev )
     } else {
       _L: /* CIL Label */ 
       {
-      __cil_tmp49 = (unsigned long )phydev;
-      __cil_tmp50 = __cil_tmp49 + 792;
-      __cil_tmp51 = *((u32 *)__cil_tmp50);
+      __cil_tmp51 = *((u32 *)((void *)phydev + 792));
       if (__cil_tmp51 & 1024U) {
         val = val & -2;
         clk125en = (bool )0;
@@ -3695,9 +3633,7 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev )
     val = val & -3;
   } else {
     {
-    __cil_tmp52 = (unsigned long )phydev;
-    __cil_tmp53 = __cil_tmp52 + 792;
-    __cil_tmp54 = *((u32 *)__cil_tmp53);
+    __cil_tmp54 = *((u32 *)((void *)phydev + 792));
     if (__cil_tmp54 & 512U) {
       val = val & -3;
     } else {
@@ -3706,9 +3642,7 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev )
     }
   }
   {
-  __cil_tmp55 = (unsigned long )phydev;
-  __cil_tmp56 = __cil_tmp55 + 792;
-  __cil_tmp57 = *((u32 *)__cil_tmp56);
+  __cil_tmp57 = *((u32 *)((void *)phydev + 792));
   if (__cil_tmp57 & 32768U) {
     val = val | 4;
   } else {
@@ -3741,9 +3675,7 @@ static void bcm54xx_adjust_rxrefclk(struct phy_device *phydev )
     val = val | 32;
   } else {
     {
-    __cil_tmp62 = (unsigned long )phydev;
-    __cil_tmp63 = __cil_tmp62 + 792;
-    __cil_tmp64 = *((u32 *)__cil_tmp63);
+    __cil_tmp64 = *((u32 *)((void *)phydev + 792));
     if (__cil_tmp64 & 512U) {
       val = val | 32;
     } else {
@@ -3775,32 +3707,20 @@ static int bcm54xx_config_init(struct phy_device *phydev )
   u32 __cil_tmp7 ;
   u16 __cil_tmp8 ;
   struct phy_driver *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   struct phy_driver *__cil_tmp13 ;
   u32 __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   struct phy_driver *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   struct phy_driver *__cil_tmp20 ;
   u32 __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   u32 __cil_tmp25 ;
   u16 __cil_tmp26 ;
   u16 __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   u32 __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   u32 __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   u32 __cil_tmp36 ;
 
   {
@@ -3837,9 +3757,7 @@ static int bcm54xx_config_init(struct phy_device *phydev )
   }
   {
   __cil_tmp9 = *((struct phy_driver **)phydev);
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 16;
-  __cil_tmp12 = *((unsigned int *)__cil_tmp11);
+  __cil_tmp12 = *((unsigned int *)((void *)__cil_tmp9 + 16));
   __cil_tmp13 = *((struct phy_driver **)phydev);
   __cil_tmp14 = *((u32 *)__cil_tmp13);
   __cil_tmp15 = __cil_tmp14 & __cil_tmp12;
@@ -3848,18 +3766,14 @@ static int bcm54xx_config_init(struct phy_device *phydev )
   } else {
     {
     __cil_tmp16 = *((struct phy_driver **)phydev);
-    __cil_tmp17 = (unsigned long )__cil_tmp16;
-    __cil_tmp18 = __cil_tmp17 + 16;
-    __cil_tmp19 = *((unsigned int *)__cil_tmp18);
+    __cil_tmp19 = *((unsigned int *)((void *)__cil_tmp16 + 16));
     __cil_tmp20 = *((struct phy_driver **)phydev);
     __cil_tmp21 = *((u32 *)__cil_tmp20);
     __cil_tmp22 = __cil_tmp21 & __cil_tmp19;
     if (__cil_tmp22 == 21216624U) {
       _L: /* CIL Label */ 
       {
-      __cil_tmp23 = (unsigned long )phydev;
-      __cil_tmp24 = __cil_tmp23 + 792;
-      __cil_tmp25 = *((u32 *)__cil_tmp24);
+      __cil_tmp25 = *((u32 *)((void *)phydev + 792));
       if (__cil_tmp25 & 16384U) {
         {
         __cil_tmp26 = (u16 )11;
@@ -3877,27 +3791,21 @@ static int bcm54xx_config_init(struct phy_device *phydev )
   }
   }
   {
-  __cil_tmp28 = (unsigned long )phydev;
-  __cil_tmp29 = __cil_tmp28 + 792;
-  __cil_tmp30 = *((u32 *)__cil_tmp29);
+  __cil_tmp30 = *((u32 *)((void *)phydev + 792));
   if (__cil_tmp30 & 1024U) {
     {
     bcm54xx_adjust_rxrefclk(phydev);
     }
   } else {
     {
-    __cil_tmp31 = (unsigned long )phydev;
-    __cil_tmp32 = __cil_tmp31 + 792;
-    __cil_tmp33 = *((u32 *)__cil_tmp32);
+    __cil_tmp33 = *((u32 *)((void *)phydev + 792));
     if (__cil_tmp33 & 32768U) {
       {
       bcm54xx_adjust_rxrefclk(phydev);
       }
     } else {
       {
-      __cil_tmp34 = (unsigned long )phydev;
-      __cil_tmp35 = __cil_tmp34 + 792;
-      __cil_tmp36 = *((u32 *)__cil_tmp35);
+      __cil_tmp36 = *((u32 *)((void *)phydev + 792));
       if (__cil_tmp36 & 512U) {
         {
         bcm54xx_adjust_rxrefclk(phydev);
@@ -3919,8 +3827,6 @@ static int bcm54xx_config_init(struct phy_device *phydev )
 static int bcm5482_config_init(struct phy_device *phydev ) 
 { int err ;
   int reg ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   u32 __cil_tmp6 ;
   u16 __cil_tmp7 ;
   u16 __cil_tmp8 ;
@@ -3944,21 +3850,13 @@ static int bcm5482_config_init(struct phy_device *phydev )
   int __cil_tmp26 ;
   int __cil_tmp27 ;
   u16 __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
 
   {
   {
   err = bcm54xx_config_init(phydev);
   }
   {
-  __cil_tmp4 = (unsigned long )phydev;
-  __cil_tmp5 = __cil_tmp4 + 792;
-  __cil_tmp6 = *((u32 *)__cil_tmp5);
+  __cil_tmp6 = *((u32 *)((void *)phydev + 792));
   if (__cil_tmp6 & 2U) {
     {
     __cil_tmp7 = (u16 )20;
@@ -4022,15 +3920,9 @@ static int bcm5482_config_init(struct phy_device *phydev )
     __cil_tmp27 = 3 | __cil_tmp26;
     __cil_tmp28 = (u16 )__cil_tmp27;
     bcm54xx_shadow_write(phydev, __cil_tmp25, __cil_tmp28);
-    __cil_tmp29 = (unsigned long )phydev;
-    __cil_tmp30 = __cil_tmp29 + 836;
-    *((int *)__cil_tmp30) = 0;
-    __cil_tmp31 = (unsigned long )phydev;
-    __cil_tmp32 = __cil_tmp31 + 804;
-    *((int *)__cil_tmp32) = 1000;
-    __cil_tmp33 = (unsigned long )phydev;
-    __cil_tmp34 = __cil_tmp33 + 808;
-    *((int *)__cil_tmp34) = 1;
+    *((int *)((void *)phydev + 836)) = 0;
+    *((int *)((void *)phydev + 804)) = 1000;
+    *((int *)((void *)phydev + 808)) = 1;
     }
   } else {
 
@@ -4041,35 +3933,19 @@ static int bcm5482_config_init(struct phy_device *phydev )
 }
 static int bcm5482_read_status(struct phy_device *phydev ) 
 { int err ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   u32 __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
 
   {
   {
   err = genphy_read_status(phydev);
   }
   {
-  __cil_tmp3 = (unsigned long )phydev;
-  __cil_tmp4 = __cil_tmp3 + 792;
-  __cil_tmp5 = *((u32 *)__cil_tmp4);
+  __cil_tmp5 = *((u32 *)((void *)phydev + 792));
   if (__cil_tmp5 & 2U) {
     {
-    __cil_tmp6 = (unsigned long )phydev;
-    __cil_tmp7 = __cil_tmp6 + 820;
-    if (*((int *)__cil_tmp7)) {
-      __cil_tmp8 = (unsigned long )phydev;
-      __cil_tmp9 = __cil_tmp8 + 804;
-      *((int *)__cil_tmp9) = 1000;
-      __cil_tmp10 = (unsigned long )phydev;
-      __cil_tmp11 = __cil_tmp10 + 808;
-      *((int *)__cil_tmp11) = 1;
+    if (*((int *)((void *)phydev + 820))) {
+      *((int *)((void *)phydev + 804)) = 1000;
+      *((int *)((void *)phydev + 808)) = 1;
     } else {
 
     }
@@ -4102,8 +3978,6 @@ static int bcm54xx_config_intr(struct phy_device *phydev )
 { int reg ;
   int err ;
   u32 __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   u32 __cil_tmp7 ;
   u32 __cil_tmp8 ;
   u16 __cil_tmp9 ;
@@ -4119,9 +3993,7 @@ static int bcm54xx_config_intr(struct phy_device *phydev )
 
   }
   {
-  __cil_tmp5 = (unsigned long )phydev;
-  __cil_tmp6 = __cil_tmp5 + 824;
-  __cil_tmp7 = *((u32 *)__cil_tmp6);
+  __cil_tmp7 = *((u32 *)((void *)phydev + 824));
   if (__cil_tmp7 == 2147483648U) {
     reg = reg & -4097;
   } else {
@@ -4140,8 +4012,6 @@ static int bcm5481_config_aneg(struct phy_device *phydev )
 { int ret ;
   u16 reg ;
   int tmp___7 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   phy_interface_t __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   int __cil_tmp9 ;
@@ -4161,9 +4031,7 @@ static int bcm5481_config_aneg(struct phy_device *phydev )
   ret = genphy_config_aneg(phydev);
   }
   {
-  __cil_tmp5 = (unsigned long )phydev;
-  __cil_tmp6 = __cil_tmp5 + 796;
-  __cil_tmp7 = *((phy_interface_t *)__cil_tmp6);
+  __cil_tmp7 = *((phy_interface_t *)((void *)phydev + 796));
   __cil_tmp8 = (unsigned int )__cil_tmp7;
   if (__cil_tmp8 == 8U) {
     {
@@ -4236,8 +4104,6 @@ static int brcm_fet_config_init(struct phy_device *phydev )
   u32 __cil_tmp14 ;
   u32 __cil_tmp15 ;
   u16 __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   u32 __cil_tmp19 ;
   u32 __cil_tmp20 ;
   u16 __cil_tmp21 ;
@@ -4324,9 +4190,7 @@ static int brcm_fet_config_init(struct phy_device *phydev )
 
   }
   {
-  __cil_tmp17 = (unsigned long )phydev;
-  __cil_tmp18 = __cil_tmp17 + 792;
-  __cil_tmp19 = *((u32 *)__cil_tmp18);
+  __cil_tmp19 = *((u32 *)((void *)phydev + 792));
   if (__cil_tmp19 & 512U) {
     {
     err = brcm_phy_setbits(phydev, 27, 32);
@@ -4370,8 +4234,6 @@ static int brcm_fet_config_intr(struct phy_device *phydev )
 { int reg ;
   int err ;
   u32 __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   u32 __cil_tmp7 ;
   u32 __cil_tmp8 ;
   u16 __cil_tmp9 ;
@@ -4387,9 +4249,7 @@ static int brcm_fet_config_intr(struct phy_device *phydev )
 
   }
   {
-  __cil_tmp5 = (unsigned long )phydev;
-  __cil_tmp6 = __cil_tmp5 + 824;
-  __cil_tmp7 = *((u32 *)__cil_tmp6);
+  __cil_tmp7 = *((u32 *)((void *)phydev + 824));
   if (__cil_tmp7 == 2147483648U) {
     reg = reg & -257;
   } else {

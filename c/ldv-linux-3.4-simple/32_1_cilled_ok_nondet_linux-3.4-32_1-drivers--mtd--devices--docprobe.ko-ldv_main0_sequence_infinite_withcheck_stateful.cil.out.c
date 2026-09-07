@@ -2648,12 +2648,6 @@ static void DoC_Probe(unsigned long physadr )
   unsigned long __cil_tmp31 ;
   void volatile   *__cil_tmp32 ;
   struct mtd_info *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   char *__cil_tmp42 ;
@@ -2713,16 +2707,10 @@ static void DoC_Probe(unsigned long physadr )
     {
     __cil_tmp33 = mtd + 1;
     this = (struct DiskOnChip *)__cil_tmp33;
-    __cil_tmp34 = (unsigned long )mtd;
-    __cil_tmp35 = __cil_tmp34 + 360;
-    *((void **)__cil_tmp35) = (void *)this;
-    __cil_tmp36 = (unsigned long )this;
-    __cil_tmp37 = __cil_tmp36 + 8;
-    *((void **)__cil_tmp37) = docptr;
+    *((void **)((void *)mtd + 360)) = (void *)this;
+    *((void **)((void *)this + 8)) = docptr;
     *((unsigned long *)this) = physadr;
-    __cil_tmp38 = (unsigned long )this;
-    __cil_tmp39 = __cil_tmp38 + 24;
-    *((unsigned char *)__cil_tmp39) = (unsigned char )ChipID;
+    *((unsigned char *)((void *)this + 24)) = (unsigned char )ChipID;
     __cil_tmp40 = 0 * 1UL;
     __cil_tmp41 = (unsigned long )(namebuf) + __cil_tmp40;
     __cil_tmp42 = (char *)__cil_tmp41;

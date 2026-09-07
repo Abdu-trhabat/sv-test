@@ -292,17 +292,13 @@ extern void flush_workqueue(struct workqueue_struct * ) ;
 __inline static bool cancel_delayed_work(struct delayed_work *work )
 { bool ret ;
   int tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct timer_list *__cil_tmp6 ;
   int __cil_tmp7 ;
   atomic_long_t *__cil_tmp8 ;
   unsigned long volatile *__cil_tmp9 ;
   {
   {
-  __cil_tmp4 = (unsigned long )work;
-  __cil_tmp5 = __cil_tmp4 + 80;
-  __cil_tmp6 = (struct timer_list *)__cil_tmp5;
+  __cil_tmp6 = (struct timer_list *)((void *)work + 80);
   tmp = del_timer_sync(__cil_tmp6);
   __cil_tmp7 = tmp != 0;
   ret = (bool )__cil_tmp7;

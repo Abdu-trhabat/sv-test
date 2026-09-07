@@ -3462,12 +3462,8 @@ static ssize_t edd_attr_show(struct kobject *kobj , struct attribute *attr , cha
   struct edd_device *__cil_tmp9 ;
   ssize_t (*__cil_tmp10)(struct edd_device * , char * ) ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   ssize_t (*__cil_tmp14)(struct edd_device * , char * ) ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   ssize_t (*__cil_tmp18)(struct edd_device * , char * ) ;
 
   {
@@ -3480,15 +3476,11 @@ static ssize_t edd_attr_show(struct kobject *kobj , struct attribute *attr , cha
   {
   __cil_tmp10 = (ssize_t (*)(struct edd_device * , char * ))0;
   __cil_tmp11 = (unsigned long )__cil_tmp10;
-  __cil_tmp12 = (unsigned long )edd_attr;
-  __cil_tmp13 = __cil_tmp12 + 32;
-  __cil_tmp14 = *((ssize_t (**)(struct edd_device * , char * ))__cil_tmp13);
+  __cil_tmp14 = *((ssize_t (**)(struct edd_device * , char * ))((void *)edd_attr + 32));
   __cil_tmp15 = (unsigned long )__cil_tmp14;
   if (__cil_tmp15 != __cil_tmp11) {
     {
-    __cil_tmp16 = (unsigned long )edd_attr;
-    __cil_tmp17 = __cil_tmp16 + 32;
-    __cil_tmp18 = *((ssize_t (**)(struct edd_device * , char * ))__cil_tmp17);
+    __cil_tmp18 = *((ssize_t (**)(struct edd_device * , char * ))((void *)edd_attr + 32));
     ret = (*__cil_tmp18)(dev, buf);
     }
   } else {
@@ -3517,15 +3509,12 @@ static void edd_release(struct kobject *kobj )
 }
 static struct kset *edd_kset  ;
 __inline static void edd_device_unregister(struct edd_device *edev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct kobject *__cil_tmp4 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )edev;
-  __cil_tmp3 = __cil_tmp2 + 16;
-  __cil_tmp4 = (struct kobject *)__cil_tmp3;
+  __cil_tmp4 = (struct kobject *)((void *)edev + 16);
   kobject_put(__cil_tmp4);
   }
   return;
@@ -3541,10 +3530,8 @@ __inline static int edd_num_devices(void)
   unsigned char __min2___0 ;
   int tmp___0 ;
   int tmp___1 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -3552,8 +3539,7 @@ __inline static int edd_num_devices(void)
 
   {
   __min1 = (unsigned char)16;
-  __cil_tmp10 = (unsigned long )(& edd) + 688;
-  __min2 = *((unsigned char *)__cil_tmp10);
+  __min2 = *((unsigned char *)((void *)(&edd) + 688));
   {
   __cil_tmp11 = (int )__min2;
   __cil_tmp12 = (int )__min1;
@@ -3565,8 +3551,7 @@ __inline static int edd_num_devices(void)
   }
   __max1 = (unsigned char )tmp;
   __min1___0 = (unsigned char)6;
-  __cil_tmp13 = (unsigned long )(& edd) + 689;
-  __min2___0 = *((unsigned char *)__cil_tmp13);
+  __min2___0 = *((unsigned char *)((void *)(&edd) + 689));
   {
   __cil_tmp14 = (int )__min2___0;
   __cil_tmp15 = (int )__min1___0;

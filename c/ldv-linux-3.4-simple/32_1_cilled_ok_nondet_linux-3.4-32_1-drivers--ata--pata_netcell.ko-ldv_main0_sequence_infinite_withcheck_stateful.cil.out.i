@@ -4239,8 +4239,6 @@ static int netcell_init_one(struct pci_dev *pdev , struct pci_device_id const *e
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device const *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
@@ -4259,9 +4257,7 @@ static int netcell_init_one(struct pci_dev *pdev , struct pci_device_id const *e
   if (! __print_once) {
     {
     __print_once = (bool )1;
-    __cil_tmp11 = (unsigned long )pdev;
-    __cil_tmp12 = __cil_tmp11 + 144;
-    __cil_tmp13 = (struct device *)__cil_tmp12;
+    __cil_tmp13 = (struct device *)((void *)pdev + 144);
     __cil_tmp14 = (struct device const *)__cil_tmp13;
     ata_print_version(__cil_tmp14, "0.1.7");
     }

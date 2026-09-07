@@ -3517,27 +3517,21 @@ struct __anonstruct_258 {
 long ldv__builtin_expect(long val , long res ) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
 extern void __list_add(struct list_head *new , struct list_head *prev , struct list_head *next ) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head ) __attribute__((__no_instrument_function__)) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )head;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((struct list_head **)__cil_tmp4);
+  __cil_tmp5 = *((struct list_head **)((void *)head + 8));
   __list_add(new, __cil_tmp5, head);
   }
   return;
@@ -3663,15 +3657,11 @@ extern void lcd_device_unregister(struct lcd_device *ld ) ;
 __inline static void *lcd_get_data(struct lcd_device *ld_dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *lcd_get_data(struct lcd_device *ld_dev )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )ld_dev;
-  __cil_tmp4 = __cil_tmp3 + 184;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)ld_dev + 184);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp___7 = dev_get_drvdata(__cil_tmp6);
   }
@@ -3687,15 +3677,12 @@ extern int regulator_set_voltage(struct regulator *regulator , int min_uV , int 
 extern int spi_register_driver(struct spi_driver *sdrv ) ;
 __inline static void spi_unregister_driver(struct spi_driver *sdrv ) __attribute__((__no_instrument_function__)) ;
 __inline static void spi_unregister_driver(struct spi_driver *sdrv )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device_driver *__cil_tmp4 ;
   {
   if (sdrv) {
     {
-    __cil_tmp2 = (unsigned long )sdrv;
-    __cil_tmp3 = __cil_tmp2 + 48;
-    __cil_tmp4 = (struct device_driver *)__cil_tmp3;
+    __cil_tmp4 = (struct device_driver *)((void *)sdrv + 48);
     driver_unregister(__cil_tmp4);
     }
   } else {
@@ -3719,15 +3706,12 @@ __inline static void spi_message_init(struct spi_message *m )
 }
 __inline static void spi_message_add_tail(struct spi_transfer *t , struct spi_message *m ) __attribute__((__no_instrument_function__)) ;
 __inline static void spi_message_add_tail(struct spi_transfer *t , struct spi_message *m )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   struct list_head *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )t;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct list_head *)__cil_tmp4;
+  __cil_tmp5 = (struct list_head *)((void *)t + 48);
   __cil_tmp6 = (struct list_head *)m;
   list_add_tail(__cil_tmp5, __cil_tmp6);
   }
@@ -3742,42 +3726,22 @@ __inline static int spi_write(struct spi_device *spi , void const *buf , size_t 
   struct spi_message m ;
   int tmp___7 ;
   struct spi_transfer *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   {
   {
   __cil_tmp7 = & t;
   *((void const **)__cil_tmp7) = buf;
-  __cil_tmp8 = (unsigned long )(& t) + 8;
-  *((void **)__cil_tmp8) = (void *)0;
-  __cil_tmp9 = (unsigned long )(& t) + 16;
-  *((unsigned int *)__cil_tmp9) = (unsigned int )len;
-  __cil_tmp10 = (unsigned long )(& t) + 24;
-  *((dma_addr_t *)__cil_tmp10) = 0ULL;
-  __cil_tmp11 = (unsigned long )(& t) + 32;
-  *((dma_addr_t *)__cil_tmp11) = 0ULL;
-  __cil_tmp12 = (unsigned long )(& t) + 40;
-  *((unsigned int *)__cil_tmp12) = 0U;
-  __cil_tmp13 = (unsigned long )(& t) + 41;
-  *((u8 *)__cil_tmp13) = (unsigned char)0;
-  __cil_tmp14 = (unsigned long )(& t) + 42;
-  *((u16 *)__cil_tmp14) = (unsigned short)0;
-  __cil_tmp15 = (unsigned long )(& t) + 44;
-  *((u32 *)__cil_tmp15) = 0U;
-  __cil_tmp16 = (unsigned long )(& t) + 48;
-  *((struct list_head **)__cil_tmp16) = (struct list_head *)0;
+  *((void **)((void *)(&t) + 8)) = (void *)0;
+  *((unsigned int *)((void *)(&t) + 16)) = (unsigned int )len;
+  *((dma_addr_t *)((void *)(&t) + 24)) = 0ULL;
+  *((dma_addr_t *)((void *)(&t) + 32)) = 0ULL;
+  *((unsigned int *)((void *)(&t) + 40)) = 0U;
+  *((u8 *)((void *)(&t) + 41)) = (unsigned char)0;
+  *((u16 *)((void *)(&t) + 42)) = (unsigned short)0;
+  *((u32 *)((void *)(&t) + 44)) = 0U;
+  *((struct list_head **)((void *)(&t) + 48)) = (struct list_head *)0;
   __cil_tmp17 = 48 + 8;
-  __cil_tmp18 = (unsigned long )(& t) + __cil_tmp17;
-  *((struct list_head **)__cil_tmp18) = (struct list_head *)0;
+  *((struct list_head **)((void *)(&t) + __cil_tmp17)) = (struct list_head *)0;
   spi_message_init(& m);
   spi_message_add_tail(& t, & m);
   tmp___7 = spi_sync(spi, & m);
@@ -3897,8 +3861,6 @@ static void l4f00242t03_lcd_init(struct spi_device *spi )
   u16 cmd[4] ;
   long tmp___8 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   struct device *__cil_tmp11 ;
   struct device const *__cil_tmp12 ;
@@ -3918,21 +3880,11 @@ static void l4f00242t03_lcd_init(struct spi_device *spi )
   long __cil_tmp26 ;
   struct device *__cil_tmp27 ;
   struct device const *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct regulator *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct regulator *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct regulator *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct regulator *__cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
@@ -3945,9 +3897,7 @@ static void l4f00242t03_lcd_init(struct spi_device *spi )
   {
   {
   __cil_tmp7 = 0 + 184;
-  __cil_tmp8 = (unsigned long )spi;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)spi + __cil_tmp7));
   pdata = (struct l4f00242t03_pdata *)__cil_tmp10;
   __cil_tmp11 = (struct device *)spi;
   __cil_tmp12 = (struct device const *)__cil_tmp11;
@@ -3998,27 +3948,17 @@ static void l4f00242t03_lcd_init(struct spi_device *spi )
   while_break: ;
   }
   {
-  __cil_tmp29 = (unsigned long )priv;
-  __cil_tmp30 = __cil_tmp29 + 24;
-  __cil_tmp31 = *((struct regulator **)__cil_tmp30);
+  __cil_tmp31 = *((struct regulator **)((void *)priv + 24));
   regulator_set_voltage(__cil_tmp31, 1800000, 1800000);
-  __cil_tmp32 = (unsigned long )priv;
-  __cil_tmp33 = __cil_tmp32 + 24;
-  __cil_tmp34 = *((struct regulator **)__cil_tmp33);
+  __cil_tmp34 = *((struct regulator **)((void *)priv + 24));
   regulator_enable(__cil_tmp34);
-  __cil_tmp35 = (unsigned long )priv;
-  __cil_tmp36 = __cil_tmp35 + 32;
-  __cil_tmp37 = *((struct regulator **)__cil_tmp36);
+  __cil_tmp37 = *((struct regulator **)((void *)priv + 32));
   regulator_set_voltage(__cil_tmp37, 2800000, 2800000);
-  __cil_tmp38 = (unsigned long )priv;
-  __cil_tmp39 = __cil_tmp38 + 32;
-  __cil_tmp40 = *((struct regulator **)__cil_tmp39);
+  __cil_tmp40 = *((struct regulator **)((void *)priv + 32));
   regulator_enable(__cil_tmp40);
   __cil_tmp41 = *((unsigned int *)pdata);
   l4f00242t03_reset(__cil_tmp41);
-  __cil_tmp42 = (unsigned long )pdata;
-  __cil_tmp43 = __cil_tmp42 + 4;
-  __cil_tmp44 = *((unsigned int *)__cil_tmp43);
+  __cil_tmp44 = *((unsigned int *)((void *)pdata + 4));
   gpio_set_value(__cil_tmp44, 1);
   msleep(60U);
   __cil_tmp45 = 0 * 2UL;
@@ -4044,8 +3984,6 @@ static void l4f00242t03_lcd_powerdown(struct spi_device *spi )
   void *tmp___7 ;
   long tmp___8 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device const *__cil_tmp11 ;
@@ -4057,21 +3995,13 @@ static void l4f00242t03_lcd_powerdown(struct spi_device *spi )
   long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
   struct device const *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct regulator *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct regulator *__cil_tmp28 ;
   {
   {
   __cil_tmp6 = 0 + 184;
-  __cil_tmp7 = (unsigned long )spi;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp6;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)spi + __cil_tmp6));
   pdata = (struct l4f00242t03_pdata *)__cil_tmp9;
   __cil_tmp10 = (struct device *)spi;
   __cil_tmp11 = (struct device const *)__cil_tmp10;
@@ -4110,17 +4040,11 @@ static void l4f00242t03_lcd_powerdown(struct spi_device *spi )
   while_break: ;
   }
   {
-  __cil_tmp20 = (unsigned long )pdata;
-  __cil_tmp21 = __cil_tmp20 + 4;
-  __cil_tmp22 = *((unsigned int *)__cil_tmp21);
+  __cil_tmp22 = *((unsigned int *)((void *)pdata + 4));
   gpio_set_value(__cil_tmp22, 0);
-  __cil_tmp23 = (unsigned long )priv;
-  __cil_tmp24 = __cil_tmp23 + 24;
-  __cil_tmp25 = *((struct regulator **)__cil_tmp24);
+  __cil_tmp25 = *((struct regulator **)((void *)priv + 24));
   regulator_disable(__cil_tmp25);
-  __cil_tmp26 = (unsigned long )priv;
-  __cil_tmp27 = __cil_tmp26 + 32;
-  __cil_tmp28 = *((struct regulator **)__cil_tmp27);
+  __cil_tmp28 = *((struct regulator **)((void *)priv + 32));
   regulator_disable(__cil_tmp28);
   }
   return;
@@ -4129,17 +4053,13 @@ static void l4f00242t03_lcd_powerdown(struct spi_device *spi )
 static int l4f00242t03_lcd_power_get(struct lcd_device *ld )
 { struct l4f00242t03_priv *priv ;
   void *tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   {
   {
   tmp___7 = lcd_get_data(ld);
   priv = (struct l4f00242t03_priv *)tmp___7;
   }
   {
-  __cil_tmp4 = (unsigned long )priv;
-  __cil_tmp5 = __cil_tmp4 + 16;
-  return (*((int *)__cil_tmp5));
+  return (*((int *)((void *)priv + 16)));
   }
 }
 }
@@ -4165,11 +4085,7 @@ static int l4f00242t03_lcd_power_set(struct lcd_device *ld , int power )
   u16 *__cil_tmp13 ;
   u16 *__cil_tmp14 ;
   u16 *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp22 ;
   unsigned int __cil_tmp23 ;
@@ -4183,13 +4099,7 @@ static int l4f00242t03_lcd_power_set(struct lcd_device *ld , int power )
   void const *__cil_tmp31 ;
   u8 const *__cil_tmp32 ;
   void const *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct lcd_device *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   int __cil_tmp41 ;
   struct _ddebug __attribute__((__aligned__(8))) *__cil_tmp42 ;
   unsigned int __cil_tmp43 ;
@@ -4203,18 +4113,10 @@ static int l4f00242t03_lcd_power_set(struct lcd_device *ld , int power )
   void const *__cil_tmp51 ;
   u8 const *__cil_tmp52 ;
   void const *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   int __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   int __cil_tmp61 ;
   u8 const *__cil_tmp62 ;
   void const *__cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   {
   {
   tmp___7 = lcd_get_data(ld);
@@ -4231,15 +4133,11 @@ static int l4f00242t03_lcd_power_set(struct lcd_device *ld , int power )
   }
   if (power <= 1) {
     {
-    __cil_tmp16 = (unsigned long )priv;
-    __cil_tmp17 = __cil_tmp16 + 16;
-    __cil_tmp18 = *((int *)__cil_tmp17);
+    __cil_tmp18 = *((int *)((void *)priv + 16));
     if (__cil_tmp18 <= 1) {
     } else {
       {
-      __cil_tmp19 = (unsigned long )priv;
-      __cil_tmp20 = __cil_tmp19 + 16;
-      __cil_tmp21 = *((int *)__cil_tmp20);
+      __cil_tmp21 = *((int *)((void *)priv + 16));
       if (__cil_tmp21 < 4) {
         {
         while (1) {
@@ -4284,12 +4182,8 @@ static int l4f00242t03_lcd_power_set(struct lcd_device *ld , int power )
       } else {
         {
         l4f00242t03_lcd_init(spi);
-        __cil_tmp34 = (unsigned long )priv;
-        __cil_tmp35 = __cil_tmp34 + 16;
-        *((int *)__cil_tmp35) = 2;
-        __cil_tmp36 = (unsigned long )priv;
-        __cil_tmp37 = __cil_tmp36 + 8;
-        __cil_tmp38 = *((struct lcd_device **)__cil_tmp37);
+        *((int *)((void *)priv + 16)) = 2;
+        __cil_tmp38 = *((struct lcd_device **)((void *)priv + 8));
         l4f00242t03_lcd_power_set(__cil_tmp38, power);
         }
       }
@@ -4299,9 +4193,7 @@ static int l4f00242t03_lcd_power_set(struct lcd_device *ld , int power )
   } else
   if (power < 4) {
     {
-    __cil_tmp39 = (unsigned long )priv;
-    __cil_tmp40 = __cil_tmp39 + 16;
-    __cil_tmp41 = *((int *)__cil_tmp40);
+    __cil_tmp41 = *((int *)((void *)priv + 16));
     if (__cil_tmp41 <= 1) {
       {
       while (1) {
@@ -4345,16 +4237,12 @@ static int l4f00242t03_lcd_power_set(struct lcd_device *ld , int power )
       }
     } else {
       {
-      __cil_tmp54 = (unsigned long )priv;
-      __cil_tmp55 = __cil_tmp54 + 16;
-      __cil_tmp56 = *((int *)__cil_tmp55);
+      __cil_tmp56 = *((int *)((void *)priv + 16));
       if (__cil_tmp56 < 4) {
       } else {
         {
         l4f00242t03_lcd_init(spi);
-        __cil_tmp57 = (unsigned long )priv;
-        __cil_tmp58 = __cil_tmp57 + 16;
-        *((int *)__cil_tmp58) = 0;
+        *((int *)((void *)priv + 16)) = 0;
         l4f00242t03_lcd_power_set(ld, power);
         }
       }
@@ -4363,9 +4251,7 @@ static int l4f00242t03_lcd_power_set(struct lcd_device *ld , int power )
     }
   } else {
     {
-    __cil_tmp59 = (unsigned long )priv;
-    __cil_tmp60 = __cil_tmp59 + 16;
-    __cil_tmp61 = *((int *)__cil_tmp60);
+    __cil_tmp61 = *((int *)((void *)priv + 16));
     if (__cil_tmp61 != 4) {
       {
       __cil_tmp62 = (u8 const *)(& disoff);
@@ -4378,9 +4264,7 @@ static int l4f00242t03_lcd_power_set(struct lcd_device *ld , int power )
     }
     }
   }
-  __cil_tmp64 = (unsigned long )priv;
-  __cil_tmp65 = __cil_tmp64 + 16;
-  *((int *)__cil_tmp65) = power;
+  *((int *)((void *)priv + 16)) = power;
   return (0);
 }
 }
@@ -4402,8 +4286,6 @@ static int l4f00242t03_probe(struct spi_device *spi )
   long tmp___12 ;
   long tmp___13 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   void *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
@@ -4417,79 +4299,45 @@ static int l4f00242t03_probe(struct spi_device *spi )
   struct device const *__cil_tmp25 ;
   struct device *__cil_tmp26 ;
   void *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   int __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   struct device *__cil_tmp33 ;
   struct device const *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   struct device *__cil_tmp38 ;
   struct device const *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct device *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct regulator *__cil_tmp45 ;
   void const *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct regulator *__cil_tmp49 ;
   void const *__cil_tmp50 ;
   struct device *__cil_tmp51 ;
   struct device const *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct device *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct regulator *__cil_tmp58 ;
   void const *__cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   struct regulator *__cil_tmp62 ;
   void const *__cil_tmp63 ;
   struct device *__cil_tmp64 ;
   struct device const *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct device *__cil_tmp68 ;
   void *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct lcd_device *__cil_tmp72 ;
   void const *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   struct lcd_device *__cil_tmp76 ;
   void const *__cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   struct lcd_device *__cil_tmp82 ;
   struct device *__cil_tmp83 ;
   struct device const *__cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   struct regulator *__cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   struct regulator *__cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   unsigned int __cil_tmp93 ;
   unsigned int __cil_tmp94 ;
   void const *__cil_tmp95 ;
   {
   __cil_tmp12 = 0 + 184;
-  __cil_tmp13 = (unsigned long )spi;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)spi + __cil_tmp12));
   pdata = (struct l4f00242t03_pdata *)__cil_tmp15;
   {
   __cil_tmp16 = (void *)0;
@@ -4527,9 +4375,7 @@ static int l4f00242t03_probe(struct spi_device *spi )
   __cil_tmp26 = (struct device *)spi;
   __cil_tmp27 = (void *)priv;
   dev_set_drvdata(__cil_tmp26, __cil_tmp27);
-  __cil_tmp28 = (unsigned long )spi;
-  __cil_tmp29 = __cil_tmp28 + 782;
-  *((u8 *)__cil_tmp29) = (u8 )9;
+  *((u8 *)((void *)spi + 782)) = (u8 )9;
   spi_setup(spi);
   *((struct spi_device **)priv) = spi;
   __cil_tmp30 = *((unsigned int *)pdata);
@@ -4547,9 +4393,7 @@ static int l4f00242t03_probe(struct spi_device *spi )
   } else {
   }
   {
-  __cil_tmp35 = (unsigned long )pdata;
-  __cil_tmp36 = __cil_tmp35 + 4;
-  __cil_tmp37 = *((unsigned int *)__cil_tmp36);
+  __cil_tmp37 = *((unsigned int *)((void *)pdata + 4));
   ret = gpio_request_one(__cil_tmp37, 0UL, "lcd l4f00242t03 data enable");
   }
   if (ret) {
@@ -4562,22 +4406,16 @@ static int l4f00242t03_probe(struct spi_device *spi )
   } else {
   }
   {
-  __cil_tmp40 = (unsigned long )priv;
-  __cil_tmp41 = __cil_tmp40 + 24;
   __cil_tmp42 = (struct device *)spi;
-  *((struct regulator **)__cil_tmp41) = (struct regulator *)regulator_get(__cil_tmp42,
+  *((struct regulator **)((void *)priv + 24)) = (struct regulator *)regulator_get(__cil_tmp42,
                                                                           "vdd");
-  __cil_tmp43 = (unsigned long )priv;
-  __cil_tmp44 = __cil_tmp43 + 24;
-  __cil_tmp45 = *((struct regulator **)__cil_tmp44);
+  __cil_tmp45 = *((struct regulator **)((void *)priv + 24));
   __cil_tmp46 = (void const *)__cil_tmp45;
   tmp___9 = (long )IS_ERR(__cil_tmp46);
   }
   if (tmp___9) {
     {
-    __cil_tmp47 = (unsigned long )priv;
-    __cil_tmp48 = __cil_tmp47 + 24;
-    __cil_tmp49 = *((struct regulator **)__cil_tmp48);
+    __cil_tmp49 = *((struct regulator **)((void *)priv + 24));
     __cil_tmp50 = (void const *)__cil_tmp49;
     tmp___8 = (long )PTR_ERR(__cil_tmp50);
     ret = (int )tmp___8;
@@ -4589,22 +4427,16 @@ static int l4f00242t03_probe(struct spi_device *spi )
   } else {
   }
   {
-  __cil_tmp53 = (unsigned long )priv;
-  __cil_tmp54 = __cil_tmp53 + 32;
   __cil_tmp55 = (struct device *)spi;
-  *((struct regulator **)__cil_tmp54) = (struct regulator *)regulator_get(__cil_tmp55,
+  *((struct regulator **)((void *)priv + 32)) = (struct regulator *)regulator_get(__cil_tmp55,
                                                                           "vcore");
-  __cil_tmp56 = (unsigned long )priv;
-  __cil_tmp57 = __cil_tmp56 + 32;
-  __cil_tmp58 = *((struct regulator **)__cil_tmp57);
+  __cil_tmp58 = *((struct regulator **)((void *)priv + 32));
   __cil_tmp59 = (void const *)__cil_tmp58;
   tmp___11 = (long )IS_ERR(__cil_tmp59);
   }
   if (tmp___11) {
     {
-    __cil_tmp60 = (unsigned long )priv;
-    __cil_tmp61 = __cil_tmp60 + 32;
-    __cil_tmp62 = *((struct regulator **)__cil_tmp61);
+    __cil_tmp62 = *((struct regulator **)((void *)priv + 32));
     __cil_tmp63 = (void const *)__cil_tmp62;
     tmp___10 = (long )PTR_ERR(__cil_tmp63);
     ret = (int )tmp___10;
@@ -4616,23 +4448,17 @@ static int l4f00242t03_probe(struct spi_device *spi )
   } else {
   }
   {
-  __cil_tmp66 = (unsigned long )priv;
-  __cil_tmp67 = __cil_tmp66 + 8;
   __cil_tmp68 = (struct device *)spi;
   __cil_tmp69 = (void *)priv;
-  *((struct lcd_device **)__cil_tmp67) = lcd_device_register("l4f00242t03", __cil_tmp68,
+  *((struct lcd_device **)((void *)priv + 8)) = lcd_device_register("l4f00242t03", __cil_tmp68,
                                                              __cil_tmp69, & l4f_ops);
-  __cil_tmp70 = (unsigned long )priv;
-  __cil_tmp71 = __cil_tmp70 + 8;
-  __cil_tmp72 = *((struct lcd_device **)__cil_tmp71);
+  __cil_tmp72 = *((struct lcd_device **)((void *)priv + 8));
   __cil_tmp73 = (void const *)__cil_tmp72;
   tmp___13 = (long )IS_ERR(__cil_tmp73);
   }
   if (tmp___13) {
     {
-    __cil_tmp74 = (unsigned long )priv;
-    __cil_tmp75 = __cil_tmp74 + 8;
-    __cil_tmp76 = *((struct lcd_device **)__cil_tmp75);
+    __cil_tmp76 = *((struct lcd_device **)((void *)priv + 8));
     __cil_tmp77 = (void const *)__cil_tmp76;
     tmp___12 = (long )PTR_ERR(__cil_tmp77);
     ret = (int )tmp___12;
@@ -4642,12 +4468,8 @@ static int l4f00242t03_probe(struct spi_device *spi )
   }
   {
   l4f00242t03_lcd_init(spi);
-  __cil_tmp78 = (unsigned long )priv;
-  __cil_tmp79 = __cil_tmp78 + 16;
-  *((int *)__cil_tmp79) = 2;
-  __cil_tmp80 = (unsigned long )priv;
-  __cil_tmp81 = __cil_tmp80 + 8;
-  __cil_tmp82 = *((struct lcd_device **)__cil_tmp81);
+  *((int *)((void *)priv + 16)) = 2;
+  __cil_tmp82 = *((struct lcd_device **)((void *)priv + 8));
   l4f00242t03_lcd_power_set(__cil_tmp82, 0);
   __cil_tmp83 = (struct device *)spi;
   __cil_tmp84 = (struct device const *)__cil_tmp83;
@@ -4656,23 +4478,17 @@ static int l4f00242t03_probe(struct spi_device *spi )
   return (0);
   err5:
   {
-  __cil_tmp85 = (unsigned long )priv;
-  __cil_tmp86 = __cil_tmp85 + 32;
-  __cil_tmp87 = *((struct regulator **)__cil_tmp86);
+  __cil_tmp87 = *((struct regulator **)((void *)priv + 32));
   regulator_put(__cil_tmp87);
   }
   err4:
   {
-  __cil_tmp88 = (unsigned long )priv;
-  __cil_tmp89 = __cil_tmp88 + 24;
-  __cil_tmp90 = *((struct regulator **)__cil_tmp89);
+  __cil_tmp90 = *((struct regulator **)((void *)priv + 24));
   regulator_put(__cil_tmp90);
   }
   err3:
   {
-  __cil_tmp91 = (unsigned long )pdata;
-  __cil_tmp92 = __cil_tmp91 + 4;
-  __cil_tmp93 = *((unsigned int *)__cil_tmp92);
+  __cil_tmp93 = *((unsigned int *)((void *)pdata + 4));
   gpio_free(__cil_tmp93);
   }
   err2:
@@ -4698,26 +4514,14 @@ static int l4f00242t03_remove(struct spi_device *spi )
   struct device const *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   struct spi_device *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct lcd_device *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct lcd_device *__cil_tmp17 ;
   struct device *__cil_tmp18 ;
   void *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct regulator *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct regulator *__cil_tmp29 ;
   void const *__cil_tmp30 ;
   {
@@ -4728,34 +4532,22 @@ static int l4f00242t03_remove(struct spi_device *spi )
   priv = (struct l4f00242t03_priv *)tmp___7;
   __cil_tmp7 = 0 + 184;
   __cil_tmp8 = *((struct spi_device **)priv);
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp7;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)__cil_tmp8 + __cil_tmp7));
   pdata = (struct l4f00242t03_pdata *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )priv;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = *((struct lcd_device **)__cil_tmp13);
+  __cil_tmp14 = *((struct lcd_device **)((void *)priv + 8));
   l4f00242t03_lcd_power_set(__cil_tmp14, 4);
-  __cil_tmp15 = (unsigned long )priv;
-  __cil_tmp16 = __cil_tmp15 + 8;
-  __cil_tmp17 = *((struct lcd_device **)__cil_tmp16);
+  __cil_tmp17 = *((struct lcd_device **)((void *)priv + 8));
   lcd_device_unregister(__cil_tmp17);
   __cil_tmp18 = (struct device *)spi;
   __cil_tmp19 = (void *)0;
   dev_set_drvdata(__cil_tmp18, __cil_tmp19);
-  __cil_tmp20 = (unsigned long )pdata;
-  __cil_tmp21 = __cil_tmp20 + 4;
-  __cil_tmp22 = *((unsigned int *)__cil_tmp21);
+  __cil_tmp22 = *((unsigned int *)((void *)pdata + 4));
   gpio_free(__cil_tmp22);
   __cil_tmp23 = *((unsigned int *)pdata);
   gpio_free(__cil_tmp23);
-  __cil_tmp24 = (unsigned long )priv;
-  __cil_tmp25 = __cil_tmp24 + 24;
-  __cil_tmp26 = *((struct regulator **)__cil_tmp25);
+  __cil_tmp26 = *((struct regulator **)((void *)priv + 24));
   regulator_put(__cil_tmp26);
-  __cil_tmp27 = (unsigned long )priv;
-  __cil_tmp28 = __cil_tmp27 + 32;
-  __cil_tmp29 = *((struct regulator **)__cil_tmp28);
+  __cil_tmp29 = *((struct regulator **)((void *)priv + 32));
   regulator_put(__cil_tmp29);
   __cil_tmp30 = (void const *)priv;
   kfree(__cil_tmp30);
@@ -4768,8 +4560,6 @@ static void l4f00242t03_shutdown(struct spi_device *spi )
   void *tmp___7 ;
   struct device *__cil_tmp4 ;
   struct device const *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct lcd_device *__cil_tmp8 ;
   {
   {
@@ -4780,9 +4570,7 @@ static void l4f00242t03_shutdown(struct spi_device *spi )
   }
   if (priv) {
     {
-    __cil_tmp6 = (unsigned long )priv;
-    __cil_tmp7 = __cil_tmp6 + 8;
-    __cil_tmp8 = *((struct lcd_device **)__cil_tmp7);
+    __cil_tmp8 = *((struct lcd_device **)((void *)priv + 8));
     l4f00242t03_lcd_power_set(__cil_tmp8, 4);
     }
   } else {

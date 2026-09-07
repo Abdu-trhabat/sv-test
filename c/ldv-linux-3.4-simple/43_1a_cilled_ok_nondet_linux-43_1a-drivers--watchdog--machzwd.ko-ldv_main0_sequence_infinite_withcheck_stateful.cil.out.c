@@ -1528,8 +1528,6 @@ static void zf_timer_on(void)
   unsigned long flags ;
   unsigned short tmp ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   unsigned short __cil_tmp9 ;
@@ -1545,9 +1543,7 @@ static void zf_timer_on(void)
   zf_set_timer((unsigned short)65535, (unsigned char)0);
   __cil_tmp4 = (unsigned long )jiffies;
   next_heartbeat = __cil_tmp4 + 2500UL;
-  __cil_tmp5 = (unsigned long )jiffies;
-  __cil_tmp6 = __cil_tmp5 + 125UL;
-  mod_timer(& zf_timer, __cil_tmp6);
+  mod_timer(& zf_timer, ((void *)jiffies + 125UL));
   tmp = zf_get_control();
   ctrl_reg = (unsigned int )tmp;
   __cil_tmp7 = (unsigned int )zf_action;
@@ -1576,8 +1572,6 @@ static void zf_ping(unsigned long data )
   unsigned short __cil_tmp15 ;
   int __cil_tmp16 ;
   unsigned short __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
 
   {
   {
@@ -1605,9 +1599,7 @@ static void zf_ping(unsigned long data )
     __cil_tmp17 = (unsigned short )__cil_tmp16;
     zf_set_control(__cil_tmp17);
     spin_unlock_irqrestore(& zf_port_lock, flags);
-    __cil_tmp18 = (unsigned long )jiffies;
-    __cil_tmp19 = __cil_tmp18 + 125UL;
-    mod_timer(& zf_timer, __cil_tmp19);
+    mod_timer(& zf_timer, ((void *)jiffies + 125UL));
     }
   } else {
     {

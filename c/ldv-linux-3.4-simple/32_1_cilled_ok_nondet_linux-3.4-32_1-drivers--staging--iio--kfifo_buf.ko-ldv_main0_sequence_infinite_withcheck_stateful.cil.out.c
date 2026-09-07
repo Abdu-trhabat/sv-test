@@ -1232,13 +1232,9 @@ __inline static void __iio_update_buffer(struct iio_buffer *buffer , int bytes_p
                                          int length )  __attribute__((__no_instrument_function__)) ;
 __inline static void __iio_update_buffer(struct iio_buffer *buffer , int bytes_per_datum ,
                                          int length ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-
+{
   {
-  __cil_tmp4 = (unsigned long )buffer;
-  __cil_tmp5 = __cil_tmp4 + 4;
-  *((int *)__cil_tmp5) = bytes_per_datum;
+  *((int *)((void *)buffer + 4)) = bytes_per_datum;
   *((int *)buffer) = length;
   return;
 }
@@ -1263,8 +1259,6 @@ __inline static int __iio_allocate_kfifo(struct iio_kfifo *buf , int bytes_per_d
   int tmp___0 ;
   int tmp___1 ;
   struct iio_buffer *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
 
@@ -1280,9 +1274,7 @@ __inline static int __iio_allocate_kfifo(struct iio_kfifo *buf , int bytes_per_d
   {
   __cil_tmp9 = (struct iio_buffer *)buf;
   __iio_update_buffer(__cil_tmp9, bytes_per_datum, length);
-  __cil_tmp10 = (unsigned long )buf;
-  __cil_tmp11 = __cil_tmp10 + 160;
-  __tmp = (struct kfifo *)__cil_tmp11;
+  __tmp = (struct kfifo *)((void *)buf + 160);
   __kfifo = (struct __kfifo *)__tmp;
   }
   if (24UL == 24UL) {
@@ -1312,14 +1304,8 @@ static int iio_request_update_kfifo(struct iio_buffer *r )
   unsigned int __cil_tmp9 ;
   char *__cil_tmp10 ;
   char *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   int __cil_tmp21 ;
 
@@ -1333,18 +1319,14 @@ static int iio_request_update_kfifo(struct iio_buffer *r )
   __cil_tmp11 = __cil_tmp10 - __cil_tmp9;
   buf = (struct iio_kfifo *)__cil_tmp11;
   {
-  __cil_tmp12 = (unsigned long )buf;
-  __cil_tmp13 = __cil_tmp12 + 184;
-  __cil_tmp14 = *((int *)__cil_tmp13);
+  __cil_tmp14 = *((int *)((void *)buf + 184));
   if (! __cil_tmp14) {
     goto error_ret;
   } else {
 
   }
   }
-  __cil_tmp15 = (unsigned long )buf;
-  __cil_tmp16 = __cil_tmp15 + 160;
-  __tmp = (struct kfifo *)__cil_tmp16;
+  __tmp = (struct kfifo *)((void *)buf + 160);
   __kfifo = (struct __kfifo *)__tmp;
   if (24UL == 24UL) {
     {
@@ -1355,9 +1337,7 @@ static int iio_request_update_kfifo(struct iio_buffer *r )
   }
   {
   __cil_tmp17 = 0 + 4;
-  __cil_tmp18 = (unsigned long )buf;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = *((int *)__cil_tmp19);
+  __cil_tmp20 = *((int *)((void *)buf + __cil_tmp17));
   __cil_tmp21 = *((int *)buf);
   ret = __iio_allocate_kfifo(buf, __cil_tmp20, __cil_tmp21);
   }
@@ -1377,14 +1357,10 @@ static struct device_attribute dev_attr_length  =    {{"length", (umode_t )420},
 static struct attribute *iio_kfifo_attributes[3]  = {      & dev_attr_length.attr,      & dev_attr_enable.attr,      (struct attribute *)((void *)0)};
 static struct attribute_group iio_kfifo_attribute_group  =    {"buffer", (umode_t (*)(struct kobject * , struct attribute * , int  ))0, iio_kfifo_attributes};
 static int iio_get_bytes_per_datum_kfifo(struct iio_buffer *r ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )r;
-  __cil_tmp3 = __cil_tmp2 + 4;
-  return (*((int *)__cil_tmp3));
+  return (*((int *)((void *)r + 4)));
   }
 }
 }
@@ -1396,8 +1372,6 @@ static int iio_mark_update_needed_kfifo(struct iio_buffer *r )
   unsigned int __cil_tmp6 ;
   char *__cil_tmp7 ;
   char *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
 
   {
   __mptr = (struct iio_buffer  const  *)r;
@@ -1407,31 +1381,22 @@ static int iio_mark_update_needed_kfifo(struct iio_buffer *r )
   __cil_tmp7 = (char *)__mptr;
   __cil_tmp8 = __cil_tmp7 - __cil_tmp6;
   kf = (struct iio_kfifo *)__cil_tmp8;
-  __cil_tmp9 = (unsigned long )kf;
-  __cil_tmp10 = __cil_tmp9 + 184;
-  *((int *)__cil_tmp10) = 1;
+  *((int *)((void *)kf + 184)) = 1;
   return (0);
 }
 }
 static int iio_set_bytes_per_datum_kfifo(struct iio_buffer *r , size_t bpd ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   int __cil_tmp5 ;
   size_t __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )r;
-  __cil_tmp4 = __cil_tmp3 + 4;
-  __cil_tmp5 = *((int *)__cil_tmp4);
+  __cil_tmp5 = *((int *)((void *)r + 4));
   __cil_tmp6 = (size_t )__cil_tmp5;
   if (__cil_tmp6 != bpd) {
     {
-    __cil_tmp7 = (unsigned long )r;
-    __cil_tmp8 = __cil_tmp7 + 4;
-    *((int *)__cil_tmp8) = (int )bpd;
+    *((int *)((void *)r + 4)) = (int )bpd;
     iio_mark_update_needed_kfifo(r);
     }
   } else {
@@ -1476,17 +1441,11 @@ static int iio_store_to_kfifo(struct iio_buffer *r , u8 *data , s64 timestamp )
   unsigned int __cil_tmp18 ;
   char *__cil_tmp19 ;
   char *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
   void const   *__cil_tmp26 ;
   unsigned int __cil_tmp27 ;
   void const   *__cil_tmp28 ;
   unsigned int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
 
   {
@@ -1497,13 +1456,9 @@ static int iio_store_to_kfifo(struct iio_buffer *r , u8 *data , s64 timestamp )
   __cil_tmp19 = (char *)__mptr;
   __cil_tmp20 = __cil_tmp19 - __cil_tmp18;
   kf = (struct iio_kfifo *)__cil_tmp20;
-  __cil_tmp21 = (unsigned long )kf;
-  __cil_tmp22 = __cil_tmp21 + 160;
-  __tmp = (struct kfifo *)__cil_tmp22;
+  __tmp = (struct kfifo *)((void *)kf + 160);
   __buf = data;
-  __cil_tmp23 = (unsigned long )r;
-  __cil_tmp24 = __cil_tmp23 + 4;
-  __cil_tmp25 = *((int *)__cil_tmp24);
+  __cil_tmp25 = *((int *)((void *)r + 4));
   __n = (unsigned long )__cil_tmp25;
   __recsize = 0UL;
   __kfifo = (struct __kfifo *)__tmp;
@@ -1524,9 +1479,7 @@ static int iio_store_to_kfifo(struct iio_buffer *r , u8 *data , s64 timestamp )
   }
   ret = (int )tmp___1;
   {
-  __cil_tmp30 = (unsigned long )r;
-  __cil_tmp31 = __cil_tmp30 + 4;
-  __cil_tmp32 = *((int *)__cil_tmp31);
+  __cil_tmp32 = *((int *)((void *)r + 4));
   if (ret != __cil_tmp32) {
     return (-16);
   } else {
@@ -1557,17 +1510,11 @@ static int iio_read_first_n_kfifo(struct iio_buffer *r , size_t n , char *buf )
   unsigned int __cil_tmp21 ;
   char *__cil_tmp22 ;
   char *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int __cil_tmp26 ;
   size_t __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   int __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
@@ -1582,9 +1529,7 @@ static int iio_read_first_n_kfifo(struct iio_buffer *r , size_t n , char *buf )
   __cil_tmp23 = __cil_tmp22 - __cil_tmp21;
   kf = (struct iio_kfifo *)__cil_tmp23;
   {
-  __cil_tmp24 = (unsigned long )r;
-  __cil_tmp25 = __cil_tmp24 + 4;
-  __cil_tmp26 = *((int *)__cil_tmp25);
+  __cil_tmp26 = *((int *)((void *)r + 4));
   __cil_tmp27 = (size_t )__cil_tmp26;
   if (n < __cil_tmp27) {
     return (-22);
@@ -1593,15 +1538,11 @@ static int iio_read_first_n_kfifo(struct iio_buffer *r , size_t n , char *buf )
   }
   }
   __x = n;
-  __cil_tmp28 = (unsigned long )r;
-  __cil_tmp29 = __cil_tmp28 + 4;
-  __cil_tmp30 = *((int *)__cil_tmp29);
+  __cil_tmp30 = *((int *)((void *)r + 4));
   __cil_tmp31 = (unsigned long )__cil_tmp30;
   __cil_tmp32 = __x % __cil_tmp31;
   n = __x - __cil_tmp32;
-  __cil_tmp33 = (unsigned long )kf;
-  __cil_tmp34 = __cil_tmp33 + 160;
-  __tmp = (struct kfifo *)__cil_tmp34;
+  __tmp = (struct kfifo *)((void *)kf + 160);
   __to = (void *)buf;
   __len = (unsigned int )n;
   __copied = (unsigned int *)(& copied);
@@ -1637,15 +1578,9 @@ struct iio_buffer *iio_kfifo_allocate(struct iio_dev *indio_dev )
 { struct iio_kfifo *kf ;
   void *tmp ;
   void *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct iio_buffer *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
 
   {
   {
@@ -1661,19 +1596,13 @@ struct iio_buffer *iio_kfifo_allocate(struct iio_dev *indio_dev )
 
   }
   {
-  __cil_tmp5 = (unsigned long )kf;
-  __cil_tmp6 = __cil_tmp5 + 184;
-  *((int *)__cil_tmp6) = 1;
+  *((int *)((void *)kf + 184)) = 1;
   __cil_tmp7 = (struct iio_buffer *)kf;
   iio_buffer_init(__cil_tmp7);
   __cil_tmp8 = 0 + 128;
-  __cil_tmp9 = (unsigned long )kf;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  *((struct attribute_group  const  **)__cil_tmp10) = (struct attribute_group  const  *)(& iio_kfifo_attribute_group);
+  *((struct attribute_group  const  **)((void *)kf + __cil_tmp8)) = (struct attribute_group  const  *)(& iio_kfifo_attribute_group);
   __cil_tmp11 = 0 + 32;
-  __cil_tmp12 = (unsigned long )kf;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  *((struct iio_buffer_access_funcs  const  **)__cil_tmp13) = & kfifo_access_funcs;
+  *((struct iio_buffer_access_funcs  const  **)((void *)kf + __cil_tmp11)) = & kfifo_access_funcs;
   }
   return ((struct iio_buffer *)kf);
 }

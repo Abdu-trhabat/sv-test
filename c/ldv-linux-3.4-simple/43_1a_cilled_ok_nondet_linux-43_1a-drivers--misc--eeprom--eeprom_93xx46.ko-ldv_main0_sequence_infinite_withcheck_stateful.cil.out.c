@@ -2009,28 +2009,21 @@ extern int __dynamic_dev_dbg(struct _ddebug * , struct device  const  * , char c
                              , ...) ;
 extern int sscanf(char const   * , char const   *  , ...) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
 extern void __list_add(struct list_head * , struct list_head * , struct list_head * ) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )head;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((struct list_head **)__cil_tmp4);
+  __cil_tmp5 = *((struct list_head **)((void *)head + 8));
   __list_add(new, __cil_tmp5, head);
   }
   return;
@@ -2108,16 +2101,13 @@ __inline static void spi_message_init(struct spi_message *m )
 }
 }
 __inline static void spi_message_add_tail(struct spi_transfer *t , struct spi_message *m ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   struct list_head *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )t;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct list_head *)__cil_tmp4;
+  __cil_tmp5 = (struct list_head *)((void *)t + 48);
   __cil_tmp6 = (struct list_head *)m;
   list_add_tail(__cil_tmp5, __cil_tmp6);
   }
@@ -2144,16 +2134,12 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   struct device *__cil_tmp21 ;
   struct device  const  *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   size_t __cil_tmp26 ;
   unsigned long long __cil_tmp27 ;
   unsigned long long __cil_tmp28 ;
   int __cil_tmp29 ;
   long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   size_t __cil_tmp34 ;
   unsigned long long __cil_tmp35 ;
   unsigned long long __cil_tmp36 ;
@@ -2161,20 +2147,14 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   unsigned long long __cil_tmp38 ;
   unsigned long long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   size_t __cil_tmp43 ;
   unsigned long long __cil_tmp44 ;
   unsigned long long __cil_tmp45 ;
   int __cil_tmp46 ;
   long __cil_tmp47 ;
   u16 *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   int __cil_tmp51 ;
   int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   int __cil_tmp55 ;
   u16 *__cil_tmp56 ;
   u16 *__cil_tmp57 ;
@@ -2195,12 +2175,6 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   int __cil_tmp72 ;
   int __cil_tmp73 ;
   struct _ddebug *__cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
   unsigned char __cil_tmp81 ;
   long __cil_tmp82 ;
   long __cil_tmp83 ;
@@ -2211,8 +2185,6 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   u16 __cil_tmp88 ;
   int __cil_tmp89 ;
   struct spi_device *__cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   u32 __cil_tmp93 ;
   void *__cil_tmp94 ;
   unsigned long __cil_tmp95 ;
@@ -2235,23 +2207,13 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   unsigned long __cil_tmp112 ;
   struct spi_transfer *__cil_tmp113 ;
   struct spi_transfer *__cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
   struct mutex *__cil_tmp117 ;
   void (*__cil_tmp118)(void * ) ;
   unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   struct eeprom_93xx46_platform_data *__cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
   void (*__cil_tmp125)(void * ) ;
   unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
   struct eeprom_93xx46_platform_data *__cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
   void (*__cil_tmp132)(void * ) ;
   void *__cil_tmp133 ;
   struct spi_device *__cil_tmp134 ;
@@ -2261,22 +2223,12 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   int __cil_tmp138 ;
   void (*__cil_tmp139)(void * ) ;
   unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
   struct eeprom_93xx46_platform_data *__cil_tmp143 ;
-  unsigned long __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
   void (*__cil_tmp146)(void * ) ;
   unsigned long __cil_tmp147 ;
-  unsigned long __cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
   struct eeprom_93xx46_platform_data *__cil_tmp150 ;
-  unsigned long __cil_tmp151 ;
-  unsigned long __cil_tmp152 ;
   void (*__cil_tmp153)(void * ) ;
   void *__cil_tmp154 ;
-  unsigned long __cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
   struct mutex *__cil_tmp157 ;
 
   {
@@ -2288,9 +2240,7 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   tmp = dev_get_drvdata(__cil_tmp22);
   edev = (struct eeprom_93xx46_dev *)tmp;
   __cil_tmp23 = 16 + 32;
-  __cil_tmp24 = (unsigned long )edev;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  __cil_tmp26 = *((size_t *)__cil_tmp25);
+  __cil_tmp26 = *((size_t *)((void *)edev + __cil_tmp23));
   __cil_tmp27 = (unsigned long long )__cil_tmp26;
   __cil_tmp28 = (unsigned long long )off;
   __cil_tmp29 = __cil_tmp28 >= __cil_tmp27;
@@ -2304,9 +2254,7 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   }
   {
   __cil_tmp31 = 16 + 32;
-  __cil_tmp32 = (unsigned long )edev;
-  __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-  __cil_tmp34 = *((size_t *)__cil_tmp33);
+  __cil_tmp34 = *((size_t *)((void *)edev + __cil_tmp31));
   __cil_tmp35 = (unsigned long long )__cil_tmp34;
   __cil_tmp36 = (unsigned long long )count;
   __cil_tmp37 = (unsigned long long )off;
@@ -2314,9 +2262,7 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   if (__cil_tmp38 > __cil_tmp35) {
     __cil_tmp39 = (unsigned long long )off;
     __cil_tmp40 = 16 + 32;
-    __cil_tmp41 = (unsigned long )edev;
-    __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-    __cil_tmp43 = *((size_t *)__cil_tmp42);
+    __cil_tmp43 = *((size_t *)((void *)edev + __cil_tmp40));
     __cil_tmp44 = (unsigned long long )__cil_tmp43;
     __cil_tmp45 = __cil_tmp44 - __cil_tmp39;
     count = (size_t )__cil_tmp45;
@@ -2335,15 +2281,11 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
 
   }
   __cil_tmp48 = & cmd_addr;
-  __cil_tmp49 = (unsigned long )edev;
-  __cil_tmp50 = __cil_tmp49 + 256;
-  __cil_tmp51 = *((int *)__cil_tmp50);
+  __cil_tmp51 = *((int *)((void *)edev + 256));
   __cil_tmp52 = 6 << __cil_tmp51;
   *__cil_tmp48 = (u16 )__cil_tmp52;
   {
-  __cil_tmp53 = (unsigned long )edev;
-  __cil_tmp54 = __cil_tmp53 + 256;
-  __cil_tmp55 = *((int *)__cil_tmp54);
+  __cil_tmp55 = *((int *)((void *)edev + 256));
   if (__cil_tmp55 == 7) {
     __cil_tmp56 = & cmd_addr;
     __cil_tmp57 = & cmd_addr;
@@ -2373,18 +2315,12 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   {
   __cil_tmp74 = & descriptor;
   *((char const   **)__cil_tmp74) = "eeprom_93xx46";
-  __cil_tmp75 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp75) = "eeprom_93xx46_bin_read";
-  __cil_tmp76 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp76) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12500/dscv_tempdir/dscv/ri/43_1a/drivers/misc/eeprom/eeprom_93xx46.c.p";
-  __cil_tmp77 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp77) = "read cmd 0x%x, %d Hz\n";
-  __cil_tmp78 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp78) = 85U;
-  __cil_tmp79 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp79) = (unsigned char)0;
-  __cil_tmp80 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp81 = *((unsigned char *)__cil_tmp80);
+  *((char const   **)((void *)(&descriptor) + 8)) = "eeprom_93xx46_bin_read";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12500/dscv_tempdir/dscv/ri/43_1a/drivers/misc/eeprom/eeprom_93xx46.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "read cmd 0x%x, %d Hz\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 85U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp81 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp82 = (long )__cil_tmp81;
   __cil_tmp83 = __cil_tmp82 & 1L;
   tmp___2 = __builtin_expect(__cil_tmp83, 0L);
@@ -2398,9 +2334,7 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
     __cil_tmp88 = *__cil_tmp87;
     __cil_tmp89 = (int )__cil_tmp88;
     __cil_tmp90 = *((struct spi_device **)edev);
-    __cil_tmp91 = (unsigned long )__cil_tmp90;
-    __cil_tmp92 = __cil_tmp91 + 1160;
-    __cil_tmp93 = *((u32 *)__cil_tmp92);
+    __cil_tmp93 = *((u32 *)((void *)__cil_tmp90 + 1160));
     __dynamic_dev_dbg(& descriptor, __cil_tmp86, "read cmd 0x%x, %d Hz\n", __cil_tmp89,
                       __cil_tmp93);
     }
@@ -2439,29 +2373,19 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   __cil_tmp113 = (struct spi_transfer *)(& t);
   __cil_tmp114 = __cil_tmp113 + 1UL;
   spi_message_add_tail(__cil_tmp114, & m);
-  __cil_tmp115 = (unsigned long )edev;
-  __cil_tmp116 = __cil_tmp115 + 88;
-  __cil_tmp117 = (struct mutex *)__cil_tmp116;
+  __cil_tmp117 = (struct mutex *)((void *)edev + 88);
   mutex_lock_nested(__cil_tmp117, 0U);
   }
   {
   __cil_tmp118 = (void (*)(void * ))0;
   __cil_tmp119 = (unsigned long )__cil_tmp118;
-  __cil_tmp120 = (unsigned long )edev;
-  __cil_tmp121 = __cil_tmp120 + 8;
-  __cil_tmp122 = *((struct eeprom_93xx46_platform_data **)__cil_tmp121);
-  __cil_tmp123 = (unsigned long )__cil_tmp122;
-  __cil_tmp124 = __cil_tmp123 + 8;
-  __cil_tmp125 = *((void (**)(void * ))__cil_tmp124);
+  __cil_tmp122 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+  __cil_tmp125 = *((void (**)(void * ))((void *)__cil_tmp122 + 8));
   __cil_tmp126 = (unsigned long )__cil_tmp125;
   if (__cil_tmp126 != __cil_tmp119) {
     {
-    __cil_tmp127 = (unsigned long )edev;
-    __cil_tmp128 = __cil_tmp127 + 8;
-    __cil_tmp129 = *((struct eeprom_93xx46_platform_data **)__cil_tmp128);
-    __cil_tmp130 = (unsigned long )__cil_tmp129;
-    __cil_tmp131 = __cil_tmp130 + 8;
-    __cil_tmp132 = *((void (**)(void * ))__cil_tmp131);
+    __cil_tmp129 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+    __cil_tmp132 = *((void (**)(void * ))((void *)__cil_tmp129 + 8));
     __cil_tmp133 = (void *)edev;
     (*__cil_tmp132)(__cil_tmp133);
     }
@@ -2489,21 +2413,13 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   {
   __cil_tmp139 = (void (*)(void * ))0;
   __cil_tmp140 = (unsigned long )__cil_tmp139;
-  __cil_tmp141 = (unsigned long )edev;
-  __cil_tmp142 = __cil_tmp141 + 8;
-  __cil_tmp143 = *((struct eeprom_93xx46_platform_data **)__cil_tmp142);
-  __cil_tmp144 = (unsigned long )__cil_tmp143;
-  __cil_tmp145 = __cil_tmp144 + 16;
-  __cil_tmp146 = *((void (**)(void * ))__cil_tmp145);
+  __cil_tmp143 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+  __cil_tmp146 = *((void (**)(void * ))((void *)__cil_tmp143 + 16));
   __cil_tmp147 = (unsigned long )__cil_tmp146;
   if (__cil_tmp147 != __cil_tmp140) {
     {
-    __cil_tmp148 = (unsigned long )edev;
-    __cil_tmp149 = __cil_tmp148 + 8;
-    __cil_tmp150 = *((struct eeprom_93xx46_platform_data **)__cil_tmp149);
-    __cil_tmp151 = (unsigned long )__cil_tmp150;
-    __cil_tmp152 = __cil_tmp151 + 16;
-    __cil_tmp153 = *((void (**)(void * ))__cil_tmp152);
+    __cil_tmp150 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+    __cil_tmp153 = *((void (**)(void * ))((void *)__cil_tmp150 + 16));
     __cil_tmp154 = (void *)edev;
     (*__cil_tmp153)(__cil_tmp154);
     }
@@ -2512,9 +2428,7 @@ static ssize_t eeprom_93xx46_bin_read(struct file *filp , struct kobject *kobj ,
   }
   }
   {
-  __cil_tmp155 = (unsigned long )edev;
-  __cil_tmp156 = __cil_tmp155 + 88;
-  __cil_tmp157 = (struct mutex *)__cil_tmp156;
+  __cil_tmp157 = (struct mutex *)((void *)edev + 88);
   mutex_unlock(__cil_tmp157);
   }
   if (ret != 0) {
@@ -2537,12 +2451,8 @@ static int eeprom_93xx46_ew(struct eeprom_93xx46_dev *edev , int is_on )
   long tmp___1 ;
   char *tmp___2 ;
   u16 *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
   u16 *__cil_tmp21 ;
   u16 *__cil_tmp22 ;
@@ -2557,12 +2467,6 @@ static int eeprom_93xx46_ew(struct eeprom_93xx46_dev *edev , int is_on )
   int __cil_tmp31 ;
   int __cil_tmp32 ;
   struct _ddebug *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned char __cil_tmp40 ;
   long __cil_tmp41 ;
   long __cil_tmp42 ;
@@ -2574,25 +2478,13 @@ static int eeprom_93xx46_ew(struct eeprom_93xx46_dev *edev , int is_on )
   int __cil_tmp48 ;
   void *__cil_tmp49 ;
   struct spi_transfer *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct mutex *__cil_tmp55 ;
   void (*__cil_tmp56)(void * ) ;
   unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
   struct eeprom_93xx46_platform_data *__cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
   void (*__cil_tmp63)(void * ) ;
   unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   struct eeprom_93xx46_platform_data *__cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   void (*__cil_tmp70)(void * ) ;
   void *__cil_tmp71 ;
   struct spi_device *__cil_tmp72 ;
@@ -2601,35 +2493,21 @@ static int eeprom_93xx46_ew(struct eeprom_93xx46_dev *edev , int is_on )
   struct device  const  *__cil_tmp75 ;
   void (*__cil_tmp76)(void * ) ;
   unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
   struct eeprom_93xx46_platform_data *__cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   void (*__cil_tmp83)(void * ) ;
   unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   struct eeprom_93xx46_platform_data *__cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   void (*__cil_tmp90)(void * ) ;
   void *__cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
-  unsigned long __cil_tmp93 ;
   struct mutex *__cil_tmp94 ;
 
   {
   __cil_tmp13 = & cmd_addr;
-  __cil_tmp14 = (unsigned long )edev;
-  __cil_tmp15 = __cil_tmp14 + 256;
-  __cil_tmp16 = *((int *)__cil_tmp15);
+  __cil_tmp16 = *((int *)((void *)edev + 256));
   __cil_tmp17 = 4 << __cil_tmp16;
   *__cil_tmp13 = (u16 )__cil_tmp17;
   {
-  __cil_tmp18 = (unsigned long )edev;
-  __cil_tmp19 = __cil_tmp18 + 256;
-  __cil_tmp20 = *((int *)__cil_tmp19);
+  __cil_tmp20 = *((int *)((void *)edev + 256));
   if (__cil_tmp20 == 7) {
     if (is_on != 0) {
       tmp = 96;
@@ -2663,18 +2541,12 @@ static int eeprom_93xx46_ew(struct eeprom_93xx46_dev *edev , int is_on )
   {
   __cil_tmp33 = & descriptor;
   *((char const   **)__cil_tmp33) = "eeprom_93xx46";
-  __cil_tmp34 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp34) = "eeprom_93xx46_ew";
-  __cil_tmp35 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp35) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12500/dscv_tempdir/dscv/ri/43_1a/drivers/misc/eeprom/eeprom_93xx46.c.p";
-  __cil_tmp36 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp36) = "ew cmd 0x%04x\n";
-  __cil_tmp37 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp37) = 136U;
-  __cil_tmp38 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp38) = (unsigned char)0;
-  __cil_tmp39 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp40 = *((unsigned char *)__cil_tmp39);
+  *((char const   **)((void *)(&descriptor) + 8)) = "eeprom_93xx46_ew";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12500/dscv_tempdir/dscv/ri/43_1a/drivers/misc/eeprom/eeprom_93xx46.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "ew cmd 0x%04x\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 136U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp40 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp41 = (long )__cil_tmp40;
   __cil_tmp42 = __cil_tmp41 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp42, 0L);
@@ -2698,34 +2570,22 @@ static int eeprom_93xx46_ew(struct eeprom_93xx46_dev *edev , int is_on )
   memset(__cil_tmp49, 0, 64UL);
   __cil_tmp50 = & t;
   *((void const   **)__cil_tmp50) = (void const   *)(& cmd_addr);
-  __cil_tmp51 = (unsigned long )(& t) + 16;
-  *((unsigned int *)__cil_tmp51) = 2U;
-  __cil_tmp52 = (unsigned long )(& t) + 41;
-  *((u8 *)__cil_tmp52) = (u8 )bits;
+  *((unsigned int *)((void *)(&t) + 16)) = 2U;
+  *((u8 *)((void *)(&t) + 41)) = (u8 )bits;
   spi_message_add_tail(& t, & m);
-  __cil_tmp53 = (unsigned long )edev;
-  __cil_tmp54 = __cil_tmp53 + 88;
-  __cil_tmp55 = (struct mutex *)__cil_tmp54;
+  __cil_tmp55 = (struct mutex *)((void *)edev + 88);
   mutex_lock_nested(__cil_tmp55, 0U);
   }
   {
   __cil_tmp56 = (void (*)(void * ))0;
   __cil_tmp57 = (unsigned long )__cil_tmp56;
-  __cil_tmp58 = (unsigned long )edev;
-  __cil_tmp59 = __cil_tmp58 + 8;
-  __cil_tmp60 = *((struct eeprom_93xx46_platform_data **)__cil_tmp59);
-  __cil_tmp61 = (unsigned long )__cil_tmp60;
-  __cil_tmp62 = __cil_tmp61 + 8;
-  __cil_tmp63 = *((void (**)(void * ))__cil_tmp62);
+  __cil_tmp60 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+  __cil_tmp63 = *((void (**)(void * ))((void *)__cil_tmp60 + 8));
   __cil_tmp64 = (unsigned long )__cil_tmp63;
   if (__cil_tmp64 != __cil_tmp57) {
     {
-    __cil_tmp65 = (unsigned long )edev;
-    __cil_tmp66 = __cil_tmp65 + 8;
-    __cil_tmp67 = *((struct eeprom_93xx46_platform_data **)__cil_tmp66);
-    __cil_tmp68 = (unsigned long )__cil_tmp67;
-    __cil_tmp69 = __cil_tmp68 + 8;
-    __cil_tmp70 = *((void (**)(void * ))__cil_tmp69);
+    __cil_tmp67 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+    __cil_tmp70 = *((void (**)(void * ))((void *)__cil_tmp67 + 8));
     __cil_tmp71 = (void *)edev;
     (*__cil_tmp70)(__cil_tmp71);
     }
@@ -2756,21 +2616,13 @@ static int eeprom_93xx46_ew(struct eeprom_93xx46_dev *edev , int is_on )
   {
   __cil_tmp76 = (void (*)(void * ))0;
   __cil_tmp77 = (unsigned long )__cil_tmp76;
-  __cil_tmp78 = (unsigned long )edev;
-  __cil_tmp79 = __cil_tmp78 + 8;
-  __cil_tmp80 = *((struct eeprom_93xx46_platform_data **)__cil_tmp79);
-  __cil_tmp81 = (unsigned long )__cil_tmp80;
-  __cil_tmp82 = __cil_tmp81 + 16;
-  __cil_tmp83 = *((void (**)(void * ))__cil_tmp82);
+  __cil_tmp80 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+  __cil_tmp83 = *((void (**)(void * ))((void *)__cil_tmp80 + 16));
   __cil_tmp84 = (unsigned long )__cil_tmp83;
   if (__cil_tmp84 != __cil_tmp77) {
     {
-    __cil_tmp85 = (unsigned long )edev;
-    __cil_tmp86 = __cil_tmp85 + 8;
-    __cil_tmp87 = *((struct eeprom_93xx46_platform_data **)__cil_tmp86);
-    __cil_tmp88 = (unsigned long )__cil_tmp87;
-    __cil_tmp89 = __cil_tmp88 + 16;
-    __cil_tmp90 = *((void (**)(void * ))__cil_tmp89);
+    __cil_tmp87 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+    __cil_tmp90 = *((void (**)(void * ))((void *)__cil_tmp87 + 16));
     __cil_tmp91 = (void *)edev;
     (*__cil_tmp90)(__cil_tmp91);
     }
@@ -2779,9 +2631,7 @@ static int eeprom_93xx46_ew(struct eeprom_93xx46_dev *edev , int is_on )
   }
   }
   {
-  __cil_tmp92 = (unsigned long )edev;
-  __cil_tmp93 = __cil_tmp92 + 88;
-  __cil_tmp94 = (struct mutex *)__cil_tmp93;
+  __cil_tmp94 = (struct mutex *)((void *)edev + 88);
   mutex_unlock(__cil_tmp94);
   }
   return (ret);
@@ -2800,12 +2650,8 @@ static ssize_t eeprom_93xx46_write_word(struct eeprom_93xx46_dev *edev , char co
   unsigned long __ms ;
   unsigned long tmp___0 ;
   u16 *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   int __cil_tmp21 ;
   u16 *__cil_tmp22 ;
   u16 *__cil_tmp23 ;
@@ -2824,12 +2670,6 @@ static ssize_t eeprom_93xx46_write_word(struct eeprom_93xx46_dev *edev , char co
   unsigned int __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   struct _ddebug *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char __cil_tmp45 ;
   long __cil_tmp46 ;
   long __cil_tmp47 ;
@@ -2863,15 +2703,11 @@ static ssize_t eeprom_93xx46_write_word(struct eeprom_93xx46_dev *edev , char co
 
   {
   __cil_tmp14 = & cmd_addr;
-  __cil_tmp15 = (unsigned long )edev;
-  __cil_tmp16 = __cil_tmp15 + 256;
-  __cil_tmp17 = *((int *)__cil_tmp16);
+  __cil_tmp17 = *((int *)((void *)edev + 256));
   __cil_tmp18 = 5 << __cil_tmp17;
   *__cil_tmp14 = (u16 )__cil_tmp18;
   {
-  __cil_tmp19 = (unsigned long )edev;
-  __cil_tmp20 = __cil_tmp19 + 256;
-  __cil_tmp21 = *((int *)__cil_tmp20);
+  __cil_tmp21 = *((int *)((void *)edev + 256));
   if (__cil_tmp21 == 7) {
     __cil_tmp22 = & cmd_addr;
     __cil_tmp23 = & cmd_addr;
@@ -2901,18 +2737,12 @@ static ssize_t eeprom_93xx46_write_word(struct eeprom_93xx46_dev *edev , char co
   {
   __cil_tmp38 = & descriptor;
   *((char const   **)__cil_tmp38) = "eeprom_93xx46";
-  __cil_tmp39 = (unsigned long )(& descriptor) + 8;
-  *((char const   **)__cil_tmp39) = "eeprom_93xx46_write_word";
-  __cil_tmp40 = (unsigned long )(& descriptor) + 16;
-  *((char const   **)__cil_tmp40) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12500/dscv_tempdir/dscv/ri/43_1a/drivers/misc/eeprom/eeprom_93xx46.c.p";
-  __cil_tmp41 = (unsigned long )(& descriptor) + 24;
-  *((char const   **)__cil_tmp41) = "write cmd 0x%x\n";
-  __cil_tmp42 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp42) = 186U;
-  __cil_tmp43 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp43) = (unsigned char)0;
-  __cil_tmp44 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp45 = *((unsigned char *)__cil_tmp44);
+  *((char const   **)((void *)(&descriptor) + 8)) = "eeprom_93xx46_write_word";
+  *((char const   **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/12500/dscv_tempdir/dscv/ri/43_1a/drivers/misc/eeprom/eeprom_93xx46.c.p";
+  *((char const   **)((void *)(&descriptor) + 24)) = "write cmd 0x%x\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 186U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp45 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp46 = (long )__cil_tmp45;
   __cil_tmp47 = __cil_tmp46 & 1L;
   tmp = __builtin_expect(__cil_tmp47, 0L);
@@ -2999,16 +2829,12 @@ static ssize_t eeprom_93xx46_bin_write(struct file *filp , struct kobject *kobj 
   struct device *__cil_tmp18 ;
   struct device  const  *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   size_t __cil_tmp23 ;
   unsigned long long __cil_tmp24 ;
   unsigned long long __cil_tmp25 ;
   int __cil_tmp26 ;
   long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   size_t __cil_tmp31 ;
   unsigned long long __cil_tmp32 ;
   unsigned long long __cil_tmp33 ;
@@ -3016,33 +2842,19 @@ static ssize_t eeprom_93xx46_bin_write(struct file *filp , struct kobject *kobj 
   unsigned long long __cil_tmp35 ;
   unsigned long long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   size_t __cil_tmp40 ;
   unsigned long long __cil_tmp41 ;
   unsigned long long __cil_tmp42 ;
   int __cil_tmp43 ;
   long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   int __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct mutex *__cil_tmp50 ;
   void (*__cil_tmp51)(void * ) ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct eeprom_93xx46_platform_data *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   void (*__cil_tmp58)(void * ) ;
   unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   struct eeprom_93xx46_platform_data *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   void (*__cil_tmp65)(void * ) ;
   void *__cil_tmp66 ;
   unsigned long __cil_tmp67 ;
@@ -3059,22 +2871,12 @@ static ssize_t eeprom_93xx46_bin_write(struct file *filp , struct kobject *kobj 
   size_t __cil_tmp78 ;
   void (*__cil_tmp79)(void * ) ;
   unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   struct eeprom_93xx46_platform_data *__cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   void (*__cil_tmp86)(void * ) ;
   unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   struct eeprom_93xx46_platform_data *__cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   void (*__cil_tmp93)(void * ) ;
   void *__cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   struct mutex *__cil_tmp97 ;
 
   {
@@ -3087,9 +2889,7 @@ static ssize_t eeprom_93xx46_bin_write(struct file *filp , struct kobject *kobj 
   tmp = dev_get_drvdata(__cil_tmp19);
   edev = (struct eeprom_93xx46_dev *)tmp;
   __cil_tmp20 = 16 + 32;
-  __cil_tmp21 = (unsigned long )edev;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  __cil_tmp23 = *((size_t *)__cil_tmp22);
+  __cil_tmp23 = *((size_t *)((void *)edev + __cil_tmp20));
   __cil_tmp24 = (unsigned long long )__cil_tmp23;
   __cil_tmp25 = (unsigned long long )off;
   __cil_tmp26 = __cil_tmp25 >= __cil_tmp24;
@@ -3103,9 +2903,7 @@ static ssize_t eeprom_93xx46_bin_write(struct file *filp , struct kobject *kobj 
   }
   {
   __cil_tmp28 = 16 + 32;
-  __cil_tmp29 = (unsigned long )edev;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  __cil_tmp31 = *((size_t *)__cil_tmp30);
+  __cil_tmp31 = *((size_t *)((void *)edev + __cil_tmp28));
   __cil_tmp32 = (unsigned long long )__cil_tmp31;
   __cil_tmp33 = (unsigned long long )count;
   __cil_tmp34 = (unsigned long long )off;
@@ -3113,9 +2911,7 @@ static ssize_t eeprom_93xx46_bin_write(struct file *filp , struct kobject *kobj 
   if (__cil_tmp35 > __cil_tmp32) {
     __cil_tmp36 = (unsigned long long )off;
     __cil_tmp37 = 16 + 32;
-    __cil_tmp38 = (unsigned long )edev;
-    __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-    __cil_tmp40 = *((size_t *)__cil_tmp39);
+    __cil_tmp40 = *((size_t *)((void *)edev + __cil_tmp37));
     __cil_tmp41 = (unsigned long long )__cil_tmp40;
     __cil_tmp42 = __cil_tmp41 - __cil_tmp36;
     count = (size_t )__cil_tmp42;
@@ -3134,9 +2930,7 @@ static ssize_t eeprom_93xx46_bin_write(struct file *filp , struct kobject *kobj 
 
   }
   {
-  __cil_tmp45 = (unsigned long )edev;
-  __cil_tmp46 = __cil_tmp45 + 256;
-  __cil_tmp47 = *((int *)__cil_tmp46);
+  __cil_tmp47 = *((int *)((void *)edev + 256));
   if (__cil_tmp47 == 6) {
     step = 2;
     count = count & 0xfffffffffffffffeUL;
@@ -3153,29 +2947,19 @@ static ssize_t eeprom_93xx46_bin_write(struct file *filp , struct kobject *kobj 
 
   }
   {
-  __cil_tmp48 = (unsigned long )edev;
-  __cil_tmp49 = __cil_tmp48 + 88;
-  __cil_tmp50 = (struct mutex *)__cil_tmp49;
+  __cil_tmp50 = (struct mutex *)((void *)edev + 88);
   mutex_lock_nested(__cil_tmp50, 0U);
   }
   {
   __cil_tmp51 = (void (*)(void * ))0;
   __cil_tmp52 = (unsigned long )__cil_tmp51;
-  __cil_tmp53 = (unsigned long )edev;
-  __cil_tmp54 = __cil_tmp53 + 8;
-  __cil_tmp55 = *((struct eeprom_93xx46_platform_data **)__cil_tmp54);
-  __cil_tmp56 = (unsigned long )__cil_tmp55;
-  __cil_tmp57 = __cil_tmp56 + 8;
-  __cil_tmp58 = *((void (**)(void * ))__cil_tmp57);
+  __cil_tmp55 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+  __cil_tmp58 = *((void (**)(void * ))((void *)__cil_tmp55 + 8));
   __cil_tmp59 = (unsigned long )__cil_tmp58;
   if (__cil_tmp59 != __cil_tmp52) {
     {
-    __cil_tmp60 = (unsigned long )edev;
-    __cil_tmp61 = __cil_tmp60 + 8;
-    __cil_tmp62 = *((struct eeprom_93xx46_platform_data **)__cil_tmp61);
-    __cil_tmp63 = (unsigned long )__cil_tmp62;
-    __cil_tmp64 = __cil_tmp63 + 8;
-    __cil_tmp65 = *((void (**)(void * ))__cil_tmp64);
+    __cil_tmp62 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+    __cil_tmp65 = *((void (**)(void * ))((void *)__cil_tmp62 + 8));
     __cil_tmp66 = (void *)edev;
     (*__cil_tmp65)(__cil_tmp66);
     }
@@ -3223,21 +3007,13 @@ static ssize_t eeprom_93xx46_bin_write(struct file *filp , struct kobject *kobj 
   {
   __cil_tmp79 = (void (*)(void * ))0;
   __cil_tmp80 = (unsigned long )__cil_tmp79;
-  __cil_tmp81 = (unsigned long )edev;
-  __cil_tmp82 = __cil_tmp81 + 8;
-  __cil_tmp83 = *((struct eeprom_93xx46_platform_data **)__cil_tmp82);
-  __cil_tmp84 = (unsigned long )__cil_tmp83;
-  __cil_tmp85 = __cil_tmp84 + 16;
-  __cil_tmp86 = *((void (**)(void * ))__cil_tmp85);
+  __cil_tmp83 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+  __cil_tmp86 = *((void (**)(void * ))((void *)__cil_tmp83 + 16));
   __cil_tmp87 = (unsigned long )__cil_tmp86;
   if (__cil_tmp87 != __cil_tmp80) {
     {
-    __cil_tmp88 = (unsigned long )edev;
-    __cil_tmp89 = __cil_tmp88 + 8;
-    __cil_tmp90 = *((struct eeprom_93xx46_platform_data **)__cil_tmp89);
-    __cil_tmp91 = (unsigned long )__cil_tmp90;
-    __cil_tmp92 = __cil_tmp91 + 16;
-    __cil_tmp93 = *((void (**)(void * ))__cil_tmp92);
+    __cil_tmp90 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+    __cil_tmp93 = *((void (**)(void * ))((void *)__cil_tmp90 + 16));
     __cil_tmp94 = (void *)edev;
     (*__cil_tmp93)(__cil_tmp94);
     }
@@ -3246,9 +3022,7 @@ static ssize_t eeprom_93xx46_bin_write(struct file *filp , struct kobject *kobj 
   }
   }
   {
-  __cil_tmp95 = (unsigned long )edev;
-  __cil_tmp96 = __cil_tmp95 + 88;
-  __cil_tmp97 = (struct mutex *)__cil_tmp96;
+  __cil_tmp97 = (struct mutex *)((void *)edev + 88);
   mutex_unlock(__cil_tmp97);
   eeprom_93xx46_ew(edev, 0);
   }
@@ -3269,15 +3043,9 @@ static int eeprom_93xx46_eral(struct eeprom_93xx46_dev *edev )
   u16 cmd_addr ;
   unsigned long __ms ;
   unsigned long tmp ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   u16 *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int __cil_tmp19 ;
   u16 *__cil_tmp20 ;
   u16 *__cil_tmp21 ;
@@ -3291,25 +3059,13 @@ static int eeprom_93xx46_eral(struct eeprom_93xx46_dev *edev )
   unsigned int __cil_tmp29 ;
   void *__cil_tmp30 ;
   struct spi_transfer *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct mutex *__cil_tmp36 ;
   void (*__cil_tmp37)(void * ) ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct eeprom_93xx46_platform_data *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   void (*__cil_tmp44)(void * ) ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct eeprom_93xx46_platform_data *__cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   void (*__cil_tmp51)(void * ) ;
   void *__cil_tmp52 ;
   struct spi_device *__cil_tmp53 ;
@@ -3318,32 +3074,20 @@ static int eeprom_93xx46_eral(struct eeprom_93xx46_dev *edev )
   struct device  const  *__cil_tmp56 ;
   void (*__cil_tmp57)(void * ) ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   void (*__cil_tmp61)(void * ) ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   void (*__cil_tmp65)(void * ) ;
   void *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   struct mutex *__cil_tmp69 ;
 
   {
-  __cil_tmp10 = (unsigned long )edev;
-  __cil_tmp11 = __cil_tmp10 + 8;
-  pd = *((struct eeprom_93xx46_platform_data **)__cil_tmp11);
+  pd = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
   __cil_tmp12 = & cmd_addr;
-  __cil_tmp13 = (unsigned long )edev;
-  __cil_tmp14 = __cil_tmp13 + 256;
-  __cil_tmp15 = *((int *)__cil_tmp14);
+  __cil_tmp15 = *((int *)((void *)edev + 256));
   __cil_tmp16 = 4 << __cil_tmp15;
   *__cil_tmp12 = (u16 )__cil_tmp16;
   {
-  __cil_tmp17 = (unsigned long )edev;
-  __cil_tmp18 = __cil_tmp17 + 256;
-  __cil_tmp19 = *((int *)__cil_tmp18);
+  __cil_tmp19 = *((int *)((void *)edev + 256));
   if (__cil_tmp19 == 7) {
     __cil_tmp20 = & cmd_addr;
     __cil_tmp21 = & cmd_addr;
@@ -3368,34 +3112,22 @@ static int eeprom_93xx46_eral(struct eeprom_93xx46_dev *edev )
   memset(__cil_tmp30, 0, 64UL);
   __cil_tmp31 = & t;
   *((void const   **)__cil_tmp31) = (void const   *)(& cmd_addr);
-  __cil_tmp32 = (unsigned long )(& t) + 16;
-  *((unsigned int *)__cil_tmp32) = 2U;
-  __cil_tmp33 = (unsigned long )(& t) + 41;
-  *((u8 *)__cil_tmp33) = (u8 )bits;
+  *((unsigned int *)((void *)(&t) + 16)) = 2U;
+  *((u8 *)((void *)(&t) + 41)) = (u8 )bits;
   spi_message_add_tail(& t, & m);
-  __cil_tmp34 = (unsigned long )edev;
-  __cil_tmp35 = __cil_tmp34 + 88;
-  __cil_tmp36 = (struct mutex *)__cil_tmp35;
+  __cil_tmp36 = (struct mutex *)((void *)edev + 88);
   mutex_lock_nested(__cil_tmp36, 0U);
   }
   {
   __cil_tmp37 = (void (*)(void * ))0;
   __cil_tmp38 = (unsigned long )__cil_tmp37;
-  __cil_tmp39 = (unsigned long )edev;
-  __cil_tmp40 = __cil_tmp39 + 8;
-  __cil_tmp41 = *((struct eeprom_93xx46_platform_data **)__cil_tmp40);
-  __cil_tmp42 = (unsigned long )__cil_tmp41;
-  __cil_tmp43 = __cil_tmp42 + 8;
-  __cil_tmp44 = *((void (**)(void * ))__cil_tmp43);
+  __cil_tmp41 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+  __cil_tmp44 = *((void (**)(void * ))((void *)__cil_tmp41 + 8));
   __cil_tmp45 = (unsigned long )__cil_tmp44;
   if (__cil_tmp45 != __cil_tmp38) {
     {
-    __cil_tmp46 = (unsigned long )edev;
-    __cil_tmp47 = __cil_tmp46 + 8;
-    __cil_tmp48 = *((struct eeprom_93xx46_platform_data **)__cil_tmp47);
-    __cil_tmp49 = (unsigned long )__cil_tmp48;
-    __cil_tmp50 = __cil_tmp49 + 8;
-    __cil_tmp51 = *((void (**)(void * ))__cil_tmp50);
+    __cil_tmp48 = *((struct eeprom_93xx46_platform_data **)((void *)edev + 8));
+    __cil_tmp51 = *((void (**)(void * ))((void *)__cil_tmp48 + 8));
     __cil_tmp52 = (void *)edev;
     (*__cil_tmp51)(__cil_tmp52);
     }
@@ -3435,15 +3167,11 @@ static int eeprom_93xx46_eral(struct eeprom_93xx46_dev *edev )
   {
   __cil_tmp57 = (void (*)(void * ))0;
   __cil_tmp58 = (unsigned long )__cil_tmp57;
-  __cil_tmp59 = (unsigned long )pd;
-  __cil_tmp60 = __cil_tmp59 + 16;
-  __cil_tmp61 = *((void (**)(void * ))__cil_tmp60);
+  __cil_tmp61 = *((void (**)(void * ))((void *)pd + 16));
   __cil_tmp62 = (unsigned long )__cil_tmp61;
   if (__cil_tmp62 != __cil_tmp58) {
     {
-    __cil_tmp63 = (unsigned long )pd;
-    __cil_tmp64 = __cil_tmp63 + 16;
-    __cil_tmp65 = *((void (**)(void * ))__cil_tmp64);
+    __cil_tmp65 = *((void (**)(void * ))((void *)pd + 16));
     __cil_tmp66 = (void *)edev;
     (*__cil_tmp65)(__cil_tmp66);
     }
@@ -3452,9 +3180,7 @@ static int eeprom_93xx46_eral(struct eeprom_93xx46_dev *edev )
   }
   }
   {
-  __cil_tmp67 = (unsigned long )edev;
-  __cil_tmp68 = __cil_tmp67 + 88;
-  __cil_tmp69 = (struct mutex *)__cil_tmp68;
+  __cil_tmp69 = (struct mutex *)((void *)edev + 88);
   mutex_unlock(__cil_tmp69);
   }
   return (ret);
@@ -3531,8 +3257,6 @@ static int eeprom_93xx46_probe(struct spi_device *spi )
   int tmp___1 ;
   int tmp___2 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
   struct eeprom_93xx46_platform_data *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
@@ -3544,59 +3268,31 @@ static int eeprom_93xx46_probe(struct spi_device *spi )
   unsigned long __cil_tmp22 ;
   unsigned char __cil_tmp23 ;
   int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned char __cil_tmp27 ;
   int __cil_tmp28 ;
   int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct device *__cil_tmp32 ;
   struct device  const  *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct mutex *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   unsigned char __cil_tmp55 ;
   int __cil_tmp56 ;
   int __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   umode_t __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
   unsigned int __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   struct kobject *__cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   struct bin_attribute *__cil_tmp78 ;
   struct bin_attribute  const  *__cil_tmp79 ;
   unsigned char __cil_tmp80 ;
@@ -3619,9 +3315,7 @@ static int eeprom_93xx46_probe(struct spi_device *spi )
 
   {
   __cil_tmp11 = 0 + 280;
-  __cil_tmp12 = (unsigned long )spi;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  __cil_tmp14 = *((void **)((void *)spi + __cil_tmp11));
   pd = (struct eeprom_93xx46_platform_data *)__cil_tmp14;
   {
   __cil_tmp15 = (struct eeprom_93xx46_platform_data *)0;
@@ -3656,18 +3350,14 @@ static int eeprom_93xx46_probe(struct spi_device *spi )
   __cil_tmp23 = *((unsigned char *)pd);
   __cil_tmp24 = (int )__cil_tmp23;
   if (__cil_tmp24 & 1) {
-    __cil_tmp25 = (unsigned long )edev;
-    __cil_tmp26 = __cil_tmp25 + 256;
-    *((int *)__cil_tmp26) = 7;
+    *((int *)((void *)edev + 256)) = 7;
   } else {
     {
     __cil_tmp27 = *((unsigned char *)pd);
     __cil_tmp28 = (int )__cil_tmp27;
     __cil_tmp29 = __cil_tmp28 & 2;
     if (__cil_tmp29 != 0) {
-      __cil_tmp30 = (unsigned long )edev;
-      __cil_tmp31 = __cil_tmp30 + 256;
-      *((int *)__cil_tmp31) = 6;
+      *((int *)((void *)edev + 256)) = 6;
     } else {
       {
       __cil_tmp32 = (struct device *)spi;
@@ -3681,36 +3371,22 @@ static int eeprom_93xx46_probe(struct spi_device *spi )
   }
   }
   {
-  __cil_tmp34 = (unsigned long )edev;
-  __cil_tmp35 = __cil_tmp34 + 88;
-  __cil_tmp36 = (struct mutex *)__cil_tmp35;
+  __cil_tmp36 = (struct mutex *)((void *)edev + 88);
   __mutex_init(__cil_tmp36, "&edev->lock", & __key);
   *((struct spi_device **)edev) = spi_dev_get(spi);
-  __cil_tmp37 = (unsigned long )edev;
-  __cil_tmp38 = __cil_tmp37 + 8;
-  *((struct eeprom_93xx46_platform_data **)__cil_tmp38) = pd;
+  *((struct eeprom_93xx46_platform_data **)((void *)edev + 8)) = pd;
   __cil_tmp39 = 0 + 16;
   __cil_tmp40 = 16 + __cil_tmp39;
-  __cil_tmp41 = (unsigned long )edev;
-  __cil_tmp42 = __cil_tmp41 + __cil_tmp40;
-  *((struct lock_class_key **)__cil_tmp42) = & __key___0;
-  __cil_tmp43 = (unsigned long )edev;
-  __cil_tmp44 = __cil_tmp43 + 16;
-  *((char const   **)__cil_tmp44) = "eeprom";
+  *((struct lock_class_key **)((void *)edev + __cil_tmp40)) = & __key___0;
+  *((char const   **)((void *)edev + 16)) = "eeprom";
   __cil_tmp45 = 0 + 8;
   __cil_tmp46 = 16 + __cil_tmp45;
-  __cil_tmp47 = (unsigned long )edev;
-  __cil_tmp48 = __cil_tmp47 + __cil_tmp46;
-  *((umode_t *)__cil_tmp48) = (umode_t )256U;
+  *((umode_t *)((void *)edev + __cil_tmp46)) = (umode_t )256U;
   __cil_tmp49 = 16 + 48;
-  __cil_tmp50 = (unsigned long )edev;
-  __cil_tmp51 = __cil_tmp50 + __cil_tmp49;
   *((ssize_t (**)(struct file * , struct kobject * , struct bin_attribute * , char * ,
-                  loff_t  , size_t  ))__cil_tmp51) = & eeprom_93xx46_bin_read;
+                  loff_t  , size_t  ))((void *)edev + __cil_tmp49)) = & eeprom_93xx46_bin_read;
   __cil_tmp52 = 16 + 32;
-  __cil_tmp53 = (unsigned long )edev;
-  __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-  *((size_t *)__cil_tmp54) = 128UL;
+  *((size_t *)((void *)edev + __cil_tmp52)) = 128UL;
   }
   {
   __cil_tmp55 = *((unsigned char *)pd);
@@ -3718,34 +3394,24 @@ static int eeprom_93xx46_probe(struct spi_device *spi )
   __cil_tmp57 = __cil_tmp56 & 8;
   if (__cil_tmp57 == 0) {
     __cil_tmp58 = 16 + 56;
-    __cil_tmp59 = (unsigned long )edev;
-    __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
     *((ssize_t (**)(struct file * , struct kobject * , struct bin_attribute * , char * ,
-                    loff_t  , size_t  ))__cil_tmp60) = & eeprom_93xx46_bin_write;
+                    loff_t  , size_t  ))((void *)edev + __cil_tmp58)) = & eeprom_93xx46_bin_write;
     __cil_tmp61 = 0 + 8;
     __cil_tmp62 = 16 + __cil_tmp61;
-    __cil_tmp63 = (unsigned long )edev;
-    __cil_tmp64 = __cil_tmp63 + __cil_tmp62;
     __cil_tmp65 = 0 + 8;
     __cil_tmp66 = 16 + __cil_tmp65;
-    __cil_tmp67 = (unsigned long )edev;
-    __cil_tmp68 = __cil_tmp67 + __cil_tmp66;
-    __cil_tmp69 = *((umode_t *)__cil_tmp68);
+    __cil_tmp69 = *((umode_t *)((void *)edev + __cil_tmp66));
     __cil_tmp70 = (unsigned int )__cil_tmp69;
     __cil_tmp71 = __cil_tmp70 | 128U;
-    *((umode_t *)__cil_tmp64) = (umode_t )__cil_tmp71;
+    *((umode_t *)((void *)edev + __cil_tmp62)) = (umode_t )__cil_tmp71;
   } else {
 
   }
   }
   {
   __cil_tmp72 = 0 + 16;
-  __cil_tmp73 = (unsigned long )spi;
-  __cil_tmp74 = __cil_tmp73 + __cil_tmp72;
-  __cil_tmp75 = (struct kobject *)__cil_tmp74;
-  __cil_tmp76 = (unsigned long )edev;
-  __cil_tmp77 = __cil_tmp76 + 16;
-  __cil_tmp78 = (struct bin_attribute *)__cil_tmp77;
+  __cil_tmp75 = (struct kobject *)((void *)spi + __cil_tmp72);
+  __cil_tmp78 = (struct bin_attribute *)((void *)edev + 16);
   __cil_tmp79 = (struct bin_attribute  const  *)__cil_tmp78;
   err = sysfs_create_bin_file(__cil_tmp75, __cil_tmp79);
   }

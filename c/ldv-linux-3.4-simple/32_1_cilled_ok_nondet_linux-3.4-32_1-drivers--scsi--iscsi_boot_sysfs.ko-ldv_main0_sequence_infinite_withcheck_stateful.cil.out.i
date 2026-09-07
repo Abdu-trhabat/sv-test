@@ -243,27 +243,21 @@ struct iscsi_boot_attr {
 long ldv__builtin_expect(long val , long res ) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list ) __attribute__((__no_instrument_function__)) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
 extern void __list_add(struct list_head *new , struct list_head *prev , struct list_head *next ) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head ) __attribute__((__no_instrument_function__)) ;
 __inline static void list_add_tail(struct list_head *new , struct list_head *head )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct list_head *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )head;
-  __cil_tmp4 = __cil_tmp3 + 8;
-  __cil_tmp5 = *((struct list_head **)__cil_tmp4);
+  __cil_tmp5 = *((struct list_head **)((void *)head + 8));
   __list_add(new, __cil_tmp5, head);
   }
   return;
@@ -425,16 +419,8 @@ static ssize_t iscsi_boot_show_attribute(struct kobject *kobj , struct attribute
   unsigned int __cil_tmp18 ;
   char *__cil_tmp19 ;
   char *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   ssize_t (*__cil_tmp25)(void *data , int type , char *buf ) ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
   {
   {
@@ -461,19 +447,11 @@ static ssize_t iscsi_boot_show_attribute(struct kobject *kobj , struct attribute
     return ((ssize_t )-13);
   }
   {
-  __cil_tmp21 = (unsigned long )boot_kobj;
-  __cil_tmp22 = __cil_tmp21 + 96;
-  if (*((ssize_t (**)(void *data , int type , char *buf ))__cil_tmp22)) {
+  if (*((ssize_t (**)(void *data , int type , char *buf ))((void *)boot_kobj + 96))) {
     {
-    __cil_tmp23 = (unsigned long )boot_kobj;
-    __cil_tmp24 = __cil_tmp23 + 96;
-    __cil_tmp25 = *((ssize_t (**)(void *data , int type , char *buf ))__cil_tmp24);
-    __cil_tmp26 = (unsigned long )boot_kobj;
-    __cil_tmp27 = __cil_tmp26 + 88;
-    __cil_tmp28 = *((void **)__cil_tmp27);
-    __cil_tmp29 = (unsigned long )boot_attr;
-    __cil_tmp30 = __cil_tmp29 + 16;
-    __cil_tmp31 = *((int *)__cil_tmp30);
+    __cil_tmp25 = *((ssize_t (**)(void *data , int type , char *buf ))((void *)boot_kobj + 96));
+    __cil_tmp28 = *((void **)((void *)boot_kobj + 88));
+    __cil_tmp31 = *((int *)((void *)boot_attr + 16));
     ret = (*__cil_tmp25)(__cil_tmp28, __cil_tmp31, str);
     }
   } else {
@@ -493,13 +471,7 @@ static void iscsi_boot_kobj_release(struct kobject *kobj )
   unsigned int __cil_tmp6 ;
   char *__cil_tmp7 ;
   char *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void (*__cil_tmp13)(void *data ) ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   void *__cil_tmp16 ;
   void const *__cil_tmp17 ;
   {
@@ -511,16 +483,10 @@ static void iscsi_boot_kobj_release(struct kobject *kobj )
   __cil_tmp8 = __cil_tmp7 - __cil_tmp6;
   boot_kobj = (struct iscsi_boot_kobj *)__cil_tmp8;
   {
-  __cil_tmp9 = (unsigned long )boot_kobj;
-  __cil_tmp10 = __cil_tmp9 + 112;
-  if (*((void (**)(void *data ))__cil_tmp10)) {
+  if (*((void (**)(void *data ))((void *)boot_kobj + 112))) {
     {
-    __cil_tmp11 = (unsigned long )boot_kobj;
-    __cil_tmp12 = __cil_tmp11 + 112;
-    __cil_tmp13 = *((void (**)(void *data ))__cil_tmp12);
-    __cil_tmp14 = (unsigned long )boot_kobj;
-    __cil_tmp15 = __cil_tmp14 + 88;
-    __cil_tmp16 = *((void **)__cil_tmp15);
+    __cil_tmp13 = *((void (**)(void *data ))((void *)boot_kobj + 112));
+    __cil_tmp16 = *((void **)((void *)boot_kobj + 88));
     (*__cil_tmp13)(__cil_tmp16);
     }
   } else {
@@ -578,121 +544,73 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
   struct attribute *__cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   umode_t (*__cil_tmp29)(void *data , int type ) ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   void *__cil_tmp32 ;
   struct iscsi_boot_attr *__cil_tmp33 ;
   struct attribute *__cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   umode_t (*__cil_tmp39)(void *data , int type ) ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   void *__cil_tmp42 ;
   struct iscsi_boot_attr *__cil_tmp43 ;
   struct attribute *__cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   umode_t (*__cil_tmp49)(void *data , int type ) ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   void *__cil_tmp52 ;
   struct iscsi_boot_attr *__cil_tmp53 ;
   struct attribute *__cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   umode_t (*__cil_tmp59)(void *data , int type ) ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   void *__cil_tmp62 ;
   struct iscsi_boot_attr *__cil_tmp63 ;
   struct attribute *__cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   umode_t (*__cil_tmp69)(void *data , int type ) ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   void *__cil_tmp72 ;
   struct iscsi_boot_attr *__cil_tmp73 ;
   struct attribute *__cil_tmp74 ;
   unsigned long __cil_tmp75 ;
   unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   umode_t (*__cil_tmp79)(void *data , int type ) ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   void *__cil_tmp82 ;
   struct iscsi_boot_attr *__cil_tmp83 ;
   struct attribute *__cil_tmp84 ;
   unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   umode_t (*__cil_tmp89)(void *data , int type ) ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   void *__cil_tmp92 ;
   struct iscsi_boot_attr *__cil_tmp93 ;
   struct attribute *__cil_tmp94 ;
   unsigned long __cil_tmp95 ;
   unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   umode_t (*__cil_tmp99)(void *data , int type ) ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
   void *__cil_tmp102 ;
   struct iscsi_boot_attr *__cil_tmp103 ;
   struct attribute *__cil_tmp104 ;
   unsigned long __cil_tmp105 ;
   unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   umode_t (*__cil_tmp109)(void *data , int type ) ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   void *__cil_tmp112 ;
   struct iscsi_boot_attr *__cil_tmp113 ;
   struct attribute *__cil_tmp114 ;
   unsigned long __cil_tmp115 ;
   unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   umode_t (*__cil_tmp119)(void *data , int type ) ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   void *__cil_tmp122 ;
   struct iscsi_boot_attr *__cil_tmp123 ;
   struct attribute *__cil_tmp124 ;
   unsigned long __cil_tmp125 ;
   unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
   umode_t (*__cil_tmp129)(void *data , int type ) ;
-  unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
   void *__cil_tmp132 ;
   struct iscsi_boot_attr *__cil_tmp133 ;
   struct attribute *__cil_tmp134 ;
   unsigned long __cil_tmp135 ;
   unsigned long __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
   umode_t (*__cil_tmp139)(void *data , int type ) ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
   void *__cil_tmp142 ;
   {
   __mptr = (struct kobject const *)kobj;
@@ -709,12 +627,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
   __cil_tmp26 = (unsigned long )attr;
   if (__cil_tmp26 == __cil_tmp25) {
     {
-    __cil_tmp27 = (unsigned long )boot_kobj;
-    __cil_tmp28 = __cil_tmp27 + 104;
-    __cil_tmp29 = *((umode_t (**)(void *data , int type ))__cil_tmp28);
-    __cil_tmp30 = (unsigned long )boot_kobj;
-    __cil_tmp31 = __cil_tmp30 + 88;
-    __cil_tmp32 = *((void **)__cil_tmp31);
+    __cil_tmp29 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+    __cil_tmp32 = *((void **)((void *)boot_kobj + 88));
     tmp = (*__cil_tmp29)(__cil_tmp32, 0);
     }
     return (tmp);
@@ -726,12 +640,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
     __cil_tmp36 = (unsigned long )attr;
     if (__cil_tmp36 == __cil_tmp35) {
       {
-      __cil_tmp37 = (unsigned long )boot_kobj;
-      __cil_tmp38 = __cil_tmp37 + 104;
-      __cil_tmp39 = *((umode_t (**)(void *data , int type ))__cil_tmp38);
-      __cil_tmp40 = (unsigned long )boot_kobj;
-      __cil_tmp41 = __cil_tmp40 + 88;
-      __cil_tmp42 = *((void **)__cil_tmp41);
+      __cil_tmp39 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+      __cil_tmp42 = *((void **)((void *)boot_kobj + 88));
       tmp___0 = (*__cil_tmp39)(__cil_tmp42, 1);
       }
       return (tmp___0);
@@ -743,12 +653,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
       __cil_tmp46 = (unsigned long )attr;
       if (__cil_tmp46 == __cil_tmp45) {
         {
-        __cil_tmp47 = (unsigned long )boot_kobj;
-        __cil_tmp48 = __cil_tmp47 + 104;
-        __cil_tmp49 = *((umode_t (**)(void *data , int type ))__cil_tmp48);
-        __cil_tmp50 = (unsigned long )boot_kobj;
-        __cil_tmp51 = __cil_tmp50 + 88;
-        __cil_tmp52 = *((void **)__cil_tmp51);
+        __cil_tmp49 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+        __cil_tmp52 = *((void **)((void *)boot_kobj + 88));
         tmp___1 = (*__cil_tmp49)(__cil_tmp52, 2);
         }
         return (tmp___1);
@@ -760,12 +666,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
         __cil_tmp56 = (unsigned long )attr;
         if (__cil_tmp56 == __cil_tmp55) {
           {
-          __cil_tmp57 = (unsigned long )boot_kobj;
-          __cil_tmp58 = __cil_tmp57 + 104;
-          __cil_tmp59 = *((umode_t (**)(void *data , int type ))__cil_tmp58);
-          __cil_tmp60 = (unsigned long )boot_kobj;
-          __cil_tmp61 = __cil_tmp60 + 88;
-          __cil_tmp62 = *((void **)__cil_tmp61);
+          __cil_tmp59 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+          __cil_tmp62 = *((void **)((void *)boot_kobj + 88));
           tmp___2 = (*__cil_tmp59)(__cil_tmp62, 3);
           }
           return (tmp___2);
@@ -777,12 +679,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
           __cil_tmp66 = (unsigned long )attr;
           if (__cil_tmp66 == __cil_tmp65) {
             {
-            __cil_tmp67 = (unsigned long )boot_kobj;
-            __cil_tmp68 = __cil_tmp67 + 104;
-            __cil_tmp69 = *((umode_t (**)(void *data , int type ))__cil_tmp68);
-            __cil_tmp70 = (unsigned long )boot_kobj;
-            __cil_tmp71 = __cil_tmp70 + 88;
-            __cil_tmp72 = *((void **)__cil_tmp71);
+            __cil_tmp69 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+            __cil_tmp72 = *((void **)((void *)boot_kobj + 88));
             tmp___3 = (*__cil_tmp69)(__cil_tmp72, 4);
             }
             return (tmp___3);
@@ -794,12 +692,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
             __cil_tmp76 = (unsigned long )attr;
             if (__cil_tmp76 == __cil_tmp75) {
               {
-              __cil_tmp77 = (unsigned long )boot_kobj;
-              __cil_tmp78 = __cil_tmp77 + 104;
-              __cil_tmp79 = *((umode_t (**)(void *data , int type ))__cil_tmp78);
-              __cil_tmp80 = (unsigned long )boot_kobj;
-              __cil_tmp81 = __cil_tmp80 + 88;
-              __cil_tmp82 = *((void **)__cil_tmp81);
+              __cil_tmp79 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+              __cil_tmp82 = *((void **)((void *)boot_kobj + 88));
               tmp___4 = (*__cil_tmp79)(__cil_tmp82, 5);
               }
               return (tmp___4);
@@ -811,12 +705,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
               __cil_tmp86 = (unsigned long )attr;
               if (__cil_tmp86 == __cil_tmp85) {
                 {
-                __cil_tmp87 = (unsigned long )boot_kobj;
-                __cil_tmp88 = __cil_tmp87 + 104;
-                __cil_tmp89 = *((umode_t (**)(void *data , int type ))__cil_tmp88);
-                __cil_tmp90 = (unsigned long )boot_kobj;
-                __cil_tmp91 = __cil_tmp90 + 88;
-                __cil_tmp92 = *((void **)__cil_tmp91);
+                __cil_tmp89 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                __cil_tmp92 = *((void **)((void *)boot_kobj + 88));
                 tmp___5 = (*__cil_tmp89)(__cil_tmp92, 6);
                 }
                 return (tmp___5);
@@ -828,12 +718,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
                 __cil_tmp96 = (unsigned long )attr;
                 if (__cil_tmp96 == __cil_tmp95) {
                   {
-                  __cil_tmp97 = (unsigned long )boot_kobj;
-                  __cil_tmp98 = __cil_tmp97 + 104;
-                  __cil_tmp99 = *((umode_t (**)(void *data , int type ))__cil_tmp98);
-                  __cil_tmp100 = (unsigned long )boot_kobj;
-                  __cil_tmp101 = __cil_tmp100 + 88;
-                  __cil_tmp102 = *((void **)__cil_tmp101);
+                  __cil_tmp99 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                  __cil_tmp102 = *((void **)((void *)boot_kobj + 88));
                   tmp___6 = (*__cil_tmp99)(__cil_tmp102, 7);
                   }
                   return (tmp___6);
@@ -845,12 +731,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
                   __cil_tmp106 = (unsigned long )attr;
                   if (__cil_tmp106 == __cil_tmp105) {
                     {
-                    __cil_tmp107 = (unsigned long )boot_kobj;
-                    __cil_tmp108 = __cil_tmp107 + 104;
-                    __cil_tmp109 = *((umode_t (**)(void *data , int type ))__cil_tmp108);
-                    __cil_tmp110 = (unsigned long )boot_kobj;
-                    __cil_tmp111 = __cil_tmp110 + 88;
-                    __cil_tmp112 = *((void **)__cil_tmp111);
+                    __cil_tmp109 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                    __cil_tmp112 = *((void **)((void *)boot_kobj + 88));
                     tmp___7 = (*__cil_tmp109)(__cil_tmp112, 8);
                     }
                     return (tmp___7);
@@ -862,12 +744,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
                     __cil_tmp116 = (unsigned long )attr;
                     if (__cil_tmp116 == __cil_tmp115) {
                       {
-                      __cil_tmp117 = (unsigned long )boot_kobj;
-                      __cil_tmp118 = __cil_tmp117 + 104;
-                      __cil_tmp119 = *((umode_t (**)(void *data , int type ))__cil_tmp118);
-                      __cil_tmp120 = (unsigned long )boot_kobj;
-                      __cil_tmp121 = __cil_tmp120 + 88;
-                      __cil_tmp122 = *((void **)__cil_tmp121);
+                      __cil_tmp119 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                      __cil_tmp122 = *((void **)((void *)boot_kobj + 88));
                       tmp___8 = (*__cil_tmp119)(__cil_tmp122, 9);
                       }
                       return (tmp___8);
@@ -879,12 +757,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
                       __cil_tmp126 = (unsigned long )attr;
                       if (__cil_tmp126 == __cil_tmp125) {
                         {
-                        __cil_tmp127 = (unsigned long )boot_kobj;
-                        __cil_tmp128 = __cil_tmp127 + 104;
-                        __cil_tmp129 = *((umode_t (**)(void *data , int type ))__cil_tmp128);
-                        __cil_tmp130 = (unsigned long )boot_kobj;
-                        __cil_tmp131 = __cil_tmp130 + 88;
-                        __cil_tmp132 = *((void **)__cil_tmp131);
+                        __cil_tmp129 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                        __cil_tmp132 = *((void **)((void *)boot_kobj + 88));
                         tmp___9 = (*__cil_tmp129)(__cil_tmp132, 10);
                         }
                         return (tmp___9);
@@ -896,12 +770,8 @@ static umode_t iscsi_boot_tgt_attr_is_visible(struct kobject *kobj , struct attr
                         __cil_tmp136 = (unsigned long )attr;
                         if (__cil_tmp136 == __cil_tmp135) {
                           {
-                          __cil_tmp137 = (unsigned long )boot_kobj;
-                          __cil_tmp138 = __cil_tmp137 + 104;
-                          __cil_tmp139 = *((umode_t (**)(void *data , int type ))__cil_tmp138);
-                          __cil_tmp140 = (unsigned long )boot_kobj;
-                          __cil_tmp141 = __cil_tmp140 + 88;
-                          __cil_tmp142 = *((void **)__cil_tmp141);
+                          __cil_tmp139 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                          __cil_tmp142 = *((void **)((void *)boot_kobj + 88));
                           tmp___10 = (*__cil_tmp139)(__cil_tmp142, 11);
                           }
                           return (tmp___10);
@@ -976,121 +846,73 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
   struct attribute *__cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   umode_t (*__cil_tmp29)(void *data , int type ) ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   void *__cil_tmp32 ;
   struct iscsi_boot_attr *__cil_tmp33 ;
   struct attribute *__cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   umode_t (*__cil_tmp39)(void *data , int type ) ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   void *__cil_tmp42 ;
   struct iscsi_boot_attr *__cil_tmp43 ;
   struct attribute *__cil_tmp44 ;
   unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   umode_t (*__cil_tmp49)(void *data , int type ) ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   void *__cil_tmp52 ;
   struct iscsi_boot_attr *__cil_tmp53 ;
   struct attribute *__cil_tmp54 ;
   unsigned long __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   umode_t (*__cil_tmp59)(void *data , int type ) ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   void *__cil_tmp62 ;
   struct iscsi_boot_attr *__cil_tmp63 ;
   struct attribute *__cil_tmp64 ;
   unsigned long __cil_tmp65 ;
   unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   umode_t (*__cil_tmp69)(void *data , int type ) ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   void *__cil_tmp72 ;
   struct iscsi_boot_attr *__cil_tmp73 ;
   struct attribute *__cil_tmp74 ;
   unsigned long __cil_tmp75 ;
   unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   umode_t (*__cil_tmp79)(void *data , int type ) ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   void *__cil_tmp82 ;
   struct iscsi_boot_attr *__cil_tmp83 ;
   struct attribute *__cil_tmp84 ;
   unsigned long __cil_tmp85 ;
   unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   umode_t (*__cil_tmp89)(void *data , int type ) ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   void *__cil_tmp92 ;
   struct iscsi_boot_attr *__cil_tmp93 ;
   struct attribute *__cil_tmp94 ;
   unsigned long __cil_tmp95 ;
   unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   umode_t (*__cil_tmp99)(void *data , int type ) ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
   void *__cil_tmp102 ;
   struct iscsi_boot_attr *__cil_tmp103 ;
   struct attribute *__cil_tmp104 ;
   unsigned long __cil_tmp105 ;
   unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   umode_t (*__cil_tmp109)(void *data , int type ) ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   void *__cil_tmp112 ;
   struct iscsi_boot_attr *__cil_tmp113 ;
   struct attribute *__cil_tmp114 ;
   unsigned long __cil_tmp115 ;
   unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   umode_t (*__cil_tmp119)(void *data , int type ) ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   void *__cil_tmp122 ;
   struct iscsi_boot_attr *__cil_tmp123 ;
   struct attribute *__cil_tmp124 ;
   unsigned long __cil_tmp125 ;
   unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
   umode_t (*__cil_tmp129)(void *data , int type ) ;
-  unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
   void *__cil_tmp132 ;
   struct iscsi_boot_attr *__cil_tmp133 ;
   struct attribute *__cil_tmp134 ;
   unsigned long __cil_tmp135 ;
   unsigned long __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
   umode_t (*__cil_tmp139)(void *data , int type ) ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
   void *__cil_tmp142 ;
   {
   __mptr = (struct kobject const *)kobj;
@@ -1107,12 +929,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
   __cil_tmp26 = (unsigned long )attr;
   if (__cil_tmp26 == __cil_tmp25) {
     {
-    __cil_tmp27 = (unsigned long )boot_kobj;
-    __cil_tmp28 = __cil_tmp27 + 104;
-    __cil_tmp29 = *((umode_t (**)(void *data , int type ))__cil_tmp28);
-    __cil_tmp30 = (unsigned long )boot_kobj;
-    __cil_tmp31 = __cil_tmp30 + 88;
-    __cil_tmp32 = *((void **)__cil_tmp31);
+    __cil_tmp29 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+    __cil_tmp32 = *((void **)((void *)boot_kobj + 88));
     tmp = (*__cil_tmp29)(__cil_tmp32, 0);
     }
     return (tmp);
@@ -1124,12 +942,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
     __cil_tmp36 = (unsigned long )attr;
     if (__cil_tmp36 == __cil_tmp35) {
       {
-      __cil_tmp37 = (unsigned long )boot_kobj;
-      __cil_tmp38 = __cil_tmp37 + 104;
-      __cil_tmp39 = *((umode_t (**)(void *data , int type ))__cil_tmp38);
-      __cil_tmp40 = (unsigned long )boot_kobj;
-      __cil_tmp41 = __cil_tmp40 + 88;
-      __cil_tmp42 = *((void **)__cil_tmp41);
+      __cil_tmp39 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+      __cil_tmp42 = *((void **)((void *)boot_kobj + 88));
       tmp___0 = (*__cil_tmp39)(__cil_tmp42, 1);
       }
       return (tmp___0);
@@ -1141,12 +955,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
       __cil_tmp46 = (unsigned long )attr;
       if (__cil_tmp46 == __cil_tmp45) {
         {
-        __cil_tmp47 = (unsigned long )boot_kobj;
-        __cil_tmp48 = __cil_tmp47 + 104;
-        __cil_tmp49 = *((umode_t (**)(void *data , int type ))__cil_tmp48);
-        __cil_tmp50 = (unsigned long )boot_kobj;
-        __cil_tmp51 = __cil_tmp50 + 88;
-        __cil_tmp52 = *((void **)__cil_tmp51);
+        __cil_tmp49 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+        __cil_tmp52 = *((void **)((void *)boot_kobj + 88));
         tmp___1 = (*__cil_tmp49)(__cil_tmp52, 2);
         }
         return (tmp___1);
@@ -1158,12 +968,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
         __cil_tmp56 = (unsigned long )attr;
         if (__cil_tmp56 == __cil_tmp55) {
           {
-          __cil_tmp57 = (unsigned long )boot_kobj;
-          __cil_tmp58 = __cil_tmp57 + 104;
-          __cil_tmp59 = *((umode_t (**)(void *data , int type ))__cil_tmp58);
-          __cil_tmp60 = (unsigned long )boot_kobj;
-          __cil_tmp61 = __cil_tmp60 + 88;
-          __cil_tmp62 = *((void **)__cil_tmp61);
+          __cil_tmp59 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+          __cil_tmp62 = *((void **)((void *)boot_kobj + 88));
           tmp___2 = (*__cil_tmp59)(__cil_tmp62, 3);
           }
           return (tmp___2);
@@ -1175,12 +981,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
           __cil_tmp66 = (unsigned long )attr;
           if (__cil_tmp66 == __cil_tmp65) {
             {
-            __cil_tmp67 = (unsigned long )boot_kobj;
-            __cil_tmp68 = __cil_tmp67 + 104;
-            __cil_tmp69 = *((umode_t (**)(void *data , int type ))__cil_tmp68);
-            __cil_tmp70 = (unsigned long )boot_kobj;
-            __cil_tmp71 = __cil_tmp70 + 88;
-            __cil_tmp72 = *((void **)__cil_tmp71);
+            __cil_tmp69 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+            __cil_tmp72 = *((void **)((void *)boot_kobj + 88));
             tmp___3 = (*__cil_tmp69)(__cil_tmp72, 4);
             }
             return (tmp___3);
@@ -1192,12 +994,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
             __cil_tmp76 = (unsigned long )attr;
             if (__cil_tmp76 == __cil_tmp75) {
               {
-              __cil_tmp77 = (unsigned long )boot_kobj;
-              __cil_tmp78 = __cil_tmp77 + 104;
-              __cil_tmp79 = *((umode_t (**)(void *data , int type ))__cil_tmp78);
-              __cil_tmp80 = (unsigned long )boot_kobj;
-              __cil_tmp81 = __cil_tmp80 + 88;
-              __cil_tmp82 = *((void **)__cil_tmp81);
+              __cil_tmp79 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+              __cil_tmp82 = *((void **)((void *)boot_kobj + 88));
               tmp___4 = (*__cil_tmp79)(__cil_tmp82, 5);
               }
               return (tmp___4);
@@ -1209,12 +1007,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
               __cil_tmp86 = (unsigned long )attr;
               if (__cil_tmp86 == __cil_tmp85) {
                 {
-                __cil_tmp87 = (unsigned long )boot_kobj;
-                __cil_tmp88 = __cil_tmp87 + 104;
-                __cil_tmp89 = *((umode_t (**)(void *data , int type ))__cil_tmp88);
-                __cil_tmp90 = (unsigned long )boot_kobj;
-                __cil_tmp91 = __cil_tmp90 + 88;
-                __cil_tmp92 = *((void **)__cil_tmp91);
+                __cil_tmp89 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                __cil_tmp92 = *((void **)((void *)boot_kobj + 88));
                 tmp___5 = (*__cil_tmp89)(__cil_tmp92, 6);
                 }
                 return (tmp___5);
@@ -1226,12 +1020,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
                 __cil_tmp96 = (unsigned long )attr;
                 if (__cil_tmp96 == __cil_tmp95) {
                   {
-                  __cil_tmp97 = (unsigned long )boot_kobj;
-                  __cil_tmp98 = __cil_tmp97 + 104;
-                  __cil_tmp99 = *((umode_t (**)(void *data , int type ))__cil_tmp98);
-                  __cil_tmp100 = (unsigned long )boot_kobj;
-                  __cil_tmp101 = __cil_tmp100 + 88;
-                  __cil_tmp102 = *((void **)__cil_tmp101);
+                  __cil_tmp99 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                  __cil_tmp102 = *((void **)((void *)boot_kobj + 88));
                   tmp___6 = (*__cil_tmp99)(__cil_tmp102, 7);
                   }
                   return (tmp___6);
@@ -1243,12 +1033,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
                   __cil_tmp106 = (unsigned long )attr;
                   if (__cil_tmp106 == __cil_tmp105) {
                     {
-                    __cil_tmp107 = (unsigned long )boot_kobj;
-                    __cil_tmp108 = __cil_tmp107 + 104;
-                    __cil_tmp109 = *((umode_t (**)(void *data , int type ))__cil_tmp108);
-                    __cil_tmp110 = (unsigned long )boot_kobj;
-                    __cil_tmp111 = __cil_tmp110 + 88;
-                    __cil_tmp112 = *((void **)__cil_tmp111);
+                    __cil_tmp109 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                    __cil_tmp112 = *((void **)((void *)boot_kobj + 88));
                     tmp___7 = (*__cil_tmp109)(__cil_tmp112, 8);
                     }
                     return (tmp___7);
@@ -1260,12 +1046,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
                     __cil_tmp116 = (unsigned long )attr;
                     if (__cil_tmp116 == __cil_tmp115) {
                       {
-                      __cil_tmp117 = (unsigned long )boot_kobj;
-                      __cil_tmp118 = __cil_tmp117 + 104;
-                      __cil_tmp119 = *((umode_t (**)(void *data , int type ))__cil_tmp118);
-                      __cil_tmp120 = (unsigned long )boot_kobj;
-                      __cil_tmp121 = __cil_tmp120 + 88;
-                      __cil_tmp122 = *((void **)__cil_tmp121);
+                      __cil_tmp119 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                      __cil_tmp122 = *((void **)((void *)boot_kobj + 88));
                       tmp___8 = (*__cil_tmp119)(__cil_tmp122, 9);
                       }
                       return (tmp___8);
@@ -1277,12 +1059,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
                       __cil_tmp126 = (unsigned long )attr;
                       if (__cil_tmp126 == __cil_tmp125) {
                         {
-                        __cil_tmp127 = (unsigned long )boot_kobj;
-                        __cil_tmp128 = __cil_tmp127 + 104;
-                        __cil_tmp129 = *((umode_t (**)(void *data , int type ))__cil_tmp128);
-                        __cil_tmp130 = (unsigned long )boot_kobj;
-                        __cil_tmp131 = __cil_tmp130 + 88;
-                        __cil_tmp132 = *((void **)__cil_tmp131);
+                        __cil_tmp129 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                        __cil_tmp132 = *((void **)((void *)boot_kobj + 88));
                         tmp___9 = (*__cil_tmp129)(__cil_tmp132, 10);
                         }
                         return (tmp___9);
@@ -1294,12 +1072,8 @@ static umode_t iscsi_boot_eth_attr_is_visible(struct kobject *kobj , struct attr
                         __cil_tmp136 = (unsigned long )attr;
                         if (__cil_tmp136 == __cil_tmp135) {
                           {
-                          __cil_tmp137 = (unsigned long )boot_kobj;
-                          __cil_tmp138 = __cil_tmp137 + 104;
-                          __cil_tmp139 = *((umode_t (**)(void *data , int type ))__cil_tmp138);
-                          __cil_tmp140 = (unsigned long )boot_kobj;
-                          __cil_tmp141 = __cil_tmp140 + 88;
-                          __cil_tmp142 = *((void **)__cil_tmp141);
+                          __cil_tmp139 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+                          __cil_tmp142 = *((void **)((void *)boot_kobj + 88));
                           tmp___10 = (*__cil_tmp139)(__cil_tmp142, 11);
                           }
                           return (tmp___10);
@@ -1364,71 +1138,43 @@ static umode_t iscsi_boot_ini_attr_is_visible(struct kobject *kobj , struct attr
   struct attribute *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   umode_t (*__cil_tmp24)(void *data , int type ) ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   void *__cil_tmp27 ;
   struct iscsi_boot_attr *__cil_tmp28 ;
   struct attribute *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   umode_t (*__cil_tmp34)(void *data , int type ) ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   void *__cil_tmp37 ;
   struct iscsi_boot_attr *__cil_tmp38 ;
   struct attribute *__cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   umode_t (*__cil_tmp44)(void *data , int type ) ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   void *__cil_tmp47 ;
   struct iscsi_boot_attr *__cil_tmp48 ;
   struct attribute *__cil_tmp49 ;
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   umode_t (*__cil_tmp54)(void *data , int type ) ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   void *__cil_tmp57 ;
   struct iscsi_boot_attr *__cil_tmp58 ;
   struct attribute *__cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   umode_t (*__cil_tmp64)(void *data , int type ) ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   void *__cil_tmp67 ;
   struct iscsi_boot_attr *__cil_tmp68 ;
   struct attribute *__cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   umode_t (*__cil_tmp74)(void *data , int type ) ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   void *__cil_tmp77 ;
   struct iscsi_boot_attr *__cil_tmp78 ;
   struct attribute *__cil_tmp79 ;
   unsigned long __cil_tmp80 ;
   unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
   umode_t (*__cil_tmp84)(void *data , int type ) ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   void *__cil_tmp87 ;
   {
   __mptr = (struct kobject const *)kobj;
@@ -1445,12 +1191,8 @@ static umode_t iscsi_boot_ini_attr_is_visible(struct kobject *kobj , struct attr
   __cil_tmp21 = (unsigned long )attr;
   if (__cil_tmp21 == __cil_tmp20) {
     {
-    __cil_tmp22 = (unsigned long )boot_kobj;
-    __cil_tmp23 = __cil_tmp22 + 104;
-    __cil_tmp24 = *((umode_t (**)(void *data , int type ))__cil_tmp23);
-    __cil_tmp25 = (unsigned long )boot_kobj;
-    __cil_tmp26 = __cil_tmp25 + 88;
-    __cil_tmp27 = *((void **)__cil_tmp26);
+    __cil_tmp24 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+    __cil_tmp27 = *((void **)((void *)boot_kobj + 88));
     tmp = (*__cil_tmp24)(__cil_tmp27, 0);
     }
     return (tmp);
@@ -1464,12 +1206,8 @@ static umode_t iscsi_boot_ini_attr_is_visible(struct kobject *kobj , struct attr
   __cil_tmp31 = (unsigned long )attr;
   if (__cil_tmp31 == __cil_tmp30) {
     {
-    __cil_tmp32 = (unsigned long )boot_kobj;
-    __cil_tmp33 = __cil_tmp32 + 104;
-    __cil_tmp34 = *((umode_t (**)(void *data , int type ))__cil_tmp33);
-    __cil_tmp35 = (unsigned long )boot_kobj;
-    __cil_tmp36 = __cil_tmp35 + 88;
-    __cil_tmp37 = *((void **)__cil_tmp36);
+    __cil_tmp34 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+    __cil_tmp37 = *((void **)((void *)boot_kobj + 88));
     tmp___0 = (*__cil_tmp34)(__cil_tmp37, 1);
     }
     return (tmp___0);
@@ -1483,12 +1221,8 @@ static umode_t iscsi_boot_ini_attr_is_visible(struct kobject *kobj , struct attr
   __cil_tmp41 = (unsigned long )attr;
   if (__cil_tmp41 == __cil_tmp40) {
     {
-    __cil_tmp42 = (unsigned long )boot_kobj;
-    __cil_tmp43 = __cil_tmp42 + 104;
-    __cil_tmp44 = *((umode_t (**)(void *data , int type ))__cil_tmp43);
-    __cil_tmp45 = (unsigned long )boot_kobj;
-    __cil_tmp46 = __cil_tmp45 + 88;
-    __cil_tmp47 = *((void **)__cil_tmp46);
+    __cil_tmp44 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+    __cil_tmp47 = *((void **)((void *)boot_kobj + 88));
     tmp___1 = (*__cil_tmp44)(__cil_tmp47, 2);
     }
     return (tmp___1);
@@ -1502,12 +1236,8 @@ static umode_t iscsi_boot_ini_attr_is_visible(struct kobject *kobj , struct attr
   __cil_tmp51 = (unsigned long )attr;
   if (__cil_tmp51 == __cil_tmp50) {
     {
-    __cil_tmp52 = (unsigned long )boot_kobj;
-    __cil_tmp53 = __cil_tmp52 + 104;
-    __cil_tmp54 = *((umode_t (**)(void *data , int type ))__cil_tmp53);
-    __cil_tmp55 = (unsigned long )boot_kobj;
-    __cil_tmp56 = __cil_tmp55 + 88;
-    __cil_tmp57 = *((void **)__cil_tmp56);
+    __cil_tmp54 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+    __cil_tmp57 = *((void **)((void *)boot_kobj + 88));
     tmp___2 = (*__cil_tmp54)(__cil_tmp57, 3);
     }
     return (tmp___2);
@@ -1521,12 +1251,8 @@ static umode_t iscsi_boot_ini_attr_is_visible(struct kobject *kobj , struct attr
   __cil_tmp61 = (unsigned long )attr;
   if (__cil_tmp61 == __cil_tmp60) {
     {
-    __cil_tmp62 = (unsigned long )boot_kobj;
-    __cil_tmp63 = __cil_tmp62 + 104;
-    __cil_tmp64 = *((umode_t (**)(void *data , int type ))__cil_tmp63);
-    __cil_tmp65 = (unsigned long )boot_kobj;
-    __cil_tmp66 = __cil_tmp65 + 88;
-    __cil_tmp67 = *((void **)__cil_tmp66);
+    __cil_tmp64 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+    __cil_tmp67 = *((void **)((void *)boot_kobj + 88));
     tmp___3 = (*__cil_tmp64)(__cil_tmp67, 4);
     }
     return (tmp___3);
@@ -1540,12 +1266,8 @@ static umode_t iscsi_boot_ini_attr_is_visible(struct kobject *kobj , struct attr
   __cil_tmp71 = (unsigned long )attr;
   if (__cil_tmp71 == __cil_tmp70) {
     {
-    __cil_tmp72 = (unsigned long )boot_kobj;
-    __cil_tmp73 = __cil_tmp72 + 104;
-    __cil_tmp74 = *((umode_t (**)(void *data , int type ))__cil_tmp73);
-    __cil_tmp75 = (unsigned long )boot_kobj;
-    __cil_tmp76 = __cil_tmp75 + 88;
-    __cil_tmp77 = *((void **)__cil_tmp76);
+    __cil_tmp74 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+    __cil_tmp77 = *((void **)((void *)boot_kobj + 88));
     tmp___4 = (*__cil_tmp74)(__cil_tmp77, 5);
     }
     return (tmp___4);
@@ -1559,12 +1281,8 @@ static umode_t iscsi_boot_ini_attr_is_visible(struct kobject *kobj , struct attr
   __cil_tmp81 = (unsigned long )attr;
   if (__cil_tmp81 == __cil_tmp80) {
     {
-    __cil_tmp82 = (unsigned long )boot_kobj;
-    __cil_tmp83 = __cil_tmp82 + 104;
-    __cil_tmp84 = *((umode_t (**)(void *data , int type ))__cil_tmp83);
-    __cil_tmp85 = (unsigned long )boot_kobj;
-    __cil_tmp86 = __cil_tmp85 + 88;
-    __cil_tmp87 = *((void **)__cil_tmp86);
+    __cil_tmp84 = *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104));
+    __cil_tmp87 = *((void **)((void *)boot_kobj + 88));
     tmp___5 = (*__cil_tmp84)(__cil_tmp87, 6);
     }
     return (tmp___5);
@@ -1589,40 +1307,20 @@ static struct iscsi_boot_kobj *iscsi_boot_create_kobj(struct iscsi_boot_kset *bo
   int tmp___0 ;
   int tmp___1 ;
   void *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct list_head *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct kobject *__cil_tmp22 ;
   void *__cil_tmp23 ;
   struct kobject *__cil_tmp24 ;
   void const *__cil_tmp25 ;
   void *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct kobject *__cil_tmp35 ;
   struct attribute_group const *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   void *__cil_tmp39 ;
   struct kobject *__cil_tmp40 ;
   void *__cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct kobject *__cil_tmp44 ;
   enum kobject_action __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct list_head *__cil_tmp48 ;
   struct list_head *__cil_tmp49 ;
   {
@@ -1638,16 +1336,10 @@ static struct iscsi_boot_kobj *iscsi_boot_create_kobj(struct iscsi_boot_kset *bo
   } else {
   }
   {
-  __cil_tmp14 = (unsigned long )boot_kobj;
-  __cil_tmp15 = __cil_tmp14 + 72;
-  __cil_tmp16 = (struct list_head *)__cil_tmp15;
+  __cil_tmp16 = (struct list_head *)((void *)boot_kobj + 72);
   INIT_LIST_HEAD(__cil_tmp16);
   __cil_tmp17 = 0 + 32;
-  __cil_tmp18 = (unsigned long )boot_kobj;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = (unsigned long )boot_kset;
-  __cil_tmp21 = __cil_tmp20 + 16;
-  *((struct kset **)__cil_tmp19) = *((struct kset **)__cil_tmp21);
+  *((struct kset **)((void *)boot_kobj + __cil_tmp17)) = *((struct kset **)((void *)boot_kset + 16));
   __cil_tmp22 = (struct kobject *)boot_kobj;
   __cil_tmp23 = (void *)0;
   __cil_tmp24 = (struct kobject *)__cil_tmp23;
@@ -1666,28 +1358,18 @@ static struct iscsi_boot_kobj *iscsi_boot_create_kobj(struct iscsi_boot_kset *bo
   } else {
   }
   {
-  __cil_tmp27 = (unsigned long )boot_kobj;
-  __cil_tmp28 = __cil_tmp27 + 88;
-  *((void **)__cil_tmp28) = data;
-  __cil_tmp29 = (unsigned long )boot_kobj;
-  __cil_tmp30 = __cil_tmp29 + 96;
-  *((ssize_t (**)(void *data , int type , char *buf ))__cil_tmp30) = show;
-  __cil_tmp31 = (unsigned long )boot_kobj;
-  __cil_tmp32 = __cil_tmp31 + 104;
-  *((umode_t (**)(void *data , int type ))__cil_tmp32) = is_visible;
-  __cil_tmp33 = (unsigned long )boot_kobj;
-  __cil_tmp34 = __cil_tmp33 + 112;
-  *((void (**)(void *data ))__cil_tmp34) = release;
+  *((void **)((void *)boot_kobj + 88)) = data;
+  *((ssize_t (**)(void *data , int type , char *buf ))((void *)boot_kobj + 96)) = show;
+  *((umode_t (**)(void *data , int type ))((void *)boot_kobj + 104)) = is_visible;
+  *((void (**)(void *data ))((void *)boot_kobj + 112)) = release;
   __cil_tmp35 = (struct kobject *)boot_kobj;
   __cil_tmp36 = (struct attribute_group const *)attr_group;
   tmp___1 = (int )sysfs_create_group(__cil_tmp35, __cil_tmp36);
   }
   if (tmp___1) {
     {
-    __cil_tmp37 = (unsigned long )boot_kobj;
-    __cil_tmp38 = __cil_tmp37 + 112;
     __cil_tmp39 = (void *)0;
-    *((void (**)(void *data ))__cil_tmp38) = (void (*)(void *data ))__cil_tmp39;
+    *((void (**)(void *data ))((void *)boot_kobj + 112)) = (void (*)(void *data ))__cil_tmp39;
     __cil_tmp40 = (struct kobject *)boot_kobj;
     kobject_put(__cil_tmp40);
     }
@@ -1698,15 +1380,11 @@ static struct iscsi_boot_kobj *iscsi_boot_create_kobj(struct iscsi_boot_kset *bo
   } else {
   }
   {
-  __cil_tmp42 = (unsigned long )boot_kobj;
-  __cil_tmp43 = __cil_tmp42 + 64;
-  *((struct attribute_group **)__cil_tmp43) = attr_group;
+  *((struct attribute_group **)((void *)boot_kobj + 64)) = attr_group;
   __cil_tmp44 = (struct kobject *)boot_kobj;
   __cil_tmp45 = (enum kobject_action )0;
   kobject_uevent(__cil_tmp44, __cil_tmp45);
-  __cil_tmp46 = (unsigned long )boot_kobj;
-  __cil_tmp47 = __cil_tmp46 + 72;
-  __cil_tmp48 = (struct list_head *)__cil_tmp47;
+  __cil_tmp48 = (struct list_head *)((void *)boot_kobj + 72);
   __cil_tmp49 = (struct list_head *)boot_kset;
   list_add_tail(__cil_tmp48, __cil_tmp49);
   }
@@ -1714,25 +1392,18 @@ static struct iscsi_boot_kobj *iscsi_boot_create_kobj(struct iscsi_boot_kset *bo
 }
 }
 static void iscsi_boot_remove_kobj(struct iscsi_boot_kobj *boot_kobj )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct list_head *__cil_tmp4 ;
   struct kobject *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct attribute_group *__cil_tmp8 ;
   struct attribute_group const *__cil_tmp9 ;
   struct kobject *__cil_tmp10 ;
   {
   {
-  __cil_tmp2 = (unsigned long )boot_kobj;
-  __cil_tmp3 = __cil_tmp2 + 72;
-  __cil_tmp4 = (struct list_head *)__cil_tmp3;
+  __cil_tmp4 = (struct list_head *)((void *)boot_kobj + 72);
   list_del(__cil_tmp4);
   __cil_tmp5 = (struct kobject *)boot_kobj;
-  __cil_tmp6 = (unsigned long )boot_kobj;
-  __cil_tmp7 = __cil_tmp6 + 64;
-  __cil_tmp8 = *((struct attribute_group **)__cil_tmp7);
+  __cil_tmp8 = *((struct attribute_group **)((void *)boot_kobj + 64));
   __cil_tmp9 = (struct attribute_group const *)__cil_tmp8;
   sysfs_remove_group(__cil_tmp5, __cil_tmp9);
   __cil_tmp10 = (struct kobject *)boot_kobj;
@@ -1835,12 +1506,8 @@ struct iscsi_boot_kset *iscsi_boot_create_kset(char const *set_name )
 { struct iscsi_boot_kset *boot_kset ;
   void *tmp ;
   void *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   struct kset_uevent_ops const *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct kset *__cil_tmp11 ;
   void const *__cil_tmp12 ;
   void *__cil_tmp13 ;
@@ -1858,17 +1525,13 @@ struct iscsi_boot_kset *iscsi_boot_create_kset(char const *set_name )
   } else {
   }
   {
-  __cil_tmp5 = (unsigned long )boot_kset;
-  __cil_tmp6 = __cil_tmp5 + 16;
   __cil_tmp7 = (void *)0;
   __cil_tmp8 = (struct kset_uevent_ops const *)__cil_tmp7;
-  *((struct kset **)__cil_tmp6) = (struct kset *)kset_create_and_add(set_name, __cil_tmp8,
+  *((struct kset **)((void *)boot_kset + 16)) = (struct kset *)kset_create_and_add(set_name, __cil_tmp8,
                                                                      firmware_kobj);
   }
   {
-  __cil_tmp9 = (unsigned long )boot_kset;
-  __cil_tmp10 = __cil_tmp9 + 16;
-  __cil_tmp11 = *((struct kset **)__cil_tmp10);
+  __cil_tmp11 = *((struct kset **)((void *)boot_kset + 16));
   if (! __cil_tmp11) {
     {
     __cil_tmp12 = (void const *)boot_kset;
@@ -1949,40 +1612,26 @@ void iscsi_boot_destroy_kset(struct iscsi_boot_kset *boot_kset )
   struct list_head const *__mptr___1 ;
   struct list_head *__cil_tmp7 ;
   struct iscsi_boot_kobj *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct list_head *__cil_tmp11 ;
   unsigned int __cil_tmp12 ;
   char *__cil_tmp13 ;
   char *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct list_head *__cil_tmp17 ;
   struct iscsi_boot_kobj *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct list_head *__cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   char *__cil_tmp23 ;
   char *__cil_tmp24 ;
   struct list_head *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct list_head *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct list_head *__cil_tmp33 ;
   struct iscsi_boot_kobj *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct list_head *__cil_tmp37 ;
   unsigned int __cil_tmp38 ;
   char *__cil_tmp39 ;
   char *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct kset *__cil_tmp43 ;
   {
   if (! boot_kset) {
@@ -1992,21 +1641,15 @@ void iscsi_boot_destroy_kset(struct iscsi_boot_kset *boot_kset )
   __cil_tmp7 = *((struct list_head **)boot_kset);
   __mptr = (struct list_head const *)__cil_tmp7;
   __cil_tmp8 = (struct iscsi_boot_kobj *)0;
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 72;
-  __cil_tmp11 = (struct list_head *)__cil_tmp10;
+  __cil_tmp11 = (struct list_head *)((void *)__cil_tmp8 + 72);
   __cil_tmp12 = (unsigned int )__cil_tmp11;
   __cil_tmp13 = (char *)__mptr;
   __cil_tmp14 = __cil_tmp13 - __cil_tmp12;
   boot_kobj = (struct iscsi_boot_kobj *)__cil_tmp14;
-  __cil_tmp15 = (unsigned long )boot_kobj;
-  __cil_tmp16 = __cil_tmp15 + 72;
-  __cil_tmp17 = *((struct list_head **)__cil_tmp16);
+  __cil_tmp17 = *((struct list_head **)((void *)boot_kobj + 72));
   __mptr___0 = (struct list_head const *)__cil_tmp17;
   __cil_tmp18 = (struct iscsi_boot_kobj *)0;
-  __cil_tmp19 = (unsigned long )__cil_tmp18;
-  __cil_tmp20 = __cil_tmp19 + 72;
-  __cil_tmp21 = (struct list_head *)__cil_tmp20;
+  __cil_tmp21 = (struct list_head *)((void *)__cil_tmp18 + 72);
   __cil_tmp22 = (unsigned int )__cil_tmp21;
   __cil_tmp23 = (char *)__mptr___0;
   __cil_tmp24 = __cil_tmp23 - __cil_tmp22;
@@ -2017,9 +1660,7 @@ void iscsi_boot_destroy_kset(struct iscsi_boot_kset *boot_kset )
     {
     __cil_tmp25 = (struct list_head *)boot_kset;
     __cil_tmp26 = (unsigned long )__cil_tmp25;
-    __cil_tmp27 = (unsigned long )boot_kobj;
-    __cil_tmp28 = __cil_tmp27 + 72;
-    __cil_tmp29 = (struct list_head *)__cil_tmp28;
+    __cil_tmp29 = (struct list_head *)((void *)boot_kobj + 72);
     __cil_tmp30 = (unsigned long )__cil_tmp29;
     if (__cil_tmp30 != __cil_tmp26) {
     } else {
@@ -2029,14 +1670,10 @@ void iscsi_boot_destroy_kset(struct iscsi_boot_kset *boot_kset )
     {
     iscsi_boot_remove_kobj(boot_kobj);
     boot_kobj = tmp_kobj;
-    __cil_tmp31 = (unsigned long )tmp_kobj;
-    __cil_tmp32 = __cil_tmp31 + 72;
-    __cil_tmp33 = *((struct list_head **)__cil_tmp32);
+    __cil_tmp33 = *((struct list_head **)((void *)tmp_kobj + 72));
     __mptr___1 = (struct list_head const *)__cil_tmp33;
     __cil_tmp34 = (struct iscsi_boot_kobj *)0;
-    __cil_tmp35 = (unsigned long )__cil_tmp34;
-    __cil_tmp36 = __cil_tmp35 + 72;
-    __cil_tmp37 = (struct list_head *)__cil_tmp36;
+    __cil_tmp37 = (struct list_head *)((void *)__cil_tmp34 + 72);
     __cil_tmp38 = (unsigned int )__cil_tmp37;
     __cil_tmp39 = (char *)__mptr___1;
     __cil_tmp40 = __cil_tmp39 - __cil_tmp38;
@@ -2046,9 +1683,7 @@ void iscsi_boot_destroy_kset(struct iscsi_boot_kset *boot_kset )
   while_break: ;
   }
   {
-  __cil_tmp41 = (unsigned long )boot_kset;
-  __cil_tmp42 = __cil_tmp41 + 16;
-  __cil_tmp43 = *((struct kset **)__cil_tmp42);
+  __cil_tmp43 = *((struct kset **)((void *)boot_kset + 16));
   kset_unregister(__cil_tmp43);
   }
   return;

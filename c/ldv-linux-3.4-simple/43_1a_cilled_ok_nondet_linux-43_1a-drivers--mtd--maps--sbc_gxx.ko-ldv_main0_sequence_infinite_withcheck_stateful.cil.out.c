@@ -1084,7 +1084,6 @@ static map_word sbc_gxx_read8(struct map_info *map , unsigned long ofs )
   void const volatile   *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   map_word *__cil_tmp11 ;
 
   {
@@ -1097,8 +1096,7 @@ static map_word sbc_gxx_read8(struct map_info *map , unsigned long ofs )
   tmp = readb(__cil_tmp7);
   __cil_tmp8 = 0 * 8UL;
   __cil_tmp9 = 0 + __cil_tmp8;
-  __cil_tmp10 = (unsigned long )(& ret) + __cil_tmp9;
-  *((unsigned long *)__cil_tmp10) = (unsigned long )tmp;
+  *((unsigned long *)((void *)(&ret) + __cil_tmp9)) = (unsigned long )tmp;
   spin_unlock(& sbc_gxx_spin);
   }
   {
@@ -1162,7 +1160,6 @@ static void sbc_gxx_copy_from(struct map_info *map , void *to , unsigned long fr
 static void sbc_gxx_write8(struct map_info *map , map_word d , unsigned long adr ) 
 { unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned char __cil_tmp8 ;
   int __cil_tmp9 ;
@@ -1177,8 +1174,7 @@ static void sbc_gxx_write8(struct map_info *map , map_word d , unsigned long adr
   sbc_gxx_page(map, adr);
   __cil_tmp4 = 0 * 8UL;
   __cil_tmp5 = 0 + __cil_tmp4;
-  __cil_tmp6 = (unsigned long )(& d) + __cil_tmp5;
-  __cil_tmp7 = *((unsigned long *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned long *)((void *)(&d) + __cil_tmp5));
   __cil_tmp8 = (unsigned char )__cil_tmp7;
   __cil_tmp9 = (int )__cil_tmp8;
   __cil_tmp10 = (unsigned char )__cil_tmp9;
@@ -1296,8 +1292,6 @@ static int init_sbc_gxx(void)
   struct mtd_info *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   char const   **__cil_tmp20 ;
   struct mtd_part_parser_data *__cil_tmp21 ;
   struct mtd_partition  const  *__cil_tmp22 ;
@@ -1361,9 +1355,7 @@ static int init_sbc_gxx(void)
   }
   }
   {
-  __cil_tmp18 = (unsigned long )all_mtd;
-  __cil_tmp19 = __cil_tmp18 + 368;
-  *((struct module **)__cil_tmp19) = & __this_module;
+  *((struct module **)((void *)all_mtd + 368)) = & __this_module;
   __cil_tmp20 = (char const   **)0;
   __cil_tmp21 = (struct mtd_part_parser_data *)0;
   __cil_tmp22 = (struct mtd_partition  const  *)(& partition_info);

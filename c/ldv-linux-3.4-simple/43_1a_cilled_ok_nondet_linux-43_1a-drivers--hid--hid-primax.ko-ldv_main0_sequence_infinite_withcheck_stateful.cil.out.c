@@ -1902,27 +1902,15 @@ extern int hid_connect(struct hid_device * , unsigned int  ) ;
 extern void hid_disconnect(struct hid_device * ) ;
 __inline static int hid_parse(struct hid_device *hdev ) 
 { int ret ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned int __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct hid_ll_driver *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   int (*__cil_tmp12)(struct hid_device * ) ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )hdev;
-  __cil_tmp4 = __cil_tmp3 + 7544;
-  __cil_tmp5 = *((unsigned int *)__cil_tmp4);
+  __cil_tmp5 = *((unsigned int *)((void *)hdev + 7544));
   __cil_tmp6 = __cil_tmp5 & 2U;
   if (__cil_tmp6 != 0U) {
     return (0);
@@ -1931,21 +1919,13 @@ __inline static int hid_parse(struct hid_device *hdev )
   }
   }
   {
-  __cil_tmp7 = (unsigned long )hdev;
-  __cil_tmp8 = __cil_tmp7 + 7536;
-  __cil_tmp9 = *((struct hid_ll_driver **)__cil_tmp8);
-  __cil_tmp10 = (unsigned long )__cil_tmp9;
-  __cil_tmp11 = __cil_tmp10 + 48;
-  __cil_tmp12 = *((int (**)(struct hid_device * ))__cil_tmp11);
+  __cil_tmp9 = *((struct hid_ll_driver **)((void *)hdev + 7536));
+  __cil_tmp12 = *((int (**)(struct hid_device * ))((void *)__cil_tmp9 + 48));
   ret = (*__cil_tmp12)(hdev);
   }
   if (ret == 0) {
-    __cil_tmp13 = (unsigned long )hdev;
-    __cil_tmp14 = __cil_tmp13 + 7544;
-    __cil_tmp15 = (unsigned long )hdev;
-    __cil_tmp16 = __cil_tmp15 + 7544;
-    __cil_tmp17 = *((unsigned int *)__cil_tmp16);
-    *((unsigned int *)__cil_tmp14) = __cil_tmp17 | 2U;
+    __cil_tmp17 = *((unsigned int *)((void *)hdev + 7544));
+    *((unsigned int *)((void *)hdev + 7544)) = __cil_tmp17 | 2U;
   } else {
 
   }
@@ -1955,22 +1935,14 @@ __inline static int hid_parse(struct hid_device *hdev )
 __inline static int hid_hw_start(struct hid_device *hdev , unsigned int connect_mask ) 
 { int ret ;
   int tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct hid_ll_driver *__cil_tmp7 ;
   int (*__cil_tmp8)(struct hid_device * ) ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct hid_ll_driver *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void (*__cil_tmp14)(struct hid_device * ) ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )hdev;
-  __cil_tmp6 = __cil_tmp5 + 7536;
-  __cil_tmp7 = *((struct hid_ll_driver **)__cil_tmp6);
+  __cil_tmp7 = *((struct hid_ll_driver **)((void *)hdev + 7536));
   __cil_tmp8 = *((int (**)(struct hid_device * ))__cil_tmp7);
   tmp = (*__cil_tmp8)(hdev);
   ret = tmp;
@@ -1988,12 +1960,8 @@ __inline static int hid_hw_start(struct hid_device *hdev , unsigned int connect_
   }
   if (ret != 0) {
     {
-    __cil_tmp9 = (unsigned long )hdev;
-    __cil_tmp10 = __cil_tmp9 + 7536;
-    __cil_tmp11 = *((struct hid_ll_driver **)__cil_tmp10);
-    __cil_tmp12 = (unsigned long )__cil_tmp11;
-    __cil_tmp13 = __cil_tmp12 + 8;
-    __cil_tmp14 = *((void (**)(struct hid_device * ))__cil_tmp13);
+    __cil_tmp11 = *((struct hid_ll_driver **)((void *)hdev + 7536));
+    __cil_tmp14 = *((void (**)(struct hid_device * ))((void *)__cil_tmp11 + 8));
     (*__cil_tmp14)(hdev);
     }
   } else {
@@ -2003,22 +1971,15 @@ __inline static int hid_hw_start(struct hid_device *hdev , unsigned int connect_
 }
 }
 __inline static void hid_hw_stop(struct hid_device *hdev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct hid_ll_driver *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void (*__cil_tmp7)(struct hid_device * ) ;
 
   {
   {
   hid_disconnect(hdev);
-  __cil_tmp2 = (unsigned long )hdev;
-  __cil_tmp3 = __cil_tmp2 + 7536;
-  __cil_tmp4 = *((struct hid_ll_driver **)__cil_tmp3);
-  __cil_tmp5 = (unsigned long )__cil_tmp4;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((void (**)(struct hid_device * ))__cil_tmp6);
+  __cil_tmp4 = *((struct hid_ll_driver **)((void *)hdev + 7536));
+  __cil_tmp7 = *((void (**)(struct hid_device * ))((void *)__cil_tmp4 + 8));
   (*__cil_tmp7)(hdev);
   }
   return;
@@ -2028,8 +1989,6 @@ extern void hid_report_raw_event(struct hid_device * , int  , u8 * , int  , int 
 static int px_raw_event(struct hid_device *hid , struct hid_report *report , u8 *data ,
                         int size ) 
 { int idx ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   u8 *__cil_tmp10 ;
@@ -2053,20 +2012,14 @@ static int px_raw_event(struct hid_device *hid , struct hid_report *report , u8 
   int __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   u8 *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct device *__cil_tmp33 ;
   struct device  const  *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
 
   {
   idx = size;
   {
-  __cil_tmp6 = (unsigned long )report;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)report + 16));
   if ((int )__cil_tmp8 == 0) {
     goto case_0;
   } else {
@@ -2127,13 +2080,9 @@ static int px_raw_event(struct hid_device *hid , struct hid_report *report , u8 
       return (1);
       switch_default: /* CIL Label */ 
       {
-      __cil_tmp31 = (unsigned long )hid;
-      __cil_tmp32 = __cil_tmp31 + 6376;
-      __cil_tmp33 = (struct device *)__cil_tmp32;
+      __cil_tmp33 = (struct device *)((void *)hid + 6376);
       __cil_tmp34 = (struct device  const  *)__cil_tmp33;
-      __cil_tmp35 = (unsigned long )report;
-      __cil_tmp36 = __cil_tmp35 + 16;
-      __cil_tmp37 = *((unsigned int *)__cil_tmp36);
+      __cil_tmp37 = *((unsigned int *)((void *)report + 16));
       _dev_info(__cil_tmp34, "unknown report type %d\n", __cil_tmp37);
       }
       goto ldv_19711;
@@ -2149,12 +2098,8 @@ static int px_raw_event(struct hid_device *hid , struct hid_report *report , u8 
 }
 static int px_probe(struct hid_device *hid , struct hid_device_id  const  *id ) 
 { int ret ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device *__cil_tmp10 ;
   struct device  const  *__cil_tmp11 ;
 
@@ -2164,9 +2109,7 @@ static int px_probe(struct hid_device *hid , struct hid_device_id  const  *id )
   }
   if (ret != 0) {
     {
-    __cil_tmp4 = (unsigned long )hid;
-    __cil_tmp5 = __cil_tmp4 + 6376;
-    __cil_tmp6 = (struct device *)__cil_tmp5;
+    __cil_tmp6 = (struct device *)((void *)hid + 6376);
     __cil_tmp7 = (struct device  const  *)__cil_tmp6;
     dev_err(__cil_tmp7, "parse failed\n");
     }
@@ -2179,9 +2122,7 @@ static int px_probe(struct hid_device *hid , struct hid_device_id  const  *id )
   }
   if (ret != 0) {
     {
-    __cil_tmp8 = (unsigned long )hid;
-    __cil_tmp9 = __cil_tmp8 + 6376;
-    __cil_tmp10 = (struct device *)__cil_tmp9;
+    __cil_tmp10 = (struct device *)((void *)hid + 6376);
     __cil_tmp11 = (struct device  const  *)__cil_tmp10;
     dev_err(__cil_tmp11, "hw start failed\n");
     }

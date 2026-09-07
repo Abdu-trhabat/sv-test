@@ -1920,35 +1920,21 @@ static struct mutex mac_hid_emumouse_mutex = {{1}, {{{{{(__ticketpair_t )0}}, 37
     (struct task_struct *)0, (char const *)0, (void *)(& mac_hid_emumouse_mutex)};
 static int mac_hid_create_emumouse(void)
 { int err ;
-  unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   void *__cil_tmp32 ;
   {
@@ -1975,43 +1961,29 @@ static int mac_hid_create_emumouse(void)
   }
   {
   *((char const **)mac_hid_emumouse_dev) = "Macintosh mouse button emulation";
-  __cil_tmp2 = (unsigned long )mac_hid_emumouse_dev;
-  __cil_tmp3 = __cil_tmp2 + 24;
-  *((__u16 *)__cil_tmp3) = (__u16 )23;
+  *((__u16 *)((void *)mac_hid_emumouse_dev + 24)) = (__u16 )23;
   __cil_tmp4 = 24 + 2;
-  __cil_tmp5 = (unsigned long )mac_hid_emumouse_dev;
-  __cil_tmp6 = __cil_tmp5 + __cil_tmp4;
-  *((__u16 *)__cil_tmp6) = (__u16 )1;
+  *((__u16 *)((void *)mac_hid_emumouse_dev + __cil_tmp4)) = (__u16 )1;
   __cil_tmp7 = 24 + 4;
-  __cil_tmp8 = (unsigned long )mac_hid_emumouse_dev;
-  __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-  *((__u16 *)__cil_tmp9) = (__u16 )1;
+  *((__u16 *)((void *)mac_hid_emumouse_dev + __cil_tmp7)) = (__u16 )1;
   __cil_tmp10 = 24 + 6;
-  __cil_tmp11 = (unsigned long )mac_hid_emumouse_dev;
-  __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-  *((__u16 *)__cil_tmp12) = (__u16 )256;
+  *((__u16 *)((void *)mac_hid_emumouse_dev + __cil_tmp10)) = (__u16 )256;
   __cil_tmp13 = 0 * 8UL;
   __cil_tmp14 = 40 + __cil_tmp13;
-  __cil_tmp15 = (unsigned long )mac_hid_emumouse_dev;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
   __cil_tmp17 = 1UL << 2;
   __cil_tmp18 = 1UL << 1;
-  *((unsigned long *)__cil_tmp16) = __cil_tmp18 | __cil_tmp17;
+  *((unsigned long *)((void *)mac_hid_emumouse_dev + __cil_tmp14)) = __cil_tmp18 | __cil_tmp17;
   __cil_tmp19 = 4 * 8UL;
   __cil_tmp20 = 48 + __cil_tmp19;
-  __cil_tmp21 = (unsigned long )mac_hid_emumouse_dev;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
   __cil_tmp23 = 1UL << 17;
   __cil_tmp24 = 1UL << 18;
   __cil_tmp25 = 1UL << 16;
   __cil_tmp26 = __cil_tmp25 | __cil_tmp24;
-  *((unsigned long *)__cil_tmp22) = __cil_tmp26 | __cil_tmp23;
+  *((unsigned long *)((void *)mac_hid_emumouse_dev + __cil_tmp20)) = __cil_tmp26 | __cil_tmp23;
   __cil_tmp27 = 0 * 8UL;
   __cil_tmp28 = 144 + __cil_tmp27;
-  __cil_tmp29 = (unsigned long )mac_hid_emumouse_dev;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
   __cil_tmp31 = 1UL << 1;
-  *((unsigned long *)__cil_tmp30) = 1UL | __cil_tmp31;
+  *((unsigned long *)((void *)mac_hid_emumouse_dev + __cil_tmp28)) = 1UL | __cil_tmp31;
   err = (int )input_register_device(mac_hid_emumouse_dev);
   }
   if (err) {
@@ -2084,12 +2056,6 @@ static int mac_hid_emumouse_connect(struct input_handler *handler , struct input
   void *tmp ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void const *__cil_tmp15 ;
   {
   {
@@ -2109,15 +2075,9 @@ static int mac_hid_emumouse_connect(struct input_handler *handler , struct input
   } else {
   }
   {
-  __cil_tmp9 = (unsigned long )handle;
-  __cil_tmp10 = __cil_tmp9 + 24;
-  *((struct input_dev **)__cil_tmp10) = dev;
-  __cil_tmp11 = (unsigned long )handle;
-  __cil_tmp12 = __cil_tmp11 + 32;
-  *((struct input_handler **)__cil_tmp12) = handler;
-  __cil_tmp13 = (unsigned long )handle;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  *((char const **)__cil_tmp14) = "mac-button-emul";
+  *((struct input_dev **)((void *)handle + 24)) = dev;
+  *((struct input_handler **)((void *)handle + 32)) = handler;
+  *((char const **)((void *)handle + 16)) = "mac-button-emul";
   error = input_register_handle(handle);
   }
   if (error) {
@@ -2213,17 +2173,13 @@ static int mac_hid_toggle_emumouse(ctl_table *table , int write , void *buffer ,
 { int *valp ;
   int old_val ;
   int rc ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   int __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
   {
   {
-  __cil_tmp9 = (unsigned long )table;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)table + 8));
   valp = (int *)__cil_tmp11;
   old_val = *valp;
   rc = (int )mutex_lock_killable(& mac_hid_emumouse_mutex);

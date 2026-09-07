@@ -1887,13 +1887,12 @@ extern int printk(char const   *  , ...) ;
 extern void might_fault(void) ;
 extern struct pv_cpu_ops pv_cpu_ops ;
 __inline static void slow_down_io(void) 
-{ unsigned long __cil_tmp1 ;
+{
   void (*__cil_tmp2)(void) ;
 
   {
   {
-  __cil_tmp1 = (unsigned long )(& pv_cpu_ops) + 216;
-  __cil_tmp2 = *((void (**)(void))__cil_tmp1);
+  __cil_tmp2 = *((void (**)(void))((void *)(&pv_cpu_ops) + 216));
   (*__cil_tmp2)();
   }
   return;
@@ -1997,33 +1996,19 @@ __inline static struct platform_device *platform_device_register_resndata(struct
 { struct platform_device_info pdevinfo ;
   struct platform_device *tmp ;
   struct platform_device_info *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct platform_device_info  const  *__cil_tmp18 ;
 
   {
   {
   __cil_tmp10 = & pdevinfo;
   *((struct device **)__cil_tmp10) = parent;
-  __cil_tmp11 = (unsigned long )(& pdevinfo) + 8;
-  *((char const   **)__cil_tmp11) = name;
-  __cil_tmp12 = (unsigned long )(& pdevinfo) + 16;
-  *((int *)__cil_tmp12) = id;
-  __cil_tmp13 = (unsigned long )(& pdevinfo) + 24;
-  *((struct resource  const  **)__cil_tmp13) = res;
-  __cil_tmp14 = (unsigned long )(& pdevinfo) + 32;
-  *((unsigned int *)__cil_tmp14) = num;
-  __cil_tmp15 = (unsigned long )(& pdevinfo) + 40;
-  *((void const   **)__cil_tmp15) = data;
-  __cil_tmp16 = (unsigned long )(& pdevinfo) + 48;
-  *((size_t *)__cil_tmp16) = size;
-  __cil_tmp17 = (unsigned long )(& pdevinfo) + 56;
-  *((u64 *)__cil_tmp17) = 0ULL;
+  *((char const   **)((void *)(&pdevinfo) + 8)) = name;
+  *((int *)((void *)(&pdevinfo) + 16)) = id;
+  *((struct resource  const  **)((void *)(&pdevinfo) + 24)) = res;
+  *((unsigned int *)((void *)(&pdevinfo) + 32)) = num;
+  *((void const   **)((void *)(&pdevinfo) + 40)) = data;
+  *((size_t *)((void *)(&pdevinfo) + 48)) = size;
+  *((u64 *)((void *)(&pdevinfo) + 56)) = 0ULL;
   __cil_tmp18 = (struct platform_device_info  const  *)(& pdevinfo);
   tmp = platform_device_register_full(__cil_tmp18);
   }
@@ -2241,37 +2226,26 @@ static long ibwdt_ioctl(struct file *file , unsigned int cmd , unsigned long arg
   int __ret_pu___0 ;
   int __pu_val___0 ;
   struct watchdog_info *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
   unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   void const   *__cil_tmp52 ;
   int __cil_tmp53 ;
   int *__cil_tmp54 ;
@@ -2281,48 +2255,37 @@ static long ibwdt_ioctl(struct file *file , unsigned int cmd , unsigned long arg
   p = (int *)argp;
   __cil_tmp20 = & ident;
   *((__u32 *)__cil_tmp20) = 33152U;
-  __cil_tmp21 = (unsigned long )(& ident) + 4;
-  *((__u32 *)__cil_tmp21) = 1U;
+  *((__u32 *)((void *)(&ident) + 4)) = 1U;
   __cil_tmp22 = 0 * 1UL;
   __cil_tmp23 = 8 + __cil_tmp22;
-  __cil_tmp24 = (unsigned long )(& ident) + __cil_tmp23;
-  *((__u8 *)__cil_tmp24) = (__u8 )'I';
+  *((__u8 *)((void *)(&ident) + __cil_tmp23)) = (__u8 )'I';
   __cil_tmp25 = 1 * 1UL;
   __cil_tmp26 = 8 + __cil_tmp25;
-  __cil_tmp27 = (unsigned long )(& ident) + __cil_tmp26;
-  *((__u8 *)__cil_tmp27) = (__u8 )'B';
+  *((__u8 *)((void *)(&ident) + __cil_tmp26)) = (__u8 )'B';
   __cil_tmp28 = 2 * 1UL;
   __cil_tmp29 = 8 + __cil_tmp28;
-  __cil_tmp30 = (unsigned long )(& ident) + __cil_tmp29;
-  *((__u8 *)__cil_tmp30) = (__u8 )'7';
+  *((__u8 *)((void *)(&ident) + __cil_tmp29)) = (__u8 )'7';
   __cil_tmp31 = 3 * 1UL;
   __cil_tmp32 = 8 + __cil_tmp31;
-  __cil_tmp33 = (unsigned long )(& ident) + __cil_tmp32;
-  *((__u8 *)__cil_tmp33) = (__u8 )'0';
+  *((__u8 *)((void *)(&ident) + __cil_tmp32)) = (__u8 )'0';
   __cil_tmp34 = 4 * 1UL;
   __cil_tmp35 = 8 + __cil_tmp34;
-  __cil_tmp36 = (unsigned long )(& ident) + __cil_tmp35;
-  *((__u8 *)__cil_tmp36) = (__u8 )'0';
+  *((__u8 *)((void *)(&ident) + __cil_tmp35)) = (__u8 )'0';
   __cil_tmp37 = 5 * 1UL;
   __cil_tmp38 = 8 + __cil_tmp37;
-  __cil_tmp39 = (unsigned long )(& ident) + __cil_tmp38;
-  *((__u8 *)__cil_tmp39) = (__u8 )' ';
+  *((__u8 *)((void *)(&ident) + __cil_tmp38)) = (__u8 )' ';
   __cil_tmp40 = 6 * 1UL;
   __cil_tmp41 = 8 + __cil_tmp40;
-  __cil_tmp42 = (unsigned long )(& ident) + __cil_tmp41;
-  *((__u8 *)__cil_tmp42) = (__u8 )'W';
+  *((__u8 *)((void *)(&ident) + __cil_tmp41)) = (__u8 )'W';
   __cil_tmp43 = 7 * 1UL;
   __cil_tmp44 = 8 + __cil_tmp43;
-  __cil_tmp45 = (unsigned long )(& ident) + __cil_tmp44;
-  *((__u8 *)__cil_tmp45) = (__u8 )'D';
+  *((__u8 *)((void *)(&ident) + __cil_tmp44)) = (__u8 )'D';
   __cil_tmp46 = 8 * 1UL;
   __cil_tmp47 = 8 + __cil_tmp46;
-  __cil_tmp48 = (unsigned long )(& ident) + __cil_tmp47;
-  *((__u8 *)__cil_tmp48) = (__u8 )'T';
+  *((__u8 *)((void *)(&ident) + __cil_tmp47)) = (__u8 )'T';
   __cil_tmp49 = 9 * 1UL;
   __cil_tmp50 = 8 + __cil_tmp49;
-  __cil_tmp51 = (unsigned long )(& ident) + __cil_tmp50;
-  *((__u8 *)__cil_tmp51) = (__u8 )'\000';
+  *((__u8 *)((void *)(&ident) + __cil_tmp50)) = (__u8 )'\000';
   if ((int )cmd == -2144839936) {
     goto case_neg_2144839936;
   } else

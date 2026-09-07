@@ -3155,15 +3155,11 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 __inline static void *pci_get_drvdata(struct pci_dev *pdev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -3172,14 +3168,11 @@ __inline static void *pci_get_drvdata(struct pci_dev *pdev )
 }
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void pci_set_drvdata(struct pci_dev *pdev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 144;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 144);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3206,42 +3199,26 @@ static int ioapic_probe(struct pci_dev *dev , struct pci_device_id const *ent )
   int tmp___8 ;
   int tmp___9 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   acpi_string __cil_tmp16 ;
   void *__cil_tmp17 ;
   struct acpi_object_list *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned long long *__cil_tmp21 ;
   unsigned long long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
   char const *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   acpi_handle __cil_tmp31 ;
   resource_size_t __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   u32 __cil_tmp35 ;
   void *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
   struct device const *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   u32 __cil_tmp43 ;
   void const *__cil_tmp44 ;
   {
   __cil_tmp13 = 144 + 632;
-  __cil_tmp14 = (unsigned long )dev;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  handle = *((void **)__cil_tmp15);
+  handle = *((void **)((void *)dev + __cil_tmp13));
   if (! handle) {
     return (-22);
   } else {
@@ -3265,15 +3242,11 @@ static int ioapic_probe(struct pci_dev *dev , struct pci_device_id const *ent )
   } else {
   }
   *((acpi_handle *)ioapic) = handle;
-  __cil_tmp19 = (unsigned long )ioapic;
-  __cil_tmp20 = __cil_tmp19 + 8;
   __cil_tmp21 = & gsb;
   __cil_tmp22 = *__cil_tmp21;
-  *((u32 *)__cil_tmp20) = (u32 )__cil_tmp22;
+  *((u32 *)((void *)ioapic + 8)) = (u32 )__cil_tmp22;
   {
-  __cil_tmp23 = (unsigned long )dev;
-  __cil_tmp24 = __cil_tmp23 + 68;
-  __cil_tmp25 = *((unsigned int *)__cil_tmp24);
+  __cil_tmp25 = *((unsigned int *)((void *)dev + 68));
   if (__cil_tmp25 == 524304U) {
     type = (char *)"IOAPIC";
   } else {
@@ -3299,14 +3272,10 @@ static int ioapic_probe(struct pci_dev *dev , struct pci_device_id const *ent )
   {
   __cil_tmp27 = 0 * 56UL;
   __cil_tmp28 = 920 + __cil_tmp27;
-  __cil_tmp29 = (unsigned long )dev;
-  __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-  res = (struct resource *)__cil_tmp30;
+  res = (struct resource *)((void *)dev + __cil_tmp28);
   __cil_tmp31 = *((acpi_handle *)ioapic);
   __cil_tmp32 = *((resource_size_t *)res);
-  __cil_tmp33 = (unsigned long )ioapic;
-  __cil_tmp34 = __cil_tmp33 + 8;
-  __cil_tmp35 = *((u32 *)__cil_tmp34);
+  __cil_tmp35 = *((u32 *)((void *)ioapic + 8));
   tmp___9 = acpi_register_ioapic(__cil_tmp31, __cil_tmp32, __cil_tmp35);
   }
   if (tmp___9) {
@@ -3316,13 +3285,9 @@ static int ioapic_probe(struct pci_dev *dev , struct pci_device_id const *ent )
   {
   __cil_tmp36 = (void *)ioapic;
   pci_set_drvdata(dev, __cil_tmp36);
-  __cil_tmp37 = (unsigned long )dev;
-  __cil_tmp38 = __cil_tmp37 + 144;
-  __cil_tmp39 = (struct device *)__cil_tmp38;
+  __cil_tmp39 = (struct device *)((void *)dev + 144);
   __cil_tmp40 = (struct device const *)__cil_tmp39;
-  __cil_tmp41 = (unsigned long )ioapic;
-  __cil_tmp42 = __cil_tmp41 + 8;
-  __cil_tmp43 = *((u32 *)__cil_tmp42);
+  __cil_tmp43 = *((u32 *)((void *)ioapic + 8));
   _dev_info(__cil_tmp40, "%s at %pR, GSI %u\n", type, res, __cil_tmp43);
   }
   return (0);
@@ -3348,8 +3313,6 @@ static void ioapic_remove(struct pci_dev *dev )
 { struct ioapic *ioapic ;
   void *tmp___7 ;
   acpi_handle __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   u32 __cil_tmp7 ;
   void const *__cil_tmp8 ;
   {
@@ -3357,9 +3320,7 @@ static void ioapic_remove(struct pci_dev *dev )
   tmp___7 = pci_get_drvdata(dev);
   ioapic = (struct ioapic *)tmp___7;
   __cil_tmp4 = *((acpi_handle *)ioapic);
-  __cil_tmp5 = (unsigned long )ioapic;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((u32 *)__cil_tmp6);
+  __cil_tmp7 = *((u32 *)((void *)ioapic + 8));
   acpi_unregister_ioapic(__cil_tmp4, __cil_tmp7);
   pci_release_region(dev, 0);
   pci_disable_device(dev);

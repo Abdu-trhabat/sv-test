@@ -3093,15 +3093,11 @@ extern int dev_err(struct device const * , char const * , ...) ;
 extern int _dev_info(struct device const * , char const * , ...) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -3109,14 +3105,11 @@ __inline static void *usb_get_intfdata(struct usb_interface *intf )
 }
 }
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3124,14 +3117,10 @@ __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
 }
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf )
 { struct device const *__mptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct usb_device *__cil_tmp6 ;
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = *((struct device **)__cil_tmp4);
+  __cil_tmp5 = *((struct device **)((void *)intf + 48));
   __mptr = (struct device const *)__cil_tmp5;
   {
   __cil_tmp6 = (struct usb_device *)__mptr;
@@ -3181,114 +3170,60 @@ static int usb_xfer(struct i2c_adapter *adapter , struct i2c_msg *msgs , int num
   struct _ddebug descriptor___1 ;
   long tmp___5 ;
   struct _ddebug *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned char __cil_tmp25 ;
   long __cil_tmp26 ;
   long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct device *__cil_tmp30 ;
   struct device const *__cil_tmp31 ;
   int __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
   struct _ddebug *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned char __cil_tmp41 ;
   long __cil_tmp42 ;
   long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   __u16 __cil_tmp46 ;
   int __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct device *__cil_tmp50 ;
   struct device const *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   __u16 __cil_tmp54 ;
   int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   __u16 __cil_tmp58 ;
   int __cil_tmp59 ;
   __u16 __cil_tmp60 ;
   int __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   __u16 __cil_tmp64 ;
   int __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   __u16 __cil_tmp68 ;
   int __cil_tmp69 ;
   __u16 __cil_tmp70 ;
   int __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   __u8 *__cil_tmp74 ;
   void *__cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   __u16 __cil_tmp78 ;
   int __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   __u16 __cil_tmp82 ;
   int __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   struct device *__cil_tmp86 ;
   struct device const *__cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   __u16 __cil_tmp90 ;
   int __cil_tmp91 ;
   __u16 __cil_tmp92 ;
   int __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   __u8 *__cil_tmp96 ;
   void *__cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   __u16 __cil_tmp100 ;
   int __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
   __u16 __cil_tmp104 ;
   int __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
   struct device *__cil_tmp108 ;
   struct device const *__cil_tmp109 ;
   void *__cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   struct device *__cil_tmp113 ;
   struct device const *__cil_tmp114 ;
   struct _ddebug *__cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
   unsigned char __cil_tmp122 ;
   long __cil_tmp123 ;
   long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
   struct device *__cil_tmp127 ;
   struct device const *__cil_tmp128 ;
   unsigned char *__cil_tmp129 ;
@@ -3301,27 +3236,19 @@ static int usb_xfer(struct i2c_adapter *adapter , struct i2c_msg *msgs , int num
   {
   __cil_tmp18 = & descriptor;
   *((char const **)__cil_tmp18) = "i2c_tiny_usb";
-  __cil_tmp19 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp19) = "usb_xfer";
-  __cil_tmp20 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp20) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11394/dscv_tempdir/dscv/ri/43_1a/drivers/i2c/busses/i2c-tiny-usb.c.p";
-  __cil_tmp21 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp21) = "master xfer %d messages:\n";
-  __cil_tmp22 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp22) = 76U;
-  __cil_tmp23 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp23) = (unsigned char)1;
-  __cil_tmp24 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp25 = *((unsigned char *)__cil_tmp24);
+  *((char const **)((void *)(&descriptor) + 8)) = "usb_xfer";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11394/dscv_tempdir/dscv/ri/43_1a/drivers/i2c/busses/i2c-tiny-usb.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "master xfer %d messages:\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 76U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+  __cil_tmp25 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp26 = (long )__cil_tmp25;
   __cil_tmp27 = __cil_tmp26 & 1L;
   tmp = __builtin_expect(__cil_tmp27, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp28 = (unsigned long )adapter;
-    __cil_tmp29 = __cil_tmp28 + 176;
-    __cil_tmp30 = (struct device *)__cil_tmp29;
+    __cil_tmp30 = (struct device *)((void *)adapter + 176);
     __cil_tmp31 = (struct device const *)__cil_tmp30;
     __dynamic_dev_dbg(& descriptor, __cil_tmp31, "master xfer %d messages:\n", num);
     }
@@ -3347,27 +3274,19 @@ static int usb_xfer(struct i2c_adapter *adapter , struct i2c_msg *msgs , int num
   pmsg = msgs + __cil_tmp33;
   __cil_tmp34 = & descriptor___0;
   *((char const **)__cil_tmp34) = "i2c_tiny_usb";
-  __cil_tmp35 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp35) = "usb_xfer";
-  __cil_tmp36 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp36) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11394/dscv_tempdir/dscv/ri/43_1a/drivers/i2c/busses/i2c-tiny-usb.c.p";
-  __cil_tmp37 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp37) = "  %d: %s (flags %d) %d bytes to 0x%02x\n";
-  __cil_tmp38 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp38) = 92U;
-  __cil_tmp39 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp39) = (unsigned char)1;
-  __cil_tmp40 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp41 = *((unsigned char *)__cil_tmp40);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "usb_xfer";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11394/dscv_tempdir/dscv/ri/43_1a/drivers/i2c/busses/i2c-tiny-usb.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "  %d: %s (flags %d) %d bytes to 0x%02x\n";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 92U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)1;
+  __cil_tmp41 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp42 = (long )__cil_tmp41;
   __cil_tmp43 = __cil_tmp42 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp43, 0L);
   }
   if (tmp___1 != 0L) {
     {
-    __cil_tmp44 = (unsigned long )pmsg;
-    __cil_tmp45 = __cil_tmp44 + 2;
-    __cil_tmp46 = *((__u16 *)__cil_tmp45);
+    __cil_tmp46 = *((__u16 *)((void *)pmsg + 2));
     __cil_tmp47 = (int )__cil_tmp46;
     if (__cil_tmp47 & 1) {
       tmp___0 = (char *)"read";
@@ -3376,17 +3295,11 @@ static int usb_xfer(struct i2c_adapter *adapter , struct i2c_msg *msgs , int num
     }
     }
     {
-    __cil_tmp48 = (unsigned long )adapter;
-    __cil_tmp49 = __cil_tmp48 + 176;
-    __cil_tmp50 = (struct device *)__cil_tmp49;
+    __cil_tmp50 = (struct device *)((void *)adapter + 176);
     __cil_tmp51 = (struct device const *)__cil_tmp50;
-    __cil_tmp52 = (unsigned long )pmsg;
-    __cil_tmp53 = __cil_tmp52 + 2;
-    __cil_tmp54 = *((__u16 *)__cil_tmp53);
+    __cil_tmp54 = *((__u16 *)((void *)pmsg + 2));
     __cil_tmp55 = (int )__cil_tmp54;
-    __cil_tmp56 = (unsigned long )pmsg;
-    __cil_tmp57 = __cil_tmp56 + 4;
-    __cil_tmp58 = *((__u16 *)__cil_tmp57);
+    __cil_tmp58 = *((__u16 *)((void *)pmsg + 4));
     __cil_tmp59 = (int )__cil_tmp58;
     __cil_tmp60 = *((__u16 *)pmsg);
     __cil_tmp61 = (int )__cil_tmp60;
@@ -3396,70 +3309,48 @@ static int usb_xfer(struct i2c_adapter *adapter , struct i2c_msg *msgs , int num
   } else {
   }
   {
-  __cil_tmp62 = (unsigned long )pmsg;
-  __cil_tmp63 = __cil_tmp62 + 2;
-  __cil_tmp64 = *((__u16 *)__cil_tmp63);
+  __cil_tmp64 = *((__u16 *)((void *)pmsg + 2));
   __cil_tmp65 = (int )__cil_tmp64;
   if (__cil_tmp65 & 1) {
     {
-    __cil_tmp66 = (unsigned long )pmsg;
-    __cil_tmp67 = __cil_tmp66 + 2;
-    __cil_tmp68 = *((__u16 *)__cil_tmp67);
+    __cil_tmp68 = *((__u16 *)((void *)pmsg + 2));
     __cil_tmp69 = (int )__cil_tmp68;
     __cil_tmp70 = *((__u16 *)pmsg);
     __cil_tmp71 = (int )__cil_tmp70;
-    __cil_tmp72 = (unsigned long )pmsg;
-    __cil_tmp73 = __cil_tmp72 + 8;
-    __cil_tmp74 = *((__u8 **)__cil_tmp73);
+    __cil_tmp74 = *((__u8 **)((void *)pmsg + 8));
     __cil_tmp75 = (void *)__cil_tmp74;
-    __cil_tmp76 = (unsigned long )pmsg;
-    __cil_tmp77 = __cil_tmp76 + 4;
-    __cil_tmp78 = *((__u16 *)__cil_tmp77);
+    __cil_tmp78 = *((__u16 *)((void *)pmsg + 4));
     __cil_tmp79 = (int )__cil_tmp78;
     tmp___3 = usb_read(adapter, cmd, __cil_tmp69, __cil_tmp71, __cil_tmp75, __cil_tmp79);
     }
     {
-    __cil_tmp80 = (unsigned long )pmsg;
-    __cil_tmp81 = __cil_tmp80 + 4;
-    __cil_tmp82 = *((__u16 *)__cil_tmp81);
+    __cil_tmp82 = *((__u16 *)((void *)pmsg + 4));
     __cil_tmp83 = (int )__cil_tmp82;
     if (tmp___3 != __cil_tmp83) {
       {
-      __cil_tmp84 = (unsigned long )adapter;
-      __cil_tmp85 = __cil_tmp84 + 176;
-      __cil_tmp86 = (struct device *)__cil_tmp85;
+      __cil_tmp86 = (struct device *)((void *)adapter + 176);
       __cil_tmp87 = (struct device const *)__cil_tmp86;
       dev_err(__cil_tmp87, "failure reading data\n");
       }
       return (-121);
     } else {
       {
-      __cil_tmp88 = (unsigned long )pmsg;
-      __cil_tmp89 = __cil_tmp88 + 2;
-      __cil_tmp90 = *((__u16 *)__cil_tmp89);
+      __cil_tmp90 = *((__u16 *)((void *)pmsg + 2));
       __cil_tmp91 = (int )__cil_tmp90;
       __cil_tmp92 = *((__u16 *)pmsg);
       __cil_tmp93 = (int )__cil_tmp92;
-      __cil_tmp94 = (unsigned long )pmsg;
-      __cil_tmp95 = __cil_tmp94 + 8;
-      __cil_tmp96 = *((__u8 **)__cil_tmp95);
+      __cil_tmp96 = *((__u8 **)((void *)pmsg + 8));
       __cil_tmp97 = (void *)__cil_tmp96;
-      __cil_tmp98 = (unsigned long )pmsg;
-      __cil_tmp99 = __cil_tmp98 + 4;
-      __cil_tmp100 = *((__u16 *)__cil_tmp99);
+      __cil_tmp100 = *((__u16 *)((void *)pmsg + 4));
       __cil_tmp101 = (int )__cil_tmp100;
       tmp___2 = usb_write(adapter, cmd, __cil_tmp91, __cil_tmp93, __cil_tmp97, __cil_tmp101);
       }
       {
-      __cil_tmp102 = (unsigned long )pmsg;
-      __cil_tmp103 = __cil_tmp102 + 4;
-      __cil_tmp104 = *((__u16 *)__cil_tmp103);
+      __cil_tmp104 = *((__u16 *)((void *)pmsg + 4));
       __cil_tmp105 = (int )__cil_tmp104;
       if (tmp___2 != __cil_tmp105) {
         {
-        __cil_tmp106 = (unsigned long )adapter;
-        __cil_tmp107 = __cil_tmp106 + 176;
-        __cil_tmp108 = (struct device *)__cil_tmp107;
+        __cil_tmp108 = (struct device *)((void *)adapter + 176);
         __cil_tmp109 = (struct device const *)__cil_tmp108;
         dev_err(__cil_tmp109, "failure writing data\n");
         }
@@ -3478,9 +3369,7 @@ static int usb_xfer(struct i2c_adapter *adapter , struct i2c_msg *msgs , int num
   }
   if (tmp___4 != 1) {
     {
-    __cil_tmp111 = (unsigned long )adapter;
-    __cil_tmp112 = __cil_tmp111 + 176;
-    __cil_tmp113 = (struct device *)__cil_tmp112;
+    __cil_tmp113 = (struct device *)((void *)adapter + 176);
     __cil_tmp114 = (struct device const *)__cil_tmp113;
     dev_err(__cil_tmp114, "failure reading status\n");
     }
@@ -3490,27 +3379,19 @@ static int usb_xfer(struct i2c_adapter *adapter , struct i2c_msg *msgs , int num
   {
   __cil_tmp115 = & descriptor___1;
   *((char const **)__cil_tmp115) = "i2c_tiny_usb";
-  __cil_tmp116 = (unsigned long )(& descriptor___1) + 8;
-  *((char const **)__cil_tmp116) = "usb_xfer";
-  __cil_tmp117 = (unsigned long )(& descriptor___1) + 16;
-  *((char const **)__cil_tmp117) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11394/dscv_tempdir/dscv/ri/43_1a/drivers/i2c/busses/i2c-tiny-usb.c.p";
-  __cil_tmp118 = (unsigned long )(& descriptor___1) + 24;
-  *((char const **)__cil_tmp118) = "  status = %d\n";
-  __cil_tmp119 = (unsigned long )(& descriptor___1) + 32;
-  *((unsigned int *)__cil_tmp119) = 121U;
-  __cil_tmp120 = (unsigned long )(& descriptor___1) + 35;
-  *((unsigned char *)__cil_tmp120) = (unsigned char)1;
-  __cil_tmp121 = (unsigned long )(& descriptor___1) + 35;
-  __cil_tmp122 = *((unsigned char *)__cil_tmp121);
+  *((char const **)((void *)(&descriptor___1) + 8)) = "usb_xfer";
+  *((char const **)((void *)(&descriptor___1) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11394/dscv_tempdir/dscv/ri/43_1a/drivers/i2c/busses/i2c-tiny-usb.c.p";
+  *((char const **)((void *)(&descriptor___1) + 24)) = "  status = %d\n";
+  *((unsigned int *)((void *)(&descriptor___1) + 32)) = 121U;
+  *((unsigned char *)((void *)(&descriptor___1) + 35)) = (unsigned char)1;
+  __cil_tmp122 = *((unsigned char *)((void *)(&descriptor___1) + 35));
   __cil_tmp123 = (long )__cil_tmp122;
   __cil_tmp124 = __cil_tmp123 & 1L;
   tmp___5 = __builtin_expect(__cil_tmp124, 0L);
   }
   if (tmp___5 != 0L) {
     {
-    __cil_tmp125 = (unsigned long )adapter;
-    __cil_tmp126 = __cil_tmp125 + 176;
-    __cil_tmp127 = (struct device *)__cil_tmp126;
+    __cil_tmp127 = (struct device *)((void *)adapter + 176);
     __cil_tmp128 = (struct device const *)__cil_tmp127;
     __cil_tmp129 = & status;
     __cil_tmp130 = *__cil_tmp129;
@@ -3543,8 +3424,6 @@ static u32 usb_func(struct i2c_adapter *adapter )
 { __le32 func ;
   int tmp ;
   void *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct device const *__cil_tmp8 ;
   __le32 *__cil_tmp9 ;
@@ -3555,9 +3434,7 @@ static u32 usb_func(struct i2c_adapter *adapter )
   }
   if (tmp != 4) {
     {
-    __cil_tmp5 = (unsigned long )adapter;
-    __cil_tmp6 = __cil_tmp5 + 176;
-    __cil_tmp7 = (struct device *)__cil_tmp6;
+    __cil_tmp7 = (struct device *)((void *)adapter + 176);
     __cil_tmp8 = (struct device const *)__cil_tmp7;
     dev_err(__cil_tmp8, "failure reading functionality\n");
     }
@@ -3578,8 +3455,6 @@ static int usb_read(struct i2c_adapter *adapter , int cmd , int value , int inde
 { struct i2c_tiny_usb *dev ;
   unsigned int tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   struct usb_device *__cil_tmp13 ;
   struct usb_device *__cil_tmp14 ;
@@ -3599,9 +3474,7 @@ static int usb_read(struct i2c_adapter *adapter , int cmd , int value , int inde
   __u16 __cil_tmp28 ;
   {
   {
-  __cil_tmp10 = (unsigned long )adapter;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)adapter + 24));
   dev = (struct i2c_tiny_usb *)__cil_tmp12;
   __cil_tmp13 = *((struct usb_device **)dev);
   tmp = __create_pipe(__cil_tmp13, 0U);
@@ -3631,8 +3504,6 @@ static int usb_write(struct i2c_adapter *adapter , int cmd , int value , int ind
 { struct i2c_tiny_usb *dev ;
   unsigned int tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   struct usb_device *__cil_tmp13 ;
   struct usb_device *__cil_tmp14 ;
@@ -3652,9 +3523,7 @@ static int usb_write(struct i2c_adapter *adapter , int cmd , int value , int ind
   __u16 __cil_tmp28 ;
   {
   {
-  __cil_tmp10 = (unsigned long )adapter;
-  __cil_tmp11 = __cil_tmp10 + 24;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)adapter + 24));
   dev = (struct i2c_tiny_usb *)__cil_tmp12;
   __cil_tmp13 = *((struct usb_device **)dev);
   tmp = __create_pipe(__cil_tmp13, 0U);
@@ -3702,35 +3571,19 @@ static int i2c_tiny_usb_probe(struct usb_interface *interface , struct usb_devic
   struct usb_device *tmp___1 ;
   int tmp___2 ;
   struct _ddebug *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned char __cil_tmp18 ;
   long __cil_tmp19 ;
   long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct device *__cil_tmp23 ;
   struct device const *__cil_tmp24 ;
   struct i2c_tiny_usb *__cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct device *__cil_tmp30 ;
   struct device const *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   void *__cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   struct usb_device *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct device *__cil_tmp41 ;
   struct device const *__cil_tmp42 ;
   int __cil_tmp43 ;
@@ -3738,68 +3591,36 @@ static int i2c_tiny_usb_probe(struct usb_interface *interface , struct usb_devic
   int __cil_tmp45 ;
   int __cil_tmp46 ;
   struct usb_device *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct usb_bus *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   int __cil_tmp53 ;
   struct usb_device *__cil_tmp54 ;
   int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   char (*__cil_tmp70)[48U] ;
   char *__cil_tmp71 ;
   struct usb_device *__cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   struct usb_bus *__cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   int __cil_tmp78 ;
   struct usb_device *__cil_tmp79 ;
   int __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   struct i2c_adapter *__cil_tmp83 ;
   unsigned short *__cil_tmp84 ;
   unsigned short __cil_tmp85 ;
   int __cil_tmp86 ;
   void *__cil_tmp87 ;
   unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
   struct device *__cil_tmp91 ;
   struct device const *__cil_tmp92 ;
   unsigned short *__cil_tmp93 ;
   unsigned short __cil_tmp94 ;
   int __cil_tmp95 ;
   unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
   struct usb_interface *__cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
   struct i2c_adapter *__cil_tmp106 ;
   unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
   struct device *__cil_tmp110 ;
   struct device const *__cil_tmp111 ;
   struct i2c_tiny_usb *__cil_tmp112 ;
@@ -3810,27 +3631,19 @@ static int i2c_tiny_usb_probe(struct usb_interface *interface , struct usb_devic
   retval = -12;
   __cil_tmp11 = & descriptor;
   *((char const **)__cil_tmp11) = "i2c_tiny_usb";
-  __cil_tmp12 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp12) = "i2c_tiny_usb_probe";
-  __cil_tmp13 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp13) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11394/dscv_tempdir/dscv/ri/43_1a/drivers/i2c/busses/i2c-tiny-usb.c.p";
-  __cil_tmp14 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp14) = "probing usb device\n";
-  __cil_tmp15 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp15) = 208U;
-  __cil_tmp16 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp16) = (unsigned char)1;
-  __cil_tmp17 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp18 = *((unsigned char *)__cil_tmp17);
+  *((char const **)((void *)(&descriptor) + 8)) = "i2c_tiny_usb_probe";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11394/dscv_tempdir/dscv/ri/43_1a/drivers/i2c/busses/i2c-tiny-usb.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "probing usb device\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 208U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+  __cil_tmp18 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp19 = (long )__cil_tmp18;
   __cil_tmp20 = __cil_tmp19 & 1L;
   tmp = __builtin_expect(__cil_tmp20, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp21 = (unsigned long )interface;
-    __cil_tmp22 = __cil_tmp21 + 48;
-    __cil_tmp23 = (struct device *)__cil_tmp22;
+    __cil_tmp23 = (struct device *)((void *)interface + 48);
     __cil_tmp24 = (struct device const *)__cil_tmp23;
     __dynamic_dev_dbg(& descriptor, __cil_tmp24, "probing usb device\n");
     }
@@ -3846,9 +3659,7 @@ static int i2c_tiny_usb_probe(struct usb_interface *interface , struct usb_devic
   __cil_tmp27 = (unsigned long )dev;
   if (__cil_tmp27 == __cil_tmp26) {
     {
-    __cil_tmp28 = (unsigned long )interface;
-    __cil_tmp29 = __cil_tmp28 + 48;
-    __cil_tmp30 = (struct device *)__cil_tmp29;
+    __cil_tmp30 = (struct device *)((void *)interface + 48);
     __cil_tmp31 = (struct device const *)__cil_tmp30;
     dev_err(__cil_tmp31, "Out of memory\n");
     }
@@ -3859,69 +3670,43 @@ static int i2c_tiny_usb_probe(struct usb_interface *interface , struct usb_devic
   {
   tmp___1 = interface_to_usbdev(interface);
   *((struct usb_device **)dev) = usb_get_dev(tmp___1);
-  __cil_tmp32 = (unsigned long )dev;
-  __cil_tmp33 = __cil_tmp32 + 8;
-  *((struct usb_interface **)__cil_tmp33) = interface;
+  *((struct usb_interface **)((void *)dev + 8)) = interface;
   __cil_tmp34 = (void *)dev;
   usb_set_intfdata(interface, __cil_tmp34);
   __cil_tmp35 = 1288 + 12;
   __cil_tmp36 = *((struct usb_device **)dev);
-  __cil_tmp37 = (unsigned long )__cil_tmp36;
-  __cil_tmp38 = __cil_tmp37 + __cil_tmp35;
-  version = *((__le16 *)__cil_tmp38);
-  __cil_tmp39 = (unsigned long )interface;
-  __cil_tmp40 = __cil_tmp39 + 48;
-  __cil_tmp41 = (struct device *)__cil_tmp40;
+  version = *((__le16 *)((void *)__cil_tmp36 + __cil_tmp35));
+  __cil_tmp41 = (struct device *)((void *)interface + 48);
   __cil_tmp42 = (struct device const *)__cil_tmp41;
   __cil_tmp43 = (int )version;
   __cil_tmp44 = __cil_tmp43 >> 8;
   __cil_tmp45 = (int )version;
   __cil_tmp46 = __cil_tmp45 & 255;
   __cil_tmp47 = *((struct usb_device **)dev);
-  __cil_tmp48 = (unsigned long )__cil_tmp47;
-  __cil_tmp49 = __cil_tmp48 + 64;
-  __cil_tmp50 = *((struct usb_bus **)__cil_tmp49);
-  __cil_tmp51 = (unsigned long )__cil_tmp50;
-  __cil_tmp52 = __cil_tmp51 + 8;
-  __cil_tmp53 = *((int *)__cil_tmp52);
+  __cil_tmp50 = *((struct usb_bus **)((void *)__cil_tmp47 + 64));
+  __cil_tmp53 = *((int *)((void *)__cil_tmp50 + 8));
   __cil_tmp54 = *((struct usb_device **)dev);
   __cil_tmp55 = *((int *)__cil_tmp54);
   _dev_info(__cil_tmp42, "version %x.%02x found at bus %03d address %03d\n", __cil_tmp44,
             __cil_tmp46, __cil_tmp53, __cil_tmp55);
-  __cil_tmp56 = (unsigned long )dev;
-  __cil_tmp57 = __cil_tmp56 + 16;
-  *((struct module **)__cil_tmp57) = & __this_module;
+  *((struct module **)((void *)dev + 16)) = & __this_module;
   __cil_tmp58 = 16 + 8;
-  __cil_tmp59 = (unsigned long )dev;
-  __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
-  *((unsigned int *)__cil_tmp60) = 1U;
+  *((unsigned int *)((void *)dev + __cil_tmp58)) = 1U;
   __cil_tmp61 = 16 + 16;
-  __cil_tmp62 = (unsigned long )dev;
-  __cil_tmp63 = __cil_tmp62 + __cil_tmp61;
-  *((struct i2c_algorithm const **)__cil_tmp63) = & usb_algorithm;
+  *((struct i2c_algorithm const **)((void *)dev + __cil_tmp61)) = & usb_algorithm;
   __cil_tmp64 = 16 + 24;
-  __cil_tmp65 = (unsigned long )dev;
-  __cil_tmp66 = __cil_tmp65 + __cil_tmp64;
-  *((void **)__cil_tmp66) = (void *)dev;
+  *((void **)((void *)dev + __cil_tmp64)) = (void *)dev;
   __cil_tmp67 = 16 + 1332;
-  __cil_tmp68 = (unsigned long )dev;
-  __cil_tmp69 = __cil_tmp68 + __cil_tmp67;
-  __cil_tmp70 = (char (*)[48U])__cil_tmp69;
+  __cil_tmp70 = (char (*)[48U])((void *)dev + __cil_tmp67);
   __cil_tmp71 = (char *)__cil_tmp70;
   __cil_tmp72 = *((struct usb_device **)dev);
-  __cil_tmp73 = (unsigned long )__cil_tmp72;
-  __cil_tmp74 = __cil_tmp73 + 64;
-  __cil_tmp75 = *((struct usb_bus **)__cil_tmp74);
-  __cil_tmp76 = (unsigned long )__cil_tmp75;
-  __cil_tmp77 = __cil_tmp76 + 8;
-  __cil_tmp78 = *((int *)__cil_tmp77);
+  __cil_tmp75 = *((struct usb_bus **)((void *)__cil_tmp72 + 64));
+  __cil_tmp78 = *((int *)((void *)__cil_tmp75 + 8));
   __cil_tmp79 = *((struct usb_device **)dev);
   __cil_tmp80 = *((int *)__cil_tmp79);
   snprintf(__cil_tmp71, 48UL, "i2c-tiny-usb at bus %03d device %03d", __cil_tmp78,
            __cil_tmp80);
-  __cil_tmp81 = (unsigned long )dev;
-  __cil_tmp82 = __cil_tmp81 + 16;
-  __cil_tmp83 = (struct i2c_adapter *)__cil_tmp82;
+  __cil_tmp83 = (struct i2c_adapter *)((void *)dev + 16);
   __cil_tmp84 = & delay;
   __cil_tmp85 = *__cil_tmp84;
   __cil_tmp86 = (int )__cil_tmp85;
@@ -3931,9 +3716,7 @@ static int i2c_tiny_usb_probe(struct usb_interface *interface , struct usb_devic
   if (tmp___2 != 0) {
     {
     __cil_tmp88 = 16 + 176;
-    __cil_tmp89 = (unsigned long )dev;
-    __cil_tmp90 = __cil_tmp89 + __cil_tmp88;
-    __cil_tmp91 = (struct device *)__cil_tmp90;
+    __cil_tmp91 = (struct device *)((void *)dev + __cil_tmp88);
     __cil_tmp92 = (struct device const *)__cil_tmp91;
     __cil_tmp93 = & delay;
     __cil_tmp94 = *__cil_tmp93;
@@ -3946,22 +3729,12 @@ static int i2c_tiny_usb_probe(struct usb_interface *interface , struct usb_devic
   }
   {
   __cil_tmp96 = 16 + 176;
-  __cil_tmp97 = (unsigned long )dev;
-  __cil_tmp98 = __cil_tmp97 + __cil_tmp96;
-  __cil_tmp99 = (unsigned long )dev;
-  __cil_tmp100 = __cil_tmp99 + 8;
-  __cil_tmp101 = *((struct usb_interface **)__cil_tmp100);
-  __cil_tmp102 = (unsigned long )__cil_tmp101;
-  __cil_tmp103 = __cil_tmp102 + 48;
-  *((struct device **)__cil_tmp98) = (struct device *)__cil_tmp103;
-  __cil_tmp104 = (unsigned long )dev;
-  __cil_tmp105 = __cil_tmp104 + 16;
-  __cil_tmp106 = (struct i2c_adapter *)__cil_tmp105;
+  __cil_tmp101 = *((struct usb_interface **)((void *)dev + 8));
+  *((struct device **)((void *)dev + __cil_tmp96)) = (struct device *)((void *)__cil_tmp101 + 48);
+  __cil_tmp106 = (struct i2c_adapter *)((void *)dev + 16);
   i2c_add_adapter(__cil_tmp106);
   __cil_tmp107 = 16 + 176;
-  __cil_tmp108 = (unsigned long )dev;
-  __cil_tmp109 = __cil_tmp108 + __cil_tmp107;
-  __cil_tmp110 = (struct device *)__cil_tmp109;
+  __cil_tmp110 = (struct device *)((void *)dev + __cil_tmp107);
   __cil_tmp111 = (struct device const *)__cil_tmp110;
   _dev_info(__cil_tmp111, "connected i2c-tiny-usb device\n");
   }
@@ -3986,58 +3759,38 @@ static void i2c_tiny_usb_disconnect(struct usb_interface *interface )
   void *tmp ;
   struct _ddebug descriptor ;
   long tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct i2c_adapter *__cil_tmp8 ;
   void *__cil_tmp9 ;
   struct _ddebug *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned char __cil_tmp17 ;
   long __cil_tmp18 ;
   long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device const *__cil_tmp23 ;
   {
   {
   tmp = usb_get_intfdata(interface);
   dev = (struct i2c_tiny_usb *)tmp;
-  __cil_tmp6 = (unsigned long )dev;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = (struct i2c_adapter *)__cil_tmp7;
+  __cil_tmp8 = (struct i2c_adapter *)((void *)dev + 16);
   i2c_del_adapter(__cil_tmp8);
   __cil_tmp9 = (void *)0;
   usb_set_intfdata(interface, __cil_tmp9);
   i2c_tiny_usb_free(dev);
   __cil_tmp10 = & descriptor;
   *((char const **)__cil_tmp10) = "i2c_tiny_usb";
-  __cil_tmp11 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp11) = "i2c_tiny_usb_disconnect";
-  __cil_tmp12 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp12) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11394/dscv_tempdir/dscv/ri/43_1a/drivers/i2c/busses/i2c-tiny-usb.c.p";
-  __cil_tmp13 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp13) = "disconnected\n";
-  __cil_tmp14 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp14) = 270U;
-  __cil_tmp15 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp15) = (unsigned char)1;
-  __cil_tmp16 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp17 = *((unsigned char *)__cil_tmp16);
+  *((char const **)((void *)(&descriptor) + 8)) = "i2c_tiny_usb_disconnect";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/11394/dscv_tempdir/dscv/ri/43_1a/drivers/i2c/busses/i2c-tiny-usb.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "disconnected\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 270U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)1;
+  __cil_tmp17 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp18 = (long )__cil_tmp17;
   __cil_tmp19 = __cil_tmp18 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp19, 0L);
   }
   if (tmp___0 != 0L) {
     {
-    __cil_tmp20 = (unsigned long )interface;
-    __cil_tmp21 = __cil_tmp20 + 48;
-    __cil_tmp22 = (struct device *)__cil_tmp21;
+    __cil_tmp22 = (struct device *)((void *)interface + 48);
     __cil_tmp23 = (struct device const *)__cil_tmp22;
     __dynamic_dev_dbg(& descriptor, __cil_tmp23, "disconnected\n");
     }

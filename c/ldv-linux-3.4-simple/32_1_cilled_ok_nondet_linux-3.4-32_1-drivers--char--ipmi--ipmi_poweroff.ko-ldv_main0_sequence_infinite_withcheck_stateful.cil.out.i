@@ -1698,8 +1698,7 @@ int atomic_dec_and_mutex_lock(atomic_t *cnt , struct mutex *lock ) ;
 static struct lock_class_key __key ;
 __inline static void init_completion(struct completion *x ) __attribute__((__no_instrument_function__)) ;
 __inline static void init_completion(struct completion *x )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   wait_queue_head_t *__cil_tmp4 ;
   {
   *((unsigned int *)x) = 0U;
@@ -1707,9 +1706,7 @@ __inline static void init_completion(struct completion *x )
   while (1) {
     while_continue: ;
     {
-    __cil_tmp2 = (unsigned long )x;
-    __cil_tmp3 = __cil_tmp2 + 8;
-    __cil_tmp4 = (wait_queue_head_t *)__cil_tmp3;
+    __cil_tmp4 = (wait_queue_head_t *)((void *)x + 8);
     __init_waitqueue_head(__cil_tmp4, "&x->wait", & __key);
     }
     goto while_break;
@@ -2390,13 +2387,9 @@ static struct ipmi_recv_msg halt_recv_msg =
                                    (unsigned char)0, (unsigned char)0}};
 static void receive_handler(struct ipmi_recv_msg *recv_msg , void *handler_data )
 { struct completion *comp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   {
-  __cil_tmp4 = (unsigned long )recv_msg;
-  __cil_tmp5 = __cil_tmp4 + 96;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)recv_msg + 96));
   comp = (struct completion *)__cil_tmp6;
   if (comp) {
     {
@@ -2415,7 +2408,6 @@ static int ipmi_request_wait_for_response(ipmi_user_t user , struct ipmi_addr *a
   void *__cil_tmp6 ;
   void *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned char *__cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
   unsigned char __cil_tmp12 ;
@@ -2436,8 +2428,7 @@ static int ipmi_request_wait_for_response(ipmi_user_t user , struct ipmi_addr *a
   }
   {
   __cil_tmp8 = 80 + 8;
-  __cil_tmp9 = (unsigned long )(& halt_recv_msg) + __cil_tmp8;
-  __cil_tmp10 = *((unsigned char **)__cil_tmp9);
+  __cil_tmp10 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp8));
   __cil_tmp11 = __cil_tmp10 + 0;
   __cil_tmp12 = *__cil_tmp11;
   return ((int )__cil_tmp12);
@@ -2451,7 +2442,6 @@ static int ipmi_request_in_rc_mode(ipmi_user_t user , struct ipmi_addr *addr , s
   void *__cil_tmp7 ;
   atomic_t const *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned char *__cil_tmp11 ;
   unsigned char *__cil_tmp12 ;
   unsigned char __cil_tmp13 ;
@@ -2490,8 +2480,7 @@ static int ipmi_request_in_rc_mode(ipmi_user_t user , struct ipmi_addr *addr , s
   }
   {
   __cil_tmp9 = 80 + 8;
-  __cil_tmp10 = (unsigned long )(& halt_recv_msg) + __cil_tmp9;
-  __cil_tmp11 = *((unsigned char **)__cil_tmp10);
+  __cil_tmp11 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp9));
   __cil_tmp12 = __cil_tmp11 + 0;
   __cil_tmp13 = *__cil_tmp12;
   return ((int )__cil_tmp13);
@@ -2504,30 +2493,20 @@ static void pps_poweroff_atca(ipmi_user_t user )
   struct kernel_ipmi_msg send_msg ;
   int rv ;
   struct ipmi_system_interface_addr *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct kernel_ipmi_msg *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct ipmi_addr *__cil_tmp12 ;
   {
   {
   __cil_tmp5 = & smi_addr;
   *((int *)__cil_tmp5) = 12;
-  __cil_tmp6 = (unsigned long )(& smi_addr) + 4;
-  *((short *)__cil_tmp6) = (short)15;
-  __cil_tmp7 = (unsigned long )(& smi_addr) + 6;
-  *((unsigned char *)__cil_tmp7) = (unsigned char)0;
+  *((short *)((void *)(&smi_addr) + 4)) = (short)15;
+  *((unsigned char *)((void *)(&smi_addr) + 6)) = (unsigned char)0;
   printk("<6>IPMI poweroff: PPS powerdown hook used");
   __cil_tmp8 = & send_msg;
   *((unsigned char *)__cil_tmp8) = (unsigned char)46;
-  __cil_tmp9 = (unsigned long )(& send_msg) + 1;
-  *((unsigned char *)__cil_tmp9) = (unsigned char)17;
-  __cil_tmp10 = (unsigned long )(& send_msg) + 8;
-  *((unsigned char **)__cil_tmp10) = (unsigned char *)"\000@\n";
-  __cil_tmp11 = (unsigned long )(& send_msg) + 2;
-  *((unsigned short *)__cil_tmp11) = (unsigned short)3;
+  *((unsigned char *)((void *)(&send_msg) + 1)) = (unsigned char)17;
+  *((unsigned char **)((void *)(&send_msg) + 8)) = (unsigned char *)"\000@\n";
+  *((unsigned short *)((void *)(&send_msg) + 2)) = (unsigned short)3;
   __cil_tmp12 = (struct ipmi_addr *)(& smi_addr);
   rv = ipmi_request_in_rc_mode(user, __cil_tmp12, & send_msg);
   }
@@ -2549,16 +2528,11 @@ static int ipmi_atca_detect(ipmi_user_t user )
   int rv ;
   unsigned char data[1] ;
   struct ipmi_system_interface_addr *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct kernel_ipmi_msg *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct ipmi_addr *__cil_tmp17 ;
   unsigned int *__cil_tmp18 ;
   unsigned int __cil_tmp19 ;
@@ -2568,23 +2542,18 @@ static int ipmi_atca_detect(ipmi_user_t user )
   {
   __cil_tmp6 = & smi_addr;
   *((int *)__cil_tmp6) = 12;
-  __cil_tmp7 = (unsigned long )(& smi_addr) + 4;
-  *((short *)__cil_tmp7) = (short)15;
-  __cil_tmp8 = (unsigned long )(& smi_addr) + 6;
-  *((unsigned char *)__cil_tmp8) = (unsigned char)0;
+  *((short *)((void *)(&smi_addr) + 4)) = (short)15;
+  *((unsigned char *)((void *)(&smi_addr) + 6)) = (unsigned char)0;
   __cil_tmp9 = & send_msg;
   *((unsigned char *)__cil_tmp9) = (unsigned char)44;
-  __cil_tmp10 = (unsigned long )(& send_msg) + 1;
-  *((unsigned char *)__cil_tmp10) = (unsigned char)1;
+  *((unsigned char *)((void *)(&send_msg) + 1)) = (unsigned char)1;
   __cil_tmp11 = 0 * 1UL;
   __cil_tmp12 = (unsigned long )(data) + __cil_tmp11;
   *((unsigned char *)__cil_tmp12) = (unsigned char)0;
-  __cil_tmp13 = (unsigned long )(& send_msg) + 8;
   __cil_tmp14 = 0 * 1UL;
   __cil_tmp15 = (unsigned long )(data) + __cil_tmp14;
-  *((unsigned char **)__cil_tmp13) = (unsigned char *)__cil_tmp15;
-  __cil_tmp16 = (unsigned long )(& send_msg) + 2;
-  *((unsigned short *)__cil_tmp16) = (unsigned short )1UL;
+  *((unsigned char **)((void *)(&send_msg) + 8)) = (unsigned char *)__cil_tmp15;
+  *((unsigned short *)((void *)(&send_msg) + 2)) = (unsigned short )1UL;
   __cil_tmp17 = (struct ipmi_addr *)(& smi_addr);
   rv = ipmi_request_wait_for_response(user, __cil_tmp17, & send_msg);
   __cil_tmp18 = & mfg_id;
@@ -2614,10 +2583,7 @@ static void ipmi_poweroff_atca(ipmi_user_t user )
   int rv ;
   unsigned char data[4] ;
   struct ipmi_system_interface_addr *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct kernel_ipmi_msg *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
@@ -2626,24 +2592,19 @@ static void ipmi_poweroff_atca(ipmi_user_t user )
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct ipmi_addr *__cil_tmp23 ;
   {
   {
   __cil_tmp6 = & smi_addr;
   *((int *)__cil_tmp6) = 12;
-  __cil_tmp7 = (unsigned long )(& smi_addr) + 4;
-  *((short *)__cil_tmp7) = (short)15;
-  __cil_tmp8 = (unsigned long )(& smi_addr) + 6;
-  *((unsigned char *)__cil_tmp8) = (unsigned char)0;
+  *((short *)((void *)(&smi_addr) + 4)) = (short)15;
+  *((unsigned char *)((void *)(&smi_addr) + 6)) = (unsigned char)0;
   printk("<6>IPMI poweroff: Powering down via ATCA power command\n");
   __cil_tmp9 = & send_msg;
   *((unsigned char *)__cil_tmp9) = (unsigned char)44;
-  __cil_tmp10 = (unsigned long )(& send_msg) + 1;
-  *((unsigned char *)__cil_tmp10) = (unsigned char)17;
+  *((unsigned char *)((void *)(&send_msg) + 1)) = (unsigned char)17;
   __cil_tmp11 = 0 * 1UL;
   __cil_tmp12 = (unsigned long )(data) + __cil_tmp11;
   *((unsigned char *)__cil_tmp12) = (unsigned char)0;
@@ -2656,12 +2617,10 @@ static void ipmi_poweroff_atca(ipmi_user_t user )
   __cil_tmp17 = 3 * 1UL;
   __cil_tmp18 = (unsigned long )(data) + __cil_tmp17;
   *((unsigned char *)__cil_tmp18) = (unsigned char)0;
-  __cil_tmp19 = (unsigned long )(& send_msg) + 8;
   __cil_tmp20 = 0 * 1UL;
   __cil_tmp21 = (unsigned long )(data) + __cil_tmp20;
-  *((unsigned char **)__cil_tmp19) = (unsigned char *)__cil_tmp21;
-  __cil_tmp22 = (unsigned long )(& send_msg) + 2;
-  *((unsigned short *)__cil_tmp22) = (unsigned short )4UL;
+  *((unsigned char **)((void *)(&send_msg) + 8)) = (unsigned char *)__cil_tmp21;
+  *((unsigned short *)((void *)(&send_msg) + 2)) = (unsigned short )4UL;
   __cil_tmp23 = (struct ipmi_addr *)(& smi_addr);
   rv = ipmi_request_in_rc_mode(user, __cil_tmp23, & send_msg);
   }
@@ -2718,17 +2677,11 @@ static void ipmi_poweroff_cpi1(ipmi_user_t user )
   unsigned char aer_addr ;
   unsigned char aer_lun ;
   struct ipmi_system_interface_addr *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct kernel_ipmi_msg *__cil_tmp14 ;
   int __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   void *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct ipmi_addr *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned char *__cil_tmp23 ;
   unsigned char *__cil_tmp24 ;
   unsigned char __cil_tmp25 ;
@@ -2740,68 +2693,46 @@ static void ipmi_poweroff_cpi1(ipmi_user_t user )
   int __cil_tmp31 ;
   struct kernel_ipmi_msg *__cil_tmp32 ;
   int __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   void *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct ipmi_addr *__cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned char *__cil_tmp41 ;
   unsigned char *__cil_tmp42 ;
   unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char *__cil_tmp45 ;
   unsigned char *__cil_tmp46 ;
   struct ipmi_ipmb_addr *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   struct kernel_ipmi_msg *__cil_tmp51 ;
   int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct ipmi_addr *__cil_tmp56 ;
   struct kernel_ipmi_msg *__cil_tmp57 ;
   int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
   unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct ipmi_addr *__cil_tmp66 ;
   struct kernel_ipmi_msg *__cil_tmp67 ;
   int __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   unsigned long __cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   struct ipmi_addr *__cil_tmp76 ;
   {
   {
   __cil_tmp11 = & smi_addr;
   *((int *)__cil_tmp11) = 12;
-  __cil_tmp12 = (unsigned long )(& smi_addr) + 4;
-  *((short *)__cil_tmp12) = (short)15;
-  __cil_tmp13 = (unsigned long )(& smi_addr) + 6;
-  *((unsigned char *)__cil_tmp13) = (unsigned char)0;
+  *((short *)((void *)(&smi_addr) + 4)) = (short)15;
+  *((unsigned char *)((void *)(&smi_addr) + 6)) = (unsigned char)0;
   printk("<6>IPMI poweroff: Powering down via CPI1 power command\n");
   __cil_tmp14 = & send_msg;
   __cil_tmp15 = 248 >> 2;
   *((unsigned char *)__cil_tmp14) = (unsigned char )__cil_tmp15;
-  __cil_tmp16 = (unsigned long )(& send_msg) + 1;
-  *((unsigned char *)__cil_tmp16) = (unsigned char)163;
-  __cil_tmp17 = (unsigned long )(& send_msg) + 8;
+  *((unsigned char *)((void *)(&send_msg) + 1)) = (unsigned char)163;
   __cil_tmp18 = (void *)0;
-  *((unsigned char **)__cil_tmp17) = (unsigned char *)__cil_tmp18;
-  __cil_tmp19 = (unsigned long )(& send_msg) + 2;
-  *((unsigned short *)__cil_tmp19) = (unsigned short)0;
+  *((unsigned char **)((void *)(&send_msg) + 8)) = (unsigned char *)__cil_tmp18;
+  *((unsigned short *)((void *)(&send_msg) + 2)) = (unsigned short)0;
   __cil_tmp20 = (struct ipmi_addr *)(& smi_addr);
   rv = ipmi_request_in_rc_mode(user, __cil_tmp20, & send_msg);
   }
@@ -2810,8 +2741,7 @@ static void ipmi_poweroff_cpi1(ipmi_user_t user )
   } else {
   }
   __cil_tmp21 = 80 + 8;
-  __cil_tmp22 = (unsigned long )(& halt_recv_msg) + __cil_tmp21;
-  __cil_tmp23 = *((unsigned char **)__cil_tmp22);
+  __cil_tmp23 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp21));
   __cil_tmp24 = __cil_tmp23 + 1;
   __cil_tmp25 = *__cil_tmp24;
   slot = (int )__cil_tmp25;
@@ -2830,13 +2760,10 @@ static void ipmi_poweroff_cpi1(ipmi_user_t user )
   __cil_tmp32 = & send_msg;
   __cil_tmp33 = 16 >> 2;
   *((unsigned char *)__cil_tmp32) = (unsigned char )__cil_tmp33;
-  __cil_tmp34 = (unsigned long )(& send_msg) + 1;
-  *((unsigned char *)__cil_tmp34) = (unsigned char)1;
-  __cil_tmp35 = (unsigned long )(& send_msg) + 8;
+  *((unsigned char *)((void *)(&send_msg) + 1)) = (unsigned char)1;
   __cil_tmp36 = (void *)0;
-  *((unsigned char **)__cil_tmp35) = (unsigned char *)__cil_tmp36;
-  __cil_tmp37 = (unsigned long )(& send_msg) + 2;
-  *((unsigned short *)__cil_tmp37) = (unsigned short)0;
+  *((unsigned char **)((void *)(&send_msg) + 8)) = (unsigned char *)__cil_tmp36;
+  *((unsigned short *)((void *)(&send_msg) + 2)) = (unsigned short)0;
   __cil_tmp38 = (struct ipmi_addr *)(& smi_addr);
   rv = ipmi_request_in_rc_mode(user, __cil_tmp38, & send_msg);
   }
@@ -2846,48 +2773,37 @@ static void ipmi_poweroff_cpi1(ipmi_user_t user )
   }
   {
   __cil_tmp39 = 80 + 8;
-  __cil_tmp40 = (unsigned long )(& halt_recv_msg) + __cil_tmp39;
-  __cil_tmp41 = *((unsigned char **)__cil_tmp40);
+  __cil_tmp41 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp39));
   __cil_tmp42 = __cil_tmp41 + 1;
   aer_addr = *__cil_tmp42;
   __cil_tmp43 = 80 + 8;
-  __cil_tmp44 = (unsigned long )(& halt_recv_msg) + __cil_tmp43;
-  __cil_tmp45 = *((unsigned char **)__cil_tmp44);
+  __cil_tmp45 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp43));
   __cil_tmp46 = __cil_tmp45 + 2;
   aer_lun = *__cil_tmp46;
   __cil_tmp47 = & ipmb_addr;
   *((int *)__cil_tmp47) = 1;
-  __cil_tmp48 = (unsigned long )(& ipmb_addr) + 4;
-  *((short *)__cil_tmp48) = (short)0;
-  __cil_tmp49 = (unsigned long )(& ipmb_addr) + 6;
-  *((unsigned char *)__cil_tmp49) = aer_addr;
-  __cil_tmp50 = (unsigned long )(& ipmb_addr) + 7;
-  *((unsigned char *)__cil_tmp50) = aer_lun;
+  *((short *)((void *)(&ipmb_addr) + 4)) = (short)0;
+  *((unsigned char *)((void *)(&ipmb_addr) + 6)) = aer_addr;
+  *((unsigned char *)((void *)(&ipmb_addr) + 7)) = aer_lun;
   __cil_tmp51 = & send_msg;
   __cil_tmp52 = 248 >> 2;
   *((unsigned char *)__cil_tmp51) = (unsigned char )__cil_tmp52;
-  __cil_tmp53 = (unsigned long )(& send_msg) + 1;
-  *((unsigned char *)__cil_tmp53) = (unsigned char)128;
-  __cil_tmp54 = (unsigned long )(& send_msg) + 8;
-  *((unsigned char **)__cil_tmp54) = & hotswap_ipmb;
-  __cil_tmp55 = (unsigned long )(& send_msg) + 2;
-  *((unsigned short *)__cil_tmp55) = (unsigned short)1;
+  *((unsigned char *)((void *)(&send_msg) + 1)) = (unsigned char)128;
+  *((unsigned char **)((void *)(&send_msg) + 8)) = & hotswap_ipmb;
+  *((unsigned short *)((void *)(&send_msg) + 2)) = (unsigned short)1;
   __cil_tmp56 = (struct ipmi_addr *)(& ipmb_addr);
   ipmi_request_in_rc_mode(user, __cil_tmp56, & send_msg);
   __cil_tmp57 = & send_msg;
   __cil_tmp58 = 248 >> 2;
   *((unsigned char *)__cil_tmp57) = (unsigned char )__cil_tmp58;
-  __cil_tmp59 = (unsigned long )(& send_msg) + 1;
-  *((unsigned char *)__cil_tmp59) = (unsigned char)132;
-  __cil_tmp60 = (unsigned long )(& send_msg) + 8;
+  *((unsigned char *)((void *)(&send_msg) + 1)) = (unsigned char)132;
   __cil_tmp61 = 0 * 1UL;
   __cil_tmp62 = (unsigned long )(data) + __cil_tmp61;
-  *((unsigned char **)__cil_tmp60) = (unsigned char *)__cil_tmp62;
+  *((unsigned char **)((void *)(&send_msg) + 8)) = (unsigned char *)__cil_tmp62;
   __cil_tmp63 = 0 * 1UL;
   __cil_tmp64 = (unsigned long )(data) + __cil_tmp63;
   *((unsigned char *)__cil_tmp64) = (unsigned char)1;
-  __cil_tmp65 = (unsigned long )(& send_msg) + 2;
-  *((unsigned short *)__cil_tmp65) = (unsigned short)1;
+  *((unsigned short *)((void *)(&send_msg) + 2)) = (unsigned short)1;
   __cil_tmp66 = (struct ipmi_addr *)(& smi_addr);
   rv = ipmi_request_in_rc_mode(user, __cil_tmp66, & send_msg);
   }
@@ -2899,17 +2815,14 @@ static void ipmi_poweroff_cpi1(ipmi_user_t user )
   __cil_tmp67 = & send_msg;
   __cil_tmp68 = 248 >> 2;
   *((unsigned char *)__cil_tmp67) = (unsigned char )__cil_tmp68;
-  __cil_tmp69 = (unsigned long )(& send_msg) + 1;
-  *((unsigned char *)__cil_tmp69) = (unsigned char)130;
-  __cil_tmp70 = (unsigned long )(& send_msg) + 8;
+  *((unsigned char *)((void *)(&send_msg) + 1)) = (unsigned char)130;
   __cil_tmp71 = 0 * 1UL;
   __cil_tmp72 = (unsigned long )(data) + __cil_tmp71;
-  *((unsigned char **)__cil_tmp70) = (unsigned char *)__cil_tmp72;
+  *((unsigned char **)((void *)(&send_msg) + 8)) = (unsigned char *)__cil_tmp72;
   __cil_tmp73 = 0 * 1UL;
   __cil_tmp74 = (unsigned long )(data) + __cil_tmp73;
   *((unsigned char *)__cil_tmp74) = (unsigned char)1;
-  __cil_tmp75 = (unsigned long )(& send_msg) + 2;
-  *((unsigned short *)__cil_tmp75) = (unsigned short)1;
+  *((unsigned short *)((void *)(&send_msg) + 2)) = (unsigned short)1;
   __cil_tmp76 = (struct ipmi_addr *)(& smi_addr);
   rv = ipmi_request_in_rc_mode(user, __cil_tmp76, & send_msg);
   }
@@ -3004,30 +2917,23 @@ static void ipmi_poweroff_chassis(ipmi_user_t user )
   unsigned char data[1] ;
   char const *tmp___3 ;
   struct ipmi_system_interface_addr *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int *__cil_tmp10 ;
   struct kernel_ipmi_msg *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   int *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct ipmi_addr *__cil_tmp22 ;
   int *__cil_tmp23 ;
   int *__cil_tmp24 ;
   {
   __cil_tmp7 = & smi_addr;
   *((int *)__cil_tmp7) = 12;
-  __cil_tmp8 = (unsigned long )(& smi_addr) + 4;
-  *((short *)__cil_tmp8) = (short)15;
-  __cil_tmp9 = (unsigned long )(& smi_addr) + 6;
-  *((unsigned char *)__cil_tmp9) = (unsigned char)0;
+  *((short *)((void *)(&smi_addr) + 4)) = (short)15;
+  *((unsigned char *)((void *)(&smi_addr) + 6)) = (unsigned char)0;
   powercyclefailed:
   {
   __cil_tmp10 = & poweroff_powercycle;
@@ -3041,8 +2947,7 @@ static void ipmi_poweroff_chassis(ipmi_user_t user )
   printk("<6>IPMI poweroff: Powering %s via IPMI chassis control command\n", tmp___3);
   __cil_tmp11 = & send_msg;
   *((unsigned char *)__cil_tmp11) = (unsigned char)0;
-  __cil_tmp12 = (unsigned long )(& send_msg) + 1;
-  *((unsigned char *)__cil_tmp12) = (unsigned char)2;
+  *((unsigned char *)((void *)(&send_msg) + 1)) = (unsigned char)2;
   }
   {
   __cil_tmp13 = & poweroff_powercycle;
@@ -3057,12 +2962,10 @@ static void ipmi_poweroff_chassis(ipmi_user_t user )
   }
   }
   {
-  __cil_tmp18 = (unsigned long )(& send_msg) + 8;
   __cil_tmp19 = 0 * 1UL;
   __cil_tmp20 = (unsigned long )(data) + __cil_tmp19;
-  *((unsigned char **)__cil_tmp18) = (unsigned char *)__cil_tmp20;
-  __cil_tmp21 = (unsigned long )(& send_msg) + 2;
-  *((unsigned short *)__cil_tmp21) = (unsigned short )1UL;
+  *((unsigned char **)((void *)(&send_msg) + 8)) = (unsigned char *)__cil_tmp20;
+  *((unsigned short *)((void *)(&send_msg) + 2)) = (unsigned short )1UL;
   __cil_tmp22 = (struct ipmi_addr *)(& smi_addr);
   rv = ipmi_request_in_rc_mode(user, __cil_tmp22, & send_msg);
   }
@@ -3122,41 +3025,31 @@ static void ipmi_po_new_smi(int if_num , struct device *device )
   unsigned int __cil_tmp12 ;
   void *__cil_tmp13 ;
   struct ipmi_system_interface_addr *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct kernel_ipmi_msg *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   void *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   ipmi_user_t *__cil_tmp22 ;
   ipmi_user_t __cil_tmp23 ;
   struct ipmi_addr *__cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned short __cil_tmp27 ;
   int __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned short __cil_tmp31 ;
   int __cil_tmp32 ;
   unsigned int *__cil_tmp33 ;
   unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned char *__cil_tmp36 ;
   unsigned char *__cil_tmp37 ;
   unsigned char __cil_tmp38 ;
   int __cil_tmp39 ;
   int __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned char *__cil_tmp43 ;
   unsigned char *__cil_tmp44 ;
   unsigned char __cil_tmp45 ;
   int __cil_tmp46 ;
   int __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   unsigned char *__cil_tmp50 ;
   unsigned char *__cil_tmp51 ;
   unsigned char __cil_tmp52 ;
@@ -3164,25 +3057,21 @@ static void ipmi_po_new_smi(int if_num , struct device *device )
   int __cil_tmp54 ;
   int __cil_tmp55 ;
   unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   unsigned char *__cil_tmp58 ;
   unsigned char *__cil_tmp59 ;
   unsigned char __cil_tmp60 ;
   int __cil_tmp61 ;
   int __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   unsigned char *__cil_tmp65 ;
   unsigned char *__cil_tmp66 ;
   unsigned char __cil_tmp67 ;
   int __cil_tmp68 ;
   int __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   unsigned char *__cil_tmp72 ;
   unsigned char *__cil_tmp73 ;
   unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   unsigned char *__cil_tmp76 ;
   unsigned char *__cil_tmp77 ;
   unsigned long __cil_tmp78 ;
@@ -3237,19 +3126,14 @@ static void ipmi_po_new_smi(int if_num , struct device *device )
   ipmi_ifnum = if_num;
   __cil_tmp14 = & smi_addr;
   *((int *)__cil_tmp14) = 12;
-  __cil_tmp15 = (unsigned long )(& smi_addr) + 4;
-  *((short *)__cil_tmp15) = (short)15;
-  __cil_tmp16 = (unsigned long )(& smi_addr) + 6;
-  *((unsigned char *)__cil_tmp16) = (unsigned char)0;
+  *((short *)((void *)(&smi_addr) + 4)) = (short)15;
+  *((unsigned char *)((void *)(&smi_addr) + 6)) = (unsigned char)0;
   __cil_tmp17 = & send_msg;
   *((unsigned char *)__cil_tmp17) = (unsigned char)6;
-  __cil_tmp18 = (unsigned long )(& send_msg) + 1;
-  *((unsigned char *)__cil_tmp18) = (unsigned char)1;
-  __cil_tmp19 = (unsigned long )(& send_msg) + 8;
+  *((unsigned char *)((void *)(&send_msg) + 1)) = (unsigned char)1;
   __cil_tmp20 = (void *)0;
-  *((unsigned char **)__cil_tmp19) = (unsigned char *)__cil_tmp20;
-  __cil_tmp21 = (unsigned long )(& send_msg) + 2;
-  *((unsigned short *)__cil_tmp21) = (unsigned short)0;
+  *((unsigned char **)((void *)(&send_msg) + 8)) = (unsigned char *)__cil_tmp20;
+  *((unsigned short *)((void *)(&send_msg) + 2)) = (unsigned short)0;
   __cil_tmp22 = & ipmi_user;
   __cil_tmp23 = *__cil_tmp22;
   __cil_tmp24 = (struct ipmi_addr *)(& smi_addr);
@@ -3265,14 +3149,12 @@ static void ipmi_po_new_smi(int if_num , struct device *device )
   }
   {
   __cil_tmp25 = 80 + 2;
-  __cil_tmp26 = (unsigned long )(& halt_recv_msg) + __cil_tmp25;
-  __cil_tmp27 = *((unsigned short *)__cil_tmp26);
+  __cil_tmp27 = *((unsigned short *)((void *)(&halt_recv_msg) + __cil_tmp25));
   __cil_tmp28 = (int )__cil_tmp27;
   if (__cil_tmp28 < 12) {
     {
     __cil_tmp29 = 80 + 2;
-    __cil_tmp30 = (unsigned long )(& halt_recv_msg) + __cil_tmp29;
-    __cil_tmp31 = *((unsigned short *)__cil_tmp30);
+    __cil_tmp31 = *((unsigned short *)((void *)(&halt_recv_msg) + __cil_tmp29));
     __cil_tmp32 = (int )__cil_tmp31;
     printk("<3>IPMI poweroff: (chassis) IPMI get device id info too, short, was %d bytes, needed %d bytes\n",
            __cil_tmp32, 12);
@@ -3283,22 +3165,19 @@ static void ipmi_po_new_smi(int if_num , struct device *device )
   }
   __cil_tmp33 = & mfg_id;
   __cil_tmp34 = 80 + 8;
-  __cil_tmp35 = (unsigned long )(& halt_recv_msg) + __cil_tmp34;
-  __cil_tmp36 = *((unsigned char **)__cil_tmp35);
+  __cil_tmp36 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp34));
   __cil_tmp37 = __cil_tmp36 + 9;
   __cil_tmp38 = *__cil_tmp37;
   __cil_tmp39 = (int )__cil_tmp38;
   __cil_tmp40 = __cil_tmp39 << 16;
   __cil_tmp41 = 80 + 8;
-  __cil_tmp42 = (unsigned long )(& halt_recv_msg) + __cil_tmp41;
-  __cil_tmp43 = *((unsigned char **)__cil_tmp42);
+  __cil_tmp43 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp41));
   __cil_tmp44 = __cil_tmp43 + 8;
   __cil_tmp45 = *__cil_tmp44;
   __cil_tmp46 = (int )__cil_tmp45;
   __cil_tmp47 = __cil_tmp46 << 8;
   __cil_tmp48 = 80 + 8;
-  __cil_tmp49 = (unsigned long )(& halt_recv_msg) + __cil_tmp48;
-  __cil_tmp50 = *((unsigned char **)__cil_tmp49);
+  __cil_tmp50 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp48));
   __cil_tmp51 = __cil_tmp50 + 7;
   __cil_tmp52 = *__cil_tmp51;
   __cil_tmp53 = (int )__cil_tmp52;
@@ -3306,28 +3185,24 @@ static void ipmi_po_new_smi(int if_num , struct device *device )
   __cil_tmp55 = __cil_tmp54 | __cil_tmp40;
   *__cil_tmp33 = (unsigned int )__cil_tmp55;
   __cil_tmp56 = 80 + 8;
-  __cil_tmp57 = (unsigned long )(& halt_recv_msg) + __cil_tmp56;
-  __cil_tmp58 = *((unsigned char **)__cil_tmp57);
+  __cil_tmp58 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp56));
   __cil_tmp59 = __cil_tmp58 + 11;
   __cil_tmp60 = *__cil_tmp59;
   __cil_tmp61 = (int )__cil_tmp60;
   __cil_tmp62 = __cil_tmp61 << 8;
   __cil_tmp63 = 80 + 8;
-  __cil_tmp64 = (unsigned long )(& halt_recv_msg) + __cil_tmp63;
-  __cil_tmp65 = *((unsigned char **)__cil_tmp64);
+  __cil_tmp65 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp63));
   __cil_tmp66 = __cil_tmp65 + 10;
   __cil_tmp67 = *__cil_tmp66;
   __cil_tmp68 = (int )__cil_tmp67;
   __cil_tmp69 = __cil_tmp68 | __cil_tmp62;
   prod_id = (unsigned int )__cil_tmp69;
   __cil_tmp70 = 80 + 8;
-  __cil_tmp71 = (unsigned long )(& halt_recv_msg) + __cil_tmp70;
-  __cil_tmp72 = *((unsigned char **)__cil_tmp71);
+  __cil_tmp72 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp70));
   __cil_tmp73 = __cil_tmp72 + 6;
   capabilities = *__cil_tmp73;
   __cil_tmp74 = 80 + 8;
-  __cil_tmp75 = (unsigned long )(& halt_recv_msg) + __cil_tmp74;
-  __cil_tmp76 = *((unsigned char **)__cil_tmp75);
+  __cil_tmp76 = *((unsigned char **)((void *)(&halt_recv_msg) + __cil_tmp74));
   __cil_tmp77 = __cil_tmp76 + 5;
   ipmi_version = *__cil_tmp77;
   i = 0;

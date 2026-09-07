@@ -3097,15 +3097,11 @@ struct input_dev *input_allocate_device(void) {
 extern void input_free_device(struct input_dev * ) ;
 __inline static void *input_get_drvdata(struct input_dev *dev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 840;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 840);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -3113,14 +3109,11 @@ __inline static void *input_get_drvdata(struct input_dev *dev )
 }
 }
 __inline static void input_set_drvdata(struct input_dev *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 840;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 840);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -3198,8 +3191,6 @@ static int mpu3050_xyz_read_reg(struct i2c_client *client , u8 *buffer , int len
   char *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
@@ -3211,8 +3202,6 @@ static int mpu3050_xyz_read_reg(struct i2c_client *client , u8 *buffer , int len
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
@@ -3222,8 +3211,6 @@ static int mpu3050_xyz_read_reg(struct i2c_client *client , u8 *buffer , int len
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct i2c_adapter *__cil_tmp36 ;
   struct i2c_msg *__cil_tmp37 ;
   {
@@ -3232,9 +3219,7 @@ static int mpu3050_xyz_read_reg(struct i2c_client *client , u8 *buffer , int len
   *__cil_tmp7 = (char)29;
   __cil_tmp8 = 0 * 16UL;
   __cil_tmp9 = (unsigned long )(msg) + __cil_tmp8;
-  __cil_tmp10 = (unsigned long )client;
-  __cil_tmp11 = __cil_tmp10 + 2;
-  *((__u16 *)__cil_tmp9) = *((unsigned short *)__cil_tmp11);
+  *((__u16 *)__cil_tmp9) = *((unsigned short *)((void *)client + 2));
   __cil_tmp12 = 0 * 16UL;
   __cil_tmp13 = __cil_tmp12 + 2;
   __cil_tmp14 = (unsigned long )(msg) + __cil_tmp13;
@@ -3249,9 +3234,7 @@ static int mpu3050_xyz_read_reg(struct i2c_client *client , u8 *buffer , int len
   *((__u8 **)__cil_tmp20) = (__u8 *)(& cmd);
   __cil_tmp21 = 1 * 16UL;
   __cil_tmp22 = (unsigned long )(msg) + __cil_tmp21;
-  __cil_tmp23 = (unsigned long )client;
-  __cil_tmp24 = __cil_tmp23 + 2;
-  *((__u16 *)__cil_tmp22) = *((unsigned short *)__cil_tmp24);
+  *((__u16 *)__cil_tmp22) = *((unsigned short *)((void *)client + 2));
   __cil_tmp25 = 1 * 16UL;
   __cil_tmp26 = __cil_tmp25 + 2;
   __cil_tmp27 = (unsigned long )(msg) + __cil_tmp26;
@@ -3264,9 +3247,7 @@ static int mpu3050_xyz_read_reg(struct i2c_client *client , u8 *buffer , int len
   __cil_tmp32 = __cil_tmp31 + 8;
   __cil_tmp33 = (unsigned long )(msg) + __cil_tmp32;
   *((__u8 **)__cil_tmp33) = buffer;
-  __cil_tmp34 = (unsigned long )client;
-  __cil_tmp35 = __cil_tmp34 + 24;
-  __cil_tmp36 = *((struct i2c_adapter **)__cil_tmp35);
+  __cil_tmp36 = *((struct i2c_adapter **)((void *)client + 24));
   __cil_tmp37 = (struct i2c_msg *)(& msg);
   tmp = i2c_transfer(__cil_tmp36, __cil_tmp37, 2);
   }
@@ -3291,37 +3272,21 @@ static void mpu3050_read_xyz(struct i2c_client *client , struct axis_data *coord
   u16 __cil_tmp17 ;
   int __cil_tmp18 ;
   __u16 __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   u16 __cil_tmp24 ;
   int __cil_tmp25 ;
   __u16 __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct _ddebug *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned char __cil_tmp36 ;
   long __cil_tmp37 ;
   long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct device *__cil_tmp41 ;
   struct device const *__cil_tmp42 ;
   s16 __cil_tmp43 ;
   int __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   s16 __cil_tmp47 ;
   int __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   s16 __cil_tmp51 ;
   int __cil_tmp52 ;
   {
@@ -3341,51 +3306,35 @@ static void mpu3050_read_xyz(struct i2c_client *client , struct axis_data *coord
   __cil_tmp18 = (int )__cil_tmp17;
   __cil_tmp19 = (__u16 )__cil_tmp18;
   tmp___0 = __fswab16(__cil_tmp19);
-  __cil_tmp20 = (unsigned long )coords;
-  __cil_tmp21 = __cil_tmp20 + 2;
-  *((s16 *)__cil_tmp21) = (s16 )tmp___0;
+  *((s16 *)((void *)coords + 2)) = (s16 )tmp___0;
   __cil_tmp22 = 2 * 2UL;
   __cil_tmp23 = (unsigned long )(buffer) + __cil_tmp22;
   __cil_tmp24 = *((u16 *)__cil_tmp23);
   __cil_tmp25 = (int )__cil_tmp24;
   __cil_tmp26 = (__u16 )__cil_tmp25;
   tmp___1 = __fswab16(__cil_tmp26);
-  __cil_tmp27 = (unsigned long )coords;
-  __cil_tmp28 = __cil_tmp27 + 4;
-  *((s16 *)__cil_tmp28) = (s16 )tmp___1;
+  *((s16 *)((void *)coords + 4)) = (s16 )tmp___1;
   __cil_tmp29 = & descriptor;
   *((char const **)__cil_tmp29) = "mpu3050";
-  __cil_tmp30 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp30) = "mpu3050_read_xyz";
-  __cil_tmp31 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp31) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3031/dscv_tempdir/dscv/ri/43_1a/drivers/input/misc/mpu3050.c.p";
-  __cil_tmp32 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp32) = "%s: x %d, y %d, z %d\n";
-  __cil_tmp33 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp33) = 183U;
-  __cil_tmp34 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp34) = (unsigned char)0;
-  __cil_tmp35 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp36 = *((unsigned char *)__cil_tmp35);
+  *((char const **)((void *)(&descriptor) + 8)) = "mpu3050_read_xyz";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/3031/dscv_tempdir/dscv/ri/43_1a/drivers/input/misc/mpu3050.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "%s: x %d, y %d, z %d\n";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 183U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp36 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp37 = (long )__cil_tmp36;
   __cil_tmp38 = __cil_tmp37 & 1L;
   tmp___2 = __builtin_expect(__cil_tmp38, 0L);
   }
   if (tmp___2 != 0L) {
     {
-    __cil_tmp39 = (unsigned long )client;
-    __cil_tmp40 = __cil_tmp39 + 40;
-    __cil_tmp41 = (struct device *)__cil_tmp40;
+    __cil_tmp41 = (struct device *)((void *)client + 40);
     __cil_tmp42 = (struct device const *)__cil_tmp41;
     __cil_tmp43 = *((s16 *)coords);
     __cil_tmp44 = (int )__cil_tmp43;
-    __cil_tmp45 = (unsigned long )coords;
-    __cil_tmp46 = __cil_tmp45 + 2;
-    __cil_tmp47 = *((s16 *)__cil_tmp46);
+    __cil_tmp47 = *((s16 *)((void *)coords + 2));
     __cil_tmp48 = (int )__cil_tmp47;
-    __cil_tmp49 = (unsigned long )coords;
-    __cil_tmp50 = __cil_tmp49 + 4;
-    __cil_tmp51 = *((s16 *)__cil_tmp50);
+    __cil_tmp51 = *((s16 *)((void *)coords + 4));
     __cil_tmp52 = (int )__cil_tmp51;
     __dynamic_dev_dbg(& descriptor, __cil_tmp42, "%s: x %d, y %d, z %d\n", "mpu3050_read_xyz",
                       __cil_tmp44, __cil_tmp48, __cil_tmp52);
@@ -3444,23 +3393,17 @@ static int mpu3050_input_open(struct input_dev *input )
 { struct mpu3050_sensor *sensor ;
   void *tmp ;
   int error ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct i2c_client *__cil_tmp8 ;
   struct i2c_client const *__cil_tmp9 ;
   u8 __cil_tmp10 ;
   u8 __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   {
   {
   tmp = input_get_drvdata(input);
   sensor = (struct mpu3050_sensor *)tmp;
-  __cil_tmp5 = (unsigned long )sensor;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((struct device **)__cil_tmp6);
+  __cil_tmp7 = *((struct device **)((void *)sensor + 8));
   pm_runtime_get(__cil_tmp7);
   __cil_tmp8 = *((struct i2c_client **)sensor);
   __cil_tmp9 = (struct i2c_client const *)__cil_tmp8;
@@ -3470,9 +3413,7 @@ static int mpu3050_input_open(struct input_dev *input )
   }
   if (error < 0) {
     {
-    __cil_tmp12 = (unsigned long )sensor;
-    __cil_tmp13 = __cil_tmp12 + 8;
-    __cil_tmp14 = *((struct device **)__cil_tmp13);
+    __cil_tmp14 = *((struct device **)((void *)sensor + 8));
     pm_runtime_put(__cil_tmp14);
     }
     return (error);
@@ -3484,16 +3425,12 @@ static int mpu3050_input_open(struct input_dev *input )
 static void mpu3050_input_close(struct input_dev *input )
 { struct mpu3050_sensor *sensor ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   {
   {
   tmp = input_get_drvdata(input);
   sensor = (struct mpu3050_sensor *)tmp;
-  __cil_tmp4 = (unsigned long )sensor;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((struct device **)__cil_tmp5);
+  __cil_tmp6 = *((struct device **)((void *)sensor + 8));
   pm_runtime_put(__cil_tmp6);
   }
   return;
@@ -3503,56 +3440,36 @@ static irqreturn_t mpu3050_interrupt_thread(int irq , void *data )
 { struct mpu3050_sensor *sensor ;
   struct axis_data axis ;
   struct i2c_client *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct input_dev *__cil_tmp8 ;
   struct axis_data *__cil_tmp9 ;
   s16 __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct input_dev *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   s16 __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct input_dev *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   s16 __cil_tmp22 ;
   int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct input_dev *__cil_tmp26 ;
   {
   {
   sensor = (struct mpu3050_sensor *)data;
   __cil_tmp5 = *((struct i2c_client **)sensor);
   mpu3050_read_xyz(__cil_tmp5, & axis);
-  __cil_tmp6 = (unsigned long )sensor;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = *((struct input_dev **)__cil_tmp7);
+  __cil_tmp8 = *((struct input_dev **)((void *)sensor + 16));
   __cil_tmp9 = & axis;
   __cil_tmp10 = *((s16 *)__cil_tmp9);
   __cil_tmp11 = (int )__cil_tmp10;
   input_report_abs(__cil_tmp8, 0U, __cil_tmp11);
-  __cil_tmp12 = (unsigned long )sensor;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = *((struct input_dev **)__cil_tmp13);
-  __cil_tmp15 = (unsigned long )(& axis) + 2;
-  __cil_tmp16 = *((s16 *)__cil_tmp15);
+  __cil_tmp14 = *((struct input_dev **)((void *)sensor + 16));
+  __cil_tmp16 = *((s16 *)((void *)(&axis) + 2));
   __cil_tmp17 = (int )__cil_tmp16;
   input_report_abs(__cil_tmp14, 1U, __cil_tmp17);
-  __cil_tmp18 = (unsigned long )sensor;
-  __cil_tmp19 = __cil_tmp18 + 16;
-  __cil_tmp20 = *((struct input_dev **)__cil_tmp19);
-  __cil_tmp21 = (unsigned long )(& axis) + 4;
-  __cil_tmp22 = *((s16 *)__cil_tmp21);
+  __cil_tmp20 = *((struct input_dev **)((void *)sensor + 16));
+  __cil_tmp22 = *((s16 *)((void *)(&axis) + 4));
   __cil_tmp23 = (int )__cil_tmp22;
   input_report_abs(__cil_tmp20, 2U, __cil_tmp23);
-  __cil_tmp24 = (unsigned long )sensor;
-  __cil_tmp25 = __cil_tmp24 + 16;
-  __cil_tmp26 = *((struct input_dev **)__cil_tmp25);
+  __cil_tmp26 = *((struct input_dev **)((void *)sensor + 16));
   input_sync(__cil_tmp26);
   }
   return ((irqreturn_t )1);
@@ -3654,82 +3571,38 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   struct mpu3050_sensor *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device const *__cil_tmp14 ;
   struct input_dev *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device const *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   u8 __cil_tmp28 ;
   struct i2c_client const *__cil_tmp29 ;
   u8 __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct device *__cil_tmp33 ;
   struct device const *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct device *__cil_tmp37 ;
   struct device const *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned long (*__cil_tmp51)[1U] ;
   unsigned long volatile *__cil_tmp52 ;
   void *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct device *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   int __cil_tmp59 ;
   unsigned int __cil_tmp60 ;
   irqreturn_t (*__cil_tmp61)(int , void * ) ;
   void *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   struct device *__cil_tmp65 ;
   struct device const *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   int __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct device *__cil_tmp72 ;
   struct device const *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   struct device *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   struct device *__cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   int __cil_tmp82 ;
   unsigned int __cil_tmp83 ;
   void *__cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   struct device *__cil_tmp87 ;
   void const *__cil_tmp88 ;
   {
@@ -3744,9 +3617,7 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   __cil_tmp10 = (unsigned long )sensor;
   if (__cil_tmp10 == __cil_tmp9) {
     {
-    __cil_tmp11 = (unsigned long )client;
-    __cil_tmp12 = __cil_tmp11 + 40;
-    __cil_tmp13 = (struct device *)__cil_tmp12;
+    __cil_tmp13 = (struct device *)((void *)client + 40);
     __cil_tmp14 = (struct device const *)__cil_tmp13;
     dev_err(__cil_tmp14, "failed to allocate driver data\n");
     error = -12;
@@ -3759,9 +3630,7 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
     __cil_tmp17 = (unsigned long )idev;
     if (__cil_tmp17 == __cil_tmp16) {
       {
-      __cil_tmp18 = (unsigned long )client;
-      __cil_tmp19 = __cil_tmp18 + 40;
-      __cil_tmp20 = (struct device *)__cil_tmp19;
+      __cil_tmp20 = (struct device *)((void *)client + 40);
       __cil_tmp21 = (struct device const *)__cil_tmp20;
       dev_err(__cil_tmp21, "failed to allocate driver data\n");
       error = -12;
@@ -3774,14 +3643,8 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   }
   {
   *((struct i2c_client **)sensor) = client;
-  __cil_tmp22 = (unsigned long )sensor;
-  __cil_tmp23 = __cil_tmp22 + 8;
-  __cil_tmp24 = (unsigned long )client;
-  __cil_tmp25 = __cil_tmp24 + 40;
-  *((struct device **)__cil_tmp23) = (struct device *)__cil_tmp25;
-  __cil_tmp26 = (unsigned long )sensor;
-  __cil_tmp27 = __cil_tmp26 + 16;
-  *((struct input_dev **)__cil_tmp27) = idev;
+  *((struct device **)((void *)sensor + 8)) = (struct device *)((void *)client + 40);
+  *((struct input_dev **)((void *)sensor + 16)) = idev;
   __cil_tmp28 = (u8 )1;
   mpu3050_set_power_mode(client, __cil_tmp28);
   msleep(10U);
@@ -3791,9 +3654,7 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   }
   if (ret < 0) {
     {
-    __cil_tmp31 = (unsigned long )client;
-    __cil_tmp32 = __cil_tmp31 + 40;
-    __cil_tmp33 = (struct device *)__cil_tmp32;
+    __cil_tmp33 = (struct device *)((void *)client + 40);
     __cil_tmp34 = (struct device const *)__cil_tmp33;
     dev_err(__cil_tmp34, "failed to detect device\n");
     error = -6;
@@ -3803,9 +3664,7 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   }
   if (ret != 105) {
     {
-    __cil_tmp35 = (unsigned long )client;
-    __cil_tmp36 = __cil_tmp35 + 40;
-    __cil_tmp37 = (struct device *)__cil_tmp36;
+    __cil_tmp37 = (struct device *)((void *)client + 40);
     __cil_tmp38 = (struct device const *)__cil_tmp37;
     dev_err(__cil_tmp38, "unsupported chip id\n");
     error = -6;
@@ -3815,23 +3674,11 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   }
   {
   *((char const **)idev) = "MPU3050";
-  __cil_tmp39 = (unsigned long )idev;
-  __cil_tmp40 = __cil_tmp39 + 24;
-  *((__u16 *)__cil_tmp40) = (__u16 )24U;
-  __cil_tmp41 = (unsigned long )idev;
-  __cil_tmp42 = __cil_tmp41 + 840;
-  __cil_tmp43 = (unsigned long )client;
-  __cil_tmp44 = __cil_tmp43 + 40;
-  *((struct device **)__cil_tmp42) = (struct device *)__cil_tmp44;
-  __cil_tmp45 = (unsigned long )idev;
-  __cil_tmp46 = __cil_tmp45 + 552;
-  *((int (**)(struct input_dev * ))__cil_tmp46) = & mpu3050_input_open;
-  __cil_tmp47 = (unsigned long )idev;
-  __cil_tmp48 = __cil_tmp47 + 560;
-  *((void (**)(struct input_dev * ))__cil_tmp48) = & mpu3050_input_close;
-  __cil_tmp49 = (unsigned long )idev;
-  __cil_tmp50 = __cil_tmp49 + 40;
-  __cil_tmp51 = (unsigned long (*)[1U])__cil_tmp50;
+  *((__u16 *)((void *)idev + 24)) = (__u16 )24U;
+  *((struct device **)((void *)idev + 840)) = (struct device *)((void *)client + 40);
+  *((int (**)(struct input_dev * ))((void *)idev + 552)) = & mpu3050_input_open;
+  *((void (**)(struct input_dev * ))((void *)idev + 560)) = & mpu3050_input_close;
+  __cil_tmp51 = (unsigned long (*)[1U])((void *)idev + 40);
   __cil_tmp52 = (unsigned long volatile *)__cil_tmp51;
   __set_bit(3, __cil_tmp52);
   input_set_abs_params(idev, 0U, -32768, 32767, 0, 0);
@@ -3839,9 +3686,7 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   input_set_abs_params(idev, 2U, -32768, 32767, 0, 0);
   __cil_tmp53 = (void *)sensor;
   input_set_drvdata(idev, __cil_tmp53);
-  __cil_tmp54 = (unsigned long )client;
-  __cil_tmp55 = __cil_tmp54 + 40;
-  __cil_tmp56 = (struct device *)__cil_tmp55;
+  __cil_tmp56 = (struct device *)((void *)client + 40);
   pm_runtime_set_active(__cil_tmp56);
   error = mpu3050_hw_init(sensor);
   }
@@ -3850,9 +3695,7 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   } else {
   }
   {
-  __cil_tmp57 = (unsigned long )client;
-  __cil_tmp58 = __cil_tmp57 + 1192;
-  __cil_tmp59 = *((int *)__cil_tmp58);
+  __cil_tmp59 = *((int *)((void *)client + 1192));
   __cil_tmp60 = (unsigned int )__cil_tmp59;
   __cil_tmp61 = (irqreturn_t (*)(int , void * ))0;
   __cil_tmp62 = (void *)sensor;
@@ -3861,13 +3704,9 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   }
   if (error != 0) {
     {
-    __cil_tmp63 = (unsigned long )client;
-    __cil_tmp64 = __cil_tmp63 + 40;
-    __cil_tmp65 = (struct device *)__cil_tmp64;
+    __cil_tmp65 = (struct device *)((void *)client + 40);
     __cil_tmp66 = (struct device const *)__cil_tmp65;
-    __cil_tmp67 = (unsigned long )client;
-    __cil_tmp68 = __cil_tmp67 + 1192;
-    __cil_tmp69 = *((int *)__cil_tmp68);
+    __cil_tmp69 = *((int *)((void *)client + 1192));
     dev_err(__cil_tmp66, "can\'t get IRQ %d, error %d\n", __cil_tmp69, error);
     }
     goto err_pm_set_suspended;
@@ -3878,9 +3717,7 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   }
   if (error != 0) {
     {
-    __cil_tmp70 = (unsigned long )client;
-    __cil_tmp71 = __cil_tmp70 + 40;
-    __cil_tmp72 = (struct device *)__cil_tmp71;
+    __cil_tmp72 = (struct device *)((void *)client + 40);
     __cil_tmp73 = (struct device const *)__cil_tmp72;
     dev_err(__cil_tmp73, "failed to register input device\n");
     }
@@ -3888,30 +3725,22 @@ static int mpu3050_probe(struct i2c_client *client , struct i2c_device_id const 
   } else {
   }
   {
-  __cil_tmp74 = (unsigned long )client;
-  __cil_tmp75 = __cil_tmp74 + 40;
-  __cil_tmp76 = (struct device *)__cil_tmp75;
+  __cil_tmp76 = (struct device *)((void *)client + 40);
   pm_runtime_enable(__cil_tmp76);
-  __cil_tmp77 = (unsigned long )client;
-  __cil_tmp78 = __cil_tmp77 + 40;
-  __cil_tmp79 = (struct device *)__cil_tmp78;
+  __cil_tmp79 = (struct device *)((void *)client + 40);
   pm_runtime_set_autosuspend_delay(__cil_tmp79, 1000);
   }
   return (0);
   err_free_irq:
   {
-  __cil_tmp80 = (unsigned long )client;
-  __cil_tmp81 = __cil_tmp80 + 1192;
-  __cil_tmp82 = *((int *)__cil_tmp81);
+  __cil_tmp82 = *((int *)((void *)client + 1192));
   __cil_tmp83 = (unsigned int )__cil_tmp82;
   __cil_tmp84 = (void *)sensor;
   free_irq(__cil_tmp83, __cil_tmp84);
   }
   err_pm_set_suspended:
   {
-  __cil_tmp85 = (unsigned long )client;
-  __cil_tmp86 = __cil_tmp85 + 40;
-  __cil_tmp87 = (struct device *)__cil_tmp86;
+  __cil_tmp87 = (struct device *)((void *)client + 40);
   pm_runtime_set_suspended(__cil_tmp87);
   }
   err_free_mem:

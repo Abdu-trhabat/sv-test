@@ -876,48 +876,24 @@ static int _read_reg(struct w1_slave *sl , u8 address , unsigned char *buf )
   struct _ddebug descriptor___1 ;
   long tmp___2 ;
   struct _ddebug *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned char __cil_tmp19 ;
   long __cil_tmp20 ;
   long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device const *__cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   unsigned char *__cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct w1_master *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   struct mutex *__cil_tmp35 ;
   struct _ddebug *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned char __cil_tmp43 ;
   long __cil_tmp44 ;
   long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct device *__cil_tmp48 ;
   struct device const *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct w1_master *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct mutex *__cil_tmp55 ;
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
@@ -925,58 +901,34 @@ static int _read_reg(struct w1_slave *sl , u8 address , unsigned char *buf )
   unsigned long __cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   struct w1_master *__cil_tmp64 ;
   u8 const *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct w1_master *__cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   struct w1_master *__cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   struct mutex *__cil_tmp74 ;
   struct _ddebug *__cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
-  unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   unsigned char __cil_tmp82 ;
   long __cil_tmp83 ;
   long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
   struct device *__cil_tmp87 ;
   struct device const *__cil_tmp88 ;
   {
   {
   __cil_tmp12 = & descriptor;
   *((char const **)__cil_tmp12) = "w1_ds2408";
-  __cil_tmp13 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp13) = "_read_reg";
-  __cil_tmp14 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp14) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-  __cil_tmp15 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp15) = "Reading with slave: %p, reg addr: %0#4x, buff addr: %p";
-  __cil_tmp16 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp16) = 65U;
-  __cil_tmp17 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp17) = (unsigned char)0;
-  __cil_tmp18 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp19 = *((unsigned char *)__cil_tmp18);
+  *((char const **)((void *)(&descriptor) + 8)) = "_read_reg";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "Reading with slave: %p, reg addr: %0#4x, buff addr: %p";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 65U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp19 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp20 = (long )__cil_tmp19;
   __cil_tmp21 = __cil_tmp20 & 1L;
   tmp = __builtin_expect(__cil_tmp21, 0L);
   }
   if (tmp != 0L) {
     {
-    __cil_tmp22 = (unsigned long )sl;
-    __cil_tmp23 = __cil_tmp22 + 112;
-    __cil_tmp24 = (struct device *)__cil_tmp23;
+    __cil_tmp24 = (struct device *)((void *)sl + 112);
     __cil_tmp25 = (struct device const *)__cil_tmp24;
     __cil_tmp26 = (unsigned int )address;
     __dynamic_dev_dbg(& descriptor, __cil_tmp25, "Reading with slave: %p, reg addr: %0#4x, buff addr: %p",
@@ -994,36 +946,24 @@ static int _read_reg(struct w1_slave *sl , u8 address , unsigned char *buf )
   }
   }
   {
-  __cil_tmp30 = (unsigned long )sl;
-  __cil_tmp31 = __cil_tmp30 + 88;
-  __cil_tmp32 = *((struct w1_master **)__cil_tmp31);
-  __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = __cil_tmp33 + 144;
-  __cil_tmp35 = (struct mutex *)__cil_tmp34;
+  __cil_tmp32 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp35 = (struct mutex *)((void *)__cil_tmp32 + 144);
   mutex_lock_nested(__cil_tmp35, 0U);
   __cil_tmp36 = & descriptor___0;
   *((char const **)__cil_tmp36) = "w1_ds2408";
-  __cil_tmp37 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp37) = "_read_reg";
-  __cil_tmp38 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp38) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-  __cil_tmp39 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp39) = "mutex locked";
-  __cil_tmp40 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp40) = 71U;
-  __cil_tmp41 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp41) = (unsigned char)0;
-  __cil_tmp42 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp43 = *((unsigned char *)__cil_tmp42);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "_read_reg";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "mutex locked";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 71U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+  __cil_tmp43 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp44 = (long )__cil_tmp43;
   __cil_tmp45 = __cil_tmp44 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp45, 0L);
   }
   if (tmp___0 != 0L) {
     {
-    __cil_tmp46 = (unsigned long )sl;
-    __cil_tmp47 = __cil_tmp46 + 112;
-    __cil_tmp48 = (struct device *)__cil_tmp47;
+    __cil_tmp48 = (struct device *)((void *)sl + 112);
     __cil_tmp49 = (struct device const *)__cil_tmp48;
     __dynamic_dev_dbg(& descriptor___0, __cil_tmp49, "mutex locked");
     }
@@ -1034,12 +974,8 @@ static int _read_reg(struct w1_slave *sl , u8 address , unsigned char *buf )
   }
   if (tmp___1 != 0) {
     {
-    __cil_tmp50 = (unsigned long )sl;
-    __cil_tmp51 = __cil_tmp50 + 88;
-    __cil_tmp52 = *((struct w1_master **)__cil_tmp51);
-    __cil_tmp53 = (unsigned long )__cil_tmp52;
-    __cil_tmp54 = __cil_tmp53 + 144;
-    __cil_tmp55 = (struct mutex *)__cil_tmp54;
+    __cil_tmp52 = *((struct w1_master **)((void *)sl + 88));
+    __cil_tmp55 = (struct mutex *)((void *)__cil_tmp52 + 144);
     mutex_unlock(__cil_tmp55);
     }
     return (-5);
@@ -1055,45 +991,29 @@ static int _read_reg(struct w1_slave *sl , u8 address , unsigned char *buf )
   __cil_tmp60 = 2 * 1UL;
   __cil_tmp61 = (unsigned long )(wrbuf) + __cil_tmp60;
   *((u8 *)__cil_tmp61) = (u8 )0U;
-  __cil_tmp62 = (unsigned long )sl;
-  __cil_tmp63 = __cil_tmp62 + 88;
-  __cil_tmp64 = *((struct w1_master **)__cil_tmp63);
+  __cil_tmp64 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp65 = (u8 const *)(& wrbuf);
   w1_write_block(__cil_tmp64, __cil_tmp65, 3);
-  __cil_tmp66 = (unsigned long )sl;
-  __cil_tmp67 = __cil_tmp66 + 88;
-  __cil_tmp68 = *((struct w1_master **)__cil_tmp67);
+  __cil_tmp68 = *((struct w1_master **)((void *)sl + 88));
   *buf = w1_read_8(__cil_tmp68);
-  __cil_tmp69 = (unsigned long )sl;
-  __cil_tmp70 = __cil_tmp69 + 88;
-  __cil_tmp71 = *((struct w1_master **)__cil_tmp70);
-  __cil_tmp72 = (unsigned long )__cil_tmp71;
-  __cil_tmp73 = __cil_tmp72 + 144;
-  __cil_tmp74 = (struct mutex *)__cil_tmp73;
+  __cil_tmp71 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp74 = (struct mutex *)((void *)__cil_tmp71 + 144);
   mutex_unlock(__cil_tmp74);
   __cil_tmp75 = & descriptor___1;
   *((char const **)__cil_tmp75) = "w1_ds2408";
-  __cil_tmp76 = (unsigned long )(& descriptor___1) + 8;
-  *((char const **)__cil_tmp76) = "_read_reg";
-  __cil_tmp77 = (unsigned long )(& descriptor___1) + 16;
-  *((char const **)__cil_tmp77) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-  __cil_tmp78 = (unsigned long )(& descriptor___1) + 24;
-  *((char const **)__cil_tmp78) = "mutex unlocked";
-  __cil_tmp79 = (unsigned long )(& descriptor___1) + 32;
-  *((unsigned int *)__cil_tmp79) = 85U;
-  __cil_tmp80 = (unsigned long )(& descriptor___1) + 35;
-  *((unsigned char *)__cil_tmp80) = (unsigned char)0;
-  __cil_tmp81 = (unsigned long )(& descriptor___1) + 35;
-  __cil_tmp82 = *((unsigned char *)__cil_tmp81);
+  *((char const **)((void *)(&descriptor___1) + 8)) = "_read_reg";
+  *((char const **)((void *)(&descriptor___1) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+  *((char const **)((void *)(&descriptor___1) + 24)) = "mutex unlocked";
+  *((unsigned int *)((void *)(&descriptor___1) + 32)) = 85U;
+  *((unsigned char *)((void *)(&descriptor___1) + 35)) = (unsigned char)0;
+  __cil_tmp82 = *((unsigned char *)((void *)(&descriptor___1) + 35));
   __cil_tmp83 = (long )__cil_tmp82;
   __cil_tmp84 = __cil_tmp83 & 1L;
   tmp___2 = __builtin_expect(__cil_tmp84, 0L);
   }
   if (tmp___2 != 0L) {
     {
-    __cil_tmp85 = (unsigned long )sl;
-    __cil_tmp86 = __cil_tmp85 + 112;
-    __cil_tmp87 = (struct device *)__cil_tmp86;
+    __cil_tmp87 = (struct device *)((void *)sl + 112);
     __cil_tmp88 = (struct device const *)__cil_tmp87;
     __dynamic_dev_dbg(& descriptor___1, __cil_tmp88, "mutex unlocked");
     }
@@ -1110,17 +1030,9 @@ static ssize_t w1_f29_read_state(struct file *filp , struct kobject *kobj , stru
   struct w1_slave *tmp___1 ;
   int tmp___2 ;
   struct _ddebug *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned char __cil_tmp19 ;
   long __cil_tmp20 ;
   long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device const *__cil_tmp25 ;
   char const *__cil_tmp26 ;
@@ -1131,18 +1043,12 @@ static ssize_t w1_f29_read_state(struct file *filp , struct kobject *kobj , stru
   {
   __cil_tmp12 = & descriptor;
   *((char const **)__cil_tmp12) = "w1_ds2408";
-  __cil_tmp13 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp13) = "w1_f29_read_state";
-  __cil_tmp14 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp14) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-  __cil_tmp15 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp15) = "Reading %s kobj: %p, off: %0#10x, count: %zu, buff addr: %p";
-  __cil_tmp16 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp16) = 96U;
-  __cil_tmp17 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp17) = (unsigned char)0;
-  __cil_tmp18 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp19 = *((unsigned char *)__cil_tmp18);
+  *((char const **)((void *)(&descriptor) + 8)) = "w1_f29_read_state";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "Reading %s kobj: %p, off: %0#10x, count: %zu, buff addr: %p";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 96U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp19 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp20 = (long )__cil_tmp19;
   __cil_tmp21 = __cil_tmp20 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp21, 0L);
@@ -1150,9 +1056,7 @@ static ssize_t w1_f29_read_state(struct file *filp , struct kobject *kobj , stru
   if (tmp___0 != 0L) {
     {
     tmp = kobj_to_w1_slave(kobj);
-    __cil_tmp22 = (unsigned long )tmp;
-    __cil_tmp23 = __cil_tmp22 + 112;
-    __cil_tmp24 = (struct device *)__cil_tmp23;
+    __cil_tmp24 = (struct device *)((void *)tmp + 112);
     __cil_tmp25 = (struct device const *)__cil_tmp24;
     __cil_tmp26 = *((char const **)bin_attr);
     __cil_tmp27 = (unsigned int )off;
@@ -1185,17 +1089,9 @@ static ssize_t w1_f29_read_output(struct file *filp , struct kobject *kobj , str
   struct w1_slave *tmp___1 ;
   int tmp___2 ;
   struct _ddebug *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned char __cil_tmp19 ;
   long __cil_tmp20 ;
   long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device const *__cil_tmp25 ;
   char const *__cil_tmp26 ;
@@ -1206,18 +1102,12 @@ static ssize_t w1_f29_read_output(struct file *filp , struct kobject *kobj , str
   {
   __cil_tmp12 = & descriptor;
   *((char const **)__cil_tmp12) = "w1_ds2408";
-  __cil_tmp13 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp13) = "w1_f29_read_output";
-  __cil_tmp14 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp14) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-  __cil_tmp15 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp15) = "Reading %s kobj: %p, off: %0#10x, count: %zu, buff addr: %p";
-  __cil_tmp16 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp16) = 109U;
-  __cil_tmp17 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp17) = (unsigned char)0;
-  __cil_tmp18 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp19 = *((unsigned char *)__cil_tmp18);
+  *((char const **)((void *)(&descriptor) + 8)) = "w1_f29_read_output";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "Reading %s kobj: %p, off: %0#10x, count: %zu, buff addr: %p";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 109U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp19 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp20 = (long )__cil_tmp19;
   __cil_tmp21 = __cil_tmp20 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp21, 0L);
@@ -1225,9 +1115,7 @@ static ssize_t w1_f29_read_output(struct file *filp , struct kobject *kobj , str
   if (tmp___0 != 0L) {
     {
     tmp = kobj_to_w1_slave(kobj);
-    __cil_tmp22 = (unsigned long )tmp;
-    __cil_tmp23 = __cil_tmp22 + 112;
-    __cil_tmp24 = (struct device *)__cil_tmp23;
+    __cil_tmp24 = (struct device *)((void *)tmp + 112);
     __cil_tmp25 = (struct device const *)__cil_tmp24;
     __cil_tmp26 = *((char const **)bin_attr);
     __cil_tmp27 = (unsigned int )off;
@@ -1260,17 +1148,9 @@ static ssize_t w1_f29_read_activity(struct file *filp , struct kobject *kobj , s
   struct w1_slave *tmp___1 ;
   int tmp___2 ;
   struct _ddebug *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned char __cil_tmp19 ;
   long __cil_tmp20 ;
   long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device const *__cil_tmp25 ;
   char const *__cil_tmp26 ;
@@ -1281,18 +1161,12 @@ static ssize_t w1_f29_read_activity(struct file *filp , struct kobject *kobj , s
   {
   __cil_tmp12 = & descriptor;
   *((char const **)__cil_tmp12) = "w1_ds2408";
-  __cil_tmp13 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp13) = "w1_f29_read_activity";
-  __cil_tmp14 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp14) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-  __cil_tmp15 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp15) = "Reading %s kobj: %p, off: %0#10x, count: %zu, buff addr: %p";
-  __cil_tmp16 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp16) = 123U;
-  __cil_tmp17 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp17) = (unsigned char)0;
-  __cil_tmp18 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp19 = *((unsigned char *)__cil_tmp18);
+  *((char const **)((void *)(&descriptor) + 8)) = "w1_f29_read_activity";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "Reading %s kobj: %p, off: %0#10x, count: %zu, buff addr: %p";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 123U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp19 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp20 = (long )__cil_tmp19;
   __cil_tmp21 = __cil_tmp20 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp21, 0L);
@@ -1300,9 +1174,7 @@ static ssize_t w1_f29_read_activity(struct file *filp , struct kobject *kobj , s
   if (tmp___0 != 0L) {
     {
     tmp = kobj_to_w1_slave(kobj);
-    __cil_tmp22 = (unsigned long )tmp;
-    __cil_tmp23 = __cil_tmp22 + 112;
-    __cil_tmp24 = (struct device *)__cil_tmp23;
+    __cil_tmp24 = (struct device *)((void *)tmp + 112);
     __cil_tmp25 = (struct device const *)__cil_tmp24;
     __cil_tmp26 = *((char const **)bin_attr);
     __cil_tmp27 = (unsigned int )off;
@@ -1336,17 +1208,9 @@ static ssize_t w1_f29_read_cond_search_mask(struct file *filp , struct kobject *
   struct w1_slave *tmp___1 ;
   int tmp___2 ;
   struct _ddebug *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned char __cil_tmp19 ;
   long __cil_tmp20 ;
   long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device const *__cil_tmp25 ;
   char const *__cil_tmp26 ;
@@ -1357,18 +1221,12 @@ static ssize_t w1_f29_read_cond_search_mask(struct file *filp , struct kobject *
   {
   __cil_tmp12 = & descriptor;
   *((char const **)__cil_tmp12) = "w1_ds2408";
-  __cil_tmp13 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp13) = "w1_f29_read_cond_search_mask";
-  __cil_tmp14 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp14) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-  __cil_tmp15 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp15) = "Reading %s kobj: %p, off: %0#10x, count: %zu, buff addr: %p";
-  __cil_tmp16 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp16) = 137U;
-  __cil_tmp17 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp17) = (unsigned char)0;
-  __cil_tmp18 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp19 = *((unsigned char *)__cil_tmp18);
+  *((char const **)((void *)(&descriptor) + 8)) = "w1_f29_read_cond_search_mask";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "Reading %s kobj: %p, off: %0#10x, count: %zu, buff addr: %p";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 137U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp19 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp20 = (long )__cil_tmp19;
   __cil_tmp21 = __cil_tmp20 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp21, 0L);
@@ -1376,9 +1234,7 @@ static ssize_t w1_f29_read_cond_search_mask(struct file *filp , struct kobject *
   if (tmp___0 != 0L) {
     {
     tmp = kobj_to_w1_slave(kobj);
-    __cil_tmp22 = (unsigned long )tmp;
-    __cil_tmp23 = __cil_tmp22 + 112;
-    __cil_tmp24 = (struct device *)__cil_tmp23;
+    __cil_tmp24 = (struct device *)((void *)tmp + 112);
     __cil_tmp25 = (struct device const *)__cil_tmp24;
     __cil_tmp26 = *((char const **)bin_attr);
     __cil_tmp27 = (unsigned int )off;
@@ -1471,37 +1327,17 @@ static ssize_t w1_f29_write_output(struct file *filp , struct kobject *kobj , st
   struct _ddebug descriptor___2 ;
   long tmp___7 ;
   struct _ddebug *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned char __cil_tmp31 ;
   long __cil_tmp32 ;
   long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct device *__cil_tmp36 ;
   struct device const *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct w1_master *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct mutex *__cil_tmp43 ;
   struct _ddebug *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
   unsigned char __cil_tmp51 ;
   long __cil_tmp52 ;
   long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct device *__cil_tmp56 ;
   struct device const *__cil_tmp57 ;
   unsigned long __cil_tmp58 ;
@@ -1515,15 +1351,9 @@ static ssize_t w1_f29_write_output(struct file *filp , struct kobject *kobj , st
   u8 __cil_tmp66 ;
   int __cil_tmp67 ;
   int __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
   struct w1_master *__cil_tmp71 ;
   u8 const *__cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   struct w1_master *__cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   struct w1_master *__cil_tmp78 ;
   unsigned int __cil_tmp79 ;
   unsigned long __cil_tmp80 ;
@@ -1532,54 +1362,26 @@ static ssize_t w1_f29_write_output(struct file *filp , struct kobject *kobj , st
   unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   struct w1_master *__cil_tmp88 ;
   u8 const *__cil_tmp89 ;
-  unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
   struct w1_master *__cil_tmp92 ;
   char __cil_tmp93 ;
   int __cil_tmp94 ;
   int __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
   struct w1_master *__cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
   struct mutex *__cil_tmp101 ;
   struct _ddebug *__cil_tmp102 ;
-  unsigned long __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   unsigned char __cil_tmp109 ;
   long __cil_tmp110 ;
   long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
-  unsigned long __cil_tmp113 ;
   struct device *__cil_tmp114 ;
   struct device const *__cil_tmp115 ;
-  unsigned long __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
   struct w1_master *__cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
-  unsigned long __cil_tmp120 ;
   struct mutex *__cil_tmp121 ;
   struct _ddebug *__cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
   unsigned char __cil_tmp129 ;
   long __cil_tmp130 ;
   long __cil_tmp131 ;
-  unsigned long __cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
   struct device *__cil_tmp134 ;
   struct device const *__cil_tmp135 ;
   {
@@ -1598,63 +1400,43 @@ static ssize_t w1_f29_write_output(struct file *filp , struct kobject *kobj , st
   {
   __cil_tmp24 = & descriptor;
   *((char const **)__cil_tmp24) = "w1_ds2408";
-  __cil_tmp25 = (unsigned long )(& descriptor) + 8;
-  *((char const **)__cil_tmp25) = "w1_f29_write_output";
-  __cil_tmp26 = (unsigned long )(& descriptor) + 16;
-  *((char const **)__cil_tmp26) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-  __cil_tmp27 = (unsigned long )(& descriptor) + 24;
-  *((char const **)__cil_tmp27) = "locking mutex for write_output";
-  __cil_tmp28 = (unsigned long )(& descriptor) + 32;
-  *((unsigned int *)__cil_tmp28) = 182U;
-  __cil_tmp29 = (unsigned long )(& descriptor) + 35;
-  *((unsigned char *)__cil_tmp29) = (unsigned char)0;
-  __cil_tmp30 = (unsigned long )(& descriptor) + 35;
-  __cil_tmp31 = *((unsigned char *)__cil_tmp30);
+  *((char const **)((void *)(&descriptor) + 8)) = "w1_f29_write_output";
+  *((char const **)((void *)(&descriptor) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+  *((char const **)((void *)(&descriptor) + 24)) = "locking mutex for write_output";
+  *((unsigned int *)((void *)(&descriptor) + 32)) = 182U;
+  *((unsigned char *)((void *)(&descriptor) + 35)) = (unsigned char)0;
+  __cil_tmp31 = *((unsigned char *)((void *)(&descriptor) + 35));
   __cil_tmp32 = (long )__cil_tmp31;
   __cil_tmp33 = __cil_tmp32 & 1L;
   tmp___0 = __builtin_expect(__cil_tmp33, 0L);
   }
   if (tmp___0 != 0L) {
     {
-    __cil_tmp34 = (unsigned long )sl;
-    __cil_tmp35 = __cil_tmp34 + 112;
-    __cil_tmp36 = (struct device *)__cil_tmp35;
+    __cil_tmp36 = (struct device *)((void *)sl + 112);
     __cil_tmp37 = (struct device const *)__cil_tmp36;
     __dynamic_dev_dbg(& descriptor, __cil_tmp37, "locking mutex for write_output");
     }
   } else {
   }
   {
-  __cil_tmp38 = (unsigned long )sl;
-  __cil_tmp39 = __cil_tmp38 + 88;
-  __cil_tmp40 = *((struct w1_master **)__cil_tmp39);
-  __cil_tmp41 = (unsigned long )__cil_tmp40;
-  __cil_tmp42 = __cil_tmp41 + 144;
-  __cil_tmp43 = (struct mutex *)__cil_tmp42;
+  __cil_tmp40 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp43 = (struct mutex *)((void *)__cil_tmp40 + 144);
   mutex_lock_nested(__cil_tmp43, 0U);
   __cil_tmp44 = & descriptor___0;
   *((char const **)__cil_tmp44) = "w1_ds2408";
-  __cil_tmp45 = (unsigned long )(& descriptor___0) + 8;
-  *((char const **)__cil_tmp45) = "w1_f29_write_output";
-  __cil_tmp46 = (unsigned long )(& descriptor___0) + 16;
-  *((char const **)__cil_tmp46) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-  __cil_tmp47 = (unsigned long )(& descriptor___0) + 24;
-  *((char const **)__cil_tmp47) = "mutex locked";
-  __cil_tmp48 = (unsigned long )(& descriptor___0) + 32;
-  *((unsigned int *)__cil_tmp48) = 184U;
-  __cil_tmp49 = (unsigned long )(& descriptor___0) + 35;
-  *((unsigned char *)__cil_tmp49) = (unsigned char)0;
-  __cil_tmp50 = (unsigned long )(& descriptor___0) + 35;
-  __cil_tmp51 = *((unsigned char *)__cil_tmp50);
+  *((char const **)((void *)(&descriptor___0) + 8)) = "w1_f29_write_output";
+  *((char const **)((void *)(&descriptor___0) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+  *((char const **)((void *)(&descriptor___0) + 24)) = "mutex locked";
+  *((unsigned int *)((void *)(&descriptor___0) + 32)) = 184U;
+  *((unsigned char *)((void *)(&descriptor___0) + 35)) = (unsigned char)0;
+  __cil_tmp51 = *((unsigned char *)((void *)(&descriptor___0) + 35));
   __cil_tmp52 = (long )__cil_tmp51;
   __cil_tmp53 = __cil_tmp52 & 1L;
   tmp___1 = __builtin_expect(__cil_tmp53, 0L);
   }
   if (tmp___1 != 0L) {
     {
-    __cil_tmp54 = (unsigned long )sl;
-    __cil_tmp55 = __cil_tmp54 + 112;
-    __cil_tmp56 = (struct device *)__cil_tmp55;
+    __cil_tmp56 = (struct device *)((void *)sl + 112);
     __cil_tmp57 = (struct device const *)__cil_tmp56;
     __dynamic_dev_dbg(& descriptor___0, __cil_tmp57, "mutex locked");
     }
@@ -1684,18 +1466,12 @@ static ssize_t w1_f29_write_output(struct file *filp , struct kobject *kobj , st
   __cil_tmp67 = (int )__cil_tmp66;
   __cil_tmp68 = ~ __cil_tmp67;
   *((u8 *)__cil_tmp64) = (u8 )__cil_tmp68;
-  __cil_tmp69 = (unsigned long )sl;
-  __cil_tmp70 = __cil_tmp69 + 88;
-  __cil_tmp71 = *((struct w1_master **)__cil_tmp70);
+  __cil_tmp71 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp72 = (u8 const *)(& w1_buf);
   w1_write_block(__cil_tmp71, __cil_tmp72, 3);
-  __cil_tmp73 = (unsigned long )sl;
-  __cil_tmp74 = __cil_tmp73 + 88;
-  __cil_tmp75 = *((struct w1_master **)__cil_tmp74);
+  __cil_tmp75 = *((struct w1_master **)((void *)sl + 88));
   readBack = w1_read_8(__cil_tmp75);
-  __cil_tmp76 = (unsigned long )sl;
-  __cil_tmp77 = __cil_tmp76 + 88;
-  __cil_tmp78 = *((struct w1_master **)__cil_tmp77);
+  __cil_tmp78 = *((struct w1_master **)((void *)sl + 88));
   tmp___3 = w1_reset_resume_command(__cil_tmp78);
   }
   if (tmp___3 != 0) {
@@ -1719,14 +1495,10 @@ static ssize_t w1_f29_write_output(struct file *filp , struct kobject *kobj , st
   __cil_tmp84 = 2 * 1UL;
   __cil_tmp85 = (unsigned long )(w1_buf) + __cil_tmp84;
   *((u8 *)__cil_tmp85) = (u8 )0U;
-  __cil_tmp86 = (unsigned long )sl;
-  __cil_tmp87 = __cil_tmp86 + 88;
-  __cil_tmp88 = *((struct w1_master **)__cil_tmp87);
+  __cil_tmp88 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp89 = (u8 const *)(& w1_buf);
   w1_write_block(__cil_tmp88, __cil_tmp89, 3);
-  __cil_tmp90 = (unsigned long )sl;
-  __cil_tmp91 = __cil_tmp90 + 88;
-  __cil_tmp92 = *((struct w1_master **)__cil_tmp91);
+  __cil_tmp92 = *((struct w1_master **)((void *)sl + 88));
   tmp___5 = w1_read_8(__cil_tmp92);
   }
   {
@@ -1735,36 +1507,24 @@ static ssize_t w1_f29_write_output(struct file *filp , struct kobject *kobj , st
   __cil_tmp95 = (int )tmp___5;
   if (__cil_tmp95 == __cil_tmp94) {
     {
-    __cil_tmp96 = (unsigned long )sl;
-    __cil_tmp97 = __cil_tmp96 + 88;
-    __cil_tmp98 = *((struct w1_master **)__cil_tmp97);
-    __cil_tmp99 = (unsigned long )__cil_tmp98;
-    __cil_tmp100 = __cil_tmp99 + 144;
-    __cil_tmp101 = (struct mutex *)__cil_tmp100;
+    __cil_tmp98 = *((struct w1_master **)((void *)sl + 88));
+    __cil_tmp101 = (struct mutex *)((void *)__cil_tmp98 + 144);
     mutex_unlock(__cil_tmp101);
     __cil_tmp102 = & descriptor___1;
     *((char const **)__cil_tmp102) = "w1_ds2408";
-    __cil_tmp103 = (unsigned long )(& descriptor___1) + 8;
-    *((char const **)__cil_tmp103) = "w1_f29_write_output";
-    __cil_tmp104 = (unsigned long )(& descriptor___1) + 16;
-    *((char const **)__cil_tmp104) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-    __cil_tmp105 = (unsigned long )(& descriptor___1) + 24;
-    *((char const **)__cil_tmp105) = "mutex unlocked, retries:%d";
-    __cil_tmp106 = (unsigned long )(& descriptor___1) + 32;
-    *((unsigned int *)__cil_tmp106) = 220U;
-    __cil_tmp107 = (unsigned long )(& descriptor___1) + 35;
-    *((unsigned char *)__cil_tmp107) = (unsigned char)0;
-    __cil_tmp108 = (unsigned long )(& descriptor___1) + 35;
-    __cil_tmp109 = *((unsigned char *)__cil_tmp108);
+    *((char const **)((void *)(&descriptor___1) + 8)) = "w1_f29_write_output";
+    *((char const **)((void *)(&descriptor___1) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+    *((char const **)((void *)(&descriptor___1) + 24)) = "mutex unlocked, retries:%d";
+    *((unsigned int *)((void *)(&descriptor___1) + 32)) = 220U;
+    *((unsigned char *)((void *)(&descriptor___1) + 35)) = (unsigned char)0;
+    __cil_tmp109 = *((unsigned char *)((void *)(&descriptor___1) + 35));
     __cil_tmp110 = (long )__cil_tmp109;
     __cil_tmp111 = __cil_tmp110 & 1L;
     tmp___4 = __builtin_expect(__cil_tmp111, 0L);
     }
     if (tmp___4 != 0L) {
       {
-      __cil_tmp112 = (unsigned long )sl;
-      __cil_tmp113 = __cil_tmp112 + 112;
-      __cil_tmp114 = (struct device *)__cil_tmp113;
+      __cil_tmp114 = (struct device *)((void *)sl + 112);
       __cil_tmp115 = (struct device const *)__cil_tmp114;
       __dynamic_dev_dbg(& descriptor___1, __cil_tmp115, "mutex unlocked, retries:%d",
                         retries);
@@ -1786,36 +1546,24 @@ static ssize_t w1_f29_write_output(struct file *filp , struct kobject *kobj , st
   ldv_15218: ;
   error:
   {
-  __cil_tmp116 = (unsigned long )sl;
-  __cil_tmp117 = __cil_tmp116 + 88;
-  __cil_tmp118 = *((struct w1_master **)__cil_tmp117);
-  __cil_tmp119 = (unsigned long )__cil_tmp118;
-  __cil_tmp120 = __cil_tmp119 + 144;
-  __cil_tmp121 = (struct mutex *)__cil_tmp120;
+  __cil_tmp118 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp121 = (struct mutex *)((void *)__cil_tmp118 + 144);
   mutex_unlock(__cil_tmp121);
   __cil_tmp122 = & descriptor___2;
   *((char const **)__cil_tmp122) = "w1_ds2408";
-  __cil_tmp123 = (unsigned long )(& descriptor___2) + 8;
-  *((char const **)__cil_tmp123) = "w1_f29_write_output";
-  __cil_tmp124 = (unsigned long )(& descriptor___2) + 16;
-  *((char const **)__cil_tmp124) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
-  __cil_tmp125 = (unsigned long )(& descriptor___2) + 24;
-  *((char const **)__cil_tmp125) = "mutex unlocked in error, retries:%d";
-  __cil_tmp126 = (unsigned long )(& descriptor___2) + 32;
-  *((unsigned int *)__cil_tmp126) = 226U;
-  __cil_tmp127 = (unsigned long )(& descriptor___2) + 35;
-  *((unsigned char *)__cil_tmp127) = (unsigned char)0;
-  __cil_tmp128 = (unsigned long )(& descriptor___2) + 35;
-  __cil_tmp129 = *((unsigned char *)__cil_tmp128);
+  *((char const **)((void *)(&descriptor___2) + 8)) = "w1_f29_write_output";
+  *((char const **)((void *)(&descriptor___2) + 16)) = "/home/zakharov/launch/work/current--X--drivers/--X--defaultlinux-3.4--X--43_1a--X--cpachecker/linux-3.4/csd_deg_dscv/4908/dscv_tempdir/dscv/ri/43_1a/drivers/w1/slaves/w1_ds2408.c.p";
+  *((char const **)((void *)(&descriptor___2) + 24)) = "mutex unlocked in error, retries:%d";
+  *((unsigned int *)((void *)(&descriptor___2) + 32)) = 226U;
+  *((unsigned char *)((void *)(&descriptor___2) + 35)) = (unsigned char)0;
+  __cil_tmp129 = *((unsigned char *)((void *)(&descriptor___2) + 35));
   __cil_tmp130 = (long )__cil_tmp129;
   __cil_tmp131 = __cil_tmp130 & 1L;
   tmp___7 = __builtin_expect(__cil_tmp131, 0L);
   }
   if (tmp___7 != 0L) {
     {
-    __cil_tmp132 = (unsigned long )sl;
-    __cil_tmp133 = __cil_tmp132 + 112;
-    __cil_tmp134 = (struct device *)__cil_tmp133;
+    __cil_tmp134 = (struct device *)((void *)sl + 112);
     __cil_tmp135 = (struct device const *)__cil_tmp134;
     __dynamic_dev_dbg(& descriptor___2, __cil_tmp135, "mutex unlocked in error, retries:%d",
                       retries);
@@ -1834,34 +1582,16 @@ static ssize_t w1_f29_write_activity(struct file *filp , struct kobject *kobj , 
   u8 tmp___1 ;
   int tmp___2 ;
   unsigned int tmp___3 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct w1_master *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct mutex *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct w1_master *__cil_tmp22 ;
   u8 __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct w1_master *__cil_tmp26 ;
   unsigned int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct w1_master *__cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct mutex *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct w1_master *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct w1_master *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct mutex *__cil_tmp42 ;
   {
   {
@@ -1877,12 +1607,8 @@ static ssize_t w1_f29_write_activity(struct file *filp , struct kobject *kobj , 
   } else {
   }
   {
-  __cil_tmp14 = (unsigned long )sl;
-  __cil_tmp15 = __cil_tmp14 + 88;
-  __cil_tmp16 = *((struct w1_master **)__cil_tmp15);
-  __cil_tmp17 = (unsigned long )__cil_tmp16;
-  __cil_tmp18 = __cil_tmp17 + 144;
-  __cil_tmp19 = (struct mutex *)__cil_tmp18;
+  __cil_tmp16 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp19 = (struct mutex *)((void *)__cil_tmp16 + 144);
   mutex_lock_nested(__cil_tmp19, 0U);
   tmp___0 = w1_reset_select_slave(sl);
   }
@@ -1893,26 +1619,18 @@ static ssize_t w1_f29_write_activity(struct file *filp , struct kobject *kobj , 
   goto ldv_15232;
   ldv_15231:
   {
-  __cil_tmp20 = (unsigned long )sl;
-  __cil_tmp21 = __cil_tmp20 + 88;
-  __cil_tmp22 = *((struct w1_master **)__cil_tmp21);
+  __cil_tmp22 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp23 = (u8 )195;
   w1_write_8(__cil_tmp22, __cil_tmp23);
-  __cil_tmp24 = (unsigned long )sl;
-  __cil_tmp25 = __cil_tmp24 + 88;
-  __cil_tmp26 = *((struct w1_master **)__cil_tmp25);
+  __cil_tmp26 = *((struct w1_master **)((void *)sl + 88));
   tmp___1 = w1_read_8(__cil_tmp26);
   }
   {
   __cil_tmp27 = (unsigned int )tmp___1;
   if (__cil_tmp27 == 170U) {
     {
-    __cil_tmp28 = (unsigned long )sl;
-    __cil_tmp29 = __cil_tmp28 + 88;
-    __cil_tmp30 = *((struct w1_master **)__cil_tmp29);
-    __cil_tmp31 = (unsigned long )__cil_tmp30;
-    __cil_tmp32 = __cil_tmp31 + 144;
-    __cil_tmp33 = (struct mutex *)__cil_tmp32;
+    __cil_tmp30 = *((struct w1_master **)((void *)sl + 88));
+    __cil_tmp33 = (struct mutex *)((void *)__cil_tmp30 + 144);
     mutex_unlock(__cil_tmp33);
     }
     return (1L);
@@ -1920,9 +1638,7 @@ static ssize_t w1_f29_write_activity(struct file *filp , struct kobject *kobj , 
   }
   }
   {
-  __cil_tmp34 = (unsigned long )sl;
-  __cil_tmp35 = __cil_tmp34 + 88;
-  __cil_tmp36 = *((struct w1_master **)__cil_tmp35);
+  __cil_tmp36 = *((struct w1_master **)((void *)sl + 88));
   tmp___2 = w1_reset_resume_command(__cil_tmp36);
   }
   if (tmp___2 != 0) {
@@ -1940,12 +1656,8 @@ static ssize_t w1_f29_write_activity(struct file *filp , struct kobject *kobj , 
   ldv_15233: ;
   error:
   {
-  __cil_tmp37 = (unsigned long )sl;
-  __cil_tmp38 = __cil_tmp37 + 88;
-  __cil_tmp39 = *((struct w1_master **)__cil_tmp38);
-  __cil_tmp40 = (unsigned long )__cil_tmp39;
-  __cil_tmp41 = __cil_tmp40 + 144;
-  __cil_tmp42 = (struct mutex *)__cil_tmp41;
+  __cil_tmp39 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp42 = (struct mutex *)((void *)__cil_tmp39 + 144);
   mutex_unlock(__cil_tmp42);
   }
   return (-5L);
@@ -1962,11 +1674,7 @@ static ssize_t w1_f29_write_status_control(struct file *filp , struct kobject *k
   int tmp___1 ;
   u8 tmp___2 ;
   unsigned int tmp___3 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct w1_master *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct mutex *__cil_tmp20 ;
   unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
@@ -1977,12 +1685,8 @@ static ssize_t w1_f29_write_status_control(struct file *filp , struct kobject *k
   unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
   char __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct w1_master *__cil_tmp32 ;
   u8 const *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct w1_master *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
@@ -1990,27 +1694,15 @@ static ssize_t w1_f29_write_status_control(struct file *filp , struct kobject *k
   unsigned long __cil_tmp40 ;
   unsigned long __cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   struct w1_master *__cil_tmp45 ;
   u8 const *__cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct w1_master *__cil_tmp49 ;
   char __cil_tmp50 ;
   int __cil_tmp51 ;
   int __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct w1_master *__cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct mutex *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct w1_master *__cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   struct mutex *__cil_tmp64 ;
   {
   {
@@ -2026,12 +1718,8 @@ static ssize_t w1_f29_write_status_control(struct file *filp , struct kobject *k
   } else {
   }
   {
-  __cil_tmp15 = (unsigned long )sl;
-  __cil_tmp16 = __cil_tmp15 + 88;
-  __cil_tmp17 = *((struct w1_master **)__cil_tmp16);
-  __cil_tmp18 = (unsigned long )__cil_tmp17;
-  __cil_tmp19 = __cil_tmp18 + 144;
-  __cil_tmp20 = (struct mutex *)__cil_tmp19;
+  __cil_tmp17 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp20 = (struct mutex *)((void *)__cil_tmp17 + 144);
   mutex_lock_nested(__cil_tmp20, 0U);
   tmp___0 = w1_reset_select_slave(sl);
   }
@@ -2055,14 +1743,10 @@ static ssize_t w1_f29_write_status_control(struct file *filp , struct kobject *k
   __cil_tmp28 = (unsigned long )(w1_buf) + __cil_tmp27;
   __cil_tmp29 = *buf;
   *((u8 *)__cil_tmp28) = (u8 )__cil_tmp29;
-  __cil_tmp30 = (unsigned long )sl;
-  __cil_tmp31 = __cil_tmp30 + 88;
-  __cil_tmp32 = *((struct w1_master **)__cil_tmp31);
+  __cil_tmp32 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp33 = (u8 const *)(& w1_buf);
   w1_write_block(__cil_tmp32, __cil_tmp33, 4);
-  __cil_tmp34 = (unsigned long )sl;
-  __cil_tmp35 = __cil_tmp34 + 88;
-  __cil_tmp36 = *((struct w1_master **)__cil_tmp35);
+  __cil_tmp36 = *((struct w1_master **)((void *)sl + 88));
   tmp___1 = w1_reset_resume_command(__cil_tmp36);
   }
   if (tmp___1 != 0) {
@@ -2079,14 +1763,10 @@ static ssize_t w1_f29_write_status_control(struct file *filp , struct kobject *k
   __cil_tmp41 = 2 * 1UL;
   __cil_tmp42 = (unsigned long )(w1_buf) + __cil_tmp41;
   *((u8 *)__cil_tmp42) = (u8 )0U;
-  __cil_tmp43 = (unsigned long )sl;
-  __cil_tmp44 = __cil_tmp43 + 88;
-  __cil_tmp45 = *((struct w1_master **)__cil_tmp44);
+  __cil_tmp45 = *((struct w1_master **)((void *)sl + 88));
   __cil_tmp46 = (u8 const *)(& w1_buf);
   w1_write_block(__cil_tmp45, __cil_tmp46, 3);
-  __cil_tmp47 = (unsigned long )sl;
-  __cil_tmp48 = __cil_tmp47 + 88;
-  __cil_tmp49 = *((struct w1_master **)__cil_tmp48);
+  __cil_tmp49 = *((struct w1_master **)((void *)sl + 88));
   tmp___2 = w1_read_8(__cil_tmp49);
   }
   {
@@ -2095,12 +1775,8 @@ static ssize_t w1_f29_write_status_control(struct file *filp , struct kobject *k
   __cil_tmp52 = (int )tmp___2;
   if (__cil_tmp52 == __cil_tmp51) {
     {
-    __cil_tmp53 = (unsigned long )sl;
-    __cil_tmp54 = __cil_tmp53 + 88;
-    __cil_tmp55 = *((struct w1_master **)__cil_tmp54);
-    __cil_tmp56 = (unsigned long )__cil_tmp55;
-    __cil_tmp57 = __cil_tmp56 + 144;
-    __cil_tmp58 = (struct mutex *)__cil_tmp57;
+    __cil_tmp55 = *((struct w1_master **)((void *)sl + 88));
+    __cil_tmp58 = (struct mutex *)((void *)__cil_tmp55 + 144);
     mutex_unlock(__cil_tmp58);
     }
     return (1L);
@@ -2118,12 +1794,8 @@ static ssize_t w1_f29_write_status_control(struct file *filp , struct kobject *k
   ldv_15248: ;
   error:
   {
-  __cil_tmp59 = (unsigned long )sl;
-  __cil_tmp60 = __cil_tmp59 + 88;
-  __cil_tmp61 = *((struct w1_master **)__cil_tmp60);
-  __cil_tmp62 = (unsigned long )__cil_tmp61;
-  __cil_tmp63 = __cil_tmp62 + 144;
-  __cil_tmp64 = (struct mutex *)__cil_tmp63;
+  __cil_tmp61 = *((struct w1_master **)((void *)sl + 88));
+  __cil_tmp64 = (struct mutex *)((void *)__cil_tmp61 + 144);
   mutex_unlock(__cil_tmp64);
   }
   return (-5L);
@@ -2187,15 +1859,11 @@ static int w1_f29_add_slave(struct w1_slave *sl )
 { int err ;
   int i ;
   unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct kobject *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   struct bin_attribute const *__cil_tmp9 ;
   struct bin_attribute const *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct kobject *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   struct bin_attribute const *__cil_tmp16 ;
@@ -2207,9 +1875,7 @@ static int w1_f29_add_slave(struct w1_slave *sl )
   ldv_15255:
   {
   __cil_tmp4 = 112 + 16;
-  __cil_tmp5 = (unsigned long )sl;
-  __cil_tmp6 = __cil_tmp5 + __cil_tmp4;
-  __cil_tmp7 = (struct kobject *)__cil_tmp6;
+  __cil_tmp7 = (struct kobject *)((void *)sl + __cil_tmp4);
   __cil_tmp8 = (unsigned long )i;
   __cil_tmp9 = (struct bin_attribute const *)(& w1_f29_sysfs_bin_files);
   __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
@@ -2232,9 +1898,7 @@ static int w1_f29_add_slave(struct w1_slave *sl )
     ldv_15258:
     {
     __cil_tmp11 = 112 + 16;
-    __cil_tmp12 = (unsigned long )sl;
-    __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-    __cil_tmp14 = (struct kobject *)__cil_tmp13;
+    __cil_tmp14 = (struct kobject *)((void *)sl + __cil_tmp11);
     __cil_tmp15 = (unsigned long )i;
     __cil_tmp16 = (struct bin_attribute const *)(& w1_f29_sysfs_bin_files);
     __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
@@ -2256,8 +1920,6 @@ static int w1_f29_add_slave(struct w1_slave *sl )
 static void w1_f29_remove_slave(struct w1_slave *sl )
 { int i ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct kobject *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   struct bin_attribute const *__cil_tmp8 ;
@@ -2268,9 +1930,7 @@ static void w1_f29_remove_slave(struct w1_slave *sl )
   ldv_15265:
   {
   __cil_tmp3 = 112 + 16;
-  __cil_tmp4 = (unsigned long )sl;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  __cil_tmp6 = (struct kobject *)__cil_tmp5;
+  __cil_tmp6 = (struct kobject *)((void *)sl + __cil_tmp3);
   __cil_tmp7 = (unsigned long )i;
   __cil_tmp8 = (struct bin_attribute const *)(& w1_f29_sysfs_bin_files);
   __cil_tmp9 = __cil_tmp8 + __cil_tmp7;

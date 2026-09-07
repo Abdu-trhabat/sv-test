@@ -2015,13 +2015,9 @@ static int adt7316_i2c_read(void *client , u8 reg , u8 *data )
 { struct i2c_client *cl ;
   int ret ;
   struct i2c_client  const  *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   struct device  const  *__cil_tmp10 ;
   struct i2c_client  const  *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device  const  *__cil_tmp15 ;
 
@@ -2034,9 +2030,7 @@ static int adt7316_i2c_read(void *client , u8 reg , u8 *data )
   }
   if (ret < 0) {
     {
-    __cil_tmp7 = (unsigned long )cl;
-    __cil_tmp8 = __cil_tmp7 + 40;
-    __cil_tmp9 = (struct device *)__cil_tmp8;
+    __cil_tmp9 = (struct device *)((void *)cl + 40);
     __cil_tmp10 = (struct device  const  *)__cil_tmp9;
     dev_err(__cil_tmp10, "I2C fail to select reg\n");
     }
@@ -2050,9 +2044,7 @@ static int adt7316_i2c_read(void *client , u8 reg , u8 *data )
   }
   if (ret < 0) {
     {
-    __cil_tmp12 = (unsigned long )cl;
-    __cil_tmp13 = __cil_tmp12 + 40;
-    __cil_tmp14 = (struct device *)__cil_tmp13;
+    __cil_tmp14 = (struct device *)((void *)cl + 40);
     __cil_tmp15 = (struct device  const  *)__cil_tmp14;
     dev_err(__cil_tmp15, "I2C read error\n");
     }
@@ -2067,8 +2059,6 @@ static int adt7316_i2c_write(void *client , u8 reg , u8 data )
 { struct i2c_client *cl ;
   int ret ;
   struct i2c_client  const  *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   struct device  const  *__cil_tmp10 ;
 
@@ -2081,9 +2071,7 @@ static int adt7316_i2c_write(void *client , u8 reg , u8 data )
   }
   if (ret < 0) {
     {
-    __cil_tmp7 = (unsigned long )cl;
-    __cil_tmp8 = __cil_tmp7 + 40;
-    __cil_tmp9 = (struct device *)__cil_tmp8;
+    __cil_tmp9 = (struct device *)((void *)cl + 40);
     __cil_tmp10 = (struct device  const  *)__cil_tmp9;
     dev_err(__cil_tmp10, "I2C write error\n");
     }
@@ -2101,8 +2089,6 @@ static int adt7316_i2c_multi_read(void *client , u8 reg , u8 count , u8 *data )
   int __cil_tmp9 ;
   void *__cil_tmp10 ;
   u8 *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct device *__cil_tmp14 ;
   struct device  const  *__cil_tmp15 ;
 
@@ -2136,9 +2122,7 @@ static int adt7316_i2c_multi_read(void *client , u8 reg , u8 count , u8 *data )
     }
     if (ret < 0) {
       {
-      __cil_tmp12 = (unsigned long )cl;
-      __cil_tmp13 = __cil_tmp12 + 40;
-      __cil_tmp14 = (struct device *)__cil_tmp13;
+      __cil_tmp14 = (struct device *)((void *)cl + 40);
       __cil_tmp15 = (struct device  const  *)__cil_tmp14;
       dev_err(__cil_tmp15, "I2C multi read error\n");
       }
@@ -2162,8 +2146,6 @@ static int adt7316_i2c_multi_write(void *client , u8 reg , u8 count , u8 *data )
   void *__cil_tmp10 ;
   u8 *__cil_tmp11 ;
   u8 __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device *__cil_tmp15 ;
   struct device  const  *__cil_tmp16 ;
 
@@ -2198,9 +2180,7 @@ static int adt7316_i2c_multi_write(void *client , u8 reg , u8 count , u8 *data )
     }
     if (ret < 0) {
       {
-      __cil_tmp13 = (unsigned long )cl;
-      __cil_tmp14 = __cil_tmp13 + 40;
-      __cil_tmp15 = (struct device *)__cil_tmp14;
+      __cil_tmp15 = (struct device *)((void *)cl + 40);
       __cil_tmp16 = (struct device  const  *)__cil_tmp15;
       dev_err(__cil_tmp16, "I2C multi write error\n");
       }
@@ -2221,21 +2201,9 @@ static int adt7316_i2c_probe(struct i2c_client *client , struct i2c_device_id  c
 { struct adt7316_bus bus ;
   int tmp___7 ;
   struct adt7316_bus *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   char const   *__cil_tmp21 ;
   char const   *__cil_tmp22 ;
 
@@ -2243,28 +2211,16 @@ static int adt7316_i2c_probe(struct i2c_client *client , struct i2c_device_id  c
   {
   __cil_tmp5 = & bus;
   *((void **)__cil_tmp5) = (void *)client;
-  __cil_tmp6 = (unsigned long )(& bus) + 8;
-  __cil_tmp7 = (unsigned long )client;
-  __cil_tmp8 = __cil_tmp7 + 808;
-  *((int *)__cil_tmp6) = *((int *)__cil_tmp8);
-  __cil_tmp9 = (unsigned long )(& bus) + 12;
-  *((int *)__cil_tmp9) = 8;
-  __cil_tmp10 = (unsigned long )(& bus) + 16;
-  *((int (**)(void *client , u8 reg , u8 *data ))__cil_tmp10) = & adt7316_i2c_read;
-  __cil_tmp11 = (unsigned long )(& bus) + 24;
-  *((int (**)(void *client , u8 reg , u8 val ))__cil_tmp11) = & adt7316_i2c_write;
-  __cil_tmp12 = (unsigned long )(& bus) + 32;
-  *((int (**)(void *client , u8 first_reg , u8 count , u8 *data ))__cil_tmp12) = & adt7316_i2c_multi_read;
-  __cil_tmp13 = (unsigned long )(& bus) + 40;
-  *((int (**)(void *client , u8 first_reg , u8 count , u8 *data ))__cil_tmp13) = & adt7316_i2c_multi_write;
-  __cil_tmp14 = (unsigned long )client;
-  __cil_tmp15 = __cil_tmp14 + 40;
-  __cil_tmp16 = (struct device *)__cil_tmp15;
+  *((int *)((void *)(&bus) + 8)) = *((int *)((void *)client + 808));
+  *((int *)((void *)(&bus) + 12)) = 8;
+  *((int (**)(void *client , u8 reg , u8 *data ))((void *)(&bus) + 16)) = & adt7316_i2c_read;
+  *((int (**)(void *client , u8 reg , u8 val ))((void *)(&bus) + 24)) = & adt7316_i2c_write;
+  *((int (**)(void *client , u8 first_reg , u8 count , u8 *data ))((void *)(&bus) + 32)) = & adt7316_i2c_multi_read;
+  *((int (**)(void *client , u8 first_reg , u8 count , u8 *data ))((void *)(&bus) + 40)) = & adt7316_i2c_multi_write;
+  __cil_tmp16 = (struct device *)((void *)client + 40);
   __cil_tmp17 = 0 * 1UL;
   __cil_tmp18 = 0 + __cil_tmp17;
-  __cil_tmp19 = (unsigned long )id;
-  __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
-  __cil_tmp21 = (char const   *)__cil_tmp20;
+  __cil_tmp21 = (char const   *)((void *)id + __cil_tmp18);
   __cil_tmp22 = (char const   *)__cil_tmp21;
   tmp___7 = adt7316_probe(__cil_tmp16, & bus, __cil_tmp22);
   }
@@ -2275,15 +2231,11 @@ static int adt7316_i2c_remove(struct i2c_client *client )  __attribute__((__sect
 __no_instrument_function__)) ;
 static int adt7316_i2c_remove(struct i2c_client *client ) 
 { int tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )client;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)client + 40);
   tmp___7 = adt7316_remove(__cil_tmp5);
   }
   return (tmp___7);

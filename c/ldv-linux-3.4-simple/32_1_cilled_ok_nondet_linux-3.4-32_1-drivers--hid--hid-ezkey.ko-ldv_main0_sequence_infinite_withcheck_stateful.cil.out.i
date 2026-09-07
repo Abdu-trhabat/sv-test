@@ -1870,38 +1870,18 @@ __inline static void hid_map_usage(struct hid_input *hidinput , struct hid_usage
 __inline static void hid_map_usage(struct hid_input *hidinput , struct hid_usage *usage ,
                                    unsigned long **bit , int *max , __u8 type , __u16 c )
 { struct input_dev *input ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   {
-  __cil_tmp8 = (unsigned long )hidinput;
-  __cil_tmp9 = __cil_tmp8 + 24;
-  input = *((struct input_dev **)__cil_tmp9);
-  __cil_tmp10 = (unsigned long )usage;
-  __cil_tmp11 = __cil_tmp10 + 10;
-  *((__u8 *)__cil_tmp11) = type;
-  __cil_tmp12 = (unsigned long )usage;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  *((__u16 *)__cil_tmp13) = c;
+  input = *((struct input_dev **)((void *)hidinput + 24));
+  *((__u8 *)((void *)usage + 10)) = type;
+  *((__u16 *)((void *)usage + 8)) = c;
   if ((int )type == 3) {
     goto case_3;
   } else
@@ -1918,33 +1898,25 @@ __inline static void hid_map_usage(struct hid_input *hidinput , struct hid_usage
     case_3:
     __cil_tmp14 = 0 * 8UL;
     __cil_tmp15 = 152 + __cil_tmp14;
-    __cil_tmp16 = (unsigned long )input;
-    __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-    *bit = (unsigned long *)__cil_tmp17;
+    *bit = (unsigned long *)((void *)input + __cil_tmp15);
     *max = 63;
     goto switch_break;
     case_2:
     __cil_tmp18 = 0 * 8UL;
     __cil_tmp19 = 144 + __cil_tmp18;
-    __cil_tmp20 = (unsigned long )input;
-    __cil_tmp21 = __cil_tmp20 + __cil_tmp19;
-    *bit = (unsigned long *)__cil_tmp21;
+    *bit = (unsigned long *)((void *)input + __cil_tmp19);
     *max = 15;
     goto switch_break;
     case_1:
     __cil_tmp22 = 0 * 8UL;
     __cil_tmp23 = 48 + __cil_tmp22;
-    __cil_tmp24 = (unsigned long )input;
-    __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-    *bit = (unsigned long *)__cil_tmp25;
+    *bit = (unsigned long *)((void *)input + __cil_tmp23);
     *max = 767;
     goto switch_break;
     case_17:
     __cil_tmp26 = 0 * 8UL;
     __cil_tmp27 = 168 + __cil_tmp26;
-    __cil_tmp28 = (unsigned long )input;
-    __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-    *bit = (unsigned long *)__cil_tmp29;
+    *bit = (unsigned long *)((void *)input + __cil_tmp27);
     *max = 15;
     goto switch_break;
   } else {
@@ -2027,54 +1999,32 @@ static int ez_input_mapping(struct hid_device *hdev , struct hid_input *hi , str
 static int ez_event(struct hid_device *hdev , struct hid_field *field , struct hid_usage *usage ,
                     __s32 value )
 { struct input_dev *input ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct hid_input *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   __u8 __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   __u8 __cil_tmp18 ;
   int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   __u16 __cil_tmp22 ;
   int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct hid_input *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   __u8 __cil_tmp31 ;
   unsigned int __cil_tmp32 ;
   __s32 __cil_tmp33 ;
   {
   {
-  __cil_tmp6 = (unsigned long )hdev;
-  __cil_tmp7 = __cil_tmp6 + 7116;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)hdev + 7116));
   __cil_tmp9 = __cil_tmp8 & 1U;
   if (! __cil_tmp9) {
     return (0);
   } else {
     {
-    __cil_tmp10 = (unsigned long )field;
-    __cil_tmp11 = __cil_tmp10 + 96;
-    __cil_tmp12 = *((struct hid_input **)__cil_tmp11);
+    __cil_tmp12 = *((struct hid_input **)((void *)field + 96));
     if (! __cil_tmp12) {
       return (0);
     } else {
       {
-      __cil_tmp13 = (unsigned long )usage;
-      __cil_tmp14 = __cil_tmp13 + 10;
-      __cil_tmp15 = *((__u8 *)__cil_tmp14);
+      __cil_tmp15 = *((__u8 *)((void *)usage + 10));
       if (! __cil_tmp15) {
         return (0);
       } else {
@@ -2085,27 +2035,17 @@ static int ez_event(struct hid_device *hdev , struct hid_field *field , struct h
   }
   }
   {
-  __cil_tmp16 = (unsigned long )usage;
-  __cil_tmp17 = __cil_tmp16 + 10;
-  __cil_tmp18 = *((__u8 *)__cil_tmp17);
+  __cil_tmp18 = *((__u8 *)((void *)usage + 10));
   __cil_tmp19 = (int )__cil_tmp18;
   if (__cil_tmp19 == 2) {
     {
-    __cil_tmp20 = (unsigned long )usage;
-    __cil_tmp21 = __cil_tmp20 + 8;
-    __cil_tmp22 = *((__u16 *)__cil_tmp21);
+    __cil_tmp22 = *((__u16 *)((void *)usage + 8));
     __cil_tmp23 = (int )__cil_tmp22;
     if (__cil_tmp23 == 6) {
       {
-      __cil_tmp24 = (unsigned long )field;
-      __cil_tmp25 = __cil_tmp24 + 96;
-      __cil_tmp26 = *((struct hid_input **)__cil_tmp25);
-      __cil_tmp27 = (unsigned long )__cil_tmp26;
-      __cil_tmp28 = __cil_tmp27 + 24;
-      input = *((struct input_dev **)__cil_tmp28);
-      __cil_tmp29 = (unsigned long )usage;
-      __cil_tmp30 = __cil_tmp29 + 10;
-      __cil_tmp31 = *((__u8 *)__cil_tmp30);
+      __cil_tmp26 = *((struct hid_input **)((void *)field + 96));
+      input = *((struct input_dev **)((void *)__cil_tmp26 + 24));
+      __cil_tmp31 = *((__u8 *)((void *)usage + 10));
       __cil_tmp32 = (unsigned int )__cil_tmp31;
       __cil_tmp33 = - value;
       input_event(input, __cil_tmp32, 8U, __cil_tmp33);

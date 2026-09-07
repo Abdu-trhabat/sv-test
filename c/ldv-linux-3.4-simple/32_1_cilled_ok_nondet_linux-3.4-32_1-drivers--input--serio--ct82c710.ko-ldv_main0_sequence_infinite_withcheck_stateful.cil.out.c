@@ -1096,13 +1096,12 @@ extern struct pv_cpu_ops pv_cpu_ops ;
 extern size_t strlcpy(char * , char const   * , size_t  ) ;
 __inline static void slow_down_io(void)  __attribute__((__no_instrument_function__)) ;
 __inline static void slow_down_io(void) 
-{ unsigned long __cil_tmp1 ;
+{
   void (*__cil_tmp2)(void) ;
 
   {
   {
-  __cil_tmp1 = (unsigned long )(& pv_cpu_ops) + 216;
-  __cil_tmp2 = *((void (**)(void))__cil_tmp1);
+  __cil_tmp2 = *((void (**)(void))((void *)(&pv_cpu_ops) + 216));
   (*__cil_tmp2)();
   }
   return;
@@ -1590,10 +1589,8 @@ static int ct82c710_detect(void)
   struct resource *__cil_tmp4 ;
   int __cil_tmp5 ;
   int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct resource *__cil_tmp8 ;
   resource_size_t __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
 
   {
   {
@@ -1620,12 +1617,10 @@ static int ct82c710_detect(void)
   __cil_tmp5 = (int )tmp___0;
   __cil_tmp6 = __cil_tmp5 << 2;
   *((resource_size_t *)__cil_tmp4) = (resource_size_t )__cil_tmp6;
-  __cil_tmp7 = (unsigned long )(& ct82c710_iores) + 8;
   __cil_tmp8 = & ct82c710_iores;
   __cil_tmp9 = *((resource_size_t *)__cil_tmp8);
-  *((resource_size_t *)__cil_tmp7) = __cil_tmp9 + 1ULL;
-  __cil_tmp10 = (unsigned long )(& ct82c710_iores) + 24;
-  *((unsigned long *)__cil_tmp10) = 256UL;
+  *((resource_size_t *)((void *)(&ct82c710_iores) + 8)) = __cil_tmp9 + 1ULL;
+  *((unsigned long *)((void *)(&ct82c710_iores) + 24)) = 256UL;
   outb_p((unsigned char)15, 912);
   outb_p((unsigned char)15, 913);
   }
@@ -1636,27 +1631,11 @@ static int ct82c710_probe(struct platform_device *dev )  __attribute__((__sectio
 __no_instrument_function__)) ;
 static int ct82c710_probe(struct platform_device *dev ) 
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   char *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   char *__cil_tmp24 ;
   struct resource *__cil_tmp25 ;
   resource_size_t __cil_tmp26 ;
@@ -1674,34 +1653,18 @@ static int ct82c710_probe(struct platform_device *dev )
 
   }
   {
-  __cil_tmp3 = (unsigned long )ct82c710_port;
-  __cil_tmp4 = __cil_tmp3 + 73;
-  *((__u8 *)__cil_tmp4) = (__u8 )1;
-  __cil_tmp5 = (unsigned long )ct82c710_port;
-  __cil_tmp6 = __cil_tmp5 + 272;
-  __cil_tmp7 = (unsigned long )dev;
-  __cil_tmp8 = __cil_tmp7 + 16;
-  *((struct device **)__cil_tmp6) = (struct device *)__cil_tmp8;
-  __cil_tmp9 = (unsigned long )ct82c710_port;
-  __cil_tmp10 = __cil_tmp9 + 112;
-  *((int (**)(struct serio * ))__cil_tmp10) = & ct82c710_open;
-  __cil_tmp11 = (unsigned long )ct82c710_port;
-  __cil_tmp12 = __cil_tmp11 + 120;
-  *((void (**)(struct serio * ))__cil_tmp12) = & ct82c710_close;
-  __cil_tmp13 = (unsigned long )ct82c710_port;
-  __cil_tmp14 = __cil_tmp13 + 104;
-  *((int (**)(struct serio * , unsigned char  ))__cil_tmp14) = & ct82c710_write;
+  *((__u8 *)((void *)ct82c710_port + 73)) = (__u8 )1;
+  *((struct device **)((void *)ct82c710_port + 272)) = (struct device *)((void *)dev + 16);
+  *((int (**)(struct serio * ))((void *)ct82c710_port + 112)) = & ct82c710_open;
+  *((void (**)(struct serio * ))((void *)ct82c710_port + 120)) = & ct82c710_close;
+  *((int (**)(struct serio * , unsigned char  ))((void *)ct82c710_port + 104)) = & ct82c710_write;
   __cil_tmp15 = 0 * 1UL;
   __cil_tmp16 = 8 + __cil_tmp15;
-  __cil_tmp17 = (unsigned long )ct82c710_port;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = (char *)__cil_tmp18;
+  __cil_tmp19 = (char *)((void *)ct82c710_port + __cil_tmp16);
   strlcpy(__cil_tmp19, "C&T 82c710 mouse port", 32UL);
   __cil_tmp20 = 0 * 1UL;
   __cil_tmp21 = 40 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )ct82c710_port;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  __cil_tmp24 = (char *)__cil_tmp23;
+  __cil_tmp24 = (char *)((void *)ct82c710_port + __cil_tmp21);
   __cil_tmp25 = & ct82c710_iores;
   __cil_tmp26 = *((resource_size_t *)__cil_tmp25);
   snprintf(__cil_tmp24, 32UL, "isa%16llx/serio0", __cil_tmp26);

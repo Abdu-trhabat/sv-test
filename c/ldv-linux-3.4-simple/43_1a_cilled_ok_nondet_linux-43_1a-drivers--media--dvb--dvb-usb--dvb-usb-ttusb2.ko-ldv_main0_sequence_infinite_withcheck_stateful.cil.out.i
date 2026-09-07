@@ -5880,15 +5880,11 @@ extern void *dev_get_drvdata(struct device const * ) ;
 extern void msleep(unsigned int ) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device const *)__cil_tmp5;
   tmp = dev_get_drvdata(__cil_tmp6);
   }
@@ -5900,14 +5896,10 @@ extern void rc_keydown(struct rc_dev * , int , u8 ) ;
 extern void rc_keyup(struct rc_dev * ) ;
 __inline static void *i2c_get_adapdata(struct i2c_adapter const *dev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 176;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)dev + 176);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
@@ -5952,8 +5944,6 @@ static int ttusb2_msg(struct dvb_usb_device *d , u8 cmd , u8 *wbuf , int wlen , 
   void *__ret ;
   size_t __len___0 ;
   void *__ret___0 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void *__cil_tmp19 ;
   int __cil_tmp20 ;
   size_t __cil_tmp21 ;
@@ -5964,16 +5954,10 @@ static int ttusb2_msg(struct dvb_usb_device *d , u8 cmd , u8 *wbuf , int wlen , 
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
   void const *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   u8 __cil_tmp33 ;
   int __cil_tmp34 ;
   int __cil_tmp35 ;
   u8 *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   u8 __cil_tmp39 ;
   u8 *__cil_tmp40 ;
   u8 *__cil_tmp41 ;
@@ -6033,9 +6017,7 @@ static int ttusb2_msg(struct dvb_usb_device *d , u8 cmd , u8 *wbuf , int wlen , 
   void const *__cil_tmp95 ;
   {
   {
-  __cil_tmp17 = (unsigned long )d;
-  __cil_tmp18 = __cil_tmp17 + 11520;
-  __cil_tmp19 = *((void **)__cil_tmp18);
+  __cil_tmp19 = *((void **)((void *)d + 11520));
   st = (struct ttusb2_state *)__cil_tmp19;
   r = (u8 *)0;
   ret = 0;
@@ -6072,18 +6054,12 @@ static int ttusb2_msg(struct dvb_usb_device *d , u8 cmd , u8 *wbuf , int wlen , 
   }
   {
   *s = (u8 )170U;
-  __cil_tmp29 = (unsigned long )st;
-  __cil_tmp30 = __cil_tmp29 + 256;
-  __cil_tmp31 = (unsigned long )st;
-  __cil_tmp32 = __cil_tmp31 + 256;
-  __cil_tmp33 = *((u8 *)__cil_tmp32);
+  __cil_tmp33 = *((u8 *)((void *)st + 256));
   __cil_tmp34 = (int )__cil_tmp33;
   __cil_tmp35 = __cil_tmp34 + 1;
-  *((u8 *)__cil_tmp30) = (u8 )__cil_tmp35;
+  *((u8 *)((void *)st + 256)) = (u8 )__cil_tmp35;
   __cil_tmp36 = s + 1UL;
-  __cil_tmp37 = (unsigned long )st;
-  __cil_tmp38 = __cil_tmp37 + 256;
-  __cil_tmp39 = *((u8 *)__cil_tmp38);
+  __cil_tmp39 = *((u8 *)((void *)st + 256));
   *__cil_tmp36 = (u8 )__cil_tmp39;
   __cil_tmp40 = s + 2UL;
   *__cil_tmp40 = cmd;
@@ -6260,40 +6236,24 @@ static int tt3650_ci_msg_locked(struct dvb_ca_en50221 *ca , u8 cmd , u8 *data , 
 { struct dvb_usb_device *d ;
   struct ttusb2_state *state ;
   int ret ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct mutex *__cil_tmp17 ;
   int __cil_tmp18 ;
   u8 __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct mutex *__cil_tmp22 ;
   {
   {
-  __cil_tmp9 = (unsigned long )ca;
-  __cil_tmp10 = __cil_tmp9 + 72;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)ca + 72));
   d = (struct dvb_usb_device *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )d;
-  __cil_tmp13 = __cil_tmp12 + 11520;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  __cil_tmp14 = *((void **)((void *)d + 11520));
   state = (struct ttusb2_state *)__cil_tmp14;
-  __cil_tmp15 = (unsigned long )state;
-  __cil_tmp16 = __cil_tmp15 + 88;
-  __cil_tmp17 = (struct mutex *)__cil_tmp16;
+  __cil_tmp17 = (struct mutex *)((void *)state + 88);
   mutex_lock_nested(__cil_tmp17, 0U);
   __cil_tmp18 = (int )cmd;
   __cil_tmp19 = (u8 )__cil_tmp18;
   ret = tt3650_ci_msg(d, __cil_tmp19, data, write_len, read_len);
-  __cil_tmp20 = (unsigned long )state;
-  __cil_tmp21 = __cil_tmp20 + 88;
-  __cil_tmp22 = (struct mutex *)__cil_tmp21;
+  __cil_tmp22 = (struct mutex *)((void *)state + 88);
   mutex_unlock(__cil_tmp22);
   }
   return (ret);
@@ -6619,18 +6579,12 @@ static int tt3650_ci_slot_reset(struct dvb_ca_en50221 *ca , int slot )
   struct ttusb2_state *state ;
   u8 buf[1U] ;
   int ret ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   void *__cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   int *__cil_tmp13 ;
   int __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct mutex *__cil_tmp19 ;
   u8 __cil_tmp20 ;
   u8 *__cil_tmp21 ;
@@ -6642,17 +6596,11 @@ static int tt3650_ci_slot_reset(struct dvb_ca_en50221 *ca , int slot )
   unsigned long __cil_tmp27 ;
   u8 __cil_tmp28 ;
   u8 *__cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct mutex *__cil_tmp32 ;
   {
-  __cil_tmp7 = (unsigned long )ca;
-  __cil_tmp8 = __cil_tmp7 + 72;
-  __cil_tmp9 = *((void **)__cil_tmp8);
+  __cil_tmp9 = *((void **)((void *)ca + 72));
   d = (struct dvb_usb_device *)__cil_tmp9;
-  __cil_tmp10 = (unsigned long )d;
-  __cil_tmp11 = __cil_tmp10 + 11520;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  __cil_tmp12 = *((void **)((void *)d + 11520));
   state = (struct ttusb2_state *)__cil_tmp12;
   {
   __cil_tmp13 = & dvb_usb_ttusb2_debug_ci;
@@ -6672,9 +6620,7 @@ static int tt3650_ci_slot_reset(struct dvb_ca_en50221 *ca , int slot )
   __cil_tmp15 = 0 * 1UL;
   __cil_tmp16 = (unsigned long )(buf) + __cil_tmp15;
   *((u8 *)__cil_tmp16) = (u8 )0U;
-  __cil_tmp17 = (unsigned long )state;
-  __cil_tmp18 = __cil_tmp17 + 88;
-  __cil_tmp19 = (struct mutex *)__cil_tmp18;
+  __cil_tmp19 = (struct mutex *)((void *)state + 88);
   mutex_lock_nested(__cil_tmp19, 0U);
   __cil_tmp20 = (u8 )69;
   __cil_tmp21 = (u8 *)(& buf);
@@ -6709,9 +6655,7 @@ static int tt3650_ci_slot_reset(struct dvb_ca_en50221 *ca , int slot )
   }
   failed:
   {
-  __cil_tmp30 = (unsigned long )state;
-  __cil_tmp31 = __cil_tmp30 + 88;
-  __cil_tmp32 = (struct mutex *)__cil_tmp31;
+  __cil_tmp32 = (struct mutex *)((void *)state + 88);
   mutex_unlock(__cil_tmp32);
   }
   return (ret);
@@ -6760,8 +6704,6 @@ static void tt3650_ci_uninit(struct dvb_usb_device *d )
   struct dvb_usb_device *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   struct ttusb2_state *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
@@ -6769,8 +6711,6 @@ static void tt3650_ci_uninit(struct dvb_usb_device *d )
   void *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void *__cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   struct dvb_ca_en50221 *__cil_tmp21 ;
@@ -6796,9 +6736,7 @@ static void tt3650_ci_uninit(struct dvb_usb_device *d )
   } else {
   }
   }
-  __cil_tmp8 = (unsigned long )d;
-  __cil_tmp9 = __cil_tmp8 + 11520;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)d + 11520));
   state = (struct ttusb2_state *)__cil_tmp10;
   {
   __cil_tmp11 = (struct ttusb2_state *)0;
@@ -6813,9 +6751,7 @@ static void tt3650_ci_uninit(struct dvb_usb_device *d )
   __cil_tmp14 = (void *)0;
   __cil_tmp15 = (unsigned long )__cil_tmp14;
   __cil_tmp16 = 0 + 72;
-  __cil_tmp17 = (unsigned long )state;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp16;
-  __cil_tmp19 = *((void **)__cil_tmp18);
+  __cil_tmp19 = *((void **)((void *)state + __cil_tmp16));
   __cil_tmp20 = (unsigned long )__cil_tmp19;
   if (__cil_tmp20 == __cil_tmp15) {
     return;
@@ -6837,52 +6773,26 @@ static int tt3650_ci_init(struct dvb_usb_adapter *a )
   struct ttusb2_state *state ;
   int ret ;
   struct lock_class_key __key ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   int *__cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct mutex *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct dvb_adapter *__cil_tmp43 ;
   struct dvb_ca_en50221 *__cil_tmp44 ;
   struct dvb_ca_en50221 *__cil_tmp45 ;
   void *__cil_tmp46 ;
   {
   d = *((struct dvb_usb_device **)a);
-  __cil_tmp6 = (unsigned long )d;
-  __cil_tmp7 = __cil_tmp6 + 11520;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)d + 11520));
   state = (struct ttusb2_state *)__cil_tmp8;
   {
   __cil_tmp9 = & dvb_usb_ttusb2_debug_ci;
@@ -6895,50 +6805,28 @@ static int tt3650_ci_init(struct dvb_usb_adapter *a )
   }
   }
   {
-  __cil_tmp11 = (unsigned long )state;
-  __cil_tmp12 = __cil_tmp11 + 88;
-  __cil_tmp13 = (struct mutex *)__cil_tmp12;
+  __cil_tmp13 = (struct mutex *)((void *)state + 88);
   __mutex_init(__cil_tmp13, "&state->ca_mutex", & __key);
   *((struct module **)state) = & __this_module;
   __cil_tmp14 = 0 + 8;
-  __cil_tmp15 = (unsigned long )state;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((int (**)(struct dvb_ca_en50221 * , int , int ))__cil_tmp16) = & tt3650_ci_read_attribute_mem;
+  *((int (**)(struct dvb_ca_en50221 * , int , int ))((void *)state + __cil_tmp14)) = & tt3650_ci_read_attribute_mem;
   __cil_tmp17 = 0 + 16;
-  __cil_tmp18 = (unsigned long )state;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  *((int (**)(struct dvb_ca_en50221 * , int , int , u8 ))__cil_tmp19) = & tt3650_ci_write_attribute_mem;
+  *((int (**)(struct dvb_ca_en50221 * , int , int , u8 ))((void *)state + __cil_tmp17)) = & tt3650_ci_write_attribute_mem;
   __cil_tmp20 = 0 + 24;
-  __cil_tmp21 = (unsigned long )state;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  *((int (**)(struct dvb_ca_en50221 * , int , u8 ))__cil_tmp22) = & tt3650_ci_read_cam_control;
+  *((int (**)(struct dvb_ca_en50221 * , int , u8 ))((void *)state + __cil_tmp20)) = & tt3650_ci_read_cam_control;
   __cil_tmp23 = 0 + 32;
-  __cil_tmp24 = (unsigned long )state;
-  __cil_tmp25 = __cil_tmp24 + __cil_tmp23;
-  *((int (**)(struct dvb_ca_en50221 * , int , u8 , u8 ))__cil_tmp25) = & tt3650_ci_write_cam_control;
+  *((int (**)(struct dvb_ca_en50221 * , int , u8 , u8 ))((void *)state + __cil_tmp23)) = & tt3650_ci_write_cam_control;
   __cil_tmp26 = 0 + 40;
-  __cil_tmp27 = (unsigned long )state;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-  *((int (**)(struct dvb_ca_en50221 * , int ))__cil_tmp28) = & tt3650_ci_slot_reset;
+  *((int (**)(struct dvb_ca_en50221 * , int ))((void *)state + __cil_tmp26)) = & tt3650_ci_slot_reset;
   __cil_tmp29 = 0 + 48;
-  __cil_tmp30 = (unsigned long )state;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  *((int (**)(struct dvb_ca_en50221 * , int ))__cil_tmp31) = & tt3650_ci_slot_shutdown;
+  *((int (**)(struct dvb_ca_en50221 * , int ))((void *)state + __cil_tmp29)) = & tt3650_ci_slot_shutdown;
   __cil_tmp32 = 0 + 56;
-  __cil_tmp33 = (unsigned long )state;
-  __cil_tmp34 = __cil_tmp33 + __cil_tmp32;
-  *((int (**)(struct dvb_ca_en50221 * , int ))__cil_tmp34) = & tt3650_ci_slot_ts_enable;
+  *((int (**)(struct dvb_ca_en50221 * , int ))((void *)state + __cil_tmp32)) = & tt3650_ci_slot_ts_enable;
   __cil_tmp35 = 0 + 64;
-  __cil_tmp36 = (unsigned long )state;
-  __cil_tmp37 = __cil_tmp36 + __cil_tmp35;
-  *((int (**)(struct dvb_ca_en50221 * , int , int ))__cil_tmp37) = & tt3650_ci_poll_slot_status;
+  *((int (**)(struct dvb_ca_en50221 * , int , int ))((void *)state + __cil_tmp35)) = & tt3650_ci_poll_slot_status;
   __cil_tmp38 = 0 + 72;
-  __cil_tmp39 = (unsigned long )state;
-  __cil_tmp40 = __cil_tmp39 + __cil_tmp38;
-  *((void **)__cil_tmp40) = (void *)d;
-  __cil_tmp41 = (unsigned long )a;
-  __cil_tmp42 = __cil_tmp41 + 216;
-  __cil_tmp43 = (struct dvb_adapter *)__cil_tmp42;
+  *((void **)((void *)state + __cil_tmp38)) = (void *)d;
+  __cil_tmp43 = (struct dvb_adapter *)((void *)a + 216);
   __cil_tmp44 = (struct dvb_ca_en50221 *)state;
   ret = dvb_ca_en50221_init(__cil_tmp43, __cil_tmp44, 0, 1);
   }
@@ -6976,21 +6864,13 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
   size_t __len___1 ;
   void *__ret___1 ;
   struct i2c_adapter const *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct mutex *__cil_tmp23 ;
   int __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct i2c_msg *__cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   __u16 __cil_tmp30 ;
   int __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   struct i2c_msg *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   __u16 __cil_tmp36 ;
   int __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
@@ -7014,37 +6894,25 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
   unsigned long __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   struct i2c_msg *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   __u16 __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct i2c_msg *__cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
   __u16 __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
   struct i2c_msg *__cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
   __u16 __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
   struct i2c_msg *__cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
   __u16 __cil_tmp83 ;
   void *__cil_tmp84 ;
   void *__cil_tmp85 ;
   unsigned long __cil_tmp86 ;
   struct i2c_msg *__cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   __u8 *__cil_tmp90 ;
   void const *__cil_tmp91 ;
   u8 __cil_tmp92 ;
@@ -7060,45 +6928,29 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
   u8 __cil_tmp102 ;
   int __cil_tmp103 ;
   int __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   struct i2c_msg *__cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
-  unsigned long __cil_tmp109 ;
   __u16 __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   struct i2c_msg *__cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
   __u8 *__cil_tmp116 ;
   void *__cil_tmp117 ;
   void const *__cil_tmp118 ;
   void const *__cil_tmp119 ;
   unsigned long __cil_tmp120 ;
   struct i2c_msg *__cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
   __u16 __cil_tmp124 ;
   unsigned long __cil_tmp125 ;
   struct i2c_msg *__cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
   __u8 *__cil_tmp129 ;
   void *__cil_tmp130 ;
   void const *__cil_tmp131 ;
   void const *__cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
   struct mutex *__cil_tmp135 ;
   {
   {
   __cil_tmp20 = (struct i2c_adapter const *)adap;
   tmp = i2c_get_adapdata(__cil_tmp20);
   d = (struct dvb_usb_device *)tmp;
-  __cil_tmp21 = (unsigned long )d;
-  __cil_tmp22 = __cil_tmp21 + 3744;
-  __cil_tmp23 = (struct mutex *)__cil_tmp22;
+  __cil_tmp23 = (struct mutex *)((void *)d + 3744);
   tmp___0 = mutex_lock_interruptible_nested(__cil_tmp23, 0U);
   }
   if (tmp___0 < 0) {
@@ -7118,12 +6970,8 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
   __cil_tmp24 = i + 1;
   if (__cil_tmp24 < num) {
     {
-    __cil_tmp25 = (unsigned long )i;
-    __cil_tmp26 = __cil_tmp25 + 1UL;
-    __cil_tmp27 = msg + __cil_tmp26;
-    __cil_tmp28 = (unsigned long )__cil_tmp27;
-    __cil_tmp29 = __cil_tmp28 + 2;
-    __cil_tmp30 = *((__u16 *)__cil_tmp29);
+    __cil_tmp27 = msg + ((void *)i + 1UL);
+    __cil_tmp30 = *((__u16 *)((void *)__cil_tmp27 + 2));
     __cil_tmp31 = (int )__cil_tmp30;
     if (__cil_tmp31 & 1) {
       tmp___1 = 1;
@@ -7138,9 +6986,7 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
   write_read = tmp___1;
   __cil_tmp32 = (unsigned long )i;
   __cil_tmp33 = msg + __cil_tmp32;
-  __cil_tmp34 = (unsigned long )__cil_tmp33;
-  __cil_tmp35 = __cil_tmp34 + 2;
-  __cil_tmp36 = *((__u16 *)__cil_tmp35);
+  __cil_tmp36 = *((__u16 *)((void *)__cil_tmp33 + 2));
   __cil_tmp37 = (int )__cil_tmp36;
   read = __cil_tmp37 & 1;
   __cil_tmp38 = 0 * 1UL;
@@ -7168,20 +7014,14 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
     __cil_tmp56 = (unsigned long )(obuf) + __cil_tmp55;
     __cil_tmp57 = (unsigned long )i;
     __cil_tmp58 = msg + __cil_tmp57;
-    __cil_tmp59 = (unsigned long )__cil_tmp58;
-    __cil_tmp60 = __cil_tmp59 + 4;
-    __cil_tmp61 = *((__u16 *)__cil_tmp60);
+    __cil_tmp61 = *((__u16 *)((void *)__cil_tmp58 + 4));
     *((u8 *)__cil_tmp56) = (u8 )__cil_tmp61;
   }
   if (write_read != 0) {
     __cil_tmp62 = 2 * 1UL;
     __cil_tmp63 = (unsigned long )(obuf) + __cil_tmp62;
-    __cil_tmp64 = (unsigned long )i;
-    __cil_tmp65 = __cil_tmp64 + 1UL;
-    __cil_tmp66 = msg + __cil_tmp65;
-    __cil_tmp67 = (unsigned long )__cil_tmp66;
-    __cil_tmp68 = __cil_tmp67 + 4;
-    __cil_tmp69 = *((__u16 *)__cil_tmp68);
+    __cil_tmp66 = msg + ((void *)i + 1UL);
+    __cil_tmp69 = *((__u16 *)((void *)__cil_tmp66 + 4));
     *((u8 *)__cil_tmp63) = (u8 )__cil_tmp69;
   } else
   if (read != 0) {
@@ -7189,9 +7029,7 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
     __cil_tmp71 = (unsigned long )(obuf) + __cil_tmp70;
     __cil_tmp72 = (unsigned long )i;
     __cil_tmp73 = msg + __cil_tmp72;
-    __cil_tmp74 = (unsigned long )__cil_tmp73;
-    __cil_tmp75 = __cil_tmp74 + 4;
-    __cil_tmp76 = *((__u16 *)__cil_tmp75);
+    __cil_tmp76 = *((__u16 *)((void *)__cil_tmp73 + 4));
     *((u8 *)__cil_tmp71) = (u8 )__cil_tmp76;
   } else {
     __cil_tmp77 = 2 * 1UL;
@@ -7201,17 +7039,13 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
   {
   __cil_tmp79 = (unsigned long )i;
   __cil_tmp80 = msg + __cil_tmp79;
-  __cil_tmp81 = (unsigned long )__cil_tmp80;
-  __cil_tmp82 = __cil_tmp81 + 4;
-  __cil_tmp83 = *((__u16 *)__cil_tmp82);
+  __cil_tmp83 = *((__u16 *)((void *)__cil_tmp80 + 4));
   __len = (size_t )__cil_tmp83;
   __cil_tmp84 = (void *)(& obuf);
   __cil_tmp85 = __cil_tmp84 + 3U;
   __cil_tmp86 = (unsigned long )i;
   __cil_tmp87 = msg + __cil_tmp86;
-  __cil_tmp88 = (unsigned long )__cil_tmp87;
-  __cil_tmp89 = __cil_tmp88 + 8;
-  __cil_tmp90 = *((__u8 **)__cil_tmp89);
+  __cil_tmp90 = *((__u8 **)((void *)__cil_tmp87 + 8));
   __cil_tmp91 = (void const *)__cil_tmp90;
   __ret = memcpy(__cil_tmp85, __cil_tmp91, __len);
   __cil_tmp92 = (u8 )49;
@@ -7238,19 +7072,11 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
   }
   if (write_read != 0) {
     {
-    __cil_tmp105 = (unsigned long )i;
-    __cil_tmp106 = __cil_tmp105 + 1UL;
-    __cil_tmp107 = msg + __cil_tmp106;
-    __cil_tmp108 = (unsigned long )__cil_tmp107;
-    __cil_tmp109 = __cil_tmp108 + 4;
-    __cil_tmp110 = *((__u16 *)__cil_tmp109);
+    __cil_tmp107 = msg + ((void *)i + 1UL);
+    __cil_tmp110 = *((__u16 *)((void *)__cil_tmp107 + 4));
     __len___0 = (size_t )__cil_tmp110;
-    __cil_tmp111 = (unsigned long )i;
-    __cil_tmp112 = __cil_tmp111 + 1UL;
-    __cil_tmp113 = msg + __cil_tmp112;
-    __cil_tmp114 = (unsigned long )__cil_tmp113;
-    __cil_tmp115 = __cil_tmp114 + 8;
-    __cil_tmp116 = *((__u8 **)__cil_tmp115);
+    __cil_tmp113 = msg + ((void *)i + 1UL);
+    __cil_tmp116 = *((__u8 **)((void *)__cil_tmp113 + 8));
     __cil_tmp117 = (void *)__cil_tmp116;
     __cil_tmp118 = (void const *)(& ibuf);
     __cil_tmp119 = __cil_tmp118 + 3U;
@@ -7262,15 +7088,11 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
     {
     __cil_tmp120 = (unsigned long )i;
     __cil_tmp121 = msg + __cil_tmp120;
-    __cil_tmp122 = (unsigned long )__cil_tmp121;
-    __cil_tmp123 = __cil_tmp122 + 4;
-    __cil_tmp124 = *((__u16 *)__cil_tmp123);
+    __cil_tmp124 = *((__u16 *)((void *)__cil_tmp121 + 4));
     __len___1 = (size_t )__cil_tmp124;
     __cil_tmp125 = (unsigned long )i;
     __cil_tmp126 = msg + __cil_tmp125;
-    __cil_tmp127 = (unsigned long )__cil_tmp126;
-    __cil_tmp128 = __cil_tmp127 + 8;
-    __cil_tmp129 = *((__u8 **)__cil_tmp128);
+    __cil_tmp129 = *((__u8 **)((void *)__cil_tmp126 + 8));
     __cil_tmp130 = (void *)__cil_tmp129;
     __cil_tmp131 = (void const *)(& ibuf);
     __cil_tmp132 = __cil_tmp131 + 3U;
@@ -7287,9 +7109,7 @@ static int ttusb2_i2c_xfer(struct i2c_adapter *adap , struct i2c_msg *msg , int 
   }
   ldv_39091:
   {
-  __cil_tmp133 = (unsigned long )d;
-  __cil_tmp134 = __cil_tmp133 + 3744;
-  __cil_tmp135 = (struct mutex *)__cil_tmp134;
+  __cil_tmp135 = (struct mutex *)((void *)d + 3744);
   mutex_unlock(__cil_tmp135);
   }
   return (i);
@@ -7307,8 +7127,6 @@ static int tt3650_rc_query(struct dvb_usb_device *d )
 { int ret ;
   u8 rx[9U] ;
   struct ttusb2_state *st ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
   u8 __cil_tmp8 ;
   u8 *__cil_tmp9 ;
@@ -7317,8 +7135,6 @@ static int tt3650_rc_query(struct dvb_usb_device *d )
   unsigned long __cil_tmp12 ;
   u8 __cil_tmp13 ;
   int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   u8 __cil_tmp19 ;
@@ -7342,28 +7158,16 @@ static int tt3650_rc_query(struct dvb_usb_device *d )
   unsigned long __cil_tmp37 ;
   u8 __cil_tmp38 ;
   int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct rc_dev *__cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   u16 __cil_tmp45 ;
   int __cil_tmp46 ;
   u8 __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   u16 __cil_tmp50 ;
   unsigned int __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct rc_dev *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   {
   {
-  __cil_tmp5 = (unsigned long )d;
-  __cil_tmp6 = __cil_tmp5 + 11520;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)d + 11520));
   st = (struct ttusb2_state *)__cil_tmp7;
   __cil_tmp8 = (u8 )27;
   __cil_tmp9 = (u8 *)0;
@@ -7380,8 +7184,6 @@ static int tt3650_rc_query(struct dvb_usb_device *d )
   __cil_tmp13 = *((u8 *)__cil_tmp12);
   __cil_tmp14 = (int )__cil_tmp13;
   if (__cil_tmp14 & 1) {
-    __cil_tmp15 = (unsigned long )st;
-    __cil_tmp16 = __cil_tmp15 + 258;
     __cil_tmp17 = 2 * 1UL;
     __cil_tmp18 = (unsigned long )(rx) + __cil_tmp17;
     __cil_tmp19 = *((u8 *)__cil_tmp18);
@@ -7395,7 +7197,7 @@ static int tt3650_rc_query(struct dvb_usb_device *d )
     __cil_tmp27 = (short )__cil_tmp26;
     __cil_tmp28 = (int )__cil_tmp27;
     __cil_tmp29 = __cil_tmp28 | __cil_tmp21;
-    *((u16 *)__cil_tmp16) = (u16 )__cil_tmp29;
+    *((u16 *)((void *)st + 258)) = (u16 )__cil_tmp29;
     {
     __cil_tmp30 = & dvb_usb_ttusb2_debug;
     __cil_tmp31 = *__cil_tmp30;
@@ -7415,31 +7217,21 @@ static int tt3650_rc_query(struct dvb_usb_device *d )
     }
     }
     {
-    __cil_tmp40 = (unsigned long )d;
-    __cil_tmp41 = __cil_tmp40 + 11216;
-    __cil_tmp42 = *((struct rc_dev **)__cil_tmp41);
-    __cil_tmp43 = (unsigned long )st;
-    __cil_tmp44 = __cil_tmp43 + 258;
-    __cil_tmp45 = *((u16 *)__cil_tmp44);
+    __cil_tmp42 = *((struct rc_dev **)((void *)d + 11216));
+    __cil_tmp45 = *((u16 *)((void *)st + 258));
     __cil_tmp46 = (int )__cil_tmp45;
     __cil_tmp47 = (u8 )0;
     rc_keydown(__cil_tmp42, __cil_tmp46, __cil_tmp47);
     }
   } else {
     {
-    __cil_tmp48 = (unsigned long )st;
-    __cil_tmp49 = __cil_tmp48 + 258;
-    __cil_tmp50 = *((u16 *)__cil_tmp49);
+    __cil_tmp50 = *((u16 *)((void *)st + 258));
     __cil_tmp51 = (unsigned int )__cil_tmp50;
     if (__cil_tmp51 != 0U) {
       {
-      __cil_tmp52 = (unsigned long )d;
-      __cil_tmp53 = __cil_tmp52 + 11216;
-      __cil_tmp54 = *((struct rc_dev **)__cil_tmp53);
+      __cil_tmp54 = *((struct rc_dev **)((void *)d + 11216));
       rc_keyup(__cil_tmp54);
-      __cil_tmp55 = (unsigned long )st;
-      __cil_tmp56 = __cil_tmp55 + 258;
-      *((u16 *)__cil_tmp56) = (u16 )0U;
+      *((u16 *)((void *)st + 258)) = (u16 )0U;
       }
     } else {
     }
@@ -7453,28 +7245,20 @@ static int ttusb2_identify_state(struct usb_device *udev , struct dvb_usb_device
                                  struct dvb_usb_device_description **desc , int *cold )
 { int tmp ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   __u8 __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   __u8 __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   {
   {
   __cil_tmp6 = 1288 + 14;
-  __cil_tmp7 = (unsigned long )udev;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp6;
-  __cil_tmp9 = *((__u8 *)__cil_tmp8);
+  __cil_tmp9 = *((__u8 *)((void *)udev + __cil_tmp6));
   __cil_tmp10 = (unsigned int )__cil_tmp9;
   if (__cil_tmp10 == 0U) {
     {
     __cil_tmp11 = 1288 + 15;
-    __cil_tmp12 = (unsigned long )udev;
-    __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-    __cil_tmp14 = *((__u8 *)__cil_tmp13);
+    __cil_tmp14 = *((__u8 *)((void *)udev + __cil_tmp11));
     __cil_tmp15 = (unsigned int )__cil_tmp14;
     if (__cil_tmp15 == 0U) {
       tmp = 1;
@@ -7531,8 +7315,6 @@ static int ttusb2_frontend_tda10086_attach(struct dvb_usb_adapter *adap )
   void *tmp___5 ;
   struct dvb_frontend *tmp___6 ;
   struct dvb_usb_device *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct usb_device *__cil_tmp15 ;
   struct dvb_frontend *(*__cil_tmp16)(struct tda10086_config const * , struct i2c_adapter * ) ;
   unsigned long __cil_tmp17 ;
@@ -7544,16 +7326,12 @@ static int ttusb2_frontend_tda10086_attach(struct dvb_usb_adapter *adap )
   unsigned long __cil_tmp23 ;
   struct tda10086_config const *__cil_tmp24 ;
   struct dvb_usb_device *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct i2c_adapter *__cil_tmp28 ;
   void *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   unsigned long __cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct dvb_frontend *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
   unsigned long __cil_tmp38 ;
@@ -7562,9 +7340,7 @@ static int ttusb2_frontend_tda10086_attach(struct dvb_usb_adapter *adap )
   {
   {
   __cil_tmp12 = *((struct dvb_usb_device **)adap);
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + 3560;
-  __cil_tmp15 = *((struct usb_device **)__cil_tmp14);
+  __cil_tmp15 = *((struct usb_device **)((void *)__cil_tmp12 + 3560));
   tmp = usb_set_interface(__cil_tmp15, 0, 3);
   }
   if (tmp < 0) {
@@ -7605,9 +7381,7 @@ static int ttusb2_frontend_tda10086_attach(struct dvb_usb_adapter *adap )
     {
     __cil_tmp24 = (struct tda10086_config const *)(& tda10086_config);
     __cil_tmp25 = *((struct dvb_usb_device **)adap);
-    __cil_tmp26 = (unsigned long )__cil_tmp25;
-    __cil_tmp27 = __cil_tmp26 + 3912;
-    __cil_tmp28 = (struct i2c_adapter *)__cil_tmp27;
+    __cil_tmp28 = (struct i2c_adapter *)((void *)__cil_tmp25 + 3912);
     tmp___6 = (*__a)(__cil_tmp24, __cil_tmp28);
     __r = (void *)tmp___6;
     }
@@ -7631,9 +7405,7 @@ static int ttusb2_frontend_tda10086_attach(struct dvb_usb_adapter *adap )
   tmp___0 = (struct dvb_frontend *)__r;
   __cil_tmp32 = 0 * 360UL;
   __cil_tmp33 = 2080 + __cil_tmp32;
-  __cil_tmp34 = (unsigned long )adap;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  *((struct dvb_frontend **)__cil_tmp35) = tmp___0;
+  *((struct dvb_frontend **)((void *)adap + __cil_tmp33)) = tmp___0;
   {
   __cil_tmp36 = (struct dvb_frontend *)0;
   __cil_tmp37 = (unsigned long )__cil_tmp36;
@@ -7659,49 +7431,29 @@ static int ttusb2_frontend_tda10086_attach(struct dvb_usb_adapter *adap )
 static int ttusb2_ct3650_i2c_gate_ctrl(struct dvb_frontend *fe , int enable )
 { struct dvb_usb_adapter *adap ;
   int tmp ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct dvb_adapter *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct dvb_frontend *__cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   int (*__cil_tmp19)(struct dvb_frontend * , int ) ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct dvb_frontend *__cil_tmp24 ;
   {
   {
-  __cil_tmp5 = (unsigned long )fe;
-  __cil_tmp6 = __cil_tmp5 + 752;
-  __cil_tmp7 = *((struct dvb_adapter **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 56;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp7 = *((struct dvb_adapter **)((void *)fe + 752));
+  __cil_tmp10 = *((void **)((void *)__cil_tmp7 + 56));
   adap = (struct dvb_usb_adapter *)__cil_tmp10;
   __cil_tmp11 = 0 + 360;
   __cil_tmp12 = 0 * 360UL;
   __cil_tmp13 = 2080 + __cil_tmp12;
-  __cil_tmp14 = (unsigned long )adap;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp13;
-  __cil_tmp16 = *((struct dvb_frontend **)__cil_tmp15);
-  __cil_tmp17 = (unsigned long )__cil_tmp16;
-  __cil_tmp18 = __cil_tmp17 + __cil_tmp11;
-  __cil_tmp19 = *((int (**)(struct dvb_frontend * , int ))__cil_tmp18);
+  __cil_tmp16 = *((struct dvb_frontend **)((void *)adap + __cil_tmp13));
+  __cil_tmp19 = *((int (**)(struct dvb_frontend * , int ))((void *)__cil_tmp16 + __cil_tmp11));
   __cil_tmp20 = 0 * 360UL;
   __cil_tmp21 = 2080 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )adap;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  __cil_tmp24 = *((struct dvb_frontend **)__cil_tmp23);
+  __cil_tmp24 = *((struct dvb_frontend **)((void *)adap + __cil_tmp21));
   tmp = (*__cil_tmp19)(__cil_tmp24, enable);
   }
   return (tmp);
@@ -7726,15 +7478,11 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
   void *tmp___10 ;
   struct dvb_frontend *tmp___11 ;
   struct dvb_usb_device *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct usb_device *__cil_tmp22 ;
   struct dvb_frontend *__cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   struct dvb_frontend *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   struct dvb_frontend *(*__cil_tmp31)(struct tda10023_config const * , struct i2c_adapter * ,
@@ -7750,8 +7498,6 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
   unsigned long __cil_tmp38 ;
   struct tda10023_config const *__cil_tmp39 ;
   struct dvb_usb_device *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   struct i2c_adapter *__cil_tmp43 ;
   u8 __cil_tmp44 ;
   void *__cil_tmp45 ;
@@ -7759,14 +7505,10 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
   unsigned long __cil_tmp47 ;
   unsigned long __cil_tmp48 ;
   unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct dvb_frontend *__cil_tmp52 ;
   unsigned long __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
   unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   struct dvb_frontend *__cil_tmp58 ;
   unsigned long __cil_tmp59 ;
   int *__cil_tmp60 ;
@@ -7781,22 +7523,16 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
   unsigned long __cil_tmp69 ;
   struct tda10048_config const *__cil_tmp70 ;
   struct dvb_usb_device *__cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   struct i2c_adapter *__cil_tmp74 ;
   void *__cil_tmp75 ;
   unsigned long __cil_tmp76 ;
   unsigned long __cil_tmp77 ;
   unsigned long __cil_tmp78 ;
   unsigned long __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   struct dvb_frontend *__cil_tmp82 ;
   unsigned long __cil_tmp83 ;
   unsigned long __cil_tmp84 ;
   unsigned long __cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   struct dvb_frontend *__cil_tmp88 ;
   unsigned long __cil_tmp89 ;
   int *__cil_tmp90 ;
@@ -7804,17 +7540,11 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
   unsigned long __cil_tmp92 ;
   unsigned long __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
   struct dvb_frontend *__cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   {
   {
   __cil_tmp19 = *((struct dvb_usb_device **)adap);
-  __cil_tmp20 = (unsigned long )__cil_tmp19;
-  __cil_tmp21 = __cil_tmp20 + 3560;
-  __cil_tmp22 = *((struct usb_device **)__cil_tmp21);
+  __cil_tmp22 = *((struct usb_device **)((void *)__cil_tmp19 + 3560));
   tmp = usb_set_interface(__cil_tmp22, 0, 3);
   }
   if (tmp < 0) {
@@ -7828,9 +7558,7 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
   __cil_tmp24 = (unsigned long )__cil_tmp23;
   __cil_tmp25 = 0 * 360UL;
   __cil_tmp26 = 2080 + __cil_tmp25;
-  __cil_tmp27 = (unsigned long )adap;
-  __cil_tmp28 = __cil_tmp27 + __cil_tmp26;
-  __cil_tmp29 = *((struct dvb_frontend **)__cil_tmp28);
+  __cil_tmp29 = *((struct dvb_frontend **)((void *)adap + __cil_tmp26));
   __cil_tmp30 = (unsigned long )__cil_tmp29;
   if (__cil_tmp30 == __cil_tmp24) {
     {
@@ -7870,9 +7598,7 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
       {
       __cil_tmp39 = (struct tda10023_config const *)(& tda10023_config);
       __cil_tmp40 = *((struct dvb_usb_device **)adap);
-      __cil_tmp41 = (unsigned long )__cil_tmp40;
-      __cil_tmp42 = __cil_tmp41 + 3912;
-      __cil_tmp43 = (struct i2c_adapter *)__cil_tmp42;
+      __cil_tmp43 = (struct i2c_adapter *)((void *)__cil_tmp40 + 3912);
       __cil_tmp44 = (u8 )72;
       tmp___5 = (*__a)(__cil_tmp39, __cil_tmp43, __cil_tmp44);
       __r = (void *)tmp___5;
@@ -7896,17 +7622,13 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
     }
     __cil_tmp48 = 0 * 360UL;
     __cil_tmp49 = 2080 + __cil_tmp48;
-    __cil_tmp50 = (unsigned long )adap;
-    __cil_tmp51 = __cil_tmp50 + __cil_tmp49;
-    *((struct dvb_frontend **)__cil_tmp51) = (struct dvb_frontend *)__r;
+    *((struct dvb_frontend **)((void *)adap + __cil_tmp49)) = (struct dvb_frontend *)__r;
     {
     __cil_tmp52 = (struct dvb_frontend *)0;
     __cil_tmp53 = (unsigned long )__cil_tmp52;
     __cil_tmp54 = 0 * 360UL;
     __cil_tmp55 = 2080 + __cil_tmp54;
-    __cil_tmp56 = (unsigned long )adap;
-    __cil_tmp57 = __cil_tmp56 + __cil_tmp55;
-    __cil_tmp58 = *((struct dvb_frontend **)__cil_tmp57);
+    __cil_tmp58 = *((struct dvb_frontend **)((void *)adap + __cil_tmp55));
     __cil_tmp59 = (unsigned long )__cil_tmp58;
     if (__cil_tmp59 == __cil_tmp53) {
       {
@@ -7959,9 +7681,7 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
       {
       __cil_tmp70 = (struct tda10048_config const *)(& tda10048_config);
       __cil_tmp71 = *((struct dvb_usb_device **)adap);
-      __cil_tmp72 = (unsigned long )__cil_tmp71;
-      __cil_tmp73 = __cil_tmp72 + 3912;
-      __cil_tmp74 = (struct i2c_adapter *)__cil_tmp73;
+      __cil_tmp74 = (struct i2c_adapter *)((void *)__cil_tmp71 + 3912);
       tmp___11 = (*__a___0)(__cil_tmp70, __cil_tmp74);
       __r___0 = (void *)tmp___11;
       }
@@ -7984,17 +7704,13 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
     }
     __cil_tmp78 = 1 * 360UL;
     __cil_tmp79 = 2080 + __cil_tmp78;
-    __cil_tmp80 = (unsigned long )adap;
-    __cil_tmp81 = __cil_tmp80 + __cil_tmp79;
-    *((struct dvb_frontend **)__cil_tmp81) = (struct dvb_frontend *)__r___0;
+    *((struct dvb_frontend **)((void *)adap + __cil_tmp79)) = (struct dvb_frontend *)__r___0;
     {
     __cil_tmp82 = (struct dvb_frontend *)0;
     __cil_tmp83 = (unsigned long )__cil_tmp82;
     __cil_tmp84 = 1 * 360UL;
     __cil_tmp85 = 2080 + __cil_tmp84;
-    __cil_tmp86 = (unsigned long )adap;
-    __cil_tmp87 = __cil_tmp86 + __cil_tmp85;
-    __cil_tmp88 = *((struct dvb_frontend **)__cil_tmp87);
+    __cil_tmp88 = *((struct dvb_frontend **)((void *)adap + __cil_tmp85));
     __cil_tmp89 = (unsigned long )__cil_tmp88;
     if (__cil_tmp89 == __cil_tmp83) {
       {
@@ -8014,12 +7730,8 @@ static int ttusb2_frontend_tda10023_attach(struct dvb_usb_adapter *adap )
     __cil_tmp92 = 0 + 360;
     __cil_tmp93 = 1 * 360UL;
     __cil_tmp94 = 2080 + __cil_tmp93;
-    __cil_tmp95 = (unsigned long )adap;
-    __cil_tmp96 = __cil_tmp95 + __cil_tmp94;
-    __cil_tmp97 = *((struct dvb_frontend **)__cil_tmp96);
-    __cil_tmp98 = (unsigned long )__cil_tmp97;
-    __cil_tmp99 = __cil_tmp98 + __cil_tmp92;
-    *((int (**)(struct dvb_frontend * , int ))__cil_tmp99) = & ttusb2_ct3650_i2c_gate_ctrl;
+    __cil_tmp97 = *((struct dvb_frontend **)((void *)adap + __cil_tmp94));
+    *((int (**)(struct dvb_frontend * , int ))((void *)__cil_tmp97 + __cil_tmp92)) = & ttusb2_ct3650_i2c_gate_ctrl;
   }
   }
   return (0);
@@ -8040,18 +7752,12 @@ static int ttusb2_tuner_tda827x_attach(struct dvb_usb_adapter *adap )
   unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct dvb_frontend *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct dvb_frontend *(*__cil_tmp27)(struct dvb_frontend * , int , struct i2c_adapter * ,
                                       struct tda827x_config * ) ;
   unsigned long __cil_tmp28 ;
@@ -8064,8 +7770,6 @@ static int ttusb2_tuner_tda827x_attach(struct dvb_usb_adapter *adap )
   unsigned long __cil_tmp33 ;
   unsigned long __cil_tmp34 ;
   struct dvb_usb_device *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct i2c_adapter *__cil_tmp38 ;
   void *__cil_tmp39 ;
   unsigned long __cil_tmp40 ;
@@ -8079,22 +7783,16 @@ static int ttusb2_tuner_tda827x_attach(struct dvb_usb_adapter *adap )
   __cil_tmp12 = (unsigned long )__cil_tmp11;
   __cil_tmp13 = 1 * 360UL;
   __cil_tmp14 = 2080 + __cil_tmp13;
-  __cil_tmp15 = (unsigned long )adap;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  __cil_tmp17 = *((struct dvb_frontend **)__cil_tmp16);
+  __cil_tmp17 = *((struct dvb_frontend **)((void *)adap + __cil_tmp14));
   __cil_tmp18 = (unsigned long )__cil_tmp17;
   if (__cil_tmp18 == __cil_tmp12) {
     __cil_tmp19 = 0 * 360UL;
     __cil_tmp20 = 2080 + __cil_tmp19;
-    __cil_tmp21 = (unsigned long )adap;
-    __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-    fe = *((struct dvb_frontend **)__cil_tmp22);
+    fe = *((struct dvb_frontend **)((void *)adap + __cil_tmp20));
   } else {
     __cil_tmp23 = 1 * 360UL;
     __cil_tmp24 = 2080 + __cil_tmp23;
-    __cil_tmp25 = (unsigned long )adap;
-    __cil_tmp26 = __cil_tmp25 + __cil_tmp24;
-    fe = *((struct dvb_frontend **)__cil_tmp26);
+    fe = *((struct dvb_frontend **)((void *)adap + __cil_tmp24));
   }
   }
   {
@@ -8133,9 +7831,7 @@ static int ttusb2_tuner_tda827x_attach(struct dvb_usb_adapter *adap )
   if (__cil_tmp34 != __cil_tmp33) {
     {
     __cil_tmp35 = *((struct dvb_usb_device **)adap);
-    __cil_tmp36 = (unsigned long )__cil_tmp35;
-    __cil_tmp37 = __cil_tmp36 + 3912;
-    __cil_tmp38 = (struct i2c_adapter *)__cil_tmp37;
+    __cil_tmp38 = (struct i2c_adapter *)((void *)__cil_tmp35 + 3912);
     tmp___4 = (*__a)(fe, 97, __cil_tmp38, & tda827x_config);
     __r = (void *)tmp___4;
     }
@@ -8203,12 +7899,8 @@ static int ttusb2_tuner_tda826x_attach(struct dvb_usb_adapter *adap )
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct dvb_frontend *__cil_tmp30 ;
   struct dvb_usb_device *__cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct i2c_adapter *__cil_tmp34 ;
   void *__cil_tmp35 ;
   unsigned long __cil_tmp36 ;
@@ -8231,12 +7923,8 @@ static int ttusb2_tuner_tda826x_attach(struct dvb_usb_adapter *adap )
   unsigned long __cil_tmp50 ;
   unsigned long __cil_tmp51 ;
   unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   struct dvb_frontend *__cil_tmp55 ;
   struct dvb_usb_device *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct i2c_adapter *__cil_tmp59 ;
   u8 __cil_tmp60 ;
   u8 __cil_tmp61 ;
@@ -8286,13 +7974,9 @@ static int ttusb2_tuner_tda826x_attach(struct dvb_usb_adapter *adap )
     {
     __cil_tmp26 = 0 * 360UL;
     __cil_tmp27 = 2080 + __cil_tmp26;
-    __cil_tmp28 = (unsigned long )adap;
-    __cil_tmp29 = __cil_tmp28 + __cil_tmp27;
-    __cil_tmp30 = *((struct dvb_frontend **)__cil_tmp29);
+    __cil_tmp30 = *((struct dvb_frontend **)((void *)adap + __cil_tmp27));
     __cil_tmp31 = *((struct dvb_usb_device **)adap);
-    __cil_tmp32 = (unsigned long )__cil_tmp31;
-    __cil_tmp33 = __cil_tmp32 + 3912;
-    __cil_tmp34 = (struct i2c_adapter *)__cil_tmp33;
+    __cil_tmp34 = (struct i2c_adapter *)((void *)__cil_tmp31 + 3912);
     tmp___4 = (*__a)(__cil_tmp30, 96, __cil_tmp34, 0);
     __r = (void *)tmp___4;
     }
@@ -8369,13 +8053,9 @@ static int ttusb2_tuner_tda826x_attach(struct dvb_usb_adapter *adap )
     {
     __cil_tmp51 = 0 * 360UL;
     __cil_tmp52 = 2080 + __cil_tmp51;
-    __cil_tmp53 = (unsigned long )adap;
-    __cil_tmp54 = __cil_tmp53 + __cil_tmp52;
-    __cil_tmp55 = *((struct dvb_frontend **)__cil_tmp54);
+    __cil_tmp55 = *((struct dvb_frontend **)((void *)adap + __cil_tmp52));
     __cil_tmp56 = *((struct dvb_usb_device **)adap);
-    __cil_tmp57 = (unsigned long )__cil_tmp56;
-    __cil_tmp58 = __cil_tmp57 + 3912;
-    __cil_tmp59 = (struct i2c_adapter *)__cil_tmp58;
+    __cil_tmp59 = (struct i2c_adapter *)((void *)__cil_tmp56 + 3912);
     __cil_tmp60 = (u8 )0;
     __cil_tmp61 = (u8 )0;
     tmp___10 = (*__a___0)(__cil_tmp55, __cil_tmp59, __cil_tmp60, __cil_tmp61);

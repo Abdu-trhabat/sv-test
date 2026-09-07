@@ -1342,8 +1342,6 @@ __inline static void *lowmem_page_address(struct page  const  *page )
   long __cil_tmp4 ;
   unsigned long long __cil_tmp5 ;
   unsigned long long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
 
   {
   {
@@ -1352,9 +1350,7 @@ __inline static void *lowmem_page_address(struct page  const  *page )
   __cil_tmp4 = __cil_tmp3 / 64L;
   __cil_tmp5 = (unsigned long long )__cil_tmp4;
   __cil_tmp6 = __cil_tmp5 << 12;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 0xffff880000000000UL;
-  return ((void *)__cil_tmp8);
+  return ((void *)((void *)__cil_tmp6 + 0xffff880000000000UL));
   }
 }
 }
@@ -1364,14 +1360,10 @@ __inline static struct page *sg_page(struct scatterlist *sg )
   unsigned long __cil_tmp4 ;
   int __cil_tmp5 ;
   long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
   long __cil_tmp11 ;
   long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
 
@@ -1391,9 +1383,7 @@ __inline static struct page *sg_page(struct scatterlist *sg )
 
   }
   {
-  __cil_tmp7 = (unsigned long )sg;
-  __cil_tmp8 = __cil_tmp7 + 8;
-  __cil_tmp9 = *((unsigned long *)__cil_tmp8);
+  __cil_tmp9 = *((unsigned long *)((void *)sg + 8));
   __cil_tmp10 = (int )__cil_tmp9;
   __cil_tmp11 = (long )__cil_tmp10;
   __cil_tmp12 = __cil_tmp11 & 1L;
@@ -1408,9 +1398,7 @@ __inline static struct page *sg_page(struct scatterlist *sg )
 
   }
   {
-  __cil_tmp13 = (unsigned long )sg;
-  __cil_tmp14 = __cil_tmp13 + 8;
-  __cil_tmp15 = *((unsigned long *)__cil_tmp14);
+  __cil_tmp15 = *((unsigned long *)((void *)sg + 8));
   __cil_tmp16 = __cil_tmp15 & 0xfffffffffffffffcUL;
   return ((struct page *)__cil_tmp16);
   }
@@ -1420,8 +1408,6 @@ __inline static void *sg_virt(struct scatterlist *sg )
 { struct page *tmp ;
   void *tmp___0 ;
   struct page  const  *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
 
@@ -1432,9 +1418,7 @@ __inline static void *sg_virt(struct scatterlist *sg )
   tmp___0 = lowmem_page_address(__cil_tmp4);
   }
   {
-  __cil_tmp5 = (unsigned long )sg;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((unsigned int *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned int *)((void *)sg + 16));
   __cil_tmp8 = (unsigned long )__cil_tmp7;
   return (tmp___0 + __cil_tmp8);
   }
@@ -1480,13 +1464,9 @@ __inline static struct dma_map_ops *get_dma_ops(struct device *dev )
   struct dma_map_ops *__cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct dma_map_ops *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
 
   {
   {
@@ -1504,18 +1484,14 @@ __inline static struct dma_map_ops *get_dma_ops(struct device *dev )
     __cil_tmp8 = (struct dma_map_ops *)0;
     __cil_tmp9 = (unsigned long )__cil_tmp8;
     __cil_tmp10 = 968 + 8;
-    __cil_tmp11 = (unsigned long )dev;
-    __cil_tmp12 = __cil_tmp11 + __cil_tmp10;
-    __cil_tmp13 = *((struct dma_map_ops **)__cil_tmp12);
+    __cil_tmp13 = *((struct dma_map_ops **)((void *)dev + __cil_tmp10));
     __cil_tmp14 = (unsigned long )__cil_tmp13;
     if (__cil_tmp14 == __cil_tmp9) {
       return (dma_ops);
     } else {
       {
       __cil_tmp15 = 968 + 8;
-      __cil_tmp16 = (unsigned long )dev;
-      __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-      return (*((struct dma_map_ops **)__cil_tmp17));
+      return (*((struct dma_map_ops **)((void *)dev + __cil_tmp15)));
       }
     }
     }
@@ -1532,14 +1508,10 @@ __inline static int dma_map_sg_attrs(struct device *dev , struct scatterlist *sg
   void *tmp___0 ;
   int tmp___1 ;
   long tmp___2 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   int __cil_tmp17 ;
   int __cil_tmp18 ;
   long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int (*__cil_tmp22)(struct device * , struct scatterlist * , int  , enum dma_data_direction  ,
                      struct dma_attrs * ) ;
   int __cil_tmp23 ;
@@ -1555,9 +1527,7 @@ __inline static int dma_map_sg_attrs(struct device *dev , struct scatterlist *sg
   ldv_20986: 
   {
   tmp___0 = sg_virt(s);
-  __cil_tmp14 = (unsigned long )s;
-  __cil_tmp15 = __cil_tmp14 + 20;
-  __cil_tmp16 = *((unsigned int *)__cil_tmp15);
+  __cil_tmp16 = *((unsigned int *)((void *)s + 20));
   kmemcheck_mark_initialized(tmp___0, __cil_tmp16);
   i = i + 1;
   s = sg_next(s);
@@ -1585,10 +1555,8 @@ __inline static int dma_map_sg_attrs(struct device *dev , struct scatterlist *sg
 
   }
   {
-  __cil_tmp20 = (unsigned long )ops;
-  __cil_tmp21 = __cil_tmp20 + 40;
   __cil_tmp22 = *((int (**)(struct device * , struct scatterlist * , int  , enum dma_data_direction  ,
-                            struct dma_attrs * ))__cil_tmp21);
+                            struct dma_attrs * ))((void *)ops + 40));
   ents = (*__cil_tmp22)(dev, sg, nents, dir, attrs);
   __cil_tmp23 = (int )dir;
   debug_dma_map_sg(dev, sg, nents, ents, __cil_tmp23);
@@ -1610,13 +1578,9 @@ __inline static void dma_unmap_sg_attrs(struct device *dev , struct scatterlist 
   void (*__cil_tmp14)(struct device * , struct scatterlist * , int  , enum dma_data_direction  ,
                       struct dma_attrs * ) ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   void (*__cil_tmp18)(struct device * , struct scatterlist * , int  , enum dma_data_direction  ,
                       struct dma_attrs * ) ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   void (*__cil_tmp22)(struct device * , struct scatterlist * , int  , enum dma_data_direction  ,
                       struct dma_attrs * ) ;
 
@@ -1646,17 +1610,13 @@ __inline static void dma_unmap_sg_attrs(struct device *dev , struct scatterlist 
   __cil_tmp14 = (void (*)(struct device * , struct scatterlist * , int  , enum dma_data_direction  ,
                           struct dma_attrs * ))0;
   __cil_tmp15 = (unsigned long )__cil_tmp14;
-  __cil_tmp16 = (unsigned long )ops;
-  __cil_tmp17 = __cil_tmp16 + 48;
   __cil_tmp18 = *((void (**)(struct device * , struct scatterlist * , int  , enum dma_data_direction  ,
-                             struct dma_attrs * ))__cil_tmp17);
+                             struct dma_attrs * ))((void *)ops + 48));
   __cil_tmp19 = (unsigned long )__cil_tmp18;
   if (__cil_tmp19 != __cil_tmp15) {
     {
-    __cil_tmp20 = (unsigned long )ops;
-    __cil_tmp21 = __cil_tmp20 + 48;
     __cil_tmp22 = *((void (**)(struct device * , struct scatterlist * , int  , enum dma_data_direction  ,
-                               struct dma_attrs * ))__cil_tmp21);
+                               struct dma_attrs * ))((void *)ops + 48));
     (*__cil_tmp22)(dev, sg, nents, dir, attrs);
     }
   } else {
@@ -1673,8 +1633,6 @@ __inline static int pci_map_sg(struct pci_dev *hwdev , struct scatterlist *sg , 
   struct pci_dev *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   enum dma_data_direction __cil_tmp12 ;
   struct dma_attrs *__cil_tmp13 ;
 
@@ -1684,9 +1642,7 @@ __inline static int pci_map_sg(struct pci_dev *hwdev , struct scatterlist *sg , 
   __cil_tmp8 = (unsigned long )__cil_tmp7;
   __cil_tmp9 = (unsigned long )hwdev;
   if (__cil_tmp9 != __cil_tmp8) {
-    __cil_tmp10 = (unsigned long )hwdev;
-    __cil_tmp11 = __cil_tmp10 + 144;
-    tmp = (struct device *)__cil_tmp11;
+    tmp = (struct device *)((void *)hwdev + 144);
   } else {
     tmp = (struct device *)0;
   }
@@ -1705,8 +1661,6 @@ __inline static void pci_unmap_sg(struct pci_dev *hwdev , struct scatterlist *sg
   struct pci_dev *__cil_tmp6 ;
   unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   enum dma_data_direction __cil_tmp11 ;
   struct dma_attrs *__cil_tmp12 ;
 
@@ -1716,9 +1670,7 @@ __inline static void pci_unmap_sg(struct pci_dev *hwdev , struct scatterlist *sg
   __cil_tmp7 = (unsigned long )__cil_tmp6;
   __cil_tmp8 = (unsigned long )hwdev;
   if (__cil_tmp8 != __cil_tmp7) {
-    __cil_tmp9 = (unsigned long )hwdev;
-    __cil_tmp10 = __cil_tmp9 + 144;
-    tmp = (struct device *)__cil_tmp10;
+    tmp = (struct device *)((void *)hwdev + 144);
   } else {
     tmp = (struct device *)0;
   }
@@ -1892,8 +1844,6 @@ static char const   *tifm_media_type_name(unsigned char type , unsigned char nt 
 static int tifm_dev_match(struct tifm_dev *sock , struct tifm_device_id *id ) 
 { unsigned char __cil_tmp3 ;
   int __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned char __cil_tmp7 ;
   int __cil_tmp8 ;
 
@@ -1901,9 +1851,7 @@ static int tifm_dev_match(struct tifm_dev *sock , struct tifm_device_id *id )
   {
   __cil_tmp3 = *((unsigned char *)id);
   __cil_tmp4 = (int )__cil_tmp3;
-  __cil_tmp5 = (unsigned long )sock;
-  __cil_tmp6 = __cil_tmp5 + 80;
-  __cil_tmp7 = *((unsigned char *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned char *)((void *)sock + 80));
   __cil_tmp8 = (int )__cil_tmp7;
   if (__cil_tmp8 == __cil_tmp4) {
     return (1);
@@ -1977,8 +1925,6 @@ static int tifm_uevent(struct device *dev , struct kobj_uevent_env *env )
   char const   *tmp ;
   int tmp___0 ;
   struct tifm_dev *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned char __cil_tmp10 ;
   int __cil_tmp11 ;
   unsigned char __cil_tmp12 ;
@@ -1988,9 +1934,7 @@ static int tifm_uevent(struct device *dev , struct kobj_uevent_env *env )
   __mptr = (struct device  const  *)dev;
   __cil_tmp7 = (struct tifm_dev *)__mptr;
   sock = __cil_tmp7 + 0xffffffffffffff98UL;
-  __cil_tmp8 = (unsigned long )sock;
-  __cil_tmp9 = __cil_tmp8 + 80;
-  __cil_tmp10 = *((unsigned char *)__cil_tmp9);
+  __cil_tmp10 = *((unsigned char *)((void *)sock + 80));
   __cil_tmp11 = (int )__cil_tmp10;
   __cil_tmp12 = (unsigned char )__cil_tmp11;
   tmp = tifm_media_type_name(__cil_tmp12, (unsigned char)1);
@@ -2011,24 +1955,16 @@ static int tifm_device_probe(struct device *dev )
   struct device_driver  const  *__mptr___0 ;
   int rc ;
   struct tifm_dev *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device_driver *__cil_tmp10 ;
   struct tifm_driver *__cil_tmp11 ;
   struct device_driver *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device_driver *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   int (*__cil_tmp18)(struct tifm_dev * ) ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int (*__cil_tmp22)(struct tifm_dev * ) ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int (*__cil_tmp26)(struct tifm_dev * ) ;
 
   {
@@ -2036,9 +1972,7 @@ static int tifm_device_probe(struct device *dev )
   __mptr = (struct device  const  *)dev;
   __cil_tmp7 = (struct tifm_dev *)__mptr;
   sock = __cil_tmp7 + 0xffffffffffffff98UL;
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + 272;
-  __cil_tmp10 = *((struct device_driver **)__cil_tmp9);
+  __cil_tmp10 = *((struct device_driver **)((void *)dev + 272));
   __mptr___0 = (struct device_driver  const  *)__cil_tmp10;
   __cil_tmp11 = (struct tifm_driver *)__mptr___0;
   drv = __cil_tmp11 + 0xffffffffffffffd8UL;
@@ -2048,23 +1982,17 @@ static int tifm_device_probe(struct device *dev )
   {
   __cil_tmp12 = (struct device_driver *)0;
   __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = (unsigned long )dev;
-  __cil_tmp15 = __cil_tmp14 + 272;
-  __cil_tmp16 = *((struct device_driver **)__cil_tmp15);
+  __cil_tmp16 = *((struct device_driver **)((void *)dev + 272));
   __cil_tmp17 = (unsigned long )__cil_tmp16;
   if (__cil_tmp17 != __cil_tmp13) {
     {
     __cil_tmp18 = (int (*)(struct tifm_dev * ))0;
     __cil_tmp19 = (unsigned long )__cil_tmp18;
-    __cil_tmp20 = (unsigned long )drv;
-    __cil_tmp21 = __cil_tmp20 + 8;
-    __cil_tmp22 = *((int (**)(struct tifm_dev * ))__cil_tmp21);
+    __cil_tmp22 = *((int (**)(struct tifm_dev * ))((void *)drv + 8));
     __cil_tmp23 = (unsigned long )__cil_tmp22;
     if (__cil_tmp23 != __cil_tmp19) {
       {
-      __cil_tmp24 = (unsigned long )drv;
-      __cil_tmp25 = __cil_tmp24 + 8;
-      __cil_tmp26 = *((int (**)(struct tifm_dev * ))__cil_tmp25);
+      __cil_tmp26 = *((int (**)(struct tifm_dev * ))((void *)drv + 8));
       rc = (*__cil_tmp26)(sock);
       }
       if (rc == 0) {
@@ -2099,74 +2027,46 @@ static int tifm_device_remove(struct device *dev )
   struct tifm_driver *drv ;
   struct device_driver  const  *__mptr___0 ;
   struct tifm_dev *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device_driver *__cil_tmp9 ;
   struct tifm_driver *__cil_tmp10 ;
   struct device_driver *__cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct device_driver *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   void (*__cil_tmp17)(struct tifm_dev * ) ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   void (*__cil_tmp21)(struct tifm_dev * ) ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   void (*__cil_tmp29)(struct tifm_dev * ) ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
 
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp6 = (struct tifm_dev *)__mptr;
   sock = __cil_tmp6 + 0xffffffffffffff98UL;
-  __cil_tmp7 = (unsigned long )dev;
-  __cil_tmp8 = __cil_tmp7 + 272;
-  __cil_tmp9 = *((struct device_driver **)__cil_tmp8);
+  __cil_tmp9 = *((struct device_driver **)((void *)dev + 272));
   __mptr___0 = (struct device_driver  const  *)__cil_tmp9;
   __cil_tmp10 = (struct tifm_driver *)__mptr___0;
   drv = __cil_tmp10 + 0xffffffffffffffd8UL;
   {
   __cil_tmp11 = (struct device_driver *)0;
   __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = (unsigned long )dev;
-  __cil_tmp14 = __cil_tmp13 + 272;
-  __cil_tmp15 = *((struct device_driver **)__cil_tmp14);
+  __cil_tmp15 = *((struct device_driver **)((void *)dev + 272));
   __cil_tmp16 = (unsigned long )__cil_tmp15;
   if (__cil_tmp16 != __cil_tmp12) {
     {
     __cil_tmp17 = (void (*)(struct tifm_dev * ))0;
     __cil_tmp18 = (unsigned long )__cil_tmp17;
-    __cil_tmp19 = (unsigned long )drv;
-    __cil_tmp20 = __cil_tmp19 + 16;
-    __cil_tmp21 = *((void (**)(struct tifm_dev * ))__cil_tmp20);
+    __cil_tmp21 = *((void (**)(struct tifm_dev * ))((void *)drv + 16));
     __cil_tmp22 = (unsigned long )__cil_tmp21;
     if (__cil_tmp22 != __cil_tmp18) {
       {
-      __cil_tmp23 = (unsigned long )sock;
-      __cil_tmp24 = __cil_tmp23 + 88;
-      *((void (**)(struct tifm_dev * ))__cil_tmp24) = & tifm_dummy_event;
-      __cil_tmp25 = (unsigned long )sock;
-      __cil_tmp26 = __cil_tmp25 + 96;
-      *((void (**)(struct tifm_dev * ))__cil_tmp26) = & tifm_dummy_event;
-      __cil_tmp27 = (unsigned long )drv;
-      __cil_tmp28 = __cil_tmp27 + 16;
-      __cil_tmp29 = *((void (**)(struct tifm_dev * ))__cil_tmp28);
+      *((void (**)(struct tifm_dev * ))((void *)sock + 88)) = & tifm_dummy_event;
+      *((void (**)(struct tifm_dev * ))((void *)sock + 96)) = & tifm_dummy_event;
+      __cil_tmp29 = *((void (**)(struct tifm_dev * ))((void *)drv + 16));
       (*__cil_tmp29)(sock);
       __cil_tmp30 = 104 + 272;
-      __cil_tmp31 = (unsigned long )sock;
-      __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-      *((struct device_driver **)__cil_tmp32) = (struct device_driver *)0;
+      *((struct device_driver **)((void *)sock + __cil_tmp30)) = (struct device_driver *)0;
       }
     } else {
 
@@ -2189,56 +2089,40 @@ static int tifm_device_suspend(struct device *dev , int state_event28 )
   struct device_driver  const  *__mptr___0 ;
   int tmp ;
   struct tifm_dev *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device_driver *__cil_tmp11 ;
   struct tifm_driver *__cil_tmp12 ;
   struct device_driver *__cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device_driver *__cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   int (*__cil_tmp19)(struct tifm_dev * , int  ) ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   int (*__cil_tmp23)(struct tifm_dev * , int  ) ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int (*__cil_tmp27)(struct tifm_dev * , int  ) ;
 
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp8 = (struct tifm_dev *)__mptr;
   sock = __cil_tmp8 + 0xffffffffffffff98UL;
-  __cil_tmp9 = (unsigned long )dev;
-  __cil_tmp10 = __cil_tmp9 + 272;
-  __cil_tmp11 = *((struct device_driver **)__cil_tmp10);
+  __cil_tmp11 = *((struct device_driver **)((void *)dev + 272));
   __mptr___0 = (struct device_driver  const  *)__cil_tmp11;
   __cil_tmp12 = (struct tifm_driver *)__mptr___0;
   drv = __cil_tmp12 + 0xffffffffffffffd8UL;
   {
   __cil_tmp13 = (struct device_driver *)0;
   __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = (unsigned long )dev;
-  __cil_tmp16 = __cil_tmp15 + 272;
-  __cil_tmp17 = *((struct device_driver **)__cil_tmp16);
+  __cil_tmp17 = *((struct device_driver **)((void *)dev + 272));
   __cil_tmp18 = (unsigned long )__cil_tmp17;
   if (__cil_tmp18 != __cil_tmp14) {
     {
     __cil_tmp19 = (int (*)(struct tifm_dev * , int  ))0;
     __cil_tmp20 = (unsigned long )__cil_tmp19;
-    __cil_tmp21 = (unsigned long )drv;
-    __cil_tmp22 = __cil_tmp21 + 24;
-    __cil_tmp23 = *((int (**)(struct tifm_dev * , int  ))__cil_tmp22);
+    __cil_tmp23 = *((int (**)(struct tifm_dev * , int  ))((void *)drv + 24));
     __cil_tmp24 = (unsigned long )__cil_tmp23;
     if (__cil_tmp24 != __cil_tmp20) {
       {
-      __cil_tmp25 = (unsigned long )drv;
-      __cil_tmp26 = __cil_tmp25 + 24;
-      __cil_tmp27 = *((int (**)(struct tifm_dev * , int  ))__cil_tmp26);
+      __cil_tmp27 = *((int (**)(struct tifm_dev * , int  ))((void *)drv + 24));
       tmp = (*__cil_tmp27)(sock, state_event28);
       }
       return (tmp);
@@ -2260,56 +2144,40 @@ static int tifm_device_resume(struct device *dev )
   struct device_driver  const  *__mptr___0 ;
   int tmp ;
   struct tifm_dev *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct device_driver *__cil_tmp10 ;
   struct tifm_driver *__cil_tmp11 ;
   struct device_driver *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device_driver *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
   int (*__cil_tmp18)(struct tifm_dev * ) ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   int (*__cil_tmp22)(struct tifm_dev * ) ;
   unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   int (*__cil_tmp26)(struct tifm_dev * ) ;
 
   {
   __mptr = (struct device  const  *)dev;
   __cil_tmp7 = (struct tifm_dev *)__mptr;
   sock = __cil_tmp7 + 0xffffffffffffff98UL;
-  __cil_tmp8 = (unsigned long )dev;
-  __cil_tmp9 = __cil_tmp8 + 272;
-  __cil_tmp10 = *((struct device_driver **)__cil_tmp9);
+  __cil_tmp10 = *((struct device_driver **)((void *)dev + 272));
   __mptr___0 = (struct device_driver  const  *)__cil_tmp10;
   __cil_tmp11 = (struct tifm_driver *)__mptr___0;
   drv = __cil_tmp11 + 0xffffffffffffffd8UL;
   {
   __cil_tmp12 = (struct device_driver *)0;
   __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = (unsigned long )dev;
-  __cil_tmp15 = __cil_tmp14 + 272;
-  __cil_tmp16 = *((struct device_driver **)__cil_tmp15);
+  __cil_tmp16 = *((struct device_driver **)((void *)dev + 272));
   __cil_tmp17 = (unsigned long )__cil_tmp16;
   if (__cil_tmp17 != __cil_tmp13) {
     {
     __cil_tmp18 = (int (*)(struct tifm_dev * ))0;
     __cil_tmp19 = (unsigned long )__cil_tmp18;
-    __cil_tmp20 = (unsigned long )drv;
-    __cil_tmp21 = __cil_tmp20 + 32;
-    __cil_tmp22 = *((int (**)(struct tifm_dev * ))__cil_tmp21);
+    __cil_tmp22 = *((int (**)(struct tifm_dev * ))((void *)drv + 32));
     __cil_tmp23 = (unsigned long )__cil_tmp22;
     if (__cil_tmp23 != __cil_tmp19) {
       {
-      __cil_tmp24 = (unsigned long )drv;
-      __cil_tmp25 = __cil_tmp24 + 32;
-      __cil_tmp26 = *((int (**)(struct tifm_dev * ))__cil_tmp25);
+      __cil_tmp26 = *((int (**)(struct tifm_dev * ))((void *)drv + 32));
       tmp = (*__cil_tmp26)(sock);
       }
       return (tmp);
@@ -2329,8 +2197,6 @@ static ssize_t type_show(struct device *dev , struct device_attribute *attr , ch
   struct device  const  *__mptr ;
   int tmp ;
   struct tifm_dev *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned char __cil_tmp10 ;
   int __cil_tmp11 ;
 
@@ -2339,9 +2205,7 @@ static ssize_t type_show(struct device *dev , struct device_attribute *attr , ch
   __mptr = (struct device  const  *)dev;
   __cil_tmp7 = (struct tifm_dev *)__mptr;
   sock = __cil_tmp7 + 0xffffffffffffff98UL;
-  __cil_tmp8 = (unsigned long )sock;
-  __cil_tmp9 = __cil_tmp8 + 80;
-  __cil_tmp10 = *((unsigned char *)__cil_tmp9);
+  __cil_tmp10 = *((unsigned char *)((void *)sock + 80));
   __cil_tmp11 = (int )__cil_tmp10;
   tmp = sprintf(buf, "%x", __cil_tmp11);
   }
@@ -2398,34 +2262,18 @@ struct tifm_adapter *tifm_alloc_adapter(unsigned int num_sockets , struct device
 { struct tifm_adapter *fm ;
   void *tmp ;
   struct lock_class_key __key ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   struct tifm_adapter *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct device *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   spinlock_t *__cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct raw_spinlock *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
 
   {
   {
-  __cil_tmp6 = (unsigned long )num_sockets;
-  __cil_tmp7 = __cil_tmp6 + 169UL;
-  __cil_tmp8 = __cil_tmp7 * 8UL;
+  __cil_tmp8 = ((void *)num_sockets + 169UL) * 8UL;
   tmp = kzalloc(__cil_tmp8, 208U);
   fm = (struct tifm_adapter *)tmp;
   }
@@ -2436,27 +2284,15 @@ struct tifm_adapter *tifm_alloc_adapter(unsigned int num_sockets , struct device
   if (__cil_tmp11 != __cil_tmp10) {
     {
     __cil_tmp12 = 184 + 1128;
-    __cil_tmp13 = (unsigned long )fm;
-    __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-    *((struct class **)__cil_tmp14) = & tifm_adapter_class;
-    __cil_tmp15 = (unsigned long )fm;
-    __cil_tmp16 = __cil_tmp15 + 184;
-    *((struct device **)__cil_tmp16) = dev;
-    __cil_tmp17 = (unsigned long )fm;
-    __cil_tmp18 = __cil_tmp17 + 184;
-    __cil_tmp19 = (struct device *)__cil_tmp18;
+    *((struct class **)((void *)fm + __cil_tmp12)) = & tifm_adapter_class;
+    *((struct device **)((void *)fm + 184)) = dev;
+    __cil_tmp19 = (struct device *)((void *)fm + 184);
     device_initialize(__cil_tmp19);
-    __cil_tmp20 = (unsigned long )fm;
-    __cil_tmp21 = __cil_tmp20 + 8;
-    __cil_tmp22 = (spinlock_t *)__cil_tmp21;
+    __cil_tmp22 = (spinlock_t *)((void *)fm + 8);
     spinlock_check(__cil_tmp22);
-    __cil_tmp23 = (unsigned long )fm;
-    __cil_tmp24 = __cil_tmp23 + 8;
-    __cil_tmp25 = (struct raw_spinlock *)__cil_tmp24;
+    __cil_tmp25 = (struct raw_spinlock *)((void *)fm + 8);
     __raw_spin_lock_init(__cil_tmp25, "&(&fm->lock)->rlock", & __key);
-    __cil_tmp26 = (unsigned long )fm;
-    __cil_tmp27 = __cil_tmp26 + 92;
-    *((unsigned int *)__cil_tmp27) = num_sockets;
+    *((unsigned int *)((void *)fm + 92)) = num_sockets;
     }
   } else {
 
@@ -2469,21 +2305,11 @@ int tifm_add_adapter(struct tifm_adapter *fm )
 { int rc ;
   int tmp ;
   void *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned int *__cil_tmp7 ;
   int *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   struct device *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct device *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   int __cil_tmp21 ;
 
@@ -2499,9 +2325,7 @@ int tifm_add_adapter(struct tifm_adapter *fm )
   {
   spin_lock(& tifm_adapter_lock);
   __cil_tmp4 = (void *)fm;
-  __cil_tmp5 = (unsigned long )fm;
-  __cil_tmp6 = __cil_tmp5 + 88;
-  __cil_tmp7 = (unsigned int *)__cil_tmp6;
+  __cil_tmp7 = (unsigned int *)((void *)fm + 88);
   __cil_tmp8 = (int *)__cil_tmp7;
   rc = idr_get_new(& tifm_adapter_idr, __cil_tmp4, __cil_tmp8);
   spin_unlock(& tifm_adapter_lock);
@@ -2512,24 +2336,16 @@ int tifm_add_adapter(struct tifm_adapter *fm )
 
   }
   {
-  __cil_tmp9 = (unsigned long )fm;
-  __cil_tmp10 = __cil_tmp9 + 184;
-  __cil_tmp11 = (struct device *)__cil_tmp10;
-  __cil_tmp12 = (unsigned long )fm;
-  __cil_tmp13 = __cil_tmp12 + 88;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp11 = (struct device *)((void *)fm + 184);
+  __cil_tmp14 = *((unsigned int *)((void *)fm + 88));
   dev_set_name(__cil_tmp11, "tifm%u", __cil_tmp14);
-  __cil_tmp15 = (unsigned long )fm;
-  __cil_tmp16 = __cil_tmp15 + 184;
-  __cil_tmp17 = (struct device *)__cil_tmp16;
+  __cil_tmp17 = (struct device *)((void *)fm + 184);
   rc = device_add(__cil_tmp17);
   }
   if (rc != 0) {
     {
     spin_lock(& tifm_adapter_lock);
-    __cil_tmp18 = (unsigned long )fm;
-    __cil_tmp19 = __cil_tmp18 + 88;
-    __cil_tmp20 = *((unsigned int *)__cil_tmp19);
+    __cil_tmp20 = *((unsigned int *)((void *)fm + 88));
     __cil_tmp21 = (int )__cil_tmp20;
     idr_remove(& tifm_adapter_idr, __cil_tmp21);
     spin_unlock(& tifm_adapter_lock);
@@ -2546,27 +2362,15 @@ void tifm_remove_adapter(struct tifm_adapter *fm )
   unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
   unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct tifm_dev *__cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct tifm_dev *__cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct device *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned int __cil_tmp24 ;
   int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct device *__cil_tmp28 ;
 
   {
@@ -2581,20 +2385,14 @@ void tifm_remove_adapter(struct tifm_adapter *fm )
   __cil_tmp4 = (unsigned long )__cil_tmp3;
   __cil_tmp5 = cnt * 8UL;
   __cil_tmp6 = 1352 + __cil_tmp5;
-  __cil_tmp7 = (unsigned long )fm;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp6;
-  __cil_tmp9 = *((struct tifm_dev **)__cil_tmp8);
+  __cil_tmp9 = *((struct tifm_dev **)((void *)fm + __cil_tmp6));
   __cil_tmp10 = (unsigned long )__cil_tmp9;
   if (__cil_tmp10 != __cil_tmp4) {
     {
     __cil_tmp11 = cnt * 8UL;
     __cil_tmp12 = 1352 + __cil_tmp11;
-    __cil_tmp13 = (unsigned long )fm;
-    __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-    __cil_tmp15 = *((struct tifm_dev **)__cil_tmp14);
-    __cil_tmp16 = (unsigned long )__cil_tmp15;
-    __cil_tmp17 = __cil_tmp16 + 104;
-    __cil_tmp18 = (struct device *)__cil_tmp17;
+    __cil_tmp15 = *((struct tifm_dev **)((void *)fm + __cil_tmp12));
+    __cil_tmp18 = (struct device *)((void *)__cil_tmp15 + 104);
     device_unregister(__cil_tmp18);
     }
   } else {
@@ -2604,9 +2402,7 @@ void tifm_remove_adapter(struct tifm_adapter *fm )
   cnt = cnt + 1U;
   ldv_21782: ;
   {
-  __cil_tmp19 = (unsigned long )fm;
-  __cil_tmp20 = __cil_tmp19 + 92;
-  __cil_tmp21 = *((unsigned int *)__cil_tmp20);
+  __cil_tmp21 = *((unsigned int *)((void *)fm + 92));
   if (__cil_tmp21 > cnt) {
     goto ldv_21781;
   } else {
@@ -2616,30 +2412,23 @@ void tifm_remove_adapter(struct tifm_adapter *fm )
   ldv_21783: 
   {
   spin_lock(& tifm_adapter_lock);
-  __cil_tmp22 = (unsigned long )fm;
-  __cil_tmp23 = __cil_tmp22 + 88;
-  __cil_tmp24 = *((unsigned int *)__cil_tmp23);
+  __cil_tmp24 = *((unsigned int *)((void *)fm + 88));
   __cil_tmp25 = (int )__cil_tmp24;
   idr_remove(& tifm_adapter_idr, __cil_tmp25);
   spin_unlock(& tifm_adapter_lock);
-  __cil_tmp26 = (unsigned long )fm;
-  __cil_tmp27 = __cil_tmp26 + 184;
-  __cil_tmp28 = (struct device *)__cil_tmp27;
+  __cil_tmp28 = (struct device *)((void *)fm + 184);
   device_del(__cil_tmp28);
   }
   return;
 }
 }
 void tifm_free_adapter(struct tifm_adapter *fm ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device *__cil_tmp4 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )fm;
-  __cil_tmp3 = __cil_tmp2 + 184;
-  __cil_tmp4 = (struct device *)__cil_tmp3;
+  __cil_tmp4 = (struct device *)((void *)fm + 184);
   put_device(__cil_tmp4);
   }
   return;
@@ -2677,50 +2466,18 @@ struct tifm_dev *tifm_alloc_device(struct tifm_adapter *fm , unsigned int id , u
   struct tifm_dev *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   spinlock_t *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct raw_spinlock *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct device *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   int __cil_tmp50 ;
   unsigned char __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   struct device *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned int __cil_tmp57 ;
   int __cil_tmp58 ;
   unsigned char __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
-  unsigned long __cil_tmp61 ;
   unsigned int __cil_tmp62 ;
 
   {
@@ -2750,64 +2507,32 @@ struct tifm_dev *tifm_alloc_device(struct tifm_adapter *fm , unsigned int id , u
   __cil_tmp17 = (unsigned long )sock;
   if (__cil_tmp17 != __cil_tmp16) {
     {
-    __cil_tmp18 = (unsigned long )sock;
-    __cil_tmp19 = __cil_tmp18 + 8;
-    __cil_tmp20 = (spinlock_t *)__cil_tmp19;
+    __cil_tmp20 = (spinlock_t *)((void *)sock + 8);
     spinlock_check(__cil_tmp20);
-    __cil_tmp21 = (unsigned long )sock;
-    __cil_tmp22 = __cil_tmp21 + 8;
-    __cil_tmp23 = (struct raw_spinlock *)__cil_tmp22;
+    __cil_tmp23 = (struct raw_spinlock *)((void *)sock + 8);
     __raw_spin_lock_init(__cil_tmp23, "&(&sock->lock)->rlock", & __key);
-    __cil_tmp24 = (unsigned long )sock;
-    __cil_tmp25 = __cil_tmp24 + 80;
-    *((unsigned char *)__cil_tmp25) = type;
-    __cil_tmp26 = (unsigned long )sock;
-    __cil_tmp27 = __cil_tmp26 + 84;
-    *((unsigned int *)__cil_tmp27) = id;
-    __cil_tmp28 = (unsigned long )sock;
-    __cil_tmp29 = __cil_tmp28 + 88;
-    *((void (**)(struct tifm_dev * ))__cil_tmp29) = & tifm_dummy_event;
-    __cil_tmp30 = (unsigned long )sock;
-    __cil_tmp31 = __cil_tmp30 + 96;
-    *((void (**)(struct tifm_dev * ))__cil_tmp31) = & tifm_dummy_event;
-    __cil_tmp32 = (unsigned long )sock;
-    __cil_tmp33 = __cil_tmp32 + 104;
-    __cil_tmp34 = (unsigned long )fm;
-    __cil_tmp35 = __cil_tmp34 + 184;
-    *((struct device **)__cil_tmp33) = *((struct device **)__cil_tmp35);
+    *((unsigned char *)((void *)sock + 80)) = type;
+    *((unsigned int *)((void *)sock + 84)) = id;
+    *((void (**)(struct tifm_dev * ))((void *)sock + 88)) = & tifm_dummy_event;
+    *((void (**)(struct tifm_dev * ))((void *)sock + 96)) = & tifm_dummy_event;
+    *((struct device **)((void *)sock + 104)) = *((struct device **)((void *)fm + 184));
     __cil_tmp36 = 104 + 264;
-    __cil_tmp37 = (unsigned long )sock;
-    __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-    *((struct bus_type **)__cil_tmp38) = & tifm_bus_type;
+    *((struct bus_type **)((void *)sock + __cil_tmp36)) = & tifm_bus_type;
     __cil_tmp39 = 104 + 920;
-    __cil_tmp40 = (unsigned long )sock;
-    __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-    __cil_tmp42 = (unsigned long )fm;
-    __cil_tmp43 = __cil_tmp42 + 184;
-    __cil_tmp44 = *((struct device **)__cil_tmp43);
-    __cil_tmp45 = (unsigned long )__cil_tmp44;
-    __cil_tmp46 = __cil_tmp45 + 920;
-    *((u64 **)__cil_tmp41) = *((u64 **)__cil_tmp46);
+    __cil_tmp44 = *((struct device **)((void *)fm + 184));
+    *((u64 **)((void *)sock + __cil_tmp39)) = *((u64 **)((void *)__cil_tmp44 + 920));
     __cil_tmp47 = 104 + 1144;
-    __cil_tmp48 = (unsigned long )sock;
-    __cil_tmp49 = __cil_tmp48 + __cil_tmp47;
-    *((void (**)(struct device * ))__cil_tmp49) = & tifm_free_device;
+    *((void (**)(struct device * ))((void *)sock + __cil_tmp47)) = & tifm_free_device;
     __cil_tmp50 = (int )type;
     __cil_tmp51 = (unsigned char )__cil_tmp50;
     tmp___1 = tifm_media_type_name(__cil_tmp51, (unsigned char)2);
-    __cil_tmp52 = (unsigned long )sock;
-    __cil_tmp53 = __cil_tmp52 + 104;
-    __cil_tmp54 = (struct device *)__cil_tmp53;
-    __cil_tmp55 = (unsigned long )fm;
-    __cil_tmp56 = __cil_tmp55 + 88;
-    __cil_tmp57 = *((unsigned int *)__cil_tmp56);
+    __cil_tmp54 = (struct device *)((void *)sock + 104);
+    __cil_tmp57 = *((unsigned int *)((void *)fm + 88));
     dev_set_name(__cil_tmp54, "tifm_%s%u:%u", tmp___1, __cil_tmp57, id);
     __cil_tmp58 = (int )type;
     __cil_tmp59 = (unsigned char )__cil_tmp58;
     tmp___2 = tifm_media_type_name(__cil_tmp59, (unsigned char)0);
-    __cil_tmp60 = (unsigned long )fm;
-    __cil_tmp61 = __cil_tmp60 + 88;
-    __cil_tmp62 = *((unsigned int *)__cil_tmp61);
+    __cil_tmp62 = *((unsigned int *)((void *)fm + 88));
     printk("<6>tifm_core: %s card detected in socket %u:%u\n", tmp___2, __cil_tmp62,
            id);
     }
@@ -2821,25 +2546,17 @@ struct tifm_dev *tifm_alloc_device(struct tifm_adapter *fm , unsigned int id , u
 void tifm_eject(struct tifm_dev *sock ) 
 { struct tifm_adapter *fm ;
   void *tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct device *__cil_tmp6 ;
   struct device  const  *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void (*__cil_tmp10)(struct tifm_adapter * , struct tifm_dev * ) ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )sock;
-  __cil_tmp5 = __cil_tmp4 + 104;
-  __cil_tmp6 = *((struct device **)__cil_tmp5);
+  __cil_tmp6 = *((struct device **)((void *)sock + 104));
   __cil_tmp7 = (struct device  const  *)__cil_tmp6;
   tmp = dev_get_drvdata(__cil_tmp7);
   fm = (struct tifm_adapter *)tmp;
-  __cil_tmp8 = (unsigned long )fm;
-  __cil_tmp9 = __cil_tmp8 + 1336;
-  __cil_tmp10 = *((void (**)(struct tifm_adapter * , struct tifm_dev * ))__cil_tmp9);
+  __cil_tmp10 = *((void (**)(struct tifm_adapter * , struct tifm_dev * ))((void *)fm + 1336));
   (*__cil_tmp10)(fm, sock);
   }
   return;
@@ -2849,25 +2566,17 @@ int tifm_has_ms_pif(struct tifm_dev *sock )
 { struct tifm_adapter *fm ;
   void *tmp ;
   int tmp___0 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct device *__cil_tmp7 ;
   struct device  const  *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int (*__cil_tmp11)(struct tifm_adapter * , struct tifm_dev * ) ;
 
   {
   {
-  __cil_tmp5 = (unsigned long )sock;
-  __cil_tmp6 = __cil_tmp5 + 104;
-  __cil_tmp7 = *((struct device **)__cil_tmp6);
+  __cil_tmp7 = *((struct device **)((void *)sock + 104));
   __cil_tmp8 = (struct device  const  *)__cil_tmp7;
   tmp = dev_get_drvdata(__cil_tmp8);
   fm = (struct tifm_adapter *)tmp;
-  __cil_tmp9 = (unsigned long )fm;
-  __cil_tmp10 = __cil_tmp9 + 1344;
-  __cil_tmp11 = *((int (**)(struct tifm_adapter * , struct tifm_dev * ))__cil_tmp10);
+  __cil_tmp11 = *((int (**)(struct tifm_adapter * , struct tifm_dev * ))((void *)fm + 1344));
   tmp___0 = (*__cil_tmp11)(fm, sock);
   }
   return (tmp___0);
@@ -2876,17 +2585,13 @@ int tifm_has_ms_pif(struct tifm_dev *sock )
 int tifm_map_sg(struct tifm_dev *sock , struct scatterlist *sg , int nents , int direction ) 
 { struct device  const  *__mptr ;
   int tmp ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   struct pci_dev *__cil_tmp10 ;
   struct pci_dev *__cil_tmp11 ;
 
   {
   {
-  __cil_tmp7 = (unsigned long )sock;
-  __cil_tmp8 = __cil_tmp7 + 104;
-  __cil_tmp9 = *((struct device **)__cil_tmp8);
+  __cil_tmp9 = *((struct device **)((void *)sock + 104));
   __mptr = (struct device  const  *)__cil_tmp9;
   __cil_tmp10 = (struct pci_dev *)__mptr;
   __cil_tmp11 = __cil_tmp10 + 0xffffffffffffff70UL;
@@ -2897,17 +2602,13 @@ int tifm_map_sg(struct tifm_dev *sock , struct scatterlist *sg , int nents , int
 }
 void tifm_unmap_sg(struct tifm_dev *sock , struct scatterlist *sg , int nents , int direction ) 
 { struct device  const  *__mptr ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
   struct pci_dev *__cil_tmp9 ;
   struct pci_dev *__cil_tmp10 ;
 
   {
   {
-  __cil_tmp6 = (unsigned long )sock;
-  __cil_tmp7 = __cil_tmp6 + 104;
-  __cil_tmp8 = *((struct device **)__cil_tmp7);
+  __cil_tmp8 = *((struct device **)((void *)sock + 104));
   __mptr = (struct device  const  *)__cil_tmp8;
   __cil_tmp9 = (struct pci_dev *)__mptr;
   __cil_tmp10 = __cil_tmp9 + 0xffffffffffffff70UL;
@@ -2929,36 +2630,25 @@ void tifm_queue_work(struct work_struct *work )
 int tifm_register_driver(struct tifm_driver *drv ) 
 { int tmp ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device_driver *__cil_tmp8 ;
 
   {
   {
   __cil_tmp3 = 40 + 8;
-  __cil_tmp4 = (unsigned long )drv;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  *((struct bus_type **)__cil_tmp5) = & tifm_bus_type;
-  __cil_tmp6 = (unsigned long )drv;
-  __cil_tmp7 = __cil_tmp6 + 40;
-  __cil_tmp8 = (struct device_driver *)__cil_tmp7;
+  *((struct bus_type **)((void *)drv + __cil_tmp3)) = & tifm_bus_type;
+  __cil_tmp8 = (struct device_driver *)((void *)drv + 40);
   tmp = driver_register(__cil_tmp8);
   }
   return (tmp);
 }
 }
 void tifm_unregister_driver(struct tifm_driver *drv ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct device_driver *__cil_tmp4 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )drv;
-  __cil_tmp3 = __cil_tmp2 + 40;
-  __cil_tmp4 = (struct device_driver *)__cil_tmp3;
+  __cil_tmp4 = (struct device_driver *)((void *)drv + 40);
   driver_unregister(__cil_tmp4);
   }
   return;

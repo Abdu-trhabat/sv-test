@@ -4935,24 +4935,14 @@ static void litelink_sir_cleanup(void)
 }
 static int litelink_open(struct sir_dev *dev )
 { struct qos_info *qos ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   __u16 __cil_tmp11 ;
   int __cil_tmp12 ;
   int __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  qos = (struct qos_info *)__cil_tmp4;
+  qos = (struct qos_info *)((void *)dev + 16);
   {
   while (1) {
     while_continue: ;
@@ -4969,19 +4959,13 @@ static int litelink_open(struct sir_dev *dev )
   {
   sirdev_set_dtr_rts(dev, 1, 1);
   __cil_tmp5 = 4 + 4;
-  __cil_tmp6 = (unsigned long )qos;
-  __cil_tmp7 = __cil_tmp6 + __cil_tmp5;
   __cil_tmp8 = 4 + 4;
-  __cil_tmp9 = (unsigned long )qos;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp8;
-  __cil_tmp11 = *((__u16 *)__cil_tmp10);
+  __cil_tmp11 = *((__u16 *)((void *)qos + __cil_tmp8));
   __cil_tmp12 = (int )__cil_tmp11;
   __cil_tmp13 = __cil_tmp12 & 62;
-  *((__u16 *)__cil_tmp7) = (__u16 )__cil_tmp13;
+  *((__u16 *)((void *)qos + __cil_tmp5)) = (__u16 )__cil_tmp13;
   __cil_tmp14 = 44 + 4;
-  __cil_tmp15 = (unsigned long )qos;
-  __cil_tmp16 = __cil_tmp15 + __cil_tmp14;
-  *((__u16 *)__cil_tmp16) = (__u16 )127;
+  *((__u16 *)((void *)qos + __cil_tmp14)) = (__u16 )127;
   irda_qos_bits_to_value(qos);
   }
   return (0);
@@ -5018,12 +5002,8 @@ static int litelink_change_speed(struct sir_dev *dev , unsigned int speed )
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
   {
   {
@@ -5071,15 +5051,11 @@ static int litelink_change_speed(struct sir_dev *dev , unsigned int speed )
   }
   while_break___0: ;
   }
-  __cil_tmp11 = (unsigned long )dev;
-  __cil_tmp12 = __cil_tmp11 + 336;
   __cil_tmp13 = i * 4UL;
   __cil_tmp14 = (unsigned long )(baud_rates) + __cil_tmp13;
-  *((unsigned int *)__cil_tmp12) = *((unsigned int *)__cil_tmp14);
+  *((unsigned int *)((void *)dev + 336)) = *((unsigned int *)__cil_tmp14);
   {
-  __cil_tmp15 = (unsigned long )dev;
-  __cil_tmp16 = __cil_tmp15 + 336;
-  __cil_tmp17 = *((unsigned int *)__cil_tmp16);
+  __cil_tmp17 = *((unsigned int *)((void *)dev + 336));
   if (__cil_tmp17 == speed) {
     tmp___7 = 0;
   } else {
@@ -5090,8 +5066,7 @@ static int litelink_change_speed(struct sir_dev *dev , unsigned int speed )
 }
 }
 static int litelink_reset(struct sir_dev *dev )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   {
   while (1) {
@@ -5113,9 +5088,7 @@ static int litelink_reset(struct sir_dev *dev )
   __const_udelay(107375UL);
   sirdev_set_dtr_rts(dev, 1, 1);
   __const_udelay(107375UL);
-  __cil_tmp2 = (unsigned long )dev;
-  __cil_tmp3 = __cil_tmp2 + 336;
-  *((unsigned int *)__cil_tmp3) = 115200U;
+  *((unsigned int *)((void *)dev + 336)) = 115200U;
   }
   return (0);
 }

@@ -3110,23 +3110,15 @@ extern void platform_device_put(struct platform_device *pdev ) ;
 __inline static u16 ucb1400_reg_read(struct snd_ac97 *ac97 , u16 reg )  __attribute__((__no_instrument_function__)) ;
 __inline static u16 ucb1400_reg_read(struct snd_ac97 *ac97 , u16 reg ) 
 { unsigned short tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   struct snd_ac97_bus *__cil_tmp6 ;
   struct snd_ac97_bus_ops *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned short (*__cil_tmp10)(struct snd_ac97 *ac97 , unsigned short reg ) ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )ac97;
-  __cil_tmp5 = __cil_tmp4 + 24;
-  __cil_tmp6 = *((struct snd_ac97_bus **)__cil_tmp5);
+  __cil_tmp6 = *((struct snd_ac97_bus **)((void *)ac97 + 24));
   __cil_tmp7 = *((struct snd_ac97_bus_ops **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 24;
-  __cil_tmp10 = *((unsigned short (**)(struct snd_ac97 *ac97 , unsigned short reg ))__cil_tmp9);
+  __cil_tmp10 = *((unsigned short (**)(struct snd_ac97 *ac97 , unsigned short reg ))((void *)__cil_tmp7 + 24));
   tmp___7 = (*__cil_tmp10)(ac97, reg);
   }
   return (tmp___7);
@@ -3134,23 +3126,16 @@ __inline static u16 ucb1400_reg_read(struct snd_ac97 *ac97 , u16 reg )
 }
 __inline static void ucb1400_reg_write(struct snd_ac97 *ac97 , u16 reg , u16 val )  __attribute__((__no_instrument_function__)) ;
 __inline static void ucb1400_reg_write(struct snd_ac97 *ac97 , u16 reg , u16 val ) 
-{ unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
+{
   struct snd_ac97_bus *__cil_tmp6 ;
   struct snd_ac97_bus_ops *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void (*__cil_tmp10)(struct snd_ac97 *ac97 , unsigned short reg , unsigned short val ) ;
 
   {
   {
-  __cil_tmp4 = (unsigned long )ac97;
-  __cil_tmp5 = __cil_tmp4 + 24;
-  __cil_tmp6 = *((struct snd_ac97_bus **)__cil_tmp5);
+  __cil_tmp6 = *((struct snd_ac97_bus **)((void *)ac97 + 24));
   __cil_tmp7 = *((struct snd_ac97_bus_ops **)__cil_tmp6);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((void (**)(struct snd_ac97 *ac97 , unsigned short reg , unsigned short val ))__cil_tmp9);
+  __cil_tmp10 = *((void (**)(struct snd_ac97 *ac97 , unsigned short reg , unsigned short val ))((void *)__cil_tmp7 + 16));
   (*__cil_tmp10)(ac97, reg, val);
   }
   return;
@@ -3250,62 +3235,37 @@ static int ucb1400_core_probe(struct device *dev )
   void *tmp___7 ;
   struct device  const  *__mptr ;
   u16 tmp___8 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   void *__cil_tmp14 ;
   void *__cil_tmp15 ;
   void *__cil_tmp16 ;
   struct snd_ac97 *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   char *__cil_tmp22 ;
   char *__cil_tmp23 ;
   u16 __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct platform_device *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct platform_device *__cil_tmp36 ;
   void const   *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct platform_device *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   void *__cil_tmp42 ;
   unsigned long __cil_tmp43 ;
   unsigned long __cil_tmp44 ;
   int __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   struct platform_device *__cil_tmp49 ;
   struct platform_device *__cil_tmp50 ;
   void const   *__cil_tmp51 ;
   struct platform_device *__cil_tmp52 ;
   struct platform_device *__cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   struct platform_device *__cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
-  unsigned long __cil_tmp58 ;
   struct platform_device *__cil_tmp59 ;
   void const   *__cil_tmp60 ;
 
   {
   {
-  __cil_tmp11 = (unsigned long )dev;
-  __cil_tmp12 = __cil_tmp11 + 184;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)dev + 184));
   pdata = (struct ucb1400_pdata *)__cil_tmp13;
   __cil_tmp14 = (void *)(& ucb_ts);
   memset(__cil_tmp14, 0, 72UL);
@@ -3325,21 +3285,17 @@ static int ucb1400_core_probe(struct device *dev )
   dev_set_drvdata(dev, __cil_tmp16);
   __mptr = (struct device  const  *)dev;
   __cil_tmp17 = (struct snd_ac97 *)0;
-  __cil_tmp18 = (unsigned long )__cil_tmp17;
-  __cil_tmp19 = __cil_tmp18 + 696;
-  __cil_tmp20 = (struct device *)__cil_tmp19;
+  __cil_tmp20 = (struct device *)((void *)__cil_tmp17 + 696);
   __cil_tmp21 = (unsigned int )__cil_tmp20;
   __cil_tmp22 = (char *)__mptr;
   __cil_tmp23 = __cil_tmp22 - __cil_tmp21;
   ac97 = (struct snd_ac97 *)__cil_tmp23;
   __cil_tmp24 = (u16 )126;
   tmp___8 = ucb1400_reg_read(ac97, __cil_tmp24);
-  __cil_tmp25 = (unsigned long )(& ucb_ts) + 8;
-  *((int *)__cil_tmp25) = (int )tmp___8;
+  *((int *)((void *)(&ucb_ts) + 8)) = (int )tmp___8;
   }
   {
-  __cil_tmp26 = (unsigned long )(& ucb_ts) + 8;
-  __cil_tmp27 = *((int *)__cil_tmp26);
+  __cil_tmp27 = *((int *)((void *)(&ucb_ts) + 8));
   if (__cil_tmp27 != 17156) {
     err = -19;
     goto err0;
@@ -3348,17 +3304,12 @@ static int ucb1400_core_probe(struct device *dev )
   }
   }
   {
-  __cil_tmp28 = (unsigned long )(& ucb_gpio) + 120;
-  *((struct snd_ac97 **)__cil_tmp28) = ac97;
-  __cil_tmp29 = (unsigned long )ucb;
-  __cil_tmp30 = __cil_tmp29 + 8;
-  *((struct platform_device **)__cil_tmp30) = platform_device_alloc("ucb1400_gpio",
+  *((struct snd_ac97 **)((void *)(&ucb_gpio) + 120)) = ac97;
+  *((struct platform_device **)((void *)ucb + 8)) = platform_device_alloc("ucb1400_gpio",
                                                                     -1);
   }
   {
-  __cil_tmp31 = (unsigned long )ucb;
-  __cil_tmp32 = __cil_tmp31 + 8;
-  __cil_tmp33 = *((struct platform_device **)__cil_tmp32);
+  __cil_tmp33 = *((struct platform_device **)((void *)ucb + 8));
   if (! __cil_tmp33) {
     err = -12;
     goto err0;
@@ -3367,9 +3318,7 @@ static int ucb1400_core_probe(struct device *dev )
   }
   }
   {
-  __cil_tmp34 = (unsigned long )ucb;
-  __cil_tmp35 = __cil_tmp34 + 8;
-  __cil_tmp36 = *((struct platform_device **)__cil_tmp35);
+  __cil_tmp36 = *((struct platform_device **)((void *)ucb + 8));
   __cil_tmp37 = (void const   *)(& ucb_gpio);
   err = platform_device_add_data(__cil_tmp36, __cil_tmp37, 128UL);
   }
@@ -3379,9 +3328,7 @@ static int ucb1400_core_probe(struct device *dev )
 
   }
   {
-  __cil_tmp38 = (unsigned long )ucb;
-  __cil_tmp39 = __cil_tmp38 + 8;
-  __cil_tmp40 = *((struct platform_device **)__cil_tmp39);
+  __cil_tmp40 = *((struct platform_device **)((void *)ucb + 8));
   err = platform_device_add(__cil_tmp40);
   }
   if (err) {
@@ -3389,8 +3336,7 @@ static int ucb1400_core_probe(struct device *dev )
   } else {
 
   }
-  __cil_tmp41 = (unsigned long )(& ucb_ts) + 16;
-  *((struct snd_ac97 **)__cil_tmp41) = ac97;
+  *((struct snd_ac97 **)((void *)(&ucb_ts) + 16)) = ac97;
   {
   __cil_tmp42 = (void *)0;
   __cil_tmp43 = (unsigned long )__cil_tmp42;
@@ -3399,16 +3345,13 @@ static int ucb1400_core_probe(struct device *dev )
     {
     __cil_tmp45 = *((int *)pdata);
     if (__cil_tmp45 >= 0) {
-      __cil_tmp46 = (unsigned long )(& ucb_ts) + 12;
-      *((int *)__cil_tmp46) = *((int *)pdata);
+      *((int *)((void *)(&ucb_ts) + 12)) = *((int *)pdata);
     } else {
-      __cil_tmp47 = (unsigned long )(& ucb_ts) + 12;
-      *((int *)__cil_tmp47) = -1;
+      *((int *)((void *)(&ucb_ts) + 12)) = -1;
     }
     }
   } else {
-    __cil_tmp48 = (unsigned long )(& ucb_ts) + 12;
-    *((int *)__cil_tmp48) = -1;
+    *((int *)((void *)(&ucb_ts) + 12)) = -1;
   }
   }
   {
@@ -3450,16 +3393,12 @@ static int ucb1400_core_probe(struct device *dev )
   }
   err2: 
   {
-  __cil_tmp54 = (unsigned long )ucb;
-  __cil_tmp55 = __cil_tmp54 + 8;
-  __cil_tmp56 = *((struct platform_device **)__cil_tmp55);
+  __cil_tmp56 = *((struct platform_device **)((void *)ucb + 8));
   platform_device_del(__cil_tmp56);
   }
   err1: 
   {
-  __cil_tmp57 = (unsigned long )ucb;
-  __cil_tmp58 = __cil_tmp57 + 8;
-  __cil_tmp59 = *((struct platform_device **)__cil_tmp58);
+  __cil_tmp59 = *((struct platform_device **)((void *)ucb + 8));
   platform_device_put(__cil_tmp59);
   }
   err0: 
@@ -3476,8 +3415,6 @@ static int ucb1400_core_remove(struct device *dev )
   void *tmp___7 ;
   struct device  const  *__cil_tmp4 ;
   struct platform_device *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct platform_device *__cil_tmp8 ;
   void const   *__cil_tmp9 ;
 
@@ -3488,9 +3425,7 @@ static int ucb1400_core_remove(struct device *dev )
   ucb = (struct ucb1400 *)tmp___7;
   __cil_tmp5 = *((struct platform_device **)ucb);
   platform_device_unregister(__cil_tmp5);
-  __cil_tmp6 = (unsigned long )ucb;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = *((struct platform_device **)__cil_tmp7);
+  __cil_tmp8 = *((struct platform_device **)((void *)ucb + 8));
   platform_device_unregister(__cil_tmp8);
   __cil_tmp9 = (void const   *)ucb;
   kfree(__cil_tmp9);

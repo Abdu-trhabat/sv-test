@@ -4457,15 +4457,12 @@ extern void team_options_unregister(struct team *team , struct team_option  cons
 extern int team_mode_register(struct team_mode *mode ) ;
 extern int team_mode_unregister(struct team_mode *mode ) ;
 static struct ab_priv *ab_priv(struct team *team ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   long (*__cil_tmp4)[4] ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )team;
-  __cil_tmp3 = __cil_tmp2 + 320;
-  __cil_tmp4 = (long (*)[4])__cil_tmp3;
+  __cil_tmp4 = (long (*)[4])((void *)team + 320);
   return ((struct ab_priv *)__cil_tmp4);
   }
 }
@@ -4529,8 +4526,6 @@ static bool ab_transmit(struct team *team , struct sk_buff *skb )
   int __cil_tmp20 ;
   int __cil_tmp21 ;
   long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
 
   {
   {
@@ -4568,9 +4563,7 @@ static bool ab_transmit(struct team *team , struct sk_buff *skb )
 
   }
   {
-  __cil_tmp23 = (unsigned long )skb;
-  __cil_tmp24 = __cil_tmp23 + 32;
-  *((struct net_device **)__cil_tmp24) = *((struct net_device **)active_port);
+  *((struct net_device **)((void *)skb + 32)) = *((struct net_device **)active_port);
   tmp___17 = dev_queue_xmit(skb);
   }
   if (tmp___17) {
@@ -4621,8 +4614,6 @@ static int ab_active_port_get(struct team *team , void *arg )
   struct ab_priv *tmp___8 ;
   struct team_port *__cil_tmp6 ;
   struct net_device *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
 
   {
@@ -4636,9 +4627,7 @@ static int ab_active_port_get(struct team *team , void *arg )
     tmp___7 = ab_priv(team);
     __cil_tmp6 = *((struct team_port **)tmp___7);
     __cil_tmp7 = *((struct net_device **)__cil_tmp6);
-    __cil_tmp8 = (unsigned long )__cil_tmp7;
-    __cil_tmp9 = __cil_tmp8 + 320;
-    __cil_tmp10 = *((int *)__cil_tmp9);
+    __cil_tmp10 = *((int *)((void *)__cil_tmp7 + 320));
     *ifindex = (u32 )__cil_tmp10;
     }
   } else {
@@ -4658,39 +4647,25 @@ static int ab_active_port_set(struct team *team , void *arg )
   struct list_head *_________p1___0 ;
   struct ab_priv *tmp___7 ;
   struct list_head **__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct list_head * volatile  *__cil_tmp15 ;
   struct list_head * volatile  __cil_tmp16 ;
   struct team_port *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct list_head *__cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   char *__cil_tmp22 ;
   char *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct list_head *__cil_tmp26 ;
   unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   struct list_head *__cil_tmp30 ;
   unsigned long __cil_tmp31 ;
   u32 __cil_tmp32 ;
   struct net_device *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   int __cil_tmp36 ;
   u32 __cil_tmp37 ;
   struct list_head **__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   struct list_head * volatile  *__cil_tmp41 ;
   struct list_head * volatile  __cil_tmp42 ;
   struct team_port *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct list_head *__cil_tmp46 ;
   unsigned int __cil_tmp47 ;
   char *__cil_tmp48 ;
@@ -4699,9 +4674,7 @@ static int ab_active_port_set(struct team *team , void *arg )
   {
   ifindex = (u32 *)arg;
   __cil_tmp12 = & __ptr;
-  __cil_tmp13 = (unsigned long )team;
-  __cil_tmp14 = __cil_tmp13 + 224;
-  *__cil_tmp12 = *((struct list_head **)__cil_tmp14);
+  *__cil_tmp12 = *((struct list_head **)((void *)team + 224));
   __cil_tmp15 = (struct list_head * volatile  *)(& __ptr);
   __cil_tmp16 = *__cil_tmp15;
   _________p1 = (struct list_head *)__cil_tmp16;
@@ -4721,9 +4694,7 @@ static int ab_active_port_set(struct team *team , void *arg )
   }
   __mptr = (struct list_head  const  *)_________p1;
   __cil_tmp17 = (struct team_port *)0;
-  __cil_tmp18 = (unsigned long )__cil_tmp17;
-  __cil_tmp19 = __cil_tmp18 + 24;
-  __cil_tmp20 = (struct list_head *)__cil_tmp19;
+  __cil_tmp20 = (struct list_head *)((void *)__cil_tmp17 + 24);
   __cil_tmp21 = (unsigned int )__cil_tmp20;
   __cil_tmp22 = (char *)__mptr;
   __cil_tmp23 = __cil_tmp22 - __cil_tmp21;
@@ -4732,13 +4703,9 @@ static int ab_active_port_set(struct team *team , void *arg )
   while (1) {
     while_continue___1: /* CIL Label */ ;
     {
-    __cil_tmp24 = (unsigned long )team;
-    __cil_tmp25 = __cil_tmp24 + 224;
-    __cil_tmp26 = (struct list_head *)__cil_tmp25;
+    __cil_tmp26 = (struct list_head *)((void *)team + 224);
     __cil_tmp27 = (unsigned long )__cil_tmp26;
-    __cil_tmp28 = (unsigned long )port;
-    __cil_tmp29 = __cil_tmp28 + 24;
-    __cil_tmp30 = (struct list_head *)__cil_tmp29;
+    __cil_tmp30 = (struct list_head *)((void *)port + 24);
     __cil_tmp31 = (unsigned long )__cil_tmp30;
     if (__cil_tmp31 != __cil_tmp27) {
 
@@ -4749,9 +4716,7 @@ static int ab_active_port_set(struct team *team , void *arg )
     {
     __cil_tmp32 = *ifindex;
     __cil_tmp33 = *((struct net_device **)port);
-    __cil_tmp34 = (unsigned long )__cil_tmp33;
-    __cil_tmp35 = __cil_tmp34 + 320;
-    __cil_tmp36 = *((int *)__cil_tmp35);
+    __cil_tmp36 = *((int *)((void *)__cil_tmp33 + 320));
     __cil_tmp37 = (u32 )__cil_tmp36;
     if (__cil_tmp37 == __cil_tmp32) {
       {
@@ -4765,9 +4730,7 @@ static int ab_active_port_set(struct team *team , void *arg )
     }
     }
     __cil_tmp38 = & __ptr___0;
-    __cil_tmp39 = (unsigned long )port;
-    __cil_tmp40 = __cil_tmp39 + 24;
-    *__cil_tmp38 = *((struct list_head **)__cil_tmp40);
+    *__cil_tmp38 = *((struct list_head **)((void *)port + 24));
     __cil_tmp41 = (struct list_head * volatile  *)(& __ptr___0);
     __cil_tmp42 = *__cil_tmp41;
     _________p1___0 = (struct list_head *)__cil_tmp42;
@@ -4787,9 +4750,7 @@ static int ab_active_port_set(struct team *team , void *arg )
     }
     __mptr___0 = (struct list_head  const  *)_________p1___0;
     __cil_tmp43 = (struct team_port *)0;
-    __cil_tmp44 = (unsigned long )__cil_tmp43;
-    __cil_tmp45 = __cil_tmp44 + 24;
-    __cil_tmp46 = (struct list_head *)__cil_tmp45;
+    __cil_tmp46 = (struct list_head *)((void *)__cil_tmp43 + 24);
     __cil_tmp47 = (unsigned int )__cil_tmp46;
     __cil_tmp48 = (char *)__mptr___0;
     __cil_tmp49 = __cil_tmp48 - __cil_tmp47;

@@ -1892,15 +1892,12 @@ __inline static void input_sync(struct input_dev *dev )
 extern void input_set_abs_params(struct input_dev * , unsigned int  , int  , int  ,
                                  int  , int  ) ;
 __inline static void platform_set_drvdata(struct platform_device *pdev , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )pdev;
-  __cil_tmp4 = __cil_tmp3 + 16;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)pdev + 16);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -1936,46 +1933,30 @@ static int rotary_encoder_get_state(struct rotary_encoder_platform_data *pdata )
   int tmp ;
   int b ;
   int tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
   unsigned int __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   int __cil_tmp22 ;
 
   {
   {
-  __cil_tmp6 = (unsigned long )pdata;
-  __cil_tmp7 = __cil_tmp6 + 8;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)pdata + 8));
   tmp = gpio_get_value(__cil_tmp8);
   a = tmp != 0;
-  __cil_tmp9 = (unsigned long )pdata;
-  __cil_tmp10 = __cil_tmp9 + 12;
-  __cil_tmp11 = *((unsigned int *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned int *)((void *)pdata + 12));
   tmp___0 = gpio_get_value(__cil_tmp11);
   b = tmp___0 != 0;
   __cil_tmp12 = (unsigned int )a;
-  __cil_tmp13 = (unsigned long )pdata;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((unsigned int *)__cil_tmp14);
+  __cil_tmp15 = *((unsigned int *)((void *)pdata + 16));
   __cil_tmp16 = __cil_tmp15 ^ __cil_tmp12;
   a = (int )__cil_tmp16;
   __cil_tmp17 = (unsigned int )b;
-  __cil_tmp18 = (unsigned long )pdata;
-  __cil_tmp19 = __cil_tmp18 + 20;
-  __cil_tmp20 = *((unsigned int *)__cil_tmp19);
+  __cil_tmp20 = *((unsigned int *)((void *)pdata + 20));
   __cil_tmp21 = __cil_tmp20 ^ __cil_tmp17;
   b = (int )__cil_tmp21;
   }
@@ -1989,62 +1970,32 @@ static void rotary_encoder_report_event(struct rotary_encoder *encoder )
 { struct rotary_encoder_platform_data *pdata ;
   int tmp ;
   unsigned int pos ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   bool __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned char __cil_tmp12 ;
   unsigned int __cil_tmp13 ;
   struct input_dev *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned char __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   bool __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   bool __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   bool __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct input_dev *__cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   unsigned int __cil_tmp44 ;
   int __cil_tmp45 ;
   struct input_dev *__cil_tmp46 ;
 
   {
-  __cil_tmp5 = (unsigned long )encoder;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  pdata = *((struct rotary_encoder_platform_data **)__cil_tmp6);
+  pdata = *((struct rotary_encoder_platform_data **)((void *)encoder + 8));
   {
-  __cil_tmp7 = (unsigned long )pdata;
-  __cil_tmp8 = __cil_tmp7 + 24;
-  __cil_tmp9 = *((bool *)__cil_tmp8);
+  __cil_tmp9 = *((bool *)((void *)pdata + 24));
   if ((int )__cil_tmp9) {
     {
-    __cil_tmp10 = (unsigned long )encoder;
-    __cil_tmp11 = __cil_tmp10 + 33;
-    __cil_tmp12 = *((unsigned char *)__cil_tmp11);
+    __cil_tmp12 = *((unsigned char *)((void *)encoder + 33));
     __cil_tmp13 = (unsigned int )__cil_tmp12;
     if (__cil_tmp13 != 0U) {
       tmp = -1;
@@ -2054,25 +2005,17 @@ static void rotary_encoder_report_event(struct rotary_encoder *encoder )
     }
     {
     __cil_tmp14 = *((struct input_dev **)encoder);
-    __cil_tmp15 = (unsigned long )pdata;
-    __cil_tmp16 = __cil_tmp15 + 4;
-    __cil_tmp17 = *((unsigned int *)__cil_tmp16);
+    __cil_tmp17 = *((unsigned int *)((void *)pdata + 4));
     input_report_rel(__cil_tmp14, __cil_tmp17, tmp);
     }
   } else {
-    __cil_tmp18 = (unsigned long )encoder;
-    __cil_tmp19 = __cil_tmp18 + 20;
-    pos = *((unsigned int *)__cil_tmp19);
+    pos = *((unsigned int *)((void *)encoder + 20));
     {
-    __cil_tmp20 = (unsigned long )encoder;
-    __cil_tmp21 = __cil_tmp20 + 33;
-    __cil_tmp22 = *((unsigned char *)__cil_tmp21);
+    __cil_tmp22 = *((unsigned char *)((void *)encoder + 33));
     __cil_tmp23 = (unsigned int )__cil_tmp22;
     if (__cil_tmp23 != 0U) {
       {
-      __cil_tmp24 = (unsigned long )pdata;
-      __cil_tmp25 = __cil_tmp24 + 25;
-      __cil_tmp26 = *((bool *)__cil_tmp25);
+      __cil_tmp26 = *((bool *)((void *)pdata + 25));
       if ((int )__cil_tmp26) {
         __cil_tmp27 = *((unsigned int *)pdata);
         pos = __cil_tmp27 + pos;
@@ -2087,9 +2030,7 @@ static void rotary_encoder_report_event(struct rotary_encoder *encoder )
       }
     } else {
       {
-      __cil_tmp28 = (unsigned long )pdata;
-      __cil_tmp29 = __cil_tmp28 + 25;
-      __cil_tmp30 = *((bool *)__cil_tmp29);
+      __cil_tmp30 = *((bool *)((void *)pdata + 25));
       if ((int )__cil_tmp30) {
         pos = pos + 1U;
       } else {
@@ -2106,9 +2047,7 @@ static void rotary_encoder_report_event(struct rotary_encoder *encoder )
     }
     }
     {
-    __cil_tmp32 = (unsigned long )pdata;
-    __cil_tmp33 = __cil_tmp32 + 25;
-    __cil_tmp34 = *((bool *)__cil_tmp33);
+    __cil_tmp34 = *((bool *)((void *)pdata + 25));
     if ((int )__cil_tmp34) {
       __cil_tmp35 = *((unsigned int *)pdata);
       avoid_zero(__cil_tmp35 != 0);
@@ -2118,16 +2057,10 @@ static void rotary_encoder_report_event(struct rotary_encoder *encoder )
     }
     }
     {
-    __cil_tmp36 = (unsigned long )encoder;
-    __cil_tmp37 = __cil_tmp36 + 20;
-    *((unsigned int *)__cil_tmp37) = pos;
+    *((unsigned int *)((void *)encoder + 20)) = pos;
     __cil_tmp38 = *((struct input_dev **)encoder);
-    __cil_tmp39 = (unsigned long )pdata;
-    __cil_tmp40 = __cil_tmp39 + 4;
-    __cil_tmp41 = *((unsigned int *)__cil_tmp40);
-    __cil_tmp42 = (unsigned long )encoder;
-    __cil_tmp43 = __cil_tmp42 + 20;
-    __cil_tmp44 = *((unsigned int *)__cil_tmp43);
+    __cil_tmp41 = *((unsigned int *)((void *)pdata + 4));
+    __cil_tmp44 = *((unsigned int *)((void *)encoder + 20));
     __cil_tmp45 = (int )__cil_tmp44;
     input_report_abs(__cil_tmp38, __cil_tmp41, __cil_tmp45);
     }
@@ -2143,31 +2076,17 @@ static void rotary_encoder_report_event(struct rotary_encoder *encoder )
 static irqreturn_t rotary_encoder_irq(int irq , void *dev_id ) 
 { struct rotary_encoder *encoder ;
   int state ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct rotary_encoder_platform_data *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   bool __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   bool __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned char __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   unsigned int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
 
   {
   {
   encoder = (struct rotary_encoder *)dev_id;
-  __cil_tmp5 = (unsigned long )encoder;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((struct rotary_encoder_platform_data **)__cil_tmp6);
+  __cil_tmp7 = *((struct rotary_encoder_platform_data **)((void *)encoder + 8));
   state = rotary_encoder_get_state(__cil_tmp7);
   }
   if (state == 0) {
@@ -2185,15 +2104,11 @@ static irqreturn_t rotary_encoder_irq(int irq , void *dev_id )
   if (0) {
     case_0: /* CIL Label */ ;
     {
-    __cil_tmp8 = (unsigned long )encoder;
-    __cil_tmp9 = __cil_tmp8 + 32;
-    __cil_tmp10 = *((bool *)__cil_tmp9);
+    __cil_tmp10 = *((bool *)((void *)encoder + 32));
     if ((int )__cil_tmp10) {
       {
       rotary_encoder_report_event(encoder);
-      __cil_tmp11 = (unsigned long )encoder;
-      __cil_tmp12 = __cil_tmp11 + 32;
-      *((bool *)__cil_tmp12) = (bool )0;
+      *((bool *)((void *)encoder + 32)) = (bool )0;
       }
     } else {
 
@@ -2203,25 +2118,19 @@ static irqreturn_t rotary_encoder_irq(int irq , void *dev_id )
     case_1: /* CIL Label */ ;
     case_2: /* CIL Label */ ;
     {
-    __cil_tmp13 = (unsigned long )encoder;
-    __cil_tmp14 = __cil_tmp13 + 32;
-    __cil_tmp15 = *((bool *)__cil_tmp14);
+    __cil_tmp15 = *((bool *)((void *)encoder + 32));
     if ((int )__cil_tmp15) {
-      __cil_tmp16 = (unsigned long )encoder;
-      __cil_tmp17 = __cil_tmp16 + 33;
       __cil_tmp18 = (unsigned char )state;
       __cil_tmp19 = (unsigned int )__cil_tmp18;
       __cil_tmp20 = __cil_tmp19 + 255U;
-      *((unsigned char *)__cil_tmp17) = (unsigned char )__cil_tmp20;
+      *((unsigned char *)((void *)encoder + 33)) = (unsigned char )__cil_tmp20;
     } else {
 
     }
     }
     goto ldv_21056;
     case_3: /* CIL Label */ 
-    __cil_tmp21 = (unsigned long )encoder;
-    __cil_tmp22 = __cil_tmp21 + 32;
-    *((bool *)__cil_tmp22) = (bool )1;
+    *((bool *)((void *)encoder + 32)) = (bool )1;
     goto ldv_21056;
   } else {
     switch_break: /* CIL Label */ ;
@@ -2233,21 +2142,11 @@ static irqreturn_t rotary_encoder_irq(int irq , void *dev_id )
 static irqreturn_t rotary_encoder_half_period_irq(int irq , void *dev_id ) 
 { struct rotary_encoder *encoder ;
   int state ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct rotary_encoder_platform_data *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   char __cil_tmp10 ;
   int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned char __cil_tmp16 ;
   int __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   char __cil_tmp20 ;
   unsigned char __cil_tmp21 ;
   int __cil_tmp22 ;
@@ -2258,9 +2157,7 @@ static irqreturn_t rotary_encoder_half_period_irq(int irq , void *dev_id )
   {
   {
   encoder = (struct rotary_encoder *)dev_id;
-  __cil_tmp5 = (unsigned long )encoder;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  __cil_tmp7 = *((struct rotary_encoder_platform_data **)__cil_tmp6);
+  __cil_tmp7 = *((struct rotary_encoder_platform_data **)((void *)encoder + 8));
   state = rotary_encoder_get_state(__cil_tmp7);
   }
   if (state == 0) {
@@ -2279,16 +2176,12 @@ static irqreturn_t rotary_encoder_half_period_irq(int irq , void *dev_id )
     case_0: /* CIL Label */ ;
     case_3: /* CIL Label */ ;
     {
-    __cil_tmp8 = (unsigned long )encoder;
-    __cil_tmp9 = __cil_tmp8 + 34;
-    __cil_tmp10 = *((char *)__cil_tmp9);
+    __cil_tmp10 = *((char *)((void *)encoder + 34));
     __cil_tmp11 = (int )__cil_tmp10;
     if (__cil_tmp11 != state) {
       {
       rotary_encoder_report_event(encoder);
-      __cil_tmp12 = (unsigned long )encoder;
-      __cil_tmp13 = __cil_tmp12 + 34;
-      *((char *)__cil_tmp13) = (char )state;
+      *((char *)((void *)encoder + 34)) = (char )state;
       }
     } else {
 
@@ -2297,19 +2190,15 @@ static irqreturn_t rotary_encoder_half_period_irq(int irq , void *dev_id )
     goto ldv_21068;
     case_1: /* CIL Label */ ;
     case_2: /* CIL Label */ 
-    __cil_tmp14 = (unsigned long )encoder;
-    __cil_tmp15 = __cil_tmp14 + 33;
     __cil_tmp16 = (unsigned char )state;
     __cil_tmp17 = (int )__cil_tmp16;
-    __cil_tmp18 = (unsigned long )encoder;
-    __cil_tmp19 = __cil_tmp18 + 34;
-    __cil_tmp20 = *((char *)__cil_tmp19);
+    __cil_tmp20 = *((char *)((void *)encoder + 34));
     __cil_tmp21 = (unsigned char )__cil_tmp20;
     __cil_tmp22 = (int )__cil_tmp21;
     __cil_tmp23 = __cil_tmp22 + __cil_tmp17;
     __cil_tmp24 = (unsigned int )__cil_tmp23;
     __cil_tmp25 = __cil_tmp24 & 1U;
-    *((unsigned char *)__cil_tmp15) = (unsigned char )__cil_tmp25;
+    *((unsigned char *)((void *)encoder + 33)) = (unsigned char )__cil_tmp25;
     goto ldv_21068;
   } else {
     switch_break: /* CIL Label */ ;
@@ -2329,163 +2218,77 @@ static int rotary_encoder_probe(struct platform_device *pdev )
   int tmp___1 ;
   int tmp___2 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   void *__cil_tmp14 ;
   struct rotary_encoder_platform_data *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device  const  *__cil_tmp21 ;
   struct rotary_encoder *__cil_tmp22 ;
   unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct device *__cil_tmp27 ;
   struct device  const  *__cil_tmp28 ;
   struct input_dev *__cil_tmp29 ;
   unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct device *__cil_tmp34 ;
   struct device  const  *__cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   unsigned int __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned int __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
   bool __cil_tmp56 ;
   unsigned long __cil_tmp57 ;
   unsigned long __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   unsigned int __cil_tmp67 ;
   int __cil_tmp68 ;
   int __cil_tmp69 ;
   unsigned long __cil_tmp70 ;
   unsigned long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   struct input_dev *__cil_tmp74 ;
-  unsigned long __cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
   unsigned int __cil_tmp77 ;
   unsigned int __cil_tmp78 ;
   int __cil_tmp79 ;
-  unsigned long __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
   struct device *__cil_tmp82 ;
   struct device  const  *__cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
-  unsigned long __cil_tmp85 ;
   unsigned int __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
   struct device *__cil_tmp89 ;
   struct device  const  *__cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   unsigned int __cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
   unsigned int __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
   struct device *__cil_tmp99 ;
   struct device  const  *__cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
-  unsigned long __cil_tmp102 ;
   unsigned int __cil_tmp103 ;
-  unsigned long __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
   unsigned int __cil_tmp106 ;
-  unsigned long __cil_tmp107 ;
-  unsigned long __cil_tmp108 ;
   struct device *__cil_tmp109 ;
   struct device  const  *__cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
-  unsigned long __cil_tmp112 ;
   unsigned int __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
   unsigned int __cil_tmp116 ;
-  unsigned long __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
   struct device *__cil_tmp119 ;
   struct device  const  *__cil_tmp120 ;
-  unsigned long __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
   unsigned int __cil_tmp123 ;
-  unsigned long __cil_tmp124 ;
-  unsigned long __cil_tmp125 ;
   bool __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
-  unsigned long __cil_tmp128 ;
-  unsigned long __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
   unsigned int __cil_tmp131 ;
   void *__cil_tmp132 ;
-  unsigned long __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
   struct device *__cil_tmp135 ;
   struct device  const  *__cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
   unsigned int __cil_tmp139 ;
-  unsigned long __cil_tmp140 ;
-  unsigned long __cil_tmp141 ;
   unsigned int __cil_tmp142 ;
   void *__cil_tmp143 ;
-  unsigned long __cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
   struct device *__cil_tmp146 ;
   struct device  const  *__cil_tmp147 ;
-  unsigned long __cil_tmp148 ;
-  unsigned long __cil_tmp149 ;
   unsigned int __cil_tmp150 ;
   void *__cil_tmp151 ;
-  unsigned long __cil_tmp152 ;
-  unsigned long __cil_tmp153 ;
   unsigned int __cil_tmp154 ;
   void *__cil_tmp155 ;
-  unsigned long __cil_tmp156 ;
-  unsigned long __cil_tmp157 ;
   unsigned int __cil_tmp158 ;
-  unsigned long __cil_tmp159 ;
-  unsigned long __cil_tmp160 ;
   unsigned int __cil_tmp161 ;
   void const   *__cil_tmp162 ;
 
   {
   __cil_tmp11 = 16 + 280;
-  __cil_tmp12 = (unsigned long )pdev;
-  __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-  __cil_tmp14 = *((void **)__cil_tmp13);
+  __cil_tmp14 = *((void **)((void *)pdev + __cil_tmp11));
   pdata = (struct rotary_encoder_platform_data *)__cil_tmp14;
   {
   __cil_tmp15 = (struct rotary_encoder_platform_data *)0;
@@ -2493,9 +2296,7 @@ static int rotary_encoder_probe(struct platform_device *pdev )
   __cil_tmp17 = (unsigned long )pdata;
   if (__cil_tmp17 == __cil_tmp16) {
     {
-    __cil_tmp18 = (unsigned long )pdev;
-    __cil_tmp19 = __cil_tmp18 + 16;
-    __cil_tmp20 = (struct device *)__cil_tmp19;
+    __cil_tmp20 = (struct device *)((void *)pdev + 16);
     __cil_tmp21 = (struct device  const  *)__cil_tmp20;
     dev_err(__cil_tmp21, "missing platform data\n");
     }
@@ -2515,9 +2316,7 @@ static int rotary_encoder_probe(struct platform_device *pdev )
   __cil_tmp24 = (unsigned long )encoder;
   if (__cil_tmp24 == __cil_tmp23) {
     {
-    __cil_tmp25 = (unsigned long )pdev;
-    __cil_tmp26 = __cil_tmp25 + 16;
-    __cil_tmp27 = (struct device *)__cil_tmp26;
+    __cil_tmp27 = (struct device *)((void *)pdev + 16);
     __cil_tmp28 = (struct device  const  *)__cil_tmp27;
     dev_err(__cil_tmp28, "failed to allocate memory for device\n");
     err = -12;
@@ -2530,9 +2329,7 @@ static int rotary_encoder_probe(struct platform_device *pdev )
     __cil_tmp31 = (unsigned long )input;
     if (__cil_tmp31 == __cil_tmp30) {
       {
-      __cil_tmp32 = (unsigned long )pdev;
-      __cil_tmp33 = __cil_tmp32 + 16;
-      __cil_tmp34 = (struct device *)__cil_tmp33;
+      __cil_tmp34 = (struct device *)((void *)pdev + 16);
       __cil_tmp35 = (struct device  const  *)__cil_tmp34;
       dev_err(__cil_tmp35, "failed to allocate memory for device\n");
       err = -12;
@@ -2546,64 +2343,36 @@ static int rotary_encoder_probe(struct platform_device *pdev )
   }
   {
   *((struct input_dev **)encoder) = input;
-  __cil_tmp36 = (unsigned long )encoder;
-  __cil_tmp37 = __cil_tmp36 + 8;
-  *((struct rotary_encoder_platform_data **)__cil_tmp37) = pdata;
-  __cil_tmp38 = (unsigned long )pdata;
-  __cil_tmp39 = __cil_tmp38 + 8;
-  __cil_tmp40 = *((unsigned int *)__cil_tmp39);
+  *((struct rotary_encoder_platform_data **)((void *)encoder + 8)) = pdata;
+  __cil_tmp40 = *((unsigned int *)((void *)pdata + 8));
   tmp___0 = gpio_to_irq(__cil_tmp40);
-  __cil_tmp41 = (unsigned long )encoder;
-  __cil_tmp42 = __cil_tmp41 + 24;
-  *((unsigned int *)__cil_tmp42) = (unsigned int )tmp___0;
-  __cil_tmp43 = (unsigned long )pdata;
-  __cil_tmp44 = __cil_tmp43 + 12;
-  __cil_tmp45 = *((unsigned int *)__cil_tmp44);
+  *((unsigned int *)((void *)encoder + 24)) = (unsigned int )tmp___0;
+  __cil_tmp45 = *((unsigned int *)((void *)pdata + 12));
   tmp___1 = gpio_to_irq(__cil_tmp45);
-  __cil_tmp46 = (unsigned long )encoder;
-  __cil_tmp47 = __cil_tmp46 + 28;
-  *((unsigned int *)__cil_tmp47) = (unsigned int )tmp___1;
+  *((unsigned int *)((void *)encoder + 28)) = (unsigned int )tmp___1;
   *((char const   **)input) = *((char const   **)pdev);
-  __cil_tmp48 = (unsigned long )input;
-  __cil_tmp49 = __cil_tmp48 + 24;
-  *((__u16 *)__cil_tmp49) = (__u16 )25U;
-  __cil_tmp50 = (unsigned long )input;
-  __cil_tmp51 = __cil_tmp50 + 840;
-  __cil_tmp52 = (unsigned long )pdev;
-  __cil_tmp53 = __cil_tmp52 + 16;
-  *((struct device **)__cil_tmp51) = (struct device *)__cil_tmp53;
+  *((__u16 *)((void *)input + 24)) = (__u16 )25U;
+  *((struct device **)((void *)input + 840)) = (struct device *)((void *)pdev + 16);
   }
   {
-  __cil_tmp54 = (unsigned long )pdata;
-  __cil_tmp55 = __cil_tmp54 + 24;
-  __cil_tmp56 = *((bool *)__cil_tmp55);
+  __cil_tmp56 = *((bool *)((void *)pdata + 24));
   if ((int )__cil_tmp56) {
     __cil_tmp57 = 0 * 8UL;
     __cil_tmp58 = 40 + __cil_tmp57;
-    __cil_tmp59 = (unsigned long )input;
-    __cil_tmp60 = __cil_tmp59 + __cil_tmp58;
-    *((unsigned long *)__cil_tmp60) = 4UL;
+    *((unsigned long *)((void *)input + __cil_tmp58)) = 4UL;
     __cil_tmp61 = 0 * 8UL;
     __cil_tmp62 = 144 + __cil_tmp61;
-    __cil_tmp63 = (unsigned long )input;
-    __cil_tmp64 = __cil_tmp63 + __cil_tmp62;
-    __cil_tmp65 = (unsigned long )pdata;
-    __cil_tmp66 = __cil_tmp65 + 4;
-    __cil_tmp67 = *((unsigned int *)__cil_tmp66);
+    __cil_tmp67 = *((unsigned int *)((void *)pdata + 4));
     __cil_tmp68 = (int )__cil_tmp67;
     __cil_tmp69 = __cil_tmp68 & 63;
-    *((unsigned long *)__cil_tmp64) = 1UL << __cil_tmp69;
+    *((unsigned long *)((void *)input + __cil_tmp62)) = 1UL << __cil_tmp69;
   } else {
     {
     __cil_tmp70 = 0 * 8UL;
     __cil_tmp71 = 40 + __cil_tmp70;
-    __cil_tmp72 = (unsigned long )input;
-    __cil_tmp73 = __cil_tmp72 + __cil_tmp71;
-    *((unsigned long *)__cil_tmp73) = 8UL;
+    *((unsigned long *)((void *)input + __cil_tmp71)) = 8UL;
     __cil_tmp74 = *((struct input_dev **)encoder);
-    __cil_tmp75 = (unsigned long )pdata;
-    __cil_tmp76 = __cil_tmp75 + 4;
-    __cil_tmp77 = *((unsigned int *)__cil_tmp76);
+    __cil_tmp77 = *((unsigned int *)((void *)pdata + 4));
     __cil_tmp78 = *((unsigned int *)pdata);
     __cil_tmp79 = (int )__cil_tmp78;
     input_set_abs_params(__cil_tmp74, __cil_tmp77, 0, __cil_tmp79, 0, 1);
@@ -2615,9 +2384,7 @@ static int rotary_encoder_probe(struct platform_device *pdev )
   }
   if (err != 0) {
     {
-    __cil_tmp80 = (unsigned long )pdev;
-    __cil_tmp81 = __cil_tmp80 + 16;
-    __cil_tmp82 = (struct device *)__cil_tmp81;
+    __cil_tmp82 = (struct device *)((void *)pdev + 16);
     __cil_tmp83 = (struct device  const  *)__cil_tmp82;
     dev_err(__cil_tmp83, "failed to register input device\n");
     }
@@ -2626,20 +2393,14 @@ static int rotary_encoder_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp84 = (unsigned long )pdata;
-  __cil_tmp85 = __cil_tmp84 + 8;
-  __cil_tmp86 = *((unsigned int *)__cil_tmp85);
+  __cil_tmp86 = *((unsigned int *)((void *)pdata + 8));
   err = gpio_request(__cil_tmp86, "rotary-encoder");
   }
   if (err != 0) {
     {
-    __cil_tmp87 = (unsigned long )pdev;
-    __cil_tmp88 = __cil_tmp87 + 16;
-    __cil_tmp89 = (struct device *)__cil_tmp88;
+    __cil_tmp89 = (struct device *)((void *)pdev + 16);
     __cil_tmp90 = (struct device  const  *)__cil_tmp89;
-    __cil_tmp91 = (unsigned long )pdata;
-    __cil_tmp92 = __cil_tmp91 + 8;
-    __cil_tmp93 = *((unsigned int *)__cil_tmp92);
+    __cil_tmp93 = *((unsigned int *)((void *)pdata + 8));
     dev_err(__cil_tmp90, "unable to request GPIO %d\n", __cil_tmp93);
     }
     goto exit_unregister_input;
@@ -2647,20 +2408,14 @@ static int rotary_encoder_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp94 = (unsigned long )pdata;
-  __cil_tmp95 = __cil_tmp94 + 8;
-  __cil_tmp96 = *((unsigned int *)__cil_tmp95);
+  __cil_tmp96 = *((unsigned int *)((void *)pdata + 8));
   err = gpio_direction_input(__cil_tmp96);
   }
   if (err != 0) {
     {
-    __cil_tmp97 = (unsigned long )pdev;
-    __cil_tmp98 = __cil_tmp97 + 16;
-    __cil_tmp99 = (struct device *)__cil_tmp98;
+    __cil_tmp99 = (struct device *)((void *)pdev + 16);
     __cil_tmp100 = (struct device  const  *)__cil_tmp99;
-    __cil_tmp101 = (unsigned long )pdata;
-    __cil_tmp102 = __cil_tmp101 + 8;
-    __cil_tmp103 = *((unsigned int *)__cil_tmp102);
+    __cil_tmp103 = *((unsigned int *)((void *)pdata + 8));
     dev_err(__cil_tmp100, "unable to set GPIO %d for input\n", __cil_tmp103);
     }
     goto exit_unregister_input;
@@ -2668,20 +2423,14 @@ static int rotary_encoder_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp104 = (unsigned long )pdata;
-  __cil_tmp105 = __cil_tmp104 + 12;
-  __cil_tmp106 = *((unsigned int *)__cil_tmp105);
+  __cil_tmp106 = *((unsigned int *)((void *)pdata + 12));
   err = gpio_request(__cil_tmp106, "rotary-encoder");
   }
   if (err != 0) {
     {
-    __cil_tmp107 = (unsigned long )pdev;
-    __cil_tmp108 = __cil_tmp107 + 16;
-    __cil_tmp109 = (struct device *)__cil_tmp108;
+    __cil_tmp109 = (struct device *)((void *)pdev + 16);
     __cil_tmp110 = (struct device  const  *)__cil_tmp109;
-    __cil_tmp111 = (unsigned long )pdata;
-    __cil_tmp112 = __cil_tmp111 + 12;
-    __cil_tmp113 = *((unsigned int *)__cil_tmp112);
+    __cil_tmp113 = *((unsigned int *)((void *)pdata + 12));
     dev_err(__cil_tmp110, "unable to request GPIO %d\n", __cil_tmp113);
     }
     goto exit_free_gpio_a;
@@ -2689,20 +2438,14 @@ static int rotary_encoder_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp114 = (unsigned long )pdata;
-  __cil_tmp115 = __cil_tmp114 + 12;
-  __cil_tmp116 = *((unsigned int *)__cil_tmp115);
+  __cil_tmp116 = *((unsigned int *)((void *)pdata + 12));
   err = gpio_direction_input(__cil_tmp116);
   }
   if (err != 0) {
     {
-    __cil_tmp117 = (unsigned long )pdev;
-    __cil_tmp118 = __cil_tmp117 + 16;
-    __cil_tmp119 = (struct device *)__cil_tmp118;
+    __cil_tmp119 = (struct device *)((void *)pdev + 16);
     __cil_tmp120 = (struct device  const  *)__cil_tmp119;
-    __cil_tmp121 = (unsigned long )pdata;
-    __cil_tmp122 = __cil_tmp121 + 12;
-    __cil_tmp123 = *((unsigned int *)__cil_tmp122);
+    __cil_tmp123 = *((unsigned int *)((void *)pdata + 12));
     dev_err(__cil_tmp120, "unable to set GPIO %d for input\n", __cil_tmp123);
     }
     goto exit_free_gpio_a;
@@ -2710,37 +2453,27 @@ static int rotary_encoder_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp124 = (unsigned long )pdata;
-  __cil_tmp125 = __cil_tmp124 + 26;
-  __cil_tmp126 = *((bool *)__cil_tmp125);
+  __cil_tmp126 = *((bool *)((void *)pdata + 26));
   if ((int )__cil_tmp126) {
     {
     handler = & rotary_encoder_half_period_irq;
     tmp___2 = rotary_encoder_get_state(pdata);
-    __cil_tmp127 = (unsigned long )encoder;
-    __cil_tmp128 = __cil_tmp127 + 34;
-    *((char *)__cil_tmp128) = (char )tmp___2;
+    *((char *)((void *)encoder + 34)) = (char )tmp___2;
     }
   } else {
     handler = & rotary_encoder_irq;
   }
   }
   {
-  __cil_tmp129 = (unsigned long )encoder;
-  __cil_tmp130 = __cil_tmp129 + 24;
-  __cil_tmp131 = *((unsigned int *)__cil_tmp130);
+  __cil_tmp131 = *((unsigned int *)((void *)encoder + 24));
   __cil_tmp132 = (void *)encoder;
   err = request_irq(__cil_tmp131, handler, 3UL, "rotary-encoder", __cil_tmp132);
   }
   if (err != 0) {
     {
-    __cil_tmp133 = (unsigned long )pdev;
-    __cil_tmp134 = __cil_tmp133 + 16;
-    __cil_tmp135 = (struct device *)__cil_tmp134;
+    __cil_tmp135 = (struct device *)((void *)pdev + 16);
     __cil_tmp136 = (struct device  const  *)__cil_tmp135;
-    __cil_tmp137 = (unsigned long )encoder;
-    __cil_tmp138 = __cil_tmp137 + 24;
-    __cil_tmp139 = *((unsigned int *)__cil_tmp138);
+    __cil_tmp139 = *((unsigned int *)((void *)encoder + 24));
     dev_err(__cil_tmp136, "unable to request IRQ %d\n", __cil_tmp139);
     }
     goto exit_free_gpio_b;
@@ -2748,21 +2481,15 @@ static int rotary_encoder_probe(struct platform_device *pdev )
 
   }
   {
-  __cil_tmp140 = (unsigned long )encoder;
-  __cil_tmp141 = __cil_tmp140 + 28;
-  __cil_tmp142 = *((unsigned int *)__cil_tmp141);
+  __cil_tmp142 = *((unsigned int *)((void *)encoder + 28));
   __cil_tmp143 = (void *)encoder;
   err = request_irq(__cil_tmp142, handler, 3UL, "rotary-encoder", __cil_tmp143);
   }
   if (err != 0) {
     {
-    __cil_tmp144 = (unsigned long )pdev;
-    __cil_tmp145 = __cil_tmp144 + 16;
-    __cil_tmp146 = (struct device *)__cil_tmp145;
+    __cil_tmp146 = (struct device *)((void *)pdev + 16);
     __cil_tmp147 = (struct device  const  *)__cil_tmp146;
-    __cil_tmp148 = (unsigned long )encoder;
-    __cil_tmp149 = __cil_tmp148 + 28;
-    __cil_tmp150 = *((unsigned int *)__cil_tmp149);
+    __cil_tmp150 = *((unsigned int *)((void *)encoder + 28));
     dev_err(__cil_tmp147, "unable to request IRQ %d\n", __cil_tmp150);
     }
     goto exit_free_irq_a;
@@ -2776,24 +2503,18 @@ static int rotary_encoder_probe(struct platform_device *pdev )
   return (0);
   exit_free_irq_a: 
   {
-  __cil_tmp152 = (unsigned long )encoder;
-  __cil_tmp153 = __cil_tmp152 + 24;
-  __cil_tmp154 = *((unsigned int *)__cil_tmp153);
+  __cil_tmp154 = *((unsigned int *)((void *)encoder + 24));
   __cil_tmp155 = (void *)encoder;
   free_irq(__cil_tmp154, __cil_tmp155);
   }
   exit_free_gpio_b: 
   {
-  __cil_tmp156 = (unsigned long )pdata;
-  __cil_tmp157 = __cil_tmp156 + 12;
-  __cil_tmp158 = *((unsigned int *)__cil_tmp157);
+  __cil_tmp158 = *((unsigned int *)((void *)pdata + 12));
   gpio_free(__cil_tmp158);
   }
   exit_free_gpio_a: 
   {
-  __cil_tmp159 = (unsigned long )pdata;
-  __cil_tmp160 = __cil_tmp159 + 8;
-  __cil_tmp161 = *((unsigned int *)__cil_tmp160);
+  __cil_tmp161 = *((unsigned int *)((void *)pdata + 8));
   gpio_free(__cil_tmp161);
   }
   exit_unregister_input: 

@@ -865,13 +865,10 @@ __inline static int kstrtoul(char const *s , unsigned int base , unsigned long *
 extern int sprintf(char * , char const * , ...) ;
 extern int sscanf(char const * , char const * , ...) ;
 __inline static void INIT_LIST_HEAD(struct list_head *list )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   *((struct list_head **)list) = list;
-  __cil_tmp2 = (unsigned long )list;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  *((struct list_head **)__cil_tmp3) = list;
+  *((struct list_head **)((void *)list + 8)) = list;
   return;
 }
 }
@@ -931,50 +928,30 @@ extern void *dev_get_drvdata(struct device const * ) ;
 extern int dev_err(struct device const * , char const * , ...) ;
 __inline static void led_set_brightness(struct led_classdev *led_cdev , enum led_brightness value )
 { unsigned int __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   int __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   int __cil_tmp15 ;
   int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void (*__cil_tmp19)(struct led_classdev * , enum led_brightness ) ;
   {
   {
   __cil_tmp3 = (unsigned int )value;
-  __cil_tmp4 = (unsigned long )led_cdev;
-  __cil_tmp5 = __cil_tmp4 + 12;
-  __cil_tmp6 = *((int *)__cil_tmp5);
+  __cil_tmp6 = *((int *)((void *)led_cdev + 12));
   __cil_tmp7 = (unsigned int )__cil_tmp6;
   if (__cil_tmp7 < __cil_tmp3) {
-    __cil_tmp8 = (unsigned long )led_cdev;
-    __cil_tmp9 = __cil_tmp8 + 12;
-    __cil_tmp10 = *((int *)__cil_tmp9);
+    __cil_tmp10 = *((int *)((void *)led_cdev + 12));
     value = (enum led_brightness )__cil_tmp10;
   } else {
   }
   }
-  __cil_tmp11 = (unsigned long )led_cdev;
-  __cil_tmp12 = __cil_tmp11 + 8;
-  *((int *)__cil_tmp12) = (int )value;
+  *((int *)((void *)led_cdev + 8)) = (int )value;
   {
-  __cil_tmp13 = (unsigned long )led_cdev;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((int *)__cil_tmp14);
+  __cil_tmp15 = *((int *)((void *)led_cdev + 16));
   __cil_tmp16 = __cil_tmp15 & 1;
   if (__cil_tmp16 == 0) {
     {
-    __cil_tmp17 = (unsigned long )led_cdev;
-    __cil_tmp18 = __cil_tmp17 + 24;
-    __cil_tmp19 = *((void (**)(struct led_classdev * , enum led_brightness ))__cil_tmp18);
+    __cil_tmp19 = *((void (**)(struct led_classdev * , enum led_brightness ))((void *)led_cdev + 24));
     (*__cil_tmp19)(led_cdev, value);
     }
   } else {
@@ -986,22 +963,14 @@ __inline static void led_set_brightness(struct led_classdev *led_cdev , enum led
 static irqreturn_t gpio_trig_irq(int irq , void *_led )
 { struct led_classdev *led ;
   struct gpio_trig_data *gpio_data ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   void *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct work_struct *__cil_tmp10 ;
   {
   {
   led = (struct led_classdev *)_led;
-  __cil_tmp5 = (unsigned long )led;
-  __cil_tmp6 = __cil_tmp5 + 400;
-  __cil_tmp7 = *((void **)__cil_tmp6);
+  __cil_tmp7 = *((void **)((void *)led + 400));
   gpio_data = (struct gpio_trig_data *)__cil_tmp7;
-  __cil_tmp8 = (unsigned long )gpio_data;
-  __cil_tmp9 = __cil_tmp8 + 8;
-  __cil_tmp10 = (struct work_struct *)__cil_tmp9;
+  __cil_tmp10 = (struct work_struct *)((void *)gpio_data + 8);
   schedule_work(__cil_tmp10);
   }
   return ((irqreturn_t )1);
@@ -1012,21 +981,11 @@ static void gpio_trig_work(struct work_struct *work )
   struct work_struct const *__mptr ;
   int tmp ;
   struct gpio_trig_data *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   unsigned int __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
   struct led_classdev *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   unsigned int __cil_tmp21 ;
   enum led_brightness __cil_tmp22 ;
   struct led_classdev *__cil_tmp23 ;
@@ -1038,24 +997,18 @@ static void gpio_trig_work(struct work_struct *work )
   __cil_tmp5 = (struct gpio_trig_data *)__mptr;
   gpio_data = __cil_tmp5 + 0xfffffffffffffff8UL;
   {
-  __cil_tmp6 = (unsigned long )gpio_data;
-  __cil_tmp7 = __cil_tmp6 + 96;
-  __cil_tmp8 = *((unsigned int *)__cil_tmp7);
+  __cil_tmp8 = *((unsigned int *)((void *)gpio_data + 96));
   if (__cil_tmp8 == 0U) {
     return;
   } else {
   }
   }
   {
-  __cil_tmp9 = (unsigned long )gpio_data;
-  __cil_tmp10 = __cil_tmp9 + 96;
-  __cil_tmp11 = *((unsigned int *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned int *)((void *)gpio_data + 96));
   tmp = gpio_get_value(__cil_tmp11);
   }
   {
-  __cil_tmp12 = (unsigned long )gpio_data;
-  __cil_tmp13 = __cil_tmp12 + 92;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)gpio_data + 92));
   if (__cil_tmp14 != 0U) {
     tmp = tmp == 0;
   } else {
@@ -1063,15 +1016,11 @@ static void gpio_trig_work(struct work_struct *work )
   }
   if (tmp != 0) {
     {
-    __cil_tmp15 = (unsigned long )gpio_data;
-    __cil_tmp16 = __cil_tmp15 + 88;
-    __cil_tmp17 = *((unsigned int *)__cil_tmp16);
+    __cil_tmp17 = *((unsigned int *)((void *)gpio_data + 88));
     if (__cil_tmp17 != 0U) {
       {
       __cil_tmp18 = *((struct led_classdev **)gpio_data);
-      __cil_tmp19 = (unsigned long )gpio_data;
-      __cil_tmp20 = __cil_tmp19 + 88;
-      __cil_tmp21 = *((unsigned int *)__cil_tmp20);
+      __cil_tmp21 = *((unsigned int *)((void *)gpio_data + 88));
       __cil_tmp22 = (enum led_brightness )__cil_tmp21;
       led_set_brightness(__cil_tmp18, __cil_tmp22);
       }
@@ -1100,24 +1049,16 @@ static ssize_t gpio_trig_brightness_show(struct device *dev , struct device_attr
   struct gpio_trig_data *gpio_data ;
   int tmp___0 ;
   struct device const *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   {
   {
   __cil_tmp8 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp8);
   led = (struct led_classdev *)tmp;
-  __cil_tmp9 = (unsigned long )led;
-  __cil_tmp10 = __cil_tmp9 + 400;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)led + 400));
   gpio_data = (struct gpio_trig_data *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )gpio_data;
-  __cil_tmp13 = __cil_tmp12 + 88;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)gpio_data + 88));
   tmp___0 = sprintf(buf, "%u\n", __cil_tmp14);
   }
   return ((ssize_t )tmp___0);
@@ -1131,24 +1072,18 @@ static ssize_t gpio_trig_brightness_store(struct device *dev , struct device_att
   unsigned int desired_brightness ;
   int ret ;
   struct device const *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   struct device const *__cil_tmp14 ;
   unsigned int *__cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   struct device const *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned int *__cil_tmp20 ;
   {
   {
   __cil_tmp10 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp10);
   led = (struct led_classdev *)tmp;
-  __cil_tmp11 = (unsigned long )led;
-  __cil_tmp12 = __cil_tmp11 + 400;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)led + 400));
   gpio_data = (struct gpio_trig_data *)__cil_tmp13;
   ret = sscanf(buf, "%u", & desired_brightness);
   }
@@ -1172,10 +1107,8 @@ static ssize_t gpio_trig_brightness_store(struct device *dev , struct device_att
     }
     }
   }
-  __cil_tmp18 = (unsigned long )gpio_data;
-  __cil_tmp19 = __cil_tmp18 + 88;
   __cil_tmp20 = & desired_brightness;
-  *((unsigned int *)__cil_tmp19) = *__cil_tmp20;
+  *((unsigned int *)((void *)gpio_data + 88)) = *__cil_tmp20;
   return ((ssize_t )n);
 }
 }
@@ -1195,24 +1128,16 @@ static ssize_t gpio_trig_inverted_show(struct device *dev , struct device_attrib
   struct gpio_trig_data *gpio_data ;
   int tmp___0 ;
   struct device const *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   {
   {
   __cil_tmp8 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp8);
   led = (struct led_classdev *)tmp;
-  __cil_tmp9 = (unsigned long )led;
-  __cil_tmp10 = __cil_tmp9 + 400;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)led + 400));
   gpio_data = (struct gpio_trig_data *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )gpio_data;
-  __cil_tmp13 = __cil_tmp12 + 92;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)gpio_data + 92));
   tmp___0 = sprintf(buf, "%u\n", __cil_tmp14);
   }
   return ((ssize_t )tmp___0);
@@ -1226,26 +1151,18 @@ static ssize_t gpio_trig_inverted_store(struct device *dev , struct device_attri
   unsigned long inverted ;
   int ret ;
   struct device const *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void *__cil_tmp13 ;
   unsigned long *__cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long *__cil_tmp18 ;
   unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct work_struct *__cil_tmp22 ;
   {
   {
   __cil_tmp10 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp10);
   led = (struct led_classdev *)tmp;
-  __cil_tmp11 = (unsigned long )led;
-  __cil_tmp12 = __cil_tmp11 + 400;
-  __cil_tmp13 = *((void **)__cil_tmp12);
+  __cil_tmp13 = *((void **)((void *)led + 400));
   gpio_data = (struct gpio_trig_data *)__cil_tmp13;
   ret = kstrtoul(buf, 10U, & inverted);
   }
@@ -1262,14 +1179,10 @@ static ssize_t gpio_trig_inverted_store(struct device *dev , struct device_attri
   }
   }
   {
-  __cil_tmp16 = (unsigned long )gpio_data;
-  __cil_tmp17 = __cil_tmp16 + 92;
   __cil_tmp18 = & inverted;
   __cil_tmp19 = *__cil_tmp18;
-  *((unsigned int *)__cil_tmp17) = (unsigned int )__cil_tmp19;
-  __cil_tmp20 = (unsigned long )gpio_data;
-  __cil_tmp21 = __cil_tmp20 + 8;
-  __cil_tmp22 = (struct work_struct *)__cil_tmp21;
+  *((unsigned int *)((void *)gpio_data + 92)) = (unsigned int )__cil_tmp19;
+  __cil_tmp22 = (struct work_struct *)((void *)gpio_data + 8);
   schedule_work(__cil_tmp22);
   }
   return ((ssize_t )n);
@@ -1287,24 +1200,16 @@ static ssize_t gpio_trig_gpio_show(struct device *dev , struct device_attribute 
   struct gpio_trig_data *gpio_data ;
   int tmp___0 ;
   struct device const *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   {
   {
   __cil_tmp8 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp8);
   led = (struct led_classdev *)tmp;
-  __cil_tmp9 = (unsigned long )led;
-  __cil_tmp10 = __cil_tmp9 + 400;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)led + 400));
   gpio_data = (struct gpio_trig_data *)__cil_tmp11;
-  __cil_tmp12 = (unsigned long )gpio_data;
-  __cil_tmp13 = __cil_tmp12 + 96;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)gpio_data + 96));
   tmp___0 = sprintf(buf, "%u\n", __cil_tmp14);
   }
   return ((ssize_t )tmp___0);
@@ -1322,54 +1227,34 @@ static ssize_t gpio_trig_gpio_store(struct device *dev , struct device_attribute
   int tmp___2 ;
   size_t tmp___3 ;
   struct device const *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   void *__cil_tmp17 ;
   struct device const *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct work_struct *__cil_tmp21 ;
   unsigned int *__cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   unsigned int *__cil_tmp27 ;
   unsigned int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
   unsigned int __cil_tmp35 ;
   void *__cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   unsigned int *__cil_tmp39 ;
   unsigned int __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
   void *__cil_tmp42 ;
   struct device const *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   unsigned int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
   void *__cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
   unsigned int *__cil_tmp54 ;
   {
   {
   __cil_tmp14 = (struct device const *)dev;
   tmp = dev_get_drvdata(__cil_tmp14);
   led = (struct led_classdev *)tmp;
-  __cil_tmp15 = (unsigned long )led;
-  __cil_tmp16 = __cil_tmp15 + 400;
-  __cil_tmp17 = *((void **)__cil_tmp16);
+  __cil_tmp17 = *((void **)((void *)led + 400));
   gpio_data = (struct gpio_trig_data *)__cil_tmp17;
   ret = sscanf(buf, "%u", & gpio);
   }
@@ -1377,9 +1262,7 @@ static ssize_t gpio_trig_gpio_store(struct device *dev , struct device_attribute
     {
     __cil_tmp18 = (struct device const *)dev;
     dev_err(__cil_tmp18, "couldn\'t read gpio number\n");
-    __cil_tmp19 = (unsigned long )gpio_data;
-    __cil_tmp20 = __cil_tmp19 + 8;
-    __cil_tmp21 = (struct work_struct *)__cil_tmp20;
+    __cil_tmp21 = (struct work_struct *)((void *)gpio_data + 8);
     flush_work(__cil_tmp21);
     }
     return (-22L);
@@ -1388,9 +1271,7 @@ static ssize_t gpio_trig_gpio_store(struct device *dev , struct device_attribute
   {
   __cil_tmp22 = & gpio;
   __cil_tmp23 = *__cil_tmp22;
-  __cil_tmp24 = (unsigned long )gpio_data;
-  __cil_tmp25 = __cil_tmp24 + 96;
-  __cil_tmp26 = *((unsigned int *)__cil_tmp25);
+  __cil_tmp26 = *((unsigned int *)((void *)gpio_data + 96));
   if (__cil_tmp26 == __cil_tmp23) {
     return ((ssize_t )n);
   } else {
@@ -1401,14 +1282,10 @@ static ssize_t gpio_trig_gpio_store(struct device *dev , struct device_attribute
   __cil_tmp28 = *__cil_tmp27;
   if (__cil_tmp28 == 0U) {
     {
-    __cil_tmp29 = (unsigned long )gpio_data;
-    __cil_tmp30 = __cil_tmp29 + 96;
-    __cil_tmp31 = *((unsigned int *)__cil_tmp30);
+    __cil_tmp31 = *((unsigned int *)((void *)gpio_data + 96));
     if (__cil_tmp31 != 0U) {
       {
-      __cil_tmp32 = (unsigned long )gpio_data;
-      __cil_tmp33 = __cil_tmp32 + 96;
-      __cil_tmp34 = *((unsigned int *)__cil_tmp33);
+      __cil_tmp34 = *((unsigned int *)((void *)gpio_data + 96));
       tmp___0 = gpio_to_irq(__cil_tmp34);
       __cil_tmp35 = (unsigned int )tmp___0;
       __cil_tmp36 = (void *)led;
@@ -1417,9 +1294,7 @@ static ssize_t gpio_trig_gpio_store(struct device *dev , struct device_attribute
     } else {
     }
     }
-    __cil_tmp37 = (unsigned long )gpio_data;
-    __cil_tmp38 = __cil_tmp37 + 96;
-    *((unsigned int *)__cil_tmp38) = 0U;
+    *((unsigned int *)((void *)gpio_data + 96)) = 0U;
     return ((ssize_t )n);
   } else {
   }
@@ -1439,14 +1314,10 @@ static ssize_t gpio_trig_gpio_store(struct device *dev , struct device_attribute
     }
   } else {
     {
-    __cil_tmp44 = (unsigned long )gpio_data;
-    __cil_tmp45 = __cil_tmp44 + 96;
-    __cil_tmp46 = *((unsigned int *)__cil_tmp45);
+    __cil_tmp46 = *((unsigned int *)((void *)gpio_data + 96));
     if (__cil_tmp46 != 0U) {
       {
-      __cil_tmp47 = (unsigned long )gpio_data;
-      __cil_tmp48 = __cil_tmp47 + 96;
-      __cil_tmp49 = *((unsigned int *)__cil_tmp48);
+      __cil_tmp49 = *((unsigned int *)((void *)gpio_data + 96));
       tmp___2 = gpio_to_irq(__cil_tmp49);
       __cil_tmp50 = (unsigned int )tmp___2;
       __cil_tmp51 = (void *)led;
@@ -1455,10 +1326,8 @@ static ssize_t gpio_trig_gpio_store(struct device *dev , struct device_attribute
     } else {
     }
     }
-    __cil_tmp52 = (unsigned long )gpio_data;
-    __cil_tmp53 = __cil_tmp52 + 96;
     __cil_tmp54 = & gpio;
-    *((unsigned int *)__cil_tmp53) = *__cil_tmp54;
+    *((unsigned int *)((void *)gpio_data + 96)) = *__cil_tmp54;
   }
   if (ret != 0) {
     tmp___3 = (size_t )ret;
@@ -1481,42 +1350,20 @@ static void gpio_trig_activate(struct led_classdev *led )
   struct gpio_trig_data *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device_attribute const *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device_attribute const *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device_attribute const *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct work_struct *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
   unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct lockdep_map *__cil_tmp32 ;
   unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct list_head *__cil_tmp36 ;
   unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct device *__cil_tmp42 ;
   struct device_attribute const *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct device *__cil_tmp46 ;
   struct device_attribute const *__cil_tmp47 ;
   void const *__cil_tmp48 ;
@@ -1536,9 +1383,7 @@ static void gpio_trig_activate(struct led_classdev *led )
   }
   }
   {
-  __cil_tmp10 = (unsigned long )led;
-  __cil_tmp11 = __cil_tmp10 + 48;
-  __cil_tmp12 = *((struct device **)__cil_tmp11);
+  __cil_tmp12 = *((struct device **)((void *)led + 48));
   __cil_tmp13 = (struct device_attribute const *)(& dev_attr_gpio);
   ret = device_create_file(__cil_tmp12, __cil_tmp13);
   }
@@ -1547,9 +1392,7 @@ static void gpio_trig_activate(struct led_classdev *led )
   } else {
   }
   {
-  __cil_tmp14 = (unsigned long )led;
-  __cil_tmp15 = __cil_tmp14 + 48;
-  __cil_tmp16 = *((struct device **)__cil_tmp15);
+  __cil_tmp16 = *((struct device **)((void *)led + 48));
   __cil_tmp17 = (struct device_attribute const *)(& dev_attr_inverted);
   ret = device_create_file(__cil_tmp16, __cil_tmp17);
   }
@@ -1558,9 +1401,7 @@ static void gpio_trig_activate(struct led_classdev *led )
   } else {
   }
   {
-  __cil_tmp18 = (unsigned long )led;
-  __cil_tmp19 = __cil_tmp18 + 48;
-  __cil_tmp20 = *((struct device **)__cil_tmp19);
+  __cil_tmp20 = *((struct device **)((void *)led + 48));
   __cil_tmp21 = (struct device_attribute const *)(& dev_attr_desired_brightness);
   ret = device_create_file(__cil_tmp20, __cil_tmp21);
   }
@@ -1570,46 +1411,30 @@ static void gpio_trig_activate(struct led_classdev *led )
   }
   {
   *((struct led_classdev **)gpio_data) = led;
-  __cil_tmp22 = (unsigned long )led;
-  __cil_tmp23 = __cil_tmp22 + 400;
-  *((void **)__cil_tmp23) = (void *)gpio_data;
-  __cil_tmp24 = (unsigned long )gpio_data;
-  __cil_tmp25 = __cil_tmp24 + 8;
-  __cil_tmp26 = (struct work_struct *)__cil_tmp25;
+  *((void **)((void *)led + 400)) = (void *)gpio_data;
+  __cil_tmp26 = (struct work_struct *)((void *)gpio_data + 8);
   __init_work(__cil_tmp26, 0);
   __constr_expr_0_counter49 = 2097664L;
-  __cil_tmp27 = (unsigned long )gpio_data;
-  __cil_tmp28 = __cil_tmp27 + 8;
-  ((atomic_long_t *)__cil_tmp28)->counter = __constr_expr_0_counter49;
+  ((atomic_long_t *)((void *)gpio_data + 8))->counter = __constr_expr_0_counter49;
   __cil_tmp29 = 8 + 32;
-  __cil_tmp30 = (unsigned long )gpio_data;
-  __cil_tmp31 = __cil_tmp30 + __cil_tmp29;
-  __cil_tmp32 = (struct lockdep_map *)__cil_tmp31;
+  __cil_tmp32 = (struct lockdep_map *)((void *)gpio_data + __cil_tmp29);
   lockdep_init_map(__cil_tmp32, "(&gpio_data->work)", & __key, 0);
   __cil_tmp33 = 8 + 8;
-  __cil_tmp34 = (unsigned long )gpio_data;
-  __cil_tmp35 = __cil_tmp34 + __cil_tmp33;
-  __cil_tmp36 = (struct list_head *)__cil_tmp35;
+  __cil_tmp36 = (struct list_head *)((void *)gpio_data + __cil_tmp33);
   INIT_LIST_HEAD(__cil_tmp36);
   __cil_tmp37 = 8 + 24;
-  __cil_tmp38 = (unsigned long )gpio_data;
-  __cil_tmp39 = __cil_tmp38 + __cil_tmp37;
-  *((void (**)(struct work_struct * ))__cil_tmp39) = & gpio_trig_work;
+  *((void (**)(struct work_struct * ))((void *)gpio_data + __cil_tmp37)) = & gpio_trig_work;
   }
   return;
   err_brightness:
   {
-  __cil_tmp40 = (unsigned long )led;
-  __cil_tmp41 = __cil_tmp40 + 48;
-  __cil_tmp42 = *((struct device **)__cil_tmp41);
+  __cil_tmp42 = *((struct device **)((void *)led + 48));
   __cil_tmp43 = (struct device_attribute const *)(& dev_attr_inverted);
   device_remove_file(__cil_tmp42, __cil_tmp43);
   }
   err_inverted:
   {
-  __cil_tmp44 = (unsigned long )led;
-  __cil_tmp45 = __cil_tmp44 + 48;
-  __cil_tmp46 = *((struct device **)__cil_tmp45);
+  __cil_tmp46 = *((struct device **)((void *)led + 48));
   __cil_tmp47 = (struct device_attribute const *)(& dev_attr_gpio);
   device_remove_file(__cil_tmp46, __cil_tmp47);
   }
@@ -1624,40 +1449,24 @@ static void gpio_trig_activate(struct led_classdev *led )
 static void gpio_trig_deactivate(struct led_classdev *led )
 { struct gpio_trig_data *gpio_data ;
   int tmp ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   struct gpio_trig_data *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   struct device *__cil_tmp12 ;
   struct device_attribute const *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device_attribute const *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct device *__cil_tmp20 ;
   struct device_attribute const *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct work_struct *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
   void *__cil_tmp32 ;
   void const *__cil_tmp33 ;
   {
-  __cil_tmp4 = (unsigned long )led;
-  __cil_tmp5 = __cil_tmp4 + 400;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)led + 400));
   gpio_data = (struct gpio_trig_data *)__cil_tmp6;
   {
   __cil_tmp7 = (struct gpio_trig_data *)0;
@@ -1665,35 +1474,23 @@ static void gpio_trig_deactivate(struct led_classdev *led )
   __cil_tmp9 = (unsigned long )gpio_data;
   if (__cil_tmp9 != __cil_tmp8) {
     {
-    __cil_tmp10 = (unsigned long )led;
-    __cil_tmp11 = __cil_tmp10 + 48;
-    __cil_tmp12 = *((struct device **)__cil_tmp11);
+    __cil_tmp12 = *((struct device **)((void *)led + 48));
     __cil_tmp13 = (struct device_attribute const *)(& dev_attr_gpio);
     device_remove_file(__cil_tmp12, __cil_tmp13);
-    __cil_tmp14 = (unsigned long )led;
-    __cil_tmp15 = __cil_tmp14 + 48;
-    __cil_tmp16 = *((struct device **)__cil_tmp15);
+    __cil_tmp16 = *((struct device **)((void *)led + 48));
     __cil_tmp17 = (struct device_attribute const *)(& dev_attr_inverted);
     device_remove_file(__cil_tmp16, __cil_tmp17);
-    __cil_tmp18 = (unsigned long )led;
-    __cil_tmp19 = __cil_tmp18 + 48;
-    __cil_tmp20 = *((struct device **)__cil_tmp19);
+    __cil_tmp20 = *((struct device **)((void *)led + 48));
     __cil_tmp21 = (struct device_attribute const *)(& dev_attr_desired_brightness);
     device_remove_file(__cil_tmp20, __cil_tmp21);
-    __cil_tmp22 = (unsigned long )gpio_data;
-    __cil_tmp23 = __cil_tmp22 + 8;
-    __cil_tmp24 = (struct work_struct *)__cil_tmp23;
+    __cil_tmp24 = (struct work_struct *)((void *)gpio_data + 8);
     flush_work(__cil_tmp24);
     }
     {
-    __cil_tmp25 = (unsigned long )gpio_data;
-    __cil_tmp26 = __cil_tmp25 + 96;
-    __cil_tmp27 = *((unsigned int *)__cil_tmp26);
+    __cil_tmp27 = *((unsigned int *)((void *)gpio_data + 96));
     if (__cil_tmp27 != 0U) {
       {
-      __cil_tmp28 = (unsigned long )gpio_data;
-      __cil_tmp29 = __cil_tmp28 + 96;
-      __cil_tmp30 = *((unsigned int *)__cil_tmp29);
+      __cil_tmp30 = *((unsigned int *)((void *)gpio_data + 96));
       tmp = gpio_to_irq(__cil_tmp30);
       __cil_tmp31 = (unsigned int )tmp;
       __cil_tmp32 = (void *)led;

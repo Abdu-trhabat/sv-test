@@ -2343,14 +2343,10 @@ extern s32 i2c_smbus_write_byte(struct i2c_client const *client , u8 value ) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev ) __attribute__((__no_instrument_function__)) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)dev + 40);
   tmp___7 = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp___7);
@@ -2358,14 +2354,11 @@ __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2427,32 +2420,20 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 }
 static int max1586_v3_calc_voltage(struct max1586_data *max1586 , unsigned int selector )
 { unsigned int range_uV ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   unsigned int __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned int __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   unsigned int __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   unsigned int __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   {
-  __cil_tmp4 = (unsigned long )max1586;
-  __cil_tmp5 = __cil_tmp4 + 8;
-  __cil_tmp6 = *((unsigned int *)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )max1586;
-  __cil_tmp8 = __cil_tmp7 + 12;
-  __cil_tmp9 = *((unsigned int *)__cil_tmp8);
+  __cil_tmp6 = *((unsigned int *)((void *)max1586 + 8));
+  __cil_tmp9 = *((unsigned int *)((void *)max1586 + 12));
   range_uV = __cil_tmp9 - __cil_tmp6;
   {
   __cil_tmp10 = selector * range_uV;
   __cil_tmp11 = __cil_tmp10 / 31U;
-  __cil_tmp12 = (unsigned long )max1586;
-  __cil_tmp13 = __cil_tmp12 + 8;
-  __cil_tmp14 = *((unsigned int *)__cil_tmp13);
+  __cil_tmp14 = *((unsigned int *)((void *)max1586 + 8));
   __cil_tmp15 = __cil_tmp14 + __cil_tmp11;
   return ((int )__cil_tmp15);
   }
@@ -2472,29 +2453,15 @@ static int max1586_v3_set(struct regulator_dev *rdev , int min_uV , int max_uV ,
   int tmp___9 ;
   long tmp___10 ;
   s32 tmp___11 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   unsigned int __cil_tmp22 ;
   unsigned int __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   unsigned int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
   unsigned int __cil_tmp30 ;
   unsigned int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   unsigned int __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
   unsigned int __cil_tmp38 ;
   unsigned int __cil_tmp39 ;
@@ -2509,8 +2476,6 @@ static int max1586_v3_set(struct regulator_dev *rdev , int min_uV , int max_uV ,
   int __cil_tmp48 ;
   long __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct device *__cil_tmp53 ;
   struct device const *__cil_tmp54 ;
   int __cil_tmp55 ;
@@ -2523,26 +2488,18 @@ static int max1586_v3_set(struct regulator_dev *rdev , int min_uV , int max_uV ,
   tmp___7 = rdev_get_drvdata(rdev);
   max1586 = (struct max1586_data *)tmp___7;
   client = *((struct i2c_client **)max1586);
-  __cil_tmp14 = (unsigned long )max1586;
-  __cil_tmp15 = __cil_tmp14 + 8;
-  __cil_tmp16 = *((unsigned int *)__cil_tmp15);
-  __cil_tmp17 = (unsigned long )max1586;
-  __cil_tmp18 = __cil_tmp17 + 12;
-  __cil_tmp19 = *((unsigned int *)__cil_tmp18);
+  __cil_tmp16 = *((unsigned int *)((void *)max1586 + 8));
+  __cil_tmp19 = *((unsigned int *)((void *)max1586 + 12));
   range_uV = __cil_tmp19 - __cil_tmp16;
   }
   {
-  __cil_tmp20 = (unsigned long )max1586;
-  __cil_tmp21 = __cil_tmp20 + 12;
-  __cil_tmp22 = *((unsigned int *)__cil_tmp21);
+  __cil_tmp22 = *((unsigned int *)((void *)max1586 + 12));
   __cil_tmp23 = (unsigned int )min_uV;
   if (__cil_tmp23 > __cil_tmp22) {
     return (-22);
   } else {
     {
-    __cil_tmp24 = (unsigned long )max1586;
-    __cil_tmp25 = __cil_tmp24 + 8;
-    __cil_tmp26 = *((unsigned int *)__cil_tmp25);
+    __cil_tmp26 = *((unsigned int *)((void *)max1586 + 8));
     __cil_tmp27 = (unsigned int )max_uV;
     if (__cil_tmp27 < __cil_tmp26) {
       return (-22);
@@ -2552,22 +2509,16 @@ static int max1586_v3_set(struct regulator_dev *rdev , int min_uV , int max_uV ,
   }
   }
   {
-  __cil_tmp28 = (unsigned long )max1586;
-  __cil_tmp29 = __cil_tmp28 + 8;
-  __cil_tmp30 = *((unsigned int *)__cil_tmp29);
+  __cil_tmp30 = *((unsigned int *)((void *)max1586 + 8));
   __cil_tmp31 = (unsigned int )min_uV;
   if (__cil_tmp31 < __cil_tmp30) {
-    __cil_tmp32 = (unsigned long )max1586;
-    __cil_tmp33 = __cil_tmp32 + 8;
-    __cil_tmp34 = *((unsigned int *)__cil_tmp33);
+    __cil_tmp34 = *((unsigned int *)((void *)max1586 + 8));
     min_uV = (int )__cil_tmp34;
   } else {
   }
   }
   {
-  __cil_tmp35 = (unsigned long )max1586;
-  __cil_tmp36 = __cil_tmp35 + 8;
-  __cil_tmp37 = *((unsigned int *)__cil_tmp36);
+  __cil_tmp37 = *((unsigned int *)((void *)max1586 + 8));
   __cil_tmp38 = (unsigned int )min_uV;
   __cil_tmp39 = __cil_tmp38 - __cil_tmp37;
   __cil_tmp40 = __cil_tmp39 * 31U;
@@ -2601,9 +2552,7 @@ static int max1586_v3_set(struct regulator_dev *rdev , int min_uV , int max_uV ,
         {
         __cil_tmp50 = *selector;
         tmp___9 = max1586_v3_calc_voltage(max1586, __cil_tmp50);
-        __cil_tmp51 = (unsigned long )client;
-        __cil_tmp52 = __cil_tmp51 + 40;
-        __cil_tmp53 = (struct device *)__cil_tmp52;
+        __cil_tmp53 = (struct device *)((void *)client + 40);
         __cil_tmp54 = (struct device const *)__cil_tmp53;
         __cil_tmp55 = tmp___9 / 1000;
         __dynamic_dev_dbg(& descriptor, __cil_tmp54, "changing voltage v3 to %dmv\n",
@@ -2682,8 +2631,6 @@ static int max1586_v6_set(struct regulator_dev *rdev , int min_uV , int max_uV ,
   int __cil_tmp17 ;
   long __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct device *__cil_tmp22 ;
   struct device const *__cil_tmp23 ;
   int __cil_tmp24 ;
@@ -2752,9 +2699,7 @@ static int max1586_v6_set(struct regulator_dev *rdev , int min_uV , int max_uV ,
         {
         __cil_tmp19 = *selector;
         tmp___9 = max1586_v6_calc_voltage(__cil_tmp19);
-        __cil_tmp20 = (unsigned long )client;
-        __cil_tmp21 = __cil_tmp20 + 40;
-        __cil_tmp22 = (struct device *)__cil_tmp21;
+        __cil_tmp22 = (struct device *)((void *)client + 40);
         __cil_tmp23 = (struct device const *)__cil_tmp22;
         __cil_tmp24 = tmp___9 / 1000;
         __dynamic_dev_dbg(& descriptor___0, __cil_tmp23, "changing voltage v6 to %dmv\n",
@@ -2843,65 +2788,35 @@ static int max1586_pmic_probe(struct i2c_client *client , struct i2c_device_id c
   long tmp___8 ;
   long tmp___9 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   int __cil_tmp25 ;
   int __cil_tmp26 ;
   int __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   int __cil_tmp32 ;
   int __cil_tmp33 ;
   int __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
   unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   struct max1586_subdev_data *__cil_tmp42 ;
   struct max1586_subdev_data *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   struct max1586_subdev_data *__cil_tmp46 ;
   struct max1586_subdev_data *__cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
   struct regulator_init_data *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   struct device *__cil_tmp53 ;
   struct device const *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct device *__cil_tmp57 ;
   struct device const *__cil_tmp58 ;
   struct regulator_dev **__cil_tmp59 ;
   unsigned long __cil_tmp60 ;
   unsigned long __cil_tmp61 ;
   struct regulator_desc *__cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
   struct device *__cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct max1586_subdev_data *__cil_tmp68 ;
   struct max1586_subdev_data *__cil_tmp69 ;
-  unsigned long __cil_tmp70 ;
-  unsigned long __cil_tmp71 ;
   struct regulator_init_data *__cil_tmp72 ;
   struct regulator_init_data const *__cil_tmp73 ;
   void *__cil_tmp74 ;
@@ -2913,16 +2828,12 @@ static int max1586_pmic_probe(struct i2c_client *client , struct i2c_device_id c
   struct regulator_dev **__cil_tmp80 ;
   struct regulator_dev *__cil_tmp81 ;
   void const *__cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   struct device *__cil_tmp85 ;
   struct device const *__cil_tmp86 ;
   unsigned long __cil_tmp87 ;
   unsigned long __cil_tmp88 ;
   char const *__cil_tmp89 ;
   void *__cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   struct device *__cil_tmp93 ;
   struct device const *__cil_tmp94 ;
   struct regulator_dev **__cil_tmp95 ;
@@ -2931,9 +2842,7 @@ static int max1586_pmic_probe(struct i2c_client *client , struct i2c_device_id c
   {
   {
   __cil_tmp12 = 40 + 184;
-  __cil_tmp13 = (unsigned long )client;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  __cil_tmp15 = *((void **)((void *)client + __cil_tmp12));
   pdata = (struct max1586_platform_data *)__cil_tmp15;
   ret = -12;
   __cil_tmp16 = 8UL * 2UL;
@@ -2947,36 +2856,24 @@ static int max1586_pmic_probe(struct i2c_client *client , struct i2c_device_id c
   }
   *((struct i2c_client **)max1586) = client;
   {
-  __cil_tmp18 = (unsigned long )pdata;
-  __cil_tmp19 = __cil_tmp18 + 16;
-  __cil_tmp20 = *((int *)__cil_tmp19);
+  __cil_tmp20 = *((int *)((void *)pdata + 16));
   if (! __cil_tmp20) {
     ret = -22;
     goto out_unmap;
   } else {
   }
   }
-  __cil_tmp21 = (unsigned long )max1586;
-  __cil_tmp22 = __cil_tmp21 + 8;
-  __cil_tmp23 = (unsigned long )pdata;
-  __cil_tmp24 = __cil_tmp23 + 16;
-  __cil_tmp25 = *((int *)__cil_tmp24);
+  __cil_tmp25 = *((int *)((void *)pdata + 16));
   __cil_tmp26 = 700 * __cil_tmp25;
   __cil_tmp27 = __cil_tmp26 / 1000;
-  *((unsigned int *)__cil_tmp22) = (unsigned int )__cil_tmp27;
-  __cil_tmp28 = (unsigned long )max1586;
-  __cil_tmp29 = __cil_tmp28 + 12;
-  __cil_tmp30 = (unsigned long )pdata;
-  __cil_tmp31 = __cil_tmp30 + 16;
-  __cil_tmp32 = *((int *)__cil_tmp31);
+  *((unsigned int *)((void *)max1586 + 8)) = (unsigned int )__cil_tmp27;
+  __cil_tmp32 = *((int *)((void *)pdata + 16));
   __cil_tmp33 = 1475 * __cil_tmp32;
   __cil_tmp34 = __cil_tmp33 / 1000;
-  *((unsigned int *)__cil_tmp29) = (unsigned int )__cil_tmp34;
+  *((unsigned int *)((void *)max1586 + 12)) = (unsigned int )__cil_tmp34;
   __cil_tmp35 = 0 * 8UL;
   __cil_tmp36 = 16 + __cil_tmp35;
-  __cil_tmp37 = (unsigned long )max1586;
-  __cil_tmp38 = __cil_tmp37 + __cil_tmp36;
-  rdev = (struct regulator_dev **)__cil_tmp38;
+  rdev = (struct regulator_dev **)((void *)max1586 + __cil_tmp36);
   i = 0;
   {
   while (1) {
@@ -2992,19 +2889,13 @@ static int max1586_pmic_probe(struct i2c_client *client , struct i2c_device_id c
       goto while_break;
     }
     }
-    __cil_tmp40 = (unsigned long )pdata;
-    __cil_tmp41 = __cil_tmp40 + 8;
-    __cil_tmp42 = *((struct max1586_subdev_data **)__cil_tmp41);
+    __cil_tmp42 = *((struct max1586_subdev_data **)((void *)pdata + 8));
     __cil_tmp43 = __cil_tmp42 + i;
     id = *((int *)__cil_tmp43);
     {
-    __cil_tmp44 = (unsigned long )pdata;
-    __cil_tmp45 = __cil_tmp44 + 8;
-    __cil_tmp46 = *((struct max1586_subdev_data **)__cil_tmp45);
+    __cil_tmp46 = *((struct max1586_subdev_data **)((void *)pdata + 8));
     __cil_tmp47 = __cil_tmp46 + i;
-    __cil_tmp48 = (unsigned long )__cil_tmp47;
-    __cil_tmp49 = __cil_tmp48 + 16;
-    __cil_tmp50 = *((struct regulator_init_data **)__cil_tmp49);
+    __cil_tmp50 = *((struct regulator_init_data **)((void *)__cil_tmp47 + 16));
     if (! __cil_tmp50) {
       goto __Cont;
     } else {
@@ -3012,9 +2903,7 @@ static int max1586_pmic_probe(struct i2c_client *client , struct i2c_device_id c
     }
     if (id < 0) {
       {
-      __cil_tmp51 = (unsigned long )client;
-      __cil_tmp52 = __cil_tmp51 + 40;
-      __cil_tmp53 = (struct device *)__cil_tmp52;
+      __cil_tmp53 = (struct device *)((void *)client + 40);
       __cil_tmp54 = (struct device const *)__cil_tmp53;
       dev_err(__cil_tmp54, "invalid regulator id %d\n", id);
       }
@@ -3022,9 +2911,7 @@ static int max1586_pmic_probe(struct i2c_client *client , struct i2c_device_id c
     } else
     if (id > 1) {
       {
-      __cil_tmp55 = (unsigned long )client;
-      __cil_tmp56 = __cil_tmp55 + 40;
-      __cil_tmp57 = (struct device *)__cil_tmp56;
+      __cil_tmp57 = (struct device *)((void *)client + 40);
       __cil_tmp58 = (struct device const *)__cil_tmp57;
       dev_err(__cil_tmp58, "invalid regulator id %d\n", id);
       }
@@ -3036,16 +2923,10 @@ static int max1586_pmic_probe(struct i2c_client *client , struct i2c_device_id c
     __cil_tmp60 = id * 48UL;
     __cil_tmp61 = (unsigned long )(max1586_reg) + __cil_tmp60;
     __cil_tmp62 = (struct regulator_desc *)__cil_tmp61;
-    __cil_tmp63 = (unsigned long )client;
-    __cil_tmp64 = __cil_tmp63 + 40;
-    __cil_tmp65 = (struct device *)__cil_tmp64;
-    __cil_tmp66 = (unsigned long )pdata;
-    __cil_tmp67 = __cil_tmp66 + 8;
-    __cil_tmp68 = *((struct max1586_subdev_data **)__cil_tmp67);
+    __cil_tmp65 = (struct device *)((void *)client + 40);
+    __cil_tmp68 = *((struct max1586_subdev_data **)((void *)pdata + 8));
     __cil_tmp69 = __cil_tmp68 + i;
-    __cil_tmp70 = (unsigned long )__cil_tmp69;
-    __cil_tmp71 = __cil_tmp70 + 16;
-    __cil_tmp72 = *((struct regulator_init_data **)__cil_tmp71);
+    __cil_tmp72 = *((struct regulator_init_data **)((void *)__cil_tmp69 + 16));
     __cil_tmp73 = (struct regulator_init_data const *)__cil_tmp72;
     __cil_tmp74 = (void *)max1586;
     __cil_tmp75 = (void *)0;
@@ -3064,9 +2945,7 @@ static int max1586_pmic_probe(struct i2c_client *client , struct i2c_device_id c
       __cil_tmp82 = (void const *)__cil_tmp81;
       tmp___8 = (long )PTR_ERR(__cil_tmp82);
       ret = (int )tmp___8;
-      __cil_tmp83 = (unsigned long )client;
-      __cil_tmp84 = __cil_tmp83 + 40;
-      __cil_tmp85 = (struct device *)__cil_tmp84;
+      __cil_tmp85 = (struct device *)((void *)client + 40);
       __cil_tmp86 = (struct device const *)__cil_tmp85;
       __cil_tmp87 = id * 48UL;
       __cil_tmp88 = (unsigned long )(max1586_reg) + __cil_tmp87;
@@ -3084,9 +2963,7 @@ static int max1586_pmic_probe(struct i2c_client *client , struct i2c_device_id c
   {
   __cil_tmp90 = (void *)max1586;
   i2c_set_clientdata(client, __cil_tmp90);
-  __cil_tmp91 = (unsigned long )client;
-  __cil_tmp92 = __cil_tmp91 + 40;
-  __cil_tmp93 = (struct device *)__cil_tmp92;
+  __cil_tmp93 = (struct device *)((void *)client + 40);
   __cil_tmp94 = (struct device const *)__cil_tmp93;
   _dev_info(__cil_tmp94, "Maxim 1586 regulator driver loaded\n");
   }
@@ -3126,12 +3003,8 @@ static int max1586_pmic_remove(struct i2c_client *client )
   struct i2c_client const *__cil_tmp5 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct regulator_dev *__cil_tmp14 ;
   void const *__cil_tmp15 ;
   {
@@ -3151,15 +3024,11 @@ static int max1586_pmic_remove(struct i2c_client *client )
     {
     __cil_tmp6 = i * 8UL;
     __cil_tmp7 = 16 + __cil_tmp6;
-    __cil_tmp8 = (unsigned long )max1586;
-    __cil_tmp9 = __cil_tmp8 + __cil_tmp7;
-    if (*((struct regulator_dev **)__cil_tmp9)) {
+    if (*((struct regulator_dev **)((void *)max1586 + __cil_tmp7))) {
       {
       __cil_tmp10 = i * 8UL;
       __cil_tmp11 = 16 + __cil_tmp10;
-      __cil_tmp12 = (unsigned long )max1586;
-      __cil_tmp13 = __cil_tmp12 + __cil_tmp11;
-      __cil_tmp14 = *((struct regulator_dev **)__cil_tmp13);
+      __cil_tmp14 = *((struct regulator_dev **)((void *)max1586 + __cil_tmp11));
       regulator_unregister(__cil_tmp14);
       }
     } else {

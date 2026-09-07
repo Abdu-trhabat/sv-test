@@ -4236,15 +4236,12 @@ __inline static void *kzalloc(size_t size , gfp_t flags )
 }
 __inline static void device_unlock(struct device *dev )  __attribute__((__no_instrument_function__)) ;
 __inline static void device_unlock(struct device *dev ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct mutex *__cil_tmp4 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )dev;
-  __cil_tmp3 = __cil_tmp2 + 96;
-  __cil_tmp4 = (struct mutex *)__cil_tmp3;
+  __cil_tmp4 = (struct mutex *)((void *)dev + 96);
   mutex_unlock(__cil_tmp4);
   }
   return;
@@ -4255,16 +4252,12 @@ extern int dev_set_drvdata(struct device *dev , void *data ) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf )  __attribute__((__no_instrument_function__)) ;
 __inline static void *usb_get_intfdata(struct usb_interface *intf ) 
 { void *tmp___7 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct device    *__cil_tmp6 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   __cil_tmp6 = (struct device    *)__cil_tmp5;
   tmp___7 = dev_get_drvdata(__cil_tmp6);
   }
@@ -4273,15 +4266,12 @@ __inline static void *usb_get_intfdata(struct usb_interface *intf )
 }
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )  __attribute__((__no_instrument_function__)) ;
 __inline static void usb_set_intfdata(struct usb_interface *intf , void *data ) 
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
 
   {
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)intf + 48);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -4290,27 +4280,19 @@ __inline static void usb_set_intfdata(struct usb_interface *intf , void *data )
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf )  __attribute__((__no_instrument_function__)) ;
 __inline static struct usb_device *interface_to_usbdev(struct usb_interface *intf ) 
 { struct device    *__mptr ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device *__cil_tmp5 ;
   struct usb_device *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   struct device *__cil_tmp9 ;
   unsigned int __cil_tmp10 ;
   char *__cil_tmp11 ;
   char *__cil_tmp12 ;
 
   {
-  __cil_tmp3 = (unsigned long )intf;
-  __cil_tmp4 = __cil_tmp3 + 48;
-  __cil_tmp5 = *((struct device **)__cil_tmp4);
+  __cil_tmp5 = *((struct device **)((void *)intf + 48));
   __mptr = (struct device    *)__cil_tmp5;
   {
   __cil_tmp6 = (struct usb_device *)0;
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + 136;
-  __cil_tmp9 = (struct device *)__cil_tmp8;
+  __cil_tmp9 = (struct device *)((void *)__cil_tmp6 + 136);
   __cil_tmp10 = (unsigned int )__cil_tmp9;
   __cil_tmp11 = (char *)__mptr;
   __cil_tmp12 = __cil_tmp11 - __cil_tmp10;
@@ -4330,38 +4312,14 @@ __inline static void usb_fill_bulk_urb(struct urb *urb , struct usb_device *dev 
                                        unsigned int pipe , void *transfer_buffer ,
                                        int buffer_length , void (*complete_fn)(struct urb * ) ,
                                        void *context ) 
-{ unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-
+{
   {
-  __cil_tmp8 = (unsigned long )urb;
-  __cil_tmp9 = __cil_tmp8 + 72;
-  *((struct usb_device **)__cil_tmp9) = dev;
-  __cil_tmp10 = (unsigned long )urb;
-  __cil_tmp11 = __cil_tmp10 + 88;
-  *((unsigned int *)__cil_tmp11) = pipe;
-  __cil_tmp12 = (unsigned long )urb;
-  __cil_tmp13 = __cil_tmp12 + 104;
-  *((void **)__cil_tmp13) = transfer_buffer;
-  __cil_tmp14 = (unsigned long )urb;
-  __cil_tmp15 = __cil_tmp14 + 136;
-  *((u32 *)__cil_tmp15) = (u32 )buffer_length;
-  __cil_tmp16 = (unsigned long )urb;
-  __cil_tmp17 = __cil_tmp16 + 184;
-  *((void (**)(struct urb * ))__cil_tmp17) = complete_fn;
-  __cil_tmp18 = (unsigned long )urb;
-  __cil_tmp19 = __cil_tmp18 + 176;
-  *((void **)__cil_tmp19) = context;
+  *((struct usb_device **)((void *)urb + 72)) = dev;
+  *((unsigned int *)((void *)urb + 88)) = pipe;
+  *((void **)((void *)urb + 104)) = transfer_buffer;
+  *((u32 *)((void *)urb + 136)) = (u32 )buffer_length;
+  *((void (**)(struct urb * ))((void *)urb + 184)) = complete_fn;
+  *((void **)((void *)urb + 176)) = context;
   return;
 }
 }
@@ -4421,15 +4379,11 @@ __inline static struct page *sg_page(struct scatterlist *sg )
   int __cil_tmp6 ;
   int __cil_tmp7 ;
   long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
   long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
 
@@ -4477,9 +4431,7 @@ __inline static struct page *sg_page(struct scatterlist *sg )
   while (1) {
     while_continue___2: /* CIL Label */ ;
     {
-    __cil_tmp9 = (unsigned long )sg;
-    __cil_tmp10 = __cil_tmp9 + 8;
-    __cil_tmp11 = *((unsigned long *)__cil_tmp10);
+    __cil_tmp11 = *((unsigned long *)((void *)sg + 8));
     __cil_tmp12 = __cil_tmp11 & 1UL;
     __cil_tmp13 = ! __cil_tmp12;
     __cil_tmp14 = ! __cil_tmp13;
@@ -4515,9 +4467,7 @@ __inline static struct page *sg_page(struct scatterlist *sg )
   while_break___2: /* CIL Label */ ;
   }
   {
-  __cil_tmp16 = (unsigned long )sg;
-  __cil_tmp17 = __cil_tmp16 + 8;
-  __cil_tmp18 = *((unsigned long *)__cil_tmp17);
+  __cil_tmp18 = *((unsigned long *)((void *)sg + 8));
   __cil_tmp19 = __cil_tmp18 & 0xfffffffffffffffcUL;
   return ((struct page *)__cil_tmp19);
   }
@@ -4528,8 +4478,6 @@ __inline static void *sg_virt(struct scatterlist *sg )
 { struct page *tmp___7 ;
   void *tmp___8 ;
   struct page    *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   unsigned int __cil_tmp7 ;
 
   {
@@ -4539,9 +4487,7 @@ __inline static void *sg_virt(struct scatterlist *sg )
   tmp___8 = lowmem_page_address(__cil_tmp4);
   }
   {
-  __cil_tmp5 = (unsigned long )sg;
-  __cil_tmp6 = __cil_tmp5 + 16;
-  __cil_tmp7 = *((unsigned int *)__cil_tmp6);
+  __cil_tmp7 = *((unsigned int *)((void *)sg + 16));
   return (tmp___8 + __cil_tmp7);
   }
 }
@@ -4550,58 +4496,42 @@ __inline static unsigned int scsi_sg_count(struct scsi_cmnd *cmd )  __attribute_
 __inline static unsigned int scsi_sg_count(struct scsi_cmnd *cmd ) 
 { unsigned long __cil_tmp2 ;
   unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
 
   {
   {
   __cil_tmp2 = 0 + 8;
   __cil_tmp3 = 88 + __cil_tmp2;
-  __cil_tmp4 = (unsigned long )cmd;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  return (*((unsigned int *)__cil_tmp5));
+  return (*((unsigned int *)((void *)cmd + __cil_tmp3)));
   }
 }
 }
 __inline static struct scatterlist *scsi_sglist(struct scsi_cmnd *cmd )  __attribute__((__no_instrument_function__)) ;
 __inline static struct scatterlist *scsi_sglist(struct scsi_cmnd *cmd ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
   {
-  __cil_tmp2 = (unsigned long )cmd;
-  __cil_tmp3 = __cil_tmp2 + 88;
-  return (*((struct scatterlist **)__cil_tmp3));
+  return (*((struct scatterlist **)((void *)cmd + 88)));
   }
 }
 }
 __inline static unsigned int scsi_bufflen(struct scsi_cmnd *cmd )  __attribute__((__no_instrument_function__)) ;
 __inline static unsigned int scsi_bufflen(struct scsi_cmnd *cmd ) 
 { unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
 
   {
   {
   __cil_tmp2 = 88 + 16;
-  __cil_tmp3 = (unsigned long )cmd;
-  __cil_tmp4 = __cil_tmp3 + __cil_tmp2;
-  return (*((unsigned int *)__cil_tmp4));
+  return (*((unsigned int *)((void *)cmd + __cil_tmp2)));
   }
 }
 }
 __inline static void scsi_set_resid(struct scsi_cmnd *cmd , int resid )  __attribute__((__no_instrument_function__)) ;
 __inline static void scsi_set_resid(struct scsi_cmnd *cmd , int resid ) 
 { unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
 
   {
   __cil_tmp3 = 88 + 20;
-  __cil_tmp4 = (unsigned long )cmd;
-  __cil_tmp5 = __cil_tmp4 + __cil_tmp3;
-  *((int *)__cil_tmp5) = resid;
+  *((int *)((void *)cmd + __cil_tmp3)) = resid;
   return;
 }
 }
@@ -4661,8 +4591,7 @@ __inline static void mts_debug_dump(struct mts_desc *dummy )
 }
 __inline static void mts_urb_abort(struct mts_desc *desc )  __attribute__((__no_instrument_function__)) ;
 __inline static void mts_urb_abort(struct mts_desc *desc ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct urb *__cil_tmp4 ;
 
   {
@@ -4675,35 +4604,26 @@ __inline static void mts_urb_abort(struct mts_desc *desc )
   }
   {
   mts_debug_dump(desc);
-  __cil_tmp2 = (unsigned long )desc;
-  __cil_tmp3 = __cil_tmp2 + 48;
-  __cil_tmp4 = *((struct urb **)__cil_tmp3);
+  __cil_tmp4 = *((struct urb **)((void *)desc + 48));
   usb_kill_urb(__cil_tmp4);
   }
   return;
 }
 }
 static int mts_slave_alloc(struct scsi_device *s ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
-
+{
   {
-  __cil_tmp2 = (unsigned long )s;
-  __cil_tmp3 = __cil_tmp2 + 187;
-  *((unsigned char *)__cil_tmp3) = (unsigned char)36;
+  *((unsigned char *)((void *)s + 187)) = (unsigned char)36;
   return (0);
 }
 }
 static int mts_slave_configure(struct scsi_device *s ) 
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   struct request_queue *__cil_tmp4 ;
 
   {
   {
-  __cil_tmp2 = (unsigned long )s;
-  __cil_tmp3 = __cil_tmp2 + 8;
-  __cil_tmp4 = *((struct request_queue **)__cil_tmp3);
+  __cil_tmp4 = *((struct request_queue **)((void *)s + 8));
   blk_queue_dma_alignment(__cil_tmp4, 511);
   }
   return (0);
@@ -4715,8 +4635,6 @@ static int mts_scsi_abort(struct scsi_cmnd *srb )
   unsigned long __cil_tmp4 ;
   struct scsi_device *__cil_tmp5 ;
   struct Scsi_Host *__cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
   unsigned long __cil_tmp9 ;
 
   {
@@ -4724,9 +4642,7 @@ static int mts_scsi_abort(struct scsi_cmnd *srb )
   __cil_tmp4 = 2040 + __cil_tmp3;
   __cil_tmp5 = *((struct scsi_device **)srb);
   __cil_tmp6 = *((struct Scsi_Host **)__cil_tmp5);
-  __cil_tmp7 = (unsigned long )__cil_tmp6;
-  __cil_tmp8 = __cil_tmp7 + __cil_tmp4;
-  __cil_tmp9 = *((unsigned long *)__cil_tmp8);
+  __cil_tmp9 = *((unsigned long *)((void *)__cil_tmp6 + __cil_tmp4));
   desc = (struct mts_desc *)__cil_tmp9;
   {
   while (1) {
@@ -4749,24 +4665,12 @@ static int mts_scsi_host_reset(struct scsi_cmnd *srb )
   unsigned long __cil_tmp6 ;
   struct scsi_device *__cil_tmp7 ;
   struct Scsi_Host *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   struct usb_device *__cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct usb_interface *__cil_tmp17 ;
   struct usb_interface    *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct usb_device *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct usb_device *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
   struct device *__cil_tmp27 ;
 
   {
@@ -4774,9 +4678,7 @@ static int mts_scsi_host_reset(struct scsi_cmnd *srb )
   __cil_tmp6 = 2040 + __cil_tmp5;
   __cil_tmp7 = *((struct scsi_device **)srb);
   __cil_tmp8 = *((struct Scsi_Host **)__cil_tmp7);
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + __cil_tmp6;
-  __cil_tmp11 = *((unsigned long *)__cil_tmp10);
+  __cil_tmp11 = *((unsigned long *)((void *)__cil_tmp8 + __cil_tmp6));
   desc = (struct mts_desc *)__cil_tmp11;
   {
   while (1) {
@@ -4787,27 +4689,17 @@ static int mts_scsi_host_reset(struct scsi_cmnd *srb )
   }
   {
   mts_debug_dump(desc);
-  __cil_tmp12 = (unsigned long )desc;
-  __cil_tmp13 = __cil_tmp12 + 16;
-  __cil_tmp14 = *((struct usb_device **)__cil_tmp13);
-  __cil_tmp15 = (unsigned long )desc;
-  __cil_tmp16 = __cil_tmp15 + 24;
-  __cil_tmp17 = *((struct usb_interface **)__cil_tmp16);
+  __cil_tmp14 = *((struct usb_device **)((void *)desc + 16));
+  __cil_tmp17 = *((struct usb_interface **)((void *)desc + 24));
   __cil_tmp18 = (struct usb_interface    *)__cil_tmp17;
   result = usb_lock_device_for_reset(__cil_tmp14, __cil_tmp18);
   }
   if (result == 0) {
     {
-    __cil_tmp19 = (unsigned long )desc;
-    __cil_tmp20 = __cil_tmp19 + 16;
-    __cil_tmp21 = *((struct usb_device **)__cil_tmp20);
+    __cil_tmp21 = *((struct usb_device **)((void *)desc + 16));
     result = usb_reset_device(__cil_tmp21);
-    __cil_tmp22 = (unsigned long )desc;
-    __cil_tmp23 = __cil_tmp22 + 16;
-    __cil_tmp24 = *((struct usb_device **)__cil_tmp23);
-    __cil_tmp25 = (unsigned long )__cil_tmp24;
-    __cil_tmp26 = __cil_tmp25 + 136;
-    __cil_tmp27 = (struct device *)__cil_tmp26;
+    __cil_tmp24 = *((struct usb_device **)((void *)desc + 16));
+    __cil_tmp27 = (struct device *)((void *)__cil_tmp24 + 136);
     device_unlock(__cil_tmp27);
     }
   } else {
@@ -4831,12 +4723,8 @@ __inline static void mts_int_submit_urb(struct urb *transfer , int pipe , void *
 { int res ;
   struct mts_transfer_context *context ;
   long tmp___7 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   struct mts_desc *__cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   struct usb_device *__cil_tmp15 ;
   unsigned int __cil_tmp16 ;
   int __cil_tmp17 ;
@@ -4844,16 +4732,10 @@ __inline static void mts_int_submit_urb(struct urb *transfer , int pipe , void *
   int __cil_tmp19 ;
   int __cil_tmp20 ;
   long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct scsi_cmnd *__cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
 
   {
-  __cil_tmp9 = (unsigned long )transfer;
-  __cil_tmp10 = __cil_tmp9 + 176;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  __cil_tmp11 = *((void **)((void *)transfer + 176));
   context = (struct mts_transfer_context *)__cil_tmp11;
   {
   while (1) {
@@ -4864,9 +4746,7 @@ __inline static void mts_int_submit_urb(struct urb *transfer , int pipe , void *
   }
   {
   __cil_tmp12 = *((struct mts_desc **)context);
-  __cil_tmp13 = (unsigned long )__cil_tmp12;
-  __cil_tmp14 = __cil_tmp13 + 16;
-  __cil_tmp15 = *((struct usb_device **)__cil_tmp14);
+  __cil_tmp15 = *((struct usb_device **)((void *)__cil_tmp12 + 16));
   __cil_tmp16 = (unsigned int )pipe;
   __cil_tmp17 = (int )length;
   __cil_tmp18 = (void *)context;
@@ -4881,12 +4761,8 @@ __inline static void mts_int_submit_urb(struct urb *transfer , int pipe , void *
   if (tmp___7) {
     {
     printk("<3>microtek usb (rev 0.4.3): could not submit URB! Error was %d\n", res);
-    __cil_tmp22 = (unsigned long )context;
-    __cil_tmp23 = __cil_tmp22 + 16;
-    __cil_tmp24 = *((struct scsi_cmnd **)__cil_tmp23);
-    __cil_tmp25 = (unsigned long )__cil_tmp24;
-    __cil_tmp26 = __cil_tmp25 + 224;
-    *((int *)__cil_tmp26) = 7 << 16;
+    __cil_tmp24 = *((struct scsi_cmnd **)((void *)context + 16));
+    *((int *)((void *)__cil_tmp24 + 224)) = 7 << 16;
     mts_transfer_cleanup(transfer);
     }
   } else {
@@ -4898,30 +4774,20 @@ __inline static void mts_int_submit_urb(struct urb *transfer , int pipe , void *
 static void mts_transfer_cleanup(struct urb *transfer ) 
 { struct mts_transfer_context *context ;
   long tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   void *__cil_tmp7 ;
   unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void (*__cil_tmp11)(struct scsi_cmnd * ) ;
   unsigned long __cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
   int __cil_tmp15 ;
   long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   void (*__cil_tmp19)(struct scsi_cmnd * ) ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct scsi_cmnd *__cil_tmp22 ;
 
   {
-  __cil_tmp4 = (unsigned long )transfer;
-  __cil_tmp5 = __cil_tmp4 + 176;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)transfer + 176));
   context = (struct mts_transfer_context *)__cil_tmp6;
   {
   while (1) {
@@ -4933,9 +4799,7 @@ static void mts_transfer_cleanup(struct urb *transfer )
   {
   __cil_tmp7 = (void *)0;
   __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = (unsigned long )context;
-  __cil_tmp10 = __cil_tmp9 + 8;
-  __cil_tmp11 = *((void (**)(struct scsi_cmnd * ))__cil_tmp10);
+  __cil_tmp11 = *((void (**)(struct scsi_cmnd * ))((void *)context + 8));
   __cil_tmp12 = (unsigned long )__cil_tmp11;
   __cil_tmp13 = __cil_tmp12 != __cil_tmp8;
   __cil_tmp14 = ! __cil_tmp13;
@@ -4945,12 +4809,8 @@ static void mts_transfer_cleanup(struct urb *transfer )
   }
   if (tmp___7) {
     {
-    __cil_tmp17 = (unsigned long )context;
-    __cil_tmp18 = __cil_tmp17 + 8;
-    __cil_tmp19 = *((void (**)(struct scsi_cmnd * ))__cil_tmp18);
-    __cil_tmp20 = (unsigned long )context;
-    __cil_tmp21 = __cil_tmp20 + 16;
-    __cil_tmp22 = *((struct scsi_cmnd **)__cil_tmp21);
+    __cil_tmp19 = *((void (**)(struct scsi_cmnd * ))((void *)context + 8));
+    __cil_tmp22 = *((struct scsi_cmnd **)((void *)context + 16));
     (*__cil_tmp19)(__cil_tmp22);
     }
   } else {
@@ -4961,46 +4821,24 @@ static void mts_transfer_cleanup(struct urb *transfer )
 }
 static void mts_transfer_done(struct urb *transfer ) 
 { struct mts_transfer_context *context ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct scsi_cmnd *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct scsi_cmnd *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   int __cil_tmp16 ;
   unsigned int __cil_tmp17 ;
   unsigned int __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct scsi_cmnd *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   u8 *__cil_tmp26 ;
   u8 __cil_tmp27 ;
   unsigned int __cil_tmp28 ;
   unsigned int __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
   struct scsi_cmnd *__cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
   int __cil_tmp35 ;
   unsigned int __cil_tmp36 ;
   unsigned int __cil_tmp37 ;
 
   {
-  __cil_tmp3 = (unsigned long )transfer;
-  __cil_tmp4 = __cil_tmp3 + 176;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)transfer + 176));
   context = (struct mts_transfer_context *)__cil_tmp5;
   {
   while (1) {
@@ -5010,40 +4848,22 @@ static void mts_transfer_done(struct urb *transfer )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp6 = (unsigned long )context;
-  __cil_tmp7 = __cil_tmp6 + 16;
-  __cil_tmp8 = *((struct scsi_cmnd **)__cil_tmp7);
-  __cil_tmp9 = (unsigned long )__cil_tmp8;
-  __cil_tmp10 = __cil_tmp9 + 224;
-  __cil_tmp11 = (unsigned long )context;
-  __cil_tmp12 = __cil_tmp11 + 16;
-  __cil_tmp13 = *((struct scsi_cmnd **)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + 224;
-  __cil_tmp16 = *((int *)__cil_tmp15);
+  __cil_tmp8 = *((struct scsi_cmnd **)((void *)context + 16));
+  __cil_tmp13 = *((struct scsi_cmnd **)((void *)context + 16));
+  __cil_tmp16 = *((int *)((void *)__cil_tmp13 + 224));
   __cil_tmp17 = (unsigned int )__cil_tmp16;
   __cil_tmp18 = __cil_tmp17 & 4294967232U;
-  *((int *)__cil_tmp10) = (int )__cil_tmp18;
-  __cil_tmp19 = (unsigned long )context;
-  __cil_tmp20 = __cil_tmp19 + 16;
-  __cil_tmp21 = *((struct scsi_cmnd **)__cil_tmp20);
-  __cil_tmp22 = (unsigned long )__cil_tmp21;
-  __cil_tmp23 = __cil_tmp22 + 224;
-  __cil_tmp24 = (unsigned long )context;
-  __cil_tmp25 = __cil_tmp24 + 48;
-  __cil_tmp26 = *((u8 **)__cil_tmp25);
+  *((int *)((void *)__cil_tmp8 + 224)) = (int )__cil_tmp18;
+  __cil_tmp21 = *((struct scsi_cmnd **)((void *)context + 16));
+  __cil_tmp26 = *((u8 **)((void *)context + 48));
   __cil_tmp27 = *__cil_tmp26;
   __cil_tmp28 = (unsigned int )__cil_tmp27;
   __cil_tmp29 = __cil_tmp28 << 1;
-  __cil_tmp30 = (unsigned long )context;
-  __cil_tmp31 = __cil_tmp30 + 16;
-  __cil_tmp32 = *((struct scsi_cmnd **)__cil_tmp31);
-  __cil_tmp33 = (unsigned long )__cil_tmp32;
-  __cil_tmp34 = __cil_tmp33 + 224;
-  __cil_tmp35 = *((int *)__cil_tmp34);
+  __cil_tmp32 = *((struct scsi_cmnd **)((void *)context + 16));
+  __cil_tmp35 = *((int *)((void *)__cil_tmp32 + 224));
   __cil_tmp36 = (unsigned int )__cil_tmp35;
   __cil_tmp37 = __cil_tmp36 | __cil_tmp29;
-  *((int *)__cil_tmp23) = (int )__cil_tmp37;
+  *((int *)((void *)__cil_tmp21 + 224)) = (int )__cil_tmp37;
   mts_transfer_cleanup(transfer);
   }
   return;
@@ -5052,16 +4872,10 @@ static void mts_transfer_done(struct urb *transfer )
 static void mts_get_status(struct urb *transfer ) 
 { struct mts_transfer_context *context ;
   unsigned int tmp___7 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
   void *__cil_tmp6 ;
   struct mts_desc *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct usb_device *__cil_tmp10 ;
   struct mts_desc *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   u8 __cil_tmp14 ;
   unsigned int __cil_tmp15 ;
   int __cil_tmp16 ;
@@ -5069,15 +4883,11 @@ static void mts_get_status(struct urb *transfer )
   unsigned int __cil_tmp18 ;
   unsigned int __cil_tmp19 ;
   int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u8 *__cil_tmp23 ;
   void *__cil_tmp24 ;
 
   {
-  __cil_tmp4 = (unsigned long )transfer;
-  __cil_tmp5 = __cil_tmp4 + 176;
-  __cil_tmp6 = *((void **)__cil_tmp5);
+  __cil_tmp6 = *((void **)((void *)transfer + 176));
   context = (struct mts_transfer_context *)__cil_tmp6;
   {
   while (1) {
@@ -5088,13 +4898,9 @@ static void mts_get_status(struct urb *transfer )
   }
   {
   __cil_tmp7 = *((struct mts_desc **)context);
-  __cil_tmp8 = (unsigned long )__cil_tmp7;
-  __cil_tmp9 = __cil_tmp8 + 16;
-  __cil_tmp10 = *((struct usb_device **)__cil_tmp9);
+  __cil_tmp10 = *((struct usb_device **)((void *)__cil_tmp7 + 16));
   __cil_tmp11 = *((struct mts_desc **)context);
-  __cil_tmp12 = (unsigned long )__cil_tmp11;
-  __cil_tmp13 = __cil_tmp12 + 33;
-  __cil_tmp14 = *((u8 *)__cil_tmp13);
+  __cil_tmp14 = *((u8 *)((void *)__cil_tmp11 + 33));
   __cil_tmp15 = (unsigned int )__cil_tmp14;
   tmp___7 = __create_pipe(__cil_tmp10, __cil_tmp15);
   __cil_tmp16 = 3 << 30;
@@ -5102,9 +4908,7 @@ static void mts_get_status(struct urb *transfer )
   __cil_tmp18 = __cil_tmp17 | tmp___7;
   __cil_tmp19 = __cil_tmp18 | 128U;
   __cil_tmp20 = (int )__cil_tmp19;
-  __cil_tmp21 = (unsigned long )context;
-  __cil_tmp22 = __cil_tmp21 + 48;
-  __cil_tmp23 = *((u8 **)__cil_tmp22);
+  __cil_tmp23 = *((u8 **)((void *)context + 48));
   __cil_tmp24 = (void *)__cil_tmp23;
   mts_int_submit_urb(transfer, __cil_tmp20, __cil_tmp24, 1U, & mts_transfer_done);
   }
@@ -5116,44 +4920,22 @@ static void mts_data_done(struct urb *transfer )
   struct mts_transfer_context *context ;
   int tmp___7 ;
   long tmp___8 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   u32 __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned int __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   struct scsi_cmnd *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   u32 __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   unsigned int __cil_tmp25 ;
   unsigned int __cil_tmp26 ;
   int __cil_tmp27 ;
   int __cil_tmp28 ;
   int __cil_tmp29 ;
   long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   struct scsi_cmnd *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
 
   {
-  __cil_tmp6 = (unsigned long )transfer;
-  __cil_tmp7 = __cil_tmp6 + 96;
-  status = *((int *)__cil_tmp7);
-  __cil_tmp8 = (unsigned long )transfer;
-  __cil_tmp9 = __cil_tmp8 + 176;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  status = *((int *)((void *)transfer + 96));
+  __cil_tmp10 = *((void **)((void *)transfer + 176));
   context = (struct mts_transfer_context *)__cil_tmp10;
   {
   while (1) {
@@ -5163,23 +4945,13 @@ static void mts_data_done(struct urb *transfer )
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp11 = (unsigned long )transfer;
-  __cil_tmp12 = __cil_tmp11 + 140;
-  __cil_tmp13 = *((u32 *)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )context;
-  __cil_tmp15 = __cil_tmp14 + 32;
-  __cil_tmp16 = *((unsigned int *)__cil_tmp15);
+  __cil_tmp13 = *((u32 *)((void *)transfer + 140));
+  __cil_tmp16 = *((unsigned int *)((void *)context + 32));
   if (__cil_tmp16 != __cil_tmp13) {
     {
-    __cil_tmp17 = (unsigned long )context;
-    __cil_tmp18 = __cil_tmp17 + 16;
-    __cil_tmp19 = *((struct scsi_cmnd **)__cil_tmp18);
-    __cil_tmp20 = (unsigned long )transfer;
-    __cil_tmp21 = __cil_tmp20 + 140;
-    __cil_tmp22 = *((u32 *)__cil_tmp21);
-    __cil_tmp23 = (unsigned long )context;
-    __cil_tmp24 = __cil_tmp23 + 32;
-    __cil_tmp25 = *((unsigned int *)__cil_tmp24);
+    __cil_tmp19 = *((struct scsi_cmnd **)((void *)context + 16));
+    __cil_tmp22 = *((u32 *)((void *)transfer + 140));
+    __cil_tmp25 = *((unsigned int *)((void *)context + 32));
     __cil_tmp26 = __cil_tmp25 - __cil_tmp22;
     __cil_tmp27 = (int )__cil_tmp26;
     scsi_set_resid(__cil_tmp19, __cil_tmp27);
@@ -5197,12 +4969,8 @@ static void mts_data_done(struct urb *transfer )
       } else {
         tmp___7 = 7;
       }
-      __cil_tmp31 = (unsigned long )context;
-      __cil_tmp32 = __cil_tmp31 + 16;
-      __cil_tmp33 = *((struct scsi_cmnd **)__cil_tmp32);
-      __cil_tmp34 = (unsigned long )__cil_tmp33;
-      __cil_tmp35 = __cil_tmp34 + 224;
-      *((int *)__cil_tmp35) = tmp___7 << 16;
+      __cil_tmp33 = *((struct scsi_cmnd **)((void *)context + 16));
+      *((int *)((void *)__cil_tmp33 + 224)) = tmp___7 << 16;
     } else {
 
     }
@@ -5220,68 +4988,30 @@ static void mts_command_done(struct urb *transfer )
   long tmp___7 ;
   void (*tmp___9)(struct urb *transfer ) ;
   unsigned int tmp___10 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   void *__cil_tmp12 ;
   int __cil_tmp13 ;
   int __cil_tmp14 ;
   long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   struct scsi_cmnd *__cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct scsi_cmnd *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   struct scsi_cmnd *__cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned char *__cil_tmp31 ;
   unsigned char *__cil_tmp32 ;
   unsigned char __cil_tmp33 ;
   int __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   int __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   struct scsi_cmnd *__cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
   unsigned char *__cil_tmp43 ;
   void *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   unsigned int __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
-  unsigned long __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   struct scsi_cmnd *__cil_tmp52 ;
-  unsigned long __cil_tmp53 ;
-  unsigned long __cil_tmp54 ;
   int __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
-  unsigned long __cil_tmp57 ;
   void *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   unsigned int __cil_tmp61 ;
 
   {
-  __cil_tmp8 = (unsigned long )transfer;
-  __cil_tmp9 = __cil_tmp8 + 96;
-  status = *((int *)__cil_tmp9);
-  __cil_tmp10 = (unsigned long )transfer;
-  __cil_tmp11 = __cil_tmp10 + 176;
-  __cil_tmp12 = *((void **)__cil_tmp11);
+  status = *((int *)((void *)transfer + 96));
+  __cil_tmp12 = *((void **)((void *)transfer + 176));
   context = (struct mts_transfer_context *)__cil_tmp12;
   {
   while (1) {
@@ -5305,12 +5035,8 @@ static void mts_command_done(struct urb *transfer )
       }
       while_break___0: /* CIL Label */ ;
       }
-      __cil_tmp16 = (unsigned long )context;
-      __cil_tmp17 = __cil_tmp16 + 16;
-      __cil_tmp18 = *((struct scsi_cmnd **)__cil_tmp17);
-      __cil_tmp19 = (unsigned long )__cil_tmp18;
-      __cil_tmp20 = __cil_tmp19 + 224;
-      *((int *)__cil_tmp20) = 5 << 16;
+      __cil_tmp18 = *((struct scsi_cmnd **)((void *)context + 16));
+      *((int *)((void *)__cil_tmp18 + 224)) = 5 << 16;
     } else {
       {
       while (1) {
@@ -5319,12 +5045,8 @@ static void mts_command_done(struct urb *transfer )
       }
       while_break___1: /* CIL Label */ ;
       }
-      __cil_tmp21 = (unsigned long )context;
-      __cil_tmp22 = __cil_tmp21 + 16;
-      __cil_tmp23 = *((struct scsi_cmnd **)__cil_tmp22);
-      __cil_tmp24 = (unsigned long )__cil_tmp23;
-      __cil_tmp25 = __cil_tmp24 + 224;
-      *((int *)__cil_tmp25) = 7 << 16;
+      __cil_tmp23 = *((struct scsi_cmnd **)((void *)context + 16));
+      *((int *)((void *)__cil_tmp23 + 224)) = 7 << 16;
     }
     {
     mts_transfer_cleanup(transfer);
@@ -5334,41 +5056,25 @@ static void mts_command_done(struct urb *transfer )
 
   }
   {
-  __cil_tmp26 = (unsigned long )context;
-  __cil_tmp27 = __cil_tmp26 + 16;
-  __cil_tmp28 = *((struct scsi_cmnd **)__cil_tmp27);
-  __cil_tmp29 = (unsigned long )__cil_tmp28;
-  __cil_tmp30 = __cil_tmp29 + 80;
-  __cil_tmp31 = *((unsigned char **)__cil_tmp30);
+  __cil_tmp28 = *((struct scsi_cmnd **)((void *)context + 16));
+  __cil_tmp31 = *((unsigned char **)((void *)__cil_tmp28 + 80));
   __cil_tmp32 = __cil_tmp31 + 0;
   __cil_tmp33 = *__cil_tmp32;
   __cil_tmp34 = (int )__cil_tmp33;
   if (__cil_tmp34 == 3) {
     {
-    __cil_tmp35 = (unsigned long )context;
-    __cil_tmp36 = __cil_tmp35 + 36;
-    __cil_tmp37 = *((int *)__cil_tmp36);
-    __cil_tmp38 = (unsigned long )context;
-    __cil_tmp39 = __cil_tmp38 + 16;
-    __cil_tmp40 = *((struct scsi_cmnd **)__cil_tmp39);
-    __cil_tmp41 = (unsigned long )__cil_tmp40;
-    __cil_tmp42 = __cil_tmp41 + 136;
-    __cil_tmp43 = *((unsigned char **)__cil_tmp42);
+    __cil_tmp37 = *((int *)((void *)context + 36));
+    __cil_tmp40 = *((struct scsi_cmnd **)((void *)context + 16));
+    __cil_tmp43 = *((unsigned char **)((void *)__cil_tmp40 + 136));
     __cil_tmp44 = (void *)__cil_tmp43;
-    __cil_tmp45 = (unsigned long )context;
-    __cil_tmp46 = __cil_tmp45 + 32;
-    __cil_tmp47 = *((unsigned int *)__cil_tmp46);
+    __cil_tmp47 = *((unsigned int *)((void *)context + 32));
     mts_int_submit_urb(transfer, __cil_tmp37, __cil_tmp44, __cil_tmp47, & mts_data_done);
     }
   } else {
     {
-    __cil_tmp48 = (unsigned long )context;
-    __cil_tmp49 = __cil_tmp48 + 24;
-    if (*((void **)__cil_tmp49)) {
+    if (*((void **)((void *)context + 24))) {
       {
-      __cil_tmp50 = (unsigned long )context;
-      __cil_tmp51 = __cil_tmp50 + 16;
-      __cil_tmp52 = *((struct scsi_cmnd **)__cil_tmp51);
+      __cil_tmp52 = *((struct scsi_cmnd **)((void *)context + 16));
       tmp___10 = scsi_sg_count(__cil_tmp52);
       }
       if (tmp___10 > 1U) {
@@ -5377,15 +5083,9 @@ static void mts_command_done(struct urb *transfer )
         tmp___9 = & mts_data_done;
       }
       {
-      __cil_tmp53 = (unsigned long )context;
-      __cil_tmp54 = __cil_tmp53 + 36;
-      __cil_tmp55 = *((int *)__cil_tmp54);
-      __cil_tmp56 = (unsigned long )context;
-      __cil_tmp57 = __cil_tmp56 + 24;
-      __cil_tmp58 = *((void **)__cil_tmp57);
-      __cil_tmp59 = (unsigned long )context;
-      __cil_tmp60 = __cil_tmp59 + 32;
-      __cil_tmp61 = *((unsigned int *)__cil_tmp60);
+      __cil_tmp55 = *((int *)((void *)context + 36));
+      __cil_tmp58 = *((void **)((void *)context + 24));
+      __cil_tmp61 = *((unsigned int *)((void *)context + 32));
       mts_int_submit_urb(transfer, __cil_tmp55, __cil_tmp58, __cil_tmp61, tmp___9);
       }
     } else {
@@ -5408,57 +5108,27 @@ static void mts_do_sg(struct urb *transfer )
   void (*tmp___10)(struct urb *transfer ) ;
   unsigned int tmp___11 ;
   void *tmp___12 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   void *__cil_tmp15 ;
   int __cil_tmp16 ;
   int __cil_tmp17 ;
   long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct scsi_cmnd *__cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
   struct scsi_cmnd *__cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
-  unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   struct scsi_cmnd *__cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   int __cil_tmp37 ;
   int __cil_tmp38 ;
   unsigned int __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   int __cil_tmp42 ;
   struct scatterlist *__cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
   int __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
-  unsigned long __cil_tmp48 ;
   int __cil_tmp49 ;
   struct scatterlist *__cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned int __cil_tmp53 ;
 
   {
-  __cil_tmp11 = (unsigned long )transfer;
-  __cil_tmp12 = __cil_tmp11 + 96;
-  status = *((int *)__cil_tmp12);
-  __cil_tmp13 = (unsigned long )transfer;
-  __cil_tmp14 = __cil_tmp13 + 176;
-  __cil_tmp15 = *((void **)__cil_tmp14);
+  status = *((int *)((void *)transfer + 96));
+  __cil_tmp15 = *((void **)((void *)transfer + 176));
   context = (struct mts_transfer_context *)__cil_tmp15;
   {
   while (1) {
@@ -5487,37 +5157,23 @@ static void mts_do_sg(struct urb *transfer )
       tmp___7 = 7;
     }
     {
-    __cil_tmp19 = (unsigned long )context;
-    __cil_tmp20 = __cil_tmp19 + 16;
-    __cil_tmp21 = *((struct scsi_cmnd **)__cil_tmp20);
-    __cil_tmp22 = (unsigned long )__cil_tmp21;
-    __cil_tmp23 = __cil_tmp22 + 224;
-    *((int *)__cil_tmp23) = tmp___7 << 16;
+    __cil_tmp21 = *((struct scsi_cmnd **)((void *)context + 16));
+    *((int *)((void *)__cil_tmp21 + 224)) = tmp___7 << 16;
     mts_transfer_cleanup(transfer);
     }
   } else {
 
   }
   {
-  __cil_tmp24 = (unsigned long )context;
-  __cil_tmp25 = __cil_tmp24 + 16;
-  __cil_tmp26 = *((struct scsi_cmnd **)__cil_tmp25);
+  __cil_tmp26 = *((struct scsi_cmnd **)((void *)context + 16));
   sg = scsi_sglist(__cil_tmp26);
-  __cil_tmp27 = (unsigned long )context;
-  __cil_tmp28 = __cil_tmp27 + 40;
-  __cil_tmp29 = (unsigned long )context;
-  __cil_tmp30 = __cil_tmp29 + 40;
-  __cil_tmp31 = *((int *)__cil_tmp30);
-  *((int *)__cil_tmp28) = __cil_tmp31 + 1;
-  __cil_tmp32 = (unsigned long )context;
-  __cil_tmp33 = __cil_tmp32 + 16;
-  __cil_tmp34 = *((struct scsi_cmnd **)__cil_tmp33);
+  __cil_tmp31 = *((int *)((void *)context + 40));
+  *((int *)((void *)context + 40)) = __cil_tmp31 + 1;
+  __cil_tmp34 = *((struct scsi_cmnd **)((void *)context + 16));
   tmp___11 = scsi_sg_count(__cil_tmp34);
   }
   {
-  __cil_tmp35 = (unsigned long )context;
-  __cil_tmp36 = __cil_tmp35 + 40;
-  __cil_tmp37 = *((int *)__cil_tmp36);
+  __cil_tmp37 = *((int *)((void *)context + 40));
   __cil_tmp38 = __cil_tmp37 + 1;
   __cil_tmp39 = (unsigned int )__cil_tmp38;
   if (__cil_tmp39 == tmp___11) {
@@ -5527,21 +5183,13 @@ static void mts_do_sg(struct urb *transfer )
   }
   }
   {
-  __cil_tmp40 = (unsigned long )context;
-  __cil_tmp41 = __cil_tmp40 + 40;
-  __cil_tmp42 = *((int *)__cil_tmp41);
+  __cil_tmp42 = *((int *)((void *)context + 40));
   __cil_tmp43 = sg + __cil_tmp42;
   tmp___12 = sg_virt(__cil_tmp43);
-  __cil_tmp44 = (unsigned long )context;
-  __cil_tmp45 = __cil_tmp44 + 36;
-  __cil_tmp46 = *((int *)__cil_tmp45);
-  __cil_tmp47 = (unsigned long )context;
-  __cil_tmp48 = __cil_tmp47 + 40;
-  __cil_tmp49 = *((int *)__cil_tmp48);
+  __cil_tmp46 = *((int *)((void *)context + 36));
+  __cil_tmp49 = *((int *)((void *)context + 40));
   __cil_tmp50 = sg + __cil_tmp49;
-  __cil_tmp51 = (unsigned long )__cil_tmp50;
-  __cil_tmp52 = __cil_tmp51 + 20;
-  __cil_tmp53 = *((unsigned int *)__cil_tmp52);
+  __cil_tmp53 = *((unsigned int *)((void *)__cil_tmp50 + 20));
   mts_int_submit_urb(transfer, __cil_tmp46, tmp___12, __cil_tmp53, tmp___10);
   }
   return;
@@ -5566,32 +5214,14 @@ static void mts_build_transfer_context(struct scsi_cmnd *srb , struct mts_desc *
   unsigned int tmp___9 ;
   unsigned int tmp___10 ;
   int tmp___11 ;
-  unsigned long __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
   unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct scatterlist *__cil_tmp21 ;
   unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
   struct scatterlist *__cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   unsigned long __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   unsigned char *__cil_tmp36 ;
   void    *__cil_tmp37 ;
   unsigned long __cil_tmp38 ;
@@ -5599,15 +5229,11 @@ static void mts_build_transfer_context(struct scsi_cmnd *srb , struct mts_desc *
   u8    *__cil_tmp40 ;
   void    *__cil_tmp41 ;
   unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
-  unsigned long __cil_tmp44 ;
   unsigned char *__cil_tmp45 ;
   unsigned char *__cil_tmp46 ;
   unsigned char __cil_tmp47 ;
   int __cil_tmp48 ;
   int __cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   unsigned char *__cil_tmp52 ;
   unsigned char *__cil_tmp53 ;
   unsigned char __cil_tmp54 ;
@@ -5618,32 +5244,20 @@ static void mts_build_transfer_context(struct scsi_cmnd *srb , struct mts_desc *
   unsigned char   __cil_tmp59 ;
   int   __cil_tmp60 ;
   int    __cil_tmp61 ;
-  unsigned long __cil_tmp62 ;
-  unsigned long __cil_tmp63 ;
   struct usb_device *__cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
   u8 __cil_tmp67 ;
   unsigned int __cil_tmp68 ;
   int __cil_tmp69 ;
   unsigned int __cil_tmp70 ;
   unsigned int __cil_tmp71 ;
   unsigned int __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   struct usb_device *__cil_tmp75 ;
-  unsigned long __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
   u8 __cil_tmp78 ;
   unsigned int __cil_tmp79 ;
   int __cil_tmp80 ;
   unsigned int __cil_tmp81 ;
   unsigned int __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   struct usb_device *__cil_tmp85 ;
-  unsigned long __cil_tmp86 ;
-  unsigned long __cil_tmp87 ;
   u8 __cil_tmp88 ;
   unsigned int __cil_tmp89 ;
   int __cil_tmp90 ;
@@ -5651,8 +5265,6 @@ static void mts_build_transfer_context(struct scsi_cmnd *srb , struct mts_desc *
   unsigned int __cil_tmp92 ;
   unsigned int __cil_tmp93 ;
   unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
 
   {
   {
@@ -5663,50 +5275,32 @@ static void mts_build_transfer_context(struct scsi_cmnd *srb , struct mts_desc *
   while_break: /* CIL Label */ ;
   }
   {
-  __cil_tmp10 = (unsigned long )desc;
-  __cil_tmp11 = __cil_tmp10 + 56;
-  *((struct mts_desc **)__cil_tmp11) = desc;
+  *((struct mts_desc **)((void *)desc + 56)) = desc;
   __cil_tmp12 = 56 + 16;
-  __cil_tmp13 = (unsigned long )desc;
-  __cil_tmp14 = __cil_tmp13 + __cil_tmp12;
-  *((struct scsi_cmnd **)__cil_tmp14) = srb;
+  *((struct scsi_cmnd **)((void *)desc + __cil_tmp12)) = srb;
   __cil_tmp15 = 56 + 40;
-  __cil_tmp16 = (unsigned long )desc;
-  __cil_tmp17 = __cil_tmp16 + __cil_tmp15;
-  *((int *)__cil_tmp17) = 0;
+  *((int *)((void *)desc + __cil_tmp15)) = 0;
   tmp___7 = scsi_bufflen(srb);
   }
   if (tmp___7) {
     {
     sg = scsi_sglist(srb);
     __cil_tmp18 = 56 + 24;
-    __cil_tmp19 = (unsigned long )desc;
-    __cil_tmp20 = __cil_tmp19 + __cil_tmp18;
     __cil_tmp21 = sg + 0;
-    *((void **)__cil_tmp20) = sg_virt(__cil_tmp21);
+    *((void **)((void *)desc + __cil_tmp18)) = sg_virt(__cil_tmp21);
     __cil_tmp22 = 56 + 32;
-    __cil_tmp23 = (unsigned long )desc;
-    __cil_tmp24 = __cil_tmp23 + __cil_tmp22;
     __cil_tmp25 = sg + 0;
-    __cil_tmp26 = (unsigned long )__cil_tmp25;
-    __cil_tmp27 = __cil_tmp26 + 20;
-    *((unsigned int *)__cil_tmp24) = *((unsigned int *)__cil_tmp27);
+    *((unsigned int *)((void *)desc + __cil_tmp22)) = *((unsigned int *)((void *)__cil_tmp25 + 20));
     }
   } else {
     __cil_tmp28 = 56 + 24;
-    __cil_tmp29 = (unsigned long )desc;
-    __cil_tmp30 = __cil_tmp29 + __cil_tmp28;
-    *((void **)__cil_tmp30) = (void *)0;
+    *((void **)((void *)desc + __cil_tmp28)) = (void *)0;
     __cil_tmp31 = 56 + 32;
-    __cil_tmp32 = (unsigned long )desc;
-    __cil_tmp33 = __cil_tmp32 + __cil_tmp31;
-    *((unsigned int *)__cil_tmp33) = 0U;
+    *((unsigned int *)((void *)desc + __cil_tmp31)) = 0U;
     return;
   }
   {
-  __cil_tmp34 = (unsigned long )srb;
-  __cil_tmp35 = __cil_tmp34 + 80;
-  __cil_tmp36 = *((unsigned char **)__cil_tmp35);
+  __cil_tmp36 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp37 = (void    *)__cil_tmp36;
   __cil_tmp38 = 0 * 1UL;
   __cil_tmp39 = (unsigned long )(mts_read_image_sig) + __cil_tmp38;
@@ -5717,16 +5311,12 @@ static void mts_build_transfer_context(struct scsi_cmnd *srb , struct mts_desc *
   }
   if (tmp___11) {
     {
-    __cil_tmp43 = (unsigned long )srb;
-    __cil_tmp44 = __cil_tmp43 + 80;
-    __cil_tmp45 = *((unsigned char **)__cil_tmp44);
+    __cil_tmp45 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp46 = __cil_tmp45 + 0;
     __cil_tmp47 = *__cil_tmp46;
     __cil_tmp48 = (int )__cil_tmp47;
     __cil_tmp49 = __cil_tmp48 & 7;
-    __cil_tmp50 = (unsigned long )srb;
-    __cil_tmp51 = __cil_tmp50 + 80;
-    __cil_tmp52 = *((unsigned char **)__cil_tmp51);
+    __cil_tmp52 = *((unsigned char **)((void *)srb + 80));
     __cil_tmp53 = __cil_tmp52 + 0;
     __cil_tmp54 = *__cil_tmp53;
     __cil_tmp55 = (int )__cil_tmp54;
@@ -5738,12 +5328,8 @@ static void mts_build_transfer_context(struct scsi_cmnd *srb , struct mts_desc *
     __cil_tmp61 = __cil_tmp60 >> __cil_tmp49;
     if (__cil_tmp61 & 1) {
       {
-      __cil_tmp62 = (unsigned long )desc;
-      __cil_tmp63 = __cil_tmp62 + 16;
-      __cil_tmp64 = *((struct usb_device **)__cil_tmp63);
-      __cil_tmp65 = (unsigned long )desc;
-      __cil_tmp66 = __cil_tmp65 + 33;
-      __cil_tmp67 = *((u8 *)__cil_tmp66);
+      __cil_tmp64 = *((struct usb_device **)((void *)desc + 16));
+      __cil_tmp67 = *((u8 *)((void *)desc + 33));
       __cil_tmp68 = (unsigned int )__cil_tmp67;
       tmp___9 = __create_pipe(__cil_tmp64, __cil_tmp68);
       __cil_tmp69 = 3 << 30;
@@ -5768,12 +5354,8 @@ static void mts_build_transfer_context(struct scsi_cmnd *srb , struct mts_desc *
       while_break___1: /* CIL Label */ ;
       }
       {
-      __cil_tmp73 = (unsigned long )desc;
-      __cil_tmp74 = __cil_tmp73 + 16;
-      __cil_tmp75 = *((struct usb_device **)__cil_tmp74);
-      __cil_tmp76 = (unsigned long )desc;
-      __cil_tmp77 = __cil_tmp76 + 32;
-      __cil_tmp78 = *((u8 *)__cil_tmp77);
+      __cil_tmp75 = *((struct usb_device **)((void *)desc + 16));
+      __cil_tmp78 = *((u8 *)((void *)desc + 32));
       __cil_tmp79 = (unsigned int )__cil_tmp78;
       tmp___10 = __create_pipe(__cil_tmp75, __cil_tmp79);
       __cil_tmp80 = 3 << 30;
@@ -5785,12 +5367,8 @@ static void mts_build_transfer_context(struct scsi_cmnd *srb , struct mts_desc *
     }
   } else {
     {
-    __cil_tmp83 = (unsigned long )desc;
-    __cil_tmp84 = __cil_tmp83 + 16;
-    __cil_tmp85 = *((struct usb_device **)__cil_tmp84);
-    __cil_tmp86 = (unsigned long )desc;
-    __cil_tmp87 = __cil_tmp86 + 34;
-    __cil_tmp88 = *((u8 *)__cil_tmp87);
+    __cil_tmp85 = *((struct usb_device **)((void *)desc + 16));
+    __cil_tmp88 = *((u8 *)((void *)desc + 34));
     __cil_tmp89 = (unsigned int )__cil_tmp88;
     tmp___8 = __create_pipe(__cil_tmp85, __cil_tmp89);
     __cil_tmp90 = 3 << 30;
@@ -5808,9 +5386,7 @@ static void mts_build_transfer_context(struct scsi_cmnd *srb , struct mts_desc *
     }
   }
   __cil_tmp94 = 56 + 36;
-  __cil_tmp95 = (unsigned long )desc;
-  __cil_tmp96 = __cil_tmp95 + __cil_tmp94;
-  *((int *)__cil_tmp96) = pipe;
+  *((int *)((void *)desc + __cil_tmp94)) = pipe;
   return;
 }
 }
@@ -5826,20 +5402,10 @@ static int mts_scsi_queuecommand_lck(struct scsi_cmnd *srb , void (*callback)(st
   unsigned long __cil_tmp11 ;
   struct scsi_device *__cil_tmp12 ;
   struct Scsi_Host *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   unsigned long __cil_tmp16 ;
   struct scsi_device *__cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   struct scsi_device *__cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   struct scsi_device *__cil_tmp23 ;
-  unsigned long __cil_tmp24 ;
-  unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   void *__cil_tmp28 ;
   unsigned long __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
@@ -5847,45 +5413,25 @@ static int mts_scsi_queuecommand_lck(struct scsi_cmnd *srb , void (*callback)(st
   int __cil_tmp32 ;
   int __cil_tmp33 ;
   long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   struct usb_device *__cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
-  unsigned long __cil_tmp39 ;
   u8 __cil_tmp40 ;
   unsigned int __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   struct urb *__cil_tmp44 ;
-  unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
   struct usb_device *__cil_tmp47 ;
   int __cil_tmp48 ;
   unsigned int __cil_tmp49 ;
   unsigned int __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
-  unsigned long __cil_tmp52 ;
   unsigned char *__cil_tmp53 ;
   void *__cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   unsigned short __cil_tmp57 ;
   int __cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   struct mts_transfer_context *__cil_tmp61 ;
   void *__cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
-  unsigned long __cil_tmp66 ;
-  unsigned long __cil_tmp67 ;
   struct urb *__cil_tmp68 ;
   int __cil_tmp69 ;
   int __cil_tmp70 ;
   long __cil_tmp71 ;
-  unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
   void *__cil_tmp74 ;
   unsigned long __cil_tmp75 ;
   unsigned long __cil_tmp76 ;
@@ -5899,9 +5445,7 @@ static int mts_scsi_queuecommand_lck(struct scsi_cmnd *srb , void (*callback)(st
   __cil_tmp11 = 2040 + __cil_tmp10;
   __cil_tmp12 = *((struct scsi_device **)srb);
   __cil_tmp13 = *((struct Scsi_Host **)__cil_tmp12);
-  __cil_tmp14 = (unsigned long )__cil_tmp13;
-  __cil_tmp15 = __cil_tmp14 + __cil_tmp11;
-  __cil_tmp16 = *((unsigned long *)__cil_tmp15);
+  __cil_tmp16 = *((unsigned long *)((void *)__cil_tmp13 + __cil_tmp11));
   desc = (struct mts_desc *)__cil_tmp16;
   err = 0;
   {
@@ -5917,23 +5461,17 @@ static int mts_scsi_queuecommand_lck(struct scsi_cmnd *srb , void (*callback)(st
   }
   {
   __cil_tmp17 = *((struct scsi_device **)srb);
-  __cil_tmp18 = (unsigned long )__cil_tmp17;
-  __cil_tmp19 = __cil_tmp18 + 156;
-  if (*((unsigned int *)__cil_tmp19)) {
+  if (*((unsigned int *)((void *)__cil_tmp17 + 156))) {
     goto _L;
   } else {
     {
     __cil_tmp20 = *((struct scsi_device **)srb);
-    __cil_tmp21 = (unsigned long )__cil_tmp20;
-    __cil_tmp22 = __cil_tmp21 + 152;
-    if (*((unsigned int *)__cil_tmp22)) {
+    if (*((unsigned int *)((void *)__cil_tmp20 + 152))) {
       goto _L;
     } else {
       {
       __cil_tmp23 = *((struct scsi_device **)srb);
-      __cil_tmp24 = (unsigned long )__cil_tmp23;
-      __cil_tmp25 = __cil_tmp24 + 160;
-      if (*((unsigned int *)__cil_tmp25)) {
+      if (*((unsigned int *)((void *)__cil_tmp23 + 160))) {
         _L: /* CIL Label */ 
         {
         while (1) {
@@ -5950,9 +5488,7 @@ static int mts_scsi_queuecommand_lck(struct scsi_cmnd *srb , void (*callback)(st
         while_break___1: /* CIL Label */ ;
         }
         {
-        __cil_tmp26 = (unsigned long )srb;
-        __cil_tmp27 = __cil_tmp26 + 224;
-        *((int *)__cil_tmp27) = 4 << 16;
+        *((int *)((void *)srb + 224)) = 4 << 16;
         __cil_tmp28 = (void *)0;
         __cil_tmp29 = (unsigned long )__cil_tmp28;
         __cil_tmp30 = (unsigned long )callback;
@@ -5979,45 +5515,27 @@ static int mts_scsi_queuecommand_lck(struct scsi_cmnd *srb , void (*callback)(st
   }
   }
   {
-  __cil_tmp35 = (unsigned long )desc;
-  __cil_tmp36 = __cil_tmp35 + 16;
-  __cil_tmp37 = *((struct usb_device **)__cil_tmp36);
-  __cil_tmp38 = (unsigned long )desc;
-  __cil_tmp39 = __cil_tmp38 + 32;
-  __cil_tmp40 = *((u8 *)__cil_tmp39);
+  __cil_tmp37 = *((struct usb_device **)((void *)desc + 16));
+  __cil_tmp40 = *((u8 *)((void *)desc + 32));
   __cil_tmp41 = (unsigned int )__cil_tmp40;
   tmp___8 = __create_pipe(__cil_tmp37, __cil_tmp41);
-  __cil_tmp42 = (unsigned long )desc;
-  __cil_tmp43 = __cil_tmp42 + 48;
-  __cil_tmp44 = *((struct urb **)__cil_tmp43);
-  __cil_tmp45 = (unsigned long )desc;
-  __cil_tmp46 = __cil_tmp45 + 16;
-  __cil_tmp47 = *((struct usb_device **)__cil_tmp46);
+  __cil_tmp44 = *((struct urb **)((void *)desc + 48));
+  __cil_tmp47 = *((struct usb_device **)((void *)desc + 16));
   __cil_tmp48 = 3 << 30;
   __cil_tmp49 = (unsigned int )__cil_tmp48;
   __cil_tmp50 = __cil_tmp49 | tmp___8;
-  __cil_tmp51 = (unsigned long )srb;
-  __cil_tmp52 = __cil_tmp51 + 80;
-  __cil_tmp53 = *((unsigned char **)__cil_tmp52);
+  __cil_tmp53 = *((unsigned char **)((void *)srb + 80));
   __cil_tmp54 = (void *)__cil_tmp53;
-  __cil_tmp55 = (unsigned long )srb;
-  __cil_tmp56 = __cil_tmp55 + 74;
-  __cil_tmp57 = *((unsigned short *)__cil_tmp56);
+  __cil_tmp57 = *((unsigned short *)((void *)srb + 74));
   __cil_tmp58 = (int )__cil_tmp57;
-  __cil_tmp59 = (unsigned long )desc;
-  __cil_tmp60 = __cil_tmp59 + 56;
-  __cil_tmp61 = (struct mts_transfer_context *)__cil_tmp60;
+  __cil_tmp61 = (struct mts_transfer_context *)((void *)desc + 56);
   __cil_tmp62 = (void *)__cil_tmp61;
   usb_fill_bulk_urb(__cil_tmp44, __cil_tmp47, __cil_tmp50, __cil_tmp54, __cil_tmp58,
                     & mts_command_done, __cil_tmp62);
   mts_build_transfer_context(srb, desc);
   __cil_tmp63 = 56 + 8;
-  __cil_tmp64 = (unsigned long )desc;
-  __cil_tmp65 = __cil_tmp64 + __cil_tmp63;
-  *((void (**)(struct scsi_cmnd * ))__cil_tmp65) = callback;
-  __cil_tmp66 = (unsigned long )desc;
-  __cil_tmp67 = __cil_tmp66 + 48;
-  __cil_tmp68 = *((struct urb **)__cil_tmp67);
+  *((void (**)(struct scsi_cmnd * ))((void *)desc + __cil_tmp63)) = callback;
+  __cil_tmp68 = *((struct urb **)((void *)desc + 48));
   res = usb_submit_urb(__cil_tmp68, 32U);
   __cil_tmp69 = ! res;
   __cil_tmp70 = ! __cil_tmp69;
@@ -6027,9 +5545,7 @@ static int mts_scsi_queuecommand_lck(struct scsi_cmnd *srb , void (*callback)(st
   if (tmp___10) {
     {
     printk("<3>microtek usb (rev 0.4.3): error %d submitting URB\n", res);
-    __cil_tmp72 = (unsigned long )srb;
-    __cil_tmp73 = __cil_tmp72 + 224;
-    *((int *)__cil_tmp73) = 7 << 16;
+    *((int *)((void *)srb + 224)) = 7 << 16;
     __cil_tmp74 = (void *)0;
     __cil_tmp75 = (unsigned long )__cil_tmp74;
     __cil_tmp76 = (unsigned long )callback;
@@ -6057,14 +5573,8 @@ static int mts_scsi_queuecommand(struct Scsi_Host *shost , struct scsi_cmnd *cmd
 { unsigned long irq_flags ;
   int rc ;
   raw_spinlock_t *tmp___7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   spinlock_t *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   void (*__cil_tmp13)(struct scsi_cmnd * ) ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   spinlock_t *__cil_tmp16 ;
 
   {
@@ -6075,9 +5585,7 @@ static int mts_scsi_queuecommand(struct Scsi_Host *shost , struct scsi_cmnd *cmd
     while (1) {
       while_continue___0: /* CIL Label */ ;
       {
-      __cil_tmp8 = (unsigned long )shost;
-      __cil_tmp9 = __cil_tmp8 + 120;
-      __cil_tmp10 = *((spinlock_t **)__cil_tmp9);
+      __cil_tmp10 = *((spinlock_t **)((void *)shost + 120));
       tmp___7 = spinlock_check(__cil_tmp10);
       irq_flags = _raw_spin_lock_irqsave(tmp___7);
       }
@@ -6091,13 +5599,9 @@ static int mts_scsi_queuecommand(struct Scsi_Host *shost , struct scsi_cmnd *cmd
   }
   {
   scsi_cmd_get_serial(shost, cmd);
-  __cil_tmp11 = (unsigned long )cmd;
-  __cil_tmp12 = __cil_tmp11 + 144;
-  __cil_tmp13 = *((void (**)(struct scsi_cmnd * ))__cil_tmp12);
+  __cil_tmp13 = *((void (**)(struct scsi_cmnd * ))((void *)cmd + 144));
   rc = mts_scsi_queuecommand_lck(cmd, __cil_tmp13);
-  __cil_tmp14 = (unsigned long )shost;
-  __cil_tmp15 = __cil_tmp14 + 120;
-  __cil_tmp16 = *((spinlock_t **)__cil_tmp15);
+  __cil_tmp16 = *((spinlock_t **)((void *)shost + 120));
   spin_unlock_irqrestore(__cil_tmp16, irq_flags);
   }
   return (rc);
@@ -6171,155 +5675,77 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
   int tmp___11 ;
   unsigned long __cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   __u8 __cil_tmp23 ;
   int __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   __u8 __cil_tmp28 ;
   int __cil_tmp29 ;
   unsigned long __cil_tmp30 ;
-  unsigned long __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
   __u8 __cil_tmp33 ;
   int __cil_tmp34 ;
   unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
   struct usb_host_endpoint *__cil_tmp38 ;
   struct usb_host_endpoint *__cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
   __u8 __cil_tmp42 ;
   int __cil_tmp43 ;
   int __cil_tmp44 ;
   unsigned long __cil_tmp45 ;
-  unsigned long __cil_tmp46 ;
-  unsigned long __cil_tmp47 ;
   struct usb_host_endpoint *__cil_tmp48 ;
   struct usb_host_endpoint *__cil_tmp49 ;
-  unsigned long __cil_tmp50 ;
-  unsigned long __cil_tmp51 ;
   __u8 __cil_tmp52 ;
   int __cil_tmp53 ;
   unsigned long __cil_tmp54 ;
-  unsigned long __cil_tmp55 ;
-  unsigned long __cil_tmp56 ;
   struct usb_host_endpoint *__cil_tmp57 ;
   struct usb_host_endpoint *__cil_tmp58 ;
-  unsigned long __cil_tmp59 ;
-  unsigned long __cil_tmp60 ;
   __u8 __cil_tmp61 ;
   int __cil_tmp62 ;
   unsigned long __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct usb_host_endpoint *__cil_tmp66 ;
   struct usb_host_endpoint *__cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   __u8 __cil_tmp70 ;
   int __cil_tmp71 ;
   unsigned long __cil_tmp72 ;
-  unsigned long __cil_tmp73 ;
-  unsigned long __cil_tmp74 ;
   struct usb_host_endpoint *__cil_tmp75 ;
   struct usb_host_endpoint *__cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   __u8 __cil_tmp79 ;
   int __cil_tmp80 ;
-  unsigned long __cil_tmp81 ;
-  unsigned long __cil_tmp82 ;
-  unsigned long __cil_tmp83 ;
-  unsigned long __cil_tmp84 ;
   struct urb *__cil_tmp85 ;
   size_t __cil_tmp86 ;
   unsigned long __cil_tmp87 ;
-  unsigned long __cil_tmp88 ;
-  unsigned long __cil_tmp89 ;
   unsigned long __cil_tmp90 ;
-  unsigned long __cil_tmp91 ;
-  unsigned long __cil_tmp92 ;
   u8 *__cil_tmp93 ;
-  unsigned long __cil_tmp94 ;
-  unsigned long __cil_tmp95 ;
-  unsigned long __cil_tmp96 ;
-  unsigned long __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
-  unsigned long __cil_tmp100 ;
-  unsigned long __cil_tmp101 ;
   unsigned long __cil_tmp102 ;
   unsigned long __cil_tmp103 ;
   int __cil_tmp104 ;
-  unsigned long __cil_tmp105 ;
-  unsigned long __cil_tmp106 ;
   unsigned long __cil_tmp107 ;
   unsigned long __cil_tmp108 ;
   int __cil_tmp109 ;
-  unsigned long __cil_tmp110 ;
-  unsigned long __cil_tmp111 ;
   u8 __cil_tmp112 ;
   int __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
   u8 __cil_tmp116 ;
   int __cil_tmp117 ;
-  unsigned long __cil_tmp118 ;
-  unsigned long __cil_tmp119 ;
   u8 __cil_tmp120 ;
   int __cil_tmp121 ;
-  unsigned long __cil_tmp122 ;
-  unsigned long __cil_tmp123 ;
   u8 __cil_tmp124 ;
   int __cil_tmp125 ;
-  unsigned long __cil_tmp126 ;
-  unsigned long __cil_tmp127 ;
   u8 __cil_tmp128 ;
   int __cil_tmp129 ;
-  unsigned long __cil_tmp130 ;
-  unsigned long __cil_tmp131 ;
   u8 __cil_tmp132 ;
   int __cil_tmp133 ;
-  unsigned long __cil_tmp134 ;
-  unsigned long __cil_tmp135 ;
   int __cil_tmp136 ;
-  unsigned long __cil_tmp137 ;
-  unsigned long __cil_tmp138 ;
   struct Scsi_Host *__cil_tmp139 ;
   unsigned long __cil_tmp140 ;
   unsigned long __cil_tmp141 ;
-  unsigned long __cil_tmp142 ;
-  unsigned long __cil_tmp143 ;
   struct Scsi_Host *__cil_tmp144 ;
-  unsigned long __cil_tmp145 ;
-  unsigned long __cil_tmp146 ;
-  unsigned long __cil_tmp147 ;
-  unsigned long __cil_tmp148 ;
   struct Scsi_Host *__cil_tmp149 ;
-  unsigned long __cil_tmp150 ;
-  unsigned long __cil_tmp151 ;
   struct device *__cil_tmp152 ;
-  unsigned long __cil_tmp153 ;
-  unsigned long __cil_tmp154 ;
   struct Scsi_Host *__cil_tmp155 ;
   void *__cil_tmp156 ;
-  unsigned long __cil_tmp157 ;
-  unsigned long __cil_tmp158 ;
   struct Scsi_Host *__cil_tmp159 ;
   unsigned long __cil_tmp160 ;
-  unsigned long __cil_tmp161 ;
-  unsigned long __cil_tmp162 ;
   u8 *__cil_tmp163 ;
   void    *__cil_tmp164 ;
-  unsigned long __cil_tmp165 ;
-  unsigned long __cil_tmp166 ;
   struct urb *__cil_tmp167 ;
   void    *__cil_tmp168 ;
 
@@ -6361,21 +5787,15 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
   }
   while_break___2: /* CIL Label */ ;
   }
-  __cil_tmp18 = (unsigned long )intf;
-  __cil_tmp19 = __cil_tmp18 + 8;
-  altsetting = *((struct usb_host_interface **)__cil_tmp19);
+  altsetting = *((struct usb_host_interface **)((void *)intf + 8));
   {
   __cil_tmp20 = 0 + 4;
-  __cil_tmp21 = (unsigned long )altsetting;
-  __cil_tmp22 = __cil_tmp21 + __cil_tmp20;
-  __cil_tmp23 = *((__u8 *)__cil_tmp22);
+  __cil_tmp23 = *((__u8 *)((void *)altsetting + __cil_tmp20));
   __cil_tmp24 = (int )__cil_tmp23;
   if (__cil_tmp24 != 3) {
     {
     __cil_tmp25 = 0 + 4;
-    __cil_tmp26 = (unsigned long )altsetting;
-    __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-    __cil_tmp28 = *((__u8 *)__cil_tmp27);
+    __cil_tmp28 = *((__u8 *)((void *)altsetting + __cil_tmp25));
     __cil_tmp29 = (int )__cil_tmp28;
     printk("<4>microtek usb (rev 0.4.3): expecting %d got %d endpoints! Bailing out.\n",
            3, __cil_tmp29);
@@ -6391,9 +5811,7 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
     while_continue___3: /* CIL Label */ ;
     {
     __cil_tmp30 = 0 + 4;
-    __cil_tmp31 = (unsigned long )altsetting;
-    __cil_tmp32 = __cil_tmp31 + __cil_tmp30;
-    __cil_tmp33 = *((__u8 *)__cil_tmp32);
+    __cil_tmp33 = *((__u8 *)((void *)altsetting + __cil_tmp30));
     __cil_tmp34 = (int )__cil_tmp33;
     if (i < __cil_tmp34) {
 
@@ -6403,25 +5821,17 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
     }
     {
     __cil_tmp35 = 0 + 3;
-    __cil_tmp36 = (unsigned long )altsetting;
-    __cil_tmp37 = __cil_tmp36 + 16;
-    __cil_tmp38 = *((struct usb_host_endpoint **)__cil_tmp37);
+    __cil_tmp38 = *((struct usb_host_endpoint **)((void *)altsetting + 16));
     __cil_tmp39 = __cil_tmp38 + i;
-    __cil_tmp40 = (unsigned long )__cil_tmp39;
-    __cil_tmp41 = __cil_tmp40 + __cil_tmp35;
-    __cil_tmp42 = *((__u8 *)__cil_tmp41);
+    __cil_tmp42 = *((__u8 *)((void *)__cil_tmp39 + __cil_tmp35));
     __cil_tmp43 = (int )__cil_tmp42;
     __cil_tmp44 = __cil_tmp43 & 3;
     if (__cil_tmp44 != 2) {
       {
       __cil_tmp45 = 0 + 2;
-      __cil_tmp46 = (unsigned long )altsetting;
-      __cil_tmp47 = __cil_tmp46 + 16;
-      __cil_tmp48 = *((struct usb_host_endpoint **)__cil_tmp47);
+      __cil_tmp48 = *((struct usb_host_endpoint **)((void *)altsetting + 16));
       __cil_tmp49 = __cil_tmp48 + i;
-      __cil_tmp50 = (unsigned long )__cil_tmp49;
-      __cil_tmp51 = __cil_tmp50 + __cil_tmp45;
-      __cil_tmp52 = *((__u8 *)__cil_tmp51);
+      __cil_tmp52 = *((__u8 *)((void *)__cil_tmp49 + __cil_tmp45));
       __cil_tmp53 = (int )__cil_tmp52;
       printk("<4>microtek usb (rev 0.4.3): can only deal with bulk endpoints; endpoint %d is not bulk.\n",
              __cil_tmp53);
@@ -6429,25 +5839,17 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
     } else {
       {
       __cil_tmp54 = 0 + 2;
-      __cil_tmp55 = (unsigned long )altsetting;
-      __cil_tmp56 = __cil_tmp55 + 16;
-      __cil_tmp57 = *((struct usb_host_endpoint **)__cil_tmp56);
+      __cil_tmp57 = *((struct usb_host_endpoint **)((void *)altsetting + 16));
       __cil_tmp58 = __cil_tmp57 + i;
-      __cil_tmp59 = (unsigned long )__cil_tmp58;
-      __cil_tmp60 = __cil_tmp59 + __cil_tmp54;
-      __cil_tmp61 = *((__u8 *)__cil_tmp60);
+      __cil_tmp61 = *((__u8 *)((void *)__cil_tmp58 + __cil_tmp54));
       __cil_tmp62 = (int )__cil_tmp61;
       if (__cil_tmp62 & 128) {
         tmp___8 = ep_in_current;
         ep_in_current = ep_in_current + 1;
         __cil_tmp63 = 0 + 2;
-        __cil_tmp64 = (unsigned long )altsetting;
-        __cil_tmp65 = __cil_tmp64 + 16;
-        __cil_tmp66 = *((struct usb_host_endpoint **)__cil_tmp65);
+        __cil_tmp66 = *((struct usb_host_endpoint **)((void *)altsetting + 16));
         __cil_tmp67 = __cil_tmp66 + i;
-        __cil_tmp68 = (unsigned long )__cil_tmp67;
-        __cil_tmp69 = __cil_tmp68 + __cil_tmp63;
-        __cil_tmp70 = *((__u8 *)__cil_tmp69);
+        __cil_tmp70 = *((__u8 *)((void *)__cil_tmp67 + __cil_tmp63));
         __cil_tmp71 = (int )__cil_tmp70;
         *tmp___8 = __cil_tmp71 & 15;
       } else {
@@ -6460,13 +5862,9 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
 
         }
         __cil_tmp72 = 0 + 2;
-        __cil_tmp73 = (unsigned long )altsetting;
-        __cil_tmp74 = __cil_tmp73 + 16;
-        __cil_tmp75 = *((struct usb_host_endpoint **)__cil_tmp74);
+        __cil_tmp75 = *((struct usb_host_endpoint **)((void *)altsetting + 16));
         __cil_tmp76 = __cil_tmp75 + i;
-        __cil_tmp77 = (unsigned long )__cil_tmp76;
-        __cil_tmp78 = __cil_tmp77 + __cil_tmp72;
-        __cil_tmp79 = *((__u8 *)__cil_tmp78);
+        __cil_tmp79 = *((__u8 *)((void *)__cil_tmp76 + __cil_tmp72));
         __cil_tmp80 = (int )__cil_tmp79;
         ep_out = __cil_tmp80 & 15;
       }
@@ -6495,14 +5893,10 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
 
   }
   {
-  __cil_tmp81 = (unsigned long )new_desc;
-  __cil_tmp82 = __cil_tmp81 + 48;
-  *((struct urb **)__cil_tmp82) = usb_alloc_urb(0, 208U);
+  *((struct urb **)((void *)new_desc + 48)) = usb_alloc_urb(0, 208U);
   }
   {
-  __cil_tmp83 = (unsigned long )new_desc;
-  __cil_tmp84 = __cil_tmp83 + 48;
-  __cil_tmp85 = *((struct urb **)__cil_tmp84);
+  __cil_tmp85 = *((struct urb **)((void *)new_desc + 48));
   if (! __cil_tmp85) {
     goto out_kfree;
   } else {
@@ -6513,52 +5907,34 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
   __cil_tmp86 = (size_t )1;
   tmp___10 = kmalloc(__cil_tmp86, 208U);
   __cil_tmp87 = 56 + 48;
-  __cil_tmp88 = (unsigned long )new_desc;
-  __cil_tmp89 = __cil_tmp88 + __cil_tmp87;
-  *((u8 **)__cil_tmp89) = (u8 *)tmp___10;
+  *((u8 **)((void *)new_desc + __cil_tmp87)) = (u8 *)tmp___10;
   }
   {
   __cil_tmp90 = 56 + 48;
-  __cil_tmp91 = (unsigned long )new_desc;
-  __cil_tmp92 = __cil_tmp91 + __cil_tmp90;
-  __cil_tmp93 = *((u8 **)__cil_tmp92);
+  __cil_tmp93 = *((u8 **)((void *)new_desc + __cil_tmp90));
   if (! __cil_tmp93) {
     goto out_free_urb;
   } else {
 
   }
   }
-  __cil_tmp94 = (unsigned long )new_desc;
-  __cil_tmp95 = __cil_tmp94 + 16;
-  *((struct usb_device **)__cil_tmp95) = dev;
-  __cil_tmp96 = (unsigned long )new_desc;
-  __cil_tmp97 = __cil_tmp96 + 24;
-  *((struct usb_interface **)__cil_tmp97) = intf;
-  __cil_tmp98 = (unsigned long )new_desc;
-  __cil_tmp99 = __cil_tmp98 + 32;
-  *((u8 *)__cil_tmp99) = (u8 )ep_out;
-  __cil_tmp100 = (unsigned long )new_desc;
-  __cil_tmp101 = __cil_tmp100 + 33;
+  *((struct usb_device **)((void *)new_desc + 16)) = dev;
+  *((struct usb_interface **)((void *)new_desc + 24)) = intf;
+  *((u8 *)((void *)new_desc + 32)) = (u8 )ep_out;
   __cil_tmp102 = 0 * 4UL;
   __cil_tmp103 = (unsigned long )(ep_in_set) + __cil_tmp102;
   __cil_tmp104 = *((int *)__cil_tmp103);
-  *((u8 *)__cil_tmp101) = (u8 )__cil_tmp104;
-  __cil_tmp105 = (unsigned long )new_desc;
-  __cil_tmp106 = __cil_tmp105 + 34;
+  *((u8 *)((void *)new_desc + 33)) = (u8 )__cil_tmp104;
   __cil_tmp107 = 1 * 4UL;
   __cil_tmp108 = (unsigned long )(ep_in_set) + __cil_tmp107;
   __cil_tmp109 = *((int *)__cil_tmp108);
-  *((u8 *)__cil_tmp106) = (u8 )__cil_tmp109;
+  *((u8 *)((void *)new_desc + 34)) = (u8 )__cil_tmp109;
   {
-  __cil_tmp110 = (unsigned long )new_desc;
-  __cil_tmp111 = __cil_tmp110 + 32;
-  __cil_tmp112 = *((u8 *)__cil_tmp111);
+  __cil_tmp112 = *((u8 *)((void *)new_desc + 32));
   __cil_tmp113 = (int )__cil_tmp112;
   if (__cil_tmp113 != 1) {
     {
-    __cil_tmp114 = (unsigned long )new_desc;
-    __cil_tmp115 = __cil_tmp114 + 32;
-    __cil_tmp116 = *((u8 *)__cil_tmp115);
+    __cil_tmp116 = *((u8 *)((void *)new_desc + 32));
     __cil_tmp117 = (int )__cil_tmp116;
     printk("<4>microtek usb (rev 0.4.3): will this work? Command EP is not usually %d\n",
            __cil_tmp117);
@@ -6568,15 +5944,11 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
   }
   }
   {
-  __cil_tmp118 = (unsigned long )new_desc;
-  __cil_tmp119 = __cil_tmp118 + 33;
-  __cil_tmp120 = *((u8 *)__cil_tmp119);
+  __cil_tmp120 = *((u8 *)((void *)new_desc + 33));
   __cil_tmp121 = (int )__cil_tmp120;
   if (__cil_tmp121 != 2) {
     {
-    __cil_tmp122 = (unsigned long )new_desc;
-    __cil_tmp123 = __cil_tmp122 + 33;
-    __cil_tmp124 = *((u8 *)__cil_tmp123);
+    __cil_tmp124 = *((u8 *)((void *)new_desc + 33));
     __cil_tmp125 = (int )__cil_tmp124;
     printk("<4>microtek usb (rev 0.4.3): will this work? Response EP is not usually %d\n",
            __cil_tmp125);
@@ -6586,15 +5958,11 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
   }
   }
   {
-  __cil_tmp126 = (unsigned long )new_desc;
-  __cil_tmp127 = __cil_tmp126 + 34;
-  __cil_tmp128 = *((u8 *)__cil_tmp127);
+  __cil_tmp128 = *((u8 *)((void *)new_desc + 34));
   __cil_tmp129 = (int )__cil_tmp128;
   if (__cil_tmp129 != 3) {
     {
-    __cil_tmp130 = (unsigned long )new_desc;
-    __cil_tmp131 = __cil_tmp130 + 34;
-    __cil_tmp132 = *((u8 *)__cil_tmp131);
+    __cil_tmp132 = *((u8 *)((void *)new_desc + 34));
     __cil_tmp133 = (int )__cil_tmp132;
     printk("<4>microtek usb (rev 0.4.3): will this work? Image data EP is not usually %d\n",
            __cil_tmp133);
@@ -6604,16 +5972,12 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
   }
   }
   {
-  __cil_tmp134 = (unsigned long )new_desc;
-  __cil_tmp135 = __cil_tmp134 + 40;
   __cil_tmp136 = (int )8UL;
-  *((struct Scsi_Host **)__cil_tmp135) = scsi_host_alloc(& mts_scsi_host_template,
+  *((struct Scsi_Host **)((void *)new_desc + 40)) = scsi_host_alloc(& mts_scsi_host_template,
                                                          __cil_tmp136);
   }
   {
-  __cil_tmp137 = (unsigned long )new_desc;
-  __cil_tmp138 = __cil_tmp137 + 40;
-  __cil_tmp139 = *((struct Scsi_Host **)__cil_tmp138);
+  __cil_tmp139 = *((struct Scsi_Host **)((void *)new_desc + 40));
   if (! __cil_tmp139) {
     goto out_kfree2;
   } else {
@@ -6623,18 +5987,10 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
   {
   __cil_tmp140 = 0 * 8UL;
   __cil_tmp141 = 2040 + __cil_tmp140;
-  __cil_tmp142 = (unsigned long )new_desc;
-  __cil_tmp143 = __cil_tmp142 + 40;
-  __cil_tmp144 = *((struct Scsi_Host **)__cil_tmp143);
-  __cil_tmp145 = (unsigned long )__cil_tmp144;
-  __cil_tmp146 = __cil_tmp145 + __cil_tmp141;
-  *((unsigned long *)__cil_tmp146) = (unsigned long )new_desc;
-  __cil_tmp147 = (unsigned long )new_desc;
-  __cil_tmp148 = __cil_tmp147 + 40;
-  __cil_tmp149 = *((struct Scsi_Host **)__cil_tmp148);
-  __cil_tmp150 = (unsigned long )dev;
-  __cil_tmp151 = __cil_tmp150 + 136;
-  __cil_tmp152 = (struct device *)__cil_tmp151;
+  __cil_tmp144 = *((struct Scsi_Host **)((void *)new_desc + 40));
+  *((unsigned long *)((void *)__cil_tmp144 + __cil_tmp141)) = (unsigned long )new_desc;
+  __cil_tmp149 = *((struct Scsi_Host **)((void *)new_desc + 40));
+  __cil_tmp152 = (struct device *)((void *)dev + 136);
   tmp___11 = (int )scsi_add_host(__cil_tmp149, __cil_tmp152);
   }
   if (tmp___11) {
@@ -6644,9 +6000,7 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
 
   }
   {
-  __cil_tmp153 = (unsigned long )new_desc;
-  __cil_tmp154 = __cil_tmp153 + 40;
-  __cil_tmp155 = *((struct Scsi_Host **)__cil_tmp154);
+  __cil_tmp155 = *((struct Scsi_Host **)((void *)new_desc + 40));
   scsi_scan_host(__cil_tmp155);
   __cil_tmp156 = (void *)new_desc;
   usb_set_intfdata(intf, __cil_tmp156);
@@ -6654,25 +6008,19 @@ static int mts_usb_probe(struct usb_interface *intf , struct usb_device_id    *i
   return (0);
   out_host_put: 
   {
-  __cil_tmp157 = (unsigned long )new_desc;
-  __cil_tmp158 = __cil_tmp157 + 40;
-  __cil_tmp159 = *((struct Scsi_Host **)__cil_tmp158);
+  __cil_tmp159 = *((struct Scsi_Host **)((void *)new_desc + 40));
   scsi_host_put(__cil_tmp159);
   }
   out_kfree2: 
   {
   __cil_tmp160 = 56 + 48;
-  __cil_tmp161 = (unsigned long )new_desc;
-  __cil_tmp162 = __cil_tmp161 + __cil_tmp160;
-  __cil_tmp163 = *((u8 **)__cil_tmp162);
+  __cil_tmp163 = *((u8 **)((void *)new_desc + __cil_tmp160));
   __cil_tmp164 = (void    *)__cil_tmp163;
   kfree(__cil_tmp164);
   }
   out_free_urb: 
   {
-  __cil_tmp165 = (unsigned long )new_desc;
-  __cil_tmp166 = __cil_tmp165 + 48;
-  __cil_tmp167 = *((struct urb **)__cil_tmp166);
+  __cil_tmp167 = *((struct urb **)((void *)new_desc + 48));
   usb_free_urb(__cil_tmp167);
   }
   out_kfree: 
@@ -6688,21 +6036,11 @@ static void mts_usb_disconnect(struct usb_interface *intf )
 { struct mts_desc *desc ;
   void *tmp___7 ;
   void *__cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
   struct urb *__cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   struct Scsi_Host *__cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct Scsi_Host *__cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct urb *__cil_tmp16 ;
   unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
   u8 *__cil_tmp20 ;
   void    *__cil_tmp21 ;
   void    *__cil_tmp22 ;
@@ -6713,26 +6051,16 @@ static void mts_usb_disconnect(struct usb_interface *intf )
   desc = (struct mts_desc *)tmp___7;
   __cil_tmp4 = (void *)0;
   usb_set_intfdata(intf, __cil_tmp4);
-  __cil_tmp5 = (unsigned long )desc;
-  __cil_tmp6 = __cil_tmp5 + 48;
-  __cil_tmp7 = *((struct urb **)__cil_tmp6);
+  __cil_tmp7 = *((struct urb **)((void *)desc + 48));
   usb_kill_urb(__cil_tmp7);
-  __cil_tmp8 = (unsigned long )desc;
-  __cil_tmp9 = __cil_tmp8 + 40;
-  __cil_tmp10 = *((struct Scsi_Host **)__cil_tmp9);
+  __cil_tmp10 = *((struct Scsi_Host **)((void *)desc + 40));
   scsi_remove_host(__cil_tmp10);
-  __cil_tmp11 = (unsigned long )desc;
-  __cil_tmp12 = __cil_tmp11 + 40;
-  __cil_tmp13 = *((struct Scsi_Host **)__cil_tmp12);
+  __cil_tmp13 = *((struct Scsi_Host **)((void *)desc + 40));
   scsi_host_put(__cil_tmp13);
-  __cil_tmp14 = (unsigned long )desc;
-  __cil_tmp15 = __cil_tmp14 + 48;
-  __cil_tmp16 = *((struct urb **)__cil_tmp15);
+  __cil_tmp16 = *((struct urb **)((void *)desc + 48));
   usb_free_urb(__cil_tmp16);
   __cil_tmp17 = 56 + 48;
-  __cil_tmp18 = (unsigned long )desc;
-  __cil_tmp19 = __cil_tmp18 + __cil_tmp17;
-  __cil_tmp20 = *((u8 **)__cil_tmp19);
+  __cil_tmp20 = *((u8 **)((void *)desc + __cil_tmp17));
   __cil_tmp21 = (void    *)__cil_tmp20;
   kfree(__cil_tmp21);
   __cil_tmp22 = (void    *)desc;

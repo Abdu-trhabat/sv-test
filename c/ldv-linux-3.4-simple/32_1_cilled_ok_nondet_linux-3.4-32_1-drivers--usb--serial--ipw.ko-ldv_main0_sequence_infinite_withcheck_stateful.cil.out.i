@@ -3589,24 +3589,18 @@ __inline static unsigned int __create_pipe(struct usb_device *dev , unsigned int
 }
 __inline static void *usb_get_serial_data(struct usb_serial *serial ) __attribute__((__no_instrument_function__)) ;
 __inline static void *usb_get_serial_data(struct usb_serial *serial )
-{ unsigned long __cil_tmp2 ;
-  unsigned long __cil_tmp3 ;
+{
   {
   {
-  __cil_tmp2 = (unsigned long )serial;
-  __cil_tmp3 = __cil_tmp2 + 176;
-  return (*((void **)__cil_tmp3));
+  return (*((void **)((void *)serial + 176)));
   }
 }
 }
 __inline static void usb_set_serial_data(struct usb_serial *serial , void *data ) __attribute__((__no_instrument_function__)) ;
 __inline static void usb_set_serial_data(struct usb_serial *serial , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   {
-  __cil_tmp3 = (unsigned long )serial;
-  __cil_tmp4 = __cil_tmp3 + 176;
-  *((void **)__cil_tmp4) = data;
+  *((void **)((void *)serial + 176)) = data;
   return;
 }
 }
@@ -3704,12 +3698,8 @@ static int ipw_open(struct tty_struct *tty , struct usb_serial_port *port )
   __u16 __cil_tmp61 ;
   void *__cil_tmp62 ;
   __u16 __cil_tmp63 ;
-  unsigned long __cil_tmp64 ;
-  unsigned long __cil_tmp65 ;
   struct device *__cil_tmp66 ;
   struct device const *__cil_tmp67 ;
-  unsigned long __cil_tmp68 ;
-  unsigned long __cil_tmp69 ;
   __u8 __cil_tmp70 ;
   unsigned int __cil_tmp71 ;
   int __cil_tmp72 ;
@@ -3717,8 +3707,6 @@ static int ipw_open(struct tty_struct *tty , struct usb_serial_port *port )
   unsigned int __cil_tmp74 ;
   unsigned int __cil_tmp75 ;
   int __cil_tmp76 ;
-  unsigned long __cil_tmp77 ;
-  unsigned long __cil_tmp78 ;
   __u8 __cil_tmp79 ;
   unsigned int __cil_tmp80 ;
   int __cil_tmp81 ;
@@ -3738,8 +3726,6 @@ static int ipw_open(struct tty_struct *tty , struct usb_serial_port *port )
   __u16 __cil_tmp95 ;
   void *__cil_tmp96 ;
   __u16 __cil_tmp97 ;
-  unsigned long __cil_tmp98 ;
-  unsigned long __cil_tmp99 ;
   struct device *__cil_tmp100 ;
   struct device const *__cil_tmp101 ;
   bool *__cil_tmp102 ;
@@ -3754,8 +3740,6 @@ static int ipw_open(struct tty_struct *tty , struct usb_serial_port *port )
   __u16 __cil_tmp111 ;
   void *__cil_tmp112 ;
   __u16 __cil_tmp113 ;
-  unsigned long __cil_tmp114 ;
-  unsigned long __cil_tmp115 ;
   struct device *__cil_tmp116 ;
   struct device const *__cil_tmp117 ;
   void const *__cil_tmp118 ;
@@ -3875,18 +3859,14 @@ static int ipw_open(struct tty_struct *tty , struct usb_serial_port *port )
   }
   if (result < 0) {
     {
-    __cil_tmp64 = (unsigned long )port;
-    __cil_tmp65 = __cil_tmp64 + 712;
-    __cil_tmp66 = (struct device *)__cil_tmp65;
+    __cil_tmp66 = (struct device *)((void *)port + 712);
     __cil_tmp67 = (struct device const *)__cil_tmp66;
     dev_err(__cil_tmp67, "Init of modem failed (error = %d)\n", result);
     }
   } else {
   }
   {
-  __cil_tmp68 = (unsigned long )port;
-  __cil_tmp69 = __cil_tmp68 + 472;
-  __cil_tmp70 = *((__u8 *)__cil_tmp69);
+  __cil_tmp70 = *((__u8 *)((void *)port + 472));
   __cil_tmp71 = (unsigned int )__cil_tmp70;
   tmp___9 = __create_pipe(dev, __cil_tmp71);
   __cil_tmp72 = 3 << 30;
@@ -3895,9 +3875,7 @@ static int ipw_open(struct tty_struct *tty , struct usb_serial_port *port )
   __cil_tmp75 = __cil_tmp74 | 128U;
   __cil_tmp76 = (int )__cil_tmp75;
   usb_clear_halt(dev, __cil_tmp76);
-  __cil_tmp77 = (unsigned long )port;
-  __cil_tmp78 = __cil_tmp77 + 608;
-  __cil_tmp79 = *((__u8 *)__cil_tmp78);
+  __cil_tmp79 = *((__u8 *)((void *)port + 608));
   __cil_tmp80 = (unsigned int )__cil_tmp79;
   tmp___10 = __create_pipe(dev, __cil_tmp80);
   __cil_tmp81 = 3 << 30;
@@ -3961,9 +3939,7 @@ static int ipw_open(struct tty_struct *tty , struct usb_serial_port *port )
   }
   if (result < 0) {
     {
-    __cil_tmp98 = (unsigned long )port;
-    __cil_tmp99 = __cil_tmp98 + 712;
-    __cil_tmp100 = (struct device *)__cil_tmp99;
+    __cil_tmp100 = (struct device *)((void *)port + 712);
     __cil_tmp101 = (struct device const *)__cil_tmp100;
     dev_err(__cil_tmp101, "Enabling bulk RxRead failed (error = %d)\n", result);
     }
@@ -4004,9 +3980,7 @@ static int ipw_open(struct tty_struct *tty , struct usb_serial_port *port )
   }
   if (result < 0) {
     {
-    __cil_tmp114 = (unsigned long )port;
-    __cil_tmp115 = __cil_tmp114 + 712;
-    __cil_tmp116 = (struct device *)__cil_tmp115;
+    __cil_tmp116 = (struct device *)((void *)port + 712);
     __cil_tmp117 = (struct device const *)__cil_tmp116;
     dev_err(__cil_tmp117, "initial flowcontrol failed (error = %d)\n", result);
     }
@@ -4102,8 +4076,6 @@ static void ipw_dtr_rts(struct usb_serial_port *port , int on )
   __u16 __cil_tmp19 ;
   void *__cil_tmp20 ;
   __u16 __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   struct device *__cil_tmp24 ;
   struct device const *__cil_tmp25 ;
   int __cil_tmp26 ;
@@ -4117,8 +4089,6 @@ static void ipw_dtr_rts(struct usb_serial_port *port , int on )
   __u16 __cil_tmp34 ;
   void *__cil_tmp35 ;
   __u16 __cil_tmp36 ;
-  unsigned long __cil_tmp37 ;
-  unsigned long __cil_tmp38 ;
   struct device *__cil_tmp39 ;
   struct device const *__cil_tmp40 ;
   {
@@ -4164,9 +4134,7 @@ static void ipw_dtr_rts(struct usb_serial_port *port , int on )
   }
   if (result < 0) {
     {
-    __cil_tmp22 = (unsigned long )port;
-    __cil_tmp23 = __cil_tmp22 + 712;
-    __cil_tmp24 = (struct device *)__cil_tmp23;
+    __cil_tmp24 = (struct device *)((void *)port + 712);
     __cil_tmp25 = (struct device const *)__cil_tmp24;
     dev_err(__cil_tmp25, "setting dtr failed (error = %d)\n", result);
     }
@@ -4195,9 +4163,7 @@ static void ipw_dtr_rts(struct usb_serial_port *port , int on )
   }
   if (result < 0) {
     {
-    __cil_tmp37 = (unsigned long )port;
-    __cil_tmp38 = __cil_tmp37 + 712;
-    __cil_tmp39 = (struct device *)__cil_tmp38;
+    __cil_tmp39 = (struct device *)((void *)port + 712);
     __cil_tmp40 = (struct device const *)__cil_tmp39;
     dev_err(__cil_tmp40, "setting rts failed (error = %d)\n", result);
     }
@@ -4224,8 +4190,6 @@ static void ipw_close(struct usb_serial_port *port )
   __u16 __cil_tmp16 ;
   void *__cil_tmp17 ;
   __u16 __cil_tmp18 ;
-  unsigned long __cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
   struct device *__cil_tmp21 ;
   struct device const *__cil_tmp22 ;
   int __cil_tmp23 ;
@@ -4239,8 +4203,6 @@ static void ipw_close(struct usb_serial_port *port )
   __u16 __cil_tmp31 ;
   void *__cil_tmp32 ;
   __u16 __cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct device *__cil_tmp36 ;
   struct device const *__cil_tmp37 ;
   {
@@ -4281,9 +4243,7 @@ static void ipw_close(struct usb_serial_port *port )
   }
   if (result < 0) {
     {
-    __cil_tmp19 = (unsigned long )port;
-    __cil_tmp20 = __cil_tmp19 + 712;
-    __cil_tmp21 = (struct device *)__cil_tmp20;
+    __cil_tmp21 = (struct device *)((void *)port + 712);
     __cil_tmp22 = (struct device const *)__cil_tmp21;
     dev_err(__cil_tmp22, "purge failed (error = %d)\n", result);
     }
@@ -4307,9 +4267,7 @@ static void ipw_close(struct usb_serial_port *port )
   }
   if (result < 0) {
     {
-    __cil_tmp34 = (unsigned long )port;
-    __cil_tmp35 = __cil_tmp34 + 712;
-    __cil_tmp36 = (struct device *)__cil_tmp35;
+    __cil_tmp36 = (struct device *)((void *)port + 712);
     __cil_tmp37 = (struct device const *)__cil_tmp36;
     dev_err(__cil_tmp37, "Disabling bulk RxRead failed (error = %d)\n", result);
     }

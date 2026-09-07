@@ -3302,12 +3302,7 @@ static int ec100_write_reg(struct ec100_state *state , u8 reg , u8 val )
   unsigned long __cil_tmp9 ;
   unsigned long __cil_tmp10 ;
   struct i2c_msg *__cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
-  unsigned long __cil_tmp13 ;
   u8 __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
   unsigned long __cil_tmp18 ;
   unsigned long __cil_tmp19 ;
   struct i2c_adapter *__cil_tmp20 ;
@@ -3321,18 +3316,13 @@ static int ec100_write_reg(struct ec100_state *state , u8 reg , u8 val )
   __cil_tmp10 = (unsigned long )(buf) + __cil_tmp9;
   *((u8 *)__cil_tmp10) = val;
   __cil_tmp11 = & msg;
-  __cil_tmp12 = (unsigned long )state;
-  __cil_tmp13 = __cil_tmp12 + 968;
-  __cil_tmp14 = *((u8 *)__cil_tmp13);
+  __cil_tmp14 = *((u8 *)((void *)state + 968));
   *((__u16 *)__cil_tmp11) = (__u16 )__cil_tmp14;
-  __cil_tmp15 = (unsigned long )(& msg) + 2;
-  *((__u16 *)__cil_tmp15) = (__u16 )0;
-  __cil_tmp16 = (unsigned long )(& msg) + 4;
-  *((__u16 *)__cil_tmp16) = (__u16 )2;
-  __cil_tmp17 = (unsigned long )(& msg) + 8;
+  *((__u16 *)((void *)(&msg) + 2)) = (__u16 )0;
+  *((__u16 *)((void *)(&msg) + 4)) = (__u16 )2;
   __cil_tmp18 = 0 * 1UL;
   __cil_tmp19 = (unsigned long )(buf) + __cil_tmp18;
-  *((__u8 **)__cil_tmp17) = (u8 *)__cil_tmp19;
+  *((__u8 **)((void *)(&msg) + 8)) = (u8 *)__cil_tmp19;
   __cil_tmp20 = *((struct i2c_adapter **)state);
   tmp___7 = i2c_transfer(__cil_tmp20, & msg, 1);
   }
@@ -3352,8 +3342,6 @@ static int ec100_read_reg(struct ec100_state *state , u8 reg , u8 *val )
   int tmp___7 ;
   unsigned long __cil_tmp6 ;
   unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   u8 __cil_tmp10 ;
   unsigned long __cil_tmp11 ;
   unsigned long __cil_tmp12 ;
@@ -3366,8 +3354,6 @@ static int ec100_read_reg(struct ec100_state *state , u8 reg , u8 *val )
   unsigned long __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   u8 __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
   unsigned long __cil_tmp26 ;
@@ -3389,9 +3375,7 @@ static int ec100_read_reg(struct ec100_state *state , u8 reg , u8 *val )
   {
   __cil_tmp6 = 0 * 16UL;
   __cil_tmp7 = (unsigned long )(msg) + __cil_tmp6;
-  __cil_tmp8 = (unsigned long )state;
-  __cil_tmp9 = __cil_tmp8 + 968;
-  __cil_tmp10 = *((u8 *)__cil_tmp9);
+  __cil_tmp10 = *((u8 *)((void *)state + 968));
   *((__u16 *)__cil_tmp7) = (__u16 )__cil_tmp10;
   __cil_tmp11 = 0 * 16UL;
   __cil_tmp12 = __cil_tmp11 + 2;
@@ -3407,9 +3391,7 @@ static int ec100_read_reg(struct ec100_state *state , u8 reg , u8 *val )
   *((__u8 **)__cil_tmp19) = & reg;
   __cil_tmp20 = 1 * 16UL;
   __cil_tmp21 = (unsigned long )(msg) + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )state;
-  __cil_tmp23 = __cil_tmp22 + 968;
-  __cil_tmp24 = *((u8 *)__cil_tmp23);
+  __cil_tmp24 = *((u8 *)((void *)state + 968));
   *((__u16 *)__cil_tmp21) = (__u16 )__cil_tmp24;
   __cil_tmp25 = 1 * 16UL;
   __cil_tmp26 = __cil_tmp25 + 2;
@@ -3448,27 +3430,15 @@ static int ec100_set_frontend(struct dvb_frontend *fe )
   int ret ;
   u8 tmp___7 ;
   u8 tmp2 ;
-  unsigned long __cil_tmp7 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   void *__cil_tmp11 ;
   int *__cil_tmp12 ;
   int __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   u32 __cil_tmp16 ;
-  unsigned long __cil_tmp17 ;
-  unsigned long __cil_tmp18 ;
   u32 __cil_tmp19 ;
   unsigned long __cil_tmp20 ;
   unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
-  unsigned long __cil_tmp23 ;
   unsigned long __cil_tmp24 ;
   unsigned long __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   int (*__cil_tmp28)(struct dvb_frontend *fe ) ;
   u8 __cil_tmp29 ;
   u8 __cil_tmp30 ;
@@ -3476,8 +3446,6 @@ static int ec100_set_frontend(struct dvb_frontend *fe )
   u8 __cil_tmp32 ;
   u8 __cil_tmp33 ;
   u8 __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
-  unsigned long __cil_tmp36 ;
   u32 __cil_tmp37 ;
   u8 __cil_tmp38 ;
   u8 __cil_tmp39 ;
@@ -3494,12 +3462,8 @@ static int ec100_set_frontend(struct dvb_frontend *fe )
   int *__cil_tmp50 ;
   int __cil_tmp51 ;
   {
-  __cil_tmp7 = (unsigned long )fe;
-  __cil_tmp8 = __cil_tmp7 + 800;
-  c = (struct dtv_frontend_properties *)__cil_tmp8;
-  __cil_tmp9 = (unsigned long )fe;
-  __cil_tmp10 = __cil_tmp9 + 760;
-  __cil_tmp11 = *((void **)__cil_tmp10);
+  c = (struct dtv_frontend_properties *)((void *)fe + 800);
+  __cil_tmp11 = *((void **)((void *)fe + 760));
   state = (struct ec100_state *)__cil_tmp11;
   {
   while (1) {
@@ -3509,12 +3473,8 @@ static int ec100_set_frontend(struct dvb_frontend *fe )
     __cil_tmp13 = *__cil_tmp12;
     if (__cil_tmp13 & 1) {
       {
-      __cil_tmp14 = (unsigned long )c;
-      __cil_tmp15 = __cil_tmp14 + 4;
-      __cil_tmp16 = *((u32 *)__cil_tmp15);
-      __cil_tmp17 = (unsigned long )c;
-      __cil_tmp18 = __cil_tmp17 + 32;
-      __cil_tmp19 = *((u32 *)__cil_tmp18);
+      __cil_tmp16 = *((u32 *)((void *)c + 4));
+      __cil_tmp19 = *((u32 *)((void *)c + 32));
       printk("%s: freq:%d bw:%d\n", "ec100_set_frontend", __cil_tmp16, __cil_tmp19);
       }
     } else {
@@ -3527,15 +3487,11 @@ static int ec100_set_frontend(struct dvb_frontend *fe )
   {
   __cil_tmp20 = 384 + 176;
   __cil_tmp21 = 0 + __cil_tmp20;
-  __cil_tmp22 = (unsigned long )fe;
-  __cil_tmp23 = __cil_tmp22 + __cil_tmp21;
-  if (*((int (**)(struct dvb_frontend *fe ))__cil_tmp23)) {
+  if (*((int (**)(struct dvb_frontend *fe ))((void *)fe + __cil_tmp21))) {
     {
     __cil_tmp24 = 384 + 176;
     __cil_tmp25 = 0 + __cil_tmp24;
-    __cil_tmp26 = (unsigned long )fe;
-    __cil_tmp27 = __cil_tmp26 + __cil_tmp25;
-    __cil_tmp28 = *((int (**)(struct dvb_frontend *fe ))__cil_tmp27);
+    __cil_tmp28 = *((int (**)(struct dvb_frontend *fe ))((void *)fe + __cil_tmp25));
     (*__cil_tmp28)(fe);
     }
   } else {
@@ -3569,9 +3525,7 @@ static int ec100_set_frontend(struct dvb_frontend *fe )
   } else {
   }
   {
-  __cil_tmp35 = (unsigned long )c;
-  __cil_tmp36 = __cil_tmp35 + 32;
-  __cil_tmp37 = *((u32 *)__cil_tmp36);
+  __cil_tmp37 = *((u32 *)((void *)c + 32));
   if ((int )__cil_tmp37 == 6000000) {
     goto case_6000000;
   } else
@@ -3682,18 +3636,11 @@ static int ec100_set_frontend(struct dvb_frontend *fe )
 }
 }
 static int ec100_get_tune_settings(struct dvb_frontend *fe , struct dvb_frontend_tune_settings *fesettings )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
-  unsigned long __cil_tmp5 ;
-  unsigned long __cil_tmp6 ;
+{
   {
   *((int *)fesettings) = 300;
-  __cil_tmp3 = (unsigned long )fesettings;
-  __cil_tmp4 = __cil_tmp3 + 4;
-  *((int *)__cil_tmp4) = 0;
-  __cil_tmp5 = (unsigned long )fesettings;
-  __cil_tmp6 = __cil_tmp5 + 8;
-  *((int *)__cil_tmp6) = 0;
+  *((int *)((void *)fesettings + 4)) = 0;
+  *((int *)((void *)fesettings + 8)) = 0;
   return (0);
 }
 }
@@ -3701,8 +3648,6 @@ static int ec100_read_status(struct dvb_frontend *fe , fe_status_t *status )
 { struct ec100_state *state ;
   int ret ;
   u8 tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 __cil_tmp9 ;
   u8 *__cil_tmp10 ;
@@ -3729,9 +3674,7 @@ static int ec100_read_status(struct dvb_frontend *fe , fe_status_t *status )
   int __cil_tmp31 ;
   {
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 760;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)fe + 760));
   state = (struct ec100_state *)__cil_tmp8;
   *status = (fe_status_t )0;
   __cil_tmp9 = (u8 )66;
@@ -3814,8 +3757,6 @@ static int ec100_read_ber(struct dvb_frontend *fe , u32 *ber )
   u8 tmp___7 ;
   u8 tmp2 ;
   u16 ber2 ;
-  unsigned long __cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
   void *__cil_tmp10 ;
   u8 __cil_tmp11 ;
   u8 __cil_tmp12 ;
@@ -3827,26 +3768,18 @@ static int ec100_read_ber(struct dvb_frontend *fe , u32 *ber )
   int __cil_tmp18 ;
   int __cil_tmp19 ;
   int __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
-  unsigned long __cil_tmp22 ;
   u16 __cil_tmp23 ;
   int __cil_tmp24 ;
   int __cil_tmp25 ;
-  unsigned long __cil_tmp26 ;
-  unsigned long __cil_tmp27 ;
   u16 __cil_tmp28 ;
   int __cil_tmp29 ;
   int __cil_tmp30 ;
   int __cil_tmp31 ;
-  unsigned long __cil_tmp32 ;
-  unsigned long __cil_tmp33 ;
   int *__cil_tmp34 ;
   int __cil_tmp35 ;
   {
   {
-  __cil_tmp8 = (unsigned long )fe;
-  __cil_tmp9 = __cil_tmp8 + 760;
-  __cil_tmp10 = *((void **)__cil_tmp9);
+  __cil_tmp10 = *((void **)((void *)fe + 760));
   state = (struct ec100_state *)__cil_tmp10;
   *ber = (u32 )0;
   __cil_tmp11 = (u8 )101;
@@ -3874,26 +3807,20 @@ static int ec100_read_ber(struct dvb_frontend *fe , u32 *ber )
   __cil_tmp20 = __cil_tmp19 | __cil_tmp15;
   ber2 = (u16 )__cil_tmp20;
   {
-  __cil_tmp21 = (unsigned long )state;
-  __cil_tmp22 = __cil_tmp21 + 970;
-  __cil_tmp23 = *((u16 *)__cil_tmp22);
+  __cil_tmp23 = *((u16 *)((void *)state + 970));
   __cil_tmp24 = (int )__cil_tmp23;
   __cil_tmp25 = (int )ber2;
   if (__cil_tmp25 < __cil_tmp24) {
     *ber = (u32 )ber2;
   } else {
-    __cil_tmp26 = (unsigned long )state;
-    __cil_tmp27 = __cil_tmp26 + 970;
-    __cil_tmp28 = *((u16 *)__cil_tmp27);
+    __cil_tmp28 = *((u16 *)((void *)state + 970));
     __cil_tmp29 = (int )__cil_tmp28;
     __cil_tmp30 = (int )ber2;
     __cil_tmp31 = __cil_tmp30 - __cil_tmp29;
     *ber = (u32 )__cil_tmp31;
   }
   }
-  __cil_tmp32 = (unsigned long )state;
-  __cil_tmp33 = __cil_tmp32 + 970;
-  *((u16 *)__cil_tmp33) = ber2;
+  *((u16 *)((void *)state + 970)) = ber2;
   return (ret);
   error:
   {
@@ -3920,8 +3847,6 @@ static int ec100_read_signal_strength(struct dvb_frontend *fe , u16 *strength )
 { struct ec100_state *state ;
   int ret ;
   u8 tmp___7 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   void *__cil_tmp8 ;
   u8 __cil_tmp9 ;
   u8 *__cil_tmp10 ;
@@ -3936,9 +3861,7 @@ static int ec100_read_signal_strength(struct dvb_frontend *fe , u16 *strength )
   int __cil_tmp19 ;
   {
   {
-  __cil_tmp6 = (unsigned long )fe;
-  __cil_tmp7 = __cil_tmp6 + 760;
-  __cil_tmp8 = *((void **)__cil_tmp7);
+  __cil_tmp8 = *((void **)((void *)fe + 760));
   state = (struct ec100_state *)__cil_tmp8;
   __cil_tmp9 = (u8 )36;
   ret = ec100_read_reg(state, __cil_tmp9, & tmp___7);
@@ -3995,15 +3918,11 @@ static int ec100_read_ucblocks(struct dvb_frontend *fe , u32 *ucblocks )
 }
 static void ec100_release(struct dvb_frontend *fe )
 { struct ec100_state *state ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   void *__cil_tmp5 ;
   void const *__cil_tmp6 ;
   {
   {
-  __cil_tmp3 = (unsigned long )fe;
-  __cil_tmp4 = __cil_tmp3 + 760;
-  __cil_tmp5 = *((void **)__cil_tmp4);
+  __cil_tmp5 = *((void **)((void *)fe + 760));
   state = (struct ec100_state *)__cil_tmp5;
   __cil_tmp6 = (void const *)state;
   kfree(__cil_tmp6);
@@ -4025,13 +3944,9 @@ struct dvb_frontend *ec100_attach(struct ec100_config const *config , struct i2c
   void *__cil_tmp12 ;
   unsigned long __cil_tmp13 ;
   unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
-  unsigned long __cil_tmp16 ;
   struct ec100_config *__cil_tmp17 ;
   void *__cil_tmp18 ;
   void const *__cil_tmp19 ;
-  unsigned long __cil_tmp20 ;
-  unsigned long __cil_tmp21 ;
   struct ec100_config *__cil_tmp22 ;
   void *__cil_tmp23 ;
   void const *__cil_tmp24 ;
@@ -4039,21 +3954,13 @@ struct dvb_frontend *ec100_attach(struct ec100_config const *config , struct i2c
   u8 *__cil_tmp26 ;
   u8 __cil_tmp27 ;
   int __cil_tmp28 ;
-  unsigned long __cil_tmp29 ;
-  unsigned long __cil_tmp30 ;
   struct dvb_frontend_ops *__cil_tmp31 ;
   void *__cil_tmp32 ;
   void const *__cil_tmp33 ;
-  unsigned long __cil_tmp34 ;
-  unsigned long __cil_tmp35 ;
   struct dvb_frontend_ops *__cil_tmp36 ;
   void *__cil_tmp37 ;
   void const *__cil_tmp38 ;
   unsigned long __cil_tmp39 ;
-  unsigned long __cil_tmp40 ;
-  unsigned long __cil_tmp41 ;
-  unsigned long __cil_tmp42 ;
-  unsigned long __cil_tmp43 ;
   void const *__cil_tmp44 ;
   void *__cil_tmp45 ;
   {
@@ -4076,18 +3983,14 @@ struct dvb_frontend *ec100_attach(struct ec100_config const *config , struct i2c
   __len = 1UL;
   if (__len >= 64UL) {
     {
-    __cil_tmp15 = (unsigned long )state;
-    __cil_tmp16 = __cil_tmp15 + 968;
-    __cil_tmp17 = (struct ec100_config *)__cil_tmp16;
+    __cil_tmp17 = (struct ec100_config *)((void *)state + 968);
     __cil_tmp18 = (void *)__cil_tmp17;
     __cil_tmp19 = (void const *)config;
     __ret = memcpy(__cil_tmp18, __cil_tmp19, __len);
     }
   } else {
     {
-    __cil_tmp20 = (unsigned long )state;
-    __cil_tmp21 = __cil_tmp20 + 968;
-    __cil_tmp22 = (struct ec100_config *)__cil_tmp21;
+    __cil_tmp22 = (struct ec100_config *)((void *)state + 968);
     __cil_tmp23 = (void *)__cil_tmp22;
     __cil_tmp24 = (void const *)config;
     __ret = memcpy(__cil_tmp23, __cil_tmp24, __len);
@@ -4113,31 +4016,23 @@ struct dvb_frontend *ec100_attach(struct ec100_config const *config , struct i2c
   __len___0 = 752UL;
   if (__len___0 >= 64UL) {
     {
-    __cil_tmp29 = (unsigned long )state;
-    __cil_tmp30 = __cil_tmp29 + 8;
-    __cil_tmp31 = (struct dvb_frontend_ops *)__cil_tmp30;
+    __cil_tmp31 = (struct dvb_frontend_ops *)((void *)state + 8);
     __cil_tmp32 = (void *)__cil_tmp31;
     __cil_tmp33 = (void const *)(& ec100_ops);
     __ret___0 = memcpy(__cil_tmp32, __cil_tmp33, __len___0);
     }
   } else {
     {
-    __cil_tmp34 = (unsigned long )state;
-    __cil_tmp35 = __cil_tmp34 + 8;
-    __cil_tmp36 = (struct dvb_frontend_ops *)__cil_tmp35;
+    __cil_tmp36 = (struct dvb_frontend_ops *)((void *)state + 8);
     __cil_tmp37 = (void *)__cil_tmp36;
     __cil_tmp38 = (void const *)(& ec100_ops);
     __ret___0 = memcpy(__cil_tmp37, __cil_tmp38, __len___0);
     }
   }
   __cil_tmp39 = 8 + 760;
-  __cil_tmp40 = (unsigned long )state;
-  __cil_tmp41 = __cil_tmp40 + __cil_tmp39;
-  *((void **)__cil_tmp41) = (void *)state;
+  *((void **)((void *)state + __cil_tmp39)) = (void *)state;
   {
-  __cil_tmp42 = (unsigned long )state;
-  __cil_tmp43 = __cil_tmp42 + 8;
-  return ((struct dvb_frontend *)__cil_tmp43);
+  return ((struct dvb_frontend *)((void *)state + 8));
   }
   error:
   {

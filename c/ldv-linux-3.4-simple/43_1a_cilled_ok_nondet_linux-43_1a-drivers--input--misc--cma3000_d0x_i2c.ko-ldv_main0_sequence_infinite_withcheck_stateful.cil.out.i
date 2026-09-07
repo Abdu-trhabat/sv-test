@@ -2863,28 +2863,21 @@ extern s32 i2c_smbus_read_byte_data(struct i2c_client const * , u8 ) ;
 extern s32 i2c_smbus_write_byte_data(struct i2c_client const * , u8 , u8 ) ;
 __inline static void *i2c_get_clientdata(struct i2c_client const *dev )
 { void *tmp ;
-  unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
   struct device const *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device const *)__cil_tmp4;
+  __cil_tmp5 = (struct device const *)((void *)dev + 40);
   tmp = dev_get_drvdata(__cil_tmp5);
   }
   return (tmp);
 }
 }
 __inline static void i2c_set_clientdata(struct i2c_client *dev , void *data )
-{ unsigned long __cil_tmp3 ;
-  unsigned long __cil_tmp4 ;
+{
   struct device *__cil_tmp5 ;
   {
   {
-  __cil_tmp3 = (unsigned long )dev;
-  __cil_tmp4 = __cil_tmp3 + 40;
-  __cil_tmp5 = (struct device *)__cil_tmp4;
+  __cil_tmp5 = (struct device *)((void *)dev + 40);
   dev_set_drvdata(__cil_tmp5, data);
   }
   return;
@@ -2903,8 +2896,6 @@ static int cma3000_i2c_set(struct device *dev , u8 reg , u8 val , char *msg )
   u8 __cil_tmp11 ;
   int __cil_tmp12 ;
   u8 __cil_tmp13 ;
-  unsigned long __cil_tmp14 ;
-  unsigned long __cil_tmp15 ;
   struct device *__cil_tmp16 ;
   struct device const *__cil_tmp17 ;
   {
@@ -2921,9 +2912,7 @@ static int cma3000_i2c_set(struct device *dev , u8 reg , u8 val , char *msg )
   }
   if (ret < 0) {
     {
-    __cil_tmp14 = (unsigned long )client;
-    __cil_tmp15 = __cil_tmp14 + 40;
-    __cil_tmp16 = (struct device *)__cil_tmp15;
+    __cil_tmp16 = (struct device *)((void *)client + 40);
     __cil_tmp17 = (struct device const *)__cil_tmp16;
     dev_err(__cil_tmp17, "%s failed (%s, %d)\n", "cma3000_i2c_set", msg, ret);
     }
@@ -2940,8 +2929,6 @@ static int cma3000_i2c_read(struct device *dev , u8 reg , char *msg )
   struct i2c_client const *__cil_tmp8 ;
   int __cil_tmp9 ;
   u8 __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device const *__cil_tmp14 ;
   {
@@ -2956,9 +2943,7 @@ static int cma3000_i2c_read(struct device *dev , u8 reg , char *msg )
   }
   if (ret < 0) {
     {
-    __cil_tmp11 = (unsigned long )client;
-    __cil_tmp12 = __cil_tmp11 + 40;
-    __cil_tmp13 = (struct device *)__cil_tmp12;
+    __cil_tmp13 = (struct device *)((void *)client + 40);
     __cil_tmp14 = (struct device const *)__cil_tmp13;
     dev_err(__cil_tmp14, "%s failed (%s, %d)\n", "cma3000_i2c_read", msg, ret);
     }
@@ -2972,23 +2957,15 @@ static int cma3000_i2c_probe(struct i2c_client *client , struct i2c_device_id co
 { struct cma3000_accl_data *data ;
   long tmp ;
   long tmp___0 ;
-  unsigned long __cil_tmp6 ;
-  unsigned long __cil_tmp7 ;
   struct device *__cil_tmp8 ;
-  unsigned long __cil_tmp9 ;
-  unsigned long __cil_tmp10 ;
   int __cil_tmp11 ;
   void const *__cil_tmp12 ;
   void const *__cil_tmp13 ;
   void *__cil_tmp14 ;
   {
   {
-  __cil_tmp6 = (unsigned long )client;
-  __cil_tmp7 = __cil_tmp6 + 40;
-  __cil_tmp8 = (struct device *)__cil_tmp7;
-  __cil_tmp9 = (unsigned long )client;
-  __cil_tmp10 = __cil_tmp9 + 1192;
-  __cil_tmp11 = *((int *)__cil_tmp10);
+  __cil_tmp8 = (struct device *)((void *)client + 40);
+  __cil_tmp11 = *((int *)((void *)client + 1192));
   data = cma3000_init(__cil_tmp8, __cil_tmp11, & cma3000_i2c_bops);
   __cil_tmp12 = (void const *)data;
   tmp___0 = IS_ERR(__cil_tmp12);

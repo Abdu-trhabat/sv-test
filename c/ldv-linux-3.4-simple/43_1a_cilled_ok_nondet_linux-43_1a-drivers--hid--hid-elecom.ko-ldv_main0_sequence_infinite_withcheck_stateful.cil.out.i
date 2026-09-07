@@ -1909,8 +1909,6 @@ static __u8 *elecom_report_fixup(struct hid_device *hdev , __u8 *rdesc , unsigne
   __u8 *__cil_tmp8 ;
   __u8 __cil_tmp9 ;
   unsigned int __cil_tmp10 ;
-  unsigned long __cil_tmp11 ;
-  unsigned long __cil_tmp12 ;
   struct device *__cil_tmp13 ;
   struct device const *__cil_tmp14 ;
   __u8 *__cil_tmp15 ;
@@ -1929,9 +1927,7 @@ static __u8 *elecom_report_fixup(struct hid_device *hdev , __u8 *rdesc , unsigne
       __cil_tmp10 = (unsigned int )__cil_tmp9;
       if (__cil_tmp10 == 12U) {
         {
-        __cil_tmp11 = (unsigned long )hdev;
-        __cil_tmp12 = __cil_tmp11 + 6376;
-        __cil_tmp13 = (struct device *)__cil_tmp12;
+        __cil_tmp13 = (struct device *)((void *)hdev + 6376);
         __cil_tmp14 = (struct device const *)__cil_tmp13;
         _dev_info(__cil_tmp14, "Fixing up Elecom BM084 report descriptor\n");
         __cil_tmp15 = rdesc + 47UL;
