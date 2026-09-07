@@ -10,6 +10,11 @@
 
 extern void abort(void);
 void reach_error() { assert(0); }
+void assert_fail_if_not(bool condition) {
+    if (!condition) {
+        reach_error();
+    }
+}
 
 enum { NUM_THREADS = 3 };
 
@@ -93,9 +98,7 @@ void* thread(void* arg)
         }
 
         __atomic_store_n(&stack.array[elem].Value,  idx, 5); // atomic to avoid race
-        if(__atomic_load_n(&stack.array[elem].Value, 5) != idx) { // atomic to avoid race
-            reach_error();
-        }
+        assert_fail_if_not(__atomic_load_n(&stack.array[elem].Value, 5) == idx); // atomic to avoid race
 
         Push(elem);
     }
@@ -116,4 +119,3 @@ int main(void)
 
     return 0;
 }
-

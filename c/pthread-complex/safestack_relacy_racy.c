@@ -10,6 +10,11 @@
 
 extern void abort(void);
 void reach_error() { assert(0); }
+void assert_fail_if_not(bool condition) {
+    if (!condition) {
+        reach_error();
+    }
+}
 
 enum { NUM_THREADS = 3 };
 
@@ -93,9 +98,7 @@ void* thread(void* arg)
         }
 
         stack.array[elem].Value = idx;
-        if(stack.array[elem].Value != idx) {
-            reach_error();
-        }
+        assert_fail_if_not(stack.array[elem].Value == idx);
 
         Push(elem);
     }
@@ -116,4 +119,3 @@ int main(void)
 
     return 0;
 }
-

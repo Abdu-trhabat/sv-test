@@ -11,7 +11,7 @@
 
 extern void abort(void);
 void reach_error() { assert(0); }
-void fail_if_not(bool condition) {
+void assert_fail_if_not(bool condition) {
     if (!condition) {
         reach_error();
     }
@@ -201,7 +201,7 @@ void SyncPush(Obj* elem) {
         //
         long newsize = (q.mask == 0 ? q.InitialSize : 2 * (q.mask + 1));
 
-        fail_if_not(newsize < q.MaxSize);
+        assert_fail_if_not(newsize < q.MaxSize);
 
         Obj *newtasks[STATICSIZE];
         long i;
@@ -218,7 +218,7 @@ void SyncPush(Obj* elem) {
         atomic_store(&q.tail, count);
     }
 
-    fail_if_not(count < q.mask);
+    assert_fail_if_not(count < q.mask);
 
     // push the element
     //
@@ -303,9 +303,8 @@ int main(void) {
     }
 
     for (i = 0; i < ITEMS; i++) {
-        fail_if_not(items[i].field == 1);
+        assert_fail_if_not(items[i].field == 1);
     }
 
     return 0;
 }
-

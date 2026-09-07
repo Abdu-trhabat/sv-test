@@ -8,6 +8,12 @@ extern void abort(void);
 extern int __VERIFIER_nondet_int(void);
 
 void reach_error() { assert(0); }
+void assert_fail_if_not(int condition) {
+    if (!condition) {
+        reach_error();
+        abort();
+    }
+}
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -191,7 +197,7 @@ atomic_int PopOpen;
 int PopDone[3];
 
 void checkInvariant() {
-    if (!(PopDone[0] <= PushDone[0] + PushOpen[0] && PopDone[1] <= PushDone[1] + PushOpen[1])) {reach_error();abort();}
+    assert_fail_if_not(PopDone[0] <= PushDone[0] + PushOpen[0] && PopDone[1] <= PushDone[1] + PushOpen[1]);
 }
 
 void DecrIncr_Push(int localPush1) {
