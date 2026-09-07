@@ -61,7 +61,7 @@ atomic_int allocated[4];
 ThreadInfo* malloc_ThreadInfo() {
     int i = __VERIFIER_nondet_int();
     assume_abort_if_not(0 <= i && i < 4);
-    int already_allocated = atomic_fetch_add(&allocated[i], 1);
+    int already_allocated = atomic_exchange(&allocated[i], 1);
     assume_abort_if_not(!already_allocated);
     return &threads[i];
 }
