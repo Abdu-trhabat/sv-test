@@ -12,6 +12,14 @@
 extern int __VERIFIER_nondet_int(void);
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 #define random() __VERIFIER_nondet_int()
 
@@ -23,7 +31,7 @@ struct dll {
 
 struct dll* alloc_and_zero(void)
 {
-    struct dll *pi = malloc(sizeof(*pi));
+    struct dll *pi = safe_malloc(sizeof(*pi));
     pi->next = NULL;
     pi->prev = NULL;
 
@@ -39,7 +47,7 @@ struct dll* create(void)
 {
     struct dll *dll = alloc_and_zero();
     struct dll *now = dll;
-    int *data = malloc(sizeof(*data));
+    int *data = safe_malloc(sizeof(*data));
     *data = __VERIFIER_nondet_int();
     now->data = data;
 

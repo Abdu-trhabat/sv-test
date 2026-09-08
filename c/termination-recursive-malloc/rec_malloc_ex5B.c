@@ -1,4 +1,12 @@
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -13,17 +21,17 @@ int* g(int *p);
 int* f( int *q, int v) {
 	if(v < 0) {
 		free(q);
-		return malloc(sizeof(int));
+		return safe_malloc(sizeof(int));
 	}
 	
-	int *tmp = malloc(sizeof(int));
+	int *tmp = safe_malloc(sizeof(int));
 	*tmp = v+1;
 	
 	int *tmp2 = f(g(tmp),v-1);
 	
 	*tmp2 = 0;
 	
-	int *tmp3 = malloc(sizeof(int));
+	int *tmp3 = safe_malloc(sizeof(int));
 	*tmp3 = v+2;
 	
 	int *tmp4 = g(tmp3);
@@ -43,7 +51,7 @@ int* f( int *q, int v) {
 int* g(int *p) {
 	if(*p  < 0) {
 		free(p);
-		return malloc(sizeof(int));
+		return safe_malloc(sizeof(int));
 	}
 	
 	(*p)--;
@@ -55,7 +63,7 @@ int* g(int *p) {
 	free(np);
 	
 	
-	return malloc(sizeof(int));
+	return safe_malloc(sizeof(int));
 	
 	
 }
@@ -63,8 +71,8 @@ int* g(int *p) {
 
 int main() {
 	
-	int *p1  = malloc(sizeof(int));
-	int *p2  = malloc(sizeof(int));
+	int *p1  = safe_malloc(sizeof(int));
+	int *p2  = safe_malloc(sizeof(int));
 	
 	
 	*p1 = __VERIFIER_nondet_int();

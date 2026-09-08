@@ -30,6 +30,14 @@ extern int __VERIFIER_nondet_int(void);
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
  
 #define ARRAYSIZE   1000
 #define MAXTHREADS 8
@@ -104,8 +112,8 @@ int main(int argc, char *argv[]) {
  
     iterations = ARRAYSIZE/num_threads;
  
-    threads = (pthread_t *) malloc(sizeof(pthread_t) * num_threads);
-    tids = (int *) malloc(sizeof(int) * num_threads);
+    threads = (pthread_t *) safe_malloc(sizeof(pthread_t) * num_threads);
+    tids = (int *) safe_malloc(sizeof(int) * num_threads);
  
     /* Pthreads setup: initialize mutex and explicitly create threads in a
      joinable state (for portability).  Pass each thread its loop offset */

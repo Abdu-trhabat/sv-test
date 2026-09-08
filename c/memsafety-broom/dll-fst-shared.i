@@ -2188,6 +2188,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 /* Abort execution and generate a core-dump.  */
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* Register a function to be called when `exit' is called.  */
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 /* Register a function to be called when `quick_exit' is called.  */
@@ -2395,7 +2403,7 @@ struct dll {
 };
 struct dll* alloc_and_zero(void)
 {
-    struct dll *pi = malloc(sizeof(*pi));
+    struct dll *pi = safe_malloc(sizeof(*pi));
     pi->next = ((void *)0);
     pi->prev = ((void *)0);
     return pi;
@@ -2408,7 +2416,7 @@ struct dll* create(void)
 {
     struct dll *dll = alloc_and_zero();
     struct dll *now = dll;
-    int *data = malloc(sizeof(*data));
+    int *data = safe_malloc(sizeof(*data));
     *data = __VERIFIER_nondet_int();
     now->data = data;
     while(__VERIFIER_nondet_int()) {

@@ -8,6 +8,14 @@ void reach_error() { assert(0); }
 
 #include <stdio.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 
 typedef unsigned int FFelem;
@@ -36,10 +44,10 @@ int DUPFFdeg(const DUPFF f)
 
 DUPFF DUPFFnew(const int maxdeg)
 {
-  DUPFF ans = (DUPFF)malloc(sizeof(struct DUPFFstruct));
+  DUPFF ans = (DUPFF)safe_malloc(sizeof(struct DUPFFstruct));
   ans->coeffs = 0;
   if (maxdeg >= 0) {
-    ans->coeffs = (FFelem*)malloc((maxdeg+1)*sizeof(FFelem));
+    ans->coeffs = (FFelem*)safe_malloc((maxdeg+1)*sizeof(FFelem));
     memset(ans->coeffs, 0, (maxdeg+1)*sizeof(FFelem));
   }
   ans->maxdeg = maxdeg;

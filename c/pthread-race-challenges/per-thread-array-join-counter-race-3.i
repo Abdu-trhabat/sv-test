@@ -1038,6 +1038,22 @@ typedef unsigned int uintptr_t;
 typedef __intmax_t intmax_t;
 typedef __uintmax_t uintmax_t;
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -1082,11 +1098,11 @@ int main() {
   threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
   assume_abort_if_not(threads_total <= (4294967295U) / sizeof(pthread_t));
-  tids = malloc(threads_total * sizeof(pthread_t));
+  tids = safe_malloc(threads_total * sizeof(pthread_t));
   assume_abort_if_not(threads_total <= (4294967295U) / sizeof(_Bool));
-  flags = calloc(threads_total, sizeof(_Bool));
+  flags = safe_calloc(threads_total, sizeof(_Bool));
   assume_abort_if_not(threads_total <= (4294967295U) / sizeof(pthread_mutex_t));
-  flags_mutex = malloc(threads_total * sizeof(pthread_mutex_t));
+  flags_mutex = safe_malloc(threads_total * sizeof(pthread_mutex_t));
   for (int i = 0; i < threads_total; i++)
     pthread_mutex_init(&flags_mutex[i], ((void *)0));
   pthread_t cleaner_tid;

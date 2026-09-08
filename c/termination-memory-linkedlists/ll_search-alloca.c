@@ -4,6 +4,14 @@
  */
  
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 extern int __VERIFIER_nondet_int();
@@ -20,7 +28,7 @@ node_t* init_ll (int n)
   node_t* curr;
   
   for (int i = 0; i < n; i++) {
-    curr = malloc(sizeof(node_t));
+    curr = safe_malloc(sizeof(node_t));
     curr->val = i;
     curr->next = head;
     head = curr;

@@ -902,6 +902,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -1233,7 +1241,7 @@ pthread_mutex_t B_mutex = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 void *t_fun(void *arg) {
   int *ip;
   struct s *t;
-  struct s *p = malloc(sizeof(struct s));
+  struct s *p = safe_malloc(sizeof(struct s));
   init(p,7);
   pthread_mutex_lock(&B_mutex);
   t = A->next;
@@ -1246,12 +1254,12 @@ int main () {
   pthread_t t1;
   int *ip;
   struct s *sp;
-  struct s *p = malloc(sizeof(struct s));
+  struct s *p = safe_malloc(sizeof(struct s));
   init(p,9);
-  A = malloc(sizeof(struct s));
+  A = safe_malloc(sizeof(struct s));
   init(A,3);
   A->next = p;
-  B = malloc(sizeof(struct s));
+  B = safe_malloc(sizeof(struct s));
   init(B,5);
   pthread_create(&t1, ((void *)0), t_fun, ((void *)0));
   ip = &p->datum;

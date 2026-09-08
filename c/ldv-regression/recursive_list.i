@@ -5,6 +5,14 @@ void reach_error() { __assert_fail("0", "recursive_list.i", 3, "reach_error"); }
 
 typedef unsigned int size_t;
 extern  __attribute__((__nothrow__)) void *malloc(size_t __size ) __attribute__((__malloc__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 void err()
 { ERROR: {reach_error();abort();}}
@@ -19,7 +27,7 @@ struct list {
 int i = 1;
 void * allocate_memory()
 {
- return malloc(8U);
+ return safe_malloc(8U);
 }
 
 struct list* append(struct list *l, int n)

@@ -572,7 +572,7 @@ static struct node* alloc_node(void)
 {
     struct node *ptr = malloc(sizeof *ptr);
     if (!ptr)
-        abort();
+        while (1) { }
     ptr->next = ((void *)0);
     ptr->prev = ((void *)0);
     return ptr;

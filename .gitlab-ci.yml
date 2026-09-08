@@ -138,7 +138,7 @@ java-format:
 check-links:
     stage: checks
     image: "$CI_REGISTRY/sosy-lab/benchmarking/sv-benchmarks/ci/link-checks:latest"
-    script: "FAIL=0; for md in $(find . -name '*.md'); do pandoc -t html5 \"$md\" -o \"$md\".html; echo -e \"\\n\\nFILE: $md\"; linkchecker --check-extern --config .linkchecker.config  \"$md\".html; FAIL=$((FAIL += $?)); rm \"$md\".html; done; exit $FAIL" 
+    script: "FAIL=0; for md in $(find . -path ./.git -prune -false -o -name '*.md'); do pandoc -t html5 \"$md\" -o \"$md\".html; echo -e \"\\n\\nFILE: $md\"; linkchecker --check-extern --config .linkchecker.config  \"$md\".html; FAIL=$((FAIL += $?)); rm \"$md\".html; done; exit $FAIL" 
     # We want to know about failing links, but they should not block us.
     allow_failure: true
 
@@ -215,7 +215,7 @@ reuse:
   stage: checks
   interruptible: true
   image:
-    name: ghcr.io/astral-sh/ruff:alpine
+    name: ghcr.io/astral-sh/ruff:0.15-alpine
   before_script:
     - cd $CI_PROJECT_DIR
     - ruff --version

@@ -1036,6 +1036,14 @@ extern int strncasecmp_l (const char *__s1, const char *__s2,
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__pure__)) __attribute__ ((__nonnull__ (1, 2, 4)));
 
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -1055,8 +1063,8 @@ int main() {
   int threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
   assume_abort_if_not(threads_total < 32);
-  pthread_t *tids = malloc(threads_total * sizeof(pthread_t));
-  datas = malloc(threads_total * sizeof(int));
+  pthread_t *tids = safe_malloc(threads_total * sizeof(pthread_t));
+  datas = safe_malloc(threads_total * sizeof(int));
   for (int i = 0; i < threads_total; i++) {
     pthread_mutex_lock(&threads_mask_mutex);
     int j = (ffs(threads_mask) - 1) / 2;

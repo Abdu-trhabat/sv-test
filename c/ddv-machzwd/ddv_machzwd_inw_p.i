@@ -714,6 +714,14 @@ extern void pthread_kill_other_threads_np(void);
 
 
 void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 
@@ -2974,7 +2982,7 @@ void call_genhd_functions()
 
  case 1:
      if (genhd_registered[genhd_no].gd->fops->open) {
-  genhd_registered[genhd_no].inode.i_bdev = (struct block_device*)malloc(sizeof(struct block_device));
+  genhd_registered[genhd_no].inode.i_bdev = (struct block_device*)safe_malloc(sizeof(struct block_device));
   genhd_registered[genhd_no].inode.i_bdev->bd_disk = genhd_registered[genhd_no].gd;
 
   (* genhd_registered[genhd_no].gd->fops->open)(&genhd_registered[genhd_no].inode,
@@ -3139,7 +3147,7 @@ inline int pci_enable_device(struct pci_dev *dev)
 inline struct pci_dev *pci_get_class (unsigned int class, struct pci_dev *from)
 {
     if (from == ((void *)0)) {
- from = (struct pci_dev*)malloc(sizeof(struct pci_dev));
+ from = (struct pci_dev*)safe_malloc(sizeof(struct pci_dev));
     }
 
     if (__VERIFIER_nondet_int()) {
@@ -3319,7 +3327,7 @@ void add_disk(struct gendisk *disk)
 {
   if (number_genhd_registered < 10) {
     genhd_registered[number_genhd_registered].gd = disk;
-    genhd_registered[number_genhd_registered].inode.i_bdev = (struct block_device*)malloc(sizeof(struct block_device));
+    genhd_registered[number_genhd_registered].inode.i_bdev = (struct block_device*)safe_malloc(sizeof(struct block_device));
     genhd_registered[number_genhd_registered].inode.i_bdev->bd_disk = disk;
 
     number_genhd_registered++;
@@ -3926,7 +3934,7 @@ int ddv_ioport_request_len;
 inline struct resource *request_region(unsigned long start, unsigned long len, const char *name)
 {
   unsigned int i;
-    struct resource *resource = (struct resource*)malloc(sizeof(struct resource));
+    struct resource *resource = (struct resource*)safe_malloc(sizeof(struct resource));
 
 
 
@@ -4452,7 +4460,7 @@ void * kmalloc(size_t size, gfp_t flags)
  assert_context_process();
     }
 
-    return malloc(size);
+    return safe_malloc(size);
 }
 
 void * kzalloc(size_t size, gfp_t flags)
@@ -4461,7 +4469,7 @@ void * kzalloc(size_t size, gfp_t flags)
  assert_context_process();
     }
 
-    return malloc(size);
+    return safe_malloc(size);
 }
 
 
@@ -4476,7 +4484,7 @@ void vfree(void *addr);
 
 void * vmalloc(unsigned long size)
 {
-  return malloc(size);
+  return safe_malloc(size);
 }
 int printk(const char *fmt, ...)
 {
@@ -4529,7 +4537,7 @@ void kfree(const void* addr) { }
 
 struct resource *request_mem_region(unsigned long start, unsigned long len, const char *name)
 {
-  return (struct resource*)malloc(sizeof(struct resource));
+  return (struct resource*)safe_malloc(sizeof(struct resource));
 };
 
 void __VERIFIER_atomic_begin() { }

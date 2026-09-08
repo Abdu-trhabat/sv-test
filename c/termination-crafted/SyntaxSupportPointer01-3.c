@@ -8,10 +8,19 @@
 void * __attribute__((__cdecl__)) malloc (size_t __size) ;
 void free (void *__ptr);
 
+extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void);
 
 int main() {
-	int *p = malloc(sizeof(int));
+	int *p = safe_malloc(sizeof(int));
 	while (*p >= 0) {
 		(*p)--;
 	}

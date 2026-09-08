@@ -11,6 +11,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <stddef.h> // offsetof
 #define typeof __typeof__
 
@@ -141,10 +149,10 @@ void do_data(int *data)
 
 struct hlist_head *create()
 {
-    struct hlist_head *head=malloc(sizeof(struct hlist_head));
+    struct hlist_head *head=safe_malloc(sizeof(struct hlist_head));
     INIT_HLIST_HEAD(head);
     while(random()) {
-        struct my_item *ptr = malloc(sizeof *ptr);
+        struct my_item *ptr = safe_malloc(sizeof *ptr);
         INIT_HLIST_NODE(&ptr->link);
         ptr->data = __VERIFIER_nondet_int();
         hlist_add_head(&ptr->link, head);

@@ -438,6 +438,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -536,7 +544,7 @@ int main() {
     int c1 = 0;
     while (c1 < 5 && __VERIFIER_nondet_int()) {
         c1++;
-        item = malloc(sizeof *item);
+        item = safe_malloc(sizeof *item);
         if (!item)
             abort();
         item->next = ((void *)0);
@@ -546,7 +554,7 @@ int main() {
         item->value = c1 + 2;
         if(c1 < 6)
         item->value = 2 * c1 + 4;
-        lItem = malloc(sizeof *lItem);
+        lItem = safe_malloc(sizeof *lItem);
         if (data) {
             lItem->next = data->next;
             data->next = lItem;

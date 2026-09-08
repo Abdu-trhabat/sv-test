@@ -10,6 +10,14 @@ void reach_error() { assert(0); }
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 typedef struct TData
 {
@@ -29,7 +37,7 @@ int main()
 	Node* list = NULL;
 	Node* y = NULL;
 
-	y = malloc(sizeof(*y));
+	y = safe_malloc(sizeof(*y));
 	y->next = NULL;
 	y->prev = NULL;
 	y->pData = &y->data;
@@ -37,13 +45,13 @@ int main()
 
 	while (__VERIFIER_nondet_int())
 	{
-		y = malloc(sizeof(*y));
+		y = safe_malloc(sizeof(*y));
 		y->next = list;
 		list->prev = y;
 
 		if (__VERIFIER_nondet_int())
 		{
-			y->pData = malloc(sizeof(*y->pData));
+			y->pData = safe_malloc(sizeof(*y->pData));
 		}
 		else
 		{
