@@ -36,10 +36,10 @@ try:
 except ImportError:
     logging.basicConfig(format=LOG_FORMAT, level="INFO")
 
-README_PATTERN = re.compile("^readme(\.(txt|md))?$", re.I)
-BENCHMARK_PATTERN = re.compile("^.*\.yml$")
+README_PATTERN = re.compile(r"^readme(\.(txt|md))?$", re.I)
+BENCHMARK_PATTERN = re.compile(r"^.*\.yml$")
 EXPECTED_FILE_PATTERN = re.compile(
-    "^(.*\.(c|h|i|yml)|(readme|license([-.].*)?|.*\.error_trace)(\.(txt|md))?|Makefile|.gitignore)$",
+    r"^(.*\.(c|h|i|yml)|(readme|license([-.].*)?|.*\.error_trace)(\.(txt|md))?|Makefile|.gitignore)$",
     re.I,
 )
 CONFIG_KEYS = set(["Architecture", "Description"])
