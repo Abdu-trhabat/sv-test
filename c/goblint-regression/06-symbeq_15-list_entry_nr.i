@@ -2201,6 +2201,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 /* Abort execution and generate a core-dump.  */
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 /* Register a function to be called when `exit' is called.  */
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 /* Register a function to be called when `quick_exit' is called.  */
@@ -3007,7 +3015,7 @@ void *t_fun(void *arg) {
 }
 int main () {
   pthread_t t1;
-  A = malloc(sizeof(struct s));
+  A = safe_malloc(sizeof(struct s));
   init(A,666);
   pthread_create(&t1, ((void *)0), t_fun, ((void *)0));
   update(&A->list);

@@ -3,10 +3,18 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include <string.h>
 
 static void *calloc_model(size_t nmemb, size_t size) {
-    void *ptr = malloc(nmemb * size);
+    void *ptr = safe_malloc(nmemb * size);
     return memset(ptr, 0, nmemb * size);
 }
 
@@ -28,7 +36,7 @@ static void l2_insert(struct L2 **list)
     if (!item)
         abort();
 
-    item->proto = malloc(119U);
+    item->proto = safe_malloc(119U);
     if (!item->proto)
         abort();
 

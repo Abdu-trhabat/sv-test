@@ -4,6 +4,14 @@
 
 #include <pthread.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 #include "assert.h"
 
 int *data;
@@ -50,7 +58,7 @@ int main(int argc, char* argv[]) {
     next = 0;
     len = __VERIFIER_nondet_int();
     assume_abort_if_not(len > 0);
-    data = malloc(sizeof(int) * len);
+    data = safe_malloc(sizeof(int) * len);
     while(1) {
 	pthread_create(&t, 0, thr, 0);
     }

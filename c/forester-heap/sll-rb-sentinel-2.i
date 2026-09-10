@@ -980,6 +980,14 @@ extern int getloadavg (double __loadavg[], int __nelem)
      __attribute__ ((__nothrow__ )) __attribute__ ((__nonnull__ (1)));
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
+void *safe_malloc_or_loop(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    while (1) { }
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -1002,11 +1010,11 @@ typedef struct TSLL
 
 int main()
 {
- SLL* null = malloc(sizeof(SLL));
+ SLL* null = safe_malloc_or_loop(sizeof(SLL));
  null->colour = BLACK;
  null->next = ((void*)0);
 
- SLL* list = malloc(sizeof(SLL));
+ SLL* list = safe_malloc_or_loop(sizeof(SLL));
  list->next = null;
  list->colour = BLACK;
 
@@ -1016,7 +1024,7 @@ int main()
  while (__VERIFIER_nondet_int())
  {
 
-  end->next = malloc(sizeof(SLL));
+  end->next = safe_malloc_or_loop(sizeof(SLL));
   end = end->next;
   end->next = null;
 
@@ -1027,7 +1035,7 @@ int main()
   else
   {
    end->colour = RED;
-   end->next = malloc(sizeof(SLL));
+   end->next = safe_malloc_or_loop(sizeof(SLL));
    end = end->next;
    end->next = null;
    end->colour = BLACK;

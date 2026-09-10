@@ -419,8 +419,16 @@ int __VERIFIER_nondet_int(void);
 void __VERIFIER_atomic_begin(void);
 void __VERIFIER_atomic_end(void);
 extern void *malloc(size_t);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void *openbsd_kernel_malloc(size_t size, int type, int flags) {
-  return malloc(size);
+  return safe_malloc(size);
 }
 extern void free(void *);
 void openbsd_kernel_free(void *addr, int type, size_t size) { free(addr); }

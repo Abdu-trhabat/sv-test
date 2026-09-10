@@ -20,6 +20,14 @@
 #include <stdlib.h>
 #include "svc.h"
 
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 struct FifoNode_ {
     int *read;
     int buffer[ NODE_SIZE ];
@@ -47,7 +55,7 @@ _Bool fifo_empty( Fifo *self ) {
 }
 
 Fifo *fifo_init( Fifo *self ) {
-    self->head = self->tail = fifo_node_init( malloc( sizeof( FifoNode ) ) );
+    self->head = self->tail = fifo_node_init( safe_malloc( sizeof( FifoNode ) ) );
     assert( fifo_empty( self ) );
     return self;
 }
@@ -66,7 +74,7 @@ void *fifo_destroy( Fifo *self ) {
 void fifo_push( Fifo *self, int x ) {
     FifoNode *t;
     if ( self->tail->write == self->tail->buffer + NODE_SIZE )
-        t = fifo_node_init( malloc( sizeof( FifoNode ) ) );
+        t = fifo_node_init( safe_malloc( sizeof( FifoNode ) ) );
     else
         t = self->tail;
 

@@ -8,6 +8,14 @@ void assume_abort_if_not(int cond) {
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 extern long __VERIFIER_nondet_long(void);
 void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 long SIZE;
 
@@ -19,7 +27,7 @@ int main()
 	if(SIZE > 1 && SIZE < MAX)
 	{
 		int i;
-		long *a = malloc(sizeof(long)*SIZE);
+		long *a = safe_malloc(sizeof(long)*SIZE);
 		long sum=0;
 
 		for(i = 0; i < SIZE; i++ )

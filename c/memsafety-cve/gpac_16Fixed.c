@@ -69,7 +69,7 @@ void gf_m2ts_process_sdt(u8 *data, u32 data_size) {
           break;
         }
 
-        char *provider = (char *)malloc(sizeof(char) * (ulen + 1));
+        char *provider = (char *)safe_malloc(sizeof(char) * (ulen + 1));
         memcpy(provider, data + pos + d_pos, sizeof(char) * ulen);
         provider[ulen] = 0;
         d_pos += ulen;
@@ -87,7 +87,7 @@ void gf_m2ts_process_sdt(u8 *data, u32 data_size) {
           break;
         }
 
-        char *service = (char *)malloc(sizeof(char) * (ulen + 1));
+        char *service = (char *)safe_malloc(sizeof(char) * (ulen + 1));
         memcpy(service, data + pos + d_pos, sizeof(char) * ulen);
         service[ulen] = 0;
         d_pos += ulen;

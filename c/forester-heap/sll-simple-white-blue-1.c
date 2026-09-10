@@ -10,6 +10,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
 #include <assert.h>
@@ -27,7 +35,7 @@ typedef struct TSLL
 int main()
 {
 	// create the head
-	SLL* head = malloc(sizeof(SLL));
+	SLL* head = safe_malloc(sizeof(SLL));
 	head->next = NULL;
 	head->data = WHITE;
 
@@ -37,7 +45,7 @@ int main()
 	while (__VERIFIER_nondet_int())
 	{
 		// create a node
-		x->next = malloc(sizeof(SLL));
+		x->next = safe_malloc(sizeof(SLL));
 		x = x->next;
 		x->data = WHITE;
 		x->next = NULL;
@@ -45,7 +53,7 @@ int main()
 
 	// insert a blue guy
 	if (__VERIFIER_nondet_int()) { // the blue guy will be the head
-		x = malloc(sizeof(SLL));
+		x = safe_malloc(sizeof(SLL));
 		x->data = BLUE;
 		x->next = head;
 			head = x;
@@ -62,7 +70,7 @@ int main()
 
 		// insert the blue guy
 		SLL* y = x->next;
-		x->next = malloc(sizeof(SLL));
+		x->next = safe_malloc(sizeof(SLL));
 		x->data = BLUE;
 		x->next = y;
 	}

@@ -439,6 +439,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
 extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -536,19 +544,19 @@ int main()
 {
  Node* list = ((void *)0);
  Node* y = ((void *)0);
- y = malloc(sizeof(*y));
+ y = safe_malloc(sizeof(*y));
  y->next = ((void *)0);
  y->prev = ((void *)0);
  y->pData = &y->data;
  list = y;
  while (__VERIFIER_nondet_int())
  {
-  y = malloc(sizeof(*y));
+  y = safe_malloc(sizeof(*y));
   y->next = list;
   list->prev = y;
   if (__VERIFIER_nondet_int())
   {
-   y->pData = malloc(sizeof(*y->pData));
+   y->pData = safe_malloc(sizeof(*y->pData));
   }
   else
   {

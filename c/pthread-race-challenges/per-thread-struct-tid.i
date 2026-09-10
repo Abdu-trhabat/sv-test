@@ -1038,6 +1038,14 @@ typedef unsigned int uintptr_t;
 typedef __intmax_t intmax_t;
 typedef __uintmax_t uintmax_t;
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -1055,9 +1063,9 @@ int main() {
   int threads_total = __VERIFIER_nondet_int();
   assume_abort_if_not(threads_total >= 0);
   assume_abort_if_not(threads_total <= (4294967295U) / sizeof(struct thread *));
-  struct thread **ts = malloc(threads_total * sizeof(struct thread *));
+  struct thread **ts = safe_malloc(threads_total * sizeof(struct thread *));
   for (int i = 0; i < threads_total; i++) {
-    struct thread *t = malloc(sizeof(struct thread));
+    struct thread *t = safe_malloc(sizeof(struct thread));
     ts[i] = t;
     pthread_create(&t->tid, ((void *)0), &thread, t);
   }

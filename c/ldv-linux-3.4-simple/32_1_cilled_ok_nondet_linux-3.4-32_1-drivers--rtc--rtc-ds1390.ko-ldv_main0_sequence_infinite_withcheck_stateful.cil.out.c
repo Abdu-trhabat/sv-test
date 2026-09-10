@@ -2968,6 +2968,14 @@ void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
 extern void *malloc(size_t size);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 long ldv_is_err(const void *ptr)
 {
 		return ((unsigned long)ptr > ((unsigned long)-4095));
@@ -2976,7 +2984,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
 	if (__VERIFIER_nondet_int()) {
-		void *res = malloc(size);
+		void *res = safe_malloc(size);
 		assume_abort_if_not(!ldv_is_err(res));
 
 		return res;
@@ -3782,9 +3790,9 @@ extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT  ;
 static int res_ds1390_probe_3  ;
 void main(void) 
-{ struct device *var_group1 = malloc(sizeof(*var_group1));
-  struct rtc_time *var_group2 = malloc(sizeof(*var_group2));
-  struct spi_device *var_group3 = malloc(sizeof(*var_group3));
+{ struct device *var_group1 = safe_malloc(sizeof(*var_group1));
+  struct rtc_time *var_group2 = safe_malloc(sizeof(*var_group2));
+  struct spi_device *var_group3 = safe_malloc(sizeof(*var_group3));
   int ldv_s_ds1390_driver_spi_driver ;
   int tmp___7 ;
   int tmp___8 ;

@@ -63,6 +63,14 @@ char  const* zpi_fn;
 FILE* zpi_filep;
 } ;
 typedef unsigned int  size_t;
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 struct _IO_FILE{
 int  _flags;
 char * _IO_read_ptr;
@@ -495,7 +503,7 @@ int main(){
 struct smp_target_obj tobj;
 struct opts_t opts;
 unsigned char * resp;
-resp= (unsigned char *) malloc (sizeof (unsigned char));
+resp= (unsigned char *) safe_malloc (sizeof (unsigned char));
 int ret = do_discover_list( & tobj, __VERIFIER_nondet_int() , resp,  sizeof (resp),  & opts);
 return 0;
 }

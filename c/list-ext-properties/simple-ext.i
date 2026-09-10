@@ -530,14 +530,14 @@ typedef struct node {
 } *List;
 int main() {
   List a = (List) malloc(sizeof(struct node));
-  if (a == 0) myexit(1);
+  if (a == 0) abort();
   List t;
   List p = a;
   int i = 0;
   while (i < 30 && __VERIFIER_nondet_int()) {
     p->h = i;
     t = (List) malloc(sizeof(struct node));
-    if (t == 0) myexit(1);
+    if (t == 0) abort();
     p->n = t;
     p = p->n;
     i++;

@@ -673,6 +673,22 @@ extern char *stpncpy (char *__restrict __dest,
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
 
 extern void abort(void);
+void *safe_calloc(size_t num, size_t size) {
+  void *p = calloc(num, size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -883,7 +899,7 @@ int ASStart(event_t *e) {
   switch (primitive) {
   case _EVENT_OPEN: {
     message_t *message = &user->message;
-    message = calloc(0,sizeof(*message));
+    message = safe_calloc(0,sizeof(*message));
     message->id = 4;
     message->type = M_OPEN;
     open_message(&message->u.open);
@@ -897,7 +913,7 @@ int ASStart(event_t *e) {
   break;
   case _EVENT_CLOSE: {
     message_t *message = &user->message;
-    message = calloc(0, sizeof(*message));
+    message = safe_calloc(0, sizeof(*message));
     message->id = 3;
     message->type = M_CLOSE;
     close_message(&message->u.close);
@@ -919,7 +935,7 @@ int ASIdle(event_t *e) {
   switch (primitive) {
   case _EVENT_HELLO: {
     message_t *message = &user->message;
-    message = calloc(0,sizeof(*message));
+    message = safe_calloc(0,sizeof(*message));
     message->id = 4;
     message->type = M_HELLO;
     hello_message(&message->u.hello);
@@ -963,7 +979,7 @@ int event_precess(event_t *e) {
   return rc;
 }
 void user_initialize() {
-  user->info = calloc(1, sizeof(info_t));
+  user->info = safe_calloc(1, sizeof(info_t));
   user->message.id = 11;
   user->info->is_valid = 0;
   user->status = AS_NULL;
@@ -972,7 +988,7 @@ void user_initialize() {
 }
 int main(int argc, char const *argv[])
 {
-  user = malloc(sizeof(user_t));
+  user = safe_malloc(sizeof(user_t));
   user_initialize();
   event_t e = {0};
   e.primitive = _EVENT_START;

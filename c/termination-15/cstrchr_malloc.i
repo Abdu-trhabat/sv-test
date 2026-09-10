@@ -360,6 +360,14 @@ int __attribute__((__cdecl__)) _system_r (struct _reent *, const char *);
 void __attribute__((__cdecl__)) __eprintf (const char *, const char *, unsigned int, const char *);
 extern long double strtold (const char *, char **);
 
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void);
 char *(cstrchr)(const char *s, int c)
  {
@@ -372,7 +380,7 @@ int main() {
     if (length < 1) {
         length = 1;
     }
-    char* nondetString = (char*) malloc(length * sizeof(char));
+    char* nondetString = (char*) safe_malloc(length * sizeof(char));
     nondetString[length-1] = '\0';
     cstrchr(nondetString,__VERIFIER_nondet_int());
     free(nondetString);

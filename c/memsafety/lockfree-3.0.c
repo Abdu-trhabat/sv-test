@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -23,7 +31,7 @@ void push()
 
     switch (pc1++) {
         case 1:
-            x1 = malloc(sizeof(*x1));
+            x1 = safe_malloc(sizeof(*x1));
             x1->data = 0;
             x1->next = NULL;
             return;

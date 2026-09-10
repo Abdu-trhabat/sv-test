@@ -3,11 +3,20 @@ typedef long unsigned int size_t;
 void * __attribute__((__cdecl__)) malloc (size_t __size) ;
 void __attribute__((__cdecl__)) free (void *) ;
 
+extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int __VERIFIER_nondet_int(void);
 
 /* Returns some null-terminated string. */
 char* build_nondet_String(int length) {
-    char* nondetString = (char*) malloc(length * sizeof(char));
+    char* nondetString = (char*) safe_malloc(length * sizeof(char));
     nondetString[length-1] = '\0';
     return nondetString;
 }
@@ -24,7 +33,7 @@ char* build_nondet_String(int length) {
  
  char* (rec_strcopy)(const char *source, int length)
  {
-	 char *copyAlloc = (char*) malloc(length * sizeof(char));
+	 char *copyAlloc = (char*) safe_malloc(length * sizeof(char));
 	 rec_strcopy_helper(source,copyAlloc);
 	 return copyAlloc;
 	 

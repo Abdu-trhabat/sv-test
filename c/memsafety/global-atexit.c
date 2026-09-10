@@ -1,6 +1,13 @@
 #include <stdlib.h>
 
 extern _Bool __VERIFIER_nondet_bool();
+void *safe_malloc_or_loop(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    while (1) { }
+  }
+  return p;
+}
 
 /* simple regression test for atexit */
 
@@ -21,14 +28,14 @@ void h() {
 }
 
 void f() {
-	*g = (int *) malloc(sizeof(int));
+	*g = (int *) safe_malloc_or_loop(sizeof(int));
 	atexit(free_g2);
 	h();
 }
 
 
 int main() {
-	g = (int **) malloc(sizeof(int *));
+	g = (int **) safe_malloc_or_loop(sizeof(int *));
 	atexit(free_g1);
 	if (__VERIFIER_nondet_bool()) exit(1);
 	f();

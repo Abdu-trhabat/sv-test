@@ -11,10 +11,18 @@ void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();}
 
 #include <setjmp.h>
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int main(void)
 {
-    jmp_buf* my_jump_buffer = malloc(sizeof(jmp_buf));
+    jmp_buf* my_jump_buffer = safe_malloc(sizeof(jmp_buf));
 
     volatile int count = setjmp(*my_jump_buffer);
     __VERIFIER_assert(count == 0);

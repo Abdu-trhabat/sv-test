@@ -52,6 +52,14 @@ __extension__
     extern void *
     malloc(size_t __size) __attribute__((__nothrow__, __leaf__))
     __attribute__((__malloc__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void *memcpy(void *__restrict __dest, const void *__restrict __src,
                     size_t __n) __attribute__((__nothrow__, __leaf__))
@@ -277,7 +285,7 @@ void ensure_byte_cursor_has_allocated_buffer_member(
 
 void *bounded_malloc(size_t size) {
   assume_abort_if_not(size <= ((18446744073709551615UL) >> (8 + 1)));
-  return malloc(size);
+  return safe_malloc(size);
 }
 
 void *can_fail_malloc(size_t size) {

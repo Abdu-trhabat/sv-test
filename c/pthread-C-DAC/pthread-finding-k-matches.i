@@ -1219,6 +1219,14 @@ extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
 extern int on_exit (void (*__func) (int __status, void *__arg), void *__arg)
@@ -1359,8 +1367,8 @@ int main(int argc, char *argv[]) {
         return 0;
     }
     iterations = 1000/num_threads;
-    threads = (pthread_t *) malloc(sizeof(pthread_t) * num_threads);
-    tids = (int *) malloc(sizeof(int) * num_threads);
+    threads = (pthread_t *) safe_malloc(sizeof(pthread_t) * num_threads);
+    tids = (int *) safe_malloc(sizeof(int) * num_threads);
     ret_count = pthread_mutex_init(&count_mutex, ((void *)0));
     if(ret_count)
     {

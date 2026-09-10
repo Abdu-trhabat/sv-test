@@ -5819,6 +5819,14 @@ extern void kfree(void const   * ) ;
 extern void *kmem_cache_alloc(struct kmem_cache * , gfp_t  ) ;
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void assume_abort_if_not(int cond) {
   if(!cond) {abort();}
 }
@@ -5832,7 +5840,7 @@ long ldv_is_err(const void *ptr)
 void *ldv_malloc(size_t size)
 {
 	if (__VERIFIER_nondet_int()) {
-		void *res = malloc(size);
+		void *res = safe_malloc(size);
 		assume_abort_if_not(!ldv_is_err(res));
 
 		return res;
@@ -9601,7 +9609,7 @@ int main(void)
   int tmp___0 ;
   int tmp___1 ;
 
-  var_group1 = malloc(sizeof(struct atm_vcc));
+  var_group1 = safe_malloc(sizeof(struct atm_vcc));
   var_group1->release_cb = &void_one_par_dummy;
   var_group1->push = &void_two_par_dummy;
   var_group1->pop = &void_two_par_dummy;
