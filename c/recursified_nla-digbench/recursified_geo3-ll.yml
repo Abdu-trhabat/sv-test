@@ -6,8 +6,6 @@ options:
 properties:
 - expected_verdict: true
   property_file: ../properties/unreach-call.prp
-- expected_verdict: true
-  property_file: ../properties/no-overflow.prp
 - property_file: ../properties/coverage-branches.prp
 
 # original_yaml_file: geo3-ll.yml
