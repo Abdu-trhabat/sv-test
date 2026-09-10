@@ -1,0 +1,3 @@
+CHECK( init(main()), ! uncaught(ZeroDivisionError))
+CHECK( init(main()), ! uncaught(FloatingPointError))
+

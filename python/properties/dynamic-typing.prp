@@ -1,0 +1,2 @@
+CHECK( init(main()), ! uncaught(TypeError))
+CHECK( init(main()), ! uncaught(AttributeError))
