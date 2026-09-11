@@ -1,6 +1,6 @@
 format_version: '2.0'
 
-input_files: 'safestack_relacy_racy.i'
+input_files: 'safestack_relacy_racy.c'
 
 properties:
   - property_file: ../properties/no-data-race.prp

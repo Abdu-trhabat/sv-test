@@ -2,19 +2,21 @@
     Copyright (C) Dmitry Vyukov. All rights reserved.
 */
 
-extern void abort(void);
 #include <assert.h>
-void reach_error() { assert(0); }
-#undef assert
-#define assert(X) if(!(X)) reach_error()
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <pthread.h>
 #include <stdbool.h>
 
-#define NUM_THREADS 3
+extern void abort(void);
+void reach_error() { assert(0); }
+void assert_fail_if_not(bool condition) {
+    if (!condition) {
+        reach_error();
+    }
+}
+
+enum { NUM_THREADS = 3 };
 
 typedef struct SafeStackItem
 {
@@ -96,7 +98,7 @@ void* thread(void* arg)
         }
 
         __atomic_store_n(&stack.array[elem].Value,  idx, 5); // atomic to avoid race
-        assert(__atomic_load_n(&stack.array[elem].Value, 5) == idx); // atomic to avoid race
+        assert_fail_if_not(__atomic_load_n(&stack.array[elem].Value, 5) == idx); // atomic to avoid race
 
         Push(elem);
     }
@@ -117,4 +119,3 @@ int main(void)
 
     return 0;
 }
-

@@ -4,37 +4,30 @@
 *                                                       *
 ********************************************************/
 
-extern void abort(void);
 #include <assert.h>
+#include <pthread.h>
+#include <stdatomic.h>
+#include <stdbool.h>
+
+extern void abort(void);
 void reach_error() { assert(0); }
-extern void __VERIFIER_atomic_begin(void);
-extern void __VERIFIER_atomic_end(void);
-#undef assert
-#define assert(X) if(!(X)) reach_error()
+void assert_fail_if_not(bool condition) {
+    if (!condition) {
+        reach_error();
+    }
+}
 
-#include <stdio.h>
-#include <pthread.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <pthread.h>
-
-#define STATICSIZE 16
+enum {
+    STATICSIZE    = 16,
+    INITQSIZE     = 2, // must be power of 2
+    ITEMS         = 4,
+    STEALERS      = 2,
+    STEAL_ATTEMPS = 1
+};
 
 typedef struct Obj {
     int field;
 } Obj;
-
-void Init_ObjType(Obj *r) {
-    r->field = 0;
-}
-
-void Operation(Obj *r) {
-    r->field++;
-}
-
-void Check(Obj *r) {
-    assert(r->field == 1);
-}
 
 //
 // A WorkStealQueue is a wait-free, lock-free structure associated with a single
@@ -72,8 +65,8 @@ typedef struct WorkStealQueue {
     long MaxSize;
     long InitialSize; // must be a power of 2
 
-    long head;  // only updated by Take
-    long tail;  // only updated by Push and Pop
+    atomic_long head;  // only updated by Take
+    atomic_long tail;  // only updated by Push and Pop
 
     Obj*  elems[STATICSIZE];         // the array of tasks
     long mask;           // the mask for taking modulus
@@ -83,47 +76,13 @@ typedef struct WorkStealQueue {
 
 WorkStealQueue q;
 
-
-long atomic_exchange(long *obj, long v) {
-    __VERIFIER_atomic_begin();
-    long t = *obj;
-    *obj = v;
-    __VERIFIER_atomic_end();
-    return t;
-}
-
-_Bool atomic_compare_exchange_strong(long* obj, long* expected, long desired) {
-    int ret = 0;
-    __VERIFIER_atomic_begin();
-    if (*obj == *expected) {
-        *obj = desired;
-        ret = 1;
-    } else {
-        *expected = *obj;
-        ret = 0;
-    }
-    __VERIFIER_atomic_end();
-    return ret;
-}
-
-long readV(long *v) {
-    long expected = 0;
-    atomic_compare_exchange_strong(v, &expected, 0);
-    return expected;
-}
-
-void writeV(long *v, long w) {
-    atomic_exchange(v, w);
-}
-
-
 void Init_WorkStealQueue(long size) {
     q.MaxSize = 1024 * 1024;
     q.InitialSize = 1024;
     pthread_mutex_init(&q.cs, NULL);
-    writeV(&q.head, 0);
+    atomic_store(&q.head, 0);
     q.mask = size - 1;
-    writeV(&q.tail, 0);
+    atomic_store(&q.tail, 0);
     // q.elems = malloc(size * sizeof(Obj*));
 }
 
@@ -142,85 +101,81 @@ void Destroy_WorkStealQueue() {}
 //   Matteo Frigo, Charles Leiserson, and Keith Randall.
 //
 
-_Bool Steal(Obj **result) {
-    _Bool found;
+bool Steal(Obj **result) {
+    bool found;
     pthread_mutex_lock(&q.cs);
 
     // ensure that at most one (foreign) thread writes to head
     // increment the head. Save in local h for efficiency
     //
-    long h = readV(&q.head);
-    writeV(&q.head, h + 1);
+    long h = atomic_load(&q.head);
+    atomic_store(&q.head, h + 1);
 
     // insert a memory fence here if memory is not sequentially consistent
     //
-    if (h < readV(&q.tail)) {
+    if (found = (h < atomic_load(&q.tail))) {
         // == (h+1 <= tail) == (head <= tail)
         //
-        // BUG: writeV(&q.head, h + 1);
+        // BUG: atomic_store(&q.head, h + 1);
         long temp = h & q.mask;
         *result = q.elems[temp];
-        found = 1;
     } else {
         // failure: either empty or single element interleaving with pop
         //
-        writeV(&q.head, h);              // restore the head
-        found = 0;
+        atomic_store(&q.head, h);              // restore the head
     }
     pthread_mutex_unlock(&q.cs);
     return found;
 }
 
-_Bool SyncPop(Obj **result) {
-    _Bool found;
+bool SyncPop(Obj **result) {
+    bool found;
 
     pthread_mutex_lock(&q.cs);
 
     // ensure that no Steal interleaves with this pop
     //
-    long t = readV(&q.tail) - 1;
-    writeV(&q.tail, t);
-    if (readV(&q.head) <= t) {
+    long t = atomic_load(&q.tail) - 1;
+    atomic_store(&q.tail, t);
+    if (found = (atomic_load(&q.head) <= t)) {
         // == (head <= tail)
         //
         long temp = t & q.mask;
         *result = q.elems[temp];
-        found = 1;
     } else {
-        writeV(&q.tail, t + 1);       // restore tail
-        found = 0;
+        atomic_store(&q.tail, t + 1);       // restore tail
     }
-    if (readV(&q.head) > t) {
+    if (atomic_load(&q.head) > t) {
         // queue is empty: reset head and tail
         //
-        writeV(&q.head, 0);
-        writeV(&q.tail, 0);
+        atomic_store(&q.head, 0);
+        atomic_store(&q.tail, 0);
         found = 0;
     }
     pthread_mutex_unlock(&q.cs);
     return found;
 }
 
-_Bool Pop(Obj **result) {
+bool Pop(Obj **result) {
     // decrement the tail. Use local t for efficiency.
     //
-    long t = readV(&q.tail) - 1;
-    writeV(&q.tail, t);
+    long t = atomic_load(&q.tail) - 1;
+    atomic_store(&q.tail, t);
 
     // insert a memory fence here if memory is not sequentially consistent
     //
-    if (readV(&q.head) <= t) {
-        // BUG:  writeV(&q.tail, t);
+    if (atomic_load(&q.head) <= t) {
+        // BUG:  atomic_store(&q.tail, t);
 
         // == (head <= tail)
         //
         long temp = t & q.mask;
         *result = q.elems[temp];
-        return 1;
+        return true;
     } else {
         // failure: either empty or single element interleaving with take
         //
-        writeV(&q.tail, t + 1);             // restore the tail
+        atomic_store(&q.tail, t + 1);             // restore the tail
         return SyncPop(result);   // do a single-threaded pop
     }
 }
@@ -230,14 +185,14 @@ void SyncPush(Obj* elem) {
     // ensure that no Steal interleaves here
     // cache head, and calculate number of tasks
     //
-    long h = readV(&q.head);
-    long count = readV(&q.tail) - h;
+    long h = atomic_load(&q.head);
+    long count = atomic_load(&q.tail) - h;
 
     // normalize indices
     //
     h = h & q.mask;           // normalize head
-    writeV(&q.head, h);
-    writeV(&q.tail, h + count);
+    atomic_store(&q.head, h);
+    atomic_store(&q.tail, h + count);
 
     // check if we need to enlarge the tasks
     //
@@ -246,7 +201,7 @@ void SyncPush(Obj* elem) {
         //
         long newsize = (q.mask == 0 ? q.InitialSize : 2 * (q.mask + 1));
 
-        assert(newsize < q.MaxSize);
+        assert_fail_if_not(newsize < q.MaxSize);
 
         Obj *newtasks[STATICSIZE];
         long i;
@@ -259,24 +214,24 @@ void SyncPush(Obj* elem) {
         }
         // q.elems = newtasks;
         q.mask = newsize - 1;
-        writeV(&q.head, 0);
-        writeV(&q.tail, count);
+        atomic_store(&q.head, 0);
+        atomic_store(&q.tail, count);
     }
 
-    assert(count < q.mask);
+    assert_fail_if_not(count < q.mask);
 
     // push the element
     //
-    long t = readV(&q.tail);
+    long t = atomic_load(&q.tail);
     long temp = t & q.mask;
     q.elems[temp] = elem;
-    writeV(&q.tail, t + 1);
+    atomic_store(&q.tail, t + 1);
     pthread_mutex_unlock(&q.cs);
 }
 
 
 void Push(Obj* elem) {
-    long t = readV(&q.tail);
+    long t = atomic_load(&q.tail);
     // Careful here since we might interleave with Steal.
     // This is no problem since we just conservatively check if there is
     // enough space left (t < head + size). However, Steal might just have
@@ -286,18 +241,12 @@ void Push(Obj* elem) {
     // initial mask of 0, where size is 2^0 == 1, but the tasks array is
     // still null.
     //
-    // Correct: if (t < readV(&q.head) + mask && t < MaxSize)
-#define BUG3
-#ifdef BUG3
-    if (t < readV(&q.head) + q.mask + 1 && t < q.MaxSize)
-#else
-    if (t < readV(&q.head) + q.mask   // == t < head + size - 1
-            && t < q.MaxSize)
-#endif
+    // Correct: if (t < atomic_load(&q.head) + mask && t < MaxSize)
+    if (t < atomic_load(&q.head) + q.mask + 1 && t < q.MaxSize)
     {
         long temp = t & q.mask;
         q.elems[temp] = elem;
-        writeV(&q.tail, t + 1);       // only increment once we have initialized the task entry.
+        atomic_store(&q.tail, t + 1);       // only increment once we have initialized the task entry.
     } else {
         // failure: we need to resize or re-index
         //
@@ -305,63 +254,56 @@ void Push(Obj* elem) {
     }
 }
 
-#define INITQSIZE 2 // must be power of 2
-
-#define nItems 4
-#define nStealers 2
-#define nStealAttempts 1
-
 void *Stealer(void *param) {
     int i;
     Obj *r;
-    for (i = 0; i < nStealAttempts; i++) {
+    for (i = 0; i < STEAL_ATTEMPS; i++) {
         if (Steal(&r)) {
-            Operation(r);
+            r->field++;
         }
     }
     return 0;
 }
 
-Obj items[nItems];
+Obj items[ITEMS];
 
 int main(void) {
     int i;
-    pthread_t handles[nStealers];
+    pthread_t handles[STEALERS];
 
     Init_WorkStealQueue(INITQSIZE);
 
-    for (i = 0; i < nItems; i++) {
-        Init_ObjType(&items[i]);
+    for (i = 0; i < ITEMS; i++) {
+        items[i].field = 0;
     }
 
-    for (i = 0; i < nStealers; i++) {
+    for (i = 0; i < STEALERS; i++) {
         pthread_create(&handles[i], NULL, Stealer, 0);
     }
 
-    for (i = 0; i < nItems / 2; i++) {
+    for (i = 0; i < ITEMS / 2; i++) {
         Push(&items[2 * i]);
         Push(&items[2 * i + 1]);
         Obj *r;
         if (Pop(&r)) {
-            Operation(r);
+            r->field++;
         }
     }
 
-    for (i = 0; i < nItems / 2; i++) {
+    for (i = 0; i < ITEMS / 2; i++) {
         Obj *r;
         if (Pop(&r)) {
-            Operation(r);
+            r->field++;
         }
     }
 
-    for (i = 0; i < nStealers; i++) {
+    for (i = 0; i < STEALERS; i++) {
         pthread_join(handles[i], NULL);
     }
 
-    for (i = 0; i < nItems; i++) {
-        Check(&items[i]);
+    for (i = 0; i < ITEMS; i++) {
+        assert_fail_if_not(items[i].field == 1);
     }
 
     return 0;
 }
-
