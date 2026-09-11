@@ -46,3 +46,6 @@ def nondet_float():
     if nondet_bool():
         return random.choice([float('inf'), float('-inf'), float('nan'), float('-0.')])
     return random.uniform(-sys.float_info.max, sys.float_info.max)
+
+def nondet_float_range(a, b):
+    return random.uniform(a, b)
