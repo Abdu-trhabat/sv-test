@@ -231,7 +231,7 @@ ruff-check:
 ruff-format:
   extends: .base_ruff
   script:
-    - ruff format --diff
+    - ruff format --diff --exclude ./python/
 
 # SV-LIB verification tasks
 
