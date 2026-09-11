@@ -21,8 +21,8 @@ Files:
  moxi/QF_BV/*/*.moxi
  moxi/QF_LIA/*/*.moxi
  _
-Copyright: unknown
-License: LicenseRef-unknown
+Copyright: 2014-2026 Fondazione Bruno Kessler
+License: CC-BY-4.0
 
 Files: c/Juliet_Test/Juliet_Test_Suite_v1.3_for_C_Cpp/
  _
