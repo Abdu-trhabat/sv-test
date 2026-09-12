@@ -1,0 +1,1062 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 Levente Bajczi, Department of Measurement and Information Systems, Budapest University of Technology and Economics
+//
+// SPDX-License-Identifier: Apache-2.0
+
+// Original CHC file: eldarica-misc/011b-horn_005.smt2
+extern void abort ();
+extern int __VERIFIER_nondet_int ();
+extern _Bool __VERIFIER_nondet__Bool ();
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error() { __assert_fail("0", "011b-horn_005_norange.c", 13, "reach_error"); }
+
+
+
+int main ();
+
+int
+main ()
+{
+    // return parameter
+
+
+    // variables
+    int REC_f__0;
+    int REC_f__1;
+    int REC_f_f_0;
+    int REC_f_f_1;
+    int REC_f_f_2;
+    int REC_f_f_3;
+    int REC__f_0;
+    int REC__f_1;
+    int A_0;
+    int B_0;
+    int C_0;
+    int D_0;
+    int A_1;
+    int B_1;
+    int C_1;
+    int D_1;
+    int A_2;
+    int v_1_2;
+    int A_3;
+    int B_3;
+    int A_4;
+    int B_4;
+    int C_4;
+    int D_4;
+    int A_5;
+    int B_5;
+    int C_5;
+    int D_5;
+    int A_6;
+    int v_1_6;
+    int A_7;
+    int B_7;
+    int A_8;
+    int B_8;
+    int C_8;
+    int D_8;
+    int E_8;
+    int F_8;
+    int A_9;
+    int B_9;
+    int C_9;
+    int D_9;
+    int E_9;
+    int F_9;
+    int A_10;
+    int B_10;
+    int C_10;
+    int D_10;
+    int E_10;
+    int v_5_10;
+    int A_11;
+    int B_11;
+    int C_11;
+    int D_11;
+    int E_11;
+    int v_5_11;
+    int A_12;
+    int B_12;
+    int C_12;
+    int D_12;
+    int E_12;
+    int F_12;
+    int G_12;
+    int H_12;
+    int A_13;
+    int B_13;
+    int C_13;
+    int D_13;
+    int E_13;
+    int F_13;
+    int G_13;
+    int H_13;
+    int A_14;
+    int B_14;
+    int C_14;
+    int D_14;
+    int E_14;
+    int F_14;
+    int G_14;
+    int H_14;
+    int A_15;
+    int B_15;
+    int C_15;
+    int D_15;
+    int E_15;
+    int F_15;
+    int G_15;
+    int H_15;
+    int A_16;
+    int B_16;
+    int C_16;
+    int D_16;
+    int E_16;
+    int v_5_16;
+    int A_17;
+    int B_17;
+    int C_17;
+    int D_17;
+    int E_17;
+    int v_5_17;
+    int A_18;
+    int B_18;
+    int v_2_18;
+    int v_3_18;
+    int A_19;
+    int B_19;
+    int C_19;
+    int v_3_19;
+    int A_20;
+    int B_20;
+    int C_20;
+    int D_20;
+    int E_20;
+    int F_20;
+    int A_21;
+    int B_21;
+    int C_21;
+    int D_21;
+    int E_21;
+    int F_21;
+    int A_22;
+    int B_22;
+    int C_22;
+    int v_3_22;
+    int A_23;
+    int B_23;
+    int C_23;
+    int D_23;
+    int A_24;
+    int B_24;
+    int C_24;
+    int D_24;
+    int E_24;
+    int F_24;
+
+
+
+    // main logic
+    goto main_init;
+
+  main_init:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          if (!((!(A_6 <= -1)) && (!(A_6 >= 1)) && (v_1_6 == A_6)))
+              abort ();
+          REC_f__0 = A_6;
+          REC_f__1 = v_1_6;
+          A_4 = __VERIFIER_nondet_int ();
+          B_4 = __VERIFIER_nondet_int ();
+          D_4 = REC_f__0;
+          C_4 = REC_f__1;
+          if (!
+              ((A_4 == (D_4 + 1)) && (A_4 >= 1) && (C_4 <= -2) && (B_4 == 0)))
+              abort ();
+          REC_f__0 = A_4;
+          REC_f__1 = B_4;
+          goto REC_f__5;
+
+      case 1:
+          if (!((!(A_7 >= 1)) && (A_7 <= -1) && (B_7 == 0)))
+              abort ();
+          REC_f__0 = A_7;
+          REC_f__1 = B_7;
+          A_4 = __VERIFIER_nondet_int ();
+          B_4 = __VERIFIER_nondet_int ();
+          D_4 = REC_f__0;
+          C_4 = REC_f__1;
+          if (!
+              ((A_4 == (D_4 + 1)) && (A_4 >= 1) && (C_4 <= -2) && (B_4 == 0)))
+              abort ();
+          REC_f__0 = A_4;
+          REC_f__1 = B_4;
+          goto REC_f__5;
+
+      case 2:
+          if (!
+              ((!(A_18 >= 1)) && (!(B_18 <= -1)) && (!(A_18 <= -1))
+               && (!(B_18 >= 2)) && (v_2_18 == A_18) && (v_3_18 == B_18)))
+              abort ();
+          REC_f_f_0 = A_18;
+          REC_f_f_1 = v_2_18;
+          REC_f_f_2 = B_18;
+          REC_f_f_3 = v_3_18;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 3:
+          if (!
+              ((!(A_19 >= 1)) && (!(B_19 >= 2)) && (!(A_19 <= -1))
+               && (B_19 <= -1) && (C_19 == 0) && (v_3_19 == A_19)))
+              abort ();
+          REC_f_f_0 = A_19;
+          REC_f_f_1 = v_3_19;
+          REC_f_f_2 = B_19;
+          REC_f_f_3 = C_19;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 4:
+          if (!
+              ((!(A_22 >= 1)) && (!(C_22 >= 2)) && (A_22 <= -1)
+               && (!(C_22 <= -1)) && (B_22 == 0) && (v_3_22 == C_22)))
+              abort ();
+          REC_f_f_0 = A_22;
+          REC_f_f_1 = B_22;
+          REC_f_f_2 = C_22;
+          REC_f_f_3 = v_3_22;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 5:
+          if (!
+              ((D_23 == 0) && (!(A_23 >= 1)) && (!(C_23 >= 2)) && (A_23 <= -1)
+               && (C_23 <= -1) && (B_23 == 0)))
+              abort ();
+          REC_f_f_0 = A_23;
+          REC_f_f_1 = B_23;
+          REC_f_f_2 = C_23;
+          REC_f_f_3 = D_23;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 6:
+          if (!((!(A_2 <= -1)) && (!(A_2 >= 2)) && (v_1_2 == A_2)))
+              abort ();
+          REC__f_0 = A_2;
+          REC__f_1 = v_1_2;
+          A_0 = __VERIFIER_nondet_int ();
+          B_0 = __VERIFIER_nondet_int ();
+          D_0 = REC__f_0;
+          C_0 = REC__f_1;
+          if (!
+              ((A_0 == (D_0 + 2)) && (A_0 >= 2) && (C_0 <= -3) && (B_0 == 0)))
+              abort ();
+          REC__f_0 = A_0;
+          REC__f_1 = B_0;
+          goto REC__f_7;
+
+      case 7:
+          if (!((!(A_3 >= 2)) && (A_3 <= -1) && (B_3 == 0)))
+              abort ();
+          REC__f_0 = A_3;
+          REC__f_1 = B_3;
+          A_0 = __VERIFIER_nondet_int ();
+          B_0 = __VERIFIER_nondet_int ();
+          D_0 = REC__f_0;
+          C_0 = REC__f_1;
+          if (!
+              ((A_0 == (D_0 + 2)) && (A_0 >= 2) && (C_0 <= -3) && (B_0 == 0)))
+              abort ();
+          REC__f_0 = A_0;
+          REC__f_1 = B_0;
+          goto REC__f_7;
+
+      default:
+          abort ();
+      }
+  main_error:
+    reach_error ();
+  main_final:
+    goto main_final;
+  REC__f_0:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          A_16 = __VERIFIER_nondet_int ();
+          B_16 = __VERIFIER_nondet_int ();
+          C_16 = __VERIFIER_nondet_int ();
+          v_5_16 = __VERIFIER_nondet_int ();
+          E_16 = REC__f_0;
+          D_16 = REC__f_1;
+          if (!
+              ((B_16 == (E_16 + 2)) && (!(A_16 >= 1)) && (B_16 >= 2)
+               && (!(A_16 <= -1)) && (D_16 <= -3) && (C_16 == 0)
+               && (v_5_16 == A_16)))
+              abort ();
+          REC_f_f_0 = A_16;
+          REC_f_f_1 = v_5_16;
+          REC_f_f_2 = B_16;
+          REC_f_f_3 = C_16;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 1:
+          A_17 = __VERIFIER_nondet_int ();
+          B_17 = __VERIFIER_nondet_int ();
+          C_17 = __VERIFIER_nondet_int ();
+          v_5_17 = __VERIFIER_nondet_int ();
+          E_17 = REC__f_0;
+          D_17 = REC__f_1;
+          if (!
+              ((D_17 == (C_17 + -2)) && (!(A_17 >= 1)) && (B_17 >= 2)
+               && (!(A_17 <= -1)) && (!(D_17 <= -3)) && (B_17 == (E_17 + 2))
+               && (v_5_17 == A_17)))
+              abort ();
+          REC_f_f_0 = A_17;
+          REC_f_f_1 = v_5_17;
+          REC_f_f_2 = B_17;
+          REC_f_f_3 = C_17;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 2:
+          A_20 = __VERIFIER_nondet_int ();
+          B_20 = __VERIFIER_nondet_int ();
+          C_20 = __VERIFIER_nondet_int ();
+          D_20 = __VERIFIER_nondet_int ();
+          F_20 = REC__f_0;
+          E_20 = REC__f_1;
+          if (!
+              ((D_20 == 0) && (C_20 == (F_20 + 2)) && (!(A_20 >= 1))
+               && (C_20 >= 2) && (A_20 <= -1) && (E_20 <= -3) && (B_20 == 0)))
+              abort ();
+          REC_f_f_0 = A_20;
+          REC_f_f_1 = B_20;
+          REC_f_f_2 = C_20;
+          REC_f_f_3 = D_20;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 3:
+          A_21 = __VERIFIER_nondet_int ();
+          B_21 = __VERIFIER_nondet_int ();
+          C_21 = __VERIFIER_nondet_int ();
+          D_21 = __VERIFIER_nondet_int ();
+          F_21 = REC__f_0;
+          E_21 = REC__f_1;
+          if (!
+              ((C_21 == (F_21 + 2)) && (E_21 == (D_21 + -2)) && (!(A_21 >= 1))
+               && (C_21 >= 2) && (A_21 <= -1) && (!(E_21 <= -3))
+               && (B_21 == 0)))
+              abort ();
+          REC_f_f_0 = A_21;
+          REC_f_f_1 = B_21;
+          REC_f_f_2 = C_21;
+          REC_f_f_3 = D_21;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 4:
+          A_0 = __VERIFIER_nondet_int ();
+          B_0 = __VERIFIER_nondet_int ();
+          D_0 = REC__f_0;
+          C_0 = REC__f_1;
+          if (!
+              ((A_0 == (D_0 + 2)) && (A_0 >= 2) && (C_0 <= -3) && (B_0 == 0)))
+              abort ();
+          REC__f_0 = A_0;
+          REC__f_1 = B_0;
+          A_0 = __VERIFIER_nondet_int ();
+          B_0 = __VERIFIER_nondet_int ();
+          D_0 = REC__f_0;
+          C_0 = REC__f_1;
+          if (!
+              ((A_0 == (D_0 + 2)) && (A_0 >= 2) && (C_0 <= -3) && (B_0 == 0)))
+              abort ();
+          REC__f_0 = A_0;
+          REC__f_1 = B_0;
+          goto REC__f_7;
+
+      case 5:
+          A_0 = __VERIFIER_nondet_int ();
+          B_0 = __VERIFIER_nondet_int ();
+          D_0 = REC__f_0;
+          C_0 = REC__f_1;
+          if (!
+              ((A_0 == (D_0 + 2)) && (A_0 >= 2) && (C_0 <= -3) && (B_0 == 0)))
+              abort ();
+          REC__f_0 = A_0;
+          REC__f_1 = B_0;
+          goto REC__f_7;
+
+      default:
+          abort ();
+      }
+  REC_f_f_1:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          C_24 = __VERIFIER_nondet_int ();
+          E_24 = __VERIFIER_nondet_int ();
+          D_24 = REC_f_f_0;
+          A_24 = REC_f_f_1;
+          F_24 = REC_f_f_2;
+          B_24 = REC_f_f_3;
+          if (!
+              ((C_24 == (D_24 + 1)) && (C_24 == E_24) && (E_24 == (F_24 + 2))
+               && (C_24 >= 1) && (E_24 >= 2) && (B_24 <= -3)
+               && (!(A_24 <= -2)) && (!(A_24 == -1))))
+              abort ();
+          goto main_error;
+
+      case 1:
+          A_13 = __VERIFIER_nondet_int ();
+          B_13 = __VERIFIER_nondet_int ();
+          C_13 = __VERIFIER_nondet_int ();
+          D_13 = __VERIFIER_nondet_int ();
+          G_13 = REC_f_f_0;
+          E_13 = REC_f_f_1;
+          H_13 = REC_f_f_2;
+          F_13 = REC_f_f_3;
+          if (!
+              ((C_13 == (H_13 + 2)) && (F_13 == (D_13 + -2))
+               && (E_13 == (B_13 + -1)) && (A_13 >= 1) && (C_13 >= 2)
+               && (!(F_13 <= -3)) && (!(E_13 <= -2)) && (A_13 == (G_13 + 1))))
+              abort ();
+          REC_f_f_0 = A_13;
+          REC_f_f_1 = B_13;
+          REC_f_f_2 = C_13;
+          REC_f_f_3 = D_13;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 2:
+          A_14 = __VERIFIER_nondet_int ();
+          B_14 = __VERIFIER_nondet_int ();
+          C_14 = __VERIFIER_nondet_int ();
+          D_14 = __VERIFIER_nondet_int ();
+          G_14 = REC_f_f_0;
+          E_14 = REC_f_f_1;
+          H_14 = REC_f_f_2;
+          F_14 = REC_f_f_3;
+          if (!
+              ((A_14 == (G_14 + 1)) && (D_14 == 0) && (C_14 == (H_14 + 2))
+               && (A_14 >= 1) && (C_14 >= 2) && (F_14 <= -3) && (E_14 <= -2)
+               && (B_14 == 0)))
+              abort ();
+          REC_f_f_0 = A_14;
+          REC_f_f_1 = B_14;
+          REC_f_f_2 = C_14;
+          REC_f_f_3 = D_14;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 3:
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 4:
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      default:
+          abort ();
+      }
+  REC_f_f_2:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          A_12 = __VERIFIER_nondet_int ();
+          B_12 = __VERIFIER_nondet_int ();
+          C_12 = __VERIFIER_nondet_int ();
+          D_12 = __VERIFIER_nondet_int ();
+          G_12 = REC_f_f_0;
+          F_12 = REC_f_f_1;
+          H_12 = REC_f_f_2;
+          E_12 = REC_f_f_3;
+          if (!
+              ((A_12 == (G_12 + 1)) && (C_12 == (H_12 + 2))
+               && (E_12 == (D_12 + -2)) && (A_12 >= 1) && (C_12 >= 2)
+               && (F_12 <= -2) && (!(E_12 <= -3)) && (B_12 == 0)))
+              abort ();
+          REC_f_f_0 = A_12;
+          REC_f_f_1 = B_12;
+          REC_f_f_2 = C_12;
+          REC_f_f_3 = D_12;
+          goto REC_f_f_1;
+
+      case 1:
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      default:
+          abort ();
+      }
+  REC_f__3:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          A_4 = __VERIFIER_nondet_int ();
+          B_4 = __VERIFIER_nondet_int ();
+          D_4 = REC_f__0;
+          C_4 = REC_f__1;
+          if (!
+              ((A_4 == (D_4 + 1)) && (A_4 >= 1) && (C_4 <= -2) && (B_4 == 0)))
+              abort ();
+          REC_f__0 = A_4;
+          REC_f__1 = B_4;
+          A_4 = __VERIFIER_nondet_int ();
+          B_4 = __VERIFIER_nondet_int ();
+          D_4 = REC_f__0;
+          C_4 = REC_f__1;
+          if (!
+              ((A_4 == (D_4 + 1)) && (A_4 >= 1) && (C_4 <= -2) && (B_4 == 0)))
+              abort ();
+          REC_f__0 = A_4;
+          REC_f__1 = B_4;
+          goto REC_f__5;
+
+      case 1:
+          A_4 = __VERIFIER_nondet_int ();
+          B_4 = __VERIFIER_nondet_int ();
+          D_4 = REC_f__0;
+          C_4 = REC_f__1;
+          if (!
+              ((A_4 == (D_4 + 1)) && (A_4 >= 1) && (C_4 <= -2) && (B_4 == 0)))
+              abort ();
+          REC_f__0 = A_4;
+          REC_f__1 = B_4;
+          goto REC_f__5;
+
+      case 2:
+          A_8 = __VERIFIER_nondet_int ();
+          B_8 = __VERIFIER_nondet_int ();
+          C_8 = __VERIFIER_nondet_int ();
+          D_8 = __VERIFIER_nondet_int ();
+          F_8 = REC_f__0;
+          E_8 = REC_f__1;
+          if (!
+              ((A_8 == (F_8 + 1)) && (D_8 == 0) && (A_8 >= 1) && (!(C_8 >= 2))
+               && (C_8 <= -1) && (E_8 <= -2) && (B_8 == 0)))
+              abort ();
+          REC_f_f_0 = A_8;
+          REC_f_f_1 = B_8;
+          REC_f_f_2 = C_8;
+          REC_f_f_3 = D_8;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 3:
+          A_9 = __VERIFIER_nondet_int ();
+          B_9 = __VERIFIER_nondet_int ();
+          C_9 = __VERIFIER_nondet_int ();
+          D_9 = __VERIFIER_nondet_int ();
+          F_9 = REC_f__0;
+          E_9 = REC_f__1;
+          if (!
+              ((D_9 == 0) && (E_9 == (B_9 + -1)) && (A_9 >= 1)
+               && (!(C_9 >= 2)) && (C_9 <= -1) && (!(E_9 <= -2))
+               && (A_9 == (F_9 + 1))))
+              abort ();
+          REC_f_f_0 = A_9;
+          REC_f_f_1 = B_9;
+          REC_f_f_2 = C_9;
+          REC_f_f_3 = D_9;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 4:
+          A_10 = __VERIFIER_nondet_int ();
+          B_10 = __VERIFIER_nondet_int ();
+          C_10 = __VERIFIER_nondet_int ();
+          v_5_10 = __VERIFIER_nondet_int ();
+          E_10 = REC_f__0;
+          D_10 = REC_f__1;
+          if (!
+              ((B_10 == 0) && (A_10 >= 1) && (!(C_10 >= 2)) && (!(C_10 <= -1))
+               && (D_10 <= -2) && (A_10 == (E_10 + 1)) && (v_5_10 == C_10)))
+              abort ();
+          REC_f_f_0 = A_10;
+          REC_f_f_1 = B_10;
+          REC_f_f_2 = C_10;
+          REC_f_f_3 = v_5_10;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      case 5:
+          A_11 = __VERIFIER_nondet_int ();
+          B_11 = __VERIFIER_nondet_int ();
+          C_11 = __VERIFIER_nondet_int ();
+          v_5_11 = __VERIFIER_nondet_int ();
+          E_11 = REC_f__0;
+          D_11 = REC_f__1;
+          if (!
+              ((D_11 == (B_11 + -1)) && (A_11 >= 1) && (!(C_11 >= 2))
+               && (!(C_11 <= -1)) && (!(D_11 <= -2)) && (A_11 == (E_11 + 1))
+               && (v_5_11 == C_11)))
+              abort ();
+          REC_f_f_0 = A_11;
+          REC_f_f_1 = B_11;
+          REC_f_f_2 = C_11;
+          REC_f_f_3 = v_5_11;
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      default:
+          abort ();
+      }
+  REC_f_f_4:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          A_13 = __VERIFIER_nondet_int ();
+          B_13 = __VERIFIER_nondet_int ();
+          C_13 = __VERIFIER_nondet_int ();
+          D_13 = __VERIFIER_nondet_int ();
+          G_13 = REC_f_f_0;
+          E_13 = REC_f_f_1;
+          H_13 = REC_f_f_2;
+          F_13 = REC_f_f_3;
+          if (!
+              ((C_13 == (H_13 + 2)) && (F_13 == (D_13 + -2))
+               && (E_13 == (B_13 + -1)) && (A_13 >= 1) && (C_13 >= 2)
+               && (!(F_13 <= -3)) && (!(E_13 <= -2)) && (A_13 == (G_13 + 1))))
+              abort ();
+          REC_f_f_0 = A_13;
+          REC_f_f_1 = B_13;
+          REC_f_f_2 = C_13;
+          REC_f_f_3 = D_13;
+          goto REC_f_f_2;
+
+      case 1:
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      default:
+          abort ();
+      }
+  REC_f__5:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          A_5 = __VERIFIER_nondet_int ();
+          B_5 = __VERIFIER_nondet_int ();
+          D_5 = REC_f__0;
+          C_5 = REC_f__1;
+          if (!
+              ((C_5 == (B_5 + -1)) && (A_5 >= 1) && (!(C_5 <= -2))
+               && (A_5 == (D_5 + 1))))
+              abort ();
+          REC_f__0 = A_5;
+          REC_f__1 = B_5;
+          goto REC_f__3;
+
+      case 1:
+          A_4 = __VERIFIER_nondet_int ();
+          B_4 = __VERIFIER_nondet_int ();
+          D_4 = REC_f__0;
+          C_4 = REC_f__1;
+          if (!
+              ((A_4 == (D_4 + 1)) && (A_4 >= 1) && (C_4 <= -2) && (B_4 == 0)))
+              abort ();
+          REC_f__0 = A_4;
+          REC_f__1 = B_4;
+          goto REC_f__5;
+
+      default:
+          abort ();
+      }
+  REC_f_f_6:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          A_14 = __VERIFIER_nondet_int ();
+          B_14 = __VERIFIER_nondet_int ();
+          C_14 = __VERIFIER_nondet_int ();
+          D_14 = __VERIFIER_nondet_int ();
+          G_14 = REC_f_f_0;
+          E_14 = REC_f_f_1;
+          H_14 = REC_f_f_2;
+          F_14 = REC_f_f_3;
+          if (!
+              ((A_14 == (G_14 + 1)) && (D_14 == 0) && (C_14 == (H_14 + 2))
+               && (A_14 >= 1) && (C_14 >= 2) && (F_14 <= -3) && (E_14 <= -2)
+               && (B_14 == 0)))
+              abort ();
+          REC_f_f_0 = A_14;
+          REC_f_f_1 = B_14;
+          REC_f_f_2 = C_14;
+          REC_f_f_3 = D_14;
+          goto REC_f_f_4;
+
+      case 1:
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          G_15 = REC_f_f_0;
+          E_15 = REC_f_f_1;
+          H_15 = REC_f_f_2;
+          F_15 = REC_f_f_3;
+          if (!
+              ((D_15 == 0) && (C_15 == (H_15 + 2)) && (E_15 == (B_15 + -1))
+               && (A_15 >= 1) && (C_15 >= 2) && (F_15 <= -3)
+               && (!(E_15 <= -2)) && (A_15 == (G_15 + 1))))
+              abort ();
+          REC_f_f_0 = A_15;
+          REC_f_f_1 = B_15;
+          REC_f_f_2 = C_15;
+          REC_f_f_3 = D_15;
+          goto REC_f_f_6;
+
+      default:
+          abort ();
+      }
+  REC__f_7:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          A_1 = __VERIFIER_nondet_int ();
+          B_1 = __VERIFIER_nondet_int ();
+          D_1 = REC__f_0;
+          C_1 = REC__f_1;
+          if (!
+              ((C_1 == (B_1 + -2)) && (A_1 >= 2) && (!(C_1 <= -3))
+               && (A_1 == (D_1 + 2))))
+              abort ();
+          REC__f_0 = A_1;
+          REC__f_1 = B_1;
+          goto REC__f_0;
+
+      case 1:
+          A_0 = __VERIFIER_nondet_int ();
+          B_0 = __VERIFIER_nondet_int ();
+          D_0 = REC__f_0;
+          C_0 = REC__f_1;
+          if (!
+              ((A_0 == (D_0 + 2)) && (A_0 >= 2) && (C_0 <= -3) && (B_0 == 0)))
+              abort ();
+          REC__f_0 = A_0;
+          REC__f_1 = B_0;
+          goto REC__f_7;
+
+      default:
+          abort ();
+      }
+
+    // return expression
+
+}
+

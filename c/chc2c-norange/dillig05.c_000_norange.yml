@@ -1,0 +1,15 @@
+
+format_version: '2.0'
+
+input_files: 'dillig05.c_000_norange.c'
+
+properties:
+  - property_file: ../properties/unreach-call.prp
+    expected_verdict: true
+
+options:
+  language: C
+  data_model: ILP32
+
+        
+#Verdict confirmed by the CHC solver golem

@@ -1,0 +1,693 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 Levente Bajczi, Department of Measurement and Information Systems, Budapest University of Technology and Economics
+//
+// SPDX-License-Identifier: Apache-2.0
+
+// Original CHC file: tricera-benchmarks/apache-escape-absolute.i.v+cfa-reducer.c-1.smt2.gz_016.smt2
+extern void abort ();
+extern int __VERIFIER_nondet_int ();
+extern _Bool __VERIFIER_nondet__Bool ();
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error() { __assert_fail("0", "apache-escape-absolute.i.v+cfa-reducer.c-1.smt2.gz_016_norange.c", 13, "reach_error"); }
+
+
+
+int main ();
+
+int
+main ()
+{
+    // return parameter
+
+
+    // variables
+    int inv_main196_0;
+    int inv_main196_1;
+    int inv_main196_2;
+    int inv_main196_3;
+    int inv_main196_4;
+    int inv_main196_5;
+    int inv_main196_6;
+    int inv_main196_7;
+    int inv_main196_8;
+    int inv_main196_9;
+    int inv_main196_10;
+    int inv_main196_11;
+    int inv_main196_12;
+    int inv_main196_13;
+    int inv_main196_14;
+    int inv_main196_15;
+    int inv_main196_16;
+    int inv_main196_17;
+    int inv_main196_18;
+    int inv_main68_0;
+    int inv_main68_1;
+    int inv_main68_2;
+    int inv_main68_3;
+    int inv_main68_4;
+    int inv_main68_5;
+    int inv_main68_6;
+    int inv_main68_7;
+    int inv_main68_8;
+    int inv_main68_9;
+    int inv_main68_10;
+    int inv_main68_11;
+    int inv_main68_12;
+    int inv_main68_13;
+    int inv_main68_14;
+    int inv_main68_15;
+    int inv_main7_0;
+    int inv_main7_1;
+    int inv_main7_2;
+    int inv_main7_3;
+    int inv_main7_4;
+    int inv_main7_5;
+    int inv_main7_6;
+    int A_0;
+    int B_0;
+    int C_0;
+    int D_0;
+    int E_0;
+    int F_0;
+    int G_0;
+    int A_6;
+    int B_6;
+    int C_6;
+    int D_6;
+    int E_6;
+    int F_6;
+    int G_6;
+    int H_6;
+    int I_6;
+    int J_6;
+    int K_6;
+    int L_6;
+    int M_6;
+    int N_6;
+    int O_6;
+    int P_6;
+    int Q_6;
+    int R_6;
+    int S_6;
+    int T_6;
+    int U_6;
+    int V_6;
+    int W_6;
+    int X_6;
+    int Y_6;
+    int Z_6;
+    int A1_6;
+    int B1_6;
+    int C1_6;
+    int D1_6;
+    int E1_6;
+    int F1_6;
+    int G1_6;
+    int H1_6;
+    int I1_6;
+    int v_35_6;
+    int A_15;
+    int B_15;
+    int C_15;
+    int D_15;
+    int E_15;
+    int F_15;
+    int G_15;
+    int H_15;
+    int I_15;
+    int J_15;
+    int K_15;
+    int L_15;
+    int M_15;
+    int N_15;
+    int O_15;
+    int P_15;
+    int Q_15;
+    int R_15;
+    int S_15;
+    int T_15;
+    int U_15;
+    int V_15;
+    int W_15;
+    int X_15;
+    int Y_15;
+    int Z_15;
+    int A1_15;
+    int B1_15;
+    int C1_15;
+    int D1_15;
+    int E1_15;
+    int F1_15;
+    int G1_15;
+    int H1_15;
+    int I1_15;
+    int J1_15;
+    int K1_15;
+    int L1_15;
+    int M1_15;
+    int N1_15;
+    int O1_15;
+    int P1_15;
+    int Q1_15;
+    int R1_15;
+    int S1_15;
+    int T1_15;
+    int U1_15;
+    int V1_15;
+    int W1_15;
+    int X1_15;
+    int Y1_15;
+    int Z1_15;
+    int A2_15;
+    int B2_15;
+    int C2_15;
+    int D2_15;
+    int A_16;
+    int B_16;
+    int C_16;
+    int D_16;
+    int E_16;
+    int F_16;
+    int G_16;
+    int H_16;
+    int I_16;
+    int J_16;
+    int K_16;
+    int L_16;
+    int M_16;
+    int N_16;
+    int O_16;
+    int P_16;
+    int Q_16;
+    int R_16;
+    int S_16;
+    int T_16;
+    int U_16;
+    int V_16;
+    int W_16;
+    int X_16;
+    int Y_16;
+    int Z_16;
+    int A1_16;
+    int B1_16;
+    int C1_16;
+    int D1_16;
+    int E1_16;
+    int F1_16;
+    int G1_16;
+    int H1_16;
+    int I1_16;
+    int J1_16;
+    int K1_16;
+    int L1_16;
+    int M1_16;
+    int N1_16;
+    int O1_16;
+    int P1_16;
+    int Q1_16;
+    int R1_16;
+    int S1_16;
+    int T1_16;
+    int U1_16;
+    int V1_16;
+    int W1_16;
+    int X1_16;
+    int Y1_16;
+    int Z1_16;
+    int A2_16;
+    int B2_16;
+    int C2_16;
+    int D2_16;
+    int E2_16;
+    int v_57_16;
+    int A_26;
+    int B_26;
+    int C_26;
+    int D_26;
+    int E_26;
+    int F_26;
+    int G_26;
+    int H_26;
+    int I_26;
+    int J_26;
+    int K_26;
+    int L_26;
+    int M_26;
+    int N_26;
+    int O_26;
+    int P_26;
+    int Q_26;
+    int R_26;
+    int S_26;
+
+
+
+    // main logic
+    goto main_init;
+
+  main_init:
+    if (!((A_0 == 0) && (E_0 == 0)))
+        abort ();
+    inv_main7_0 = E_0;
+    inv_main7_1 = A_0;
+    inv_main7_2 = G_0;
+    inv_main7_3 = F_0;
+    inv_main7_4 = B_0;
+    inv_main7_5 = D_0;
+    inv_main7_6 = C_0;
+    Q1_16 = __VERIFIER_nondet_int ();
+    M1_16 = __VERIFIER_nondet_int ();
+    I1_16 = __VERIFIER_nondet_int ();
+    E1_16 = __VERIFIER_nondet_int ();
+    E2_16 = __VERIFIER_nondet_int ();
+    A1_16 = __VERIFIER_nondet_int ();
+    A2_16 = __VERIFIER_nondet_int ();
+    Z1_16 = __VERIFIER_nondet_int ();
+    R1_16 = __VERIFIER_nondet_int ();
+    N1_16 = __VERIFIER_nondet_int ();
+    W1_16 = __VERIFIER_nondet_int ();
+    v_57_16 = __VERIFIER_nondet_int ();
+    S1_16 = __VERIFIER_nondet_int ();
+    A_16 = __VERIFIER_nondet_int ();
+    B_16 = __VERIFIER_nondet_int ();
+    O1_16 = __VERIFIER_nondet_int ();
+    C_16 = __VERIFIER_nondet_int ();
+    D_16 = __VERIFIER_nondet_int ();
+    F_16 = __VERIFIER_nondet_int ();
+    K1_16 = __VERIFIER_nondet_int ();
+    G_16 = __VERIFIER_nondet_int ();
+    H_16 = __VERIFIER_nondet_int ();
+    I_16 = __VERIFIER_nondet_int ();
+    J_16 = __VERIFIER_nondet_int ();
+    G1_16 = __VERIFIER_nondet_int ();
+    K_16 = __VERIFIER_nondet_int ();
+    L_16 = __VERIFIER_nondet_int ();
+    M_16 = __VERIFIER_nondet_int ();
+    N_16 = __VERIFIER_nondet_int ();
+    C1_16 = __VERIFIER_nondet_int ();
+    O_16 = __VERIFIER_nondet_int ();
+    C2_16 = __VERIFIER_nondet_int ();
+    P_16 = __VERIFIER_nondet_int ();
+    Q_16 = __VERIFIER_nondet_int ();
+    R_16 = __VERIFIER_nondet_int ();
+    S_16 = __VERIFIER_nondet_int ();
+    T_16 = __VERIFIER_nondet_int ();
+    U_16 = __VERIFIER_nondet_int ();
+    V_16 = __VERIFIER_nondet_int ();
+    W_16 = __VERIFIER_nondet_int ();
+    X_16 = __VERIFIER_nondet_int ();
+    Y_16 = __VERIFIER_nondet_int ();
+    Z_16 = __VERIFIER_nondet_int ();
+    T1_16 = __VERIFIER_nondet_int ();
+    P1_16 = __VERIFIER_nondet_int ();
+    L1_16 = __VERIFIER_nondet_int ();
+    H1_16 = __VERIFIER_nondet_int ();
+    D1_16 = __VERIFIER_nondet_int ();
+    D2_16 = __VERIFIER_nondet_int ();
+    Y1_16 = __VERIFIER_nondet_int ();
+    U1_16 = __VERIFIER_nondet_int ();
+    E_16 = inv_main7_0;
+    V1_16 = inv_main7_1;
+    B1_16 = inv_main7_2;
+    B2_16 = inv_main7_3;
+    F1_16 = inv_main7_4;
+    X1_16 = inv_main7_5;
+    J1_16 = inv_main7_6;
+    if (!
+        ((U1_16 == H1_16) && (T1_16 == T_16) && (S1_16 == A_16)
+         && (R1_16 == A2_16) && (Q1_16 == M1_16) && (P1_16 == E2_16)
+         && (!(N1_16 == 0)) && (!(M1_16 == 0)) && (L1_16 == Z_16)
+         && (K1_16 == J1_16) && (I1_16 == W_16) && (H1_16 == A2_16)
+         && (G1_16 == L1_16) && (E1_16 == D_16) && (D1_16 == E_16)
+         && (C1_16 == A1_16) && (A1_16 == P1_16) && (!(Z_16 == 0))
+         && (Y_16 == F_16) && (W_16 == V1_16) && (V_16 == R1_16)
+         && (U_16 == V_16) && (T_16 == S_16) && (S_16 == D1_16)
+         && (R_16 == L_16) && (Q_16 == O1_16) && (P_16 == Q1_16)
+         && (O_16 == U_16) && (N_16 == K_16) && (M_16 == R_16)
+         && (L_16 == Q_16) && (K_16 == M1_16) && (J_16 == Z1_16)
+         && (I_16 == N1_16) && (H_16 == N1_16) && (!(G_16 == 0))
+         && (F_16 == I1_16) && (D_16 == C2_16) && (C_16 == D2_16)
+         && (!(B_16 == 0)) && (A_16 == K1_16) && (E2_16 == X_16)
+         && (D2_16 == Y1_16) && (C2_16 == B_16) && (!(A2_16 == 0))
+         && (Z1_16 == U1_16) && (Y1_16 == B_16) && (-1000000 <= O1_16)
+         && (-1000000 <= X_16) && (-1000000 <= A2_16) && (1 <= O1_16)
+         && (1 <= X_16) && (!(0 <= (A2_16 + (-1 * O1_16)))) && (0 <= A2_16)
+         && (O1_16 <= 1000000) && (X_16 <= 1000000) && (A2_16 <= 1000000)
+         && (((!(1 <= (L_16 + (-1 * U1_16)))) && (N1_16 == 0))
+             || ((1 <= (L_16 + (-1 * U1_16))) && (N1_16 == 1)))
+         && (((!(1 <= H1_16)) && (M1_16 == 0))
+             || ((1 <= H1_16) && (M1_16 == 1)))
+         && (((!(0 <= (O1_16 + (-1 * A2_16)))) && (B_16 == 0))
+             || ((0 <= (O1_16 + (-1 * A2_16))) && (B_16 == 1)))
+         && (((0 <= Z1_16) && (G_16 == 1))
+             || ((!(0 <= Z1_16)) && (G_16 == 0))) && (W1_16 == S1_16)
+         && (v_57_16 == G_16)))
+        abort ();
+    inv_main68_0 = T1_16;
+    inv_main68_1 = Y_16;
+    inv_main68_2 = O_16;
+    inv_main68_3 = M_16;
+    inv_main68_4 = C1_16;
+    inv_main68_5 = J_16;
+    inv_main68_6 = W1_16;
+    inv_main68_7 = E1_16;
+    inv_main68_8 = C_16;
+    inv_main68_9 = N_16;
+    inv_main68_10 = P_16;
+    inv_main68_11 = G1_16;
+    inv_main68_12 = I_16;
+    inv_main68_13 = H_16;
+    inv_main68_14 = G_16;
+    inv_main68_15 = v_57_16;
+    Q1_15 = __VERIFIER_nondet_int ();
+    M1_15 = __VERIFIER_nondet_int ();
+    I1_15 = __VERIFIER_nondet_int ();
+    E1_15 = __VERIFIER_nondet_int ();
+    A1_15 = __VERIFIER_nondet_int ();
+    Z1_15 = __VERIFIER_nondet_int ();
+    V1_15 = __VERIFIER_nondet_int ();
+    R1_15 = __VERIFIER_nondet_int ();
+    N1_15 = __VERIFIER_nondet_int ();
+    J1_15 = __VERIFIER_nondet_int ();
+    F1_15 = __VERIFIER_nondet_int ();
+    W1_15 = __VERIFIER_nondet_int ();
+    S1_15 = __VERIFIER_nondet_int ();
+    A_15 = __VERIFIER_nondet_int ();
+    B_15 = __VERIFIER_nondet_int ();
+    C_15 = __VERIFIER_nondet_int ();
+    D_15 = __VERIFIER_nondet_int ();
+    E_15 = __VERIFIER_nondet_int ();
+    F_15 = __VERIFIER_nondet_int ();
+    G_15 = __VERIFIER_nondet_int ();
+    H_15 = __VERIFIER_nondet_int ();
+    I_15 = __VERIFIER_nondet_int ();
+    K_15 = __VERIFIER_nondet_int ();
+    L_15 = __VERIFIER_nondet_int ();
+    O_15 = __VERIFIER_nondet_int ();
+    C2_15 = __VERIFIER_nondet_int ();
+    Q_15 = __VERIFIER_nondet_int ();
+    R_15 = __VERIFIER_nondet_int ();
+    S_15 = __VERIFIER_nondet_int ();
+    T_15 = __VERIFIER_nondet_int ();
+    U_15 = __VERIFIER_nondet_int ();
+    V_15 = __VERIFIER_nondet_int ();
+    W_15 = __VERIFIER_nondet_int ();
+    X_15 = __VERIFIER_nondet_int ();
+    X1_15 = __VERIFIER_nondet_int ();
+    Z_15 = __VERIFIER_nondet_int ();
+    T1_15 = __VERIFIER_nondet_int ();
+    P1_15 = __VERIFIER_nondet_int ();
+    H1_15 = __VERIFIER_nondet_int ();
+    D2_15 = __VERIFIER_nondet_int ();
+    O1_15 = inv_main68_0;
+    U1_15 = inv_main68_1;
+    N_15 = inv_main68_2;
+    A2_15 = inv_main68_3;
+    B2_15 = inv_main68_4;
+    D1_15 = inv_main68_5;
+    C1_15 = inv_main68_6;
+    M_15 = inv_main68_7;
+    L1_15 = inv_main68_8;
+    J_15 = inv_main68_9;
+    G1_15 = inv_main68_10;
+    Y_15 = inv_main68_11;
+    B1_15 = inv_main68_12;
+    K1_15 = inv_main68_13;
+    P_15 = inv_main68_14;
+    Y1_15 = inv_main68_15;
+    if (!
+        ((V1_15 == D1_15) && (T1_15 == X1_15) && (S1_15 == I1_15)
+         && (R1_15 == E1_15) && (Q1_15 == A2_15) && (P1_15 == V1_15)
+         && (N1_15 == H1_15) && (!(M1_15 == 0)) && (J1_15 == B_15)
+         && (I1_15 == Y1_15) && (H1_15 == U1_15) && (F1_15 == I_15)
+         && (E1_15 == 0) && (!(D1_15 == (A2_15 + -1))) && (A1_15 == M1_15)
+         && (Z_15 == Y_15) && (X_15 == J_15) && (W_15 == W1_15)
+         && (V_15 == (P1_15 + 1)) && (U_15 == B1_15) && (T_15 == Z_15)
+         && (S_15 == U_15) && (R_15 == K_15) && (Q_15 == X_15)
+         && (O_15 == R1_15) && (L_15 == Q1_15) && (K_15 == M_15)
+         && (I_15 == O1_15) && (!(H_15 == 0)) && (G_15 == F_15)
+         && (F_15 == L1_15) && (E_15 == K1_15) && (D_15 == B2_15)
+         && (C_15 == D_15) && (B_15 == P_15) && (A_15 == M1_15)
+         && (D2_15 == Z1_15) && (C2_15 == E_15) && (Z1_15 == C1_15)
+         && (X1_15 == G1_15)
+         && (((!(1 <= (A2_15 + (-1 * D1_15)))) && (M1_15 == 0))
+             || ((1 <= (A2_15 + (-1 * D1_15))) && (M1_15 == 1)))
+         && (((0 <= V1_15) && (H_15 == 1))
+             || ((!(0 <= V1_15)) && (H_15 == 0))) && (W1_15 == N_15)))
+        abort ();
+    inv_main68_0 = F1_15;
+    inv_main68_1 = N1_15;
+    inv_main68_2 = W_15;
+    inv_main68_3 = L_15;
+    inv_main68_4 = C_15;
+    inv_main68_5 = V_15;
+    inv_main68_6 = D2_15;
+    inv_main68_7 = R_15;
+    inv_main68_8 = G_15;
+    inv_main68_9 = Q_15;
+    inv_main68_10 = T1_15;
+    inv_main68_11 = T_15;
+    inv_main68_12 = S_15;
+    inv_main68_13 = C2_15;
+    inv_main68_14 = J1_15;
+    inv_main68_15 = S1_15;
+    goto inv_main68_0;
+  main_error:
+    reach_error ();
+  main_final:
+    goto main_final;
+  inv_main41:
+    goto inv_main41;
+  inv_main185:
+    goto inv_main185;
+  inv_main67:
+    goto inv_main67;
+  inv_main76:
+    goto inv_main76;
+  inv_main203:
+    goto inv_main203;
+  inv_main178:
+    goto inv_main178;
+  inv_main144:
+    goto inv_main144;
+  inv_main90:
+    goto inv_main90;
+  inv_main125:
+    goto inv_main125;
+  inv_main48:
+    goto inv_main48;
+  inv_main108:
+    goto inv_main108;
+  inv_main83:
+    goto inv_main83;
+  inv_main133:
+    goto inv_main133;
+  inv_main151:
+    goto inv_main151;
+  inv_main101:
+    goto inv_main101;
+  inv_main164:
+    goto inv_main164;
+  inv_main171:
+    goto inv_main171;
+  inv_main60:
+    goto inv_main60;
+  inv_main132:
+    goto inv_main132;
+  inv_main68_0:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          A_6 = __VERIFIER_nondet_int ();
+          B_6 = __VERIFIER_nondet_int ();
+          E_6 = __VERIFIER_nondet_int ();
+          F_6 = __VERIFIER_nondet_int ();
+          G_6 = __VERIFIER_nondet_int ();
+          I1_6 = __VERIFIER_nondet_int ();
+          L_6 = __VERIFIER_nondet_int ();
+          M_6 = __VERIFIER_nondet_int ();
+          N_6 = __VERIFIER_nondet_int ();
+          P_6 = __VERIFIER_nondet_int ();
+          A1_6 = __VERIFIER_nondet_int ();
+          Q_6 = __VERIFIER_nondet_int ();
+          S_6 = __VERIFIER_nondet_int ();
+          T_6 = __VERIFIER_nondet_int ();
+          U_6 = __VERIFIER_nondet_int ();
+          W_6 = __VERIFIER_nondet_int ();
+          Y_6 = __VERIFIER_nondet_int ();
+          F1_6 = __VERIFIER_nondet_int ();
+          B1_6 = __VERIFIER_nondet_int ();
+          v_35_6 = __VERIFIER_nondet_int ();
+          V_6 = inv_main68_0;
+          C_6 = inv_main68_1;
+          H_6 = inv_main68_2;
+          E1_6 = inv_main68_3;
+          I_6 = inv_main68_4;
+          H1_6 = inv_main68_5;
+          O_6 = inv_main68_6;
+          K_6 = inv_main68_7;
+          C1_6 = inv_main68_8;
+          X_6 = inv_main68_9;
+          D_6 = inv_main68_10;
+          J_6 = inv_main68_11;
+          R_6 = inv_main68_12;
+          D1_6 = inv_main68_13;
+          G1_6 = inv_main68_14;
+          Z_6 = inv_main68_15;
+          if (!
+              ((A1_6 == T_6) && (Y_6 == D1_6) && (W_6 == J_6) && (U_6 == X_6)
+               && (T_6 == 0) && (S_6 == I_6) && (Q_6 == E1_6) && (P_6 == G1_6)
+               && (N_6 == K_6) && (M_6 == Z_6) && (L_6 == D_6) && (G_6 == H_6)
+               && (F_6 == H1_6) && (E_6 == V_6) && (B_6 == 0) && (A_6 == R_6)
+               && (I1_6 == C_6) && (!(H1_6 == (E1_6 + -1))) && (F1_6 == C1_6)
+               && (((!(1 <= (E1_6 + (-1 * H1_6)))) && (B_6 == 0))
+                   || ((1 <= (E1_6 + (-1 * H1_6))) && (B_6 == 1)))
+               && (B1_6 == O_6) && (v_35_6 == B_6)))
+              abort ();
+          inv_main196_0 = E_6;
+          inv_main196_1 = I1_6;
+          inv_main196_2 = G_6;
+          inv_main196_3 = Q_6;
+          inv_main196_4 = S_6;
+          inv_main196_5 = F_6;
+          inv_main196_6 = B1_6;
+          inv_main196_7 = N_6;
+          inv_main196_8 = F1_6;
+          inv_main196_9 = U_6;
+          inv_main196_10 = L_6;
+          inv_main196_11 = W_6;
+          inv_main196_12 = A_6;
+          inv_main196_13 = Y_6;
+          inv_main196_14 = P_6;
+          inv_main196_15 = M_6;
+          inv_main196_16 = A1_6;
+          inv_main196_17 = B_6;
+          inv_main196_18 = v_35_6;
+          G_26 = inv_main196_0;
+          L_26 = inv_main196_1;
+          C_26 = inv_main196_2;
+          F_26 = inv_main196_3;
+          O_26 = inv_main196_4;
+          I_26 = inv_main196_5;
+          E_26 = inv_main196_6;
+          R_26 = inv_main196_7;
+          Q_26 = inv_main196_8;
+          B_26 = inv_main196_9;
+          D_26 = inv_main196_10;
+          K_26 = inv_main196_11;
+          P_26 = inv_main196_12;
+          N_26 = inv_main196_13;
+          A_26 = inv_main196_14;
+          H_26 = inv_main196_15;
+          S_26 = inv_main196_16;
+          J_26 = inv_main196_17;
+          M_26 = inv_main196_18;
+          if (!1)
+              abort ();
+          goto main_error;
+
+      case 1:
+          Q1_15 = __VERIFIER_nondet_int ();
+          M1_15 = __VERIFIER_nondet_int ();
+          I1_15 = __VERIFIER_nondet_int ();
+          E1_15 = __VERIFIER_nondet_int ();
+          A1_15 = __VERIFIER_nondet_int ();
+          Z1_15 = __VERIFIER_nondet_int ();
+          V1_15 = __VERIFIER_nondet_int ();
+          R1_15 = __VERIFIER_nondet_int ();
+          N1_15 = __VERIFIER_nondet_int ();
+          J1_15 = __VERIFIER_nondet_int ();
+          F1_15 = __VERIFIER_nondet_int ();
+          W1_15 = __VERIFIER_nondet_int ();
+          S1_15 = __VERIFIER_nondet_int ();
+          A_15 = __VERIFIER_nondet_int ();
+          B_15 = __VERIFIER_nondet_int ();
+          C_15 = __VERIFIER_nondet_int ();
+          D_15 = __VERIFIER_nondet_int ();
+          E_15 = __VERIFIER_nondet_int ();
+          F_15 = __VERIFIER_nondet_int ();
+          G_15 = __VERIFIER_nondet_int ();
+          H_15 = __VERIFIER_nondet_int ();
+          I_15 = __VERIFIER_nondet_int ();
+          K_15 = __VERIFIER_nondet_int ();
+          L_15 = __VERIFIER_nondet_int ();
+          O_15 = __VERIFIER_nondet_int ();
+          C2_15 = __VERIFIER_nondet_int ();
+          Q_15 = __VERIFIER_nondet_int ();
+          R_15 = __VERIFIER_nondet_int ();
+          S_15 = __VERIFIER_nondet_int ();
+          T_15 = __VERIFIER_nondet_int ();
+          U_15 = __VERIFIER_nondet_int ();
+          V_15 = __VERIFIER_nondet_int ();
+          W_15 = __VERIFIER_nondet_int ();
+          X_15 = __VERIFIER_nondet_int ();
+          X1_15 = __VERIFIER_nondet_int ();
+          Z_15 = __VERIFIER_nondet_int ();
+          T1_15 = __VERIFIER_nondet_int ();
+          P1_15 = __VERIFIER_nondet_int ();
+          H1_15 = __VERIFIER_nondet_int ();
+          D2_15 = __VERIFIER_nondet_int ();
+          O1_15 = inv_main68_0;
+          U1_15 = inv_main68_1;
+          N_15 = inv_main68_2;
+          A2_15 = inv_main68_3;
+          B2_15 = inv_main68_4;
+          D1_15 = inv_main68_5;
+          C1_15 = inv_main68_6;
+          M_15 = inv_main68_7;
+          L1_15 = inv_main68_8;
+          J_15 = inv_main68_9;
+          G1_15 = inv_main68_10;
+          Y_15 = inv_main68_11;
+          B1_15 = inv_main68_12;
+          K1_15 = inv_main68_13;
+          P_15 = inv_main68_14;
+          Y1_15 = inv_main68_15;
+          if (!
+              ((V1_15 == D1_15) && (T1_15 == X1_15) && (S1_15 == I1_15)
+               && (R1_15 == E1_15) && (Q1_15 == A2_15) && (P1_15 == V1_15)
+               && (N1_15 == H1_15) && (!(M1_15 == 0)) && (J1_15 == B_15)
+               && (I1_15 == Y1_15) && (H1_15 == U1_15) && (F1_15 == I_15)
+               && (E1_15 == 0) && (!(D1_15 == (A2_15 + -1)))
+               && (A1_15 == M1_15) && (Z_15 == Y_15) && (X_15 == J_15)
+               && (W_15 == W1_15) && (V_15 == (P1_15 + 1)) && (U_15 == B1_15)
+               && (T_15 == Z_15) && (S_15 == U_15) && (R_15 == K_15)
+               && (Q_15 == X_15) && (O_15 == R1_15) && (L_15 == Q1_15)
+               && (K_15 == M_15) && (I_15 == O1_15) && (!(H_15 == 0))
+               && (G_15 == F_15) && (F_15 == L1_15) && (E_15 == K1_15)
+               && (D_15 == B2_15) && (C_15 == D_15) && (B_15 == P_15)
+               && (A_15 == M1_15) && (D2_15 == Z1_15) && (C2_15 == E_15)
+               && (Z1_15 == C1_15) && (X1_15 == G1_15)
+               && (((!(1 <= (A2_15 + (-1 * D1_15)))) && (M1_15 == 0))
+                   || ((1 <= (A2_15 + (-1 * D1_15))) && (M1_15 == 1)))
+               && (((0 <= V1_15) && (H_15 == 1))
+                   || ((!(0 <= V1_15)) && (H_15 == 0))) && (W1_15 == N_15)))
+              abort ();
+          inv_main68_0 = F1_15;
+          inv_main68_1 = N1_15;
+          inv_main68_2 = W_15;
+          inv_main68_3 = L_15;
+          inv_main68_4 = C_15;
+          inv_main68_5 = V_15;
+          inv_main68_6 = D2_15;
+          inv_main68_7 = R_15;
+          inv_main68_8 = G_15;
+          inv_main68_9 = Q_15;
+          inv_main68_10 = T1_15;
+          inv_main68_11 = T_15;
+          inv_main68_12 = S_15;
+          inv_main68_13 = C2_15;
+          inv_main68_14 = J1_15;
+          inv_main68_15 = S1_15;
+          goto inv_main68_0;
+
+      default:
+          abort ();
+      }
+
+    // return expression
+
+}
+

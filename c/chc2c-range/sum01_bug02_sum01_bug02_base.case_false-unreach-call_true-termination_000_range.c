@@ -1,0 +1,420 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 Levente Bajczi, Department of Measurement and Information Systems, Budapest University of Technology and Economics
+//
+// SPDX-License-Identifier: Apache-2.0
+
+// Original CHC file: hcai-bench/sum01_bug02_sum01_bug02_base.case_false-unreach-call_true-termination_000.smt2
+extern void abort ();
+extern int __VERIFIER_nondet_int ();
+extern _Bool __VERIFIER_nondet__Bool ();
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error() { __assert_fail("0", "sum01_bug02_sum01_bug02_base.case_false-unreach-call_true-termination_000_range.c", 13, "reach_error"); }
+
+
+
+int main ();
+
+int
+main ()
+{
+    // return parameter
+
+
+    // variables
+    int main_entry_0;
+    int main__lr_ph_0;
+    int main__lr_ph_1;
+    int main__lr_ph_2;
+    int A_0;
+    int A_1;
+    int B_1;
+    _Bool C_1;
+    _Bool D_1;
+    int E_1;
+    _Bool F_1;
+    _Bool G_1;
+    int H_1;
+    int I_1;
+    int J_1;
+    int K_1;
+    int A_2;
+    _Bool B_2;
+    int C_2;
+    int D_2;
+    _Bool E_2;
+    int F_2;
+    int G_2;
+    int H_2;
+    _Bool I_2;
+    _Bool J_2;
+    int K_2;
+    int L_2;
+    int M_2;
+    int N_2;
+    int A_3;
+    int B_3;
+    _Bool C_3;
+    _Bool D_3;
+    int E_3;
+    int F_3;
+    int G_3;
+    int H_3;
+    _Bool I_3;
+    _Bool J_3;
+    _Bool K_3;
+    _Bool L_3;
+    _Bool M_3;
+    _Bool N_3;
+    _Bool O_3;
+    int A_4;
+    _Bool B_4;
+    int C_4;
+    int D_4;
+    int E_4;
+    _Bool F_4;
+    int G_4;
+    _Bool H_4;
+    int I_4;
+    int J_4;
+    _Bool K_4;
+    int L_4;
+    int M_4;
+    int N_4;
+    int O_4;
+    _Bool P_4;
+    _Bool Q_4;
+    _Bool R_4;
+    _Bool S_4;
+    _Bool T_4;
+    _Bool U_4;
+    _Bool V_4;
+    _Bool CHC_COMP_UNUSED_5;
+
+    if (((main_entry_0 <= -1000000000) || (main_entry_0 >= 1000000000))
+        || ((main__lr_ph_0 <= -1000000000) || (main__lr_ph_0 >= 1000000000))
+        || ((main__lr_ph_1 <= -1000000000) || (main__lr_ph_1 >= 1000000000))
+        || ((main__lr_ph_2 <= -1000000000) || (main__lr_ph_2 >= 1000000000))
+        || ((A_0 <= -1000000000) || (A_0 >= 1000000000))
+        || ((A_1 <= -1000000000) || (A_1 >= 1000000000))
+        || ((B_1 <= -1000000000) || (B_1 >= 1000000000))
+        || ((E_1 <= -1000000000) || (E_1 >= 1000000000))
+        || ((H_1 <= -1000000000) || (H_1 >= 1000000000))
+        || ((I_1 <= -1000000000) || (I_1 >= 1000000000))
+        || ((J_1 <= -1000000000) || (J_1 >= 1000000000))
+        || ((K_1 <= -1000000000) || (K_1 >= 1000000000))
+        || ((A_2 <= -1000000000) || (A_2 >= 1000000000))
+        || ((C_2 <= -1000000000) || (C_2 >= 1000000000))
+        || ((D_2 <= -1000000000) || (D_2 >= 1000000000))
+        || ((F_2 <= -1000000000) || (F_2 >= 1000000000))
+        || ((G_2 <= -1000000000) || (G_2 >= 1000000000))
+        || ((H_2 <= -1000000000) || (H_2 >= 1000000000))
+        || ((K_2 <= -1000000000) || (K_2 >= 1000000000))
+        || ((L_2 <= -1000000000) || (L_2 >= 1000000000))
+        || ((M_2 <= -1000000000) || (M_2 >= 1000000000))
+        || ((N_2 <= -1000000000) || (N_2 >= 1000000000))
+        || ((A_3 <= -1000000000) || (A_3 >= 1000000000))
+        || ((B_3 <= -1000000000) || (B_3 >= 1000000000))
+        || ((E_3 <= -1000000000) || (E_3 >= 1000000000))
+        || ((F_3 <= -1000000000) || (F_3 >= 1000000000))
+        || ((G_3 <= -1000000000) || (G_3 >= 1000000000))
+        || ((H_3 <= -1000000000) || (H_3 >= 1000000000))
+        || ((A_4 <= -1000000000) || (A_4 >= 1000000000))
+        || ((C_4 <= -1000000000) || (C_4 >= 1000000000))
+        || ((D_4 <= -1000000000) || (D_4 >= 1000000000))
+        || ((E_4 <= -1000000000) || (E_4 >= 1000000000))
+        || ((G_4 <= -1000000000) || (G_4 >= 1000000000))
+        || ((I_4 <= -1000000000) || (I_4 >= 1000000000))
+        || ((J_4 <= -1000000000) || (J_4 >= 1000000000))
+        || ((L_4 <= -1000000000) || (L_4 >= 1000000000))
+        || ((M_4 <= -1000000000) || (M_4 >= 1000000000))
+        || ((N_4 <= -1000000000) || (N_4 >= 1000000000))
+        || ((O_4 <= -1000000000) || (O_4 >= 1000000000)))
+        abort ();
+
+    // main logic
+    goto main_init;
+
+  main_init:
+    if (!1)
+        abort ();
+    main_entry_0 = A_0;
+    goto main_entry;
+  main_error:
+    reach_error ();
+  main_final:
+    goto main_final;
+  main_entry:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          A_3 = __VERIFIER_nondet_int ();
+          if (((A_3 <= -1000000000) || (A_3 >= 1000000000)))
+              abort ();
+          C_3 = __VERIFIER_nondet__Bool ();
+          D_3 = __VERIFIER_nondet__Bool ();
+          E_3 = __VERIFIER_nondet_int ();
+          if (((E_3 <= -1000000000) || (E_3 >= 1000000000)))
+              abort ();
+          F_3 = __VERIFIER_nondet_int ();
+          if (((F_3 <= -1000000000) || (F_3 >= 1000000000)))
+              abort ();
+          G_3 = __VERIFIER_nondet_int ();
+          if (((G_3 <= -1000000000) || (G_3 >= 1000000000)))
+              abort ();
+          H_3 = __VERIFIER_nondet_int ();
+          if (((H_3 <= -1000000000) || (H_3 >= 1000000000)))
+              abort ();
+          I_3 = __VERIFIER_nondet__Bool ();
+          J_3 = __VERIFIER_nondet__Bool ();
+          K_3 = __VERIFIER_nondet__Bool ();
+          L_3 = __VERIFIER_nondet__Bool ();
+          M_3 = __VERIFIER_nondet__Bool ();
+          N_3 = __VERIFIER_nondet__Bool ();
+          O_3 = __VERIFIER_nondet__Bool ();
+          B_3 = main_entry_0;
+          if (!
+              ((A_3 == B_3) && ((!N_3) || (!D_3) || (H_3 == E_3))
+               && ((!N_3) || (!D_3) || (E_3 == 0)) && ((!N_3) || (!D_3)
+                                                       || C_3) && ((!N_3)
+                                                                   || (I_3 ==
+                                                                       (H_3 ==
+                                                                        G_3)))
+               && ((!N_3) || (L_3 == (J_3 || I_3))) && ((!N_3)
+                                                        || (!(L_3 == M_3)))
+               && ((!N_3) || (J_3 == (H_3 == 0))) && ((!N_3)
+                                                      || (G_3 == (2 * F_3)))
+               && ((!N_3) || (N_3 && D_3)) && ((!N_3) || M_3) && ((!O_3)
+                                                                  || (O_3
+                                                                      && N_3))
+               && ((!K_3) || (!N_3)) && O_3 && (!((1 <= F_3) == C_3))))
+              abort ();
+          CHC_COMP_UNUSED_5 = __VERIFIER_nondet__Bool ();
+          if (!1)
+              abort ();
+          goto main_error;
+
+      case 1:
+          A_1 = __VERIFIER_nondet_int ();
+          if (((A_1 <= -1000000000) || (A_1 >= 1000000000)))
+              abort ();
+          C_1 = __VERIFIER_nondet__Bool ();
+          D_1 = __VERIFIER_nondet__Bool ();
+          E_1 = __VERIFIER_nondet_int ();
+          if (((E_1 <= -1000000000) || (E_1 >= 1000000000)))
+              abort ();
+          F_1 = __VERIFIER_nondet__Bool ();
+          G_1 = __VERIFIER_nondet__Bool ();
+          H_1 = __VERIFIER_nondet_int ();
+          if (((H_1 <= -1000000000) || (H_1 >= 1000000000)))
+              abort ();
+          I_1 = __VERIFIER_nondet_int ();
+          if (((I_1 <= -1000000000) || (I_1 >= 1000000000)))
+              abort ();
+          J_1 = __VERIFIER_nondet_int ();
+          if (((J_1 <= -1000000000) || (J_1 >= 1000000000)))
+              abort ();
+          K_1 = __VERIFIER_nondet_int ();
+          if (((K_1 <= -1000000000) || (K_1 >= 1000000000)))
+              abort ();
+          B_1 = main_entry_0;
+          if (!
+              ((A_1 == B_1) && ((!G_1) || (!D_1) || (!C_1))
+               && ((!G_1) || (!F_1) || (E_1 == 0)) && ((!G_1) || (!F_1)
+                                                       || (H_1 == 1))
+               && ((!G_1) || (!F_1) || (J_1 == E_1)) && ((!G_1) || (!F_1)
+                                                         || (K_1 == H_1))
+               && ((!F_1) || (G_1 && F_1)) && ((!G_1) || (G_1 && C_1)) && F_1
+               && (!((1 <= I_1) == D_1))))
+              abort ();
+          main__lr_ph_0 = I_1;
+          main__lr_ph_1 = J_1;
+          main__lr_ph_2 = K_1;
+          B_2 = __VERIFIER_nondet__Bool ();
+          C_2 = __VERIFIER_nondet_int ();
+          if (((C_2 <= -1000000000) || (C_2 >= 1000000000)))
+              abort ();
+          E_2 = __VERIFIER_nondet__Bool ();
+          F_2 = __VERIFIER_nondet_int ();
+          if (((F_2 <= -1000000000) || (F_2 >= 1000000000)))
+              abort ();
+          G_2 = __VERIFIER_nondet_int ();
+          if (((G_2 <= -1000000000) || (G_2 >= 1000000000)))
+              abort ();
+          H_2 = __VERIFIER_nondet_int ();
+          if (((H_2 <= -1000000000) || (H_2 >= 1000000000)))
+              abort ();
+          I_2 = __VERIFIER_nondet__Bool ();
+          J_2 = __VERIFIER_nondet__Bool ();
+          K_2 = __VERIFIER_nondet_int ();
+          if (((K_2 <= -1000000000) || (K_2 >= 1000000000)))
+              abort ();
+          M_2 = __VERIFIER_nondet_int ();
+          if (((M_2 <= -1000000000) || (M_2 >= 1000000000)))
+              abort ();
+          N_2 = __VERIFIER_nondet_int ();
+          if (((N_2 <= -1000000000) || (N_2 >= 1000000000)))
+              abort ();
+          L_2 = main__lr_ph_0;
+          A_2 = main__lr_ph_1;
+          D_2 = main__lr_ph_2;
+          if (!
+              ((B_2 == (D_2 == 4)) && (C_2 == (A_2 + 2))
+               && (F_2 == (B_2 ? -10 : C_2)) && (G_2 == (D_2 + 1)) && ((!J_2)
+                                                                       ||
+                                                                       (!I_2)
+                                                                       || (H_2
+                                                                           ==
+                                                                           F_2))
+               && ((!J_2) || (!I_2) || (K_2 == G_2)) && ((!J_2) || (!I_2)
+                                                         || (M_2 == H_2))
+               && ((!J_2) || (!I_2) || (N_2 == K_2)) && ((!J_2) || (!I_2)
+                                                         || E_2) && ((!I_2)
+                                                                     || (J_2
+                                                                         &&
+                                                                         I_2))
+               && I_2 && (!((L_2 <= D_2) == E_2))))
+              abort ();
+          main__lr_ph_0 = L_2;
+          main__lr_ph_1 = M_2;
+          main__lr_ph_2 = N_2;
+          goto main__lr_ph_0;
+
+      default:
+          abort ();
+      }
+  main__lr_ph_0:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          B_4 = __VERIFIER_nondet__Bool ();
+          C_4 = __VERIFIER_nondet_int ();
+          if (((C_4 <= -1000000000) || (C_4 >= 1000000000)))
+              abort ();
+          D_4 = __VERIFIER_nondet_int ();
+          if (((D_4 <= -1000000000) || (D_4 >= 1000000000)))
+              abort ();
+          F_4 = __VERIFIER_nondet__Bool ();
+          G_4 = __VERIFIER_nondet_int ();
+          if (((G_4 <= -1000000000) || (G_4 >= 1000000000)))
+              abort ();
+          H_4 = __VERIFIER_nondet__Bool ();
+          I_4 = __VERIFIER_nondet_int ();
+          if (((I_4 <= -1000000000) || (I_4 >= 1000000000)))
+              abort ();
+          J_4 = __VERIFIER_nondet_int ();
+          if (((J_4 <= -1000000000) || (J_4 >= 1000000000)))
+              abort ();
+          K_4 = __VERIFIER_nondet__Bool ();
+          L_4 = __VERIFIER_nondet_int ();
+          if (((L_4 <= -1000000000) || (L_4 >= 1000000000)))
+              abort ();
+          N_4 = __VERIFIER_nondet_int ();
+          if (((N_4 <= -1000000000) || (N_4 >= 1000000000)))
+              abort ();
+          O_4 = __VERIFIER_nondet_int ();
+          if (((O_4 <= -1000000000) || (O_4 >= 1000000000)))
+              abort ();
+          P_4 = __VERIFIER_nondet__Bool ();
+          Q_4 = __VERIFIER_nondet__Bool ();
+          R_4 = __VERIFIER_nondet__Bool ();
+          S_4 = __VERIFIER_nondet__Bool ();
+          T_4 = __VERIFIER_nondet__Bool ();
+          U_4 = __VERIFIER_nondet__Bool ();
+          V_4 = __VERIFIER_nondet__Bool ();
+          M_4 = main__lr_ph_0;
+          A_4 = main__lr_ph_1;
+          E_4 = main__lr_ph_2;
+          if (!
+              ((B_4 == (E_4 == 4)) && (C_4 == (A_4 + 2)) && (D_4 == (E_4 + 1))
+               && (G_4 == (B_4 ? -10 : C_4)) && ((!K_4) || (!H_4)
+                                                 || (J_4 == I_4)) && ((!K_4)
+                                                                      ||
+                                                                      (!H_4)
+                                                                      || (I_4
+                                                                          ==
+                                                                          G_4))
+               && ((!K_4) || (!H_4) || (!F_4)) && ((!U_4) || (!K_4)
+                                                   || (O_4 == L_4)) && ((!U_4)
+                                                                        ||
+                                                                        (!K_4)
+                                                                        ||
+                                                                        (L_4
+                                                                         ==
+                                                                         J_4))
+               && ((!K_4) || (K_4 && H_4)) && ((!U_4)
+                                               || (P_4 == (O_4 == N_4)))
+               && ((!U_4) || (S_4 == (Q_4 || P_4))) && ((!U_4)
+                                                        || (!(S_4 == T_4)))
+               && ((!U_4) || (Q_4 == (O_4 == 0))) && ((!U_4)
+                                                      || (N_4 == (2 * M_4)))
+               && ((!U_4) || (U_4 && K_4)) && ((!U_4) || T_4) && ((!V_4)
+                                                                  || (V_4
+                                                                      && U_4))
+               && ((!R_4) || (!U_4)) && V_4 && (!((M_4 <= E_4) == F_4))))
+              abort ();
+          CHC_COMP_UNUSED_5 = __VERIFIER_nondet__Bool ();
+          if (!1)
+              abort ();
+          goto main_error;
+
+      case 1:
+          B_2 = __VERIFIER_nondet__Bool ();
+          C_2 = __VERIFIER_nondet_int ();
+          if (((C_2 <= -1000000000) || (C_2 >= 1000000000)))
+              abort ();
+          E_2 = __VERIFIER_nondet__Bool ();
+          F_2 = __VERIFIER_nondet_int ();
+          if (((F_2 <= -1000000000) || (F_2 >= 1000000000)))
+              abort ();
+          G_2 = __VERIFIER_nondet_int ();
+          if (((G_2 <= -1000000000) || (G_2 >= 1000000000)))
+              abort ();
+          H_2 = __VERIFIER_nondet_int ();
+          if (((H_2 <= -1000000000) || (H_2 >= 1000000000)))
+              abort ();
+          I_2 = __VERIFIER_nondet__Bool ();
+          J_2 = __VERIFIER_nondet__Bool ();
+          K_2 = __VERIFIER_nondet_int ();
+          if (((K_2 <= -1000000000) || (K_2 >= 1000000000)))
+              abort ();
+          M_2 = __VERIFIER_nondet_int ();
+          if (((M_2 <= -1000000000) || (M_2 >= 1000000000)))
+              abort ();
+          N_2 = __VERIFIER_nondet_int ();
+          if (((N_2 <= -1000000000) || (N_2 >= 1000000000)))
+              abort ();
+          L_2 = main__lr_ph_0;
+          A_2 = main__lr_ph_1;
+          D_2 = main__lr_ph_2;
+          if (!
+              ((B_2 == (D_2 == 4)) && (C_2 == (A_2 + 2))
+               && (F_2 == (B_2 ? -10 : C_2)) && (G_2 == (D_2 + 1)) && ((!J_2)
+                                                                       ||
+                                                                       (!I_2)
+                                                                       || (H_2
+                                                                           ==
+                                                                           F_2))
+               && ((!J_2) || (!I_2) || (K_2 == G_2)) && ((!J_2) || (!I_2)
+                                                         || (M_2 == H_2))
+               && ((!J_2) || (!I_2) || (N_2 == K_2)) && ((!J_2) || (!I_2)
+                                                         || E_2) && ((!I_2)
+                                                                     || (J_2
+                                                                         &&
+                                                                         I_2))
+               && I_2 && (!((L_2 <= D_2) == E_2))))
+              abort ();
+          main__lr_ph_0 = L_2;
+          main__lr_ph_1 = M_2;
+          main__lr_ph_2 = N_2;
+          goto main__lr_ph_0;
+
+      default:
+          abort ();
+      }
+
+    // return expression
+
+}
+

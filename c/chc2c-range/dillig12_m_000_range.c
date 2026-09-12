@@ -1,0 +1,239 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 Levente Bajczi, Department of Measurement and Information Systems, Budapest University of Technology and Economics
+//
+// SPDX-License-Identifier: Apache-2.0
+
+// Original CHC file: extra-small-lia/dillig12_m_000.smt2
+extern void abort ();
+extern int __VERIFIER_nondet_int ();
+extern _Bool __VERIFIER_nondet__Bool ();
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error() { __assert_fail("0", "dillig12_m_000_range.c", 13, "reach_error"); }
+
+
+
+int main ();
+
+int
+main ()
+{
+    // return parameter
+
+
+    // variables
+    int SAD_0;
+    int SAD_1;
+    int FUN_0;
+    int FUN_1;
+    int FUN_2;
+    int FUN_3;
+    int FUN_4;
+    int A_0;
+    int B_0;
+    int C_0;
+    int D_0;
+    int E_0;
+    int A_1;
+    int B_1;
+    int C_1;
+    int D_1;
+    int E_1;
+    int F_1;
+    int G_1;
+    int H_1;
+    int I_1;
+    int J_1;
+    int A_2;
+    int B_2;
+    int C_2;
+    int D_2;
+    int E_2;
+    int F_2;
+    int G_2;
+    int A_3;
+    int B_3;
+    int C_3;
+    int A_4;
+    int B_4;
+
+    if (((SAD_0 <= -1000000000) || (SAD_0 >= 1000000000))
+        || ((SAD_1 <= -1000000000) || (SAD_1 >= 1000000000))
+        || ((FUN_0 <= -1000000000) || (FUN_0 >= 1000000000))
+        || ((FUN_1 <= -1000000000) || (FUN_1 >= 1000000000))
+        || ((FUN_2 <= -1000000000) || (FUN_2 >= 1000000000))
+        || ((FUN_3 <= -1000000000) || (FUN_3 >= 1000000000))
+        || ((FUN_4 <= -1000000000) || (FUN_4 >= 1000000000))
+        || ((A_0 <= -1000000000) || (A_0 >= 1000000000))
+        || ((B_0 <= -1000000000) || (B_0 >= 1000000000))
+        || ((C_0 <= -1000000000) || (C_0 >= 1000000000))
+        || ((D_0 <= -1000000000) || (D_0 >= 1000000000))
+        || ((E_0 <= -1000000000) || (E_0 >= 1000000000))
+        || ((A_1 <= -1000000000) || (A_1 >= 1000000000))
+        || ((B_1 <= -1000000000) || (B_1 >= 1000000000))
+        || ((C_1 <= -1000000000) || (C_1 >= 1000000000))
+        || ((D_1 <= -1000000000) || (D_1 >= 1000000000))
+        || ((E_1 <= -1000000000) || (E_1 >= 1000000000))
+        || ((F_1 <= -1000000000) || (F_1 >= 1000000000))
+        || ((G_1 <= -1000000000) || (G_1 >= 1000000000))
+        || ((H_1 <= -1000000000) || (H_1 >= 1000000000))
+        || ((I_1 <= -1000000000) || (I_1 >= 1000000000))
+        || ((J_1 <= -1000000000) || (J_1 >= 1000000000))
+        || ((A_2 <= -1000000000) || (A_2 >= 1000000000))
+        || ((B_2 <= -1000000000) || (B_2 >= 1000000000))
+        || ((C_2 <= -1000000000) || (C_2 >= 1000000000))
+        || ((D_2 <= -1000000000) || (D_2 >= 1000000000))
+        || ((E_2 <= -1000000000) || (E_2 >= 1000000000))
+        || ((F_2 <= -1000000000) || (F_2 >= 1000000000))
+        || ((G_2 <= -1000000000) || (G_2 >= 1000000000))
+        || ((A_3 <= -1000000000) || (A_3 >= 1000000000))
+        || ((B_3 <= -1000000000) || (B_3 >= 1000000000))
+        || ((C_3 <= -1000000000) || (C_3 >= 1000000000))
+        || ((A_4 <= -1000000000) || (A_4 >= 1000000000))
+        || ((B_4 <= -1000000000) || (B_4 >= 1000000000)))
+        abort ();
+
+    // main logic
+    goto main_init;
+
+  main_init:
+    if (!((C_0 == 0) && (B_0 == 0) && (A_0 == 0) && (D_0 == 0)))
+        abort ();
+    FUN_0 = A_0;
+    FUN_1 = B_0;
+    FUN_2 = C_0;
+    FUN_3 = D_0;
+    FUN_4 = E_0;
+    E_1 = __VERIFIER_nondet_int ();
+    if (((E_1 <= -1000000000) || (E_1 >= 1000000000)))
+        abort ();
+    F_1 = __VERIFIER_nondet_int ();
+    if (((F_1 <= -1000000000) || (F_1 >= 1000000000)))
+        abort ();
+    G_1 = __VERIFIER_nondet_int ();
+    if (((G_1 <= -1000000000) || (G_1 >= 1000000000)))
+        abort ();
+    H_1 = __VERIFIER_nondet_int ();
+    if (((H_1 <= -1000000000) || (H_1 >= 1000000000)))
+        abort ();
+    I_1 = __VERIFIER_nondet_int ();
+    if (((I_1 <= -1000000000) || (I_1 >= 1000000000)))
+        abort ();
+    A_1 = FUN_0;
+    B_1 = FUN_1;
+    C_1 = FUN_2;
+    D_1 = FUN_3;
+    J_1 = FUN_4;
+    if (!
+        ((I_1 == ((J_1 == 1) ? (E_1 + F_1) : E_1)) && (H_1 == (C_1 + F_1))
+         && (G_1 == (B_1 + 1)) && (F_1 == (A_1 + 1)) && (E_1 == (D_1 + G_1))))
+        abort ();
+    FUN_0 = F_1;
+    FUN_1 = G_1;
+    FUN_2 = H_1;
+    FUN_3 = I_1;
+    FUN_4 = J_1;
+    goto FUN_1;
+  main_error:
+    reach_error ();
+  main_final:
+    goto main_final;
+  SAD_0:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          A_4 = SAD_0;
+          B_4 = SAD_1;
+          if (!((B_4 >= A_4) && (B_4 >= 5)))
+              abort ();
+          goto main_error;
+
+      case 1:
+          C_3 = __VERIFIER_nondet_int ();
+          if (((C_3 <= -1000000000) || (C_3 >= 1000000000)))
+              abort ();
+          B_3 = SAD_0;
+          A_3 = SAD_1;
+          if (!(((C_3 == (A_3 + 1)) || (C_3 == (A_3 + 2))) && (A_3 <= B_3)))
+              abort ();
+          SAD_0 = B_3;
+          SAD_1 = C_3;
+          goto SAD_0;
+
+      default:
+          abort ();
+      }
+  FUN_1:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          F_2 = __VERIFIER_nondet_int ();
+          if (((F_2 <= -1000000000) || (F_2 >= 1000000000)))
+              abort ();
+          G_2 = __VERIFIER_nondet_int ();
+          if (((G_2 <= -1000000000) || (G_2 >= 1000000000)))
+              abort ();
+          A_2 = FUN_0;
+          B_2 = FUN_1;
+          E_2 = FUN_2;
+          D_2 = FUN_3;
+          C_2 = FUN_4;
+          if (!
+              ((F_2 == ((C_2 == 1) ? (D_2 + (-2 * E_2) + 2) : 1))
+               && (G_2 == 0)))
+              abort ();
+          SAD_0 = F_2;
+          SAD_1 = G_2;
+          C_3 = __VERIFIER_nondet_int ();
+          if (((C_3 <= -1000000000) || (C_3 >= 1000000000)))
+              abort ();
+          B_3 = SAD_0;
+          A_3 = SAD_1;
+          if (!(((C_3 == (A_3 + 1)) || (C_3 == (A_3 + 2))) && (A_3 <= B_3)))
+              abort ();
+          SAD_0 = B_3;
+          SAD_1 = C_3;
+          goto SAD_0;
+
+      case 1:
+          E_1 = __VERIFIER_nondet_int ();
+          if (((E_1 <= -1000000000) || (E_1 >= 1000000000)))
+              abort ();
+          F_1 = __VERIFIER_nondet_int ();
+          if (((F_1 <= -1000000000) || (F_1 >= 1000000000)))
+              abort ();
+          G_1 = __VERIFIER_nondet_int ();
+          if (((G_1 <= -1000000000) || (G_1 >= 1000000000)))
+              abort ();
+          H_1 = __VERIFIER_nondet_int ();
+          if (((H_1 <= -1000000000) || (H_1 >= 1000000000)))
+              abort ();
+          I_1 = __VERIFIER_nondet_int ();
+          if (((I_1 <= -1000000000) || (I_1 >= 1000000000)))
+              abort ();
+          A_1 = FUN_0;
+          B_1 = FUN_1;
+          C_1 = FUN_2;
+          D_1 = FUN_3;
+          J_1 = FUN_4;
+          if (!
+              ((I_1 == ((J_1 == 1) ? (E_1 + F_1) : E_1))
+               && (H_1 == (C_1 + F_1)) && (G_1 == (B_1 + 1))
+               && (F_1 == (A_1 + 1)) && (E_1 == (D_1 + G_1))))
+              abort ();
+          FUN_0 = F_1;
+          FUN_1 = G_1;
+          FUN_2 = H_1;
+          FUN_3 = I_1;
+          FUN_4 = J_1;
+          goto FUN_1;
+
+      default:
+          abort ();
+      }
+
+    // return expression
+
+}
+

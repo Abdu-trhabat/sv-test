@@ -1,0 +1,407 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 Levente Bajczi, Department of Measurement and Information Systems, Budapest University of Technology and Economics
+//
+// SPDX-License-Identifier: Apache-2.0
+
+// Original CHC file: eldarica-misc/018b-horn_000.smt2
+extern void abort ();
+extern int __VERIFIER_nondet_int ();
+extern _Bool __VERIFIER_nondet__Bool ();
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error() { __assert_fail("0", "018b-horn_000_norange.c", 13, "reach_error"); }
+
+
+
+int main ();
+
+int
+main ()
+{
+    // return parameter
+
+
+    // variables
+    int INV3_0;
+    int INV3_1;
+    int INV3_2;
+    int INV3_3;
+    int INV3_4;
+    int INV3_5;
+    int INV3_6;
+    int INV3_7;
+    int A_0;
+    int B_0;
+    int C_0;
+    int D_0;
+    int E_0;
+    int F_0;
+    int G_0;
+    int H_0;
+    int I_0;
+    int J_0;
+    int A_1;
+    int B_1;
+    int C_1;
+    int D_1;
+    int E_1;
+    int F_1;
+    int G_1;
+    int H_1;
+    int I_1;
+    int J_1;
+    int K_1;
+    int L_1;
+    int A_2;
+    int B_2;
+    int C_2;
+    int D_2;
+    int E_2;
+    int F_2;
+    int G_2;
+    int H_2;
+    int I_2;
+    int J_2;
+    int A_3;
+    int B_3;
+    int C_3;
+    int D_3;
+    int E_3;
+    int F_3;
+    int G_3;
+    int v_7_3;
+    int A_16;
+    int B_16;
+    int C_16;
+    int D_16;
+    int E_16;
+    int F_16;
+    int G_16;
+    int H_16;
+
+
+
+    // main logic
+    goto main_init;
+
+  main_init:
+    if (!
+        ((E_3 == 1) && (D_3 == 1) && (C_3 == 0) && (B_3 == 1) && (A_3 == G_3)
+         && (G_3 <= 0) && (!(A_3 <= 0)) && (F_3 == 2) && (v_7_3 == A_3)))
+        abort ();
+    INV3_0 = A_3;
+    INV3_1 = B_3;
+    INV3_2 = C_3;
+    INV3_3 = D_3;
+    INV3_4 = E_3;
+    INV3_5 = F_3;
+    INV3_6 = v_7_3;
+    INV3_7 = G_3;
+    E_0 = __VERIFIER_nondet_int ();
+    F_0 = __VERIFIER_nondet_int ();
+    A_0 = INV3_0;
+    B_0 = INV3_1;
+    C_0 = INV3_2;
+    D_0 = INV3_3;
+    I_0 = INV3_4;
+    J_0 = INV3_5;
+    G_0 = INV3_6;
+    H_0 = INV3_7;
+    if (!
+        ((I_0 == (E_0 + -1)) && (G_0 == H_0) && ((D_0 + (-1 * I_0)) >= 1)
+         && (!(A_0 >= B_0)) && (H_0 <= 0) && (!(G_0 <= 0))
+         && (J_0 == (F_0 + -2))))
+        abort ();
+    INV3_0 = A_0;
+    INV3_1 = B_0;
+    INV3_2 = C_0;
+    INV3_3 = D_0;
+    INV3_4 = E_0;
+    INV3_5 = F_0;
+    INV3_6 = G_0;
+    INV3_7 = H_0;
+    goto INV3_2;
+  main_error:
+    reach_error ();
+  main_final:
+    goto main_final;
+  INV2:
+    goto INV2;
+  INV1:
+    goto INV1;
+  INV4:
+    goto INV4;
+  INV3_0:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          C_16 = INV3_0;
+          D_16 = INV3_1;
+          A_16 = INV3_2;
+          E_16 = INV3_3;
+          F_16 = INV3_4;
+          B_16 = INV3_5;
+          G_16 = INV3_6;
+          H_16 = INV3_7;
+          if (!
+              ((!(A_16 == B_16)) && (!((E_16 + (-1 * F_16)) >= 1))
+               && (!(C_16 >= D_16)) && (H_16 <= 0) && (!(G_16 <= 0))
+               && (G_16 == H_16)))
+              abort ();
+          goto main_error;
+
+      case 1:
+          E_0 = __VERIFIER_nondet_int ();
+          F_0 = __VERIFIER_nondet_int ();
+          A_0 = INV3_0;
+          B_0 = INV3_1;
+          C_0 = INV3_2;
+          D_0 = INV3_3;
+          I_0 = INV3_4;
+          J_0 = INV3_5;
+          G_0 = INV3_6;
+          H_0 = INV3_7;
+          if (!
+              ((I_0 == (E_0 + -1)) && (G_0 == H_0)
+               && ((D_0 + (-1 * I_0)) >= 1) && (!(A_0 >= B_0)) && (H_0 <= 0)
+               && (!(G_0 <= 0)) && (J_0 == (F_0 + -2))))
+              abort ();
+          INV3_0 = A_0;
+          INV3_1 = B_0;
+          INV3_2 = C_0;
+          INV3_3 = D_0;
+          INV3_4 = E_0;
+          INV3_5 = F_0;
+          INV3_6 = G_0;
+          INV3_7 = H_0;
+          E_0 = __VERIFIER_nondet_int ();
+          F_0 = __VERIFIER_nondet_int ();
+          A_0 = INV3_0;
+          B_0 = INV3_1;
+          C_0 = INV3_2;
+          D_0 = INV3_3;
+          I_0 = INV3_4;
+          J_0 = INV3_5;
+          G_0 = INV3_6;
+          H_0 = INV3_7;
+          if (!
+              ((I_0 == (E_0 + -1)) && (G_0 == H_0)
+               && ((D_0 + (-1 * I_0)) >= 1) && (!(A_0 >= B_0)) && (H_0 <= 0)
+               && (!(G_0 <= 0)) && (J_0 == (F_0 + -2))))
+              abort ();
+          INV3_0 = A_0;
+          INV3_1 = B_0;
+          INV3_2 = C_0;
+          INV3_3 = D_0;
+          INV3_4 = E_0;
+          INV3_5 = F_0;
+          INV3_6 = G_0;
+          INV3_7 = H_0;
+          goto INV3_2;
+
+      case 2:
+          B_1 = __VERIFIER_nondet_int ();
+          C_1 = __VERIFIER_nondet_int ();
+          E_1 = __VERIFIER_nondet_int ();
+          F_1 = __VERIFIER_nondet_int ();
+          A_1 = INV3_0;
+          I_1 = INV3_1;
+          J_1 = INV3_2;
+          D_1 = INV3_3;
+          K_1 = INV3_4;
+          L_1 = INV3_5;
+          G_1 = INV3_6;
+          H_1 = INV3_7;
+          if (!
+              ((K_1 == (E_1 + -1)) && (J_1 == (C_1 + -2))
+               && (I_1 == (B_1 + -1)) && (G_1 == H_1)
+               && ((D_1 + (-1 * K_1)) >= 1) && (A_1 >= I_1) && (H_1 <= 0)
+               && (!(G_1 <= 0)) && (L_1 == (F_1 + -2))))
+              abort ();
+          INV3_0 = A_1;
+          INV3_1 = B_1;
+          INV3_2 = C_1;
+          INV3_3 = D_1;
+          INV3_4 = E_1;
+          INV3_5 = F_1;
+          INV3_6 = G_1;
+          INV3_7 = H_1;
+          E_0 = __VERIFIER_nondet_int ();
+          F_0 = __VERIFIER_nondet_int ();
+          A_0 = INV3_0;
+          B_0 = INV3_1;
+          C_0 = INV3_2;
+          D_0 = INV3_3;
+          I_0 = INV3_4;
+          J_0 = INV3_5;
+          G_0 = INV3_6;
+          H_0 = INV3_7;
+          if (!
+              ((I_0 == (E_0 + -1)) && (G_0 == H_0)
+               && ((D_0 + (-1 * I_0)) >= 1) && (!(A_0 >= B_0)) && (H_0 <= 0)
+               && (!(G_0 <= 0)) && (J_0 == (F_0 + -2))))
+              abort ();
+          INV3_0 = A_0;
+          INV3_1 = B_0;
+          INV3_2 = C_0;
+          INV3_3 = D_0;
+          INV3_4 = E_0;
+          INV3_5 = F_0;
+          INV3_6 = G_0;
+          INV3_7 = H_0;
+          goto INV3_2;
+
+      case 3:
+          E_0 = __VERIFIER_nondet_int ();
+          F_0 = __VERIFIER_nondet_int ();
+          A_0 = INV3_0;
+          B_0 = INV3_1;
+          C_0 = INV3_2;
+          D_0 = INV3_3;
+          I_0 = INV3_4;
+          J_0 = INV3_5;
+          G_0 = INV3_6;
+          H_0 = INV3_7;
+          if (!
+              ((I_0 == (E_0 + -1)) && (G_0 == H_0)
+               && ((D_0 + (-1 * I_0)) >= 1) && (!(A_0 >= B_0)) && (H_0 <= 0)
+               && (!(G_0 <= 0)) && (J_0 == (F_0 + -2))))
+              abort ();
+          INV3_0 = A_0;
+          INV3_1 = B_0;
+          INV3_2 = C_0;
+          INV3_3 = D_0;
+          INV3_4 = E_0;
+          INV3_5 = F_0;
+          INV3_6 = G_0;
+          INV3_7 = H_0;
+          goto INV3_2;
+
+      default:
+          abort ();
+      }
+  INV3_1:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          B_2 = __VERIFIER_nondet_int ();
+          C_2 = __VERIFIER_nondet_int ();
+          A_2 = INV3_0;
+          I_2 = INV3_1;
+          J_2 = INV3_2;
+          D_2 = INV3_3;
+          E_2 = INV3_4;
+          F_2 = INV3_5;
+          G_2 = INV3_6;
+          H_2 = INV3_7;
+          if (!
+              ((I_2 == (B_2 + -1)) && (G_2 == H_2)
+               && (!((D_2 + (-1 * E_2)) >= 1)) && (A_2 >= I_2) && (H_2 <= 0)
+               && (!(G_2 <= 0)) && (J_2 == (C_2 + -2))))
+              abort ();
+          INV3_0 = A_2;
+          INV3_1 = B_2;
+          INV3_2 = C_2;
+          INV3_3 = D_2;
+          INV3_4 = E_2;
+          INV3_5 = F_2;
+          INV3_6 = G_2;
+          INV3_7 = H_2;
+          goto INV3_0;
+
+      case 1:
+          E_0 = __VERIFIER_nondet_int ();
+          F_0 = __VERIFIER_nondet_int ();
+          A_0 = INV3_0;
+          B_0 = INV3_1;
+          C_0 = INV3_2;
+          D_0 = INV3_3;
+          I_0 = INV3_4;
+          J_0 = INV3_5;
+          G_0 = INV3_6;
+          H_0 = INV3_7;
+          if (!
+              ((I_0 == (E_0 + -1)) && (G_0 == H_0)
+               && ((D_0 + (-1 * I_0)) >= 1) && (!(A_0 >= B_0)) && (H_0 <= 0)
+               && (!(G_0 <= 0)) && (J_0 == (F_0 + -2))))
+              abort ();
+          INV3_0 = A_0;
+          INV3_1 = B_0;
+          INV3_2 = C_0;
+          INV3_3 = D_0;
+          INV3_4 = E_0;
+          INV3_5 = F_0;
+          INV3_6 = G_0;
+          INV3_7 = H_0;
+          goto INV3_2;
+
+      default:
+          abort ();
+      }
+  INV3_2:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          B_1 = __VERIFIER_nondet_int ();
+          C_1 = __VERIFIER_nondet_int ();
+          E_1 = __VERIFIER_nondet_int ();
+          F_1 = __VERIFIER_nondet_int ();
+          A_1 = INV3_0;
+          I_1 = INV3_1;
+          J_1 = INV3_2;
+          D_1 = INV3_3;
+          K_1 = INV3_4;
+          L_1 = INV3_5;
+          G_1 = INV3_6;
+          H_1 = INV3_7;
+          if (!
+              ((K_1 == (E_1 + -1)) && (J_1 == (C_1 + -2))
+               && (I_1 == (B_1 + -1)) && (G_1 == H_1)
+               && ((D_1 + (-1 * K_1)) >= 1) && (A_1 >= I_1) && (H_1 <= 0)
+               && (!(G_1 <= 0)) && (L_1 == (F_1 + -2))))
+              abort ();
+          INV3_0 = A_1;
+          INV3_1 = B_1;
+          INV3_2 = C_1;
+          INV3_3 = D_1;
+          INV3_4 = E_1;
+          INV3_5 = F_1;
+          INV3_6 = G_1;
+          INV3_7 = H_1;
+          goto INV3_1;
+
+      case 1:
+          E_0 = __VERIFIER_nondet_int ();
+          F_0 = __VERIFIER_nondet_int ();
+          A_0 = INV3_0;
+          B_0 = INV3_1;
+          C_0 = INV3_2;
+          D_0 = INV3_3;
+          I_0 = INV3_4;
+          J_0 = INV3_5;
+          G_0 = INV3_6;
+          H_0 = INV3_7;
+          if (!
+              ((I_0 == (E_0 + -1)) && (G_0 == H_0)
+               && ((D_0 + (-1 * I_0)) >= 1) && (!(A_0 >= B_0)) && (H_0 <= 0)
+               && (!(G_0 <= 0)) && (J_0 == (F_0 + -2))))
+              abort ();
+          INV3_0 = A_0;
+          INV3_1 = B_0;
+          INV3_2 = C_0;
+          INV3_3 = D_0;
+          INV3_4 = E_0;
+          INV3_5 = F_0;
+          INV3_6 = G_0;
+          INV3_7 = H_0;
+          goto INV3_2;
+
+      default:
+          abort ();
+      }
+
+    // return expression
+
+}
+

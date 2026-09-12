@@ -1,0 +1,18 @@
+
+format_version: '2.0'
+
+input_files: 'vmt-durationThm_2_e3_329_e5_124_000_norange.c'
+
+properties:
+  - property_file: ../properties/unreach-call.prp
+    expected_verdict: true
+
+options:
+  language: C
+  data_model: ILP32
+
+        
+#Verdict confirmed by the CHC solver eldarica
+#Verdict confirmed by the CHC solver golem
+#Verdict confirmed by the CHC solver spacer
+#Verdict confirmed by the CHC solver theta

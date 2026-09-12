@@ -1,0 +1,15 @@
+
+format_version: '2.0'
+
+input_files: 'vmt-DRAGON_14_e3_1259_e1_5798_000_range.c'
+
+properties:
+  - property_file: ../properties/unreach-call.prp
+    expected_verdict: true
+
+options:
+  language: C
+  data_model: ILP32
+
+        
+#Verdict confirmed by the CHC solver spacer

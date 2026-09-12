@@ -1,0 +1,1328 @@
+// This file is part of the SV-Benchmarks collection of verification tasks:
+// https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+//
+// SPDX-FileCopyrightText: 2023 Levente Bajczi, Department of Measurement and Information Systems, Budapest University of Technology and Economics
+//
+// SPDX-License-Identifier: Apache-2.0
+
+// Original CHC file: tricera-benchmarks/test_locks_5.c-1.smt2.gz_000.smt2
+extern void abort ();
+extern int __VERIFIER_nondet_int ();
+extern _Bool __VERIFIER_nondet__Bool ();
+extern void __assert_fail(const char *, const char *, unsigned int, const char *) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void reach_error() { __assert_fail("0", "test_locks_5.c-1.smt2.gz_000_norange.c", 13, "reach_error"); }
+
+
+
+int main ();
+
+int
+main ()
+{
+    // return parameter
+
+
+    // variables
+    int inv_main64_0;
+    int inv_main64_1;
+    int inv_main64_2;
+    int inv_main64_3;
+    int inv_main64_4;
+    int inv_main64_5;
+    int inv_main64_6;
+    int inv_main64_7;
+    int inv_main64_8;
+    int inv_main64_9;
+    int inv_main64_10;
+    int inv_main46_0;
+    int inv_main46_1;
+    int inv_main46_2;
+    int inv_main46_3;
+    int inv_main46_4;
+    int inv_main46_5;
+    int inv_main46_6;
+    int inv_main46_7;
+    int inv_main46_8;
+    int inv_main46_9;
+    int inv_main46_10;
+    int inv_main52_0;
+    int inv_main52_1;
+    int inv_main52_2;
+    int inv_main52_3;
+    int inv_main52_4;
+    int inv_main52_5;
+    int inv_main52_6;
+    int inv_main52_7;
+    int inv_main52_8;
+    int inv_main52_9;
+    int inv_main52_10;
+    int inv_main58_0;
+    int inv_main58_1;
+    int inv_main58_2;
+    int inv_main58_3;
+    int inv_main58_4;
+    int inv_main58_5;
+    int inv_main58_6;
+    int inv_main58_7;
+    int inv_main58_8;
+    int inv_main58_9;
+    int inv_main58_10;
+    int inv_main18_0;
+    int inv_main18_1;
+    int inv_main18_2;
+    int inv_main18_3;
+    int inv_main18_4;
+    int inv_main18_5;
+    int inv_main18_6;
+    int inv_main18_7;
+    int inv_main18_8;
+    int inv_main18_9;
+    int inv_main18_10;
+    int inv_main43_0;
+    int inv_main43_1;
+    int inv_main43_2;
+    int inv_main43_3;
+    int inv_main43_4;
+    int inv_main43_5;
+    int inv_main43_6;
+    int inv_main43_7;
+    int inv_main43_8;
+    int inv_main43_9;
+    int inv_main43_10;
+    int inv_main75_0;
+    int inv_main75_1;
+    int inv_main75_2;
+    int inv_main75_3;
+    int inv_main75_4;
+    int inv_main75_5;
+    int inv_main75_6;
+    int inv_main75_7;
+    int inv_main75_8;
+    int inv_main75_9;
+    int inv_main75_10;
+    int inv_main40_0;
+    int inv_main40_1;
+    int inv_main40_2;
+    int inv_main40_3;
+    int inv_main40_4;
+    int inv_main40_5;
+    int inv_main40_6;
+    int inv_main40_7;
+    int inv_main40_8;
+    int inv_main40_9;
+    int inv_main40_10;
+    int inv_main34_0;
+    int inv_main34_1;
+    int inv_main34_2;
+    int inv_main34_3;
+    int inv_main34_4;
+    int inv_main34_5;
+    int inv_main34_6;
+    int inv_main34_7;
+    int inv_main34_8;
+    int inv_main34_9;
+    int inv_main34_10;
+    int A_1;
+    int B_1;
+    int C_1;
+    int D_1;
+    int E_1;
+    int F_1;
+    int G_1;
+    int H_1;
+    int I_1;
+    int J_1;
+    int K_1;
+    int L_1;
+    int M_1;
+    int A_2;
+    int B_2;
+    int C_2;
+    int D_2;
+    int E_2;
+    int F_2;
+    int G_2;
+    int H_2;
+    int I_2;
+    int J_2;
+    int K_2;
+    int L_2;
+    int A_3;
+    int B_3;
+    int C_3;
+    int D_3;
+    int E_3;
+    int F_3;
+    int G_3;
+    int H_3;
+    int I_3;
+    int J_3;
+    int K_3;
+    int L_3;
+    int A_4;
+    int B_4;
+    int C_4;
+    int D_4;
+    int E_4;
+    int F_4;
+    int G_4;
+    int H_4;
+    int I_4;
+    int J_4;
+    int K_4;
+    int A_5;
+    int B_5;
+    int C_5;
+    int D_5;
+    int E_5;
+    int F_5;
+    int G_5;
+    int H_5;
+    int I_5;
+    int J_5;
+    int K_5;
+    int A_6;
+    int B_6;
+    int C_6;
+    int D_6;
+    int E_6;
+    int F_6;
+    int G_6;
+    int H_6;
+    int I_6;
+    int J_6;
+    int K_6;
+    int L_6;
+    int A_7;
+    int B_7;
+    int C_7;
+    int D_7;
+    int E_7;
+    int F_7;
+    int G_7;
+    int H_7;
+    int I_7;
+    int J_7;
+    int K_7;
+    int L_7;
+    int M_7;
+    int N_7;
+    int O_7;
+    int P_7;
+    int Q_7;
+    int A_8;
+    int B_8;
+    int C_8;
+    int D_8;
+    int E_8;
+    int F_8;
+    int G_8;
+    int H_8;
+    int I_8;
+    int J_8;
+    int K_8;
+    int L_8;
+    int M_8;
+    int N_8;
+    int O_8;
+    int P_8;
+    int Q_8;
+    int A_9;
+    int B_9;
+    int C_9;
+    int D_9;
+    int E_9;
+    int F_9;
+    int G_9;
+    int H_9;
+    int I_9;
+    int J_9;
+    int K_9;
+    int L_9;
+    int M_9;
+    int N_9;
+    int O_9;
+    int P_9;
+    int Q_9;
+    int A_10;
+    int B_10;
+    int C_10;
+    int D_10;
+    int E_10;
+    int F_10;
+    int G_10;
+    int H_10;
+    int I_10;
+    int J_10;
+    int K_10;
+    int L_10;
+    int M_10;
+    int N_10;
+    int O_10;
+    int P_10;
+    int Q_10;
+    int A_11;
+    int B_11;
+    int C_11;
+    int D_11;
+    int E_11;
+    int F_11;
+    int G_11;
+    int H_11;
+    int I_11;
+    int J_11;
+    int K_11;
+    int L_11;
+    int A_12;
+    int B_12;
+    int C_12;
+    int D_12;
+    int E_12;
+    int F_12;
+    int G_12;
+    int H_12;
+    int I_12;
+    int J_12;
+    int K_12;
+    int A_13;
+    int B_13;
+    int C_13;
+    int D_13;
+    int E_13;
+    int F_13;
+    int G_13;
+    int H_13;
+    int I_13;
+    int J_13;
+    int K_13;
+    int A_14;
+    int B_14;
+    int C_14;
+    int D_14;
+    int E_14;
+    int F_14;
+    int G_14;
+    int H_14;
+    int I_14;
+    int J_14;
+    int K_14;
+    int L_14;
+    int A_15;
+    int B_15;
+    int C_15;
+    int D_15;
+    int E_15;
+    int F_15;
+    int G_15;
+    int H_15;
+    int I_15;
+    int J_15;
+    int K_15;
+    int A_16;
+    int B_16;
+    int C_16;
+    int D_16;
+    int E_16;
+    int F_16;
+    int G_16;
+    int H_16;
+    int I_16;
+    int J_16;
+    int K_16;
+    int A_17;
+    int B_17;
+    int C_17;
+    int D_17;
+    int E_17;
+    int F_17;
+    int G_17;
+    int H_17;
+    int I_17;
+    int J_17;
+    int K_17;
+    int A_18;
+    int B_18;
+    int C_18;
+    int D_18;
+    int E_18;
+    int F_18;
+    int G_18;
+    int H_18;
+    int I_18;
+    int J_18;
+    int K_18;
+    int A_19;
+    int B_19;
+    int C_19;
+    int D_19;
+    int E_19;
+    int F_19;
+    int G_19;
+    int H_19;
+    int I_19;
+    int J_19;
+    int K_19;
+    int A_20;
+    int B_20;
+    int C_20;
+    int D_20;
+    int E_20;
+    int F_20;
+    int G_20;
+    int H_20;
+    int I_20;
+    int J_20;
+    int K_20;
+    int A_21;
+    int B_21;
+    int C_21;
+    int D_21;
+    int E_21;
+    int F_21;
+    int G_21;
+    int H_21;
+    int I_21;
+    int J_21;
+    int K_21;
+    int L_21;
+    int A_22;
+    int B_22;
+    int C_22;
+    int D_22;
+    int E_22;
+    int F_22;
+    int G_22;
+    int H_22;
+    int I_22;
+    int J_22;
+    int K_22;
+    int A_23;
+    int B_23;
+    int C_23;
+    int D_23;
+    int E_23;
+    int F_23;
+    int G_23;
+    int H_23;
+    int I_23;
+    int J_23;
+    int K_23;
+    int L_23;
+    int A_24;
+    int B_24;
+    int C_24;
+    int D_24;
+    int E_24;
+    int F_24;
+    int G_24;
+    int H_24;
+    int I_24;
+    int J_24;
+    int K_24;
+    int A_25;
+    int B_25;
+    int C_25;
+    int D_25;
+    int E_25;
+    int F_25;
+    int G_25;
+    int H_25;
+    int I_25;
+    int J_25;
+    int K_25;
+    int L_25;
+    int A_26;
+    int B_26;
+    int C_26;
+    int D_26;
+    int E_26;
+    int F_26;
+    int G_26;
+    int H_26;
+    int I_26;
+    int J_26;
+    int K_26;
+    int A_27;
+    int B_27;
+    int C_27;
+    int D_27;
+    int E_27;
+    int F_27;
+    int G_27;
+    int H_27;
+    int I_27;
+    int J_27;
+    int K_27;
+
+
+
+    // main logic
+    goto main_init;
+
+  main_init:
+    if (!1)
+        abort ();
+    A_26 = __VERIFIER_nondet_int ();
+    B_26 = __VERIFIER_nondet_int ();
+    C_26 = __VERIFIER_nondet_int ();
+    D_26 = __VERIFIER_nondet_int ();
+    E_26 = __VERIFIER_nondet_int ();
+    F_26 = __VERIFIER_nondet_int ();
+    G_26 = __VERIFIER_nondet_int ();
+    H_26 = __VERIFIER_nondet_int ();
+    I_26 = __VERIFIER_nondet_int ();
+    J_26 = __VERIFIER_nondet_int ();
+    K_26 = __VERIFIER_nondet_int ();
+    if (!1)
+        abort ();
+    inv_main18_0 = G_26;
+    inv_main18_1 = J_26;
+    inv_main18_2 = F_26;
+    inv_main18_3 = B_26;
+    inv_main18_4 = K_26;
+    inv_main18_5 = E_26;
+    inv_main18_6 = I_26;
+    inv_main18_7 = D_26;
+    inv_main18_8 = A_26;
+    inv_main18_9 = H_26;
+    inv_main18_10 = C_26;
+    goto inv_main18;
+  main_error:
+    reach_error ();
+  main_final:
+    goto main_final;
+  inv_main64:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          A_24 = inv_main64_0;
+          F_24 = inv_main64_1;
+          D_24 = inv_main64_2;
+          K_24 = inv_main64_3;
+          J_24 = inv_main64_4;
+          I_24 = inv_main64_5;
+          G_24 = inv_main64_6;
+          C_24 = inv_main64_7;
+          H_24 = inv_main64_8;
+          E_24 = inv_main64_9;
+          B_24 = inv_main64_10;
+          if (!(H_24 == 0))
+              abort ();
+          inv_main18_0 = A_24;
+          inv_main18_1 = F_24;
+          inv_main18_2 = D_24;
+          inv_main18_3 = K_24;
+          inv_main18_4 = J_24;
+          inv_main18_5 = I_24;
+          inv_main18_6 = G_24;
+          inv_main18_7 = C_24;
+          inv_main18_8 = H_24;
+          inv_main18_9 = E_24;
+          inv_main18_10 = B_24;
+          goto inv_main18;
+
+      case 1:
+          E_25 = __VERIFIER_nondet_int ();
+          B_25 = inv_main64_0;
+          I_25 = inv_main64_1;
+          D_25 = inv_main64_2;
+          K_25 = inv_main64_3;
+          C_25 = inv_main64_4;
+          J_25 = inv_main64_5;
+          L_25 = inv_main64_6;
+          A_25 = inv_main64_7;
+          H_25 = inv_main64_8;
+          G_25 = inv_main64_9;
+          F_25 = inv_main64_10;
+          if (!((G_25 == 1) && (E_25 == 0) && (!(H_25 == 0))))
+              abort ();
+          inv_main18_0 = B_25;
+          inv_main18_1 = I_25;
+          inv_main18_2 = D_25;
+          inv_main18_3 = K_25;
+          inv_main18_4 = C_25;
+          inv_main18_5 = J_25;
+          inv_main18_6 = L_25;
+          inv_main18_7 = A_25;
+          inv_main18_8 = H_25;
+          inv_main18_9 = E_25;
+          inv_main18_10 = F_25;
+          goto inv_main18;
+
+      case 2:
+          D_19 = inv_main64_0;
+          C_19 = inv_main64_1;
+          E_19 = inv_main64_2;
+          J_19 = inv_main64_3;
+          K_19 = inv_main64_4;
+          G_19 = inv_main64_5;
+          F_19 = inv_main64_6;
+          I_19 = inv_main64_7;
+          H_19 = inv_main64_8;
+          B_19 = inv_main64_9;
+          A_19 = inv_main64_10;
+          if (!((!(B_19 == 1)) && (!(H_19 == 0))))
+              abort ();
+          inv_main75_0 = D_19;
+          inv_main75_1 = C_19;
+          inv_main75_2 = E_19;
+          inv_main75_3 = J_19;
+          inv_main75_4 = K_19;
+          inv_main75_5 = G_19;
+          inv_main75_6 = F_19;
+          inv_main75_7 = I_19;
+          inv_main75_8 = H_19;
+          inv_main75_9 = B_19;
+          inv_main75_10 = A_19;
+          F_27 = inv_main75_0;
+          E_27 = inv_main75_1;
+          K_27 = inv_main75_2;
+          D_27 = inv_main75_3;
+          G_27 = inv_main75_4;
+          H_27 = inv_main75_5;
+          J_27 = inv_main75_6;
+          C_27 = inv_main75_7;
+          I_27 = inv_main75_8;
+          A_27 = inv_main75_9;
+          B_27 = inv_main75_10;
+          if (!1)
+              abort ();
+          goto main_error;
+
+      default:
+          abort ();
+      }
+  inv_main46:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          H_5 = inv_main46_0;
+          G_5 = inv_main46_1;
+          I_5 = inv_main46_2;
+          F_5 = inv_main46_3;
+          D_5 = inv_main46_4;
+          A_5 = inv_main46_5;
+          E_5 = inv_main46_6;
+          C_5 = inv_main46_7;
+          K_5 = inv_main46_8;
+          J_5 = inv_main46_9;
+          B_5 = inv_main46_10;
+          if (!(I_5 == 0))
+              abort ();
+          inv_main52_0 = H_5;
+          inv_main52_1 = G_5;
+          inv_main52_2 = I_5;
+          inv_main52_3 = F_5;
+          inv_main52_4 = D_5;
+          inv_main52_5 = A_5;
+          inv_main52_6 = E_5;
+          inv_main52_7 = C_5;
+          inv_main52_8 = K_5;
+          inv_main52_9 = J_5;
+          inv_main52_10 = B_5;
+          goto inv_main52;
+
+      case 1:
+          A_6 = __VERIFIER_nondet_int ();
+          H_6 = inv_main46_0;
+          C_6 = inv_main46_1;
+          I_6 = inv_main46_2;
+          E_6 = inv_main46_3;
+          B_6 = inv_main46_4;
+          F_6 = inv_main46_5;
+          J_6 = inv_main46_6;
+          G_6 = inv_main46_7;
+          D_6 = inv_main46_8;
+          K_6 = inv_main46_9;
+          L_6 = inv_main46_10;
+          if (!((E_6 == 1) && (A_6 == 0) && (!(I_6 == 0))))
+              abort ();
+          inv_main52_0 = H_6;
+          inv_main52_1 = C_6;
+          inv_main52_2 = I_6;
+          inv_main52_3 = A_6;
+          inv_main52_4 = B_6;
+          inv_main52_5 = F_6;
+          inv_main52_6 = J_6;
+          inv_main52_7 = G_6;
+          inv_main52_8 = D_6;
+          inv_main52_9 = K_6;
+          inv_main52_10 = L_6;
+          goto inv_main52;
+
+      case 2:
+          H_16 = inv_main46_0;
+          J_16 = inv_main46_1;
+          I_16 = inv_main46_2;
+          F_16 = inv_main46_3;
+          E_16 = inv_main46_4;
+          D_16 = inv_main46_5;
+          G_16 = inv_main46_6;
+          B_16 = inv_main46_7;
+          A_16 = inv_main46_8;
+          K_16 = inv_main46_9;
+          C_16 = inv_main46_10;
+          if (!((!(F_16 == 1)) && (!(I_16 == 0))))
+              abort ();
+          inv_main75_0 = H_16;
+          inv_main75_1 = J_16;
+          inv_main75_2 = I_16;
+          inv_main75_3 = F_16;
+          inv_main75_4 = E_16;
+          inv_main75_5 = D_16;
+          inv_main75_6 = G_16;
+          inv_main75_7 = B_16;
+          inv_main75_8 = A_16;
+          inv_main75_9 = K_16;
+          inv_main75_10 = C_16;
+          F_27 = inv_main75_0;
+          E_27 = inv_main75_1;
+          K_27 = inv_main75_2;
+          D_27 = inv_main75_3;
+          G_27 = inv_main75_4;
+          H_27 = inv_main75_5;
+          J_27 = inv_main75_6;
+          C_27 = inv_main75_7;
+          I_27 = inv_main75_8;
+          A_27 = inv_main75_9;
+          B_27 = inv_main75_10;
+          if (!1)
+              abort ();
+          goto main_error;
+
+      default:
+          abort ();
+      }
+  inv_main52:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          E_20 = inv_main52_0;
+          I_20 = inv_main52_1;
+          H_20 = inv_main52_2;
+          K_20 = inv_main52_3;
+          C_20 = inv_main52_4;
+          A_20 = inv_main52_5;
+          G_20 = inv_main52_6;
+          B_20 = inv_main52_7;
+          J_20 = inv_main52_8;
+          D_20 = inv_main52_9;
+          F_20 = inv_main52_10;
+          if (!(C_20 == 0))
+              abort ();
+          inv_main58_0 = E_20;
+          inv_main58_1 = I_20;
+          inv_main58_2 = H_20;
+          inv_main58_3 = K_20;
+          inv_main58_4 = C_20;
+          inv_main58_5 = A_20;
+          inv_main58_6 = G_20;
+          inv_main58_7 = B_20;
+          inv_main58_8 = J_20;
+          inv_main58_9 = D_20;
+          inv_main58_10 = F_20;
+          goto inv_main58;
+
+      case 1:
+          J_21 = __VERIFIER_nondet_int ();
+          E_21 = inv_main52_0;
+          A_21 = inv_main52_1;
+          H_21 = inv_main52_2;
+          D_21 = inv_main52_3;
+          G_21 = inv_main52_4;
+          L_21 = inv_main52_5;
+          I_21 = inv_main52_6;
+          K_21 = inv_main52_7;
+          F_21 = inv_main52_8;
+          C_21 = inv_main52_9;
+          B_21 = inv_main52_10;
+          if (!((J_21 == 0) && (!(G_21 == 0)) && (L_21 == 1)))
+              abort ();
+          inv_main58_0 = E_21;
+          inv_main58_1 = A_21;
+          inv_main58_2 = H_21;
+          inv_main58_3 = D_21;
+          inv_main58_4 = G_21;
+          inv_main58_5 = J_21;
+          inv_main58_6 = I_21;
+          inv_main58_7 = K_21;
+          inv_main58_8 = F_21;
+          inv_main58_9 = C_21;
+          inv_main58_10 = B_21;
+          goto inv_main58;
+
+      case 2:
+          C_17 = inv_main52_0;
+          D_17 = inv_main52_1;
+          B_17 = inv_main52_2;
+          H_17 = inv_main52_3;
+          F_17 = inv_main52_4;
+          K_17 = inv_main52_5;
+          G_17 = inv_main52_6;
+          A_17 = inv_main52_7;
+          J_17 = inv_main52_8;
+          I_17 = inv_main52_9;
+          E_17 = inv_main52_10;
+          if (!((!(F_17 == 0)) && (!(K_17 == 1))))
+              abort ();
+          inv_main75_0 = C_17;
+          inv_main75_1 = D_17;
+          inv_main75_2 = B_17;
+          inv_main75_3 = H_17;
+          inv_main75_4 = F_17;
+          inv_main75_5 = K_17;
+          inv_main75_6 = G_17;
+          inv_main75_7 = A_17;
+          inv_main75_8 = J_17;
+          inv_main75_9 = I_17;
+          inv_main75_10 = E_17;
+          F_27 = inv_main75_0;
+          E_27 = inv_main75_1;
+          K_27 = inv_main75_2;
+          D_27 = inv_main75_3;
+          G_27 = inv_main75_4;
+          H_27 = inv_main75_5;
+          J_27 = inv_main75_6;
+          C_27 = inv_main75_7;
+          I_27 = inv_main75_8;
+          A_27 = inv_main75_9;
+          B_27 = inv_main75_10;
+          if (!1)
+              abort ();
+          goto main_error;
+
+      default:
+          abort ();
+      }
+  inv_main58:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          K_13 = inv_main58_0;
+          A_13 = inv_main58_1;
+          B_13 = inv_main58_2;
+          J_13 = inv_main58_3;
+          H_13 = inv_main58_4;
+          D_13 = inv_main58_5;
+          G_13 = inv_main58_6;
+          C_13 = inv_main58_7;
+          E_13 = inv_main58_8;
+          F_13 = inv_main58_9;
+          I_13 = inv_main58_10;
+          if (!(G_13 == 0))
+              abort ();
+          inv_main64_0 = K_13;
+          inv_main64_1 = A_13;
+          inv_main64_2 = B_13;
+          inv_main64_3 = J_13;
+          inv_main64_4 = H_13;
+          inv_main64_5 = D_13;
+          inv_main64_6 = G_13;
+          inv_main64_7 = C_13;
+          inv_main64_8 = E_13;
+          inv_main64_9 = F_13;
+          inv_main64_10 = I_13;
+          goto inv_main64;
+
+      case 1:
+          J_14 = __VERIFIER_nondet_int ();
+          L_14 = inv_main58_0;
+          H_14 = inv_main58_1;
+          D_14 = inv_main58_2;
+          G_14 = inv_main58_3;
+          F_14 = inv_main58_4;
+          C_14 = inv_main58_5;
+          K_14 = inv_main58_6;
+          I_14 = inv_main58_7;
+          E_14 = inv_main58_8;
+          A_14 = inv_main58_9;
+          B_14 = inv_main58_10;
+          if (!((J_14 == 0) && (I_14 == 1) && (!(K_14 == 0))))
+              abort ();
+          inv_main64_0 = L_14;
+          inv_main64_1 = H_14;
+          inv_main64_2 = D_14;
+          inv_main64_3 = G_14;
+          inv_main64_4 = F_14;
+          inv_main64_5 = C_14;
+          inv_main64_6 = K_14;
+          inv_main64_7 = J_14;
+          inv_main64_8 = E_14;
+          inv_main64_9 = A_14;
+          inv_main64_10 = B_14;
+          goto inv_main64;
+
+      case 2:
+          F_18 = inv_main58_0;
+          C_18 = inv_main58_1;
+          I_18 = inv_main58_2;
+          B_18 = inv_main58_3;
+          K_18 = inv_main58_4;
+          E_18 = inv_main58_5;
+          G_18 = inv_main58_6;
+          H_18 = inv_main58_7;
+          D_18 = inv_main58_8;
+          A_18 = inv_main58_9;
+          J_18 = inv_main58_10;
+          if (!((!(G_18 == 0)) && (!(H_18 == 1))))
+              abort ();
+          inv_main75_0 = F_18;
+          inv_main75_1 = C_18;
+          inv_main75_2 = I_18;
+          inv_main75_3 = B_18;
+          inv_main75_4 = K_18;
+          inv_main75_5 = E_18;
+          inv_main75_6 = G_18;
+          inv_main75_7 = H_18;
+          inv_main75_8 = D_18;
+          inv_main75_9 = A_18;
+          inv_main75_10 = J_18;
+          F_27 = inv_main75_0;
+          E_27 = inv_main75_1;
+          K_27 = inv_main75_2;
+          D_27 = inv_main75_3;
+          G_27 = inv_main75_4;
+          H_27 = inv_main75_5;
+          J_27 = inv_main75_6;
+          C_27 = inv_main75_7;
+          I_27 = inv_main75_8;
+          A_27 = inv_main75_9;
+          B_27 = inv_main75_10;
+          if (!1)
+              abort ();
+          goto main_error;
+
+      default:
+          abort ();
+      }
+  inv_main18:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          C_7 = __VERIFIER_nondet_int ();
+          H_7 = __VERIFIER_nondet_int ();
+          I_7 = __VERIFIER_nondet_int ();
+          J_7 = __VERIFIER_nondet_int ();
+          K_7 = __VERIFIER_nondet_int ();
+          Q_7 = __VERIFIER_nondet_int ();
+          G_7 = inv_main18_0;
+          A_7 = inv_main18_1;
+          P_7 = inv_main18_2;
+          E_7 = inv_main18_3;
+          F_7 = inv_main18_4;
+          L_7 = inv_main18_5;
+          N_7 = inv_main18_6;
+          O_7 = inv_main18_7;
+          B_7 = inv_main18_8;
+          M_7 = inv_main18_9;
+          D_7 = inv_main18_10;
+          if (!
+              ((Q_7 == 1) && (!(P_7 == 0)) && (K_7 == 0) && (!(J_7 == 0))
+               && (I_7 == 1) && (H_7 == 0) && (!(G_7 == 0)) && (C_7 == 0)))
+              abort ();
+          inv_main34_0 = G_7;
+          inv_main34_1 = I_7;
+          inv_main34_2 = P_7;
+          inv_main34_3 = Q_7;
+          inv_main34_4 = F_7;
+          inv_main34_5 = K_7;
+          inv_main34_6 = N_7;
+          inv_main34_7 = C_7;
+          inv_main34_8 = B_7;
+          inv_main34_9 = H_7;
+          inv_main34_10 = J_7;
+          goto inv_main34;
+
+      case 1:
+          D_8 = __VERIFIER_nondet_int ();
+          E_8 = __VERIFIER_nondet_int ();
+          F_8 = __VERIFIER_nondet_int ();
+          J_8 = __VERIFIER_nondet_int ();
+          L_8 = __VERIFIER_nondet_int ();
+          Q_8 = __VERIFIER_nondet_int ();
+          H_8 = inv_main18_0;
+          G_8 = inv_main18_1;
+          O_8 = inv_main18_2;
+          M_8 = inv_main18_3;
+          P_8 = inv_main18_4;
+          K_8 = inv_main18_5;
+          B_8 = inv_main18_6;
+          A_8 = inv_main18_7;
+          C_8 = inv_main18_8;
+          I_8 = inv_main18_9;
+          N_8 = inv_main18_10;
+          if (!
+              ((Q_8 == 0) && (O_8 == 0) && (L_8 == 0) && (J_8 == 0)
+               && (!(H_8 == 0)) && (F_8 == 0) && (E_8 == 1) && (!(D_8 == 0))))
+              abort ();
+          inv_main34_0 = H_8;
+          inv_main34_1 = E_8;
+          inv_main34_2 = O_8;
+          inv_main34_3 = J_8;
+          inv_main34_4 = P_8;
+          inv_main34_5 = F_8;
+          inv_main34_6 = B_8;
+          inv_main34_7 = Q_8;
+          inv_main34_8 = C_8;
+          inv_main34_9 = L_8;
+          inv_main34_10 = D_8;
+          goto inv_main34;
+
+      case 2:
+          C_9 = __VERIFIER_nondet_int ();
+          H_9 = __VERIFIER_nondet_int ();
+          I_9 = __VERIFIER_nondet_int ();
+          K_9 = __VERIFIER_nondet_int ();
+          N_9 = __VERIFIER_nondet_int ();
+          Q_9 = __VERIFIER_nondet_int ();
+          E_9 = inv_main18_0;
+          M_9 = inv_main18_1;
+          L_9 = inv_main18_2;
+          B_9 = inv_main18_3;
+          D_9 = inv_main18_4;
+          G_9 = inv_main18_5;
+          O_9 = inv_main18_6;
+          F_9 = inv_main18_7;
+          P_9 = inv_main18_8;
+          A_9 = inv_main18_9;
+          J_9 = inv_main18_10;
+          if (!
+              ((Q_9 == 0) && (!(N_9 == 0)) && (!(L_9 == 0)) && (K_9 == 0)
+               && (I_9 == 0) && (H_9 == 1) && (E_9 == 0) && (C_9 == 0)))
+              abort ();
+          inv_main34_0 = E_9;
+          inv_main34_1 = Q_9;
+          inv_main34_2 = L_9;
+          inv_main34_3 = H_9;
+          inv_main34_4 = D_9;
+          inv_main34_5 = K_9;
+          inv_main34_6 = O_9;
+          inv_main34_7 = I_9;
+          inv_main34_8 = P_9;
+          inv_main34_9 = C_9;
+          inv_main34_10 = N_9;
+          goto inv_main34;
+
+      case 3:
+          B_10 = __VERIFIER_nondet_int ();
+          E_10 = __VERIFIER_nondet_int ();
+          L_10 = __VERIFIER_nondet_int ();
+          M_10 = __VERIFIER_nondet_int ();
+          N_10 = __VERIFIER_nondet_int ();
+          O_10 = __VERIFIER_nondet_int ();
+          K_10 = inv_main18_0;
+          J_10 = inv_main18_1;
+          C_10 = inv_main18_2;
+          Q_10 = inv_main18_3;
+          G_10 = inv_main18_4;
+          P_10 = inv_main18_5;
+          I_10 = inv_main18_6;
+          H_10 = inv_main18_7;
+          A_10 = inv_main18_8;
+          D_10 = inv_main18_9;
+          F_10 = inv_main18_10;
+          if (!
+              ((B_10 == 0) && (O_10 == 0) && (N_10 == 0) && (!(M_10 == 0))
+               && (L_10 == 0) && (K_10 == 0) && (E_10 == 0) && (C_10 == 0)))
+              abort ();
+          inv_main34_0 = K_10;
+          inv_main34_1 = L_10;
+          inv_main34_2 = C_10;
+          inv_main34_3 = E_10;
+          inv_main34_4 = G_10;
+          inv_main34_5 = O_10;
+          inv_main34_6 = I_10;
+          inv_main34_7 = N_10;
+          inv_main34_8 = A_10;
+          inv_main34_9 = B_10;
+          inv_main34_10 = M_10;
+          goto inv_main34;
+
+      default:
+          abort ();
+      }
+  inv_main43:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          A_22 = inv_main43_0;
+          G_22 = inv_main43_1;
+          I_22 = inv_main43_2;
+          F_22 = inv_main43_3;
+          H_22 = inv_main43_4;
+          D_22 = inv_main43_5;
+          E_22 = inv_main43_6;
+          C_22 = inv_main43_7;
+          B_22 = inv_main43_8;
+          K_22 = inv_main43_9;
+          J_22 = inv_main43_10;
+          if (!(A_22 == 0))
+              abort ();
+          inv_main46_0 = A_22;
+          inv_main46_1 = G_22;
+          inv_main46_2 = I_22;
+          inv_main46_3 = F_22;
+          inv_main46_4 = H_22;
+          inv_main46_5 = D_22;
+          inv_main46_6 = E_22;
+          inv_main46_7 = C_22;
+          inv_main46_8 = B_22;
+          inv_main46_9 = K_22;
+          inv_main46_10 = J_22;
+          goto inv_main46;
+
+      case 1:
+          D_23 = __VERIFIER_nondet_int ();
+          H_23 = inv_main43_0;
+          G_23 = inv_main43_1;
+          L_23 = inv_main43_2;
+          K_23 = inv_main43_3;
+          C_23 = inv_main43_4;
+          A_23 = inv_main43_5;
+          B_23 = inv_main43_6;
+          I_23 = inv_main43_7;
+          J_23 = inv_main43_8;
+          F_23 = inv_main43_9;
+          E_23 = inv_main43_10;
+          if (!((G_23 == 1) && (D_23 == 0) && (!(H_23 == 0))))
+              abort ();
+          inv_main46_0 = H_23;
+          inv_main46_1 = D_23;
+          inv_main46_2 = L_23;
+          inv_main46_3 = K_23;
+          inv_main46_4 = C_23;
+          inv_main46_5 = A_23;
+          inv_main46_6 = B_23;
+          inv_main46_7 = I_23;
+          inv_main46_8 = J_23;
+          inv_main46_9 = F_23;
+          inv_main46_10 = E_23;
+          goto inv_main46;
+
+      case 2:
+          E_15 = inv_main43_0;
+          D_15 = inv_main43_1;
+          K_15 = inv_main43_2;
+          J_15 = inv_main43_3;
+          A_15 = inv_main43_4;
+          C_15 = inv_main43_5;
+          I_15 = inv_main43_6;
+          B_15 = inv_main43_7;
+          H_15 = inv_main43_8;
+          G_15 = inv_main43_9;
+          F_15 = inv_main43_10;
+          if (!((!(D_15 == 1)) && (!(E_15 == 0))))
+              abort ();
+          inv_main75_0 = E_15;
+          inv_main75_1 = D_15;
+          inv_main75_2 = K_15;
+          inv_main75_3 = J_15;
+          inv_main75_4 = A_15;
+          inv_main75_5 = C_15;
+          inv_main75_6 = I_15;
+          inv_main75_7 = B_15;
+          inv_main75_8 = H_15;
+          inv_main75_9 = G_15;
+          inv_main75_10 = F_15;
+          F_27 = inv_main75_0;
+          E_27 = inv_main75_1;
+          K_27 = inv_main75_2;
+          D_27 = inv_main75_3;
+          G_27 = inv_main75_4;
+          H_27 = inv_main75_5;
+          J_27 = inv_main75_6;
+          C_27 = inv_main75_7;
+          I_27 = inv_main75_8;
+          A_27 = inv_main75_9;
+          B_27 = inv_main75_10;
+          if (!1)
+              abort ();
+          goto main_error;
+
+      default:
+          abort ();
+      }
+  inv_main40:
+    switch (__VERIFIER_nondet__Bool ())
+      {
+      case 0:
+          G_11 = __VERIFIER_nondet_int ();
+          E_11 = inv_main40_0;
+          B_11 = inv_main40_1;
+          J_11 = inv_main40_2;
+          D_11 = inv_main40_3;
+          L_11 = inv_main40_4;
+          I_11 = inv_main40_5;
+          C_11 = inv_main40_6;
+          F_11 = inv_main40_7;
+          H_11 = inv_main40_8;
+          A_11 = inv_main40_9;
+          K_11 = inv_main40_10;
+          if (!((G_11 == 1) && (!(H_11 == 0))))
+              abort ();
+          inv_main43_0 = E_11;
+          inv_main43_1 = B_11;
+          inv_main43_2 = J_11;
+          inv_main43_3 = D_11;
+          inv_main43_4 = L_11;
+          inv_main43_5 = I_11;
+          inv_main43_6 = C_11;
+          inv_main43_7 = F_11;
+          inv_main43_8 = H_11;
+          inv_main43_9 = G_11;
+          inv_main43_10 = K_11;
+          goto inv_main43;
+
+      case 1:
+          A_12 = inv_main40_0;
+          E_12 = inv_main40_1;
+          H_12 = inv_main40_2;
+          F_12 = inv_main40_3;
+          D_12 = inv_main40_4;
+          J_12 = inv_main40_5;
+          C_12 = inv_main40_6;
+          I_12 = inv_main40_7;
+          K_12 = inv_main40_8;
+          G_12 = inv_main40_9;
+          B_12 = inv_main40_10;
+          if (!(K_12 == 0))
+              abort ();
+          inv_main43_0 = A_12;
+          inv_main43_1 = E_12;
+          inv_main43_2 = H_12;
+          inv_main43_3 = F_12;
+          inv_main43_4 = D_12;
+          inv_main43_5 = J_12;
+          inv_main43_6 = C_12;
+          inv_main43_7 = I_12;
+          inv_main43_8 = K_12;
+          inv_main43_9 = G_12;
+          inv_main43_10 = B_12;
+          goto inv_main43;
+
+      default:
+          abort ();
+      }
+  inv_main34:
+    switch (__VERIFIER_nondet_int ())
+      {
+      case 0:
+          C_1 = __VERIFIER_nondet_int ();
+          L_1 = __VERIFIER_nondet_int ();
+          I_1 = inv_main34_0;
+          A_1 = inv_main34_1;
+          K_1 = inv_main34_2;
+          J_1 = inv_main34_3;
+          E_1 = inv_main34_4;
+          B_1 = inv_main34_5;
+          D_1 = inv_main34_6;
+          H_1 = inv_main34_7;
+          F_1 = inv_main34_8;
+          G_1 = inv_main34_9;
+          M_1 = inv_main34_10;
+          if (!((!(E_1 == 0)) && (!(D_1 == 0)) && (C_1 == 1) && (L_1 == 1)))
+              abort ();
+          inv_main40_0 = I_1;
+          inv_main40_1 = A_1;
+          inv_main40_2 = K_1;
+          inv_main40_3 = J_1;
+          inv_main40_4 = E_1;
+          inv_main40_5 = L_1;
+          inv_main40_6 = D_1;
+          inv_main40_7 = C_1;
+          inv_main40_8 = F_1;
+          inv_main40_9 = G_1;
+          inv_main40_10 = M_1;
+          goto inv_main40;
+
+      case 1:
+          A_2 = __VERIFIER_nondet_int ();
+          F_2 = inv_main34_0;
+          B_2 = inv_main34_1;
+          G_2 = inv_main34_2;
+          J_2 = inv_main34_3;
+          I_2 = inv_main34_4;
+          L_2 = inv_main34_5;
+          C_2 = inv_main34_6;
+          H_2 = inv_main34_7;
+          K_2 = inv_main34_8;
+          E_2 = inv_main34_9;
+          D_2 = inv_main34_10;
+          if (!((C_2 == 0) && (A_2 == 1) && (!(I_2 == 0))))
+              abort ();
+          inv_main40_0 = F_2;
+          inv_main40_1 = B_2;
+          inv_main40_2 = G_2;
+          inv_main40_3 = J_2;
+          inv_main40_4 = I_2;
+          inv_main40_5 = A_2;
+          inv_main40_6 = C_2;
+          inv_main40_7 = H_2;
+          inv_main40_8 = K_2;
+          inv_main40_9 = E_2;
+          inv_main40_10 = D_2;
+          goto inv_main40;
+
+      case 2:
+          D_3 = __VERIFIER_nondet_int ();
+          B_3 = inv_main34_0;
+          J_3 = inv_main34_1;
+          A_3 = inv_main34_2;
+          I_3 = inv_main34_3;
+          C_3 = inv_main34_4;
+          L_3 = inv_main34_5;
+          K_3 = inv_main34_6;
+          E_3 = inv_main34_7;
+          H_3 = inv_main34_8;
+          G_3 = inv_main34_9;
+          F_3 = inv_main34_10;
+          if (!((D_3 == 1) && (C_3 == 0) && (!(K_3 == 0))))
+              abort ();
+          inv_main40_0 = B_3;
+          inv_main40_1 = J_3;
+          inv_main40_2 = A_3;
+          inv_main40_3 = I_3;
+          inv_main40_4 = C_3;
+          inv_main40_5 = L_3;
+          inv_main40_6 = K_3;
+          inv_main40_7 = D_3;
+          inv_main40_8 = H_3;
+          inv_main40_9 = G_3;
+          inv_main40_10 = F_3;
+          goto inv_main40;
+
+      case 3:
+          K_4 = inv_main34_0;
+          H_4 = inv_main34_1;
+          J_4 = inv_main34_2;
+          I_4 = inv_main34_3;
+          G_4 = inv_main34_4;
+          C_4 = inv_main34_5;
+          B_4 = inv_main34_6;
+          A_4 = inv_main34_7;
+          D_4 = inv_main34_8;
+          E_4 = inv_main34_9;
+          F_4 = inv_main34_10;
+          if (!((B_4 == 0) && (G_4 == 0)))
+              abort ();
+          inv_main40_0 = K_4;
+          inv_main40_1 = H_4;
+          inv_main40_2 = J_4;
+          inv_main40_3 = I_4;
+          inv_main40_4 = G_4;
+          inv_main40_5 = C_4;
+          inv_main40_6 = B_4;
+          inv_main40_7 = A_4;
+          inv_main40_8 = D_4;
+          inv_main40_9 = E_4;
+          inv_main40_10 = F_4;
+          goto inv_main40;
+
+      default:
+          abort ();
+      }
+
+    // return expression
+
+}
+
