@@ -237,14 +237,14 @@ struct __pthread_mutex_s
   unsigned int __count;
   int __owner;
   int __kind;
- 
+
   unsigned int __nusers;
   __extension__ union
   {
     struct { short __espins; short __eelision; } __elision_data;
     __pthread_slist_t __list;
   };
- 
+
 };
 struct __pthread_cond_s
 {
@@ -1081,7 +1081,7 @@ int main() {
   for (int i = 0; i < 10; i++) {
     INIT_LIST_HEAD(&c.slot[i]);
     pthread_mutex_init(&c.slots_mutex[i], ((void *)0));
-    for (int j = 0; j < 30; j++) list_add(&new(0)->list, &c.slot[i]);
+    for (int j = 0; j < 30; j++) list_add(&new(j*i)->list, &c.slot[i]);
   }
   if (x)
     pp = lookup1(7);
