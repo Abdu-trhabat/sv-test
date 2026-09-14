@@ -24,23 +24,23 @@ static void append(struct item **plist) {
 }
 
 void *build(void *plist) {
-  struct item *list = (struct item *)plist;
-  do
-    append(&list);
-  while (__VERIFIER_nondet_int());
-  // on thread termination, no pointer points to the 
-  // heap memory allocated in the append function
+  struct item **list = (struct item **)plist;
+  // use while instead of do-while, which does not guarantee that
+  // list is not NULL anymore after this function returns
+  while (__VERIFIER_nondet_int()) {
+    append(list);
+  }
   pthread_exit(NULL);
 }
 
 void *delete (void *plist) {
-  struct item *list = (struct item *)plist;
-  if (list) {
-    struct item *next = list->next;
-    free(list->data);
-    free(list);
-    list = next;
-  }
+  struct item **plist_ref = (struct item **)plist;
+  struct item *list = *plist_ref;
+  // invalid dereference because there is no guard on whether list is NULL
+  struct item *next = list->next;
+  free(list->data);
+  free(list);
+  list = next;
   while (list) {
     struct item *next = list->next;
     free(list);
@@ -52,9 +52,9 @@ void *delete (void *plist) {
 int main(int argc, char **argv) {
   pthread_t id1, id2;
   struct item *list = ((void *)0);
-  pthread_create(&id1, NULL, build, list);
+  pthread_create(&id1, NULL, build, &list);
   pthread_join(id1, NULL);
-  pthread_create(&id2, NULL, delete, list);
+  pthread_create(&id2, NULL, delete, &list);
   pthread_join(id2, NULL);
   return 0;
 }
