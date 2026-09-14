@@ -1,0 +1,9 @@
+The benchmarks in this directory were submitted by Ruijie Fang.
+They were taken from the following paper:
+ Ruijie Fang, Zachary Kincaid, Thomas Reps. "Software Model Checking via Summary-Guided Search." OOPSLA 2025
+They correspond to the "Unparametrizable" category of "Suite #3 --- Lock and Key Benchmarks" described in the evaluations section of the paper.
+
+The program in this folder is adapted from Figure 2 of the following paper:
+ - Patrice Godefroid and Daniel Luchaup. 2011. Automatic partial loop summarization in dynamic test generation. In
+Proceedings of the 2011 International Symposium on Software Testing and Analysis (Toronto, Ontario, Canada) (ISSTA
+’11). Association for Computing Machinery, New York, NY, USA, 23–33.
