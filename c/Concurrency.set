@@ -1,6 +1,7 @@
 # Contains concurrency problems.
 pthread/*.yml
 pthread-atomic/*.yml
+pthread-atomic-qualifier/*.yml
 pthread-ext/*.yml
 pthread-wmm/*.yml
 pthread-lit/*.yml
