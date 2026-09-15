@@ -1,3 +1,12 @@
+/*
+ * This file is part of the SV-Benchmarks collection of verification tasks:
+ * https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+ *
+ * SPDX-FileCopyrightText: 2026 Technical University of Munich
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 // verdict: no-data-race false
 // PARAM: --set ana.activated[+] threadJoins --set ana.activated[+] threadDescendants --set ana.activated[+] mustlockHistory --set ana.activated[+] descendantLockset
 #include <pthread.h>

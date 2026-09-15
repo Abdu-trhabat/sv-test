@@ -1,3 +1,12 @@
+<!--
+This file is part of the SV-Benchmarks collection of verification tasks:
+https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+
+SPDX-FileCopyrightText: 2026 Technical University of Munich
+
+SPDX-License-Identifier: MIT
+-->
+
 # Locked Pthread Creation Challenges
 
 This suite contains several synthetic test cases making use of synchronization patterns,

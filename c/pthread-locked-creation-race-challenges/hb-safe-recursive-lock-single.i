@@ -1,3 +1,12 @@
+/*
+ * This file is part of the SV-Benchmarks collection of verification tasks:
+ * https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+ *
+ * SPDX-FileCopyrightText: 2026 Technical University of Munich
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
