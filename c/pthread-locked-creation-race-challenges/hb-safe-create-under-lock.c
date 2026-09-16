@@ -7,8 +7,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-// verdict: no-data-race true
-// PARAM: --set ana.activated[+] threadJoins --set ana.activated[+] threadDescendants --set ana.activated[+] mustlockHistory --set ana.activated[+] descendantLockset
 #include <pthread.h>
 
 int global = 0;

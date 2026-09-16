@@ -7,8 +7,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-// verdict: no-data-race false
-// PARAM: --set ana.activated[+] threadJoins --set ana.activated[+] threadDescendants --set ana.activated[+] creationLockset
 #include <pthread.h>
 
 // This program does not make any sense in practice (it produces a deadlock and if it did not, it wouldn't halt)
