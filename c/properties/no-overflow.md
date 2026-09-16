@@ -9,4 +9,6 @@ A violation of this property matches what C11 defines as undefined behavior, i.e
 * division (binary `/`),
 * bitwise left shift (binary `<<`).
 
-As such, casts/conversions to signed-integer types do not violate this property.
+As such, the following do not violate this property:
+* casts/conversions to signed-integer types,
+* `abs(INT_MIN)`, `labs(LONG_MIN)`, `llabs(LLONG_MIN)`, `imaxabs(INTMAX_MIN)`.
