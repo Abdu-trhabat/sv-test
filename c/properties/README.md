@@ -24,8 +24,7 @@ There are several 'default' specifications that many people use:
   - [no-data-race](c/properties/no-data-race.prp):
     The program must be free of data races.
 
-The above specifications are used, e.g., by SV-COMP, and the [competition reports](https://doi.org/10.1007/978-3-030-45237-7_21)
-explains those specifications.
+The above specifications are used, e.g., by SV-COMP.
 
 ### Test Specifications
 
@@ -35,5 +34,4 @@ The following are some 'default' specifications that many people use for test-ca
   - [coverage-error-call](c/properties/coverage-error-call.prp):
     The generated test suite should contain (at least) one test case that covers the call of a certain function.
 
-The above test specifications are used, e.g., by Test-Comp, and the [competition reports](https://doi.org/10.1007/978-3-030-45234-6_25)
-define those specifications.
+The above test specifications are used, e.g., by Test-Comp.
