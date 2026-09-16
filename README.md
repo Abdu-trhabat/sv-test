@@ -38,7 +38,7 @@ Thanks to all contributors of programs, patches, and discussion comments.
 
 ### Structure
 
-The collection consists of three directories, which contain verification tasks written in different languages:
+The collection consists of directories, which contain verification tasks written in different languages:
 - `c/` (programming language C)
 - `java/` (programming language Java)
 - `clauses/` (systems from the other directories translated to Horn clauses and stored in SMT format)
