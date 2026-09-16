@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'cdaudio_simpl1_BUG.cil.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: false

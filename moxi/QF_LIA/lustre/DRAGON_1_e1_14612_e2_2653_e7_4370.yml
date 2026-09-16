@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'DRAGON_1_e1_14612_e2_2653_e7_4370.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: true

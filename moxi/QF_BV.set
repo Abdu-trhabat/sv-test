@@ -1,0 +1,7 @@
+QF_BV/beem/*.yml
+QF_BV/invgen/*.yml
+QF_BV/software/*.yml
+QF_BV/svcomp/*.yml
+QF_BV/systemc/*.yml
+QF_BV/vcegar/*.yml
+QF_BV/vis/*.yml

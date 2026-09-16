@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'car_all_e3_1068_e2_13.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: true

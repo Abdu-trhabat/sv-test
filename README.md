@@ -38,10 +38,11 @@ Thanks to all contributors of programs, patches, and discussion comments.
 
 ### Structure
 
-The collection consists of three directories, which contain verification tasks written in different languages:
+The collection consists of the following directories, which contain verification tasks written in different languages:
 - `c/` (programming language C, follows the GNU C standard, many programs even adhere to ANSI C)
 - `java/` (programming language Java)
 - `python/` (programming language Python)
+- `moxi/` (transition systems written in the MoXI model-checking language, organized by SMT-LIB logic)
 - `clauses/` (systems from the other directories translated to Horn clauses and stored in SMT format)
 
 ### License

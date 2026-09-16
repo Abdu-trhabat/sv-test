@@ -223,7 +223,7 @@ reuse:
 ruff-check:
   extends: .base_ruff
   script:
-    - ruff check --output-format=gitlab ./c/*.py ./sv-lib/ > code-quality-report.json
+    - ruff check --output-format=gitlab ./c/*.py ./sv-lib/ ./moxi/scripts/ > code-quality-report.json
   artifacts:
     reports:
       codequality: $CI_PROJECT_DIR/code-quality-report.json
@@ -249,3 +249,73 @@ sv-lib-check-task-definitions:
   script:
     - pip install pyyaml --break-system-packages
     - ./sv-lib/check_task_definition_files.py sv-lib/
+
+# MoXI verification tasks
+
+# Every .moxi task must have the canonical shape fixed by the track rules
+# (one set-logic, matching the category directory; one top system 'main'
+# with no orphan or main-instantiating systems; one check-system on main
+# with exactly one :query and no :queries).  The task's category kind
+# follows from the set files: tasks in safety sets must not use
+# :fairness, tasks in liveness sets must; every task belongs to a set.
+# Deadlock-freedom is deliberately not checked.
+moxi-check-task-shape:
+  stage: checks
+  image: python:3.12-slim
+  script:
+    - ./moxi/scripts/check_task_shape.py
+  rules:
+    - changes:
+        - "moxi/**/*.moxi"
+        - "moxi/*.set"
+        - "moxi/scripts/check_task_shape.py"
+        - ".gitlab-ci.yml"
+
+moxi-check-task-definitions:
+  stage: checks
+  image: python:3.12-slim
+  script:
+    - pip install pyyaml --break-system-packages
+    - ./moxi/scripts/check_task_defs.py
+  rules:
+    - changes:
+        - "moxi/**/*.moxi"
+        - "moxi/**/*.yml"
+        - "moxi/properties/*"
+        - "moxi/scripts/check_task_defs.py"
+        - ".gitlab-ci.yml"
+
+# Every .moxi model must be accepted by MoXI-MC-Flow's sort checker.
+# MoXI-MC-Flow is pinned: sortcheck's verdicts are only comparable across
+# runs if the checker does not move underneath them.  jsonschema is a
+# dependency of sortcheck.py itself.
+moxi-check-models-valid:
+  stage: checks
+  image: python:3.12-slim
+  script:
+    - apt update && apt install -yq git
+    - pip install --quiet jsonschema --break-system-packages
+    - git clone --quiet https://github.com/ModelChecker/moxi-mc-flow.git /tmp/moxi-mc-flow
+    - git -C /tmp/moxi-mc-flow checkout --quiet 52f720b1df8f48c97747b6aa82f5999afe63a1b0
+    - ./moxi/scripts/check_models_valid.py /tmp/moxi-mc-flow
+  rules:
+    - changes:
+        - "moxi/**/*.moxi"
+        - "moxi/scripts/check_models_valid.py"
+        - ".gitlab-ci.yml"
+
+# BenchExec names per-task output and log files after the task-definition
+# with its directory stripped, so two task-definitions with the same file
+# name in one run set are written to the same output file and one silently
+# overwrites the other.  Task names must therefore be unique across all
+# categories and sets.
+moxi-check-unique-task-names:
+  stage: checks
+  image: python:3.12-slim
+  script:
+    - names=$(find moxi/QF_ABV/ moxi/QF_BV/ moxi/QF_LIA/ -type f -name '*.yml' -printf '%f\n' | sort | uniq -d)
+    - if [ -n "$names" ]; then echo "Duplicate task names:" $names; exit 1; fi
+  rules:
+    - changes:
+        - "moxi/**/*.yml"
+        - ".gitlab-ci.yml"

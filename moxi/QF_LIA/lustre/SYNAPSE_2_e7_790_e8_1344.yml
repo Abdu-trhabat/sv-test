@@ -1,0 +1,7 @@
+format_version: '2.0'
+
+input_files: 'SYNAPSE_2_e7_790_e8_1344.moxi'
+
+properties:
+  - property_file: ../../properties/unsat-query.prp
+    expected_verdict: true
