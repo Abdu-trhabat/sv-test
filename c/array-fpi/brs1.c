@@ -15,6 +15,14 @@ void assume_abort_if_not(int cond) {
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 extern int __VERIFIER_nondet_int(void);
 void *malloc(unsigned int size);
+void *safe_malloc(unsigned int size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 int N;
 
@@ -26,7 +34,7 @@ int main()
 
 	int i;
 	int sum[1];
-	int *a = malloc(sizeof(int)*N);
+	int *a = safe_malloc(sizeof(int)*N);
 
 	for(i=0; i<N; i++)
 	{

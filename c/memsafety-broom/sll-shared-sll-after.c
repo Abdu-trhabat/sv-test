@@ -11,6 +11,14 @@
  */
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 #define random() __VERIFIER_nondet_int()
@@ -26,7 +34,7 @@ struct sll {
 
 struct sll* alloc_and_zero(void)
 {
-    struct sll *pi = malloc(sizeof(*pi));
+    struct sll *pi = safe_malloc(sizeof(*pi));
     pi->next = NULL;
     pi->shared = NULL;
 
@@ -35,7 +43,7 @@ struct sll* alloc_and_zero(void)
 
 struct internal_node* alloc_and_zero_internal(void)
 {
-    struct internal_node *pi = malloc(sizeof(*pi));
+    struct internal_node *pi = safe_malloc(sizeof(*pi));
     pi->next = NULL;
 
     return pi;

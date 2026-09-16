@@ -972,6 +972,14 @@ extern int getloadavg (double __loadavg[], int __nelem)
      __attribute__ ((__nothrow__ )) __attribute__ ((__nonnull__ (1)));
 extern int __VERIFIER_nondet_int(void);
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void __assert_fail (const char *__assertion, const char *__file,
       unsigned int __line, const char *__function)
@@ -1001,16 +1009,16 @@ typedef struct TBCK
 int main()
 {
 
- BCK* bucket = malloc(sizeof(BCK));
+ BCK* bucket = safe_malloc(sizeof(BCK));
  bucket->data = 0;
  bucket->list = ((void*)0);
 
- bucket->next = malloc(sizeof(BCK));
+ bucket->next = safe_malloc(sizeof(BCK));
  BCK* bcki = bucket->next;
  bcki->data = 1;
  bcki->list = ((void*)0);
 
- bcki->next = malloc(sizeof(BCK));
+ bcki->next = safe_malloc(sizeof(BCK));
  bcki = bcki->next;
  bcki->data = 2;
  bcki->list = ((void*)0);
@@ -1020,7 +1028,7 @@ int main()
  struct TSLL* itr = ((void*)0);
  while (__VERIFIER_nondet_int())
  {
-  item = malloc(sizeof(SLL));
+  item = safe_malloc(sizeof(SLL));
   item->next = ((void*)0);
   if (__VERIFIER_nondet_int())
    item->data = 0;

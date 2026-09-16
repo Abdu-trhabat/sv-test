@@ -995,6 +995,14 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
 
 extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "racemacros.h", 9, __extension__ __PRETTY_FUNCTION__); })); }
 void __VERIFIER_assert(int cond) { if(!(cond)) { ERROR: {reach_error();abort();} } }
 extern int __VERIFIER_nondet_int();
@@ -1028,7 +1036,7 @@ void insert(struct s *node, struct s *list) {
 pthread_mutex_t A_mutex = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 pthread_mutex_t B_mutex = { { 0, 0, 0, 0, 0, { { 0, 0 } } } };
 void *t1_fun(void *arg) {
-  struct s *p = malloc(sizeof(struct s)); init(p);
+  struct s *p = safe_malloc(sizeof(struct s)); init(p);
   struct s *list = __VERIFIER_nondet_int() ? A : B;
   insert(p, list);
   return ((void *)0);
@@ -1048,8 +1056,8 @@ void *t3_fun(void *arg) {
   return ((void *)0);
 }
 int main () {
-  A = malloc(sizeof(struct s)); init(A);
-  B = malloc(sizeof(struct s)); init(B);
+  A = safe_malloc(sizeof(struct s)); init(A);
+  B = safe_malloc(sizeof(struct s)); init(B);
   pthread_t t1_ids[10000]; for (int i=0; i<10000; i++) pthread_create(&t1_ids[i], ((void *)0), t1_fun, ((void *)0));
   pthread_t t2_ids[10000]; for (int i=0; i<10000; i++) pthread_create(&t2_ids[i], ((void *)0), t2_fun, ((void *)0));
   pthread_t t3_ids[10000]; for (int i=0; i<10000; i++) pthread_create(&t3_ids[i], ((void *)0), t3_fun, ((void *)0));

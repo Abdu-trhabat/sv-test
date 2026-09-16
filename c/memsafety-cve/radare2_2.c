@@ -40,7 +40,7 @@ int decode(RAnalOp *op) {
   }
   switch (buf[0]) {
   case '[':
-    buf = malloc(0xff);
+    buf = safe_malloc(0xff);
     if (len > 0xff) {
       memcpy(buf, op->bytes, 0xff); // copy fixed number of characters and try to find closing bracket among them
     } else {
@@ -78,7 +78,7 @@ int main() {
   op.size = getNumberInRange(5, 1000);
   op.bytes = (uint8_t*)getRandomByteStream(op.size);
   // op.size = 400; // overflow happens if value is greater then 255
-  // op.bytes = calloc(op.size, sizeof(uint8_t));
+  // op.bytes = safe_calloc(op.size, sizeof(uint8_t));
   // if (op.bytes == NULL) {
   //   printf("Out of memory!\n");
   //   return 1;

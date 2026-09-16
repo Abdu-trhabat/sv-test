@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 /* Builds a tree with parent links and
  * checks whether the values are still correct.
@@ -42,7 +50,7 @@ struct node *create_tree()
     struct node *nodelast = NULL;
     struct node *node = NULL;
     while (__VERIFIER_nondet_int()) {
-        node = malloc(sizeof *node);
+        node = safe_malloc(sizeof *node);
         if (!node)
             abort();
 
@@ -55,7 +63,7 @@ struct node *create_tree()
         nodelast = node;
     }
     while (node != NULL) {
-        node->left = malloc(sizeof *node);
+        node->left = safe_malloc(sizeof *node);
         if (!node)
             abort();
         node->left->left = NULL;

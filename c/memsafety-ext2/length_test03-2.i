@@ -437,6 +437,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -548,7 +556,7 @@ struct list_t {
   struct node_t *last;
 };
 static void append(struct list_t *head, char input) {
-  struct node_t *node = malloc(sizeof *node);
+  struct node_t *node = safe_malloc(sizeof *node);
   node->data = input;
   if(head->first == ((void *)0) && head->last == ((void *)0)) {
     head->first = node;
@@ -563,10 +571,10 @@ static void append(struct list_t *head, char input) {
   head->last = node;
 }
 int main() {
-  struct list_t *list = malloc(sizeof *list);
+  struct list_t *list = safe_malloc(sizeof *list);
   list->first = ((void *)0);
   list->last = ((void *)0);
-  struct list_t *list2 = malloc(sizeof *list2);
+  struct list_t *list2 = safe_malloc(sizeof *list2);
   list2->first = ((void *)0);
   list2->last = ((void *)0);
   char userInput;

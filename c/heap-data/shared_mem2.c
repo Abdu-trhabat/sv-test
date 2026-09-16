@@ -4,6 +4,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 struct mem {
     int val;
@@ -16,10 +24,10 @@ struct list_node {
 };
 
 int main() {
-    struct mem *m = malloc(sizeof(*m));
+    struct mem *m = safe_malloc(sizeof(*m));
     m->val = 0;
 
-    struct list_node *head = malloc(sizeof(*head));
+    struct list_node *head = safe_malloc(sizeof(*head));
     head->x = 1;
     head->mem = m;
     head->next = head;
@@ -29,7 +37,7 @@ int main() {
     while (__VERIFIER_nondet_int()) {
         int x = __VERIFIER_nondet_int();
         if (x > 0 && x < 10) {
-            struct list_node *n = malloc(sizeof(*n));
+            struct list_node *n = safe_malloc(sizeof(*n));
             n->x = x;
             n->mem = m;
             n->next = head;

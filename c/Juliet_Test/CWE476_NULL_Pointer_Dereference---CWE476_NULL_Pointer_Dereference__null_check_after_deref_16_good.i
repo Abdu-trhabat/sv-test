@@ -617,6 +617,15 @@ int globalArgc = 0;
 char **globalArgv = (char **)0;
 
 void *malloc(size_t);
+extern void abort(void);
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 
 void free(void *);
@@ -841,7 +850,7 @@ static void good1_0(void)
     
     int *intPointer = (int *)0;
     
-    intPointer = (int *)malloc(4UL);
+    intPointer = (int *)safe_malloc(4UL);
     
     *intPointer = 5;
     

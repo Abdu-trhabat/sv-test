@@ -466,6 +466,14 @@ extern void *aligned_alloc (size_t __alignment, size_t __size)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__malloc__)) __attribute__ ((__alloc_size__ (2))) ;
 
 extern void abort (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__noreturn__));
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 extern int atexit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int at_quick_exit (void (*__func) (void)) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 
@@ -570,14 +578,14 @@ typedef struct node {
     struct node *next;
 } Node;
 int main() {
-    Node *p, *list = malloc(sizeof(*list));
+    Node *p, *list = safe_malloc(sizeof(*list));
     Node *tail = list;
     list->next = ((void *)0);
     list->val = 10;
     while (__VERIFIER_nondet_int()) {
         int x = __VERIFIER_nondet_int();
         if (x < 10 || x > 20) continue;
-        p = malloc(sizeof(*p));
+        p = safe_malloc(sizeof(*p));
         tail->next = p;
         p->next = ((void *)0);
         p->val = x;

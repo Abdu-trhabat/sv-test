@@ -30,7 +30,7 @@ char *str_replace(char *orig, char *rep, char *with) {
     ins = tmp + len_rep;
   }
 
-  tmp = result = malloc(strlen(orig) + (len_with - len_rep) * count + 1);
+  tmp = result = safe_malloc(strlen(orig) + (len_with - len_rep) * count + 1);
 
   // first time through the loop, all the variable are set correctly
   // from here on,
@@ -56,7 +56,7 @@ int main() {
   // URL-encode "'" as we use single quotes to stick the URL into a temporary script.
   char *sanitized_url = str_replace(url, "'", "%27");
 
-  char *script = (char *)malloc(32 + strlen(url));
+  char *script = (char *)safe_malloc(32 + strlen(url));
   script[0] = '\0';
   strcat(script, "findProxyForURL('");
   strcat(script, sanitized_url); // Problem: memory of script is allocated considering length of variable 'url' but variable 'sanitized_url' longer can be greater then of url variable due to str_replace.

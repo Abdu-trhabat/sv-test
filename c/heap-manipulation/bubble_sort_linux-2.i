@@ -898,7 +898,7 @@ static void gl_insert(int value)
 {
     struct node *node = malloc(sizeof *node);
     if (!node)
-        abort();
+        while (1) { }
     node->value = value;
     list_add(&node->linkage, &gl_list);
     do { (&node->nested)->next = (&node->nested); (&node->nested)->next = (&node->nested); } while (0);

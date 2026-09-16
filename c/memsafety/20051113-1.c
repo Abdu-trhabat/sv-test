@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern void *memset(void *, int, __SIZE_TYPE__);
 typedef struct
@@ -62,7 +70,7 @@ static void dummy_abort(void)
 {
 }
 int main() {
-  Struct3 *p = malloc (sizeof (int) + 3 * sizeof(Union));
+  Struct3 *p = safe_malloc (sizeof (int) + 3 * sizeof(Union));
   memset(p, 0, sizeof(int) + 3*sizeof(Union));
   p->Count = 3;
   p->List[0].a.Count = 555;

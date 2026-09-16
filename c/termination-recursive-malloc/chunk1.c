@@ -1,4 +1,12 @@
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -14,7 +22,7 @@ void chunk(int *data) {
 
 
 int main() {
-	int *data  = malloc(4*sizeof(int));
+	int *data  = safe_malloc(4*sizeof(int));
 	
 	int i = __VERIFIER_nondet_int();
 	int upper = __VERIFIER_nondet_int();

@@ -1,4 +1,12 @@
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern int __VERIFIER_nondet_int(void);
 
@@ -24,7 +32,7 @@ void g(int *p) {
 
 
 int main() {
-	int *p1  = malloc(sizeof(int));
+	int *p1  = safe_malloc(sizeof(int));
 	
 	
 	*p1 = __VERIFIER_nondet_int();

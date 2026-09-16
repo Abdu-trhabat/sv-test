@@ -3,6 +3,14 @@ extern void abort(void);
 void reach_error() { assert(0); }
 
 #include <stdlib.h>
+void *safe_malloc(size_t size) {
+  void *p = malloc(size);
+  if (p == 0) {
+    abort();
+  }
+  return p;
+}
+
 
 extern char __VERIFIER_nondet_char(void);
 extern int __VERIFIER_nondet_int(void);
@@ -36,7 +44,7 @@ static int containsBody(struct node_t *cursor) {
 
 static void append(struct list_t *head, char input) {
 
-  struct node_t *node = malloc(sizeof *node);
+  struct node_t *node = safe_malloc(sizeof *node);
   node->data = input;
 
   if(head->first == NULL && head->last == NULL) {
@@ -54,7 +62,7 @@ static void append(struct list_t *head, char input) {
 }
 
 int main() {
-  struct list_t *list = malloc(sizeof *list);
+  struct list_t *list = safe_malloc(sizeof *list);
 
   list->first = NULL;
   list->last = NULL;
