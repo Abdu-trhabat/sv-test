@@ -21,6 +21,7 @@
       specification: G ! call(reach_error())
       data_model: LP64
       language: C
+  language_version: c99
   content:
   - invariant:
       type: location_invariant

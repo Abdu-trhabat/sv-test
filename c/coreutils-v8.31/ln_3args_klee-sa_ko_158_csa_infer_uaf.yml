@@ -10,5 +10,6 @@ properties:
 
 options:
   language: C
+  language_version: c11
   data_model: LP64
 

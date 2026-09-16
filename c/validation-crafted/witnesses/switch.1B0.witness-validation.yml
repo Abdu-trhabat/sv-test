@@ -17,5 +17,6 @@ properties:
 
 options:
   language: C
+  language_version: c99
   data_model: LP64
   witness_input_file: 'switch.1B0.witness-2.0.yml'

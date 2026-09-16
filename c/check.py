@@ -105,6 +105,23 @@ PROPERTIES |= {
 
 DATA_MODELS = {"ILP32": 32, "LP64": 64}
 
+LANGUAGE_VERSIONS = [
+    "c89",
+    "c90",
+    "c99",
+    "c11",
+    "c17",
+    "c18",
+    "c23",
+    "gnu89",
+    "gnu90",
+    "gnu99",
+    "gnu11",
+    "gnu17",
+    "gnu18",
+    "gnu23",
+]
+
 # Ignore regression
 # as long as no yml-task definitions exist for the tasks in these directories
 IGNORED_DIRECTORIES = set(["properties", "regression"])
@@ -612,6 +629,34 @@ class TaskDefinitionFileChecks(FileChecks):
         if language != "C":
             self.error("unexpected language %s", language)
 
+    def check_language_version(self):
+        if not self.content or _is_witness(self.content):
+            return
+
+        language_version = self.content.get("options", {}).get("language_version")
+        if not language_version:
+            self.error("missing declaration of language_version")
+            return
+        if language_version not in LANGUAGE_VERSIONS:
+            self.error("unknown language_version %s", language_version)
+            return
+
+        makefile_path = os.path.join(self.directory, "Makefile")
+        if os.path.exists(makefile_path):
+            language_versions = self._get_language_version_from_makefile(makefile_path)
+            if len(language_versions) > 1:
+                self.error(
+                    "multiple language version declarations in %s", makefile_path
+                )
+            language_version2 = next(iter(language_versions), "c99")
+            if language_version != language_version2:
+                self.error(
+                    "Makefile of directory %s declares %s standard, but task has language version %s",
+                    self.directory,
+                    language_version2,
+                    language_version,
+                )
+
     def check_data_model(self):
         if not self.content or _is_witness(self.content):
             return
@@ -727,8 +772,21 @@ class TaskDefinitionFileChecks(FileChecks):
     @functools.lru_cache()  # avoid opening Makefile for each task
     def _get_architecture_from_makefile(cls, makefile_path):
         with open(makefile_path) as makefile:
-            archs = [line.split(" ")[-1] for line in makefile if "CC.Arch" in line]
+            archs = [
+                line.strip().split(" ")[-1] for line in makefile if "CC.Arch" in line
+            ]
         return archs
+
+    @classmethod
+    @functools.lru_cache()  # avoid opening Makefile for each task
+    def _get_language_version_from_makefile(cls, makefile_path):
+        with open(makefile_path) as makefile:
+            language_versions = [
+                line.strip().split(" ")[-1]
+                for line in makefile
+                if "CC.Standard" in line
+            ]
+        return language_versions
 
 
 class PropertiesChecks(Checks):

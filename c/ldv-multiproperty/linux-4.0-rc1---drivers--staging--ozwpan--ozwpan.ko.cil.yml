@@ -68,4 +68,5 @@ properties:
 
 options:
   language: C
+  language_version: c99
   data_model: LP64
