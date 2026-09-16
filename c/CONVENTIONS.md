@@ -32,7 +32,7 @@ Un-preprocessed programs fulfill the following requirements:
 
 A verifier may distinguish between preprocessed and un-preprocessed programs using the given file extensions.
 A verifier may preprocess a `.c` file using `cpp -m32` or `cpp -m64`, depending on the program architecture (see above), without requiring additional macro definitions (`-D` arguments) or include paths (`-I` arguments) to be specified.
-Note that witnesses should still refer to the un-preprocessed `.c` file (a verifier can rely on [`#line` directives](https://gcc.gnu.org/onlinedocs/gcc-14.2.0/cpp/Line-Control.html) to achieve this).
+Note that witnesses for un-preprocessed programs should still refer to the un-preprocessed `.c` file (a verifier can rely on [`#line` directives](https://gcc.gnu.org/onlinedocs/gcc-14.2.0/cpp/Line-Control.html) to achieve this).
 
 ## Special functions
 The programs may use the non-standard functions described below.
