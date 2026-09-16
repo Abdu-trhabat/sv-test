@@ -119,6 +119,19 @@ The `.yml` file should be named just like the original verification problem (exc
 The task definition can contain additional information.
 For example, it needs to define the language (C or Java).
 
+Tasks, i.e., programs w.r.t. their property, should not be trivial:
+* Programs with the `unreach-call` or `coverage-error-call` property should contain a call to `reach_error`.
+* Programs with the `no-overflow` property should contain a signed-integer operation can ever overflow.
+* Programs with the `termination` property should contain a construct which can ever not terminate, e.g., loop, `goto`, recursion, `longjmp` or possibly some other.
+* Programs with the `no-data-race` property should be multi-threaded and contain accesses to memory shared between threads.
+* Programs with the `valid-memsafety` property should contain an array access, a pointer dereference, memory allocation or deallocation.
+* Programs with the `valid-memcleanup` property should contain memory allocation.
+* Programs in the `Concurrency` set should be multi-threaded.
+
+The above triviality descriptions may be incomplete.
+Small numbers of trivial tasks are acceptable (and welcome if missing) if they serve as sanity checks for tools
+that they implement the relevant feature correctly, e.g., do not consider unsigned-integer operation overflows as violations of the `no-overflow` property.
+
 
 #### Category
 
@@ -190,3 +203,44 @@ Please run [check.py](c/check.py) and check for any `ERROR`s reported.
 If some violation is on purpose (e.g., additional files that are no verification tasks),
 please whitelist the respective warning by adding it to one of the `KNOWN_*_PROBLEMS` lists
 in the script.
+
+
+## How to Fix Verification Tasks?
+
+If a task has a wrong expected verdict, then it could be fixed in two ways:
+* either by modifying the program
+* or by changing the expected verdict.
+
+If it is possible and sensible, then the fix should do _both_:
+1. Make a copy of the problematic task.
+2. Change the expected verdict of the copy.
+3. Modify the original program such that the original expected verdict would be correct.
+
+This provides a natural source of new verification tasks inspired by actual problems.
+
+### C Programs
+
+If a C program contains undefined behavior other than the one related to the property in its task definition,
+then it should be fixed according to the general procedure described above.
+The only difference is that the problematic copy would not have an expected verdict for the original property but rather the one related to the undefined behavior.
+If there is no property corresponding to that undefined behavior, then the `def-behavior` property can be used instead.
+
+If a C program has both an un-preprocessed `.c` file and a preprocessed `.i` file, then modifications should be made in both.
+
+
+## How to Review Merge Requests related to Verification Tasks?
+
+Merge requests (MRs) related to verification tasks need to be reviewed by _two_ members of the community:
+* Ideally, the two reviewers should be independent of the creator of the MR, i.e., have a different affiliation or be associated with a different tool.
+* It is acceptable if only one of the reviewers is independent and the other is not.
+  However, the non-independent reviewer should not have been involved in the creation of the MR.
+
+
+## How to Maintain this Repository?
+
+### SV-COMP/Test-COMP Benchmark Freeze Period
+
+Changes during the benchmark freeze period of SV-COMP/Test-COMP invalidate changed tasks _for that year's competition_:
+* Any new tasks are considered invalid.
+* Any change to a program or its task definition file will invalidate the program _for all of its properties_.
+  Hence, new properties should _not_ be added for existing (unmodified) programs as this would unnecessarily invalidate tasks without problems.
