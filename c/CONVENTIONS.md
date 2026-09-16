@@ -19,6 +19,10 @@ Each program specifies its architecture, ILP32 (32-bit) or [LP64] (64-bit), in t
 
 All programs in a directory use the same architecture, as specified by the `Makefile` in the directory.
 
+Tasks should not rely on x87 floating-point semantics with 80-bit intermediate results (see [issue #1426][issue-1426]).
+
+[issue-1426]: https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/work_items/1426
+
 ## Preprocessing
 Each program consists of a single file, which is either: a `.i` file, which is preprocessed, or a `.c` file, which may be un-preprocessed.
 Un-preprocessed programs fulfill the following requirements:
