@@ -225,6 +225,8 @@ then it should be fixed according to the general procedure described above.
 The only difference is that the problematic copy would not have an expected verdict for the original property but rather the one related to the undefined behavior.
 If there is no property corresponding to that undefined behavior, then the `def-behavior` property can be used instead.
 
+If a C program has both an un-preprocessed `.c` file and a preprocessed `.i` file, then modifications should be made in both.
+
 
 ## How to Review Merge Requests related to Verification Tasks?
 
