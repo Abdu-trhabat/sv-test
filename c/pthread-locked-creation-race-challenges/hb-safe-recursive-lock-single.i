@@ -78,92 +78,11 @@ struct timespec
   __syscall_slong_t tv_nsec;
 };
 typedef __pid_t pid_t;
-typedef __signed__ char __s8;
-typedef unsigned char __u8;
-typedef __signed__ short __s16;
-typedef unsigned short __u16;
-typedef __signed__ int __s32;
-typedef unsigned int __u32;
-__extension__ typedef __signed__ long long __s64;
-__extension__ typedef unsigned long long __u64;
-typedef struct {
- unsigned long fds_bits[1024 / (8 * sizeof(long))];
-} __kernel_fd_set;
-typedef void (*__kernel_sighandler_t)(int);
-typedef int __kernel_key_t;
-typedef int __kernel_mqd_t;
-typedef unsigned short __kernel_old_uid_t;
-typedef unsigned short __kernel_old_gid_t;
-typedef unsigned long __kernel_old_dev_t;
-typedef long __kernel_long_t;
-typedef unsigned long __kernel_ulong_t;
-typedef __kernel_ulong_t __kernel_ino_t;
-typedef unsigned int __kernel_mode_t;
-typedef int __kernel_pid_t;
-typedef int __kernel_ipc_pid_t;
-typedef unsigned int __kernel_uid_t;
-typedef unsigned int __kernel_gid_t;
-typedef __kernel_long_t __kernel_suseconds_t;
-typedef int __kernel_daddr_t;
-typedef unsigned int __kernel_uid32_t;
-typedef unsigned int __kernel_gid32_t;
-typedef __kernel_ulong_t __kernel_size_t;
-typedef __kernel_long_t __kernel_ssize_t;
-typedef __kernel_long_t __kernel_ptrdiff_t;
-typedef struct {
- int val[2];
-} __kernel_fsid_t;
-typedef __kernel_long_t __kernel_off_t;
-typedef long long __kernel_loff_t;
-typedef unsigned long long __kernel_uoff_t;
-typedef __kernel_long_t __kernel_old_time_t;
-typedef __kernel_long_t __kernel_time_t;
-typedef long long __kernel_time64_t;
-typedef __kernel_long_t __kernel_clock_t;
-typedef int __kernel_timer_t;
-typedef int __kernel_clockid_t;
-typedef char * __kernel_caddr_t;
-typedef unsigned short __kernel_uid16_t;
-typedef unsigned short __kernel_gid16_t;
-typedef __signed__ __int128 __s128 __attribute__((aligned(16)));
-typedef unsigned __int128 __u128 __attribute__((aligned(16)));
-typedef __u16 __le16;
-typedef __u16 __be16;
-typedef __u32 __le32;
-typedef __u32 __be32;
-typedef __u64 __le64;
-typedef __u64 __be64;
-typedef __u16 __sum16;
-typedef __u32 __wsum;
-typedef unsigned __poll_t;
-struct sched_attr {
- __u32 size;
- __u32 sched_policy;
- __u64 sched_flags;
- __s32 sched_nice;
- __u32 sched_priority;
- __u64 sched_runtime;
- __u64 sched_deadline;
- __u64 sched_period;
- __u32 sched_util_min;
- __u32 sched_util_max;
-};
 struct sched_param
 {
   int sched_priority;
 };
 
-extern int clone (int (*__fn) (void *__arg), void *__child_stack,
-    int __flags, void *__arg, ...) __attribute__ ((__nothrow__ , __leaf__));
-extern int unshare (int __flags) __attribute__ ((__nothrow__ , __leaf__));
-extern int sched_getcpu (void) __attribute__ ((__nothrow__ , __leaf__));
-extern int getcpu (unsigned int *, unsigned int *) __attribute__ ((__nothrow__ , __leaf__));
-extern int setns (int __fd, int __nstype) __attribute__ ((__nothrow__ , __leaf__));
-int sched_setattr (pid_t tid, struct sched_attr *attr, unsigned int flags)
-  __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
-int sched_getattr (pid_t tid, struct sched_attr *attr, unsigned int size,
-     unsigned int flags)
-  __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
 
 typedef unsigned long int __cpu_mask;
 typedef struct
@@ -187,44 +106,6 @@ extern int sched_yield (void) __attribute__ ((__nothrow__ , __leaf__));
 extern int sched_get_priority_max (int __algorithm) __attribute__ ((__nothrow__ , __leaf__));
 extern int sched_get_priority_min (int __algorithm) __attribute__ ((__nothrow__ , __leaf__));
 extern int sched_rr_get_interval (__pid_t __pid, struct timespec *__t) __attribute__ ((__nothrow__ , __leaf__));
-extern int sched_setaffinity (__pid_t __pid, size_t __cpusetsize,
-         const cpu_set_t *__cpuset) __attribute__ ((__nothrow__ , __leaf__));
-extern int sched_getaffinity (__pid_t __pid, size_t __cpusetsize,
-         cpu_set_t *__cpuset) __attribute__ ((__nothrow__ , __leaf__));
-
-struct timeval
-{
-  __time_t tv_sec;
-  __suseconds_t tv_usec;
-};
-struct timex
-{
-  unsigned int modes;
-  __syscall_slong_t offset;
-  __syscall_slong_t freq;
-  __syscall_slong_t maxerror;
-  __syscall_slong_t esterror;
-  int status;
-  __syscall_slong_t constant;
-  __syscall_slong_t precision;
-  __syscall_slong_t tolerance;
-  struct timeval time;
-  __syscall_slong_t tick;
-  __syscall_slong_t ppsfreq;
-  __syscall_slong_t jitter;
-  int shift;
-  __syscall_slong_t stabil;
-  __syscall_slong_t jitcnt;
-  __syscall_slong_t calcnt;
-  __syscall_slong_t errcnt;
-  __syscall_slong_t stbcnt;
-  int tai;
-  int :32; int :32; int :32; int :32;
-  int :32; int :32; int :32; int :32;
-  int :32; int :32; int :32;
-};
-
-extern int clock_adjtime (__clockid_t __clock_id, struct timex *__utx) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
 
 typedef __clock_t clock_t;
 struct tm
@@ -238,8 +119,8 @@ struct tm
   int tm_wday;
   int tm_yday;
   int tm_isdst;
-  long int tm_gmtoff;
-  const char *tm_zone;
+  long int __tm_gmtoff;
+  const char *__tm_zone;
 };
 typedef __clockid_t clockid_t;
 typedef __timer_t timer_t;
@@ -275,9 +156,6 @@ extern size_t strftime_l (char *__restrict __s, size_t __maxsize,
      const char *__restrict __format,
      const struct tm *__restrict __tp,
      locale_t __loc) __attribute__ ((__nothrow__ , __leaf__));
-extern char *strptime_l (const char *__restrict __s,
-    const char *__restrict __fmt, struct tm *__tp,
-    locale_t __loc) __attribute__ ((__nothrow__ , __leaf__));
 extern struct tm *gmtime (const time_t *__timer) __attribute__ ((__nothrow__ , __leaf__));
 extern struct tm *localtime (const time_t *__timer) __attribute__ ((__nothrow__ , __leaf__));
 extern struct tm *gmtime_r (const time_t *__restrict __timer,
@@ -298,8 +176,6 @@ extern void tzset (void) __attribute__ ((__nothrow__ , __leaf__));
 extern int daylight;
 extern long int timezone;
 extern time_t timegm (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
-extern time_t timelocal (struct tm *__tp) __attribute__ ((__nothrow__ , __leaf__));
-extern int dysize (int __year) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
 extern int nanosleep (const struct timespec *__requested_time,
         struct timespec *__remaining);
 extern int clock_getres (clockid_t __clock_id, struct timespec *__res) __attribute__ ((__nothrow__ , __leaf__));
@@ -327,8 +203,6 @@ extern int timespec_getres (struct timespec *__ts, int __base)
      __attribute__ ((__nothrow__ , __leaf__));
 extern int getdate_err;
 extern struct tm *getdate (const char *__string);
-extern int getdate_r (const char *__restrict __string,
-        struct tm *__restrict __resbufp);
 
 typedef union
 {
@@ -454,9 +328,6 @@ struct __jmp_buf_tag
     int __mask_was_saved;
     __sigset_t __saved_mask;
   };
-
-extern long int __sysconf (int __name) __attribute__ ((__nothrow__ , __leaf__));
-
 enum
 {
   PTHREAD_CREATE_JOINABLE,
@@ -473,7 +344,6 @@ enum
   PTHREAD_MUTEX_RECURSIVE = PTHREAD_MUTEX_RECURSIVE_NP,
   PTHREAD_MUTEX_ERRORCHECK = PTHREAD_MUTEX_ERRORCHECK_NP,
   PTHREAD_MUTEX_DEFAULT = PTHREAD_MUTEX_NORMAL
-  , PTHREAD_MUTEX_FAST_NP = PTHREAD_MUTEX_TIMED_NP
 };
 enum
 {
@@ -534,12 +404,6 @@ extern int pthread_create (pthread_t *__restrict __newthread,
       void *__restrict __arg) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 3)));
 extern void pthread_exit (void *__retval) __attribute__ ((__noreturn__));
 extern int pthread_join (pthread_t __th, void **__thread_return);
-extern int pthread_tryjoin_np (pthread_t __th, void **__thread_return) __attribute__ ((__nothrow__ , __leaf__));
-extern int pthread_timedjoin_np (pthread_t __th, void **__thread_return,
-     const struct timespec *__abstime);
-extern int pthread_clockjoin_np (pthread_t __th, void **__thread_return,
-                                 clockid_t __clockid,
-     const struct timespec *__abstime);
 extern int pthread_detach (pthread_t __th) __attribute__ ((__nothrow__ , __leaf__));
 extern pthread_t pthread_self (void) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__const__));
 extern int pthread_equal (pthread_t __thread1, pthread_t __thread2)
@@ -599,24 +463,6 @@ extern int pthread_attr_getstack (const pthread_attr_t *__restrict __attr,
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2, 3)));
 extern int pthread_attr_setstack (pthread_attr_t *__attr, void *__stackaddr,
       size_t __stacksize) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-extern int pthread_attr_setaffinity_np (pthread_attr_t *__attr,
-     size_t __cpusetsize,
-     const cpu_set_t *__cpuset)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 3)));
-extern int pthread_attr_getaffinity_np (const pthread_attr_t *__attr,
-     size_t __cpusetsize,
-     cpu_set_t *__cpuset)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 3)));
-extern int pthread_getattr_default_np (pthread_attr_t *__attr)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-extern int pthread_attr_setsigmask_np (pthread_attr_t *__attr,
-           const __sigset_t *sigmask);
-extern int pthread_attr_getsigmask_np (const pthread_attr_t *__attr,
-           __sigset_t *sigmask);
-extern int pthread_setattr_default_np (const pthread_attr_t *__attr)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-extern int pthread_getattr_np (pthread_t __th, pthread_attr_t *__attr)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
 extern int pthread_setschedparam (pthread_t __target_thread, int __policy,
       const struct sched_param *__param)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3)));
@@ -626,22 +472,8 @@ extern int pthread_getschedparam (pthread_t __target_thread,
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2, 3)));
 extern int pthread_setschedprio (pthread_t __target_thread, int __prio)
      __attribute__ ((__nothrow__ , __leaf__));
-extern int pthread_getname_np (pthread_t __target_thread, char *__buf,
-          size_t __buflen)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
-extern int pthread_setname_np (pthread_t __target_thread, const char *__name)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
 extern int pthread_getconcurrency (void) __attribute__ ((__nothrow__ , __leaf__));
 extern int pthread_setconcurrency (int __level) __attribute__ ((__nothrow__ , __leaf__));
-extern int pthread_yield (void) __attribute__ ((__nothrow__ , __leaf__));
-extern int pthread_yield (void) __asm__ ("" "sched_yield") __attribute__ ((__nothrow__ , __leaf__))
-  __attribute__ ((__deprecated__ ("pthread_yield is deprecated, use sched_yield instead")));
-extern int pthread_setaffinity_np (pthread_t __th, size_t __cpusetsize,
-       const cpu_set_t *__cpuset)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3)));
-extern int pthread_getaffinity_np (pthread_t __th, size_t __cpusetsize,
-       cpu_set_t *__cpuset)
-     __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (3)));
 extern int pthread_once (pthread_once_t *__once_control,
     void (*__init_routine) (void)) __attribute__ ((__nonnull__ (1, 2)));
 extern int pthread_setcancelstate (int __state, int *__oldstate);
@@ -669,10 +501,6 @@ extern void __pthread_register_cancel (__pthread_unwind_buf_t *__buf)
      ;
 extern void __pthread_unregister_cancel (__pthread_unwind_buf_t *__buf)
   ;
-extern void __pthread_register_cancel_defer (__pthread_unwind_buf_t *__buf)
-     ;
-extern void __pthread_unregister_cancel_restore (__pthread_unwind_buf_t *__buf)
-  ;
 extern void __pthread_unwind_next (__pthread_unwind_buf_t *__buf)
      __attribute__ ((__noreturn__))
      __attribute__ ((__weak__))
@@ -690,10 +518,6 @@ extern int pthread_mutex_lock (pthread_mutex_t *__mutex)
 extern int pthread_mutex_timedlock (pthread_mutex_t *__restrict __mutex,
         const struct timespec *__restrict
         __abstime) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 2)));
-extern int pthread_mutex_clocklock (pthread_mutex_t *__restrict __mutex,
-        clockid_t __clockid,
-        const struct timespec *__restrict
-        __abstime) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 3)));
 extern int pthread_mutex_unlock (pthread_mutex_t *__mutex)
      __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
 extern int pthread_mutex_getprioceiling (const pthread_mutex_t *
@@ -706,8 +530,6 @@ extern int pthread_mutex_setprioceiling (pthread_mutex_t *__restrict __mutex,
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 3)));
 extern int pthread_mutex_consistent (pthread_mutex_t *__mutex)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-extern int pthread_mutex_consistent_np (pthread_mutex_t *) __asm__ ("" "pthread_mutex_consistent") __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)))
-  __attribute__ ((__deprecated__ ("pthread_mutex_consistent_np is deprecated, use pthread_mutex_consistent")));
 extern int pthread_mutexattr_init (pthread_mutexattr_t *__attr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int pthread_mutexattr_destroy (pthread_mutexattr_t *__attr)
@@ -741,13 +563,9 @@ extern int pthread_mutexattr_setprioceiling (pthread_mutexattr_t *__attr,
 extern int pthread_mutexattr_getrobust (const pthread_mutexattr_t *__attr,
      int *__robustness)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1, 2)));
-extern int pthread_mutexattr_getrobust_np (pthread_mutexattr_t *, int *) __asm__ ("" "pthread_mutexattr_getrobust") __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)))
-  __attribute__ ((__deprecated__ ("pthread_mutexattr_getrobust_np is deprecated, use pthread_mutexattr_getrobust")));
 extern int pthread_mutexattr_setrobust (pthread_mutexattr_t *__attr,
      int __robustness)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
-extern int pthread_mutexattr_setrobust_np (pthread_mutexattr_t *, int) __asm__ ("" "pthread_mutexattr_setrobust") __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)))
-  __attribute__ ((__deprecated__ ("pthread_mutexattr_setrobust_np is deprecated, use pthread_mutexattr_setrobust")));
 extern int pthread_rwlock_init (pthread_rwlock_t *__restrict __rwlock,
     const pthread_rwlockattr_t *__restrict
     __attr) __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
@@ -760,10 +578,6 @@ extern int pthread_rwlock_tryrdlock (pthread_rwlock_t *__rwlock)
 extern int pthread_rwlock_timedrdlock (pthread_rwlock_t *__restrict __rwlock,
            const struct timespec *__restrict
            __abstime) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 2)));
-extern int pthread_rwlock_clockrdlock (pthread_rwlock_t *__restrict __rwlock,
-           clockid_t __clockid,
-           const struct timespec *__restrict
-           __abstime) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 3)));
 extern int pthread_rwlock_wrlock (pthread_rwlock_t *__rwlock)
      __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
 extern int pthread_rwlock_trywrlock (pthread_rwlock_t *__rwlock)
@@ -771,10 +585,6 @@ extern int pthread_rwlock_trywrlock (pthread_rwlock_t *__rwlock)
 extern int pthread_rwlock_timedwrlock (pthread_rwlock_t *__restrict __rwlock,
            const struct timespec *__restrict
            __abstime) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 2)));
-extern int pthread_rwlock_clockwrlock (pthread_rwlock_t *__restrict __rwlock,
-           clockid_t __clockid,
-           const struct timespec *__restrict
-           __abstime) __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1, 3)));
 extern int pthread_rwlock_unlock (pthread_rwlock_t *__rwlock)
      __attribute__ ((__nothrow__)) __attribute__ ((__nonnull__ (1)));
 extern int pthread_rwlockattr_init (pthread_rwlockattr_t *__attr)
@@ -810,11 +620,6 @@ extern int pthread_cond_timedwait (pthread_cond_t *__restrict __cond,
        pthread_mutex_t *__restrict __mutex,
        const struct timespec *__restrict __abstime)
      __attribute__ ((__nonnull__ (1, 2, 3)));
-extern int pthread_cond_clockwait (pthread_cond_t *__restrict __cond,
-       pthread_mutex_t *__restrict __mutex,
-       __clockid_t __clock_id,
-       const struct timespec *__restrict __abstime)
-     __attribute__ ((__nonnull__ (1, 2, 4)));
 extern int pthread_condattr_init (pthread_condattr_t *__attr)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (1)));
 extern int pthread_condattr_destroy (pthread_condattr_t *__attr)
@@ -872,13 +677,12 @@ extern int pthread_setspecific (pthread_key_t __key,
 extern int pthread_getcpuclockid (pthread_t __thread_id,
       __clockid_t *__clock_id)
      __attribute__ ((__nothrow__ , __leaf__)) __attribute__ ((__nonnull__ (2)));
-extern pid_t pthread_gettid_np (pthread_t __thread_id);
 extern int pthread_atfork (void (*__prepare) (void),
       void (*__parent) (void),
       void (*__child) (void)) __attribute__ ((__nothrow__ , __leaf__));
 
 int global = 0;
-pthread_mutex_t mutex = { { 0, 0, 0, 0, PTHREAD_MUTEX_RECURSIVE_NP, 0, 0, { ((void *)0), ((void *)0) } } };
+pthread_mutex_t mutex;
 pthread_t id1;
 void *t1(void *arg) {
   pthread_mutex_lock(&mutex);
@@ -887,6 +691,10 @@ void *t1(void *arg) {
   return ((void *)0);
 }
 int main(void) {
+  pthread_mutexattr_t attr;
+  pthread_mutexattr_init(&attr);
+  pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+  pthread_mutex_init(&mutex, &attr);
   pthread_mutex_lock(&mutex);
   pthread_create(&id1, ((void *)0), t1, ((void *)0));
   global++;
