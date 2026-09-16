@@ -21,6 +21,8 @@ There are several 'default' specifications that many people use:
     A certain kind of undefined behavior (overflows of signed ints) must not be present in the program.
   - [termination](c/properties/termination.prp):
     The program must terminate on all execution paths.
+  - [no-data-race](c/properties/no-data-race.prp):
+    The program must be free of data races.
 
 The above specifications are used, e.g., by SV-COMP, and the [competition reports](https://doi.org/10.1007/978-3-030-45237-7_21)
 explains those specifications.
