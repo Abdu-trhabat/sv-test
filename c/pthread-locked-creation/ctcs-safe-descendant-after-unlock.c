@@ -12,6 +12,8 @@
 int global = 0;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER, mutex1 = PTHREAD_MUTEX_INITIALIZER;
 pthread_t id1, id2, id3;
+pthread_cond_t id3_created_cv = PTHREAD_COND_INITIALIZER;
+int id3_created = 0;
 
 void *t1(void *arg) {
   pthread_mutex_lock(&mutex);
@@ -26,9 +28,12 @@ void *t3(void *arg) {
 }
 
 void *t2(void *arg) { // t2 is protected by mutex locked in main thread
-  pthread_mutex_lock(&mutex);
+  pthread_mutex_lock(&mutex1);
   pthread_create(&id3, NULL, t3, NULL);
-  pthread_mutex_unlock(&mutex);
+  id3_created = 1;
+  pthread_cond_signal(&id3_created_cv);
+  pthread_mutex_unlock(&mutex1);
+
   pthread_mutex_lock(&mutex); // irrelevant lock/unlock
   pthread_mutex_unlock(&mutex);
   return NULL;
@@ -42,6 +47,13 @@ int main(void) {
   pthread_mutex_lock(&mutex1);
   pthread_create(&id2, NULL, t2, NULL);
   pthread_mutex_unlock(&mutex1); // unlock unrelated mutex before joining
+
+  // ensure id3 is joined after it is created
+  pthread_mutex_lock(&mutex1);
+  while (!id3_created)
+    pthread_cond_wait(&id3_created_cv, &mutex1);
+  pthread_mutex_unlock(&mutex1);
+
   pthread_join(id3, NULL);
   pthread_mutex_unlock(&mutex);
   return 0;
