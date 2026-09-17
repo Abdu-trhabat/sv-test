@@ -1,0 +1,15 @@
+# This file is part of the SV-Benchmarks collection of verification tasks:
+# https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks
+#
+# SPDX-FileCopyrightText: 2026 Technical University of Munich
+#
+# SPDX-License-Identifier: MIT
+
+format_version: '2.0'
+input_files: 'ctcs-race-unknown-unlock-before-join.c'
+properties:
+  - property_file: ../properties/no-data-race.prp
+    expected_verdict: false
+options:
+  language: C
+  data_model: LP64
