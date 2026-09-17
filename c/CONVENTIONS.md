@@ -49,7 +49,7 @@ an arbitrary value of the indicated type:
 with `X` in {`bool`, `char`, `int`, `int128`, `float`, `double`, `loff_t`, `long`, `longlong`,
 `pchar`, `pthread_t`, `sector_t`, `short`, `size_t`, `u32`,
 `uchar`, `uint`, `uint128`, `ulong`, `ulonglong`, `unsigned`, `ushort`}
-(no side effects, `pointer` for `void *`, etc.).
+(no side effects).
 The verification tool can assume that the functions are implemented according to the following template:
 ```c
 X __VERIFIER_nondet_X() { X val; return val; }
