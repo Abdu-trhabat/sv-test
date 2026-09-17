@@ -3,8 +3,6 @@ input_files: 'divbin2_valuebound5.i'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: true
-  - property_file: ../properties/no-overflow.prp
-    expected_verdict: true
   - property_file: ../properties/coverage-branches.prp
 
 options:

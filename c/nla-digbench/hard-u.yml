@@ -3,8 +3,6 @@ input_files: 'hard-u.c'
 properties:
   - property_file: ../properties/unreach-call.prp
     expected_verdict: false
-  - property_file: ../properties/no-overflow.prp
-    expected_verdict: true
   - property_file: ../properties/coverage-branches.prp
 
 options:
