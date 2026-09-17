@@ -9,15 +9,19 @@
 
 #include <pthread.h>
 
-void *__VERIFIER_nondet_pointer(void);
+int __VERIFIER_nondet_int();
 
 int global = 0;
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER, mutex_alt = PTHREAD_MUTEX_INITIALIZER;
 pthread_t id1;
 
 void *t1(void *arg) {
-  pthread_mutex_t *mutex_ref = __VERIFIER_nondet_pointer(); // unknown mutex
-  pthread_mutex_lock(mutex_ref); // lock of unknown mutex
+  pthread_mutex_t *mutex_ref = &mutex_alt;
+  int maybe = __VERIFIER_nondet_int();
+  if (maybe) {
+    mutex_ref = &mutex;
+  }
+  pthread_mutex_lock(mutex_ref); // lock of ambiguous mutex
   pthread_mutex_unlock(mutex_ref);
   global++; // RACE!
   return NULL;
