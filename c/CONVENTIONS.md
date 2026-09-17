@@ -19,6 +19,10 @@ Each program specifies its architecture, ILP32 (32-bit) or [LP64] (64-bit), in t
 
 All programs in a directory use the same architecture, as specified by the `Makefile` in the directory.
 
+Tasks should not rely on x87 floating-point semantics with 80-bit intermediate results (see [issue #1426][issue-1426]).
+
+[issue-1426]: https://gitlab.com/sosy-lab/benchmarking/sv-benchmarks/-/work_items/1426
+
 ## Preprocessing
 Each program consists of a single file, which is either: a `.i` file, which is preprocessed, or a `.c` file, which may be un-preprocessed.
 Un-preprocessed programs fulfill the following requirements:
@@ -28,7 +32,7 @@ Un-preprocessed programs fulfill the following requirements:
 
 A verifier may distinguish between preprocessed and un-preprocessed programs using the given file extensions.
 A verifier may preprocess a `.c` file using `cpp -m32` or `cpp -m64`, depending on the program architecture (see above), without requiring additional macro definitions (`-D` arguments) or include paths (`-I` arguments) to be specified.
-Note that witnesses should still refer to the un-preprocessed `.c` file (a verifier can rely on [`#line` directives](https://gcc.gnu.org/onlinedocs/gcc-14.2.0/cpp/Line-Control.html) to achieve this).
+Note that witnesses for un-preprocessed programs should still refer to the un-preprocessed `.c` file (a verifier can rely on [`#line` directives](https://gcc.gnu.org/onlinedocs/gcc-14.2.0/cpp/Line-Control.html) to achieve this).
 
 ## Special functions
 The programs may use the non-standard functions described below.
@@ -45,7 +49,7 @@ an arbitrary value of the indicated type:
 with `X` in {`bool`, `char`, `int`, `int128`, `float`, `double`, `loff_t`, `long`, `longlong`,
 `pchar`, `pthread_t`, `sector_t`, `short`, `size_t`, `u32`,
 `uchar`, `uint`, `uint128`, `ulong`, `ulonglong`, `unsigned`, `ushort`}
-(no side effects, `pointer` for `void *`, etc.).
+(no side effects).
 The verification tool can assume that the functions are implemented according to the following template:
 ```c
 X __VERIFIER_nondet_X() { X val; return val; }
@@ -111,8 +115,36 @@ void assume_abort_if_not(int cond) {
 ## Assumptions
 The following non-standard assumptions are made by the programs.
 
-#### `malloc()`, `free()`
-We assume that the functions `malloc` and `alloca` always return
-a valid pointer, i.e., the memory allocation never fails,
-and function `free` always deallocates the memory and
-makes the pointer invalid for further dereferences.
+#### `alloca()`
+We assume that the functions `alloca` and `__builtin_alloca` always return
+a valid non-`NULL` pointer, i.e., the stack never overflows.
+
+(This assumption reflects the current state of the benchmarks.
+The community may choose to drop it in the future.)
+
+#### `pthread_*()`
+We assume the following about `pthread.h` functions:
+* `pthread_attr_init` never fails with `ENOMEM`;
+* `pthread_create` never fails with `EAGAIN` or `EPERM`;
+* `pthread_mutexattr_init` never fails with `ENOMEM`;
+* `pthread_mutex_init` never fails with `EAGAIN`, `ENOMEM` or `EPERM`;
+* `pthread_mutex_lock` never fails with `EAGAIN`;
+* `pthread_mutex_trylock` never fails with `EAGAIN`;
+* `pthread_rwlockattr_init` never fails with `ENOMEM`;
+* `pthread_rwlock_init` never fails with `EAGAIN`, `ENOMEM` or `EPERM`;
+* `pthread_rwlock_rdlock` never fails with `EAGAIN`;
+* `pthread_rwlock_tryrdlock` never fails with `EAGAIN`;
+* `pthread_rwlock_timedrdlock` never fails with `EAGAIN`;
+* `pthread_condattr_init` never fails with `ENOMEM`;
+* `pthread_cond_init` never fails with `EAGAIN` or `ENOMEM`;
+* `pthread_barrierattr_init` never fails with `ENOMEM`;
+* `pthread_barrier_init` never fails with `EAGAIN` or `ENOMEM`;
+* `pthread_spin_init` never fails with `EAGAIN` or `ENOMEM`;
+* `pthread_key_create` never fails with `EAGAIN` or `ENOMEM`;
+* `pthread_setspecific` never fails with `ENOMEM`.
+
+Some of these functions may still fail for other reasons,
+e.g., `pthread_mutex_lock` may fail with `EDEADLK` if the mutex has been configured to have the type `PTHREAD_MUTEX_ERRORCHECK`.
+
+(These assumptions reflect the current state of the benchmarks.
+The community may choose to drop them in the future.)
