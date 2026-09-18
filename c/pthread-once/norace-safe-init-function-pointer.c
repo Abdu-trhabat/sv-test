@@ -17,7 +17,6 @@ void init0();
 
 void* initp = &init0;
 pthread_once_t once = PTHREAD_ONCE_INIT;
-pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 void init0() {
   g++; //NORACE

@@ -34,10 +34,7 @@ int main(void) {
   pthread_once(&onces.once1, increment);
   pthread_once(&onces.once2, increment);
 
-  if(g == 2) {
-    __VERIFIER_assert(1);
-  }
-  printf("g = %d\n", g);
+  __VERIFIER_assert(g == 2);
 
   return 0;
 }

@@ -31,11 +31,7 @@ int main(void) {
   pthread_once(&once, fun);
   pthread_once(&once, fun);
 
-  __VERIFIER_assert(g < 2);
-
-  if(g == 1) {
-    __VERIFIER_assert(1);
-  }
+  __VERIFIER_assert(g == 1);
 
   return 0;
 }

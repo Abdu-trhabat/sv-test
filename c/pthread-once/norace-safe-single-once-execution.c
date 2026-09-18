@@ -28,7 +28,6 @@ int main(void) {
   pthread_t id;
 
   for(int i=0; i < 100; i++) {
-    // Will receive non-unique TID
     pthread_create(&id, NULL, thread, NULL);
   }
 

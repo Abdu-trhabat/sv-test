@@ -928,7 +928,6 @@ extern void abort(void);
 void reach_error() { ((void) sizeof ((0) ? 1 : 0), __extension__ ({ if (0) ; else __assert_fail ("0", "./unreach-reachable-repeated-once-call.c", 15, __extension__ __PRETTY_FUNCTION__); })); }
 int g = 0;
 pthread_once_t once = 0;
-pthread_mutex_t mutex1 = { { 0, 0, 0, 0, 0, 0, 0, { 0, 0 } } };
 void fun() {
   g++;
 }

@@ -1250,8 +1250,6 @@ int main(void) {
   }
   pthread_once(optr, increment);
   pthread_once(optr5, increment);
-  if(g == 2) {
-    { if(!(1)) { reach_error(); abort(); } };
-  }
+  { if(!(g == 2)) { reach_error(); abort(); } };
   return 0;
 }

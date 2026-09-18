@@ -28,9 +28,6 @@ void* thread(void* arg) {
   pthread_mutex_lock(&mtx);
   if(g == NULL) {
     // Will not happen!
-    // Also showing that g is not NULL here requires "Extended Support for pthread once" as explained in appendix C.
-    // It was added manually here so we can show off that at the end we can exclude the in initial value even
-    // though main didn't write
     exit(42);
   }
   *g = 4711; //NORACE

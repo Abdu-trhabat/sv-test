@@ -44,9 +44,7 @@ int main(void) {
   pthread_once(optr, increment);
   pthread_once(optr5, increment);
 
-  if(g == 2) {
-    __VERIFIER_assert(1);
-  }
+  __VERIFIER_assert(g == 2);
 
 
   return 0;

@@ -1244,9 +1244,6 @@ void increment() {
 int main(void) {
   pthread_once(&onces.once1, increment);
   pthread_once(&onces.once2, increment);
-  if(g == 2) {
-    { if(!(1)) { reach_error(); abort(); } };
-  }
-  printf("g = %d\n", g);
+  { if(!(g == 2)) { reach_error(); abort(); } };
   return 0;
 }

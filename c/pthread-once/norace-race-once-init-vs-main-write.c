@@ -13,7 +13,6 @@
 
 int g = 0;
 pthread_once_t once = PTHREAD_ONCE_INIT;
-pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 void fun() {
   g++; //RACE
