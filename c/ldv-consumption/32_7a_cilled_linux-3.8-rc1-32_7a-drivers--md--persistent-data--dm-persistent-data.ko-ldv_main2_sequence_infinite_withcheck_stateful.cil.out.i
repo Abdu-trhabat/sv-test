@@ -6091,6 +6091,17 @@ struct dm_space_map *dm_sm_disk_open(struct dm_transaction_manager *tm , void *r
   return ((struct dm_space_map *)tmp___1);
 }
 }
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 int main(void)
 {
   struct dm_space_map *var_group1 ;
@@ -6112,6 +6123,7 @@ int main(void)
   int tmp ;
   int tmp___0 ;
   {
+  var_group1 = (struct dm_space_map *)ldv_init_zalloc(sizeof(struct sm_disk));
   LDV_IN_INTERRUPT = 1;
   ldv_initialize();
   goto ldv_29034;

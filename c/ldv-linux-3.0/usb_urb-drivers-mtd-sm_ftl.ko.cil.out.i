@@ -6246,6 +6246,18 @@ void ldv_check_final_state(void) __attribute__((__ldv_model__)) ;
 extern void ldv_initialize(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT ;
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void assume_abort_if_not(int cond) { if(!cond) {abort();} }
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 int main(void)
 { struct mtd_blktrans_dev *var_group1 ;
   struct hd_geometry *var_group2 ;
@@ -6260,6 +6272,7 @@ int main(void)
   int tmp___8 ;
   int tmp___9 ;
   {
+  var_group1 = (struct mtd_blktrans_dev *)ldv_init_zalloc(sizeof(struct mtd_blktrans_dev));
   {
   LDV_IN_INTERRUPT = 1;
   ldv_initialize();

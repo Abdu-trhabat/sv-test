@@ -5945,6 +5945,17 @@ void ldv_initialize(void) ;
 extern void ldv_handler_precall(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT ;
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 int main(void)
 {
   struct dvb_frontend *var_group1 ;
@@ -5957,6 +5968,7 @@ int main(void)
   int tmp ;
   int tmp___0 ;
   {
+  var_group1 = (struct dvb_frontend *)ldv_init_zalloc(sizeof(struct dvb_frontend));
   ldv_s_xc2028_dvb_tuner_ops_dvb_tuner_ops = 0;
   LDV_IN_INTERRUPT = 1;
   ldv_initialize();

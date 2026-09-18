@@ -3768,6 +3768,17 @@ void ldv_check_final_state(void) ;
 extern void ldv_initialize(void) ;
 extern int __VERIFIER_nondet_int(void) ;
 int LDV_IN_INTERRUPT ;
+extern void *calloc(size_t, size_t) ;
+void assume_abort_if_not(int cond) ;
+void *ldv_init_zalloc(size_t size )
+{
+  void *p ;
+  {
+  p = calloc(1UL, size);
+  assume_abort_if_not((unsigned long )p != (unsigned long )((void *)0));
+  return (p);
+}
+}
 void main(void)
 { struct acpi_device *var_group1 ;
   int var_acpi_container_remove_2_p1 ;
@@ -3775,6 +3786,7 @@ void main(void)
   int tmp___8 ;
   int tmp___9 ;
   {
+  var_group1 = (struct acpi_device *)ldv_init_zalloc(sizeof(struct acpi_device));
   {
   LDV_IN_INTERRUPT = 1;
   ldv_initialize();
