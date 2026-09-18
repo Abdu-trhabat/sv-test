@@ -19,7 +19,7 @@ int h;
 pthread_barrier_t barrier;
 
 void* f1(void* ptr) {
-    g = 1; // NORACE only this thread ever touches g
+    g = 1; // NORACE
     pthread_barrier_wait(&barrier);
     return NULL;
 }
@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
     pthread_t t1;
     pthread_create(&t1,NULL,f1,NULL);
 
-    h = 2; // NORACE main only touches h
+    h = 2; // NORACE
     pthread_barrier_wait(&barrier);
 
     return 0;

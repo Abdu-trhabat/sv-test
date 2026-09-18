@@ -27,7 +27,8 @@ int main(int argc, char const *argv[])
 {
     pthread_barrier_init(&barrier, NULL, 2);
 
-    g = 2; // NORACE written before the thread exists, so it cannot race
+    g = 2; // NORACE
+    // f1 not started yet
 
     pthread_t t1;
     pthread_create(&t1,NULL,f1,NULL);

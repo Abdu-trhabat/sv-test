@@ -34,7 +34,6 @@ int main(int argc, char const *argv[])
     pthread_barrier_init(&barrier, &barattr, 2);
 
     fork();
-    pthread_t t1;
 
     if(top) {
         pthread_barrier_wait(&barrier);
